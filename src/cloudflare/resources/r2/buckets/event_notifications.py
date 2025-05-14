@@ -72,7 +72,7 @@ class EventNotificationsResource(SyncAPIResource):
 
           rules: Array of rules to drive notifications.
 
-          jurisdiction: The bucket jurisdiction.
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -131,7 +131,7 @@ class EventNotificationsResource(SyncAPIResource):
 
           queue_id: Queue ID.
 
-          jurisdiction: The bucket jurisdiction.
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -184,7 +184,7 @@ class EventNotificationsResource(SyncAPIResource):
 
           bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction.
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -262,7 +262,7 @@ class AsyncEventNotificationsResource(AsyncAPIResource):
 
           rules: Array of rules to drive notifications.
 
-          jurisdiction: The bucket jurisdiction.
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -323,7 +323,7 @@ class AsyncEventNotificationsResource(AsyncAPIResource):
 
           queue_id: Queue ID.
 
-          jurisdiction: The bucket jurisdiction.
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -376,7 +376,7 @@ class AsyncEventNotificationsResource(AsyncAPIResource):
 
           bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction.
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 

@@ -32,4 +32,4 @@ class CustomCreateParams(TypedDict, total=False):
     """
 
     jurisdiction: Annotated[Literal["default", "eu", "fedramp"], PropertyInfo(alias="cf-r2-jurisdiction")]
-    """The bucket jurisdiction."""
+    """Jurisdiction where objects in this bucket are guaranteed to be stored."""

@@ -38,4 +38,4 @@ class BucketListParams(TypedDict, total=False):
     """Bucket name to start searching after. Buckets are ordered lexicographically."""
 
     jurisdiction: Annotated[Literal["default", "eu", "fedramp"], PropertyInfo(alias="cf-r2-jurisdiction")]
-    """Lists buckets in the provided jurisdiction."""
+    """Jurisdiction where objects in this bucket are guaranteed to be stored."""

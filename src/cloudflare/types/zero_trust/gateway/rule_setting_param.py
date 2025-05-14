@@ -200,7 +200,7 @@ class UntrustedCERT(TypedDict, total=False):
 
 
 class RuleSettingParam(TypedDict, total=False):
-    add_headers: Optional[Dict[str, str]]
+    add_headers: Dict[str, str]
     """Add custom headers to allowed requests, in the form of key-value pairs.
 
     Keys are header names, pointing to an array with its header value(s).
@@ -209,13 +209,13 @@ class RuleSettingParam(TypedDict, total=False):
     allow_child_bypass: Optional[bool]
     """Set by parent MSP accounts to enable their children to bypass this rule."""
 
-    audit_ssh: Optional[AuditSSH]
+    audit_ssh: AuditSSH
     """Settings for the Audit SSH action."""
 
-    biso_admin_controls: Optional[BISOAdminControls]
+    biso_admin_controls: BISOAdminControls
     """Configure how browser isolation behaves."""
 
-    block_page: Optional[BlockPage]
+    block_page: BlockPage
     """Custom block page settings.
 
     If missing/null, blocking will use the the account settings.
@@ -233,10 +233,10 @@ class RuleSettingParam(TypedDict, total=False):
     bypass_parent_rule: Optional[bool]
     """Set by children MSP accounts to bypass their parent's rules."""
 
-    check_session: Optional[CheckSession]
+    check_session: CheckSession
     """Configure how session check behaves."""
 
-    dns_resolvers: Optional[DNSResolvers]
+    dns_resolvers: DNSResolvers
     """Add your own custom resolvers to route queries that match the resolver policy.
 
     Cannot be used when 'resolve_dns_through_cloudflare' or 'resolve_dns_internally'
@@ -244,7 +244,7 @@ class RuleSettingParam(TypedDict, total=False):
     valid when a rule's action is set to 'resolve'.
     """
 
-    egress: Optional[Egress]
+    egress: Egress
     """Configure how Gateway Proxy traffic egresses.
 
     You can enable this setting for rules with Egress actions and filters, or omit
@@ -273,10 +273,10 @@ class RuleSettingParam(TypedDict, total=False):
     By default indicator feeds only block based on domain names.
     """
 
-    l4override: Optional[L4override]
+    l4override: L4override
     """Send matching traffic to the supplied destination IP address and port."""
 
-    notification_settings: Optional[NotificationSettings]
+    notification_settings: NotificationSettings
     """
     Configure a notification to display on the user's device when this rule is
     matched.
@@ -285,19 +285,19 @@ class RuleSettingParam(TypedDict, total=False):
     override_host: str
     """Override matching DNS queries with a hostname."""
 
-    override_ips: Optional[List[str]]
+    override_ips: List[str]
     """Override matching DNS queries with an IP or set of IPs."""
 
-    payload_log: Optional[PayloadLog]
+    payload_log: PayloadLog
     """Configure DLP payload logging."""
 
-    quarantine: Optional[Quarantine]
+    quarantine: Quarantine
     """Settings that apply to quarantine rules"""
 
-    redirect: Optional[Redirect]
+    redirect: Redirect
     """Settings that apply to redirect rules"""
 
-    resolve_dns_internally: Optional[ResolveDNSInternally]
+    resolve_dns_internally: ResolveDNSInternally
     """
     Configure to forward the query to the internal DNS service, passing the
     specified 'view_id' as input. Cannot be set when 'dns_resolvers' are specified
@@ -313,5 +313,5 @@ class RuleSettingParam(TypedDict, total=False):
     'resolve'.
     """
 
-    untrusted_cert: Optional[UntrustedCERT]
+    untrusted_cert: UntrustedCERT
     """Configure behavior when an upstream cert is invalid or an SSL error occurs."""

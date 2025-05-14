@@ -77,7 +77,7 @@ class JobCreateParams(TypedDict, total=False):
     in smaller quantities of larger files.
     """
 
-    kind: Optional[Literal["edge"]]
+    kind: Literal["edge"]
     """
     The kind parameter (optional) is used to differentiate between Logpush and Edge
     Log Delivery jobs. Currently, Edge Log Delivery is only supported for the

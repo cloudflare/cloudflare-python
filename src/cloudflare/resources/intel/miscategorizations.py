@@ -66,7 +66,7 @@ class MiscategorizationsResource(SyncAPIResource):
         Allows you to submit requests to change a domain’s category.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           content_adds: Content category IDs to add.
 
@@ -155,7 +155,7 @@ class AsyncMiscategorizationsResource(AsyncAPIResource):
         Allows you to submit requests to change a domain’s category.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           content_adds: Content category IDs to add.
 

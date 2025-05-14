@@ -35,7 +35,7 @@ class IntegrationEditParams(TypedDict, total=False):
     """The name of the device posture integration."""
 
     type: Literal[
-        "workspace_one", "crowdstrike_s2s", "uptycs", "intune", "kolide", "tanium", "sentinelone_s2s", "custom_s2s"
+        "workspace_one", "crowdstrike_s2s", "uptycs", "intune", "kolide", "tanium_s2s", "sentinelone_s2s", "custom_s2s"
     ]
     """The type of device posture integration."""
 

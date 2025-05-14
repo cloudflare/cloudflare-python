@@ -460,7 +460,7 @@ class SelfHostedApplication(BaseModel):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
+    ms, s, m, h. Note: unsupported for infrastructure type applications.
     """
 
     skip_interstitial: Optional[bool] = None
@@ -1035,7 +1035,7 @@ class BrowserSSHApplication(BaseModel):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
+    ms, s, m, h. Note: unsupported for infrastructure type applications.
     """
 
     skip_interstitial: Optional[bool] = None
@@ -1394,7 +1394,7 @@ class BrowserVNCApplication(BaseModel):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
+    ms, s, m, h. Note: unsupported for infrastructure type applications.
     """
 
     skip_interstitial: Optional[bool] = None
@@ -1652,7 +1652,7 @@ class AppLauncherApplication(BaseModel):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
+    ms, s, m, h. Note: unsupported for infrastructure type applications.
     """
 
     skip_app_launcher_login_page: Optional[bool] = None
@@ -1906,7 +1906,7 @@ class DeviceEnrollmentPermissionsApplication(BaseModel):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
+    ms, s, m, h. Note: unsupported for infrastructure type applications.
     """
 
     skip_app_launcher_login_page: Optional[bool] = None
@@ -2160,7 +2160,7 @@ class BrowserIsolationPermissionsApplication(BaseModel):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
+    ms, s, m, h. Note: unsupported for infrastructure type applications.
     """
 
     skip_app_launcher_login_page: Optional[bool] = None
@@ -2838,7 +2838,7 @@ class BrowserRdpApplication(BaseModel):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
+    ms, s, m, h. Note: unsupported for infrastructure type applications.
     """
 
     skip_interstitial: Optional[bool] = None

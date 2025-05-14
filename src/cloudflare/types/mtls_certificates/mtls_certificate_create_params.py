@@ -21,4 +21,8 @@ class MTLSCertificateCreateParams(TypedDict, total=False):
     """Optional unique name for the certificate. Only used for human readability."""
 
     private_key: str
-    """The private key for the certificate"""
+    """The private key for the certificate.
+
+    This field is only needed for specific use cases such as using a custom
+    certificate with Zero Trust's block page.
+    """

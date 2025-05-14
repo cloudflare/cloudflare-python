@@ -12,7 +12,7 @@ __all__ = ["ThreatEventListParams", "Search"]
 
 class ThreatEventListParams(TypedDict, total=False):
     account_id: Required[float]
-    """Account ID"""
+    """Account ID."""
 
     dataset_id: Annotated[List[str], PropertyInfo(alias="datasetId")]
 

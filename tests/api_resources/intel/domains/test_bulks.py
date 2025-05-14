@@ -28,7 +28,7 @@ class TestBulks:
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         bulk = client.intel.domains.bulks.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            domain={},
+            domain=["string"],
         )
         assert_matches_type(Optional[BulkGetResponse], bulk, path=["response"])
 
@@ -78,7 +78,7 @@ class TestAsyncBulks:
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         bulk = await async_client.intel.domains.bulks.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            domain={},
+            domain=["string"],
         )
         assert_matches_type(Optional[BulkGetResponse], bulk, path=["response"])
 

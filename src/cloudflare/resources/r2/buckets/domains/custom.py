@@ -84,7 +84,7 @@ class CustomResource(SyncAPIResource):
           min_tls: Minimum TLS Version the custom domain will accept for incoming connections. If
               not set, defaults to 1.0.
 
-          jurisdiction: The bucket jurisdiction.
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -154,7 +154,7 @@ class CustomResource(SyncAPIResource):
           min_tls: Minimum TLS Version the custom domain will accept for incoming connections. If
               not set, defaults to previous value.
 
-          jurisdiction: The bucket jurisdiction.
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -214,7 +214,7 @@ class CustomResource(SyncAPIResource):
 
           bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction.
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -268,7 +268,7 @@ class CustomResource(SyncAPIResource):
 
           domain: Name of the custom domain.
 
-          jurisdiction: The bucket jurisdiction.
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -324,7 +324,7 @@ class CustomResource(SyncAPIResource):
 
           domain: Name of the custom domain.
 
-          jurisdiction: The bucket jurisdiction.
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -412,7 +412,7 @@ class AsyncCustomResource(AsyncAPIResource):
           min_tls: Minimum TLS Version the custom domain will accept for incoming connections. If
               not set, defaults to 1.0.
 
-          jurisdiction: The bucket jurisdiction.
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -482,7 +482,7 @@ class AsyncCustomResource(AsyncAPIResource):
           min_tls: Minimum TLS Version the custom domain will accept for incoming connections. If
               not set, defaults to previous value.
 
-          jurisdiction: The bucket jurisdiction.
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -542,7 +542,7 @@ class AsyncCustomResource(AsyncAPIResource):
 
           bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction.
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -596,7 +596,7 @@ class AsyncCustomResource(AsyncAPIResource):
 
           domain: Name of the custom domain.
 
-          jurisdiction: The bucket jurisdiction.
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -652,7 +652,7 @@ class AsyncCustomResource(AsyncAPIResource):
 
           domain: Name of the custom domain.
 
-          jurisdiction: The bucket jurisdiction.
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 

@@ -7,7 +7,7 @@ from typing_extensions import Literal
 from .type import Type
 from ..._models import BaseModel
 
-__all__ = ["Zone", "Account", "Meta", "Owner"]
+__all__ = ["Zone", "Account", "Meta", "Owner", "Plan", "Tenant", "TenantUnit"]
 
 
 class Account(BaseModel):
@@ -49,6 +49,51 @@ class Owner(BaseModel):
 
     type: Optional[str] = None
     """The type of owner"""
+
+
+class Plan(BaseModel):
+    id: Optional[str] = None
+    """Identifier"""
+
+    can_subscribe: Optional[bool] = None
+    """States if the subscription can be activated."""
+
+    currency: Optional[str] = None
+    """The denomination of the customer."""
+
+    externally_managed: Optional[bool] = None
+    """If this Zone is managed by another company."""
+
+    frequency: Optional[str] = None
+    """How often the customer is billed."""
+
+    is_subscribed: Optional[bool] = None
+    """States if the subscription active."""
+
+    legacy_discount: Optional[bool] = None
+    """If the legacy discount applies to this Zone."""
+
+    legacy_id: Optional[str] = None
+    """The legacy name of the plan."""
+
+    name: Optional[str] = None
+    """Name of the owner"""
+
+    price: Optional[float] = None
+    """How much the customer is paying."""
+
+
+class Tenant(BaseModel):
+    id: Optional[str] = None
+    """Identifier"""
+
+    name: Optional[str] = None
+    """The name of the Tenant account."""
+
+
+class TenantUnit(BaseModel):
+    id: Optional[str] = None
+    """Identifier"""
 
 
 class Zone(BaseModel):
@@ -95,14 +140,35 @@ class Zone(BaseModel):
     owner: Owner
     """The owner of the zone"""
 
+    plan: Plan
+    """A Zones subscription information."""
+
+    cname_suffix: Optional[str] = None
+    """Allows the customer to use a custom apex. _Tenants Only Configuration_."""
+
     paused: Optional[bool] = None
     """Indicates whether the zone is only using Cloudflare DNS services.
 
     A true value means the zone will not receive security or performance benefits.
     """
 
+    permissions: Optional[List[str]] = None
+    """Legacy permissions based on legacy user membership information."""
+
     status: Optional[Literal["initializing", "pending", "active", "moved"]] = None
     """The zone status on Cloudflare."""
+
+    tenant: Optional[Tenant] = None
+    """
+    The root organizational unit that this zone belongs to (such as a tenant or
+    organization).
+    """
+
+    tenant_unit: Optional[TenantUnit] = None
+    """
+    The immediate parent organizational unit that this zone belongs to (such as
+    under a tenant or sub-organization).
+    """
 
     type: Optional[Type] = None
     """A full zone implies that DNS is hosted with Cloudflare.

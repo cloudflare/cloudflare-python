@@ -103,7 +103,7 @@ class TestPCAPs:
             colo_name="ord02",
             destination_conf="s3://pcaps-bucket?region=us-east-1",
             system="magic-transit",
-            time_limit=300,
+            time_limit=86400,
             type="simple",
         )
         assert_matches_type(PCAPCreateResponse, pcap, path=["response"])
@@ -115,7 +115,7 @@ class TestPCAPs:
             colo_name="ord02",
             destination_conf="s3://pcaps-bucket?region=us-east-1",
             system="magic-transit",
-            time_limit=300,
+            time_limit=86400,
             type="simple",
             byte_limit=500000,
             filter_v1={
@@ -136,7 +136,7 @@ class TestPCAPs:
             colo_name="ord02",
             destination_conf="s3://pcaps-bucket?region=us-east-1",
             system="magic-transit",
-            time_limit=300,
+            time_limit=86400,
             type="simple",
         )
 
@@ -152,7 +152,7 @@ class TestPCAPs:
             colo_name="ord02",
             destination_conf="s3://pcaps-bucket?region=us-east-1",
             system="magic-transit",
-            time_limit=300,
+            time_limit=86400,
             type="simple",
         ) as response:
             assert not response.is_closed
@@ -171,7 +171,7 @@ class TestPCAPs:
                 colo_name="ord02",
                 destination_conf="s3://pcaps-bucket?region=us-east-1",
                 system="magic-transit",
-                time_limit=300,
+                time_limit=86400,
                 type="simple",
             )
 
@@ -345,7 +345,7 @@ class TestAsyncPCAPs:
             colo_name="ord02",
             destination_conf="s3://pcaps-bucket?region=us-east-1",
             system="magic-transit",
-            time_limit=300,
+            time_limit=86400,
             type="simple",
         )
         assert_matches_type(PCAPCreateResponse, pcap, path=["response"])
@@ -357,7 +357,7 @@ class TestAsyncPCAPs:
             colo_name="ord02",
             destination_conf="s3://pcaps-bucket?region=us-east-1",
             system="magic-transit",
-            time_limit=300,
+            time_limit=86400,
             type="simple",
             byte_limit=500000,
             filter_v1={
@@ -378,7 +378,7 @@ class TestAsyncPCAPs:
             colo_name="ord02",
             destination_conf="s3://pcaps-bucket?region=us-east-1",
             system="magic-transit",
-            time_limit=300,
+            time_limit=86400,
             type="simple",
         )
 
@@ -394,7 +394,7 @@ class TestAsyncPCAPs:
             colo_name="ord02",
             destination_conf="s3://pcaps-bucket?region=us-east-1",
             system="magic-transit",
-            time_limit=300,
+            time_limit=86400,
             type="simple",
         ) as response:
             assert not response.is_closed
@@ -413,7 +413,7 @@ class TestAsyncPCAPs:
                 colo_name="ord02",
                 destination_conf="s3://pcaps-bucket?region=us-east-1",
                 system="magic-transit",
-                time_limit=300,
+                time_limit=86400,
                 type="simple",
             )
 

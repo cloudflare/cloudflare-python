@@ -94,6 +94,7 @@ class TestWorkflows:
             account_id="account_id",
             page=1,
             per_page=1,
+            search="x",
         )
         assert_matches_type(SyncV4PagePaginationArray[WorkflowListResponse], workflow, path=["response"])
 
@@ -299,6 +300,7 @@ class TestAsyncWorkflows:
             account_id="account_id",
             page=1,
             per_page=1,
+            search="x",
         )
         assert_matches_type(AsyncV4PagePaginationArray[WorkflowListResponse], workflow, path=["response"])
 

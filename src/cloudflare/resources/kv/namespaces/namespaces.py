@@ -47,7 +47,6 @@ from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.kv.namespace import Namespace
 from ....types.kv.namespace_delete_response import NamespaceDeleteResponse
-from ....types.kv.namespace_update_response import NamespaceUpdateResponse
 
 __all__ = ["NamespacesResource", "AsyncNamespacesResource"]
 
@@ -142,7 +141,7 @@ class NamespacesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NamespaceUpdateResponse]:
+    ) -> Namespace:
         """
         Modifies a namespace's title.
 
@@ -173,9 +172,9 @@ class NamespacesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[NamespaceUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Namespace]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[NamespaceUpdateResponse]], ResultWrapper[NamespaceUpdateResponse]),
+            cast_to=cast(Type[Namespace], ResultWrapper[Namespace]),
         )
 
     def list(
@@ -417,7 +416,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NamespaceUpdateResponse]:
+    ) -> Namespace:
         """
         Modifies a namespace's title.
 
@@ -448,9 +447,9 @@ class AsyncNamespacesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[NamespaceUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Namespace]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[NamespaceUpdateResponse]], ResultWrapper[NamespaceUpdateResponse]),
+            cast_to=cast(Type[Namespace], ResultWrapper[Namespace]),
         )
 
     def list(

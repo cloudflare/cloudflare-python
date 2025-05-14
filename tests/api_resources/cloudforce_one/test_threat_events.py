@@ -36,7 +36,7 @@ class TestThreatEvents:
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
             indicator_type="domain",
-            raw={},
+            raw={"data": {"foo": "bar"}},
             tlp="amber",
         )
         assert_matches_type(ThreatEventCreateResponse, threat_event, path=["response"])
@@ -53,7 +53,7 @@ class TestThreatEvents:
             event="An attacker registered the domain domain.com",
             indicator_type="domain",
             raw={
-                "data": {},
+                "data": {"foo": "bar"},
                 "source": "example.com",
                 "tlp": "amber",
             },
@@ -78,7 +78,7 @@ class TestThreatEvents:
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
             indicator_type="domain",
-            raw={},
+            raw={"data": {"foo": "bar"}},
             tlp="amber",
         )
 
@@ -98,7 +98,7 @@ class TestThreatEvents:
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
             indicator_type="domain",
-            raw={},
+            raw={"data": {"foo": "bar"}},
             tlp="amber",
         ) as response:
             assert not response.is_closed
@@ -222,7 +222,7 @@ class TestThreatEvents:
                     "date": parse_datetime("2022-04-01T00:00:00Z"),
                     "event": "An attacker registered the domain domain.com",
                     "indicator_type": "domain",
-                    "raw": {},
+                    "raw": {"data": {"foo": "bar"}},
                     "tlp": "amber",
                 }
             ],
@@ -243,7 +243,7 @@ class TestThreatEvents:
                     "date": parse_datetime("2022-04-01T00:00:00Z"),
                     "event": "An attacker registered the domain domain.com",
                     "indicator_type": "domain",
-                    "raw": {},
+                    "raw": {"data": {"foo": "bar"}},
                     "tlp": "amber",
                 }
             ],
@@ -268,7 +268,7 @@ class TestThreatEvents:
                     "date": parse_datetime("2022-04-01T00:00:00Z"),
                     "event": "An attacker registered the domain domain.com",
                     "indicator_type": "domain",
-                    "raw": {},
+                    "raw": {"data": {"foo": "bar"}},
                     "tlp": "amber",
                 }
             ],
@@ -408,7 +408,7 @@ class TestAsyncThreatEvents:
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
             indicator_type="domain",
-            raw={},
+            raw={"data": {"foo": "bar"}},
             tlp="amber",
         )
         assert_matches_type(ThreatEventCreateResponse, threat_event, path=["response"])
@@ -425,7 +425,7 @@ class TestAsyncThreatEvents:
             event="An attacker registered the domain domain.com",
             indicator_type="domain",
             raw={
-                "data": {},
+                "data": {"foo": "bar"},
                 "source": "example.com",
                 "tlp": "amber",
             },
@@ -450,7 +450,7 @@ class TestAsyncThreatEvents:
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
             indicator_type="domain",
-            raw={},
+            raw={"data": {"foo": "bar"}},
             tlp="amber",
         )
 
@@ -470,7 +470,7 @@ class TestAsyncThreatEvents:
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
             indicator_type="domain",
-            raw={},
+            raw={"data": {"foo": "bar"}},
             tlp="amber",
         ) as response:
             assert not response.is_closed
@@ -594,7 +594,7 @@ class TestAsyncThreatEvents:
                     "date": parse_datetime("2022-04-01T00:00:00Z"),
                     "event": "An attacker registered the domain domain.com",
                     "indicator_type": "domain",
-                    "raw": {},
+                    "raw": {"data": {"foo": "bar"}},
                     "tlp": "amber",
                 }
             ],
@@ -615,7 +615,7 @@ class TestAsyncThreatEvents:
                     "date": parse_datetime("2022-04-01T00:00:00Z"),
                     "event": "An attacker registered the domain domain.com",
                     "indicator_type": "domain",
-                    "raw": {},
+                    "raw": {"data": {"foo": "bar"}},
                     "tlp": "amber",
                 }
             ],
@@ -640,7 +640,7 @@ class TestAsyncThreatEvents:
                     "date": parse_datetime("2022-04-01T00:00:00Z"),
                     "event": "An attacker registered the domain domain.com",
                     "indicator_type": "domain",
-                    "raw": {},
+                    "raw": {"data": {"foo": "bar"}},
                     "tlp": "amber",
                 }
             ],

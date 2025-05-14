@@ -57,7 +57,7 @@ class TagsResource(SyncAPIResource):
         Creates a new tag
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
           extra_headers: Send extra headers
 
@@ -113,7 +113,7 @@ class AsyncTagsResource(AsyncAPIResource):
         Creates a new tag
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
           extra_headers: Send extra headers
 

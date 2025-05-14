@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Optional
 from typing_extensions import TypedDict
 
 from .notification_settings_param import NotificationSettingsParam
@@ -20,7 +19,7 @@ class AntiVirusSettingsParam(TypedDict, total=False):
     fail_closed: bool
     """Block requests for files that cannot be scanned."""
 
-    notification_settings: Optional[NotificationSettingsParam]
+    notification_settings: NotificationSettingsParam
     """
     Configure a message to display on the user's device when an antivirus search is
     performed.

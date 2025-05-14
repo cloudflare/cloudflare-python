@@ -47,7 +47,7 @@ class TeamsDevicesCarbonblackInputRequest(TypedDict, total=False):
 
 class TeamsDevicesAccessSerialNumberListInputRequest(TypedDict, total=False):
     id: Required[str]
-    """UUID of Access List"""
+    """UUID of Access List."""
 
 
 class TeamsDevicesApplicationInputRequest(TypedDict, total=False):

@@ -10,7 +10,7 @@ __all__ = ["BrandProtectionURLInfoParams"]
 
 class BrandProtectionURLInfoParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     url: List[str]
     """Submission URL(s) to filter submission results by."""

@@ -86,6 +86,11 @@ class TestScripts:
                 "observability": {
                     "enabled": True,
                     "head_sampling_rate": 0.1,
+                    "logs": {
+                        "enabled": True,
+                        "invocation_logs": True,
+                        "head_sampling_rate": 0.1,
+                    },
                 },
                 "placement": {"mode": "smart"},
                 "tags": ["string"],
@@ -360,6 +365,11 @@ class TestAsyncScripts:
                 "observability": {
                     "enabled": True,
                     "head_sampling_rate": 0.1,
+                    "logs": {
+                        "enabled": True,
+                        "invocation_logs": True,
+                        "head_sampling_rate": 0.1,
+                    },
                 },
                 "placement": {"mode": "smart"},
                 "tags": ["string"],

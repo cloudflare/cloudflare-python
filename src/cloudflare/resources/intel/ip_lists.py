@@ -52,10 +52,10 @@ class IPListsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncSinglePage[IPList]:
         """
-        Get IP Lists
+        Get IP Lists.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -109,10 +109,10 @@ class AsyncIPListsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[IPList, AsyncSinglePage[IPList]]:
         """
-        Get IP Lists
+        Get IP Lists.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 

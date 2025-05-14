@@ -75,12 +75,12 @@ class RulesResource(SyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         device_posture: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        expiration: Optional[rule_create_params.Expiration] | NotGiven = NOT_GIVEN,
+        expiration: rule_create_params.Expiration | NotGiven = NOT_GIVEN,
         filters: List[GatewayFilter] | NotGiven = NOT_GIVEN,
         identity: str | NotGiven = NOT_GIVEN,
         precedence: int | NotGiven = NOT_GIVEN,
         rule_settings: RuleSettingParam | NotGiven = NOT_GIVEN,
-        schedule: Optional[ScheduleParam] | NotGiven = NOT_GIVEN,
+        schedule: ScheduleParam | NotGiven = NOT_GIVEN,
         traffic: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -116,7 +116,9 @@ class RulesResource(SyncAPIResource):
 
           precedence: Precedence sets the order of your rules. Lower values indicate higher
               precedence. At each processing phase, applicable rules are evaluated in
-              ascending order of this value.
+              ascending order of this value. Refer to
+              [Order of enforcement](http://developers.cloudflare.com/learning-paths/secure-internet-traffic/understand-policies/order-of-enforcement/#manage-precedence-with-terraform)
+              docs on how to manage precedence via Terraform.
 
           rule_settings: Additional settings that modify the rule's action.
 
@@ -191,12 +193,12 @@ class RulesResource(SyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         device_posture: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        expiration: Optional[rule_update_params.Expiration] | NotGiven = NOT_GIVEN,
+        expiration: rule_update_params.Expiration | NotGiven = NOT_GIVEN,
         filters: List[GatewayFilter] | NotGiven = NOT_GIVEN,
         identity: str | NotGiven = NOT_GIVEN,
         precedence: int | NotGiven = NOT_GIVEN,
         rule_settings: RuleSettingParam | NotGiven = NOT_GIVEN,
-        schedule: Optional[ScheduleParam] | NotGiven = NOT_GIVEN,
+        schedule: ScheduleParam | NotGiven = NOT_GIVEN,
         traffic: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -234,7 +236,9 @@ class RulesResource(SyncAPIResource):
 
           precedence: Precedence sets the order of your rules. Lower values indicate higher
               precedence. At each processing phase, applicable rules are evaluated in
-              ascending order of this value.
+              ascending order of this value. Refer to
+              [Order of enforcement](http://developers.cloudflare.com/learning-paths/secure-internet-traffic/understand-policies/order-of-enforcement/#manage-precedence-with-terraform)
+              docs on how to manage precedence via Terraform.
 
           rule_settings: Additional settings that modify the rule's action.
 
@@ -495,12 +499,12 @@ class AsyncRulesResource(AsyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         device_posture: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        expiration: Optional[rule_create_params.Expiration] | NotGiven = NOT_GIVEN,
+        expiration: rule_create_params.Expiration | NotGiven = NOT_GIVEN,
         filters: List[GatewayFilter] | NotGiven = NOT_GIVEN,
         identity: str | NotGiven = NOT_GIVEN,
         precedence: int | NotGiven = NOT_GIVEN,
         rule_settings: RuleSettingParam | NotGiven = NOT_GIVEN,
-        schedule: Optional[ScheduleParam] | NotGiven = NOT_GIVEN,
+        schedule: ScheduleParam | NotGiven = NOT_GIVEN,
         traffic: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -536,7 +540,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           precedence: Precedence sets the order of your rules. Lower values indicate higher
               precedence. At each processing phase, applicable rules are evaluated in
-              ascending order of this value.
+              ascending order of this value. Refer to
+              [Order of enforcement](http://developers.cloudflare.com/learning-paths/secure-internet-traffic/understand-policies/order-of-enforcement/#manage-precedence-with-terraform)
+              docs on how to manage precedence via Terraform.
 
           rule_settings: Additional settings that modify the rule's action.
 
@@ -611,12 +617,12 @@ class AsyncRulesResource(AsyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         device_posture: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        expiration: Optional[rule_update_params.Expiration] | NotGiven = NOT_GIVEN,
+        expiration: rule_update_params.Expiration | NotGiven = NOT_GIVEN,
         filters: List[GatewayFilter] | NotGiven = NOT_GIVEN,
         identity: str | NotGiven = NOT_GIVEN,
         precedence: int | NotGiven = NOT_GIVEN,
         rule_settings: RuleSettingParam | NotGiven = NOT_GIVEN,
-        schedule: Optional[ScheduleParam] | NotGiven = NOT_GIVEN,
+        schedule: ScheduleParam | NotGiven = NOT_GIVEN,
         traffic: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -654,7 +660,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           precedence: Precedence sets the order of your rules. Lower values indicate higher
               precedence. At each processing phase, applicable rules are evaluated in
-              ascending order of this value.
+              ascending order of this value. Refer to
+              [Order of enforcement](http://developers.cloudflare.com/learning-paths/secure-internet-traffic/understand-policies/order-of-enforcement/#manage-precedence-with-terraform)
+              docs on how to manage precedence via Terraform.
 
           rule_settings: Additional settings that modify the rule's action.
 

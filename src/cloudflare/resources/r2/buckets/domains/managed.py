@@ -70,7 +70,7 @@ class ManagedResource(SyncAPIResource):
 
           enabled: Whether to enable public bucket access at the r2.dev domain.
 
-          jurisdiction: The bucket jurisdiction.
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -122,7 +122,7 @@ class ManagedResource(SyncAPIResource):
 
           bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction.
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -197,7 +197,7 @@ class AsyncManagedResource(AsyncAPIResource):
 
           enabled: Whether to enable public bucket access at the r2.dev domain.
 
-          jurisdiction: The bucket jurisdiction.
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -249,7 +249,7 @@ class AsyncManagedResource(AsyncAPIResource):
 
           bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction.
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 

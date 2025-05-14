@@ -91,6 +91,7 @@ class DNSSECResource(SyncAPIResource):
         zone_id: str,
         dnssec_multi_signer: bool | NotGiven = NOT_GIVEN,
         dnssec_presigned: bool | NotGiven = NOT_GIVEN,
+        dnssec_use_nsec3: bool | NotGiven = NOT_GIVEN,
         status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -122,6 +123,16 @@ class DNSSECResource(SyncAPIResource):
               [Cloudflare as Secondary](https://developers.cloudflare.com/dns/zone-setups/zone-transfers/cloudflare-as-secondary/setup/#dnssec)
               for details.
 
+          dnssec_use_nsec3: If true, enables the use of NSEC3 together with DNSSEC on the zone. Combined
+              with setting dnssec_presigned to true, this enables the use of NSEC3 records
+              when transferring in from an external provider. If dnssec_presigned is instead
+              set to false (default), NSEC3 records will be generated and signed at request
+              time.
+
+              See
+              [DNSSEC with NSEC3](https://developers.cloudflare.com/dns/dnssec/enable-nsec3/)
+              for details.
+
           status: Status of DNSSEC, based on user-desired state and presence of necessary records.
 
           extra_headers: Send extra headers
@@ -140,6 +151,7 @@ class DNSSECResource(SyncAPIResource):
                 {
                     "dnssec_multi_signer": dnssec_multi_signer,
                     "dnssec_presigned": dnssec_presigned,
+                    "dnssec_use_nsec3": dnssec_use_nsec3,
                     "status": status,
                 },
                 dnssec_edit_params.DNSSECEditParams,
@@ -259,6 +271,7 @@ class AsyncDNSSECResource(AsyncAPIResource):
         zone_id: str,
         dnssec_multi_signer: bool | NotGiven = NOT_GIVEN,
         dnssec_presigned: bool | NotGiven = NOT_GIVEN,
+        dnssec_use_nsec3: bool | NotGiven = NOT_GIVEN,
         status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -290,6 +303,16 @@ class AsyncDNSSECResource(AsyncAPIResource):
               [Cloudflare as Secondary](https://developers.cloudflare.com/dns/zone-setups/zone-transfers/cloudflare-as-secondary/setup/#dnssec)
               for details.
 
+          dnssec_use_nsec3: If true, enables the use of NSEC3 together with DNSSEC on the zone. Combined
+              with setting dnssec_presigned to true, this enables the use of NSEC3 records
+              when transferring in from an external provider. If dnssec_presigned is instead
+              set to false (default), NSEC3 records will be generated and signed at request
+              time.
+
+              See
+              [DNSSEC with NSEC3](https://developers.cloudflare.com/dns/dnssec/enable-nsec3/)
+              for details.
+
           status: Status of DNSSEC, based on user-desired state and presence of necessary records.
 
           extra_headers: Send extra headers
@@ -308,6 +331,7 @@ class AsyncDNSSECResource(AsyncAPIResource):
                 {
                     "dnssec_multi_signer": dnssec_multi_signer,
                     "dnssec_presigned": dnssec_presigned,
+                    "dnssec_use_nsec3": dnssec_use_nsec3,
                     "status": status,
                 },
                 dnssec_edit_params.DNSSECEditParams,

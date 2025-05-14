@@ -50,6 +50,7 @@ class MarkdownResource(SyncAPIResource):
         *,
         account_id: str,
         cache_ttl: float | NotGiven = NOT_GIVEN,
+        action_timeout: float | NotGiven = NOT_GIVEN,
         add_script_tag: Iterable[markdown_create_params.AddScriptTag] | NotGiven = NOT_GIVEN,
         add_style_tag: Iterable[markdown_create_params.AddStyleTag] | NotGiven = NOT_GIVEN,
         allow_request_pattern: List[str] | NotGiven = NOT_GIVEN,
@@ -130,6 +131,10 @@ class MarkdownResource(SyncAPIResource):
 
           cache_ttl: Cache TTL default is 5s. Set to 0 to disable.
 
+          action_timeout: The maximum duration allowed for the browser action to complete after the page
+              has loaded (such as taking screenshots, extracting content, or generating PDFs).
+              If this time limit is exceeded, the action stops and returns a timeout error.
+
           add_script_tag: Adds a `<script>` tag into the page with the desired URL or content.
 
           add_style_tag: Adds a `<link rel="stylesheet">` tag into the page with the desired URL or a
@@ -180,6 +185,7 @@ class MarkdownResource(SyncAPIResource):
             f"/accounts/{account_id}/browser-rendering/markdown",
             body=maybe_transform(
                 {
+                    "action_timeout": action_timeout,
                     "add_script_tag": add_script_tag,
                     "add_style_tag": add_style_tag,
                     "allow_request_pattern": allow_request_pattern,
@@ -239,6 +245,7 @@ class AsyncMarkdownResource(AsyncAPIResource):
         *,
         account_id: str,
         cache_ttl: float | NotGiven = NOT_GIVEN,
+        action_timeout: float | NotGiven = NOT_GIVEN,
         add_script_tag: Iterable[markdown_create_params.AddScriptTag] | NotGiven = NOT_GIVEN,
         add_style_tag: Iterable[markdown_create_params.AddStyleTag] | NotGiven = NOT_GIVEN,
         allow_request_pattern: List[str] | NotGiven = NOT_GIVEN,
@@ -319,6 +326,10 @@ class AsyncMarkdownResource(AsyncAPIResource):
 
           cache_ttl: Cache TTL default is 5s. Set to 0 to disable.
 
+          action_timeout: The maximum duration allowed for the browser action to complete after the page
+              has loaded (such as taking screenshots, extracting content, or generating PDFs).
+              If this time limit is exceeded, the action stops and returns a timeout error.
+
           add_script_tag: Adds a `<script>` tag into the page with the desired URL or content.
 
           add_style_tag: Adds a `<link rel="stylesheet">` tag into the page with the desired URL or a
@@ -369,6 +380,7 @@ class AsyncMarkdownResource(AsyncAPIResource):
             f"/accounts/{account_id}/browser-rendering/markdown",
             body=await async_maybe_transform(
                 {
+                    "action_timeout": action_timeout,
                     "add_script_tag": add_script_tag,
                     "add_style_tag": add_style_tag,
                     "allow_request_pattern": allow_request_pattern,

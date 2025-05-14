@@ -58,12 +58,12 @@ class BrandProtectionResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Submit]:
         """
-        Submit suspicious URL for scanning
+        Submit suspicious URL for scanning.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          url: URL(s) to filter submissions results by
+          url: URL(s) to filter submissions results by.
 
           extra_headers: Send extra headers
 
@@ -105,7 +105,7 @@ class BrandProtectionResource(SyncAPIResource):
         Gets phishing details about a URL.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           url: Submission URL(s) to filter submission results by.
 
@@ -174,12 +174,12 @@ class AsyncBrandProtectionResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Submit]:
         """
-        Submit suspicious URL for scanning
+        Submit suspicious URL for scanning.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          url: URL(s) to filter submissions results by
+          url: URL(s) to filter submissions results by.
 
           extra_headers: Send extra headers
 
@@ -221,7 +221,7 @@ class AsyncBrandProtectionResource(AsyncAPIResource):
         Gets phishing details about a URL.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           url: Submission URL(s) to filter submission results by.
 

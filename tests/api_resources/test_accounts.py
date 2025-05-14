@@ -79,9 +79,7 @@ class TestAccounts:
             name="Demo Account",
             settings={
                 "abuse_contact_email": "abuse_contact_email",
-                "default_nameservers": "cloudflare.standard",
                 "enforce_twofactor": True,
-                "use_account_custom_ns_by_default": True,
             },
         )
         assert_matches_type(Optional[Account], account, path=["response"])
@@ -293,9 +291,7 @@ class TestAsyncAccounts:
             name="Demo Account",
             settings={
                 "abuse_contact_email": "abuse_contact_email",
-                "default_nameservers": "cloudflare.standard",
                 "enforce_twofactor": True,
-                "use_account_custom_ns_by_default": True,
             },
         )
         assert_matches_type(Optional[Account], account, path=["response"])
