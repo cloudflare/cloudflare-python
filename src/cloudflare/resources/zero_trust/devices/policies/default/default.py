@@ -111,6 +111,7 @@ class DefaultResource(SyncAPIResource):
         lan_allow_minutes: float | NotGiven = NOT_GIVEN,
         lan_allow_subnet_size: float | NotGiven = NOT_GIVEN,
         register_interface_ip_with_dns: bool | NotGiven = NOT_GIVEN,
+        sccm_vpn_boundary_support: bool | NotGiven = NOT_GIVEN,
         service_mode_v2: default_edit_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
         support_url: str | NotGiven = NOT_GIVEN,
         switch_locked: bool | NotGiven = NOT_GIVEN,
@@ -160,6 +161,9 @@ class DefaultResource(SyncAPIResource):
           register_interface_ip_with_dns: Determines if the operating system will register WARP's local interface IP with
               your on-premises DNS server.
 
+          sccm_vpn_boundary_support: Determines whether the WARP client indicates to SCCM that it is inside a VPN
+              boundary. (Windows only).
+
           support_url: The URL to launch when the Send Feedback button is clicked.
 
           switch_locked: Whether to allow the user to turn off the WARP switch and disconnect the client.
@@ -192,6 +196,7 @@ class DefaultResource(SyncAPIResource):
                     "lan_allow_minutes": lan_allow_minutes,
                     "lan_allow_subnet_size": lan_allow_subnet_size,
                     "register_interface_ip_with_dns": register_interface_ip_with_dns,
+                    "sccm_vpn_boundary_support": sccm_vpn_boundary_support,
                     "service_mode_v2": service_mode_v2,
                     "support_url": support_url,
                     "switch_locked": switch_locked,
@@ -299,6 +304,7 @@ class AsyncDefaultResource(AsyncAPIResource):
         lan_allow_minutes: float | NotGiven = NOT_GIVEN,
         lan_allow_subnet_size: float | NotGiven = NOT_GIVEN,
         register_interface_ip_with_dns: bool | NotGiven = NOT_GIVEN,
+        sccm_vpn_boundary_support: bool | NotGiven = NOT_GIVEN,
         service_mode_v2: default_edit_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
         support_url: str | NotGiven = NOT_GIVEN,
         switch_locked: bool | NotGiven = NOT_GIVEN,
@@ -348,6 +354,9 @@ class AsyncDefaultResource(AsyncAPIResource):
           register_interface_ip_with_dns: Determines if the operating system will register WARP's local interface IP with
               your on-premises DNS server.
 
+          sccm_vpn_boundary_support: Determines whether the WARP client indicates to SCCM that it is inside a VPN
+              boundary. (Windows only).
+
           support_url: The URL to launch when the Send Feedback button is clicked.
 
           switch_locked: Whether to allow the user to turn off the WARP switch and disconnect the client.
@@ -380,6 +389,7 @@ class AsyncDefaultResource(AsyncAPIResource):
                     "lan_allow_minutes": lan_allow_minutes,
                     "lan_allow_subnet_size": lan_allow_subnet_size,
                     "register_interface_ip_with_dns": register_interface_ip_with_dns,
+                    "sccm_vpn_boundary_support": sccm_vpn_boundary_support,
                     "service_mode_v2": service_mode_v2,
                     "support_url": support_url,
                     "switch_locked": switch_locked,

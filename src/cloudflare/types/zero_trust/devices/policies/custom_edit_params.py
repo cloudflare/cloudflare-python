@@ -98,6 +98,12 @@ class CustomEditParams(TypedDict, total=False):
     your on-premises DNS server.
     """
 
+    sccm_vpn_boundary_support: bool
+    """
+    Determines whether the WARP client indicates to SCCM that it is inside a VPN
+    boundary. (Windows only).
+    """
+
     service_mode_v2: ServiceModeV2
 
     support_url: str

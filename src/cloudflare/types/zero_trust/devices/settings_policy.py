@@ -114,6 +114,12 @@ class SettingsPolicy(BaseModel):
     your on-premises DNS server.
     """
 
+    sccm_vpn_boundary_support: Optional[bool] = None
+    """
+    Determines whether the WARP client indicates to SCCM that it is inside a VPN
+    boundary. (Windows only).
+    """
+
     service_mode_v2: Optional[ServiceModeV2] = None
 
     support_url: Optional[str] = None
