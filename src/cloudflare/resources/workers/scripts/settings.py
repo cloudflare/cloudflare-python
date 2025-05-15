@@ -59,7 +59,7 @@ class SettingsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScriptSetting]:
+    ) -> ScriptSetting:
         """
         Patch script-level settings when using
         [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions).
@@ -103,9 +103,9 @@ class SettingsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ScriptSetting]]._unwrapper,
+                post_parser=ResultWrapper[ScriptSetting]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ScriptSetting]], ResultWrapper[ScriptSetting]),
+            cast_to=cast(Type[ScriptSetting], ResultWrapper[ScriptSetting]),
         )
 
     def get(
@@ -119,7 +119,7 @@ class SettingsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScriptSetting]:
+    ) -> ScriptSetting:
         """
         Get script-level settings when using
         [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions).
@@ -149,9 +149,9 @@ class SettingsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ScriptSetting]]._unwrapper,
+                post_parser=ResultWrapper[ScriptSetting]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ScriptSetting]], ResultWrapper[ScriptSetting]),
+            cast_to=cast(Type[ScriptSetting], ResultWrapper[ScriptSetting]),
         )
 
 
@@ -189,7 +189,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScriptSetting]:
+    ) -> ScriptSetting:
         """
         Patch script-level settings when using
         [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions).
@@ -233,9 +233,9 @@ class AsyncSettingsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ScriptSetting]]._unwrapper,
+                post_parser=ResultWrapper[ScriptSetting]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ScriptSetting]], ResultWrapper[ScriptSetting]),
+            cast_to=cast(Type[ScriptSetting], ResultWrapper[ScriptSetting]),
         )
 
     async def get(
@@ -249,7 +249,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScriptSetting]:
+    ) -> ScriptSetting:
         """
         Get script-level settings when using
         [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions).
@@ -279,9 +279,9 @@ class AsyncSettingsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ScriptSetting]]._unwrapper,
+                post_parser=ResultWrapper[ScriptSetting]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ScriptSetting]], ResultWrapper[ScriptSetting]),
+            cast_to=cast(Type[ScriptSetting], ResultWrapper[ScriptSetting]),
         )
 
 

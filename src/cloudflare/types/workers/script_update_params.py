@@ -59,13 +59,13 @@ class MetadataAssetsConfig(TypedDict, total=False):
     _headers: str
     """
     The contents of a \\__headers file (used to attach custom headers on asset
-    responses)
+    responses).
     """
 
     _redirects: str
     """
     The contents of a \\__redirects file (used to apply redirects or proxy paths ahead
-    of asset serving)
+    of asset serving).
     """
 
     html_handling: Literal["auto-trailing-slash", "force-trailing-slash", "drop-trailing-slash", "none"]
@@ -479,7 +479,7 @@ class MetadataPlacement(TypedDict, total=False):
 
 class Metadata(TypedDict, total=False):
     assets: MetadataAssets
-    """Configuration for assets within a Worker"""
+    """Configuration for assets within a Worker."""
 
     bindings: Iterable[MetadataBinding]
     """List of bindings attached to a Worker.

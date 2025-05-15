@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 
 import httpx
 
@@ -57,9 +57,9 @@ class ScriptAndVersionSettingsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScriptAndVersionSettingEditResponse]:
+    ) -> ScriptAndVersionSettingEditResponse:
         """
-        Patch metadata or config, such as bindings or usage model
+        Patch metadata or config, such as bindings or usage model.
 
         Args:
           account_id: Identifier.
@@ -92,11 +92,9 @@ class ScriptAndVersionSettingsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ScriptAndVersionSettingEditResponse]]._unwrapper,
+                post_parser=ResultWrapper[ScriptAndVersionSettingEditResponse]._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[ScriptAndVersionSettingEditResponse]], ResultWrapper[ScriptAndVersionSettingEditResponse]
-            ),
+            cast_to=cast(Type[ScriptAndVersionSettingEditResponse], ResultWrapper[ScriptAndVersionSettingEditResponse]),
         )
 
     def get(
@@ -110,9 +108,9 @@ class ScriptAndVersionSettingsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScriptAndVersionSettingGetResponse]:
+    ) -> ScriptAndVersionSettingGetResponse:
         """
-        Get metadata and config, such as bindings or usage model
+        Get metadata and config, such as bindings or usage model.
 
         Args:
           account_id: Identifier.
@@ -138,11 +136,9 @@ class ScriptAndVersionSettingsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ScriptAndVersionSettingGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[ScriptAndVersionSettingGetResponse]._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[ScriptAndVersionSettingGetResponse]], ResultWrapper[ScriptAndVersionSettingGetResponse]
-            ),
+            cast_to=cast(Type[ScriptAndVersionSettingGetResponse], ResultWrapper[ScriptAndVersionSettingGetResponse]),
         )
 
 
@@ -178,9 +174,9 @@ class AsyncScriptAndVersionSettingsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScriptAndVersionSettingEditResponse]:
+    ) -> ScriptAndVersionSettingEditResponse:
         """
-        Patch metadata or config, such as bindings or usage model
+        Patch metadata or config, such as bindings or usage model.
 
         Args:
           account_id: Identifier.
@@ -213,11 +209,9 @@ class AsyncScriptAndVersionSettingsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ScriptAndVersionSettingEditResponse]]._unwrapper,
+                post_parser=ResultWrapper[ScriptAndVersionSettingEditResponse]._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[ScriptAndVersionSettingEditResponse]], ResultWrapper[ScriptAndVersionSettingEditResponse]
-            ),
+            cast_to=cast(Type[ScriptAndVersionSettingEditResponse], ResultWrapper[ScriptAndVersionSettingEditResponse]),
         )
 
     async def get(
@@ -231,9 +225,9 @@ class AsyncScriptAndVersionSettingsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScriptAndVersionSettingGetResponse]:
+    ) -> ScriptAndVersionSettingGetResponse:
         """
-        Get metadata and config, such as bindings or usage model
+        Get metadata and config, such as bindings or usage model.
 
         Args:
           account_id: Identifier.
@@ -259,11 +253,9 @@ class AsyncScriptAndVersionSettingsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ScriptAndVersionSettingGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[ScriptAndVersionSettingGetResponse]._unwrapper,
             ),
-            cast_to=cast(
-                Type[Optional[ScriptAndVersionSettingGetResponse]], ResultWrapper[ScriptAndVersionSettingGetResponse]
-            ),
+            cast_to=cast(Type[ScriptAndVersionSettingGetResponse], ResultWrapper[ScriptAndVersionSettingGetResponse]),
         )
 
 

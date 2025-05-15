@@ -476,7 +476,7 @@ class Settings(TypedDict, total=False):
     """
 
     tags: List[str]
-    """Tags to help you manage your Workers"""
+    """Tags to help you manage your Workers."""
 
     tail_consumers: Iterable[ConsumerScriptParam]
     """List of Workers that will consume logs from the attached Worker."""

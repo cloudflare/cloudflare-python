@@ -64,7 +64,7 @@ class SecretsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SecretUpdateResponse]:
+    ) -> SecretUpdateResponse:
         """
         Add a secret to a script uploaded to a Workers for Platforms namespace.
 
@@ -113,7 +113,7 @@ class SecretsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SecretUpdateResponse]:
+    ) -> SecretUpdateResponse:
         """
         Add a secret to a script uploaded to a Workers for Platforms namespace.
 
@@ -178,7 +178,7 @@ class SecretsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SecretUpdateResponse]:
+    ) -> SecretUpdateResponse:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dispatch_namespace:
@@ -186,7 +186,7 @@ class SecretsResource(SyncAPIResource):
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return cast(
-            Optional[SecretUpdateResponse],
+            SecretUpdateResponse,
             self._put(
                 f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets",
                 body=maybe_transform(
@@ -207,7 +207,7 @@ class SecretsResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[SecretUpdateResponse]]._unwrapper,
+                    post_parser=ResultWrapper[SecretUpdateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[SecretUpdateResponse]
@@ -328,7 +328,7 @@ class SecretsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SecretGetResponse]:
+    ) -> SecretGetResponse:
         """
         Get a given secret binding (value omitted) on a script uploaded to a Workers for
         Platforms namespace.
@@ -359,7 +359,7 @@ class SecretsResource(SyncAPIResource):
         if not secret_name:
             raise ValueError(f"Expected a non-empty value for `secret_name` but received {secret_name!r}")
         return cast(
-            Optional[SecretGetResponse],
+            SecretGetResponse,
             self._get(
                 f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets/{secret_name}",
                 options=make_request_options(
@@ -367,7 +367,7 @@ class SecretsResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[SecretGetResponse]]._unwrapper,
+                    post_parser=ResultWrapper[SecretGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[SecretGetResponse]
@@ -412,7 +412,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SecretUpdateResponse]:
+    ) -> SecretUpdateResponse:
         """
         Add a secret to a script uploaded to a Workers for Platforms namespace.
 
@@ -461,7 +461,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SecretUpdateResponse]:
+    ) -> SecretUpdateResponse:
         """
         Add a secret to a script uploaded to a Workers for Platforms namespace.
 
@@ -526,7 +526,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SecretUpdateResponse]:
+    ) -> SecretUpdateResponse:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dispatch_namespace:
@@ -534,7 +534,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return cast(
-            Optional[SecretUpdateResponse],
+            SecretUpdateResponse,
             await self._put(
                 f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets",
                 body=await async_maybe_transform(
@@ -555,7 +555,7 @@ class AsyncSecretsResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[SecretUpdateResponse]]._unwrapper,
+                    post_parser=ResultWrapper[SecretUpdateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[SecretUpdateResponse]
@@ -676,7 +676,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SecretGetResponse]:
+    ) -> SecretGetResponse:
         """
         Get a given secret binding (value omitted) on a script uploaded to a Workers for
         Platforms namespace.
@@ -707,7 +707,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         if not secret_name:
             raise ValueError(f"Expected a non-empty value for `secret_name` but received {secret_name!r}")
         return cast(
-            Optional[SecretGetResponse],
+            SecretGetResponse,
             await self._get(
                 f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets/{secret_name}",
                 options=make_request_options(
@@ -715,7 +715,7 @@ class AsyncSecretsResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[SecretGetResponse]]._unwrapper,
+                    post_parser=ResultWrapper[SecretGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[SecretGetResponse]

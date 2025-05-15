@@ -458,7 +458,7 @@ class SettingGetResponse(BaseModel):
     """
 
     tags: Optional[List[str]] = None
-    """Tags to help you manage your Workers"""
+    """Tags to help you manage your Workers."""
 
     tail_consumers: Optional[List[ConsumerScript]] = None
     """List of Workers that will consume logs from the attached Worker."""

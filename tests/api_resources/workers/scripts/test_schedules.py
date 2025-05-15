@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
@@ -22,35 +22,35 @@ class TestSchedules:
         schedule = client.workers.scripts.schedules.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}],
+            body=[{"cron": "*/30 * * * *"}],
         )
-        assert_matches_type(Optional[ScheduleUpdateResponse], schedule, path=["response"])
+        assert_matches_type(ScheduleUpdateResponse, schedule, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.workers.scripts.schedules.with_raw_response.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}],
+            body=[{"cron": "*/30 * * * *"}],
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         schedule = response.parse()
-        assert_matches_type(Optional[ScheduleUpdateResponse], schedule, path=["response"])
+        assert_matches_type(ScheduleUpdateResponse, schedule, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.workers.scripts.schedules.with_streaming_response.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}],
+            body=[{"cron": "*/30 * * * *"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             schedule = response.parse()
-            assert_matches_type(Optional[ScheduleUpdateResponse], schedule, path=["response"])
+            assert_matches_type(ScheduleUpdateResponse, schedule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -60,14 +60,14 @@ class TestSchedules:
             client.workers.scripts.schedules.with_raw_response.update(
                 script_name="this-is_my_script-01",
                 account_id="",
-                body=[{}],
+                body=[{"cron": "*/30 * * * *"}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             client.workers.scripts.schedules.with_raw_response.update(
                 script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body=[{}],
+                body=[{"cron": "*/30 * * * *"}],
             )
 
     @parametrize
@@ -76,7 +76,7 @@ class TestSchedules:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ScheduleGetResponse], schedule, path=["response"])
+        assert_matches_type(ScheduleGetResponse, schedule, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -88,7 +88,7 @@ class TestSchedules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         schedule = response.parse()
-        assert_matches_type(Optional[ScheduleGetResponse], schedule, path=["response"])
+        assert_matches_type(ScheduleGetResponse, schedule, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -100,7 +100,7 @@ class TestSchedules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             schedule = response.parse()
-            assert_matches_type(Optional[ScheduleGetResponse], schedule, path=["response"])
+            assert_matches_type(ScheduleGetResponse, schedule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -127,35 +127,35 @@ class TestAsyncSchedules:
         schedule = await async_client.workers.scripts.schedules.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}],
+            body=[{"cron": "*/30 * * * *"}],
         )
-        assert_matches_type(Optional[ScheduleUpdateResponse], schedule, path=["response"])
+        assert_matches_type(ScheduleUpdateResponse, schedule, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.scripts.schedules.with_raw_response.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}],
+            body=[{"cron": "*/30 * * * *"}],
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         schedule = await response.parse()
-        assert_matches_type(Optional[ScheduleUpdateResponse], schedule, path=["response"])
+        assert_matches_type(ScheduleUpdateResponse, schedule, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.scripts.schedules.with_streaming_response.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}],
+            body=[{"cron": "*/30 * * * *"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             schedule = await response.parse()
-            assert_matches_type(Optional[ScheduleUpdateResponse], schedule, path=["response"])
+            assert_matches_type(ScheduleUpdateResponse, schedule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -165,14 +165,14 @@ class TestAsyncSchedules:
             await async_client.workers.scripts.schedules.with_raw_response.update(
                 script_name="this-is_my_script-01",
                 account_id="",
-                body=[{}],
+                body=[{"cron": "*/30 * * * *"}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             await async_client.workers.scripts.schedules.with_raw_response.update(
                 script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body=[{}],
+                body=[{"cron": "*/30 * * * *"}],
             )
 
     @parametrize
@@ -181,7 +181,7 @@ class TestAsyncSchedules:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ScheduleGetResponse], schedule, path=["response"])
+        assert_matches_type(ScheduleGetResponse, schedule, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -193,7 +193,7 @@ class TestAsyncSchedules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         schedule = await response.parse()
-        assert_matches_type(Optional[ScheduleGetResponse], schedule, path=["response"])
+        assert_matches_type(ScheduleGetResponse, schedule, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -205,7 +205,7 @@ class TestAsyncSchedules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             schedule = await response.parse()
-            assert_matches_type(Optional[ScheduleGetResponse], schedule, path=["response"])
+            assert_matches_type(ScheduleGetResponse, schedule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

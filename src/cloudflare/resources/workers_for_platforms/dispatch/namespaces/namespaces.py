@@ -77,7 +77,7 @@ class NamespacesResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          name: The name of the dispatch namespace
+          name: The name of the dispatch namespace.
 
           extra_headers: Send extra headers
 
@@ -269,7 +269,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          name: The name of the dispatch namespace
+          name: The name of the dispatch namespace.
 
           extra_headers: Send extra headers
 

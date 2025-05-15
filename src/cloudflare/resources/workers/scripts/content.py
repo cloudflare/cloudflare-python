@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 
 import httpx
 
@@ -67,9 +67,9 @@ class ContentResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Script]:
+    ) -> Script:
         """
-        Put script content without touching config or metadata
+        Put script content without touching config or metadata.
 
         Args:
           account_id: Identifier.
@@ -111,9 +111,9 @@ class ContentResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Script]]._unwrapper,
+                post_parser=ResultWrapper[Script]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Script]], ResultWrapper[Script]),
+            cast_to=cast(Type[Script], ResultWrapper[Script]),
         )
 
     def get(
@@ -129,7 +129,7 @@ class ContentResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BinaryAPIResponse:
         """
-        Fetch script content only
+        Fetch script content only.
 
         Args:
           account_id: Identifier.
@@ -192,9 +192,9 @@ class AsyncContentResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Script]:
+    ) -> Script:
         """
-        Put script content without touching config or metadata
+        Put script content without touching config or metadata.
 
         Args:
           account_id: Identifier.
@@ -236,9 +236,9 @@ class AsyncContentResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Script]]._unwrapper,
+                post_parser=ResultWrapper[Script]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Script]], ResultWrapper[Script]),
+            cast_to=cast(Type[Script], ResultWrapper[Script]),
         )
 
     async def get(
@@ -254,7 +254,7 @@ class AsyncContentResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncBinaryAPIResponse:
         """
-        Fetch script content only
+        Fetch script content only.
 
         Args:
           account_id: Identifier.

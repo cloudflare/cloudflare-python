@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 
 import httpx
 
@@ -59,7 +59,7 @@ class VersionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[VersionCreateResponse]:
+    ) -> VersionCreateResponse:
         """Upload a Worker Version without deploying to Cloudflare's network.
 
         You can find
@@ -97,9 +97,9 @@ class VersionsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[VersionCreateResponse]]._unwrapper,
+                post_parser=ResultWrapper[VersionCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[VersionCreateResponse]], ResultWrapper[VersionCreateResponse]),
+            cast_to=cast(Type[VersionCreateResponse], ResultWrapper[VersionCreateResponse]),
         )
 
     def list(
@@ -176,7 +176,7 @@ class VersionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[VersionGetResponse]:
+    ) -> VersionGetResponse:
         """
         Get Version Detail
 
@@ -206,9 +206,9 @@ class VersionsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[VersionGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[VersionGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[VersionGetResponse]], ResultWrapper[VersionGetResponse]),
+            cast_to=cast(Type[VersionGetResponse], ResultWrapper[VersionGetResponse]),
         )
 
 
@@ -244,7 +244,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[VersionCreateResponse]:
+    ) -> VersionCreateResponse:
         """Upload a Worker Version without deploying to Cloudflare's network.
 
         You can find
@@ -282,9 +282,9 @@ class AsyncVersionsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[VersionCreateResponse]]._unwrapper,
+                post_parser=ResultWrapper[VersionCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[VersionCreateResponse]], ResultWrapper[VersionCreateResponse]),
+            cast_to=cast(Type[VersionCreateResponse], ResultWrapper[VersionCreateResponse]),
         )
 
     def list(
@@ -361,7 +361,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[VersionGetResponse]:
+    ) -> VersionGetResponse:
         """
         Get Version Detail
 
@@ -391,9 +391,9 @@ class AsyncVersionsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[VersionGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[VersionGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[VersionGetResponse]], ResultWrapper[VersionGetResponse]),
+            cast_to=cast(Type[VersionGetResponse], ResultWrapper[VersionGetResponse]),
         )
 
 

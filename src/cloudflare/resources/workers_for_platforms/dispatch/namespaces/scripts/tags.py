@@ -69,7 +69,7 @@ class TagsResource(SyncAPIResource):
 
           script_name: Name of the script, used in URLs and route configuration.
 
-          body: Tags to help you manage your Workers
+          body: Tags to help you manage your Workers.
 
           extra_headers: Send extra headers
 
@@ -166,7 +166,7 @@ class TagsResource(SyncAPIResource):
 
           script_name: Name of the script, used in URLs and route configuration.
 
-          tag: Tag to help you manage your Worker
+          tag: Tag to help you manage your Worker.
 
           extra_headers: Send extra headers
 
@@ -241,7 +241,7 @@ class AsyncTagsResource(AsyncAPIResource):
 
           script_name: Name of the script, used in URLs and route configuration.
 
-          body: Tags to help you manage your Workers
+          body: Tags to help you manage your Workers.
 
           extra_headers: Send extra headers
 
@@ -338,7 +338,7 @@ class AsyncTagsResource(AsyncAPIResource):
 
           script_name: Name of the script, used in URLs and route configuration.
 
-          tag: Tag to help you manage your Worker
+          tag: Tag to help you manage your Worker.
 
           extra_headers: Send extra headers
 

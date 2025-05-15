@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
@@ -23,7 +23,7 @@ class TestSettings:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ScriptSetting], setting, path=["response"])
+        assert_matches_type(ScriptSetting, setting, path=["response"])
 
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
@@ -48,7 +48,7 @@ class TestSettings:
                 }
             ],
         )
-        assert_matches_type(Optional[ScriptSetting], setting, path=["response"])
+        assert_matches_type(ScriptSetting, setting, path=["response"])
 
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
@@ -60,7 +60,7 @@ class TestSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         setting = response.parse()
-        assert_matches_type(Optional[ScriptSetting], setting, path=["response"])
+        assert_matches_type(ScriptSetting, setting, path=["response"])
 
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
@@ -72,7 +72,7 @@ class TestSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             setting = response.parse()
-            assert_matches_type(Optional[ScriptSetting], setting, path=["response"])
+            assert_matches_type(ScriptSetting, setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -96,7 +96,7 @@ class TestSettings:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ScriptSetting], setting, path=["response"])
+        assert_matches_type(ScriptSetting, setting, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -108,7 +108,7 @@ class TestSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         setting = response.parse()
-        assert_matches_type(Optional[ScriptSetting], setting, path=["response"])
+        assert_matches_type(ScriptSetting, setting, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -120,7 +120,7 @@ class TestSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             setting = response.parse()
-            assert_matches_type(Optional[ScriptSetting], setting, path=["response"])
+            assert_matches_type(ScriptSetting, setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -148,7 +148,7 @@ class TestAsyncSettings:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ScriptSetting], setting, path=["response"])
+        assert_matches_type(ScriptSetting, setting, path=["response"])
 
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -173,7 +173,7 @@ class TestAsyncSettings:
                 }
             ],
         )
-        assert_matches_type(Optional[ScriptSetting], setting, path=["response"])
+        assert_matches_type(ScriptSetting, setting, path=["response"])
 
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -185,7 +185,7 @@ class TestAsyncSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         setting = await response.parse()
-        assert_matches_type(Optional[ScriptSetting], setting, path=["response"])
+        assert_matches_type(ScriptSetting, setting, path=["response"])
 
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -197,7 +197,7 @@ class TestAsyncSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             setting = await response.parse()
-            assert_matches_type(Optional[ScriptSetting], setting, path=["response"])
+            assert_matches_type(ScriptSetting, setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -221,7 +221,7 @@ class TestAsyncSettings:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ScriptSetting], setting, path=["response"])
+        assert_matches_type(ScriptSetting, setting, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -233,7 +233,7 @@ class TestAsyncSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         setting = await response.parse()
-        assert_matches_type(Optional[ScriptSetting], setting, path=["response"])
+        assert_matches_type(ScriptSetting, setting, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -245,7 +245,7 @@ class TestAsyncSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             setting = await response.parse()
-            assert_matches_type(Optional[ScriptSetting], setting, path=["response"])
+            assert_matches_type(ScriptSetting, setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

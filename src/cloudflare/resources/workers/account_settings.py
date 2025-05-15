@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 
 import httpx
 
@@ -57,7 +57,7 @@ class AccountSettingsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AccountSettingUpdateResponse]:
+    ) -> AccountSettingUpdateResponse:
         """
         Creates Worker account settings for an account.
 
@@ -88,9 +88,9 @@ class AccountSettingsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[AccountSettingUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[AccountSettingUpdateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[AccountSettingUpdateResponse]], ResultWrapper[AccountSettingUpdateResponse]),
+            cast_to=cast(Type[AccountSettingUpdateResponse], ResultWrapper[AccountSettingUpdateResponse]),
         )
 
     def get(
@@ -103,7 +103,7 @@ class AccountSettingsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AccountSettingGetResponse]:
+    ) -> AccountSettingGetResponse:
         """
         Fetches Worker account settings for an account.
 
@@ -127,9 +127,9 @@ class AccountSettingsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[AccountSettingGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[AccountSettingGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[AccountSettingGetResponse]], ResultWrapper[AccountSettingGetResponse]),
+            cast_to=cast(Type[AccountSettingGetResponse], ResultWrapper[AccountSettingGetResponse]),
         )
 
 
@@ -165,7 +165,7 @@ class AsyncAccountSettingsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AccountSettingUpdateResponse]:
+    ) -> AccountSettingUpdateResponse:
         """
         Creates Worker account settings for an account.
 
@@ -196,9 +196,9 @@ class AsyncAccountSettingsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[AccountSettingUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[AccountSettingUpdateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[AccountSettingUpdateResponse]], ResultWrapper[AccountSettingUpdateResponse]),
+            cast_to=cast(Type[AccountSettingUpdateResponse], ResultWrapper[AccountSettingUpdateResponse]),
         )
 
     async def get(
@@ -211,7 +211,7 @@ class AsyncAccountSettingsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AccountSettingGetResponse]:
+    ) -> AccountSettingGetResponse:
         """
         Fetches Worker account settings for an account.
 
@@ -235,9 +235,9 @@ class AsyncAccountSettingsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[AccountSettingGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[AccountSettingGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[AccountSettingGetResponse]], ResultWrapper[AccountSettingGetResponse]),
+            cast_to=cast(Type[AccountSettingGetResponse], ResultWrapper[AccountSettingGetResponse]),
         )
 
 
