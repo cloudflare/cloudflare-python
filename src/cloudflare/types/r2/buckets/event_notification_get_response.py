@@ -1,51 +1,125 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from typing_extensions import Literal
+import datetime
+from typing import List, Union, Optional
+from typing_extensions import Literal, TypeAlias
 
 from pydantic import Field as FieldInfo
 
 from ...._models import BaseModel
 
-__all__ = ["EventNotificationGetResponse", "Queue", "QueueRule"]
+__all__ = [
+    "EventNotificationGetResponse",
+    "Conditions",
+    "AbortMultipartUploadsTransition",
+    "AbortMultipartUploadsTransitionCondition",
+    "DeleteObjectsTransition",
+    "DeleteObjectsTransitionCondition",
+    "DeleteObjectsTransitionConditionR2LifecycleAgeCondition",
+    "DeleteObjectsTransitionConditionR2LifecycleDateCondition",
+    "StorageClassTransition",
+    "StorageClassTransitionCondition",
+    "StorageClassTransitionConditionR2LifecycleAgeCondition",
+    "StorageClassTransitionConditionR2LifecycleDateCondition",
+]
 
 
-class QueueRule(BaseModel):
-    actions: List[Literal["PutObject", "CopyObject", "DeleteObject", "CompleteMultipartUpload", "LifecycleDeletion"]]
-    """Array of R2 object actions that will trigger notifications."""
-
-    created_at: Optional[str] = FieldInfo(alias="createdAt", default=None)
-    """Timestamp when the rule was created."""
-
-    description: Optional[str] = None
+class Conditions(BaseModel):
+    prefix: str
     """
-    A description that can be used to identify the event notification rule after
-    creation.
+    Transitions will only apply to objects/uploads in the bucket that start with the
+    given prefix, an empty prefix can be provided to scope rule to all
+    objects/uploads.
     """
 
-    prefix: Optional[str] = None
-    """Notifications will be sent only for objects with this prefix."""
 
-    rule_id: Optional[str] = FieldInfo(alias="ruleId", default=None)
-    """Rule ID."""
+class AbortMultipartUploadsTransitionCondition(BaseModel):
+    max_age: int = FieldInfo(alias="maxAge")
 
-    suffix: Optional[str] = None
-    """Notifications will be sent only for objects with this suffix."""
+    type: Literal["Age"]
 
 
-class Queue(BaseModel):
-    queue_id: Optional[str] = FieldInfo(alias="queueId", default=None)
-    """Queue ID."""
+class AbortMultipartUploadsTransition(BaseModel):
+    condition: Optional[AbortMultipartUploadsTransitionCondition] = None
+    """
+    Condition for lifecycle transitions to apply after an object reaches an age in
+    seconds.
+    """
 
-    queue_name: Optional[str] = FieldInfo(alias="queueName", default=None)
-    """Name of the queue."""
 
-    rules: Optional[List[QueueRule]] = None
+class DeleteObjectsTransitionConditionR2LifecycleAgeCondition(BaseModel):
+    max_age: int = FieldInfo(alias="maxAge")
+
+    type: Literal["Age"]
+
+
+class DeleteObjectsTransitionConditionR2LifecycleDateCondition(BaseModel):
+    date: datetime.date
+
+    type: Literal["Date"]
+
+
+DeleteObjectsTransitionCondition: TypeAlias = Union[
+    DeleteObjectsTransitionConditionR2LifecycleAgeCondition, DeleteObjectsTransitionConditionR2LifecycleDateCondition
+]
+
+
+class DeleteObjectsTransition(BaseModel):
+    condition: Optional[DeleteObjectsTransitionCondition] = None
+    """
+    Condition for lifecycle transitions to apply after an object reaches an age in
+    seconds.
+    """
+
+
+class StorageClassTransitionConditionR2LifecycleAgeCondition(BaseModel):
+    max_age: int = FieldInfo(alias="maxAge")
+
+    type: Literal["Age"]
+
+
+class StorageClassTransitionConditionR2LifecycleDateCondition(BaseModel):
+    date: datetime.date
+
+    type: Literal["Date"]
+
+
+StorageClassTransitionCondition: TypeAlias = Union[
+    StorageClassTransitionConditionR2LifecycleAgeCondition, StorageClassTransitionConditionR2LifecycleDateCondition
+]
+
+
+class StorageClassTransition(BaseModel):
+    condition: StorageClassTransitionCondition
+    """
+    Condition for lifecycle transitions to apply after an object reaches an age in
+    seconds.
+    """
+
+    storage_class: Literal["InfrequentAccess"] = FieldInfo(alias="storageClass")
 
 
 class EventNotificationGetResponse(BaseModel):
-    bucket_name: Optional[str] = FieldInfo(alias="bucketName", default=None)
-    """Name of the bucket."""
+    id: str
+    """Unique identifier for this rule."""
 
-    queues: Optional[List[Queue]] = None
-    """List of queues associated with the bucket."""
+    conditions: Conditions
+    """Conditions that apply to all transitions of this rule."""
+
+    enabled: bool
+    """Whether or not this rule is in effect."""
+
+    abort_multipart_uploads_transition: Optional[AbortMultipartUploadsTransition] = FieldInfo(
+        alias="abortMultipartUploadsTransition", default=None
+    )
+    """Transition to abort ongoing multipart uploads."""
+
+    delete_objects_transition: Optional[DeleteObjectsTransition] = FieldInfo(
+        alias="deleteObjectsTransition", default=None
+    )
+    """Transition to delete objects."""
+
+    storage_class_transitions: Optional[List[StorageClassTransition]] = FieldInfo(
+        alias="storageClassTransitions", default=None
+    )
+    """Transitions to change the storage class of objects."""
