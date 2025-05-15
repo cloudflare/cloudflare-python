@@ -50,6 +50,7 @@ class TestDefault:
             lan_allow_minutes=30,
             lan_allow_subnet_size=24,
             register_interface_ip_with_dns=True,
+            sccm_vpn_boundary_support=False,
             service_mode_v2={
                 "mode": "proxy",
                 "port": 3000,
@@ -166,6 +167,7 @@ class TestAsyncDefault:
             lan_allow_minutes=30,
             lan_allow_subnet_size=24,
             register_interface_ip_with_dns=True,
+            sccm_vpn_boundary_support=False,
             service_mode_v2={
                 "mode": "proxy",
                 "port": 3000,
