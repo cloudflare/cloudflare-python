@@ -20,10 +20,11 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.queues import message_ack_params, message_pull_params, message_push_params
+from ...types.queues import message_ack_params, message_pull_params, message_push_params, message_bulk_push_params
 from ...types.queues.message_ack_response import MessageAckResponse
 from ...types.queues.message_pull_response import MessagePullResponse
 from ...types.queues.message_push_response import MessagePushResponse
+from ...types.queues.message_bulk_push_response import MessageBulkPushResponse
 
 __all__ = ["MessagesResource", "AsyncMessagesResource"]
 
@@ -99,6 +100,57 @@ class MessagesResource(SyncAPIResource):
                 post_parser=ResultWrapper[Optional[MessageAckResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[MessageAckResponse]], ResultWrapper[MessageAckResponse]),
+        )
+
+    def bulk_push(
+        self,
+        queue_id: str,
+        *,
+        account_id: str,
+        delay_seconds: float | NotGiven = NOT_GIVEN,
+        messages: Iterable[message_bulk_push_params.Message] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> MessageBulkPushResponse:
+        """
+        Push a batch of message to a Queue
+
+        Args:
+          account_id: A Resource identifier.
+
+          queue_id: A Resource identifier.
+
+          delay_seconds: The number of seconds to wait for attempting to deliver this batch to consumers
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not queue_id:
+            raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
+        return self._post(
+            f"/accounts/{account_id}/queues/{queue_id}/messages/batch",
+            body=maybe_transform(
+                {
+                    "delay_seconds": delay_seconds,
+                    "messages": messages,
+                },
+                message_bulk_push_params.MessageBulkPushParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=MessageBulkPushResponse,
         )
 
     def pull(
@@ -341,6 +393,57 @@ class AsyncMessagesResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[MessageAckResponse]], ResultWrapper[MessageAckResponse]),
         )
 
+    async def bulk_push(
+        self,
+        queue_id: str,
+        *,
+        account_id: str,
+        delay_seconds: float | NotGiven = NOT_GIVEN,
+        messages: Iterable[message_bulk_push_params.Message] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> MessageBulkPushResponse:
+        """
+        Push a batch of message to a Queue
+
+        Args:
+          account_id: A Resource identifier.
+
+          queue_id: A Resource identifier.
+
+          delay_seconds: The number of seconds to wait for attempting to deliver this batch to consumers
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not queue_id:
+            raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
+        return await self._post(
+            f"/accounts/{account_id}/queues/{queue_id}/messages/batch",
+            body=await async_maybe_transform(
+                {
+                    "delay_seconds": delay_seconds,
+                    "messages": messages,
+                },
+                message_bulk_push_params.MessageBulkPushParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=MessageBulkPushResponse,
+        )
+
     def pull(
         self,
         queue_id: str,
@@ -515,6 +618,9 @@ class MessagesResourceWithRawResponse:
         self.ack = to_raw_response_wrapper(
             messages.ack,
         )
+        self.bulk_push = to_raw_response_wrapper(
+            messages.bulk_push,
+        )
         self.pull = to_raw_response_wrapper(
             messages.pull,
         )
@@ -529,6 +635,9 @@ class AsyncMessagesResourceWithRawResponse:
 
         self.ack = async_to_raw_response_wrapper(
             messages.ack,
+        )
+        self.bulk_push = async_to_raw_response_wrapper(
+            messages.bulk_push,
         )
         self.pull = async_to_raw_response_wrapper(
             messages.pull,
@@ -545,6 +654,9 @@ class MessagesResourceWithStreamingResponse:
         self.ack = to_streamed_response_wrapper(
             messages.ack,
         )
+        self.bulk_push = to_streamed_response_wrapper(
+            messages.bulk_push,
+        )
         self.pull = to_streamed_response_wrapper(
             messages.pull,
         )
@@ -559,6 +671,9 @@ class AsyncMessagesResourceWithStreamingResponse:
 
         self.ack = async_to_streamed_response_wrapper(
             messages.ack,
+        )
+        self.bulk_push = async_to_streamed_response_wrapper(
+            messages.bulk_push,
         )
         self.pull = async_to_streamed_response_wrapper(
             messages.pull,
