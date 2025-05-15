@@ -19,3 +19,5 @@ from .queue_delete_response import QueueDeleteResponse as QueueDeleteResponse
 from .consumer_create_params import ConsumerCreateParams as ConsumerCreateParams
 from .consumer_update_params import ConsumerUpdateParams as ConsumerUpdateParams
 from .consumer_delete_response import ConsumerDeleteResponse as ConsumerDeleteResponse
+from .message_bulk_push_params import MessageBulkPushParams as MessageBulkPushParams
+from .message_bulk_push_response import MessageBulkPushResponse as MessageBulkPushResponse
