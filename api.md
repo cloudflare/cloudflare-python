@@ -2683,13 +2683,14 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.queues import MessageAckResponse, MessagePullResponse
+from cloudflare.types.queues import MessageAckResponse, MessagePullResponse, MessagePushResponse
 ```
 
 Methods:
 
 - <code title="post /accounts/{account_id}/queues/{queue_id}/messages/ack">client.queues.messages.<a href="./src/cloudflare/resources/queues/messages.py">ack</a>(queue_id, \*, account_id, \*\*<a href="src/cloudflare/types/queues/message_ack_params.py">params</a>) -> <a href="./src/cloudflare/types/queues/message_ack_response.py">Optional[MessageAckResponse]</a></code>
 - <code title="post /accounts/{account_id}/queues/{queue_id}/messages/pull">client.queues.messages.<a href="./src/cloudflare/resources/queues/messages.py">pull</a>(queue_id, \*, account_id, \*\*<a href="src/cloudflare/types/queues/message_pull_params.py">params</a>) -> <a href="./src/cloudflare/types/queues/message_pull_response.py">SyncSinglePage[MessagePullResponse]</a></code>
+- <code title="post /accounts/{account_id}/queues/{queue_id}/messages">client.queues.messages.<a href="./src/cloudflare/resources/queues/messages.py">push</a>(queue_id, \*, account_id, \*\*<a href="src/cloudflare/types/queues/message_push_params.py">params</a>) -> <a href="./src/cloudflare/types/queues/message_push_response.py">MessagePushResponse</a></code>
 
 ## Purge
 
@@ -3972,8 +3973,20 @@ from cloudflare.types.magic_transit.connectors import EventListResponse, EventGe
 
 Methods:
 
-- <code title="get /accounts/{account_id}/magic/connectors/{connector_id}/telemetry/events">client.magic_transit.connectors.events.<a href="./src/cloudflare/resources/magic_transit/connectors/events.py">list</a>(connector_id, \*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/connectors/event_list_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/connectors/event_list_response.py">EventListResponse</a></code>
-- <code title="get /accounts/{account_id}/magic/connectors/{connector_id}/telemetry/events/{event_t}.{event_n}">client.magic_transit.connectors.events.<a href="./src/cloudflare/resources/magic_transit/connectors/events.py">get</a>(event_n, \*, account_id, connector_id, event_t) -> <a href="./src/cloudflare/types/magic_transit/connectors/event_get_response.py">EventGetResponse</a></code>
+- <code title="get /accounts/{account_id}/magic/connectors/{connector_id}/telemetry/events">client.magic_transit.connectors.events.<a href="./src/cloudflare/resources/magic_transit/connectors/events/events.py">list</a>(connector_id, \*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/connectors/event_list_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/connectors/event_list_response.py">EventListResponse</a></code>
+- <code title="get /accounts/{account_id}/magic/connectors/{connector_id}/telemetry/events/{event_t}.{event_n}">client.magic_transit.connectors.events.<a href="./src/cloudflare/resources/magic_transit/connectors/events/events.py">get</a>(event_n, \*, account_id, connector_id, event_t) -> <a href="./src/cloudflare/types/magic_transit/connectors/event_get_response.py">EventGetResponse</a></code>
+
+#### Latest
+
+Types:
+
+```python
+from cloudflare.types.magic_transit.connectors.events import LatestListResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/magic/connectors/{connector_id}/telemetry/events/latest">client.magic_transit.connectors.events.latest.<a href="./src/cloudflare/resources/magic_transit/connectors/events/latest.py">list</a>(connector_id, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/connectors/events/latest_list_response.py">LatestListResponse</a></code>
 
 ### Snapshots
 
@@ -3985,8 +3998,20 @@ from cloudflare.types.magic_transit.connectors import SnapshotListResponse, Snap
 
 Methods:
 
-- <code title="get /accounts/{account_id}/magic/connectors/{connector_id}/telemetry/snapshots">client.magic_transit.connectors.snapshots.<a href="./src/cloudflare/resources/magic_transit/connectors/snapshots.py">list</a>(connector_id, \*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/connectors/snapshot_list_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/connectors/snapshot_list_response.py">SnapshotListResponse</a></code>
-- <code title="get /accounts/{account_id}/magic/connectors/{connector_id}/telemetry/snapshots/{snapshot_t}">client.magic_transit.connectors.snapshots.<a href="./src/cloudflare/resources/magic_transit/connectors/snapshots.py">get</a>(snapshot_t, \*, account_id, connector_id) -> <a href="./src/cloudflare/types/magic_transit/connectors/snapshot_get_response.py">SnapshotGetResponse</a></code>
+- <code title="get /accounts/{account_id}/magic/connectors/{connector_id}/telemetry/snapshots">client.magic_transit.connectors.snapshots.<a href="./src/cloudflare/resources/magic_transit/connectors/snapshots/snapshots.py">list</a>(connector_id, \*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/connectors/snapshot_list_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/connectors/snapshot_list_response.py">SnapshotListResponse</a></code>
+- <code title="get /accounts/{account_id}/magic/connectors/{connector_id}/telemetry/snapshots/{snapshot_t}">client.magic_transit.connectors.snapshots.<a href="./src/cloudflare/resources/magic_transit/connectors/snapshots/snapshots.py">get</a>(snapshot_t, \*, account_id, connector_id) -> <a href="./src/cloudflare/types/magic_transit/connectors/snapshot_get_response.py">SnapshotGetResponse</a></code>
+
+#### Latest
+
+Types:
+
+```python
+from cloudflare.types.magic_transit.connectors.snapshots import LatestListResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/magic/connectors/{connector_id}/telemetry/snapshots/latest">client.magic_transit.connectors.snapshots.latest.<a href="./src/cloudflare/resources/magic_transit/connectors/snapshots/latest.py">list</a>(connector_id, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/connectors/snapshots/latest_list_response.py">LatestListResponse</a></code>
 
 ## PCAPs
 
@@ -4007,6 +4032,7 @@ Methods:
 - <code title="post /accounts/{account_id}/pcaps">client.magic_transit.pcaps.<a href="./src/cloudflare/resources/magic_transit/pcaps/pcaps.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/pcap_create_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/pcap_create_response.py">PCAPCreateResponse</a></code>
 - <code title="get /accounts/{account_id}/pcaps">client.magic_transit.pcaps.<a href="./src/cloudflare/resources/magic_transit/pcaps/pcaps.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/magic_transit/pcap_list_response.py">SyncSinglePage[PCAPListResponse]</a></code>
 - <code title="get /accounts/{account_id}/pcaps/{pcap_id}">client.magic_transit.pcaps.<a href="./src/cloudflare/resources/magic_transit/pcaps/pcaps.py">get</a>(pcap_id, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/pcap_get_response.py">PCAPGetResponse</a></code>
+- <code title="put /accounts/{account_id}/pcaps/{pcap_id}/stop">client.magic_transit.pcaps.<a href="./src/cloudflare/resources/magic_transit/pcaps/pcaps.py">stop</a>(pcap_id, \*, account_id) -> None</code>
 
 ### Ownership
 
@@ -4958,6 +4984,7 @@ Types:
 ```python
 from cloudflare.types.r2.buckets import (
     EventNotificationUpdateResponse,
+    EventNotificationListResponse,
     EventNotificationDeleteResponse,
     EventNotificationGetResponse,
 )
@@ -4966,8 +4993,9 @@ from cloudflare.types.r2.buckets import (
 Methods:
 
 - <code title="put /accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration/queues/{queue_id}">client.r2.buckets.event_notifications.<a href="./src/cloudflare/resources/r2/buckets/event_notifications.py">update</a>(queue_id, \*, account_id, bucket_name, \*\*<a href="src/cloudflare/types/r2/buckets/event_notification_update_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/buckets/event_notification_update_response.py">object</a></code>
+- <code title="get /accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration">client.r2.buckets.event_notifications.<a href="./src/cloudflare/resources/r2/buckets/event_notifications.py">list</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/buckets/event_notification_list_response.py">EventNotificationListResponse</a></code>
 - <code title="delete /accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration/queues/{queue_id}">client.r2.buckets.event_notifications.<a href="./src/cloudflare/resources/r2/buckets/event_notifications.py">delete</a>(queue_id, \*, account_id, bucket_name) -> <a href="./src/cloudflare/types/r2/buckets/event_notification_delete_response.py">object</a></code>
-- <code title="get /accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration">client.r2.buckets.event_notifications.<a href="./src/cloudflare/resources/r2/buckets/event_notifications.py">get</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/buckets/event_notification_get_response.py">EventNotificationGetResponse</a></code>
+- <code title="get /accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration/queues/{queue_id}">client.r2.buckets.event_notifications.<a href="./src/cloudflare/resources/r2/buckets/event_notifications.py">get</a>(queue_id, \*, account_id, bucket_name) -> <a href="./src/cloudflare/types/r2/buckets/event_notification_get_response.py">EventNotificationGetResponse</a></code>
 
 ### Locks
 
