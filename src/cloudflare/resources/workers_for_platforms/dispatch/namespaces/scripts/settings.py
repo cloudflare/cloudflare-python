@@ -60,7 +60,7 @@ class SettingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[SettingEditResponse]:
         """
-        Patch script metadata, such as bindings
+        Patch script metadata, such as bindings.
 
         Args:
           account_id: Identifier.
@@ -185,7 +185,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[SettingEditResponse]:
         """
-        Patch script metadata, such as bindings
+        Patch script metadata, such as bindings.
 
         Args:
           account_id: Identifier.

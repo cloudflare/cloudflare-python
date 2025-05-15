@@ -61,7 +61,7 @@ class UploadResource(SyncAPIResource):
 
         To learn
         more about the direct uploads of assets, see
-        https://developers.cloudflare.com/workers/static-assets/direct-upload/
+        https://developers.cloudflare.com/workers/static-assets/direct-upload/.
 
         Args:
           account_id: Identifier.
@@ -134,7 +134,7 @@ class AsyncUploadResource(AsyncAPIResource):
 
         To learn
         more about the direct uploads of assets, see
-        https://developers.cloudflare.com/workers/static-assets/direct-upload/
+        https://developers.cloudflare.com/workers/static-assets/direct-upload/.
 
         Args:
           account_id: Identifier.

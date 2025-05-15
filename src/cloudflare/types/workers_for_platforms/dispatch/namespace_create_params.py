@@ -12,4 +12,4 @@ class NamespaceCreateParams(TypedDict, total=False):
     """Identifier."""
 
     name: str
-    """The name of the dispatch namespace"""
+    """The name of the dispatch namespace."""

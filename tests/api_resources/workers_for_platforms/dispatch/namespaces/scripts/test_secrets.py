@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
@@ -32,7 +32,7 @@ class TestSecrets:
             text="My secret.",
             type="secret_text",
         )
-        assert_matches_type(Optional[SecretUpdateResponse], secret, path=["response"])
+        assert_matches_type(SecretUpdateResponse, secret, path=["response"])
 
     @parametrize
     def test_raw_response_update_overload_1(self, client: Cloudflare) -> None:
@@ -48,7 +48,7 @@ class TestSecrets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         secret = response.parse()
-        assert_matches_type(Optional[SecretUpdateResponse], secret, path=["response"])
+        assert_matches_type(SecretUpdateResponse, secret, path=["response"])
 
     @parametrize
     def test_streaming_response_update_overload_1(self, client: Cloudflare) -> None:
@@ -64,7 +64,7 @@ class TestSecrets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             secret = response.parse()
-            assert_matches_type(Optional[SecretUpdateResponse], secret, path=["response"])
+            assert_matches_type(SecretUpdateResponse, secret, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -112,7 +112,7 @@ class TestSecrets:
             type="secret_key",
             usages=["encrypt", "decrypt"],
         )
-        assert_matches_type(Optional[SecretUpdateResponse], secret, path=["response"])
+        assert_matches_type(SecretUpdateResponse, secret, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params_overload_2(self, client: Cloudflare) -> None:
@@ -128,7 +128,7 @@ class TestSecrets:
             key_base64="key_base64",
             key_jwk={},
         )
-        assert_matches_type(Optional[SecretUpdateResponse], secret, path=["response"])
+        assert_matches_type(SecretUpdateResponse, secret, path=["response"])
 
     @parametrize
     def test_raw_response_update_overload_2(self, client: Cloudflare) -> None:
@@ -146,7 +146,7 @@ class TestSecrets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         secret = response.parse()
-        assert_matches_type(Optional[SecretUpdateResponse], secret, path=["response"])
+        assert_matches_type(SecretUpdateResponse, secret, path=["response"])
 
     @parametrize
     def test_streaming_response_update_overload_2(self, client: Cloudflare) -> None:
@@ -164,7 +164,7 @@ class TestSecrets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             secret = response.parse()
-            assert_matches_type(Optional[SecretUpdateResponse], secret, path=["response"])
+            assert_matches_type(SecretUpdateResponse, secret, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -348,7 +348,7 @@ class TestSecrets:
             dispatch_namespace="my-dispatch-namespace",
             script_name="this-is_my_script-01",
         )
-        assert_matches_type(Optional[SecretGetResponse], secret, path=["response"])
+        assert_matches_type(SecretGetResponse, secret, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -362,7 +362,7 @@ class TestSecrets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         secret = response.parse()
-        assert_matches_type(Optional[SecretGetResponse], secret, path=["response"])
+        assert_matches_type(SecretGetResponse, secret, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -376,7 +376,7 @@ class TestSecrets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             secret = response.parse()
-            assert_matches_type(Optional[SecretGetResponse], secret, path=["response"])
+            assert_matches_type(SecretGetResponse, secret, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -428,7 +428,7 @@ class TestAsyncSecrets:
             text="My secret.",
             type="secret_text",
         )
-        assert_matches_type(Optional[SecretUpdateResponse], secret, path=["response"])
+        assert_matches_type(SecretUpdateResponse, secret, path=["response"])
 
     @parametrize
     async def test_raw_response_update_overload_1(self, async_client: AsyncCloudflare) -> None:
@@ -446,7 +446,7 @@ class TestAsyncSecrets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         secret = await response.parse()
-        assert_matches_type(Optional[SecretUpdateResponse], secret, path=["response"])
+        assert_matches_type(SecretUpdateResponse, secret, path=["response"])
 
     @parametrize
     async def test_streaming_response_update_overload_1(self, async_client: AsyncCloudflare) -> None:
@@ -464,7 +464,7 @@ class TestAsyncSecrets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             secret = await response.parse()
-            assert_matches_type(Optional[SecretUpdateResponse], secret, path=["response"])
+            assert_matches_type(SecretUpdateResponse, secret, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -512,7 +512,7 @@ class TestAsyncSecrets:
             type="secret_key",
             usages=["encrypt", "decrypt"],
         )
-        assert_matches_type(Optional[SecretUpdateResponse], secret, path=["response"])
+        assert_matches_type(SecretUpdateResponse, secret, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
@@ -528,7 +528,7 @@ class TestAsyncSecrets:
             key_base64="key_base64",
             key_jwk={},
         )
-        assert_matches_type(Optional[SecretUpdateResponse], secret, path=["response"])
+        assert_matches_type(SecretUpdateResponse, secret, path=["response"])
 
     @parametrize
     async def test_raw_response_update_overload_2(self, async_client: AsyncCloudflare) -> None:
@@ -548,7 +548,7 @@ class TestAsyncSecrets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         secret = await response.parse()
-        assert_matches_type(Optional[SecretUpdateResponse], secret, path=["response"])
+        assert_matches_type(SecretUpdateResponse, secret, path=["response"])
 
     @parametrize
     async def test_streaming_response_update_overload_2(self, async_client: AsyncCloudflare) -> None:
@@ -568,7 +568,7 @@ class TestAsyncSecrets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             secret = await response.parse()
-            assert_matches_type(Optional[SecretUpdateResponse], secret, path=["response"])
+            assert_matches_type(SecretUpdateResponse, secret, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -756,7 +756,7 @@ class TestAsyncSecrets:
             dispatch_namespace="my-dispatch-namespace",
             script_name="this-is_my_script-01",
         )
-        assert_matches_type(Optional[SecretGetResponse], secret, path=["response"])
+        assert_matches_type(SecretGetResponse, secret, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -770,7 +770,7 @@ class TestAsyncSecrets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         secret = await response.parse()
-        assert_matches_type(Optional[SecretGetResponse], secret, path=["response"])
+        assert_matches_type(SecretGetResponse, secret, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -784,7 +784,7 @@ class TestAsyncSecrets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             secret = await response.parse()
-            assert_matches_type(Optional[SecretGetResponse], secret, path=["response"])
+            assert_matches_type(SecretGetResponse, secret, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

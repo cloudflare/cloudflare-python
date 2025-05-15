@@ -46,7 +46,7 @@ from .versions import (
     VersionsResourceWithStreamingResponse,
     AsyncVersionsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, FileTypes
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
 from ...._utils import maybe_transform, async_maybe_transform
 from .schedules import (
     SchedulesResource,
@@ -179,7 +179,7 @@ class ScriptsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScriptUpdateResponse]:
+    ) -> ScriptUpdateResponse:
         """Upload a worker module.
 
         You can find more about the multipart metadata on our
@@ -214,9 +214,9 @@ class ScriptsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ScriptUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[ScriptUpdateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ScriptUpdateResponse]], ResultWrapper[ScriptUpdateResponse]),
+            cast_to=cast(Type[ScriptUpdateResponse], ResultWrapper[ScriptUpdateResponse]),
         )
 
     def list(
@@ -267,7 +267,7 @@ class ScriptsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
+    ) -> object:
         """Delete your worker.
 
         This call has no response body on a successful delete.
@@ -293,7 +293,6 @@ class ScriptsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/accounts/{account_id}/workers/scripts/{script_name}",
             options=make_request_options(
@@ -302,8 +301,9 @@ class ScriptsResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"force": force}, script_delete_params.ScriptDeleteParams),
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=NoneType,
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def get(
@@ -423,7 +423,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScriptUpdateResponse]:
+    ) -> ScriptUpdateResponse:
         """Upload a worker module.
 
         You can find more about the multipart metadata on our
@@ -458,9 +458,9 @@ class AsyncScriptsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ScriptUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[ScriptUpdateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ScriptUpdateResponse]], ResultWrapper[ScriptUpdateResponse]),
+            cast_to=cast(Type[ScriptUpdateResponse], ResultWrapper[ScriptUpdateResponse]),
         )
 
     def list(
@@ -511,7 +511,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
+    ) -> object:
         """Delete your worker.
 
         This call has no response body on a successful delete.
@@ -537,7 +537,6 @@ class AsyncScriptsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/accounts/{account_id}/workers/scripts/{script_name}",
             options=make_request_options(
@@ -546,8 +545,9 @@ class AsyncScriptsResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform({"force": force}, script_delete_params.ScriptDeleteParams),
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=NoneType,
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     async def get(

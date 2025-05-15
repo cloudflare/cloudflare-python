@@ -11,4 +11,4 @@ class SubdomainUpdateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier."""
 
-    subdomain: str
+    subdomain: Required[str]
