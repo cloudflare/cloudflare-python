@@ -1661,4 +1661,4 @@ class OnRampGetResponse(BaseModel):
     vpcs_by_id: Optional[Dict[str, VPCsByID]] = None
 
     vpcs_by_id_unavailable: Optional[List[str]] = None
-    """The list of vpc IDs for which resource details could not be generated."""
+    """The list of vpc IDs for which resource details failed to generate."""

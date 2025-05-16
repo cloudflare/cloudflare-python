@@ -15,6 +15,6 @@ class CloudIntegrationListParams(TypedDict, total=False):
     desc: bool
 
     order_by: str
-    """one of ["updated_at", "id", "cloud_type", "name"]"""
+    """One of ["updated_at", "id", "cloud_type", "name"]."""
 
     status: bool
