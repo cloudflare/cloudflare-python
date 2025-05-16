@@ -123,6 +123,7 @@ class TestThreatEvents:
         threat_event = client.cloudforce_one.threat_events.list(
             account_id=0,
             dataset_id=["string"],
+            force_refresh=True,
             order="asc",
             order_by="orderBy",
             page=0,
@@ -495,6 +496,7 @@ class TestAsyncThreatEvents:
         threat_event = await async_client.cloudforce_one.threat_events.list(
             account_id=0,
             dataset_id=["string"],
+            force_refresh=True,
             order="asc",
             order_by="orderBy",
             page=0,
