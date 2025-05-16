@@ -16,6 +16,8 @@ class ThreatEventListParams(TypedDict, total=False):
 
     dataset_id: Annotated[List[str], PropertyInfo(alias="datasetId")]
 
+    force_refresh: Annotated[bool, PropertyInfo(alias="forceRefresh")]
+
     order: Literal["asc", "desc"]
 
     order_by: Annotated[str, PropertyInfo(alias="orderBy")]

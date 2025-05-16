@@ -273,6 +273,7 @@ class ThreatEventsResource(SyncAPIResource):
         *,
         account_id: float,
         dataset_id: List[str] | NotGiven = NOT_GIVEN,
+        force_refresh: bool | NotGiven = NOT_GIVEN,
         order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         order_by: str | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
@@ -285,12 +286,11 @@ class ThreatEventsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ThreatEventListResponse:
-        """The `datasetId` parameter must be defined.
-
-        Must provide query parameters. To
-        list existing datasets (and their IDs), use the
+        """
+        The `datasetId` must be defined (to list existing datasets (and their IDs), use
+        the
         [`List Datasets`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/list/)
-        endpoint.
+        endpoint). Also, must provide query parameters.
 
         Args:
           account_id: Account ID.
@@ -313,6 +313,7 @@ class ThreatEventsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "dataset_id": dataset_id,
+                        "force_refresh": force_refresh,
                         "order": order,
                         "order_by": order_by,
                         "page": page,
@@ -657,6 +658,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         *,
         account_id: float,
         dataset_id: List[str] | NotGiven = NOT_GIVEN,
+        force_refresh: bool | NotGiven = NOT_GIVEN,
         order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         order_by: str | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
@@ -669,12 +671,11 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ThreatEventListResponse:
-        """The `datasetId` parameter must be defined.
-
-        Must provide query parameters. To
-        list existing datasets (and their IDs), use the
+        """
+        The `datasetId` must be defined (to list existing datasets (and their IDs), use
+        the
         [`List Datasets`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/list/)
-        endpoint.
+        endpoint). Also, must provide query parameters.
 
         Args:
           account_id: Account ID.
@@ -697,6 +698,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "dataset_id": dataset_id,
+                        "force_refresh": force_refresh,
                         "order": order,
                         "order_by": order_by,
                         "page": page,
