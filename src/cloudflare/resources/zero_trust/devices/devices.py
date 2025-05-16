@@ -2,13 +2,52 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Optional, cast
-from typing_extensions import Literal
+from typing import Type, Optional, cast
 
 import httpx
 
+from . import devices_ as devices
+from .revoke import (
+    RevokeResource,
+    AsyncRevokeResource,
+    RevokeResourceWithRawResponse,
+    AsyncRevokeResourceWithRawResponse,
+    RevokeResourceWithStreamingResponse,
+    AsyncRevokeResourceWithStreamingResponse,
+)
+from .networks import (
+    NetworksResource,
+    AsyncNetworksResource,
+    NetworksResourceWithRawResponse,
+    AsyncNetworksResourceWithRawResponse,
+    NetworksResourceWithStreamingResponse,
+    AsyncNetworksResourceWithStreamingResponse,
+)
+from .settings import (
+    SettingsResource,
+    AsyncSettingsResource,
+    SettingsResourceWithRawResponse,
+    AsyncSettingsResourceWithRawResponse,
+    SettingsResourceWithStreamingResponse,
+    AsyncSettingsResourceWithStreamingResponse,
+)
+from .unrevoke import (
+    UnrevokeResource,
+    AsyncUnrevokeResource,
+    UnrevokeResourceWithRawResponse,
+    AsyncUnrevokeResourceWithRawResponse,
+    UnrevokeResourceWithStreamingResponse,
+    AsyncUnrevokeResourceWithStreamingResponse,
+)
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform
+from .dex_tests import (
+    DEXTestsResource,
+    AsyncDEXTestsResource,
+    DEXTestsResourceWithRawResponse,
+    AsyncDEXTestsResourceWithRawResponse,
+    DEXTestsResourceWithStreamingResponse,
+    AsyncDEXTestsResourceWithStreamingResponse,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -18,16 +57,111 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....pagination import SyncCursorPagination, AsyncCursorPagination
+from .fleet_status import (
+    FleetStatusResource,
+    AsyncFleetStatusResource,
+    FleetStatusResourceWithRawResponse,
+    AsyncFleetStatusResourceWithRawResponse,
+    FleetStatusResourceWithStreamingResponse,
+    AsyncFleetStatusResourceWithStreamingResponse,
+)
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from .registrations import (
+    RegistrationsResource,
+    AsyncRegistrationsResource,
+    RegistrationsResourceWithRawResponse,
+    AsyncRegistrationsResourceWithRawResponse,
+    RegistrationsResourceWithStreamingResponse,
+    AsyncRegistrationsResourceWithStreamingResponse,
+)
+from .override_codes import (
+    OverrideCodesResource,
+    AsyncOverrideCodesResource,
+    OverrideCodesResourceWithRawResponse,
+    AsyncOverrideCodesResourceWithRawResponse,
+    OverrideCodesResourceWithStreamingResponse,
+    AsyncOverrideCodesResourceWithStreamingResponse,
+)
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.zero_trust.devices import device_list_params
-from ....types.zero_trust.devices.device_get_response import DeviceGetResponse
-from ....types.zero_trust.devices.device_list_response import DeviceListResponse
+from .posture.posture import (
+    PostureResource,
+    AsyncPostureResource,
+    PostureResourceWithRawResponse,
+    AsyncPostureResourceWithRawResponse,
+    PostureResourceWithStreamingResponse,
+    AsyncPostureResourceWithStreamingResponse,
+)
+from .policies.policies import (
+    PoliciesResource,
+    AsyncPoliciesResource,
+    PoliciesResourceWithRawResponse,
+    AsyncPoliciesResourceWithRawResponse,
+    PoliciesResourceWithStreamingResponse,
+    AsyncPoliciesResourceWithStreamingResponse,
+)
+from .resilience.resilience import (
+    ResilienceResource,
+    AsyncResilienceResource,
+    ResilienceResourceWithRawResponse,
+    AsyncResilienceResourceWithRawResponse,
+    ResilienceResourceWithStreamingResponse,
+    AsyncResilienceResourceWithStreamingResponse,
+)
+from ....types.zero_trust.device import Device
+from ....types.zero_trust.device_get_response import DeviceGetResponse
 
 __all__ = ["DevicesResource", "AsyncDevicesResource"]
 
 
 class DevicesResource(SyncAPIResource):
+    @cached_property
+    def devices(self) -> devices.DevicesResource:
+        return devices.DevicesResource(self._client)
+
+    @cached_property
+    def resilience(self) -> ResilienceResource:
+        return ResilienceResource(self._client)
+
+    @cached_property
+    def registrations(self) -> RegistrationsResource:
+        return RegistrationsResource(self._client)
+
+    @cached_property
+    def dex_tests(self) -> DEXTestsResource:
+        return DEXTestsResource(self._client)
+
+    @cached_property
+    def networks(self) -> NetworksResource:
+        return NetworksResource(self._client)
+
+    @cached_property
+    def fleet_status(self) -> FleetStatusResource:
+        return FleetStatusResource(self._client)
+
+    @cached_property
+    def policies(self) -> PoliciesResource:
+        return PoliciesResource(self._client)
+
+    @cached_property
+    def posture(self) -> PostureResource:
+        return PostureResource(self._client)
+
+    @cached_property
+    def revoke(self) -> RevokeResource:
+        return RevokeResource(self._client)
+
+    @cached_property
+    def settings(self) -> SettingsResource:
+        return SettingsResource(self._client)
+
+    @cached_property
+    def unrevoke(self) -> UnrevokeResource:
+        return UnrevokeResource(self._client)
+
+    @cached_property
+    def override_codes(self) -> OverrideCodesResource:
+        return OverrideCodesResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> DevicesResourceWithRawResponse:
         """
@@ -51,54 +185,22 @@ class DevicesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        id: List[str] | NotGiven = NOT_GIVEN,
-        active_registrations: Literal["include", "only", "exclude"] | NotGiven = NOT_GIVEN,
-        cursor: str | NotGiven = NOT_GIVEN,
-        include: str | NotGiven = NOT_GIVEN,
-        last_seen_user: device_list_params.LastSeenUser | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        search: str | NotGiven = NOT_GIVEN,
-        seen_after: str | NotGiven = NOT_GIVEN,
-        seen_before: str | NotGiven = NOT_GIVEN,
-        sort_by: Literal[
-            "name", "id", "client_version", "last_seen_user.email", "last_seen_at", "active_registrations", "created_at"
-        ]
-        | NotGiven = NOT_GIVEN,
-        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncCursorPagination[DeviceListResponse]:
+    ) -> SyncSinglePage[Device]:
         """
-        Lists WARP devices.
+        List WARP registrations.
+
+        **Deprecated**: please use one of the following endpoints instead:
+
+        - GET /accounts/{account_id}/devices/physical-devices
+        - GET /accounts/{account_id}/devices/registrations
 
         Args:
-          id: Filter by a one or more device IDs.
-
-          active_registrations: Include or exclude devices with active registrations. The default is "only" -
-              return only devices with active registrations.
-
-          cursor: Opaque token indicating the starting position when requesting the next set of
-              records. A cursor value can be obtained from the result_info.cursor field in the
-              response.
-
-          per_page: The maximum number of devices to return in a single response.
-
-          search: Search by device details.
-
-          seen_after: Filters by the last_seen timestamp - returns only devices last seen after this
-              timestamp.
-
-          seen_before: Filter by the last_seen timestamp - returns only devices last seen before this
-              timestamp.
-
-          sort_by: The device field to order results by.
-
-          sort_order: Sort direction.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -110,71 +212,12 @@ class DevicesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/devices/physical-devices",
-            page=SyncCursorPagination[DeviceListResponse],
+            f"/accounts/{account_id}/devices",
+            page=SyncSinglePage[Device],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "id": id,
-                        "active_registrations": active_registrations,
-                        "cursor": cursor,
-                        "include": include,
-                        "last_seen_user": last_seen_user,
-                        "per_page": per_page,
-                        "search": search,
-                        "seen_after": seen_after,
-                        "seen_before": seen_before,
-                        "sort_by": sort_by,
-                        "sort_order": sort_order,
-                    },
-                    device_list_params.DeviceListParams,
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=DeviceListResponse,
-        )
-
-    def delete(
-        self,
-        device_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Deletes a WARP device.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not device_id:
-            raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
-        return self._delete(
-            f"/accounts/{account_id}/devices/physical-devices/{device_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
-            ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            model=Device,
         )
 
     def get(
@@ -188,11 +231,19 @@ class DevicesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DeviceGetResponse:
+    ) -> Optional[DeviceGetResponse]:
         """
-        Fetches a single WARP device.
+        Fetches a single WARP registration.
+
+        **Deprecated**: please use one of the following endpoints instead:
+
+        - GET /accounts/{account_id}/devices/physical-devices/{device_id}
+        - GET /accounts/{account_id}/devices/registrations/{registration_id}
 
         Args:
+          device_id: Registration ID. Equal to Device ID except for accounts which enabled
+              [multi-user mode](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/deployment/mdm-deployment/windows-multiuser/).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -206,59 +257,67 @@ class DevicesResource(SyncAPIResource):
         if not device_id:
             raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
         return self._get(
-            f"/accounts/{account_id}/devices/physical-devices/{device_id}",
+            f"/accounts/{account_id}/devices/{device_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[DeviceGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[DeviceGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[DeviceGetResponse], ResultWrapper[DeviceGetResponse]),
-        )
-
-    def revoke(
-        self,
-        device_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Revokes all registrations associated with the specified device.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not device_id:
-            raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
-        return self._post(
-            f"/accounts/{account_id}/devices/physical-devices/{device_id}/revoke",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
-            ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[DeviceGetResponse]], ResultWrapper[DeviceGetResponse]),
         )
 
 
 class AsyncDevicesResource(AsyncAPIResource):
+    @cached_property
+    def devices(self) -> devices.AsyncDevicesResource:
+        return devices.AsyncDevicesResource(self._client)
+
+    @cached_property
+    def resilience(self) -> AsyncResilienceResource:
+        return AsyncResilienceResource(self._client)
+
+    @cached_property
+    def registrations(self) -> AsyncRegistrationsResource:
+        return AsyncRegistrationsResource(self._client)
+
+    @cached_property
+    def dex_tests(self) -> AsyncDEXTestsResource:
+        return AsyncDEXTestsResource(self._client)
+
+    @cached_property
+    def networks(self) -> AsyncNetworksResource:
+        return AsyncNetworksResource(self._client)
+
+    @cached_property
+    def fleet_status(self) -> AsyncFleetStatusResource:
+        return AsyncFleetStatusResource(self._client)
+
+    @cached_property
+    def policies(self) -> AsyncPoliciesResource:
+        return AsyncPoliciesResource(self._client)
+
+    @cached_property
+    def posture(self) -> AsyncPostureResource:
+        return AsyncPostureResource(self._client)
+
+    @cached_property
+    def revoke(self) -> AsyncRevokeResource:
+        return AsyncRevokeResource(self._client)
+
+    @cached_property
+    def settings(self) -> AsyncSettingsResource:
+        return AsyncSettingsResource(self._client)
+
+    @cached_property
+    def unrevoke(self) -> AsyncUnrevokeResource:
+        return AsyncUnrevokeResource(self._client)
+
+    @cached_property
+    def override_codes(self) -> AsyncOverrideCodesResource:
+        return AsyncOverrideCodesResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncDevicesResourceWithRawResponse:
         """
@@ -282,54 +341,22 @@ class AsyncDevicesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        id: List[str] | NotGiven = NOT_GIVEN,
-        active_registrations: Literal["include", "only", "exclude"] | NotGiven = NOT_GIVEN,
-        cursor: str | NotGiven = NOT_GIVEN,
-        include: str | NotGiven = NOT_GIVEN,
-        last_seen_user: device_list_params.LastSeenUser | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        search: str | NotGiven = NOT_GIVEN,
-        seen_after: str | NotGiven = NOT_GIVEN,
-        seen_before: str | NotGiven = NOT_GIVEN,
-        sort_by: Literal[
-            "name", "id", "client_version", "last_seen_user.email", "last_seen_at", "active_registrations", "created_at"
-        ]
-        | NotGiven = NOT_GIVEN,
-        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[DeviceListResponse, AsyncCursorPagination[DeviceListResponse]]:
+    ) -> AsyncPaginator[Device, AsyncSinglePage[Device]]:
         """
-        Lists WARP devices.
+        List WARP registrations.
+
+        **Deprecated**: please use one of the following endpoints instead:
+
+        - GET /accounts/{account_id}/devices/physical-devices
+        - GET /accounts/{account_id}/devices/registrations
 
         Args:
-          id: Filter by a one or more device IDs.
-
-          active_registrations: Include or exclude devices with active registrations. The default is "only" -
-              return only devices with active registrations.
-
-          cursor: Opaque token indicating the starting position when requesting the next set of
-              records. A cursor value can be obtained from the result_info.cursor field in the
-              response.
-
-          per_page: The maximum number of devices to return in a single response.
-
-          search: Search by device details.
-
-          seen_after: Filters by the last_seen timestamp - returns only devices last seen after this
-              timestamp.
-
-          seen_before: Filter by the last_seen timestamp - returns only devices last seen before this
-              timestamp.
-
-          sort_by: The device field to order results by.
-
-          sort_order: Sort direction.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -341,71 +368,12 @@ class AsyncDevicesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/devices/physical-devices",
-            page=AsyncCursorPagination[DeviceListResponse],
+            f"/accounts/{account_id}/devices",
+            page=AsyncSinglePage[Device],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "id": id,
-                        "active_registrations": active_registrations,
-                        "cursor": cursor,
-                        "include": include,
-                        "last_seen_user": last_seen_user,
-                        "per_page": per_page,
-                        "search": search,
-                        "seen_after": seen_after,
-                        "seen_before": seen_before,
-                        "sort_by": sort_by,
-                        "sort_order": sort_order,
-                    },
-                    device_list_params.DeviceListParams,
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=DeviceListResponse,
-        )
-
-    async def delete(
-        self,
-        device_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Deletes a WARP device.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not device_id:
-            raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
-        return await self._delete(
-            f"/accounts/{account_id}/devices/physical-devices/{device_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
-            ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            model=Device,
         )
 
     async def get(
@@ -419,11 +387,19 @@ class AsyncDevicesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DeviceGetResponse:
+    ) -> Optional[DeviceGetResponse]:
         """
-        Fetches a single WARP device.
+        Fetches a single WARP registration.
+
+        **Deprecated**: please use one of the following endpoints instead:
+
+        - GET /accounts/{account_id}/devices/physical-devices/{device_id}
+        - GET /accounts/{account_id}/devices/registrations/{registration_id}
 
         Args:
+          device_id: Registration ID. Equal to Device ID except for accounts which enabled
+              [multi-user mode](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/deployment/mdm-deployment/windows-multiuser/).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -437,55 +413,15 @@ class AsyncDevicesResource(AsyncAPIResource):
         if not device_id:
             raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/devices/physical-devices/{device_id}",
+            f"/accounts/{account_id}/devices/{device_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[DeviceGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[DeviceGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[DeviceGetResponse], ResultWrapper[DeviceGetResponse]),
-        )
-
-    async def revoke(
-        self,
-        device_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Revokes all registrations associated with the specified device.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not device_id:
-            raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
-        return await self._post(
-            f"/accounts/{account_id}/devices/physical-devices/{device_id}/revoke",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
-            ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[DeviceGetResponse]], ResultWrapper[DeviceGetResponse]),
         )
 
 
@@ -496,15 +432,57 @@ class DevicesResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             devices.list,
         )
-        self.delete = to_raw_response_wrapper(
-            devices.delete,
-        )
         self.get = to_raw_response_wrapper(
             devices.get,
         )
-        self.revoke = to_raw_response_wrapper(
-            devices.revoke,
-        )
+
+    @cached_property
+    def devices(self) -> devices.DevicesResourceWithRawResponse:
+        return devices.DevicesResourceWithRawResponse(self._devices.devices)
+
+    @cached_property
+    def resilience(self) -> ResilienceResourceWithRawResponse:
+        return ResilienceResourceWithRawResponse(self._devices.resilience)
+
+    @cached_property
+    def registrations(self) -> RegistrationsResourceWithRawResponse:
+        return RegistrationsResourceWithRawResponse(self._devices.registrations)
+
+    @cached_property
+    def dex_tests(self) -> DEXTestsResourceWithRawResponse:
+        return DEXTestsResourceWithRawResponse(self._devices.dex_tests)
+
+    @cached_property
+    def networks(self) -> NetworksResourceWithRawResponse:
+        return NetworksResourceWithRawResponse(self._devices.networks)
+
+    @cached_property
+    def fleet_status(self) -> FleetStatusResourceWithRawResponse:
+        return FleetStatusResourceWithRawResponse(self._devices.fleet_status)
+
+    @cached_property
+    def policies(self) -> PoliciesResourceWithRawResponse:
+        return PoliciesResourceWithRawResponse(self._devices.policies)
+
+    @cached_property
+    def posture(self) -> PostureResourceWithRawResponse:
+        return PostureResourceWithRawResponse(self._devices.posture)
+
+    @cached_property
+    def revoke(self) -> RevokeResourceWithRawResponse:
+        return RevokeResourceWithRawResponse(self._devices.revoke)
+
+    @cached_property
+    def settings(self) -> SettingsResourceWithRawResponse:
+        return SettingsResourceWithRawResponse(self._devices.settings)
+
+    @cached_property
+    def unrevoke(self) -> UnrevokeResourceWithRawResponse:
+        return UnrevokeResourceWithRawResponse(self._devices.unrevoke)
+
+    @cached_property
+    def override_codes(self) -> OverrideCodesResourceWithRawResponse:
+        return OverrideCodesResourceWithRawResponse(self._devices.override_codes)
 
 
 class AsyncDevicesResourceWithRawResponse:
@@ -514,15 +492,57 @@ class AsyncDevicesResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             devices.list,
         )
-        self.delete = async_to_raw_response_wrapper(
-            devices.delete,
-        )
         self.get = async_to_raw_response_wrapper(
             devices.get,
         )
-        self.revoke = async_to_raw_response_wrapper(
-            devices.revoke,
-        )
+
+    @cached_property
+    def devices(self) -> devices.AsyncDevicesResourceWithRawResponse:
+        return devices.AsyncDevicesResourceWithRawResponse(self._devices.devices)
+
+    @cached_property
+    def resilience(self) -> AsyncResilienceResourceWithRawResponse:
+        return AsyncResilienceResourceWithRawResponse(self._devices.resilience)
+
+    @cached_property
+    def registrations(self) -> AsyncRegistrationsResourceWithRawResponse:
+        return AsyncRegistrationsResourceWithRawResponse(self._devices.registrations)
+
+    @cached_property
+    def dex_tests(self) -> AsyncDEXTestsResourceWithRawResponse:
+        return AsyncDEXTestsResourceWithRawResponse(self._devices.dex_tests)
+
+    @cached_property
+    def networks(self) -> AsyncNetworksResourceWithRawResponse:
+        return AsyncNetworksResourceWithRawResponse(self._devices.networks)
+
+    @cached_property
+    def fleet_status(self) -> AsyncFleetStatusResourceWithRawResponse:
+        return AsyncFleetStatusResourceWithRawResponse(self._devices.fleet_status)
+
+    @cached_property
+    def policies(self) -> AsyncPoliciesResourceWithRawResponse:
+        return AsyncPoliciesResourceWithRawResponse(self._devices.policies)
+
+    @cached_property
+    def posture(self) -> AsyncPostureResourceWithRawResponse:
+        return AsyncPostureResourceWithRawResponse(self._devices.posture)
+
+    @cached_property
+    def revoke(self) -> AsyncRevokeResourceWithRawResponse:
+        return AsyncRevokeResourceWithRawResponse(self._devices.revoke)
+
+    @cached_property
+    def settings(self) -> AsyncSettingsResourceWithRawResponse:
+        return AsyncSettingsResourceWithRawResponse(self._devices.settings)
+
+    @cached_property
+    def unrevoke(self) -> AsyncUnrevokeResourceWithRawResponse:
+        return AsyncUnrevokeResourceWithRawResponse(self._devices.unrevoke)
+
+    @cached_property
+    def override_codes(self) -> AsyncOverrideCodesResourceWithRawResponse:
+        return AsyncOverrideCodesResourceWithRawResponse(self._devices.override_codes)
 
 
 class DevicesResourceWithStreamingResponse:
@@ -532,15 +552,57 @@ class DevicesResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             devices.list,
         )
-        self.delete = to_streamed_response_wrapper(
-            devices.delete,
-        )
         self.get = to_streamed_response_wrapper(
             devices.get,
         )
-        self.revoke = to_streamed_response_wrapper(
-            devices.revoke,
-        )
+
+    @cached_property
+    def devices(self) -> devices.DevicesResourceWithStreamingResponse:
+        return devices.DevicesResourceWithStreamingResponse(self._devices.devices)
+
+    @cached_property
+    def resilience(self) -> ResilienceResourceWithStreamingResponse:
+        return ResilienceResourceWithStreamingResponse(self._devices.resilience)
+
+    @cached_property
+    def registrations(self) -> RegistrationsResourceWithStreamingResponse:
+        return RegistrationsResourceWithStreamingResponse(self._devices.registrations)
+
+    @cached_property
+    def dex_tests(self) -> DEXTestsResourceWithStreamingResponse:
+        return DEXTestsResourceWithStreamingResponse(self._devices.dex_tests)
+
+    @cached_property
+    def networks(self) -> NetworksResourceWithStreamingResponse:
+        return NetworksResourceWithStreamingResponse(self._devices.networks)
+
+    @cached_property
+    def fleet_status(self) -> FleetStatusResourceWithStreamingResponse:
+        return FleetStatusResourceWithStreamingResponse(self._devices.fleet_status)
+
+    @cached_property
+    def policies(self) -> PoliciesResourceWithStreamingResponse:
+        return PoliciesResourceWithStreamingResponse(self._devices.policies)
+
+    @cached_property
+    def posture(self) -> PostureResourceWithStreamingResponse:
+        return PostureResourceWithStreamingResponse(self._devices.posture)
+
+    @cached_property
+    def revoke(self) -> RevokeResourceWithStreamingResponse:
+        return RevokeResourceWithStreamingResponse(self._devices.revoke)
+
+    @cached_property
+    def settings(self) -> SettingsResourceWithStreamingResponse:
+        return SettingsResourceWithStreamingResponse(self._devices.settings)
+
+    @cached_property
+    def unrevoke(self) -> UnrevokeResourceWithStreamingResponse:
+        return UnrevokeResourceWithStreamingResponse(self._devices.unrevoke)
+
+    @cached_property
+    def override_codes(self) -> OverrideCodesResourceWithStreamingResponse:
+        return OverrideCodesResourceWithStreamingResponse(self._devices.override_codes)
 
 
 class AsyncDevicesResourceWithStreamingResponse:
@@ -550,12 +612,54 @@ class AsyncDevicesResourceWithStreamingResponse:
         self.list = async_to_streamed_response_wrapper(
             devices.list,
         )
-        self.delete = async_to_streamed_response_wrapper(
-            devices.delete,
-        )
         self.get = async_to_streamed_response_wrapper(
             devices.get,
         )
-        self.revoke = async_to_streamed_response_wrapper(
-            devices.revoke,
-        )
+
+    @cached_property
+    def devices(self) -> devices.AsyncDevicesResourceWithStreamingResponse:
+        return devices.AsyncDevicesResourceWithStreamingResponse(self._devices.devices)
+
+    @cached_property
+    def resilience(self) -> AsyncResilienceResourceWithStreamingResponse:
+        return AsyncResilienceResourceWithStreamingResponse(self._devices.resilience)
+
+    @cached_property
+    def registrations(self) -> AsyncRegistrationsResourceWithStreamingResponse:
+        return AsyncRegistrationsResourceWithStreamingResponse(self._devices.registrations)
+
+    @cached_property
+    def dex_tests(self) -> AsyncDEXTestsResourceWithStreamingResponse:
+        return AsyncDEXTestsResourceWithStreamingResponse(self._devices.dex_tests)
+
+    @cached_property
+    def networks(self) -> AsyncNetworksResourceWithStreamingResponse:
+        return AsyncNetworksResourceWithStreamingResponse(self._devices.networks)
+
+    @cached_property
+    def fleet_status(self) -> AsyncFleetStatusResourceWithStreamingResponse:
+        return AsyncFleetStatusResourceWithStreamingResponse(self._devices.fleet_status)
+
+    @cached_property
+    def policies(self) -> AsyncPoliciesResourceWithStreamingResponse:
+        return AsyncPoliciesResourceWithStreamingResponse(self._devices.policies)
+
+    @cached_property
+    def posture(self) -> AsyncPostureResourceWithStreamingResponse:
+        return AsyncPostureResourceWithStreamingResponse(self._devices.posture)
+
+    @cached_property
+    def revoke(self) -> AsyncRevokeResourceWithStreamingResponse:
+        return AsyncRevokeResourceWithStreamingResponse(self._devices.revoke)
+
+    @cached_property
+    def settings(self) -> AsyncSettingsResourceWithStreamingResponse:
+        return AsyncSettingsResourceWithStreamingResponse(self._devices.settings)
+
+    @cached_property
+    def unrevoke(self) -> AsyncUnrevokeResourceWithStreamingResponse:
+        return AsyncUnrevokeResourceWithStreamingResponse(self._devices.unrevoke)
+
+    @cached_property
+    def override_codes(self) -> AsyncOverrideCodesResourceWithStreamingResponse:
+        return AsyncOverrideCodesResourceWithStreamingResponse(self._devices.override_codes)

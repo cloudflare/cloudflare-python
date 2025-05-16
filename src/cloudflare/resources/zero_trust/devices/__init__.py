@@ -98,12 +98,6 @@ from .override_codes import (
 )
 
 __all__ = [
-    "DevicesResource",
-    "AsyncDevicesResource",
-    "DevicesResourceWithRawResponse",
-    "AsyncDevicesResourceWithRawResponse",
-    "DevicesResourceWithStreamingResponse",
-    "AsyncDevicesResourceWithStreamingResponse",
     "ResilienceResource",
     "AsyncResilienceResource",
     "ResilienceResourceWithRawResponse",
@@ -170,4 +164,10 @@ __all__ = [
     "AsyncOverrideCodesResourceWithRawResponse",
     "OverrideCodesResourceWithStreamingResponse",
     "AsyncOverrideCodesResourceWithStreamingResponse",
+    "DevicesResource",
+    "AsyncDevicesResource",
+    "DevicesResourceWithRawResponse",
+    "AsyncDevicesResourceWithRawResponse",
+    "DevicesResourceWithStreamingResponse",
+    "AsyncDevicesResourceWithStreamingResponse",
 ]
