@@ -107,7 +107,7 @@ class OnRampsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> OnRampCreateResponse:
         """
-        Create a new On-ramp (Closed Beta)
+        Create a new On-ramp (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -174,7 +174,7 @@ class OnRampsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> OnRampUpdateResponse:
         """
-        Update an On-ramp (Closed Beta)
+        Update an On-ramp (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -231,10 +231,10 @@ class OnRampsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncSinglePage[OnRampListResponse]:
         """
-        List On-ramps (Closed Beta)
+        List On-ramps (Closed Beta).
 
         Args:
-          order_by: one of ["updated_at", "id", "cloud_type", "name"]
+          order_by: One of ["updated_at", "id", "cloud_type", "name"].
 
           extra_headers: Send extra headers
 
@@ -282,7 +282,7 @@ class OnRampsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> OnRampDeleteResponse:
         """
-        Delete an On-ramp (Closed Beta)
+        Delete an On-ramp (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -329,7 +329,7 @@ class OnRampsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> OnRampApplyResponse:
         """
-        Apply an On-ramp (Closed Beta)
+        Apply an On-ramp (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -374,7 +374,7 @@ class OnRampsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> OnRampEditResponse:
         """
-        Update an On-ramp (Closed Beta)
+        Update an On-ramp (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -428,7 +428,7 @@ class OnRampsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BinaryAPIResponse:
         """
-        Export an On-ramp to terraform ready file(s) (Closed Beta)
+        Export an On-ramp to terraform ready file(s) (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -469,7 +469,7 @@ class OnRampsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> OnRampGetResponse:
         """
-        Read an On-ramp (Closed Beta)
+        Read an On-ramp (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -518,7 +518,7 @@ class OnRampsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> OnRampPlanResponse:
         """
-        Plan an On-ramp (Closed Beta)
+        Plan an On-ramp (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -593,7 +593,7 @@ class AsyncOnRampsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> OnRampCreateResponse:
         """
-        Create a new On-ramp (Closed Beta)
+        Create a new On-ramp (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -660,7 +660,7 @@ class AsyncOnRampsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> OnRampUpdateResponse:
         """
-        Update an On-ramp (Closed Beta)
+        Update an On-ramp (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -717,10 +717,10 @@ class AsyncOnRampsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[OnRampListResponse, AsyncSinglePage[OnRampListResponse]]:
         """
-        List On-ramps (Closed Beta)
+        List On-ramps (Closed Beta).
 
         Args:
-          order_by: one of ["updated_at", "id", "cloud_type", "name"]
+          order_by: One of ["updated_at", "id", "cloud_type", "name"].
 
           extra_headers: Send extra headers
 
@@ -768,7 +768,7 @@ class AsyncOnRampsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> OnRampDeleteResponse:
         """
-        Delete an On-ramp (Closed Beta)
+        Delete an On-ramp (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -815,7 +815,7 @@ class AsyncOnRampsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> OnRampApplyResponse:
         """
-        Apply an On-ramp (Closed Beta)
+        Apply an On-ramp (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -860,7 +860,7 @@ class AsyncOnRampsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> OnRampEditResponse:
         """
-        Update an On-ramp (Closed Beta)
+        Update an On-ramp (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -914,7 +914,7 @@ class AsyncOnRampsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncBinaryAPIResponse:
         """
-        Export an On-ramp to terraform ready file(s) (Closed Beta)
+        Export an On-ramp to terraform ready file(s) (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -955,7 +955,7 @@ class AsyncOnRampsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> OnRampGetResponse:
         """
-        Read an On-ramp (Closed Beta)
+        Read an On-ramp (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -1004,7 +1004,7 @@ class AsyncOnRampsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> OnRampPlanResponse:
         """
-        Plan an On-ramp (Closed Beta)
+        Plan an On-ramp (Closed Beta).
 
         Args:
           extra_headers: Send extra headers

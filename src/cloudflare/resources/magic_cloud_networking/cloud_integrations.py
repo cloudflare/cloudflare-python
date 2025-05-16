@@ -79,7 +79,7 @@ class CloudIntegrationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CloudIntegrationCreateResponse:
         """
-        Create a new Cloud Integration (Closed Beta)
+        Create a new Cloud Integration (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -133,7 +133,7 @@ class CloudIntegrationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CloudIntegrationUpdateResponse:
         """
-        Update a Cloud Integration (Closed Beta)
+        Update a Cloud Integration (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -188,10 +188,10 @@ class CloudIntegrationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncSinglePage[CloudIntegrationListResponse]:
         """
-        List Cloud Integrations (Closed Beta)
+        List Cloud Integrations (Closed Beta).
 
         Args:
-          order_by: one of ["updated_at", "id", "cloud_type", "name"]
+          order_by: One of ["updated_at", "id", "cloud_type", "name"].
 
           extra_headers: Send extra headers
 
@@ -237,7 +237,7 @@ class CloudIntegrationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CloudIntegrationDeleteResponse:
         """
-        Delete a Cloud Integration (Closed Beta)
+        Delete a Cloud Integration (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -278,7 +278,7 @@ class CloudIntegrationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CloudIntegrationDiscoverResponse:
         """
-        Run discovery for a Cloud Integration (Closed Beta)
+        Run discovery for a Cloud Integration (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -317,7 +317,7 @@ class CloudIntegrationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CloudIntegrationDiscoverAllResponse:
         """
-        Run discovery for all Cloud Integrations in an account (Closed Beta)
+        Run discovery for all Cloud Integrations in an account (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -358,7 +358,7 @@ class CloudIntegrationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CloudIntegrationEditResponse:
         """
-        Update a Cloud Integration (Closed Beta)
+        Update a Cloud Integration (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -411,7 +411,7 @@ class CloudIntegrationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CloudIntegrationGetResponse:
         """
-        Read a Cloud Integration (Closed Beta)
+        Read a Cloud Integration (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -452,7 +452,7 @@ class CloudIntegrationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CloudIntegrationInitialSetupResponse:
         """
-        Get initial configuration to complete Cloud Integration setup (Closed Beta)
+        Get initial configuration to complete Cloud Integration setup (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -521,7 +521,7 @@ class AsyncCloudIntegrationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CloudIntegrationCreateResponse:
         """
-        Create a new Cloud Integration (Closed Beta)
+        Create a new Cloud Integration (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -575,7 +575,7 @@ class AsyncCloudIntegrationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CloudIntegrationUpdateResponse:
         """
-        Update a Cloud Integration (Closed Beta)
+        Update a Cloud Integration (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -630,10 +630,10 @@ class AsyncCloudIntegrationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[CloudIntegrationListResponse, AsyncSinglePage[CloudIntegrationListResponse]]:
         """
-        List Cloud Integrations (Closed Beta)
+        List Cloud Integrations (Closed Beta).
 
         Args:
-          order_by: one of ["updated_at", "id", "cloud_type", "name"]
+          order_by: One of ["updated_at", "id", "cloud_type", "name"].
 
           extra_headers: Send extra headers
 
@@ -679,7 +679,7 @@ class AsyncCloudIntegrationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CloudIntegrationDeleteResponse:
         """
-        Delete a Cloud Integration (Closed Beta)
+        Delete a Cloud Integration (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -720,7 +720,7 @@ class AsyncCloudIntegrationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CloudIntegrationDiscoverResponse:
         """
-        Run discovery for a Cloud Integration (Closed Beta)
+        Run discovery for a Cloud Integration (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -761,7 +761,7 @@ class AsyncCloudIntegrationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CloudIntegrationDiscoverAllResponse:
         """
-        Run discovery for all Cloud Integrations in an account (Closed Beta)
+        Run discovery for all Cloud Integrations in an account (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -802,7 +802,7 @@ class AsyncCloudIntegrationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CloudIntegrationEditResponse:
         """
-        Update a Cloud Integration (Closed Beta)
+        Update a Cloud Integration (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -855,7 +855,7 @@ class AsyncCloudIntegrationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CloudIntegrationGetResponse:
         """
-        Read a Cloud Integration (Closed Beta)
+        Read a Cloud Integration (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -898,7 +898,7 @@ class AsyncCloudIntegrationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CloudIntegrationInitialSetupResponse:
         """
-        Get initial configuration to complete Cloud Integration setup (Closed Beta)
+        Get initial configuration to complete Cloud Integration setup (Closed Beta).
 
         Args:
           extra_headers: Send extra headers

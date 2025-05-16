@@ -59,7 +59,7 @@ class AddressSpacesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AddressSpaceUpdateResponse:
         """
-        Update the Magic WAN Address Space (Closed Beta)
+        Update the Magic WAN Address Space (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -97,7 +97,7 @@ class AddressSpacesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AddressSpaceListResponse:
         """
-        Read the Magic WAN Address Space (Closed Beta)
+        Read the Magic WAN Address Space (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -135,7 +135,7 @@ class AddressSpacesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AddressSpaceEditResponse:
         """
-        Update the Magic WAN Address Space (Closed Beta)
+        Update the Magic WAN Address Space (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -195,7 +195,7 @@ class AsyncAddressSpacesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AddressSpaceUpdateResponse:
         """
-        Update the Magic WAN Address Space (Closed Beta)
+        Update the Magic WAN Address Space (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -235,7 +235,7 @@ class AsyncAddressSpacesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AddressSpaceListResponse:
         """
-        Read the Magic WAN Address Space (Closed Beta)
+        Read the Magic WAN Address Space (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -273,7 +273,7 @@ class AsyncAddressSpacesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AddressSpaceEditResponse:
         """
-        Update the Magic WAN Address Space (Closed Beta)
+        Update the Magic WAN Address Space (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
