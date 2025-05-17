@@ -41,7 +41,7 @@ class TestRules:
             rule = client.firewall.rules.create(
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 action={
-                    "mode": "simulate",
+                    "mode": "challenge",
                     "response": {
                         "body": "<error>This request has been rate-limited.</error>",
                         "content_type": "text/xml",
@@ -122,7 +122,7 @@ class TestRules:
                 rule_id="372e67954025e0ba6aaa6d586b9e0b60",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 action={
-                    "mode": "simulate",
+                    "mode": "challenge",
                     "response": {
                         "body": "<error>This request has been rate-limited.</error>",
                         "content_type": "text/xml",
@@ -586,7 +586,7 @@ class TestAsyncRules:
             rule = await async_client.firewall.rules.create(
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 action={
-                    "mode": "simulate",
+                    "mode": "challenge",
                     "response": {
                         "body": "<error>This request has been rate-limited.</error>",
                         "content_type": "text/xml",
@@ -667,7 +667,7 @@ class TestAsyncRules:
                 rule_id="372e67954025e0ba6aaa6d586b9e0b60",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 action={
-                    "mode": "simulate",
+                    "mode": "challenge",
                     "response": {
                         "body": "<error>This request has been rate-limited.</error>",
                         "content_type": "text/xml",

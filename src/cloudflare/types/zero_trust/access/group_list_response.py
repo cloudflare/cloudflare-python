@@ -11,7 +11,7 @@ __all__ = ["GroupListResponse"]
 
 class GroupListResponse(BaseModel):
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     created_at: Optional[datetime] = None
 

@@ -9,6 +9,6 @@ __all__ = ["InsightCreateParams"]
 
 class InsightCreateParams(TypedDict, total=False):
     account_id: Required[float]
-    """Account ID"""
+    """Account ID."""
 
     content: Required[str]

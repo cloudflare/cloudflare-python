@@ -22,19 +22,8 @@ class TestRules:
     def test_method_create(self, client: Cloudflare) -> None:
         rule = client.email_routing.rules.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[
-                {
-                    "type": "drop",
-                    "value": ["destinationaddress@example.net"],
-                }
-            ],
-            matchers=[
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                }
-            ],
+            actions=[{"type": "forward"}],
+            matchers=[{"type": "literal"}],
         )
         assert_matches_type(Optional[EmailRoutingRule], rule, path=["response"])
 
@@ -44,14 +33,14 @@ class TestRules:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[
                 {
-                    "type": "drop",
+                    "type": "forward",
                     "value": ["destinationaddress@example.net"],
                 }
             ],
             matchers=[
                 {
-                    "field": "to",
                     "type": "literal",
+                    "field": "to",
                     "value": "test@example.com",
                 }
             ],
@@ -65,19 +54,8 @@ class TestRules:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.email_routing.rules.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[
-                {
-                    "type": "drop",
-                    "value": ["destinationaddress@example.net"],
-                }
-            ],
-            matchers=[
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                }
-            ],
+            actions=[{"type": "forward"}],
+            matchers=[{"type": "literal"}],
         )
 
         assert response.is_closed is True
@@ -89,19 +67,8 @@ class TestRules:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.email_routing.rules.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[
-                {
-                    "type": "drop",
-                    "value": ["destinationaddress@example.net"],
-                }
-            ],
-            matchers=[
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                }
-            ],
+            actions=[{"type": "forward"}],
+            matchers=[{"type": "literal"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -116,19 +83,8 @@ class TestRules:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.email_routing.rules.with_raw_response.create(
                 zone_id="",
-                actions=[
-                    {
-                        "type": "drop",
-                        "value": ["destinationaddress@example.net"],
-                    }
-                ],
-                matchers=[
-                    {
-                        "field": "to",
-                        "type": "literal",
-                        "value": "test@example.com",
-                    }
-                ],
+                actions=[{"type": "forward"}],
+                matchers=[{"type": "literal"}],
             )
 
     @parametrize
@@ -136,19 +92,8 @@ class TestRules:
         rule = client.email_routing.rules.update(
             rule_identifier="a7e6fb77503c41d8a7f3113c6918f10c",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[
-                {
-                    "type": "drop",
-                    "value": ["destinationaddress@example.net"],
-                }
-            ],
-            matchers=[
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                }
-            ],
+            actions=[{"type": "forward"}],
+            matchers=[{"type": "literal"}],
         )
         assert_matches_type(Optional[EmailRoutingRule], rule, path=["response"])
 
@@ -159,14 +104,14 @@ class TestRules:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[
                 {
-                    "type": "drop",
+                    "type": "forward",
                     "value": ["destinationaddress@example.net"],
                 }
             ],
             matchers=[
                 {
-                    "field": "to",
                     "type": "literal",
+                    "field": "to",
                     "value": "test@example.com",
                 }
             ],
@@ -181,19 +126,8 @@ class TestRules:
         response = client.email_routing.rules.with_raw_response.update(
             rule_identifier="a7e6fb77503c41d8a7f3113c6918f10c",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[
-                {
-                    "type": "drop",
-                    "value": ["destinationaddress@example.net"],
-                }
-            ],
-            matchers=[
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                }
-            ],
+            actions=[{"type": "forward"}],
+            matchers=[{"type": "literal"}],
         )
 
         assert response.is_closed is True
@@ -206,19 +140,8 @@ class TestRules:
         with client.email_routing.rules.with_streaming_response.update(
             rule_identifier="a7e6fb77503c41d8a7f3113c6918f10c",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[
-                {
-                    "type": "drop",
-                    "value": ["destinationaddress@example.net"],
-                }
-            ],
-            matchers=[
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                }
-            ],
+            actions=[{"type": "forward"}],
+            matchers=[{"type": "literal"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -234,38 +157,16 @@ class TestRules:
             client.email_routing.rules.with_raw_response.update(
                 rule_identifier="a7e6fb77503c41d8a7f3113c6918f10c",
                 zone_id="",
-                actions=[
-                    {
-                        "type": "drop",
-                        "value": ["destinationaddress@example.net"],
-                    }
-                ],
-                matchers=[
-                    {
-                        "field": "to",
-                        "type": "literal",
-                        "value": "test@example.com",
-                    }
-                ],
+                actions=[{"type": "forward"}],
+                matchers=[{"type": "literal"}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_identifier` but received ''"):
             client.email_routing.rules.with_raw_response.update(
                 rule_identifier="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                actions=[
-                    {
-                        "type": "drop",
-                        "value": ["destinationaddress@example.net"],
-                    }
-                ],
-                matchers=[
-                    {
-                        "field": "to",
-                        "type": "literal",
-                        "value": "test@example.com",
-                    }
-                ],
+                actions=[{"type": "forward"}],
+                matchers=[{"type": "literal"}],
             )
 
     @parametrize
@@ -420,19 +321,8 @@ class TestAsyncRules:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         rule = await async_client.email_routing.rules.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[
-                {
-                    "type": "drop",
-                    "value": ["destinationaddress@example.net"],
-                }
-            ],
-            matchers=[
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                }
-            ],
+            actions=[{"type": "forward"}],
+            matchers=[{"type": "literal"}],
         )
         assert_matches_type(Optional[EmailRoutingRule], rule, path=["response"])
 
@@ -442,14 +332,14 @@ class TestAsyncRules:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[
                 {
-                    "type": "drop",
+                    "type": "forward",
                     "value": ["destinationaddress@example.net"],
                 }
             ],
             matchers=[
                 {
-                    "field": "to",
                     "type": "literal",
+                    "field": "to",
                     "value": "test@example.com",
                 }
             ],
@@ -463,19 +353,8 @@ class TestAsyncRules:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.email_routing.rules.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[
-                {
-                    "type": "drop",
-                    "value": ["destinationaddress@example.net"],
-                }
-            ],
-            matchers=[
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                }
-            ],
+            actions=[{"type": "forward"}],
+            matchers=[{"type": "literal"}],
         )
 
         assert response.is_closed is True
@@ -487,19 +366,8 @@ class TestAsyncRules:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.email_routing.rules.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[
-                {
-                    "type": "drop",
-                    "value": ["destinationaddress@example.net"],
-                }
-            ],
-            matchers=[
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                }
-            ],
+            actions=[{"type": "forward"}],
+            matchers=[{"type": "literal"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -514,19 +382,8 @@ class TestAsyncRules:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.email_routing.rules.with_raw_response.create(
                 zone_id="",
-                actions=[
-                    {
-                        "type": "drop",
-                        "value": ["destinationaddress@example.net"],
-                    }
-                ],
-                matchers=[
-                    {
-                        "field": "to",
-                        "type": "literal",
-                        "value": "test@example.com",
-                    }
-                ],
+                actions=[{"type": "forward"}],
+                matchers=[{"type": "literal"}],
             )
 
     @parametrize
@@ -534,19 +391,8 @@ class TestAsyncRules:
         rule = await async_client.email_routing.rules.update(
             rule_identifier="a7e6fb77503c41d8a7f3113c6918f10c",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[
-                {
-                    "type": "drop",
-                    "value": ["destinationaddress@example.net"],
-                }
-            ],
-            matchers=[
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                }
-            ],
+            actions=[{"type": "forward"}],
+            matchers=[{"type": "literal"}],
         )
         assert_matches_type(Optional[EmailRoutingRule], rule, path=["response"])
 
@@ -557,14 +403,14 @@ class TestAsyncRules:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[
                 {
-                    "type": "drop",
+                    "type": "forward",
                     "value": ["destinationaddress@example.net"],
                 }
             ],
             matchers=[
                 {
-                    "field": "to",
                     "type": "literal",
+                    "field": "to",
                     "value": "test@example.com",
                 }
             ],
@@ -579,19 +425,8 @@ class TestAsyncRules:
         response = await async_client.email_routing.rules.with_raw_response.update(
             rule_identifier="a7e6fb77503c41d8a7f3113c6918f10c",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[
-                {
-                    "type": "drop",
-                    "value": ["destinationaddress@example.net"],
-                }
-            ],
-            matchers=[
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                }
-            ],
+            actions=[{"type": "forward"}],
+            matchers=[{"type": "literal"}],
         )
 
         assert response.is_closed is True
@@ -604,19 +439,8 @@ class TestAsyncRules:
         async with async_client.email_routing.rules.with_streaming_response.update(
             rule_identifier="a7e6fb77503c41d8a7f3113c6918f10c",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[
-                {
-                    "type": "drop",
-                    "value": ["destinationaddress@example.net"],
-                }
-            ],
-            matchers=[
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                }
-            ],
+            actions=[{"type": "forward"}],
+            matchers=[{"type": "literal"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -632,38 +456,16 @@ class TestAsyncRules:
             await async_client.email_routing.rules.with_raw_response.update(
                 rule_identifier="a7e6fb77503c41d8a7f3113c6918f10c",
                 zone_id="",
-                actions=[
-                    {
-                        "type": "drop",
-                        "value": ["destinationaddress@example.net"],
-                    }
-                ],
-                matchers=[
-                    {
-                        "field": "to",
-                        "type": "literal",
-                        "value": "test@example.com",
-                    }
-                ],
+                actions=[{"type": "forward"}],
+                matchers=[{"type": "literal"}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_identifier` but received ''"):
             await async_client.email_routing.rules.with_raw_response.update(
                 rule_identifier="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                actions=[
-                    {
-                        "type": "drop",
-                        "value": ["destinationaddress@example.net"],
-                    }
-                ],
-                matchers=[
-                    {
-                        "field": "to",
-                        "type": "literal",
-                        "value": "test@example.com",
-                    }
-                ],
+                actions=[{"type": "forward"}],
+                matchers=[{"type": "literal"}],
             )
 
     @parametrize

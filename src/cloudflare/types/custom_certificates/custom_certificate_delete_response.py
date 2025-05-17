@@ -9,4 +9,4 @@ __all__ = ["CustomCertificateDeleteResponse"]
 
 class CustomCertificateDeleteResponse(BaseModel):
     id: Optional[str] = None
-    """Identifier"""
+    """Identifier."""

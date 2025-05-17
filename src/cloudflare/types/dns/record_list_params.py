@@ -11,7 +11,7 @@ __all__ = ["RecordListParams", "Comment", "Content", "Name", "Tag"]
 
 class RecordListParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     comment: Comment
 

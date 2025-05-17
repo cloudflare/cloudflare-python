@@ -11,7 +11,7 @@ __all__ = ["CertificateGetResponse"]
 
 class CertificateGetResponse(BaseModel):
     id: Optional[str] = None
-    """Identifier"""
+    """Identifier."""
 
     certificate: Optional[str] = None
     """The hostname certificate."""

@@ -12,4 +12,4 @@ class RevokeCreateParams(TypedDict, total=False):
     account_id: Required[str]
 
     body: Required[List[str]]
-    """A list of device ids to revoke."""
+    """A list of Registration IDs to revoke."""

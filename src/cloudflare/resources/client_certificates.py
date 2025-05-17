@@ -8,10 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -66,7 +63,7 @@ class ClientCertificatesResource(SyncAPIResource):
         Create a new API Shield mTLS Client Certificate
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           csr: The Certificate Signing Request (CSR). Must be newline-encoded.
 
@@ -123,7 +120,7 @@ class ClientCertificatesResource(SyncAPIResource):
         using Pagination
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           limit: Limit to the number of records returned.
 
@@ -184,9 +181,9 @@ class ClientCertificatesResource(SyncAPIResource):
         processing to revoked status.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          client_certificate_id: Identifier
+          client_certificate_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -231,9 +228,9 @@ class ClientCertificatesResource(SyncAPIResource):
         may reactivate it with this endpoint.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          client_certificate_id: Identifier
+          client_certificate_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -277,9 +274,9 @@ class ClientCertificatesResource(SyncAPIResource):
         Get Details for a single mTLS API Shield Client Certificate
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          client_certificate_id: Identifier
+          client_certificate_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -345,7 +342,7 @@ class AsyncClientCertificatesResource(AsyncAPIResource):
         Create a new API Shield mTLS Client Certificate
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           csr: The Certificate Signing Request (CSR). Must be newline-encoded.
 
@@ -402,7 +399,7 @@ class AsyncClientCertificatesResource(AsyncAPIResource):
         using Pagination
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           limit: Limit to the number of records returned.
 
@@ -463,9 +460,9 @@ class AsyncClientCertificatesResource(AsyncAPIResource):
         processing to revoked status.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          client_certificate_id: Identifier
+          client_certificate_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -510,9 +507,9 @@ class AsyncClientCertificatesResource(AsyncAPIResource):
         may reactivate it with this endpoint.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          client_certificate_id: Identifier
+          client_certificate_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -556,9 +553,9 @@ class AsyncClientCertificatesResource(AsyncAPIResource):
         Get Details for a single mTLS API Shield Client Certificate
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          client_certificate_id: Identifier
+          client_certificate_id: Identifier.
 
           extra_headers: Send extra headers
 

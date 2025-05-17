@@ -9,10 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -53,9 +50,9 @@ class MessageResource(SyncAPIResource):
 
     def create(
         self,
-        request_identifier: str,
+        request_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         content: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -68,11 +65,11 @@ class MessageResource(SyncAPIResource):
         Create a New Request Message
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier.
 
-          request_identifier: UUID
+          request_id: UUID.
 
-          content: Content of message
+          content: Content of message.
 
           extra_headers: Send extra headers
 
@@ -82,12 +79,12 @@ class MessageResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not request_identifier:
-            raise ValueError(f"Expected a non-empty value for `request_identifier` but received {request_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not request_id:
+            raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
         return self._post(
-            f"/accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/message/new",
+            f"/accounts/{account_id}/cloudforce-one/requests/{request_id}/message/new",
             body=maybe_transform({"content": content}, message_create_params.MessageCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -101,10 +98,10 @@ class MessageResource(SyncAPIResource):
 
     def update(
         self,
-        message_identifer: int,
+        message_id: int,
         *,
-        account_identifier: str,
-        request_identifier: str,
+        account_id: str,
+        request_id: str,
         content: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -117,11 +114,11 @@ class MessageResource(SyncAPIResource):
         Update a Request Message
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier.
 
-          request_identifier: UUID
+          request_id: UUID.
 
-          content: Content of message
+          content: Content of message.
 
           extra_headers: Send extra headers
 
@@ -131,12 +128,12 @@ class MessageResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not request_identifier:
-            raise ValueError(f"Expected a non-empty value for `request_identifier` but received {request_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not request_id:
+            raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
         return self._put(
-            f"/accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/message/{message_identifer}",
+            f"/accounts/{account_id}/cloudforce-one/requests/{request_id}/message/{message_id}",
             body=maybe_transform({"content": content}, message_update_params.MessageUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -150,10 +147,10 @@ class MessageResource(SyncAPIResource):
 
     def delete(
         self,
-        message_identifer: int,
+        message_id: int,
         *,
-        account_identifier: str,
-        request_identifier: str,
+        account_id: str,
+        request_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -165,9 +162,9 @@ class MessageResource(SyncAPIResource):
         Delete a Request Message
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier.
 
-          request_identifier: UUID
+          request_id: UUID.
 
           extra_headers: Send extra headers
 
@@ -177,12 +174,12 @@ class MessageResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not request_identifier:
-            raise ValueError(f"Expected a non-empty value for `request_identifier` but received {request_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not request_id:
+            raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
         return self._delete(
-            f"/accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/message/{message_identifer}",
+            f"/accounts/{account_id}/cloudforce-one/requests/{request_id}/message/{message_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -191,9 +188,9 @@ class MessageResource(SyncAPIResource):
 
     def get(
         self,
-        request_identifier: str,
+        request_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         page: int,
         per_page: int,
         after: Union[str, datetime] | NotGiven = NOT_GIVEN,
@@ -211,21 +208,21 @@ class MessageResource(SyncAPIResource):
         List Request Messages
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier.
 
-          request_identifier: UUID
+          request_id: UUID.
 
-          page: Page number of results
+          page: Page number of results.
 
-          per_page: Number of results per page
+          per_page: Number of results per page.
 
-          after: Retrieve messages created after this time
+          after: Retrieve mes ges created after this time.
 
-          before: Retrieve messages created before this time
+          before: Retrieve messages created before this time.
 
-          sort_by: Field to sort results by
+          sort_by: Field to sort results by.
 
-          sort_order: Sort order (asc or desc)
+          sort_order: Sort order (asc or desc).
 
           extra_headers: Send extra headers
 
@@ -235,12 +232,12 @@ class MessageResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not request_identifier:
-            raise ValueError(f"Expected a non-empty value for `request_identifier` but received {request_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not request_id:
+            raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/message",
+            f"/accounts/{account_id}/cloudforce-one/requests/{request_id}/message",
             page=SyncSinglePage[Message],
             body=maybe_transform(
                 {
@@ -283,9 +280,9 @@ class AsyncMessageResource(AsyncAPIResource):
 
     async def create(
         self,
-        request_identifier: str,
+        request_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         content: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -298,11 +295,11 @@ class AsyncMessageResource(AsyncAPIResource):
         Create a New Request Message
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier.
 
-          request_identifier: UUID
+          request_id: UUID.
 
-          content: Content of message
+          content: Content of message.
 
           extra_headers: Send extra headers
 
@@ -312,12 +309,12 @@ class AsyncMessageResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not request_identifier:
-            raise ValueError(f"Expected a non-empty value for `request_identifier` but received {request_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not request_id:
+            raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
         return await self._post(
-            f"/accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/message/new",
+            f"/accounts/{account_id}/cloudforce-one/requests/{request_id}/message/new",
             body=await async_maybe_transform({"content": content}, message_create_params.MessageCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -331,10 +328,10 @@ class AsyncMessageResource(AsyncAPIResource):
 
     async def update(
         self,
-        message_identifer: int,
+        message_id: int,
         *,
-        account_identifier: str,
-        request_identifier: str,
+        account_id: str,
+        request_id: str,
         content: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -347,11 +344,11 @@ class AsyncMessageResource(AsyncAPIResource):
         Update a Request Message
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier.
 
-          request_identifier: UUID
+          request_id: UUID.
 
-          content: Content of message
+          content: Content of message.
 
           extra_headers: Send extra headers
 
@@ -361,12 +358,12 @@ class AsyncMessageResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not request_identifier:
-            raise ValueError(f"Expected a non-empty value for `request_identifier` but received {request_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not request_id:
+            raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
         return await self._put(
-            f"/accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/message/{message_identifer}",
+            f"/accounts/{account_id}/cloudforce-one/requests/{request_id}/message/{message_id}",
             body=await async_maybe_transform({"content": content}, message_update_params.MessageUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -380,10 +377,10 @@ class AsyncMessageResource(AsyncAPIResource):
 
     async def delete(
         self,
-        message_identifer: int,
+        message_id: int,
         *,
-        account_identifier: str,
-        request_identifier: str,
+        account_id: str,
+        request_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -395,9 +392,9 @@ class AsyncMessageResource(AsyncAPIResource):
         Delete a Request Message
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier.
 
-          request_identifier: UUID
+          request_id: UUID.
 
           extra_headers: Send extra headers
 
@@ -407,12 +404,12 @@ class AsyncMessageResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not request_identifier:
-            raise ValueError(f"Expected a non-empty value for `request_identifier` but received {request_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not request_id:
+            raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
         return await self._delete(
-            f"/accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/message/{message_identifer}",
+            f"/accounts/{account_id}/cloudforce-one/requests/{request_id}/message/{message_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -421,9 +418,9 @@ class AsyncMessageResource(AsyncAPIResource):
 
     def get(
         self,
-        request_identifier: str,
+        request_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         page: int,
         per_page: int,
         after: Union[str, datetime] | NotGiven = NOT_GIVEN,
@@ -441,21 +438,21 @@ class AsyncMessageResource(AsyncAPIResource):
         List Request Messages
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier.
 
-          request_identifier: UUID
+          request_id: UUID.
 
-          page: Page number of results
+          page: Page number of results.
 
-          per_page: Number of results per page
+          per_page: Number of results per page.
 
-          after: Retrieve messages created after this time
+          after: Retrieve mes ges created after this time.
 
-          before: Retrieve messages created before this time
+          before: Retrieve messages created before this time.
 
-          sort_by: Field to sort results by
+          sort_by: Field to sort results by.
 
-          sort_order: Sort order (asc or desc)
+          sort_order: Sort order (asc or desc).
 
           extra_headers: Send extra headers
 
@@ -465,12 +462,12 @@ class AsyncMessageResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not request_identifier:
-            raise ValueError(f"Expected a non-empty value for `request_identifier` but received {request_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not request_id:
+            raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/message",
+            f"/accounts/{account_id}/cloudforce-one/requests/{request_id}/message",
             page=AsyncSinglePage[Message],
             body=maybe_transform(
                 {

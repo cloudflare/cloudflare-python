@@ -14,7 +14,7 @@ __all__ = ["RecordBatchParams", "Delete"]
 
 class RecordBatchParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     deletes: Iterable[Delete]
 
@@ -27,4 +27,4 @@ class RecordBatchParams(TypedDict, total=False):
 
 class Delete(TypedDict, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""

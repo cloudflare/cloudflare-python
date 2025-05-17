@@ -9,7 +9,7 @@ __all__ = ["RegionalHostnameCreateParams"]
 
 class RegionalHostnameCreateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     hostname: Required[str]
     """DNS hostname to be regionalized, must be a subdomain of the zone.
@@ -19,3 +19,6 @@ class RegionalHostnameCreateParams(TypedDict, total=False):
 
     region_key: Required[str]
     """Identifying key for the region"""
+
+    routing: str
+    """Configure which routing method to use for the regional hostname"""

@@ -13,8 +13,10 @@ __all__ = [
     "ActionParameters",
     "ActionParametersHeaders",
     "ActionParametersHeadersRemoveHeader",
-    "ActionParametersHeadersStaticHeader",
-    "ActionParametersHeadersDynamicHeader",
+    "ActionParametersHeadersAddStaticHeader",
+    "ActionParametersHeadersSetStaticHeader",
+    "ActionParametersHeadersAddDynamicHeader",
+    "ActionParametersHeadersSetDynamicHeader",
     "ActionParametersURI",
     "ExposedCredentialCheck",
     "Ratelimit",
@@ -25,14 +27,28 @@ class ActionParametersHeadersRemoveHeader(BaseModel):
     operation: Literal["remove"]
 
 
-class ActionParametersHeadersStaticHeader(BaseModel):
+class ActionParametersHeadersAddStaticHeader(BaseModel):
+    operation: Literal["add"]
+
+    value: str
+    """Static value for the header."""
+
+
+class ActionParametersHeadersSetStaticHeader(BaseModel):
     operation: Literal["set"]
 
     value: str
     """Static value for the header."""
 
 
-class ActionParametersHeadersDynamicHeader(BaseModel):
+class ActionParametersHeadersAddDynamicHeader(BaseModel):
+    expression: str
+    """Expression for the header value."""
+
+    operation: Literal["add"]
+
+
+class ActionParametersHeadersSetDynamicHeader(BaseModel):
     expression: str
     """Expression for the header value."""
 
@@ -40,7 +56,11 @@ class ActionParametersHeadersDynamicHeader(BaseModel):
 
 
 ActionParametersHeaders: TypeAlias = Union[
-    ActionParametersHeadersRemoveHeader, ActionParametersHeadersStaticHeader, ActionParametersHeadersDynamicHeader
+    ActionParametersHeadersRemoveHeader,
+    ActionParametersHeadersAddStaticHeader,
+    ActionParametersHeadersSetStaticHeader,
+    ActionParametersHeadersAddDynamicHeader,
+    ActionParametersHeadersSetDynamicHeader,
 ]
 
 
@@ -75,7 +95,7 @@ class Ratelimit(BaseModel):
     incremented.
     """
 
-    period: Literal[10, 60, 600, 3600]
+    period: int
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: Optional[str] = None

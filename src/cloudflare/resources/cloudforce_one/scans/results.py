@@ -58,9 +58,9 @@ class ResultsResource(SyncAPIResource):
         Get the Latest Scan Result
 
         Args:
-          account_id: Account ID
+          account_id: Defines the Account ID.
 
-          config_id: Config ID
+          config_id: Defines the Config ID.
 
           extra_headers: Send extra headers
 
@@ -123,9 +123,9 @@ class AsyncResultsResource(AsyncAPIResource):
         Get the Latest Scan Result
 
         Args:
-          account_id: Account ID
+          account_id: Defines the Account ID.
 
-          config_id: Config ID
+          config_id: Defines the Config ID.
 
           extra_headers: Send extra headers
 

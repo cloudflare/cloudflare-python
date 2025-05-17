@@ -5,15 +5,13 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-from .schema_data_param import SchemaDataParam
-
-__all__ = ["DEXTestCreateParams", "TargetPolicy"]
+__all__ = ["DEXTestCreateParams", "Data", "TargetPolicy"]
 
 
 class DEXTestCreateParams(TypedDict, total=False):
     account_id: Required[str]
 
-    data: Required[SchemaDataParam]
+    data: Required[Data]
     """
     The configuration object which contains the details for the WARP client to
     conduct the test.
@@ -32,17 +30,28 @@ class DEXTestCreateParams(TypedDict, total=False):
     """Additional details about the test."""
 
     target_policies: Iterable[TargetPolicy]
-    """Device settings profiles targeted by this test"""
+    """DEX rules targeted by this test"""
 
     targeted: bool
 
 
+class Data(TypedDict, total=False):
+    host: str
+    """The desired endpoint to test."""
+
+    kind: str
+    """The type of test."""
+
+    method: str
+    """The HTTP request method type."""
+
+
 class TargetPolicy(TypedDict, total=False):
     id: str
-    """The id of the device settings profile"""
+    """The id of the DEX rule"""
 
     default: bool
-    """Whether the profile is the account default"""
+    """Whether the DEX rule is the account default"""
 
     name: str
-    """The name of the device settings profile"""
+    """The name of the DEX rule"""

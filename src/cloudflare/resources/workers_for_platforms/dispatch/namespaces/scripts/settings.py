@@ -7,10 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ......_utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ......_utils import maybe_transform, async_maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -63,10 +60,10 @@ class SettingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[SettingEditResponse]:
         """
-        Patch script metadata, such as bindings
+        Patch script metadata, such as bindings.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -120,7 +117,7 @@ class SettingsResource(SyncAPIResource):
         Get script settings from a script uploaded to a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -188,10 +185,10 @@ class AsyncSettingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[SettingEditResponse]:
         """
-        Patch script metadata, such as bindings
+        Patch script metadata, such as bindings.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -245,7 +242,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         Get script settings from a script uploaded to a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 

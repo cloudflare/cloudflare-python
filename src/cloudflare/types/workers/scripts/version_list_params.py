@@ -9,7 +9,7 @@ __all__ = ["VersionListParams"]
 
 class VersionListParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     deployable: bool
     """Only return versions that can be used in a deployment. Ignores pagination."""

@@ -35,7 +35,7 @@ class TestSearches:
             per_page=1,
             search_params={
                 "query": "primary",
-                "references": "",
+                "references": "*",
             },
         )
         assert_matches_type(SyncV4PagePagination[SearchListResponse], search, path=["response"])
@@ -95,7 +95,7 @@ class TestAsyncSearches:
             per_page=1,
             search_params={
                 "query": "primary",
-                "references": "",
+                "references": "*",
             },
         )
         assert_matches_type(AsyncV4PagePagination[SearchListResponse], search, path=["response"])

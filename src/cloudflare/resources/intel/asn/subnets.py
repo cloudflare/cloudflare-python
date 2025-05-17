@@ -53,10 +53,10 @@ class SubnetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SubnetGetResponse:
         """
-        Get ASN Subnets
+        Get ASN Subnets.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -110,10 +110,10 @@ class AsyncSubnetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SubnetGetResponse:
         """
-        Get ASN Subnets
+        Get ASN Subnets.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 

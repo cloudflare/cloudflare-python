@@ -56,6 +56,7 @@ class GatewayRule(BaseModel):
             "egress",
             "resolve",
             "quarantine",
+            "redirect",
         ]
     ] = None
     """
@@ -101,7 +102,9 @@ class GatewayRule(BaseModel):
     """Precedence sets the order of your rules.
 
     Lower values indicate higher precedence. At each processing phase, applicable
-    rules are evaluated in ascending order of this value.
+    rules are evaluated in ascending order of this value. Refer to
+    [Order of enforcement](http://developers.cloudflare.com/learning-paths/secure-internet-traffic/understand-policies/order-of-enforcement/#manage-precedence-with-terraform)
+    docs on how to manage precedence via Terraform.
     """
 
     rule_settings: Optional[RuleSetting] = None

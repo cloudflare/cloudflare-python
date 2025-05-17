@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -51,8 +51,14 @@ class SubmissionsResource(SyncAPIResource):
         *,
         account_id: str,
         end: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        original_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"]
+        | NotGiven = NOT_GIVEN,
+        outcome_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
+        query: Optional[str] | NotGiven = NOT_GIVEN,
+        requested_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"]
+        | NotGiven = NOT_GIVEN,
         start: Union[str, datetime] | NotGiven = NOT_GIVEN,
         submission_id: str | NotGiven = NOT_GIVEN,
         type: Literal["TEAM", "USER"] | NotGiven = NOT_GIVEN,
@@ -98,8 +104,12 @@ class SubmissionsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "end": end,
+                        "original_disposition": original_disposition,
+                        "outcome_disposition": outcome_disposition,
                         "page": page,
                         "per_page": per_page,
+                        "query": query,
+                        "requested_disposition": requested_disposition,
                         "start": start,
                         "submission_id": submission_id,
                         "type": type,
@@ -136,8 +146,14 @@ class AsyncSubmissionsResource(AsyncAPIResource):
         *,
         account_id: str,
         end: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        original_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"]
+        | NotGiven = NOT_GIVEN,
+        outcome_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
+        query: Optional[str] | NotGiven = NOT_GIVEN,
+        requested_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"]
+        | NotGiven = NOT_GIVEN,
         start: Union[str, datetime] | NotGiven = NOT_GIVEN,
         submission_id: str | NotGiven = NOT_GIVEN,
         type: Literal["TEAM", "USER"] | NotGiven = NOT_GIVEN,
@@ -183,8 +199,12 @@ class AsyncSubmissionsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "end": end,
+                        "original_disposition": original_disposition,
+                        "outcome_disposition": outcome_disposition,
                         "page": page,
                         "per_page": per_page,
+                        "query": query,
+                        "requested_disposition": requested_disposition,
                         "start": start,
                         "submission_id": submission_id,
                         "type": type,

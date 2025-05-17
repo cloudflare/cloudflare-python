@@ -24,14 +24,6 @@ from .metadata import (
     MetadataResourceWithStreamingResponse,
     AsyncMetadataResourceWithStreamingResponse,
 )
-from .analytics import (
-    AnalyticsResource,
-    AsyncAnalyticsResource,
-    AnalyticsResourceWithRawResponse,
-    AsyncAnalyticsResourceWithRawResponse,
-    AnalyticsResourceWithStreamingResponse,
-    AsyncAnalyticsResourceWithStreamingResponse,
-)
 from .namespaces import (
     NamespacesResource,
     AsyncNamespacesResource,
@@ -42,12 +34,6 @@ from .namespaces import (
 )
 
 __all__ = [
-    "AnalyticsResource",
-    "AsyncAnalyticsResource",
-    "AnalyticsResourceWithRawResponse",
-    "AsyncAnalyticsResourceWithRawResponse",
-    "AnalyticsResourceWithStreamingResponse",
-    "AsyncAnalyticsResourceWithStreamingResponse",
     "KeysResource",
     "AsyncKeysResource",
     "KeysResourceWithRawResponse",

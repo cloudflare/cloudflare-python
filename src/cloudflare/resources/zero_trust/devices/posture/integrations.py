@@ -8,10 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -58,7 +55,14 @@ class IntegrationsResource(SyncAPIResource):
         interval: str,
         name: str,
         type: Literal[
-            "workspace_one", "crowdstrike_s2s", "uptycs", "intune", "kolide", "tanium", "sentinelone_s2s", "custom_s2s"
+            "workspace_one",
+            "crowdstrike_s2s",
+            "uptycs",
+            "intune",
+            "kolide",
+            "tanium_s2s",
+            "sentinelone_s2s",
+            "custom_s2s",
         ],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -201,7 +205,14 @@ class IntegrationsResource(SyncAPIResource):
         interval: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         type: Literal[
-            "workspace_one", "crowdstrike_s2s", "uptycs", "intune", "kolide", "tanium", "sentinelone_s2s", "custom_s2s"
+            "workspace_one",
+            "crowdstrike_s2s",
+            "uptycs",
+            "intune",
+            "kolide",
+            "tanium_s2s",
+            "sentinelone_s2s",
+            "custom_s2s",
         ]
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -330,7 +341,14 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         interval: str,
         name: str,
         type: Literal[
-            "workspace_one", "crowdstrike_s2s", "uptycs", "intune", "kolide", "tanium", "sentinelone_s2s", "custom_s2s"
+            "workspace_one",
+            "crowdstrike_s2s",
+            "uptycs",
+            "intune",
+            "kolide",
+            "tanium_s2s",
+            "sentinelone_s2s",
+            "custom_s2s",
         ],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -473,7 +491,14 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         interval: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         type: Literal[
-            "workspace_one", "crowdstrike_s2s", "uptycs", "intune", "kolide", "tanium", "sentinelone_s2s", "custom_s2s"
+            "workspace_one",
+            "crowdstrike_s2s",
+            "uptycs",
+            "intune",
+            "kolide",
+            "tanium_s2s",
+            "sentinelone_s2s",
+            "custom_s2s",
         ]
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

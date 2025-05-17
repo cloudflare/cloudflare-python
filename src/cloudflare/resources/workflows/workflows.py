@@ -7,10 +7,7 @@ from typing import Type, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform, async_maybe_transform
 from .versions import (
     VersionsResource,
     AsyncVersionsResource,
@@ -41,6 +38,7 @@ from .instances.instances import (
 )
 from ...types.workflows.workflow_get_response import WorkflowGetResponse
 from ...types.workflows.workflow_list_response import WorkflowListResponse
+from ...types.workflows.workflow_delete_response import WorkflowDeleteResponse
 from ...types.workflows.workflow_update_response import WorkflowUpdateResponse
 
 __all__ = ["WorkflowsResource", "AsyncWorkflowsResource"]
@@ -129,6 +127,7 @@ class WorkflowsResource(SyncAPIResource):
         account_id: str,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
+        search: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -140,6 +139,8 @@ class WorkflowsResource(SyncAPIResource):
         List all Workflows
 
         Args:
+          search: Filter workflows by name.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -162,11 +163,54 @@ class WorkflowsResource(SyncAPIResource):
                     {
                         "page": page,
                         "per_page": per_page,
+                        "search": search,
                     },
                     workflow_list_params.WorkflowListParams,
                 ),
             ),
             model=WorkflowListResponse,
+        )
+
+    def delete(
+        self,
+        workflow_name: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> WorkflowDeleteResponse:
+        """Deletes a Workflow.
+
+        This only deletes the Workflow and does not delete or modify
+        any Worker associated to this Workflow or bounded to it.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not workflow_name:
+            raise ValueError(f"Expected a non-empty value for `workflow_name` but received {workflow_name!r}")
+        return self._delete(
+            f"/accounts/{account_id}/workflows/{workflow_name}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[WorkflowDeleteResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[WorkflowDeleteResponse], ResultWrapper[WorkflowDeleteResponse]),
         )
 
     def get(
@@ -293,6 +337,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         account_id: str,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
+        search: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -304,6 +349,8 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         List all Workflows
 
         Args:
+          search: Filter workflows by name.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -326,11 +373,54 @@ class AsyncWorkflowsResource(AsyncAPIResource):
                     {
                         "page": page,
                         "per_page": per_page,
+                        "search": search,
                     },
                     workflow_list_params.WorkflowListParams,
                 ),
             ),
             model=WorkflowListResponse,
+        )
+
+    async def delete(
+        self,
+        workflow_name: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> WorkflowDeleteResponse:
+        """Deletes a Workflow.
+
+        This only deletes the Workflow and does not delete or modify
+        any Worker associated to this Workflow or bounded to it.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not workflow_name:
+            raise ValueError(f"Expected a non-empty value for `workflow_name` but received {workflow_name!r}")
+        return await self._delete(
+            f"/accounts/{account_id}/workflows/{workflow_name}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[WorkflowDeleteResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[WorkflowDeleteResponse], ResultWrapper[WorkflowDeleteResponse]),
         )
 
     async def get(
@@ -384,6 +474,9 @@ class WorkflowsResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             workflows.list,
         )
+        self.delete = to_raw_response_wrapper(
+            workflows.delete,
+        )
         self.get = to_raw_response_wrapper(
             workflows.get,
         )
@@ -406,6 +499,9 @@ class AsyncWorkflowsResourceWithRawResponse:
         )
         self.list = async_to_raw_response_wrapper(
             workflows.list,
+        )
+        self.delete = async_to_raw_response_wrapper(
+            workflows.delete,
         )
         self.get = async_to_raw_response_wrapper(
             workflows.get,
@@ -430,6 +526,9 @@ class WorkflowsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             workflows.list,
         )
+        self.delete = to_streamed_response_wrapper(
+            workflows.delete,
+        )
         self.get = to_streamed_response_wrapper(
             workflows.get,
         )
@@ -452,6 +551,9 @@ class AsyncWorkflowsResourceWithStreamingResponse:
         )
         self.list = async_to_streamed_response_wrapper(
             workflows.list,
+        )
+        self.delete = async_to_streamed_response_wrapper(
+            workflows.delete,
         )
         self.get = async_to_streamed_response_wrapper(
             workflows.get,

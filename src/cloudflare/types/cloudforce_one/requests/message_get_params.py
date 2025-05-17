@@ -12,23 +12,23 @@ __all__ = ["MessageGetParams"]
 
 
 class MessageGetParams(TypedDict, total=False):
-    account_identifier: Required[str]
-    """Identifier"""
+    account_id: Required[str]
+    """Identifier."""
 
     page: Required[int]
-    """Page number of results"""
+    """Page number of results."""
 
     per_page: Required[int]
-    """Number of results per page"""
+    """Number of results per page."""
 
     after: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """Retrieve messages created after this time"""
+    """Retrieve mes ges created after this time."""
 
     before: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """Retrieve messages created before this time"""
+    """Retrieve messages created before this time."""
 
     sort_by: str
-    """Field to sort results by"""
+    """Field to sort results by."""
 
     sort_order: Literal["asc", "desc"]
-    """Sort order (asc or desc)"""
+    """Sort order (asc or desc)."""

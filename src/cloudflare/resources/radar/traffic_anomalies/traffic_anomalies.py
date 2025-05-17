@@ -9,10 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from .locations import (
     LocationsResource,
     AsyncLocationsResource,
@@ -86,12 +83,12 @@ class TrafficAnomaliesResource(SyncAPIResource):
         manually verified by our team.
 
         Args:
-          asn: Single Autonomous System Number (ASN) as integer.
+          asn: Filters results by Autonomous System. Specify a single Autonomous System Number
+              (ASN) as integer.
 
           date_end: End of the date range (inclusive).
 
-          date_range: Shorthand date ranges for the last X days - use when you don't need specific
-              start and end dates.
+          date_range: Filters results by date range.
 
           date_start: Start of the date range (inclusive).
 
@@ -99,7 +96,7 @@ class TrafficAnomaliesResource(SyncAPIResource):
 
           limit: Limits the number of objects returned in the response.
 
-          location: Location alpha-2 code.
+          location: Filters results by location. Specify an alpha-2 location code.
 
           offset: Skips the specified number of objects before fetching the results.
 
@@ -187,12 +184,12 @@ class AsyncTrafficAnomaliesResource(AsyncAPIResource):
         manually verified by our team.
 
         Args:
-          asn: Single Autonomous System Number (ASN) as integer.
+          asn: Filters results by Autonomous System. Specify a single Autonomous System Number
+              (ASN) as integer.
 
           date_end: End of the date range (inclusive).
 
-          date_range: Shorthand date ranges for the last X days - use when you don't need specific
-              start and end dates.
+          date_range: Filters results by date range.
 
           date_start: Start of the date range (inclusive).
 
@@ -200,7 +197,7 @@ class AsyncTrafficAnomaliesResource(AsyncAPIResource):
 
           limit: Limits the number of objects returned in the response.
 
-          location: Location alpha-2 code.
+          location: Filters results by location. Specify an alpha-2 location code.
 
           offset: Skips the specified number of objects before fetching the results.
 

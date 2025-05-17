@@ -27,12 +27,12 @@ __all__ = [
 
 class LifecycleUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Account ID"""
+    """Account ID."""
 
     rules: Iterable[Rule]
 
     jurisdiction: Annotated[Literal["default", "eu", "fedramp"], PropertyInfo(alias="cf-r2-jurisdiction")]
-    """The bucket jurisdiction"""
+    """Jurisdiction where objects in this bucket are guaranteed to be stored."""
 
 
 class RuleConditions(TypedDict, total=False):
@@ -40,7 +40,7 @@ class RuleConditions(TypedDict, total=False):
     """
     Transitions will only apply to objects/uploads in the bucket that start with the
     given prefix, an empty prefix can be provided to scope rule to all
-    objects/uploads
+    objects/uploads.
     """
 
 
@@ -54,7 +54,7 @@ class RuleAbortMultipartUploadsTransition(TypedDict, total=False):
     condition: RuleAbortMultipartUploadsTransitionCondition
     """
     Condition for lifecycle transitions to apply after an object reaches an age in
-    seconds
+    seconds.
     """
 
 
@@ -80,7 +80,7 @@ class RuleDeleteObjectsTransition(TypedDict, total=False):
     condition: RuleDeleteObjectsTransitionCondition
     """
     Condition for lifecycle transitions to apply after an object reaches an age in
-    seconds
+    seconds.
     """
 
 
@@ -106,7 +106,7 @@ class RuleStorageClassTransition(TypedDict, total=False):
     condition: Required[RuleStorageClassTransitionCondition]
     """
     Condition for lifecycle transitions to apply after an object reaches an age in
-    seconds
+    seconds.
     """
 
     storage_class: Required[Annotated[Literal["InfrequentAccess"], PropertyInfo(alias="storageClass")]]
@@ -114,23 +114,23 @@ class RuleStorageClassTransition(TypedDict, total=False):
 
 class Rule(TypedDict, total=False):
     id: Required[str]
-    """Unique identifier for this rule"""
+    """Unique identifier for this rule."""
 
     conditions: Required[RuleConditions]
-    """Conditions that apply to all transitions of this rule"""
+    """Conditions that apply to all transitions of this rule."""
 
     enabled: Required[bool]
-    """Whether or not this rule is in effect"""
+    """Whether or not this rule is in effect."""
 
     abort_multipart_uploads_transition: Annotated[
         RuleAbortMultipartUploadsTransition, PropertyInfo(alias="abortMultipartUploadsTransition")
     ]
-    """Transition to abort ongoing multipart uploads"""
+    """Transition to abort ongoing multipart uploads."""
 
     delete_objects_transition: Annotated[RuleDeleteObjectsTransition, PropertyInfo(alias="deleteObjectsTransition")]
-    """Transition to delete objects"""
+    """Transition to delete objects."""
 
     storage_class_transitions: Annotated[
         Iterable[RuleStorageClassTransition], PropertyInfo(alias="storageClassTransitions")
     ]
-    """Transitions to change the storage class of objects"""
+    """Transitions to change the storage class of objects."""

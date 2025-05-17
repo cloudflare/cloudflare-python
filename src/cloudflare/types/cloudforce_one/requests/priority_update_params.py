@@ -11,17 +11,17 @@ __all__ = ["PriorityUpdateParams"]
 
 
 class PriorityUpdateParams(TypedDict, total=False):
-    account_identifier: Required[str]
-    """Identifier"""
+    account_id: Required[str]
+    """Identifier."""
 
     labels: Required[List[Label]]
-    """List of labels"""
+    """List of labels."""
 
     priority: Required[int]
-    """Priority"""
+    """Priority."""
 
     requirement: Required[str]
-    """Requirement"""
+    """Requirement."""
 
     tlp: Required[Literal["clear", "amber", "amber-strict", "green", "red"]]
-    """The CISA defined Traffic Light Protocol (TLP)"""
+    """The CISA defined Traffic Light Protocol (TLP)."""

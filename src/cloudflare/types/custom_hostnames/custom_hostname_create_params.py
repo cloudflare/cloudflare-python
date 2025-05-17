@@ -15,7 +15,7 @@ __all__ = ["CustomHostnameCreateParams", "SSL", "SSLCustomCERTBundle", "SSLSetti
 
 class CustomHostnameCreateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     hostname: Required[str]
     """The custom hostname that will point to your hostname via CNAME."""

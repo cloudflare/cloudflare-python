@@ -8,10 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -73,7 +70,7 @@ class ZoneResource(SyncAPIResource):
         Update DNS settings for a zone
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           flatten_all_cnames: Whether to flatten all CNAME records in the zone. Note that, due to DNS
               limitations, a CNAME record at the zone apex will always be flattened.
@@ -148,7 +145,7 @@ class ZoneResource(SyncAPIResource):
         Show DNS settings for a zone
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -217,7 +214,7 @@ class AsyncZoneResource(AsyncAPIResource):
         Update DNS settings for a zone
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           flatten_all_cnames: Whether to flatten all CNAME records in the zone. Note that, due to DNS
               limitations, a CNAME record at the zone apex will always be flattened.
@@ -292,7 +289,7 @@ class AsyncZoneResource(AsyncAPIResource):
         Show DNS settings for a zone
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

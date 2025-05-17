@@ -9,7 +9,7 @@ __all__ = ["FirewallInput"]
 
 class FirewallInput(BaseModel):
     enabled: bool
-    """Enabled"""
+    """Enabled."""
 
     operating_system: Literal["windows", "mac"]
-    """Operating System"""
+    """Operating System."""

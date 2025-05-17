@@ -56,7 +56,7 @@ __all__ = [
 
 class PageRuleUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     actions: Required[Iterable[Action]]
     """The set of actions to perform if the targets of this rule match the request.

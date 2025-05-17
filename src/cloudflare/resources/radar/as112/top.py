@@ -9,10 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -56,7 +53,6 @@ class TopResource(SyncAPIResource):
         self,
         dnssec: Literal["SUPPORTED", "NOT_SUPPORTED"],
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -79,19 +75,15 @@ class TopResource(SyncAPIResource):
         Args:
           dnssec: DNSSEC (DNS Security Extensions) status.
 
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
-
-          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
-              exclude continents from results. For example, `-EU,NA` excludes results from EU,
-              but includes results from NA.
+          continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude continents from results. For example, `-EU,NA`
+              excludes results from EU, but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
@@ -99,9 +91,9 @@ class TopResource(SyncAPIResource):
 
           limit: Limits the number of objects returned in the response.
 
-          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
-              locations from results. For example, `-US,PT` excludes results from the US, but
-              includes results from PT.
+          location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude locations from results. For example, `-US,PT`
+              excludes results from the US, but includes results from PT.
 
           name: Array of names used to label the series in the response.
 
@@ -124,7 +116,6 @@ class TopResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -145,7 +136,6 @@ class TopResource(SyncAPIResource):
         self,
         edns: Literal["SUPPORTED", "NOT_SUPPORTED"],
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -168,19 +158,15 @@ class TopResource(SyncAPIResource):
         Args:
           edns: EDNS (Extension Mechanisms for DNS) status.
 
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
-
-          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
-              exclude continents from results. For example, `-EU,NA` excludes results from EU,
-              but includes results from NA.
+          continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude continents from results. For example, `-EU,NA`
+              excludes results from EU, but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
@@ -188,9 +174,9 @@ class TopResource(SyncAPIResource):
 
           limit: Limits the number of objects returned in the response.
 
-          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
-              locations from results. For example, `-US,PT` excludes results from the US, but
-              includes results from PT.
+          location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude locations from results. For example, `-US,PT`
+              excludes results from the US, but includes results from PT.
 
           name: Array of names used to label the series in the response.
 
@@ -213,7 +199,6 @@ class TopResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -234,7 +219,6 @@ class TopResource(SyncAPIResource):
         self,
         ip_version: Literal["IPv4", "IPv6"],
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -256,19 +240,15 @@ class TopResource(SyncAPIResource):
         Args:
           ip_version: IP version.
 
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
-
-          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
-              exclude continents from results. For example, `-EU,NA` excludes results from EU,
-              but includes results from NA.
+          continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude continents from results. For example, `-EU,NA`
+              excludes results from EU, but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
@@ -276,9 +256,9 @@ class TopResource(SyncAPIResource):
 
           limit: Limits the number of objects returned in the response.
 
-          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
-              locations from results. For example, `-US,PT` excludes results from the US, but
-              includes results from PT.
+          location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude locations from results. For example, `-US,PT`
+              excludes results from the US, but includes results from PT.
 
           name: Array of names used to label the series in the response.
 
@@ -301,7 +281,6 @@ class TopResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -321,7 +300,6 @@ class TopResource(SyncAPIResource):
     def locations(
         self,
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -341,19 +319,15 @@ class TopResource(SyncAPIResource):
         Retrieves the top locations by AS112 DNS queries.
 
         Args:
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
-
-          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
-              exclude continents from results. For example, `-EU,NA` excludes results from EU,
-              but includes results from NA.
+          continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude continents from results. For example, `-EU,NA`
+              excludes results from EU, but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
@@ -361,9 +335,9 @@ class TopResource(SyncAPIResource):
 
           limit: Limits the number of objects returned in the response.
 
-          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
-              locations from results. For example, `-US,PT` excludes results from the US, but
-              includes results from PT.
+          location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude locations from results. For example, `-US,PT`
+              excludes results from the US, but includes results from PT.
 
           name: Array of names used to label the series in the response.
 
@@ -384,7 +358,6 @@ class TopResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -426,7 +399,6 @@ class AsyncTopResource(AsyncAPIResource):
         self,
         dnssec: Literal["SUPPORTED", "NOT_SUPPORTED"],
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -449,19 +421,15 @@ class AsyncTopResource(AsyncAPIResource):
         Args:
           dnssec: DNSSEC (DNS Security Extensions) status.
 
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
-
-          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
-              exclude continents from results. For example, `-EU,NA` excludes results from EU,
-              but includes results from NA.
+          continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude continents from results. For example, `-EU,NA`
+              excludes results from EU, but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
@@ -469,9 +437,9 @@ class AsyncTopResource(AsyncAPIResource):
 
           limit: Limits the number of objects returned in the response.
 
-          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
-              locations from results. For example, `-US,PT` excludes results from the US, but
-              includes results from PT.
+          location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude locations from results. For example, `-US,PT`
+              excludes results from the US, but includes results from PT.
 
           name: Array of names used to label the series in the response.
 
@@ -494,7 +462,6 @@ class AsyncTopResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -515,7 +482,6 @@ class AsyncTopResource(AsyncAPIResource):
         self,
         edns: Literal["SUPPORTED", "NOT_SUPPORTED"],
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -538,19 +504,15 @@ class AsyncTopResource(AsyncAPIResource):
         Args:
           edns: EDNS (Extension Mechanisms for DNS) status.
 
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
-
-          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
-              exclude continents from results. For example, `-EU,NA` excludes results from EU,
-              but includes results from NA.
+          continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude continents from results. For example, `-EU,NA`
+              excludes results from EU, but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
@@ -558,9 +520,9 @@ class AsyncTopResource(AsyncAPIResource):
 
           limit: Limits the number of objects returned in the response.
 
-          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
-              locations from results. For example, `-US,PT` excludes results from the US, but
-              includes results from PT.
+          location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude locations from results. For example, `-US,PT`
+              excludes results from the US, but includes results from PT.
 
           name: Array of names used to label the series in the response.
 
@@ -583,7 +545,6 @@ class AsyncTopResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -604,7 +565,6 @@ class AsyncTopResource(AsyncAPIResource):
         self,
         ip_version: Literal["IPv4", "IPv6"],
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -626,19 +586,15 @@ class AsyncTopResource(AsyncAPIResource):
         Args:
           ip_version: IP version.
 
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
-
-          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
-              exclude continents from results. For example, `-EU,NA` excludes results from EU,
-              but includes results from NA.
+          continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude continents from results. For example, `-EU,NA`
+              excludes results from EU, but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
@@ -646,9 +602,9 @@ class AsyncTopResource(AsyncAPIResource):
 
           limit: Limits the number of objects returned in the response.
 
-          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
-              locations from results. For example, `-US,PT` excludes results from the US, but
-              includes results from PT.
+          location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude locations from results. For example, `-US,PT`
+              excludes results from the US, but includes results from PT.
 
           name: Array of names used to label the series in the response.
 
@@ -671,7 +627,6 @@ class AsyncTopResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -691,7 +646,6 @@ class AsyncTopResource(AsyncAPIResource):
     async def locations(
         self,
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -711,19 +665,15 @@ class AsyncTopResource(AsyncAPIResource):
         Retrieves the top locations by AS112 DNS queries.
 
         Args:
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
-
-          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
-              exclude continents from results. For example, `-EU,NA` excludes results from EU,
-              but includes results from NA.
+          continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude continents from results. For example, `-EU,NA`
+              excludes results from EU, but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
@@ -731,9 +681,9 @@ class AsyncTopResource(AsyncAPIResource):
 
           limit: Limits the number of objects returned in the response.
 
-          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
-              locations from results. For example, `-US,PT` excludes results from the US, but
-              includes results from PT.
+          location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude locations from results. For example, `-US,PT`
+              excludes results from the US, but includes results from PT.
 
           name: Array of names used to label the series in the response.
 
@@ -754,7 +704,6 @@ class AsyncTopResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,

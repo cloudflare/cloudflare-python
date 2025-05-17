@@ -67,7 +67,7 @@ class NamespacesResource(SyncAPIResource):
         Returns the Durable Object namespaces owned by an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -128,7 +128,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         Returns the Durable Object namespaces owned by an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 

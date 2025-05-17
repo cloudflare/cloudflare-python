@@ -23,7 +23,7 @@ class TestHostnames:
         hostname = client.web3.hostnames.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="gateway.example.com",
-            target="ethereum",
+            target="ipfs",
         )
         assert_matches_type(Hostname, hostname, path=["response"])
 
@@ -32,7 +32,7 @@ class TestHostnames:
         hostname = client.web3.hostnames.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="gateway.example.com",
-            target="ethereum",
+            target="ipfs",
             description="This is my IPFS gateway.",
             dnslink="/ipns/onboarding.ipfs.cloudflare.com",
         )
@@ -43,7 +43,7 @@ class TestHostnames:
         response = client.web3.hostnames.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="gateway.example.com",
-            target="ethereum",
+            target="ipfs",
         )
 
         assert response.is_closed is True
@@ -56,7 +56,7 @@ class TestHostnames:
         with client.web3.hostnames.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="gateway.example.com",
-            target="ethereum",
+            target="ipfs",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -72,7 +72,7 @@ class TestHostnames:
             client.web3.hostnames.with_raw_response.create(
                 zone_id="",
                 name="gateway.example.com",
-                target="ethereum",
+                target="ipfs",
             )
 
     @parametrize
@@ -276,7 +276,7 @@ class TestAsyncHostnames:
         hostname = await async_client.web3.hostnames.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="gateway.example.com",
-            target="ethereum",
+            target="ipfs",
         )
         assert_matches_type(Hostname, hostname, path=["response"])
 
@@ -285,7 +285,7 @@ class TestAsyncHostnames:
         hostname = await async_client.web3.hostnames.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="gateway.example.com",
-            target="ethereum",
+            target="ipfs",
             description="This is my IPFS gateway.",
             dnslink="/ipns/onboarding.ipfs.cloudflare.com",
         )
@@ -296,7 +296,7 @@ class TestAsyncHostnames:
         response = await async_client.web3.hostnames.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="gateway.example.com",
-            target="ethereum",
+            target="ipfs",
         )
 
         assert response.is_closed is True
@@ -309,7 +309,7 @@ class TestAsyncHostnames:
         async with async_client.web3.hostnames.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="gateway.example.com",
-            target="ethereum",
+            target="ipfs",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -325,7 +325,7 @@ class TestAsyncHostnames:
             await async_client.web3.hostnames.with_raw_response.create(
                 zone_id="",
                 name="gateway.example.com",
-                target="ethereum",
+                target="ipfs",
             )
 
     @parametrize

@@ -8,10 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -70,7 +67,7 @@ class TLSResource(SyncAPIResource):
         Update the tls setting value for the hostname.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           setting_id: The TLS Setting name.
 
@@ -122,7 +119,7 @@ class TLSResource(SyncAPIResource):
         Delete the tls setting value for the hostname.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           setting_id: The TLS Setting name.
 
@@ -170,7 +167,7 @@ class TLSResource(SyncAPIResource):
         List the requested TLS setting for the hostnames under this zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           setting_id: The TLS Setting name.
 
@@ -234,7 +231,7 @@ class AsyncTLSResource(AsyncAPIResource):
         Update the tls setting value for the hostname.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           setting_id: The TLS Setting name.
 
@@ -286,7 +283,7 @@ class AsyncTLSResource(AsyncAPIResource):
         Delete the tls setting value for the hostname.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           setting_id: The TLS Setting name.
 
@@ -334,7 +331,7 @@ class AsyncTLSResource(AsyncAPIResource):
         List the requested TLS setting for the hostnames under this zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           setting_id: The TLS Setting name.
 

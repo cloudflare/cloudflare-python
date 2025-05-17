@@ -70,7 +70,7 @@ class OperationsResource(SyncAPIResource):
         Shield Endpoint Management will be returned as full operations.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           endpoint: Filter results to only include endpoints containing this pattern.
 
@@ -173,7 +173,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         Shield Endpoint Management will be returned as full operations.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           endpoint: Filter results to only include endpoints containing this pattern.
 

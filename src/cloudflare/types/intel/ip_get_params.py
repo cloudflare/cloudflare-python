@@ -9,7 +9,7 @@ __all__ = ["IPGetParams"]
 
 class IPGetParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     ipv4: str
 

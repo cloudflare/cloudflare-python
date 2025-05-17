@@ -18,22 +18,22 @@ class CrowdstrikeInput(BaseModel):
     """For more details on last seen, please refer to the Crowdstrike documentation."""
 
     operator: Optional[Literal["<", "<=", ">", ">=", "=="]] = None
-    """operator"""
+    """Operator."""
 
     os: Optional[str] = None
-    """Os Version"""
+    """Os Version."""
 
     overall: Optional[str] = None
-    """overall"""
+    """Overall."""
 
     sensor_config: Optional[str] = None
-    """SensorConfig"""
+    """SensorConfig."""
 
     state: Optional[Literal["online", "offline", "unknown"]] = None
     """For more details on state, please refer to the Crowdstrike documentation."""
 
     version: Optional[str] = None
-    """Version"""
+    """Version."""
 
     version_operator: Optional[Literal["<", "<=", ">", ">=", "=="]] = FieldInfo(alias="versionOperator", default=None)
-    """Version Operator"""
+    """Version Operator."""

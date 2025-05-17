@@ -8,10 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -78,27 +75,28 @@ class GroupsResource(SyncAPIResource):
         [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier of a schema.
 
-          package_id: The unique identifier of a WAF package.
+          package_id: Defines the unique identifier of a WAF package.
 
-          direction: The direction used to sort returned rule groups.
+          direction: Defines the direction used to sort returned rule groups.
 
-          match: When set to `all`, all the search requirements must match. When set to `any`,
-              only one of the search requirements has to match.
+          match: Defines the condition for search requirements. When set to `all`, all the search
+              requirements must match. When set to `any`, only one of the search requirements
+              has to match.
 
-          mode: The state of the rules contained in the rule group. When `on`, the rules in the
-              group are configurable/usable.
+          mode: Defines the state of the rules contained in the rule group. When `on`, the rules
+              in the group are configurable/usable.
 
-          name: The name of the rule group.
+          name: Defines the name of the rule group.
 
-          order: The field used to sort returned rule groups.
+          order: Defines the field used to sort returned rule groups.
 
-          page: The page number of paginated results.
+          page: Defines the page number of paginated results.
 
-          per_page: The number of rule groups per page.
+          per_page: Defines the number of rule groups per page.
 
-          rules_count: The number of rules in the current rule group.
+          rules_count: Defines the number of rules in the current rule group.
 
           extra_headers: Send extra headers
 
@@ -160,14 +158,14 @@ class GroupsResource(SyncAPIResource):
         [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier of a schema.
 
-          package_id: The unique identifier of a WAF package.
+          package_id: Defines the unique identifier of a WAF package.
 
-          group_id: The unique identifier of a WAF package.
+          group_id: Defines the unique identifier of a WAF package.
 
-          mode: The state of the rules contained in the rule group. When `on`, the rules in the
-              group are configurable/usable.
+          mode: Defines the state of the rules contained in the rule group. When `on`, the rules
+              in the group are configurable/usable.
 
           extra_headers: Send extra headers
 
@@ -221,11 +219,11 @@ class GroupsResource(SyncAPIResource):
         [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier of a schema.
 
-          package_id: The unique identifier of a WAF package.
+          package_id: Defines the unique identifier of a WAF package.
 
-          group_id: The unique identifier of a WAF package.
+          group_id: Defines the unique identifier of a WAF package.
 
           extra_headers: Send extra headers
 
@@ -306,27 +304,28 @@ class AsyncGroupsResource(AsyncAPIResource):
         [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier of a schema.
 
-          package_id: The unique identifier of a WAF package.
+          package_id: Defines the unique identifier of a WAF package.
 
-          direction: The direction used to sort returned rule groups.
+          direction: Defines the direction used to sort returned rule groups.
 
-          match: When set to `all`, all the search requirements must match. When set to `any`,
-              only one of the search requirements has to match.
+          match: Defines the condition for search requirements. When set to `all`, all the search
+              requirements must match. When set to `any`, only one of the search requirements
+              has to match.
 
-          mode: The state of the rules contained in the rule group. When `on`, the rules in the
-              group are configurable/usable.
+          mode: Defines the state of the rules contained in the rule group. When `on`, the rules
+              in the group are configurable/usable.
 
-          name: The name of the rule group.
+          name: Defines the name of the rule group.
 
-          order: The field used to sort returned rule groups.
+          order: Defines the field used to sort returned rule groups.
 
-          page: The page number of paginated results.
+          page: Defines the page number of paginated results.
 
-          per_page: The number of rule groups per page.
+          per_page: Defines the number of rule groups per page.
 
-          rules_count: The number of rules in the current rule group.
+          rules_count: Defines the number of rules in the current rule group.
 
           extra_headers: Send extra headers
 
@@ -388,14 +387,14 @@ class AsyncGroupsResource(AsyncAPIResource):
         [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier of a schema.
 
-          package_id: The unique identifier of a WAF package.
+          package_id: Defines the unique identifier of a WAF package.
 
-          group_id: The unique identifier of a WAF package.
+          group_id: Defines the unique identifier of a WAF package.
 
-          mode: The state of the rules contained in the rule group. When `on`, the rules in the
-              group are configurable/usable.
+          mode: Defines the state of the rules contained in the rule group. When `on`, the rules
+              in the group are configurable/usable.
 
           extra_headers: Send extra headers
 
@@ -449,11 +448,11 @@ class AsyncGroupsResource(AsyncAPIResource):
         [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier of a schema.
 
-          package_id: The unique identifier of a WAF package.
+          package_id: Defines the unique identifier of a WAF package.
 
-          group_id: The unique identifier of a WAF package.
+          group_id: Defines the unique identifier of a WAF package.
 
           extra_headers: Send extra headers
 

@@ -16,6 +16,14 @@ from .buckets import (
     BucketsResourceWithStreamingResponse,
     AsyncBucketsResourceWithStreamingResponse,
 )
+from .super_slurper import (
+    SuperSlurperResource,
+    AsyncSuperSlurperResource,
+    SuperSlurperResourceWithRawResponse,
+    AsyncSuperSlurperResourceWithRawResponse,
+    SuperSlurperResourceWithStreamingResponse,
+    AsyncSuperSlurperResourceWithStreamingResponse,
+)
 from .temporary_credentials import (
     TemporaryCredentialsResource,
     AsyncTemporaryCredentialsResource,
@@ -38,6 +46,12 @@ __all__ = [
     "AsyncTemporaryCredentialsResourceWithRawResponse",
     "TemporaryCredentialsResourceWithStreamingResponse",
     "AsyncTemporaryCredentialsResourceWithStreamingResponse",
+    "SuperSlurperResource",
+    "AsyncSuperSlurperResource",
+    "SuperSlurperResourceWithRawResponse",
+    "AsyncSuperSlurperResourceWithRawResponse",
+    "SuperSlurperResourceWithStreamingResponse",
+    "AsyncSuperSlurperResourceWithStreamingResponse",
     "R2Resource",
     "AsyncR2Resource",
     "R2ResourceWithRawResponse",

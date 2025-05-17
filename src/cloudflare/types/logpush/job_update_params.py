@@ -27,6 +27,13 @@ class JobUpdateParams(TypedDict, total=False):
     enabled: bool
     """Flag that indicates if the job is enabled."""
 
+    filter: Optional[str]
+    """The filters to select the events to include and/or remove from your logs.
+
+    For more information, refer to
+    [Filters](https://developers.cloudflare.com/logs/reference/filters/).
+    """
+
     frequency: Optional[Literal["high", "low"]]
     """This field is deprecated.
 
@@ -36,7 +43,7 @@ class JobUpdateParams(TypedDict, total=False):
     in smaller quantities of larger files.
     """
 
-    kind: Optional[Literal["edge"]]
+    kind: Literal["edge"]
     """
     The kind parameter (optional) is used to differentiate between Logpush and Edge
     Log Delivery jobs. Currently, Edge Log Delivery is only supported for the

@@ -70,7 +70,7 @@ class DiscoveryResource(SyncAPIResource):
         schemas
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -135,7 +135,7 @@ class AsyncDiscoveryResource(AsyncAPIResource):
         schemas
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

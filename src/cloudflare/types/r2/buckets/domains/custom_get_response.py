@@ -12,18 +12,18 @@ __all__ = ["CustomGetResponse", "Status"]
 
 class Status(BaseModel):
     ownership: Literal["pending", "active", "deactivated", "blocked", "error", "unknown"]
-    """Ownership status of the domain"""
+    """Ownership status of the domain."""
 
     ssl: Literal["initializing", "pending", "active", "deactivated", "error", "unknown"]
-    """SSL certificate status"""
+    """SSL certificate status."""
 
 
 class CustomGetResponse(BaseModel):
     domain: str
-    """Domain name of the custom domain to be added"""
+    """Domain name of the custom domain to be added."""
 
     enabled: bool
-    """Whether this bucket is publicly accessible at the specified custom domain"""
+    """Whether this bucket is publicly accessible at the specified custom domain."""
 
     status: Status
 
@@ -34,7 +34,7 @@ class CustomGetResponse(BaseModel):
     """
 
     zone_id: Optional[str] = FieldInfo(alias="zoneId", default=None)
-    """Zone ID of the custom domain resides in"""
+    """Zone ID of the custom domain resides in."""
 
     zone_name: Optional[str] = FieldInfo(alias="zoneName", default=None)
-    """Zone that the custom domain resides in"""
+    """Zone that the custom domain resides in."""

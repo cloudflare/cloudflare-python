@@ -86,7 +86,7 @@ class TestOperations:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         operation = client.api_gateway.operations.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            direction="asc",
+            direction="desc",
             endpoint="/api/v1",
             feature=["thresholds"],
             host=["api.cloudflare.com"],
@@ -402,7 +402,7 @@ class TestAsyncOperations:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         operation = await async_client.api_gateway.operations.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            direction="asc",
+            direction="desc",
             endpoint="/api/v1",
             feature=["thresholds"],
             host=["api.cloudflare.com"],

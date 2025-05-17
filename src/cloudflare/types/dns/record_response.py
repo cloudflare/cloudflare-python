@@ -58,7 +58,7 @@ __all__ = [
 
 class A(ARecord):
     id: str
-    """Identifier"""
+    """Identifier."""
 
     created_on: datetime
     """When the record was created."""
@@ -81,7 +81,7 @@ class A(ARecord):
 
 class AAAA(AAAARecord):
     id: str
-    """Identifier"""
+    """Identifier."""
 
     created_on: datetime
     """When the record was created."""
@@ -104,7 +104,7 @@ class AAAA(AAAARecord):
 
 class CAA(CAARecord):
     id: str
-    """Identifier"""
+    """Identifier."""
 
     created_on: datetime
     """When the record was created."""
@@ -127,7 +127,7 @@ class CAA(CAARecord):
 
 class CERT(CERTRecord):
     id: str
-    """Identifier"""
+    """Identifier."""
 
     created_on: datetime
     """When the record was created."""
@@ -150,7 +150,7 @@ class CERT(CERTRecord):
 
 class CNAME(CNAMERecord):
     id: str
-    """Identifier"""
+    """Identifier."""
 
     created_on: datetime
     """When the record was created."""
@@ -173,7 +173,7 @@ class CNAME(CNAMERecord):
 
 class DNSKEY(DNSKEYRecord):
     id: str
-    """Identifier"""
+    """Identifier."""
 
     created_on: datetime
     """When the record was created."""
@@ -196,7 +196,7 @@ class DNSKEY(DNSKEYRecord):
 
 class DS(DSRecord):
     id: str
-    """Identifier"""
+    """Identifier."""
 
     created_on: datetime
     """When the record was created."""
@@ -219,7 +219,7 @@ class DS(DSRecord):
 
 class HTTPS(HTTPSRecord):
     id: str
-    """Identifier"""
+    """Identifier."""
 
     created_on: datetime
     """When the record was created."""
@@ -242,7 +242,7 @@ class HTTPS(HTTPSRecord):
 
 class LOC(LOCRecord):
     id: str
-    """Identifier"""
+    """Identifier."""
 
     created_on: datetime
     """When the record was created."""
@@ -265,7 +265,7 @@ class LOC(LOCRecord):
 
 class MX(MXRecord):
     id: str
-    """Identifier"""
+    """Identifier."""
 
     created_on: datetime
     """When the record was created."""
@@ -288,7 +288,7 @@ class MX(MXRecord):
 
 class NAPTR(NAPTRRecord):
     id: str
-    """Identifier"""
+    """Identifier."""
 
     created_on: datetime
     """When the record was created."""
@@ -311,7 +311,7 @@ class NAPTR(NAPTRRecord):
 
 class NS(NSRecord):
     id: str
-    """Identifier"""
+    """Identifier."""
 
     created_on: datetime
     """When the record was created."""
@@ -352,7 +352,7 @@ class OpenpgpkeySettings(BaseModel):
 
 class Openpgpkey(BaseModel):
     id: str
-    """Identifier"""
+    """Identifier."""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -409,7 +409,7 @@ class Openpgpkey(BaseModel):
 
 class PTR(PTRRecord):
     id: str
-    """Identifier"""
+    """Identifier."""
 
     created_on: datetime
     """When the record was created."""
@@ -432,7 +432,7 @@ class PTR(PTRRecord):
 
 class SMIMEA(SMIMEARecord):
     id: str
-    """Identifier"""
+    """Identifier."""
 
     created_on: datetime
     """When the record was created."""
@@ -455,7 +455,7 @@ class SMIMEA(SMIMEARecord):
 
 class SRV(SRVRecord):
     id: str
-    """Identifier"""
+    """Identifier."""
 
     created_on: datetime
     """When the record was created."""
@@ -478,7 +478,7 @@ class SRV(SRVRecord):
 
 class SSHFP(SSHFPRecord):
     id: str
-    """Identifier"""
+    """Identifier."""
 
     created_on: datetime
     """When the record was created."""
@@ -501,7 +501,7 @@ class SSHFP(SSHFPRecord):
 
 class SVCB(SVCBRecord):
     id: str
-    """Identifier"""
+    """Identifier."""
 
     created_on: datetime
     """When the record was created."""
@@ -524,7 +524,7 @@ class SVCB(SVCBRecord):
 
 class TLSA(TLSARecord):
     id: str
-    """Identifier"""
+    """Identifier."""
 
     created_on: datetime
     """When the record was created."""
@@ -547,7 +547,7 @@ class TLSA(TLSARecord):
 
 class TXT(TXTRecord):
     id: str
-    """Identifier"""
+    """Identifier."""
 
     created_on: datetime
     """When the record was created."""
@@ -570,7 +570,7 @@ class TXT(TXTRecord):
 
 class URI(URIRecord):
     id: str
-    """Identifier"""
+    """Identifier."""
 
     created_on: datetime
     """When the record was created."""

@@ -9,6 +9,6 @@ __all__ = ["TagCreateParams"]
 
 class TagCreateParams(TypedDict, total=False):
     account_id: Required[float]
-    """Account ID"""
+    """Account ID."""
 
     name: Required[str]

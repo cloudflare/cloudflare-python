@@ -7,10 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform, async_maybe_transform
 from .settings import (
     SettingsResource,
     AsyncSettingsResource,
@@ -96,7 +93,7 @@ class OriginTLSClientAuthResource(SyncAPIResource):
         to see the uploaded certificate in use.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           certificate: The zone's leaf certificate.
 
@@ -148,7 +145,7 @@ class OriginTLSClientAuthResource(SyncAPIResource):
         List Certificates
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -185,9 +182,9 @@ class OriginTLSClientAuthResource(SyncAPIResource):
         Delete Certificate
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          certificate_id: Identifier
+          certificate_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -231,9 +228,9 @@ class OriginTLSClientAuthResource(SyncAPIResource):
         Get Certificate Details
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          certificate_id: Identifier
+          certificate_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -309,7 +306,7 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
         to see the uploaded certificate in use.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           certificate: The zone's leaf certificate.
 
@@ -361,7 +358,7 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
         List Certificates
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -398,9 +395,9 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
         Delete Certificate
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          certificate_id: Identifier
+          certificate_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -444,9 +441,9 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
         Get Certificate Details
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          certificate_id: Identifier
+          certificate_id: Identifier.
 
           extra_headers: Send extra headers
 

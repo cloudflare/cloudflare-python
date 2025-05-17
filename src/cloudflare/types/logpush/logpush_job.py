@@ -14,7 +14,34 @@ class LogpushJob(BaseModel):
     id: Optional[int] = None
     """Unique id of the job."""
 
-    dataset: Optional[str] = None
+    dataset: Optional[
+        Literal[
+            "access_requests",
+            "audit_logs",
+            "biso_user_actions",
+            "casb_findings",
+            "device_posture_results",
+            "dlp_forensic_copies",
+            "dns_firewall_logs",
+            "dns_logs",
+            "email_security_alerts",
+            "firewall_events",
+            "gateway_dns",
+            "gateway_http",
+            "gateway_network",
+            "http_requests",
+            "magic_ids_detections",
+            "nel_reports",
+            "network_analytics_logs",
+            "page_shield_events",
+            "sinkhole_http_logs",
+            "spectrum_events",
+            "ssh_logs",
+            "workers_trace_events",
+            "zaraz_events",
+            "zero_trust_network_sessions",
+        ]
+    ] = None
     """Name of the dataset.
 
     A list of supported datasets can be found on the
@@ -31,7 +58,7 @@ class LogpushJob(BaseModel):
     enabled: Optional[bool] = None
     """Flag that indicates if the job is enabled."""
 
-    error_message: Optional[datetime] = None
+    error_message: Optional[str] = None
     """If not null, the job is currently failing.
 
     Failures are usually repetitive (example: no permissions to write to destination

@@ -20,12 +20,12 @@ __all__ = [
 
 class LockUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Account ID"""
+    """Account ID."""
 
     rules: Iterable[Rule]
 
     jurisdiction: Annotated[Literal["default", "eu", "fedramp"], PropertyInfo(alias="cf-r2-jurisdiction")]
-    """The bucket jurisdiction"""
+    """Jurisdiction where objects in this bucket are guaranteed to be stored."""
 
 
 class RuleConditionR2LockRuleAgeCondition(TypedDict, total=False):
@@ -53,16 +53,16 @@ RuleCondition: TypeAlias = Union[
 
 class Rule(TypedDict, total=False):
     id: Required[str]
-    """Unique identifier for this rule"""
+    """Unique identifier for this rule."""
 
     condition: Required[RuleCondition]
-    """Condition to apply a lock rule to an object for how long in seconds"""
+    """Condition to apply a lock rule to an object for how long in seconds."""
 
     enabled: Required[bool]
-    """Whether or not this rule is in effect"""
+    """Whether or not this rule is in effect."""
 
     prefix: str
     """
     Rule will only apply to objects/uploads in the bucket that start with the given
-    prefix, an empty prefix can be provided to scope rule to all objects/uploads
+    prefix, an empty prefix can be provided to scope rule to all objects/uploads.
     """

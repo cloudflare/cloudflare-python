@@ -65,7 +65,7 @@ class AzureAD(BaseModel):
     """
 
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     scim_config: Optional[IdentityProviderSCIMConfig] = None
     """

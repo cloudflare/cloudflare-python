@@ -13,15 +13,16 @@ __all__ = ["BGPTimeseriesParams"]
 
 class BGPTimeseriesParams(TypedDict, total=False):
     agg_interval: Annotated[Literal["15m", "1h", "1d", "1w"], PropertyInfo(alias="aggInterval")]
-    """
-    Aggregation interval results should be returned in (for example, in 15 minutes
-    or 1 hour intervals). Refer to
+    """Aggregation interval of the results (e.g., in 15 minutes or 1 hour intervals).
+
+    Refer to
     [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
     """
 
     asn: List[str]
-    """Comma-separated list of Autonomous System Numbers (ASNs).
+    """Filters results by Autonomous System.
 
+    Specify one or more Autonomous System Numbers (ASNs) as a comma-separated list.
     Prefix with `-` to exclude ASNs from results. For example, `-174, 3356` excludes
     results from AS174, but includes results from AS3356.
     """
@@ -30,7 +31,7 @@ class BGPTimeseriesParams(TypedDict, total=False):
     """End of the date range (inclusive)."""
 
     date_range: Annotated[List[str], PropertyInfo(alias="dateRange")]
-    """Filters results by the specified date range.
+    """Filters results by date range.
 
     For example, use `7d` and `7dcontrol` to compare this week with the previous
     week. Use this parameter or set specific start and end dates (`dateStart` and
@@ -47,7 +48,7 @@ class BGPTimeseriesParams(TypedDict, total=False):
     """Array of names used to label the series in the response."""
 
     prefix: List[str]
-    """Array of BGP network prefixes."""
+    """Filters results by BGP network prefix."""
 
     update_type: Annotated[List[Literal["ANNOUNCEMENT", "WITHDRAWAL"]], PropertyInfo(alias="updateType")]
-    """Array of BGP update types."""
+    """Filters results by BGP update type."""

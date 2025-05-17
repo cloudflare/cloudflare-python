@@ -12,22 +12,22 @@ __all__ = ["Priority"]
 
 class Priority(BaseModel):
     id: str
-    """UUID"""
+    """UUID."""
 
     created: datetime
-    """Priority creation time"""
+    """Priority creation time."""
 
     labels: List[Label]
-    """List of labels"""
+    """List of labels."""
 
     priority: int
-    """Priority"""
+    """Priority."""
 
     requirement: str
-    """Requirement"""
+    """Requirement."""
 
     tlp: Literal["clear", "amber", "amber-strict", "green", "red"]
-    """The CISA defined Traffic Light Protocol (TLP)"""
+    """The CISA defined Traffic Light Protocol (TLP)."""
 
     updated: datetime
-    """Priority last updated time"""
+    """Priority last updated time."""

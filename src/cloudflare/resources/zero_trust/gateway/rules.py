@@ -8,10 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -72,6 +69,7 @@ class RulesResource(SyncAPIResource):
             "egress",
             "resolve",
             "quarantine",
+            "redirect",
         ],
         name: str,
         description: str | NotGiven = NOT_GIVEN,
@@ -118,7 +116,9 @@ class RulesResource(SyncAPIResource):
 
           precedence: Precedence sets the order of your rules. Lower values indicate higher
               precedence. At each processing phase, applicable rules are evaluated in
-              ascending order of this value.
+              ascending order of this value. Refer to
+              [Order of enforcement](http://developers.cloudflare.com/learning-paths/secure-internet-traffic/understand-policies/order-of-enforcement/#manage-precedence-with-terraform)
+              docs on how to manage precedence via Terraform.
 
           rule_settings: Additional settings that modify the rule's action.
 
@@ -187,6 +187,7 @@ class RulesResource(SyncAPIResource):
             "egress",
             "resolve",
             "quarantine",
+            "redirect",
         ],
         name: str,
         description: str | NotGiven = NOT_GIVEN,
@@ -235,7 +236,9 @@ class RulesResource(SyncAPIResource):
 
           precedence: Precedence sets the order of your rules. Lower values indicate higher
               precedence. At each processing phase, applicable rules are evaluated in
-              ascending order of this value.
+              ascending order of this value. Refer to
+              [Order of enforcement](http://developers.cloudflare.com/learning-paths/secure-internet-traffic/understand-policies/order-of-enforcement/#manage-precedence-with-terraform)
+              docs on how to manage precedence via Terraform.
 
           rule_settings: Additional settings that modify the rule's action.
 
@@ -490,6 +493,7 @@ class AsyncRulesResource(AsyncAPIResource):
             "egress",
             "resolve",
             "quarantine",
+            "redirect",
         ],
         name: str,
         description: str | NotGiven = NOT_GIVEN,
@@ -536,7 +540,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           precedence: Precedence sets the order of your rules. Lower values indicate higher
               precedence. At each processing phase, applicable rules are evaluated in
-              ascending order of this value.
+              ascending order of this value. Refer to
+              [Order of enforcement](http://developers.cloudflare.com/learning-paths/secure-internet-traffic/understand-policies/order-of-enforcement/#manage-precedence-with-terraform)
+              docs on how to manage precedence via Terraform.
 
           rule_settings: Additional settings that modify the rule's action.
 
@@ -605,6 +611,7 @@ class AsyncRulesResource(AsyncAPIResource):
             "egress",
             "resolve",
             "quarantine",
+            "redirect",
         ],
         name: str,
         description: str | NotGiven = NOT_GIVEN,
@@ -653,7 +660,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           precedence: Precedence sets the order of your rules. Lower values indicate higher
               precedence. At each processing phase, applicable rules are evaluated in
-              ascending order of this value.
+              ascending order of this value. Refer to
+              [Order of enforcement](http://developers.cloudflare.com/learning-paths/secure-internet-traffic/understand-policies/order-of-enforcement/#manage-precedence-with-terraform)
+              docs on how to manage precedence via Terraform.
 
           rule_settings: Additional settings that modify the rule's action.
 

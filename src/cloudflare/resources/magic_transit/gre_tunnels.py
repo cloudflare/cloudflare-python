@@ -7,12 +7,7 @@ from typing import Type, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    is_given,
-    maybe_transform,
-    strip_not_given,
-    async_maybe_transform,
-)
+from ..._utils import is_given, maybe_transform, strip_not_given, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -58,7 +53,14 @@ class GRETunnelsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        body: object,
+        cloudflare_gre_endpoint: str,
+        customer_gre_endpoint: str,
+        interface_address: str,
+        name: str,
+        description: str | NotGiven = NOT_GIVEN,
+        health_check: gre_tunnel_create_params.HealthCheck | NotGiven = NOT_GIVEN,
+        mtu: int | NotGiven = NOT_GIVEN,
+        ttl: int | NotGiven = NOT_GIVEN,
         x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -67,13 +69,31 @@ class GRETunnelsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GRETunnelCreateResponse:
-        """Creates new GRE tunnels.
+        """Creates a new GRE tunnel.
 
         Use `?validate_only=true` as an optional query
         parameter to only run validation without persisting changes.
 
         Args:
           account_id: Identifier
+
+          cloudflare_gre_endpoint: The IP address assigned to the Cloudflare side of the GRE tunnel.
+
+          customer_gre_endpoint: The IP address assigned to the customer side of the GRE tunnel.
+
+          interface_address: A 31-bit prefix (/31 in CIDR notation) supporting two hosts, one for each side
+              of the tunnel. Select the subnet from the following private IP space:
+              10.0.0.0–10.255.255.255, 172.16.0.0–172.31.255.255, 192.168.0.0–192.168.255.255.
+
+          name: The name of the tunnel. The name cannot contain spaces or special characters,
+              must be 15 characters or less, and cannot share a name with another GRE tunnel.
+
+          description: An optional description of the GRE tunnel.
+
+          mtu: Maximum Transmission Unit (MTU) in bytes for the GRE tunnel. The minimum value
+              is 576.
+
+          ttl: Time To Live (TTL) in number of hops of the GRE tunnel.
 
           extra_headers: Send extra headers
 
@@ -97,7 +117,19 @@ class GRETunnelsResource(SyncAPIResource):
         }
         return self._post(
             f"/accounts/{account_id}/magic/gre_tunnels",
-            body=maybe_transform(body, gre_tunnel_create_params.GRETunnelCreateParams),
+            body=maybe_transform(
+                {
+                    "cloudflare_gre_endpoint": cloudflare_gre_endpoint,
+                    "customer_gre_endpoint": customer_gre_endpoint,
+                    "interface_address": interface_address,
+                    "name": name,
+                    "description": description,
+                    "health_check": health_check,
+                    "mtu": mtu,
+                    "ttl": ttl,
+                },
+                gre_tunnel_create_params.GRETunnelCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -445,7 +477,14 @@ class AsyncGRETunnelsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        body: object,
+        cloudflare_gre_endpoint: str,
+        customer_gre_endpoint: str,
+        interface_address: str,
+        name: str,
+        description: str | NotGiven = NOT_GIVEN,
+        health_check: gre_tunnel_create_params.HealthCheck | NotGiven = NOT_GIVEN,
+        mtu: int | NotGiven = NOT_GIVEN,
+        ttl: int | NotGiven = NOT_GIVEN,
         x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -454,13 +493,31 @@ class AsyncGRETunnelsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> GRETunnelCreateResponse:
-        """Creates new GRE tunnels.
+        """Creates a new GRE tunnel.
 
         Use `?validate_only=true` as an optional query
         parameter to only run validation without persisting changes.
 
         Args:
           account_id: Identifier
+
+          cloudflare_gre_endpoint: The IP address assigned to the Cloudflare side of the GRE tunnel.
+
+          customer_gre_endpoint: The IP address assigned to the customer side of the GRE tunnel.
+
+          interface_address: A 31-bit prefix (/31 in CIDR notation) supporting two hosts, one for each side
+              of the tunnel. Select the subnet from the following private IP space:
+              10.0.0.0–10.255.255.255, 172.16.0.0–172.31.255.255, 192.168.0.0–192.168.255.255.
+
+          name: The name of the tunnel. The name cannot contain spaces or special characters,
+              must be 15 characters or less, and cannot share a name with another GRE tunnel.
+
+          description: An optional description of the GRE tunnel.
+
+          mtu: Maximum Transmission Unit (MTU) in bytes for the GRE tunnel. The minimum value
+              is 576.
+
+          ttl: Time To Live (TTL) in number of hops of the GRE tunnel.
 
           extra_headers: Send extra headers
 
@@ -484,7 +541,19 @@ class AsyncGRETunnelsResource(AsyncAPIResource):
         }
         return await self._post(
             f"/accounts/{account_id}/magic/gre_tunnels",
-            body=await async_maybe_transform(body, gre_tunnel_create_params.GRETunnelCreateParams),
+            body=await async_maybe_transform(
+                {
+                    "cloudflare_gre_endpoint": cloudflare_gre_endpoint,
+                    "customer_gre_endpoint": customer_gre_endpoint,
+                    "interface_address": interface_address,
+                    "name": name,
+                    "description": description,
+                    "health_check": health_check,
+                    "mtu": mtu,
+                    "ttl": ttl,
+                },
+                gre_tunnel_create_params.GRETunnelCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

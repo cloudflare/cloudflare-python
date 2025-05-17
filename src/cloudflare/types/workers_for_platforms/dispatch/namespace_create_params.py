@@ -9,7 +9,7 @@ __all__ = ["NamespaceCreateParams"]
 
 class NamespaceCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     name: str
-    """The name of the dispatch namespace"""
+    """The name of the dispatch namespace."""

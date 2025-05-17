@@ -124,7 +124,7 @@ class ProfilesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Profile]:
         """
-        Fetches a DLP profile by ID
+        Fetches a DLP profile by ID.
 
         Args:
           extra_headers: Send extra headers
@@ -240,7 +240,7 @@ class AsyncProfilesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Profile]:
         """
-        Fetches a DLP profile by ID
+        Fetches a DLP profile by ID.
 
         Args:
           extra_headers: Send extra headers

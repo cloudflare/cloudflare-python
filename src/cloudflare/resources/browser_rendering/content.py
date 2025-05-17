@@ -8,10 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -53,6 +50,7 @@ class ContentResource(SyncAPIResource):
         *,
         account_id: str,
         cache_ttl: float | NotGiven = NOT_GIVEN,
+        action_timeout: float | NotGiven = NOT_GIVEN,
         add_script_tag: Iterable[content_create_params.AddScriptTag] | NotGiven = NOT_GIVEN,
         add_style_tag: Iterable[content_create_params.AddStyleTag] | NotGiven = NOT_GIVEN,
         allow_request_pattern: List[str] | NotGiven = NOT_GIVEN,
@@ -133,6 +131,10 @@ class ContentResource(SyncAPIResource):
 
           cache_ttl: Cache TTL default is 5s. Set to 0 to disable.
 
+          action_timeout: The maximum duration allowed for the browser action to complete after the page
+              has loaded (such as taking screenshots, extracting content, or generating PDFs).
+              If this time limit is exceeded, the action stops and returns a timeout error.
+
           add_script_tag: Adds a `<script>` tag into the page with the desired URL or content.
 
           add_style_tag: Adds a `<link rel="stylesheet">` tag into the page with the desired URL or a
@@ -183,6 +185,7 @@ class ContentResource(SyncAPIResource):
             f"/accounts/{account_id}/browser-rendering/content",
             body=maybe_transform(
                 {
+                    "action_timeout": action_timeout,
                     "add_script_tag": add_script_tag,
                     "add_style_tag": add_style_tag,
                     "allow_request_pattern": allow_request_pattern,
@@ -242,6 +245,7 @@ class AsyncContentResource(AsyncAPIResource):
         *,
         account_id: str,
         cache_ttl: float | NotGiven = NOT_GIVEN,
+        action_timeout: float | NotGiven = NOT_GIVEN,
         add_script_tag: Iterable[content_create_params.AddScriptTag] | NotGiven = NOT_GIVEN,
         add_style_tag: Iterable[content_create_params.AddStyleTag] | NotGiven = NOT_GIVEN,
         allow_request_pattern: List[str] | NotGiven = NOT_GIVEN,
@@ -322,6 +326,10 @@ class AsyncContentResource(AsyncAPIResource):
 
           cache_ttl: Cache TTL default is 5s. Set to 0 to disable.
 
+          action_timeout: The maximum duration allowed for the browser action to complete after the page
+              has loaded (such as taking screenshots, extracting content, or generating PDFs).
+              If this time limit is exceeded, the action stops and returns a timeout error.
+
           add_script_tag: Adds a `<script>` tag into the page with the desired URL or content.
 
           add_style_tag: Adds a `<link rel="stylesheet">` tag into the page with the desired URL or a
@@ -372,6 +380,7 @@ class AsyncContentResource(AsyncAPIResource):
             f"/accounts/{account_id}/browser-rendering/content",
             body=await async_maybe_transform(
                 {
+                    "action_timeout": action_timeout,
                     "add_script_tag": add_script_tag,
                     "add_style_tag": add_style_tag,
                     "allow_request_pattern": allow_request_pattern,

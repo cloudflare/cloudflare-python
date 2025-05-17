@@ -14,43 +14,45 @@ __all__ = [
     "Caching",
     "CachingHyperdriveHyperdriveCachingCommon",
     "CachingHyperdriveHyperdriveCachingEnabled",
+    "MTLS",
 ]
 
 
 class OriginPublicDatabase(BaseModel):
     database: str
-    """The name of your origin database."""
+    """Set the name of your origin database."""
 
     host: str
-    """The host (hostname or IP) of your origin database."""
+    """Defines the host (hostname or IP) of your origin database."""
 
     port: int
-    """The port (default: 5432 for Postgres) of your origin database."""
+    """Defines the port (default: 5432 for Postgres) of your origin database."""
 
-    scheme: Literal["postgres", "postgresql"]
+    scheme: Literal["postgres", "postgresql", "mysql"]
     """Specifies the URL scheme used to connect to your origin database."""
 
     user: str
-    """The user of your origin database."""
+    """Set the user of your origin database."""
 
 
 class OriginAccessProtectedDatabaseBehindCloudflareTunnel(BaseModel):
     access_client_id: str
     """
-    The Client ID of the Access token to use when connecting to the origin database.
+    Defines the Client ID of the Access token to use when connecting to the origin
+    database.
     """
 
     database: str
-    """The name of your origin database."""
+    """Set the name of your origin database."""
 
     host: str
-    """The host (hostname or IP) of your origin database."""
+    """Defines the host (hostname or IP) of your origin database."""
 
-    scheme: Literal["postgres", "postgresql"]
+    scheme: Literal["postgres", "postgresql", "mysql"]
     """Specifies the URL scheme used to connect to your origin database."""
 
     user: str
-    """The user of your origin database."""
+    """Set the user of your origin database."""
 
 
 Origin: TypeAlias = Union[OriginPublicDatabase, OriginAccessProtectedDatabaseBehindCloudflareTunnel]
@@ -58,33 +60,43 @@ Origin: TypeAlias = Union[OriginPublicDatabase, OriginAccessProtectedDatabaseBeh
 
 class CachingHyperdriveHyperdriveCachingCommon(BaseModel):
     disabled: Optional[bool] = None
-    """When set to true, disables the caching of SQL responses. (Default: false)"""
+    """Set to true to disable caching of SQL responses. Default is false."""
 
 
 class CachingHyperdriveHyperdriveCachingEnabled(BaseModel):
     disabled: Optional[bool] = None
-    """When set to true, disables the caching of SQL responses. (Default: false)"""
+    """Set to true to disable caching of SQL responses. Default is false."""
 
     max_age: Optional[int] = None
-    """When present, specifies max duration for which items should persist in the
-    cache.
+    """Specify the maximum duration items should persist in the cache.
 
-    Not returned if set to default. (Default: 60)
+    Not returned if set to the default (60).
     """
 
     stale_while_revalidate: Optional[int] = None
-    """
-    When present, indicates the number of seconds cache may serve the response after
-    it becomes stale. Not returned if set to default. (Default: 15)
+    """Specify the number of seconds the cache may serve a stale response.
+
+    Omitted if set to the default (15).
     """
 
 
 Caching: TypeAlias = Union[CachingHyperdriveHyperdriveCachingCommon, CachingHyperdriveHyperdriveCachingEnabled]
 
 
+class MTLS(BaseModel):
+    ca_certificate_id: Optional[str] = None
+    """Define CA certificate ID obtained after uploading CA cert."""
+
+    mtls_certificate_id: Optional[str] = None
+    """Define mTLS certificate ID obtained after uploading client cert."""
+
+    sslmode: Optional[str] = None
+    """Set SSL mode to 'require', 'verify-ca', or 'verify-full' to verify the CA."""
+
+
 class Hyperdrive(BaseModel):
     id: str
-    """Identifier"""
+    """Define configurations using a unique string identifier."""
 
     name: str
 
@@ -93,7 +105,9 @@ class Hyperdrive(BaseModel):
     caching: Optional[Caching] = None
 
     created_on: Optional[datetime] = None
-    """When the Hyperdrive configuration was created."""
+    """Defines the creation time of the Hyperdrive configuration."""
 
     modified_on: Optional[datetime] = None
-    """When the Hyperdrive configuration was last modified."""
+    """Defines the last modified time of the Hyperdrive configuration."""
+
+    mtls: Optional[MTLS] = None

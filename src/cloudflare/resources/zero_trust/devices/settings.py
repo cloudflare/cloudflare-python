@@ -7,10 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -110,43 +107,6 @@ class SettingsResource(SyncAPIResource):
             cast_to=cast(Type[Optional[DeviceSettings]], ResultWrapper[DeviceSettings]),
         )
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DeviceSettings]:
-        """
-        Describes the current device settings for a Zero Trust account.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
-            f"/accounts/{account_id}/devices/settings",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[DeviceSettings]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[DeviceSettings]], ResultWrapper[DeviceSettings]),
-        )
-
     def edit(
         self,
         *,
@@ -200,6 +160,43 @@ class SettingsResource(SyncAPIResource):
                 },
                 setting_edit_params.SettingEditParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[DeviceSettings]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[DeviceSettings]], ResultWrapper[DeviceSettings]),
+        )
+
+    def get(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[DeviceSettings]:
+        """
+        Describes the current device settings for a Zero Trust account.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._get(
+            f"/accounts/{account_id}/devices/settings",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -294,43 +291,6 @@ class AsyncSettingsResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[DeviceSettings]], ResultWrapper[DeviceSettings]),
         )
 
-    async def list(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DeviceSettings]:
-        """
-        Describes the current device settings for a Zero Trust account.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
-            f"/accounts/{account_id}/devices/settings",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[DeviceSettings]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[DeviceSettings]], ResultWrapper[DeviceSettings]),
-        )
-
     async def edit(
         self,
         *,
@@ -394,6 +354,43 @@ class AsyncSettingsResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[DeviceSettings]], ResultWrapper[DeviceSettings]),
         )
 
+    async def get(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[DeviceSettings]:
+        """
+        Describes the current device settings for a Zero Trust account.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._get(
+            f"/accounts/{account_id}/devices/settings",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[DeviceSettings]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[DeviceSettings]], ResultWrapper[DeviceSettings]),
+        )
+
 
 class SettingsResourceWithRawResponse:
     def __init__(self, settings: SettingsResource) -> None:
@@ -402,11 +399,11 @@ class SettingsResourceWithRawResponse:
         self.update = to_raw_response_wrapper(
             settings.update,
         )
-        self.list = to_raw_response_wrapper(
-            settings.list,
-        )
         self.edit = to_raw_response_wrapper(
             settings.edit,
+        )
+        self.get = to_raw_response_wrapper(
+            settings.get,
         )
 
 
@@ -417,11 +414,11 @@ class AsyncSettingsResourceWithRawResponse:
         self.update = async_to_raw_response_wrapper(
             settings.update,
         )
-        self.list = async_to_raw_response_wrapper(
-            settings.list,
-        )
         self.edit = async_to_raw_response_wrapper(
             settings.edit,
+        )
+        self.get = async_to_raw_response_wrapper(
+            settings.get,
         )
 
 
@@ -432,11 +429,11 @@ class SettingsResourceWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             settings.update,
         )
-        self.list = to_streamed_response_wrapper(
-            settings.list,
-        )
         self.edit = to_streamed_response_wrapper(
             settings.edit,
+        )
+        self.get = to_streamed_response_wrapper(
+            settings.get,
         )
 
 
@@ -447,9 +444,9 @@ class AsyncSettingsResourceWithStreamingResponse:
         self.update = async_to_streamed_response_wrapper(
             settings.update,
         )
-        self.list = async_to_streamed_response_wrapper(
-            settings.list,
-        )
         self.edit = async_to_streamed_response_wrapper(
             settings.edit,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            settings.get,
         )

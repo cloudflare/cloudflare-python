@@ -9,4 +9,4 @@ __all__ = ["CustomPageDeleteResponse"]
 
 class CustomPageDeleteResponse(BaseModel):
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""

@@ -16,7 +16,7 @@ __all__ = ["Test"]
 class Test(BaseModel):
     __test__ = False
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     date: Optional[datetime] = None
 

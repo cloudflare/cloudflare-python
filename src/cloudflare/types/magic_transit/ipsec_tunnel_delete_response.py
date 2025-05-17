@@ -69,6 +69,9 @@ class DeletedIPSECTunnelHealthCheck(BaseModel):
 
 
 class DeletedIPSECTunnel(BaseModel):
+    id: str
+    """Identifier"""
+
     cloudflare_endpoint: str
     """The IP address assigned to the Cloudflare side of the IPsec tunnel."""
 
@@ -81,9 +84,6 @@ class DeletedIPSECTunnel(BaseModel):
 
     name: str
     """The name of the IPsec tunnel. The name cannot share a name with other tunnels."""
-
-    id: Optional[str] = None
-    """Tunnel identifier tag."""
 
     allow_null_cipher: Optional[bool] = None
     """

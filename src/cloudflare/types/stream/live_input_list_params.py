@@ -9,7 +9,7 @@ __all__ = ["LiveInputListParams"]
 
 class LiveInputListParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     include_counts: bool
     """

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import List
 from typing_extensions import Required, TypedDict
 
 __all__ = ["BulkGetParams"]
@@ -9,7 +10,7 @@ __all__ = ["BulkGetParams"]
 
 class BulkGetParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
-    domain: object
-    """Accepts multiple values, i.e. `?domain=cloudflare.com&domain=example.com`."""
+    domain: List[str]
+    """Accepts multiple values like `?domain=cloudflare.com&domain=example.com`."""

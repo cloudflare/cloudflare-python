@@ -10,21 +10,21 @@ __all__ = ["ContentListUpdateParams", "Entry"]
 
 class ContentListUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Specify the identifier of the hostname."""
 
     action: Required[Literal["block"]]
     """Behavior of the content list."""
 
     entries: Required[Iterable[Entry]]
-    """Content list entries."""
+    """Provides content list entries."""
 
 
 class Entry(TypedDict, total=False):
     content: str
-    """CID or content path of content to block."""
+    """Specify the CID or content path of content to block."""
 
     description: str
-    """An optional description of the content list entry."""
+    """Specify an optional description of the content list entry."""
 
     type: Literal["cid", "content_path"]
-    """Type of content list entry to block."""
+    """Specify the type of content list entry to block."""

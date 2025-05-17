@@ -11,7 +11,10 @@ __all__ = ["ASNListParams"]
 
 class ASNListParams(TypedDict, total=False):
     asn: str
-    """Comma-separated list of Autonomous System Numbers (ASNs)."""
+    """Filters results by Autonomous System.
+
+    Specify one or more Autonomous System Numbers (ASNs) as a comma-separated list.
+    """
 
     format: Literal["JSON", "CSV"]
     """Format in which results will be returned."""
@@ -20,10 +23,10 @@ class ASNListParams(TypedDict, total=False):
     """Limits the number of objects returned in the response."""
 
     location: str
-    """Location alpha-2 code."""
+    """Filters results by location. Specify an alpha-2 location code."""
 
     offset: int
     """Skips the specified number of objects before fetching the results."""
 
     order_by: Annotated[Literal["ASN", "POPULATION"], PropertyInfo(alias="orderBy")]
-    """Metric to order the ASNs by."""
+    """Specifies the metric to order the ASNs by."""

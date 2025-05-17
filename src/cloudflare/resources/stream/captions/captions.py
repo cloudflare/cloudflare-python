@@ -68,7 +68,7 @@ class CaptionsResource(SyncAPIResource):
         Lists the available captions or subtitles for a specific video.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           identifier: A Cloudflare-generated unique identifier for a media item.
 
@@ -134,7 +134,7 @@ class AsyncCaptionsResource(AsyncAPIResource):
         Lists the available captions or subtitles for a specific video.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           identifier: A Cloudflare-generated unique identifier for a media item.
 

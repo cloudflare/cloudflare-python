@@ -2,15 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import List, Type, Optional, cast
 
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -51,7 +48,7 @@ class BulksResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        domain: object | NotGiven = NOT_GIVEN,
+        domain: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -60,12 +57,12 @@ class BulksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[BulkGetResponse]:
         """
-        Same as summary
+        Same as summary.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          domain: Accepts multiple values, i.e. `?domain=cloudflare.com&domain=example.com`.
+          domain: Accepts multiple values like `?domain=cloudflare.com&domain=example.com`.
 
           extra_headers: Send extra headers
 
@@ -115,7 +112,7 @@ class AsyncBulksResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        domain: object | NotGiven = NOT_GIVEN,
+        domain: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -124,12 +121,12 @@ class AsyncBulksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[BulkGetResponse]:
         """
-        Same as summary
+        Same as summary.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          domain: Accepts multiple values, i.e. `?domain=cloudflare.com&domain=example.com`.
+          domain: Accepts multiple values like `?domain=cloudflare.com&domain=example.com`.
 
           extra_headers: Send extra headers
 

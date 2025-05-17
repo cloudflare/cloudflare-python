@@ -1,21 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Optional
 from datetime import datetime
-from typing_extensions import TypeAlias
 
 from ....._models import BaseModel
 
-__all__ = [
-    "TargetBulkUpdateResponse",
-    "TargetBulkUpdateResponseItem",
-    "TargetBulkUpdateResponseItemIP",
-    "TargetBulkUpdateResponseItemIPIPV4",
-    "TargetBulkUpdateResponseItemIPIPV6",
-]
+__all__ = ["TargetBulkUpdateResponse", "IP", "IPIPV4", "IPIPV6"]
 
 
-class TargetBulkUpdateResponseItemIPIPV4(BaseModel):
+class IPIPV4(BaseModel):
     ip_addr: Optional[str] = None
     """IP address of the target"""
 
@@ -26,7 +19,7 @@ class TargetBulkUpdateResponseItemIPIPV4(BaseModel):
     """
 
 
-class TargetBulkUpdateResponseItemIPIPV6(BaseModel):
+class IPIPV6(BaseModel):
     ip_addr: Optional[str] = None
     """IP address of the target"""
 
@@ -37,15 +30,15 @@ class TargetBulkUpdateResponseItemIPIPV6(BaseModel):
     """
 
 
-class TargetBulkUpdateResponseItemIP(BaseModel):
-    ipv4: Optional[TargetBulkUpdateResponseItemIPIPV4] = None
+class IP(BaseModel):
+    ipv4: Optional[IPIPV4] = None
     """The target's IPv4 address"""
 
-    ipv6: Optional[TargetBulkUpdateResponseItemIPIPV6] = None
+    ipv6: Optional[IPIPV6] = None
     """The target's IPv6 address"""
 
 
-class TargetBulkUpdateResponseItem(BaseModel):
+class TargetBulkUpdateResponse(BaseModel):
     id: str
     """Target identifier"""
 
@@ -55,11 +48,8 @@ class TargetBulkUpdateResponseItem(BaseModel):
     hostname: str
     """A non-unique field that refers to a target"""
 
-    ip: TargetBulkUpdateResponseItemIP
+    ip: IP
     """The IPv4/IPv6 address that identifies where to reach a target"""
 
     modified_at: datetime
     """Date and time at which the target was modified"""
-
-
-TargetBulkUpdateResponse: TypeAlias = List[TargetBulkUpdateResponseItem]

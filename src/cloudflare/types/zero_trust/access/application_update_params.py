@@ -151,6 +151,9 @@ class SelfHostedApplication(TypedDict, total=False):
     authentication.
     """
 
+    allow_iframe: bool
+    """Enables loading application content in an iFrame."""
+
     allowed_idps: List[AllowedIdPs]
     """The identity providers your users can select when connecting to this
     application.
@@ -236,6 +239,17 @@ class SelfHostedApplication(TypedDict, total=False):
     exclusive to the application.
     """
 
+    read_service_tokens_from_header: str
+    """
+    Allows matching Access Service Tokens passed HTTP in a single header with this
+    name. This works as an alternative to the (CF-Access-Client-Id,
+    CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+    as a json object similar to: { "cf-access-client-id":
+    "88bf3b6d86161464f6509f7219099e57.access.example.com",
+    "cf-access-client-secret":
+    "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
+    """
+
     same_site_cookie_attribute: str
     """
     Sets the SameSite cookie setting, which provides increased security against CSRF
@@ -263,7 +277,7 @@ class SelfHostedApplication(TypedDict, total=False):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
+    ms, s, m, h. Note: unsupported for infrastructure type applications.
     """
 
     skip_interstitial: bool
@@ -685,6 +699,9 @@ class BrowserSSHApplication(TypedDict, total=False):
     authentication.
     """
 
+    allow_iframe: bool
+    """Enables loading application content in an iFrame."""
+
     allowed_idps: List[AllowedIdPs]
     """The identity providers your users can select when connecting to this
     application.
@@ -770,6 +787,17 @@ class BrowserSSHApplication(TypedDict, total=False):
     exclusive to the application.
     """
 
+    read_service_tokens_from_header: str
+    """
+    Allows matching Access Service Tokens passed HTTP in a single header with this
+    name. This works as an alternative to the (CF-Access-Client-Id,
+    CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+    as a json object similar to: { "cf-access-client-id":
+    "88bf3b6d86161464f6509f7219099e57.access.example.com",
+    "cf-access-client-secret":
+    "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
+    """
+
     same_site_cookie_attribute: str
     """
     Sets the SameSite cookie setting, which provides increased security against CSRF
@@ -797,7 +825,7 @@ class BrowserSSHApplication(TypedDict, total=False):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
+    ms, s, m, h. Note: unsupported for infrastructure type applications.
     """
 
     skip_interstitial: bool
@@ -1018,6 +1046,9 @@ class BrowserVNCApplication(TypedDict, total=False):
     authentication.
     """
 
+    allow_iframe: bool
+    """Enables loading application content in an iFrame."""
+
     allowed_idps: List[AllowedIdPs]
     """The identity providers your users can select when connecting to this
     application.
@@ -1103,6 +1134,17 @@ class BrowserVNCApplication(TypedDict, total=False):
     exclusive to the application.
     """
 
+    read_service_tokens_from_header: str
+    """
+    Allows matching Access Service Tokens passed HTTP in a single header with this
+    name. This works as an alternative to the (CF-Access-Client-Id,
+    CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+    as a json object similar to: { "cf-access-client-id":
+    "88bf3b6d86161464f6509f7219099e57.access.example.com",
+    "cf-access-client-secret":
+    "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
+    """
+
     same_site_cookie_attribute: str
     """
     Sets the SameSite cookie setting, which provides increased security against CSRF
@@ -1130,7 +1172,7 @@ class BrowserVNCApplication(TypedDict, total=False):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
+    ms, s, m, h. Note: unsupported for infrastructure type applications.
     """
 
     skip_interstitial: bool
@@ -1383,7 +1425,7 @@ class AppLauncherApplication(TypedDict, total=False):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
+    ms, s, m, h. Note: unsupported for infrastructure type applications.
     """
 
     skip_app_launcher_login_page: bool
@@ -1614,7 +1656,7 @@ class DeviceEnrollmentPermissionsApplication(TypedDict, total=False):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
+    ms, s, m, h. Note: unsupported for infrastructure type applications.
     """
 
     skip_app_launcher_login_page: bool
@@ -1847,7 +1889,7 @@ class BrowserIsolationPermissionsApplication(TypedDict, total=False):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
+    ms, s, m, h. Note: unsupported for infrastructure type applications.
     """
 
     skip_app_launcher_login_page: bool
@@ -2256,6 +2298,9 @@ class BrowserRdpApplication(TypedDict, total=False):
     authentication.
     """
 
+    allow_iframe: bool
+    """Enables loading application content in an iFrame."""
+
     allowed_idps: List[AllowedIdPs]
     """The identity providers your users can select when connecting to this
     application.
@@ -2341,6 +2386,17 @@ class BrowserRdpApplication(TypedDict, total=False):
     exclusive to the application.
     """
 
+    read_service_tokens_from_header: str
+    """
+    Allows matching Access Service Tokens passed HTTP in a single header with this
+    name. This works as an alternative to the (CF-Access-Client-Id,
+    CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+    as a json object similar to: { "cf-access-client-id":
+    "88bf3b6d86161464f6509f7219099e57.access.example.com",
+    "cf-access-client-secret":
+    "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
+    """
+
     same_site_cookie_attribute: str
     """
     Sets the SameSite cookie setting, which provides increased security against CSRF
@@ -2368,7 +2424,7 @@ class BrowserRdpApplication(TypedDict, total=False):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
+    ms, s, m, h. Note: unsupported for infrastructure type applications.
     """
 
     skip_interstitial: bool

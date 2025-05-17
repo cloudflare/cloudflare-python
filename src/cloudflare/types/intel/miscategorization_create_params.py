@@ -10,7 +10,7 @@ __all__ = ["MiscategorizationCreateParams"]
 
 class MiscategorizationCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     content_adds: Iterable[int]
     """Content category IDs to add."""

@@ -13,12 +13,13 @@ __all__ = [
     "Caching",
     "CachingHyperdriveHyperdriveCachingCommon",
     "CachingHyperdriveHyperdriveCachingEnabled",
+    "MTLS",
 ]
 
 
 class ConfigCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Define configurations using a unique string identifier."""
 
     name: Required[str]
 
@@ -26,59 +27,62 @@ class ConfigCreateParams(TypedDict, total=False):
 
     caching: Caching
 
+    mtls: MTLS
+
 
 class OriginPublicDatabase(TypedDict, total=False):
     database: Required[str]
-    """The name of your origin database."""
+    """Set the name of your origin database."""
 
     host: Required[str]
-    """The host (hostname or IP) of your origin database."""
+    """Defines the host (hostname or IP) of your origin database."""
 
     password: Required[str]
-    """The password required to access your origin database.
+    """Set the password needed to access your origin database.
 
-    This value is write-only and never returned by the API.
+    The API never returns this write-only value.
     """
 
     port: Required[int]
-    """The port (default: 5432 for Postgres) of your origin database."""
+    """Defines the port (default: 5432 for Postgres) of your origin database."""
 
-    scheme: Required[Literal["postgres", "postgresql"]]
+    scheme: Required[Literal["postgres", "postgresql", "mysql"]]
     """Specifies the URL scheme used to connect to your origin database."""
 
     user: Required[str]
-    """The user of your origin database."""
+    """Set the user of your origin database."""
 
 
 class OriginAccessProtectedDatabaseBehindCloudflareTunnel(TypedDict, total=False):
     access_client_id: Required[str]
     """
-    The Client ID of the Access token to use when connecting to the origin database.
+    Defines the Client ID of the Access token to use when connecting to the origin
+    database.
     """
 
     access_client_secret: Required[str]
     """
-    The Client Secret of the Access token to use when connecting to the origin
-    database. This value is write-only and never returned by the API.
+    Defines the Client Secret of the Access Token to use when connecting to the
+    origin database. The API never returns this write-only value.
     """
 
     database: Required[str]
-    """The name of your origin database."""
+    """Set the name of your origin database."""
 
     host: Required[str]
-    """The host (hostname or IP) of your origin database."""
+    """Defines the host (hostname or IP) of your origin database."""
 
     password: Required[str]
-    """The password required to access your origin database.
+    """Set the password needed to access your origin database.
 
-    This value is write-only and never returned by the API.
+    The API never returns this write-only value.
     """
 
-    scheme: Required[Literal["postgres", "postgresql"]]
+    scheme: Required[Literal["postgres", "postgresql", "mysql"]]
     """Specifies the URL scheme used to connect to your origin database."""
 
     user: Required[str]
-    """The user of your origin database."""
+    """Set the user of your origin database."""
 
 
 Origin: TypeAlias = Union[OriginPublicDatabase, OriginAccessProtectedDatabaseBehindCloudflareTunnel]
@@ -86,25 +90,35 @@ Origin: TypeAlias = Union[OriginPublicDatabase, OriginAccessProtectedDatabaseBeh
 
 class CachingHyperdriveHyperdriveCachingCommon(TypedDict, total=False):
     disabled: bool
-    """When set to true, disables the caching of SQL responses. (Default: false)"""
+    """Set to true to disable caching of SQL responses. Default is false."""
 
 
 class CachingHyperdriveHyperdriveCachingEnabled(TypedDict, total=False):
     disabled: bool
-    """When set to true, disables the caching of SQL responses. (Default: false)"""
+    """Set to true to disable caching of SQL responses. Default is false."""
 
     max_age: int
-    """When present, specifies max duration for which items should persist in the
-    cache.
+    """Specify the maximum duration items should persist in the cache.
 
-    Not returned if set to default. (Default: 60)
+    Not returned if set to the default (60).
     """
 
     stale_while_revalidate: int
-    """
-    When present, indicates the number of seconds cache may serve the response after
-    it becomes stale. Not returned if set to default. (Default: 15)
+    """Specify the number of seconds the cache may serve a stale response.
+
+    Omitted if set to the default (15).
     """
 
 
 Caching: TypeAlias = Union[CachingHyperdriveHyperdriveCachingCommon, CachingHyperdriveHyperdriveCachingEnabled]
+
+
+class MTLS(TypedDict, total=False):
+    ca_certificate_id: str
+    """Define CA certificate ID obtained after uploading CA cert."""
+
+    mtls_certificate_id: str
+    """Define mTLS certificate ID obtained after uploading client cert."""
+
+    sslmode: str
+    """Set SSL mode to 'require', 'verify-ca', or 'verify-full' to verify the CA."""

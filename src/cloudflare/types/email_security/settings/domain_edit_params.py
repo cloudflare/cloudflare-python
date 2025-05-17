@@ -14,6 +14,8 @@ class DomainEditParams(TypedDict, total=False):
 
     ip_restrictions: Required[List[str]]
 
+    allowed_delivery_modes: List[Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"]]
+
     domain: Optional[str]
 
     drop_dispositions: List[

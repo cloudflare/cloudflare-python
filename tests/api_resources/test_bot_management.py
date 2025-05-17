@@ -32,6 +32,7 @@ class TestBotManagement:
         bot_management = client.bot_management.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ai_bots_protection="block",
+            crawler_protection="enabled",
             enable_js=True,
             fight_mode=True,
         )
@@ -80,6 +81,7 @@ class TestBotManagement:
         bot_management = client.bot_management.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ai_bots_protection="block",
+            crawler_protection="enabled",
             enable_js=True,
             optimize_wordpress=True,
             sbfm_definitely_automated="allow",
@@ -131,6 +133,7 @@ class TestBotManagement:
         bot_management = client.bot_management.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ai_bots_protection="block",
+            crawler_protection="enabled",
             enable_js=True,
             optimize_wordpress=True,
             sbfm_definitely_automated="allow",
@@ -184,6 +187,7 @@ class TestBotManagement:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ai_bots_protection="block",
             auto_update_model=True,
+            crawler_protection="enabled",
             enable_js=True,
             suppress_session_score=False,
         )
@@ -274,6 +278,7 @@ class TestAsyncBotManagement:
         bot_management = await async_client.bot_management.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ai_bots_protection="block",
+            crawler_protection="enabled",
             enable_js=True,
             fight_mode=True,
         )
@@ -322,6 +327,7 @@ class TestAsyncBotManagement:
         bot_management = await async_client.bot_management.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ai_bots_protection="block",
+            crawler_protection="enabled",
             enable_js=True,
             optimize_wordpress=True,
             sbfm_definitely_automated="allow",
@@ -373,6 +379,7 @@ class TestAsyncBotManagement:
         bot_management = await async_client.bot_management.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ai_bots_protection="block",
+            crawler_protection="enabled",
             enable_js=True,
             optimize_wordpress=True,
             sbfm_definitely_automated="allow",
@@ -426,6 +433,7 @@ class TestAsyncBotManagement:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ai_bots_protection="block",
             auto_update_model=True,
+            crawler_protection="enabled",
             enable_js=True,
             suppress_session_score=False,
         )

@@ -10,9 +10,7 @@ __all__ = ["InstanceBulkResponse"]
 class InstanceBulkResponse(BaseModel):
     id: str
 
-    status: Literal[
-        "queued", "running", "paused", "errored", "terminated", "complete", "waitingForPause", "waiting", "unknown"
-    ]
+    status: Literal["queued", "running", "paused", "errored", "terminated", "complete", "waitingForPause", "waiting"]
 
     version_id: str
 

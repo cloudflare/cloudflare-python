@@ -8,10 +8,7 @@ from datetime import datetime
 import httpx
 
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -74,7 +71,7 @@ class SecurityTXTResource(SyncAPIResource):
         Update security.txt
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -123,7 +120,7 @@ class SecurityTXTResource(SyncAPIResource):
         Delete security.txt
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -158,7 +155,7 @@ class SecurityTXTResource(SyncAPIResource):
         Get security.txt
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -227,7 +224,7 @@ class AsyncSecurityTXTResource(AsyncAPIResource):
         Update security.txt
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -276,7 +273,7 @@ class AsyncSecurityTXTResource(AsyncAPIResource):
         Delete security.txt
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -311,7 +308,7 @@ class AsyncSecurityTXTResource(AsyncAPIResource):
         Get security.txt
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

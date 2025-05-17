@@ -9,7 +9,10 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.r2.buckets import EventNotificationGetResponse
+from cloudflare.types.r2.buckets import (
+    EventNotificationGetResponse,
+    EventNotificationListResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -102,6 +105,68 @@ class TestEventNotifications:
 
     @pytest.mark.skip(reason="TODO: investigate auth errors on test suite")
     @parametrize
+    def test_method_list(self, client: Cloudflare) -> None:
+        event_notification = client.r2.buckets.event_notifications.list(
+            bucket_name="example-bucket",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(EventNotificationListResponse, event_notification, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate auth errors on test suite")
+    @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
+        event_notification = client.r2.buckets.event_notifications.list(
+            bucket_name="example-bucket",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            jurisdiction="default",
+        )
+        assert_matches_type(EventNotificationListResponse, event_notification, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate auth errors on test suite")
+    @parametrize
+    def test_raw_response_list(self, client: Cloudflare) -> None:
+        response = client.r2.buckets.event_notifications.with_raw_response.list(
+            bucket_name="example-bucket",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        event_notification = response.parse()
+        assert_matches_type(EventNotificationListResponse, event_notification, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate auth errors on test suite")
+    @parametrize
+    def test_streaming_response_list(self, client: Cloudflare) -> None:
+        with client.r2.buckets.event_notifications.with_streaming_response.list(
+            bucket_name="example-bucket",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            event_notification = response.parse()
+            assert_matches_type(EventNotificationListResponse, event_notification, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate auth errors on test suite")
+    @parametrize
+    def test_path_params_list(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.r2.buckets.event_notifications.with_raw_response.list(
+                bucket_name="example-bucket",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
+            client.r2.buckets.event_notifications.with_raw_response.list(
+                bucket_name="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate auth errors on test suite")
+    @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         event_notification = client.r2.buckets.event_notifications.delete(
             queue_id="queue_id",
@@ -179,8 +244,9 @@ class TestEventNotifications:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         event_notification = client.r2.buckets.event_notifications.get(
-            bucket_name="example-bucket",
+            queue_id="queue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="example-bucket",
         )
         assert_matches_type(EventNotificationGetResponse, event_notification, path=["response"])
 
@@ -188,8 +254,9 @@ class TestEventNotifications:
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         event_notification = client.r2.buckets.event_notifications.get(
-            bucket_name="example-bucket",
+            queue_id="queue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="example-bucket",
             jurisdiction="default",
         )
         assert_matches_type(EventNotificationGetResponse, event_notification, path=["response"])
@@ -198,8 +265,9 @@ class TestEventNotifications:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.r2.buckets.event_notifications.with_raw_response.get(
-            bucket_name="example-bucket",
+            queue_id="queue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="example-bucket",
         )
 
         assert response.is_closed is True
@@ -211,8 +279,9 @@ class TestEventNotifications:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.r2.buckets.event_notifications.with_streaming_response.get(
-            bucket_name="example-bucket",
+            queue_id="queue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="example-bucket",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -227,14 +296,23 @@ class TestEventNotifications:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.r2.buckets.event_notifications.with_raw_response.get(
-                bucket_name="example-bucket",
+                queue_id="queue_id",
                 account_id="",
+                bucket_name="example-bucket",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
             client.r2.buckets.event_notifications.with_raw_response.get(
-                bucket_name="",
+                queue_id="queue_id",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                bucket_name="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_id` but received ''"):
+            client.r2.buckets.event_notifications.with_raw_response.get(
+                queue_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                bucket_name="example-bucket",
             )
 
 
@@ -326,6 +404,68 @@ class TestAsyncEventNotifications:
 
     @pytest.mark.skip(reason="TODO: investigate auth errors on test suite")
     @parametrize
+    async def test_method_list(self, async_client: AsyncCloudflare) -> None:
+        event_notification = await async_client.r2.buckets.event_notifications.list(
+            bucket_name="example-bucket",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(EventNotificationListResponse, event_notification, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate auth errors on test suite")
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        event_notification = await async_client.r2.buckets.event_notifications.list(
+            bucket_name="example-bucket",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            jurisdiction="default",
+        )
+        assert_matches_type(EventNotificationListResponse, event_notification, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate auth errors on test suite")
+    @parametrize
+    async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.r2.buckets.event_notifications.with_raw_response.list(
+            bucket_name="example-bucket",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        event_notification = await response.parse()
+        assert_matches_type(EventNotificationListResponse, event_notification, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate auth errors on test suite")
+    @parametrize
+    async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.r2.buckets.event_notifications.with_streaming_response.list(
+            bucket_name="example-bucket",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            event_notification = await response.parse()
+            assert_matches_type(EventNotificationListResponse, event_notification, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate auth errors on test suite")
+    @parametrize
+    async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.r2.buckets.event_notifications.with_raw_response.list(
+                bucket_name="example-bucket",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
+            await async_client.r2.buckets.event_notifications.with_raw_response.list(
+                bucket_name="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate auth errors on test suite")
+    @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         event_notification = await async_client.r2.buckets.event_notifications.delete(
             queue_id="queue_id",
@@ -403,8 +543,9 @@ class TestAsyncEventNotifications:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         event_notification = await async_client.r2.buckets.event_notifications.get(
-            bucket_name="example-bucket",
+            queue_id="queue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="example-bucket",
         )
         assert_matches_type(EventNotificationGetResponse, event_notification, path=["response"])
 
@@ -412,8 +553,9 @@ class TestAsyncEventNotifications:
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         event_notification = await async_client.r2.buckets.event_notifications.get(
-            bucket_name="example-bucket",
+            queue_id="queue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="example-bucket",
             jurisdiction="default",
         )
         assert_matches_type(EventNotificationGetResponse, event_notification, path=["response"])
@@ -422,8 +564,9 @@ class TestAsyncEventNotifications:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.r2.buckets.event_notifications.with_raw_response.get(
-            bucket_name="example-bucket",
+            queue_id="queue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="example-bucket",
         )
 
         assert response.is_closed is True
@@ -435,8 +578,9 @@ class TestAsyncEventNotifications:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.r2.buckets.event_notifications.with_streaming_response.get(
-            bucket_name="example-bucket",
+            queue_id="queue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="example-bucket",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -451,12 +595,21 @@ class TestAsyncEventNotifications:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.r2.buckets.event_notifications.with_raw_response.get(
-                bucket_name="example-bucket",
+                queue_id="queue_id",
                 account_id="",
+                bucket_name="example-bucket",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
             await async_client.r2.buckets.event_notifications.with_raw_response.get(
-                bucket_name="",
+                queue_id="queue_id",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                bucket_name="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_id` but received ''"):
+            await async_client.r2.buckets.event_notifications.with_raw_response.get(
+                queue_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                bucket_name="example-bucket",
             )

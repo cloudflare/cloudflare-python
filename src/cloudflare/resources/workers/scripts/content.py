@@ -2,16 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    strip_not_given,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, strip_not_given, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -71,12 +67,12 @@ class ContentResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Script]:
+    ) -> Script:
         """
-        Put script content without touching config or metadata
+        Put script content without touching config or metadata.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -115,9 +111,9 @@ class ContentResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Script]]._unwrapper,
+                post_parser=ResultWrapper[Script]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Script]], ResultWrapper[Script]),
+            cast_to=cast(Type[Script], ResultWrapper[Script]),
         )
 
     def get(
@@ -133,10 +129,10 @@ class ContentResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BinaryAPIResponse:
         """
-        Fetch script content only
+        Fetch script content only.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -196,12 +192,12 @@ class AsyncContentResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Script]:
+    ) -> Script:
         """
-        Put script content without touching config or metadata
+        Put script content without touching config or metadata.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -240,9 +236,9 @@ class AsyncContentResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Script]]._unwrapper,
+                post_parser=ResultWrapper[Script]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Script]], ResultWrapper[Script]),
+            cast_to=cast(Type[Script], ResultWrapper[Script]),
         )
 
     async def get(
@@ -258,10 +254,10 @@ class AsyncContentResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncBinaryAPIResponse:
         """
-        Fetch script content only
+        Fetch script content only.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 

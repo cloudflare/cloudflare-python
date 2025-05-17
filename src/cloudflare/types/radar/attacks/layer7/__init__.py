@@ -8,7 +8,11 @@ from .top_vertical_params import TopVerticalParams as TopVerticalParams
 from .top_attacks_response import TopAttacksResponse as TopAttacksResponse
 from .top_industry_response import TopIndustryResponse as TopIndustryResponse
 from .top_vertical_response import TopVerticalResponse as TopVerticalResponse
+from .summary_industry_params import SummaryIndustryParams as SummaryIndustryParams
+from .summary_vertical_params import SummaryVerticalParams as SummaryVerticalParams
+from .summary_industry_response import SummaryIndustryResponse as SummaryIndustryResponse
 from .summary_ip_version_params import SummaryIPVersionParams as SummaryIPVersionParams
+from .summary_vertical_response import SummaryVerticalResponse as SummaryVerticalResponse
 from .summary_http_method_params import SummaryHTTPMethodParams as SummaryHTTPMethodParams
 from .summary_http_version_params import SummaryHTTPVersionParams as SummaryHTTPVersionParams
 from .summary_ip_version_response import SummaryIPVersionResponse as SummaryIPVersionResponse

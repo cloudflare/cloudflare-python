@@ -7,10 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -63,7 +60,7 @@ class ConfigResource(SyncAPIResource):
         Updates CMB config.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           regions: Comma-separated list of regions.
 
@@ -105,7 +102,7 @@ class ConfigResource(SyncAPIResource):
         Deletes CMB config.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -144,7 +141,7 @@ class ConfigResource(SyncAPIResource):
         Gets CMB config.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -205,7 +202,7 @@ class AsyncConfigResource(AsyncAPIResource):
         Updates CMB config.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           regions: Comma-separated list of regions.
 
@@ -247,7 +244,7 @@ class AsyncConfigResource(AsyncAPIResource):
         Deletes CMB config.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -286,7 +283,7 @@ class AsyncConfigResource(AsyncAPIResource):
         Gets CMB config.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 

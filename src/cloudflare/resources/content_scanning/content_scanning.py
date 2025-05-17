@@ -77,10 +77,10 @@ class ContentScanningResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        Disable Content Scanning
+        Disable Content Scanning.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           extra_headers: Send extra headers
 
@@ -116,10 +116,10 @@ class ContentScanningResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        Enable Content Scanning
+        Enable Content Scanning.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           extra_headers: Send extra headers
 
@@ -184,10 +184,10 @@ class AsyncContentScanningResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        Disable Content Scanning
+        Disable Content Scanning.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           extra_headers: Send extra headers
 
@@ -223,10 +223,10 @@ class AsyncContentScanningResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        Enable Content Scanning
+        Enable Content Scanning.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           extra_headers: Send extra headers
 

@@ -13,6 +13,7 @@ from cloudflare._utils import parse_datetime
 from cloudflare.types.cloudforce_one import (
     ThreatEventGetResponse,
     ThreatEventEditResponse,
+    ThreatEventListResponse,
     ThreatEventCreateResponse,
     ThreatEventDeleteResponse,
     ThreatEventBulkCreateResponse,
@@ -35,7 +36,7 @@ class TestThreatEvents:
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
             indicator_type="domain",
-            raw={},
+            raw={"data": {"foo": "bar"}},
             tlp="amber",
         )
         assert_matches_type(ThreatEventCreateResponse, threat_event, path=["response"])
@@ -52,7 +53,7 @@ class TestThreatEvents:
             event="An attacker registered the domain domain.com",
             indicator_type="domain",
             raw={
-                "data": {},
+                "data": {"foo": "bar"},
                 "source": "example.com",
                 "tlp": "amber",
             },
@@ -77,7 +78,7 @@ class TestThreatEvents:
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
             indicator_type="domain",
-            raw={},
+            raw={"data": {"foo": "bar"}},
             tlp="amber",
         )
 
@@ -97,7 +98,7 @@ class TestThreatEvents:
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
             indicator_type="domain",
-            raw={},
+            raw={"data": {"foo": "bar"}},
             tlp="amber",
         ) as response:
             assert not response.is_closed
@@ -105,6 +106,61 @@ class TestThreatEvents:
 
             threat_event = response.parse()
             assert_matches_type(ThreatEventCreateResponse, threat_event, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
+    @parametrize
+    def test_method_list(self, client: Cloudflare) -> None:
+        threat_event = client.cloudforce_one.threat_events.list(
+            account_id=0,
+        )
+        assert_matches_type(ThreatEventListResponse, threat_event, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
+    @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
+        threat_event = client.cloudforce_one.threat_events.list(
+            account_id=0,
+            dataset_id=["string"],
+            force_refresh=True,
+            order="asc",
+            order_by="orderBy",
+            page=0,
+            page_size=0,
+            search=[
+                {
+                    "field": "attackerCountry",
+                    "op": "equals",
+                    "value": "usa",
+                }
+            ],
+        )
+        assert_matches_type(ThreatEventListResponse, threat_event, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
+    @parametrize
+    def test_raw_response_list(self, client: Cloudflare) -> None:
+        response = client.cloudforce_one.threat_events.with_raw_response.list(
+            account_id=0,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        threat_event = response.parse()
+        assert_matches_type(ThreatEventListResponse, threat_event, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
+    @parametrize
+    def test_streaming_response_list(self, client: Cloudflare) -> None:
+        with client.cloudforce_one.threat_events.with_streaming_response.list(
+            account_id=0,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            threat_event = response.parse()
+            assert_matches_type(ThreatEventListResponse, threat_event, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -167,7 +223,7 @@ class TestThreatEvents:
                     "date": parse_datetime("2022-04-01T00:00:00Z"),
                     "event": "An attacker registered the domain domain.com",
                     "indicator_type": "domain",
-                    "raw": {},
+                    "raw": {"data": {"foo": "bar"}},
                     "tlp": "amber",
                 }
             ],
@@ -188,7 +244,7 @@ class TestThreatEvents:
                     "date": parse_datetime("2022-04-01T00:00:00Z"),
                     "event": "An attacker registered the domain domain.com",
                     "indicator_type": "domain",
-                    "raw": {},
+                    "raw": {"data": {"foo": "bar"}},
                     "tlp": "amber",
                 }
             ],
@@ -213,7 +269,7 @@ class TestThreatEvents:
                     "date": parse_datetime("2022-04-01T00:00:00Z"),
                     "event": "An attacker registered the domain domain.com",
                     "indicator_type": "domain",
-                    "raw": {},
+                    "raw": {"data": {"foo": "bar"}},
                     "tlp": "amber",
                 }
             ],
@@ -353,7 +409,7 @@ class TestAsyncThreatEvents:
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
             indicator_type="domain",
-            raw={},
+            raw={"data": {"foo": "bar"}},
             tlp="amber",
         )
         assert_matches_type(ThreatEventCreateResponse, threat_event, path=["response"])
@@ -370,7 +426,7 @@ class TestAsyncThreatEvents:
             event="An attacker registered the domain domain.com",
             indicator_type="domain",
             raw={
-                "data": {},
+                "data": {"foo": "bar"},
                 "source": "example.com",
                 "tlp": "amber",
             },
@@ -395,7 +451,7 @@ class TestAsyncThreatEvents:
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
             indicator_type="domain",
-            raw={},
+            raw={"data": {"foo": "bar"}},
             tlp="amber",
         )
 
@@ -415,7 +471,7 @@ class TestAsyncThreatEvents:
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
             indicator_type="domain",
-            raw={},
+            raw={"data": {"foo": "bar"}},
             tlp="amber",
         ) as response:
             assert not response.is_closed
@@ -423,6 +479,61 @@ class TestAsyncThreatEvents:
 
             threat_event = await response.parse()
             assert_matches_type(ThreatEventCreateResponse, threat_event, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
+    @parametrize
+    async def test_method_list(self, async_client: AsyncCloudflare) -> None:
+        threat_event = await async_client.cloudforce_one.threat_events.list(
+            account_id=0,
+        )
+        assert_matches_type(ThreatEventListResponse, threat_event, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        threat_event = await async_client.cloudforce_one.threat_events.list(
+            account_id=0,
+            dataset_id=["string"],
+            force_refresh=True,
+            order="asc",
+            order_by="orderBy",
+            page=0,
+            page_size=0,
+            search=[
+                {
+                    "field": "attackerCountry",
+                    "op": "equals",
+                    "value": "usa",
+                }
+            ],
+        )
+        assert_matches_type(ThreatEventListResponse, threat_event, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
+    @parametrize
+    async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.cloudforce_one.threat_events.with_raw_response.list(
+            account_id=0,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        threat_event = await response.parse()
+        assert_matches_type(ThreatEventListResponse, threat_event, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
+    @parametrize
+    async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.cloudforce_one.threat_events.with_streaming_response.list(
+            account_id=0,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            threat_event = await response.parse()
+            assert_matches_type(ThreatEventListResponse, threat_event, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -485,7 +596,7 @@ class TestAsyncThreatEvents:
                     "date": parse_datetime("2022-04-01T00:00:00Z"),
                     "event": "An attacker registered the domain domain.com",
                     "indicator_type": "domain",
-                    "raw": {},
+                    "raw": {"data": {"foo": "bar"}},
                     "tlp": "amber",
                 }
             ],
@@ -506,7 +617,7 @@ class TestAsyncThreatEvents:
                     "date": parse_datetime("2022-04-01T00:00:00Z"),
                     "event": "An attacker registered the domain domain.com",
                     "indicator_type": "domain",
-                    "raw": {},
+                    "raw": {"data": {"foo": "bar"}},
                     "tlp": "amber",
                 }
             ],
@@ -531,7 +642,7 @@ class TestAsyncThreatEvents:
                     "date": parse_datetime("2022-04-01T00:00:00Z"),
                     "event": "An attacker registered the domain domain.com",
                     "indicator_type": "domain",
-                    "raw": {},
+                    "raw": {"data": {"foo": "bar"}},
                     "tlp": "amber",
                 }
             ],

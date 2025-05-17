@@ -23,12 +23,7 @@ class TestExcludes:
         exclude = client.zero_trust.devices.policies.custom.excludes.update(
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            body=[
-                {
-                    "address": "192.0.2.0/24",
-                    "description": "Exclude testing domains from the tunnel",
-                }
-            ],
+            body=[{"address": "192.0.2.0/24"}],
         )
         assert_matches_type(SyncSinglePage[SplitTunnelExclude], exclude, path=["response"])
 
@@ -37,12 +32,7 @@ class TestExcludes:
         response = client.zero_trust.devices.policies.custom.excludes.with_raw_response.update(
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            body=[
-                {
-                    "address": "192.0.2.0/24",
-                    "description": "Exclude testing domains from the tunnel",
-                }
-            ],
+            body=[{"address": "192.0.2.0/24"}],
         )
 
         assert response.is_closed is True
@@ -55,12 +45,7 @@ class TestExcludes:
         with client.zero_trust.devices.policies.custom.excludes.with_streaming_response.update(
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            body=[
-                {
-                    "address": "192.0.2.0/24",
-                    "description": "Exclude testing domains from the tunnel",
-                }
-            ],
+            body=[{"address": "192.0.2.0/24"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -76,24 +61,14 @@ class TestExcludes:
             client.zero_trust.devices.policies.custom.excludes.with_raw_response.update(
                 policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                body=[
-                    {
-                        "address": "192.0.2.0/24",
-                        "description": "Exclude testing domains from the tunnel",
-                    }
-                ],
+                body=[{"address": "192.0.2.0/24"}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `policy_id` but received ''"):
             client.zero_trust.devices.policies.custom.excludes.with_raw_response.update(
                 policy_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
-                body=[
-                    {
-                        "address": "192.0.2.0/24",
-                        "description": "Exclude testing domains from the tunnel",
-                    }
-                ],
+                body=[{"address": "192.0.2.0/24"}],
             )
 
     @parametrize
@@ -153,12 +128,7 @@ class TestAsyncExcludes:
         exclude = await async_client.zero_trust.devices.policies.custom.excludes.update(
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            body=[
-                {
-                    "address": "192.0.2.0/24",
-                    "description": "Exclude testing domains from the tunnel",
-                }
-            ],
+            body=[{"address": "192.0.2.0/24"}],
         )
         assert_matches_type(AsyncSinglePage[SplitTunnelExclude], exclude, path=["response"])
 
@@ -167,12 +137,7 @@ class TestAsyncExcludes:
         response = await async_client.zero_trust.devices.policies.custom.excludes.with_raw_response.update(
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            body=[
-                {
-                    "address": "192.0.2.0/24",
-                    "description": "Exclude testing domains from the tunnel",
-                }
-            ],
+            body=[{"address": "192.0.2.0/24"}],
         )
 
         assert response.is_closed is True
@@ -185,12 +150,7 @@ class TestAsyncExcludes:
         async with async_client.zero_trust.devices.policies.custom.excludes.with_streaming_response.update(
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            body=[
-                {
-                    "address": "192.0.2.0/24",
-                    "description": "Exclude testing domains from the tunnel",
-                }
-            ],
+            body=[{"address": "192.0.2.0/24"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -206,24 +166,14 @@ class TestAsyncExcludes:
             await async_client.zero_trust.devices.policies.custom.excludes.with_raw_response.update(
                 policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                body=[
-                    {
-                        "address": "192.0.2.0/24",
-                        "description": "Exclude testing domains from the tunnel",
-                    }
-                ],
+                body=[{"address": "192.0.2.0/24"}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `policy_id` but received ''"):
             await async_client.zero_trust.devices.policies.custom.excludes.with_raw_response.update(
                 policy_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
-                body=[
-                    {
-                        "address": "192.0.2.0/24",
-                        "description": "Exclude testing domains from the tunnel",
-                    }
-                ],
+                body=[{"address": "192.0.2.0/24"}],
             )
 
     @parametrize

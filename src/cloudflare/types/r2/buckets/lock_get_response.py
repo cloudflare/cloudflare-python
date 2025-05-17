@@ -43,18 +43,18 @@ RuleCondition: TypeAlias = Union[
 
 class Rule(BaseModel):
     id: str
-    """Unique identifier for this rule"""
+    """Unique identifier for this rule."""
 
     condition: RuleCondition
-    """Condition to apply a lock rule to an object for how long in seconds"""
+    """Condition to apply a lock rule to an object for how long in seconds."""
 
     enabled: bool
-    """Whether or not this rule is in effect"""
+    """Whether or not this rule is in effect."""
 
     prefix: Optional[str] = None
     """
     Rule will only apply to objects/uploads in the bucket that start with the given
-    prefix, an empty prefix can be provided to scope rule to all objects/uploads
+    prefix, an empty prefix can be provided to scope rule to all objects/uploads.
     """
 
 

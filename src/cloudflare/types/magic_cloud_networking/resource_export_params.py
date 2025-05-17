@@ -14,7 +14,7 @@ class ResourceExportParams(TypedDict, total=False):
     desc: bool
 
     order_by: str
-    """one of ["id", "resource_type", "region"]"""
+    """One of ["id", "resource_type", "region"]."""
 
     provider_id: str
 

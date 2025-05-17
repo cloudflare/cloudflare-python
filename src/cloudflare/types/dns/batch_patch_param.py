@@ -55,64 +55,64 @@ __all__ = [
 ]
 
 
-class A(ARecordParam):
+class A(ARecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
-class AAAA(AAAARecordParam):
+class AAAA(AAAARecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
-class CAA(CAARecordParam):
+class CAA(CAARecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
-class CERT(CERTRecordParam):
+class CERT(CERTRecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
-class CNAME(CNAMERecordParam):
+class CNAME(CNAMERecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
-class DNSKEY(DNSKEYRecordParam):
+class DNSKEY(DNSKEYRecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
-class DS(DSRecordParam):
+class DS(DSRecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
-class HTTPS(HTTPSRecordParam):
+class HTTPS(HTTPSRecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
-class LOC(LOCRecordParam):
+class LOC(LOCRecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
-class MX(MXRecordParam):
+class MX(MXRecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
-class NAPTR(NAPTRRecordParam):
+class NAPTR(NAPTRRecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
-class NS(NSRecordParam):
+class NS(NSRecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
 class OpenpgpkeySettings(TypedDict, total=False):
@@ -135,7 +135,7 @@ class OpenpgpkeySettings(TypedDict, total=False):
 
 class Openpgpkey(TypedDict, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -172,44 +172,44 @@ class Openpgpkey(TypedDict, total=False):
     """Record type."""
 
 
-class PTR(PTRRecordParam):
+class PTR(PTRRecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
-class SMIMEA(SMIMEARecordParam):
+class SMIMEA(SMIMEARecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
-class SRV(SRVRecordParam):
+class SRV(SRVRecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
-class SSHFP(SSHFPRecordParam):
+class SSHFP(SSHFPRecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
-class SVCB(SVCBRecordParam):
+class SVCB(SVCBRecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
-class TLSA(TLSARecordParam):
+class TLSA(TLSARecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
-class TXT(TXTRecordParam):
+class TXT(TXTRecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
-class URI(URIRecordParam):
+class URI(URIRecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
 BatchPatchParam: TypeAlias = Union[

@@ -9,10 +9,10 @@ __all__ = ["RawEditParams"]
 
 class RawEditParams(TypedDict, total=False):
     account_id: Required[float]
-    """Account ID"""
+    """Account ID."""
 
     event_id: Required[str]
-    """Event UUID"""
+    """Event UUID."""
 
     data: object
 

@@ -12,4 +12,4 @@ class UniqueClientIDInputParam(TypedDict, total=False):
     """List ID."""
 
     operating_system: Required[Literal["android", "ios", "chromeos"]]
-    """Operating System"""
+    """Operating System."""

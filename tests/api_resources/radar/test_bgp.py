@@ -26,7 +26,7 @@ class TestBGP:
     @parametrize
     def test_method_timeseries_with_all_params(self, client: Cloudflare) -> None:
         bgp = client.radar.bgp.timeseries(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
@@ -70,7 +70,7 @@ class TestAsyncBGP:
     @parametrize
     async def test_method_timeseries_with_all_params(self, async_client: AsyncCloudflare) -> None:
         bgp = await async_client.radar.bgp.timeseries(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],

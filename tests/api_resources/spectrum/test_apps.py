@@ -33,7 +33,7 @@ class TestApps:
             ip_firewall=True,
             protocol="tcp/22",
             proxy_protocol="off",
-            tls="off",
+            tls="full",
             traffic_type="direct",
         )
         assert_matches_type(Optional[AppCreateResponse], app, path=["response"])
@@ -50,7 +50,7 @@ class TestApps:
             ip_firewall=True,
             protocol="tcp/22",
             proxy_protocol="off",
-            tls="off",
+            tls="full",
             traffic_type="direct",
             argo_smart_routing=True,
             edge_ips={
@@ -76,7 +76,7 @@ class TestApps:
             ip_firewall=True,
             protocol="tcp/22",
             proxy_protocol="off",
-            tls="off",
+            tls="full",
             traffic_type="direct",
         )
 
@@ -94,7 +94,7 @@ class TestApps:
             ip_firewall=True,
             protocol="tcp/22",
             proxy_protocol="off",
-            tls="off",
+            tls="full",
             traffic_type="direct",
         ) as response:
             assert not response.is_closed
@@ -115,7 +115,7 @@ class TestApps:
                 ip_firewall=True,
                 protocol="tcp/22",
                 proxy_protocol="off",
-                tls="off",
+                tls="full",
                 traffic_type="direct",
             )
 
@@ -193,7 +193,7 @@ class TestApps:
             ip_firewall=True,
             protocol="tcp/22",
             proxy_protocol="off",
-            tls="off",
+            tls="full",
             traffic_type="direct",
         )
         assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
@@ -211,7 +211,7 @@ class TestApps:
             ip_firewall=True,
             protocol="tcp/22",
             proxy_protocol="off",
-            tls="off",
+            tls="full",
             traffic_type="direct",
             argo_smart_routing=True,
             edge_ips={
@@ -238,7 +238,7 @@ class TestApps:
             ip_firewall=True,
             protocol="tcp/22",
             proxy_protocol="off",
-            tls="off",
+            tls="full",
             traffic_type="direct",
         )
 
@@ -257,7 +257,7 @@ class TestApps:
             ip_firewall=True,
             protocol="tcp/22",
             proxy_protocol="off",
-            tls="off",
+            tls="full",
             traffic_type="direct",
         ) as response:
             assert not response.is_closed
@@ -279,7 +279,7 @@ class TestApps:
                 ip_firewall=True,
                 protocol="tcp/22",
                 proxy_protocol="off",
-                tls="off",
+                tls="full",
                 traffic_type="direct",
             )
 
@@ -291,7 +291,7 @@ class TestApps:
                 ip_firewall=True,
                 protocol="tcp/22",
                 proxy_protocol="off",
-                tls="off",
+                tls="full",
                 traffic_type="direct",
             )
 
@@ -385,7 +385,7 @@ class TestApps:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         app = client.spectrum.apps.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            direction="asc",
+            direction="desc",
             order="protocol",
             page=1,
             per_page=1,
@@ -535,7 +535,7 @@ class TestAsyncApps:
             ip_firewall=True,
             protocol="tcp/22",
             proxy_protocol="off",
-            tls="off",
+            tls="full",
             traffic_type="direct",
         )
         assert_matches_type(Optional[AppCreateResponse], app, path=["response"])
@@ -552,7 +552,7 @@ class TestAsyncApps:
             ip_firewall=True,
             protocol="tcp/22",
             proxy_protocol="off",
-            tls="off",
+            tls="full",
             traffic_type="direct",
             argo_smart_routing=True,
             edge_ips={
@@ -578,7 +578,7 @@ class TestAsyncApps:
             ip_firewall=True,
             protocol="tcp/22",
             proxy_protocol="off",
-            tls="off",
+            tls="full",
             traffic_type="direct",
         )
 
@@ -596,7 +596,7 @@ class TestAsyncApps:
             ip_firewall=True,
             protocol="tcp/22",
             proxy_protocol="off",
-            tls="off",
+            tls="full",
             traffic_type="direct",
         ) as response:
             assert not response.is_closed
@@ -617,7 +617,7 @@ class TestAsyncApps:
                 ip_firewall=True,
                 protocol="tcp/22",
                 proxy_protocol="off",
-                tls="off",
+                tls="full",
                 traffic_type="direct",
             )
 
@@ -695,7 +695,7 @@ class TestAsyncApps:
             ip_firewall=True,
             protocol="tcp/22",
             proxy_protocol="off",
-            tls="off",
+            tls="full",
             traffic_type="direct",
         )
         assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
@@ -713,7 +713,7 @@ class TestAsyncApps:
             ip_firewall=True,
             protocol="tcp/22",
             proxy_protocol="off",
-            tls="off",
+            tls="full",
             traffic_type="direct",
             argo_smart_routing=True,
             edge_ips={
@@ -740,7 +740,7 @@ class TestAsyncApps:
             ip_firewall=True,
             protocol="tcp/22",
             proxy_protocol="off",
-            tls="off",
+            tls="full",
             traffic_type="direct",
         )
 
@@ -759,7 +759,7 @@ class TestAsyncApps:
             ip_firewall=True,
             protocol="tcp/22",
             proxy_protocol="off",
-            tls="off",
+            tls="full",
             traffic_type="direct",
         ) as response:
             assert not response.is_closed
@@ -781,7 +781,7 @@ class TestAsyncApps:
                 ip_firewall=True,
                 protocol="tcp/22",
                 proxy_protocol="off",
-                tls="off",
+                tls="full",
                 traffic_type="direct",
             )
 
@@ -793,7 +793,7 @@ class TestAsyncApps:
                 ip_firewall=True,
                 protocol="tcp/22",
                 proxy_protocol="off",
-                tls="off",
+                tls="full",
                 traffic_type="direct",
             )
 
@@ -887,7 +887,7 @@ class TestAsyncApps:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         app = await async_client.spectrum.apps.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            direction="asc",
+            direction="desc",
             order="protocol",
             page=1,
             per_page=1,

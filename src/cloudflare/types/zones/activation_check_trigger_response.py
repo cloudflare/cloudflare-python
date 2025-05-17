@@ -9,4 +9,4 @@ __all__ = ["ActivationCheckTriggerResponse"]
 
 class ActivationCheckTriggerResponse(BaseModel):
     id: Optional[str] = None
-    """Identifier"""
+    """Identifier."""

@@ -13,7 +13,7 @@ __all__ = ["LockdownListParams"]
 
 class LockdownListParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Defines an identifier."""
 
     created_on: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """The timestamp of when the rule was created."""

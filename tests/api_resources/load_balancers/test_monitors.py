@@ -50,7 +50,7 @@ class TestMonitors:
             probe_zone="example.com",
             retries=0,
             load_balancer_monitor_timeout=0,
-            type="http",
+            type="https",
         )
         assert_matches_type(Monitor, monitor, path=["response"])
 
@@ -116,7 +116,7 @@ class TestMonitors:
             probe_zone="example.com",
             retries=0,
             load_balancer_monitor_timeout=0,
-            type="http",
+            type="https",
         )
         assert_matches_type(Monitor, monitor, path=["response"])
 
@@ -277,7 +277,7 @@ class TestMonitors:
             probe_zone="example.com",
             retries=0,
             load_balancer_monitor_timeout=0,
-            type="http",
+            type="https",
         )
         assert_matches_type(Monitor, monitor, path=["response"])
 
@@ -402,7 +402,7 @@ class TestAsyncMonitors:
             probe_zone="example.com",
             retries=0,
             load_balancer_monitor_timeout=0,
-            type="http",
+            type="https",
         )
         assert_matches_type(Monitor, monitor, path=["response"])
 
@@ -468,7 +468,7 @@ class TestAsyncMonitors:
             probe_zone="example.com",
             retries=0,
             load_balancer_monitor_timeout=0,
-            type="http",
+            type="https",
         )
         assert_matches_type(Monitor, monitor, path=["response"])
 
@@ -629,7 +629,7 @@ class TestAsyncMonitors:
             probe_zone="example.com",
             retries=0,
             load_balancer_monitor_timeout=0,
-            type="http",
+            type="https",
         )
         assert_matches_type(Monitor, monitor, path=["response"])
 

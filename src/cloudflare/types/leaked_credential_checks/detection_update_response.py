@@ -9,10 +9,10 @@ __all__ = ["DetectionUpdateResponse"]
 
 class DetectionUpdateResponse(BaseModel):
     id: Optional[str] = None
-    """The unique ID for this custom detection"""
+    """Defines the unique ID for this custom detection."""
 
     password: Optional[str] = None
-    """The ruleset expression to use in matching the password in a request"""
+    """Defines ehe ruleset expression to use in matching the password in a request."""
 
     username: Optional[str] = None
-    """The ruleset expression to use in matching the username in a request"""
+    """Defines the ruleset expression to use in matching the username in a request."""

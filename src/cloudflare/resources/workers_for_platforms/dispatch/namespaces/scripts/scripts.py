@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Dict, Type, Optional, cast
 
 import httpx
 
@@ -46,11 +46,8 @@ from .settings import (
     SettingsResourceWithStreamingResponse,
     AsyncSettingsResourceWithStreamingResponse,
 )
-from ......_types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
-from ......_utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
+from ......_utils import maybe_transform, async_maybe_transform
 from ......_compat import cached_property
 from .asset_upload import (
     AssetUploadResource,
@@ -127,13 +124,14 @@ class ScriptsResource(SyncAPIResource):
         account_id: str,
         dispatch_namespace: str,
         metadata: script_update_params.Metadata,
+        files: Dict[str, FileTypes] = {},
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScriptUpdateResponse]:
+    ) -> ScriptUpdateResponse:
         """Upload a worker module to a Workers for Platforms namespace.
 
         You can find more
@@ -141,7 +139,7 @@ class ScriptsResource(SyncAPIResource):
         https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -166,14 +164,15 @@ class ScriptsResource(SyncAPIResource):
         return self._put(
             f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}",
             body=maybe_transform({"metadata": metadata}, script_update_params.ScriptUpdateParams),
+            files=files,
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ScriptUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[ScriptUpdateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ScriptUpdateResponse]], ResultWrapper[ScriptUpdateResponse]),
+            cast_to=cast(Type[ScriptUpdateResponse], ResultWrapper[ScriptUpdateResponse]),
         )
 
     def delete(
@@ -189,14 +188,14 @@ class ScriptsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
+    ) -> object:
         """Delete a worker from a Workers for Platforms namespace.
 
         This call has no
         response body on a successful delete.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -220,7 +219,6 @@ class ScriptsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `dispatch_namespace` but received {dispatch_namespace!r}")
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}",
             options=make_request_options(
@@ -229,8 +227,9 @@ class ScriptsResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"force": force}, script_delete_params.ScriptDeleteParams),
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=NoneType,
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def get(
@@ -245,12 +244,12 @@ class ScriptsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Script]:
+    ) -> Script:
         """
         Fetch information about a script uploaded to a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -277,9 +276,9 @@ class ScriptsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Script]]._unwrapper,
+                post_parser=ResultWrapper[Script]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Script]], ResultWrapper[Script]),
+            cast_to=cast(Type[Script], ResultWrapper[Script]),
         )
 
 
@@ -334,13 +333,14 @@ class AsyncScriptsResource(AsyncAPIResource):
         account_id: str,
         dispatch_namespace: str,
         metadata: script_update_params.Metadata,
+        files: Dict[str, FileTypes] = {},
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScriptUpdateResponse]:
+    ) -> ScriptUpdateResponse:
         """Upload a worker module to a Workers for Platforms namespace.
 
         You can find more
@@ -348,7 +348,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -373,14 +373,15 @@ class AsyncScriptsResource(AsyncAPIResource):
         return await self._put(
             f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}",
             body=await async_maybe_transform({"metadata": metadata}, script_update_params.ScriptUpdateParams),
+            files=files,
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ScriptUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[ScriptUpdateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ScriptUpdateResponse]], ResultWrapper[ScriptUpdateResponse]),
+            cast_to=cast(Type[ScriptUpdateResponse], ResultWrapper[ScriptUpdateResponse]),
         )
 
     async def delete(
@@ -396,14 +397,14 @@ class AsyncScriptsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
+    ) -> object:
         """Delete a worker from a Workers for Platforms namespace.
 
         This call has no
         response body on a successful delete.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -427,7 +428,6 @@ class AsyncScriptsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `dispatch_namespace` but received {dispatch_namespace!r}")
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}",
             options=make_request_options(
@@ -436,8 +436,9 @@ class AsyncScriptsResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform({"force": force}, script_delete_params.ScriptDeleteParams),
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=NoneType,
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     async def get(
@@ -452,12 +453,12 @@ class AsyncScriptsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Script]:
+    ) -> Script:
         """
         Fetch information about a script uploaded to a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -484,9 +485,9 @@ class AsyncScriptsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Script]]._unwrapper,
+                post_parser=ResultWrapper[Script]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Script]], ResultWrapper[Script]),
+            cast_to=cast(Type[Script], ResultWrapper[Script]),
         )
 
 

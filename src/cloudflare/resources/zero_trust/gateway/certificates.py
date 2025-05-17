@@ -7,10 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -74,7 +71,9 @@ class CertificatesResource(SyncAPIResource):
 
         Args:
           validity_period_days: Number of days the generated certificate will be valid, minimum 1 day and
-              maximum 30 years. Defaults to 5 years.
+              maximum 30 years. Defaults to 5 years. In terraform, validity_period_days can
+              only be used while creating a certificate, and this CAN NOT be used to extend
+              the validity of an already generated certificate.
 
           extra_headers: Send extra headers
 
@@ -347,7 +346,9 @@ class AsyncCertificatesResource(AsyncAPIResource):
 
         Args:
           validity_period_days: Number of days the generated certificate will be valid, minimum 1 day and
-              maximum 30 years. Defaults to 5 years.
+              maximum 30 years. Defaults to 5 years. In terraform, validity_period_days can
+              only be used while creating a certificate, and this CAN NOT be used to extend
+              the validity of an already generated certificate.
 
           extra_headers: Send extra headers
 

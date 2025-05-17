@@ -24,6 +24,14 @@ from .inference import (
     InferenceResourceWithStreamingResponse,
     AsyncInferenceResourceWithStreamingResponse,
 )
+from .to_markdown import (
+    ToMarkdownResource,
+    AsyncToMarkdownResource,
+    ToMarkdownResourceWithRawResponse,
+    AsyncToMarkdownResourceWithRawResponse,
+    ToMarkdownResourceWithStreamingResponse,
+    AsyncToMarkdownResourceWithStreamingResponse,
+)
 from .timeseries_groups import (
     TimeseriesGroupsResource,
     AsyncTimeseriesGroupsResource,
@@ -34,6 +42,12 @@ from .timeseries_groups import (
 )
 
 __all__ = [
+    "ToMarkdownResource",
+    "AsyncToMarkdownResource",
+    "ToMarkdownResourceWithRawResponse",
+    "AsyncToMarkdownResourceWithRawResponse",
+    "ToMarkdownResourceWithStreamingResponse",
+    "AsyncToMarkdownResourceWithStreamingResponse",
     "InferenceResource",
     "AsyncInferenceResource",
     "InferenceResourceWithRawResponse",

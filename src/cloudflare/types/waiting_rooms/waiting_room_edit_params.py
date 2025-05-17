@@ -13,7 +13,7 @@ __all__ = ["WaitingRoomEditParams"]
 
 class WaitingRoomEditParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     host: Required[str]
     """The host name to which the waiting room will be applied (no wildcards).
@@ -197,7 +197,7 @@ class WaitingRoomEditParams(TypedDict, total=False):
     11. `refreshIntervalSeconds`: Integer indicating the number of seconds after
         `lastUpdated` until the user is able to make another attempt to leave the
         waiting room and be let into the origin website. When the `queueingMethod`
-        is `reject`, there is no specified refresh time — it will always be
+        is `reject`, there is no specified refresh time —\\__it will always be
         **zero**.
     12. `queueingMethod`: The queueing method currently used by the waiting room. It
         is either **fifo**, **random**, **passthrough**, or **reject**.
@@ -233,6 +233,11 @@ class WaitingRoomEditParams(TypedDict, total=False):
     23. `shuffleAtEventStart`: Valid only when `isEventActive` is **true**. Boolean
         indicating if the users in the prequeue are shuffled randomly when the event
         starts.
+    24. `turnstile`: Empty when turnstile isn't enabled. String displaying an html
+        tag to display the Turnstile widget. Please add the `{{{turnstile}}}` tag to
+        the `custom_html` template to ensure the Turnstile widget appears.
+    25. `infiniteQueue`: Boolean indicating whether the response is for a user in
+        the infinite queue.
 
     An example cURL to a waiting room could be:
 
@@ -301,7 +306,7 @@ class WaitingRoomEditParams(TypedDict, total=False):
         		"timeUntilEventEndFormatted": "15 minutes",
         		"shuffleAtEventStart": true
         	}
-        }.
+        }
     """
 
     path: str

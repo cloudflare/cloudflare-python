@@ -14,7 +14,9 @@ from cloudflare.types.radar.attacks.layer3 import (
     SummaryVectorResponse,
     SummaryBitrateResponse,
     SummaryDurationResponse,
+    SummaryIndustryResponse,
     SummaryProtocolResponse,
+    SummaryVerticalResponse,
     SummaryIPVersionResponse,
 )
 
@@ -103,6 +105,48 @@ class TestSummary:
 
             summary = response.parse()
             assert_matches_type(SummaryDurationResponse, summary, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_industry(self, client: Cloudflare) -> None:
+        summary = client.radar.attacks.layer3.summary.industry()
+        assert_matches_type(SummaryIndustryResponse, summary, path=["response"])
+
+    @parametrize
+    def test_method_industry_with_all_params(self, client: Cloudflare) -> None:
+        summary = client.radar.attacks.layer3.summary.industry(
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            direction="ORIGIN",
+            format="JSON",
+            ip_version=["IPv4"],
+            limit_per_group=10,
+            location=["string"],
+            name=["main_series"],
+            protocol=["UDP"],
+        )
+        assert_matches_type(SummaryIndustryResponse, summary, path=["response"])
+
+    @parametrize
+    def test_raw_response_industry(self, client: Cloudflare) -> None:
+        response = client.radar.attacks.layer3.summary.with_raw_response.industry()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        summary = response.parse()
+        assert_matches_type(SummaryIndustryResponse, summary, path=["response"])
+
+    @parametrize
+    def test_streaming_response_industry(self, client: Cloudflare) -> None:
+        with client.radar.attacks.layer3.summary.with_streaming_response.industry() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            summary = response.parse()
+            assert_matches_type(SummaryIndustryResponse, summary, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -228,6 +272,48 @@ class TestSummary:
 
         assert cast(Any, response.is_closed) is True
 
+    @parametrize
+    def test_method_vertical(self, client: Cloudflare) -> None:
+        summary = client.radar.attacks.layer3.summary.vertical()
+        assert_matches_type(SummaryVerticalResponse, summary, path=["response"])
+
+    @parametrize
+    def test_method_vertical_with_all_params(self, client: Cloudflare) -> None:
+        summary = client.radar.attacks.layer3.summary.vertical(
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            direction="ORIGIN",
+            format="JSON",
+            ip_version=["IPv4"],
+            limit_per_group=10,
+            location=["string"],
+            name=["main_series"],
+            protocol=["UDP"],
+        )
+        assert_matches_type(SummaryVerticalResponse, summary, path=["response"])
+
+    @parametrize
+    def test_raw_response_vertical(self, client: Cloudflare) -> None:
+        response = client.radar.attacks.layer3.summary.with_raw_response.vertical()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        summary = response.parse()
+        assert_matches_type(SummaryVerticalResponse, summary, path=["response"])
+
+    @parametrize
+    def test_streaming_response_vertical(self, client: Cloudflare) -> None:
+        with client.radar.attacks.layer3.summary.with_streaming_response.vertical() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            summary = response.parse()
+            assert_matches_type(SummaryVerticalResponse, summary, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
 
 class TestAsyncSummary:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -311,6 +397,48 @@ class TestAsyncSummary:
 
             summary = await response.parse()
             assert_matches_type(SummaryDurationResponse, summary, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_industry(self, async_client: AsyncCloudflare) -> None:
+        summary = await async_client.radar.attacks.layer3.summary.industry()
+        assert_matches_type(SummaryIndustryResponse, summary, path=["response"])
+
+    @parametrize
+    async def test_method_industry_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        summary = await async_client.radar.attacks.layer3.summary.industry(
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            direction="ORIGIN",
+            format="JSON",
+            ip_version=["IPv4"],
+            limit_per_group=10,
+            location=["string"],
+            name=["main_series"],
+            protocol=["UDP"],
+        )
+        assert_matches_type(SummaryIndustryResponse, summary, path=["response"])
+
+    @parametrize
+    async def test_raw_response_industry(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.radar.attacks.layer3.summary.with_raw_response.industry()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        summary = await response.parse()
+        assert_matches_type(SummaryIndustryResponse, summary, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_industry(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.radar.attacks.layer3.summary.with_streaming_response.industry() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            summary = await response.parse()
+            assert_matches_type(SummaryIndustryResponse, summary, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -433,5 +561,47 @@ class TestAsyncSummary:
 
             summary = await response.parse()
             assert_matches_type(SummaryVectorResponse, summary, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_vertical(self, async_client: AsyncCloudflare) -> None:
+        summary = await async_client.radar.attacks.layer3.summary.vertical()
+        assert_matches_type(SummaryVerticalResponse, summary, path=["response"])
+
+    @parametrize
+    async def test_method_vertical_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        summary = await async_client.radar.attacks.layer3.summary.vertical(
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            direction="ORIGIN",
+            format="JSON",
+            ip_version=["IPv4"],
+            limit_per_group=10,
+            location=["string"],
+            name=["main_series"],
+            protocol=["UDP"],
+        )
+        assert_matches_type(SummaryVerticalResponse, summary, path=["response"])
+
+    @parametrize
+    async def test_raw_response_vertical(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.radar.attacks.layer3.summary.with_raw_response.vertical()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        summary = await response.parse()
+        assert_matches_type(SummaryVerticalResponse, summary, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_vertical(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.radar.attacks.layer3.summary.with_streaming_response.vertical() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            summary = await response.parse()
+            assert_matches_type(SummaryVerticalResponse, summary, path=["response"])
 
         assert cast(Any, response.is_closed) is True

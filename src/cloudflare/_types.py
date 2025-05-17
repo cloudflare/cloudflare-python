@@ -71,6 +71,8 @@ HttpxFileTypes = Union[
 ]
 HttpxRequestFiles = Union[Mapping[str, HttpxFileTypes], Sequence[Tuple[str, HttpxFileTypes]]]
 
+MultipartSyntax = Literal["query", "json"]
+
 # Workaround to support (cast_to: Type[ResponseT]) -> ResponseT
 # where ResponseT includes `None`. In order to support directly
 # passing `None`, overloads would have to be defined for every
@@ -100,6 +102,7 @@ class RequestOptions(TypedDict, total=False):
     params: Query
     extra_json: AnyMapping
     idempotency_key: str
+    multipart_syntax: MultipartSyntax
 
 
 # Sentinel class used until PEP 0661 is accepted

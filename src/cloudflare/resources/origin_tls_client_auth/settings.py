@@ -7,10 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -67,7 +64,7 @@ class SettingsResource(SyncAPIResource):
         use.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           enabled: Indicates whether zone-level authenticated origin pulls is enabled.
 
@@ -111,7 +108,7 @@ class SettingsResource(SyncAPIResource):
         by default.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -175,7 +172,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         use.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           enabled: Indicates whether zone-level authenticated origin pulls is enabled.
 
@@ -219,7 +216,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         by default.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

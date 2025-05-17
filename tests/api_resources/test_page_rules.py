@@ -195,7 +195,7 @@ class TestPageRules:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         page_rule = client.page_rules.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            direction="asc",
+            direction="desc",
             match="any",
             order="status",
             status="active",
@@ -580,7 +580,7 @@ class TestAsyncPageRules:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         page_rule = await async_client.page_rules.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            direction="asc",
+            direction="desc",
             match="any",
             order="status",
             status="active",

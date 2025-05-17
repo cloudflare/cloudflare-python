@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
@@ -25,7 +25,7 @@ class TestAccountSettings:
         account_setting = client.workers.account_settings.update(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[AccountSettingUpdateResponse], account_setting, path=["response"])
+        assert_matches_type(AccountSettingUpdateResponse, account_setting, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
@@ -34,7 +34,7 @@ class TestAccountSettings:
             default_usage_model="default_usage_model",
             green_compute=True,
         )
-        assert_matches_type(Optional[AccountSettingUpdateResponse], account_setting, path=["response"])
+        assert_matches_type(AccountSettingUpdateResponse, account_setting, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
@@ -45,7 +45,7 @@ class TestAccountSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account_setting = response.parse()
-        assert_matches_type(Optional[AccountSettingUpdateResponse], account_setting, path=["response"])
+        assert_matches_type(AccountSettingUpdateResponse, account_setting, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
@@ -56,7 +56,7 @@ class TestAccountSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             account_setting = response.parse()
-            assert_matches_type(Optional[AccountSettingUpdateResponse], account_setting, path=["response"])
+            assert_matches_type(AccountSettingUpdateResponse, account_setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -72,7 +72,7 @@ class TestAccountSettings:
         account_setting = client.workers.account_settings.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[AccountSettingGetResponse], account_setting, path=["response"])
+        assert_matches_type(AccountSettingGetResponse, account_setting, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -83,7 +83,7 @@ class TestAccountSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account_setting = response.parse()
-        assert_matches_type(Optional[AccountSettingGetResponse], account_setting, path=["response"])
+        assert_matches_type(AccountSettingGetResponse, account_setting, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -94,7 +94,7 @@ class TestAccountSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             account_setting = response.parse()
-            assert_matches_type(Optional[AccountSettingGetResponse], account_setting, path=["response"])
+            assert_matches_type(AccountSettingGetResponse, account_setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -114,7 +114,7 @@ class TestAsyncAccountSettings:
         account_setting = await async_client.workers.account_settings.update(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[AccountSettingUpdateResponse], account_setting, path=["response"])
+        assert_matches_type(AccountSettingUpdateResponse, account_setting, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -123,7 +123,7 @@ class TestAsyncAccountSettings:
             default_usage_model="default_usage_model",
             green_compute=True,
         )
-        assert_matches_type(Optional[AccountSettingUpdateResponse], account_setting, path=["response"])
+        assert_matches_type(AccountSettingUpdateResponse, account_setting, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -134,7 +134,7 @@ class TestAsyncAccountSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account_setting = await response.parse()
-        assert_matches_type(Optional[AccountSettingUpdateResponse], account_setting, path=["response"])
+        assert_matches_type(AccountSettingUpdateResponse, account_setting, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -145,7 +145,7 @@ class TestAsyncAccountSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             account_setting = await response.parse()
-            assert_matches_type(Optional[AccountSettingUpdateResponse], account_setting, path=["response"])
+            assert_matches_type(AccountSettingUpdateResponse, account_setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -161,7 +161,7 @@ class TestAsyncAccountSettings:
         account_setting = await async_client.workers.account_settings.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[AccountSettingGetResponse], account_setting, path=["response"])
+        assert_matches_type(AccountSettingGetResponse, account_setting, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -172,7 +172,7 @@ class TestAsyncAccountSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account_setting = await response.parse()
-        assert_matches_type(Optional[AccountSettingGetResponse], account_setting, path=["response"])
+        assert_matches_type(AccountSettingGetResponse, account_setting, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -183,7 +183,7 @@ class TestAsyncAccountSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             account_setting = await response.parse()
-            assert_matches_type(Optional[AccountSettingGetResponse], account_setting, path=["response"])
+            assert_matches_type(AccountSettingGetResponse, account_setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

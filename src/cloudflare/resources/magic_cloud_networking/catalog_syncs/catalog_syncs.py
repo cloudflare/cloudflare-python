@@ -8,11 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    strip_not_given,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, strip_not_given, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -91,7 +87,7 @@ class CatalogSyncsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CatalogSyncCreateResponse:
         """
-        Create a new Catalog Sync (Closed Beta)
+        Create a new Catalog Sync (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -144,7 +140,7 @@ class CatalogSyncsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CatalogSyncUpdateResponse:
         """
-        Update a Catalog Sync (Closed Beta)
+        Update a Catalog Sync (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -192,7 +188,7 @@ class CatalogSyncsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncSinglePage[CatalogSyncListResponse]:
         """
-        List Catalog Syncs (Closed Beta)
+        List Catalog Syncs (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -228,7 +224,7 @@ class CatalogSyncsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CatalogSyncDeleteResponse:
         """
-        Delete a Catalog Sync (Closed Beta)
+        Delete a Catalog Sync (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -275,7 +271,7 @@ class CatalogSyncsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CatalogSyncEditResponse:
         """
-        Update a Catalog Sync (Closed Beta)
+        Update a Catalog Sync (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -324,7 +320,7 @@ class CatalogSyncsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CatalogSyncGetResponse:
         """
-        Read a Catalog Sync (Closed Beta)
+        Read a Catalog Sync (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -365,7 +361,7 @@ class CatalogSyncsResource(SyncAPIResource):
     ) -> str:
         """
         Refresh a Catalog Sync's destination by running the sync policy against latest
-        resource catalog (Closed Beta)
+        resource catalog (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -435,7 +431,7 @@ class AsyncCatalogSyncsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CatalogSyncCreateResponse:
         """
-        Create a new Catalog Sync (Closed Beta)
+        Create a new Catalog Sync (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -488,7 +484,7 @@ class AsyncCatalogSyncsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CatalogSyncUpdateResponse:
         """
-        Update a Catalog Sync (Closed Beta)
+        Update a Catalog Sync (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -536,7 +532,7 @@ class AsyncCatalogSyncsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[CatalogSyncListResponse, AsyncSinglePage[CatalogSyncListResponse]]:
         """
-        List Catalog Syncs (Closed Beta)
+        List Catalog Syncs (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -572,7 +568,7 @@ class AsyncCatalogSyncsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CatalogSyncDeleteResponse:
         """
-        Delete a Catalog Sync (Closed Beta)
+        Delete a Catalog Sync (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -619,7 +615,7 @@ class AsyncCatalogSyncsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CatalogSyncEditResponse:
         """
-        Update a Catalog Sync (Closed Beta)
+        Update a Catalog Sync (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -668,7 +664,7 @@ class AsyncCatalogSyncsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CatalogSyncGetResponse:
         """
-        Read a Catalog Sync (Closed Beta)
+        Read a Catalog Sync (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -709,7 +705,7 @@ class AsyncCatalogSyncsResource(AsyncAPIResource):
     ) -> str:
         """
         Refresh a Catalog Sync's destination by running the sync policy against latest
-        resource catalog (Closed Beta)
+        resource catalog (Closed Beta).
 
         Args:
           extra_headers: Send extra headers

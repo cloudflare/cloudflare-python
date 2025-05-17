@@ -15,14 +15,14 @@ class ASNEstimatedUsersLocation(BaseModel):
     location_name: str = FieldInfo(alias="locationName")
 
     estimated_users: Optional[int] = FieldInfo(alias="estimatedUsers", default=None)
-    """Estimated users per location"""
+    """Estimated users per location."""
 
 
 class ASNEstimatedUsers(BaseModel):
     locations: List[ASNEstimatedUsersLocation]
 
     estimated_users: Optional[int] = FieldInfo(alias="estimatedUsers", default=None)
-    """Total estimated users"""
+    """Total estimated users."""
 
 
 class ASNRelated(BaseModel):
@@ -33,7 +33,7 @@ class ASNRelated(BaseModel):
     aka: Optional[str] = None
 
     estimated_users: Optional[int] = FieldInfo(alias="estimatedUsers", default=None)
-    """Total estimated users"""
+    """Total estimated users."""
 
 
 class ASN(BaseModel):
@@ -52,7 +52,7 @@ class ASN(BaseModel):
     related: List[ASNRelated]
 
     source: str
-    """Regional Internet Registry"""
+    """Regional Internet Registry."""
 
     website: str
 

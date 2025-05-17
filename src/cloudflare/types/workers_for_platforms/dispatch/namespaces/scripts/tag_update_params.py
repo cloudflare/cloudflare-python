@@ -10,10 +10,10 @@ __all__ = ["TagUpdateParams"]
 
 class TagUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     dispatch_namespace: Required[str]
     """Name of the Workers for Platforms dispatch namespace."""
 
     body: Required[List[str]]
-    """Tags to help you manage your Workers"""
+    """Tags to help you manage your Workers."""

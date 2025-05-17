@@ -9,7 +9,7 @@ __all__ = ["ViewListParams", "Name"]
 
 class ViewListParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     direction: Literal["asc", "desc"]
     """Direction to order DNS views in."""

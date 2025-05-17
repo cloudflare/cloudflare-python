@@ -15,7 +15,7 @@ from .extended_email_matching import ExtendedEmailMatching
 from .browser_isolation_settings import BrowserIsolationSettings
 from .custom_certificate_settings import CustomCertificateSettings
 
-__all__ = ["GatewayConfigurationSettings", "Certificate", "Sandbox"]
+__all__ = ["GatewayConfigurationSettings", "Certificate", "HostSelector", "Sandbox"]
 
 
 class Certificate(BaseModel):
@@ -25,6 +25,11 @@ class Certificate(BaseModel):
     Certificate must be available (previously called 'active') on the edge. A nil
     UUID will indicate the Cloudflare Root CA should be used.
     """
+
+
+class HostSelector(BaseModel):
+    enabled: Optional[bool] = None
+    """Enable filtering via hosts for egress policies."""
 
 
 class Sandbox(BaseModel):
@@ -68,6 +73,9 @@ class GatewayConfigurationSettings(BaseModel):
 
     fips: Optional[FipsSettings] = None
     """FIPS settings."""
+
+    host_selector: Optional[HostSelector] = None
+    """Setting to enable host selector in egress policies."""
 
     protocol_detection: Optional[ProtocolDetection] = None
     """Protocol Detection settings."""

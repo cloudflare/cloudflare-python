@@ -9,4 +9,4 @@ __all__ = ["GatewayCADeleteResponse"]
 
 class GatewayCADeleteResponse(BaseModel):
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""

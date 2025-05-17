@@ -9,7 +9,7 @@ __all__ = ["RuleListParams"]
 
 class RuleListParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Defines an identifier."""
 
     id: str
     """The unique identifier of the firewall rule."""

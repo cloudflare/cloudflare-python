@@ -11,4 +11,4 @@ class PrebuiltPolicyListParams(TypedDict, total=False):
     account_id: Required[str]
 
     destination_type: Literal["NONE", "ZERO_TRUST_LIST"]
-    """specify type of destination, omit to return all"""
+    """Specify type of destination, omit to return all."""

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Type, Optional, cast
+from typing_extensions import Literal
 
 import httpx
 
@@ -15,10 +16,7 @@ from .details import (
     AsyncDetailsResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -79,6 +77,9 @@ class EventsResource(SyncAPIResource):
         shuffle_at_event_start: bool | NotGiven = NOT_GIVEN,
         suspended: bool | NotGiven = NOT_GIVEN,
         total_active_users: Optional[int] | NotGiven = NOT_GIVEN,
+        turnstile_action: Optional[Literal["log", "infinite_queue"]] | NotGiven = NOT_GIVEN,
+        turnstile_mode: Optional[Literal["off", "invisible", "visible_non_interactive", "visible_managed"]]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -96,7 +97,7 @@ class EventsResource(SyncAPIResource):
         with each other, so only one event can be active at a time.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           event_end_time: An ISO 8601 timestamp that marks the end of the event.
 
@@ -143,6 +144,12 @@ class EventsResource(SyncAPIResource):
               while it is active. If null, the event will inherit it. This can only be set if
               the event's `new_users_per_minute` property is also set.
 
+          turnstile_action: If set, the event will override the waiting room's `turnstile_action` property
+              while it is active. If null, the event will inherit it.
+
+          turnstile_mode: If set, the event will override the waiting room's `turnstile_mode` property
+              while it is active. If null, the event will inherit it.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -172,6 +179,8 @@ class EventsResource(SyncAPIResource):
                     "shuffle_at_event_start": shuffle_at_event_start,
                     "suspended": suspended,
                     "total_active_users": total_active_users,
+                    "turnstile_action": turnstile_action,
+                    "turnstile_mode": turnstile_mode,
                 },
                 event_create_params.EventCreateParams,
             ),
@@ -204,6 +213,9 @@ class EventsResource(SyncAPIResource):
         shuffle_at_event_start: bool | NotGiven = NOT_GIVEN,
         suspended: bool | NotGiven = NOT_GIVEN,
         total_active_users: Optional[int] | NotGiven = NOT_GIVEN,
+        turnstile_action: Optional[Literal["log", "infinite_queue"]] | NotGiven = NOT_GIVEN,
+        turnstile_mode: Optional[Literal["off", "invisible", "visible_non_interactive", "visible_managed"]]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -215,7 +227,7 @@ class EventsResource(SyncAPIResource):
         Updates a configured event for a waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           event_end_time: An ISO 8601 timestamp that marks the end of the event.
 
@@ -262,6 +274,12 @@ class EventsResource(SyncAPIResource):
               while it is active. If null, the event will inherit it. This can only be set if
               the event's `new_users_per_minute` property is also set.
 
+          turnstile_action: If set, the event will override the waiting room's `turnstile_action` property
+              while it is active. If null, the event will inherit it.
+
+          turnstile_mode: If set, the event will override the waiting room's `turnstile_mode` property
+              while it is active. If null, the event will inherit it.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -293,6 +311,8 @@ class EventsResource(SyncAPIResource):
                     "shuffle_at_event_start": shuffle_at_event_start,
                     "suspended": suspended,
                     "total_active_users": total_active_users,
+                    "turnstile_action": turnstile_action,
+                    "turnstile_mode": turnstile_mode,
                 },
                 event_update_params.EventUpdateParams,
             ),
@@ -324,7 +344,7 @@ class EventsResource(SyncAPIResource):
         Lists events for a waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           page: Page number of paginated results.
 
@@ -378,7 +398,7 @@ class EventsResource(SyncAPIResource):
         Deletes an event for a waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -425,6 +445,9 @@ class EventsResource(SyncAPIResource):
         shuffle_at_event_start: bool | NotGiven = NOT_GIVEN,
         suspended: bool | NotGiven = NOT_GIVEN,
         total_active_users: Optional[int] | NotGiven = NOT_GIVEN,
+        turnstile_action: Optional[Literal["log", "infinite_queue"]] | NotGiven = NOT_GIVEN,
+        turnstile_mode: Optional[Literal["off", "invisible", "visible_non_interactive", "visible_managed"]]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -436,7 +459,7 @@ class EventsResource(SyncAPIResource):
         Patches a configured event for a waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           event_end_time: An ISO 8601 timestamp that marks the end of the event.
 
@@ -483,6 +506,12 @@ class EventsResource(SyncAPIResource):
               while it is active. If null, the event will inherit it. This can only be set if
               the event's `new_users_per_minute` property is also set.
 
+          turnstile_action: If set, the event will override the waiting room's `turnstile_action` property
+              while it is active. If null, the event will inherit it.
+
+          turnstile_mode: If set, the event will override the waiting room's `turnstile_mode` property
+              while it is active. If null, the event will inherit it.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -514,6 +543,8 @@ class EventsResource(SyncAPIResource):
                     "shuffle_at_event_start": shuffle_at_event_start,
                     "suspended": suspended,
                     "total_active_users": total_active_users,
+                    "turnstile_action": turnstile_action,
+                    "turnstile_mode": turnstile_mode,
                 },
                 event_edit_params.EventEditParams,
             ),
@@ -544,7 +575,7 @@ class EventsResource(SyncAPIResource):
         Fetches a single configured event for a waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -615,6 +646,9 @@ class AsyncEventsResource(AsyncAPIResource):
         shuffle_at_event_start: bool | NotGiven = NOT_GIVEN,
         suspended: bool | NotGiven = NOT_GIVEN,
         total_active_users: Optional[int] | NotGiven = NOT_GIVEN,
+        turnstile_action: Optional[Literal["log", "infinite_queue"]] | NotGiven = NOT_GIVEN,
+        turnstile_mode: Optional[Literal["off", "invisible", "visible_non_interactive", "visible_managed"]]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -632,7 +666,7 @@ class AsyncEventsResource(AsyncAPIResource):
         with each other, so only one event can be active at a time.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           event_end_time: An ISO 8601 timestamp that marks the end of the event.
 
@@ -679,6 +713,12 @@ class AsyncEventsResource(AsyncAPIResource):
               while it is active. If null, the event will inherit it. This can only be set if
               the event's `new_users_per_minute` property is also set.
 
+          turnstile_action: If set, the event will override the waiting room's `turnstile_action` property
+              while it is active. If null, the event will inherit it.
+
+          turnstile_mode: If set, the event will override the waiting room's `turnstile_mode` property
+              while it is active. If null, the event will inherit it.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -708,6 +748,8 @@ class AsyncEventsResource(AsyncAPIResource):
                     "shuffle_at_event_start": shuffle_at_event_start,
                     "suspended": suspended,
                     "total_active_users": total_active_users,
+                    "turnstile_action": turnstile_action,
+                    "turnstile_mode": turnstile_mode,
                 },
                 event_create_params.EventCreateParams,
             ),
@@ -740,6 +782,9 @@ class AsyncEventsResource(AsyncAPIResource):
         shuffle_at_event_start: bool | NotGiven = NOT_GIVEN,
         suspended: bool | NotGiven = NOT_GIVEN,
         total_active_users: Optional[int] | NotGiven = NOT_GIVEN,
+        turnstile_action: Optional[Literal["log", "infinite_queue"]] | NotGiven = NOT_GIVEN,
+        turnstile_mode: Optional[Literal["off", "invisible", "visible_non_interactive", "visible_managed"]]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -751,7 +796,7 @@ class AsyncEventsResource(AsyncAPIResource):
         Updates a configured event for a waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           event_end_time: An ISO 8601 timestamp that marks the end of the event.
 
@@ -798,6 +843,12 @@ class AsyncEventsResource(AsyncAPIResource):
               while it is active. If null, the event will inherit it. This can only be set if
               the event's `new_users_per_minute` property is also set.
 
+          turnstile_action: If set, the event will override the waiting room's `turnstile_action` property
+              while it is active. If null, the event will inherit it.
+
+          turnstile_mode: If set, the event will override the waiting room's `turnstile_mode` property
+              while it is active. If null, the event will inherit it.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -829,6 +880,8 @@ class AsyncEventsResource(AsyncAPIResource):
                     "shuffle_at_event_start": shuffle_at_event_start,
                     "suspended": suspended,
                     "total_active_users": total_active_users,
+                    "turnstile_action": turnstile_action,
+                    "turnstile_mode": turnstile_mode,
                 },
                 event_update_params.EventUpdateParams,
             ),
@@ -860,7 +913,7 @@ class AsyncEventsResource(AsyncAPIResource):
         Lists events for a waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           page: Page number of paginated results.
 
@@ -914,7 +967,7 @@ class AsyncEventsResource(AsyncAPIResource):
         Deletes an event for a waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -961,6 +1014,9 @@ class AsyncEventsResource(AsyncAPIResource):
         shuffle_at_event_start: bool | NotGiven = NOT_GIVEN,
         suspended: bool | NotGiven = NOT_GIVEN,
         total_active_users: Optional[int] | NotGiven = NOT_GIVEN,
+        turnstile_action: Optional[Literal["log", "infinite_queue"]] | NotGiven = NOT_GIVEN,
+        turnstile_mode: Optional[Literal["off", "invisible", "visible_non_interactive", "visible_managed"]]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -972,7 +1028,7 @@ class AsyncEventsResource(AsyncAPIResource):
         Patches a configured event for a waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           event_end_time: An ISO 8601 timestamp that marks the end of the event.
 
@@ -1019,6 +1075,12 @@ class AsyncEventsResource(AsyncAPIResource):
               while it is active. If null, the event will inherit it. This can only be set if
               the event's `new_users_per_minute` property is also set.
 
+          turnstile_action: If set, the event will override the waiting room's `turnstile_action` property
+              while it is active. If null, the event will inherit it.
+
+          turnstile_mode: If set, the event will override the waiting room's `turnstile_mode` property
+              while it is active. If null, the event will inherit it.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1050,6 +1112,8 @@ class AsyncEventsResource(AsyncAPIResource):
                     "shuffle_at_event_start": shuffle_at_event_start,
                     "suspended": suspended,
                     "total_active_users": total_active_users,
+                    "turnstile_action": turnstile_action,
+                    "turnstile_mode": turnstile_mode,
                 },
                 event_edit_params.EventEditParams,
             ),
@@ -1080,7 +1144,7 @@ class AsyncEventsResource(AsyncAPIResource):
         Fetches a single configured event for a waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

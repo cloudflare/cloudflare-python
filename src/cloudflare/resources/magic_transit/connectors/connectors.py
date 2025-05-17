@@ -6,27 +6,8 @@ from typing import Type, cast
 
 import httpx
 
-from .events import (
-    EventsResource,
-    AsyncEventsResource,
-    EventsResourceWithRawResponse,
-    AsyncEventsResourceWithRawResponse,
-    EventsResourceWithStreamingResponse,
-    AsyncEventsResourceWithStreamingResponse,
-)
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
-from .snapshots import (
-    SnapshotsResource,
-    AsyncSnapshotsResource,
-    SnapshotsResourceWithRawResponse,
-    AsyncSnapshotsResourceWithRawResponse,
-    SnapshotsResourceWithStreamingResponse,
-    AsyncSnapshotsResourceWithStreamingResponse,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -37,7 +18,23 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
+from .events.events import (
+    EventsResource,
+    AsyncEventsResource,
+    EventsResourceWithRawResponse,
+    AsyncEventsResourceWithRawResponse,
+    EventsResourceWithStreamingResponse,
+    AsyncEventsResourceWithStreamingResponse,
+)
 from ...._base_client import AsyncPaginator, make_request_options
+from .snapshots.snapshots import (
+    SnapshotsResource,
+    AsyncSnapshotsResource,
+    SnapshotsResourceWithRawResponse,
+    AsyncSnapshotsResourceWithRawResponse,
+    SnapshotsResourceWithStreamingResponse,
+    AsyncSnapshotsResourceWithStreamingResponse,
+)
 from ....types.magic_transit import connector_edit_params, connector_update_params
 from ....types.magic_transit.connector_get_response import ConnectorGetResponse
 from ....types.magic_transit.connector_edit_response import ConnectorEditResponse

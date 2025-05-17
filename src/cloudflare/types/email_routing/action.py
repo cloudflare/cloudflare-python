@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
+from typing import List, Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
@@ -12,4 +12,4 @@ class Action(BaseModel):
     type: Literal["drop", "forward", "worker"]
     """Type of supported action."""
 
-    value: List[str]
+    value: Optional[List[str]] = None

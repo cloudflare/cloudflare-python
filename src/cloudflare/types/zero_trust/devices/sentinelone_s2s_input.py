@@ -38,4 +38,4 @@ class SentineloneS2sInput(BaseModel):
     """Agent operational state."""
 
     operator: Optional[Literal["<", "<=", ">", ">=", "=="]] = None
-    """operator"""
+    """Operator."""

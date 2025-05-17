@@ -9,7 +9,7 @@ __all__ = ["PagePreviewParams"]
 
 class PagePreviewParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     custom_html: Required[str]
     """Only available for the Waiting Room Advanced subscription.

@@ -9,7 +9,7 @@ __all__ = ["UserSchemaListParams"]
 
 class UserSchemaListParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     omit_source: bool
     """Omit the source-files of schemas and only retrieve their meta-data."""

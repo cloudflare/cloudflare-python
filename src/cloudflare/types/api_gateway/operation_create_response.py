@@ -169,7 +169,7 @@ class FeaturesAPIShieldOperationFeatureConfidenceIntervals(BaseModel):
 
 class FeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfoActiveSchema(BaseModel):
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     created_at: Optional[datetime] = None
 
@@ -222,6 +222,6 @@ class OperationCreateResponse(BaseModel):
     """The HTTP method used to access the endpoint."""
 
     operation_id: str
-    """UUID"""
+    """UUID."""
 
     features: Optional[Features] = None

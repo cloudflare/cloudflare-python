@@ -8,10 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -68,12 +65,14 @@ class PoliciesResource(SyncAPIResource):
             "block_notification_block_removed",
             "block_notification_new_block",
             "block_notification_review_rejected",
+            "bot_traffic_basic_alert",
             "brand_protection_alert",
             "brand_protection_digest",
             "clickhouse_alert_fw_anomaly",
             "clickhouse_alert_fw_ent_anomaly",
             "cloudforce_one_request_notification",
             "custom_analytics",
+            "custom_bot_detection_alert",
             "custom_ssl_certificate_event_type",
             "dedicated_ssl_certificate_event_type",
             "device_connectivity_anomaly_alert",
@@ -214,12 +213,14 @@ class PoliciesResource(SyncAPIResource):
             "block_notification_block_removed",
             "block_notification_new_block",
             "block_notification_review_rejected",
+            "bot_traffic_basic_alert",
             "brand_protection_alert",
             "brand_protection_digest",
             "clickhouse_alert_fw_anomaly",
             "clickhouse_alert_fw_ent_anomaly",
             "cloudforce_one_request_notification",
             "custom_analytics",
+            "custom_bot_detection_alert",
             "custom_ssl_certificate_event_type",
             "dedicated_ssl_certificate_event_type",
             "device_connectivity_anomaly_alert",
@@ -503,12 +504,14 @@ class AsyncPoliciesResource(AsyncAPIResource):
             "block_notification_block_removed",
             "block_notification_new_block",
             "block_notification_review_rejected",
+            "bot_traffic_basic_alert",
             "brand_protection_alert",
             "brand_protection_digest",
             "clickhouse_alert_fw_anomaly",
             "clickhouse_alert_fw_ent_anomaly",
             "cloudforce_one_request_notification",
             "custom_analytics",
+            "custom_bot_detection_alert",
             "custom_ssl_certificate_event_type",
             "dedicated_ssl_certificate_event_type",
             "device_connectivity_anomaly_alert",
@@ -649,12 +652,14 @@ class AsyncPoliciesResource(AsyncAPIResource):
             "block_notification_block_removed",
             "block_notification_new_block",
             "block_notification_review_rejected",
+            "bot_traffic_basic_alert",
             "brand_protection_alert",
             "brand_protection_digest",
             "clickhouse_alert_fw_anomaly",
             "clickhouse_alert_fw_ent_anomaly",
             "cloudforce_one_request_notification",
             "custom_analytics",
+            "custom_bot_detection_alert",
             "custom_ssl_certificate_event_type",
             "dedicated_ssl_certificate_event_type",
             "device_connectivity_anomaly_alert",

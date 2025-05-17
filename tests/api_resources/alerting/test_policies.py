@@ -30,7 +30,7 @@ class TestPolicies:
     def test_method_create(self, client: Cloudflare) -> None:
         policy = client.alerting.policies.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            alert_type="access_custom_certificate_expiration_type",
+            alert_type="universal_ssl_event_type",
             enabled=True,
             mechanisms={},
             name="SSL Notification Event Policy",
@@ -44,12 +44,12 @@ class TestPolicies:
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         policy = client.alerting.policies.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            alert_type="access_custom_certificate_expiration_type",
+            alert_type="universal_ssl_event_type",
             enabled=True,
             mechanisms={
                 "email": [{"id": "test@example.com"}],
-                "pagerduty": [{}],
-                "webhooks": [{}],
+                "pagerduty": [{"id": "e8133a15-00a4-4d69-aec1-32f70c51f6e5"}],
+                "webhooks": [{"id": "14cc1190-5d2b-4b98-a696-c424cb2ad05f"}],
             },
             name="SSL Notification Event Policy",
             alert_interval="30m",
@@ -108,7 +108,7 @@ class TestPolicies:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.alerting.policies.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            alert_type="access_custom_certificate_expiration_type",
+            alert_type="universal_ssl_event_type",
             enabled=True,
             mechanisms={},
             name="SSL Notification Event Policy",
@@ -126,7 +126,7 @@ class TestPolicies:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.alerting.policies.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            alert_type="access_custom_certificate_expiration_type",
+            alert_type="universal_ssl_event_type",
             enabled=True,
             mechanisms={},
             name="SSL Notification Event Policy",
@@ -147,7 +147,7 @@ class TestPolicies:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.alerting.policies.with_raw_response.create(
                 account_id="",
-                alert_type="access_custom_certificate_expiration_type",
+                alert_type="universal_ssl_event_type",
                 enabled=True,
                 mechanisms={},
                 name="SSL Notification Event Policy",
@@ -173,7 +173,7 @@ class TestPolicies:
             policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             alert_interval="30m",
-            alert_type="access_custom_certificate_expiration_type",
+            alert_type="universal_ssl_event_type",
             description="Something describing the policy.",
             enabled=True,
             filters={
@@ -222,8 +222,8 @@ class TestPolicies:
             },
             mechanisms={
                 "email": [{"id": "test@example.com"}],
-                "pagerduty": [{}],
-                "webhooks": [{}],
+                "pagerduty": [{"id": "e8133a15-00a4-4d69-aec1-32f70c51f6e5"}],
+                "webhooks": [{"id": "14cc1190-5d2b-4b98-a696-c424cb2ad05f"}],
             },
             name="SSL Notification Event Policy",
         )
@@ -435,7 +435,7 @@ class TestAsyncPolicies:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         policy = await async_client.alerting.policies.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            alert_type="access_custom_certificate_expiration_type",
+            alert_type="universal_ssl_event_type",
             enabled=True,
             mechanisms={},
             name="SSL Notification Event Policy",
@@ -449,12 +449,12 @@ class TestAsyncPolicies:
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         policy = await async_client.alerting.policies.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            alert_type="access_custom_certificate_expiration_type",
+            alert_type="universal_ssl_event_type",
             enabled=True,
             mechanisms={
                 "email": [{"id": "test@example.com"}],
-                "pagerduty": [{}],
-                "webhooks": [{}],
+                "pagerduty": [{"id": "e8133a15-00a4-4d69-aec1-32f70c51f6e5"}],
+                "webhooks": [{"id": "14cc1190-5d2b-4b98-a696-c424cb2ad05f"}],
             },
             name="SSL Notification Event Policy",
             alert_interval="30m",
@@ -513,7 +513,7 @@ class TestAsyncPolicies:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.alerting.policies.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            alert_type="access_custom_certificate_expiration_type",
+            alert_type="universal_ssl_event_type",
             enabled=True,
             mechanisms={},
             name="SSL Notification Event Policy",
@@ -531,7 +531,7 @@ class TestAsyncPolicies:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.alerting.policies.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            alert_type="access_custom_certificate_expiration_type",
+            alert_type="universal_ssl_event_type",
             enabled=True,
             mechanisms={},
             name="SSL Notification Event Policy",
@@ -552,7 +552,7 @@ class TestAsyncPolicies:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.alerting.policies.with_raw_response.create(
                 account_id="",
-                alert_type="access_custom_certificate_expiration_type",
+                alert_type="universal_ssl_event_type",
                 enabled=True,
                 mechanisms={},
                 name="SSL Notification Event Policy",
@@ -578,7 +578,7 @@ class TestAsyncPolicies:
             policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             alert_interval="30m",
-            alert_type="access_custom_certificate_expiration_type",
+            alert_type="universal_ssl_event_type",
             description="Something describing the policy.",
             enabled=True,
             filters={
@@ -627,8 +627,8 @@ class TestAsyncPolicies:
             },
             mechanisms={
                 "email": [{"id": "test@example.com"}],
-                "pagerduty": [{}],
-                "webhooks": [{}],
+                "pagerduty": [{"id": "e8133a15-00a4-4d69-aec1-32f70c51f6e5"}],
+                "webhooks": [{"id": "14cc1190-5d2b-4b98-a696-c424cb2ad05f"}],
             },
             name="SSL Notification Event Policy",
         )

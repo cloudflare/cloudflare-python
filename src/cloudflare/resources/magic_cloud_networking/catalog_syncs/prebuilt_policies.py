@@ -57,10 +57,10 @@ class PrebuiltPoliciesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncSinglePage[PrebuiltPolicyListResponse]:
         """
-        List prebuilt catalog sync policies (Closed Beta)
+        List prebuilt catalog sync policies (Closed Beta).
 
         Args:
-          destination_type: specify type of destination, omit to return all
+          destination_type: Specify type of destination, omit to return all.
 
           extra_headers: Send extra headers
 
@@ -121,10 +121,10 @@ class AsyncPrebuiltPoliciesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[PrebuiltPolicyListResponse, AsyncSinglePage[PrebuiltPolicyListResponse]]:
         """
-        List prebuilt catalog sync policies (Closed Beta)
+        List prebuilt catalog sync policies (Closed Beta).
 
         Args:
-          destination_type: specify type of destination, omit to return all
+          destination_type: Specify type of destination, omit to return all.
 
           extra_headers: Send extra headers
 

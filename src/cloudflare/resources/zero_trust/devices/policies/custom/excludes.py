@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Any, Iterable, cast
 
 import httpx
 
@@ -62,8 +62,6 @@ class ExcludesResource(SyncAPIResource):
         device settings profile.
 
         Args:
-          policy_id: Device ID.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -83,7 +81,7 @@ class ExcludesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=SplitTunnelExclude,
+            model=cast(Any, SplitTunnelExclude),  # Union types cannot be passed in as arguments in the type system
             method="put",
         )
 
@@ -104,8 +102,6 @@ class ExcludesResource(SyncAPIResource):
         device settings profile.
 
         Args:
-          policy_id: Device ID.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -124,7 +120,7 @@ class ExcludesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=SplitTunnelExclude,
+            model=cast(Any, SplitTunnelExclude),  # Union types cannot be passed in as arguments in the type system
         )
 
 
@@ -166,8 +162,6 @@ class AsyncExcludesResource(AsyncAPIResource):
         device settings profile.
 
         Args:
-          policy_id: Device ID.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -187,7 +181,7 @@ class AsyncExcludesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=SplitTunnelExclude,
+            model=cast(Any, SplitTunnelExclude),  # Union types cannot be passed in as arguments in the type system
             method="put",
         )
 
@@ -208,8 +202,6 @@ class AsyncExcludesResource(AsyncAPIResource):
         device settings profile.
 
         Args:
-          policy_id: Device ID.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -228,7 +220,7 @@ class AsyncExcludesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=SplitTunnelExclude,
+            model=cast(Any, SplitTunnelExclude),  # Union types cannot be passed in as arguments in the type system
         )
 
 

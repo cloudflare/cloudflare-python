@@ -9,7 +9,7 @@ __all__ = ["FallbackOriginUpdateParams"]
 
 class FallbackOriginUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     origin: Required[str]
     """Your origin hostname that requests to your custom hostnames will be sent to."""

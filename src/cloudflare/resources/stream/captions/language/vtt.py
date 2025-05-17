@@ -55,7 +55,7 @@ class VttResource(SyncAPIResource):
         Return WebVTT captions for a provided language.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           identifier: A Cloudflare-generated unique identifier for a media item.
 
@@ -122,7 +122,7 @@ class AsyncVttResource(AsyncAPIResource):
         Return WebVTT captions for a provided language.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           identifier: A Cloudflare-generated unique identifier for a media item.
 

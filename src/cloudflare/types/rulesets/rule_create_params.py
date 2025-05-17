@@ -86,8 +86,10 @@ __all__ = [
     "RewriteRuleActionParameters",
     "RewriteRuleActionParametersHeaders",
     "RewriteRuleActionParametersHeadersRemoveHeader",
-    "RewriteRuleActionParametersHeadersStaticHeader",
-    "RewriteRuleActionParametersHeadersDynamicHeader",
+    "RewriteRuleActionParametersHeadersAddStaticHeader",
+    "RewriteRuleActionParametersHeadersSetStaticHeader",
+    "RewriteRuleActionParametersHeadersAddDynamicHeader",
+    "RewriteRuleActionParametersHeadersSetDynamicHeader",
     "RewriteRuleActionParametersURI",
     "RewriteRuleExposedCredentialCheck",
     "RewriteRulePosition",
@@ -295,7 +297,7 @@ class BlockRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
@@ -414,7 +416,7 @@ class ChallengeRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
@@ -493,7 +495,7 @@ class CompressionRule(TypedDict, total=False):
 
 
 class CompressionRuleActionParametersAlgorithm(TypedDict, total=False):
-    name: Literal["none", "auto", "default", "gzip", "brotli"]
+    name: Literal["none", "auto", "default", "gzip", "brotli", "zstd"]
     """Name of compression algorithm to enable."""
 
 
@@ -543,7 +545,7 @@ class CompressionRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
@@ -739,7 +741,7 @@ class ExecuteRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
@@ -860,7 +862,7 @@ class JavascriptChallengeRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
@@ -979,7 +981,7 @@ class LogRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
@@ -1100,7 +1102,7 @@ class ManagedChallengeRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
@@ -1262,7 +1264,7 @@ class RedirectRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
@@ -1344,14 +1346,28 @@ class RewriteRuleActionParametersHeadersRemoveHeader(TypedDict, total=False):
     operation: Required[Literal["remove"]]
 
 
-class RewriteRuleActionParametersHeadersStaticHeader(TypedDict, total=False):
+class RewriteRuleActionParametersHeadersAddStaticHeader(TypedDict, total=False):
+    operation: Required[Literal["add"]]
+
+    value: Required[str]
+    """Static value for the header."""
+
+
+class RewriteRuleActionParametersHeadersSetStaticHeader(TypedDict, total=False):
     operation: Required[Literal["set"]]
 
     value: Required[str]
     """Static value for the header."""
 
 
-class RewriteRuleActionParametersHeadersDynamicHeader(TypedDict, total=False):
+class RewriteRuleActionParametersHeadersAddDynamicHeader(TypedDict, total=False):
+    expression: Required[str]
+    """Expression for the header value."""
+
+    operation: Required[Literal["add"]]
+
+
+class RewriteRuleActionParametersHeadersSetDynamicHeader(TypedDict, total=False):
     expression: Required[str]
     """Expression for the header value."""
 
@@ -1360,8 +1376,10 @@ class RewriteRuleActionParametersHeadersDynamicHeader(TypedDict, total=False):
 
 RewriteRuleActionParametersHeaders: TypeAlias = Union[
     RewriteRuleActionParametersHeadersRemoveHeader,
-    RewriteRuleActionParametersHeadersStaticHeader,
-    RewriteRuleActionParametersHeadersDynamicHeader,
+    RewriteRuleActionParametersHeadersAddStaticHeader,
+    RewriteRuleActionParametersHeadersSetStaticHeader,
+    RewriteRuleActionParametersHeadersAddDynamicHeader,
+    RewriteRuleActionParametersHeadersSetDynamicHeader,
 ]
 
 
@@ -1422,7 +1440,7 @@ class RewriteRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
@@ -1565,7 +1583,7 @@ class OriginRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
@@ -1692,7 +1710,7 @@ class ScoreRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
@@ -1822,7 +1840,7 @@ class ServeErrorRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
@@ -2005,7 +2023,7 @@ class SetConfigRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
@@ -2087,7 +2105,7 @@ class SkipRuleActionParameters(TypedDict, total=False):
     phases: List[Phase]
     """A list of phases to skip the execution of.
 
-    This option is incompatible with the ruleset and rulesets options.
+    This option is incompatible with the rulesets option.
     """
 
     products: List[Literal["bic", "hot", "rateLimit", "securityLevel", "uaBlock", "waf", "zoneLockdown"]]
@@ -2102,7 +2120,7 @@ class SkipRuleActionParameters(TypedDict, total=False):
     ruleset: Literal["current"]
     """A ruleset to skip the execution of.
 
-    This option is incompatible with the rulesets, rules and phases options.
+    This option is incompatible with the rulesets option.
     """
 
     rulesets: List[str]
@@ -2153,7 +2171,7 @@ class SkipRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
@@ -2572,7 +2590,7 @@ class SetCacheSettingsRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
@@ -2741,7 +2759,7 @@ class LogCustomFieldRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
@@ -2860,7 +2878,7 @@ class DDoSDynamicRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
@@ -2981,7 +2999,7 @@ class ForceConnectionCloseRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str

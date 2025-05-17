@@ -59,10 +59,10 @@ class PayloadsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncSinglePage[PayloadCreateResponse]:
         """
-        Add custom scan expressions for Content Scanning
+        Add custom scan expressions for Content Scanning.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           extra_headers: Send extra headers
 
@@ -97,10 +97,10 @@ class PayloadsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncSinglePage[PayloadListResponse]:
         """
-        Get a list of existing custom scan expressions for Content Scanning
+        Get a list of existing custom scan expressions for Content Scanning.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           extra_headers: Send extra headers
 
@@ -134,12 +134,12 @@ class PayloadsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncSinglePage[PayloadDeleteResponse]:
         """
-        Delete a Content Scan Custom Expression
+        Delete a Content Scan Custom Expression.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
-          expression_id: The unique ID for this custom scan expression
+          expression_id: defines the unique ID for this custom scan expression.
 
           extra_headers: Send extra headers
 
@@ -197,10 +197,10 @@ class AsyncPayloadsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[PayloadCreateResponse, AsyncSinglePage[PayloadCreateResponse]]:
         """
-        Add custom scan expressions for Content Scanning
+        Add custom scan expressions for Content Scanning.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           extra_headers: Send extra headers
 
@@ -235,10 +235,10 @@ class AsyncPayloadsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[PayloadListResponse, AsyncSinglePage[PayloadListResponse]]:
         """
-        Get a list of existing custom scan expressions for Content Scanning
+        Get a list of existing custom scan expressions for Content Scanning.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           extra_headers: Send extra headers
 
@@ -272,12 +272,12 @@ class AsyncPayloadsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[PayloadDeleteResponse, AsyncSinglePage[PayloadDeleteResponse]]:
         """
-        Delete a Content Scan Custom Expression
+        Delete a Content Scan Custom Expression.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
-          expression_id: The unique ID for this custom scan expression
+          expression_id: defines the unique ID for this custom scan expression.
 
           extra_headers: Send extra headers
 

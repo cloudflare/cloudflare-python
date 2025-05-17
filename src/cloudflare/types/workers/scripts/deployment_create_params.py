@@ -12,7 +12,7 @@ __all__ = ["DeploymentCreateParams", "Version"]
 
 class DeploymentCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     strategy: Required[Literal["percentage"]]
 

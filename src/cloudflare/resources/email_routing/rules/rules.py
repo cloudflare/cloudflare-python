@@ -8,10 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from .catch_alls import (
     CatchAllsResource,
@@ -85,7 +82,7 @@ class RulesResource(SyncAPIResource):
         email (like forwarding it to a specific destination address).
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           actions: List actions patterns.
 
@@ -150,7 +147,7 @@ class RulesResource(SyncAPIResource):
         Update actions and matches, or enable/disable specific routing rules.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           rule_identifier: Routing rule identifier.
 
@@ -216,7 +213,7 @@ class RulesResource(SyncAPIResource):
         Lists existing routing rules.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           enabled: Filter by enabled routing rules.
 
@@ -270,7 +267,7 @@ class RulesResource(SyncAPIResource):
         Delete a specific routing rule.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           rule_identifier: Routing rule identifier.
 
@@ -314,7 +311,7 @@ class RulesResource(SyncAPIResource):
         Get information for a specific routing rule already created.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           rule_identifier: Routing rule identifier.
 
@@ -389,7 +386,7 @@ class AsyncRulesResource(AsyncAPIResource):
         email (like forwarding it to a specific destination address).
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           actions: List actions patterns.
 
@@ -454,7 +451,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Update actions and matches, or enable/disable specific routing rules.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           rule_identifier: Routing rule identifier.
 
@@ -520,7 +517,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Lists existing routing rules.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           enabled: Filter by enabled routing rules.
 
@@ -574,7 +571,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Delete a specific routing rule.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           rule_identifier: Routing rule identifier.
 
@@ -618,7 +615,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Get information for a specific routing rule already created.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           rule_identifier: Routing rule identifier.
 

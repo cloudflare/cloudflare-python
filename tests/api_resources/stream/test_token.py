@@ -33,19 +33,19 @@ class TestToken:
             id="ab0d4ef71g4425f8dcba9041231813000",
             access_rules=[
                 {
-                    "action": "allow",
+                    "action": "block",
                     "country": ["US", "MX"],
                     "ip": ["string"],
-                    "type": "any",
+                    "type": "ip.geoip.country",
                 },
                 {
                     "action": "allow",
                     "country": ["string"],
                     "ip": ["93.184.216.0/24", "2400:cb00::/32"],
-                    "type": "any",
+                    "type": "ip.src",
                 },
                 {
-                    "action": "allow",
+                    "action": "block",
                     "country": ["string"],
                     "ip": ["string"],
                     "type": "any",
@@ -118,19 +118,19 @@ class TestAsyncToken:
             id="ab0d4ef71g4425f8dcba9041231813000",
             access_rules=[
                 {
-                    "action": "allow",
+                    "action": "block",
                     "country": ["US", "MX"],
                     "ip": ["string"],
-                    "type": "any",
+                    "type": "ip.geoip.country",
                 },
                 {
                     "action": "allow",
                     "country": ["string"],
                     "ip": ["93.184.216.0/24", "2400:cb00::/32"],
-                    "type": "any",
+                    "type": "ip.src",
                 },
                 {
-                    "action": "allow",
+                    "action": "block",
                     "country": ["string"],
                     "ip": ["string"],
                     "type": "any",

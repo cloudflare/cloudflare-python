@@ -8,10 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -216,6 +213,7 @@ class DomainsResource(SyncAPIResource):
         *,
         account_id: str,
         ip_restrictions: List[str],
+        allowed_delivery_modes: List[Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"]] | NotGiven = NOT_GIVEN,
         domain: Optional[str] | NotGiven = NOT_GIVEN,
         drop_dispositions: List[
             Literal[
@@ -268,6 +266,7 @@ class DomainsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "ip_restrictions": ip_restrictions,
+                    "allowed_delivery_modes": allowed_delivery_modes,
                     "domain": domain,
                     "drop_dispositions": drop_dispositions,
                     "folder": folder,
@@ -515,6 +514,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         *,
         account_id: str,
         ip_restrictions: List[str],
+        allowed_delivery_modes: List[Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"]] | NotGiven = NOT_GIVEN,
         domain: Optional[str] | NotGiven = NOT_GIVEN,
         drop_dispositions: List[
             Literal[
@@ -567,6 +567,7 @@ class AsyncDomainsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "ip_restrictions": ip_restrictions,
+                    "allowed_delivery_modes": allowed_delivery_modes,
                     "domain": domain,
                     "drop_dispositions": drop_dispositions,
                     "folder": folder,

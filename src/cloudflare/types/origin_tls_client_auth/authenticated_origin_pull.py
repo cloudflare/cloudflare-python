@@ -11,7 +11,7 @@ __all__ = ["AuthenticatedOriginPull"]
 
 class AuthenticatedOriginPull(BaseModel):
     cert_id: Optional[str] = None
-    """Identifier"""
+    """Identifier."""
 
     cert_status: Optional[
         Literal[

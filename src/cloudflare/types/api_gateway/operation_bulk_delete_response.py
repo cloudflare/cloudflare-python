@@ -14,4 +14,4 @@ class OperationBulkDeleteResponse(BaseModel):
     messages: Message
 
     success: Literal[True]
-    """Whether the API call was successful"""
+    """Whether the API call was successful."""

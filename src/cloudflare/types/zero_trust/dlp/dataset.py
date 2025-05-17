@@ -52,5 +52,7 @@ class Dataset(BaseModel):
 
     uploads: List[Upload]
 
+    case_sensitive: Optional[bool] = None
+
     description: Optional[str] = None
-    """The description of the dataset"""
+    """The description of the dataset."""

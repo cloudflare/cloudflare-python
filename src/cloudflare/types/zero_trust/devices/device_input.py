@@ -22,6 +22,7 @@ from .client_certificate_input import ClientCertificateInput
 __all__ = [
     "DeviceInput",
     "TeamsDevicesCarbonblackInputRequest",
+    "TeamsDevicesAccessSerialNumberListInputRequest",
     "TeamsDevicesApplicationInputRequest",
     "TeamsDevicesClientCertificateV2InputRequest",
     "TeamsDevicesClientCertificateV2InputRequestLocations",
@@ -31,7 +32,7 @@ __all__ = [
 
 class TeamsDevicesCarbonblackInputRequest(BaseModel):
     operating_system: Literal["windows", "linux", "mac"]
-    """Operating system"""
+    """Operating system."""
 
     path: str
     """File path."""
@@ -43,9 +44,14 @@ class TeamsDevicesCarbonblackInputRequest(BaseModel):
     """Signing certificate thumbprint."""
 
 
+class TeamsDevicesAccessSerialNumberListInputRequest(BaseModel):
+    id: str
+    """UUID of Access List."""
+
+
 class TeamsDevicesApplicationInputRequest(BaseModel):
     operating_system: Literal["windows", "linux", "mac"]
-    """Operating system"""
+    """Operating system."""
 
     path: str
     """Path for the application."""
@@ -77,7 +83,7 @@ class TeamsDevicesClientCertificateV2InputRequest(BaseModel):
     """
 
     operating_system: Literal["windows", "linux", "mac"]
-    """Operating system"""
+    """Operating system."""
 
     cn: Optional[str] = None
     """Common Name that is protected by the client certificate.
@@ -89,7 +95,7 @@ class TeamsDevicesClientCertificateV2InputRequest(BaseModel):
     extended_key_usage: Optional[List[Literal["clientAuth", "emailProtection"]]] = None
     """
     List of values indicating purposes for which the certificate public key can be
-    used
+    used.
     """
 
     locations: Optional[TeamsDevicesClientCertificateV2InputRequestLocations] = None
@@ -100,7 +106,7 @@ class TeamsDevicesCustomS2sInputRequest(BaseModel):
     """Posture Integration ID."""
 
     operator: Literal["<", "<=", ">", ">=", "=="]
-    """operator"""
+    """Operator."""
 
     score: float
     """
@@ -116,6 +122,7 @@ DeviceInput: TypeAlias = Union[
     FirewallInput,
     SentineloneInput,
     TeamsDevicesCarbonblackInputRequest,
+    TeamsDevicesAccessSerialNumberListInputRequest,
     DiskEncryptionInput,
     TeamsDevicesApplicationInputRequest,
     ClientCertificateInput,

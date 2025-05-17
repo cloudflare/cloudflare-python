@@ -23,6 +23,9 @@ class SuperBotFightModeDefinitelyConfiguration(BaseModel):
     ai_bots_protection: Optional[Literal["block", "disabled"]] = None
     """Enable rule to block AI Scrapers and Crawlers."""
 
+    crawler_protection: Optional[Literal["enabled", "disabled"]] = None
+    """Enable rule to punish AI Scrapers and Crawlers via a link maze."""
+
     enable_js: Optional[bool] = None
     """Use lightweight, invisible JavaScript detections to improve Bot Management.
 

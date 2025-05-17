@@ -7,10 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -63,7 +60,7 @@ class SettingsResource(SyncAPIResource):
         Patch Universal SSL Settings for a Zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           enabled: Disabling Universal SSL removes any currently active Universal SSL certificates
               for your zone from the edge and prevents any future Universal SSL certificates
@@ -129,7 +126,7 @@ class SettingsResource(SyncAPIResource):
         Get Universal SSL Settings for a Zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -190,7 +187,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         Patch Universal SSL Settings for a Zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           enabled: Disabling Universal SSL removes any currently active Universal SSL certificates
               for your zone from the edge and prevents any future Universal SSL certificates
@@ -256,7 +253,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         Get Universal SSL Settings for a Zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

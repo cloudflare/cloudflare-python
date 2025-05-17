@@ -2,16 +2,13 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Optional, cast
+from typing import Dict, Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -53,7 +50,7 @@ class UploadResource(SyncAPIResource):
         *,
         account_id: str,
         base64: Literal[True],
-        any_file_hash: List[str] | NotGiven = NOT_GIVEN,
+        body: Dict[str, str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -65,15 +62,12 @@ class UploadResource(SyncAPIResource):
 
         To learn more about the direct
         uploads of assets, see
-        https://developers.cloudflare.com/workers/static-assets/direct-upload/
+        https://developers.cloudflare.com/workers/static-assets/direct-upload/.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           base64: Whether the file contents are base64-encoded. Must be `true`.
-
-          any_file_hash: Base-64 encoded contents of the file. The content type of the file should be
-              included to ensure a valid "Content-Type" header is included in asset responses.
 
           extra_headers: Send extra headers
 
@@ -91,7 +85,7 @@ class UploadResource(SyncAPIResource):
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
             f"/accounts/{account_id}/workers/assets/upload",
-            body=maybe_transform({"any_file_hash": any_file_hash}, upload_create_params.UploadCreateParams),
+            body=maybe_transform(body, upload_create_params.UploadCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -129,7 +123,7 @@ class AsyncUploadResource(AsyncAPIResource):
         *,
         account_id: str,
         base64: Literal[True],
-        any_file_hash: List[str] | NotGiven = NOT_GIVEN,
+        body: Dict[str, str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -141,15 +135,12 @@ class AsyncUploadResource(AsyncAPIResource):
 
         To learn more about the direct
         uploads of assets, see
-        https://developers.cloudflare.com/workers/static-assets/direct-upload/
+        https://developers.cloudflare.com/workers/static-assets/direct-upload/.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           base64: Whether the file contents are base64-encoded. Must be `true`.
-
-          any_file_hash: Base-64 encoded contents of the file. The content type of the file should be
-              included to ensure a valid "Content-Type" header is included in asset responses.
 
           extra_headers: Send extra headers
 
@@ -167,7 +158,7 @@ class AsyncUploadResource(AsyncAPIResource):
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
             f"/accounts/{account_id}/workers/assets/upload",
-            body=await async_maybe_transform({"any_file_hash": any_file_hash}, upload_create_params.UploadCreateParams),
+            body=await async_maybe_transform(body, upload_create_params.UploadCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

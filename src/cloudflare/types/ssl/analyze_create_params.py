@@ -11,7 +11,7 @@ __all__ = ["AnalyzeCreateParams"]
 
 class AnalyzeCreateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     bundle_method: BundleMethod
     """

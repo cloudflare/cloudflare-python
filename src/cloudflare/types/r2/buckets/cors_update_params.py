@@ -12,12 +12,12 @@ __all__ = ["CORSUpdateParams", "Rule", "RuleAllowed"]
 
 class CORSUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Account ID"""
+    """Account ID."""
 
     rules: Iterable[Rule]
 
     jurisdiction: Annotated[Literal["default", "eu", "fedramp"], PropertyInfo(alias="cf-r2-jurisdiction")]
-    """The bucket jurisdiction"""
+    """Jurisdiction where objects in this bucket are guaranteed to be stored."""
 
 
 class RuleAllowed(TypedDict, total=False):
@@ -47,7 +47,7 @@ class Rule(TypedDict, total=False):
     """Object specifying allowed origins, methods and headers for this CORS rule."""
 
     id: str
-    """Identifier for this rule"""
+    """Identifier for this rule."""
 
     expose_headers: Annotated[List[str], PropertyInfo(alias="exposeHeaders")]
     """

@@ -43,6 +43,8 @@ __all__ = [
     "DeploymentConfigsProductionR2Buckets",
     "DeploymentConfigsProductionServices",
     "DeploymentConfigsProductionVectorizeBindings",
+    "Source",
+    "SourceConfig",
 ]
 
 
@@ -61,6 +63,8 @@ class ProjectCreateParams(TypedDict, total=False):
 
     production_branch: str
     """Production branch of the project. Used to identify production deployments."""
+
+    source: Source
 
 
 class BuildConfig(TypedDict, total=False):
@@ -367,3 +371,33 @@ class DeploymentConfigs(TypedDict, total=False):
 
     production: DeploymentConfigsProduction
     """Configs for production deploys."""
+
+
+class SourceConfig(TypedDict, total=False):
+    deployments_enabled: bool
+
+    owner: str
+
+    path_excludes: List[str]
+
+    path_includes: List[str]
+
+    pr_comments_enabled: bool
+
+    preview_branch_excludes: List[str]
+
+    preview_branch_includes: List[str]
+
+    preview_deployment_setting: Literal["all", "none", "custom"]
+
+    production_branch: str
+
+    production_deployments_enabled: bool
+
+    repo_name: str
+
+
+class Source(TypedDict, total=False):
+    config: SourceConfig
+
+    type: str

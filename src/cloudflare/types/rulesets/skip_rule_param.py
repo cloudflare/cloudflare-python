@@ -15,7 +15,7 @@ class ActionParameters(TypedDict, total=False):
     phases: List[Phase]
     """A list of phases to skip the execution of.
 
-    This option is incompatible with the ruleset and rulesets options.
+    This option is incompatible with the rulesets option.
     """
 
     products: List[Literal["bic", "hot", "rateLimit", "securityLevel", "uaBlock", "waf", "zoneLockdown"]]
@@ -30,7 +30,7 @@ class ActionParameters(TypedDict, total=False):
     ruleset: Literal["current"]
     """A ruleset to skip the execution of.
 
-    This option is incompatible with the rulesets, rules and phases options.
+    This option is incompatible with the rulesets option.
     """
 
     rulesets: List[str]
@@ -55,7 +55,7 @@ class Ratelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str

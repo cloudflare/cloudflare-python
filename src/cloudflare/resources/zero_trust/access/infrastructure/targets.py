@@ -9,10 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ....._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
-from ....._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -22,7 +19,7 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._wrappers import ResultWrapper
-from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from .....pagination import SyncSinglePage, AsyncSinglePage, SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ....._base_client import AsyncPaginator, make_request_options
 from .....types.zero_trust.access.infrastructure import (
     target_list_params,
@@ -393,7 +390,7 @@ class TargetsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TargetBulkUpdateResponse:
+    ) -> SyncSinglePage[TargetBulkUpdateResponse]:
         """
         Adds one or more targets.
 
@@ -410,13 +407,15 @@ class TargetsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._put(
+        return self._get_api_list(
             f"/accounts/{account_id}/infrastructure/targets/batch",
+            page=SyncSinglePage[TargetBulkUpdateResponse],
             body=maybe_transform(body, Iterable[target_bulk_update_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=TargetBulkUpdateResponse,
+            model=TargetBulkUpdateResponse,
+            method="put",
         )
 
     def get(
@@ -807,7 +806,7 @@ class AsyncTargetsResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
-    async def bulk_update(
+    def bulk_update(
         self,
         *,
         account_id: str,
@@ -818,7 +817,7 @@ class AsyncTargetsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TargetBulkUpdateResponse:
+    ) -> AsyncPaginator[TargetBulkUpdateResponse, AsyncSinglePage[TargetBulkUpdateResponse]]:
         """
         Adds one or more targets.
 
@@ -835,13 +834,15 @@ class AsyncTargetsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._put(
+        return self._get_api_list(
             f"/accounts/{account_id}/infrastructure/targets/batch",
-            body=await async_maybe_transform(body, Iterable[target_bulk_update_params.Body]),
+            page=AsyncSinglePage[TargetBulkUpdateResponse],
+            body=maybe_transform(body, Iterable[target_bulk_update_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=TargetBulkUpdateResponse,
+            model=TargetBulkUpdateResponse,
+            method="put",
         )
 
     async def get(

@@ -7,10 +7,7 @@ from typing import Type, Iterable, Optional, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -54,22 +51,22 @@ class SettingsResource(SyncAPIResource):
         *,
         account_id: str,
         logpush: bool | NotGiven = NOT_GIVEN,
-        observability: setting_edit_params.Observability | NotGiven = NOT_GIVEN,
-        tail_consumers: Iterable[ConsumerScriptParam] | NotGiven = NOT_GIVEN,
+        observability: Optional[setting_edit_params.Observability] | NotGiven = NOT_GIVEN,
+        tail_consumers: Optional[Iterable[ConsumerScriptParam]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScriptSetting]:
+    ) -> ScriptSetting:
         """
         Patch script-level settings when using
         [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions).
         Including but not limited to Logpush and Tail Consumers.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -106,9 +103,9 @@ class SettingsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ScriptSetting]]._unwrapper,
+                post_parser=ResultWrapper[ScriptSetting]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ScriptSetting]], ResultWrapper[ScriptSetting]),
+            cast_to=cast(Type[ScriptSetting], ResultWrapper[ScriptSetting]),
         )
 
     def get(
@@ -122,14 +119,14 @@ class SettingsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScriptSetting]:
+    ) -> ScriptSetting:
         """
         Get script-level settings when using
         [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions).
         Includes Logpush and Tail Consumers.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -152,9 +149,9 @@ class SettingsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ScriptSetting]]._unwrapper,
+                post_parser=ResultWrapper[ScriptSetting]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ScriptSetting]], ResultWrapper[ScriptSetting]),
+            cast_to=cast(Type[ScriptSetting], ResultWrapper[ScriptSetting]),
         )
 
 
@@ -184,22 +181,22 @@ class AsyncSettingsResource(AsyncAPIResource):
         *,
         account_id: str,
         logpush: bool | NotGiven = NOT_GIVEN,
-        observability: setting_edit_params.Observability | NotGiven = NOT_GIVEN,
-        tail_consumers: Iterable[ConsumerScriptParam] | NotGiven = NOT_GIVEN,
+        observability: Optional[setting_edit_params.Observability] | NotGiven = NOT_GIVEN,
+        tail_consumers: Optional[Iterable[ConsumerScriptParam]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScriptSetting]:
+    ) -> ScriptSetting:
         """
         Patch script-level settings when using
         [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions).
         Including but not limited to Logpush and Tail Consumers.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -236,9 +233,9 @@ class AsyncSettingsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ScriptSetting]]._unwrapper,
+                post_parser=ResultWrapper[ScriptSetting]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ScriptSetting]], ResultWrapper[ScriptSetting]),
+            cast_to=cast(Type[ScriptSetting], ResultWrapper[ScriptSetting]),
         )
 
     async def get(
@@ -252,14 +249,14 @@ class AsyncSettingsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScriptSetting]:
+    ) -> ScriptSetting:
         """
         Get script-level settings when using
         [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions).
         Includes Logpush and Tail Consumers.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -282,9 +279,9 @@ class AsyncSettingsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ScriptSetting]]._unwrapper,
+                post_parser=ResultWrapper[ScriptSetting]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ScriptSetting]], ResultWrapper[ScriptSetting]),
+            cast_to=cast(Type[ScriptSetting], ResultWrapper[ScriptSetting]),
         )
 
 

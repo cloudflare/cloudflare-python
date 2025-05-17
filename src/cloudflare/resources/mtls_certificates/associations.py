@@ -56,9 +56,9 @@ class AssociationsResource(SyncAPIResource):
         Lists all active associations between the certificate and Cloudflare services.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          mtls_certificate_id: Identifier
+          mtls_certificate_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -120,9 +120,9 @@ class AsyncAssociationsResource(AsyncAPIResource):
         Lists all active associations between the certificate and Cloudflare services.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          mtls_certificate_id: Identifier
+          mtls_certificate_id: Identifier.
 
           extra_headers: Send extra headers
 

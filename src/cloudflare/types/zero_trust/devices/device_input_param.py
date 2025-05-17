@@ -23,6 +23,7 @@ from .client_certificate_input_param import ClientCertificateInputParam
 __all__ = [
     "DeviceInputParam",
     "TeamsDevicesCarbonblackInputRequest",
+    "TeamsDevicesAccessSerialNumberListInputRequest",
     "TeamsDevicesApplicationInputRequest",
     "TeamsDevicesClientCertificateV2InputRequest",
     "TeamsDevicesClientCertificateV2InputRequestLocations",
@@ -32,7 +33,7 @@ __all__ = [
 
 class TeamsDevicesCarbonblackInputRequest(TypedDict, total=False):
     operating_system: Required[Literal["windows", "linux", "mac"]]
-    """Operating system"""
+    """Operating system."""
 
     path: Required[str]
     """File path."""
@@ -44,9 +45,14 @@ class TeamsDevicesCarbonblackInputRequest(TypedDict, total=False):
     """Signing certificate thumbprint."""
 
 
+class TeamsDevicesAccessSerialNumberListInputRequest(TypedDict, total=False):
+    id: Required[str]
+    """UUID of Access List."""
+
+
 class TeamsDevicesApplicationInputRequest(TypedDict, total=False):
     operating_system: Required[Literal["windows", "linux", "mac"]]
-    """Operating system"""
+    """Operating system."""
 
     path: Required[str]
     """Path for the application."""
@@ -78,7 +84,7 @@ class TeamsDevicesClientCertificateV2InputRequest(TypedDict, total=False):
     """
 
     operating_system: Required[Literal["windows", "linux", "mac"]]
-    """Operating system"""
+    """Operating system."""
 
     cn: str
     """Common Name that is protected by the client certificate.
@@ -90,7 +96,7 @@ class TeamsDevicesClientCertificateV2InputRequest(TypedDict, total=False):
     extended_key_usage: List[Literal["clientAuth", "emailProtection"]]
     """
     List of values indicating purposes for which the certificate public key can be
-    used
+    used.
     """
 
     locations: TeamsDevicesClientCertificateV2InputRequestLocations
@@ -101,7 +107,7 @@ class TeamsDevicesCustomS2sInputRequest(TypedDict, total=False):
     """Posture Integration ID."""
 
     operator: Required[Literal["<", "<=", ">", ">=", "=="]]
-    """operator"""
+    """Operator."""
 
     score: Required[float]
     """
@@ -117,6 +123,7 @@ DeviceInputParam: TypeAlias = Union[
     FirewallInputParam,
     SentineloneInputParam,
     TeamsDevicesCarbonblackInputRequest,
+    TeamsDevicesAccessSerialNumberListInputRequest,
     DiskEncryptionInputParam,
     TeamsDevicesApplicationInputRequest,
     ClientCertificateInputParam,

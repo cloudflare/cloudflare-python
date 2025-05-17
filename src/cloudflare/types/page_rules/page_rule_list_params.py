@@ -9,7 +9,7 @@ __all__ = ["PageRuleListParams"]
 
 class PageRuleListParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     direction: Literal["asc", "desc"]
     """The direction used to sort returned Page Rules."""

@@ -30,7 +30,26 @@ class TestRoutes:
     def test_method_create(self, client: Cloudflare) -> None:
         route = client.magic_transit.routes.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
+            nexthop="203.0.113.1",
+            prefix="192.0.2.0/24",
+            priority=0,
+        )
+        assert_matches_type(RouteCreateResponse, route, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        route = client.magic_transit.routes.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            nexthop="203.0.113.1",
+            prefix="192.0.2.0/24",
+            priority=0,
+            description="New route for new prefix 203.0.113.1",
+            scope={
+                "colo_names": ["den01"],
+                "colo_regions": ["APAC"],
+            },
+            weight=0,
         )
         assert_matches_type(RouteCreateResponse, route, path=["response"])
 
@@ -39,7 +58,9 @@ class TestRoutes:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.magic_transit.routes.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
+            nexthop="203.0.113.1",
+            prefix="192.0.2.0/24",
+            priority=0,
         )
 
         assert response.is_closed is True
@@ -52,7 +73,9 @@ class TestRoutes:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.magic_transit.routes.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
+            nexthop="203.0.113.1",
+            prefix="192.0.2.0/24",
+            priority=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -68,7 +91,9 @@ class TestRoutes:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_transit.routes.with_raw_response.create(
                 account_id="",
-                body={},
+                nexthop="203.0.113.1",
+                prefix="192.0.2.0/24",
+                priority=0,
             )
 
     @parametrize
@@ -402,7 +427,26 @@ class TestAsyncRoutes:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         route = await async_client.magic_transit.routes.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
+            nexthop="203.0.113.1",
+            prefix="192.0.2.0/24",
+            priority=0,
+        )
+        assert_matches_type(RouteCreateResponse, route, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        route = await async_client.magic_transit.routes.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            nexthop="203.0.113.1",
+            prefix="192.0.2.0/24",
+            priority=0,
+            description="New route for new prefix 203.0.113.1",
+            scope={
+                "colo_names": ["den01"],
+                "colo_regions": ["APAC"],
+            },
+            weight=0,
         )
         assert_matches_type(RouteCreateResponse, route, path=["response"])
 
@@ -411,7 +455,9 @@ class TestAsyncRoutes:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.routes.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
+            nexthop="203.0.113.1",
+            prefix="192.0.2.0/24",
+            priority=0,
         )
 
         assert response.is_closed is True
@@ -424,7 +470,9 @@ class TestAsyncRoutes:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.routes.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
+            nexthop="203.0.113.1",
+            prefix="192.0.2.0/24",
+            priority=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -440,7 +488,9 @@ class TestAsyncRoutes:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_transit.routes.with_raw_response.create(
                 account_id="",
-                body={},
+                nexthop="203.0.113.1",
+                prefix="192.0.2.0/24",
+                priority=0,
             )
 
     @parametrize

@@ -12,32 +12,32 @@ __all__ = ["EventNotificationUpdateParams", "Rule"]
 
 class EventNotificationUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Account ID"""
+    """Account ID."""
 
     bucket_name: Required[str]
-    """Name of the bucket"""
+    """Name of the bucket."""
 
     rules: Iterable[Rule]
-    """Array of rules to drive notifications"""
+    """Array of rules to drive notifications."""
 
     jurisdiction: Annotated[Literal["default", "eu", "fedramp"], PropertyInfo(alias="cf-r2-jurisdiction")]
-    """The bucket jurisdiction"""
+    """Jurisdiction where objects in this bucket are guaranteed to be stored."""
 
 
 class Rule(TypedDict, total=False):
     actions: Required[
         List[Literal["PutObject", "CopyObject", "DeleteObject", "CompleteMultipartUpload", "LifecycleDeletion"]]
     ]
-    """Array of R2 object actions that will trigger notifications"""
+    """Array of R2 object actions that will trigger notifications."""
 
     description: str
     """
     A description that can be used to identify the event notification rule after
-    creation
+    creation.
     """
 
     prefix: str
-    """Notifications will be sent only for objects with this prefix"""
+    """Notifications will be sent only for objects with this prefix."""
 
     suffix: str
-    """Notifications will be sent only for objects with this suffix"""
+    """Notifications will be sent only for objects with this suffix."""

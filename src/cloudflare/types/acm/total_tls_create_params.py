@@ -11,7 +11,7 @@ __all__ = ["TotalTLSCreateParams"]
 
 class TotalTLSCreateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     enabled: Required[bool]
     """

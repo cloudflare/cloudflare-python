@@ -14,7 +14,7 @@ __all__ = ["PolicyTestCreateParams", "Policy", "PolicyUnionMember0"]
 
 class PolicyTestCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     policies: List[Policy]
 

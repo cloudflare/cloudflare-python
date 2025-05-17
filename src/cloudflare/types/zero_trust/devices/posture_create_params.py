@@ -25,6 +25,7 @@ class PostureCreateParams(TypedDict, total=False):
             "gateway",
             "warp",
             "disk_encryption",
+            "serial_number",
             "sentinelone",
             "carbonblack",
             "firewall",

@@ -25,6 +25,6 @@ class CustomPage(BaseModel):
     created_at: Optional[datetime] = None
 
     uid: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     updated_at: Optional[datetime] = None

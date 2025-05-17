@@ -10,7 +10,7 @@ __all__ = ["ViewCreateResponse"]
 
 class ViewCreateResponse(BaseModel):
     id: str
-    """Identifier"""
+    """Identifier."""
 
     created_time: datetime
     """When the view was created."""

@@ -9,13 +9,13 @@ __all__ = ["RuleEditParams"]
 
 class RuleEditParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Defines an identifier of a schema."""
 
     package_id: Required[str]
-    """The unique identifier of a WAF package."""
+    """Defines the unique identifier of a WAF package."""
 
     mode: Literal["default", "disable", "simulate", "block", "challenge", "on", "off"]
-    """The mode/action of the rule when triggered.
+    """Defines the mode/action of the rule when triggered.
 
     You must use a value from the `allowed_modes` array of the current rule.
     """

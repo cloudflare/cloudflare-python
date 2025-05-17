@@ -2,15 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -52,19 +49,19 @@ class SubdomainsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        subdomain: str | NotGiven = NOT_GIVEN,
+        subdomain: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SubdomainUpdateResponse]:
+    ) -> SubdomainUpdateResponse:
         """
         Creates a Workers subdomain for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -84,9 +81,9 @@ class SubdomainsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[SubdomainUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[SubdomainUpdateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SubdomainUpdateResponse]], ResultWrapper[SubdomainUpdateResponse]),
+            cast_to=cast(Type[SubdomainUpdateResponse], ResultWrapper[SubdomainUpdateResponse]),
         )
 
     def get(
@@ -99,12 +96,12 @@ class SubdomainsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SubdomainGetResponse]:
+    ) -> SubdomainGetResponse:
         """
         Returns a Workers subdomain for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -123,9 +120,9 @@ class SubdomainsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[SubdomainGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[SubdomainGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SubdomainGetResponse]], ResultWrapper[SubdomainGetResponse]),
+            cast_to=cast(Type[SubdomainGetResponse], ResultWrapper[SubdomainGetResponse]),
         )
 
 
@@ -153,19 +150,19 @@ class AsyncSubdomainsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        subdomain: str | NotGiven = NOT_GIVEN,
+        subdomain: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SubdomainUpdateResponse]:
+    ) -> SubdomainUpdateResponse:
         """
         Creates a Workers subdomain for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -185,9 +182,9 @@ class AsyncSubdomainsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[SubdomainUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[SubdomainUpdateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SubdomainUpdateResponse]], ResultWrapper[SubdomainUpdateResponse]),
+            cast_to=cast(Type[SubdomainUpdateResponse], ResultWrapper[SubdomainUpdateResponse]),
         )
 
     async def get(
@@ -200,12 +197,12 @@ class AsyncSubdomainsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SubdomainGetResponse]:
+    ) -> SubdomainGetResponse:
         """
         Returns a Workers subdomain for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -224,9 +221,9 @@ class AsyncSubdomainsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[SubdomainGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[SubdomainGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SubdomainGetResponse]], ResultWrapper[SubdomainGetResponse]),
+            cast_to=cast(Type[SubdomainGetResponse], ResultWrapper[SubdomainGetResponse]),
         )
 
 

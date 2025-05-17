@@ -9,7 +9,7 @@ __all__ = ["WorkspaceOneInput"]
 
 class WorkspaceOneInput(BaseModel):
     compliance_status: Literal["compliant", "noncompliant", "unknown"]
-    """Compliance Status"""
+    """Compliance Status."""
 
     connection_id: str
     """Posture Integration ID."""

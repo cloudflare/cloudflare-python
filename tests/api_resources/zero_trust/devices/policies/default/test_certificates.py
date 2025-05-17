@@ -9,10 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zero_trust.devices.policies.default import (
-    CertificateGetResponse,
-    CertificateEditResponse,
-)
+from cloudflare.types.zero_trust.devices import DevicePolicyCertificates
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -26,7 +23,7 @@ class TestCertificates:
             zone_id="699d98642c564d2e855e9661899b7252",
             enabled=True,
         )
-        assert_matches_type(Optional[CertificateEditResponse], certificate, path=["response"])
+        assert_matches_type(Optional[DevicePolicyCertificates], certificate, path=["response"])
 
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
@@ -38,7 +35,7 @@ class TestCertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         certificate = response.parse()
-        assert_matches_type(Optional[CertificateEditResponse], certificate, path=["response"])
+        assert_matches_type(Optional[DevicePolicyCertificates], certificate, path=["response"])
 
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
@@ -50,7 +47,7 @@ class TestCertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             certificate = response.parse()
-            assert_matches_type(Optional[CertificateEditResponse], certificate, path=["response"])
+            assert_matches_type(Optional[DevicePolicyCertificates], certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -67,7 +64,7 @@ class TestCertificates:
         certificate = client.zero_trust.devices.policies.default.certificates.get(
             zone_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[CertificateGetResponse], certificate, path=["response"])
+        assert_matches_type(Optional[DevicePolicyCertificates], certificate, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -78,7 +75,7 @@ class TestCertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         certificate = response.parse()
-        assert_matches_type(Optional[CertificateGetResponse], certificate, path=["response"])
+        assert_matches_type(Optional[DevicePolicyCertificates], certificate, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -89,7 +86,7 @@ class TestCertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             certificate = response.parse()
-            assert_matches_type(Optional[CertificateGetResponse], certificate, path=["response"])
+            assert_matches_type(Optional[DevicePolicyCertificates], certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -110,7 +107,7 @@ class TestAsyncCertificates:
             zone_id="699d98642c564d2e855e9661899b7252",
             enabled=True,
         )
-        assert_matches_type(Optional[CertificateEditResponse], certificate, path=["response"])
+        assert_matches_type(Optional[DevicePolicyCertificates], certificate, path=["response"])
 
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -122,7 +119,7 @@ class TestAsyncCertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         certificate = await response.parse()
-        assert_matches_type(Optional[CertificateEditResponse], certificate, path=["response"])
+        assert_matches_type(Optional[DevicePolicyCertificates], certificate, path=["response"])
 
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -134,7 +131,7 @@ class TestAsyncCertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             certificate = await response.parse()
-            assert_matches_type(Optional[CertificateEditResponse], certificate, path=["response"])
+            assert_matches_type(Optional[DevicePolicyCertificates], certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -151,7 +148,7 @@ class TestAsyncCertificates:
         certificate = await async_client.zero_trust.devices.policies.default.certificates.get(
             zone_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[CertificateGetResponse], certificate, path=["response"])
+        assert_matches_type(Optional[DevicePolicyCertificates], certificate, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -162,7 +159,7 @@ class TestAsyncCertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         certificate = await response.parse()
-        assert_matches_type(Optional[CertificateGetResponse], certificate, path=["response"])
+        assert_matches_type(Optional[DevicePolicyCertificates], certificate, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -173,7 +170,7 @@ class TestAsyncCertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             certificate = await response.parse()
-            assert_matches_type(Optional[CertificateGetResponse], certificate, path=["response"])
+            assert_matches_type(Optional[DevicePolicyCertificates], certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

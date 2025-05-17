@@ -9,7 +9,7 @@ __all__ = ["HostnameAssociationGetParams"]
 
 class HostnameAssociationGetParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     mtls_certificate_id: str
     """

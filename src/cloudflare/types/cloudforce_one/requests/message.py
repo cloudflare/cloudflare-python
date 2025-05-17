@@ -10,19 +10,19 @@ __all__ = ["Message"]
 
 class Message(BaseModel):
     id: int
-    """Message ID"""
+    """Message ID."""
 
     author: str
-    """Author of message"""
+    """Author of message."""
 
     content: str
-    """Content of message"""
+    """Content of message."""
 
     is_follow_on_request: bool
-    """Whether the message is a follow-on request"""
+    """Whether the message is a follow-on request."""
 
     updated: datetime
-    """Message last updated time"""
+    """Defines the message last updated time."""
 
     created: Optional[datetime] = None
-    """Message creation time"""
+    """Defines the message creation time."""

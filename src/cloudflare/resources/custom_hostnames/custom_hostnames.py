@@ -8,10 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -108,7 +105,7 @@ class CustomHostnamesResource(SyncAPIResource):
         other must use an ECDSA.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           hostname: The custom hostname that will point to your hostname via CNAME.
 
@@ -169,7 +166,7 @@ class CustomHostnamesResource(SyncAPIResource):
         List, search, sort, and filter all of your custom hostnames.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           id: Hostname ID to match against. This ID was generated and returned during the
               initial custom_hostname creation. This parameter cannot be used with the
@@ -238,9 +235,9 @@ class CustomHostnamesResource(SyncAPIResource):
         Delete Custom Hostname (and any issued SSL certificates)
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          custom_hostname_id: Identifier
+          custom_hostname_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -289,9 +286,9 @@ class CustomHostnamesResource(SyncAPIResource):
         the RSA algorithm, and the other must use the ECDSA algorithm.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          custom_hostname_id: Identifier
+          custom_hostname_id: Identifier.
 
           custom_metadata: Unique key/value metadata for this hostname. These are per-hostname (customer)
               settings.
@@ -356,9 +353,9 @@ class CustomHostnamesResource(SyncAPIResource):
         Custom Hostname Details
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          custom_hostname_id: Identifier
+          custom_hostname_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -440,7 +437,7 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
         other must use an ECDSA.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           hostname: The custom hostname that will point to your hostname via CNAME.
 
@@ -501,7 +498,7 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
         List, search, sort, and filter all of your custom hostnames.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           id: Hostname ID to match against. This ID was generated and returned during the
               initial custom_hostname creation. This parameter cannot be used with the
@@ -570,9 +567,9 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
         Delete Custom Hostname (and any issued SSL certificates)
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          custom_hostname_id: Identifier
+          custom_hostname_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -621,9 +618,9 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
         the RSA algorithm, and the other must use the ECDSA algorithm.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          custom_hostname_id: Identifier
+          custom_hostname_id: Identifier.
 
           custom_metadata: Unique key/value metadata for this hostname. These are per-hostname (customer)
               settings.
@@ -688,9 +685,9 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
         Custom Hostname Details
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          custom_hostname_id: Identifier
+          custom_hostname_id: Identifier.
 
           extra_headers: Send extra headers
 

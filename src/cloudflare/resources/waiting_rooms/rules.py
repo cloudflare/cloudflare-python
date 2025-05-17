@@ -64,7 +64,7 @@ class RulesResource(SyncAPIResource):
         waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -108,7 +108,7 @@ class RulesResource(SyncAPIResource):
         for a waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -150,7 +150,7 @@ class RulesResource(SyncAPIResource):
         Deletes a rule for a waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           rule_id: The ID of the rule.
 
@@ -200,7 +200,7 @@ class RulesResource(SyncAPIResource):
         Patches a rule for a waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           rule_id: The ID of the rule.
 
@@ -264,7 +264,7 @@ class RulesResource(SyncAPIResource):
         Lists rules for a waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -327,7 +327,7 @@ class AsyncRulesResource(AsyncAPIResource):
         waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -371,7 +371,7 @@ class AsyncRulesResource(AsyncAPIResource):
         for a waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -413,7 +413,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Deletes a rule for a waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           rule_id: The ID of the rule.
 
@@ -463,7 +463,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Patches a rule for a waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           rule_id: The ID of the rule.
 
@@ -527,7 +527,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Lists rules for a waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

@@ -15,10 +15,7 @@ from .vtt import (
     AsyncVttResourceWithStreamingResponse,
 )
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -77,7 +74,7 @@ class LanguageResource(SyncAPIResource):
         Generate captions or subtitles for provided language via AI.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           identifier: A Cloudflare-generated unique identifier for a media item.
 
@@ -128,7 +125,7 @@ class LanguageResource(SyncAPIResource):
         language. One caption or subtitle file per language is allowed.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           identifier: A Cloudflare-generated unique identifier for a media item.
 
@@ -184,7 +181,7 @@ class LanguageResource(SyncAPIResource):
         Removes the captions or subtitles from a video.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           identifier: A Cloudflare-generated unique identifier for a media item.
 
@@ -233,7 +230,7 @@ class LanguageResource(SyncAPIResource):
         Lists the captions or subtitles for provided language.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           identifier: A Cloudflare-generated unique identifier for a media item.
 
@@ -307,7 +304,7 @@ class AsyncLanguageResource(AsyncAPIResource):
         Generate captions or subtitles for provided language via AI.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           identifier: A Cloudflare-generated unique identifier for a media item.
 
@@ -358,7 +355,7 @@ class AsyncLanguageResource(AsyncAPIResource):
         language. One caption or subtitle file per language is allowed.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           identifier: A Cloudflare-generated unique identifier for a media item.
 
@@ -414,7 +411,7 @@ class AsyncLanguageResource(AsyncAPIResource):
         Removes the captions or subtitles from a video.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           identifier: A Cloudflare-generated unique identifier for a media item.
 
@@ -463,7 +460,7 @@ class AsyncLanguageResource(AsyncAPIResource):
         Lists the captions or subtitles for provided language.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           identifier: A Cloudflare-generated unique identifier for a media item.
 

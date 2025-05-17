@@ -36,7 +36,7 @@ class Submit(BaseModel):
     """
 
     skipped_urls: Optional[List[SkippedURL]] = None
-    """URLs that were skipped because the same URL is currently being scanned"""
+    """URLs that were skipped because the same URL is currently being scanned."""
 
     submitted_urls: Optional[List[SubmittedURL]] = None
     """URLs that were successfully submitted for scanning."""

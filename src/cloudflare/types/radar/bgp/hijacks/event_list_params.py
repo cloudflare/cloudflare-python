@@ -16,10 +16,7 @@ class EventListParams(TypedDict, total=False):
     """End of the date range (inclusive)."""
 
     date_range: Annotated[str, PropertyInfo(alias="dateRange")]
-    """
-    Shorthand date ranges for the last X days - use when you don't need specific
-    start and end dates.
-    """
+    """Filters results by date range."""
 
     date_start: Annotated[Union[str, datetime], PropertyInfo(alias="dateStart", format="iso8601")]
     """Start of the date range (inclusive)."""
@@ -40,10 +37,10 @@ class EventListParams(TypedDict, total=False):
     """The country code of the potential hijacker or victim AS of a BGP hijack event."""
 
     max_confidence: Annotated[int, PropertyInfo(alias="maxConfidence")]
-    """The maximum confidence score to filter events (1-4 low, 5-7 mid, 8+ high)."""
+    """Filters events by maximum confidence score (1-4 low, 5-7 mid, 8+ high)."""
 
     min_confidence: Annotated[int, PropertyInfo(alias="minConfidence")]
-    """The minimum confidence score to filter events (1-4 low, 5-7 mid, 8+ high)."""
+    """Filters events by minimum confidence score (1-4 low, 5-7 mid, 8+ high)."""
 
     page: int
     """Current page number, starting from 1."""

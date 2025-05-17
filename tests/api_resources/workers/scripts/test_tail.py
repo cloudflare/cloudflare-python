@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
@@ -24,7 +24,7 @@ class TestTail:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[TailCreateResponse], tail, path=["response"])
+        assert_matches_type(TailCreateResponse, tail, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -37,7 +37,7 @@ class TestTail:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tail = response.parse()
-        assert_matches_type(Optional[TailCreateResponse], tail, path=["response"])
+        assert_matches_type(TailCreateResponse, tail, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -50,7 +50,7 @@ class TestTail:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tail = response.parse()
-            assert_matches_type(Optional[TailCreateResponse], tail, path=["response"])
+            assert_matches_type(TailCreateResponse, tail, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -73,7 +73,7 @@ class TestTail:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         tail = client.workers.scripts.tail.delete(
-            id="03dc9f77817b488fb26c5861ec18f791",
+            id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             script_name="this-is_my_script-01",
         )
@@ -82,7 +82,7 @@ class TestTail:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.workers.scripts.tail.with_raw_response.delete(
-            id="03dc9f77817b488fb26c5861ec18f791",
+            id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             script_name="this-is_my_script-01",
         )
@@ -95,7 +95,7 @@ class TestTail:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.workers.scripts.tail.with_streaming_response.delete(
-            id="03dc9f77817b488fb26c5861ec18f791",
+            id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             script_name="this-is_my_script-01",
         ) as response:
@@ -111,14 +111,14 @@ class TestTail:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers.scripts.tail.with_raw_response.delete(
-                id="03dc9f77817b488fb26c5861ec18f791",
+                id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 script_name="this-is_my_script-01",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             client.workers.scripts.tail.with_raw_response.delete(
-                id="03dc9f77817b488fb26c5861ec18f791",
+                id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 script_name="",
             )
@@ -136,7 +136,7 @@ class TestTail:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[TailGetResponse], tail, path=["response"])
+        assert_matches_type(TailGetResponse, tail, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -148,7 +148,7 @@ class TestTail:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tail = response.parse()
-        assert_matches_type(Optional[TailGetResponse], tail, path=["response"])
+        assert_matches_type(TailGetResponse, tail, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -160,7 +160,7 @@ class TestTail:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tail = response.parse()
-            assert_matches_type(Optional[TailGetResponse], tail, path=["response"])
+            assert_matches_type(TailGetResponse, tail, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -189,7 +189,7 @@ class TestAsyncTail:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[TailCreateResponse], tail, path=["response"])
+        assert_matches_type(TailCreateResponse, tail, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -202,7 +202,7 @@ class TestAsyncTail:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tail = await response.parse()
-        assert_matches_type(Optional[TailCreateResponse], tail, path=["response"])
+        assert_matches_type(TailCreateResponse, tail, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -215,7 +215,7 @@ class TestAsyncTail:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tail = await response.parse()
-            assert_matches_type(Optional[TailCreateResponse], tail, path=["response"])
+            assert_matches_type(TailCreateResponse, tail, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -238,7 +238,7 @@ class TestAsyncTail:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         tail = await async_client.workers.scripts.tail.delete(
-            id="03dc9f77817b488fb26c5861ec18f791",
+            id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             script_name="this-is_my_script-01",
         )
@@ -247,7 +247,7 @@ class TestAsyncTail:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.scripts.tail.with_raw_response.delete(
-            id="03dc9f77817b488fb26c5861ec18f791",
+            id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             script_name="this-is_my_script-01",
         )
@@ -260,7 +260,7 @@ class TestAsyncTail:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.scripts.tail.with_streaming_response.delete(
-            id="03dc9f77817b488fb26c5861ec18f791",
+            id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             script_name="this-is_my_script-01",
         ) as response:
@@ -276,14 +276,14 @@ class TestAsyncTail:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers.scripts.tail.with_raw_response.delete(
-                id="03dc9f77817b488fb26c5861ec18f791",
+                id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 script_name="this-is_my_script-01",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             await async_client.workers.scripts.tail.with_raw_response.delete(
-                id="03dc9f77817b488fb26c5861ec18f791",
+                id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 script_name="",
             )
@@ -301,7 +301,7 @@ class TestAsyncTail:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[TailGetResponse], tail, path=["response"])
+        assert_matches_type(TailGetResponse, tail, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -313,7 +313,7 @@ class TestAsyncTail:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tail = await response.parse()
-        assert_matches_type(Optional[TailGetResponse], tail, path=["response"])
+        assert_matches_type(TailGetResponse, tail, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -325,7 +325,7 @@ class TestAsyncTail:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tail = await response.parse()
-            assert_matches_type(Optional[TailGetResponse], tail, path=["response"])
+            assert_matches_type(TailGetResponse, tail, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

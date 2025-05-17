@@ -10,7 +10,7 @@ __all__ = ["MTLSCertificateCreateResponse"]
 
 class MTLSCertificateCreateResponse(BaseModel):
     id: Optional[str] = None
-    """Identifier"""
+    """Identifier."""
 
     ca: Optional[bool] = None
     """Indicates whether the certificate is a CA or leaf certificate."""

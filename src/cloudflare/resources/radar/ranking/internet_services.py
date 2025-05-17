@@ -9,10 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -73,7 +70,7 @@ class InternetServicesResource(SyncAPIResource):
         Retrieves the list of Internet services categories.
 
         Args:
-          date: Array of dates to filter the results.
+          date: Filters results by the specified array of dates.
 
           format: Format in which results will be returned.
 
@@ -133,9 +130,9 @@ class InternetServicesResource(SyncAPIResource):
         Args:
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
@@ -200,7 +197,7 @@ class InternetServicesResource(SyncAPIResource):
         Retrieves top Internet services based on their rank.
 
         Args:
-          date: Array of dates to filter the results.
+          date: Filters results by the specified array of dates.
 
           format: Format in which results will be returned.
 
@@ -279,7 +276,7 @@ class AsyncInternetServicesResource(AsyncAPIResource):
         Retrieves the list of Internet services categories.
 
         Args:
-          date: Array of dates to filter the results.
+          date: Filters results by the specified array of dates.
 
           format: Format in which results will be returned.
 
@@ -339,9 +336,9 @@ class AsyncInternetServicesResource(AsyncAPIResource):
         Args:
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
@@ -406,7 +403,7 @@ class AsyncInternetServicesResource(AsyncAPIResource):
         Retrieves top Internet services based on their rank.
 
         Args:
-          date: Array of dates to filter the results.
+          date: Filters results by the specified array of dates.
 
           format: Format in which results will be returned.
 

@@ -9,10 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -73,25 +70,27 @@ class IPsResource(SyncAPIResource):
         number of IPv4 /24s and IPv6 /48s, for a given ASN.
 
         Args:
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
+          asn: Filters results by Autonomous System. Specify one or more Autonomous System
+              Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
+              results. For example, `-174, 3356` excludes results from AS174, but includes
+              results from AS3356.
 
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
           format: Format in which results will be returned.
 
-          include_delay: Include data delay meta information.
+          include_delay: Includes data delay meta information.
 
           ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          location: Comma-separated list of locations (alpha-2 codes).
+          location: Filters results by location. Specify a comma-separated list of alpha-2 location
+              codes.
 
           name: Array of names used to label the series in the response.
 
@@ -174,25 +173,27 @@ class AsyncIPsResource(AsyncAPIResource):
         number of IPv4 /24s and IPv6 /48s, for a given ASN.
 
         Args:
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
+          asn: Filters results by Autonomous System. Specify one or more Autonomous System
+              Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
+              results. For example, `-174, 3356` excludes results from AS174, but includes
+              results from AS3356.
 
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
           format: Format in which results will be returned.
 
-          include_delay: Include data delay meta information.
+          include_delay: Includes data delay meta information.
 
           ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          location: Comma-separated list of locations (alpha-2 codes).
+          location: Filters results by location. Specify a comma-separated list of alpha-2 location
+              codes.
 
           name: Array of names used to label the series in the response.
 

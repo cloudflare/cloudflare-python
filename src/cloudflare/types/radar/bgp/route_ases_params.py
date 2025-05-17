@@ -17,7 +17,7 @@ class RouteAsesParams(TypedDict, total=False):
     """Limits the number of objects returned in the response."""
 
     location: str
-    """Location alpha-2 code."""
+    """Filters results by location. Specify an alpha-2 location code."""
 
     sort_by: Annotated[
         Literal["cone", "pfxs", "ipv4", "ipv6", "rpki_valid", "rpki_invalid", "rpki_unknown"],

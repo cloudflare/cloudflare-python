@@ -244,7 +244,7 @@ class Config(BaseModel):
 
 class ConfigurationGetResponse(BaseModel):
     account_id: Optional[str] = None
-    """Identifier"""
+    """Identifier."""
 
     config: Optional[Config] = None
     """The tunnel configuration and ingress rules."""

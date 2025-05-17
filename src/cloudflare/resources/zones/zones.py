@@ -24,10 +24,7 @@ from .plans import (
     AsyncPlansResourceWithStreamingResponse,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform, async_maybe_transform
 from .settings import (
     SettingsResource,
     AsyncSettingsResource,
@@ -192,7 +189,7 @@ class ZonesResource(SyncAPIResource):
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        order: Literal["name", "status", "account.id", "account.name"] | NotGiven = NOT_GIVEN,
+        order: Literal["name", "status", "account.id", "account.name", "plan.id"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         status: Literal["initializing", "pending", "active", "moved"] | NotGiven = NOT_GIVEN,
@@ -507,7 +504,7 @@ class AsyncZonesResource(AsyncAPIResource):
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        order: Literal["name", "status", "account.id", "account.name"] | NotGiven = NOT_GIVEN,
+        order: Literal["name", "status", "account.id", "account.name", "plan.id"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         status: Literal["initializing", "pending", "active", "moved"] | NotGiven = NOT_GIVEN,

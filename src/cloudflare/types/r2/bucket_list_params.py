@@ -11,7 +11,7 @@ __all__ = ["BucketListParams"]
 
 class BucketListParams(TypedDict, total=False):
     account_id: Required[str]
-    """Account ID"""
+    """Account ID."""
 
     cursor: str
     """Pagination cursor received during the last List Buckets call.
@@ -20,7 +20,7 @@ class BucketListParams(TypedDict, total=False):
     """
 
     direction: Literal["asc", "desc"]
-    """Direction to order buckets"""
+    """Direction to order buckets."""
 
     name_contains: str
     """Bucket names to filter by.
@@ -29,13 +29,13 @@ class BucketListParams(TypedDict, total=False):
     """
 
     order: Literal["name"]
-    """Field to order buckets by"""
+    """Field to order buckets by."""
 
     per_page: float
-    """Maximum number of buckets to return in a single call"""
+    """Maximum number of buckets to return in a single call."""
 
     start_after: str
     """Bucket name to start searching after. Buckets are ordered lexicographically."""
 
     jurisdiction: Annotated[Literal["default", "eu", "fedramp"], PropertyInfo(alias="cf-r2-jurisdiction")]
-    """Lists buckets in the provided jurisdiction"""
+    """Jurisdiction where objects in this bucket are guaranteed to be stored."""

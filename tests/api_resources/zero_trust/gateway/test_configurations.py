@@ -40,6 +40,7 @@ class TestConfigurations:
                     "fail_closed": False,
                     "notification_settings": {
                         "enabled": True,
+                        "include_context": True,
                         "msg": "msg",
                         "support_url": "support_url",
                     },
@@ -49,11 +50,14 @@ class TestConfigurations:
                     "enabled": True,
                     "footer_text": "--footer--",
                     "header_text": "--header--",
+                    "include_context": True,
                     "logo_path": "https://logos.com/a.png",
                     "mailto_address": "admin@example.com",
                     "mailto_subject": "Blocked User Inquiry",
+                    "mode": "customized_block_page",
                     "name": "Cloudflare",
                     "suppress_footer": False,
+                    "target_uri": "https://example.com",
                 },
                 "body_scanning": {"inspection_mode": "deep"},
                 "browser_isolation": {
@@ -67,6 +71,7 @@ class TestConfigurations:
                 },
                 "extended_email_matching": {"enabled": True},
                 "fips": {"tls": True},
+                "host_selector": {"enabled": False},
                 "protocol_detection": {"enabled": True},
                 "sandbox": {
                     "enabled": True,
@@ -127,6 +132,7 @@ class TestConfigurations:
                     "fail_closed": False,
                     "notification_settings": {
                         "enabled": True,
+                        "include_context": True,
                         "msg": "msg",
                         "support_url": "support_url",
                     },
@@ -136,11 +142,14 @@ class TestConfigurations:
                     "enabled": True,
                     "footer_text": "--footer--",
                     "header_text": "--header--",
+                    "include_context": True,
                     "logo_path": "https://logos.com/a.png",
                     "mailto_address": "admin@example.com",
                     "mailto_subject": "Blocked User Inquiry",
+                    "mode": "customized_block_page",
                     "name": "Cloudflare",
                     "suppress_footer": False,
+                    "target_uri": "https://example.com",
                 },
                 "body_scanning": {"inspection_mode": "deep"},
                 "browser_isolation": {
@@ -154,6 +163,7 @@ class TestConfigurations:
                 },
                 "extended_email_matching": {"enabled": True},
                 "fips": {"tls": True},
+                "host_selector": {"enabled": False},
                 "protocol_detection": {"enabled": True},
                 "sandbox": {
                     "enabled": True,
@@ -256,6 +266,7 @@ class TestAsyncConfigurations:
                     "fail_closed": False,
                     "notification_settings": {
                         "enabled": True,
+                        "include_context": True,
                         "msg": "msg",
                         "support_url": "support_url",
                     },
@@ -265,11 +276,14 @@ class TestAsyncConfigurations:
                     "enabled": True,
                     "footer_text": "--footer--",
                     "header_text": "--header--",
+                    "include_context": True,
                     "logo_path": "https://logos.com/a.png",
                     "mailto_address": "admin@example.com",
                     "mailto_subject": "Blocked User Inquiry",
+                    "mode": "customized_block_page",
                     "name": "Cloudflare",
                     "suppress_footer": False,
+                    "target_uri": "https://example.com",
                 },
                 "body_scanning": {"inspection_mode": "deep"},
                 "browser_isolation": {
@@ -283,6 +297,7 @@ class TestAsyncConfigurations:
                 },
                 "extended_email_matching": {"enabled": True},
                 "fips": {"tls": True},
+                "host_selector": {"enabled": False},
                 "protocol_detection": {"enabled": True},
                 "sandbox": {
                     "enabled": True,
@@ -343,6 +358,7 @@ class TestAsyncConfigurations:
                     "fail_closed": False,
                     "notification_settings": {
                         "enabled": True,
+                        "include_context": True,
                         "msg": "msg",
                         "support_url": "support_url",
                     },
@@ -352,11 +368,14 @@ class TestAsyncConfigurations:
                     "enabled": True,
                     "footer_text": "--footer--",
                     "header_text": "--header--",
+                    "include_context": True,
                     "logo_path": "https://logos.com/a.png",
                     "mailto_address": "admin@example.com",
                     "mailto_subject": "Blocked User Inquiry",
+                    "mode": "customized_block_page",
                     "name": "Cloudflare",
                     "suppress_footer": False,
+                    "target_uri": "https://example.com",
                 },
                 "body_scanning": {"inspection_mode": "deep"},
                 "browser_isolation": {
@@ -370,6 +389,7 @@ class TestAsyncConfigurations:
                 },
                 "extended_email_matching": {"enabled": True},
                 "fips": {"tls": True},
+                "host_selector": {"enabled": False},
                 "protocol_detection": {"enabled": True},
                 "sandbox": {
                     "enabled": True,

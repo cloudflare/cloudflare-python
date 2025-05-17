@@ -36,4 +36,4 @@ class WAN(BaseModel):
     """
 
     vlan_tag: Optional[int] = None
-    """VLAN port number."""
+    """VLAN ID. Use zero for untagged."""

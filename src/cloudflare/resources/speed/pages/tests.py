@@ -8,10 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -92,7 +89,7 @@ class TestsResource(SyncAPIResource):
         Starts a test for a specific webpage, in a specific region.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           url: A URL.
 
@@ -165,7 +162,7 @@ class TestsResource(SyncAPIResource):
         Test history (list of tests) for a specific webpage.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           url: A URL.
 
@@ -245,7 +242,7 @@ class TestsResource(SyncAPIResource):
         are still counted as part of the quota.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           url: A URL.
 
@@ -293,7 +290,7 @@ class TestsResource(SyncAPIResource):
         Retrieves the result of a specific test.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           url: A URL.
 
@@ -384,7 +381,7 @@ class AsyncTestsResource(AsyncAPIResource):
         Starts a test for a specific webpage, in a specific region.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           url: A URL.
 
@@ -457,7 +454,7 @@ class AsyncTestsResource(AsyncAPIResource):
         Test history (list of tests) for a specific webpage.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           url: A URL.
 
@@ -537,7 +534,7 @@ class AsyncTestsResource(AsyncAPIResource):
         are still counted as part of the quota.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           url: A URL.
 
@@ -585,7 +582,7 @@ class AsyncTestsResource(AsyncAPIResource):
         Retrieves the result of a specific test.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           url: A URL.
 

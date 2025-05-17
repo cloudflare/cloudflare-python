@@ -11,6 +11,9 @@ class BotFightModeConfigurationParam(TypedDict, total=False):
     ai_bots_protection: Literal["block", "disabled"]
     """Enable rule to block AI Scrapers and Crawlers."""
 
+    crawler_protection: Literal["enabled", "disabled"]
+    """Enable rule to punish AI Scrapers and Crawlers via a link maze."""
+
     enable_js: bool
     """Use lightweight, invisible JavaScript detections to improve Bot Management.
 

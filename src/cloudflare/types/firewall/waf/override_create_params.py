@@ -12,7 +12,7 @@ __all__ = ["OverrideCreateParams"]
 
 class OverrideCreateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Defines an identifier."""
 
     urls: Required[List[OverrideURL]]
     """The URLs to include in the current WAF override.

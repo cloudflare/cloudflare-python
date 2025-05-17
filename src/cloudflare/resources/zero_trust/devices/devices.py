@@ -6,6 +6,7 @@ from typing import Type, Optional, cast
 
 import httpx
 
+from . import devices_ as devices
 from .revoke import (
     RevokeResource,
     AsyncRevokeResource,
@@ -65,6 +66,14 @@ from .fleet_status import (
     AsyncFleetStatusResourceWithStreamingResponse,
 )
 from ....pagination import SyncSinglePage, AsyncSinglePage
+from .registrations import (
+    RegistrationsResource,
+    AsyncRegistrationsResource,
+    RegistrationsResourceWithRawResponse,
+    AsyncRegistrationsResourceWithRawResponse,
+    RegistrationsResourceWithStreamingResponse,
+    AsyncRegistrationsResourceWithStreamingResponse,
+)
 from .override_codes import (
     OverrideCodesResource,
     AsyncOverrideCodesResource,
@@ -90,6 +99,14 @@ from .policies.policies import (
     PoliciesResourceWithStreamingResponse,
     AsyncPoliciesResourceWithStreamingResponse,
 )
+from .resilience.resilience import (
+    ResilienceResource,
+    AsyncResilienceResource,
+    ResilienceResourceWithRawResponse,
+    AsyncResilienceResourceWithRawResponse,
+    ResilienceResourceWithStreamingResponse,
+    AsyncResilienceResourceWithStreamingResponse,
+)
 from ....types.zero_trust.device import Device
 from ....types.zero_trust.device_get_response import DeviceGetResponse
 
@@ -97,6 +114,18 @@ __all__ = ["DevicesResource", "AsyncDevicesResource"]
 
 
 class DevicesResource(SyncAPIResource):
+    @cached_property
+    def devices(self) -> devices.DevicesResource:
+        return devices.DevicesResource(self._client)
+
+    @cached_property
+    def resilience(self) -> ResilienceResource:
+        return ResilienceResource(self._client)
+
+    @cached_property
+    def registrations(self) -> RegistrationsResource:
+        return RegistrationsResource(self._client)
+
     @cached_property
     def dex_tests(self) -> DEXTestsResource:
         return DEXTestsResource(self._client)
@@ -164,7 +193,12 @@ class DevicesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncSinglePage[Device]:
         """
-        Fetches a list of enrolled devices.
+        List WARP registrations.
+
+        **Deprecated**: please use one of the following endpoints instead:
+
+        - GET /accounts/{account_id}/devices/physical-devices
+        - GET /accounts/{account_id}/devices/registrations
 
         Args:
           extra_headers: Send extra headers
@@ -199,10 +233,16 @@ class DevicesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[DeviceGetResponse]:
         """
-        Fetches details for a single device.
+        Fetches a single WARP registration.
+
+        **Deprecated**: please use one of the following endpoints instead:
+
+        - GET /accounts/{account_id}/devices/physical-devices/{device_id}
+        - GET /accounts/{account_id}/devices/registrations/{registration_id}
 
         Args:
-          device_id: Device ID.
+          device_id: Registration ID. Equal to Device ID except for accounts which enabled
+              [multi-user mode](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/deployment/mdm-deployment/windows-multiuser/).
 
           extra_headers: Send extra headers
 
@@ -230,6 +270,18 @@ class DevicesResource(SyncAPIResource):
 
 
 class AsyncDevicesResource(AsyncAPIResource):
+    @cached_property
+    def devices(self) -> devices.AsyncDevicesResource:
+        return devices.AsyncDevicesResource(self._client)
+
+    @cached_property
+    def resilience(self) -> AsyncResilienceResource:
+        return AsyncResilienceResource(self._client)
+
+    @cached_property
+    def registrations(self) -> AsyncRegistrationsResource:
+        return AsyncRegistrationsResource(self._client)
+
     @cached_property
     def dex_tests(self) -> AsyncDEXTestsResource:
         return AsyncDEXTestsResource(self._client)
@@ -297,7 +349,12 @@ class AsyncDevicesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[Device, AsyncSinglePage[Device]]:
         """
-        Fetches a list of enrolled devices.
+        List WARP registrations.
+
+        **Deprecated**: please use one of the following endpoints instead:
+
+        - GET /accounts/{account_id}/devices/physical-devices
+        - GET /accounts/{account_id}/devices/registrations
 
         Args:
           extra_headers: Send extra headers
@@ -332,10 +389,16 @@ class AsyncDevicesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[DeviceGetResponse]:
         """
-        Fetches details for a single device.
+        Fetches a single WARP registration.
+
+        **Deprecated**: please use one of the following endpoints instead:
+
+        - GET /accounts/{account_id}/devices/physical-devices/{device_id}
+        - GET /accounts/{account_id}/devices/registrations/{registration_id}
 
         Args:
-          device_id: Device ID.
+          device_id: Registration ID. Equal to Device ID except for accounts which enabled
+              [multi-user mode](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/deployment/mdm-deployment/windows-multiuser/).
 
           extra_headers: Send extra headers
 
@@ -372,6 +435,18 @@ class DevicesResourceWithRawResponse:
         self.get = to_raw_response_wrapper(
             devices.get,
         )
+
+    @cached_property
+    def devices(self) -> devices.DevicesResourceWithRawResponse:
+        return devices.DevicesResourceWithRawResponse(self._devices.devices)
+
+    @cached_property
+    def resilience(self) -> ResilienceResourceWithRawResponse:
+        return ResilienceResourceWithRawResponse(self._devices.resilience)
+
+    @cached_property
+    def registrations(self) -> RegistrationsResourceWithRawResponse:
+        return RegistrationsResourceWithRawResponse(self._devices.registrations)
 
     @cached_property
     def dex_tests(self) -> DEXTestsResourceWithRawResponse:
@@ -422,6 +497,18 @@ class AsyncDevicesResourceWithRawResponse:
         )
 
     @cached_property
+    def devices(self) -> devices.AsyncDevicesResourceWithRawResponse:
+        return devices.AsyncDevicesResourceWithRawResponse(self._devices.devices)
+
+    @cached_property
+    def resilience(self) -> AsyncResilienceResourceWithRawResponse:
+        return AsyncResilienceResourceWithRawResponse(self._devices.resilience)
+
+    @cached_property
+    def registrations(self) -> AsyncRegistrationsResourceWithRawResponse:
+        return AsyncRegistrationsResourceWithRawResponse(self._devices.registrations)
+
+    @cached_property
     def dex_tests(self) -> AsyncDEXTestsResourceWithRawResponse:
         return AsyncDEXTestsResourceWithRawResponse(self._devices.dex_tests)
 
@@ -470,6 +557,18 @@ class DevicesResourceWithStreamingResponse:
         )
 
     @cached_property
+    def devices(self) -> devices.DevicesResourceWithStreamingResponse:
+        return devices.DevicesResourceWithStreamingResponse(self._devices.devices)
+
+    @cached_property
+    def resilience(self) -> ResilienceResourceWithStreamingResponse:
+        return ResilienceResourceWithStreamingResponse(self._devices.resilience)
+
+    @cached_property
+    def registrations(self) -> RegistrationsResourceWithStreamingResponse:
+        return RegistrationsResourceWithStreamingResponse(self._devices.registrations)
+
+    @cached_property
     def dex_tests(self) -> DEXTestsResourceWithStreamingResponse:
         return DEXTestsResourceWithStreamingResponse(self._devices.dex_tests)
 
@@ -516,6 +615,18 @@ class AsyncDevicesResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             devices.get,
         )
+
+    @cached_property
+    def devices(self) -> devices.AsyncDevicesResourceWithStreamingResponse:
+        return devices.AsyncDevicesResourceWithStreamingResponse(self._devices.devices)
+
+    @cached_property
+    def resilience(self) -> AsyncResilienceResourceWithStreamingResponse:
+        return AsyncResilienceResourceWithStreamingResponse(self._devices.resilience)
+
+    @cached_property
+    def registrations(self) -> AsyncRegistrationsResourceWithStreamingResponse:
+        return AsyncRegistrationsResourceWithStreamingResponse(self._devices.registrations)
 
     @cached_property
     def dex_tests(self) -> AsyncDEXTestsResourceWithStreamingResponse:

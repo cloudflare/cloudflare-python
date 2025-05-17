@@ -9,7 +9,7 @@ __all__ = ["TestCreateParams"]
 
 class TestCreateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     region: Literal[
         "asia-east1",

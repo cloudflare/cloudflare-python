@@ -44,6 +44,7 @@ __all__ = [
     "ZonesSchemasBrowserCacheTTL",
     "ZonesSchemasBrowserCheck",
     "ZonesSchemasCacheLevel",
+    "ZonesChinaNetworkEnabled",
     "ZonesCNAMEFlattening",
     "ZonesSchemasEdgeCacheTTL",
     "ZonesSchemasEmailObfuscation",
@@ -65,6 +66,8 @@ __all__ = [
     "ZonesSchemasSortQueryStringForCache",
     "ZonesSchemasSSL",
     "ZonesTLS1_2Only",
+    "ZonesTransformations",
+    "ZonesTransformationsAllowedOrigins",
     "ZonesSchemasTrueClientIPHeader",
     "ZonesSchemasWAF",
 ]
@@ -194,6 +197,23 @@ class ZonesSchemasCacheLevel(BaseModel):
     """ID of the zone setting."""
 
     value: Literal["aggressive", "basic", "simplified"]
+    """Current value of the zone setting."""
+
+    editable: Optional[Literal[True, False]] = None
+    """
+    Whether or not this setting can be modified for this zone (based on your
+    Cloudflare plan level).
+    """
+
+    modified_on: Optional[datetime] = None
+    """last time this setting was modified."""
+
+
+class ZonesChinaNetworkEnabled(BaseModel):
+    id: Literal["china_network_enabled"]
+    """ID of the zone setting."""
+
+    value: Literal["on", "off"]
     """Current value of the zone setting."""
 
     editable: Optional[Literal[True, False]] = None
@@ -573,6 +593,46 @@ class ZonesTLS1_2Only(BaseModel):
     """last time this setting was modified."""
 
 
+class ZonesTransformations(BaseModel):
+    id: Literal["transformations"]
+    """ID of the zone setting.
+
+    Shared between Image Transformations and Video Transformations.
+    """
+
+    value: Literal["on", "off", "open"]
+    """Current value of the zone setting."""
+
+    editable: Optional[Literal[True, False]] = None
+    """
+    Whether or not this setting can be modified for this zone (based on your
+    Cloudflare plan level).
+    """
+
+    modified_on: Optional[datetime] = None
+    """last time this setting was modified."""
+
+
+class ZonesTransformationsAllowedOrigins(BaseModel):
+    id: Literal["transformations_allowed_origins"]
+    """ID of the zone setting.
+
+    Shared between Image Transformations and Video Transformations.
+    """
+
+    value: str
+    """Current value of the zone setting."""
+
+    editable: Optional[Literal[True, False]] = None
+    """
+    Whether or not this setting can be modified for this zone (based on your
+    Cloudflare plan level).
+    """
+
+    modified_on: Optional[datetime] = None
+    """last time this setting was modified."""
+
+
 class ZonesSchemasTrueClientIPHeader(BaseModel):
     id: Literal["true_client_ip_header"]
     """ID of the zone setting."""
@@ -619,6 +679,7 @@ SettingGetResponse: TypeAlias = Union[
     ZonesSchemasBrowserCheck,
     ZonesSchemasCacheLevel,
     ChallengeTTL,
+    ZonesChinaNetworkEnabled,
     Ciphers,
     ZonesCNAMEFlattening,
     DevelopmentMode,
@@ -661,6 +722,8 @@ SettingGetResponse: TypeAlias = Union[
     ZonesTLS1_2Only,
     TLS1_3,
     TLSClientAuth,
+    ZonesTransformations,
+    ZonesTransformationsAllowedOrigins,
     ZonesSchemasTrueClientIPHeader,
     ZonesSchemasWAF,
     WebP,

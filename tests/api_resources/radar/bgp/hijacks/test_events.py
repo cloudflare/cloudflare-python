@@ -40,7 +40,7 @@ class TestEvents:
             page=0,
             per_page=0,
             prefix="1.1.1.0/24",
-            sort_by="ID",
+            sort_by="TIME",
             sort_order="ASC",
             victim_asn=0,
         )
@@ -91,7 +91,7 @@ class TestAsyncEvents:
             page=0,
             per_page=0,
             prefix="1.1.1.0/24",
-            sort_by="ID",
+            sort_by="TIME",
             sort_order="ASC",
             victim_asn=0,
         )

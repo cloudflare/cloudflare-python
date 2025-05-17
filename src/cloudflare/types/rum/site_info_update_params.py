@@ -9,7 +9,7 @@ __all__ = ["SiteInfoUpdateParams"]
 
 class SiteInfoUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     auto_install: bool
     """

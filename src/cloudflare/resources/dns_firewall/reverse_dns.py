@@ -7,10 +7,7 @@ from typing import Dict, Type, Optional, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -65,9 +62,9 @@ class ReverseDNSResource(SyncAPIResource):
         Update reverse DNS configuration (PTR records) for a DNS Firewall cluster
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          dns_firewall_id: Identifier
+          dns_firewall_id: Identifier.
 
           ptr: Map of cluster IP addresses to PTR record contents
 
@@ -112,9 +109,9 @@ class ReverseDNSResource(SyncAPIResource):
         Show reverse DNS configuration (PTR records) for a DNS Firewall cluster
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          dns_firewall_id: Identifier
+          dns_firewall_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -178,9 +175,9 @@ class AsyncReverseDNSResource(AsyncAPIResource):
         Update reverse DNS configuration (PTR records) for a DNS Firewall cluster
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          dns_firewall_id: Identifier
+          dns_firewall_id: Identifier.
 
           ptr: Map of cluster IP addresses to PTR record contents
 
@@ -225,9 +222,9 @@ class AsyncReverseDNSResource(AsyncAPIResource):
         Show reverse DNS configuration (PTR records) for a DNS Firewall cluster
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          dns_firewall_id: Identifier
+          dns_firewall_id: Identifier.
 
           extra_headers: Send extra headers
 

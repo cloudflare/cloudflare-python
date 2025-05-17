@@ -11,23 +11,23 @@ __all__ = ["Hostname"]
 
 class Hostname(BaseModel):
     id: Optional[str] = None
-    """Identifier"""
+    """Specify the identifier of the hostname."""
 
     created_on: Optional[datetime] = None
 
     description: Optional[str] = None
-    """An optional description of the hostname."""
+    """Specify an optional description of the hostname."""
 
     dnslink: Optional[str] = None
-    """DNSLink value used if the target is ipfs."""
+    """Specify the DNSLink value used if the target is ipfs."""
 
     modified_on: Optional[datetime] = None
 
     name: Optional[str] = None
-    """The hostname that will point to the target gateway via CNAME."""
+    """Specify the hostname that points to the target gateway via CNAME."""
 
     status: Optional[Literal["active", "pending", "deleting", "error"]] = None
-    """Status of the hostname's activation."""
+    """Specifies the status of the hostname's activation."""
 
     target: Optional[Literal["ethereum", "ipfs", "ipfs_universal_path"]] = None
-    """Target gateway of the hostname."""
+    """Specify the target gateway of the hostname."""

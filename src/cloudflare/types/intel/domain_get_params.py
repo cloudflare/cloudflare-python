@@ -9,6 +9,6 @@ __all__ = ["DomainGetParams"]
 
 class DomainGetParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     domain: str

@@ -9,10 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ......_utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ......_utils import maybe_transform, async_maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -133,15 +130,15 @@ class AsesResource(SyncAPIResource):
         determined by the client IP address.
 
         Args:
-          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
-              exclude continents from results. For example, `-EU,NA` excludes results from EU,
-              but includes results from NA.
+          continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude continents from results. For example, `-EU,NA`
+              excludes results from EU, but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
@@ -155,11 +152,11 @@ class AsesResource(SyncAPIResource):
 
           limit: Limits the number of objects returned in the response.
 
-          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
-              locations from results. For example, `-US,PT` excludes results from the US, but
-              includes results from PT.
+          location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude locations from results. For example, `-US,PT`
+              excludes results from the US, but includes results from PT.
 
-          mitigation_product: Array of L7 mitigation products.
+          mitigation_product: Filters the results by layer 7 mitigation product.
 
           name: Array of names used to label the series in the response.
 
@@ -305,15 +302,15 @@ class AsyncAsesResource(AsyncAPIResource):
         determined by the client IP address.
 
         Args:
-          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
-              exclude continents from results. For example, `-EU,NA` excludes results from EU,
-              but includes results from NA.
+          continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude continents from results. For example, `-EU,NA`
+              excludes results from EU, but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
@@ -327,11 +324,11 @@ class AsyncAsesResource(AsyncAPIResource):
 
           limit: Limits the number of objects returned in the response.
 
-          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
-              locations from results. For example, `-US,PT` excludes results from the US, but
-              includes results from PT.
+          location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude locations from results. For example, `-US,PT`
+              excludes results from the US, but includes results from PT.
 
-          mitigation_product: Array of L7 mitigation products.
+          mitigation_product: Filters the results by layer 7 mitigation product.
 
           name: Array of names used to label the series in the response.
 

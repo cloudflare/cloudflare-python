@@ -17,6 +17,9 @@ __all__ = [
     "EStartRotateCryptKey",
     "EFinishRotateCryptKeySuccess",
     "EFinishRotateCryptKeyFailure",
+    "EStartRotatePki",
+    "EFinishRotatePkiSuccess",
+    "EFinishRotatePkiFailure",
     "EStartUpgrade",
     "EFinishUpgradeSuccess",
     "EFinishUpgradeFailure",
@@ -65,6 +68,21 @@ class EFinishRotateCryptKeyFailure(BaseModel):
     """Failed crypt key rotation"""
 
 
+class EStartRotatePki(BaseModel):
+    k: Literal["StartRotatePki"]
+    """Started PKI rotation"""
+
+
+class EFinishRotatePkiSuccess(BaseModel):
+    k: Literal["FinishRotatePkiSuccess"]
+    """Finished PKI rotation"""
+
+
+class EFinishRotatePkiFailure(BaseModel):
+    k: Literal["FinishRotatePkiFailure"]
+    """Failed PKI rotation"""
+
+
 class EStartUpgrade(BaseModel):
     k: Literal["StartUpgrade"]
     """Started upgrade"""
@@ -103,6 +121,9 @@ E: TypeAlias = Annotated[
         EStartRotateCryptKey,
         EFinishRotateCryptKeySuccess,
         EFinishRotateCryptKeyFailure,
+        EStartRotatePki,
+        EFinishRotatePkiSuccess,
+        EFinishRotatePkiFailure,
         EStartUpgrade,
         EFinishUpgradeSuccess,
         EFinishUpgradeFailure,

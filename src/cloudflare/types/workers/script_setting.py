@@ -5,7 +5,22 @@ from typing import List, Optional
 from ..._models import BaseModel
 from .scripts.consumer_script import ConsumerScript
 
-__all__ = ["ScriptSetting", "Observability"]
+__all__ = ["ScriptSetting", "Observability", "ObservabilityLogs"]
+
+
+class ObservabilityLogs(BaseModel):
+    enabled: bool
+    """Whether logs are enabled for the Worker."""
+
+    invocation_logs: bool
+    """
+    Whether
+    [invocation logs](https://developers.cloudflare.com/workers/observability/logs/workers-logs/#invocation-logs)
+    are enabled for the Worker.
+    """
+
+    head_sampling_rate: Optional[float] = None
+    """The sampling rate for logs. From 0 to 1 (1 = 100%, 0.1 = 10%). Default is 1."""
 
 
 class Observability(BaseModel):
@@ -17,6 +32,9 @@ class Observability(BaseModel):
 
     From 0 to 1 (1 = 100%, 0.1 = 10%). Default is 1.
     """
+
+    logs: Optional[ObservabilityLogs] = None
+    """Log settings for the Worker."""
 
 
 class ScriptSetting(BaseModel):

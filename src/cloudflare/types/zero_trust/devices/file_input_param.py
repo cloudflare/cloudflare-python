@@ -9,13 +9,13 @@ __all__ = ["FileInputParam"]
 
 class FileInputParam(TypedDict, total=False):
     operating_system: Required[Literal["windows", "linux", "mac"]]
-    """Operating system"""
+    """Operating system."""
 
     path: Required[str]
     """File path."""
 
     exists: bool
-    """Whether or not file exists"""
+    """Whether or not file exists."""
 
     sha256: str
     """SHA-256."""

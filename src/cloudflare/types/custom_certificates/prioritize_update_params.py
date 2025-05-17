@@ -10,7 +10,7 @@ __all__ = ["PrioritizeUpdateParams", "Certificate"]
 
 class PrioritizeUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     certificates: Required[Iterable[Certificate]]
     """Array of ordered certificates."""
@@ -18,7 +18,7 @@ class PrioritizeUpdateParams(TypedDict, total=False):
 
 class Certificate(TypedDict, total=False):
     id: str
-    """Identifier"""
+    """Identifier."""
 
     priority: float
     """The order/priority in which the certificate will be used in a request.

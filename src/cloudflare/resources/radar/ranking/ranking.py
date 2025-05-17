@@ -17,10 +17,7 @@ from .domain import (
     AsyncDomainResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -100,25 +97,26 @@ class RankingResource(SyncAPIResource):
         Args:
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
           domain_category: Filters results by domain category.
 
-          domains: Comma-separated list of domain names.
+          domains: Filters results by domain name. Specify a comma-separated list of domain names.
 
           format: Format in which results will be returned.
 
           limit: Limits the number of objects returned in the response.
 
-          location: Comma-separated list of locations (alpha-2 codes).
+          location: Filters results by location. Specify a comma-separated list of alpha-2 location
+              codes.
 
           name: Array of names used to label the series in the response.
 
-          ranking_type: Ranking type.
+          ranking_type: The ranking type.
 
           extra_headers: Send extra headers
 
@@ -180,7 +178,7 @@ class RankingResource(SyncAPIResource):
         domains, see https://blog.cloudflare.com/radar-domain-rankings/.
 
         Args:
-          date: Array of dates to filter the results.
+          date: Filters results by the specified array of dates.
 
           domain_category: Filters results by domain category.
 
@@ -188,11 +186,12 @@ class RankingResource(SyncAPIResource):
 
           limit: Limits the number of objects returned in the response.
 
-          location: Comma-separated list of locations (alpha-2 codes).
+          location: Filters results by location. Specify a comma-separated list of alpha-2 location
+              codes.
 
           name: Array of names used to label the series in the response.
 
-          ranking_type: Ranking type.
+          ranking_type: The ranking type.
 
           extra_headers: Send extra headers
 
@@ -281,25 +280,26 @@ class AsyncRankingResource(AsyncAPIResource):
         Args:
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
           domain_category: Filters results by domain category.
 
-          domains: Comma-separated list of domain names.
+          domains: Filters results by domain name. Specify a comma-separated list of domain names.
 
           format: Format in which results will be returned.
 
           limit: Limits the number of objects returned in the response.
 
-          location: Comma-separated list of locations (alpha-2 codes).
+          location: Filters results by location. Specify a comma-separated list of alpha-2 location
+              codes.
 
           name: Array of names used to label the series in the response.
 
-          ranking_type: Ranking type.
+          ranking_type: The ranking type.
 
           extra_headers: Send extra headers
 
@@ -361,7 +361,7 @@ class AsyncRankingResource(AsyncAPIResource):
         domains, see https://blog.cloudflare.com/radar-domain-rankings/.
 
         Args:
-          date: Array of dates to filter the results.
+          date: Filters results by the specified array of dates.
 
           domain_category: Filters results by domain category.
 
@@ -369,11 +369,12 @@ class AsyncRankingResource(AsyncAPIResource):
 
           limit: Limits the number of objects returned in the response.
 
-          location: Comma-separated list of locations (alpha-2 codes).
+          location: Filters results by location. Specify a comma-separated list of alpha-2 location
+              codes.
 
           name: Array of names used to label the series in the response.
 
-          ranking_type: Ranking type.
+          ranking_type: The ranking type.
 
           extra_headers: Send extra headers
 

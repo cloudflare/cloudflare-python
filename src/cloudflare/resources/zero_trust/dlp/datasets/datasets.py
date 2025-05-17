@@ -15,10 +15,7 @@ from .upload import (
     AsyncUploadResourceWithStreamingResponse,
 )
 from ....._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
-from ....._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -78,6 +75,7 @@ class DatasetsResource(SyncAPIResource):
         *,
         account_id: str,
         name: str,
+        case_sensitive: bool | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         encoding_version: int | NotGiven = NOT_GIVEN,
         secret: bool | NotGiven = NOT_GIVEN,
@@ -88,11 +86,15 @@ class DatasetsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[DatasetCreation]:
-        """
-        Create a new dataset
+        """Create a new dataset
 
         Args:
-          description: The description of the dataset
+          case_sensitive: Only applies to custom word lists.
+
+        Determines if the words should be matched in
+              a case-sensitive manner Cannot be set to false if `secret` is true or undefined
+
+          description: The description of the dataset.
 
           encoding_version: Dataset encoding version
 
@@ -121,6 +123,7 @@ class DatasetsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "name": name,
+                    "case_sensitive": case_sensitive,
                     "description": description,
                     "encoding_version": encoding_version,
                     "secret": secret,
@@ -142,6 +145,7 @@ class DatasetsResource(SyncAPIResource):
         dataset_id: str,
         *,
         account_id: str,
+        case_sensitive: bool | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -155,9 +159,13 @@ class DatasetsResource(SyncAPIResource):
         Update details about a dataset
 
         Args:
-          description: The description of the dataset
+          case_sensitive: Determines if the words should be matched in a case-sensitive manner.
 
-          name: The name of the dataset, must be unique
+              Only required for custom word lists.
+
+          description: The description of the dataset.
+
+          name: The name of the dataset, must be unique.
 
           extra_headers: Send extra headers
 
@@ -175,6 +183,7 @@ class DatasetsResource(SyncAPIResource):
             f"/accounts/{account_id}/dlp/datasets/{dataset_id}",
             body=maybe_transform(
                 {
+                    "case_sensitive": case_sensitive,
                     "description": description,
                     "name": name,
                 },
@@ -335,6 +344,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         *,
         account_id: str,
         name: str,
+        case_sensitive: bool | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         encoding_version: int | NotGiven = NOT_GIVEN,
         secret: bool | NotGiven = NOT_GIVEN,
@@ -345,11 +355,15 @@ class AsyncDatasetsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[DatasetCreation]:
-        """
-        Create a new dataset
+        """Create a new dataset
 
         Args:
-          description: The description of the dataset
+          case_sensitive: Only applies to custom word lists.
+
+        Determines if the words should be matched in
+              a case-sensitive manner Cannot be set to false if `secret` is true or undefined
+
+          description: The description of the dataset.
 
           encoding_version: Dataset encoding version
 
@@ -378,6 +392,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "name": name,
+                    "case_sensitive": case_sensitive,
                     "description": description,
                     "encoding_version": encoding_version,
                     "secret": secret,
@@ -399,6 +414,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         dataset_id: str,
         *,
         account_id: str,
+        case_sensitive: bool | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -412,9 +428,13 @@ class AsyncDatasetsResource(AsyncAPIResource):
         Update details about a dataset
 
         Args:
-          description: The description of the dataset
+          case_sensitive: Determines if the words should be matched in a case-sensitive manner.
 
-          name: The name of the dataset, must be unique
+              Only required for custom word lists.
+
+          description: The description of the dataset.
+
+          name: The name of the dataset, must be unique.
 
           extra_headers: Send extra headers
 
@@ -432,6 +452,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
             f"/accounts/{account_id}/dlp/datasets/{dataset_id}",
             body=await async_maybe_transform(
                 {
+                    "case_sensitive": case_sensitive,
                     "description": description,
                     "name": name,
                 },

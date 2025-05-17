@@ -8,10 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -71,17 +68,18 @@ class ASNsResource(SyncAPIResource):
         Retrieves a list of autonomous systems.
 
         Args:
-          asn: Comma-separated list of Autonomous System Numbers (ASNs).
+          asn: Filters results by Autonomous System. Specify one or more Autonomous System
+              Numbers (ASNs) as a comma-separated list.
 
           format: Format in which results will be returned.
 
           limit: Limits the number of objects returned in the response.
 
-          location: Location alpha-2 code.
+          location: Filters results by location. Specify an alpha-2 location code.
 
           offset: Skips the specified number of objects before fetching the results.
 
-          order_by: Metric to order the ASNs by.
+          order_by: Specifies the metric to order the ASNs by.
 
           extra_headers: Send extra headers
 
@@ -299,17 +297,18 @@ class AsyncASNsResource(AsyncAPIResource):
         Retrieves a list of autonomous systems.
 
         Args:
-          asn: Comma-separated list of Autonomous System Numbers (ASNs).
+          asn: Filters results by Autonomous System. Specify one or more Autonomous System
+              Numbers (ASNs) as a comma-separated list.
 
           format: Format in which results will be returned.
 
           limit: Limits the number of objects returned in the response.
 
-          location: Location alpha-2 code.
+          location: Filters results by location. Specify an alpha-2 location code.
 
           offset: Skips the specified number of objects before fetching the results.
 
-          order_by: Metric to order the ASNs by.
+          order_by: Specifies the metric to order the ASNs by.
 
           extra_headers: Send extra headers
 

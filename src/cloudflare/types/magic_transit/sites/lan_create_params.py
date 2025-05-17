@@ -18,9 +18,6 @@ class LANCreateParams(TypedDict, total=False):
 
     physport: Required[int]
 
-    vlan_tag: Required[int]
-    """VLAN port number."""
-
     ha_link: bool
     """mark true to use this LAN for HA probing.
 
@@ -39,3 +36,6 @@ class LANCreateParams(TypedDict, total=False):
     optional (if omitted, use DHCP). However, if in high availability mode,
     static_address is required along with secondary and virtual address.
     """
+
+    vlan_tag: int
+    """VLAN ID. Use zero for untagged."""

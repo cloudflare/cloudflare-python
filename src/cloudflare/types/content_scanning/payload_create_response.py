@@ -9,7 +9,7 @@ __all__ = ["PayloadCreateResponse"]
 
 class PayloadCreateResponse(BaseModel):
     id: Optional[str] = None
-    """The unique ID for this custom scan expression"""
+    """defines the unique ID for this custom scan expression."""
 
     payload: Optional[str] = None
-    """Ruleset expression to use in matching content objects"""
+    """Defines the ruleset expression to use in matching content objects."""

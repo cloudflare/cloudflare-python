@@ -9,6 +9,6 @@ __all__ = ["DomainHistoryGetParams"]
 
 class DomainHistoryGetParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     domain: str

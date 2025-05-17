@@ -24,7 +24,34 @@ class JobCreateParams(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    dataset: Optional[str]
+    dataset: Optional[
+        Literal[
+            "access_requests",
+            "audit_logs",
+            "biso_user_actions",
+            "casb_findings",
+            "device_posture_results",
+            "dlp_forensic_copies",
+            "dns_firewall_logs",
+            "dns_logs",
+            "email_security_alerts",
+            "firewall_events",
+            "gateway_dns",
+            "gateway_http",
+            "gateway_network",
+            "http_requests",
+            "magic_ids_detections",
+            "nel_reports",
+            "network_analytics_logs",
+            "page_shield_events",
+            "sinkhole_http_logs",
+            "spectrum_events",
+            "ssh_logs",
+            "workers_trace_events",
+            "zaraz_events",
+            "zero_trust_network_sessions",
+        ]
+    ]
     """Name of the dataset.
 
     A list of supported datasets can be found on the
@@ -33,6 +60,13 @@ class JobCreateParams(TypedDict, total=False):
 
     enabled: bool
     """Flag that indicates if the job is enabled."""
+
+    filter: Optional[str]
+    """The filters to select the events to include and/or remove from your logs.
+
+    For more information, refer to
+    [Filters](https://developers.cloudflare.com/logs/reference/filters/).
+    """
 
     frequency: Optional[Literal["high", "low"]]
     """This field is deprecated.
@@ -43,7 +77,7 @@ class JobCreateParams(TypedDict, total=False):
     in smaller quantities of larger files.
     """
 
-    kind: Optional[Literal["edge"]]
+    kind: Literal["edge"]
     """
     The kind parameter (optional) is used to differentiate between Logpush and Edge
     Log Delivery jobs. Currently, Edge Log Delivery is only supported for the

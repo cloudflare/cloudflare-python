@@ -19,3 +19,6 @@ class SchemaValidationGetResponse(BaseModel):
     - `null` indicates that no operation level mitigation is in place, see Zone
       Level Schema Validation Settings for mitigation action that will be applied
     """
+
+    operation_id: Optional[str] = None
+    """UUID."""

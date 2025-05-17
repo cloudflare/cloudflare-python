@@ -13,7 +13,7 @@ __all__ = ["AccessRequestListParams"]
 
 class AccessRequestListParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     direction: Literal["desc", "asc"]
     """The chronological sorting order for the logs."""

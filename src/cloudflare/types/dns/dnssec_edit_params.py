@@ -9,7 +9,7 @@ __all__ = ["DNSSECEditParams"]
 
 class DNSSECEditParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     dnssec_multi_signer: bool
     """
@@ -31,6 +31,19 @@ class DNSSECEditParams(TypedDict, total=False):
 
     Note that this feature has some limitations. See
     [Cloudflare as Secondary](https://developers.cloudflare.com/dns/zone-setups/zone-transfers/cloudflare-as-secondary/setup/#dnssec)
+    for details.
+    """
+
+    dnssec_use_nsec3: bool
+    """
+    If true, enables the use of NSEC3 together with DNSSEC on the zone. Combined
+    with setting dnssec_presigned to true, this enables the use of NSEC3 records
+    when transferring in from an external provider. If dnssec_presigned is instead
+    set to false (default), NSEC3 records will be generated and signed at request
+    time.
+
+    See
+    [DNSSEC with NSEC3](https://developers.cloudflare.com/dns/dnssec/enable-nsec3/)
     for details.
     """
 

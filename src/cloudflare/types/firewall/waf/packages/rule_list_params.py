@@ -9,34 +9,38 @@ __all__ = ["RuleListParams"]
 
 class RuleListParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Defines an identifier of a schema."""
 
     description: str
-    """The public description of the WAF rule."""
+    """Defines the public description of the WAF rule."""
 
     direction: Literal["asc", "desc"]
-    """The direction used to sort returned rules."""
+    """Defines the direction used to sort returned rules."""
 
     group_id: str
-    """The unique identifier of the rule group."""
+    """Defines the unique identifier of the rule group."""
 
     match: Literal["any", "all"]
-    """When set to `all`, all the search requirements must match.
+    """Defines the search requirements.
 
-    When set to `any`, only one of the search requirements has to match.
+    When set to `all`, all the search requirements must match. When set to `any`,
+    only one of the search requirements has to match.
     """
 
     mode: Literal["DIS", "CHL", "BLK", "SIM"]
-    """The action/mode a rule has been overridden to perform."""
+    """Defines the action/mode a rule has been overridden to perform."""
 
     order: Literal["priority", "group_id", "description"]
-    """The field used to sort returned rules."""
+    """Defines the field used to sort returned rules."""
 
     page: float
-    """The page number of paginated results."""
+    """Defines the page number of paginated results."""
 
     per_page: float
-    """The number of rules per page."""
+    """Defines the number of rules per page."""
 
     priority: str
-    """The order in which the individual WAF rule is executed within its rule group."""
+    """
+    Defines the order in which the individual WAF rule is executed within its rule
+    group.
+    """

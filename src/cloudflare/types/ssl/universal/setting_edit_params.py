@@ -9,7 +9,7 @@ __all__ = ["SettingEditParams"]
 
 class SettingEditParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     enabled: bool
     """

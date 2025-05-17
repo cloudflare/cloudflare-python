@@ -34,6 +34,7 @@ class RuleUpdateParams(TypedDict, total=False):
             "egress",
             "resolve",
             "quarantine",
+            "redirect",
         ]
     ]
     """
@@ -74,7 +75,9 @@ class RuleUpdateParams(TypedDict, total=False):
     """Precedence sets the order of your rules.
 
     Lower values indicate higher precedence. At each processing phase, applicable
-    rules are evaluated in ascending order of this value.
+    rules are evaluated in ascending order of this value. Refer to
+    [Order of enforcement](http://developers.cloudflare.com/learning-paths/secure-internet-traffic/understand-policies/order-of-enforcement/#manage-precedence-with-terraform)
+    docs on how to manage precedence via Terraform.
     """
 
     rule_settings: RuleSettingParam
@@ -108,6 +111,3 @@ class Expiration(TypedDict, total=False):
 
     Must be set in order to use the `reset_expiration` endpoint on this rule.
     """
-
-    expired: bool
-    """Whether the policy has expired."""

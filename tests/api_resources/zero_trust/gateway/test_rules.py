@@ -25,7 +25,7 @@ class TestRules:
     def test_method_create(self, client: Cloudflare) -> None:
         rule = client.zero_trust.gateway.rules.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            action="on",
+            action="allow",
             name="block bad websites",
         )
         assert_matches_type(Optional[GatewayRule], rule, path=["response"])
@@ -34,7 +34,7 @@ class TestRules:
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         rule = client.zero_trust.gateway.rules.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            action="on",
+            action="allow",
             name="block bad websites",
             description="Block bad websites based on their host name.",
             device_posture='any(device_posture.checks.passed[*] in {"1308749e-fcfb-4ebc-b051-fe022b632644"})',
@@ -42,7 +42,6 @@ class TestRules:
             expiration={
                 "expires_at": parse_datetime("2014-01-01T05:20:20Z"),
                 "duration": 10,
-                "expired": False,
             },
             filters=["http"],
             identity='any(identity.groups.name[*] in {"finance"})',
@@ -52,7 +51,7 @@ class TestRules:
                 "allow_child_bypass": False,
                 "audit_ssh": {"command_logging": False},
                 "biso_admin_controls": {
-                    "copy": "enabled",
+                    "copy": "remote_only",
                     "dcp": False,
                     "dd": False,
                     "dk": False,
@@ -64,6 +63,10 @@ class TestRules:
                     "printing": "enabled",
                     "upload": "enabled",
                     "version": "v1",
+                },
+                "block_page": {
+                    "target_uri": "https://example.com",
+                    "include_context": True,
                 },
                 "block_page_enabled": True,
                 "block_reason": "This website is a security risk",
@@ -105,6 +108,7 @@ class TestRules:
                 },
                 "notification_settings": {
                     "enabled": True,
+                    "include_context": True,
                     "msg": "msg",
                     "support_url": "support_url",
                 },
@@ -112,12 +116,17 @@ class TestRules:
                 "override_ips": ["1.1.1.1", "2.2.2.2"],
                 "payload_log": {"enabled": True},
                 "quarantine": {"file_types": ["exe"]},
+                "redirect": {
+                    "target_uri": "https://example.com",
+                    "include_context": True,
+                    "preserve_path_and_query": True,
+                },
                 "resolve_dns_internally": {
                     "fallback": "none",
                     "view_id": "view_id",
                 },
                 "resolve_dns_through_cloudflare": True,
-                "untrusted_cert": {"action": "pass_through"},
+                "untrusted_cert": {"action": "error"},
             },
             schedule={
                 "fri": "08:00-12:30,13:30-17:00",
@@ -137,7 +146,7 @@ class TestRules:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.zero_trust.gateway.rules.with_raw_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            action="on",
+            action="allow",
             name="block bad websites",
         )
 
@@ -150,7 +159,7 @@ class TestRules:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.zero_trust.gateway.rules.with_streaming_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            action="on",
+            action="allow",
             name="block bad websites",
         ) as response:
             assert not response.is_closed
@@ -166,7 +175,7 @@ class TestRules:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.gateway.rules.with_raw_response.create(
                 account_id="",
-                action="on",
+                action="allow",
                 name="block bad websites",
             )
 
@@ -175,7 +184,7 @@ class TestRules:
         rule = client.zero_trust.gateway.rules.update(
             rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            action="on",
+            action="allow",
             name="block bad websites",
         )
         assert_matches_type(Optional[GatewayRule], rule, path=["response"])
@@ -185,7 +194,7 @@ class TestRules:
         rule = client.zero_trust.gateway.rules.update(
             rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            action="on",
+            action="allow",
             name="block bad websites",
             description="Block bad websites based on their host name.",
             device_posture='any(device_posture.checks.passed[*] in {"1308749e-fcfb-4ebc-b051-fe022b632644"})',
@@ -193,7 +202,6 @@ class TestRules:
             expiration={
                 "expires_at": parse_datetime("2014-01-01T05:20:20Z"),
                 "duration": 10,
-                "expired": False,
             },
             filters=["http"],
             identity='any(identity.groups.name[*] in {"finance"})',
@@ -203,7 +211,7 @@ class TestRules:
                 "allow_child_bypass": False,
                 "audit_ssh": {"command_logging": False},
                 "biso_admin_controls": {
-                    "copy": "enabled",
+                    "copy": "remote_only",
                     "dcp": False,
                     "dd": False,
                     "dk": False,
@@ -215,6 +223,10 @@ class TestRules:
                     "printing": "enabled",
                     "upload": "enabled",
                     "version": "v1",
+                },
+                "block_page": {
+                    "target_uri": "https://example.com",
+                    "include_context": True,
                 },
                 "block_page_enabled": True,
                 "block_reason": "This website is a security risk",
@@ -256,6 +268,7 @@ class TestRules:
                 },
                 "notification_settings": {
                     "enabled": True,
+                    "include_context": True,
                     "msg": "msg",
                     "support_url": "support_url",
                 },
@@ -263,12 +276,17 @@ class TestRules:
                 "override_ips": ["1.1.1.1", "2.2.2.2"],
                 "payload_log": {"enabled": True},
                 "quarantine": {"file_types": ["exe"]},
+                "redirect": {
+                    "target_uri": "https://example.com",
+                    "include_context": True,
+                    "preserve_path_and_query": True,
+                },
                 "resolve_dns_internally": {
                     "fallback": "none",
                     "view_id": "view_id",
                 },
                 "resolve_dns_through_cloudflare": True,
-                "untrusted_cert": {"action": "pass_through"},
+                "untrusted_cert": {"action": "error"},
             },
             schedule={
                 "fri": "08:00-12:30,13:30-17:00",
@@ -289,7 +307,7 @@ class TestRules:
         response = client.zero_trust.gateway.rules.with_raw_response.update(
             rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            action="on",
+            action="allow",
             name="block bad websites",
         )
 
@@ -303,7 +321,7 @@ class TestRules:
         with client.zero_trust.gateway.rules.with_streaming_response.update(
             rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            action="on",
+            action="allow",
             name="block bad websites",
         ) as response:
             assert not response.is_closed
@@ -320,7 +338,7 @@ class TestRules:
             client.zero_trust.gateway.rules.with_raw_response.update(
                 rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                action="on",
+                action="allow",
                 name="block bad websites",
             )
 
@@ -328,7 +346,7 @@ class TestRules:
             client.zero_trust.gateway.rules.with_raw_response.update(
                 rule_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
-                action="on",
+                action="allow",
                 name="block bad websites",
             )
 
@@ -522,7 +540,7 @@ class TestAsyncRules:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         rule = await async_client.zero_trust.gateway.rules.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            action="on",
+            action="allow",
             name="block bad websites",
         )
         assert_matches_type(Optional[GatewayRule], rule, path=["response"])
@@ -531,7 +549,7 @@ class TestAsyncRules:
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         rule = await async_client.zero_trust.gateway.rules.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            action="on",
+            action="allow",
             name="block bad websites",
             description="Block bad websites based on their host name.",
             device_posture='any(device_posture.checks.passed[*] in {"1308749e-fcfb-4ebc-b051-fe022b632644"})',
@@ -539,7 +557,6 @@ class TestAsyncRules:
             expiration={
                 "expires_at": parse_datetime("2014-01-01T05:20:20Z"),
                 "duration": 10,
-                "expired": False,
             },
             filters=["http"],
             identity='any(identity.groups.name[*] in {"finance"})',
@@ -549,7 +566,7 @@ class TestAsyncRules:
                 "allow_child_bypass": False,
                 "audit_ssh": {"command_logging": False},
                 "biso_admin_controls": {
-                    "copy": "enabled",
+                    "copy": "remote_only",
                     "dcp": False,
                     "dd": False,
                     "dk": False,
@@ -561,6 +578,10 @@ class TestAsyncRules:
                     "printing": "enabled",
                     "upload": "enabled",
                     "version": "v1",
+                },
+                "block_page": {
+                    "target_uri": "https://example.com",
+                    "include_context": True,
                 },
                 "block_page_enabled": True,
                 "block_reason": "This website is a security risk",
@@ -602,6 +623,7 @@ class TestAsyncRules:
                 },
                 "notification_settings": {
                     "enabled": True,
+                    "include_context": True,
                     "msg": "msg",
                     "support_url": "support_url",
                 },
@@ -609,12 +631,17 @@ class TestAsyncRules:
                 "override_ips": ["1.1.1.1", "2.2.2.2"],
                 "payload_log": {"enabled": True},
                 "quarantine": {"file_types": ["exe"]},
+                "redirect": {
+                    "target_uri": "https://example.com",
+                    "include_context": True,
+                    "preserve_path_and_query": True,
+                },
                 "resolve_dns_internally": {
                     "fallback": "none",
                     "view_id": "view_id",
                 },
                 "resolve_dns_through_cloudflare": True,
-                "untrusted_cert": {"action": "pass_through"},
+                "untrusted_cert": {"action": "error"},
             },
             schedule={
                 "fri": "08:00-12:30,13:30-17:00",
@@ -634,7 +661,7 @@ class TestAsyncRules:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.gateway.rules.with_raw_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            action="on",
+            action="allow",
             name="block bad websites",
         )
 
@@ -647,7 +674,7 @@ class TestAsyncRules:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.gateway.rules.with_streaming_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            action="on",
+            action="allow",
             name="block bad websites",
         ) as response:
             assert not response.is_closed
@@ -663,7 +690,7 @@ class TestAsyncRules:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.gateway.rules.with_raw_response.create(
                 account_id="",
-                action="on",
+                action="allow",
                 name="block bad websites",
             )
 
@@ -672,7 +699,7 @@ class TestAsyncRules:
         rule = await async_client.zero_trust.gateway.rules.update(
             rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            action="on",
+            action="allow",
             name="block bad websites",
         )
         assert_matches_type(Optional[GatewayRule], rule, path=["response"])
@@ -682,7 +709,7 @@ class TestAsyncRules:
         rule = await async_client.zero_trust.gateway.rules.update(
             rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            action="on",
+            action="allow",
             name="block bad websites",
             description="Block bad websites based on their host name.",
             device_posture='any(device_posture.checks.passed[*] in {"1308749e-fcfb-4ebc-b051-fe022b632644"})',
@@ -690,7 +717,6 @@ class TestAsyncRules:
             expiration={
                 "expires_at": parse_datetime("2014-01-01T05:20:20Z"),
                 "duration": 10,
-                "expired": False,
             },
             filters=["http"],
             identity='any(identity.groups.name[*] in {"finance"})',
@@ -700,7 +726,7 @@ class TestAsyncRules:
                 "allow_child_bypass": False,
                 "audit_ssh": {"command_logging": False},
                 "biso_admin_controls": {
-                    "copy": "enabled",
+                    "copy": "remote_only",
                     "dcp": False,
                     "dd": False,
                     "dk": False,
@@ -712,6 +738,10 @@ class TestAsyncRules:
                     "printing": "enabled",
                     "upload": "enabled",
                     "version": "v1",
+                },
+                "block_page": {
+                    "target_uri": "https://example.com",
+                    "include_context": True,
                 },
                 "block_page_enabled": True,
                 "block_reason": "This website is a security risk",
@@ -753,6 +783,7 @@ class TestAsyncRules:
                 },
                 "notification_settings": {
                     "enabled": True,
+                    "include_context": True,
                     "msg": "msg",
                     "support_url": "support_url",
                 },
@@ -760,12 +791,17 @@ class TestAsyncRules:
                 "override_ips": ["1.1.1.1", "2.2.2.2"],
                 "payload_log": {"enabled": True},
                 "quarantine": {"file_types": ["exe"]},
+                "redirect": {
+                    "target_uri": "https://example.com",
+                    "include_context": True,
+                    "preserve_path_and_query": True,
+                },
                 "resolve_dns_internally": {
                     "fallback": "none",
                     "view_id": "view_id",
                 },
                 "resolve_dns_through_cloudflare": True,
-                "untrusted_cert": {"action": "pass_through"},
+                "untrusted_cert": {"action": "error"},
             },
             schedule={
                 "fri": "08:00-12:30,13:30-17:00",
@@ -786,7 +822,7 @@ class TestAsyncRules:
         response = await async_client.zero_trust.gateway.rules.with_raw_response.update(
             rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            action="on",
+            action="allow",
             name="block bad websites",
         )
 
@@ -800,7 +836,7 @@ class TestAsyncRules:
         async with async_client.zero_trust.gateway.rules.with_streaming_response.update(
             rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            action="on",
+            action="allow",
             name="block bad websites",
         ) as response:
             assert not response.is_closed
@@ -817,7 +853,7 @@ class TestAsyncRules:
             await async_client.zero_trust.gateway.rules.with_raw_response.update(
                 rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                action="on",
+                action="allow",
                 name="block bad websites",
             )
 
@@ -825,7 +861,7 @@ class TestAsyncRules:
             await async_client.zero_trust.gateway.rules.with_raw_response.update(
                 rule_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
-                action="on",
+                action="allow",
                 name="block bad websites",
             )
 

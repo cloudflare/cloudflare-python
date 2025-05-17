@@ -7,10 +7,7 @@ from typing import Type, Iterable, Optional, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -155,7 +152,7 @@ class GroupsResource(SyncAPIResource):
         Updates a configured Access group.
 
         Args:
-          group_id: UUID
+          group_id: UUID.
 
           include: Rules evaluated with an OR logical operator. A user needs to meet only one of
               the Include rules.
@@ -300,7 +297,7 @@ class GroupsResource(SyncAPIResource):
         Deletes an Access group.
 
         Args:
-          group_id: UUID
+          group_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -357,7 +354,7 @@ class GroupsResource(SyncAPIResource):
         Fetches a single Access group.
 
         Args:
-          group_id: UUID
+          group_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -520,7 +517,7 @@ class AsyncGroupsResource(AsyncAPIResource):
         Updates a configured Access group.
 
         Args:
-          group_id: UUID
+          group_id: UUID.
 
           include: Rules evaluated with an OR logical operator. A user needs to meet only one of
               the Include rules.
@@ -665,7 +662,7 @@ class AsyncGroupsResource(AsyncAPIResource):
         Deletes an Access group.
 
         Args:
-          group_id: UUID
+          group_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -722,7 +719,7 @@ class AsyncGroupsResource(AsyncAPIResource):
         Fetches a single Access group.
 
         Args:
-          group_id: UUID
+          group_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 

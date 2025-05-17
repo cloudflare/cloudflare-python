@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
@@ -29,7 +29,7 @@ class TestScripts:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             metadata={},
         )
-        assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
+        assert_matches_type(ScriptUpdateResponse, script, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -40,8 +40,10 @@ class TestScripts:
             metadata={
                 "assets": {
                     "config": {
+                        "_headers": "/dashboard/*\nX-Frame-Options: DENY\n\n/static/*\nAccess-Control-Allow-Origin: *",
+                        "_redirects": "/foo /bar 301\n/news/* /blog/:splat",
                         "html_handling": "auto-trailing-slash",
-                        "not_found_handling": "none",
+                        "not_found_handling": "404-page",
                         "run_worker_first": False,
                         "serve_directly": True,
                     },
@@ -50,7 +52,8 @@ class TestScripts:
                 "bindings": [
                     {
                         "name": "MY_ENV_VAR",
-                        "type": "ai",
+                        "text": "my_data",
+                        "type": "plain_text",
                     }
                 ],
                 "body_part": "worker.js",
@@ -83,6 +86,11 @@ class TestScripts:
                 "observability": {
                     "enabled": True,
                     "head_sampling_rate": 0.1,
+                    "logs": {
+                        "enabled": True,
+                        "invocation_logs": True,
+                        "head_sampling_rate": 0.1,
+                    },
                 },
                 "placement": {"mode": "smart"},
                 "tags": ["string"],
@@ -96,7 +104,7 @@ class TestScripts:
                 "usage_model": "standard",
             },
         )
-        assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
+        assert_matches_type(ScriptUpdateResponse, script, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -110,7 +118,7 @@ class TestScripts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         script = response.parse()
-        assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
+        assert_matches_type(ScriptUpdateResponse, script, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -124,7 +132,7 @@ class TestScripts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             script = response.parse()
-            assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
+            assert_matches_type(ScriptUpdateResponse, script, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -189,7 +197,7 @@ class TestScripts:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert script is None
+        assert_matches_type(object, script, path=["response"])
 
     @parametrize
     def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
@@ -198,7 +206,7 @@ class TestScripts:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             force=True,
         )
-        assert script is None
+        assert_matches_type(object, script, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -210,7 +218,7 @@ class TestScripts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         script = response.parse()
-        assert script is None
+        assert_matches_type(object, script, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -222,7 +230,7 @@ class TestScripts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             script = response.parse()
-            assert script is None
+            assert_matches_type(object, script, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -300,7 +308,7 @@ class TestAsyncScripts:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             metadata={},
         )
-        assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
+        assert_matches_type(ScriptUpdateResponse, script, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -311,8 +319,10 @@ class TestAsyncScripts:
             metadata={
                 "assets": {
                     "config": {
+                        "_headers": "/dashboard/*\nX-Frame-Options: DENY\n\n/static/*\nAccess-Control-Allow-Origin: *",
+                        "_redirects": "/foo /bar 301\n/news/* /blog/:splat",
                         "html_handling": "auto-trailing-slash",
-                        "not_found_handling": "none",
+                        "not_found_handling": "404-page",
                         "run_worker_first": False,
                         "serve_directly": True,
                     },
@@ -321,7 +331,8 @@ class TestAsyncScripts:
                 "bindings": [
                     {
                         "name": "MY_ENV_VAR",
-                        "type": "ai",
+                        "text": "my_data",
+                        "type": "plain_text",
                     }
                 ],
                 "body_part": "worker.js",
@@ -354,6 +365,11 @@ class TestAsyncScripts:
                 "observability": {
                     "enabled": True,
                     "head_sampling_rate": 0.1,
+                    "logs": {
+                        "enabled": True,
+                        "invocation_logs": True,
+                        "head_sampling_rate": 0.1,
+                    },
                 },
                 "placement": {"mode": "smart"},
                 "tags": ["string"],
@@ -367,7 +383,7 @@ class TestAsyncScripts:
                 "usage_model": "standard",
             },
         )
-        assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
+        assert_matches_type(ScriptUpdateResponse, script, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -381,7 +397,7 @@ class TestAsyncScripts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         script = await response.parse()
-        assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
+        assert_matches_type(ScriptUpdateResponse, script, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -395,7 +411,7 @@ class TestAsyncScripts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             script = await response.parse()
-            assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
+            assert_matches_type(ScriptUpdateResponse, script, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -460,7 +476,7 @@ class TestAsyncScripts:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert script is None
+        assert_matches_type(object, script, path=["response"])
 
     @parametrize
     async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -469,7 +485,7 @@ class TestAsyncScripts:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             force=True,
         )
-        assert script is None
+        assert_matches_type(object, script, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -481,7 +497,7 @@ class TestAsyncScripts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         script = await response.parse()
-        assert script is None
+        assert_matches_type(object, script, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -493,7 +509,7 @@ class TestAsyncScripts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             script = await response.parse()
-            assert script is None
+            assert_matches_type(object, script, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

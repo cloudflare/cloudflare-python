@@ -9,7 +9,7 @@ __all__ = ["SettingUpdateParams"]
 
 class SettingUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     enabled: Required[bool]
     """Indicates whether zone-level authenticated origin pulls is enabled."""

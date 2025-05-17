@@ -9,7 +9,7 @@ __all__ = ["SubdomainCreateParams"]
 
 class SubdomainCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     enabled: Required[bool]
     """Whether the Worker should be available on the workers.dev subdomain."""

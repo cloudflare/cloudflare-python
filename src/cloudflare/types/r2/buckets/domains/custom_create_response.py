@@ -12,10 +12,10 @@ __all__ = ["CustomCreateResponse"]
 
 class CustomCreateResponse(BaseModel):
     domain: str
-    """Domain name of the affected custom domain"""
+    """Domain name of the affected custom domain."""
 
     enabled: bool
-    """Whether this bucket is publicly accessible at the specified custom domain"""
+    """Whether this bucket is publicly accessible at the specified custom domain."""
 
     min_tls: Optional[Literal["1.0", "1.1", "1.2", "1.3"]] = FieldInfo(alias="minTLS", default=None)
     """Minimum TLS Version the custom domain will accept for incoming connections.

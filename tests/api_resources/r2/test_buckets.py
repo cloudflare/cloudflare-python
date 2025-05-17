@@ -89,7 +89,7 @@ class TestBuckets:
         bucket = client.r2.buckets.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             cursor="cursor",
-            direction="asc",
+            direction="desc",
             name_contains="my-bucket",
             order="name",
             per_page=1,
@@ -192,6 +192,74 @@ class TestBuckets:
             client.r2.buckets.with_raw_response.delete(
                 bucket_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_edit(self, client: Cloudflare) -> None:
+        bucket = client.r2.buckets.edit(
+            bucket_name="example-bucket",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            storage_class="Standard",
+        )
+        assert_matches_type(Bucket, bucket, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
+        bucket = client.r2.buckets.edit(
+            bucket_name="example-bucket",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            storage_class="Standard",
+            jurisdiction="default",
+        )
+        assert_matches_type(Bucket, bucket, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_raw_response_edit(self, client: Cloudflare) -> None:
+        response = client.r2.buckets.with_raw_response.edit(
+            bucket_name="example-bucket",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            storage_class="Standard",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        bucket = response.parse()
+        assert_matches_type(Bucket, bucket, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_streaming_response_edit(self, client: Cloudflare) -> None:
+        with client.r2.buckets.with_streaming_response.edit(
+            bucket_name="example-bucket",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            storage_class="Standard",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            bucket = response.parse()
+            assert_matches_type(Bucket, bucket, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_path_params_edit(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.r2.buckets.with_raw_response.edit(
+                bucket_name="example-bucket",
+                account_id="",
+                storage_class="Standard",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
+            client.r2.buckets.with_raw_response.edit(
+                bucket_name="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                storage_class="Standard",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -332,7 +400,7 @@ class TestAsyncBuckets:
         bucket = await async_client.r2.buckets.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             cursor="cursor",
-            direction="asc",
+            direction="desc",
             name_contains="my-bucket",
             order="name",
             per_page=1,
@@ -435,6 +503,74 @@ class TestAsyncBuckets:
             await async_client.r2.buckets.with_raw_response.delete(
                 bucket_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
+        bucket = await async_client.r2.buckets.edit(
+            bucket_name="example-bucket",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            storage_class="Standard",
+        )
+        assert_matches_type(Bucket, bucket, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        bucket = await async_client.r2.buckets.edit(
+            bucket_name="example-bucket",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            storage_class="Standard",
+            jurisdiction="default",
+        )
+        assert_matches_type(Bucket, bucket, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.r2.buckets.with_raw_response.edit(
+            bucket_name="example-bucket",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            storage_class="Standard",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        bucket = await response.parse()
+        assert_matches_type(Bucket, bucket, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.r2.buckets.with_streaming_response.edit(
+            bucket_name="example-bucket",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            storage_class="Standard",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            bucket = await response.parse()
+            assert_matches_type(Bucket, bucket, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.r2.buckets.with_raw_response.edit(
+                bucket_name="example-bucket",
+                account_id="",
+                storage_class="Standard",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
+            await async_client.r2.buckets.with_raw_response.edit(
+                bucket_name="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                storage_class="Standard",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")

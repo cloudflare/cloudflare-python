@@ -8,10 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -68,7 +65,7 @@ class SiteInfoResource(SyncAPIResource):
         Creates a new Web Analytics site.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           auto_install: If enabled, the JavaScript snippet is automatically injected for orange-clouded
               sites.
@@ -128,9 +125,9 @@ class SiteInfoResource(SyncAPIResource):
         Updates an existing Web Analytics site.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          site_id: Identifier
+          site_id: Identifier.
 
           auto_install: If enabled, the JavaScript snippet is automatically injected for orange-clouded
               sites.
@@ -197,7 +194,7 @@ class SiteInfoResource(SyncAPIResource):
         Lists all Web Analytics sites of an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           order_by: The property used to sort the list of results.
 
@@ -251,9 +248,9 @@ class SiteInfoResource(SyncAPIResource):
         Deletes an existing Web Analytics site.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          site_id: Identifier
+          site_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -295,9 +292,9 @@ class SiteInfoResource(SyncAPIResource):
         Retrieves a Web Analytics site.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          site_id: Identifier
+          site_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -362,7 +359,7 @@ class AsyncSiteInfoResource(AsyncAPIResource):
         Creates a new Web Analytics site.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           auto_install: If enabled, the JavaScript snippet is automatically injected for orange-clouded
               sites.
@@ -422,9 +419,9 @@ class AsyncSiteInfoResource(AsyncAPIResource):
         Updates an existing Web Analytics site.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          site_id: Identifier
+          site_id: Identifier.
 
           auto_install: If enabled, the JavaScript snippet is automatically injected for orange-clouded
               sites.
@@ -491,7 +488,7 @@ class AsyncSiteInfoResource(AsyncAPIResource):
         Lists all Web Analytics sites of an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           order_by: The property used to sort the list of results.
 
@@ -545,9 +542,9 @@ class AsyncSiteInfoResource(AsyncAPIResource):
         Deletes an existing Web Analytics site.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          site_id: Identifier
+          site_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -589,9 +586,9 @@ class AsyncSiteInfoResource(AsyncAPIResource):
         Retrieves a Web Analytics site.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          site_id: Identifier
+          site_id: Identifier.
 
           extra_headers: Send extra headers
 
