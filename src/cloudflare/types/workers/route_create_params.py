@@ -17,5 +17,5 @@ class RouteCreateParams(TypedDict, total=False):
     [Learn more](https://developers.cloudflare.com/workers/configuration/routing/routes/#matching-behavior).
     """
 
-    script: Required[str]
+    script: str
     """Name of the script to run if the route matches."""
