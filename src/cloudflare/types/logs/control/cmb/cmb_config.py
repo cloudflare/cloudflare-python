@@ -9,4 +9,4 @@ __all__ = ["CmbConfig"]
 
 class CmbConfig(BaseModel):
     regions: Optional[str] = None
-    """Comma-separated list of regions."""
+    """Name of the region."""
