@@ -62,7 +62,7 @@ class ConfigResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          regions: Comma-separated list of regions.
+          regions: Name of the region.
 
           extra_headers: Send extra headers
 
@@ -204,7 +204,7 @@ class AsyncConfigResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          regions: Comma-separated list of regions.
+          regions: Name of the region.
 
           extra_headers: Send extra headers
 

@@ -12,4 +12,4 @@ class ConfigCreateParams(TypedDict, total=False):
     """Identifier."""
 
     regions: str
-    """Comma-separated list of regions."""
+    """Name of the region."""
