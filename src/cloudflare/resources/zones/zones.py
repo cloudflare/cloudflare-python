@@ -306,6 +306,7 @@ class ZonesResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        paused: bool | NotGiven = NOT_GIVEN,
         type: Literal["full", "partial", "secondary", "internal"] | NotGiven = NOT_GIVEN,
         vanity_name_servers: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -321,6 +322,9 @@ class ZonesResource(SyncAPIResource):
 
         Args:
           zone_id: Identifier
+
+          paused: Indicates whether the zone is only using Cloudflare DNS services. A true value
+              means the zone will not receive security or performance benefits.
 
           type: A full zone implies that DNS is hosted with Cloudflare. A partial zone is
               typically a partner-hosted zone or a CNAME setup. This parameter is only
@@ -344,6 +348,7 @@ class ZonesResource(SyncAPIResource):
             f"/zones/{zone_id}",
             body=maybe_transform(
                 {
+                    "paused": paused,
                     "type": type,
                     "vanity_name_servers": vanity_name_servers,
                 },
@@ -621,6 +626,7 @@ class AsyncZonesResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        paused: bool | NotGiven = NOT_GIVEN,
         type: Literal["full", "partial", "secondary", "internal"] | NotGiven = NOT_GIVEN,
         vanity_name_servers: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -636,6 +642,9 @@ class AsyncZonesResource(AsyncAPIResource):
 
         Args:
           zone_id: Identifier
+
+          paused: Indicates whether the zone is only using Cloudflare DNS services. A true value
+              means the zone will not receive security or performance benefits.
 
           type: A full zone implies that DNS is hosted with Cloudflare. A partial zone is
               typically a partner-hosted zone or a CNAME setup. This parameter is only
@@ -659,6 +668,7 @@ class AsyncZonesResource(AsyncAPIResource):
             f"/zones/{zone_id}",
             body=await async_maybe_transform(
                 {
+                    "paused": paused,
                     "type": type,
                     "vanity_name_servers": vanity_name_servers,
                 },
