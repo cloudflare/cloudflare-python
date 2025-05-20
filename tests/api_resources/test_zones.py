@@ -159,6 +159,7 @@ class TestZones:
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         zone = client.zones.edit(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            paused=True,
             type="full",
             vanity_name_servers=["ns1.example.com", "ns2.example.com"],
         )
@@ -375,6 +376,7 @@ class TestAsyncZones:
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         zone = await async_client.zones.edit(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            paused=True,
             type="full",
             vanity_name_servers=["ns1.example.com", "ns2.example.com"],
         )

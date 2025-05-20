@@ -12,6 +12,12 @@ class ZoneEditParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
+    paused: bool
+    """Indicates whether the zone is only using Cloudflare DNS services.
+
+    A true value means the zone will not receive security or performance benefits.
+    """
+
     type: Literal["full", "partial", "secondary", "internal"]
     """A full zone implies that DNS is hosted with Cloudflare.
 
