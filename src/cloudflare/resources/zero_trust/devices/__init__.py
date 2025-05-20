@@ -56,14 +56,6 @@ from .unrevoke import (
     UnrevokeResourceWithStreamingResponse,
     AsyncUnrevokeResourceWithStreamingResponse,
 )
-from .dex_tests import (
-    DEXTestsResource,
-    AsyncDEXTestsResource,
-    DEXTestsResourceWithRawResponse,
-    AsyncDEXTestsResourceWithRawResponse,
-    DEXTestsResourceWithStreamingResponse,
-    AsyncDEXTestsResourceWithStreamingResponse,
-)
 from .resilience import (
     ResilienceResource,
     AsyncResilienceResource,
@@ -110,12 +102,6 @@ __all__ = [
     "AsyncRegistrationsResourceWithRawResponse",
     "RegistrationsResourceWithStreamingResponse",
     "AsyncRegistrationsResourceWithStreamingResponse",
-    "DEXTestsResource",
-    "AsyncDEXTestsResource",
-    "DEXTestsResourceWithRawResponse",
-    "AsyncDEXTestsResourceWithRawResponse",
-    "DEXTestsResourceWithStreamingResponse",
-    "AsyncDEXTestsResourceWithStreamingResponse",
     "NetworksResource",
     "AsyncNetworksResource",
     "NetworksResourceWithRawResponse",
