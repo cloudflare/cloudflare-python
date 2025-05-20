@@ -15,7 +15,10 @@ class AppDeleteResponse(BaseModel):
     """FQDNs to associate with traffic decisions."""
 
     ip_subnets: Optional[List[str]] = None
-    """CIDRs to associate with traffic decisions."""
+    """IPv4 CIDRs to associate with traffic decisions.
+
+    (IPv6 CIDRs are currently unsupported)
+    """
 
     name: Optional[str] = None
     """Display name for the app."""

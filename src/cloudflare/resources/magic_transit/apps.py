@@ -76,7 +76,8 @@ class AppsResource(SyncAPIResource):
 
           hostnames: FQDNs to associate with traffic decisions.
 
-          ip_subnets: CIDRs to associate with traffic decisions.
+          ip_subnets: IPv4 CIDRs to associate with traffic decisions. (IPv6 CIDRs are currently
+              unsupported)
 
           extra_headers: Send extra headers
 
@@ -135,7 +136,8 @@ class AppsResource(SyncAPIResource):
 
           hostnames: FQDNs to associate with traffic decisions.
 
-          ip_subnets: CIDRs to associate with traffic decisions.
+          ip_subnets: IPv4 CIDRs to associate with traffic decisions. (IPv6 CIDRs are currently
+              unsupported)
 
           name: Display name for the app.
 
@@ -280,7 +282,8 @@ class AppsResource(SyncAPIResource):
 
           hostnames: FQDNs to associate with traffic decisions.
 
-          ip_subnets: CIDRs to associate with traffic decisions.
+          ip_subnets: IPv4 CIDRs to associate with traffic decisions. (IPv6 CIDRs are currently
+              unsupported)
 
           name: Display name for the app.
 
@@ -367,7 +370,8 @@ class AsyncAppsResource(AsyncAPIResource):
 
           hostnames: FQDNs to associate with traffic decisions.
 
-          ip_subnets: CIDRs to associate with traffic decisions.
+          ip_subnets: IPv4 CIDRs to associate with traffic decisions. (IPv6 CIDRs are currently
+              unsupported)
 
           extra_headers: Send extra headers
 
@@ -426,7 +430,8 @@ class AsyncAppsResource(AsyncAPIResource):
 
           hostnames: FQDNs to associate with traffic decisions.
 
-          ip_subnets: CIDRs to associate with traffic decisions.
+          ip_subnets: IPv4 CIDRs to associate with traffic decisions. (IPv6 CIDRs are currently
+              unsupported)
 
           name: Display name for the app.
 
@@ -571,7 +576,8 @@ class AsyncAppsResource(AsyncAPIResource):
 
           hostnames: FQDNs to associate with traffic decisions.
 
-          ip_subnets: CIDRs to associate with traffic decisions.
+          ip_subnets: IPv4 CIDRs to associate with traffic decisions. (IPv6 CIDRs are currently
+              unsupported)
 
           name: Display name for the app.
 
