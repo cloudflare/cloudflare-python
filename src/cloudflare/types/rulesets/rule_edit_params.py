@@ -2002,7 +2002,7 @@ class SetConfigRuleActionParameters(TypedDict, total=False):
     opportunistic_encryption: bool
     """Turn on or off Opportunistic Encryption."""
 
-    polish: Literal["off", "lossless", "lossy"]
+    polish: Literal["off", "lossless", "lossy", "webp"]
     """Configure the Polish level."""
 
     rocket_loader: bool
