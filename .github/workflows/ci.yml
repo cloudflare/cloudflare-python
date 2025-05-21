@@ -60,7 +60,7 @@ jobs:
         run: ./scripts/utils/upload-artifact.sh
 
   test:
-    timeout-minutes: 10
+    timeout-minutes: 30
     name: test
     runs-on: ${{ github.repository == 'stainless-sdks/cloudflare-python' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
     steps:
