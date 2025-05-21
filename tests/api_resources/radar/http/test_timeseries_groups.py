@@ -37,7 +37,7 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_bot_class_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.http.timeseries_groups.bot_class(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             browser_family=["CHROME"],
             continent=["string"],
@@ -84,7 +84,7 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_browser_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.http.timeseries_groups.browser(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
             browser_family=["CHROME"],
@@ -133,7 +133,7 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_browser_family_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.http.timeseries_groups.browser_family(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
             continent=["string"],
@@ -181,7 +181,7 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_device_type_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.http.timeseries_groups.device_type(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
             browser_family=["CHROME"],
@@ -228,7 +228,7 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_http_protocol_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.http.timeseries_groups.http_protocol(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
             browser_family=["CHROME"],
@@ -275,7 +275,7 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_http_version_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.http.timeseries_groups.http_version(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
             browser_family=["CHROME"],
@@ -322,7 +322,7 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_ip_version_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.http.timeseries_groups.ip_version(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
             browser_family=["CHROME"],
@@ -369,7 +369,7 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_os_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.http.timeseries_groups.os(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
             browser_family=["CHROME"],
@@ -416,7 +416,7 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_post_quantum_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.http.timeseries_groups.post_quantum(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
             browser_family=["CHROME"],
@@ -464,7 +464,7 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_tls_version_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.http.timeseries_groups.tls_version(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
             browser_family=["CHROME"],
@@ -515,7 +515,7 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_bot_class_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.http.timeseries_groups.bot_class(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             browser_family=["CHROME"],
             continent=["string"],
@@ -562,7 +562,7 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_browser_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.http.timeseries_groups.browser(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
             browser_family=["CHROME"],
@@ -611,7 +611,7 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_browser_family_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.http.timeseries_groups.browser_family(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
             continent=["string"],
@@ -659,7 +659,7 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_device_type_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.http.timeseries_groups.device_type(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
             browser_family=["CHROME"],
@@ -706,7 +706,7 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_http_protocol_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.http.timeseries_groups.http_protocol(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
             browser_family=["CHROME"],
@@ -753,7 +753,7 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_http_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.http.timeseries_groups.http_version(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
             browser_family=["CHROME"],
@@ -800,7 +800,7 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_ip_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.http.timeseries_groups.ip_version(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
             browser_family=["CHROME"],
@@ -847,7 +847,7 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_os_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.http.timeseries_groups.os(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
             browser_family=["CHROME"],
@@ -894,7 +894,7 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_post_quantum_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.http.timeseries_groups.post_quantum(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
             browser_family=["CHROME"],
@@ -942,7 +942,7 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_tls_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.http.timeseries_groups.tls_version(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
             browser_family=["CHROME"],

@@ -12,7 +12,7 @@ __all__ = ["CertificatePackEditResponse"]
 
 class CertificatePackEditResponse(BaseModel):
     id: Optional[str] = None
-    """Identifier"""
+    """Identifier."""
 
     certificate_authority: Optional[Literal["google", "lets_encrypt", "ssl_com"]] = None
     """Certificate Authority selected for the order.

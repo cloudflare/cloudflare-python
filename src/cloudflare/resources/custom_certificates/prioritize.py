@@ -62,7 +62,7 @@ class PrioritizeResource(SyncAPIResource):
         overlapping 'legacy_custom' certificates.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           certificates: Array of ordered certificates.
 
@@ -126,7 +126,7 @@ class AsyncPrioritizeResource(AsyncAPIResource):
         overlapping 'legacy_custom' certificates.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           certificates: Array of ordered certificates.
 

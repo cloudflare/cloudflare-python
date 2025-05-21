@@ -54,7 +54,7 @@ class AttackersResource(SyncAPIResource):
         Lists attackers
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
           extra_headers: Send extra headers
 
@@ -108,7 +108,7 @@ class AsyncAttackersResource(AsyncAPIResource):
         Lists attackers
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
           extra_headers: Send extra headers
 

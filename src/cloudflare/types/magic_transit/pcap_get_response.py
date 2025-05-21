@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Union, Optional
+from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
 from .pcap import PCAP
@@ -39,12 +40,21 @@ class MagicVisibilityPCAPsPCAPsResponseFull(BaseModel):
     filter_v1: Optional[PCAPFilter] = None
     """The packet capture filter. When this field is empty, all packets are captured."""
 
+    packets_captured: Optional[int] = None
+    """The number of packets captured."""
+
     status: Optional[
         Literal[
             "unknown", "success", "pending", "running", "conversion_pending", "conversion_running", "complete", "failed"
         ]
     ] = None
     """The status of the packet capture request."""
+
+    stop_requested: Optional[datetime] = None
+    """The RFC 3339 timestamp when stopping the packet capture was requested.
+
+    This field only applies to `full` packet captures.
+    """
 
     submitted: Optional[str] = None
     """The RFC 3339 timestamp when the packet capture was created."""

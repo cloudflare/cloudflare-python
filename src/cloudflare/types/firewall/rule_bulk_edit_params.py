@@ -9,6 +9,6 @@ __all__ = ["RuleBulkEditParams"]
 
 class RuleBulkEditParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Defines an identifier."""
 
     body: Required[object]

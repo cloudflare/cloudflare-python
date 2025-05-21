@@ -1,18 +1,21 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
-from typing_extensions import Literal
+from typing import Optional
 
 from ..._models import BaseModel
-from ..shared.response_info import ResponseInfo
 
 __all__ = ["RouteCreateResponse"]
 
 
 class RouteCreateResponse(BaseModel):
-    errors: List[ResponseInfo]
+    id: str
+    """Identifier."""
 
-    messages: List[ResponseInfo]
+    pattern: str
+    """Pattern to match incoming requests against.
 
-    success: Literal[True]
-    """Whether the API call was successful"""
+    [Learn more](https://developers.cloudflare.com/workers/configuration/routing/routes/#matching-behavior).
+    """
+
+    script: Optional[str] = None
+    """Name of the script to run if the route matches."""

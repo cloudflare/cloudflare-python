@@ -15,11 +15,15 @@ class WorkflowUpdateResponse(BaseModel):
 
     created_on: datetime
 
+    is_deleted: float
+
     modified_on: datetime
 
     name: str
 
     script_name: str
+
+    terminator_running: float
 
     triggered_on: Optional[datetime] = None
 

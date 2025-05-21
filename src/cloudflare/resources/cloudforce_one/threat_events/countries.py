@@ -54,7 +54,7 @@ class CountriesResource(SyncAPIResource):
         Retrieves countries information for all countries
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
           extra_headers: Send extra headers
 
@@ -108,7 +108,7 @@ class AsyncCountriesResource(AsyncAPIResource):
         Retrieves countries information for all countries
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
           extra_headers: Send extra headers
 

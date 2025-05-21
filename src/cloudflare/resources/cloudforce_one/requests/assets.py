@@ -7,10 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -53,9 +50,9 @@ class AssetsResource(SyncAPIResource):
 
     def create(
         self,
-        request_identifier: str,
+        request_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         page: int,
         per_page: int,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -69,13 +66,13 @@ class AssetsResource(SyncAPIResource):
         List Request Assets
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier.
 
-          request_identifier: UUID
+          request_id: UUID.
 
-          page: Page number of results
+          page: Page number of results.
 
-          per_page: Number of results per page
+          per_page: Number of results per page.
 
           extra_headers: Send extra headers
 
@@ -85,12 +82,12 @@ class AssetsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not request_identifier:
-            raise ValueError(f"Expected a non-empty value for `request_identifier` but received {request_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not request_id:
+            raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/asset",
+            f"/accounts/{account_id}/cloudforce-one/requests/{request_id}/asset",
             page=SyncSinglePage[AssetCreateResponse],
             body=maybe_transform(
                 {
@@ -108,10 +105,10 @@ class AssetsResource(SyncAPIResource):
 
     def update(
         self,
-        asset_identifer: str,
+        asset_id: str,
         *,
-        account_identifier: str,
-        request_identifier: str,
+        account_id: str,
+        request_id: str,
         source: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -124,13 +121,13 @@ class AssetsResource(SyncAPIResource):
         Update a Request Asset
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier.
 
-          request_identifier: UUID
+          request_id: UUID.
 
-          asset_identifer: UUID
+          asset_id: UUID.
 
-          source: Asset file to upload
+          source: Asset file to upload.
 
           extra_headers: Send extra headers
 
@@ -140,14 +137,14 @@ class AssetsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not request_identifier:
-            raise ValueError(f"Expected a non-empty value for `request_identifier` but received {request_identifier!r}")
-        if not asset_identifer:
-            raise ValueError(f"Expected a non-empty value for `asset_identifer` but received {asset_identifer!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not request_id:
+            raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
+        if not asset_id:
+            raise ValueError(f"Expected a non-empty value for `asset_id` but received {asset_id!r}")
         return self._put(
-            f"/accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/asset/{asset_identifer}",
+            f"/accounts/{account_id}/cloudforce-one/requests/{request_id}/asset/{asset_id}",
             body=maybe_transform({"source": source}, asset_update_params.AssetUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -161,10 +158,10 @@ class AssetsResource(SyncAPIResource):
 
     def delete(
         self,
-        asset_identifer: str,
+        asset_id: str,
         *,
-        account_identifier: str,
-        request_identifier: str,
+        account_id: str,
+        request_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -176,11 +173,11 @@ class AssetsResource(SyncAPIResource):
         Delete a Request Asset
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier.
 
-          request_identifier: UUID
+          request_id: UUID.
 
-          asset_identifer: UUID
+          asset_id: UUID.
 
           extra_headers: Send extra headers
 
@@ -190,14 +187,14 @@ class AssetsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not request_identifier:
-            raise ValueError(f"Expected a non-empty value for `request_identifier` but received {request_identifier!r}")
-        if not asset_identifer:
-            raise ValueError(f"Expected a non-empty value for `asset_identifer` but received {asset_identifer!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not request_id:
+            raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
+        if not asset_id:
+            raise ValueError(f"Expected a non-empty value for `asset_id` but received {asset_id!r}")
         return self._delete(
-            f"/accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/asset/{asset_identifer}",
+            f"/accounts/{account_id}/cloudforce-one/requests/{request_id}/asset/{asset_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -206,10 +203,10 @@ class AssetsResource(SyncAPIResource):
 
     def get(
         self,
-        asset_identifer: str,
+        asset_id: str,
         *,
-        account_identifier: str,
-        request_identifier: str,
+        account_id: str,
+        request_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -221,11 +218,11 @@ class AssetsResource(SyncAPIResource):
         Get a Request Asset
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier.
 
-          request_identifier: UUID
+          request_id: UUID.
 
-          asset_identifer: UUID
+          asset_id: UUID.
 
           extra_headers: Send extra headers
 
@@ -235,14 +232,14 @@ class AssetsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not request_identifier:
-            raise ValueError(f"Expected a non-empty value for `request_identifier` but received {request_identifier!r}")
-        if not asset_identifer:
-            raise ValueError(f"Expected a non-empty value for `asset_identifer` but received {asset_identifer!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not request_id:
+            raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
+        if not asset_id:
+            raise ValueError(f"Expected a non-empty value for `asset_id` but received {asset_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/asset/{asset_identifer}",
+            f"/accounts/{account_id}/cloudforce-one/requests/{request_id}/asset/{asset_id}",
             page=SyncSinglePage[AssetGetResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -273,9 +270,9 @@ class AsyncAssetsResource(AsyncAPIResource):
 
     def create(
         self,
-        request_identifier: str,
+        request_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         page: int,
         per_page: int,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -289,13 +286,13 @@ class AsyncAssetsResource(AsyncAPIResource):
         List Request Assets
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier.
 
-          request_identifier: UUID
+          request_id: UUID.
 
-          page: Page number of results
+          page: Page number of results.
 
-          per_page: Number of results per page
+          per_page: Number of results per page.
 
           extra_headers: Send extra headers
 
@@ -305,12 +302,12 @@ class AsyncAssetsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not request_identifier:
-            raise ValueError(f"Expected a non-empty value for `request_identifier` but received {request_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not request_id:
+            raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/asset",
+            f"/accounts/{account_id}/cloudforce-one/requests/{request_id}/asset",
             page=AsyncSinglePage[AssetCreateResponse],
             body=maybe_transform(
                 {
@@ -328,10 +325,10 @@ class AsyncAssetsResource(AsyncAPIResource):
 
     async def update(
         self,
-        asset_identifer: str,
+        asset_id: str,
         *,
-        account_identifier: str,
-        request_identifier: str,
+        account_id: str,
+        request_id: str,
         source: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -344,13 +341,13 @@ class AsyncAssetsResource(AsyncAPIResource):
         Update a Request Asset
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier.
 
-          request_identifier: UUID
+          request_id: UUID.
 
-          asset_identifer: UUID
+          asset_id: UUID.
 
-          source: Asset file to upload
+          source: Asset file to upload.
 
           extra_headers: Send extra headers
 
@@ -360,14 +357,14 @@ class AsyncAssetsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not request_identifier:
-            raise ValueError(f"Expected a non-empty value for `request_identifier` but received {request_identifier!r}")
-        if not asset_identifer:
-            raise ValueError(f"Expected a non-empty value for `asset_identifer` but received {asset_identifer!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not request_id:
+            raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
+        if not asset_id:
+            raise ValueError(f"Expected a non-empty value for `asset_id` but received {asset_id!r}")
         return await self._put(
-            f"/accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/asset/{asset_identifer}",
+            f"/accounts/{account_id}/cloudforce-one/requests/{request_id}/asset/{asset_id}",
             body=await async_maybe_transform({"source": source}, asset_update_params.AssetUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -381,10 +378,10 @@ class AsyncAssetsResource(AsyncAPIResource):
 
     async def delete(
         self,
-        asset_identifer: str,
+        asset_id: str,
         *,
-        account_identifier: str,
-        request_identifier: str,
+        account_id: str,
+        request_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -396,11 +393,11 @@ class AsyncAssetsResource(AsyncAPIResource):
         Delete a Request Asset
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier.
 
-          request_identifier: UUID
+          request_id: UUID.
 
-          asset_identifer: UUID
+          asset_id: UUID.
 
           extra_headers: Send extra headers
 
@@ -410,14 +407,14 @@ class AsyncAssetsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not request_identifier:
-            raise ValueError(f"Expected a non-empty value for `request_identifier` but received {request_identifier!r}")
-        if not asset_identifer:
-            raise ValueError(f"Expected a non-empty value for `asset_identifer` but received {asset_identifer!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not request_id:
+            raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
+        if not asset_id:
+            raise ValueError(f"Expected a non-empty value for `asset_id` but received {asset_id!r}")
         return await self._delete(
-            f"/accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/asset/{asset_identifer}",
+            f"/accounts/{account_id}/cloudforce-one/requests/{request_id}/asset/{asset_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -426,10 +423,10 @@ class AsyncAssetsResource(AsyncAPIResource):
 
     def get(
         self,
-        asset_identifer: str,
+        asset_id: str,
         *,
-        account_identifier: str,
-        request_identifier: str,
+        account_id: str,
+        request_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -441,11 +438,11 @@ class AsyncAssetsResource(AsyncAPIResource):
         Get a Request Asset
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier.
 
-          request_identifier: UUID
+          request_id: UUID.
 
-          asset_identifer: UUID
+          asset_id: UUID.
 
           extra_headers: Send extra headers
 
@@ -455,14 +452,14 @@ class AsyncAssetsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not request_identifier:
-            raise ValueError(f"Expected a non-empty value for `request_identifier` but received {request_identifier!r}")
-        if not asset_identifer:
-            raise ValueError(f"Expected a non-empty value for `asset_identifer` but received {asset_identifer!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not request_id:
+            raise ValueError(f"Expected a non-empty value for `request_id` but received {request_id!r}")
+        if not asset_id:
+            raise ValueError(f"Expected a non-empty value for `asset_id` but received {asset_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/asset/{asset_identifer}",
+            f"/accounts/{account_id}/cloudforce-one/requests/{request_id}/asset/{asset_id}",
             page=AsyncSinglePage[AssetGetResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

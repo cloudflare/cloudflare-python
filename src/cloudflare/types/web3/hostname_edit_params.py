@@ -9,10 +9,10 @@ __all__ = ["HostnameEditParams"]
 
 class HostnameEditParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Specify the identifier of the hostname."""
 
     description: str
-    """An optional description of the hostname."""
+    """Specify an optional description of the hostname."""
 
     dnslink: str
-    """DNSLink value used if the target is ipfs."""
+    """Specify the DNSLink value used if the target is ipfs."""

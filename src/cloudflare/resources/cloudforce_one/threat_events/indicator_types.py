@@ -54,7 +54,7 @@ class IndicatorTypesResource(SyncAPIResource):
         Lists all indicator types
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
           extra_headers: Send extra headers
 
@@ -108,7 +108,7 @@ class AsyncIndicatorTypesResource(AsyncAPIResource):
         Lists all indicator types
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
           extra_headers: Send extra headers
 

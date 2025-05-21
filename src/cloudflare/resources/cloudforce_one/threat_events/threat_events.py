@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing import List, Union, Iterable
 from datetime import datetime
+from typing_extensions import Literal
 
 import httpx
 
@@ -56,10 +57,7 @@ from .insights import (
     AsyncInsightsResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from .attackers import (
     AttackersResource,
     AsyncAttackersResource,
@@ -119,11 +117,13 @@ from .target_industries import (
 )
 from ....types.cloudforce_one import (
     threat_event_edit_params,
+    threat_event_list_params,
     threat_event_create_params,
     threat_event_bulk_create_params,
 )
 from ....types.cloudforce_one.threat_event_get_response import ThreatEventGetResponse
 from ....types.cloudforce_one.threat_event_edit_response import ThreatEventEditResponse
+from ....types.cloudforce_one.threat_event_list_response import ThreatEventListResponse
 from ....types.cloudforce_one.threat_event_create_response import ThreatEventCreateResponse
 from ....types.cloudforce_one.threat_event_delete_response import ThreatEventDeleteResponse
 from ....types.cloudforce_one.threat_event_bulk_create_response import ThreatEventBulkCreateResponse
@@ -225,10 +225,13 @@ class ThreatEventsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ThreatEventCreateResponse:
         """
-        Creates a new event
+        Events must be created in a client-specific dataset, which means the `datasetId`
+        parameter must be defined. To create a dataset, see the
+        [`Create Dataset`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/create/)
+        endpoint.
 
         Args:
-          path_account_id: Account ID
+          path_account_id: Account ID.
 
           extra_headers: Send extra headers
 
@@ -265,6 +268,64 @@ class ThreatEventsResource(SyncAPIResource):
             cast_to=ThreatEventCreateResponse,
         )
 
+    def list(
+        self,
+        *,
+        account_id: float,
+        dataset_id: List[str] | NotGiven = NOT_GIVEN,
+        force_refresh: bool | NotGiven = NOT_GIVEN,
+        order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        order_by: str | NotGiven = NOT_GIVEN,
+        page: float | NotGiven = NOT_GIVEN,
+        page_size: float | NotGiven = NOT_GIVEN,
+        search: Iterable[threat_event_list_params.Search] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ThreatEventListResponse:
+        """
+        The `datasetId` must be defined (to list existing datasets (and their IDs), use
+        the
+        [`List Datasets`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/list/)
+        endpoint). Also, must provide query parameters.
+
+        Args:
+          account_id: Account ID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            f"/accounts/{account_id}/cloudforce-one/events",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "dataset_id": dataset_id,
+                        "force_refresh": force_refresh,
+                        "order": order,
+                        "order_by": order_by,
+                        "page": page,
+                        "page_size": page_size,
+                        "search": search,
+                    },
+                    threat_event_list_params.ThreatEventListParams,
+                ),
+            ),
+            cast_to=ThreatEventListResponse,
+        )
+
     def delete(
         self,
         event_id: str,
@@ -277,13 +338,17 @@ class ThreatEventsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ThreatEventDeleteResponse:
-        """
-        Deletes an event
+        """The `datasetId` parameter must be defined.
+
+        To list existing datasets (and their
+        IDs) in your account, use the
+        [`List Datasets`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/list/)
+        endpoint.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          event_id: Event UUID
+          event_id: Event UUID.
 
           extra_headers: Send extra headers
 
@@ -316,11 +381,15 @@ class ThreatEventsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ThreatEventBulkCreateResponse:
-        """
-        Creates bulk events
+        """The `datasetId` parameter must be defined.
+
+        To list existing datasets (and their
+        IDs) in your account, use the
+        [`List Datasets`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/list/)
+        endpoint.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
           extra_headers: Send extra headers
 
@@ -371,9 +440,9 @@ class ThreatEventsResource(SyncAPIResource):
         Updates an event
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          event_id: Event UUID
+          event_id: Event UUID.
 
           extra_headers: Send extra headers
 
@@ -424,9 +493,9 @@ class ThreatEventsResource(SyncAPIResource):
         Reads an event
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          event_id: Event UUID
+          event_id: Event UUID.
 
           extra_headers: Send extra headers
 
@@ -541,10 +610,13 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ThreatEventCreateResponse:
         """
-        Creates a new event
+        Events must be created in a client-specific dataset, which means the `datasetId`
+        parameter must be defined. To create a dataset, see the
+        [`Create Dataset`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/create/)
+        endpoint.
 
         Args:
-          path_account_id: Account ID
+          path_account_id: Account ID.
 
           extra_headers: Send extra headers
 
@@ -581,6 +653,64 @@ class AsyncThreatEventsResource(AsyncAPIResource):
             cast_to=ThreatEventCreateResponse,
         )
 
+    async def list(
+        self,
+        *,
+        account_id: float,
+        dataset_id: List[str] | NotGiven = NOT_GIVEN,
+        force_refresh: bool | NotGiven = NOT_GIVEN,
+        order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        order_by: str | NotGiven = NOT_GIVEN,
+        page: float | NotGiven = NOT_GIVEN,
+        page_size: float | NotGiven = NOT_GIVEN,
+        search: Iterable[threat_event_list_params.Search] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ThreatEventListResponse:
+        """
+        The `datasetId` must be defined (to list existing datasets (and their IDs), use
+        the
+        [`List Datasets`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/list/)
+        endpoint). Also, must provide query parameters.
+
+        Args:
+          account_id: Account ID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            f"/accounts/{account_id}/cloudforce-one/events",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "dataset_id": dataset_id,
+                        "force_refresh": force_refresh,
+                        "order": order,
+                        "order_by": order_by,
+                        "page": page,
+                        "page_size": page_size,
+                        "search": search,
+                    },
+                    threat_event_list_params.ThreatEventListParams,
+                ),
+            ),
+            cast_to=ThreatEventListResponse,
+        )
+
     async def delete(
         self,
         event_id: str,
@@ -593,13 +723,17 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ThreatEventDeleteResponse:
-        """
-        Deletes an event
+        """The `datasetId` parameter must be defined.
+
+        To list existing datasets (and their
+        IDs) in your account, use the
+        [`List Datasets`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/list/)
+        endpoint.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          event_id: Event UUID
+          event_id: Event UUID.
 
           extra_headers: Send extra headers
 
@@ -632,11 +766,15 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ThreatEventBulkCreateResponse:
-        """
-        Creates bulk events
+        """The `datasetId` parameter must be defined.
+
+        To list existing datasets (and their
+        IDs) in your account, use the
+        [`List Datasets`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/list/)
+        endpoint.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
           extra_headers: Send extra headers
 
@@ -687,9 +825,9 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         Updates an event
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          event_id: Event UUID
+          event_id: Event UUID.
 
           extra_headers: Send extra headers
 
@@ -740,9 +878,9 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         Reads an event
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          event_id: Event UUID
+          event_id: Event UUID.
 
           extra_headers: Send extra headers
 
@@ -769,6 +907,9 @@ class ThreatEventsResourceWithRawResponse:
 
         self.create = to_raw_response_wrapper(
             threat_events.create,
+        )
+        self.list = to_raw_response_wrapper(
+            threat_events.list,
         )
         self.delete = to_raw_response_wrapper(
             threat_events.delete,
@@ -839,6 +980,9 @@ class AsyncThreatEventsResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             threat_events.create,
         )
+        self.list = async_to_raw_response_wrapper(
+            threat_events.list,
+        )
         self.delete = async_to_raw_response_wrapper(
             threat_events.delete,
         )
@@ -908,6 +1052,9 @@ class ThreatEventsResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             threat_events.create,
         )
+        self.list = to_streamed_response_wrapper(
+            threat_events.list,
+        )
         self.delete = to_streamed_response_wrapper(
             threat_events.delete,
         )
@@ -976,6 +1123,9 @@ class AsyncThreatEventsResourceWithStreamingResponse:
 
         self.create = async_to_streamed_response_wrapper(
             threat_events.create,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            threat_events.list,
         )
         self.delete = async_to_streamed_response_wrapper(
             threat_events.delete,

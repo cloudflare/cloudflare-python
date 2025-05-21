@@ -8,10 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -22,11 +19,18 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
-from ....types.radar.bgp import route_ases_params, route_moas_params, route_stats_params, route_pfx2as_params
+from ....types.radar.bgp import (
+    route_ases_params,
+    route_moas_params,
+    route_stats_params,
+    route_pfx2as_params,
+    route_realtime_params,
+)
 from ....types.radar.bgp.route_ases_response import RouteAsesResponse
 from ....types.radar.bgp.route_moas_response import RouteMoasResponse
 from ....types.radar.bgp.route_stats_response import RouteStatsResponse
 from ....types.radar.bgp.route_pfx2as_response import RoutePfx2asResponse
+from ....types.radar.bgp.route_realtime_response import RouteRealtimeResponse
 
 __all__ = ["RoutesResource", "AsyncRoutesResource"]
 
@@ -75,7 +79,7 @@ class RoutesResource(SyncAPIResource):
 
           limit: Limits the number of objects returned in the response.
 
-          location: Location alpha-2 code.
+          location: Filters results by location. Specify an alpha-2 location code.
 
           sort_by: Sorts results by the specified field.
 
@@ -226,6 +230,54 @@ class RoutesResource(SyncAPIResource):
             cast_to=cast(Type[RoutePfx2asResponse], ResultWrapper[RoutePfx2asResponse]),
         )
 
+    def realtime(
+        self,
+        *,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        prefix: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RouteRealtimeResponse:
+        """
+        Retrieves realtime routes for prefixes using public realtime data collectors
+        (RouteViews and RIPE RIS).
+
+        Args:
+          format: Format in which results will be returned.
+
+          prefix: Network prefix, IPv4 or IPv6.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            "/radar/bgp/routes/realtime",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "format": format,
+                        "prefix": prefix,
+                    },
+                    route_realtime_params.RouteRealtimeParams,
+                ),
+                post_parser=ResultWrapper[RouteRealtimeResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[RouteRealtimeResponse], ResultWrapper[RouteRealtimeResponse]),
+        )
+
     def stats(
         self,
         *,
@@ -243,11 +295,12 @@ class RoutesResource(SyncAPIResource):
         Retrieves the BGP routing table stats.
 
         Args:
-          asn: Single Autonomous System Number (ASN) as integer.
+          asn: Filters results by Autonomous System. Specify a single Autonomous System Number
+              (ASN) as integer.
 
           format: Format in which results will be returned.
 
-          location: Location alpha-2 code.
+          location: Filters results by location. Specify an alpha-2 location code.
 
           extra_headers: Send extra headers
 
@@ -322,7 +375,7 @@ class AsyncRoutesResource(AsyncAPIResource):
 
           limit: Limits the number of objects returned in the response.
 
-          location: Location alpha-2 code.
+          location: Filters results by location. Specify an alpha-2 location code.
 
           sort_by: Sorts results by the specified field.
 
@@ -473,6 +526,54 @@ class AsyncRoutesResource(AsyncAPIResource):
             cast_to=cast(Type[RoutePfx2asResponse], ResultWrapper[RoutePfx2asResponse]),
         )
 
+    async def realtime(
+        self,
+        *,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        prefix: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RouteRealtimeResponse:
+        """
+        Retrieves realtime routes for prefixes using public realtime data collectors
+        (RouteViews and RIPE RIS).
+
+        Args:
+          format: Format in which results will be returned.
+
+          prefix: Network prefix, IPv4 or IPv6.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            "/radar/bgp/routes/realtime",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "format": format,
+                        "prefix": prefix,
+                    },
+                    route_realtime_params.RouteRealtimeParams,
+                ),
+                post_parser=ResultWrapper[RouteRealtimeResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[RouteRealtimeResponse], ResultWrapper[RouteRealtimeResponse]),
+        )
+
     async def stats(
         self,
         *,
@@ -490,11 +591,12 @@ class AsyncRoutesResource(AsyncAPIResource):
         Retrieves the BGP routing table stats.
 
         Args:
-          asn: Single Autonomous System Number (ASN) as integer.
+          asn: Filters results by Autonomous System. Specify a single Autonomous System Number
+              (ASN) as integer.
 
           format: Format in which results will be returned.
 
-          location: Location alpha-2 code.
+          location: Filters results by location. Specify an alpha-2 location code.
 
           extra_headers: Send extra headers
 
@@ -538,6 +640,9 @@ class RoutesResourceWithRawResponse:
         self.pfx2as = to_raw_response_wrapper(
             routes.pfx2as,
         )
+        self.realtime = to_raw_response_wrapper(
+            routes.realtime,
+        )
         self.stats = to_raw_response_wrapper(
             routes.stats,
         )
@@ -555,6 +660,9 @@ class AsyncRoutesResourceWithRawResponse:
         )
         self.pfx2as = async_to_raw_response_wrapper(
             routes.pfx2as,
+        )
+        self.realtime = async_to_raw_response_wrapper(
+            routes.realtime,
         )
         self.stats = async_to_raw_response_wrapper(
             routes.stats,
@@ -574,6 +682,9 @@ class RoutesResourceWithStreamingResponse:
         self.pfx2as = to_streamed_response_wrapper(
             routes.pfx2as,
         )
+        self.realtime = to_streamed_response_wrapper(
+            routes.realtime,
+        )
         self.stats = to_streamed_response_wrapper(
             routes.stats,
         )
@@ -591,6 +702,9 @@ class AsyncRoutesResourceWithStreamingResponse:
         )
         self.pfx2as = async_to_streamed_response_wrapper(
             routes.pfx2as,
+        )
+        self.realtime = async_to_streamed_response_wrapper(
+            routes.realtime,
         )
         self.stats = async_to_streamed_response_wrapper(
             routes.stats,

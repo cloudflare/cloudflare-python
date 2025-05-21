@@ -7,10 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -78,9 +75,9 @@ class NamespacesResource(SyncAPIResource):
         Create a new Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          name: The name of the dispatch namespace
+          name: The name of the dispatch namespace.
 
           extra_headers: Send extra headers
 
@@ -120,7 +117,7 @@ class NamespacesResource(SyncAPIResource):
         Fetch a list of Workers for Platforms namespaces.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -157,7 +154,7 @@ class NamespacesResource(SyncAPIResource):
         Delete a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -201,7 +198,7 @@ class NamespacesResource(SyncAPIResource):
         Get a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -270,9 +267,9 @@ class AsyncNamespacesResource(AsyncAPIResource):
         Create a new Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          name: The name of the dispatch namespace
+          name: The name of the dispatch namespace.
 
           extra_headers: Send extra headers
 
@@ -312,7 +309,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         Fetch a list of Workers for Platforms namespaces.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -349,7 +346,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         Delete a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -393,7 +390,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         Get a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 

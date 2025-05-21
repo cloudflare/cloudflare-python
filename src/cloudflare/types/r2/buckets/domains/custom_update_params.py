@@ -11,13 +11,13 @@ __all__ = ["CustomUpdateParams"]
 
 class CustomUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Account ID"""
+    """Account ID."""
 
     bucket_name: Required[str]
-    """Name of the bucket"""
+    """Name of the bucket."""
 
     enabled: bool
-    """Whether to enable public bucket access at the specified custom domain"""
+    """Whether to enable public bucket access at the specified custom domain."""
 
     min_tls: Annotated[Literal["1.0", "1.1", "1.2", "1.3"], PropertyInfo(alias="minTLS")]
     """Minimum TLS Version the custom domain will accept for incoming connections.
@@ -26,4 +26,4 @@ class CustomUpdateParams(TypedDict, total=False):
     """
 
     jurisdiction: Annotated[Literal["default", "eu", "fedramp"], PropertyInfo(alias="cf-r2-jurisdiction")]
-    """The bucket jurisdiction"""
+    """Jurisdiction where objects in this bucket are guaranteed to be stored."""

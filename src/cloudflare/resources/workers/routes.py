@@ -2,15 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -69,9 +66,12 @@ class RoutesResource(SyncAPIResource):
         Creates a route that maps a URL pattern to a Worker.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          script: Name of the script, used in URLs and route configuration.
+          pattern: Pattern to match incoming requests against.
+              [Learn more](https://developers.cloudflare.com/workers/configuration/routing/routes/#matching-behavior).
+
+          script: Name of the script to run if the route matches.
 
           extra_headers: Send extra headers
 
@@ -93,9 +93,13 @@ class RoutesResource(SyncAPIResource):
                 route_create_params.RouteCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[RouteCreateResponse]._unwrapper,
             ),
-            cast_to=RouteCreateResponse,
+            cast_to=cast(Type[RouteCreateResponse], ResultWrapper[RouteCreateResponse]),
         )
 
     def update(
@@ -111,16 +115,19 @@ class RoutesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RouteUpdateResponse]:
+    ) -> RouteUpdateResponse:
         """
         Updates the URL pattern or Worker associated with a route.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          route_id: Identifier
+          route_id: Identifier.
 
-          script: Name of the script, used in URLs and route configuration.
+          pattern: Pattern to match incoming requests against.
+              [Learn more](https://developers.cloudflare.com/workers/configuration/routing/routes/#matching-behavior).
+
+          script: Name of the script to run if the route matches.
 
           extra_headers: Send extra headers
 
@@ -148,9 +155,9 @@ class RoutesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[RouteUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[RouteUpdateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[RouteUpdateResponse]], ResultWrapper[RouteUpdateResponse]),
+            cast_to=cast(Type[RouteUpdateResponse], ResultWrapper[RouteUpdateResponse]),
         )
 
     def list(
@@ -168,7 +175,7 @@ class RoutesResource(SyncAPIResource):
         Returns routes for a zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -205,9 +212,9 @@ class RoutesResource(SyncAPIResource):
         Deletes a route.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          route_id: Identifier
+          route_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -224,9 +231,13 @@ class RoutesResource(SyncAPIResource):
         return self._delete(
             f"/zones/{zone_id}/workers/routes/{route_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[RouteDeleteResponse]._unwrapper,
             ),
-            cast_to=RouteDeleteResponse,
+            cast_to=cast(Type[RouteDeleteResponse], ResultWrapper[RouteDeleteResponse]),
         )
 
     def get(
@@ -240,14 +251,14 @@ class RoutesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RouteGetResponse]:
+    ) -> RouteGetResponse:
         """
         Returns information about a route, including URL pattern and Worker.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          route_id: Identifier
+          route_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -268,9 +279,9 @@ class RoutesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[RouteGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[RouteGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[RouteGetResponse]], ResultWrapper[RouteGetResponse]),
+            cast_to=cast(Type[RouteGetResponse], ResultWrapper[RouteGetResponse]),
         )
 
 
@@ -311,9 +322,12 @@ class AsyncRoutesResource(AsyncAPIResource):
         Creates a route that maps a URL pattern to a Worker.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          script: Name of the script, used in URLs and route configuration.
+          pattern: Pattern to match incoming requests against.
+              [Learn more](https://developers.cloudflare.com/workers/configuration/routing/routes/#matching-behavior).
+
+          script: Name of the script to run if the route matches.
 
           extra_headers: Send extra headers
 
@@ -335,9 +349,13 @@ class AsyncRoutesResource(AsyncAPIResource):
                 route_create_params.RouteCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[RouteCreateResponse]._unwrapper,
             ),
-            cast_to=RouteCreateResponse,
+            cast_to=cast(Type[RouteCreateResponse], ResultWrapper[RouteCreateResponse]),
         )
 
     async def update(
@@ -353,16 +371,19 @@ class AsyncRoutesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RouteUpdateResponse]:
+    ) -> RouteUpdateResponse:
         """
         Updates the URL pattern or Worker associated with a route.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          route_id: Identifier
+          route_id: Identifier.
 
-          script: Name of the script, used in URLs and route configuration.
+          pattern: Pattern to match incoming requests against.
+              [Learn more](https://developers.cloudflare.com/workers/configuration/routing/routes/#matching-behavior).
+
+          script: Name of the script to run if the route matches.
 
           extra_headers: Send extra headers
 
@@ -390,9 +411,9 @@ class AsyncRoutesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[RouteUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[RouteUpdateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[RouteUpdateResponse]], ResultWrapper[RouteUpdateResponse]),
+            cast_to=cast(Type[RouteUpdateResponse], ResultWrapper[RouteUpdateResponse]),
         )
 
     def list(
@@ -410,7 +431,7 @@ class AsyncRoutesResource(AsyncAPIResource):
         Returns routes for a zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -447,9 +468,9 @@ class AsyncRoutesResource(AsyncAPIResource):
         Deletes a route.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          route_id: Identifier
+          route_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -466,9 +487,13 @@ class AsyncRoutesResource(AsyncAPIResource):
         return await self._delete(
             f"/zones/{zone_id}/workers/routes/{route_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[RouteDeleteResponse]._unwrapper,
             ),
-            cast_to=RouteDeleteResponse,
+            cast_to=cast(Type[RouteDeleteResponse], ResultWrapper[RouteDeleteResponse]),
         )
 
     async def get(
@@ -482,14 +507,14 @@ class AsyncRoutesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RouteGetResponse]:
+    ) -> RouteGetResponse:
         """
         Returns information about a route, including URL pattern and Worker.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          route_id: Identifier
+          route_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -510,9 +535,9 @@ class AsyncRoutesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[RouteGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[RouteGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[RouteGetResponse]], ResultWrapper[RouteGetResponse]),
+            cast_to=cast(Type[RouteGetResponse], ResultWrapper[RouteGetResponse]),
         )
 
 

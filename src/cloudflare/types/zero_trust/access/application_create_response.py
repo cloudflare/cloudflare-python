@@ -10,8 +10,8 @@ from .allowed_idps import AllowedIdPs
 from .cors_headers import CORSHeaders
 from .oidc_saas_app import OIDCSaaSApp
 from .saml_saas_app import SAMLSaaSApp
+from .approval_group import ApprovalGroup
 from .application_type import ApplicationType
-from .application_policy import ApplicationPolicy
 from .scim_config_mapping import SCIMConfigMapping
 from .self_hosted_domains import SelfHostedDomains
 from .applications.access_rule import AccessRule
@@ -157,12 +157,75 @@ SelfHostedApplicationDestination: TypeAlias = Union[
 ]
 
 
-class SelfHostedApplicationPolicy(ApplicationPolicy):
+class SelfHostedApplicationPolicy(BaseModel):
+    id: Optional[str] = None
+    """The UUID of the policy"""
+
+    approval_groups: Optional[List[ApprovalGroup]] = None
+    """Administrators who can approve a temporary authentication request."""
+
+    approval_required: Optional[bool] = None
+    """
+    Requires the user to request access from an administrator at the start of each
+    session.
+    """
+
+    created_at: Optional[datetime] = None
+
+    decision: Optional[Decision] = None
+    """The action Access will take if a user matches this policy.
+
+    Infrastructure application policies can only use the Allow action.
+    """
+
+    exclude: Optional[List[AccessRule]] = None
+    """Rules evaluated with a NOT logical operator.
+
+    To match the policy, a user cannot meet any of the Exclude rules.
+    """
+
+    include: Optional[List[AccessRule]] = None
+    """Rules evaluated with an OR logical operator.
+
+    A user needs to meet only one of the Include rules.
+    """
+
+    isolation_required: Optional[bool] = None
+    """
+    Require this application to be served in an isolated browser for users matching
+    this policy. 'Client Web Isolation' must be on for the account in order to use
+    this feature.
+    """
+
+    name: Optional[str] = None
+    """The name of the Access policy."""
+
     precedence: Optional[int] = None
     """The order of execution for this policy.
 
     Must be unique for each policy within an app.
     """
+
+    purpose_justification_prompt: Optional[str] = None
+    """A custom message that will appear on the purpose justification screen."""
+
+    purpose_justification_required: Optional[bool] = None
+    """Require users to enter a justification when they log in to the application."""
+
+    require: Optional[List[AccessRule]] = None
+    """Rules evaluated with an AND logical operator.
+
+    To match the policy, a user must meet all of the Require rules.
+    """
+
+    session_duration: Optional[str] = None
+    """The amount of time that tokens issued for the application will be valid.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
+    ms, s, m, h.
+    """
+
+    updated_at: Optional[datetime] = None
 
 
 class SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(BaseModel):
@@ -261,7 +324,7 @@ class SelfHostedApplication(BaseModel):
     """The application type."""
 
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     allow_authenticate_via_warp: Optional[bool] = None
     """
@@ -270,6 +333,9 @@ class SelfHostedApplication(BaseModel):
     authentication. This setting always overrides the organization setting for WARP
     authentication.
     """
+
+    allow_iframe: Optional[bool] = None
+    """Enables loading application content in an iFrame."""
 
     allowed_idps: Optional[List[AllowedIdPs]] = None
     """The identity providers your users can select when connecting to this
@@ -356,6 +422,17 @@ class SelfHostedApplication(BaseModel):
 
     policies: Optional[List[SelfHostedApplicationPolicy]] = None
 
+    read_service_tokens_from_header: Optional[str] = None
+    """
+    Allows matching Access Service Tokens passed HTTP in a single header with this
+    name. This works as an alternative to the (CF-Access-Client-Id,
+    CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+    as a json object similar to: { "cf-access-client-id":
+    "88bf3b6d86161464f6509f7219099e57.access.example.com",
+    "cf-access-client-secret":
+    "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
+    """
+
     same_site_cookie_attribute: Optional[str] = None
     """
     Sets the SameSite cookie setting, which provides increased security against CSRF
@@ -383,7 +460,7 @@ class SelfHostedApplication(BaseModel):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
+    ms, s, m, h. Note: unsupported for infrastructure type applications.
     """
 
     skip_interstitial: Optional[bool] = None
@@ -398,12 +475,75 @@ class SelfHostedApplication(BaseModel):
     updated_at: Optional[datetime] = None
 
 
-class SaaSApplicationPolicy(ApplicationPolicy):
+class SaaSApplicationPolicy(BaseModel):
+    id: Optional[str] = None
+    """The UUID of the policy"""
+
+    approval_groups: Optional[List[ApprovalGroup]] = None
+    """Administrators who can approve a temporary authentication request."""
+
+    approval_required: Optional[bool] = None
+    """
+    Requires the user to request access from an administrator at the start of each
+    session.
+    """
+
+    created_at: Optional[datetime] = None
+
+    decision: Optional[Decision] = None
+    """The action Access will take if a user matches this policy.
+
+    Infrastructure application policies can only use the Allow action.
+    """
+
+    exclude: Optional[List[AccessRule]] = None
+    """Rules evaluated with a NOT logical operator.
+
+    To match the policy, a user cannot meet any of the Exclude rules.
+    """
+
+    include: Optional[List[AccessRule]] = None
+    """Rules evaluated with an OR logical operator.
+
+    A user needs to meet only one of the Include rules.
+    """
+
+    isolation_required: Optional[bool] = None
+    """
+    Require this application to be served in an isolated browser for users matching
+    this policy. 'Client Web Isolation' must be on for the account in order to use
+    this feature.
+    """
+
+    name: Optional[str] = None
+    """The name of the Access policy."""
+
     precedence: Optional[int] = None
     """The order of execution for this policy.
 
     Must be unique for each policy within an app.
     """
+
+    purpose_justification_prompt: Optional[str] = None
+    """A custom message that will appear on the purpose justification screen."""
+
+    purpose_justification_required: Optional[bool] = None
+    """Require users to enter a justification when they log in to the application."""
+
+    require: Optional[List[AccessRule]] = None
+    """Rules evaluated with an AND logical operator.
+
+    To match the policy, a user must meet all of the Require rules.
+    """
+
+    session_duration: Optional[str] = None
+    """The amount of time that tokens issued for the application will be valid.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
+    ms, s, m, h.
+    """
+
+    updated_at: Optional[datetime] = None
 
 
 SaaSApplicationSaaSApp: TypeAlias = Union[SAMLSaaSApp, OIDCSaaSApp]
@@ -496,7 +636,7 @@ class SaaSApplicationSCIMConfig(BaseModel):
 
 class SaaSApplication(BaseModel):
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     allowed_idps: Optional[List[AllowedIdPs]] = None
     """The identity providers your users can select when connecting to this
@@ -592,12 +732,75 @@ BrowserSSHApplicationDestination: TypeAlias = Union[
 ]
 
 
-class BrowserSSHApplicationPolicy(ApplicationPolicy):
+class BrowserSSHApplicationPolicy(BaseModel):
+    id: Optional[str] = None
+    """The UUID of the policy"""
+
+    approval_groups: Optional[List[ApprovalGroup]] = None
+    """Administrators who can approve a temporary authentication request."""
+
+    approval_required: Optional[bool] = None
+    """
+    Requires the user to request access from an administrator at the start of each
+    session.
+    """
+
+    created_at: Optional[datetime] = None
+
+    decision: Optional[Decision] = None
+    """The action Access will take if a user matches this policy.
+
+    Infrastructure application policies can only use the Allow action.
+    """
+
+    exclude: Optional[List[AccessRule]] = None
+    """Rules evaluated with a NOT logical operator.
+
+    To match the policy, a user cannot meet any of the Exclude rules.
+    """
+
+    include: Optional[List[AccessRule]] = None
+    """Rules evaluated with an OR logical operator.
+
+    A user needs to meet only one of the Include rules.
+    """
+
+    isolation_required: Optional[bool] = None
+    """
+    Require this application to be served in an isolated browser for users matching
+    this policy. 'Client Web Isolation' must be on for the account in order to use
+    this feature.
+    """
+
+    name: Optional[str] = None
+    """The name of the Access policy."""
+
     precedence: Optional[int] = None
     """The order of execution for this policy.
 
     Must be unique for each policy within an app.
     """
+
+    purpose_justification_prompt: Optional[str] = None
+    """A custom message that will appear on the purpose justification screen."""
+
+    purpose_justification_required: Optional[bool] = None
+    """Require users to enter a justification when they log in to the application."""
+
+    require: Optional[List[AccessRule]] = None
+    """Rules evaluated with an AND logical operator.
+
+    To match the policy, a user must meet all of the Require rules.
+    """
+
+    session_duration: Optional[str] = None
+    """The amount of time that tokens issued for the application will be valid.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
+    ms, s, m, h.
+    """
+
+    updated_at: Optional[datetime] = None
 
 
 class BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(BaseModel):
@@ -696,7 +899,7 @@ class BrowserSSHApplication(BaseModel):
     """The application type."""
 
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     allow_authenticate_via_warp: Optional[bool] = None
     """
@@ -705,6 +908,9 @@ class BrowserSSHApplication(BaseModel):
     authentication. This setting always overrides the organization setting for WARP
     authentication.
     """
+
+    allow_iframe: Optional[bool] = None
+    """Enables loading application content in an iFrame."""
 
     allowed_idps: Optional[List[AllowedIdPs]] = None
     """The identity providers your users can select when connecting to this
@@ -791,6 +997,17 @@ class BrowserSSHApplication(BaseModel):
 
     policies: Optional[List[BrowserSSHApplicationPolicy]] = None
 
+    read_service_tokens_from_header: Optional[str] = None
+    """
+    Allows matching Access Service Tokens passed HTTP in a single header with this
+    name. This works as an alternative to the (CF-Access-Client-Id,
+    CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+    as a json object similar to: { "cf-access-client-id":
+    "88bf3b6d86161464f6509f7219099e57.access.example.com",
+    "cf-access-client-secret":
+    "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
+    """
+
     same_site_cookie_attribute: Optional[str] = None
     """
     Sets the SameSite cookie setting, which provides increased security against CSRF
@@ -818,7 +1035,7 @@ class BrowserSSHApplication(BaseModel):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
+    ms, s, m, h. Note: unsupported for infrastructure type applications.
     """
 
     skip_interstitial: Optional[bool] = None
@@ -874,12 +1091,75 @@ BrowserVNCApplicationDestination: TypeAlias = Union[
 ]
 
 
-class BrowserVNCApplicationPolicy(ApplicationPolicy):
+class BrowserVNCApplicationPolicy(BaseModel):
+    id: Optional[str] = None
+    """The UUID of the policy"""
+
+    approval_groups: Optional[List[ApprovalGroup]] = None
+    """Administrators who can approve a temporary authentication request."""
+
+    approval_required: Optional[bool] = None
+    """
+    Requires the user to request access from an administrator at the start of each
+    session.
+    """
+
+    created_at: Optional[datetime] = None
+
+    decision: Optional[Decision] = None
+    """The action Access will take if a user matches this policy.
+
+    Infrastructure application policies can only use the Allow action.
+    """
+
+    exclude: Optional[List[AccessRule]] = None
+    """Rules evaluated with a NOT logical operator.
+
+    To match the policy, a user cannot meet any of the Exclude rules.
+    """
+
+    include: Optional[List[AccessRule]] = None
+    """Rules evaluated with an OR logical operator.
+
+    A user needs to meet only one of the Include rules.
+    """
+
+    isolation_required: Optional[bool] = None
+    """
+    Require this application to be served in an isolated browser for users matching
+    this policy. 'Client Web Isolation' must be on for the account in order to use
+    this feature.
+    """
+
+    name: Optional[str] = None
+    """The name of the Access policy."""
+
     precedence: Optional[int] = None
     """The order of execution for this policy.
 
     Must be unique for each policy within an app.
     """
+
+    purpose_justification_prompt: Optional[str] = None
+    """A custom message that will appear on the purpose justification screen."""
+
+    purpose_justification_required: Optional[bool] = None
+    """Require users to enter a justification when they log in to the application."""
+
+    require: Optional[List[AccessRule]] = None
+    """Rules evaluated with an AND logical operator.
+
+    To match the policy, a user must meet all of the Require rules.
+    """
+
+    session_duration: Optional[str] = None
+    """The amount of time that tokens issued for the application will be valid.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
+    ms, s, m, h.
+    """
+
+    updated_at: Optional[datetime] = None
 
 
 class BrowserVNCApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(BaseModel):
@@ -978,7 +1258,7 @@ class BrowserVNCApplication(BaseModel):
     """The application type."""
 
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     allow_authenticate_via_warp: Optional[bool] = None
     """
@@ -987,6 +1267,9 @@ class BrowserVNCApplication(BaseModel):
     authentication. This setting always overrides the organization setting for WARP
     authentication.
     """
+
+    allow_iframe: Optional[bool] = None
+    """Enables loading application content in an iFrame."""
 
     allowed_idps: Optional[List[AllowedIdPs]] = None
     """The identity providers your users can select when connecting to this
@@ -1073,6 +1356,17 @@ class BrowserVNCApplication(BaseModel):
 
     policies: Optional[List[BrowserVNCApplicationPolicy]] = None
 
+    read_service_tokens_from_header: Optional[str] = None
+    """
+    Allows matching Access Service Tokens passed HTTP in a single header with this
+    name. This works as an alternative to the (CF-Access-Client-Id,
+    CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+    as a json object similar to: { "cf-access-client-id":
+    "88bf3b6d86161464f6509f7219099e57.access.example.com",
+    "cf-access-client-secret":
+    "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
+    """
+
     same_site_cookie_attribute: Optional[str] = None
     """
     Sets the SameSite cookie setting, which provides increased security against CSRF
@@ -1100,7 +1394,7 @@ class BrowserVNCApplication(BaseModel):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
+    ms, s, m, h. Note: unsupported for infrastructure type applications.
     """
 
     skip_interstitial: Optional[bool] = None
@@ -1140,12 +1434,75 @@ class AppLauncherApplicationLandingPageDesign(BaseModel):
     """The title shown on the landing page."""
 
 
-class AppLauncherApplicationPolicy(ApplicationPolicy):
+class AppLauncherApplicationPolicy(BaseModel):
+    id: Optional[str] = None
+    """The UUID of the policy"""
+
+    approval_groups: Optional[List[ApprovalGroup]] = None
+    """Administrators who can approve a temporary authentication request."""
+
+    approval_required: Optional[bool] = None
+    """
+    Requires the user to request access from an administrator at the start of each
+    session.
+    """
+
+    created_at: Optional[datetime] = None
+
+    decision: Optional[Decision] = None
+    """The action Access will take if a user matches this policy.
+
+    Infrastructure application policies can only use the Allow action.
+    """
+
+    exclude: Optional[List[AccessRule]] = None
+    """Rules evaluated with a NOT logical operator.
+
+    To match the policy, a user cannot meet any of the Exclude rules.
+    """
+
+    include: Optional[List[AccessRule]] = None
+    """Rules evaluated with an OR logical operator.
+
+    A user needs to meet only one of the Include rules.
+    """
+
+    isolation_required: Optional[bool] = None
+    """
+    Require this application to be served in an isolated browser for users matching
+    this policy. 'Client Web Isolation' must be on for the account in order to use
+    this feature.
+    """
+
+    name: Optional[str] = None
+    """The name of the Access policy."""
+
     precedence: Optional[int] = None
     """The order of execution for this policy.
 
     Must be unique for each policy within an app.
     """
+
+    purpose_justification_prompt: Optional[str] = None
+    """A custom message that will appear on the purpose justification screen."""
+
+    purpose_justification_required: Optional[bool] = None
+    """Require users to enter a justification when they log in to the application."""
+
+    require: Optional[List[AccessRule]] = None
+    """Rules evaluated with an AND logical operator.
+
+    To match the policy, a user must meet all of the Require rules.
+    """
+
+    session_duration: Optional[str] = None
+    """The amount of time that tokens issued for the application will be valid.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
+    ms, s, m, h.
+    """
+
+    updated_at: Optional[datetime] = None
 
 
 class AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(BaseModel):
@@ -1238,7 +1595,7 @@ class AppLauncherApplication(BaseModel):
     """The application type."""
 
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     allowed_idps: Optional[List[AllowedIdPs]] = None
     """The identity providers your users can select when connecting to this
@@ -1295,7 +1652,7 @@ class AppLauncherApplication(BaseModel):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
+    ms, s, m, h. Note: unsupported for infrastructure type applications.
     """
 
     skip_app_launcher_login_page: Optional[bool] = None
@@ -1329,12 +1686,75 @@ class DeviceEnrollmentPermissionsApplicationLandingPageDesign(BaseModel):
     """The title shown on the landing page."""
 
 
-class DeviceEnrollmentPermissionsApplicationPolicy(ApplicationPolicy):
+class DeviceEnrollmentPermissionsApplicationPolicy(BaseModel):
+    id: Optional[str] = None
+    """The UUID of the policy"""
+
+    approval_groups: Optional[List[ApprovalGroup]] = None
+    """Administrators who can approve a temporary authentication request."""
+
+    approval_required: Optional[bool] = None
+    """
+    Requires the user to request access from an administrator at the start of each
+    session.
+    """
+
+    created_at: Optional[datetime] = None
+
+    decision: Optional[Decision] = None
+    """The action Access will take if a user matches this policy.
+
+    Infrastructure application policies can only use the Allow action.
+    """
+
+    exclude: Optional[List[AccessRule]] = None
+    """Rules evaluated with a NOT logical operator.
+
+    To match the policy, a user cannot meet any of the Exclude rules.
+    """
+
+    include: Optional[List[AccessRule]] = None
+    """Rules evaluated with an OR logical operator.
+
+    A user needs to meet only one of the Include rules.
+    """
+
+    isolation_required: Optional[bool] = None
+    """
+    Require this application to be served in an isolated browser for users matching
+    this policy. 'Client Web Isolation' must be on for the account in order to use
+    this feature.
+    """
+
+    name: Optional[str] = None
+    """The name of the Access policy."""
+
     precedence: Optional[int] = None
     """The order of execution for this policy.
 
     Must be unique for each policy within an app.
     """
+
+    purpose_justification_prompt: Optional[str] = None
+    """A custom message that will appear on the purpose justification screen."""
+
+    purpose_justification_required: Optional[bool] = None
+    """Require users to enter a justification when they log in to the application."""
+
+    require: Optional[List[AccessRule]] = None
+    """Rules evaluated with an AND logical operator.
+
+    To match the policy, a user must meet all of the Require rules.
+    """
+
+    session_duration: Optional[str] = None
+    """The amount of time that tokens issued for the application will be valid.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
+    ms, s, m, h.
+    """
+
+    updated_at: Optional[datetime] = None
 
 
 class DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
@@ -1429,7 +1849,7 @@ class DeviceEnrollmentPermissionsApplication(BaseModel):
     """The application type."""
 
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     allowed_idps: Optional[List[AllowedIdPs]] = None
     """The identity providers your users can select when connecting to this
@@ -1486,7 +1906,7 @@ class DeviceEnrollmentPermissionsApplication(BaseModel):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
+    ms, s, m, h. Note: unsupported for infrastructure type applications.
     """
 
     skip_app_launcher_login_page: Optional[bool] = None
@@ -1520,12 +1940,75 @@ class BrowserIsolationPermissionsApplicationLandingPageDesign(BaseModel):
     """The title shown on the landing page."""
 
 
-class BrowserIsolationPermissionsApplicationPolicy(ApplicationPolicy):
+class BrowserIsolationPermissionsApplicationPolicy(BaseModel):
+    id: Optional[str] = None
+    """The UUID of the policy"""
+
+    approval_groups: Optional[List[ApprovalGroup]] = None
+    """Administrators who can approve a temporary authentication request."""
+
+    approval_required: Optional[bool] = None
+    """
+    Requires the user to request access from an administrator at the start of each
+    session.
+    """
+
+    created_at: Optional[datetime] = None
+
+    decision: Optional[Decision] = None
+    """The action Access will take if a user matches this policy.
+
+    Infrastructure application policies can only use the Allow action.
+    """
+
+    exclude: Optional[List[AccessRule]] = None
+    """Rules evaluated with a NOT logical operator.
+
+    To match the policy, a user cannot meet any of the Exclude rules.
+    """
+
+    include: Optional[List[AccessRule]] = None
+    """Rules evaluated with an OR logical operator.
+
+    A user needs to meet only one of the Include rules.
+    """
+
+    isolation_required: Optional[bool] = None
+    """
+    Require this application to be served in an isolated browser for users matching
+    this policy. 'Client Web Isolation' must be on for the account in order to use
+    this feature.
+    """
+
+    name: Optional[str] = None
+    """The name of the Access policy."""
+
     precedence: Optional[int] = None
     """The order of execution for this policy.
 
     Must be unique for each policy within an app.
     """
+
+    purpose_justification_prompt: Optional[str] = None
+    """A custom message that will appear on the purpose justification screen."""
+
+    purpose_justification_required: Optional[bool] = None
+    """Require users to enter a justification when they log in to the application."""
+
+    require: Optional[List[AccessRule]] = None
+    """Rules evaluated with an AND logical operator.
+
+    To match the policy, a user must meet all of the Require rules.
+    """
+
+    session_duration: Optional[str] = None
+    """The amount of time that tokens issued for the application will be valid.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
+    ms, s, m, h.
+    """
+
+    updated_at: Optional[datetime] = None
 
 
 class BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
@@ -1620,7 +2103,7 @@ class BrowserIsolationPermissionsApplication(BaseModel):
     """The application type."""
 
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     allowed_idps: Optional[List[AllowedIdPs]] = None
     """The identity providers your users can select when connecting to this
@@ -1677,7 +2160,7 @@ class BrowserIsolationPermissionsApplication(BaseModel):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
+    ms, s, m, h. Note: unsupported for infrastructure type applications.
     """
 
     skip_app_launcher_login_page: Optional[bool] = None
@@ -1773,7 +2256,7 @@ class BookmarkApplicationSCIMConfig(BaseModel):
 
 class BookmarkApplication(BaseModel):
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     app_launcher_visible: Optional[bool] = None
     """Displays the application in the App Launcher."""
@@ -1974,7 +2457,7 @@ class InfrastructureApplication(BaseModel):
     """The application type."""
 
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     aud: Optional[str] = None
     """Audience tag."""
@@ -2050,12 +2533,75 @@ BrowserRdpApplicationDestination: TypeAlias = Union[
 ]
 
 
-class BrowserRdpApplicationPolicy(ApplicationPolicy):
+class BrowserRdpApplicationPolicy(BaseModel):
+    id: Optional[str] = None
+    """The UUID of the policy"""
+
+    approval_groups: Optional[List[ApprovalGroup]] = None
+    """Administrators who can approve a temporary authentication request."""
+
+    approval_required: Optional[bool] = None
+    """
+    Requires the user to request access from an administrator at the start of each
+    session.
+    """
+
+    created_at: Optional[datetime] = None
+
+    decision: Optional[Decision] = None
+    """The action Access will take if a user matches this policy.
+
+    Infrastructure application policies can only use the Allow action.
+    """
+
+    exclude: Optional[List[AccessRule]] = None
+    """Rules evaluated with a NOT logical operator.
+
+    To match the policy, a user cannot meet any of the Exclude rules.
+    """
+
+    include: Optional[List[AccessRule]] = None
+    """Rules evaluated with an OR logical operator.
+
+    A user needs to meet only one of the Include rules.
+    """
+
+    isolation_required: Optional[bool] = None
+    """
+    Require this application to be served in an isolated browser for users matching
+    this policy. 'Client Web Isolation' must be on for the account in order to use
+    this feature.
+    """
+
+    name: Optional[str] = None
+    """The name of the Access policy."""
+
     precedence: Optional[int] = None
     """The order of execution for this policy.
 
     Must be unique for each policy within an app.
     """
+
+    purpose_justification_prompt: Optional[str] = None
+    """A custom message that will appear on the purpose justification screen."""
+
+    purpose_justification_required: Optional[bool] = None
+    """Require users to enter a justification when they log in to the application."""
+
+    require: Optional[List[AccessRule]] = None
+    """Rules evaluated with an AND logical operator.
+
+    To match the policy, a user must meet all of the Require rules.
+    """
+
+    session_duration: Optional[str] = None
+    """The amount of time that tokens issued for the application will be valid.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
+    ms, s, m, h.
+    """
+
+    updated_at: Optional[datetime] = None
 
 
 class BrowserRdpApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(BaseModel):
@@ -2156,7 +2702,7 @@ class BrowserRdpApplication(BaseModel):
     """The application type."""
 
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     allow_authenticate_via_warp: Optional[bool] = None
     """
@@ -2165,6 +2711,9 @@ class BrowserRdpApplication(BaseModel):
     authentication. This setting always overrides the organization setting for WARP
     authentication.
     """
+
+    allow_iframe: Optional[bool] = None
+    """Enables loading application content in an iFrame."""
 
     allowed_idps: Optional[List[AllowedIdPs]] = None
     """The identity providers your users can select when connecting to this
@@ -2251,6 +2800,17 @@ class BrowserRdpApplication(BaseModel):
 
     policies: Optional[List[BrowserRdpApplicationPolicy]] = None
 
+    read_service_tokens_from_header: Optional[str] = None
+    """
+    Allows matching Access Service Tokens passed HTTP in a single header with this
+    name. This works as an alternative to the (CF-Access-Client-Id,
+    CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+    as a json object similar to: { "cf-access-client-id":
+    "88bf3b6d86161464f6509f7219099e57.access.example.com",
+    "cf-access-client-secret":
+    "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
+    """
+
     same_site_cookie_attribute: Optional[str] = None
     """
     Sets the SameSite cookie setting, which provides increased security against CSRF
@@ -2278,7 +2838,7 @@ class BrowserRdpApplication(BaseModel):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
+    ms, s, m, h. Note: unsupported for infrastructure type applications.
     """
 
     skip_interstitial: Optional[bool] = None

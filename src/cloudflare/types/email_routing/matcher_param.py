@@ -8,11 +8,11 @@ __all__ = ["MatcherParam"]
 
 
 class MatcherParam(TypedDict, total=False):
-    field: Required[Literal["to"]]
-    """Field for type matcher."""
-
-    type: Required[Literal["literal"]]
+    type: Required[Literal["all", "literal"]]
     """Type of matcher."""
 
-    value: Required[str]
+    field: Literal["to"]
+    """Field for type matcher."""
+
+    value: str
     """Value for matcher."""

@@ -48,7 +48,7 @@ class TestHealth:
             probe_zone="example.com",
             retries=0,
             load_balancer_monitor_timeout=0,
-            type="http",
+            type="https",
         )
         assert_matches_type(HealthCreateResponse, health, path=["response"])
 
@@ -175,7 +175,7 @@ class TestAsyncHealth:
             probe_zone="example.com",
             retries=0,
             load_balancer_monitor_timeout=0,
-            type="http",
+            type="https",
         )
         assert_matches_type(HealthCreateResponse, health, path=["response"])
 

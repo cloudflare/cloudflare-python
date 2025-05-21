@@ -9,4 +9,4 @@ __all__ = ["PolicyDeleteResponse"]
 
 class PolicyDeleteResponse(BaseModel):
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""

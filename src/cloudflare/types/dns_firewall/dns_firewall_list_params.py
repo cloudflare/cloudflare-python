@@ -9,7 +9,7 @@ __all__ = ["DNSFirewallListParams"]
 
 class DNSFirewallListParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     page: float
     """Page number of paginated results"""

@@ -22,12 +22,7 @@ class TestExcludes:
     def test_method_update(self, client: Cloudflare) -> None:
         exclude = client.zero_trust.devices.policies.default.excludes.update(
             account_id="699d98642c564d2e855e9661899b7252",
-            body=[
-                {
-                    "address": "192.0.2.0/24",
-                    "description": "Exclude testing domains from the tunnel",
-                }
-            ],
+            body=[{"address": "192.0.2.0/24"}],
         )
         assert_matches_type(SyncSinglePage[SplitTunnelExclude], exclude, path=["response"])
 
@@ -35,12 +30,7 @@ class TestExcludes:
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.zero_trust.devices.policies.default.excludes.with_raw_response.update(
             account_id="699d98642c564d2e855e9661899b7252",
-            body=[
-                {
-                    "address": "192.0.2.0/24",
-                    "description": "Exclude testing domains from the tunnel",
-                }
-            ],
+            body=[{"address": "192.0.2.0/24"}],
         )
 
         assert response.is_closed is True
@@ -52,12 +42,7 @@ class TestExcludes:
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.zero_trust.devices.policies.default.excludes.with_streaming_response.update(
             account_id="699d98642c564d2e855e9661899b7252",
-            body=[
-                {
-                    "address": "192.0.2.0/24",
-                    "description": "Exclude testing domains from the tunnel",
-                }
-            ],
+            body=[{"address": "192.0.2.0/24"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -72,12 +57,7 @@ class TestExcludes:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.devices.policies.default.excludes.with_raw_response.update(
                 account_id="",
-                body=[
-                    {
-                        "address": "192.0.2.0/24",
-                        "description": "Exclude testing domains from the tunnel",
-                    }
-                ],
+                body=[{"address": "192.0.2.0/24"}],
             )
 
     @parametrize
@@ -126,12 +106,7 @@ class TestAsyncExcludes:
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         exclude = await async_client.zero_trust.devices.policies.default.excludes.update(
             account_id="699d98642c564d2e855e9661899b7252",
-            body=[
-                {
-                    "address": "192.0.2.0/24",
-                    "description": "Exclude testing domains from the tunnel",
-                }
-            ],
+            body=[{"address": "192.0.2.0/24"}],
         )
         assert_matches_type(AsyncSinglePage[SplitTunnelExclude], exclude, path=["response"])
 
@@ -139,12 +114,7 @@ class TestAsyncExcludes:
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.devices.policies.default.excludes.with_raw_response.update(
             account_id="699d98642c564d2e855e9661899b7252",
-            body=[
-                {
-                    "address": "192.0.2.0/24",
-                    "description": "Exclude testing domains from the tunnel",
-                }
-            ],
+            body=[{"address": "192.0.2.0/24"}],
         )
 
         assert response.is_closed is True
@@ -156,12 +126,7 @@ class TestAsyncExcludes:
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.devices.policies.default.excludes.with_streaming_response.update(
             account_id="699d98642c564d2e855e9661899b7252",
-            body=[
-                {
-                    "address": "192.0.2.0/24",
-                    "description": "Exclude testing domains from the tunnel",
-                }
-            ],
+            body=[{"address": "192.0.2.0/24"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -176,12 +141,7 @@ class TestAsyncExcludes:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.devices.policies.default.excludes.with_raw_response.update(
                 account_id="",
-                body=[
-                    {
-                        "address": "192.0.2.0/24",
-                        "description": "Exclude testing domains from the tunnel",
-                    }
-                ],
+                body=[{"address": "192.0.2.0/24"}],
             )
 
     @parametrize

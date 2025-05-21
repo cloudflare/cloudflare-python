@@ -15,7 +15,10 @@ class LocationListParams(TypedDict, total=False):
     """Limits the number of objects returned in the response."""
 
     location: str
-    """Comma-separated list of locations (alpha-2 location codes)."""
+    """Filters results by location.
+
+    Specify a comma-separated list of alpha-2 location codes.
+    """
 
     offset: int
     """Skips the specified number of objects before fetching the results."""

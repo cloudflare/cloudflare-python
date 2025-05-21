@@ -11,7 +11,7 @@ __all__ = ["Device", "User"]
 
 class User(BaseModel):
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     email: Optional[str] = None
     """The contact email address of the user."""
@@ -22,7 +22,11 @@ class User(BaseModel):
 
 class Device(BaseModel):
     id: Optional[str] = None
-    """Device ID."""
+    """Registration ID.
+
+    Equal to Device ID except for accounts which enabled
+    [multi-user mode](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/deployment/mdm-deployment/windows-multiuser/).
+    """
 
     created: Optional[datetime] = None
     """When the device was created."""
@@ -30,7 +34,7 @@ class Device(BaseModel):
     deleted: Optional[bool] = None
     """True if the device was deleted."""
 
-    device_type: Optional[Literal["windows", "mac", "linux", "android", "ios"]] = None
+    device_type: Optional[Literal["windows", "mac", "linux", "android", "ios", "chromeos"]] = None
 
     ip: Optional[str] = None
     """IPv4 or IPv6 address."""

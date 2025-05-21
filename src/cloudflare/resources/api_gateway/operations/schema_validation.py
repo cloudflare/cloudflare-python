@@ -8,10 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -72,9 +69,9 @@ class SchemaValidationResource(SyncAPIResource):
         Updates operation-level schema validation settings on the zone
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          operation_id: UUID
+          operation_id: UUID.
 
           mitigation_action: When set, this applies a mitigation action to this operation
 
@@ -124,7 +121,7 @@ class SchemaValidationResource(SyncAPIResource):
         Updates multiple operation-level schema validation settings on the zone
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -165,9 +162,9 @@ class SchemaValidationResource(SyncAPIResource):
         Retrieves operation-level schema validation settings on the zone
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          operation_id: UUID
+          operation_id: UUID.
 
           extra_headers: Send extra headers
 
@@ -227,9 +224,9 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
         Updates operation-level schema validation settings on the zone
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          operation_id: UUID
+          operation_id: UUID.
 
           mitigation_action: When set, this applies a mitigation action to this operation
 
@@ -279,7 +276,7 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
         Updates multiple operation-level schema validation settings on the zone
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -322,9 +319,9 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
         Retrieves operation-level schema validation settings on the zone
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          operation_id: UUID
+          operation_id: UUID.
 
           extra_headers: Send extra headers
 

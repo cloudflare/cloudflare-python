@@ -11,10 +11,10 @@ __all__ = ["CustomCreateParams"]
 
 class CustomCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Account ID"""
+    """Account ID."""
 
     domain: Required[str]
-    """Name of the custom domain to be added"""
+    """Name of the custom domain to be added."""
 
     enabled: Required[bool]
     """Whether to enable public bucket access at the custom domain.
@@ -23,7 +23,7 @@ class CustomCreateParams(TypedDict, total=False):
     """
 
     zone_id: Required[Annotated[str, PropertyInfo(alias="zoneId")]]
-    """Zone ID of the custom domain"""
+    """Zone ID of the custom domain."""
 
     min_tls: Annotated[Literal["1.0", "1.1", "1.2", "1.3"], PropertyInfo(alias="minTLS")]
     """Minimum TLS Version the custom domain will accept for incoming connections.
@@ -32,4 +32,4 @@ class CustomCreateParams(TypedDict, total=False):
     """
 
     jurisdiction: Annotated[Literal["default", "eu", "fedramp"], PropertyInfo(alias="cf-r2-jurisdiction")]
-    """The bucket jurisdiction"""
+    """Jurisdiction where objects in this bucket are guaranteed to be stored."""

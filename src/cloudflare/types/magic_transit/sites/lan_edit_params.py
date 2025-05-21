@@ -35,4 +35,4 @@ class LANEditParams(TypedDict, total=False):
     """
 
     vlan_tag: int
-    """VLAN port number."""
+    """VLAN ID. Use zero for untagged."""

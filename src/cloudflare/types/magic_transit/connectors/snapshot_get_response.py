@@ -4,7 +4,40 @@ from typing import List, Optional
 
 from ...._models import BaseModel
 
-__all__ = ["SnapshotGetResponse", "Disk", "Mount", "Netdev", "Thermal"]
+__all__ = [
+    "SnapshotGetResponse",
+    "DHCPLease",
+    "Disk",
+    "Interface",
+    "InterfaceIPAddress",
+    "Mount",
+    "Netdev",
+    "Thermal",
+    "Tunnel",
+]
+
+
+class DHCPLease(BaseModel):
+    client_id: str
+    """Client ID of the device the IP Address was leased to"""
+
+    expiry_time: float
+    """Expiry time of the DHCP lease (seconds since the Unix epoch)"""
+
+    hostname: str
+    """Hostname of the device the IP Address was leased to"""
+
+    interface_name: str
+    """Name of the network interface"""
+
+    ip_address: str
+    """IP Address that was leased"""
+
+    mac_address: str
+    """MAC Address of the device the IP Address was leased to"""
+
+    connector_id: Optional[str] = None
+    """Connector identifier"""
 
 
 class Disk(BaseModel):
@@ -70,6 +103,33 @@ class Disk(BaseModel):
 
     time_flushing_ms: Optional[float] = None
     """Time spent flushing (milliseconds)"""
+
+
+class InterfaceIPAddress(BaseModel):
+    interface_name: str
+    """Name of the network interface"""
+
+    ip_address: str
+    """IP address of the network interface"""
+
+    connector_id: Optional[str] = None
+    """Connector identifier"""
+
+
+class Interface(BaseModel):
+    name: str
+    """Name of the network interface"""
+
+    operstate: str
+    """UP/DOWN state of the network interface"""
+
+    connector_id: Optional[str] = None
+    """Connector identifier"""
+
+    ip_addresses: Optional[List[InterfaceIPAddress]] = None
+
+    speed: Optional[float] = None
+    """Speed of the network interface (bits per second)"""
 
 
 class Mount(BaseModel):
@@ -174,6 +234,26 @@ class Thermal(BaseModel):
     """Maximum temperature of the component (degrees Celsius)"""
 
 
+class Tunnel(BaseModel):
+    health_state: str
+    """Name of tunnel health state (unknown, healthy, degraded, down)"""
+
+    health_value: float
+    """
+    Numeric value associated with tunnel state (0 = unknown, 1 = healthy, 2 =
+    degraded, 3 = down)
+    """
+
+    interface_name: str
+    """The tunnel interface name (i.e. xfrm1, xfrm3.99, etc.)"""
+
+    tunnel_id: str
+    """Tunnel identifier"""
+
+    connector_id: Optional[str] = None
+    """Connector identifier"""
+
+
 class SnapshotGetResponse(BaseModel):
     count_reclaim_failures: float
     """Count of failures to reclaim space"""
@@ -238,6 +318,8 @@ class SnapshotGetResponse(BaseModel):
     cpu_time_user_ms: Optional[float] = None
     """Time spent in user mode (milliseconds)"""
 
+    dhcp_leases: Optional[List[DHCPLease]] = None
+
     disks: Optional[List[Disk]] = None
 
     ha_state: Optional[str] = None
@@ -245,9 +327,11 @@ class SnapshotGetResponse(BaseModel):
 
     ha_value: Optional[float] = None
     """
-    Numeric value associated with high availability state (0 = unknown, 1 = active,
-    2 = standby, 3 = disabled, 4 = fault)
+    Numeric value associated with high availability state (0 = disabled, 1 = active,
+    2 = standby, 3 = stopped, 4 = fault)
     """
+
+    interfaces: Optional[List[Interface]] = None
 
     io_pressure_full_10s: Optional[float] = None
     """Percentage of time over a 10 second window that all tasks were stalled"""
@@ -688,6 +772,8 @@ class SnapshotGetResponse(BaseModel):
     """Boottime of the system (seconds since the Unix epoch)"""
 
     thermals: Optional[List[Thermal]] = None
+
+    tunnels: Optional[List[Tunnel]] = None
 
     uptime_idle_ms: Optional[float] = None
     """Sum of how much time each core has spent idle"""

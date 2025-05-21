@@ -13,7 +13,6 @@ from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.custom_nameservers import (
     CustomNameserver,
     CustomNameserverDeleteResponse,
-    CustomNameserverAvailabiltyResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -119,46 +118,6 @@ class TestCustomNameservers:
             client.custom_nameservers.with_raw_response.delete(
                 custom_ns_id="",
                 account_id="372e67954025e0ba6aaa6d586b9e0b59",
-            )
-
-    @parametrize
-    def test_method_availabilty(self, client: Cloudflare) -> None:
-        custom_nameserver = client.custom_nameservers.availabilty(
-            account_id="372e67954025e0ba6aaa6d586b9e0b59",
-        )
-        assert_matches_type(SyncSinglePage[CustomNameserverAvailabiltyResponse], custom_nameserver, path=["response"])
-
-    @parametrize
-    def test_raw_response_availabilty(self, client: Cloudflare) -> None:
-        response = client.custom_nameservers.with_raw_response.availabilty(
-            account_id="372e67954025e0ba6aaa6d586b9e0b59",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        custom_nameserver = response.parse()
-        assert_matches_type(SyncSinglePage[CustomNameserverAvailabiltyResponse], custom_nameserver, path=["response"])
-
-    @parametrize
-    def test_streaming_response_availabilty(self, client: Cloudflare) -> None:
-        with client.custom_nameservers.with_streaming_response.availabilty(
-            account_id="372e67954025e0ba6aaa6d586b9e0b59",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            custom_nameserver = response.parse()
-            assert_matches_type(
-                SyncSinglePage[CustomNameserverAvailabiltyResponse], custom_nameserver, path=["response"]
-            )
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_path_params_availabilty(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.custom_nameservers.with_raw_response.availabilty(
-                account_id="",
             )
 
     @parametrize
@@ -300,46 +259,6 @@ class TestAsyncCustomNameservers:
             await async_client.custom_nameservers.with_raw_response.delete(
                 custom_ns_id="",
                 account_id="372e67954025e0ba6aaa6d586b9e0b59",
-            )
-
-    @parametrize
-    async def test_method_availabilty(self, async_client: AsyncCloudflare) -> None:
-        custom_nameserver = await async_client.custom_nameservers.availabilty(
-            account_id="372e67954025e0ba6aaa6d586b9e0b59",
-        )
-        assert_matches_type(AsyncSinglePage[CustomNameserverAvailabiltyResponse], custom_nameserver, path=["response"])
-
-    @parametrize
-    async def test_raw_response_availabilty(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.custom_nameservers.with_raw_response.availabilty(
-            account_id="372e67954025e0ba6aaa6d586b9e0b59",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        custom_nameserver = await response.parse()
-        assert_matches_type(AsyncSinglePage[CustomNameserverAvailabiltyResponse], custom_nameserver, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_availabilty(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.custom_nameservers.with_streaming_response.availabilty(
-            account_id="372e67954025e0ba6aaa6d586b9e0b59",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            custom_nameserver = await response.parse()
-            assert_matches_type(
-                AsyncSinglePage[CustomNameserverAvailabiltyResponse], custom_nameserver, path=["response"]
-            )
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_path_params_availabilty(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.custom_nameservers.with_raw_response.availabilty(
-                account_id="",
             )
 
     @parametrize

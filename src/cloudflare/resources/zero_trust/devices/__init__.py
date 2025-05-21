@@ -56,13 +56,13 @@ from .unrevoke import (
     UnrevokeResourceWithStreamingResponse,
     AsyncUnrevokeResourceWithStreamingResponse,
 )
-from .dex_tests import (
-    DEXTestsResource,
-    AsyncDEXTestsResource,
-    DEXTestsResourceWithRawResponse,
-    AsyncDEXTestsResourceWithRawResponse,
-    DEXTestsResourceWithStreamingResponse,
-    AsyncDEXTestsResourceWithStreamingResponse,
+from .resilience import (
+    ResilienceResource,
+    AsyncResilienceResource,
+    ResilienceResourceWithRawResponse,
+    AsyncResilienceResourceWithRawResponse,
+    ResilienceResourceWithStreamingResponse,
+    AsyncResilienceResourceWithStreamingResponse,
 )
 from .fleet_status import (
     FleetStatusResource,
@@ -71,6 +71,14 @@ from .fleet_status import (
     AsyncFleetStatusResourceWithRawResponse,
     FleetStatusResourceWithStreamingResponse,
     AsyncFleetStatusResourceWithStreamingResponse,
+)
+from .registrations import (
+    RegistrationsResource,
+    AsyncRegistrationsResource,
+    RegistrationsResourceWithRawResponse,
+    AsyncRegistrationsResourceWithRawResponse,
+    RegistrationsResourceWithStreamingResponse,
+    AsyncRegistrationsResourceWithStreamingResponse,
 )
 from .override_codes import (
     OverrideCodesResource,
@@ -82,12 +90,18 @@ from .override_codes import (
 )
 
 __all__ = [
-    "DEXTestsResource",
-    "AsyncDEXTestsResource",
-    "DEXTestsResourceWithRawResponse",
-    "AsyncDEXTestsResourceWithRawResponse",
-    "DEXTestsResourceWithStreamingResponse",
-    "AsyncDEXTestsResourceWithStreamingResponse",
+    "ResilienceResource",
+    "AsyncResilienceResource",
+    "ResilienceResourceWithRawResponse",
+    "AsyncResilienceResourceWithRawResponse",
+    "ResilienceResourceWithStreamingResponse",
+    "AsyncResilienceResourceWithStreamingResponse",
+    "RegistrationsResource",
+    "AsyncRegistrationsResource",
+    "RegistrationsResourceWithRawResponse",
+    "AsyncRegistrationsResourceWithRawResponse",
+    "RegistrationsResourceWithStreamingResponse",
+    "AsyncRegistrationsResourceWithStreamingResponse",
     "NetworksResource",
     "AsyncNetworksResource",
     "NetworksResourceWithRawResponse",

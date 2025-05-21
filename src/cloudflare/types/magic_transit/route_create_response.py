@@ -1,15 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Optional
 from datetime import datetime
 
 from .scope import Scope
 from ..._models import BaseModel
 
-__all__ = ["RouteCreateResponse", "Route"]
+__all__ = ["RouteCreateResponse"]
 
 
-class Route(BaseModel):
+class RouteCreateResponse(BaseModel):
+    id: str
+    """Identifier"""
+
     nexthop: str
     """The next-hop IP Address for the static route."""
 
@@ -18,9 +21,6 @@ class Route(BaseModel):
 
     priority: int
     """Priority of the static route."""
-
-    id: Optional[str] = None
-    """Identifier"""
 
     created_on: Optional[datetime] = None
     """When the route was created."""
@@ -36,7 +36,3 @@ class Route(BaseModel):
 
     weight: Optional[int] = None
     """Optional weight of the ECMP scope - if provided."""
-
-
-class RouteCreateResponse(BaseModel):
-    routes: Optional[List[Route]] = None

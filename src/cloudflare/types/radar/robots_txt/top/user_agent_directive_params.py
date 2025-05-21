@@ -13,7 +13,7 @@ __all__ = ["UserAgentDirectiveParams"]
 
 class UserAgentDirectiveParams(TypedDict, total=False):
     date: Annotated[List[Union[str, datetime.date]], PropertyInfo(format="iso8601")]
-    """Array of dates to filter the results."""
+    """Filters results by the specified array of dates."""
 
     directive: Literal["ALLOW", "DISALLOW"]
     """Filters results by robots.txt directive."""

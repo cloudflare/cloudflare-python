@@ -79,9 +79,7 @@ class TestAccounts:
             name="Demo Account",
             settings={
                 "abuse_contact_email": "abuse_contact_email",
-                "default_nameservers": "cloudflare.standard",
                 "enforce_twofactor": True,
-                "use_account_custom_ns_by_default": True,
             },
         )
         assert_matches_type(Optional[Account], account, path=["response"])
@@ -128,7 +126,7 @@ class TestAccounts:
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         account = client.accounts.list(
-            direction="asc",
+            direction="desc",
             name="example.com",
             page=1,
             per_page=5,
@@ -293,9 +291,7 @@ class TestAsyncAccounts:
             name="Demo Account",
             settings={
                 "abuse_contact_email": "abuse_contact_email",
-                "default_nameservers": "cloudflare.standard",
                 "enforce_twofactor": True,
-                "use_account_custom_ns_by_default": True,
             },
         )
         assert_matches_type(Optional[Account], account, path=["response"])
@@ -342,7 +338,7 @@ class TestAsyncAccounts:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         account = await async_client.accounts.list(
-            direction="asc",
+            direction="desc",
             name="example.com",
             page=1,
             per_page=5,

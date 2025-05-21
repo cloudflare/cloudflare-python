@@ -9,4 +9,4 @@ __all__ = ["ViewDeleteResponse"]
 
 class ViewDeleteResponse(BaseModel):
     id: Optional[str] = None
-    """Identifier"""
+    """Identifier."""

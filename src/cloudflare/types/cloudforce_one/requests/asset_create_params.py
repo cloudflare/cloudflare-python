@@ -8,11 +8,11 @@ __all__ = ["AssetCreateParams"]
 
 
 class AssetCreateParams(TypedDict, total=False):
-    account_identifier: Required[str]
-    """Identifier"""
+    account_id: Required[str]
+    """Identifier."""
 
     page: Required[int]
-    """Page number of results"""
+    """Page number of results."""
 
     per_page: Required[int]
-    """Number of results per page"""
+    """Number of results per page."""

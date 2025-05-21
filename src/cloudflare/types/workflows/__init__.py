@@ -16,4 +16,5 @@ from .instance_list_response import InstanceListResponse as InstanceListResponse
 from .workflow_list_response import WorkflowListResponse as WorkflowListResponse
 from .workflow_update_params import WorkflowUpdateParams as WorkflowUpdateParams
 from .instance_create_response import InstanceCreateResponse as InstanceCreateResponse
+from .workflow_delete_response import WorkflowDeleteResponse as WorkflowDeleteResponse
 from .workflow_update_response import WorkflowUpdateResponse as WorkflowUpdateResponse

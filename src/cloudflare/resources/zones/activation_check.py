@@ -59,7 +59,7 @@ class ActivationCheckResource(SyncAPIResource):
         5 min for paygo/ent customers, every hour for FREE Zones.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -121,7 +121,7 @@ class AsyncActivationCheckResource(AsyncAPIResource):
         5 min for paygo/ent customers, every hour for FREE Zones.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

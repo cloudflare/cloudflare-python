@@ -57,7 +57,7 @@ class QuotaResource(SyncAPIResource):
         For a given zone, list certificate pack quotas.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -117,7 +117,7 @@ class AsyncQuotaResource(AsyncAPIResource):
         For a given zone, list certificate pack quotas.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

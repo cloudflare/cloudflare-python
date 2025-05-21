@@ -1,18 +1,45 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
+from typing import List, Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
-from ..shared.response_info import ResponseInfo
 
-__all__ = ["SecurityTXTDeleteResponse"]
+__all__ = ["SecurityTXTDeleteResponse", "Error", "ErrorSource", "Message", "MessageSource"]
+
+
+class ErrorSource(BaseModel):
+    pointer: Optional[str] = None
+
+
+class Error(BaseModel):
+    code: int
+
+    message: str
+
+    documentation_url: Optional[str] = None
+
+    source: Optional[ErrorSource] = None
+
+
+class MessageSource(BaseModel):
+    pointer: Optional[str] = None
+
+
+class Message(BaseModel):
+    code: int
+
+    message: str
+
+    documentation_url: Optional[str] = None
+
+    source: Optional[MessageSource] = None
 
 
 class SecurityTXTDeleteResponse(BaseModel):
-    errors: List[ResponseInfo]
+    errors: List[Error]
 
-    messages: List[ResponseInfo]
+    messages: List[Message]
 
     success: Literal[True]
-    """Whether the API call was successful"""
+    """Whether the API call was successful."""

@@ -16,10 +16,7 @@ from .quota import (
     AsyncQuotaResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -85,7 +82,7 @@ class CertificatePacksResource(SyncAPIResource):
         For a given zone, order an advanced certificate pack.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           certificate_authority: Certificate Authority selected for the order. For information on any certificate
               authority specific details or restrictions
@@ -152,7 +149,7 @@ class CertificatePacksResource(SyncAPIResource):
         For a given zone, list all active certificate packs.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           status: Include Certificate Packs of all statuses, not just active ones.
 
@@ -195,9 +192,9 @@ class CertificatePacksResource(SyncAPIResource):
         For a given zone, delete an advanced certificate pack.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          certificate_pack_id: Identifier
+          certificate_pack_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -244,9 +241,9 @@ class CertificatePacksResource(SyncAPIResource):
         Pack in a validation_timed_out status.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          certificate_pack_id: Identifier
+          certificate_pack_id: Identifier.
 
           cloudflare_branding: Whether or not to add Cloudflare Branding for the order. This will add a
               subdomain of sni.cloudflaressl.com as the Common Name if set to true.
@@ -296,9 +293,9 @@ class CertificatePacksResource(SyncAPIResource):
         For a given zone, get a certificate pack.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          certificate_pack_id: Identifier
+          certificate_pack_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -372,7 +369,7 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
         For a given zone, order an advanced certificate pack.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           certificate_authority: Certificate Authority selected for the order. For information on any certificate
               authority specific details or restrictions
@@ -439,7 +436,7 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
         For a given zone, list all active certificate packs.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           status: Include Certificate Packs of all statuses, not just active ones.
 
@@ -482,9 +479,9 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
         For a given zone, delete an advanced certificate pack.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          certificate_pack_id: Identifier
+          certificate_pack_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -531,9 +528,9 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
         Pack in a validation_timed_out status.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          certificate_pack_id: Identifier
+          certificate_pack_id: Identifier.
 
           cloudflare_branding: Whether or not to add Cloudflare Branding for the order. This will add a
               subdomain of sni.cloudflaressl.com as the Common Name if set to true.
@@ -583,9 +580,9 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
         For a given zone, get a certificate pack.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          certificate_pack_id: Identifier
+          certificate_pack_id: Identifier.
 
           extra_headers: Send extra headers
 

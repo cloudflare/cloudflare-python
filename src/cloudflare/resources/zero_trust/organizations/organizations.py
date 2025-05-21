@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Any, Type, Optional, cast
 
 import httpx
 
@@ -15,10 +15,7 @@ from .doh import (
     AsyncDOHResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -408,8 +405,8 @@ class OrganizationsResource(SyncAPIResource):
                 post_parser=ResultWrapper[Optional[OrganizationRevokeUsersResponse]]._unwrapper,
             ),
             cast_to=cast(
-                Type[Optional[OrganizationRevokeUsersResponse]], ResultWrapper[OrganizationRevokeUsersResponse]
-            ),
+                Any, ResultWrapper[OrganizationRevokeUsersResponse]
+            ),  # Enum types cannot be passed in as arguments in the type system
         )
 
 
@@ -780,8 +777,8 @@ class AsyncOrganizationsResource(AsyncAPIResource):
                 post_parser=ResultWrapper[Optional[OrganizationRevokeUsersResponse]]._unwrapper,
             ),
             cast_to=cast(
-                Type[Optional[OrganizationRevokeUsersResponse]], ResultWrapper[OrganizationRevokeUsersResponse]
-            ),
+                Any, ResultWrapper[OrganizationRevokeUsersResponse]
+            ),  # Enum types cannot be passed in as arguments in the type system
         )
 
 

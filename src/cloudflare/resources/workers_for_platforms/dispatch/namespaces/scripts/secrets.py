@@ -2,16 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-from typing_extensions import Literal
+from typing import Any, List, Type, Optional, cast
+from typing_extensions import Literal, overload
 
 import httpx
 
 from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ......_utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ......_utils import required_args, maybe_transform, async_maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -51,38 +48,38 @@ class SecretsResource(SyncAPIResource):
         """
         return SecretsResourceWithStreamingResponse(self)
 
+    @overload
     def update(
         self,
         script_name: str,
         *,
         account_id: str,
         dispatch_namespace: str,
-        name: str | NotGiven = NOT_GIVEN,
-        text: str | NotGiven = NOT_GIVEN,
-        type: Literal["secret_text"] | NotGiven = NOT_GIVEN,
+        name: str,
+        text: str,
+        type: Literal["secret_text"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SecretUpdateResponse]:
+    ) -> SecretUpdateResponse:
         """
         Add a secret to a script uploaded to a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
           script_name: Name of the script, used in URLs and route configuration.
 
-          name: The name of this secret, this is what will be used to access it inside the
-              Worker.
+          name: A JavaScript variable name for the binding.
 
-          text: The value of the secret.
+          text: The secret value to use.
 
-          type: The type of secret to put.
+          type: The kind of resource that the binding provides.
 
           extra_headers: Send extra headers
 
@@ -92,30 +89,130 @@ class SecretsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    def update(
+        self,
+        script_name: str,
+        *,
+        account_id: str,
+        dispatch_namespace: str,
+        algorithm: object,
+        format: Literal["raw", "pkcs8", "spki", "jwk"],
+        name: str,
+        type: Literal["secret_key"],
+        usages: List[
+            Literal["encrypt", "decrypt", "sign", "verify", "deriveKey", "deriveBits", "wrapKey", "unwrapKey"]
+        ],
+        key_base64: str | NotGiven = NOT_GIVEN,
+        key_jwk: object | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SecretUpdateResponse:
+        """
+        Add a secret to a script uploaded to a Workers for Platforms namespace.
+
+        Args:
+          account_id: Identifier.
+
+          dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
+
+          script_name: Name of the script, used in URLs and route configuration.
+
+          algorithm: Algorithm-specific key parameters.
+              [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#algorithm).
+
+          format: Data format of the key.
+              [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#format).
+
+          name: A JavaScript variable name for the binding.
+
+          type: The kind of resource that the binding provides.
+
+          usages: Allowed operations with the key.
+              [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#keyUsages).
+
+          key_base64: Base64-encoded key data. Required if `format` is "raw", "pkcs8", or "spki".
+
+          key_jwk: Key data in
+              [JSON Web Key](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#json_web_key)
+              format. Required if `format` is "jwk".
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(
+        ["account_id", "dispatch_namespace", "name", "text", "type"],
+        ["account_id", "dispatch_namespace", "algorithm", "format", "name", "type", "usages"],
+    )
+    def update(
+        self,
+        script_name: str,
+        *,
+        account_id: str,
+        dispatch_namespace: str,
+        name: str,
+        text: str | NotGiven = NOT_GIVEN,
+        type: Literal["secret_text"] | Literal["secret_key"],
+        algorithm: object | NotGiven = NOT_GIVEN,
+        format: Literal["raw", "pkcs8", "spki", "jwk"] | NotGiven = NOT_GIVEN,
+        usages: List[Literal["encrypt", "decrypt", "sign", "verify", "deriveKey", "deriveBits", "wrapKey", "unwrapKey"]]
+        | NotGiven = NOT_GIVEN,
+        key_base64: str | NotGiven = NOT_GIVEN,
+        key_jwk: object | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SecretUpdateResponse:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dispatch_namespace:
             raise ValueError(f"Expected a non-empty value for `dispatch_namespace` but received {dispatch_namespace!r}")
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
-        return self._put(
-            f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets",
-            body=maybe_transform(
-                {
-                    "name": name,
-                    "text": text,
-                    "type": type,
-                },
-                secret_update_params.SecretUpdateParams,
+        return cast(
+            SecretUpdateResponse,
+            self._put(
+                f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets",
+                body=maybe_transform(
+                    {
+                        "name": name,
+                        "text": text,
+                        "type": type,
+                        "algorithm": algorithm,
+                        "format": format,
+                        "usages": usages,
+                        "key_base64": key_base64,
+                        "key_jwk": key_jwk,
+                    },
+                    secret_update_params.SecretUpdateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[SecretUpdateResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[SecretUpdateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[SecretUpdateResponse]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[SecretUpdateResponse]], ResultWrapper[SecretUpdateResponse]),
         )
 
     def list(
@@ -135,7 +232,7 @@ class SecretsResource(SyncAPIResource):
         List secrets bound to a script uploaded to a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -161,7 +258,7 @@ class SecretsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=SecretListResponse,
+            model=cast(Any, SecretListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     def delete(
@@ -182,7 +279,7 @@ class SecretsResource(SyncAPIResource):
         Remove a secret from a script uploaded to a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -231,13 +328,13 @@ class SecretsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SecretGetResponse]:
+    ) -> SecretGetResponse:
         """
         Get a given secret binding (value omitted) on a script uploaded to a Workers for
         Platforms namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -261,16 +358,21 @@ class SecretsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         if not secret_name:
             raise ValueError(f"Expected a non-empty value for `secret_name` but received {secret_name!r}")
-        return self._get(
-            f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets/{secret_name}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[SecretGetResponse]]._unwrapper,
+        return cast(
+            SecretGetResponse,
+            self._get(
+                f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets/{secret_name}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[SecretGetResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[SecretGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[Optional[SecretGetResponse]], ResultWrapper[SecretGetResponse]),
         )
 
 
@@ -294,38 +396,38 @@ class AsyncSecretsResource(AsyncAPIResource):
         """
         return AsyncSecretsResourceWithStreamingResponse(self)
 
+    @overload
     async def update(
         self,
         script_name: str,
         *,
         account_id: str,
         dispatch_namespace: str,
-        name: str | NotGiven = NOT_GIVEN,
-        text: str | NotGiven = NOT_GIVEN,
-        type: Literal["secret_text"] | NotGiven = NOT_GIVEN,
+        name: str,
+        text: str,
+        type: Literal["secret_text"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SecretUpdateResponse]:
+    ) -> SecretUpdateResponse:
         """
         Add a secret to a script uploaded to a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
           script_name: Name of the script, used in URLs and route configuration.
 
-          name: The name of this secret, this is what will be used to access it inside the
-              Worker.
+          name: A JavaScript variable name for the binding.
 
-          text: The value of the secret.
+          text: The secret value to use.
 
-          type: The type of secret to put.
+          type: The kind of resource that the binding provides.
 
           extra_headers: Send extra headers
 
@@ -335,30 +437,130 @@ class AsyncSecretsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    async def update(
+        self,
+        script_name: str,
+        *,
+        account_id: str,
+        dispatch_namespace: str,
+        algorithm: object,
+        format: Literal["raw", "pkcs8", "spki", "jwk"],
+        name: str,
+        type: Literal["secret_key"],
+        usages: List[
+            Literal["encrypt", "decrypt", "sign", "verify", "deriveKey", "deriveBits", "wrapKey", "unwrapKey"]
+        ],
+        key_base64: str | NotGiven = NOT_GIVEN,
+        key_jwk: object | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SecretUpdateResponse:
+        """
+        Add a secret to a script uploaded to a Workers for Platforms namespace.
+
+        Args:
+          account_id: Identifier.
+
+          dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
+
+          script_name: Name of the script, used in URLs and route configuration.
+
+          algorithm: Algorithm-specific key parameters.
+              [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#algorithm).
+
+          format: Data format of the key.
+              [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#format).
+
+          name: A JavaScript variable name for the binding.
+
+          type: The kind of resource that the binding provides.
+
+          usages: Allowed operations with the key.
+              [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#keyUsages).
+
+          key_base64: Base64-encoded key data. Required if `format` is "raw", "pkcs8", or "spki".
+
+          key_jwk: Key data in
+              [JSON Web Key](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#json_web_key)
+              format. Required if `format` is "jwk".
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(
+        ["account_id", "dispatch_namespace", "name", "text", "type"],
+        ["account_id", "dispatch_namespace", "algorithm", "format", "name", "type", "usages"],
+    )
+    async def update(
+        self,
+        script_name: str,
+        *,
+        account_id: str,
+        dispatch_namespace: str,
+        name: str,
+        text: str | NotGiven = NOT_GIVEN,
+        type: Literal["secret_text"] | Literal["secret_key"],
+        algorithm: object | NotGiven = NOT_GIVEN,
+        format: Literal["raw", "pkcs8", "spki", "jwk"] | NotGiven = NOT_GIVEN,
+        usages: List[Literal["encrypt", "decrypt", "sign", "verify", "deriveKey", "deriveBits", "wrapKey", "unwrapKey"]]
+        | NotGiven = NOT_GIVEN,
+        key_base64: str | NotGiven = NOT_GIVEN,
+        key_jwk: object | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SecretUpdateResponse:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dispatch_namespace:
             raise ValueError(f"Expected a non-empty value for `dispatch_namespace` but received {dispatch_namespace!r}")
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
-        return await self._put(
-            f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets",
-            body=await async_maybe_transform(
-                {
-                    "name": name,
-                    "text": text,
-                    "type": type,
-                },
-                secret_update_params.SecretUpdateParams,
+        return cast(
+            SecretUpdateResponse,
+            await self._put(
+                f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets",
+                body=await async_maybe_transform(
+                    {
+                        "name": name,
+                        "text": text,
+                        "type": type,
+                        "algorithm": algorithm,
+                        "format": format,
+                        "usages": usages,
+                        "key_base64": key_base64,
+                        "key_jwk": key_jwk,
+                    },
+                    secret_update_params.SecretUpdateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[SecretUpdateResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[SecretUpdateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[SecretUpdateResponse]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[SecretUpdateResponse]], ResultWrapper[SecretUpdateResponse]),
         )
 
     def list(
@@ -378,7 +580,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         List secrets bound to a script uploaded to a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -404,7 +606,7 @@ class AsyncSecretsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=SecretListResponse,
+            model=cast(Any, SecretListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     async def delete(
@@ -425,7 +627,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         Remove a secret from a script uploaded to a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -474,13 +676,13 @@ class AsyncSecretsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SecretGetResponse]:
+    ) -> SecretGetResponse:
         """
         Get a given secret binding (value omitted) on a script uploaded to a Workers for
         Platforms namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -504,16 +706,21 @@ class AsyncSecretsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         if not secret_name:
             raise ValueError(f"Expected a non-empty value for `secret_name` but received {secret_name!r}")
-        return await self._get(
-            f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets/{secret_name}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[SecretGetResponse]]._unwrapper,
+        return cast(
+            SecretGetResponse,
+            await self._get(
+                f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets/{secret_name}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[SecretGetResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[SecretGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[Optional[SecretGetResponse]], ResultWrapper[SecretGetResponse]),
         )
 
 

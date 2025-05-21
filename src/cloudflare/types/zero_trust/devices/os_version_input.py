@@ -10,23 +10,23 @@ __all__ = ["OSVersionInput"]
 
 class OSVersionInput(BaseModel):
     operating_system: Literal["windows"]
-    """Operating System"""
+    """Operating System."""
 
     operator: Literal["<", "<=", ">", ">=", "=="]
-    """operator"""
+    """Operator."""
 
     version: str
-    """Version of OS"""
+    """Version of OS."""
 
     os_distro_name: Optional[str] = None
-    """Operating System Distribution Name (linux only)"""
+    """Operating System Distribution Name (linux only)."""
 
     os_distro_revision: Optional[str] = None
-    """Version of OS Distribution (linux only)"""
+    """Version of OS Distribution (linux only)."""
 
     os_version_extra: Optional[str] = None
     """Additional version data.
 
     For Mac or iOS, the Product Version Extra. For Linux, the kernel release
-    version. (Mac, iOS, and Linux only)
+    version. (Mac, iOS, and Linux only).
     """

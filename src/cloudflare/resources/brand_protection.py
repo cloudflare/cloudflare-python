@@ -7,10 +7,7 @@ from typing import List, Type, Iterable, Optional, cast
 import httpx
 
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -61,12 +58,12 @@ class BrandProtectionResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Submit]:
         """
-        Submit suspicious URL for scanning
+        Submit suspicious URL for scanning.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          url: URL(s) to filter submissions results by
+          url: URL(s) to filter submissions results by.
 
           extra_headers: Send extra headers
 
@@ -108,7 +105,7 @@ class BrandProtectionResource(SyncAPIResource):
         Gets phishing details about a URL.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           url: Submission URL(s) to filter submission results by.
 
@@ -177,12 +174,12 @@ class AsyncBrandProtectionResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Submit]:
         """
-        Submit suspicious URL for scanning
+        Submit suspicious URL for scanning.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          url: URL(s) to filter submissions results by
+          url: URL(s) to filter submissions results by.
 
           extra_headers: Send extra headers
 
@@ -224,7 +221,7 @@ class AsyncBrandProtectionResource(AsyncAPIResource):
         Gets phishing details about a URL.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           url: Submission URL(s) to filter submission results by.
 

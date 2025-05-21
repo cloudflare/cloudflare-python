@@ -7,10 +7,7 @@ from typing import List, Type, Iterable, Optional, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -70,7 +67,7 @@ class RulesResource(SyncAPIResource):
         Creates a new rule in a Web Analytics ruleset.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           ruleset_id: The Web Analytics ruleset identifier.
 
@@ -132,7 +129,7 @@ class RulesResource(SyncAPIResource):
         Updates a rule in a Web Analytics ruleset.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           ruleset_id: The Web Analytics ruleset identifier.
 
@@ -193,7 +190,7 @@ class RulesResource(SyncAPIResource):
         Lists all the rules in a Web Analytics ruleset.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           ruleset_id: The Web Analytics ruleset identifier.
 
@@ -238,7 +235,7 @@ class RulesResource(SyncAPIResource):
         Deletes an existing rule from a Web Analytics ruleset.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           ruleset_id: The Web Analytics ruleset identifier.
 
@@ -288,7 +285,7 @@ class RulesResource(SyncAPIResource):
         Modifies one or more rules in a Web Analytics ruleset with a single request.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           ruleset_id: The Web Analytics ruleset identifier.
 
@@ -368,7 +365,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Creates a new rule in a Web Analytics ruleset.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           ruleset_id: The Web Analytics ruleset identifier.
 
@@ -430,7 +427,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Updates a rule in a Web Analytics ruleset.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           ruleset_id: The Web Analytics ruleset identifier.
 
@@ -491,7 +488,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Lists all the rules in a Web Analytics ruleset.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           ruleset_id: The Web Analytics ruleset identifier.
 
@@ -536,7 +533,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Deletes an existing rule from a Web Analytics ruleset.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           ruleset_id: The Web Analytics ruleset identifier.
 
@@ -586,7 +583,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Modifies one or more rules in a Web Analytics ruleset with a single request.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           ruleset_id: The Web Analytics ruleset identifier.
 

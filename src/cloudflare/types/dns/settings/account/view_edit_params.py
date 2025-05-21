@@ -10,7 +10,7 @@ __all__ = ["ViewEditParams"]
 
 class ViewEditParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     name: str
     """The name of the view."""

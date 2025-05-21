@@ -17,7 +17,7 @@ __all__ = [
 
 
 class ActionParametersAlgorithm(BaseModel):
-    name: Optional[Literal["none", "auto", "default", "gzip", "brotli"]] = None
+    name: Optional[Literal["none", "auto", "default", "gzip", "brotli", "zstd"]] = None
     """Name of compression algorithm to enable."""
 
 
@@ -41,7 +41,7 @@ class Ratelimit(BaseModel):
     incremented.
     """
 
-    period: Literal[10, 60, 600, 3600]
+    period: int
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: Optional[str] = None

@@ -18,7 +18,7 @@ class ResourceListParams(TypedDict, total=False):
     managed: bool
 
     order_by: str
-    """one of ["id", "resource_type", "region"]"""
+    """One of ["id", "resource_type", "region"]."""
 
     page: int
 

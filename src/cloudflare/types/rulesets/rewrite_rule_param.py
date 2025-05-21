@@ -13,8 +13,10 @@ __all__ = [
     "ActionParameters",
     "ActionParametersHeaders",
     "ActionParametersHeadersRemoveHeader",
-    "ActionParametersHeadersStaticHeader",
-    "ActionParametersHeadersDynamicHeader",
+    "ActionParametersHeadersAddStaticHeader",
+    "ActionParametersHeadersSetStaticHeader",
+    "ActionParametersHeadersAddDynamicHeader",
+    "ActionParametersHeadersSetDynamicHeader",
     "ActionParametersURI",
     "ExposedCredentialCheck",
     "Ratelimit",
@@ -25,14 +27,28 @@ class ActionParametersHeadersRemoveHeader(TypedDict, total=False):
     operation: Required[Literal["remove"]]
 
 
-class ActionParametersHeadersStaticHeader(TypedDict, total=False):
+class ActionParametersHeadersAddStaticHeader(TypedDict, total=False):
+    operation: Required[Literal["add"]]
+
+    value: Required[str]
+    """Static value for the header."""
+
+
+class ActionParametersHeadersSetStaticHeader(TypedDict, total=False):
     operation: Required[Literal["set"]]
 
     value: Required[str]
     """Static value for the header."""
 
 
-class ActionParametersHeadersDynamicHeader(TypedDict, total=False):
+class ActionParametersHeadersAddDynamicHeader(TypedDict, total=False):
+    expression: Required[str]
+    """Expression for the header value."""
+
+    operation: Required[Literal["add"]]
+
+
+class ActionParametersHeadersSetDynamicHeader(TypedDict, total=False):
     expression: Required[str]
     """Expression for the header value."""
 
@@ -40,7 +56,11 @@ class ActionParametersHeadersDynamicHeader(TypedDict, total=False):
 
 
 ActionParametersHeaders: TypeAlias = Union[
-    ActionParametersHeadersRemoveHeader, ActionParametersHeadersStaticHeader, ActionParametersHeadersDynamicHeader
+    ActionParametersHeadersRemoveHeader,
+    ActionParametersHeadersAddStaticHeader,
+    ActionParametersHeadersSetStaticHeader,
+    ActionParametersHeadersAddDynamicHeader,
+    ActionParametersHeadersSetDynamicHeader,
 ]
 
 
@@ -75,7 +95,7 @@ class Ratelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str

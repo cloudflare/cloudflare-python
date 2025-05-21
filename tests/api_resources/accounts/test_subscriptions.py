@@ -34,7 +34,7 @@ class TestSubscriptions:
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         subscription = client.accounts.subscriptions.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            frequency="weekly",
+            frequency="monthly",
             rate_plan={
                 "id": "free",
                 "currency": "USD",
@@ -91,7 +91,7 @@ class TestSubscriptions:
         subscription = client.accounts.subscriptions.update(
             subscription_identifier="506e3185e9c882d175a2d0cb0093d9f2",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            frequency="weekly",
+            frequency="monthly",
             rate_plan={
                 "id": "free",
                 "currency": "USD",
@@ -249,7 +249,7 @@ class TestAsyncSubscriptions:
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         subscription = await async_client.accounts.subscriptions.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            frequency="weekly",
+            frequency="monthly",
             rate_plan={
                 "id": "free",
                 "currency": "USD",
@@ -306,7 +306,7 @@ class TestAsyncSubscriptions:
         subscription = await async_client.accounts.subscriptions.update(
             subscription_identifier="506e3185e9c882d175a2d0cb0093d9f2",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            frequency="weekly",
+            frequency="monthly",
             rate_plan={
                 "id": "free",
                 "currency": "USD",

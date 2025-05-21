@@ -9,7 +9,7 @@ __all__ = ["HoldDeleteParams"]
 
 class HoldDeleteParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     hold_after: str
     """

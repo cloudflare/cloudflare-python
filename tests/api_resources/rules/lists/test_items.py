@@ -9,7 +9,6 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncCursorPagination, AsyncCursorPagination
 from cloudflare.types.rules.lists import (
     ItemGetResponse,
     ItemListResponse,
@@ -136,7 +135,7 @@ class TestItems:
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncCursorPagination[ItemListResponse], item, path=["response"])
+        assert_matches_type(ItemListResponse, item, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
@@ -147,7 +146,7 @@ class TestItems:
             per_page=1,
             search="1.1.1.",
         )
-        assert_matches_type(SyncCursorPagination[ItemListResponse], item, path=["response"])
+        assert_matches_type(ItemListResponse, item, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -159,7 +158,7 @@ class TestItems:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         item = response.parse()
-        assert_matches_type(SyncCursorPagination[ItemListResponse], item, path=["response"])
+        assert_matches_type(ItemListResponse, item, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -171,7 +170,7 @@ class TestItems:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             item = response.parse()
-            assert_matches_type(SyncCursorPagination[ItemListResponse], item, path=["response"])
+            assert_matches_type(ItemListResponse, item, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -241,7 +240,7 @@ class TestItems:
     def test_method_get(self, client: Cloudflare) -> None:
         item = client.rules.lists.items.get(
             item_id="34b12448945f11eaa1b71c4d701ab86e",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
         )
         assert_matches_type(ItemGetResponse, item, path=["response"])
@@ -250,7 +249,7 @@ class TestItems:
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.rules.lists.items.with_raw_response.get(
             item_id="34b12448945f11eaa1b71c4d701ab86e",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
         )
 
@@ -263,7 +262,7 @@ class TestItems:
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.rules.lists.items.with_streaming_response.get(
             item_id="34b12448945f11eaa1b71c4d701ab86e",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
         ) as response:
             assert not response.is_closed
@@ -276,24 +275,24 @@ class TestItems:
 
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.rules.lists.items.with_raw_response.get(
                 item_id="34b12448945f11eaa1b71c4d701ab86e",
-                account_identifier="",
+                account_id="",
                 list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `list_id` but received ''"):
             client.rules.lists.items.with_raw_response.get(
                 item_id="34b12448945f11eaa1b71c4d701ab86e",
-                account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 list_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `item_id` but received ''"):
             client.rules.lists.items.with_raw_response.get(
                 item_id="",
-                account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             )
 
@@ -413,7 +412,7 @@ class TestAsyncItems:
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncCursorPagination[ItemListResponse], item, path=["response"])
+        assert_matches_type(ItemListResponse, item, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -424,7 +423,7 @@ class TestAsyncItems:
             per_page=1,
             search="1.1.1.",
         )
-        assert_matches_type(AsyncCursorPagination[ItemListResponse], item, path=["response"])
+        assert_matches_type(ItemListResponse, item, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -436,7 +435,7 @@ class TestAsyncItems:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         item = await response.parse()
-        assert_matches_type(AsyncCursorPagination[ItemListResponse], item, path=["response"])
+        assert_matches_type(ItemListResponse, item, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -448,7 +447,7 @@ class TestAsyncItems:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             item = await response.parse()
-            assert_matches_type(AsyncCursorPagination[ItemListResponse], item, path=["response"])
+            assert_matches_type(ItemListResponse, item, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -518,7 +517,7 @@ class TestAsyncItems:
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         item = await async_client.rules.lists.items.get(
             item_id="34b12448945f11eaa1b71c4d701ab86e",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
         )
         assert_matches_type(ItemGetResponse, item, path=["response"])
@@ -527,7 +526,7 @@ class TestAsyncItems:
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rules.lists.items.with_raw_response.get(
             item_id="34b12448945f11eaa1b71c4d701ab86e",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
         )
 
@@ -540,7 +539,7 @@ class TestAsyncItems:
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rules.lists.items.with_streaming_response.get(
             item_id="34b12448945f11eaa1b71c4d701ab86e",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
         ) as response:
             assert not response.is_closed
@@ -553,23 +552,23 @@ class TestAsyncItems:
 
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.rules.lists.items.with_raw_response.get(
                 item_id="34b12448945f11eaa1b71c4d701ab86e",
-                account_identifier="",
+                account_id="",
                 list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `list_id` but received ''"):
             await async_client.rules.lists.items.with_raw_response.get(
                 item_id="34b12448945f11eaa1b71c4d701ab86e",
-                account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 list_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `item_id` but received ''"):
             await async_client.rules.lists.items.with_raw_response.get(
                 item_id="",
-                account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             )

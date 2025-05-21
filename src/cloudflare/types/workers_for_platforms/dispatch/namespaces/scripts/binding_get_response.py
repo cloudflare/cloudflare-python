@@ -1,10 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Union, Optional
-from typing_extensions import Literal, TypeAlias
+from typing_extensions import Literal, Annotated, TypeAlias
 
 from pydantic import Field as FieldInfo
 
+from ......_utils import PropertyInfo
 from ......_models import BaseModel
 
 __all__ = [
@@ -12,7 +13,7 @@ __all__ = [
     "WorkersBindingKindAI",
     "WorkersBindingKindAnalyticsEngine",
     "WorkersBindingKindAssets",
-    "WorkersBindingKindBrowserRendering",
+    "WorkersBindingKindBrowser",
     "WorkersBindingKindD1",
     "WorkersBindingKindDispatchNamespace",
     "WorkersBindingKindDispatchNamespaceOutbound",
@@ -23,6 +24,7 @@ __all__ = [
     "WorkersBindingKindKVNamespace",
     "WorkersBindingKindMTLSCertificate",
     "WorkersBindingKindPlainText",
+    "WorkersBindingKindPipelines",
     "WorkersBindingKindQueue",
     "WorkersBindingKindR2Bucket",
     "WorkersBindingKindSecretText",
@@ -30,6 +32,8 @@ __all__ = [
     "WorkersBindingKindTailConsumer",
     "WorkersBindingKindVectorize",
     "WorkersBindingKindVersionMetadata",
+    "WorkersBindingKindSecretsStoreSecret",
+    "WorkersBindingKindSecretKey",
 ]
 
 
@@ -37,27 +41,7 @@ class WorkersBindingKindAI(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
-    type: Literal[
-        "ai",
-        "analytics_engine",
-        "assets",
-        "browser_rendering",
-        "d1",
-        "dispatch_namespace",
-        "durable_object_namespace",
-        "hyperdrive",
-        "json",
-        "kv_namespace",
-        "mtls_certificate",
-        "plain_text",
-        "queue",
-        "r2_bucket",
-        "secret_text",
-        "service",
-        "tail_consumer",
-        "vectorize",
-        "version_metadata",
-    ]
+    type: Literal["ai"]
     """The kind of resource that the binding provides."""
 
 
@@ -68,27 +52,7 @@ class WorkersBindingKindAnalyticsEngine(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
-    type: Literal[
-        "ai",
-        "analytics_engine",
-        "assets",
-        "browser_rendering",
-        "d1",
-        "dispatch_namespace",
-        "durable_object_namespace",
-        "hyperdrive",
-        "json",
-        "kv_namespace",
-        "mtls_certificate",
-        "plain_text",
-        "queue",
-        "r2_bucket",
-        "secret_text",
-        "service",
-        "tail_consumer",
-        "vectorize",
-        "version_metadata",
-    ]
+    type: Literal["analytics_engine"]
     """The kind of resource that the binding provides."""
 
 
@@ -96,55 +60,15 @@ class WorkersBindingKindAssets(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
-    type: Literal[
-        "ai",
-        "analytics_engine",
-        "assets",
-        "browser_rendering",
-        "d1",
-        "dispatch_namespace",
-        "durable_object_namespace",
-        "hyperdrive",
-        "json",
-        "kv_namespace",
-        "mtls_certificate",
-        "plain_text",
-        "queue",
-        "r2_bucket",
-        "secret_text",
-        "service",
-        "tail_consumer",
-        "vectorize",
-        "version_metadata",
-    ]
+    type: Literal["assets"]
     """The kind of resource that the binding provides."""
 
 
-class WorkersBindingKindBrowserRendering(BaseModel):
+class WorkersBindingKindBrowser(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
-    type: Literal[
-        "ai",
-        "analytics_engine",
-        "assets",
-        "browser_rendering",
-        "d1",
-        "dispatch_namespace",
-        "durable_object_namespace",
-        "hyperdrive",
-        "json",
-        "kv_namespace",
-        "mtls_certificate",
-        "plain_text",
-        "queue",
-        "r2_bucket",
-        "secret_text",
-        "service",
-        "tail_consumer",
-        "vectorize",
-        "version_metadata",
-    ]
+    type: Literal["browser"]
     """The kind of resource that the binding provides."""
 
 
@@ -155,27 +79,7 @@ class WorkersBindingKindD1(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
-    type: Literal[
-        "ai",
-        "analytics_engine",
-        "assets",
-        "browser_rendering",
-        "d1",
-        "dispatch_namespace",
-        "durable_object_namespace",
-        "hyperdrive",
-        "json",
-        "kv_namespace",
-        "mtls_certificate",
-        "plain_text",
-        "queue",
-        "r2_bucket",
-        "secret_text",
-        "service",
-        "tail_consumer",
-        "vectorize",
-        "version_metadata",
-    ]
+    type: Literal["d1"]
     """The kind of resource that the binding provides."""
 
 
@@ -205,27 +109,7 @@ class WorkersBindingKindDispatchNamespace(BaseModel):
     namespace: str
     """Namespace to bind to."""
 
-    type: Literal[
-        "ai",
-        "analytics_engine",
-        "assets",
-        "browser_rendering",
-        "d1",
-        "dispatch_namespace",
-        "durable_object_namespace",
-        "hyperdrive",
-        "json",
-        "kv_namespace",
-        "mtls_certificate",
-        "plain_text",
-        "queue",
-        "r2_bucket",
-        "secret_text",
-        "service",
-        "tail_consumer",
-        "vectorize",
-        "version_metadata",
-    ]
+    type: Literal["dispatch_namespace"]
     """The kind of resource that the binding provides."""
 
     outbound: Optional[WorkersBindingKindDispatchNamespaceOutbound] = None
@@ -233,34 +117,14 @@ class WorkersBindingKindDispatchNamespace(BaseModel):
 
 
 class WorkersBindingKindDurableObjectNamespace(BaseModel):
-    class_name: str
-    """The exported class name of the Durable Object."""
-
     name: str
     """A JavaScript variable name for the binding."""
 
-    type: Literal[
-        "ai",
-        "analytics_engine",
-        "assets",
-        "browser_rendering",
-        "d1",
-        "dispatch_namespace",
-        "durable_object_namespace",
-        "hyperdrive",
-        "json",
-        "kv_namespace",
-        "mtls_certificate",
-        "plain_text",
-        "queue",
-        "r2_bucket",
-        "secret_text",
-        "service",
-        "tail_consumer",
-        "vectorize",
-        "version_metadata",
-    ]
+    type: Literal["durable_object_namespace"]
     """The kind of resource that the binding provides."""
+
+    class_name: Optional[str] = None
+    """The exported class name of the Durable Object."""
 
     environment: Optional[str] = None
     """The environment of the script_name to bind to."""
@@ -282,27 +146,7 @@ class WorkersBindingKindHyperdrive(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
-    type: Literal[
-        "ai",
-        "analytics_engine",
-        "assets",
-        "browser_rendering",
-        "d1",
-        "dispatch_namespace",
-        "durable_object_namespace",
-        "hyperdrive",
-        "json",
-        "kv_namespace",
-        "mtls_certificate",
-        "plain_text",
-        "queue",
-        "r2_bucket",
-        "secret_text",
-        "service",
-        "tail_consumer",
-        "vectorize",
-        "version_metadata",
-    ]
+    type: Literal["hyperdrive"]
     """The kind of resource that the binding provides."""
 
 
@@ -313,27 +157,7 @@ class WorkersBindingKindJson(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
-    type: Literal[
-        "ai",
-        "analytics_engine",
-        "assets",
-        "browser_rendering",
-        "d1",
-        "dispatch_namespace",
-        "durable_object_namespace",
-        "hyperdrive",
-        "json",
-        "kv_namespace",
-        "mtls_certificate",
-        "plain_text",
-        "queue",
-        "r2_bucket",
-        "secret_text",
-        "service",
-        "tail_consumer",
-        "vectorize",
-        "version_metadata",
-    ]
+    type: Literal["json"]
     """The kind of resource that the binding provides."""
 
 
@@ -344,27 +168,7 @@ class WorkersBindingKindKVNamespace(BaseModel):
     namespace_id: str
     """Namespace identifier tag."""
 
-    type: Literal[
-        "ai",
-        "analytics_engine",
-        "assets",
-        "browser_rendering",
-        "d1",
-        "dispatch_namespace",
-        "durable_object_namespace",
-        "hyperdrive",
-        "json",
-        "kv_namespace",
-        "mtls_certificate",
-        "plain_text",
-        "queue",
-        "r2_bucket",
-        "secret_text",
-        "service",
-        "tail_consumer",
-        "vectorize",
-        "version_metadata",
-    ]
+    type: Literal["kv_namespace"]
     """The kind of resource that the binding provides."""
 
 
@@ -375,27 +179,7 @@ class WorkersBindingKindMTLSCertificate(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
-    type: Literal[
-        "ai",
-        "analytics_engine",
-        "assets",
-        "browser_rendering",
-        "d1",
-        "dispatch_namespace",
-        "durable_object_namespace",
-        "hyperdrive",
-        "json",
-        "kv_namespace",
-        "mtls_certificate",
-        "plain_text",
-        "queue",
-        "r2_bucket",
-        "secret_text",
-        "service",
-        "tail_consumer",
-        "vectorize",
-        "version_metadata",
-    ]
+    type: Literal["mtls_certificate"]
     """The kind of resource that the binding provides."""
 
 
@@ -406,27 +190,18 @@ class WorkersBindingKindPlainText(BaseModel):
     text: str
     """The text value to use."""
 
-    type: Literal[
-        "ai",
-        "analytics_engine",
-        "assets",
-        "browser_rendering",
-        "d1",
-        "dispatch_namespace",
-        "durable_object_namespace",
-        "hyperdrive",
-        "json",
-        "kv_namespace",
-        "mtls_certificate",
-        "plain_text",
-        "queue",
-        "r2_bucket",
-        "secret_text",
-        "service",
-        "tail_consumer",
-        "vectorize",
-        "version_metadata",
-    ]
+    type: Literal["plain_text"]
+    """The kind of resource that the binding provides."""
+
+
+class WorkersBindingKindPipelines(BaseModel):
+    name: str
+    """A JavaScript variable name for the binding."""
+
+    pipeline: str
+    """Name of the Pipeline to bind to."""
+
+    type: Literal["pipelines"]
     """The kind of resource that the binding provides."""
 
 
@@ -437,27 +212,7 @@ class WorkersBindingKindQueue(BaseModel):
     queue_name: str
     """Name of the Queue to bind to."""
 
-    type: Literal[
-        "ai",
-        "analytics_engine",
-        "assets",
-        "browser_rendering",
-        "d1",
-        "dispatch_namespace",
-        "durable_object_namespace",
-        "hyperdrive",
-        "json",
-        "kv_namespace",
-        "mtls_certificate",
-        "plain_text",
-        "queue",
-        "r2_bucket",
-        "secret_text",
-        "service",
-        "tail_consumer",
-        "vectorize",
-        "version_metadata",
-    ]
+    type: Literal["queue"]
     """The kind of resource that the binding provides."""
 
 
@@ -468,27 +223,7 @@ class WorkersBindingKindR2Bucket(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
-    type: Literal[
-        "ai",
-        "analytics_engine",
-        "assets",
-        "browser_rendering",
-        "d1",
-        "dispatch_namespace",
-        "durable_object_namespace",
-        "hyperdrive",
-        "json",
-        "kv_namespace",
-        "mtls_certificate",
-        "plain_text",
-        "queue",
-        "r2_bucket",
-        "secret_text",
-        "service",
-        "tail_consumer",
-        "vectorize",
-        "version_metadata",
-    ]
+    type: Literal["r2_bucket"]
     """The kind of resource that the binding provides."""
 
 
@@ -496,30 +231,7 @@ class WorkersBindingKindSecretText(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
-    text: str
-    """The secret value to use."""
-
-    type: Literal[
-        "ai",
-        "analytics_engine",
-        "assets",
-        "browser_rendering",
-        "d1",
-        "dispatch_namespace",
-        "durable_object_namespace",
-        "hyperdrive",
-        "json",
-        "kv_namespace",
-        "mtls_certificate",
-        "plain_text",
-        "queue",
-        "r2_bucket",
-        "secret_text",
-        "service",
-        "tail_consumer",
-        "vectorize",
-        "version_metadata",
-    ]
+    type: Literal["secret_text"]
     """The kind of resource that the binding provides."""
 
 
@@ -533,27 +245,7 @@ class WorkersBindingKindService(BaseModel):
     service: str
     """Name of Worker to bind to."""
 
-    type: Literal[
-        "ai",
-        "analytics_engine",
-        "assets",
-        "browser_rendering",
-        "d1",
-        "dispatch_namespace",
-        "durable_object_namespace",
-        "hyperdrive",
-        "json",
-        "kv_namespace",
-        "mtls_certificate",
-        "plain_text",
-        "queue",
-        "r2_bucket",
-        "secret_text",
-        "service",
-        "tail_consumer",
-        "vectorize",
-        "version_metadata",
-    ]
+    type: Literal["service"]
     """The kind of resource that the binding provides."""
 
 
@@ -564,27 +256,7 @@ class WorkersBindingKindTailConsumer(BaseModel):
     service: str
     """Name of Tail Worker to bind to."""
 
-    type: Literal[
-        "ai",
-        "analytics_engine",
-        "assets",
-        "browser_rendering",
-        "d1",
-        "dispatch_namespace",
-        "durable_object_namespace",
-        "hyperdrive",
-        "json",
-        "kv_namespace",
-        "mtls_certificate",
-        "plain_text",
-        "queue",
-        "r2_bucket",
-        "secret_text",
-        "service",
-        "tail_consumer",
-        "vectorize",
-        "version_metadata",
-    ]
+    type: Literal["tail_consumer"]
     """The kind of resource that the binding provides."""
 
 
@@ -595,27 +267,7 @@ class WorkersBindingKindVectorize(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
-    type: Literal[
-        "ai",
-        "analytics_engine",
-        "assets",
-        "browser_rendering",
-        "d1",
-        "dispatch_namespace",
-        "durable_object_namespace",
-        "hyperdrive",
-        "json",
-        "kv_namespace",
-        "mtls_certificate",
-        "plain_text",
-        "queue",
-        "r2_bucket",
-        "secret_text",
-        "service",
-        "tail_consumer",
-        "vectorize",
-        "version_metadata",
-    ]
+    type: Literal["vectorize"]
     """The kind of resource that the binding provides."""
 
 
@@ -623,48 +275,74 @@ class WorkersBindingKindVersionMetadata(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
-    type: Literal[
-        "ai",
-        "analytics_engine",
-        "assets",
-        "browser_rendering",
-        "d1",
-        "dispatch_namespace",
-        "durable_object_namespace",
-        "hyperdrive",
-        "json",
-        "kv_namespace",
-        "mtls_certificate",
-        "plain_text",
-        "queue",
-        "r2_bucket",
-        "secret_text",
-        "service",
-        "tail_consumer",
-        "vectorize",
-        "version_metadata",
-    ]
+    type: Literal["version_metadata"]
     """The kind of resource that the binding provides."""
 
 
-BindingGetResponse: TypeAlias = Union[
-    WorkersBindingKindAI,
-    WorkersBindingKindAnalyticsEngine,
-    WorkersBindingKindAssets,
-    WorkersBindingKindBrowserRendering,
-    WorkersBindingKindD1,
-    WorkersBindingKindDispatchNamespace,
-    WorkersBindingKindDurableObjectNamespace,
-    WorkersBindingKindHyperdrive,
-    WorkersBindingKindJson,
-    WorkersBindingKindKVNamespace,
-    WorkersBindingKindMTLSCertificate,
-    WorkersBindingKindPlainText,
-    WorkersBindingKindQueue,
-    WorkersBindingKindR2Bucket,
-    WorkersBindingKindSecretText,
-    WorkersBindingKindService,
-    WorkersBindingKindTailConsumer,
-    WorkersBindingKindVectorize,
-    WorkersBindingKindVersionMetadata,
+class WorkersBindingKindSecretsStoreSecret(BaseModel):
+    name: str
+    """A JavaScript variable name for the binding."""
+
+    secret_name: str
+    """Name of the secret in the store."""
+
+    store_id: str
+    """ID of the store containing the secret."""
+
+    type: Literal["secrets_store_secret"]
+    """The kind of resource that the binding provides."""
+
+
+class WorkersBindingKindSecretKey(BaseModel):
+    algorithm: object
+    """Algorithm-specific key parameters.
+
+    [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#algorithm).
+    """
+
+    format: Literal["raw", "pkcs8", "spki", "jwk"]
+    """Data format of the key.
+
+    [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#format).
+    """
+
+    name: str
+    """A JavaScript variable name for the binding."""
+
+    type: Literal["secret_key"]
+    """The kind of resource that the binding provides."""
+
+    usages: List[Literal["encrypt", "decrypt", "sign", "verify", "deriveKey", "deriveBits", "wrapKey", "unwrapKey"]]
+    """Allowed operations with the key.
+
+    [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#keyUsages).
+    """
+
+
+BindingGetResponse: TypeAlias = Annotated[
+    Union[
+        WorkersBindingKindAI,
+        WorkersBindingKindAnalyticsEngine,
+        WorkersBindingKindAssets,
+        WorkersBindingKindBrowser,
+        WorkersBindingKindD1,
+        WorkersBindingKindDispatchNamespace,
+        WorkersBindingKindDurableObjectNamespace,
+        WorkersBindingKindHyperdrive,
+        WorkersBindingKindJson,
+        WorkersBindingKindKVNamespace,
+        WorkersBindingKindMTLSCertificate,
+        WorkersBindingKindPlainText,
+        WorkersBindingKindPipelines,
+        WorkersBindingKindQueue,
+        WorkersBindingKindR2Bucket,
+        WorkersBindingKindSecretText,
+        WorkersBindingKindService,
+        WorkersBindingKindTailConsumer,
+        WorkersBindingKindVectorize,
+        WorkersBindingKindVersionMetadata,
+        WorkersBindingKindSecretsStoreSecret,
+        WorkersBindingKindSecretKey,
+    ],
+    PropertyInfo(discriminator="type"),
 ]

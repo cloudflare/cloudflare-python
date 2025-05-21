@@ -109,6 +109,22 @@ class TestProjects:
             },
             name="NextJS Blog",
             production_branch="main",
+            source={
+                "config": {
+                    "deployments_enabled": True,
+                    "owner": "owner",
+                    "path_excludes": ["string"],
+                    "path_includes": ["string"],
+                    "pr_comments_enabled": True,
+                    "preview_branch_excludes": ["string"],
+                    "preview_branch_includes": ["string"],
+                    "preview_deployment_setting": "all",
+                    "production_branch": "production_branch",
+                    "production_deployments_enabled": True,
+                    "repo_name": "repo_name",
+                },
+                "type": "type",
+            },
         )
         assert_matches_type(Project, project, path=["response"])
 
@@ -322,6 +338,22 @@ class TestProjects:
             },
             name="NextJS Blog",
             production_branch="main",
+            source={
+                "config": {
+                    "deployments_enabled": True,
+                    "owner": "owner",
+                    "path_excludes": ["string"],
+                    "path_includes": ["string"],
+                    "pr_comments_enabled": True,
+                    "preview_branch_excludes": ["string"],
+                    "preview_branch_includes": ["string"],
+                    "preview_deployment_setting": "all",
+                    "production_branch": "production_branch",
+                    "production_deployments_enabled": True,
+                    "repo_name": "repo_name",
+                },
+                "type": "type",
+            },
         )
         assert_matches_type(Project, project, path=["response"])
 
@@ -556,6 +588,22 @@ class TestAsyncProjects:
             },
             name="NextJS Blog",
             production_branch="main",
+            source={
+                "config": {
+                    "deployments_enabled": True,
+                    "owner": "owner",
+                    "path_excludes": ["string"],
+                    "path_includes": ["string"],
+                    "pr_comments_enabled": True,
+                    "preview_branch_excludes": ["string"],
+                    "preview_branch_includes": ["string"],
+                    "preview_deployment_setting": "all",
+                    "production_branch": "production_branch",
+                    "production_deployments_enabled": True,
+                    "repo_name": "repo_name",
+                },
+                "type": "type",
+            },
         )
         assert_matches_type(Project, project, path=["response"])
 
@@ -769,6 +817,22 @@ class TestAsyncProjects:
             },
             name="NextJS Blog",
             production_branch="main",
+            source={
+                "config": {
+                    "deployments_enabled": True,
+                    "owner": "owner",
+                    "path_excludes": ["string"],
+                    "path_includes": ["string"],
+                    "pr_comments_enabled": True,
+                    "preview_branch_excludes": ["string"],
+                    "preview_branch_includes": ["string"],
+                    "preview_deployment_setting": "all",
+                    "production_branch": "production_branch",
+                    "production_deployments_enabled": True,
+                    "repo_name": "repo_name",
+                },
+                "type": "type",
+            },
         )
         assert_matches_type(Project, project, path=["response"])
 

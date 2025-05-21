@@ -10,13 +10,16 @@ __all__ = ["Bucket"]
 
 class Bucket(BaseModel):
     creation_date: Optional[str] = None
-    """Creation timestamp"""
+    """Creation timestamp."""
+
+    jurisdiction: Optional[Literal["default", "eu", "fedramp"]] = None
+    """Jurisdiction where objects in this bucket are guaranteed to be stored."""
 
     location: Optional[Literal["apac", "eeur", "enam", "weur", "wnam", "oc"]] = None
-    """Location of the bucket"""
+    """Location of the bucket."""
 
     name: Optional[str] = None
-    """Name of the bucket"""
+    """Name of the bucket."""
 
     storage_class: Optional[Literal["Standard", "InfrequentAccess"]] = None
     """Storage class for newly uploaded objects, unless specified otherwise."""

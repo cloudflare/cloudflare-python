@@ -10,13 +10,13 @@ __all__ = ["NamespaceCreateResponse"]
 
 class NamespaceCreateResponse(BaseModel):
     created_by: Optional[str] = None
-    """Identifier"""
+    """Identifier."""
 
     created_on: Optional[datetime] = None
     """When the script was created."""
 
     modified_by: Optional[str] = None
-    """Identifier"""
+    """Identifier."""
 
     modified_on: Optional[datetime] = None
     """When the script was last modified."""
@@ -28,4 +28,4 @@ class NamespaceCreateResponse(BaseModel):
     """Name of the Workers for Platforms dispatch namespace."""
 
     script_count: Optional[int] = None
-    """The current number of scripts in this Dispatch Namespace"""
+    """The current number of scripts in this Dispatch Namespace."""

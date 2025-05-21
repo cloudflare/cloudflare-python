@@ -9,7 +9,7 @@ __all__ = ["ConfigCreateParams"]
 
 class ConfigCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     regions: str
-    """Comma-separated list of regions."""
+    """Name of the region."""

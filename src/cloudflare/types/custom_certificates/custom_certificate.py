@@ -14,7 +14,7 @@ __all__ = ["CustomCertificate"]
 
 class CustomCertificate(BaseModel):
     id: str
-    """Identifier"""
+    """Identifier."""
 
     bundle_method: BundleMethod
     """
@@ -53,7 +53,7 @@ class CustomCertificate(BaseModel):
     """When the certificate was uploaded to Cloudflare."""
 
     zone_id: str
-    """Identifier"""
+    """Identifier."""
 
     geo_restrictions: Optional[GeoRestrictions] = None
     """

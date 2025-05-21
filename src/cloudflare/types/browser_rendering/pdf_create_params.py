@@ -26,6 +26,13 @@ class PDFCreateParams(TypedDict, total=False):
     cache_ttl: Annotated[float, PropertyInfo(alias="cacheTTL")]
     """Cache TTL default is 5s. Set to 0 to disable."""
 
+    action_timeout: Annotated[float, PropertyInfo(alias="actionTimeout")]
+    """
+    The maximum duration allowed for the browser action to complete after the page
+    has loaded (such as taking screenshots, extracting content, or generating PDFs).
+    If this time limit is exceeded, the action stops and returns a timeout error.
+    """
+
     add_script_tag: Annotated[Iterable[AddScriptTag], PropertyInfo(alias="addScriptTag")]
     """Adds a `<script>` tag into the page with the desired URL or content."""
 

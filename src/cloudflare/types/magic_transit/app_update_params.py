@@ -16,7 +16,10 @@ class AppUpdateParams(TypedDict, total=False):
     """FQDNs to associate with traffic decisions."""
 
     ip_subnets: List[str]
-    """CIDRs to associate with traffic decisions."""
+    """IPv4 CIDRs to associate with traffic decisions.
+
+    (IPv6 CIDRs are currently unsupported)
+    """
 
     name: str
     """Display name for the app."""

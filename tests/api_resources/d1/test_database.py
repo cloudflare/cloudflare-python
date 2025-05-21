@@ -77,6 +77,59 @@ class TestDatabase:
             )
 
     @parametrize
+    def test_method_update(self, client: Cloudflare) -> None:
+        database = client.d1.database.update(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            read_replication={"mode": "auto"},
+        )
+        assert_matches_type(D1, database, path=["response"])
+
+    @parametrize
+    def test_raw_response_update(self, client: Cloudflare) -> None:
+        response = client.d1.database.with_raw_response.update(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            read_replication={"mode": "auto"},
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        database = response.parse()
+        assert_matches_type(D1, database, path=["response"])
+
+    @parametrize
+    def test_streaming_response_update(self, client: Cloudflare) -> None:
+        with client.d1.database.with_streaming_response.update(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            read_replication={"mode": "auto"},
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            database = response.parse()
+            assert_matches_type(D1, database, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_update(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.d1.database.with_raw_response.update(
+                database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                account_id="",
+                read_replication={"mode": "auto"},
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_id` but received ''"):
+            client.d1.database.with_raw_response.update(
+                database_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                read_replication={"mode": "auto"},
+            )
+
+    @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         database = client.d1.database.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -168,6 +221,63 @@ class TestDatabase:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_id` but received ''"):
             client.d1.database.with_raw_response.delete(
+                database_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @parametrize
+    def test_method_edit(self, client: Cloudflare) -> None:
+        database = client.d1.database.edit(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(D1, database, path=["response"])
+
+    @parametrize
+    def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
+        database = client.d1.database.edit(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            read_replication={"mode": "auto"},
+        )
+        assert_matches_type(D1, database, path=["response"])
+
+    @parametrize
+    def test_raw_response_edit(self, client: Cloudflare) -> None:
+        response = client.d1.database.with_raw_response.edit(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        database = response.parse()
+        assert_matches_type(D1, database, path=["response"])
+
+    @parametrize
+    def test_streaming_response_edit(self, client: Cloudflare) -> None:
+        with client.d1.database.with_streaming_response.edit(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            database = response.parse()
+            assert_matches_type(D1, database, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_edit(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.d1.database.with_raw_response.edit(
+                database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_id` but received ''"):
+            client.d1.database.with_raw_response.edit(
                 database_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -649,6 +759,59 @@ class TestAsyncDatabase:
             )
 
     @parametrize
+    async def test_method_update(self, async_client: AsyncCloudflare) -> None:
+        database = await async_client.d1.database.update(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            read_replication={"mode": "auto"},
+        )
+        assert_matches_type(D1, database, path=["response"])
+
+    @parametrize
+    async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.d1.database.with_raw_response.update(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            read_replication={"mode": "auto"},
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        database = await response.parse()
+        assert_matches_type(D1, database, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.d1.database.with_streaming_response.update(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            read_replication={"mode": "auto"},
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            database = await response.parse()
+            assert_matches_type(D1, database, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.d1.database.with_raw_response.update(
+                database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                account_id="",
+                read_replication={"mode": "auto"},
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_id` but received ''"):
+            await async_client.d1.database.with_raw_response.update(
+                database_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                read_replication={"mode": "auto"},
+            )
+
+    @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         database = await async_client.d1.database.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -740,6 +903,63 @@ class TestAsyncDatabase:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_id` but received ''"):
             await async_client.d1.database.with_raw_response.delete(
+                database_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @parametrize
+    async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
+        database = await async_client.d1.database.edit(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(D1, database, path=["response"])
+
+    @parametrize
+    async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        database = await async_client.d1.database.edit(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            read_replication={"mode": "auto"},
+        )
+        assert_matches_type(D1, database, path=["response"])
+
+    @parametrize
+    async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.d1.database.with_raw_response.edit(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        database = await response.parse()
+        assert_matches_type(D1, database, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.d1.database.with_streaming_response.edit(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            database = await response.parse()
+            assert_matches_type(D1, database, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.d1.database.with_raw_response.edit(
+                database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_id` but received ''"):
+            await async_client.d1.database.with_raw_response.edit(
                 database_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

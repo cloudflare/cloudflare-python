@@ -7,10 +7,7 @@ from typing import List
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -69,7 +66,7 @@ class CategoriesResource(SyncAPIResource):
         Creates a new category
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
           extra_headers: Send extra headers
 
@@ -111,7 +108,7 @@ class CategoriesResource(SyncAPIResource):
         Lists categories
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
           extra_headers: Send extra headers
 
@@ -145,9 +142,9 @@ class CategoriesResource(SyncAPIResource):
         Deletes a category
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          category_id: Category UUID
+          category_id: Category UUID.
 
           extra_headers: Send extra headers
 
@@ -187,9 +184,9 @@ class CategoriesResource(SyncAPIResource):
         Updates a category
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          category_id: Category UUID
+          category_id: Category UUID.
 
           extra_headers: Send extra headers
 
@@ -234,9 +231,9 @@ class CategoriesResource(SyncAPIResource):
         Reads a category
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          category_id: Category UUID
+          category_id: Category UUID.
 
           extra_headers: Send extra headers
 
@@ -296,7 +293,7 @@ class AsyncCategoriesResource(AsyncAPIResource):
         Creates a new category
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
           extra_headers: Send extra headers
 
@@ -338,7 +335,7 @@ class AsyncCategoriesResource(AsyncAPIResource):
         Lists categories
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
           extra_headers: Send extra headers
 
@@ -372,9 +369,9 @@ class AsyncCategoriesResource(AsyncAPIResource):
         Deletes a category
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          category_id: Category UUID
+          category_id: Category UUID.
 
           extra_headers: Send extra headers
 
@@ -414,9 +411,9 @@ class AsyncCategoriesResource(AsyncAPIResource):
         Updates a category
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          category_id: Category UUID
+          category_id: Category UUID.
 
           extra_headers: Send extra headers
 
@@ -461,9 +458,9 @@ class AsyncCategoriesResource(AsyncAPIResource):
         Reads a category
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          category_id: Category UUID
+          category_id: Category UUID.
 
           extra_headers: Send extra headers
 

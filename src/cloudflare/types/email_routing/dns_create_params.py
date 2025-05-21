@@ -9,7 +9,7 @@ __all__ = ["DNSCreateParams"]
 
 class DNSCreateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     name: Required[str]
     """Domain of your zone."""

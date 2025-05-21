@@ -8,10 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -71,7 +68,8 @@ class LocationsResource(SyncAPIResource):
 
           limit: Limits the number of objects returned in the response.
 
-          location: Comma-separated list of locations (alpha-2 location codes).
+          location: Filters results by location. Specify a comma-separated list of alpha-2 location
+              codes.
 
           offset: Skips the specified number of objects before fetching the results.
 
@@ -193,7 +191,8 @@ class AsyncLocationsResource(AsyncAPIResource):
 
           limit: Limits the number of objects returned in the response.
 
-          location: Comma-separated list of locations (alpha-2 location codes).
+          location: Filters results by location. Specify a comma-separated list of alpha-2 location
+              codes.
 
           offset: Skips the specified number of objects before fetching the results.
 

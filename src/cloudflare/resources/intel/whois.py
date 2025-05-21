@@ -7,10 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -63,7 +60,7 @@ class WhoisResource(SyncAPIResource):
         Get WHOIS Record
 
         Args:
-          account_id: Identifier
+          account_id: Use to uniquely identify or reference the resource.
 
           extra_headers: Send extra headers
 
@@ -125,7 +122,7 @@ class AsyncWhoisResource(AsyncAPIResource):
         Get WHOIS Record
 
         Args:
-          account_id: Identifier
+          account_id: Use to uniquely identify or reference the resource.
 
           extra_headers: Send extra headers
 

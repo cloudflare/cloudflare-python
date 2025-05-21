@@ -2,15 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, Optional, cast
+from typing import Type, Iterable, cast
 
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -21,7 +18,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
-from ....types.workers.scripts.schedule_param import ScheduleParam
+from ....types.workers.scripts import schedule_update_params
 from ....types.workers.scripts.schedule_get_response import ScheduleGetResponse
 from ....types.workers.scripts.schedule_update_response import ScheduleUpdateResponse
 
@@ -53,19 +50,19 @@ class SchedulesResource(SyncAPIResource):
         script_name: str,
         *,
         account_id: str,
-        body: Iterable[ScheduleParam],
+        body: Iterable[schedule_update_params.Body],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScheduleUpdateResponse]:
+    ) -> ScheduleUpdateResponse:
         """
         Updates Cron Triggers for a Worker.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -83,15 +80,15 @@ class SchedulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return self._put(
             f"/accounts/{account_id}/workers/scripts/{script_name}/schedules",
-            body=maybe_transform(body, Iterable[ScheduleParam]),
+            body=maybe_transform(body, Iterable[schedule_update_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ScheduleUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[ScheduleUpdateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ScheduleUpdateResponse]], ResultWrapper[ScheduleUpdateResponse]),
+            cast_to=cast(Type[ScheduleUpdateResponse], ResultWrapper[ScheduleUpdateResponse]),
         )
 
     def get(
@@ -105,12 +102,12 @@ class SchedulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScheduleGetResponse]:
+    ) -> ScheduleGetResponse:
         """
         Fetches Cron Triggers for a Worker.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -133,9 +130,9 @@ class SchedulesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ScheduleGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[ScheduleGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ScheduleGetResponse]], ResultWrapper[ScheduleGetResponse]),
+            cast_to=cast(Type[ScheduleGetResponse], ResultWrapper[ScheduleGetResponse]),
         )
 
 
@@ -164,19 +161,19 @@ class AsyncSchedulesResource(AsyncAPIResource):
         script_name: str,
         *,
         account_id: str,
-        body: Iterable[ScheduleParam],
+        body: Iterable[schedule_update_params.Body],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScheduleUpdateResponse]:
+    ) -> ScheduleUpdateResponse:
         """
         Updates Cron Triggers for a Worker.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -194,15 +191,15 @@ class AsyncSchedulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return await self._put(
             f"/accounts/{account_id}/workers/scripts/{script_name}/schedules",
-            body=await async_maybe_transform(body, Iterable[ScheduleParam]),
+            body=await async_maybe_transform(body, Iterable[schedule_update_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ScheduleUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[ScheduleUpdateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ScheduleUpdateResponse]], ResultWrapper[ScheduleUpdateResponse]),
+            cast_to=cast(Type[ScheduleUpdateResponse], ResultWrapper[ScheduleUpdateResponse]),
         )
 
     async def get(
@@ -216,12 +213,12 @@ class AsyncSchedulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScheduleGetResponse]:
+    ) -> ScheduleGetResponse:
         """
         Fetches Cron Triggers for a Worker.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -244,9 +241,9 @@ class AsyncSchedulesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ScheduleGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[ScheduleGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ScheduleGetResponse]], ResultWrapper[ScheduleGetResponse]),
+            cast_to=cast(Type[ScheduleGetResponse], ResultWrapper[ScheduleGetResponse]),
         )
 
 

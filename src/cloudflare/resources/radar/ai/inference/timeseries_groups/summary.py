@@ -9,10 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ......_utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ......_utils import maybe_transform, async_maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -71,24 +68,23 @@ class SummaryResource(SyncAPIResource):
         Retrieves the distribution of unique accounts by model over time.
 
         Args:
-          agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
-              or 1 hour intervals). Refer to
+          agg_interval: Aggregation interval of the results (e.g., in 15 minutes or 1 hour intervals).
+              Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
           format: Format in which results will be returned.
 
           limit_per_group: Limits the number of objects per group to the top items within the specified
-              time range. If there are more items than the limit, the response will include
-              the count of items, with any remaining items grouped together under an "other"
-              category.
+              time range. When item count exceeds the limit, extra items appear grouped under
+              an "other" category.
 
           name: Array of names used to label the series in the response.
 
@@ -145,24 +141,23 @@ class SummaryResource(SyncAPIResource):
         Retrieves the distribution of unique accounts by task over time.
 
         Args:
-          agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
-              or 1 hour intervals). Refer to
+          agg_interval: Aggregation interval of the results (e.g., in 15 minutes or 1 hour intervals).
+              Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
           format: Format in which results will be returned.
 
           limit_per_group: Limits the number of objects per group to the top items within the specified
-              time range. If there are more items than the limit, the response will include
-              the count of items, with any remaining items grouped together under an "other"
-              category.
+              time range. When item count exceeds the limit, extra items appear grouped under
+              an "other" category.
 
           name: Array of names used to label the series in the response.
 
@@ -240,24 +235,23 @@ class AsyncSummaryResource(AsyncAPIResource):
         Retrieves the distribution of unique accounts by model over time.
 
         Args:
-          agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
-              or 1 hour intervals). Refer to
+          agg_interval: Aggregation interval of the results (e.g., in 15 minutes or 1 hour intervals).
+              Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
           format: Format in which results will be returned.
 
           limit_per_group: Limits the number of objects per group to the top items within the specified
-              time range. If there are more items than the limit, the response will include
-              the count of items, with any remaining items grouped together under an "other"
-              category.
+              time range. When item count exceeds the limit, extra items appear grouped under
+              an "other" category.
 
           name: Array of names used to label the series in the response.
 
@@ -314,24 +308,23 @@ class AsyncSummaryResource(AsyncAPIResource):
         Retrieves the distribution of unique accounts by task over time.
 
         Args:
-          agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
-              or 1 hour intervals). Refer to
+          agg_interval: Aggregation interval of the results (e.g., in 15 minutes or 1 hour intervals).
+              Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
           format: Format in which results will be returned.
 
           limit_per_group: Limits the number of objects per group to the top items within the specified
-              time range. If there are more items than the limit, the response will include
-              the count of items, with any remaining items grouped together under an "other"
-              category.
+              time range. When item count exceeds the limit, extra items appear grouped under
+              an "other" category.
 
           name: Array of names used to label the series in the response.
 

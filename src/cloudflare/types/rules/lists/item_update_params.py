@@ -13,17 +13,17 @@ __all__ = ["ItemUpdateParams", "Body"]
 
 class ItemUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Defines an identifier."""
 
     body: Required[Iterable[Body]]
 
 
 class Body(TypedDict, total=False):
     asn: int
-    """A non-negative 32 bit integer"""
+    """Defines a non-negative 32 bit integer."""
 
     comment: str
-    """An informative summary of the list item."""
+    """Defines an informative summary of the list item."""
 
     hostname: HostnameParam
     """

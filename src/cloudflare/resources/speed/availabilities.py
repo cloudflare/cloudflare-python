@@ -57,7 +57,7 @@ class AvailabilitiesResource(SyncAPIResource):
         Retrieves quota for all plans, as well as the current zone quota.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -117,7 +117,7 @@ class AsyncAvailabilitiesResource(AsyncAPIResource):
         Retrieves quota for all plans, as well as the current zone quota.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

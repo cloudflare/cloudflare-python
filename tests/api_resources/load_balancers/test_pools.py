@@ -41,6 +41,7 @@ class TestPools:
                     "enabled": True,
                     "header": {"host": ["example.com"]},
                     "name": "app-server-1",
+                    "port": 0,
                     "virtual_network_id": "a5624d4e-044a-4ff0-b3e1-e2465353d4b4",
                     "weight": 0.6,
                 }
@@ -131,11 +132,12 @@ class TestPools:
                     "enabled": True,
                     "header": {"host": ["example.com"]},
                     "name": "app-server-1",
+                    "port": 0,
                     "virtual_network_id": "a5624d4e-044a-4ff0-b3e1-e2465353d4b4",
                     "weight": 0.6,
                 }
             ],
-            check_regions=["WNAM", "ENAM"],
+            check_regions=["WEU", "ENAM"],
             description="Primary data center - Provider XYZ",
             enabled=False,
             latitude=0,
@@ -364,7 +366,7 @@ class TestPools:
         pool = client.load_balancers.pools.edit(
             pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            check_regions=["WNAM", "ENAM"],
+            check_regions=["WEU", "ENAM"],
             description="Primary data center - Provider XYZ",
             enabled=False,
             latitude=0,
@@ -396,6 +398,7 @@ class TestPools:
                     "enabled": True,
                     "header": {"host": ["example.com"]},
                     "name": "app-server-1",
+                    "port": 0,
                     "virtual_network_id": "a5624d4e-044a-4ff0-b3e1-e2465353d4b4",
                     "weight": 0.6,
                 }
@@ -515,6 +518,7 @@ class TestAsyncPools:
                     "enabled": True,
                     "header": {"host": ["example.com"]},
                     "name": "app-server-1",
+                    "port": 0,
                     "virtual_network_id": "a5624d4e-044a-4ff0-b3e1-e2465353d4b4",
                     "weight": 0.6,
                 }
@@ -605,11 +609,12 @@ class TestAsyncPools:
                     "enabled": True,
                     "header": {"host": ["example.com"]},
                     "name": "app-server-1",
+                    "port": 0,
                     "virtual_network_id": "a5624d4e-044a-4ff0-b3e1-e2465353d4b4",
                     "weight": 0.6,
                 }
             ],
-            check_regions=["WNAM", "ENAM"],
+            check_regions=["WEU", "ENAM"],
             description="Primary data center - Provider XYZ",
             enabled=False,
             latitude=0,
@@ -838,7 +843,7 @@ class TestAsyncPools:
         pool = await async_client.load_balancers.pools.edit(
             pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            check_regions=["WNAM", "ENAM"],
+            check_regions=["WEU", "ENAM"],
             description="Primary data center - Provider XYZ",
             enabled=False,
             latitude=0,
@@ -870,6 +875,7 @@ class TestAsyncPools:
                     "enabled": True,
                     "header": {"host": ["example.com"]},
                     "name": "app-server-1",
+                    "port": 0,
                     "virtual_network_id": "a5624d4e-044a-4ff0-b3e1-e2465353d4b4",
                     "weight": 0.6,
                 }

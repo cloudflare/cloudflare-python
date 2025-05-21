@@ -55,7 +55,7 @@ class CronsResource(SyncAPIResource):
         Reads the last cron update time
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
           extra_headers: Send extra headers
 
@@ -88,7 +88,7 @@ class CronsResource(SyncAPIResource):
         Reads the last cron update time
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
           extra_headers: Send extra headers
 
@@ -142,7 +142,7 @@ class AsyncCronsResource(AsyncAPIResource):
         Reads the last cron update time
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
           extra_headers: Send extra headers
 
@@ -175,7 +175,7 @@ class AsyncCronsResource(AsyncAPIResource):
         Reads the last cron update time
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
           extra_headers: Send extra headers
 

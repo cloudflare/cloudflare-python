@@ -22,15 +22,7 @@ class TestUpload:
         upload = client.workers.assets.upload.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             base64=True,
-        )
-        assert_matches_type(Optional[UploadCreateResponse], upload, path=["response"])
-
-    @parametrize
-    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
-        upload = client.workers.assets.upload.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            base64=True,
-            any_file_hash=["string"],
+            body={"foo": "string"},
         )
         assert_matches_type(Optional[UploadCreateResponse], upload, path=["response"])
 
@@ -39,6 +31,7 @@ class TestUpload:
         response = client.workers.assets.upload.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             base64=True,
+            body={"foo": "string"},
         )
 
         assert response.is_closed is True
@@ -51,6 +44,7 @@ class TestUpload:
         with client.workers.assets.upload.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             base64=True,
+            body={"foo": "string"},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -66,6 +60,7 @@ class TestUpload:
             client.workers.assets.upload.with_raw_response.create(
                 account_id="",
                 base64=True,
+                body={"foo": "string"},
             )
 
 
@@ -77,15 +72,7 @@ class TestAsyncUpload:
         upload = await async_client.workers.assets.upload.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             base64=True,
-        )
-        assert_matches_type(Optional[UploadCreateResponse], upload, path=["response"])
-
-    @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        upload = await async_client.workers.assets.upload.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            base64=True,
-            any_file_hash=["string"],
+            body={"foo": "string"},
         )
         assert_matches_type(Optional[UploadCreateResponse], upload, path=["response"])
 
@@ -94,6 +81,7 @@ class TestAsyncUpload:
         response = await async_client.workers.assets.upload.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             base64=True,
+            body={"foo": "string"},
         )
 
         assert response.is_closed is True
@@ -106,6 +94,7 @@ class TestAsyncUpload:
         async with async_client.workers.assets.upload.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             base64=True,
+            body={"foo": "string"},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -121,4 +110,5 @@ class TestAsyncUpload:
             await async_client.workers.assets.upload.with_raw_response.create(
                 account_id="",
                 base64=True,
+                body={"foo": "string"},
             )

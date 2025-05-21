@@ -7,10 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -65,7 +62,7 @@ class KeysResource(SyncAPIResource):
         Updates the Access key rotation settings for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           key_rotation_interval_days: The number of days between key rotations.
 
@@ -109,7 +106,7 @@ class KeysResource(SyncAPIResource):
         Gets the Access key rotation settings for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -148,7 +145,7 @@ class KeysResource(SyncAPIResource):
         Perfoms a key rotation for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -209,7 +206,7 @@ class AsyncKeysResource(AsyncAPIResource):
         Updates the Access key rotation settings for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           key_rotation_interval_days: The number of days between key rotations.
 
@@ -253,7 +250,7 @@ class AsyncKeysResource(AsyncAPIResource):
         Gets the Access key rotation settings for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -292,7 +289,7 @@ class AsyncKeysResource(AsyncAPIResource):
         Perfoms a key rotation for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 

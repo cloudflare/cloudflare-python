@@ -11,6 +11,12 @@ __all__ = ["ScriptUpdateResponse", "Placement"]
 
 
 class Placement(BaseModel):
+    last_analyzed_at: Optional[datetime] = None
+    """
+    The last time the script was analyzed for
+    [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    """
+
     mode: Optional[Literal["smart"]] = None
     """
     Enables
@@ -25,6 +31,8 @@ class Placement(BaseModel):
 
 
 class ScriptUpdateResponse(BaseModel):
+    startup_time_ms: int
+
     id: Optional[str] = None
     """The id of the script in the Workers system. Usually the script name."""
 
@@ -53,18 +61,8 @@ class ScriptUpdateResponse(BaseModel):
     """
 
     placement_mode: Optional[Literal["smart"]] = None
-    """
-    Enables
-    [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
-    """
 
     placement_status: Optional[Literal["SUCCESS", "UNSUPPORTED_APPLICATION", "INSUFFICIENT_INVOCATIONS"]] = None
-    """
-    Status of
-    [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
-    """
-
-    startup_time_ms: Optional[int] = None
 
     tail_consumers: Optional[List[ConsumerScript]] = None
     """List of Workers that will consume logs from the attached Worker."""

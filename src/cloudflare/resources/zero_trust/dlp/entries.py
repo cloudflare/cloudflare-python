@@ -8,11 +8,7 @@ from typing_extensions import Literal, overload
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    required_args,
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import required_args, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -327,7 +323,7 @@ class EntriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[EntryGetResponse]:
         """
-        Fetches a DLP entry by ID
+        Fetches a DLP entry by ID.
 
         Args:
           extra_headers: Send extra headers
@@ -653,7 +649,7 @@ class AsyncEntriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[EntryGetResponse]:
         """
-        Fetches a DLP entry by ID
+        Fetches a DLP entry by ID.
 
         Args:
           extra_headers: Send extra headers

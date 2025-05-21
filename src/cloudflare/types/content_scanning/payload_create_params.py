@@ -10,11 +10,11 @@ __all__ = ["PayloadCreateParams", "Body"]
 
 class PayloadCreateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Defines an identifier."""
 
     body: Required[Iterable[Body]]
 
 
 class Body(TypedDict, total=False):
     payload: Required[str]
-    """Ruleset expression to use in matching content objects"""
+    """Defines the ruleset expression to use in matching content objects."""

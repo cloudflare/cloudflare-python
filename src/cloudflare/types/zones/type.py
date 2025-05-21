@@ -4,4 +4,4 @@ from typing_extensions import Literal, TypeAlias
 
 __all__ = ["Type"]
 
-Type: TypeAlias = Literal["full", "partial", "secondary"]
+Type: TypeAlias = Literal["full", "partial", "secondary", "internal"]

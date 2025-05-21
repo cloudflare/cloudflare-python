@@ -8,12 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    is_given,
-    maybe_transform,
-    strip_not_given,
-    async_maybe_transform,
-)
+from ...._utils import is_given, maybe_transform, strip_not_given, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -65,14 +60,14 @@ class LocksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        Set lock rules for a bucket
+        Set lock rules for a bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -117,14 +112,14 @@ class LocksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LockGetResponse:
         """
-        Get lock rules for a bucket
+        Get lock rules for a bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -190,14 +185,14 @@ class AsyncLocksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        Set lock rules for a bucket
+        Set lock rules for a bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -242,14 +237,14 @@ class AsyncLocksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LockGetResponse:
         """
-        Get lock rules for a bucket
+        Get lock rules for a bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 

@@ -31,6 +31,7 @@ class TestDatasets:
         dataset = client.zero_trust.dlp.datasets.create(
             account_id="account_id",
             name="name",
+            case_sensitive=True,
             description="description",
             encoding_version=0,
             secret=True,
@@ -84,6 +85,7 @@ class TestDatasets:
         dataset = client.zero_trust.dlp.datasets.update(
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
+            case_sensitive=True,
             description="description",
             name="name",
         )
@@ -280,6 +282,7 @@ class TestAsyncDatasets:
         dataset = await async_client.zero_trust.dlp.datasets.create(
             account_id="account_id",
             name="name",
+            case_sensitive=True,
             description="description",
             encoding_version=0,
             secret=True,
@@ -333,6 +336,7 @@ class TestAsyncDatasets:
         dataset = await async_client.zero_trust.dlp.datasets.update(
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
+            case_sensitive=True,
             description="description",
             name="name",
         )

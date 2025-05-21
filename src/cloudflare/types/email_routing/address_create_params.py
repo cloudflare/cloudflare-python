@@ -9,7 +9,7 @@ __all__ = ["AddressCreateParams"]
 
 class AddressCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     email: Required[str]
     """The contact email address of the user."""

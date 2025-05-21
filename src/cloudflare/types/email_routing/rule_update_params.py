@@ -13,7 +13,7 @@ __all__ = ["RuleUpdateParams"]
 
 class RuleUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     actions: Required[Iterable[ActionParam]]
     """List actions patterns."""

@@ -41,7 +41,8 @@ class TestSettings:
                 "bindings": [
                     {
                         "name": "MY_ENV_VAR",
-                        "type": "ai",
+                        "text": "my_data",
+                        "type": "plain_text",
                     }
                 ],
                 "compatibility_date": "2021-01-01",
@@ -71,6 +72,11 @@ class TestSettings:
                 "observability": {
                     "enabled": True,
                     "head_sampling_rate": 0.1,
+                    "logs": {
+                        "enabled": True,
+                        "invocation_logs": True,
+                        "head_sampling_rate": 0.1,
+                    },
                 },
                 "placement": {"mode": "smart"},
                 "tags": ["my-tag"],
@@ -225,7 +231,8 @@ class TestAsyncSettings:
                 "bindings": [
                     {
                         "name": "MY_ENV_VAR",
-                        "type": "ai",
+                        "text": "my_data",
+                        "type": "plain_text",
                     }
                 ],
                 "compatibility_date": "2021-01-01",
@@ -255,6 +262,11 @@ class TestAsyncSettings:
                 "observability": {
                     "enabled": True,
                     "head_sampling_rate": 0.1,
+                    "logs": {
+                        "enabled": True,
+                        "invocation_logs": True,
+                        "head_sampling_rate": 0.1,
+                    },
                 },
                 "placement": {"mode": "smart"},
                 "tags": ["my-tag"],

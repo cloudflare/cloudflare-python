@@ -9,6 +9,6 @@ __all__ = ["SubdomainUpdateParams"]
 
 class SubdomainUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
-    subdomain: str
+    subdomain: Required[str]

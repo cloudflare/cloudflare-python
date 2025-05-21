@@ -75,7 +75,7 @@ class RuleRulesetsChallengeRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
@@ -159,7 +159,7 @@ class RuleRulesetsJSChallengeRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str

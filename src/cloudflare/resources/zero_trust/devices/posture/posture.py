@@ -8,10 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from .integrations import (
     IntegrationsResource,
@@ -76,6 +73,7 @@ class PostureResource(SyncAPIResource):
             "gateway",
             "warp",
             "disk_encryption",
+            "serial_number",
             "sentinelone",
             "carbonblack",
             "firewall",
@@ -171,6 +169,7 @@ class PostureResource(SyncAPIResource):
             "gateway",
             "warp",
             "disk_encryption",
+            "serial_number",
             "sentinelone",
             "carbonblack",
             "firewall",
@@ -412,6 +411,7 @@ class AsyncPostureResource(AsyncAPIResource):
             "gateway",
             "warp",
             "disk_encryption",
+            "serial_number",
             "sentinelone",
             "carbonblack",
             "firewall",
@@ -507,6 +507,7 @@ class AsyncPostureResource(AsyncAPIResource):
             "gateway",
             "warp",
             "disk_encryption",
+            "serial_number",
             "sentinelone",
             "carbonblack",
             "firewall",

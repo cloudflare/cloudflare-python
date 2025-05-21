@@ -7,10 +7,7 @@ from typing import Dict, Type, Iterable, Optional, cast
 import httpx
 
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -73,7 +70,7 @@ class RulesResource(SyncAPIResource):
         Create email scanner rule
 
         Args:
-          conditions: Rule is triggered if all conditions match
+          conditions: Rule is triggered if all conditions match.
 
           extra_headers: Send extra headers
 
@@ -128,7 +125,7 @@ class RulesResource(SyncAPIResource):
         Update email scanner rule
 
         Args:
-          conditions: Rule is triggered if all conditions match
+          conditions: Rule is triggered if all conditions match.
 
           extra_headers: Send extra headers
 
@@ -358,7 +355,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Create email scanner rule
 
         Args:
-          conditions: Rule is triggered if all conditions match
+          conditions: Rule is triggered if all conditions match.
 
           extra_headers: Send extra headers
 
@@ -413,7 +410,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Update email scanner rule
 
         Args:
-          conditions: Rule is triggered if all conditions match
+          conditions: Rule is triggered if all conditions match.
 
           extra_headers: Send extra headers
 

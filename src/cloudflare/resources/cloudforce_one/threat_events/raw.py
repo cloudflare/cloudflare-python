@@ -5,10 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -65,11 +62,11 @@ class RawResource(SyncAPIResource):
         Updates a raw event
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          event_id: Event UUID
+          event_id: Event UUID.
 
-          raw_id: Raw Event UUID
+          raw_id: Raw Event UUID.
 
           extra_headers: Send extra headers
 
@@ -116,11 +113,11 @@ class RawResource(SyncAPIResource):
         Reads data for a raw event
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          event_id: Event UUID
+          event_id: Event UUID.
 
-          raw_id: Raw Event UUID
+          raw_id: Raw Event UUID.
 
           extra_headers: Send extra headers
 
@@ -183,11 +180,11 @@ class AsyncRawResource(AsyncAPIResource):
         Updates a raw event
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          event_id: Event UUID
+          event_id: Event UUID.
 
-          raw_id: Raw Event UUID
+          raw_id: Raw Event UUID.
 
           extra_headers: Send extra headers
 
@@ -234,11 +231,11 @@ class AsyncRawResource(AsyncAPIResource):
         Reads data for a raw event
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          event_id: Event UUID
+          event_id: Event UUID.
 
-          raw_id: Raw Event UUID
+          raw_id: Raw Event UUID.
 
           extra_headers: Send extra headers
 

@@ -21,6 +21,8 @@ __all__ = [
     "StepUnionMember1Error",
     "StepUnionMember2",
     "StepUnionMember2Trigger",
+    "StepUnionMember3",
+    "StepUnionMember3Error",
     "Trigger",
 ]
 
@@ -48,7 +50,7 @@ class StepUnionMember0Attempt(BaseModel):
 
 
 class StepUnionMember0ConfigRetries(BaseModel):
-    delay: Union[str, float]
+    delay: Union[float, object]
 
     limit: float
 
@@ -58,7 +60,7 @@ class StepUnionMember0ConfigRetries(BaseModel):
 class StepUnionMember0Config(BaseModel):
     retries: StepUnionMember0ConfigRetries
 
-    timeout: Union[str, float]
+    timeout: Union[float, object]
 
 
 class StepUnionMember0(BaseModel):
@@ -109,7 +111,29 @@ class StepUnionMember2(BaseModel):
     type: Literal["termination"]
 
 
-Step: TypeAlias = Union[StepUnionMember0, StepUnionMember1, StepUnionMember2]
+class StepUnionMember3Error(BaseModel):
+    message: str
+
+    name: str
+
+
+class StepUnionMember3(BaseModel):
+    end: datetime
+
+    error: Optional[StepUnionMember3Error] = None
+
+    finished: bool
+
+    name: str
+
+    output: Union[str, float, bool, object]
+
+    start: datetime
+
+    type: Literal["waitForEvent"]
+
+
+Step: TypeAlias = Union[StepUnionMember0, StepUnionMember1, StepUnionMember2, StepUnionMember3]
 
 
 class Trigger(BaseModel):
@@ -129,9 +153,7 @@ class InstanceGetResponse(BaseModel):
 
     start: Optional[datetime] = None
 
-    status: Literal[
-        "queued", "running", "paused", "errored", "terminated", "complete", "waitingForPause", "waiting", "unknown"
-    ]
+    status: Literal["queued", "running", "paused", "errored", "terminated", "complete", "waitingForPause", "waiting"]
 
     steps: List[Step]
 

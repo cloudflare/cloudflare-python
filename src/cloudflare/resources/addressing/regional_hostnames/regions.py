@@ -55,7 +55,7 @@ class RegionsResource(SyncAPIResource):
         List all Regional Services regions available for use by this account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -112,7 +112,7 @@ class AsyncRegionsResource(AsyncAPIResource):
         List all Regional Services regions available for use by this account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 

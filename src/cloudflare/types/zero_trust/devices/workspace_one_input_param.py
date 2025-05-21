@@ -9,7 +9,7 @@ __all__ = ["WorkspaceOneInputParam"]
 
 class WorkspaceOneInputParam(TypedDict, total=False):
     compliance_status: Required[Literal["compliant", "noncompliant", "unknown"]]
-    """Compliance Status"""
+    """Compliance Status."""
 
     connection_id: Required[str]
     """Posture Integration ID."""

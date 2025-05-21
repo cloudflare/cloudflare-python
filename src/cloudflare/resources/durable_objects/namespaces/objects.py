@@ -60,7 +60,7 @@ class ObjectsResource(SyncAPIResource):
         Returns the Durable Objects in a given namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           id: ID of the namespace.
 
@@ -141,7 +141,7 @@ class AsyncObjectsResource(AsyncAPIResource):
         Returns the Durable Objects in a given namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           id: ID of the namespace.
 

@@ -8,10 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -70,7 +67,7 @@ class ViewsResource(SyncAPIResource):
         Create Internal DNS View for an account
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           name: The name of the view.
 
@@ -128,7 +125,7 @@ class ViewsResource(SyncAPIResource):
         List DNS Internal Views for an Account
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           direction: Direction to order DNS views in.
 
@@ -197,9 +194,9 @@ class ViewsResource(SyncAPIResource):
         Delete an existing Internal DNS View
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          view_id: Identifier
+          view_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -243,9 +240,9 @@ class ViewsResource(SyncAPIResource):
         Update an existing Internal DNS View
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          view_id: Identifier
+          view_id: Identifier.
 
           name: The name of the view.
 
@@ -298,9 +295,9 @@ class ViewsResource(SyncAPIResource):
         Get DNS Internal View
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          view_id: Identifier
+          view_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -364,7 +361,7 @@ class AsyncViewsResource(AsyncAPIResource):
         Create Internal DNS View for an account
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           name: The name of the view.
 
@@ -422,7 +419,7 @@ class AsyncViewsResource(AsyncAPIResource):
         List DNS Internal Views for an Account
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           direction: Direction to order DNS views in.
 
@@ -491,9 +488,9 @@ class AsyncViewsResource(AsyncAPIResource):
         Delete an existing Internal DNS View
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          view_id: Identifier
+          view_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -537,9 +534,9 @@ class AsyncViewsResource(AsyncAPIResource):
         Update an existing Internal DNS View
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          view_id: Identifier
+          view_id: Identifier.
 
           name: The name of the view.
 
@@ -592,9 +589,9 @@ class AsyncViewsResource(AsyncAPIResource):
         Get DNS Internal View
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          view_id: Identifier
+          view_id: Identifier.
 
           extra_headers: Send extra headers
 

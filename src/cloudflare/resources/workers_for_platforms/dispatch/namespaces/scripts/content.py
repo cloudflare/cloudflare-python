@@ -2,16 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 
 import httpx
 
 from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ......_utils import (
-    maybe_transform,
-    strip_not_given,
-    async_maybe_transform,
-)
+from ......_utils import maybe_transform, strip_not_given, async_maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -72,12 +68,12 @@ class ContentResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Script]:
+    ) -> Script:
         """
         Put script content for a script uploaded to a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -120,9 +116,9 @@ class ContentResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Script]]._unwrapper,
+                post_parser=ResultWrapper[Script]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Script]], ResultWrapper[Script]),
+            cast_to=cast(Type[Script], ResultWrapper[Script]),
         )
 
     def get(
@@ -143,7 +139,7 @@ class ContentResource(SyncAPIResource):
         namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -208,12 +204,12 @@ class AsyncContentResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Script]:
+    ) -> Script:
         """
         Put script content for a script uploaded to a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -256,9 +252,9 @@ class AsyncContentResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Script]]._unwrapper,
+                post_parser=ResultWrapper[Script]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Script]], ResultWrapper[Script]),
+            cast_to=cast(Type[Script], ResultWrapper[Script]),
         )
 
     async def get(
@@ -279,7 +275,7 @@ class AsyncContentResource(AsyncAPIResource):
         namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 

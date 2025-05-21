@@ -104,7 +104,7 @@ class TestStream:
             include_counts=True,
             search="puppy.mp4",
             start=parse_datetime("2014-01-02T02:20:00Z"),
-            status="pendingupload",
+            status="inprogress",
             type="live",
         )
         assert_matches_type(SyncSinglePage[Video], stream, path=["response"])
@@ -389,7 +389,7 @@ class TestAsyncStream:
             include_counts=True,
             search="puppy.mp4",
             start=parse_datetime("2014-01-02T02:20:00Z"),
-            status="pendingupload",
+            status="inprogress",
             type="live",
         )
         assert_matches_type(AsyncSinglePage[Video], stream, path=["response"])

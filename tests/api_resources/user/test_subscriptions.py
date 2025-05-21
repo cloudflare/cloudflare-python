@@ -30,7 +30,7 @@ class TestSubscriptions:
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         subscription = client.user.subscriptions.update(
             identifier="506e3185e9c882d175a2d0cb0093d9f2",
-            frequency="weekly",
+            frequency="monthly",
             rate_plan={
                 "id": "free",
                 "currency": "USD",
@@ -152,7 +152,7 @@ class TestAsyncSubscriptions:
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         subscription = await async_client.user.subscriptions.update(
             identifier="506e3185e9c882d175a2d0cb0093d9f2",
-            frequency="weekly",
+            frequency="monthly",
             rate_plan={
                 "id": "free",
                 "currency": "USD",

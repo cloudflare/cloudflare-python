@@ -10,16 +10,16 @@ __all__ = ["AssetCreateResponse"]
 
 class AssetCreateResponse(BaseModel):
     id: int
-    """Asset ID"""
+    """Asset ID."""
 
     name: str
-    """Asset name"""
+    """Asset name."""
 
     created: Optional[datetime] = None
-    """Asset creation time"""
+    """Defines the asset creation time."""
 
     description: Optional[str] = None
-    """Asset description"""
+    """Asset description."""
 
     file_type: Optional[str] = None
-    """Asset file type"""
+    """Asset file type."""

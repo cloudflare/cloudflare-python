@@ -31,6 +31,7 @@ class TestScrape:
             account_id="account_id",
             elements=[{"selector": "selector"}],
             cache_ttl=86400,
+            action_timeout=300000,
             add_script_tag=[
                 {
                     "id": "id",
@@ -154,6 +155,7 @@ class TestAsyncScrape:
             account_id="account_id",
             elements=[{"selector": "selector"}],
             cache_ttl=86400,
+            action_timeout=300000,
             add_script_tag=[
                 {
                     "id": "id",

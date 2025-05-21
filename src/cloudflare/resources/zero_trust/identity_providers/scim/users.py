@@ -64,9 +64,9 @@ class UsersResource(SyncAPIResource):
         Identity Management (SCIM).
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          identity_provider_id: UUID
+          identity_provider_id: UUID.
 
           cf_resource_id: The unique Cloudflare-generated Id of the SCIM User resource; also known as the
               "Id".
@@ -158,9 +158,9 @@ class AsyncUsersResource(AsyncAPIResource):
         Identity Management (SCIM).
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          identity_provider_id: UUID
+          identity_provider_id: UUID.
 
           cf_resource_id: The unique Cloudflare-generated Id of the SCIM User resource; also known as the
               "Id".

@@ -7,10 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -66,7 +63,7 @@ class BookmarksResource(SyncAPIResource):
         Create a new Bookmark application.
 
         Args:
-          bookmark_id: UUID
+          bookmark_id: UUID.
 
           extra_headers: Send extra headers
 
@@ -110,7 +107,7 @@ class BookmarksResource(SyncAPIResource):
         Updates a configured Bookmark application.
 
         Args:
-          bookmark_id: UUID
+          bookmark_id: UUID.
 
           extra_headers: Send extra headers
 
@@ -187,7 +184,7 @@ class BookmarksResource(SyncAPIResource):
         Deletes a Bookmark application.
 
         Args:
-          bookmark_id: UUID
+          bookmark_id: UUID.
 
           extra_headers: Send extra headers
 
@@ -229,7 +226,7 @@ class BookmarksResource(SyncAPIResource):
         Fetches a single Bookmark application.
 
         Args:
-          bookmark_id: UUID
+          bookmark_id: UUID.
 
           extra_headers: Send extra headers
 
@@ -293,7 +290,7 @@ class AsyncBookmarksResource(AsyncAPIResource):
         Create a new Bookmark application.
 
         Args:
-          bookmark_id: UUID
+          bookmark_id: UUID.
 
           extra_headers: Send extra headers
 
@@ -337,7 +334,7 @@ class AsyncBookmarksResource(AsyncAPIResource):
         Updates a configured Bookmark application.
 
         Args:
-          bookmark_id: UUID
+          bookmark_id: UUID.
 
           extra_headers: Send extra headers
 
@@ -414,7 +411,7 @@ class AsyncBookmarksResource(AsyncAPIResource):
         Deletes a Bookmark application.
 
         Args:
-          bookmark_id: UUID
+          bookmark_id: UUID.
 
           extra_headers: Send extra headers
 
@@ -456,7 +453,7 @@ class AsyncBookmarksResource(AsyncAPIResource):
         Fetches a single Bookmark application.
 
         Args:
-          bookmark_id: UUID
+          bookmark_id: UUID.
 
           extra_headers: Send extra headers
 

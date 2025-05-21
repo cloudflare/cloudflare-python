@@ -10,13 +10,13 @@ __all__ = ["FileInput"]
 
 class FileInput(BaseModel):
     operating_system: Literal["windows", "linux", "mac"]
-    """Operating system"""
+    """Operating system."""
 
     path: str
     """File path."""
 
     exists: Optional[bool] = None
-    """Whether or not file exists"""
+    """Whether or not file exists."""
 
     sha256: Optional[str] = None
     """SHA-256."""

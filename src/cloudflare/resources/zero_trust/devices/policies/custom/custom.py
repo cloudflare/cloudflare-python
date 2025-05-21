@@ -23,10 +23,7 @@ from .includes import (
     AsyncIncludesResourceWithStreamingResponse,
 )
 from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ......_utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ......_utils import maybe_transform, async_maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -49,6 +46,7 @@ from ......_base_client import AsyncPaginator, make_request_options
 from ......types.zero_trust.devices.policies import custom_edit_params, custom_create_params
 from ......types.zero_trust.devices.settings_policy import SettingsPolicy
 from ......types.zero_trust.devices.split_tunnel_exclude_param import SplitTunnelExcludeParam
+from ......types.zero_trust.devices.split_tunnel_include_param import SplitTunnelIncludeParam
 
 __all__ = ["CustomResource", "AsyncCustomResource"]
 
@@ -102,10 +100,11 @@ class CustomResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exclude: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
         exclude_office_ips: bool | NotGiven = NOT_GIVEN,
-        include: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
+        include: Iterable[SplitTunnelIncludeParam] | NotGiven = NOT_GIVEN,
         lan_allow_minutes: float | NotGiven = NOT_GIVEN,
         lan_allow_subnet_size: float | NotGiven = NOT_GIVEN,
         register_interface_ip_with_dns: bool | NotGiven = NOT_GIVEN,
+        sccm_vpn_boundary_support: bool | NotGiven = NOT_GIVEN,
         service_mode_v2: custom_create_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
         support_url: str | NotGiven = NOT_GIVEN,
         switch_locked: bool | NotGiven = NOT_GIVEN,
@@ -122,7 +121,10 @@ class CustomResource(SyncAPIResource):
         criteria.
 
         Args:
-          match: The wirefilter expression to match devices.
+          match: The wirefilter expression to match devices. Available values: "identity.email",
+              "identity.groups.id", "identity.groups.name", "identity.groups.email",
+              "identity.service_token_uuid", "identity.saml_attributes", "network", "os.name",
+              "os.version".
 
           name: The name of the device settings profile.
 
@@ -167,6 +169,9 @@ class CustomResource(SyncAPIResource):
           register_interface_ip_with_dns: Determines if the operating system will register WARP's local interface IP with
               your on-premises DNS server.
 
+          sccm_vpn_boundary_support: Determines whether the WARP client indicates to SCCM that it is inside a VPN
+              boundary. (Windows only).
+
           support_url: The URL to launch when the Send Feedback button is clicked.
 
           switch_locked: Whether to allow the user to turn off the WARP switch and disconnect the client.
@@ -204,6 +209,7 @@ class CustomResource(SyncAPIResource):
                     "lan_allow_minutes": lan_allow_minutes,
                     "lan_allow_subnet_size": lan_allow_subnet_size,
                     "register_interface_ip_with_dns": register_interface_ip_with_dns,
+                    "sccm_vpn_boundary_support": sccm_vpn_boundary_support,
                     "service_mode_v2": service_mode_v2,
                     "support_url": support_url,
                     "switch_locked": switch_locked,
@@ -272,8 +278,6 @@ class CustomResource(SyncAPIResource):
         for an account.
 
         Args:
-          policy_id: Device ID.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -311,11 +315,14 @@ class CustomResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exclude: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
         exclude_office_ips: bool | NotGiven = NOT_GIVEN,
-        include: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
+        include: Iterable[SplitTunnelIncludeParam] | NotGiven = NOT_GIVEN,
+        lan_allow_minutes: float | NotGiven = NOT_GIVEN,
+        lan_allow_subnet_size: float | NotGiven = NOT_GIVEN,
         match: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         precedence: float | NotGiven = NOT_GIVEN,
         register_interface_ip_with_dns: bool | NotGiven = NOT_GIVEN,
+        sccm_vpn_boundary_support: bool | NotGiven = NOT_GIVEN,
         service_mode_v2: custom_edit_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
         support_url: str | NotGiven = NOT_GIVEN,
         switch_locked: bool | NotGiven = NOT_GIVEN,
@@ -331,8 +338,6 @@ class CustomResource(SyncAPIResource):
         Updates a configured device settings profile.
 
         Args:
-          policy_id: Device ID.
-
           allow_mode_switch: Whether to allow the user to switch WARP between modes.
 
           allow_updates: Whether to receive update notifications when a new version of the client is
@@ -360,7 +365,18 @@ class CustomResource(SyncAPIResource):
           include: List of routes included in the WARP client's tunnel. Both 'exclude' and
               'include' cannot be set in the same request.
 
-          match: The wirefilter expression to match devices.
+          lan_allow_minutes: The amount of time in minutes a user is allowed access to their LAN. A value of
+              0 will allow LAN access until the next WARP reconnection, such as a reboot or a
+              laptop waking from sleep. Note that this field is omitted from the response if
+              null or unset.
+
+          lan_allow_subnet_size: The size of the subnet for the local access network. Note that this field is
+              omitted from the response if null or unset.
+
+          match: The wirefilter expression to match devices. Available values: "identity.email",
+              "identity.groups.id", "identity.groups.name", "identity.groups.email",
+              "identity.service_token_uuid", "identity.saml_attributes", "network", "os.name",
+              "os.version".
 
           name: The name of the device settings profile.
 
@@ -369,6 +385,9 @@ class CustomResource(SyncAPIResource):
 
           register_interface_ip_with_dns: Determines if the operating system will register WARP's local interface IP with
               your on-premises DNS server.
+
+          sccm_vpn_boundary_support: Determines whether the WARP client indicates to SCCM that it is inside a VPN
+              boundary. (Windows only).
 
           support_url: The URL to launch when the Send Feedback button is clicked.
 
@@ -403,10 +422,13 @@ class CustomResource(SyncAPIResource):
                     "exclude": exclude,
                     "exclude_office_ips": exclude_office_ips,
                     "include": include,
+                    "lan_allow_minutes": lan_allow_minutes,
+                    "lan_allow_subnet_size": lan_allow_subnet_size,
                     "match": match,
                     "name": name,
                     "precedence": precedence,
                     "register_interface_ip_with_dns": register_interface_ip_with_dns,
+                    "sccm_vpn_boundary_support": sccm_vpn_boundary_support,
                     "service_mode_v2": service_mode_v2,
                     "support_url": support_url,
                     "switch_locked": switch_locked,
@@ -440,8 +462,6 @@ class CustomResource(SyncAPIResource):
         Fetches a device settings profile by ID.
 
         Args:
-          policy_id: Device ID.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -516,10 +536,11 @@ class AsyncCustomResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exclude: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
         exclude_office_ips: bool | NotGiven = NOT_GIVEN,
-        include: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
+        include: Iterable[SplitTunnelIncludeParam] | NotGiven = NOT_GIVEN,
         lan_allow_minutes: float | NotGiven = NOT_GIVEN,
         lan_allow_subnet_size: float | NotGiven = NOT_GIVEN,
         register_interface_ip_with_dns: bool | NotGiven = NOT_GIVEN,
+        sccm_vpn_boundary_support: bool | NotGiven = NOT_GIVEN,
         service_mode_v2: custom_create_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
         support_url: str | NotGiven = NOT_GIVEN,
         switch_locked: bool | NotGiven = NOT_GIVEN,
@@ -536,7 +557,10 @@ class AsyncCustomResource(AsyncAPIResource):
         criteria.
 
         Args:
-          match: The wirefilter expression to match devices.
+          match: The wirefilter expression to match devices. Available values: "identity.email",
+              "identity.groups.id", "identity.groups.name", "identity.groups.email",
+              "identity.service_token_uuid", "identity.saml_attributes", "network", "os.name",
+              "os.version".
 
           name: The name of the device settings profile.
 
@@ -581,6 +605,9 @@ class AsyncCustomResource(AsyncAPIResource):
           register_interface_ip_with_dns: Determines if the operating system will register WARP's local interface IP with
               your on-premises DNS server.
 
+          sccm_vpn_boundary_support: Determines whether the WARP client indicates to SCCM that it is inside a VPN
+              boundary. (Windows only).
+
           support_url: The URL to launch when the Send Feedback button is clicked.
 
           switch_locked: Whether to allow the user to turn off the WARP switch and disconnect the client.
@@ -618,6 +645,7 @@ class AsyncCustomResource(AsyncAPIResource):
                     "lan_allow_minutes": lan_allow_minutes,
                     "lan_allow_subnet_size": lan_allow_subnet_size,
                     "register_interface_ip_with_dns": register_interface_ip_with_dns,
+                    "sccm_vpn_boundary_support": sccm_vpn_boundary_support,
                     "service_mode_v2": service_mode_v2,
                     "support_url": support_url,
                     "switch_locked": switch_locked,
@@ -686,8 +714,6 @@ class AsyncCustomResource(AsyncAPIResource):
         for an account.
 
         Args:
-          policy_id: Device ID.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -725,11 +751,14 @@ class AsyncCustomResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exclude: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
         exclude_office_ips: bool | NotGiven = NOT_GIVEN,
-        include: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
+        include: Iterable[SplitTunnelIncludeParam] | NotGiven = NOT_GIVEN,
+        lan_allow_minutes: float | NotGiven = NOT_GIVEN,
+        lan_allow_subnet_size: float | NotGiven = NOT_GIVEN,
         match: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         precedence: float | NotGiven = NOT_GIVEN,
         register_interface_ip_with_dns: bool | NotGiven = NOT_GIVEN,
+        sccm_vpn_boundary_support: bool | NotGiven = NOT_GIVEN,
         service_mode_v2: custom_edit_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
         support_url: str | NotGiven = NOT_GIVEN,
         switch_locked: bool | NotGiven = NOT_GIVEN,
@@ -745,8 +774,6 @@ class AsyncCustomResource(AsyncAPIResource):
         Updates a configured device settings profile.
 
         Args:
-          policy_id: Device ID.
-
           allow_mode_switch: Whether to allow the user to switch WARP between modes.
 
           allow_updates: Whether to receive update notifications when a new version of the client is
@@ -774,7 +801,18 @@ class AsyncCustomResource(AsyncAPIResource):
           include: List of routes included in the WARP client's tunnel. Both 'exclude' and
               'include' cannot be set in the same request.
 
-          match: The wirefilter expression to match devices.
+          lan_allow_minutes: The amount of time in minutes a user is allowed access to their LAN. A value of
+              0 will allow LAN access until the next WARP reconnection, such as a reboot or a
+              laptop waking from sleep. Note that this field is omitted from the response if
+              null or unset.
+
+          lan_allow_subnet_size: The size of the subnet for the local access network. Note that this field is
+              omitted from the response if null or unset.
+
+          match: The wirefilter expression to match devices. Available values: "identity.email",
+              "identity.groups.id", "identity.groups.name", "identity.groups.email",
+              "identity.service_token_uuid", "identity.saml_attributes", "network", "os.name",
+              "os.version".
 
           name: The name of the device settings profile.
 
@@ -783,6 +821,9 @@ class AsyncCustomResource(AsyncAPIResource):
 
           register_interface_ip_with_dns: Determines if the operating system will register WARP's local interface IP with
               your on-premises DNS server.
+
+          sccm_vpn_boundary_support: Determines whether the WARP client indicates to SCCM that it is inside a VPN
+              boundary. (Windows only).
 
           support_url: The URL to launch when the Send Feedback button is clicked.
 
@@ -817,10 +858,13 @@ class AsyncCustomResource(AsyncAPIResource):
                     "exclude": exclude,
                     "exclude_office_ips": exclude_office_ips,
                     "include": include,
+                    "lan_allow_minutes": lan_allow_minutes,
+                    "lan_allow_subnet_size": lan_allow_subnet_size,
                     "match": match,
                     "name": name,
                     "precedence": precedence,
                     "register_interface_ip_with_dns": register_interface_ip_with_dns,
+                    "sccm_vpn_boundary_support": sccm_vpn_boundary_support,
                     "service_mode_v2": service_mode_v2,
                     "support_url": support_url,
                     "switch_locked": switch_locked,
@@ -854,8 +898,6 @@ class AsyncCustomResource(AsyncAPIResource):
         Fetches a device settings profile by ID.
 
         Args:
-          policy_id: Device ID.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

@@ -8,11 +8,7 @@ from typing_extensions import overload
 import httpx
 
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import (
-    required_args,
-    maybe_transform,
-    async_maybe_transform,
-)
+from ....._utils import required_args, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -108,7 +104,7 @@ class CustomResource(SyncAPIResource):
           context_awareness: Scan the context of predefined entries to only return matches surrounded by
               keywords.
 
-          description: The description of the profile
+          description: The description of the profile.
 
           shared_entries: Entries from other profiles (e.g. pre-defined Cloudflare profiles, or your
               Microsoft Information Protection profiles).
@@ -207,7 +203,7 @@ class CustomResource(SyncAPIResource):
           context_awareness: Scan the context of predefined entries to only return matches surrounded by
               keywords.
 
-          description: The description of the profile
+          description: The description of the profile.
 
           entries: Custom entries from this profile. If this field is omitted, entries owned by
               this profile will not be changed.
@@ -420,7 +416,7 @@ class AsyncCustomResource(AsyncAPIResource):
           context_awareness: Scan the context of predefined entries to only return matches surrounded by
               keywords.
 
-          description: The description of the profile
+          description: The description of the profile.
 
           shared_entries: Entries from other profiles (e.g. pre-defined Cloudflare profiles, or your
               Microsoft Information Protection profiles).
@@ -519,7 +515,7 @@ class AsyncCustomResource(AsyncAPIResource):
           context_awareness: Scan the context of predefined entries to only return matches surrounded by
               keywords.
 
-          description: The description of the profile
+          description: The description of the profile.
 
           entries: Custom entries from this profile. If this field is omitted, entries owned by
               this profile will not be changed.

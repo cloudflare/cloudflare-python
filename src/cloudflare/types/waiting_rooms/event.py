@@ -2,6 +2,7 @@
 
 from typing import Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from ..._models import BaseModel
 
@@ -94,4 +95,16 @@ class Event(BaseModel):
     If set, the event will override the waiting room's `total_active_users` property
     while it is active. If null, the event will inherit it. This can only be set if
     the event's `new_users_per_minute` property is also set.
+    """
+
+    turnstile_action: Optional[Literal["log", "infinite_queue"]] = None
+    """
+    If set, the event will override the waiting room's `turnstile_action` property
+    while it is active. If null, the event will inherit it.
+    """
+
+    turnstile_mode: Optional[Literal["off", "invisible", "visible_non_interactive", "visible_managed"]] = None
+    """
+    If set, the event will override the waiting room's `turnstile_mode` property
+    while it is active. If null, the event will inherit it.
     """

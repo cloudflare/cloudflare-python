@@ -9,7 +9,7 @@ __all__ = ["CustomCertificateListParams"]
 
 class CustomCertificateListParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     match: Literal["any", "all"]
     """Whether to match all search requirements or at least one (any)."""

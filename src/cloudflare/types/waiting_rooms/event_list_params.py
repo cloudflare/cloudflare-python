@@ -9,7 +9,7 @@ __all__ = ["EventListParams"]
 
 class EventListParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     page: float
     """Page number of paginated results."""

@@ -65,12 +65,6 @@ class TestFields:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
-            client.logpush.datasets.fields.with_raw_response.get(
-                dataset_id="",
-                account_id="account_id",
-            )
-
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.logpush.datasets.fields.with_raw_response.get(
                 dataset_id="gateway_dns",
@@ -136,12 +130,6 @@ class TestAsyncFields:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
-            await async_client.logpush.datasets.fields.with_raw_response.get(
-                dataset_id="",
-                account_id="account_id",
-            )
-
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.logpush.datasets.fields.with_raw_response.get(
                 dataset_id="gateway_dns",

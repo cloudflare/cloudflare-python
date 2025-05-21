@@ -11,10 +11,10 @@ __all__ = ["ManagedUpdateParams"]
 
 class ManagedUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Account ID"""
+    """Account ID."""
 
     enabled: Required[bool]
-    """Whether to enable public bucket access at the r2.dev domain"""
+    """Whether to enable public bucket access at the r2.dev domain."""
 
     jurisdiction: Annotated[Literal["default", "eu", "fedramp"], PropertyInfo(alias="cf-r2-jurisdiction")]
-    """The bucket jurisdiction"""
+    """Jurisdiction where objects in this bucket are guaranteed to be stored."""

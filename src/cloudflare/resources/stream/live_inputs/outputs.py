@@ -7,10 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -69,7 +66,7 @@ class OutputsResource(SyncAPIResource):
         input — one live input can have many outputs.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           live_input_identifier: A unique identifier for a live input.
 
@@ -135,7 +132,7 @@ class OutputsResource(SyncAPIResource):
         Updates the state of an output.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           live_input_identifier: A unique identifier for a live input.
 
@@ -192,7 +189,7 @@ class OutputsResource(SyncAPIResource):
         Retrieves all outputs associated with a specified live input.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           live_input_identifier: A unique identifier for a live input.
 
@@ -236,7 +233,7 @@ class OutputsResource(SyncAPIResource):
         Deletes an output and removes it from the associated live input.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           live_input_identifier: A unique identifier for a live input.
 
@@ -309,7 +306,7 @@ class AsyncOutputsResource(AsyncAPIResource):
         input — one live input can have many outputs.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           live_input_identifier: A unique identifier for a live input.
 
@@ -375,7 +372,7 @@ class AsyncOutputsResource(AsyncAPIResource):
         Updates the state of an output.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           live_input_identifier: A unique identifier for a live input.
 
@@ -432,7 +429,7 @@ class AsyncOutputsResource(AsyncAPIResource):
         Retrieves all outputs associated with a specified live input.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           live_input_identifier: A unique identifier for a live input.
 
@@ -476,7 +473,7 @@ class AsyncOutputsResource(AsyncAPIResource):
         Deletes an output and removes it from the associated live input.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           live_input_identifier: A unique identifier for a live input.
 

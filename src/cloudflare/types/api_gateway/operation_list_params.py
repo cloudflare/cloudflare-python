@@ -10,7 +10,7 @@ __all__ = ["OperationListParams"]
 
 class OperationListParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     direction: Literal["asc", "desc"]
     """Direction to order results."""

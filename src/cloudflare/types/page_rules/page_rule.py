@@ -374,7 +374,7 @@ Action: TypeAlias = Annotated[
 
 class PageRule(BaseModel):
     id: str
-    """Identifier"""
+    """Identifier."""
 
     actions: List[Action]
     """The set of actions to perform if the targets of this rule match the request.

@@ -8,10 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -75,7 +72,7 @@ class PageRulesResource(SyncAPIResource):
         Creates a new Page Rule.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           actions: The set of actions to perform if the targets of this rule match the request.
               Actions can redirect to another URL or override settings, but not both.
@@ -143,9 +140,9 @@ class PageRulesResource(SyncAPIResource):
         updated Page Rule will exactly match the data passed in the API request.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          pagerule_id: Identifier
+          pagerule_id: Identifier.
 
           actions: The set of actions to perform if the targets of this rule match the request.
               Actions can redirect to another URL or override settings, but not both.
@@ -212,7 +209,7 @@ class PageRulesResource(SyncAPIResource):
         Fetches Page Rules in a zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           direction: The direction used to sort returned Page Rules.
 
@@ -270,9 +267,9 @@ class PageRulesResource(SyncAPIResource):
         Deletes an existing Page Rule.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          pagerule_id: Identifier
+          pagerule_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -318,9 +315,9 @@ class PageRulesResource(SyncAPIResource):
         Updates one or more fields of an existing Page Rule.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          pagerule_id: Identifier
+          pagerule_id: Identifier.
 
           actions: The set of actions to perform if the targets of this rule match the request.
               Actions can redirect to another URL or override settings, but not both.
@@ -384,9 +381,9 @@ class PageRulesResource(SyncAPIResource):
         Fetches the details of a Page Rule.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          pagerule_id: Identifier
+          pagerule_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -452,7 +449,7 @@ class AsyncPageRulesResource(AsyncAPIResource):
         Creates a new Page Rule.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           actions: The set of actions to perform if the targets of this rule match the request.
               Actions can redirect to another URL or override settings, but not both.
@@ -520,9 +517,9 @@ class AsyncPageRulesResource(AsyncAPIResource):
         updated Page Rule will exactly match the data passed in the API request.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          pagerule_id: Identifier
+          pagerule_id: Identifier.
 
           actions: The set of actions to perform if the targets of this rule match the request.
               Actions can redirect to another URL or override settings, but not both.
@@ -589,7 +586,7 @@ class AsyncPageRulesResource(AsyncAPIResource):
         Fetches Page Rules in a zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           direction: The direction used to sort returned Page Rules.
 
@@ -647,9 +644,9 @@ class AsyncPageRulesResource(AsyncAPIResource):
         Deletes an existing Page Rule.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          pagerule_id: Identifier
+          pagerule_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -695,9 +692,9 @@ class AsyncPageRulesResource(AsyncAPIResource):
         Updates one or more fields of an existing Page Rule.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          pagerule_id: Identifier
+          pagerule_id: Identifier.
 
           actions: The set of actions to perform if the targets of this rule match the request.
               Actions can redirect to another URL or override settings, but not both.
@@ -761,9 +758,9 @@ class AsyncPageRulesResource(AsyncAPIResource):
         Fetches the details of a Page Rule.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          pagerule_id: Identifier
+          pagerule_id: Identifier.
 
           extra_headers: Send extra headers
 

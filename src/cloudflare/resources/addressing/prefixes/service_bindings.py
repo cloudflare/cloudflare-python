@@ -7,10 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -66,8 +63,9 @@ class ServiceBindingsResource(SyncAPIResource):
         """
         Creates a new Service Binding, routing traffic to IPs within the given CIDR to a
         service running on Cloudflare's network. **Note:** This API may only be used on
-        prefixes currently configured with a Magic Transit service binding, and only
-        allows creating service bindings for the Cloudflare CDN or Cloudflare Spectrum.
+        prefixes currently configured with a Magic Transit/Cloudflare CDN/Cloudflare
+        Spectrum service binding, and only allows creating upgrade service bindings for
+        the Cloudflare CDN or Cloudflare Spectrum.
 
         Args:
           account_id: Identifier of a Cloudflare account.
@@ -289,8 +287,9 @@ class AsyncServiceBindingsResource(AsyncAPIResource):
         """
         Creates a new Service Binding, routing traffic to IPs within the given CIDR to a
         service running on Cloudflare's network. **Note:** This API may only be used on
-        prefixes currently configured with a Magic Transit service binding, and only
-        allows creating service bindings for the Cloudflare CDN or Cloudflare Spectrum.
+        prefixes currently configured with a Magic Transit/Cloudflare CDN/Cloudflare
+        Spectrum service binding, and only allows creating upgrade service bindings for
+        the Cloudflare CDN or Cloudflare Spectrum.
 
         Args:
           account_id: Identifier of a Cloudflare account.

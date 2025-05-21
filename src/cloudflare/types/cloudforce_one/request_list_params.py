@@ -12,32 +12,35 @@ __all__ = ["RequestListParams"]
 
 
 class RequestListParams(TypedDict, total=False):
+    account_id: Required[str]
+    """Identifier."""
+
     page: Required[int]
-    """Page number of results"""
+    """Page number of results."""
 
     per_page: Required[int]
-    """Number of results per page"""
+    """Number of results per page."""
 
     completed_after: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """Retrieve requests completed after this time"""
+    """Retrieve requests completed after this time."""
 
     completed_before: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """Retrieve requests completed before this time"""
+    """Retrieve requests completed before this time."""
 
     created_after: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """Retrieve requests created after this time"""
+    """Retrieve requests created after this time."""
 
     created_before: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """Retrieve requests created before this time"""
+    """Retrieve requests created before this time."""
 
     request_type: str
-    """Requested information from request"""
+    """Requested information from request."""
 
     sort_by: str
-    """Field to sort results by"""
+    """Field to sort results by."""
 
     sort_order: Literal["asc", "desc"]
-    """Sort order (asc or desc)"""
+    """Sort order (asc or desc)."""
 
     status: Literal["open", "accepted", "reported", "approved", "completed", "declined"]
-    """Request Status"""
+    """Request Status."""

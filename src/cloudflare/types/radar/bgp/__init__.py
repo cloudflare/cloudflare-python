@@ -12,5 +12,7 @@ from .top_prefixes_params import TopPrefixesParams as TopPrefixesParams
 from .ip_timeseries_params import IPTimeseriesParams as IPTimeseriesParams
 from .route_stats_response import RouteStatsResponse as RouteStatsResponse
 from .route_pfx2as_response import RoutePfx2asResponse as RoutePfx2asResponse
+from .route_realtime_params import RouteRealtimeParams as RouteRealtimeParams
 from .top_prefixes_response import TopPrefixesResponse as TopPrefixesResponse
 from .ip_timeseries_response import IPTimeseriesResponse as IPTimeseriesResponse
+from .route_realtime_response import RouteRealtimeResponse as RouteRealtimeResponse

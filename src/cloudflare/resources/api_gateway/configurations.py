@@ -8,10 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -65,7 +62,7 @@ class ConfigurationsResource(SyncAPIResource):
         Set configuration properties
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -105,7 +102,7 @@ class ConfigurationsResource(SyncAPIResource):
         Retrieve information about specific configuration properties
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           properties: Requests information about certain properties.
 
@@ -169,7 +166,7 @@ class AsyncConfigurationsResource(AsyncAPIResource):
         Set configuration properties
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -209,7 +206,7 @@ class AsyncConfigurationsResource(AsyncAPIResource):
         Retrieve information about specific configuration properties
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           properties: Requests information about certain properties.
 

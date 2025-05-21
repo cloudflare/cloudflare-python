@@ -14,7 +14,7 @@ __all__ = ["IssueTypeParams"]
 
 class IssueTypeParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     dismissed: bool
 

@@ -10,7 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
-from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage, SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.zero_trust.access.infrastructure import (
     TargetGetResponse,
     TargetListResponse,
@@ -328,7 +328,7 @@ class TestTargets:
                 }
             ],
         )
-        assert_matches_type(TargetBulkUpdateResponse, target, path=["response"])
+        assert_matches_type(SyncSinglePage[TargetBulkUpdateResponse], target, path=["response"])
 
     @parametrize
     def test_raw_response_bulk_update(self, client: Cloudflare) -> None:
@@ -345,7 +345,7 @@ class TestTargets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         target = response.parse()
-        assert_matches_type(TargetBulkUpdateResponse, target, path=["response"])
+        assert_matches_type(SyncSinglePage[TargetBulkUpdateResponse], target, path=["response"])
 
     @parametrize
     def test_streaming_response_bulk_update(self, client: Cloudflare) -> None:
@@ -362,7 +362,7 @@ class TestTargets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             target = response.parse()
-            assert_matches_type(TargetBulkUpdateResponse, target, path=["response"])
+            assert_matches_type(SyncSinglePage[TargetBulkUpdateResponse], target, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -734,7 +734,7 @@ class TestAsyncTargets:
                 }
             ],
         )
-        assert_matches_type(TargetBulkUpdateResponse, target, path=["response"])
+        assert_matches_type(AsyncSinglePage[TargetBulkUpdateResponse], target, path=["response"])
 
     @parametrize
     async def test_raw_response_bulk_update(self, async_client: AsyncCloudflare) -> None:
@@ -751,7 +751,7 @@ class TestAsyncTargets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         target = await response.parse()
-        assert_matches_type(TargetBulkUpdateResponse, target, path=["response"])
+        assert_matches_type(AsyncSinglePage[TargetBulkUpdateResponse], target, path=["response"])
 
     @parametrize
     async def test_streaming_response_bulk_update(self, async_client: AsyncCloudflare) -> None:
@@ -768,7 +768,7 @@ class TestAsyncTargets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             target = await response.parse()
-            assert_matches_type(TargetBulkUpdateResponse, target, path=["response"])
+            assert_matches_type(AsyncSinglePage[TargetBulkUpdateResponse], target, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

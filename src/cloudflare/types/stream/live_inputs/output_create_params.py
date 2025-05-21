@@ -11,7 +11,7 @@ __all__ = ["OutputCreateParams"]
 
 class OutputCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     stream_key: Required[Annotated[str, PropertyInfo(alias="streamKey")]]
     """The streamKey used to authenticate against an output's target."""

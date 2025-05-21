@@ -9,4 +9,4 @@ __all__ = ["DeviceMatch"]
 
 
 class DeviceMatch(BaseModel):
-    platform: Optional[Literal["windows", "mac", "linux", "android", "ios"]] = None
+    platform: Optional[Literal["windows", "mac", "linux", "android", "ios", "chromeos"]] = None

@@ -7,10 +7,7 @@ from typing import Type, Iterable, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -58,7 +55,12 @@ class RoutesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        body: object,
+        nexthop: str,
+        prefix: str,
+        priority: int,
+        description: str | NotGiven = NOT_GIVEN,
+        scope: ScopeParam | NotGiven = NOT_GIVEN,
+        weight: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -74,6 +76,18 @@ class RoutesResource(SyncAPIResource):
         Args:
           account_id: Identifier
 
+          nexthop: The next-hop IP Address for the static route.
+
+          prefix: IP Prefix in Classless Inter-Domain Routing format.
+
+          priority: Priority of the static route.
+
+          description: An optional human provided description of the static route.
+
+          scope: Used only for ECMP routes.
+
+          weight: Optional weight of the ECMP scope - if provided.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -86,7 +100,17 @@ class RoutesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/magic/routes",
-            body=maybe_transform(body, route_create_params.RouteCreateParams),
+            body=maybe_transform(
+                {
+                    "nexthop": nexthop,
+                    "prefix": prefix,
+                    "priority": priority,
+                    "description": description,
+                    "scope": scope,
+                    "weight": weight,
+                },
+                route_create_params.RouteCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -407,7 +431,12 @@ class AsyncRoutesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        body: object,
+        nexthop: str,
+        prefix: str,
+        priority: int,
+        description: str | NotGiven = NOT_GIVEN,
+        scope: ScopeParam | NotGiven = NOT_GIVEN,
+        weight: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -423,6 +452,18 @@ class AsyncRoutesResource(AsyncAPIResource):
         Args:
           account_id: Identifier
 
+          nexthop: The next-hop IP Address for the static route.
+
+          prefix: IP Prefix in Classless Inter-Domain Routing format.
+
+          priority: Priority of the static route.
+
+          description: An optional human provided description of the static route.
+
+          scope: Used only for ECMP routes.
+
+          weight: Optional weight of the ECMP scope - if provided.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -435,7 +476,17 @@ class AsyncRoutesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/magic/routes",
-            body=await async_maybe_transform(body, route_create_params.RouteCreateParams),
+            body=await async_maybe_transform(
+                {
+                    "nexthop": nexthop,
+                    "prefix": prefix,
+                    "priority": priority,
+                    "description": description,
+                    "scope": scope,
+                    "weight": weight,
+                },
+                route_create_params.RouteCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -46,6 +46,7 @@ class TestPDF:
         pdf = client.browser_rendering.pdf.create(
             account_id="account_id",
             cache_ttl=86400,
+            action_timeout=300000,
             add_script_tag=[
                 {
                     "id": "id",
@@ -189,6 +190,7 @@ class TestAsyncPDF:
         pdf = await async_client.browser_rendering.pdf.create(
             account_id="account_id",
             cache_ttl=86400,
+            action_timeout=300000,
             add_script_tag=[
                 {
                     "id": "id",

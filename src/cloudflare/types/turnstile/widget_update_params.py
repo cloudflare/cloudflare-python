@@ -43,3 +43,6 @@ class WidgetUpdateParams(TypedDict, total=False):
 
     offlabel: bool
     """Do not show any Cloudflare branding on the widget (ENT only)."""
+
+    region: Literal["world", "china"]
+    """Region where this widget can be used. This cannot be changed after creation."""

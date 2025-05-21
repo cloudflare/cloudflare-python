@@ -16,7 +16,7 @@ class RankingTimeseriesGroupsParams(TypedDict, total=False):
     """End of the date range (inclusive)."""
 
     date_range: Annotated[List[str], PropertyInfo(alias="dateRange")]
-    """Filters results by the specified date range.
+    """Filters results by date range.
 
     For example, use `7d` and `7dcontrol` to compare this week with the previous
     week. Use this parameter or set specific start and end dates (`dateStart` and
@@ -30,7 +30,7 @@ class RankingTimeseriesGroupsParams(TypedDict, total=False):
     """Filters results by domain category."""
 
     domains: List[str]
-    """Comma-separated list of domain names."""
+    """Filters results by domain name. Specify a comma-separated list of domain names."""
 
     format: Literal["JSON", "CSV"]
     """Format in which results will be returned."""
@@ -39,10 +39,13 @@ class RankingTimeseriesGroupsParams(TypedDict, total=False):
     """Limits the number of objects returned in the response."""
 
     location: List[str]
-    """Comma-separated list of locations (alpha-2 codes)."""
+    """Filters results by location.
+
+    Specify a comma-separated list of alpha-2 location codes.
+    """
 
     name: List[str]
     """Array of names used to label the series in the response."""
 
     ranking_type: Annotated[Literal["POPULAR", "TRENDING_RISE", "TRENDING_STEADY"], PropertyInfo(alias="rankingType")]
-    """Ranking type."""
+    """The ranking type."""

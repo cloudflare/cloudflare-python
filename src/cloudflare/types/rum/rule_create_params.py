@@ -10,7 +10,7 @@ __all__ = ["RuleCreateParams"]
 
 class RuleCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     host: str
 

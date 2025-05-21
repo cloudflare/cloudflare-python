@@ -9,7 +9,7 @@ __all__ = ["ScriptDeleteParams"]
 
 class ScriptDeleteParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     force: bool
     """

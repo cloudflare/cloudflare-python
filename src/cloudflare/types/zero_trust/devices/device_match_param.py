@@ -8,4 +8,4 @@ __all__ = ["DeviceMatchParam"]
 
 
 class DeviceMatchParam(TypedDict, total=False):
-    platform: Literal["windows", "mac", "linux", "android", "ios"]
+    platform: Literal["windows", "mac", "linux", "android", "ios", "chromeos"]

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Dict, Type, Optional, cast
 
 import httpx
 
@@ -46,11 +46,8 @@ from .versions import (
     VersionsResourceWithStreamingResponse,
     AsyncVersionsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
+from ...._utils import maybe_transform, async_maybe_transform
 from .schedules import (
     SchedulesResource,
     AsyncSchedulesResource,
@@ -96,6 +93,14 @@ from .assets.assets import (
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.workers import script_delete_params, script_update_params
 from ....types.workers.script import Script
+from .script_and_version_settings import (
+    ScriptAndVersionSettingsResource,
+    AsyncScriptAndVersionSettingsResource,
+    ScriptAndVersionSettingsResourceWithRawResponse,
+    AsyncScriptAndVersionSettingsResourceWithRawResponse,
+    ScriptAndVersionSettingsResourceWithStreamingResponse,
+    AsyncScriptAndVersionSettingsResourceWithStreamingResponse,
+)
 from ....types.workers.script_update_response import ScriptUpdateResponse
 
 __all__ = ["ScriptsResource", "AsyncScriptsResource"]
@@ -139,6 +144,10 @@ class ScriptsResource(SyncAPIResource):
         return SecretsResource(self._client)
 
     @cached_property
+    def script_and_version_settings(self) -> ScriptAndVersionSettingsResource:
+        return ScriptAndVersionSettingsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> ScriptsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -163,13 +172,14 @@ class ScriptsResource(SyncAPIResource):
         *,
         account_id: str,
         metadata: script_update_params.Metadata,
+        files: Dict[str, FileTypes] = {},
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScriptUpdateResponse]:
+    ) -> ScriptUpdateResponse:
         """Upload a worker module.
 
         You can find more about the multipart metadata on our
@@ -177,7 +187,7 @@ class ScriptsResource(SyncAPIResource):
         https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -198,14 +208,15 @@ class ScriptsResource(SyncAPIResource):
         return self._put(
             f"/accounts/{account_id}/workers/scripts/{script_name}",
             body=maybe_transform({"metadata": metadata}, script_update_params.ScriptUpdateParams),
+            files=files,
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ScriptUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[ScriptUpdateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ScriptUpdateResponse]], ResultWrapper[ScriptUpdateResponse]),
+            cast_to=cast(Type[ScriptUpdateResponse], ResultWrapper[ScriptUpdateResponse]),
         )
 
     def list(
@@ -223,7 +234,7 @@ class ScriptsResource(SyncAPIResource):
         Fetch a list of uploaded workers.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -256,13 +267,13 @@ class ScriptsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
+    ) -> object:
         """Delete your worker.
 
         This call has no response body on a successful delete.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -282,7 +293,6 @@ class ScriptsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/accounts/{account_id}/workers/scripts/{script_name}",
             options=make_request_options(
@@ -291,8 +301,9 @@ class ScriptsResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"force": force}, script_delete_params.ScriptDeleteParams),
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=NoneType,
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def get(
@@ -313,7 +324,7 @@ class ScriptsResource(SyncAPIResource):
         content, not JSON encoded.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -377,6 +388,10 @@ class AsyncScriptsResource(AsyncAPIResource):
         return AsyncSecretsResource(self._client)
 
     @cached_property
+    def script_and_version_settings(self) -> AsyncScriptAndVersionSettingsResource:
+        return AsyncScriptAndVersionSettingsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncScriptsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -401,13 +416,14 @@ class AsyncScriptsResource(AsyncAPIResource):
         *,
         account_id: str,
         metadata: script_update_params.Metadata,
+        files: Dict[str, FileTypes] = {},
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScriptUpdateResponse]:
+    ) -> ScriptUpdateResponse:
         """Upload a worker module.
 
         You can find more about the multipart metadata on our
@@ -415,7 +431,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -436,14 +452,15 @@ class AsyncScriptsResource(AsyncAPIResource):
         return await self._put(
             f"/accounts/{account_id}/workers/scripts/{script_name}",
             body=await async_maybe_transform({"metadata": metadata}, script_update_params.ScriptUpdateParams),
+            files=files,
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ScriptUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[ScriptUpdateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ScriptUpdateResponse]], ResultWrapper[ScriptUpdateResponse]),
+            cast_to=cast(Type[ScriptUpdateResponse], ResultWrapper[ScriptUpdateResponse]),
         )
 
     def list(
@@ -461,7 +478,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         Fetch a list of uploaded workers.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -494,13 +511,13 @@ class AsyncScriptsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
+    ) -> object:
         """Delete your worker.
 
         This call has no response body on a successful delete.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -520,7 +537,6 @@ class AsyncScriptsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/accounts/{account_id}/workers/scripts/{script_name}",
             options=make_request_options(
@@ -529,8 +545,9 @@ class AsyncScriptsResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform({"force": force}, script_delete_params.ScriptDeleteParams),
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=NoneType,
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     async def get(
@@ -551,7 +568,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         content, not JSON encoded.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -630,6 +647,10 @@ class ScriptsResourceWithRawResponse:
     def secrets(self) -> SecretsResourceWithRawResponse:
         return SecretsResourceWithRawResponse(self._scripts.secrets)
 
+    @cached_property
+    def script_and_version_settings(self) -> ScriptAndVersionSettingsResourceWithRawResponse:
+        return ScriptAndVersionSettingsResourceWithRawResponse(self._scripts.script_and_version_settings)
+
 
 class AsyncScriptsResourceWithRawResponse:
     def __init__(self, scripts: AsyncScriptsResource) -> None:
@@ -683,6 +704,10 @@ class AsyncScriptsResourceWithRawResponse:
     @cached_property
     def secrets(self) -> AsyncSecretsResourceWithRawResponse:
         return AsyncSecretsResourceWithRawResponse(self._scripts.secrets)
+
+    @cached_property
+    def script_and_version_settings(self) -> AsyncScriptAndVersionSettingsResourceWithRawResponse:
+        return AsyncScriptAndVersionSettingsResourceWithRawResponse(self._scripts.script_and_version_settings)
 
 
 class ScriptsResourceWithStreamingResponse:
@@ -738,6 +763,10 @@ class ScriptsResourceWithStreamingResponse:
     def secrets(self) -> SecretsResourceWithStreamingResponse:
         return SecretsResourceWithStreamingResponse(self._scripts.secrets)
 
+    @cached_property
+    def script_and_version_settings(self) -> ScriptAndVersionSettingsResourceWithStreamingResponse:
+        return ScriptAndVersionSettingsResourceWithStreamingResponse(self._scripts.script_and_version_settings)
+
 
 class AsyncScriptsResourceWithStreamingResponse:
     def __init__(self, scripts: AsyncScriptsResource) -> None:
@@ -791,3 +820,7 @@ class AsyncScriptsResourceWithStreamingResponse:
     @cached_property
     def secrets(self) -> AsyncSecretsResourceWithStreamingResponse:
         return AsyncSecretsResourceWithStreamingResponse(self._scripts.secrets)
+
+    @cached_property
+    def script_and_version_settings(self) -> AsyncScriptAndVersionSettingsResourceWithStreamingResponse:
+        return AsyncScriptAndVersionSettingsResourceWithStreamingResponse(self._scripts.script_and_version_settings)

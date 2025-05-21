@@ -58,9 +58,9 @@ class RelateResource(SyncAPIResource):
         Removes an event reference
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          event_id: Event UUID
+          event_id: Event UUID.
 
           extra_headers: Send extra headers
 
@@ -121,9 +121,9 @@ class AsyncRelateResource(AsyncAPIResource):
         Removes an event reference
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          event_id: Event UUID
+          event_id: Event UUID.
 
           extra_headers: Send extra headers
 

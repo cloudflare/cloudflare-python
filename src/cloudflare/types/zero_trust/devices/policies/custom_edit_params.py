@@ -6,6 +6,7 @@ from typing import Iterable
 from typing_extensions import Required, TypedDict
 
 from ..split_tunnel_exclude_param import SplitTunnelExcludeParam
+from ..split_tunnel_include_param import SplitTunnelIncludeParam
 
 __all__ = ["CustomEditParams", "ServiceModeV2"]
 
@@ -53,14 +54,33 @@ class CustomEditParams(TypedDict, total=False):
     exclude_office_ips: bool
     """Whether to add Microsoft IPs to Split Tunnel exclusions."""
 
-    include: Iterable[SplitTunnelExcludeParam]
+    include: Iterable[SplitTunnelIncludeParam]
     """List of routes included in the WARP client's tunnel.
 
     Both 'exclude' and 'include' cannot be set in the same request.
     """
 
+    lan_allow_minutes: float
+    """The amount of time in minutes a user is allowed access to their LAN.
+
+    A value of 0 will allow LAN access until the next WARP reconnection, such as a
+    reboot or a laptop waking from sleep. Note that this field is omitted from the
+    response if null or unset.
+    """
+
+    lan_allow_subnet_size: float
+    """The size of the subnet for the local access network.
+
+    Note that this field is omitted from the response if null or unset.
+    """
+
     match: str
-    """The wirefilter expression to match devices."""
+    """The wirefilter expression to match devices.
+
+    Available values: "identity.email", "identity.groups.id",
+    "identity.groups.name", "identity.groups.email", "identity.service_token_uuid",
+    "identity.saml_attributes", "network", "os.name", "os.version".
+    """
 
     name: str
     """The name of the device settings profile."""
@@ -76,6 +96,12 @@ class CustomEditParams(TypedDict, total=False):
     """
     Determines if the operating system will register WARP's local interface IP with
     your on-premises DNS server.
+    """
+
+    sccm_vpn_boundary_support: bool
+    """
+    Determines whether the WARP client indicates to SCCM that it is inside a VPN
+    boundary. (Windows only).
     """
 
     service_mode_v2: ServiceModeV2

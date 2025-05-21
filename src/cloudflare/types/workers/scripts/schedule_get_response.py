@@ -2,11 +2,18 @@
 
 from typing import List, Optional
 
-from .schedule import Schedule
 from ...._models import BaseModel
 
-__all__ = ["ScheduleGetResponse"]
+__all__ = ["ScheduleGetResponse", "Schedule"]
+
+
+class Schedule(BaseModel):
+    cron: str
+
+    created_on: Optional[str] = None
+
+    modified_on: Optional[str] = None
 
 
 class ScheduleGetResponse(BaseModel):
-    schedules: Optional[List[Schedule]] = None
+    schedules: List[Schedule]

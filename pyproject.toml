@@ -1,6 +1,6 @@
 [project]
 name = "cloudflare"
-version = "4.1.0"
+version = "4.2.0"
 description = "The official Python library for the cloudflare API"
 dynamic = ["readme"]
 license = "Apache-2.0"
@@ -42,7 +42,7 @@ Repository = "https://github.com/cloudflare/cloudflare-python"
 managed = true
 # version pins are in requirements-dev.lock
 dev-dependencies = [
-    "pyright>=1.1.359",
+    "pyright==1.1.399",
     "mypy",
     "respx",
     "pytest",
@@ -147,11 +147,10 @@ exclude = [
 ]
 
 reportImplicitOverride = true
+reportOverlappingOverload = false
 
 reportImportCycles = false
 reportPrivateUsage = false
-reportOverlappingOverload = false
-
 
 [tool.ruff]
 line-length = 120

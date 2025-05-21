@@ -9,7 +9,7 @@ __all__ = ["SentineloneInputParam"]
 
 class SentineloneInputParam(TypedDict, total=False):
     operating_system: Required[Literal["windows", "linux", "mac"]]
-    """Operating system"""
+    """Operating system."""
 
     path: Required[str]
     """File path."""

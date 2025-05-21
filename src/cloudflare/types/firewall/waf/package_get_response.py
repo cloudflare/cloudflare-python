@@ -17,7 +17,7 @@ class FirewallAPIResponseSingle(BaseModel):
     result: Union[Optional[str], Optional[object]]
 
     success: Literal[True]
-    """Whether the API call was successful"""
+    """Defines whether the API call was successful."""
 
 
 class Result(BaseModel):

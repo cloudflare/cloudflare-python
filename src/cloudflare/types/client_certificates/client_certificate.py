@@ -16,7 +16,7 @@ class CertificateAuthority(BaseModel):
 
 class ClientCertificate(BaseModel):
     id: Optional[str] = None
-    """Identifier"""
+    """Identifier."""
 
     certificate: Optional[str] = None
     """The Client Certificate PEM"""

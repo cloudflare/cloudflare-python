@@ -37,7 +37,7 @@ class Rule(BaseModel):
     """Object specifying allowed origins, methods and headers for this CORS rule."""
 
     id: Optional[str] = None
-    """Identifier for this rule"""
+    """Identifier for this rule."""
 
     expose_headers: Optional[List[str]] = FieldInfo(alias="exposeHeaders", default=None)
     """

@@ -12,7 +12,7 @@ class DatasetCreation(BaseModel):
     dataset: Dataset
 
     encoding_version: int
-    """Encoding version to use for dataset"""
+    """Encoding version to use for dataset."""
 
     max_cells: int
 

@@ -9,4 +9,4 @@ __all__ = ["ApplicationDeleteResponse"]
 
 class ApplicationDeleteResponse(BaseModel):
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""

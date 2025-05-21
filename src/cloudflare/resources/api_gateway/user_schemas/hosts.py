@@ -59,7 +59,7 @@ class HostsResource(SyncAPIResource):
         Retrieve schema hosts in a zone
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           page: Page number of paginated results.
 
@@ -132,7 +132,7 @@ class AsyncHostsResource(AsyncAPIResource):
         Retrieve schema hosts in a zone
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           page: Page number of paginated results.
 

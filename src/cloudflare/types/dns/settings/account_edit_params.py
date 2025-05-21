@@ -9,7 +9,7 @@ __all__ = ["AccountEditParams", "ZoneDefaults", "ZoneDefaultsInternalDNS", "Zone
 
 class AccountEditParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     zone_defaults: ZoneDefaults
 

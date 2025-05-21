@@ -7,10 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -62,10 +59,11 @@ class IPsResource(SyncAPIResource):
     ) -> Optional[IPGetResponse]:
         """
         Gets the geolocation, ASN, infrastructure type of the ASN, and any security
-        threat categories of an IP address.
+        threat categories of an IP address. **Must provide ip query parameters.** For
+        example, `/intel/ip?ipv4=1.1.1.1` or `/intel/ip?ipv6=2001:db8::1`.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -132,10 +130,11 @@ class AsyncIPsResource(AsyncAPIResource):
     ) -> Optional[IPGetResponse]:
         """
         Gets the geolocation, ASN, infrastructure type of the ASN, and any security
-        threat categories of an IP address.
+        threat categories of an IP address. **Must provide ip query parameters.** For
+        example, `/intel/ip?ipv4=1.1.1.1` or `/intel/ip?ipv6=2001:db8::1`.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 

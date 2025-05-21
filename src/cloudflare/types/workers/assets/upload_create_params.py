@@ -2,24 +2,17 @@
 
 from __future__ import annotations
 
-from typing import List
-from typing_extensions import Literal, Required, Annotated, TypedDict
-
-from ...._utils import PropertyInfo
+from typing import Dict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["UploadCreateParams"]
 
 
 class UploadCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     base64: Required[Literal[True]]
     """Whether the file contents are base64-encoded. Must be `true`."""
 
-    any_file_hash: Annotated[List[str], PropertyInfo(alias="<any file hash>")]
-    """Base-64 encoded contents of the file.
-
-    The content type of the file should be included to ensure a valid "Content-Type"
-    header is included in asset responses.
-    """
+    body: Required[Dict[str, str]]

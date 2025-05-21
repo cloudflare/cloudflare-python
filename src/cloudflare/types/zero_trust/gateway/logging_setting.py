@@ -4,18 +4,45 @@ from typing import Optional
 
 from ...._models import BaseModel
 
-__all__ = ["LoggingSetting", "SettingsByRuleType"]
+__all__ = [
+    "LoggingSetting",
+    "SettingsByRuleType",
+    "SettingsByRuleTypeDNS",
+    "SettingsByRuleTypeHTTP",
+    "SettingsByRuleTypeL4",
+]
+
+
+class SettingsByRuleTypeDNS(BaseModel):
+    log_all: Optional[bool] = None
+    """Log all requests to this service."""
+
+    log_blocks: Optional[bool] = None
+    """Log only blocking requests to this service."""
+
+
+class SettingsByRuleTypeHTTP(BaseModel):
+    log_all: Optional[bool] = None
+    """Log all requests to this service."""
+
+    log_blocks: Optional[bool] = None
+    """Log only blocking requests to this service."""
+
+
+class SettingsByRuleTypeL4(BaseModel):
+    log_all: Optional[bool] = None
+    """Log all requests to this service."""
+
+    log_blocks: Optional[bool] = None
+    """Log only blocking requests to this service."""
 
 
 class SettingsByRuleType(BaseModel):
-    dns: Optional[object] = None
-    """Logging settings for DNS firewall."""
+    dns: Optional[SettingsByRuleTypeDNS] = None
 
-    http: Optional[object] = None
-    """Logging settings for HTTP/HTTPS firewall."""
+    http: Optional[SettingsByRuleTypeHTTP] = None
 
-    l4: Optional[object] = None
-    """Logging settings for Network firewall."""
+    l4: Optional[SettingsByRuleTypeL4] = None
 
 
 class LoggingSetting(BaseModel):

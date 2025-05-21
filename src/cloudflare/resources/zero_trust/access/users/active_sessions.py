@@ -60,9 +60,9 @@ class ActiveSessionsResource(SyncAPIResource):
         Get active sessions for a single user.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          user_id: UUID
+          user_id: UUID.
 
           extra_headers: Send extra headers
 
@@ -102,9 +102,9 @@ class ActiveSessionsResource(SyncAPIResource):
         Get an active session for a single user.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          user_id: UUID
+          user_id: UUID.
 
           extra_headers: Send extra headers
 
@@ -169,9 +169,9 @@ class AsyncActiveSessionsResource(AsyncAPIResource):
         Get active sessions for a single user.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          user_id: UUID
+          user_id: UUID.
 
           extra_headers: Send extra headers
 
@@ -211,9 +211,9 @@ class AsyncActiveSessionsResource(AsyncAPIResource):
         Get an active session for a single user.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          user_id: UUID
+          user_id: UUID.
 
           extra_headers: Send extra headers
 

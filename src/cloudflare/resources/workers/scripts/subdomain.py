@@ -2,13 +2,12 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -17,10 +16,12 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.workers.scripts import subdomain_create_params
 from ....types.workers.scripts.subdomain_get_response import SubdomainGetResponse
 from ....types.workers.scripts.subdomain_create_response import SubdomainCreateResponse
+from ....types.workers.scripts.subdomain_delete_response import SubdomainDeleteResponse
 
 __all__ = ["SubdomainResource", "AsyncSubdomainResource"]
 
@@ -63,7 +64,7 @@ class SubdomainResource(SyncAPIResource):
         Enable or disable the Worker on the workers.dev subdomain.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -94,9 +95,57 @@ class SubdomainResource(SyncAPIResource):
                 subdomain_create_params.SubdomainCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[SubdomainCreateResponse]._unwrapper,
             ),
-            cast_to=SubdomainCreateResponse,
+            cast_to=cast(Type[SubdomainCreateResponse], ResultWrapper[SubdomainCreateResponse]),
+        )
+
+    def delete(
+        self,
+        script_name: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SubdomainDeleteResponse:
+        """
+        Disable all workers.dev subdomains for a Worker.
+
+        Args:
+          account_id: Identifier.
+
+          script_name: Name of the script, used in URLs and route configuration.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not script_name:
+            raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
+        return self._delete(
+            f"/accounts/{account_id}/workers/scripts/{script_name}/subdomain",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[SubdomainDeleteResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[SubdomainDeleteResponse], ResultWrapper[SubdomainDeleteResponse]),
         )
 
     def get(
@@ -115,7 +164,7 @@ class SubdomainResource(SyncAPIResource):
         Get if the Worker is available on the workers.dev subdomain.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -134,9 +183,13 @@ class SubdomainResource(SyncAPIResource):
         return self._get(
             f"/accounts/{account_id}/workers/scripts/{script_name}/subdomain",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[SubdomainGetResponse]._unwrapper,
             ),
-            cast_to=SubdomainGetResponse,
+            cast_to=cast(Type[SubdomainGetResponse], ResultWrapper[SubdomainGetResponse]),
         )
 
 
@@ -178,7 +231,7 @@ class AsyncSubdomainResource(AsyncAPIResource):
         Enable or disable the Worker on the workers.dev subdomain.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -209,9 +262,57 @@ class AsyncSubdomainResource(AsyncAPIResource):
                 subdomain_create_params.SubdomainCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[SubdomainCreateResponse]._unwrapper,
             ),
-            cast_to=SubdomainCreateResponse,
+            cast_to=cast(Type[SubdomainCreateResponse], ResultWrapper[SubdomainCreateResponse]),
+        )
+
+    async def delete(
+        self,
+        script_name: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SubdomainDeleteResponse:
+        """
+        Disable all workers.dev subdomains for a Worker.
+
+        Args:
+          account_id: Identifier.
+
+          script_name: Name of the script, used in URLs and route configuration.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not script_name:
+            raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
+        return await self._delete(
+            f"/accounts/{account_id}/workers/scripts/{script_name}/subdomain",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[SubdomainDeleteResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[SubdomainDeleteResponse], ResultWrapper[SubdomainDeleteResponse]),
         )
 
     async def get(
@@ -230,7 +331,7 @@ class AsyncSubdomainResource(AsyncAPIResource):
         Get if the Worker is available on the workers.dev subdomain.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -249,9 +350,13 @@ class AsyncSubdomainResource(AsyncAPIResource):
         return await self._get(
             f"/accounts/{account_id}/workers/scripts/{script_name}/subdomain",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[SubdomainGetResponse]._unwrapper,
             ),
-            cast_to=SubdomainGetResponse,
+            cast_to=cast(Type[SubdomainGetResponse], ResultWrapper[SubdomainGetResponse]),
         )
 
 
@@ -261,6 +366,9 @@ class SubdomainResourceWithRawResponse:
 
         self.create = to_raw_response_wrapper(
             subdomain.create,
+        )
+        self.delete = to_raw_response_wrapper(
+            subdomain.delete,
         )
         self.get = to_raw_response_wrapper(
             subdomain.get,
@@ -274,6 +382,9 @@ class AsyncSubdomainResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             subdomain.create,
         )
+        self.delete = async_to_raw_response_wrapper(
+            subdomain.delete,
+        )
         self.get = async_to_raw_response_wrapper(
             subdomain.get,
         )
@@ -286,6 +397,9 @@ class SubdomainResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             subdomain.create,
         )
+        self.delete = to_streamed_response_wrapper(
+            subdomain.delete,
+        )
         self.get = to_streamed_response_wrapper(
             subdomain.get,
         )
@@ -297,6 +411,9 @@ class AsyncSubdomainResourceWithStreamingResponse:
 
         self.create = async_to_streamed_response_wrapper(
             subdomain.create,
+        )
+        self.delete = async_to_streamed_response_wrapper(
+            subdomain.delete,
         )
         self.get = async_to_streamed_response_wrapper(
             subdomain.get,

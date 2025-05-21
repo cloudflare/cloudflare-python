@@ -100,15 +100,6 @@ class TestPolicyTests:
         assert_matches_type(Optional[PolicyTestGetResponse], policy_test, path=["response"])
 
     @parametrize
-    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
-        policy_test = client.zero_trust.access.applications.policy_tests.get(
-            policy_test_id="f1a8b3c9d4e5f6789a0b1c2d3e4f5678a9b0c1d2e3f4a5b67890c1d2e3f4b5a6",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            page=0,
-        )
-        assert_matches_type(Optional[PolicyTestGetResponse], policy_test, path=["response"])
-
-    @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.policy_tests.with_raw_response.get(
             policy_test_id="f1a8b3c9d4e5f6789a0b1c2d3e4f5678a9b0c1d2e3f4a5b67890c1d2e3f4b5a6",
@@ -228,15 +219,6 @@ class TestAsyncPolicyTests:
         policy_test = await async_client.zero_trust.access.applications.policy_tests.get(
             policy_test_id="f1a8b3c9d4e5f6789a0b1c2d3e4f5678a9b0c1d2e3f4a5b67890c1d2e3f4b5a6",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(Optional[PolicyTestGetResponse], policy_test, path=["response"])
-
-    @parametrize
-    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        policy_test = await async_client.zero_trust.access.applications.policy_tests.get(
-            policy_test_id="f1a8b3c9d4e5f6789a0b1c2d3e4f5678a9b0c1d2e3f4a5b67890c1d2e3f4b5a6",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            page=0,
         )
         assert_matches_type(Optional[PolicyTestGetResponse], policy_test, path=["response"])
 

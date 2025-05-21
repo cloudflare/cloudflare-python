@@ -9,7 +9,7 @@ __all__ = ["DomainJoinedInputParam"]
 
 class DomainJoinedInputParam(TypedDict, total=False):
     operating_system: Required[Literal["windows"]]
-    """Operating System"""
+    """Operating System."""
 
     domain: str
-    """Domain"""
+    """Domain."""

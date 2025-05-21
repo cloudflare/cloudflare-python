@@ -9,7 +9,7 @@ __all__ = ["CertificatePackListParams"]
 
 class CertificatePackListParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     status: Literal["all"]
     """Include Certificate Packs of all statuses, not just active ones."""

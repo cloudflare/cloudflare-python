@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import httpx
 import pytest
@@ -34,7 +34,7 @@ class TestContent:
             dispatch_namespace="my-dispatch-namespace",
             metadata={},
         )
-        assert_matches_type(Optional[Script], content, path=["response"])
+        assert_matches_type(Script, content, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -50,7 +50,7 @@ class TestContent:
             cf_worker_body_part="CF-WORKER-BODY-PART",
             cf_worker_main_module_part="CF-WORKER-MAIN-MODULE-PART",
         )
-        assert_matches_type(Optional[Script], content, path=["response"])
+        assert_matches_type(Script, content, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -65,7 +65,7 @@ class TestContent:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         content = response.parse()
-        assert_matches_type(Optional[Script], content, path=["response"])
+        assert_matches_type(Script, content, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -80,7 +80,7 @@ class TestContent:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             content = response.parse()
-            assert_matches_type(Optional[Script], content, path=["response"])
+            assert_matches_type(Script, content, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -202,7 +202,7 @@ class TestAsyncContent:
             dispatch_namespace="my-dispatch-namespace",
             metadata={},
         )
-        assert_matches_type(Optional[Script], content, path=["response"])
+        assert_matches_type(Script, content, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -218,7 +218,7 @@ class TestAsyncContent:
             cf_worker_body_part="CF-WORKER-BODY-PART",
             cf_worker_main_module_part="CF-WORKER-MAIN-MODULE-PART",
         )
-        assert_matches_type(Optional[Script], content, path=["response"])
+        assert_matches_type(Script, content, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -235,7 +235,7 @@ class TestAsyncContent:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         content = await response.parse()
-        assert_matches_type(Optional[Script], content, path=["response"])
+        assert_matches_type(Script, content, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -252,7 +252,7 @@ class TestAsyncContent:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             content = await response.parse()
-            assert_matches_type(Optional[Script], content, path=["response"])
+            assert_matches_type(Script, content, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

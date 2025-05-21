@@ -8,10 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -150,10 +147,10 @@ class ResourcesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncV4PagePaginationArray[ResourceListResponse]:
         """
-        List resources in the Resource Catalog (Closed Beta)
+        List resources in the Resource Catalog (Closed Beta).
 
         Args:
-          order_by: one of ["id", "resource_type", "region"]
+          order_by: One of ["id", "resource_type", "region"].
 
           extra_headers: Send extra headers
 
@@ -277,10 +274,10 @@ class ResourcesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BinaryAPIResponse:
         """
-        Export resources in the Resource Catalog as a JSON file (Closed Beta)
+        Export resources in the Resource Catalog as a JSON file (Closed Beta).
 
         Args:
-          order_by: one of ["id", "resource_type", "region"]
+          order_by: One of ["id", "resource_type", "region"].
 
           extra_headers: Send extra headers
 
@@ -332,7 +329,7 @@ class ResourcesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ResourceGetResponse:
         """
-        Read an resource from the Resource Catalog (Closed Beta)
+        Read an resource from the Resource Catalog (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -373,7 +370,7 @@ class ResourcesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> str:
         """
-        Preview Rego query result against the latest resource catalog (Closed Beta)
+        Preview Rego query result against the latest resource catalog (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -506,10 +503,10 @@ class AsyncResourcesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[ResourceListResponse, AsyncV4PagePaginationArray[ResourceListResponse]]:
         """
-        List resources in the Resource Catalog (Closed Beta)
+        List resources in the Resource Catalog (Closed Beta).
 
         Args:
-          order_by: one of ["id", "resource_type", "region"]
+          order_by: One of ["id", "resource_type", "region"].
 
           extra_headers: Send extra headers
 
@@ -633,10 +630,10 @@ class AsyncResourcesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncBinaryAPIResponse:
         """
-        Export resources in the Resource Catalog as a JSON file (Closed Beta)
+        Export resources in the Resource Catalog as a JSON file (Closed Beta).
 
         Args:
-          order_by: one of ["id", "resource_type", "region"]
+          order_by: One of ["id", "resource_type", "region"].
 
           extra_headers: Send extra headers
 
@@ -688,7 +685,7 @@ class AsyncResourcesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ResourceGetResponse:
         """
-        Read an resource from the Resource Catalog (Closed Beta)
+        Read an resource from the Resource Catalog (Closed Beta).
 
         Args:
           extra_headers: Send extra headers
@@ -729,7 +726,7 @@ class AsyncResourcesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> str:
         """
-        Preview Rego query result against the latest resource catalog (Closed Beta)
+        Preview Rego query result against the latest resource catalog (Closed Beta).
 
         Args:
           extra_headers: Send extra headers

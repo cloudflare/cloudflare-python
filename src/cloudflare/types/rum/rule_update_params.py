@@ -10,7 +10,7 @@ __all__ = ["RuleUpdateParams"]
 
 class RuleUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     ruleset_id: Required[str]
     """The Web Analytics ruleset identifier."""

@@ -34,7 +34,6 @@ class TestTop:
     def test_method_dnssec_with_all_params(self, client: Cloudflare) -> None:
         top = client.radar.as112.top.dnssec(
             dnssec="SUPPORTED",
-            asn=["string"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
@@ -81,7 +80,6 @@ class TestTop:
     def test_method_edns_with_all_params(self, client: Cloudflare) -> None:
         top = client.radar.as112.top.edns(
             edns="SUPPORTED",
-            asn=["string"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
@@ -128,7 +126,6 @@ class TestTop:
     def test_method_ip_version_with_all_params(self, client: Cloudflare) -> None:
         top = client.radar.as112.top.ip_version(
             ip_version="IPv4",
-            asn=["string"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
@@ -172,7 +169,6 @@ class TestTop:
     @parametrize
     def test_method_locations_with_all_params(self, client: Cloudflare) -> None:
         top = client.radar.as112.top.locations(
-            asn=["string"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
@@ -219,7 +215,6 @@ class TestAsyncTop:
     async def test_method_dnssec_with_all_params(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.as112.top.dnssec(
             dnssec="SUPPORTED",
-            asn=["string"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
@@ -266,7 +261,6 @@ class TestAsyncTop:
     async def test_method_edns_with_all_params(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.as112.top.edns(
             edns="SUPPORTED",
-            asn=["string"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
@@ -313,7 +307,6 @@ class TestAsyncTop:
     async def test_method_ip_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.as112.top.ip_version(
             ip_version="IPv4",
-            asn=["string"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
@@ -357,7 +350,6 @@ class TestAsyncTop:
     @parametrize
     async def test_method_locations_with_all_params(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.as112.top.locations(
-            asn=["string"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],

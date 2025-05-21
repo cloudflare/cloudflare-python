@@ -26,7 +26,6 @@ class TestLANs:
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             physport=1,
-            vlan_tag=0,
         )
         assert_matches_type(SyncSinglePage[LAN], lan, path=["response"])
 
@@ -36,7 +35,6 @@ class TestLANs:
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             physport=1,
-            vlan_tag=0,
             ha_link=True,
             name="name",
             nat={"static_prefix": "192.0.2.0/24"},
@@ -63,6 +61,7 @@ class TestLANs:
                 "secondary_address": "192.0.2.0/24",
                 "virtual_address": "192.0.2.0/24",
             },
+            vlan_tag=42,
         )
         assert_matches_type(SyncSinglePage[LAN], lan, path=["response"])
 
@@ -72,7 +71,6 @@ class TestLANs:
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             physport=1,
-            vlan_tag=0,
         )
 
         assert response.is_closed is True
@@ -86,7 +84,6 @@ class TestLANs:
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             physport=1,
-            vlan_tag=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -103,7 +100,6 @@ class TestLANs:
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 physport=1,
-                vlan_tag=0,
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
@@ -111,7 +107,6 @@ class TestLANs:
                 site_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 physport=1,
-                vlan_tag=0,
             )
 
     @parametrize
@@ -155,7 +150,7 @@ class TestLANs:
                 "secondary_address": "192.0.2.0/24",
                 "virtual_address": "192.0.2.0/24",
             },
-            vlan_tag=0,
+            vlan_tag=42,
         )
         assert_matches_type(LAN, lan, path=["response"])
 
@@ -359,7 +354,7 @@ class TestLANs:
                 "secondary_address": "192.0.2.0/24",
                 "virtual_address": "192.0.2.0/24",
             },
-            vlan_tag=0,
+            vlan_tag=42,
         )
         assert_matches_type(LAN, lan, path=["response"])
 
@@ -484,7 +479,6 @@ class TestAsyncLANs:
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             physport=1,
-            vlan_tag=0,
         )
         assert_matches_type(AsyncSinglePage[LAN], lan, path=["response"])
 
@@ -494,7 +488,6 @@ class TestAsyncLANs:
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             physport=1,
-            vlan_tag=0,
             ha_link=True,
             name="name",
             nat={"static_prefix": "192.0.2.0/24"},
@@ -521,6 +514,7 @@ class TestAsyncLANs:
                 "secondary_address": "192.0.2.0/24",
                 "virtual_address": "192.0.2.0/24",
             },
+            vlan_tag=42,
         )
         assert_matches_type(AsyncSinglePage[LAN], lan, path=["response"])
 
@@ -530,7 +524,6 @@ class TestAsyncLANs:
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             physport=1,
-            vlan_tag=0,
         )
 
         assert response.is_closed is True
@@ -544,7 +537,6 @@ class TestAsyncLANs:
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             physport=1,
-            vlan_tag=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -561,7 +553,6 @@ class TestAsyncLANs:
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 physport=1,
-                vlan_tag=0,
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
@@ -569,7 +560,6 @@ class TestAsyncLANs:
                 site_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 physport=1,
-                vlan_tag=0,
             )
 
     @parametrize
@@ -613,7 +603,7 @@ class TestAsyncLANs:
                 "secondary_address": "192.0.2.0/24",
                 "virtual_address": "192.0.2.0/24",
             },
-            vlan_tag=0,
+            vlan_tag=42,
         )
         assert_matches_type(LAN, lan, path=["response"])
 
@@ -817,7 +807,7 @@ class TestAsyncLANs:
                 "secondary_address": "192.0.2.0/24",
                 "virtual_address": "192.0.2.0/24",
             },
-            vlan_tag=0,
+            vlan_tag=42,
         )
         assert_matches_type(LAN, lan, path=["response"])
 

@@ -16,10 +16,7 @@ class LocationGetParams(TypedDict, total=False):
     """End of the date range (inclusive)."""
 
     date_range: Annotated[str, PropertyInfo(alias="dateRange")]
-    """
-    Shorthand date ranges for the last X days - use when you don't need specific
-    start and end dates.
-    """
+    """Filters results by date range."""
 
     date_start: Annotated[Union[str, datetime], PropertyInfo(alias="dateStart", format="iso8601")]
     """Start of the date range (inclusive)."""

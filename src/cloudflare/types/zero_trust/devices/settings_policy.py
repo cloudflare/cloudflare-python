@@ -20,10 +20,10 @@ class ServiceModeV2(BaseModel):
 
 class TargetTest(BaseModel):
     id: Optional[str] = None
-    """The id of the DEX test targeting this policy"""
+    """The id of the DEX test targeting this policy."""
 
     name: Optional[str] = None
-    """The name of the DEX test targeting this policy"""
+    """The name of the DEX test targeting this policy."""
 
 
 class SettingsPolicy(BaseModel):
@@ -89,13 +89,17 @@ class SettingsPolicy(BaseModel):
     """
 
     match: Optional[str] = None
-    """The wirefilter expression to match devices."""
+    """The wirefilter expression to match devices.
+
+    Available values: "identity.email", "identity.groups.id",
+    "identity.groups.name", "identity.groups.email", "identity.service_token_uuid",
+    "identity.saml_attributes", "network", "os.name", "os.version".
+    """
 
     name: Optional[str] = None
     """The name of the device settings profile."""
 
     policy_id: Optional[str] = None
-    """Device ID."""
 
     precedence: Optional[float] = None
     """The precedence of the policy.
@@ -108,6 +112,12 @@ class SettingsPolicy(BaseModel):
     """
     Determines if the operating system will register WARP's local interface IP with
     your on-premises DNS server.
+    """
+
+    sccm_vpn_boundary_support: Optional[bool] = None
+    """
+    Determines whether the WARP client indicates to SCCM that it is inside a VPN
+    boundary. (Windows only).
     """
 
     service_mode_v2: Optional[ServiceModeV2] = None

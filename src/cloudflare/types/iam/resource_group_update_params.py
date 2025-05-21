@@ -12,11 +12,11 @@ class ResourceGroupUpdateParams(TypedDict, total=False):
     account_id: Required[str]
     """Account identifier tag."""
 
-    scope: Required[Scope]
-    """A scope is a combination of scope objects which provides additional context."""
+    name: str
+    """Name of the resource group"""
 
-    meta: object
-    """Attributes associated to the resource group."""
+    scope: Scope
+    """A scope is a combination of scope objects which provides additional context."""
 
 
 class ScopeObject(TypedDict, total=False):

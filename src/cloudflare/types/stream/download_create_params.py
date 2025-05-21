@@ -9,6 +9,6 @@ __all__ = ["DownloadCreateParams"]
 
 class DownloadCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     body: Required[object]

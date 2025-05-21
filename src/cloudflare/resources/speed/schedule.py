@@ -8,10 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -90,7 +87,7 @@ class ScheduleResource(SyncAPIResource):
         Creates a scheduled test for a page.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           url: A URL.
 
@@ -161,7 +158,7 @@ class ScheduleResource(SyncAPIResource):
         Deletes a scheduled test for a page.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           url: A URL.
 
@@ -232,7 +229,7 @@ class ScheduleResource(SyncAPIResource):
         Retrieves the test schedule for a page in a specific region.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           url: A URL.
 
@@ -324,7 +321,7 @@ class AsyncScheduleResource(AsyncAPIResource):
         Creates a scheduled test for a page.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           url: A URL.
 
@@ -395,7 +392,7 @@ class AsyncScheduleResource(AsyncAPIResource):
         Deletes a scheduled test for a page.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           url: A URL.
 
@@ -466,7 +463,7 @@ class AsyncScheduleResource(AsyncAPIResource):
         Retrieves the test schedule for a page in a specific region.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           url: A URL.
 

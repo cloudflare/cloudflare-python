@@ -15,7 +15,7 @@ class ActionParameters(BaseModel):
     phases: Optional[List[Phase]] = None
     """A list of phases to skip the execution of.
 
-    This option is incompatible with the ruleset and rulesets options.
+    This option is incompatible with the rulesets option.
     """
 
     products: Optional[List[Literal["bic", "hot", "rateLimit", "securityLevel", "uaBlock", "waf", "zoneLockdown"]]] = (
@@ -32,7 +32,7 @@ class ActionParameters(BaseModel):
     ruleset: Optional[Literal["current"]] = None
     """A ruleset to skip the execution of.
 
-    This option is incompatible with the rulesets, rules and phases options.
+    This option is incompatible with the rulesets option.
     """
 
     rulesets: Optional[List[str]] = None
@@ -57,7 +57,7 @@ class Ratelimit(BaseModel):
     incremented.
     """
 
-    period: Literal[10, 60, 600, 3600]
+    period: int
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: Optional[str] = None

@@ -10,7 +10,7 @@ __all__ = ["UserPolicyCheckListResponse", "AppState", "UserIdentity"]
 
 class AppState(BaseModel):
     app_uid: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     aud: Optional[str] = None
 
@@ -43,7 +43,7 @@ class UserIdentity(BaseModel):
     name: Optional[str] = None
 
     user_uuid: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     version: Optional[int] = None
 

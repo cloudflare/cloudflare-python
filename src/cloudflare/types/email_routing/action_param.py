@@ -12,4 +12,4 @@ class ActionParam(TypedDict, total=False):
     type: Required[Literal["drop", "forward", "worker"]]
     """Type of supported action."""
 
-    value: Required[List[str]]
+    value: List[str]

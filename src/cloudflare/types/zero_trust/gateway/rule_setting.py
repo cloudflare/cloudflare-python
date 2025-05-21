@@ -13,6 +13,7 @@ __all__ = [
     "RuleSetting",
     "AuditSSH",
     "BISOAdminControls",
+    "BlockPage",
     "CheckSession",
     "DNSResolvers",
     "Egress",
@@ -20,6 +21,7 @@ __all__ = [
     "NotificationSettings",
     "PayloadLog",
     "Quarantine",
+    "Redirect",
     "ResolveDNSInternally",
     "UntrustedCERT",
 ]
@@ -90,6 +92,14 @@ class BISOAdminControls(BaseModel):
     """Indicates which version of the browser isolation controls should apply."""
 
 
+class BlockPage(BaseModel):
+    target_uri: str
+    """URI to which the user will be redirected"""
+
+    include_context: Optional[bool] = None
+    """If true, context information will be passed as query parameters"""
+
+
 class CheckSession(BaseModel):
     duration: Optional[str] = None
     """Configure how fresh the session needs to be to be considered valid."""
@@ -131,6 +141,9 @@ class NotificationSettings(BaseModel):
     enabled: Optional[bool] = None
     """Set notification on"""
 
+    include_context: Optional[bool] = None
+    """If true, context information will be passed as query parameters"""
+
     msg: Optional[str] = None
     """Customize the message shown in the notification."""
 
@@ -151,6 +164,20 @@ class Quarantine(BaseModel):
         List[Literal["exe", "pdf", "doc", "docm", "docx", "rtf", "ppt", "pptx", "xls", "xlsm", "xlsx", "zip", "rar"]]
     ] = None
     """Types of files to sandbox."""
+
+
+class Redirect(BaseModel):
+    target_uri: str
+    """URI to which the user will be redirected"""
+
+    include_context: Optional[bool] = None
+    """If true, context information will be passed as query parameters"""
+
+    preserve_path_and_query: Optional[bool] = None
+    """
+    If true, the path and query parameters from the original request will be
+    appended to target_uri
+    """
 
 
 class ResolveDNSInternally(BaseModel):
@@ -188,6 +215,12 @@ class RuleSetting(BaseModel):
 
     biso_admin_controls: Optional[BISOAdminControls] = None
     """Configure how browser isolation behaves."""
+
+    block_page: Optional[BlockPage] = None
+    """Custom block page settings.
+
+    If missing/null, blocking will use the the account settings.
+    """
 
     block_page_enabled: Optional[bool] = None
     """Enable the custom block page."""
@@ -261,6 +294,9 @@ class RuleSetting(BaseModel):
 
     quarantine: Optional[Quarantine] = None
     """Settings that apply to quarantine rules"""
+
+    redirect: Optional[Redirect] = None
+    """Settings that apply to redirect rules"""
 
     resolve_dns_internally: Optional[ResolveDNSInternally] = None
     """

@@ -1,6 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-
 from ..._models import BaseModel
 
 __all__ = ["AppDeleteResponse"]
@@ -8,4 +7,4 @@ __all__ = ["AppDeleteResponse"]
 
 class AppDeleteResponse(BaseModel):
     id: str
-    """Identifier"""
+    """Identifier."""

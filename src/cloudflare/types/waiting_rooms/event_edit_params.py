@@ -3,14 +3,14 @@
 from __future__ import annotations
 
 from typing import Optional
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["EventEditParams"]
 
 
 class EventEditParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     waiting_room_id: Required[str]
 
@@ -93,4 +93,16 @@ class EventEditParams(TypedDict, total=False):
     If set, the event will override the waiting room's `total_active_users` property
     while it is active. If null, the event will inherit it. This can only be set if
     the event's `new_users_per_minute` property is also set.
+    """
+
+    turnstile_action: Optional[Literal["log", "infinite_queue"]]
+    """
+    If set, the event will override the waiting room's `turnstile_action` property
+    while it is active. If null, the event will inherit it.
+    """
+
+    turnstile_mode: Optional[Literal["off", "invisible", "visible_non_interactive", "visible_managed"]]
+    """
+    If set, the event will override the waiting room's `turnstile_mode` property
+    while it is active. If null, the event will inherit it.
     """

@@ -8,12 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import (
-    is_given,
-    maybe_transform,
-    strip_not_given,
-    async_maybe_transform,
-)
+from ....._utils import is_given, maybe_transform, strip_not_given, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -75,21 +70,21 @@ class CustomResource(SyncAPIResource):
         Register a new custom domain for an existing R2 bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          domain: Name of the custom domain to be added
+          domain: Name of the custom domain to be added.
 
           enabled: Whether to enable public bucket access at the custom domain. If undefined, the
               domain will be enabled.
 
-          zone_id: Zone ID of the custom domain
+          zone_id: Zone ID of the custom domain.
 
           min_tls: Minimum TLS Version the custom domain will accept for incoming connections. If
               not set, defaults to 1.0.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -148,18 +143,18 @@ class CustomResource(SyncAPIResource):
         Edit the configuration for a custom domain on an existing R2 bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          domain: Name of the custom domain
+          domain: Name of the custom domain.
 
-          enabled: Whether to enable public bucket access at the specified custom domain
+          enabled: Whether to enable public bucket access at the specified custom domain.
 
           min_tls: Minimum TLS Version the custom domain will accept for incoming connections. If
               not set, defaults to previous value.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -215,11 +210,11 @@ class CustomResource(SyncAPIResource):
         Gets a list of all custom domains registered with an existing R2 bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -264,16 +259,16 @@ class CustomResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CustomDeleteResponse:
         """
-        Remove custom domain registration from an existing R2 bucket
+        Remove custom domain registration from an existing R2 bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          domain: Name of the custom domain
+          domain: Name of the custom domain.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -323,13 +318,13 @@ class CustomResource(SyncAPIResource):
         Get the configuration for a custom domain on an existing R2 bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          domain: Name of the custom domain
+          domain: Name of the custom domain.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -403,21 +398,21 @@ class AsyncCustomResource(AsyncAPIResource):
         Register a new custom domain for an existing R2 bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          domain: Name of the custom domain to be added
+          domain: Name of the custom domain to be added.
 
           enabled: Whether to enable public bucket access at the custom domain. If undefined, the
               domain will be enabled.
 
-          zone_id: Zone ID of the custom domain
+          zone_id: Zone ID of the custom domain.
 
           min_tls: Minimum TLS Version the custom domain will accept for incoming connections. If
               not set, defaults to 1.0.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -476,18 +471,18 @@ class AsyncCustomResource(AsyncAPIResource):
         Edit the configuration for a custom domain on an existing R2 bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          domain: Name of the custom domain
+          domain: Name of the custom domain.
 
-          enabled: Whether to enable public bucket access at the specified custom domain
+          enabled: Whether to enable public bucket access at the specified custom domain.
 
           min_tls: Minimum TLS Version the custom domain will accept for incoming connections. If
               not set, defaults to previous value.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -543,11 +538,11 @@ class AsyncCustomResource(AsyncAPIResource):
         Gets a list of all custom domains registered with an existing R2 bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -592,16 +587,16 @@ class AsyncCustomResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CustomDeleteResponse:
         """
-        Remove custom domain registration from an existing R2 bucket
+        Remove custom domain registration from an existing R2 bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          domain: Name of the custom domain
+          domain: Name of the custom domain.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -651,13 +646,13 @@ class AsyncCustomResource(AsyncAPIResource):
         Get the configuration for a custom domain on an existing R2 bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          domain: Name of the custom domain
+          domain: Name of the custom domain.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 

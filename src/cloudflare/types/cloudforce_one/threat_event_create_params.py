@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import Dict, List, Union, Optional
 from datetime import datetime
 from typing_extensions import Required, Annotated, TypedDict
 
@@ -13,7 +13,7 @@ __all__ = ["ThreatEventCreateParams", "Raw"]
 
 class ThreatEventCreateParams(TypedDict, total=False):
     path_account_id: Required[Annotated[float, PropertyInfo(alias="account_id")]]
-    """Account ID"""
+    """Account ID."""
 
     attacker: Required[str]
 
@@ -45,7 +45,7 @@ class ThreatEventCreateParams(TypedDict, total=False):
 
 
 class Raw(TypedDict, total=False):
-    data: object
+    data: Required[Optional[Dict[str, object]]]
 
     source: str
 

@@ -8,19 +8,17 @@ from typing_extensions import Literal, overload
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    required_args,
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import required_args, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ...types.d1 import (
     database_raw_params,
+    database_edit_params,
     database_list_params,
     database_query_params,
     database_create_params,
     database_export_params,
     database_import_params,
+    database_update_params,
 )
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -105,6 +103,54 @@ class DatabaseResource(SyncAPIResource):
                 },
                 database_create_params.DatabaseCreateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[D1]._unwrapper,
+            ),
+            cast_to=cast(Type[D1], ResultWrapper[D1]),
+        )
+
+    def update(
+        self,
+        database_id: str,
+        *,
+        account_id: str,
+        read_replication: database_update_params.ReadReplication,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> D1:
+        """
+        Updates the specified D1 database.
+
+        Args:
+          account_id: Account identifier tag.
+
+          database_id: D1 database identifier (UUID).
+
+          read_replication: Configuration for D1 read replication.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not database_id:
+            raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
+        return self._put(
+            f"/accounts/{account_id}/d1/database/{database_id}",
+            body=maybe_transform({"read_replication": read_replication}, database_update_params.DatabaseUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -213,6 +259,54 @@ class DatabaseResource(SyncAPIResource):
                 post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
             cast_to=cast(Type[object], ResultWrapper[object]),
+        )
+
+    def edit(
+        self,
+        database_id: str,
+        *,
+        account_id: str,
+        read_replication: database_edit_params.ReadReplication | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> D1:
+        """
+        Updates partially the specified D1 database.
+
+        Args:
+          account_id: Account identifier tag.
+
+          database_id: D1 database identifier (UUID).
+
+          read_replication: Configuration for D1 read replication.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not database_id:
+            raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
+        return self._patch(
+            f"/accounts/{account_id}/d1/database/{database_id}",
+            body=maybe_transform({"read_replication": read_replication}, database_edit_params.DatabaseEditParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[D1]._unwrapper,
+            ),
+            cast_to=cast(Type[D1], ResultWrapper[D1]),
         )
 
     def export(
@@ -676,6 +770,56 @@ class AsyncDatabaseResource(AsyncAPIResource):
             cast_to=cast(Type[D1], ResultWrapper[D1]),
         )
 
+    async def update(
+        self,
+        database_id: str,
+        *,
+        account_id: str,
+        read_replication: database_update_params.ReadReplication,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> D1:
+        """
+        Updates the specified D1 database.
+
+        Args:
+          account_id: Account identifier tag.
+
+          database_id: D1 database identifier (UUID).
+
+          read_replication: Configuration for D1 read replication.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not database_id:
+            raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
+        return await self._put(
+            f"/accounts/{account_id}/d1/database/{database_id}",
+            body=await async_maybe_transform(
+                {"read_replication": read_replication}, database_update_params.DatabaseUpdateParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[D1]._unwrapper,
+            ),
+            cast_to=cast(Type[D1], ResultWrapper[D1]),
+        )
+
     def list(
         self,
         *,
@@ -774,6 +918,56 @@ class AsyncDatabaseResource(AsyncAPIResource):
                 post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
             cast_to=cast(Type[object], ResultWrapper[object]),
+        )
+
+    async def edit(
+        self,
+        database_id: str,
+        *,
+        account_id: str,
+        read_replication: database_edit_params.ReadReplication | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> D1:
+        """
+        Updates partially the specified D1 database.
+
+        Args:
+          account_id: Account identifier tag.
+
+          database_id: D1 database identifier (UUID).
+
+          read_replication: Configuration for D1 read replication.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not database_id:
+            raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
+        return await self._patch(
+            f"/accounts/{account_id}/d1/database/{database_id}",
+            body=await async_maybe_transform(
+                {"read_replication": read_replication}, database_edit_params.DatabaseEditParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[D1]._unwrapper,
+            ),
+            cast_to=cast(Type[D1], ResultWrapper[D1]),
         )
 
     async def export(
@@ -1171,11 +1365,17 @@ class DatabaseResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             database.create,
         )
+        self.update = to_raw_response_wrapper(
+            database.update,
+        )
         self.list = to_raw_response_wrapper(
             database.list,
         )
         self.delete = to_raw_response_wrapper(
             database.delete,
+        )
+        self.edit = to_raw_response_wrapper(
+            database.edit,
         )
         self.export = to_raw_response_wrapper(
             database.export,
@@ -1201,11 +1401,17 @@ class AsyncDatabaseResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             database.create,
         )
+        self.update = async_to_raw_response_wrapper(
+            database.update,
+        )
         self.list = async_to_raw_response_wrapper(
             database.list,
         )
         self.delete = async_to_raw_response_wrapper(
             database.delete,
+        )
+        self.edit = async_to_raw_response_wrapper(
+            database.edit,
         )
         self.export = async_to_raw_response_wrapper(
             database.export,
@@ -1231,11 +1437,17 @@ class DatabaseResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             database.create,
         )
+        self.update = to_streamed_response_wrapper(
+            database.update,
+        )
         self.list = to_streamed_response_wrapper(
             database.list,
         )
         self.delete = to_streamed_response_wrapper(
             database.delete,
+        )
+        self.edit = to_streamed_response_wrapper(
+            database.edit,
         )
         self.export = to_streamed_response_wrapper(
             database.export,
@@ -1261,11 +1473,17 @@ class AsyncDatabaseResourceWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             database.create,
         )
+        self.update = async_to_streamed_response_wrapper(
+            database.update,
+        )
         self.list = async_to_streamed_response_wrapper(
             database.list,
         )
         self.delete = async_to_streamed_response_wrapper(
             database.delete,
+        )
+        self.edit = async_to_streamed_response_wrapper(
+            database.edit,
         )
         self.export = async_to_streamed_response_wrapper(
             database.export,

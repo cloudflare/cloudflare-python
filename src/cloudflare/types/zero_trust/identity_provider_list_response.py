@@ -74,7 +74,7 @@ class AccessCentrify(BaseModel):
     """
 
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     scim_config: Optional[IdentityProviderSCIMConfig] = None
     """
@@ -102,7 +102,7 @@ class AccessFacebook(BaseModel):
     """
 
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     scim_config: Optional[IdentityProviderSCIMConfig] = None
     """
@@ -130,7 +130,7 @@ class AccessGitHub(BaseModel):
     """
 
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     scim_config: Optional[IdentityProviderSCIMConfig] = None
     """
@@ -172,7 +172,7 @@ class AccessGoogle(BaseModel):
     """
 
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     scim_config: Optional[IdentityProviderSCIMConfig] = None
     """
@@ -217,7 +217,7 @@ class AccessGoogleApps(BaseModel):
     """
 
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     scim_config: Optional[IdentityProviderSCIMConfig] = None
     """
@@ -245,7 +245,7 @@ class AccessLinkedin(BaseModel):
     """
 
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     scim_config: Optional[IdentityProviderSCIMConfig] = None
     """
@@ -302,7 +302,7 @@ class AccessOIDC(BaseModel):
     """
 
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     scim_config: Optional[IdentityProviderSCIMConfig] = None
     """
@@ -350,7 +350,7 @@ class AccessOkta(BaseModel):
     """
 
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     scim_config: Optional[IdentityProviderSCIMConfig] = None
     """
@@ -395,7 +395,7 @@ class AccessOnelogin(BaseModel):
     """
 
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     scim_config: Optional[IdentityProviderSCIMConfig] = None
     """
@@ -440,7 +440,7 @@ class AccessPingone(BaseModel):
     """
 
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     scim_config: Optional[IdentityProviderSCIMConfig] = None
     """
@@ -508,7 +508,7 @@ class AccessSAML(BaseModel):
     """
 
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     scim_config: Optional[IdentityProviderSCIMConfig] = None
     """
@@ -536,7 +536,7 @@ class AccessYandex(BaseModel):
     """
 
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     scim_config: Optional[IdentityProviderSCIMConfig] = None
     """

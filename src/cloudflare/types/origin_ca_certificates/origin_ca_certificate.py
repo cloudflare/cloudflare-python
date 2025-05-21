@@ -29,7 +29,7 @@ class OriginCACertificate(BaseModel):
     """The number of days for which the certificate should be valid."""
 
     id: Optional[str] = None
-    """Identifier"""
+    """Identifier."""
 
     certificate: Optional[str] = None
     """The Origin CA certificate. Will be newline-encoded."""

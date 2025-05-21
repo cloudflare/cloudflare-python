@@ -9,7 +9,7 @@ __all__ = ["ClientCertificateListParams"]
 
 class ClientCertificateListParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     limit: int
     """Limit to the number of records returned."""

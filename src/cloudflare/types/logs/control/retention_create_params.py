@@ -9,7 +9,7 @@ __all__ = ["RetentionCreateParams"]
 
 class RetentionCreateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     flag: bool
     """The log retention flag for Logpull API."""

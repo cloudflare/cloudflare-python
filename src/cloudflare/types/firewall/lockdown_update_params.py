@@ -13,7 +13,7 @@ __all__ = ["LockdownUpdateParams"]
 
 class LockdownUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Defines an identifier."""
 
     configurations: Required[ConfigurationParam]
     """

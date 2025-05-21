@@ -13,7 +13,7 @@ __all__ = ["DomainGetParams"]
 
 class DomainGetParams(TypedDict, total=False):
     date: Annotated[List[Union[str, datetime.date]], PropertyInfo(format="iso8601")]
-    """Array of dates to filter the results."""
+    """Filters results by the specified array of dates."""
 
     format: Literal["JSON", "CSV"]
     """Format in which results will be returned."""
@@ -28,4 +28,4 @@ class DomainGetParams(TypedDict, total=False):
     """Array of names used to label the series in the response."""
 
     ranking_type: Annotated[Literal["POPULAR", "TRENDING_RISE", "TRENDING_STEADY"], PropertyInfo(alias="rankingType")]
-    """Ranking type."""
+    """The ranking type."""

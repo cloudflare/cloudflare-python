@@ -11,16 +11,16 @@ __all__ = ["BucketCreateParams"]
 
 class BucketCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Account ID"""
+    """Account ID."""
 
     name: Required[str]
-    """Name of the bucket"""
+    """Name of the bucket."""
 
     location_hint: Annotated[Literal["apac", "eeur", "enam", "weur", "wnam", "oc"], PropertyInfo(alias="locationHint")]
-    """Location of the bucket"""
+    """Location of the bucket."""
 
     storage_class: Annotated[Literal["Standard", "InfrequentAccess"], PropertyInfo(alias="storageClass")]
     """Storage class for newly uploaded objects, unless specified otherwise."""
 
     jurisdiction: Annotated[Literal["default", "eu", "fedramp"], PropertyInfo(alias="cf-r2-jurisdiction")]
-    """Creates the bucket in the provided jurisdiction"""
+    """Jurisdiction where objects in this bucket are guaranteed to be stored."""

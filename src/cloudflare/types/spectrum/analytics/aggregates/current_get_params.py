@@ -11,7 +11,7 @@ __all__ = ["CurrentGetParams"]
 
 class CurrentGetParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     app_id: Annotated[str, PropertyInfo(alias="appID")]
     """Comma-delimited list of Spectrum Application Id(s).

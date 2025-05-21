@@ -12,7 +12,7 @@ __all__ = ["CustomCertificateEditParams"]
 
 class CustomCertificateEditParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     bundle_method: BundleMethod
     """

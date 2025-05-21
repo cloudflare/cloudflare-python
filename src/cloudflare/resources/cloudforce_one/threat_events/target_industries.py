@@ -54,7 +54,7 @@ class TargetIndustriesResource(SyncAPIResource):
         Lists all target industries
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
           extra_headers: Send extra headers
 
@@ -108,7 +108,7 @@ class AsyncTargetIndustriesResource(AsyncAPIResource):
         Lists all target industries
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
           extra_headers: Send extra headers
 

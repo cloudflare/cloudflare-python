@@ -16,10 +16,13 @@ __all__ = [
 
 class BotFightModeConfiguration(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     ai_bots_protection: Literal["block", "disabled"]
     """Enable rule to block AI Scrapers and Crawlers."""
+
+    crawler_protection: Literal["enabled", "disabled"]
+    """Enable rule to punish AI Scrapers and Crawlers via a link maze."""
 
     enable_js: bool
     """Use lightweight, invisible JavaScript detections to improve Bot Management.
@@ -33,10 +36,13 @@ class BotFightModeConfiguration(TypedDict, total=False):
 
 class SuperBotFightModeDefinitelyConfiguration(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     ai_bots_protection: Literal["block", "disabled"]
     """Enable rule to block AI Scrapers and Crawlers."""
+
+    crawler_protection: Literal["enabled", "disabled"]
+    """Enable rule to punish AI Scrapers and Crawlers via a link maze."""
 
     enable_js: bool
     """Use lightweight, invisible JavaScript detections to improve Bot Management.
@@ -63,10 +69,13 @@ class SuperBotFightModeDefinitelyConfiguration(TypedDict, total=False):
 
 class SuperBotFightModeLikelyConfiguration(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     ai_bots_protection: Literal["block", "disabled"]
     """Enable rule to block AI Scrapers and Crawlers."""
+
+    crawler_protection: Literal["enabled", "disabled"]
+    """Enable rule to punish AI Scrapers and Crawlers via a link maze."""
 
     enable_js: bool
     """Use lightweight, invisible JavaScript detections to improve Bot Management.
@@ -96,7 +105,7 @@ class SuperBotFightModeLikelyConfiguration(TypedDict, total=False):
 
 class SubscriptionConfiguration(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     ai_bots_protection: Literal["block", "disabled"]
     """Enable rule to block AI Scrapers and Crawlers."""
@@ -107,6 +116,9 @@ class SubscriptionConfiguration(TypedDict, total=False):
     they are released.
     [Learn more.](https://developers.cloudflare.com/bots/reference/machine-learning-models#model-versions-and-release-notes)
     """
+
+    crawler_protection: Literal["enabled", "disabled"]
+    """Enable rule to punish AI Scrapers and Crawlers via a link maze."""
 
     enable_js: bool
     """Use lightweight, invisible JavaScript detections to improve Bot Management.

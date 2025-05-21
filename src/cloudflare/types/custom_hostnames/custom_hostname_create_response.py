@@ -191,7 +191,7 @@ class OwnershipVerificationHTTP(BaseModel):
 
 class CustomHostnameCreateResponse(BaseModel):
     id: str
-    """Identifier"""
+    """Identifier."""
 
     hostname: str
     """The custom hostname that will point to your hostname via CNAME."""

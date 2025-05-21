@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
@@ -28,7 +28,7 @@ class TestRoutes:
     def test_method_create(self, client: Cloudflare) -> None:
         route = client.workers.routes.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            pattern="example.net/*",
+            pattern="example.com/*",
         )
         assert_matches_type(RouteCreateResponse, route, path=["response"])
 
@@ -36,8 +36,8 @@ class TestRoutes:
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         route = client.workers.routes.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            pattern="example.net/*",
-            script="this-is_my_script-01",
+            pattern="example.com/*",
+            script="my-workers-script",
         )
         assert_matches_type(RouteCreateResponse, route, path=["response"])
 
@@ -45,7 +45,7 @@ class TestRoutes:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.workers.routes.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            pattern="example.net/*",
+            pattern="example.com/*",
         )
 
         assert response.is_closed is True
@@ -57,7 +57,7 @@ class TestRoutes:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.workers.routes.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            pattern="example.net/*",
+            pattern="example.com/*",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -72,7 +72,7 @@ class TestRoutes:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.workers.routes.with_raw_response.create(
                 zone_id="",
-                pattern="example.net/*",
+                pattern="example.com/*",
             )
 
     @parametrize
@@ -80,45 +80,45 @@ class TestRoutes:
         route = client.workers.routes.update(
             route_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            pattern="example.net/*",
+            pattern="example.com/*",
         )
-        assert_matches_type(Optional[RouteUpdateResponse], route, path=["response"])
+        assert_matches_type(RouteUpdateResponse, route, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         route = client.workers.routes.update(
             route_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            pattern="example.net/*",
-            script="this-is_my_script-01",
+            pattern="example.com/*",
+            script="my-workers-script",
         )
-        assert_matches_type(Optional[RouteUpdateResponse], route, path=["response"])
+        assert_matches_type(RouteUpdateResponse, route, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.workers.routes.with_raw_response.update(
             route_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            pattern="example.net/*",
+            pattern="example.com/*",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         route = response.parse()
-        assert_matches_type(Optional[RouteUpdateResponse], route, path=["response"])
+        assert_matches_type(RouteUpdateResponse, route, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.workers.routes.with_streaming_response.update(
             route_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            pattern="example.net/*",
+            pattern="example.com/*",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             route = response.parse()
-            assert_matches_type(Optional[RouteUpdateResponse], route, path=["response"])
+            assert_matches_type(RouteUpdateResponse, route, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -128,14 +128,14 @@ class TestRoutes:
             client.workers.routes.with_raw_response.update(
                 route_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
-                pattern="example.net/*",
+                pattern="example.com/*",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `route_id` but received ''"):
             client.workers.routes.with_raw_response.update(
                 route_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                pattern="example.net/*",
+                pattern="example.com/*",
             )
 
     @parametrize
@@ -230,7 +230,7 @@ class TestRoutes:
             route_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RouteGetResponse], route, path=["response"])
+        assert_matches_type(RouteGetResponse, route, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -242,7 +242,7 @@ class TestRoutes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         route = response.parse()
-        assert_matches_type(Optional[RouteGetResponse], route, path=["response"])
+        assert_matches_type(RouteGetResponse, route, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -254,7 +254,7 @@ class TestRoutes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             route = response.parse()
-            assert_matches_type(Optional[RouteGetResponse], route, path=["response"])
+            assert_matches_type(RouteGetResponse, route, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -280,7 +280,7 @@ class TestAsyncRoutes:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         route = await async_client.workers.routes.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            pattern="example.net/*",
+            pattern="example.com/*",
         )
         assert_matches_type(RouteCreateResponse, route, path=["response"])
 
@@ -288,8 +288,8 @@ class TestAsyncRoutes:
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         route = await async_client.workers.routes.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            pattern="example.net/*",
-            script="this-is_my_script-01",
+            pattern="example.com/*",
+            script="my-workers-script",
         )
         assert_matches_type(RouteCreateResponse, route, path=["response"])
 
@@ -297,7 +297,7 @@ class TestAsyncRoutes:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.routes.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            pattern="example.net/*",
+            pattern="example.com/*",
         )
 
         assert response.is_closed is True
@@ -309,7 +309,7 @@ class TestAsyncRoutes:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.routes.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            pattern="example.net/*",
+            pattern="example.com/*",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -324,7 +324,7 @@ class TestAsyncRoutes:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.workers.routes.with_raw_response.create(
                 zone_id="",
-                pattern="example.net/*",
+                pattern="example.com/*",
             )
 
     @parametrize
@@ -332,45 +332,45 @@ class TestAsyncRoutes:
         route = await async_client.workers.routes.update(
             route_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            pattern="example.net/*",
+            pattern="example.com/*",
         )
-        assert_matches_type(Optional[RouteUpdateResponse], route, path=["response"])
+        assert_matches_type(RouteUpdateResponse, route, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         route = await async_client.workers.routes.update(
             route_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            pattern="example.net/*",
-            script="this-is_my_script-01",
+            pattern="example.com/*",
+            script="my-workers-script",
         )
-        assert_matches_type(Optional[RouteUpdateResponse], route, path=["response"])
+        assert_matches_type(RouteUpdateResponse, route, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.routes.with_raw_response.update(
             route_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            pattern="example.net/*",
+            pattern="example.com/*",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         route = await response.parse()
-        assert_matches_type(Optional[RouteUpdateResponse], route, path=["response"])
+        assert_matches_type(RouteUpdateResponse, route, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.routes.with_streaming_response.update(
             route_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            pattern="example.net/*",
+            pattern="example.com/*",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             route = await response.parse()
-            assert_matches_type(Optional[RouteUpdateResponse], route, path=["response"])
+            assert_matches_type(RouteUpdateResponse, route, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -380,14 +380,14 @@ class TestAsyncRoutes:
             await async_client.workers.routes.with_raw_response.update(
                 route_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
-                pattern="example.net/*",
+                pattern="example.com/*",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `route_id` but received ''"):
             await async_client.workers.routes.with_raw_response.update(
                 route_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                pattern="example.net/*",
+                pattern="example.com/*",
             )
 
     @parametrize
@@ -482,7 +482,7 @@ class TestAsyncRoutes:
             route_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RouteGetResponse], route, path=["response"])
+        assert_matches_type(RouteGetResponse, route, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -494,7 +494,7 @@ class TestAsyncRoutes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         route = await response.parse()
-        assert_matches_type(Optional[RouteGetResponse], route, path=["response"])
+        assert_matches_type(RouteGetResponse, route, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -506,7 +506,7 @@ class TestAsyncRoutes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             route = await response.parse()
-            assert_matches_type(Optional[RouteGetResponse], route, path=["response"])
+            assert_matches_type(RouteGetResponse, route, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

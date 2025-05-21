@@ -9,23 +9,23 @@ __all__ = ["OSVersionInputParam"]
 
 class OSVersionInputParam(TypedDict, total=False):
     operating_system: Required[Literal["windows"]]
-    """Operating System"""
+    """Operating System."""
 
     operator: Required[Literal["<", "<=", ">", ">=", "=="]]
-    """operator"""
+    """Operator."""
 
     version: Required[str]
-    """Version of OS"""
+    """Version of OS."""
 
     os_distro_name: str
-    """Operating System Distribution Name (linux only)"""
+    """Operating System Distribution Name (linux only)."""
 
     os_distro_revision: str
-    """Version of OS Distribution (linux only)"""
+    """Version of OS Distribution (linux only)."""
 
     os_version_extra: str
     """Additional version data.
 
     For Mac or iOS, the Product Version Extra. For Linux, the kernel release
-    version. (Mac, iOS, and Linux only)
+    version. (Mac, iOS, and Linux only).
     """

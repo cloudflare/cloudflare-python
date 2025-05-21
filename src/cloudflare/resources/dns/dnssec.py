@@ -8,10 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -64,7 +61,7 @@ class DNSSECResource(SyncAPIResource):
         Delete DNSSEC.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -94,6 +91,7 @@ class DNSSECResource(SyncAPIResource):
         zone_id: str,
         dnssec_multi_signer: bool | NotGiven = NOT_GIVEN,
         dnssec_presigned: bool | NotGiven = NOT_GIVEN,
+        dnssec_use_nsec3: bool | NotGiven = NOT_GIVEN,
         status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -106,7 +104,7 @@ class DNSSECResource(SyncAPIResource):
         Enable or disable DNSSEC.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           dnssec_multi_signer: If true, multi-signer DNSSEC is enabled on the zone, allowing multiple providers
               to serve a DNSSEC-signed zone at the same time. This is required for DNSKEY
@@ -123,6 +121,16 @@ class DNSSECResource(SyncAPIResource):
 
               Note that this feature has some limitations. See
               [Cloudflare as Secondary](https://developers.cloudflare.com/dns/zone-setups/zone-transfers/cloudflare-as-secondary/setup/#dnssec)
+              for details.
+
+          dnssec_use_nsec3: If true, enables the use of NSEC3 together with DNSSEC on the zone. Combined
+              with setting dnssec_presigned to true, this enables the use of NSEC3 records
+              when transferring in from an external provider. If dnssec_presigned is instead
+              set to false (default), NSEC3 records will be generated and signed at request
+              time.
+
+              See
+              [DNSSEC with NSEC3](https://developers.cloudflare.com/dns/dnssec/enable-nsec3/)
               for details.
 
           status: Status of DNSSEC, based on user-desired state and presence of necessary records.
@@ -143,6 +151,7 @@ class DNSSECResource(SyncAPIResource):
                 {
                     "dnssec_multi_signer": dnssec_multi_signer,
                     "dnssec_presigned": dnssec_presigned,
+                    "dnssec_use_nsec3": dnssec_use_nsec3,
                     "status": status,
                 },
                 dnssec_edit_params.DNSSECEditParams,
@@ -172,7 +181,7 @@ class DNSSECResource(SyncAPIResource):
         Details about DNSSEC status and configuration.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -232,7 +241,7 @@ class AsyncDNSSECResource(AsyncAPIResource):
         Delete DNSSEC.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -262,6 +271,7 @@ class AsyncDNSSECResource(AsyncAPIResource):
         zone_id: str,
         dnssec_multi_signer: bool | NotGiven = NOT_GIVEN,
         dnssec_presigned: bool | NotGiven = NOT_GIVEN,
+        dnssec_use_nsec3: bool | NotGiven = NOT_GIVEN,
         status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -274,7 +284,7 @@ class AsyncDNSSECResource(AsyncAPIResource):
         Enable or disable DNSSEC.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           dnssec_multi_signer: If true, multi-signer DNSSEC is enabled on the zone, allowing multiple providers
               to serve a DNSSEC-signed zone at the same time. This is required for DNSKEY
@@ -291,6 +301,16 @@ class AsyncDNSSECResource(AsyncAPIResource):
 
               Note that this feature has some limitations. See
               [Cloudflare as Secondary](https://developers.cloudflare.com/dns/zone-setups/zone-transfers/cloudflare-as-secondary/setup/#dnssec)
+              for details.
+
+          dnssec_use_nsec3: If true, enables the use of NSEC3 together with DNSSEC on the zone. Combined
+              with setting dnssec_presigned to true, this enables the use of NSEC3 records
+              when transferring in from an external provider. If dnssec_presigned is instead
+              set to false (default), NSEC3 records will be generated and signed at request
+              time.
+
+              See
+              [DNSSEC with NSEC3](https://developers.cloudflare.com/dns/dnssec/enable-nsec3/)
               for details.
 
           status: Status of DNSSEC, based on user-desired state and presence of necessary records.
@@ -311,6 +331,7 @@ class AsyncDNSSECResource(AsyncAPIResource):
                 {
                     "dnssec_multi_signer": dnssec_multi_signer,
                     "dnssec_presigned": dnssec_presigned,
+                    "dnssec_use_nsec3": dnssec_use_nsec3,
                     "status": status,
                 },
                 dnssec_edit_params.DNSSECEditParams,
@@ -340,7 +361,7 @@ class AsyncDNSSECResource(AsyncAPIResource):
         Details about DNSSEC status and configuration.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
@@ -34,6 +34,7 @@ class RuleCreateParams(TypedDict, total=False):
             "egress",
             "resolve",
             "quarantine",
+            "redirect",
         ]
     ]
     """
@@ -53,7 +54,7 @@ class RuleCreateParams(TypedDict, total=False):
     enabled: bool
     """True if the rule is enabled."""
 
-    expiration: Expiration
+    expiration: Optional[Expiration]
     """The expiration time stamp and default duration of a DNS policy.
 
     Takes precedence over the policy's `schedule` configuration, if any.
@@ -74,13 +75,15 @@ class RuleCreateParams(TypedDict, total=False):
     """Precedence sets the order of your rules.
 
     Lower values indicate higher precedence. At each processing phase, applicable
-    rules are evaluated in ascending order of this value.
+    rules are evaluated in ascending order of this value. Refer to
+    [Order of enforcement](http://developers.cloudflare.com/learning-paths/secure-internet-traffic/understand-policies/order-of-enforcement/#manage-precedence-with-terraform)
+    docs on how to manage precedence via Terraform.
     """
 
     rule_settings: RuleSettingParam
     """Additional settings that modify the rule's action."""
 
-    schedule: ScheduleParam
+    schedule: Optional[ScheduleParam]
     """The schedule for activating DNS policies.
 
     This does not apply to HTTP or network policies.
@@ -108,6 +111,3 @@ class Expiration(TypedDict, total=False):
 
     Must be set in order to use the `reset_expiration` endpoint on this rule.
     """
-
-    expired: bool
-    """Whether the policy has expired."""

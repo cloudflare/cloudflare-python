@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Any, Iterable, cast
 
 import httpx
 
@@ -77,7 +77,7 @@ class IncludesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=SplitTunnelInclude,
+            model=cast(Any, SplitTunnelInclude),  # Union types cannot be passed in as arguments in the type system
             method="put",
         )
 
@@ -112,7 +112,7 @@ class IncludesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=SplitTunnelInclude,
+            model=cast(Any, SplitTunnelInclude),  # Union types cannot be passed in as arguments in the type system
         )
 
 
@@ -169,7 +169,7 @@ class AsyncIncludesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=SplitTunnelInclude,
+            model=cast(Any, SplitTunnelInclude),  # Union types cannot be passed in as arguments in the type system
             method="put",
         )
 
@@ -204,7 +204,7 @@ class AsyncIncludesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=SplitTunnelInclude,
+            model=cast(Any, SplitTunnelInclude),  # Union types cannot be passed in as arguments in the type system
         )
 
 

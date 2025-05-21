@@ -30,7 +30,7 @@ class RuleConditions(BaseModel):
     """
     Transitions will only apply to objects/uploads in the bucket that start with the
     given prefix, an empty prefix can be provided to scope rule to all
-    objects/uploads
+    objects/uploads.
     """
 
 
@@ -44,7 +44,7 @@ class RuleAbortMultipartUploadsTransition(BaseModel):
     condition: Optional[RuleAbortMultipartUploadsTransitionCondition] = None
     """
     Condition for lifecycle transitions to apply after an object reaches an age in
-    seconds
+    seconds.
     """
 
 
@@ -70,7 +70,7 @@ class RuleDeleteObjectsTransition(BaseModel):
     condition: Optional[RuleDeleteObjectsTransitionCondition] = None
     """
     Condition for lifecycle transitions to apply after an object reaches an age in
-    seconds
+    seconds.
     """
 
 
@@ -96,7 +96,7 @@ class RuleStorageClassTransition(BaseModel):
     condition: RuleStorageClassTransitionCondition
     """
     Condition for lifecycle transitions to apply after an object reaches an age in
-    seconds
+    seconds.
     """
 
     storage_class: Literal["InfrequentAccess"] = FieldInfo(alias="storageClass")
@@ -104,28 +104,28 @@ class RuleStorageClassTransition(BaseModel):
 
 class Rule(BaseModel):
     id: str
-    """Unique identifier for this rule"""
+    """Unique identifier for this rule."""
 
     conditions: RuleConditions
-    """Conditions that apply to all transitions of this rule"""
+    """Conditions that apply to all transitions of this rule."""
 
     enabled: bool
-    """Whether or not this rule is in effect"""
+    """Whether or not this rule is in effect."""
 
     abort_multipart_uploads_transition: Optional[RuleAbortMultipartUploadsTransition] = FieldInfo(
         alias="abortMultipartUploadsTransition", default=None
     )
-    """Transition to abort ongoing multipart uploads"""
+    """Transition to abort ongoing multipart uploads."""
 
     delete_objects_transition: Optional[RuleDeleteObjectsTransition] = FieldInfo(
         alias="deleteObjectsTransition", default=None
     )
-    """Transition to delete objects"""
+    """Transition to delete objects."""
 
     storage_class_transitions: Optional[List[RuleStorageClassTransition]] = FieldInfo(
         alias="storageClassTransitions", default=None
     )
-    """Transitions to change the storage class of objects"""
+    """Transitions to change the storage class of objects."""
 
 
 class LifecycleGetResponse(BaseModel):
