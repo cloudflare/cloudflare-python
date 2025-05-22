@@ -1068,7 +1068,7 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -1084,7 +1084,7 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -1116,7 +1116,7 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -1136,7 +1136,7 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -1159,7 +1159,7 @@ class TestApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -1172,7 +1172,7 @@ class TestApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -1188,7 +1188,7 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -1205,7 +1205,7 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -1319,7 +1319,7 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -1340,7 +1340,7 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -1364,7 +1364,7 @@ class TestApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -1378,7 +1378,7 @@ class TestApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -2536,7 +2536,7 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -2553,7 +2553,7 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -2586,7 +2586,7 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -2607,7 +2607,7 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -2631,7 +2631,7 @@ class TestApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -2645,7 +2645,7 @@ class TestApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -2659,7 +2659,7 @@ class TestApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -2676,7 +2676,7 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -2694,7 +2694,7 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -2809,7 +2809,7 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -2831,7 +2831,7 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -2856,7 +2856,7 @@ class TestApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -2871,7 +2871,7 @@ class TestApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -2886,7 +2886,7 @@ class TestApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -4202,7 +4202,7 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -4218,7 +4218,7 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -4250,7 +4250,7 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -4270,7 +4270,7 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -4293,7 +4293,7 @@ class TestAsyncApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -4306,7 +4306,7 @@ class TestAsyncApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -4322,7 +4322,7 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -4339,7 +4339,7 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -4453,7 +4453,7 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -4474,7 +4474,7 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -4498,7 +4498,7 @@ class TestAsyncApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -4512,7 +4512,7 @@ class TestAsyncApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -5670,7 +5670,7 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -5687,7 +5687,7 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -5720,7 +5720,7 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -5741,7 +5741,7 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -5765,7 +5765,7 @@ class TestAsyncApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -5779,7 +5779,7 @@ class TestAsyncApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -5793,7 +5793,7 @@ class TestAsyncApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -5810,7 +5810,7 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -5828,7 +5828,7 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -5943,7 +5943,7 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -5965,7 +5965,7 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -5990,7 +5990,7 @@ class TestAsyncApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -6005,7 +6005,7 @@ class TestAsyncApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -6020,7 +6020,7 @@ class TestAsyncApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
