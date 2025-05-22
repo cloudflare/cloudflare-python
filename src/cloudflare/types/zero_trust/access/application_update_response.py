@@ -2300,7 +2300,7 @@ class InfrastructureApplicationTargetCriterion(BaseModel):
     A port cannot be assigned to multiple protocols.
     """
 
-    protocol: Literal["ssh"]
+    protocol: Literal["SSH"]
     """The communication protocol your application secures."""
 
     target_attributes: Dict[str, List[str]]
@@ -2485,7 +2485,7 @@ class BrowserRdpApplicationTargetCriterion(BaseModel):
     A port cannot be assigned to multiple protocols.
     """
 
-    protocol: Literal["ssh"]
+    protocol: Literal["SSH"]
     """The communication protocol your application secures."""
 
     target_attributes: Dict[str, List[str]]
