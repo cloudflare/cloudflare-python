@@ -49,10 +49,11 @@ class BISOAdminControls(TypedDict, total=False):
     dk: bool
     """Set to false to enable keyboard usage. Only applies when `version == "v1"`."""
 
-    download: Literal["enabled", "disabled"]
+    download: Literal["enabled", "disabled", "remote_only"]
     """Configure whether downloading enabled or not.
 
-    When absent, downloading is enabled. Only applies when `version == "v2"`.
+    When set with "remote_only", downloads are only available for viewing. Only
+    applies when `version == "v2"`.
     """
 
     dp: bool
