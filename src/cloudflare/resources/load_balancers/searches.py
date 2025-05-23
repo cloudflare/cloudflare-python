@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing_extensions import Literal
+
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
@@ -48,7 +50,8 @@ class SearchesResource(SyncAPIResource):
         account_id: str,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
-        search_params: search_list_params.SearchParams | NotGiven = NOT_GIVEN,
+        query: str | NotGiven = NOT_GIVEN,
+        references: Literal["", "*", "referral", "referrer"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -61,6 +64,11 @@ class SearchesResource(SyncAPIResource):
 
         Args:
           account_id: Identifier
+
+          query: Search query term.
+
+          references: The type of references to include. "\\**" to include both referral and referrer
+              references. "" to not include any reference information.
 
           extra_headers: Send extra headers
 
@@ -84,7 +92,8 @@ class SearchesResource(SyncAPIResource):
                     {
                         "page": page,
                         "per_page": per_page,
-                        "search_params": search_params,
+                        "query": query,
+                        "references": references,
                     },
                     search_list_params.SearchListParams,
                 ),
@@ -119,7 +128,8 @@ class AsyncSearchesResource(AsyncAPIResource):
         account_id: str,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
-        search_params: search_list_params.SearchParams | NotGiven = NOT_GIVEN,
+        query: str | NotGiven = NOT_GIVEN,
+        references: Literal["", "*", "referral", "referrer"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -132,6 +142,11 @@ class AsyncSearchesResource(AsyncAPIResource):
 
         Args:
           account_id: Identifier
+
+          query: Search query term.
+
+          references: The type of references to include. "\\**" to include both referral and referrer
+              references. "" to not include any reference information.
 
           extra_headers: Send extra headers
 
@@ -155,7 +170,8 @@ class AsyncSearchesResource(AsyncAPIResource):
                     {
                         "page": page,
                         "per_page": per_page,
-                        "search_params": search_params,
+                        "query": query,
+                        "references": references,
                     },
                     search_list_params.SearchListParams,
                 ),
