@@ -28,3 +28,19 @@ class LockdownCreateParams(TypedDict, total=False):
     You can use wildcards. Each entered URL will be escaped before use, which means
     you can only use simple wildcard patterns.
     """
+
+    description: str
+    """An informative summary of the rate limit.
+
+    This value is sanitized and any tags will be removed.
+    """
+
+    paused: bool
+    """When true, indicates that the rule is currently paused."""
+
+    priority: float
+    """The priority of the rule to control the processing order.
+
+    A lower number indicates higher priority. If not provided, any rules with a
+    configured priority will be processed before rules without a priority.
+    """

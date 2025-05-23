@@ -34,6 +34,24 @@ class TestLockdowns:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        lockdown = client.firewall.lockdowns.create(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            configurations=[
+                {
+                    "target": "ip",
+                    "value": "198.51.100.4",
+                }
+            ],
+            urls=["shop.example.com/*"],
+            description="Prevent multiple login failures to mitigate brute force attacks",
+            paused=False,
+            priority=5,
+        )
+        assert_matches_type(Lockdown, lockdown, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.firewall.lockdowns.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -297,6 +315,24 @@ class TestAsyncLockdowns:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             configurations=[{}],
             urls=["shop.example.com/*"],
+        )
+        assert_matches_type(Lockdown, lockdown, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        lockdown = await async_client.firewall.lockdowns.create(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            configurations=[
+                {
+                    "target": "ip",
+                    "value": "198.51.100.4",
+                }
+            ],
+            urls=["shop.example.com/*"],
+            description="Prevent multiple login failures to mitigate brute force attacks",
+            paused=False,
+            priority=5,
         )
         assert_matches_type(Lockdown, lockdown, path=["response"])
 
