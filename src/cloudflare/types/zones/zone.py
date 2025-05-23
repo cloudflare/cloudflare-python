@@ -15,27 +15,27 @@ class Account(BaseModel):
     """Identifier"""
 
     name: Optional[str] = None
-    """The name of the account"""
+    """The name of the account."""
 
 
 class Meta(BaseModel):
     cdn_only: Optional[bool] = None
-    """The zone is only configured for CDN"""
+    """The zone is only configured for CDN."""
 
     custom_certificate_quota: Optional[int] = None
-    """Number of Custom Certificates the zone can have"""
+    """Number of Custom Certificates the zone can have."""
 
     dns_only: Optional[bool] = None
-    """The zone is only configured for DNS"""
+    """The zone is only configured for DNS."""
 
     foundation_dns: Optional[bool] = None
-    """The zone is setup with Foundation DNS"""
+    """The zone is setup with Foundation DNS."""
 
     page_rule_quota: Optional[int] = None
-    """Number of Page Rules a zone can have"""
+    """Number of Page Rules a zone can have."""
 
     phishing_detected: Optional[bool] = None
-    """The zone has been flagged for phishing"""
+    """The zone has been flagged for phishing."""
 
     step: Optional[int] = None
 
@@ -45,10 +45,10 @@ class Owner(BaseModel):
     """Identifier"""
 
     name: Optional[str] = None
-    """Name of the owner"""
+    """Name of the owner."""
 
     type: Optional[str] = None
-    """The type of owner"""
+    """The type of owner."""
 
 
 class Plan(BaseModel):
@@ -77,7 +77,7 @@ class Plan(BaseModel):
     """The legacy name of the plan."""
 
     name: Optional[str] = None
-    """Name of the owner"""
+    """Name of the owner."""
 
     price: Optional[float] = None
     """How much the customer is paying."""
@@ -101,13 +101,13 @@ class Zone(BaseModel):
     """Identifier"""
 
     account: Account
-    """The account the zone belongs to"""
+    """The account the zone belongs to."""
 
     activated_on: Optional[datetime] = None
-    """The last time proof of ownership was detected and the zone was made active"""
+    """The last time proof of ownership was detected and the zone was made active."""
 
     created_on: datetime
-    """When the zone was created"""
+    """When the zone was created."""
 
     development_mode: float
     """
@@ -117,28 +117,28 @@ class Zone(BaseModel):
     """
 
     meta: Meta
-    """Metadata about the zone"""
+    """Metadata about the zone."""
 
     modified_on: datetime
-    """When the zone was last modified"""
+    """When the zone was last modified."""
 
     name: str
-    """The domain name"""
+    """The domain name."""
 
     name_servers: List[str]
-    """The name servers Cloudflare assigns to a zone"""
+    """The name servers Cloudflare assigns to a zone."""
 
     original_dnshost: Optional[str] = None
-    """DNS host at the time of switching to Cloudflare"""
+    """DNS host at the time of switching to Cloudflare."""
 
     original_name_servers: Optional[List[str]] = None
-    """Original name servers before moving to Cloudflare"""
+    """Original name servers before moving to Cloudflare."""
 
     original_registrar: Optional[str] = None
-    """Registrar for the domain at the time of switching to Cloudflare"""
+    """Registrar for the domain at the time of switching to Cloudflare."""
 
     owner: Owner
-    """The owner of the zone"""
+    """The owner of the zone."""
 
     plan: Plan
     """A Zones subscription information."""

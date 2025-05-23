@@ -25,6 +25,7 @@ from .....types.zero_trust.access.infrastructure import (
     target_list_params,
     target_create_params,
     target_update_params,
+    target_bulk_delete_params,
     target_bulk_update_params,
 )
 from .....types.zero_trust.access.infrastructure.target_get_response import TargetGetResponse
@@ -347,6 +348,7 @@ class TargetsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        target_ids: List[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -360,6 +362,8 @@ class TargetsResource(SyncAPIResource):
         Args:
           account_id: Account identifier
 
+          target_ids: List of target IDs to bulk delete
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -371,8 +375,9 @@ class TargetsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return self._delete(
-            f"/accounts/{account_id}/infrastructure/targets/batch",
+        return self._post(
+            f"/accounts/{account_id}/infrastructure/targets/batch_delete",
+            body=maybe_transform({"target_ids": target_ids}, target_bulk_delete_params.TargetBulkDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -774,6 +779,7 @@ class AsyncTargetsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        target_ids: List[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -787,6 +793,8 @@ class AsyncTargetsResource(AsyncAPIResource):
         Args:
           account_id: Account identifier
 
+          target_ids: List of target IDs to bulk delete
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -798,8 +806,11 @@ class AsyncTargetsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return await self._delete(
-            f"/accounts/{account_id}/infrastructure/targets/batch",
+        return await self._post(
+            f"/accounts/{account_id}/infrastructure/targets/batch_delete",
+            body=await async_maybe_transform(
+                {"target_ids": target_ids}, target_bulk_delete_params.TargetBulkDeleteParams
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

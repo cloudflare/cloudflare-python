@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Iterable, Optional, cast
 
 import httpx
 
@@ -19,64 +19,70 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.zero_trust.networks import (
-    virtual_network_edit_params,
-    virtual_network_list_params,
-    virtual_network_create_params,
-)
-from ....types.zero_trust.networks.virtual_network import VirtualNetwork
+from ....types.zero_trust.devices import dex_test_create_params, dex_test_update_params
+from ....types.zero_trust.devices.dex_test_get_response import DEXTestGetResponse
+from ....types.zero_trust.devices.dex_test_list_response import DEXTestListResponse
+from ....types.zero_trust.devices.dex_test_create_response import DEXTestCreateResponse
+from ....types.zero_trust.devices.dex_test_delete_response import DEXTestDeleteResponse
+from ....types.zero_trust.devices.dex_test_update_response import DEXTestUpdateResponse
 
-__all__ = ["VirtualNetworksResource", "AsyncVirtualNetworksResource"]
+__all__ = ["DEXTestsResource", "AsyncDEXTestsResource"]
 
 
-class VirtualNetworksResource(SyncAPIResource):
+class DEXTestsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> VirtualNetworksResourceWithRawResponse:
+    def with_raw_response(self) -> DEXTestsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return VirtualNetworksResourceWithRawResponse(self)
+        return DEXTestsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> VirtualNetworksResourceWithStreamingResponse:
+    def with_streaming_response(self) -> DEXTestsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return VirtualNetworksResourceWithStreamingResponse(self)
+        return DEXTestsResourceWithStreamingResponse(self)
 
     def create(
         self,
         *,
         account_id: str,
+        data: dex_test_create_params.Data,
+        enabled: bool,
+        interval: str,
         name: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        is_default: bool | NotGiven = NOT_GIVEN,
-        is_default_network: bool | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        target_policies: Iterable[dex_test_create_params.TargetPolicy] | NotGiven = NOT_GIVEN,
+        targeted: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VirtualNetwork:
+    ) -> Optional[DEXTestCreateResponse]:
         """
-        Adds a new virtual network to an account.
+        Create a DEX test.
 
         Args:
-          account_id: Cloudflare account ID
+          data: The configuration object which contains the details for the WARP client to
+              conduct the test.
 
-          name: A user-friendly name for the virtual network.
+          enabled: Determines whether or not the test is active.
 
-          comment: Optional remark describing the virtual network.
+          interval: How often the test will run.
 
-          is_default: If `true`, this virtual network is the default for the account.
+          name: The name of the DEX test. Must be unique.
 
-          is_default_network: If `true`, this virtual network is the default for the account.
+          description: Additional details about the test.
+
+          target_policies: DEX rules targeted by this test
 
           extra_headers: Send extra headers
 
@@ -89,57 +95,118 @@ class VirtualNetworksResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/teamnet/virtual_networks",
+            f"/accounts/{account_id}/dex/devices/dex_tests",
             body=maybe_transform(
                 {
+                    "data": data,
+                    "enabled": enabled,
+                    "interval": interval,
                     "name": name,
-                    "comment": comment,
-                    "is_default": is_default,
-                    "is_default_network": is_default_network,
+                    "description": description,
+                    "target_policies": target_policies,
+                    "targeted": targeted,
                 },
-                virtual_network_create_params.VirtualNetworkCreateParams,
+                dex_test_create_params.DEXTestCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[VirtualNetwork]._unwrapper,
+                post_parser=ResultWrapper[Optional[DEXTestCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[VirtualNetwork], ResultWrapper[VirtualNetwork]),
+            cast_to=cast(Type[Optional[DEXTestCreateResponse]], ResultWrapper[DEXTestCreateResponse]),
         )
 
-    def list(
+    def update(
         self,
+        dex_test_id: str,
         *,
         account_id: str,
-        id: str | NotGiven = NOT_GIVEN,
-        is_default: bool | NotGiven = NOT_GIVEN,
-        is_deleted: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        data: dex_test_update_params.Data,
+        enabled: bool,
+        interval: str,
+        name: str,
+        description: str | NotGiven = NOT_GIVEN,
+        target_policies: Iterable[dex_test_update_params.TargetPolicy] | NotGiven = NOT_GIVEN,
+        targeted: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[VirtualNetwork]:
+    ) -> Optional[DEXTestUpdateResponse]:
         """
-        Lists and filters virtual networks in an account.
+        Update a DEX test.
 
         Args:
-          account_id: Cloudflare account ID
+          dex_test_id: API Resource UUID tag.
 
-          id: UUID of the virtual network.
+          data: The configuration object which contains the details for the WARP client to
+              conduct the test.
 
-          is_default: If `true`, only include the default virtual network. If `false`, exclude the
-              default virtual network. If empty, all virtual networks will be included.
+          enabled: Determines whether or not the test is active.
 
-          is_deleted: If `true`, only include deleted virtual networks. If `false`, exclude deleted
-              virtual networks. If empty, all virtual networks will be included.
+          interval: How often the test will run.
 
-          name: A user-friendly name for the virtual network.
+          name: The name of the DEX test. Must be unique.
 
+          description: Additional details about the test.
+
+          target_policies: DEX rules targeted by this test
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not dex_test_id:
+            raise ValueError(f"Expected a non-empty value for `dex_test_id` but received {dex_test_id!r}")
+        return self._put(
+            f"/accounts/{account_id}/dex/devices/dex_tests/{dex_test_id}",
+            body=maybe_transform(
+                {
+                    "data": data,
+                    "enabled": enabled,
+                    "interval": interval,
+                    "name": name,
+                    "description": description,
+                    "target_policies": target_policies,
+                    "targeted": targeted,
+                },
+                dex_test_update_params.DEXTestUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[DEXTestUpdateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[DEXTestUpdateResponse]], ResultWrapper[DEXTestUpdateResponse]),
+        )
+
+    def list(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncSinglePage[DEXTestListResponse]:
+        """
+        Fetch all DEX tests.
+
+        Args:
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -151,29 +218,17 @@ class VirtualNetworksResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/teamnet/virtual_networks",
-            page=SyncSinglePage[VirtualNetwork],
+            f"/accounts/{account_id}/dex/devices/dex_tests",
+            page=SyncSinglePage[DEXTestListResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "id": id,
-                        "is_default": is_default,
-                        "is_deleted": is_deleted,
-                        "name": name,
-                    },
-                    virtual_network_list_params.VirtualNetworkListParams,
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=VirtualNetwork,
+            model=DEXTestListResponse,
         )
 
     def delete(
         self,
-        virtual_network_id: str,
+        dex_test_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -182,14 +237,14 @@ class VirtualNetworksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VirtualNetwork:
-        """
-        Deletes an existing virtual network.
+    ) -> Optional[DEXTestDeleteResponse]:
+        """Delete a Device DEX test.
+
+        Returns the remaining device dex tests for the
+        account.
 
         Args:
-          account_id: Cloudflare account ID
-
-          virtual_network_id: UUID of the virtual network.
+          dex_test_id: API Resource UUID tag.
 
           extra_headers: Send extra headers
 
@@ -201,84 +256,23 @@ class VirtualNetworksResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not virtual_network_id:
-            raise ValueError(f"Expected a non-empty value for `virtual_network_id` but received {virtual_network_id!r}")
+        if not dex_test_id:
+            raise ValueError(f"Expected a non-empty value for `dex_test_id` but received {dex_test_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
+            f"/accounts/{account_id}/dex/devices/dex_tests/{dex_test_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[VirtualNetwork]._unwrapper,
+                post_parser=ResultWrapper[Optional[DEXTestDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[VirtualNetwork], ResultWrapper[VirtualNetwork]),
-        )
-
-    def edit(
-        self,
-        virtual_network_id: str,
-        *,
-        account_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        is_default_network: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VirtualNetwork:
-        """
-        Updates an existing virtual network.
-
-        Args:
-          account_id: Cloudflare account ID
-
-          virtual_network_id: UUID of the virtual network.
-
-          comment: Optional remark describing the virtual network.
-
-          is_default_network: If `true`, this virtual network is the default for the account.
-
-          name: A user-friendly name for the virtual network.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not virtual_network_id:
-            raise ValueError(f"Expected a non-empty value for `virtual_network_id` but received {virtual_network_id!r}")
-        return self._patch(
-            f"/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
-            body=maybe_transform(
-                {
-                    "comment": comment,
-                    "is_default_network": is_default_network,
-                    "name": name,
-                },
-                virtual_network_edit_params.VirtualNetworkEditParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[VirtualNetwork]._unwrapper,
-            ),
-            cast_to=cast(Type[VirtualNetwork], ResultWrapper[VirtualNetwork]),
+            cast_to=cast(Type[Optional[DEXTestDeleteResponse]], ResultWrapper[DEXTestDeleteResponse]),
         )
 
     def get(
         self,
-        virtual_network_id: str,
+        dex_test_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -287,14 +281,12 @@ class VirtualNetworksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VirtualNetwork:
+    ) -> Optional[DEXTestGetResponse]:
         """
-        Get a virtual network.
+        Fetch a single DEX test.
 
         Args:
-          account_id: Cloudflare account ID
-
-          virtual_network_id: UUID of the virtual network.
+          dex_test_id: The unique identifier for the test.
 
           extra_headers: Send extra headers
 
@@ -306,69 +298,75 @@ class VirtualNetworksResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not virtual_network_id:
-            raise ValueError(f"Expected a non-empty value for `virtual_network_id` but received {virtual_network_id!r}")
+        if not dex_test_id:
+            raise ValueError(f"Expected a non-empty value for `dex_test_id` but received {dex_test_id!r}")
         return self._get(
-            f"/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
+            f"/accounts/{account_id}/dex/devices/dex_tests/{dex_test_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[VirtualNetwork]._unwrapper,
+                post_parser=ResultWrapper[Optional[DEXTestGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[VirtualNetwork], ResultWrapper[VirtualNetwork]),
+            cast_to=cast(Type[Optional[DEXTestGetResponse]], ResultWrapper[DEXTestGetResponse]),
         )
 
 
-class AsyncVirtualNetworksResource(AsyncAPIResource):
+class AsyncDEXTestsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncVirtualNetworksResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncDEXTestsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncVirtualNetworksResourceWithRawResponse(self)
+        return AsyncDEXTestsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncVirtualNetworksResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncDEXTestsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return AsyncVirtualNetworksResourceWithStreamingResponse(self)
+        return AsyncDEXTestsResourceWithStreamingResponse(self)
 
     async def create(
         self,
         *,
         account_id: str,
+        data: dex_test_create_params.Data,
+        enabled: bool,
+        interval: str,
         name: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        is_default: bool | NotGiven = NOT_GIVEN,
-        is_default_network: bool | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        target_policies: Iterable[dex_test_create_params.TargetPolicy] | NotGiven = NOT_GIVEN,
+        targeted: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VirtualNetwork:
+    ) -> Optional[DEXTestCreateResponse]:
         """
-        Adds a new virtual network to an account.
+        Create a DEX test.
 
         Args:
-          account_id: Cloudflare account ID
+          data: The configuration object which contains the details for the WARP client to
+              conduct the test.
 
-          name: A user-friendly name for the virtual network.
+          enabled: Determines whether or not the test is active.
 
-          comment: Optional remark describing the virtual network.
+          interval: How often the test will run.
 
-          is_default: If `true`, this virtual network is the default for the account.
+          name: The name of the DEX test. Must be unique.
 
-          is_default_network: If `true`, this virtual network is the default for the account.
+          description: Additional details about the test.
+
+          target_policies: DEX rules targeted by this test
 
           extra_headers: Send extra headers
 
@@ -381,57 +379,118 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/teamnet/virtual_networks",
+            f"/accounts/{account_id}/dex/devices/dex_tests",
             body=await async_maybe_transform(
                 {
+                    "data": data,
+                    "enabled": enabled,
+                    "interval": interval,
                     "name": name,
-                    "comment": comment,
-                    "is_default": is_default,
-                    "is_default_network": is_default_network,
+                    "description": description,
+                    "target_policies": target_policies,
+                    "targeted": targeted,
                 },
-                virtual_network_create_params.VirtualNetworkCreateParams,
+                dex_test_create_params.DEXTestCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[VirtualNetwork]._unwrapper,
+                post_parser=ResultWrapper[Optional[DEXTestCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[VirtualNetwork], ResultWrapper[VirtualNetwork]),
+            cast_to=cast(Type[Optional[DEXTestCreateResponse]], ResultWrapper[DEXTestCreateResponse]),
         )
 
-    def list(
+    async def update(
         self,
+        dex_test_id: str,
         *,
         account_id: str,
-        id: str | NotGiven = NOT_GIVEN,
-        is_default: bool | NotGiven = NOT_GIVEN,
-        is_deleted: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        data: dex_test_update_params.Data,
+        enabled: bool,
+        interval: str,
+        name: str,
+        description: str | NotGiven = NOT_GIVEN,
+        target_policies: Iterable[dex_test_update_params.TargetPolicy] | NotGiven = NOT_GIVEN,
+        targeted: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[VirtualNetwork, AsyncSinglePage[VirtualNetwork]]:
+    ) -> Optional[DEXTestUpdateResponse]:
         """
-        Lists and filters virtual networks in an account.
+        Update a DEX test.
 
         Args:
-          account_id: Cloudflare account ID
+          dex_test_id: API Resource UUID tag.
 
-          id: UUID of the virtual network.
+          data: The configuration object which contains the details for the WARP client to
+              conduct the test.
 
-          is_default: If `true`, only include the default virtual network. If `false`, exclude the
-              default virtual network. If empty, all virtual networks will be included.
+          enabled: Determines whether or not the test is active.
 
-          is_deleted: If `true`, only include deleted virtual networks. If `false`, exclude deleted
-              virtual networks. If empty, all virtual networks will be included.
+          interval: How often the test will run.
 
-          name: A user-friendly name for the virtual network.
+          name: The name of the DEX test. Must be unique.
 
+          description: Additional details about the test.
+
+          target_policies: DEX rules targeted by this test
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not dex_test_id:
+            raise ValueError(f"Expected a non-empty value for `dex_test_id` but received {dex_test_id!r}")
+        return await self._put(
+            f"/accounts/{account_id}/dex/devices/dex_tests/{dex_test_id}",
+            body=await async_maybe_transform(
+                {
+                    "data": data,
+                    "enabled": enabled,
+                    "interval": interval,
+                    "name": name,
+                    "description": description,
+                    "target_policies": target_policies,
+                    "targeted": targeted,
+                },
+                dex_test_update_params.DEXTestUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[DEXTestUpdateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[DEXTestUpdateResponse]], ResultWrapper[DEXTestUpdateResponse]),
+        )
+
+    def list(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[DEXTestListResponse, AsyncSinglePage[DEXTestListResponse]]:
+        """
+        Fetch all DEX tests.
+
+        Args:
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -443,29 +502,17 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/teamnet/virtual_networks",
-            page=AsyncSinglePage[VirtualNetwork],
+            f"/accounts/{account_id}/dex/devices/dex_tests",
+            page=AsyncSinglePage[DEXTestListResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "id": id,
-                        "is_default": is_default,
-                        "is_deleted": is_deleted,
-                        "name": name,
-                    },
-                    virtual_network_list_params.VirtualNetworkListParams,
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=VirtualNetwork,
+            model=DEXTestListResponse,
         )
 
     async def delete(
         self,
-        virtual_network_id: str,
+        dex_test_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -474,14 +521,14 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VirtualNetwork:
-        """
-        Deletes an existing virtual network.
+    ) -> Optional[DEXTestDeleteResponse]:
+        """Delete a Device DEX test.
+
+        Returns the remaining device dex tests for the
+        account.
 
         Args:
-          account_id: Cloudflare account ID
-
-          virtual_network_id: UUID of the virtual network.
+          dex_test_id: API Resource UUID tag.
 
           extra_headers: Send extra headers
 
@@ -493,84 +540,23 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not virtual_network_id:
-            raise ValueError(f"Expected a non-empty value for `virtual_network_id` but received {virtual_network_id!r}")
+        if not dex_test_id:
+            raise ValueError(f"Expected a non-empty value for `dex_test_id` but received {dex_test_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
+            f"/accounts/{account_id}/dex/devices/dex_tests/{dex_test_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[VirtualNetwork]._unwrapper,
+                post_parser=ResultWrapper[Optional[DEXTestDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[VirtualNetwork], ResultWrapper[VirtualNetwork]),
-        )
-
-    async def edit(
-        self,
-        virtual_network_id: str,
-        *,
-        account_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        is_default_network: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VirtualNetwork:
-        """
-        Updates an existing virtual network.
-
-        Args:
-          account_id: Cloudflare account ID
-
-          virtual_network_id: UUID of the virtual network.
-
-          comment: Optional remark describing the virtual network.
-
-          is_default_network: If `true`, this virtual network is the default for the account.
-
-          name: A user-friendly name for the virtual network.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not virtual_network_id:
-            raise ValueError(f"Expected a non-empty value for `virtual_network_id` but received {virtual_network_id!r}")
-        return await self._patch(
-            f"/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
-            body=await async_maybe_transform(
-                {
-                    "comment": comment,
-                    "is_default_network": is_default_network,
-                    "name": name,
-                },
-                virtual_network_edit_params.VirtualNetworkEditParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[VirtualNetwork]._unwrapper,
-            ),
-            cast_to=cast(Type[VirtualNetwork], ResultWrapper[VirtualNetwork]),
+            cast_to=cast(Type[Optional[DEXTestDeleteResponse]], ResultWrapper[DEXTestDeleteResponse]),
         )
 
     async def get(
         self,
-        virtual_network_id: str,
+        dex_test_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -579,14 +565,12 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VirtualNetwork:
+    ) -> Optional[DEXTestGetResponse]:
         """
-        Get a virtual network.
+        Fetch a single DEX test.
 
         Args:
-          account_id: Cloudflare account ID
-
-          virtual_network_id: UUID of the virtual network.
+          dex_test_id: The unique identifier for the test.
 
           extra_headers: Send extra headers
 
@@ -598,100 +582,100 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not virtual_network_id:
-            raise ValueError(f"Expected a non-empty value for `virtual_network_id` but received {virtual_network_id!r}")
+        if not dex_test_id:
+            raise ValueError(f"Expected a non-empty value for `dex_test_id` but received {dex_test_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
+            f"/accounts/{account_id}/dex/devices/dex_tests/{dex_test_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[VirtualNetwork]._unwrapper,
+                post_parser=ResultWrapper[Optional[DEXTestGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[VirtualNetwork], ResultWrapper[VirtualNetwork]),
+            cast_to=cast(Type[Optional[DEXTestGetResponse]], ResultWrapper[DEXTestGetResponse]),
         )
 
 
-class VirtualNetworksResourceWithRawResponse:
-    def __init__(self, virtual_networks: VirtualNetworksResource) -> None:
-        self._virtual_networks = virtual_networks
+class DEXTestsResourceWithRawResponse:
+    def __init__(self, dex_tests: DEXTestsResource) -> None:
+        self._dex_tests = dex_tests
 
         self.create = to_raw_response_wrapper(
-            virtual_networks.create,
+            dex_tests.create,
+        )
+        self.update = to_raw_response_wrapper(
+            dex_tests.update,
         )
         self.list = to_raw_response_wrapper(
-            virtual_networks.list,
+            dex_tests.list,
         )
         self.delete = to_raw_response_wrapper(
-            virtual_networks.delete,
-        )
-        self.edit = to_raw_response_wrapper(
-            virtual_networks.edit,
+            dex_tests.delete,
         )
         self.get = to_raw_response_wrapper(
-            virtual_networks.get,
+            dex_tests.get,
         )
 
 
-class AsyncVirtualNetworksResourceWithRawResponse:
-    def __init__(self, virtual_networks: AsyncVirtualNetworksResource) -> None:
-        self._virtual_networks = virtual_networks
+class AsyncDEXTestsResourceWithRawResponse:
+    def __init__(self, dex_tests: AsyncDEXTestsResource) -> None:
+        self._dex_tests = dex_tests
 
         self.create = async_to_raw_response_wrapper(
-            virtual_networks.create,
+            dex_tests.create,
+        )
+        self.update = async_to_raw_response_wrapper(
+            dex_tests.update,
         )
         self.list = async_to_raw_response_wrapper(
-            virtual_networks.list,
+            dex_tests.list,
         )
         self.delete = async_to_raw_response_wrapper(
-            virtual_networks.delete,
-        )
-        self.edit = async_to_raw_response_wrapper(
-            virtual_networks.edit,
+            dex_tests.delete,
         )
         self.get = async_to_raw_response_wrapper(
-            virtual_networks.get,
+            dex_tests.get,
         )
 
 
-class VirtualNetworksResourceWithStreamingResponse:
-    def __init__(self, virtual_networks: VirtualNetworksResource) -> None:
-        self._virtual_networks = virtual_networks
+class DEXTestsResourceWithStreamingResponse:
+    def __init__(self, dex_tests: DEXTestsResource) -> None:
+        self._dex_tests = dex_tests
 
         self.create = to_streamed_response_wrapper(
-            virtual_networks.create,
+            dex_tests.create,
+        )
+        self.update = to_streamed_response_wrapper(
+            dex_tests.update,
         )
         self.list = to_streamed_response_wrapper(
-            virtual_networks.list,
+            dex_tests.list,
         )
         self.delete = to_streamed_response_wrapper(
-            virtual_networks.delete,
-        )
-        self.edit = to_streamed_response_wrapper(
-            virtual_networks.edit,
+            dex_tests.delete,
         )
         self.get = to_streamed_response_wrapper(
-            virtual_networks.get,
+            dex_tests.get,
         )
 
 
-class AsyncVirtualNetworksResourceWithStreamingResponse:
-    def __init__(self, virtual_networks: AsyncVirtualNetworksResource) -> None:
-        self._virtual_networks = virtual_networks
+class AsyncDEXTestsResourceWithStreamingResponse:
+    def __init__(self, dex_tests: AsyncDEXTestsResource) -> None:
+        self._dex_tests = dex_tests
 
         self.create = async_to_streamed_response_wrapper(
-            virtual_networks.create,
+            dex_tests.create,
+        )
+        self.update = async_to_streamed_response_wrapper(
+            dex_tests.update,
         )
         self.list = async_to_streamed_response_wrapper(
-            virtual_networks.list,
+            dex_tests.list,
         )
         self.delete = async_to_streamed_response_wrapper(
-            virtual_networks.delete,
-        )
-        self.edit = async_to_streamed_response_wrapper(
-            virtual_networks.edit,
+            dex_tests.delete,
         )
         self.get = async_to_streamed_response_wrapper(
-            virtual_networks.get,
+            dex_tests.get,
         )

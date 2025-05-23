@@ -2701,7 +2701,7 @@ Methods:
 
 - <code title="post /accounts/{account_id}/queues/{queue_id}/messages/ack">client.queues.messages.<a href="./src/cloudflare/resources/queues/messages.py">ack</a>(queue_id, \*, account_id, \*\*<a href="src/cloudflare/types/queues/message_ack_params.py">params</a>) -> <a href="./src/cloudflare/types/queues/message_ack_response.py">Optional[MessageAckResponse]</a></code>
 - <code title="post /accounts/{account_id}/queues/{queue_id}/messages/batch">client.queues.messages.<a href="./src/cloudflare/resources/queues/messages.py">bulk_push</a>(queue_id, \*, account_id, \*\*<a href="src/cloudflare/types/queues/message_bulk_push_params.py">params</a>) -> <a href="./src/cloudflare/types/queues/message_bulk_push_response.py">MessageBulkPushResponse</a></code>
-- <code title="post /accounts/{account_id}/queues/{queue_id}/messages/pull">client.queues.messages.<a href="./src/cloudflare/resources/queues/messages.py">pull</a>(queue_id, \*, account_id, \*\*<a href="src/cloudflare/types/queues/message_pull_params.py">params</a>) -> <a href="./src/cloudflare/types/queues/message_pull_response.py">SyncSinglePage[MessagePullResponse]</a></code>
+- <code title="post /accounts/{account_id}/queues/{queue_id}/messages/pull">client.queues.messages.<a href="./src/cloudflare/resources/queues/messages.py">pull</a>(queue_id, \*, account_id, \*\*<a href="src/cloudflare/types/queues/message_pull_params.py">params</a>) -> <a href="./src/cloudflare/types/queues/message_pull_response.py">Optional[MessagePullResponse]</a></code>
 - <code title="post /accounts/{account_id}/queues/{queue_id}/messages">client.queues.messages.<a href="./src/cloudflare/resources/queues/messages.py">push</a>(queue_id, \*, account_id, \*\*<a href="src/cloudflare/types/queues/message_push_params.py">params</a>) -> <a href="./src/cloudflare/types/queues/message_push_response.py">MessagePushResponse</a></code>
 
 ## Purge
@@ -5329,8 +5329,24 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.devices import SchemaData, SchemaHTTP
+from cloudflare.types.zero_trust.devices import (
+    SchemaData,
+    SchemaHTTP,
+    DEXTestCreateResponse,
+    DEXTestUpdateResponse,
+    DEXTestListResponse,
+    DEXTestDeleteResponse,
+    DEXTestGetResponse,
+)
 ```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/dex/devices/dex_tests">client.zero_trust.devices.dex_tests.<a href="./src/cloudflare/resources/zero_trust/devices/dex_tests.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/dex_test_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/dex_test_create_response.py">Optional[DEXTestCreateResponse]</a></code>
+- <code title="put /accounts/{account_id}/dex/devices/dex_tests/{dex_test_id}">client.zero_trust.devices.dex_tests.<a href="./src/cloudflare/resources/zero_trust/devices/dex_tests.py">update</a>(dex_test_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/dex_test_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/dex_test_update_response.py">Optional[DEXTestUpdateResponse]</a></code>
+- <code title="get /accounts/{account_id}/dex/devices/dex_tests">client.zero_trust.devices.dex_tests.<a href="./src/cloudflare/resources/zero_trust/devices/dex_tests.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/dex_test_list_response.py">SyncSinglePage[DEXTestListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/dex/devices/dex_tests/{dex_test_id}">client.zero_trust.devices.dex_tests.<a href="./src/cloudflare/resources/zero_trust/devices/dex_tests.py">delete</a>(dex_test_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/dex_test_delete_response.py">Optional[DEXTestDeleteResponse]</a></code>
+- <code title="get /accounts/{account_id}/dex/devices/dex_tests/{dex_test_id}">client.zero_trust.devices.dex_tests.<a href="./src/cloudflare/resources/zero_trust/devices/dex_tests.py">get</a>(dex_test_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/dex_test_get_response.py">Optional[DEXTestGetResponse]</a></code>
 
 ### Networks
 
@@ -5522,6 +5538,7 @@ from cloudflare.types.zero_trust.devices import DeviceSettings
 Methods:
 
 - <code title="put /accounts/{account_id}/devices/settings">client.zero_trust.devices.settings.<a href="./src/cloudflare/resources/zero_trust/devices/settings.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/setting_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/device_settings.py">Optional[DeviceSettings]</a></code>
+- <code title="delete /accounts/{account_id}/devices/settings">client.zero_trust.devices.settings.<a href="./src/cloudflare/resources/zero_trust/devices/settings.py">delete</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/device_settings.py">Optional[DeviceSettings]</a></code>
 - <code title="patch /accounts/{account_id}/devices/settings">client.zero_trust.devices.settings.<a href="./src/cloudflare/resources/zero_trust/devices/settings.py">edit</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/setting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/device_settings.py">Optional[DeviceSettings]</a></code>
 - <code title="get /accounts/{account_id}/devices/settings">client.zero_trust.devices.settings.<a href="./src/cloudflare/resources/zero_trust/devices/settings.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/device_settings.py">Optional[DeviceSettings]</a></code>
 
@@ -5670,7 +5687,7 @@ Methods:
 - <code title="put /accounts/{account_id}/infrastructure/targets/{target_id}">client.zero_trust.access.infrastructure.targets.<a href="./src/cloudflare/resources/zero_trust/access/infrastructure/targets.py">update</a>(target_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/access/infrastructure/target_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/infrastructure/target_update_response.py">Optional[TargetUpdateResponse]</a></code>
 - <code title="get /accounts/{account_id}/infrastructure/targets">client.zero_trust.access.infrastructure.targets.<a href="./src/cloudflare/resources/zero_trust/access/infrastructure/targets.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/access/infrastructure/target_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/infrastructure/target_list_response.py">SyncV4PagePaginationArray[TargetListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/infrastructure/targets/{target_id}">client.zero_trust.access.infrastructure.targets.<a href="./src/cloudflare/resources/zero_trust/access/infrastructure/targets.py">delete</a>(target_id, \*, account_id) -> None</code>
-- <code title="delete /accounts/{account_id}/infrastructure/targets/batch">client.zero_trust.access.infrastructure.targets.<a href="./src/cloudflare/resources/zero_trust/access/infrastructure/targets.py">bulk_delete</a>(\*, account_id) -> None</code>
+- <code title="post /accounts/{account_id}/infrastructure/targets/batch_delete">client.zero_trust.access.infrastructure.targets.<a href="./src/cloudflare/resources/zero_trust/access/infrastructure/targets.py">bulk_delete</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/access/infrastructure/target_bulk_delete_params.py">params</a>) -> None</code>
 - <code title="put /accounts/{account_id}/infrastructure/targets/batch">client.zero_trust.access.infrastructure.targets.<a href="./src/cloudflare/resources/zero_trust/access/infrastructure/targets.py">bulk_update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/access/infrastructure/target_bulk_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/infrastructure/target_bulk_update_response.py">SyncSinglePage[TargetBulkUpdateResponse]</a></code>
 - <code title="get /accounts/{account_id}/infrastructure/targets/{target_id}">client.zero_trust.access.infrastructure.targets.<a href="./src/cloudflare/resources/zero_trust/access/infrastructure/targets.py">get</a>(target_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/access/infrastructure/target_get_response.py">Optional[TargetGetResponse]</a></code>
 
@@ -6099,6 +6116,18 @@ from cloudflare.types.zero_trust import (
     Percentiles,
 )
 ```
+
+### WARPChangeEvents
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.dex import WARPChangeEventGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/dex/warp-change-events">client.zero_trust.dex.warp_change_events.<a href="./src/cloudflare/resources/zero_trust/dex/warp_change_events.py">get</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dex/warp_change_event_get_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dex/warp_change_event_get_response.py">Optional[WARPChangeEventGetResponse]</a></code>
 
 ### Commands
 

@@ -40,8 +40,8 @@ class TestUARules:
         ua_rule = client.firewall.ua_rules.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             configuration={
-                "target": "ip",
-                "value": "198.51.100.4",
+                "target": "ua",
+                "value": "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)",
             },
             mode="challenge",
         )
@@ -329,8 +329,8 @@ class TestAsyncUARules:
         ua_rule = await async_client.firewall.ua_rules.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             configuration={
-                "target": "ip",
-                "value": "198.51.100.4",
+                "target": "ua",
+                "value": "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)",
             },
             mode="challenge",
         )
