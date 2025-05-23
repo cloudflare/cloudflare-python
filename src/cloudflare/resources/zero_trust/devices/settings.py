@@ -107,6 +107,43 @@ class SettingsResource(SyncAPIResource):
             cast_to=cast(Type[Optional[DeviceSettings]], ResultWrapper[DeviceSettings]),
         )
 
+    def delete(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[DeviceSettings]:
+        """
+        Resets the current device settings for a Zero Trust account.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._delete(
+            f"/accounts/{account_id}/devices/settings",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[DeviceSettings]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[DeviceSettings]], ResultWrapper[DeviceSettings]),
+        )
+
     def edit(
         self,
         *,
@@ -291,6 +328,43 @@ class AsyncSettingsResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[DeviceSettings]], ResultWrapper[DeviceSettings]),
         )
 
+    async def delete(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[DeviceSettings]:
+        """
+        Resets the current device settings for a Zero Trust account.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._delete(
+            f"/accounts/{account_id}/devices/settings",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[DeviceSettings]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[DeviceSettings]], ResultWrapper[DeviceSettings]),
+        )
+
     async def edit(
         self,
         *,
@@ -399,6 +473,9 @@ class SettingsResourceWithRawResponse:
         self.update = to_raw_response_wrapper(
             settings.update,
         )
+        self.delete = to_raw_response_wrapper(
+            settings.delete,
+        )
         self.edit = to_raw_response_wrapper(
             settings.edit,
         )
@@ -413,6 +490,9 @@ class AsyncSettingsResourceWithRawResponse:
 
         self.update = async_to_raw_response_wrapper(
             settings.update,
+        )
+        self.delete = async_to_raw_response_wrapper(
+            settings.delete,
         )
         self.edit = async_to_raw_response_wrapper(
             settings.edit,
@@ -429,6 +509,9 @@ class SettingsResourceWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             settings.update,
         )
+        self.delete = to_streamed_response_wrapper(
+            settings.delete,
+        )
         self.edit = to_streamed_response_wrapper(
             settings.edit,
         )
@@ -443,6 +526,9 @@ class AsyncSettingsResourceWithStreamingResponse:
 
         self.update = async_to_streamed_response_wrapper(
             settings.update,
+        )
+        self.delete = async_to_streamed_response_wrapper(
+            settings.delete,
         )
         self.edit = async_to_streamed_response_wrapper(
             settings.edit,

@@ -40,6 +40,14 @@ from .unrevoke import (
     AsyncUnrevokeResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .dex_tests import (
+    DEXTestsResource,
+    AsyncDEXTestsResource,
+    DEXTestsResourceWithRawResponse,
+    AsyncDEXTestsResourceWithRawResponse,
+    DEXTestsResourceWithStreamingResponse,
+    AsyncDEXTestsResourceWithStreamingResponse,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -117,6 +125,10 @@ class DevicesResource(SyncAPIResource):
     @cached_property
     def registrations(self) -> RegistrationsResource:
         return RegistrationsResource(self._client)
+
+    @cached_property
+    def dex_tests(self) -> DEXTestsResource:
+        return DEXTestsResource(self._client)
 
     @cached_property
     def networks(self) -> NetworksResource:
@@ -269,6 +281,10 @@ class AsyncDevicesResource(AsyncAPIResource):
     @cached_property
     def registrations(self) -> AsyncRegistrationsResource:
         return AsyncRegistrationsResource(self._client)
+
+    @cached_property
+    def dex_tests(self) -> AsyncDEXTestsResource:
+        return AsyncDEXTestsResource(self._client)
 
     @cached_property
     def networks(self) -> AsyncNetworksResource:
@@ -433,6 +449,10 @@ class DevicesResourceWithRawResponse:
         return RegistrationsResourceWithRawResponse(self._devices.registrations)
 
     @cached_property
+    def dex_tests(self) -> DEXTestsResourceWithRawResponse:
+        return DEXTestsResourceWithRawResponse(self._devices.dex_tests)
+
+    @cached_property
     def networks(self) -> NetworksResourceWithRawResponse:
         return NetworksResourceWithRawResponse(self._devices.networks)
 
@@ -487,6 +507,10 @@ class AsyncDevicesResourceWithRawResponse:
     @cached_property
     def registrations(self) -> AsyncRegistrationsResourceWithRawResponse:
         return AsyncRegistrationsResourceWithRawResponse(self._devices.registrations)
+
+    @cached_property
+    def dex_tests(self) -> AsyncDEXTestsResourceWithRawResponse:
+        return AsyncDEXTestsResourceWithRawResponse(self._devices.dex_tests)
 
     @cached_property
     def networks(self) -> AsyncNetworksResourceWithRawResponse:
@@ -545,6 +569,10 @@ class DevicesResourceWithStreamingResponse:
         return RegistrationsResourceWithStreamingResponse(self._devices.registrations)
 
     @cached_property
+    def dex_tests(self) -> DEXTestsResourceWithStreamingResponse:
+        return DEXTestsResourceWithStreamingResponse(self._devices.dex_tests)
+
+    @cached_property
     def networks(self) -> NetworksResourceWithStreamingResponse:
         return NetworksResourceWithStreamingResponse(self._devices.networks)
 
@@ -599,6 +627,10 @@ class AsyncDevicesResourceWithStreamingResponse:
     @cached_property
     def registrations(self) -> AsyncRegistrationsResourceWithStreamingResponse:
         return AsyncRegistrationsResourceWithStreamingResponse(self._devices.registrations)
+
+    @cached_property
+    def dex_tests(self) -> AsyncDEXTestsResourceWithStreamingResponse:
+        return AsyncDEXTestsResourceWithStreamingResponse(self._devices.dex_tests)
 
     @cached_property
     def networks(self) -> AsyncNetworksResourceWithStreamingResponse:

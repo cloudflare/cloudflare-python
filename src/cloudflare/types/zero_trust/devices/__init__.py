@@ -34,6 +34,7 @@ from .firewall_input_param import FirewallInputParam as FirewallInputParam
 from .revoke_create_params import RevokeCreateParams as RevokeCreateParams
 from .split_tunnel_exclude import SplitTunnelExclude as SplitTunnelExclude
 from .split_tunnel_include import SplitTunnelInclude as SplitTunnelInclude
+from .dex_test_get_response import DEXTestGetResponse as DEXTestGetResponse
 from .disk_encryption_input import DiskEncryptionInput as DiskEncryptionInput
 from .fallback_domain_param import FallbackDomainParam as FallbackDomainParam
 from .network_create_params import NetworkCreateParams as NetworkCreateParams
@@ -42,6 +43,9 @@ from .posture_create_params import PostureCreateParams as PostureCreateParams
 from .posture_update_params import PostureUpdateParams as PostureUpdateParams
 from .sentinelone_s2s_input import SentineloneS2sInput as SentineloneS2sInput
 from .setting_update_params import SettingUpdateParams as SettingUpdateParams
+from .dex_test_create_params import DEXTestCreateParams as DEXTestCreateParams
+from .dex_test_list_response import DEXTestListResponse as DEXTestListResponse
+from .dex_test_update_params import DEXTestUpdateParams as DEXTestUpdateParams
 from .os_version_input_param import OSVersionInputParam as OSVersionInputParam
 from .revoke_create_response import RevokeCreateResponse as RevokeCreateResponse
 from .unique_client_id_input import UniqueClientIDInput as UniqueClientIDInput
@@ -51,6 +55,9 @@ from .fleet_status_get_params import FleetStatusGetParams as FleetStatusGetParam
 from .posture_delete_response import PostureDeleteResponse as PostureDeleteResponse
 from .sentinelone_input_param import SentineloneInputParam as SentineloneInputParam
 from .client_certificate_input import ClientCertificateInput as ClientCertificateInput
+from .dex_test_create_response import DEXTestCreateResponse as DEXTestCreateResponse
+from .dex_test_delete_response import DEXTestDeleteResponse as DEXTestDeleteResponse
+from .dex_test_update_response import DEXTestUpdateResponse as DEXTestUpdateResponse
 from .registration_list_params import RegistrationListParams as RegistrationListParams
 from .unrevoke_create_response import UnrevokeCreateResponse as UnrevokeCreateResponse
 from .domain_joined_input_param import DomainJoinedInputParam as DomainJoinedInputParam
