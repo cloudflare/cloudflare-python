@@ -68,6 +68,44 @@ class TestSettings:
             )
 
     @parametrize
+    def test_method_delete(self, client: Cloudflare) -> None:
+        setting = client.zero_trust.devices.settings.delete(
+            account_id="699d98642c564d2e855e9661899b7252",
+        )
+        assert_matches_type(Optional[DeviceSettings], setting, path=["response"])
+
+    @parametrize
+    def test_raw_response_delete(self, client: Cloudflare) -> None:
+        response = client.zero_trust.devices.settings.with_raw_response.delete(
+            account_id="699d98642c564d2e855e9661899b7252",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        setting = response.parse()
+        assert_matches_type(Optional[DeviceSettings], setting, path=["response"])
+
+    @parametrize
+    def test_streaming_response_delete(self, client: Cloudflare) -> None:
+        with client.zero_trust.devices.settings.with_streaming_response.delete(
+            account_id="699d98642c564d2e855e9661899b7252",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            setting = response.parse()
+            assert_matches_type(Optional[DeviceSettings], setting, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_delete(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.devices.settings.with_raw_response.delete(
+                account_id="",
+            )
+
+    @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         setting = client.zero_trust.devices.settings.edit(
             account_id="699d98642c564d2e855e9661899b7252",
@@ -206,6 +244,44 @@ class TestAsyncSettings:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.devices.settings.with_raw_response.update(
+                account_id="",
+            )
+
+    @parametrize
+    async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
+        setting = await async_client.zero_trust.devices.settings.delete(
+            account_id="699d98642c564d2e855e9661899b7252",
+        )
+        assert_matches_type(Optional[DeviceSettings], setting, path=["response"])
+
+    @parametrize
+    async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.zero_trust.devices.settings.with_raw_response.delete(
+            account_id="699d98642c564d2e855e9661899b7252",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        setting = await response.parse()
+        assert_matches_type(Optional[DeviceSettings], setting, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.zero_trust.devices.settings.with_streaming_response.delete(
+            account_id="699d98642c564d2e855e9661899b7252",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            setting = await response.parse()
+            assert_matches_type(Optional[DeviceSettings], setting, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.devices.settings.with_raw_response.delete(
                 account_id="",
             )
 
