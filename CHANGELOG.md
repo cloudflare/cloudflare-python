@@ -1,5 +1,28 @@
 # Changelog
 
+## 4.3.0 (2025-05-23)
+
+Full Changelog: [v4.2.0...v4.3.0](https://github.com/cloudflare/cloudflare-python/compare/v4.2.0...v4.3.0)
+
+### Features
+
+* **api:** Add infrastructure targets bulk deletion endpoint ([32c3715](https://github.com/cloudflare/cloudflare-python/commit/32c371551f85b86bdd0a15f7d979e01454594b45))
+* **api:** api update ([730a028](https://github.com/cloudflare/cloudflare-python/commit/730a0284529674284d8a04280c7e336ed351d30c))
+* **api:** api update ([5b6e8e6](https://github.com/cloudflare/cloudflare-python/commit/5b6e8e66933d92b9d75bfabcadf4c06f9ccd55ac))
+* **api:** api update ([c07a179](https://github.com/cloudflare/cloudflare-python/commit/c07a179cabd579bf70aab0b087a9f8f0ef049275))
+* **api:** api update ([7a3837a](https://github.com/cloudflare/cloudflare-python/commit/7a3837abeaaa008c226332f2a0f74221a91241b0))
+* **api:** api update ([c33634e](https://github.com/cloudflare/cloudflare-python/commit/c33634ece610ecd6cc79a5bfa792a774b1f430cf))
+* **api:** api update ([4e36104](https://github.com/cloudflare/cloudflare-python/commit/4e36104852ab04e8627297b21ff33b5746a85e53))
+* **api:** api update ([78d01a7](https://github.com/cloudflare/cloudflare-python/commit/78d01a77cb46fe0c8492811ee0c3bf4038f90ecd))
+* **api:** api update ([9c340b3](https://github.com/cloudflare/cloudflare-python/commit/9c340b31db17ec11f1f5987312441ff4784b2399))
+* **api:** api update ([c667ae5](https://github.com/cloudflare/cloudflare-python/commit/c667ae580cb3393b672c174c4626d9769c247371))
+* **dex:** map endpoints into namespaces ([89cf966](https://github.com/cloudflare/cloudflare-python/commit/89cf966cf738fd0fbef65ba366d2e57244d4fbe0))
+
+
+### Chores
+
+* **docs:** grammar improvements ([f487fd1](https://github.com/cloudflare/cloudflare-python/commit/f487fd1b7fea94d959d7973d7b8ffa0d9b85545e))
+
 ## 4.2.0 (2025-05-21)
 
 Full Changelog: [v4.1.0...v4.2.0](https://github.com/cloudflare/cloudflare-python/compare/v4.1.0...v4.2.0)
