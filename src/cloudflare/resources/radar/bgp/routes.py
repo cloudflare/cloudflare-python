@@ -243,8 +243,8 @@ class RoutesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RouteRealtimeResponse:
         """
-        Retrieves realtime routes for prefixes using public realtime data collectors
-        (RouteViews and RIPE RIS).
+        Retrieves real-time BGP routes for a prefix, using public real-time data
+        collectors (RouteViews and RIPE RIS).
 
         Args:
           format: Format in which results will be returned.
@@ -539,8 +539,8 @@ class AsyncRoutesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RouteRealtimeResponse:
         """
-        Retrieves realtime routes for prefixes using public realtime data collectors
-        (RouteViews and RIPE RIS).
+        Retrieves real-time BGP routes for a prefix, using public real-time data
+        collectors (RouteViews and RIPE RIS).
 
         Args:
           format: Format in which results will be returned.

@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
+from datetime import datetime
 
 from pydantic import Field as FieldInfo
 
@@ -46,7 +47,7 @@ class TrafficAnomaly(BaseModel):
 
     asn_details: Optional[TrafficAnomalyASNDetails] = FieldInfo(alias="asnDetails", default=None)
 
-    end_date: Optional[str] = FieldInfo(alias="endDate", default=None)
+    end_date: Optional[datetime] = FieldInfo(alias="endDate", default=None)
 
     location_details: Optional[TrafficAnomalyLocationDetails] = FieldInfo(alias="locationDetails", default=None)
 
