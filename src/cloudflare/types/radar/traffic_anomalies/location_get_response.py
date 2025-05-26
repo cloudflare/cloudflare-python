@@ -15,6 +15,7 @@ class TrafficAnomaly(BaseModel):
     client_country_name: str = FieldInfo(alias="clientCountryName")
 
     value: str
+    """A numeric string."""
 
 
 class LocationGetResponse(BaseModel):

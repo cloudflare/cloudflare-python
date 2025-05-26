@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
+from datetime import datetime
 
 from pydantic import Field as FieldInfo
 
@@ -59,11 +60,11 @@ class Annotation(BaseModel):
 
     outage: AnnotationOutage
 
-    start_date: str = FieldInfo(alias="startDate")
+    start_date: datetime = FieldInfo(alias="startDate")
 
     description: Optional[str] = None
 
-    end_date: Optional[str] = FieldInfo(alias="endDate", default=None)
+    end_date: Optional[datetime] = FieldInfo(alias="endDate", default=None)
 
     linked_url: Optional[str] = FieldInfo(alias="linkedUrl", default=None)
 

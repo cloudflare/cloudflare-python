@@ -11,8 +11,10 @@ class Location(BaseModel):
     alpha2: str
 
     latitude: str
+    """A numeric string."""
 
     longitude: str
+    """A numeric string."""
 
     name: str
 
