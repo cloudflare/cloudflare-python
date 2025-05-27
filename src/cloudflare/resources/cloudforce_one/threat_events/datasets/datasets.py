@@ -4,28 +4,40 @@ from __future__ import annotations
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform, async_maybe_transform
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
+from .health import (
+    HealthResource,
+    AsyncHealthResource,
+    HealthResourceWithRawResponse,
+    AsyncHealthResourceWithRawResponse,
+    HealthResourceWithStreamingResponse,
+    AsyncHealthResourceWithStreamingResponse,
+)
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import maybe_transform, async_maybe_transform
+from ....._compat import cached_property
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._base_client import make_request_options
-from ....types.cloudforce_one.threat_events import dataset_edit_params, dataset_create_params
-from ....types.cloudforce_one.threat_events.dataset_get_response import DatasetGetResponse
-from ....types.cloudforce_one.threat_events.dataset_raw_response import DatasetRawResponse
-from ....types.cloudforce_one.threat_events.dataset_edit_response import DatasetEditResponse
-from ....types.cloudforce_one.threat_events.dataset_list_response import DatasetListResponse
-from ....types.cloudforce_one.threat_events.dataset_create_response import DatasetCreateResponse
+from ....._base_client import make_request_options
+from .....types.cloudforce_one.threat_events import dataset_edit_params, dataset_create_params
+from .....types.cloudforce_one.threat_events.dataset_get_response import DatasetGetResponse
+from .....types.cloudforce_one.threat_events.dataset_raw_response import DatasetRawResponse
+from .....types.cloudforce_one.threat_events.dataset_edit_response import DatasetEditResponse
+from .....types.cloudforce_one.threat_events.dataset_list_response import DatasetListResponse
+from .....types.cloudforce_one.threat_events.dataset_create_response import DatasetCreateResponse
 
 __all__ = ["DatasetsResource", "AsyncDatasetsResource"]
 
 
 class DatasetsResource(SyncAPIResource):
+    @cached_property
+    def health(self) -> HealthResource:
+        return HealthResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> DatasetsResourceWithRawResponse:
         """
@@ -260,6 +272,10 @@ class DatasetsResource(SyncAPIResource):
 
 
 class AsyncDatasetsResource(AsyncAPIResource):
+    @cached_property
+    def health(self) -> AsyncHealthResource:
+        return AsyncHealthResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncDatasetsResourceWithRawResponse:
         """
@@ -513,6 +529,10 @@ class DatasetsResourceWithRawResponse:
             datasets.raw,
         )
 
+    @cached_property
+    def health(self) -> HealthResourceWithRawResponse:
+        return HealthResourceWithRawResponse(self._datasets.health)
+
 
 class AsyncDatasetsResourceWithRawResponse:
     def __init__(self, datasets: AsyncDatasetsResource) -> None:
@@ -533,6 +553,10 @@ class AsyncDatasetsResourceWithRawResponse:
         self.raw = async_to_raw_response_wrapper(
             datasets.raw,
         )
+
+    @cached_property
+    def health(self) -> AsyncHealthResourceWithRawResponse:
+        return AsyncHealthResourceWithRawResponse(self._datasets.health)
 
 
 class DatasetsResourceWithStreamingResponse:
@@ -555,6 +579,10 @@ class DatasetsResourceWithStreamingResponse:
             datasets.raw,
         )
 
+    @cached_property
+    def health(self) -> HealthResourceWithStreamingResponse:
+        return HealthResourceWithStreamingResponse(self._datasets.health)
+
 
 class AsyncDatasetsResourceWithStreamingResponse:
     def __init__(self, datasets: AsyncDatasetsResource) -> None:
@@ -575,3 +603,7 @@ class AsyncDatasetsResourceWithStreamingResponse:
         self.raw = async_to_streamed_response_wrapper(
             datasets.raw,
         )
+
+    @cached_property
+    def health(self) -> AsyncHealthResourceWithStreamingResponse:
+        return AsyncHealthResourceWithStreamingResponse(self._datasets.health)

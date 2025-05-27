@@ -5687,7 +5687,7 @@ Methods:
 - <code title="put /accounts/{account_id}/infrastructure/targets/{target_id}">client.zero_trust.access.infrastructure.targets.<a href="./src/cloudflare/resources/zero_trust/access/infrastructure/targets.py">update</a>(target_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/access/infrastructure/target_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/infrastructure/target_update_response.py">Optional[TargetUpdateResponse]</a></code>
 - <code title="get /accounts/{account_id}/infrastructure/targets">client.zero_trust.access.infrastructure.targets.<a href="./src/cloudflare/resources/zero_trust/access/infrastructure/targets.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/access/infrastructure/target_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/infrastructure/target_list_response.py">SyncV4PagePaginationArray[TargetListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/infrastructure/targets/{target_id}">client.zero_trust.access.infrastructure.targets.<a href="./src/cloudflare/resources/zero_trust/access/infrastructure/targets.py">delete</a>(target_id, \*, account_id) -> None</code>
-- <code title="post /accounts/{account_id}/infrastructure/targets/batch_delete">client.zero_trust.access.infrastructure.targets.<a href="./src/cloudflare/resources/zero_trust/access/infrastructure/targets.py">bulk_delete</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/access/infrastructure/target_bulk_delete_params.py">params</a>) -> None</code>
+- <code title="delete /accounts/{account_id}/infrastructure/targets/batch">client.zero_trust.access.infrastructure.targets.<a href="./src/cloudflare/resources/zero_trust/access/infrastructure/targets.py">bulk_delete</a>(\*, account_id) -> None</code>
 - <code title="put /accounts/{account_id}/infrastructure/targets/batch">client.zero_trust.access.infrastructure.targets.<a href="./src/cloudflare/resources/zero_trust/access/infrastructure/targets.py">bulk_update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/access/infrastructure/target_bulk_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/infrastructure/target_bulk_update_response.py">SyncSinglePage[TargetBulkUpdateResponse]</a></code>
 - <code title="get /accounts/{account_id}/infrastructure/targets/{target_id}">client.zero_trust.access.infrastructure.targets.<a href="./src/cloudflare/resources/zero_trust/access/infrastructure/targets.py">get</a>(target_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/access/infrastructure/target_get_response.py">Optional[TargetGetResponse]</a></code>
 
@@ -9043,11 +9043,23 @@ from cloudflare.types.cloudforce_one.threat_events import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/cloudforce-one/events/dataset/create">client.cloudforce_one.threat_events.datasets.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/datasets.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/dataset_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/dataset_create_response.py">DatasetCreateResponse</a></code>
-- <code title="get /accounts/{account_id}/cloudforce-one/events/dataset">client.cloudforce_one.threat_events.datasets.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/datasets.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/dataset_list_response.py">DatasetListResponse</a></code>
-- <code title="patch /accounts/{account_id}/cloudforce-one/events/dataset/{dataset_id}">client.cloudforce_one.threat_events.datasets.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/datasets.py">edit</a>(dataset_id, \*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/dataset_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/dataset_edit_response.py">DatasetEditResponse</a></code>
-- <code title="get /accounts/{account_id}/cloudforce-one/events/dataset/{dataset_id}">client.cloudforce_one.threat_events.datasets.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/datasets.py">get</a>(dataset_id, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/dataset_get_response.py">DatasetGetResponse</a></code>
-- <code title="get /accounts/{account_id}/cloudforce-one/events/raw/{dataset_id}/{event_id}">client.cloudforce_one.threat_events.datasets.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/datasets.py">raw</a>(event_id, \*, account_id, dataset_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/dataset_raw_response.py">DatasetRawResponse</a></code>
+- <code title="post /accounts/{account_id}/cloudforce-one/events/dataset/create">client.cloudforce_one.threat_events.datasets.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/datasets/datasets.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/dataset_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/dataset_create_response.py">DatasetCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/cloudforce-one/events/dataset">client.cloudforce_one.threat_events.datasets.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/datasets/datasets.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/dataset_list_response.py">DatasetListResponse</a></code>
+- <code title="patch /accounts/{account_id}/cloudforce-one/events/dataset/{dataset_id}">client.cloudforce_one.threat_events.datasets.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/datasets/datasets.py">edit</a>(dataset_id, \*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/dataset_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/dataset_edit_response.py">DatasetEditResponse</a></code>
+- <code title="get /accounts/{account_id}/cloudforce-one/events/dataset/{dataset_id}">client.cloudforce_one.threat_events.datasets.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/datasets/datasets.py">get</a>(dataset_id, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/dataset_get_response.py">DatasetGetResponse</a></code>
+- <code title="get /accounts/{account_id}/cloudforce-one/events/raw/{dataset_id}/{event_id}">client.cloudforce_one.threat_events.datasets.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/datasets/datasets.py">raw</a>(event_id, \*, account_id, dataset_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/dataset_raw_response.py">DatasetRawResponse</a></code>
+
+#### Health
+
+Types:
+
+```python
+from cloudflare.types.cloudforce_one.threat_events.datasets import HealthGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/cloudforce-one/events/dataset/{dataset_id}/health">client.cloudforce_one.threat_events.datasets.health.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/datasets/health.py">get</a>(dataset_id, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/datasets/health_get_response.py">HealthGetResponse</a></code>
 
 ### IndicatorTypes
 
