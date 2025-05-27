@@ -40,14 +40,6 @@ from .relate import (
     RelateResourceWithStreamingResponse,
     AsyncRelateResourceWithStreamingResponse,
 )
-from .datasets import (
-    DatasetsResource,
-    AsyncDatasetsResource,
-    DatasetsResourceWithRawResponse,
-    AsyncDatasetsResourceWithRawResponse,
-    DatasetsResourceWithStreamingResponse,
-    AsyncDatasetsResourceWithStreamingResponse,
-)
 from .insights import (
     InsightsResource,
     AsyncInsightsResource,
@@ -106,6 +98,14 @@ from .indicator_types import (
     AsyncIndicatorTypesResourceWithRawResponse,
     IndicatorTypesResourceWithStreamingResponse,
     AsyncIndicatorTypesResourceWithStreamingResponse,
+)
+from .datasets.datasets import (
+    DatasetsResource,
+    AsyncDatasetsResource,
+    DatasetsResourceWithRawResponse,
+    AsyncDatasetsResourceWithRawResponse,
+    DatasetsResourceWithStreamingResponse,
+    AsyncDatasetsResourceWithStreamingResponse,
 )
 from .target_industries import (
     TargetIndustriesResource,
