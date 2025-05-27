@@ -20,7 +20,7 @@ class TestHealth:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         health = client.cloudforce_one.threat_events.datasets.health.get(
-            dataset_id="dataset_id",
+            dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id=0,
         )
         assert_matches_type(HealthGetResponse, health, path=["response"])
@@ -28,7 +28,7 @@ class TestHealth:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.threat_events.datasets.health.with_raw_response.get(
-            dataset_id="dataset_id",
+            dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id=0,
         )
 
@@ -40,7 +40,7 @@ class TestHealth:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.cloudforce_one.threat_events.datasets.health.with_streaming_response.get(
-            dataset_id="dataset_id",
+            dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id=0,
         ) as response:
             assert not response.is_closed
@@ -66,7 +66,7 @@ class TestAsyncHealth:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         health = await async_client.cloudforce_one.threat_events.datasets.health.get(
-            dataset_id="dataset_id",
+            dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id=0,
         )
         assert_matches_type(HealthGetResponse, health, path=["response"])
@@ -74,7 +74,7 @@ class TestAsyncHealth:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloudforce_one.threat_events.datasets.health.with_raw_response.get(
-            dataset_id="dataset_id",
+            dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id=0,
         )
 
@@ -86,7 +86,7 @@ class TestAsyncHealth:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloudforce_one.threat_events.datasets.health.with_streaming_response.get(
-            dataset_id="dataset_id",
+            dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id=0,
         ) as response:
             assert not response.is_closed
