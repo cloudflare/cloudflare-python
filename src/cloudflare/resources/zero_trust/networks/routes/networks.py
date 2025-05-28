@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Type, cast
 from typing_extensions import Literal
 
@@ -45,6 +46,9 @@ class NetworksResource(SyncAPIResource):
         """
         return NetworksResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "This endpoint and its related APIs are deprecated in favor of the equivalent Tunnel Route (without CIDR) APIs."
+    )
     def create(
         self,
         ip_network_encoded: str,
@@ -108,6 +112,9 @@ class NetworksResource(SyncAPIResource):
             cast_to=cast(Type[Route], ResultWrapper[Route]),
         )
 
+    @typing_extensions.deprecated(
+        "This endpoint and its related APIs are deprecated in favor of the equivalent Tunnel Route (without CIDR) APIs."
+    )
     def delete(
         self,
         ip_network_encoded: str,
@@ -177,6 +184,9 @@ class NetworksResource(SyncAPIResource):
             cast_to=cast(Type[Route], ResultWrapper[Route]),
         )
 
+    @typing_extensions.deprecated(
+        "This endpoint and its related APIs are deprecated in favor of the equivalent Tunnel Route (without CIDR) APIs."
+    )
     def edit(
         self,
         ip_network_encoded: str,
@@ -244,6 +254,9 @@ class AsyncNetworksResource(AsyncAPIResource):
         """
         return AsyncNetworksResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "This endpoint and its related APIs are deprecated in favor of the equivalent Tunnel Route (without CIDR) APIs."
+    )
     async def create(
         self,
         ip_network_encoded: str,
@@ -307,6 +320,9 @@ class AsyncNetworksResource(AsyncAPIResource):
             cast_to=cast(Type[Route], ResultWrapper[Route]),
         )
 
+    @typing_extensions.deprecated(
+        "This endpoint and its related APIs are deprecated in favor of the equivalent Tunnel Route (without CIDR) APIs."
+    )
     async def delete(
         self,
         ip_network_encoded: str,
@@ -376,6 +392,9 @@ class AsyncNetworksResource(AsyncAPIResource):
             cast_to=cast(Type[Route], ResultWrapper[Route]),
         )
 
+    @typing_extensions.deprecated(
+        "This endpoint and its related APIs are deprecated in favor of the equivalent Tunnel Route (without CIDR) APIs."
+    )
     async def edit(
         self,
         ip_network_encoded: str,
@@ -427,14 +446,20 @@ class NetworksResourceWithRawResponse:
     def __init__(self, networks: NetworksResource) -> None:
         self._networks = networks
 
-        self.create = to_raw_response_wrapper(
-            networks.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                networks.create  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = to_raw_response_wrapper(
-            networks.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                networks.delete  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = to_raw_response_wrapper(
-            networks.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                networks.edit  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -442,14 +467,20 @@ class AsyncNetworksResourceWithRawResponse:
     def __init__(self, networks: AsyncNetworksResource) -> None:
         self._networks = networks
 
-        self.create = async_to_raw_response_wrapper(
-            networks.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                networks.create  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = async_to_raw_response_wrapper(
-            networks.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                networks.delete  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = async_to_raw_response_wrapper(
-            networks.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                networks.edit  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -457,14 +488,20 @@ class NetworksResourceWithStreamingResponse:
     def __init__(self, networks: NetworksResource) -> None:
         self._networks = networks
 
-        self.create = to_streamed_response_wrapper(
-            networks.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                networks.create  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = to_streamed_response_wrapper(
-            networks.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                networks.delete  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = to_streamed_response_wrapper(
-            networks.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                networks.edit  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -472,12 +509,18 @@ class AsyncNetworksResourceWithStreamingResponse:
     def __init__(self, networks: AsyncNetworksResource) -> None:
         self._networks = networks
 
-        self.create = async_to_streamed_response_wrapper(
-            networks.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                networks.create  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = async_to_streamed_response_wrapper(
-            networks.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                networks.delete  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = async_to_streamed_response_wrapper(
-            networks.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                networks.edit  # pyright: ignore[reportDeprecated],
+            )
         )

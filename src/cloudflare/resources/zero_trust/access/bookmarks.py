@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Type, Optional, cast
 
 import httpx
@@ -46,6 +47,7 @@ class BookmarksResource(SyncAPIResource):
         """
         return BookmarksResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def create(
         self,
         bookmark_id: str,
@@ -90,6 +92,7 @@ class BookmarksResource(SyncAPIResource):
             cast_to=cast(Type[Optional[Bookmark]], ResultWrapper[Bookmark]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     def update(
         self,
         bookmark_id: str,
@@ -134,6 +137,7 @@ class BookmarksResource(SyncAPIResource):
             cast_to=cast(Type[Optional[Bookmark]], ResultWrapper[Bookmark]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
@@ -168,6 +172,7 @@ class BookmarksResource(SyncAPIResource):
             model=Bookmark,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def delete(
         self,
         bookmark_id: str,
@@ -210,6 +215,7 @@ class BookmarksResource(SyncAPIResource):
             cast_to=cast(Type[Optional[BookmarkDeleteResponse]], ResultWrapper[BookmarkDeleteResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     def get(
         self,
         bookmark_id: str,
@@ -273,6 +279,7 @@ class AsyncBookmarksResource(AsyncAPIResource):
         """
         return AsyncBookmarksResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def create(
         self,
         bookmark_id: str,
@@ -317,6 +324,7 @@ class AsyncBookmarksResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[Bookmark]], ResultWrapper[Bookmark]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def update(
         self,
         bookmark_id: str,
@@ -361,6 +369,7 @@ class AsyncBookmarksResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[Bookmark]], ResultWrapper[Bookmark]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
@@ -395,6 +404,7 @@ class AsyncBookmarksResource(AsyncAPIResource):
             model=Bookmark,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def delete(
         self,
         bookmark_id: str,
@@ -437,6 +447,7 @@ class AsyncBookmarksResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[BookmarkDeleteResponse]], ResultWrapper[BookmarkDeleteResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def get(
         self,
         bookmark_id: str,
@@ -484,20 +495,30 @@ class BookmarksResourceWithRawResponse:
     def __init__(self, bookmarks: BookmarksResource) -> None:
         self._bookmarks = bookmarks
 
-        self.create = to_raw_response_wrapper(
-            bookmarks.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                bookmarks.create  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.update = to_raw_response_wrapper(
-            bookmarks.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                bookmarks.update  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = to_raw_response_wrapper(
-            bookmarks.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                bookmarks.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = to_raw_response_wrapper(
-            bookmarks.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                bookmarks.delete  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_raw_response_wrapper(
-            bookmarks.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                bookmarks.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -505,20 +526,30 @@ class AsyncBookmarksResourceWithRawResponse:
     def __init__(self, bookmarks: AsyncBookmarksResource) -> None:
         self._bookmarks = bookmarks
 
-        self.create = async_to_raw_response_wrapper(
-            bookmarks.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                bookmarks.create  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.update = async_to_raw_response_wrapper(
-            bookmarks.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                bookmarks.update  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = async_to_raw_response_wrapper(
-            bookmarks.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                bookmarks.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = async_to_raw_response_wrapper(
-            bookmarks.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                bookmarks.delete  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_raw_response_wrapper(
-            bookmarks.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                bookmarks.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -526,20 +557,30 @@ class BookmarksResourceWithStreamingResponse:
     def __init__(self, bookmarks: BookmarksResource) -> None:
         self._bookmarks = bookmarks
 
-        self.create = to_streamed_response_wrapper(
-            bookmarks.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                bookmarks.create  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.update = to_streamed_response_wrapper(
-            bookmarks.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                bookmarks.update  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = to_streamed_response_wrapper(
-            bookmarks.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                bookmarks.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = to_streamed_response_wrapper(
-            bookmarks.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                bookmarks.delete  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_streamed_response_wrapper(
-            bookmarks.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                bookmarks.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -547,18 +588,28 @@ class AsyncBookmarksResourceWithStreamingResponse:
     def __init__(self, bookmarks: AsyncBookmarksResource) -> None:
         self._bookmarks = bookmarks
 
-        self.create = async_to_streamed_response_wrapper(
-            bookmarks.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                bookmarks.create  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.update = async_to_streamed_response_wrapper(
-            bookmarks.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                bookmarks.update  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = async_to_streamed_response_wrapper(
-            bookmarks.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                bookmarks.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = async_to_streamed_response_wrapper(
-            bookmarks.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                bookmarks.delete  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_streamed_response_wrapper(
-            bookmarks.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                bookmarks.get  # pyright: ignore[reportDeprecated],
+            )
         )
