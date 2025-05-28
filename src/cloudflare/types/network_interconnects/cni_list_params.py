@@ -18,3 +18,6 @@ class CNIListParams(TypedDict, total=False):
 
     slot: Optional[str]
     """If specified, only show CNIs associated with the specified slot"""
+
+    tunnel_id: Optional[str]
+    """If specified, only show cnis associated with the specified tunnel id"""
