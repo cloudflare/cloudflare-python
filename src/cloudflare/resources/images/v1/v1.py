@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Any, Type, cast
 
 import httpx
@@ -163,6 +164,7 @@ class V1Resource(SyncAPIResource):
             cast_to=cast(Type[Image], ResultWrapper[Image]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
@@ -479,6 +481,7 @@ class AsyncV1Resource(AsyncAPIResource):
             cast_to=cast(Type[Image], ResultWrapper[Image]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
@@ -698,8 +701,10 @@ class V1ResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             v1.create,
         )
-        self.list = to_raw_response_wrapper(
-            v1.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                v1.list  # pyright: ignore[reportDeprecated],
+            )
         )
         self.delete = to_raw_response_wrapper(
             v1.delete,
@@ -735,8 +740,10 @@ class AsyncV1ResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             v1.create,
         )
-        self.list = async_to_raw_response_wrapper(
-            v1.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                v1.list  # pyright: ignore[reportDeprecated],
+            )
         )
         self.delete = async_to_raw_response_wrapper(
             v1.delete,
@@ -772,8 +779,10 @@ class V1ResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             v1.create,
         )
-        self.list = to_streamed_response_wrapper(
-            v1.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                v1.list  # pyright: ignore[reportDeprecated],
+            )
         )
         self.delete = to_streamed_response_wrapper(
             v1.delete,
@@ -809,8 +818,10 @@ class AsyncV1ResourceWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             v1.create,
         )
-        self.list = async_to_streamed_response_wrapper(
-            v1.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                v1.list  # pyright: ignore[reportDeprecated],
+            )
         )
         self.delete = async_to_streamed_response_wrapper(
             v1.delete,

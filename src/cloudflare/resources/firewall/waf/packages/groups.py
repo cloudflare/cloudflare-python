@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Any, cast
 from typing_extensions import Literal
 
@@ -48,6 +49,7 @@ class GroupsResource(SyncAPIResource):
         """
         return GroupsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         package_id: str,
@@ -135,6 +137,7 @@ class GroupsResource(SyncAPIResource):
             model=Group,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def edit(
         self,
         group_id: str,
@@ -199,6 +202,7 @@ class GroupsResource(SyncAPIResource):
             ),
         )
 
+    @typing_extensions.deprecated("deprecated")
     def get(
         self,
         group_id: str,
@@ -277,6 +281,7 @@ class AsyncGroupsResource(AsyncAPIResource):
         """
         return AsyncGroupsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         package_id: str,
@@ -364,6 +369,7 @@ class AsyncGroupsResource(AsyncAPIResource):
             model=Group,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def edit(
         self,
         group_id: str,
@@ -428,6 +434,7 @@ class AsyncGroupsResource(AsyncAPIResource):
             ),
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def get(
         self,
         group_id: str,
@@ -490,14 +497,20 @@ class GroupsResourceWithRawResponse:
     def __init__(self, groups: GroupsResource) -> None:
         self._groups = groups
 
-        self.list = to_raw_response_wrapper(
-            groups.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                groups.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = to_raw_response_wrapper(
-            groups.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                groups.edit  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_raw_response_wrapper(
-            groups.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                groups.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -505,14 +518,20 @@ class AsyncGroupsResourceWithRawResponse:
     def __init__(self, groups: AsyncGroupsResource) -> None:
         self._groups = groups
 
-        self.list = async_to_raw_response_wrapper(
-            groups.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                groups.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = async_to_raw_response_wrapper(
-            groups.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                groups.edit  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_raw_response_wrapper(
-            groups.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                groups.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -520,14 +539,20 @@ class GroupsResourceWithStreamingResponse:
     def __init__(self, groups: GroupsResource) -> None:
         self._groups = groups
 
-        self.list = to_streamed_response_wrapper(
-            groups.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                groups.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = to_streamed_response_wrapper(
-            groups.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                groups.edit  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_streamed_response_wrapper(
-            groups.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                groups.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -535,12 +560,18 @@ class AsyncGroupsResourceWithStreamingResponse:
     def __init__(self, groups: AsyncGroupsResource) -> None:
         self._groups = groups
 
-        self.list = async_to_streamed_response_wrapper(
-            groups.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                groups.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = async_to_streamed_response_wrapper(
-            groups.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                groups.edit  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_streamed_response_wrapper(
-            groups.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                groups.get  # pyright: ignore[reportDeprecated],
+            )
         )

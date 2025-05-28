@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Any, cast
 from typing_extensions import Literal
 
@@ -48,6 +49,7 @@ class RulesResource(SyncAPIResource):
         """
         return RulesResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         package_id: str,
@@ -138,6 +140,7 @@ class RulesResource(SyncAPIResource):
             model=cast(Any, RuleListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
+    @typing_extensions.deprecated("deprecated")
     def edit(
         self,
         rule_id: str,
@@ -201,6 +204,7 @@ class RulesResource(SyncAPIResource):
             ),
         )
 
+    @typing_extensions.deprecated("deprecated")
     def get(
         self,
         rule_id: str,
@@ -279,6 +283,7 @@ class AsyncRulesResource(AsyncAPIResource):
         """
         return AsyncRulesResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         package_id: str,
@@ -369,6 +374,7 @@ class AsyncRulesResource(AsyncAPIResource):
             model=cast(Any, RuleListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def edit(
         self,
         rule_id: str,
@@ -432,6 +438,7 @@ class AsyncRulesResource(AsyncAPIResource):
             ),
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def get(
         self,
         rule_id: str,
@@ -494,14 +501,20 @@ class RulesResourceWithRawResponse:
     def __init__(self, rules: RulesResource) -> None:
         self._rules = rules
 
-        self.list = to_raw_response_wrapper(
-            rules.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                rules.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = to_raw_response_wrapper(
-            rules.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                rules.edit  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_raw_response_wrapper(
-            rules.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                rules.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -509,14 +522,20 @@ class AsyncRulesResourceWithRawResponse:
     def __init__(self, rules: AsyncRulesResource) -> None:
         self._rules = rules
 
-        self.list = async_to_raw_response_wrapper(
-            rules.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                rules.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = async_to_raw_response_wrapper(
-            rules.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                rules.edit  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_raw_response_wrapper(
-            rules.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                rules.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -524,14 +543,20 @@ class RulesResourceWithStreamingResponse:
     def __init__(self, rules: RulesResource) -> None:
         self._rules = rules
 
-        self.list = to_streamed_response_wrapper(
-            rules.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                rules.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = to_streamed_response_wrapper(
-            rules.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                rules.edit  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_streamed_response_wrapper(
-            rules.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                rules.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -539,12 +564,18 @@ class AsyncRulesResourceWithStreamingResponse:
     def __init__(self, rules: AsyncRulesResource) -> None:
         self._rules = rules
 
-        self.list = async_to_streamed_response_wrapper(
-            rules.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                rules.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = async_to_streamed_response_wrapper(
-            rules.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                rules.edit  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_streamed_response_wrapper(
-            rules.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                rules.get  # pyright: ignore[reportDeprecated],
+            )
         )

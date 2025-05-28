@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Type, Optional, cast
 
 import httpx
@@ -181,6 +182,7 @@ class DevicesResource(SyncAPIResource):
         """
         return DevicesResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
@@ -220,6 +222,7 @@ class DevicesResource(SyncAPIResource):
             model=Device,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def get(
         self,
         device_id: str,
@@ -337,6 +340,7 @@ class AsyncDevicesResource(AsyncAPIResource):
         """
         return AsyncDevicesResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
@@ -376,6 +380,7 @@ class AsyncDevicesResource(AsyncAPIResource):
             model=Device,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def get(
         self,
         device_id: str,
@@ -429,11 +434,15 @@ class DevicesResourceWithRawResponse:
     def __init__(self, devices: DevicesResource) -> None:
         self._devices = devices
 
-        self.list = to_raw_response_wrapper(
-            devices.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                devices.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_raw_response_wrapper(
-            devices.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                devices.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -489,11 +498,15 @@ class AsyncDevicesResourceWithRawResponse:
     def __init__(self, devices: AsyncDevicesResource) -> None:
         self._devices = devices
 
-        self.list = async_to_raw_response_wrapper(
-            devices.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                devices.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_raw_response_wrapper(
-            devices.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                devices.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -549,11 +562,15 @@ class DevicesResourceWithStreamingResponse:
     def __init__(self, devices: DevicesResource) -> None:
         self._devices = devices
 
-        self.list = to_streamed_response_wrapper(
-            devices.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                devices.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_streamed_response_wrapper(
-            devices.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                devices.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -609,11 +626,15 @@ class AsyncDevicesResourceWithStreamingResponse:
     def __init__(self, devices: AsyncDevicesResource) -> None:
         self._devices = devices
 
-        self.list = async_to_streamed_response_wrapper(
-            devices.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                devices.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_streamed_response_wrapper(
-            devices.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                devices.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
