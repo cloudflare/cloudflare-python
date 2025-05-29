@@ -279,6 +279,8 @@ class ScansResource(SyncAPIResource):
         Args:
           account_id: Account ID.
 
+          country: Country to geo egress from
+
           custom_headers: Set custom headers.
 
           screenshots_resolutions: Take multiple screenshots targeting different device types.
@@ -836,6 +838,8 @@ class AsyncScansResource(AsyncAPIResource):
 
         Args:
           account_id: Account ID.
+
+          country: Country to geo egress from
 
           custom_headers: Set custom headers.
 
