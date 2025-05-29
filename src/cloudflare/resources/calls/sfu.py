@@ -63,7 +63,7 @@ class SFUResource(SyncAPIResource):
     ) -> Optional[SFUCreateResponse]:
         """Creates a new Cloudflare calls app.
 
-        An app is an unique enviroment where each
+        An app is an unique environment where each
         Session can access all Tracks within the app.
 
         Args:
@@ -301,7 +301,7 @@ class AsyncSFUResource(AsyncAPIResource):
     ) -> Optional[SFUCreateResponse]:
         """Creates a new Cloudflare calls app.
 
-        An app is an unique enviroment where each
+        An app is an unique environment where each
         Session can access all Tracks within the app.
 
         Args:
