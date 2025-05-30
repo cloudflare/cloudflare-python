@@ -63,7 +63,7 @@ class StatusResource(SyncAPIResource):
         Change status of instance
 
         Args:
-          status: Possible actions to apply to instance.
+          status: Apply action to instance.
 
           extra_headers: Send extra headers
 
@@ -131,7 +131,7 @@ class AsyncStatusResource(AsyncAPIResource):
         Change status of instance
 
         Args:
-          status: Possible actions to apply to instance.
+          status: Apply action to instance.
 
           extra_headers: Send extra headers
 

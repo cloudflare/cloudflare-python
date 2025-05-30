@@ -147,9 +147,9 @@ class InstancesResource(SyncAPIResource):
         List of workflow instances
 
         Args:
-          date_end: In ISO 8601 with no timezone offsets and in UTC.
+          date_end: Accepts ISO 8601 with no timezone offsets and in UTC.
 
-          date_start: In ISO 8601 with no timezone offsets and in UTC.
+          date_start: Accepts ISO 8601 with no timezone offsets and in UTC.
 
           extra_headers: Send extra headers
 
@@ -370,9 +370,9 @@ class AsyncInstancesResource(AsyncAPIResource):
         List of workflow instances
 
         Args:
-          date_end: In ISO 8601 with no timezone offsets and in UTC.
+          date_end: Accepts ISO 8601 with no timezone offsets and in UTC.
 
-          date_start: In ISO 8601 with no timezone offsets and in UTC.
+          date_start: Accepts ISO 8601 with no timezone offsets and in UTC.
 
           extra_headers: Send extra headers
 
