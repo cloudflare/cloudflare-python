@@ -11,5 +11,8 @@ class ConfigCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier."""
 
+    allow_out_of_region_access: bool
+    """Allow out of region access"""
+
     regions: str
     """Name of the region."""
