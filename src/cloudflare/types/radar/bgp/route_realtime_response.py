@@ -29,7 +29,7 @@ class MetaCollector(BaseModel):
     """Public route collector ID."""
 
     latest_realtime_ts: str
-    """Latest realtime stream timestamp for this collector."""
+    """Latest real-time stream timestamp for this collector."""
 
     latest_rib_ts: str
     """Latest RIB dump MRT file timestamp for this collector."""

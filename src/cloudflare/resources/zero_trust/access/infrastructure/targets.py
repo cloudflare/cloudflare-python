@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import List, Type, Union, Iterable, Optional, cast
 from datetime import datetime
 from typing_extensions import Literal
@@ -343,6 +344,7 @@ class TargetsResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def bulk_delete(
         self,
         *,
@@ -770,6 +772,7 @@ class AsyncTargetsResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def bulk_delete(
         self,
         *,
@@ -906,8 +909,10 @@ class TargetsResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             targets.delete,
         )
-        self.bulk_delete = to_raw_response_wrapper(
-            targets.bulk_delete,
+        self.bulk_delete = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                targets.bulk_delete  # pyright: ignore[reportDeprecated],
+            )
         )
         self.bulk_update = to_raw_response_wrapper(
             targets.bulk_update,
@@ -933,8 +938,10 @@ class AsyncTargetsResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             targets.delete,
         )
-        self.bulk_delete = async_to_raw_response_wrapper(
-            targets.bulk_delete,
+        self.bulk_delete = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                targets.bulk_delete  # pyright: ignore[reportDeprecated],
+            )
         )
         self.bulk_update = async_to_raw_response_wrapper(
             targets.bulk_update,
@@ -960,8 +967,10 @@ class TargetsResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             targets.delete,
         )
-        self.bulk_delete = to_streamed_response_wrapper(
-            targets.bulk_delete,
+        self.bulk_delete = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                targets.bulk_delete  # pyright: ignore[reportDeprecated],
+            )
         )
         self.bulk_update = to_streamed_response_wrapper(
             targets.bulk_update,
@@ -987,8 +996,10 @@ class AsyncTargetsResourceWithStreamingResponse:
         self.delete = async_to_streamed_response_wrapper(
             targets.delete,
         )
-        self.bulk_delete = async_to_streamed_response_wrapper(
-            targets.bulk_delete,
+        self.bulk_delete = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                targets.bulk_delete  # pyright: ignore[reportDeprecated],
+            )
         )
         self.bulk_update = async_to_streamed_response_wrapper(
             targets.bulk_update,

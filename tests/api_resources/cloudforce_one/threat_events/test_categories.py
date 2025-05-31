@@ -113,7 +113,7 @@ class TestCategories:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         category = client.cloudforce_one.threat_events.categories.delete(
-            category_id="category_id",
+            category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id=0,
         )
         assert_matches_type(CategoryDeleteResponse, category, path=["response"])
@@ -122,7 +122,7 @@ class TestCategories:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.threat_events.categories.with_raw_response.delete(
-            category_id="category_id",
+            category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id=0,
         )
 
@@ -135,7 +135,7 @@ class TestCategories:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.cloudforce_one.threat_events.categories.with_streaming_response.delete(
-            category_id="category_id",
+            category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id=0,
         ) as response:
             assert not response.is_closed
@@ -159,7 +159,7 @@ class TestCategories:
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         category = client.cloudforce_one.threat_events.categories.edit(
-            category_id="category_id",
+            category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id=0,
         )
         assert_matches_type(CategoryEditResponse, category, path=["response"])
@@ -168,7 +168,7 @@ class TestCategories:
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         category = client.cloudforce_one.threat_events.categories.edit(
-            category_id="category_id",
+            category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id=0,
             kill_chain=0,
             mitre_attack=["T1234"],
@@ -181,7 +181,7 @@ class TestCategories:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.threat_events.categories.with_raw_response.edit(
-            category_id="category_id",
+            category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id=0,
         )
 
@@ -194,7 +194,7 @@ class TestCategories:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.cloudforce_one.threat_events.categories.with_streaming_response.edit(
-            category_id="category_id",
+            category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id=0,
         ) as response:
             assert not response.is_closed
@@ -218,7 +218,7 @@ class TestCategories:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         category = client.cloudforce_one.threat_events.categories.get(
-            category_id="category_id",
+            category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id=0,
         )
         assert_matches_type(CategoryGetResponse, category, path=["response"])
@@ -227,7 +227,7 @@ class TestCategories:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.threat_events.categories.with_raw_response.get(
-            category_id="category_id",
+            category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id=0,
         )
 
@@ -240,7 +240,7 @@ class TestCategories:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.cloudforce_one.threat_events.categories.with_streaming_response.get(
-            category_id="category_id",
+            category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id=0,
         ) as response:
             assert not response.is_closed
@@ -354,7 +354,7 @@ class TestAsyncCategories:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         category = await async_client.cloudforce_one.threat_events.categories.delete(
-            category_id="category_id",
+            category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id=0,
         )
         assert_matches_type(CategoryDeleteResponse, category, path=["response"])
@@ -363,7 +363,7 @@ class TestAsyncCategories:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloudforce_one.threat_events.categories.with_raw_response.delete(
-            category_id="category_id",
+            category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id=0,
         )
 
@@ -376,7 +376,7 @@ class TestAsyncCategories:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloudforce_one.threat_events.categories.with_streaming_response.delete(
-            category_id="category_id",
+            category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id=0,
         ) as response:
             assert not response.is_closed
@@ -400,7 +400,7 @@ class TestAsyncCategories:
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         category = await async_client.cloudforce_one.threat_events.categories.edit(
-            category_id="category_id",
+            category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id=0,
         )
         assert_matches_type(CategoryEditResponse, category, path=["response"])
@@ -409,7 +409,7 @@ class TestAsyncCategories:
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         category = await async_client.cloudforce_one.threat_events.categories.edit(
-            category_id="category_id",
+            category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id=0,
             kill_chain=0,
             mitre_attack=["T1234"],
@@ -422,7 +422,7 @@ class TestAsyncCategories:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloudforce_one.threat_events.categories.with_raw_response.edit(
-            category_id="category_id",
+            category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id=0,
         )
 
@@ -435,7 +435,7 @@ class TestAsyncCategories:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloudforce_one.threat_events.categories.with_streaming_response.edit(
-            category_id="category_id",
+            category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id=0,
         ) as response:
             assert not response.is_closed
@@ -459,7 +459,7 @@ class TestAsyncCategories:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         category = await async_client.cloudforce_one.threat_events.categories.get(
-            category_id="category_id",
+            category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id=0,
         )
         assert_matches_type(CategoryGetResponse, category, path=["response"])
@@ -468,7 +468,7 @@ class TestAsyncCategories:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloudforce_one.threat_events.categories.with_raw_response.get(
-            category_id="category_id",
+            category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id=0,
         )
 
@@ -481,7 +481,7 @@ class TestAsyncCategories:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloudforce_one.threat_events.categories.with_streaming_response.get(
-            category_id="category_id",
+            category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id=0,
         ) as response:
             assert not response.is_closed

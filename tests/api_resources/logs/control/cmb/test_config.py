@@ -28,6 +28,7 @@ class TestConfig:
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         config = client.logs.control.cmb.config.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            allow_out_of_region_access=False,
             regions="eu",
         )
         assert_matches_type(Optional[CmbConfig], config, path=["response"])
@@ -154,6 +155,7 @@ class TestAsyncConfig:
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         config = await async_client.logs.control.cmb.config.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            allow_out_of_region_access=False,
             regions="eu",
         )
         assert_matches_type(Optional[CmbConfig], config, path=["response"])

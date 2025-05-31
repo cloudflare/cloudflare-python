@@ -139,7 +139,7 @@ class WorkflowsResource(SyncAPIResource):
         List all Workflows
 
         Args:
-          search: Filter workflows by name.
+          search: Allows filtering workflows` name.
 
           extra_headers: Send extra headers
 
@@ -349,7 +349,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         List all Workflows
 
         Args:
-          search: Filter workflows by name.
+          search: Allows filtering workflows` name.
 
           extra_headers: Send extra headers
 

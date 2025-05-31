@@ -15,10 +15,10 @@ class InstanceListParams(TypedDict, total=False):
     account_id: Required[str]
 
     date_end: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """In ISO 8601 with no timezone offsets and in UTC."""
+    """Accepts ISO 8601 with no timezone offsets and in UTC."""
 
     date_start: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """In ISO 8601 with no timezone offsets and in UTC."""
+    """Accepts ISO 8601 with no timezone offsets and in UTC."""
 
     page: float
 

@@ -15,4 +15,4 @@ class WorkflowListParams(TypedDict, total=False):
     per_page: float
 
     search: str
-    """Filter workflows by name."""
+    """Allows filtering workflows` name."""

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import List, Type, Union, cast
 from datetime import datetime
 from typing_extensions import Literal
@@ -190,6 +191,7 @@ class TopResource(SyncAPIResource):
             cast_to=cast(Type[TopAttacksResponse], ResultWrapper[TopAttacksResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     def industry(
         self,
         *,
@@ -347,6 +349,7 @@ class TopResource(SyncAPIResource):
             cast_to=cast(Type[TopIndustryResponse], ResultWrapper[TopIndustryResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     def vertical(
         self,
         *,
@@ -651,6 +654,7 @@ class AsyncTopResource(AsyncAPIResource):
             cast_to=cast(Type[TopAttacksResponse], ResultWrapper[TopAttacksResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def industry(
         self,
         *,
@@ -808,6 +812,7 @@ class AsyncTopResource(AsyncAPIResource):
             cast_to=cast(Type[TopIndustryResponse], ResultWrapper[TopIndustryResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def vertical(
         self,
         *,
@@ -973,11 +978,15 @@ class TopResourceWithRawResponse:
         self.attacks = to_raw_response_wrapper(
             top.attacks,
         )
-        self.industry = to_raw_response_wrapper(
-            top.industry,
+        self.industry = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                top.industry  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.vertical = to_raw_response_wrapper(
-            top.vertical,
+        self.vertical = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                top.vertical  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -996,11 +1005,15 @@ class AsyncTopResourceWithRawResponse:
         self.attacks = async_to_raw_response_wrapper(
             top.attacks,
         )
-        self.industry = async_to_raw_response_wrapper(
-            top.industry,
+        self.industry = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                top.industry  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.vertical = async_to_raw_response_wrapper(
-            top.vertical,
+        self.vertical = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                top.vertical  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -1019,11 +1032,15 @@ class TopResourceWithStreamingResponse:
         self.attacks = to_streamed_response_wrapper(
             top.attacks,
         )
-        self.industry = to_streamed_response_wrapper(
-            top.industry,
+        self.industry = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                top.industry  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.vertical = to_streamed_response_wrapper(
-            top.vertical,
+        self.vertical = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                top.vertical  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -1042,11 +1059,15 @@ class AsyncTopResourceWithStreamingResponse:
         self.attacks = async_to_streamed_response_wrapper(
             top.attacks,
         )
-        self.industry = async_to_streamed_response_wrapper(
-            top.industry,
+        self.industry = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                top.industry  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.vertical = async_to_streamed_response_wrapper(
-            top.vertical,
+        self.vertical = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                top.vertical  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property

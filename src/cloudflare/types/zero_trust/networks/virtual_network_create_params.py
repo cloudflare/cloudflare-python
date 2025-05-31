@@ -19,3 +19,6 @@ class VirtualNetworkCreateParams(TypedDict, total=False):
 
     is_default: bool
     """If `true`, this virtual network is the default for the account."""
+
+    is_default_network: bool
+    """If `true`, this virtual network is the default for the account."""

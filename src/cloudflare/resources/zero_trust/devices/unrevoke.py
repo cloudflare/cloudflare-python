@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Any, List, Optional, cast
 
 import httpx
@@ -43,6 +44,7 @@ class UnrevokeResource(SyncAPIResource):
         """
         return UnrevokeResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def create(
         self,
         *,
@@ -113,6 +115,7 @@ class AsyncUnrevokeResource(AsyncAPIResource):
         """
         return AsyncUnrevokeResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def create(
         self,
         *,
@@ -167,8 +170,10 @@ class UnrevokeResourceWithRawResponse:
     def __init__(self, unrevoke: UnrevokeResource) -> None:
         self._unrevoke = unrevoke
 
-        self.create = to_raw_response_wrapper(
-            unrevoke.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                unrevoke.create  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -176,8 +181,10 @@ class AsyncUnrevokeResourceWithRawResponse:
     def __init__(self, unrevoke: AsyncUnrevokeResource) -> None:
         self._unrevoke = unrevoke
 
-        self.create = async_to_raw_response_wrapper(
-            unrevoke.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                unrevoke.create  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -185,8 +192,10 @@ class UnrevokeResourceWithStreamingResponse:
     def __init__(self, unrevoke: UnrevokeResource) -> None:
         self._unrevoke = unrevoke
 
-        self.create = to_streamed_response_wrapper(
-            unrevoke.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                unrevoke.create  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -194,6 +203,8 @@ class AsyncUnrevokeResourceWithStreamingResponse:
     def __init__(self, unrevoke: AsyncUnrevokeResource) -> None:
         self._unrevoke = unrevoke
 
-        self.create = async_to_streamed_response_wrapper(
-            unrevoke.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                unrevoke.create  # pyright: ignore[reportDeprecated],
+            )
         )
