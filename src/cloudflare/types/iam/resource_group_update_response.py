@@ -34,7 +34,7 @@ class Meta(BaseModel):
 
 class ResourceGroupUpdateResponse(BaseModel):
     id: str
-    """Identifier of the group."""
+    """Identifier of the resource group."""
 
     scope: List[Scope]
     """The scope associated to the resource group"""
