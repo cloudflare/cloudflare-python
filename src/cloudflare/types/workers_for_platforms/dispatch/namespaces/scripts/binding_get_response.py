@@ -34,6 +34,7 @@ __all__ = [
     "WorkersBindingKindVersionMetadata",
     "WorkersBindingKindSecretsStoreSecret",
     "WorkersBindingKindSecretKey",
+    "WorkersBindingKindWorkflow",
 ]
 
 
@@ -319,6 +320,17 @@ class WorkersBindingKindSecretKey(BaseModel):
     """
 
 
+class WorkersBindingKindWorkflow(BaseModel):
+    name: str
+    """A JavaScript variable name for the binding."""
+
+    type: Literal["workflow"]
+    """The kind of resource that the binding provides."""
+
+    workflow_name: str
+    """Name of the Workflow to bind to."""
+
+
 BindingGetResponse: TypeAlias = Annotated[
     Union[
         WorkersBindingKindAI,
@@ -343,6 +355,7 @@ BindingGetResponse: TypeAlias = Annotated[
         WorkersBindingKindVersionMetadata,
         WorkersBindingKindSecretsStoreSecret,
         WorkersBindingKindSecretKey,
+        WorkersBindingKindWorkflow,
     ],
     PropertyInfo(discriminator="type"),
 ]

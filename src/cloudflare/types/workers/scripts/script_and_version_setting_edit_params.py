@@ -37,6 +37,7 @@ __all__ = [
     "SettingsBindingWorkersBindingKindVersionMetadata",
     "SettingsBindingWorkersBindingKindSecretsStoreSecret",
     "SettingsBindingWorkersBindingKindSecretKey",
+    "SettingsBindingWorkersBindingKindWorkflow",
     "SettingsLimits",
     "SettingsMigrations",
     "SettingsMigrationsWorkersMultipleStepMigrations",
@@ -350,6 +351,17 @@ class SettingsBindingWorkersBindingKindSecretKey(TypedDict, total=False):
     """
 
 
+class SettingsBindingWorkersBindingKindWorkflow(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    type: Required[Literal["workflow"]]
+    """The kind of resource that the binding provides."""
+
+    workflow_name: Required[str]
+    """Name of the Workflow to bind to."""
+
+
 SettingsBinding: TypeAlias = Union[
     SettingsBindingWorkersBindingKindAI,
     SettingsBindingWorkersBindingKindAnalyticsEngine,
@@ -373,6 +385,7 @@ SettingsBinding: TypeAlias = Union[
     SettingsBindingWorkersBindingKindVersionMetadata,
     SettingsBindingWorkersBindingKindSecretsStoreSecret,
     SettingsBindingWorkersBindingKindSecretKey,
+    SettingsBindingWorkersBindingKindWorkflow,
 ]
 
 
