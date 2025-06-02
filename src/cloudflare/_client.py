@@ -40,6 +40,7 @@ if TYPE_CHECKING:
         acm,
         dns,
         iam,
+        ips,
         rum,
         ssl,
         argo,
@@ -128,6 +129,7 @@ if TYPE_CHECKING:
         magic_network_monitoring,
         origin_post_quantum_encryption,
     )
+    from .resources.ips import IPsResource, AsyncIPsResource
     from .resources.ai.ai import AIResource, AsyncAIResource
     from .resources.d1.d1 import D1Resource, AsyncD1Resource
     from .resources.kv.kv import KVResource, AsyncKVResource
@@ -346,6 +348,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.origin_ca_certificates import OriginCACertificatesResource
 
         return OriginCACertificatesResource(self)
+
+    @cached_property
+    def ips(self) -> IPsResource:
+        from .resources.ips import IPsResource
+
+        return IPsResource(self)
 
     @cached_property
     def memberships(self) -> MembershipsResource:
@@ -1159,6 +1167,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncOriginCACertificatesResource(self)
 
     @cached_property
+    def ips(self) -> AsyncIPsResource:
+        from .resources.ips import AsyncIPsResource
+
+        return AsyncIPsResource(self)
+
+    @cached_property
     def memberships(self) -> AsyncMembershipsResource:
         from .resources.memberships import AsyncMembershipsResource
 
@@ -1903,6 +1917,12 @@ class CloudflareWithRawResponse:
         return OriginCACertificatesResourceWithRawResponse(self._client.origin_ca_certificates)
 
     @cached_property
+    def ips(self) -> ips.IPsResourceWithRawResponse:
+        from .resources.ips import IPsResourceWithRawResponse
+
+        return IPsResourceWithRawResponse(self._client.ips)
+
+    @cached_property
     def memberships(self) -> memberships.MembershipsResourceWithRawResponse:
         from .resources.memberships import MembershipsResourceWithRawResponse
 
@@ -2474,6 +2494,12 @@ class AsyncCloudflareWithRawResponse:
         from .resources.origin_ca_certificates import AsyncOriginCACertificatesResourceWithRawResponse
 
         return AsyncOriginCACertificatesResourceWithRawResponse(self._client.origin_ca_certificates)
+
+    @cached_property
+    def ips(self) -> ips.AsyncIPsResourceWithRawResponse:
+        from .resources.ips import AsyncIPsResourceWithRawResponse
+
+        return AsyncIPsResourceWithRawResponse(self._client.ips)
 
     @cached_property
     def memberships(self) -> memberships.AsyncMembershipsResourceWithRawResponse:
@@ -3049,6 +3075,12 @@ class CloudflareWithStreamedResponse:
         return OriginCACertificatesResourceWithStreamingResponse(self._client.origin_ca_certificates)
 
     @cached_property
+    def ips(self) -> ips.IPsResourceWithStreamingResponse:
+        from .resources.ips import IPsResourceWithStreamingResponse
+
+        return IPsResourceWithStreamingResponse(self._client.ips)
+
+    @cached_property
     def memberships(self) -> memberships.MembershipsResourceWithStreamingResponse:
         from .resources.memberships import MembershipsResourceWithStreamingResponse
 
@@ -3620,6 +3652,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.origin_ca_certificates import AsyncOriginCACertificatesResourceWithStreamingResponse
 
         return AsyncOriginCACertificatesResourceWithStreamingResponse(self._client.origin_ca_certificates)
+
+    @cached_property
+    def ips(self) -> ips.AsyncIPsResourceWithStreamingResponse:
+        from .resources.ips import AsyncIPsResourceWithStreamingResponse
+
+        return AsyncIPsResourceWithStreamingResponse(self._client.ips)
 
     @cached_property
     def memberships(self) -> memberships.AsyncMembershipsResourceWithStreamingResponse:
