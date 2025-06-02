@@ -165,6 +165,7 @@ class AccountsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        id: str,
         name: str,
         settings: account_update_params.Settings | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -179,6 +180,8 @@ class AccountsResource(SyncAPIResource):
 
         Args:
           account_id: Account identifier tag.
+
+          id: Identifier
 
           name: Account name
 
@@ -198,6 +201,7 @@ class AccountsResource(SyncAPIResource):
             f"/accounts/{account_id}",
             body=maybe_transform(
                 {
+                    "id": id,
                     "name": name,
                     "settings": settings,
                 },
@@ -448,6 +452,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        id: str,
         name: str,
         settings: account_update_params.Settings | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -462,6 +467,8 @@ class AsyncAccountsResource(AsyncAPIResource):
 
         Args:
           account_id: Account identifier tag.
+
+          id: Identifier
 
           name: Account name
 
@@ -481,6 +488,7 @@ class AsyncAccountsResource(AsyncAPIResource):
             f"/accounts/{account_id}",
             body=await async_maybe_transform(
                 {
+                    "id": id,
                     "name": name,
                     "settings": settings,
                 },

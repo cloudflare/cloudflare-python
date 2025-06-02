@@ -21,7 +21,7 @@ class TestValue:
     def test_method_update(self, client: Cloudflare) -> None:
         value = client.accounts.tokens.value.update(
             token_id="ed17574386854bf78a67040be0a770b0",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
         assert_matches_type(str, value, path=["response"])
@@ -31,7 +31,7 @@ class TestValue:
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.accounts.tokens.value.with_raw_response.update(
             token_id="ed17574386854bf78a67040be0a770b0",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
 
@@ -45,7 +45,7 @@ class TestValue:
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.accounts.tokens.value.with_streaming_response.update(
             token_id="ed17574386854bf78a67040be0a770b0",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         ) as response:
             assert not response.is_closed
@@ -69,7 +69,7 @@ class TestValue:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `token_id` but received ''"):
             client.accounts.tokens.value.with_raw_response.update(
                 token_id="",
-                account_id="eb78d65290b24279ba6f44721b3ea3c4",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 body={},
             )
 
@@ -82,7 +82,7 @@ class TestAsyncValue:
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         value = await async_client.accounts.tokens.value.update(
             token_id="ed17574386854bf78a67040be0a770b0",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
         assert_matches_type(str, value, path=["response"])
@@ -92,7 +92,7 @@ class TestAsyncValue:
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.tokens.value.with_raw_response.update(
             token_id="ed17574386854bf78a67040be0a770b0",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
 
@@ -106,7 +106,7 @@ class TestAsyncValue:
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.tokens.value.with_streaming_response.update(
             token_id="ed17574386854bf78a67040be0a770b0",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         ) as response:
             assert not response.is_closed
@@ -130,6 +130,6 @@ class TestAsyncValue:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `token_id` but received ''"):
             await async_client.accounts.tokens.value.with_raw_response.update(
                 token_id="",
-                account_id="eb78d65290b24279ba6f44721b3ea3c4",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 body={},
             )

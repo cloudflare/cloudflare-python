@@ -15,10 +15,10 @@ class Meta(BaseModel):
 
 class PermissionGroupListResponse(BaseModel):
     id: str
-    """Identifier of the group."""
+    """Identifier of the permission group."""
 
     meta: Optional[Meta] = None
     """Attributes associated to the permission group."""
 
     name: Optional[str] = None
-    """Name of the group."""
+    """Name of the permission group."""

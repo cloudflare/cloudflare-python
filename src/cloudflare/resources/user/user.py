@@ -67,6 +67,8 @@ from .billing.billing import (
     BillingResourceWithStreamingResponse,
     AsyncBillingResourceWithStreamingResponse,
 )
+from ...types.user.user_get_response import UserGetResponse
+from ...types.user.user_edit_response import UserEditResponse
 
 __all__ = ["UserResource", "AsyncUserResource"]
 
@@ -129,7 +131,7 @@ class UserResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[UserEditResponse]:
         """
         Edit part of your user details.
 
@@ -169,9 +171,9 @@ class UserResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[UserEditResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[UserEditResponse]], ResultWrapper[UserEditResponse]),
         )
 
     def get(
@@ -183,7 +185,7 @@ class UserResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[UserGetResponse]:
         """User Details"""
         return self._get(
             "/user",
@@ -192,9 +194,9 @@ class UserResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[UserGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[UserGetResponse]], ResultWrapper[UserGetResponse]),
         )
 
 
@@ -256,7 +258,7 @@ class AsyncUserResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[UserEditResponse]:
         """
         Edit part of your user details.
 
@@ -296,9 +298,9 @@ class AsyncUserResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[UserEditResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[UserEditResponse]], ResultWrapper[UserEditResponse]),
         )
 
     async def get(
@@ -310,7 +312,7 @@ class AsyncUserResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[UserGetResponse]:
         """User Details"""
         return await self._get(
             "/user",
@@ -319,9 +321,9 @@ class AsyncUserResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[UserGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[UserGetResponse]], ResultWrapper[UserGetResponse]),
         )
 
 

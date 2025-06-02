@@ -67,7 +67,8 @@ class TestAccounts:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         account = client.accounts.update(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            id="023e105f4ecef8ad9ca31a8372d0c353",
             name="Demo Account",
         )
         assert_matches_type(Optional[Account], account, path=["response"])
@@ -75,7 +76,8 @@ class TestAccounts:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         account = client.accounts.update(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            id="023e105f4ecef8ad9ca31a8372d0c353",
             name="Demo Account",
             settings={
                 "abuse_contact_email": "abuse_contact_email",
@@ -87,7 +89,8 @@ class TestAccounts:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.accounts.with_raw_response.update(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            id="023e105f4ecef8ad9ca31a8372d0c353",
             name="Demo Account",
         )
 
@@ -99,7 +102,8 @@ class TestAccounts:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.accounts.with_streaming_response.update(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            id="023e105f4ecef8ad9ca31a8372d0c353",
             name="Demo Account",
         ) as response:
             assert not response.is_closed
@@ -115,6 +119,7 @@ class TestAccounts:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.accounts.with_raw_response.update(
                 account_id="",
+                id="023e105f4ecef8ad9ca31a8372d0c353",
                 name="Demo Account",
             )
 
@@ -194,14 +199,14 @@ class TestAccounts:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         account = client.accounts.get(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Account], account, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.accounts.with_raw_response.get(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -212,7 +217,7 @@ class TestAccounts:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.accounts.with_streaming_response.get(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -279,7 +284,8 @@ class TestAsyncAccounts:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         account = await async_client.accounts.update(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            id="023e105f4ecef8ad9ca31a8372d0c353",
             name="Demo Account",
         )
         assert_matches_type(Optional[Account], account, path=["response"])
@@ -287,7 +293,8 @@ class TestAsyncAccounts:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         account = await async_client.accounts.update(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            id="023e105f4ecef8ad9ca31a8372d0c353",
             name="Demo Account",
             settings={
                 "abuse_contact_email": "abuse_contact_email",
@@ -299,7 +306,8 @@ class TestAsyncAccounts:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.with_raw_response.update(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            id="023e105f4ecef8ad9ca31a8372d0c353",
             name="Demo Account",
         )
 
@@ -311,7 +319,8 @@ class TestAsyncAccounts:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.with_streaming_response.update(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            id="023e105f4ecef8ad9ca31a8372d0c353",
             name="Demo Account",
         ) as response:
             assert not response.is_closed
@@ -327,6 +336,7 @@ class TestAsyncAccounts:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.accounts.with_raw_response.update(
                 account_id="",
+                id="023e105f4ecef8ad9ca31a8372d0c353",
                 name="Demo Account",
             )
 
@@ -406,14 +416,14 @@ class TestAsyncAccounts:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         account = await async_client.accounts.get(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Account], account, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.with_raw_response.get(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -424,7 +434,7 @@ class TestAsyncAccounts:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.with_streaming_response.get(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
