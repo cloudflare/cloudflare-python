@@ -152,7 +152,7 @@ from cloudflare import Cloudflare
 client = Cloudflare()
 
 zone = client.zones.create(
-    account={"id": "023e105f4ecef8ad9ca31a8372d0c353"},
+    account={},
     name="example.com",
 )
 print(zone.account)
