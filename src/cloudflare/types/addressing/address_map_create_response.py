@@ -4,16 +4,10 @@ from typing import List, Optional
 from datetime import datetime
 
 from .kind import Kind
+from ..ips.ips import IPs
 from ..._models import BaseModel
 
-__all__ = ["AddressMapCreateResponse", "IP", "Membership"]
-
-
-class IP(BaseModel):
-    created_at: Optional[datetime] = None
-
-    ip: Optional[str] = None
-    """An IPv4 or IPv6 address."""
+__all__ = ["AddressMapCreateResponse", "Membership"]
 
 
 class Membership(BaseModel):
@@ -69,7 +63,7 @@ class AddressMapCreateResponse(BaseModel):
     map is enabled.
     """
 
-    ips: Optional[List[IP]] = None
+    ips: Optional[IPs] = None
     """The set of IPs on the Address Map."""
 
     memberships: Optional[List[Membership]] = None
