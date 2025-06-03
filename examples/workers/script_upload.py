@@ -25,7 +25,6 @@ Then, define a "dispatch_namespace_name" variable and add a
 """
 
 import os
-import json
 
 from cloudflare import Cloudflare, BadRequestError
 
@@ -88,7 +87,7 @@ def main() -> None:
             },
         )
         print("Script Upload success!")
-        print(json.dumps(script, indent=2))
+        print(script.to_json(indent=2))
     except BadRequestError as err:
         print("Script Upload failure!")
         print(err)
