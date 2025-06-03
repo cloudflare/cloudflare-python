@@ -22,12 +22,6 @@ class TestPredefined:
         predefined = client.zero_trust.dlp.profiles.predefined.update(
             profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
-            entries=[
-                {
-                    "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "enabled": True,
-                }
-            ],
         )
         assert_matches_type(Optional[Profile], predefined, path=["response"])
 
@@ -36,12 +30,6 @@ class TestPredefined:
         predefined = client.zero_trust.dlp.profiles.predefined.update(
             profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
-            entries=[
-                {
-                    "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "enabled": True,
-                }
-            ],
             ai_context_enabled=True,
             allowed_match_count=0,
             confidence_threshold="confidence_threshold",
@@ -49,6 +37,12 @@ class TestPredefined:
                 "enabled": True,
                 "skip": {"files": True},
             },
+            entries=[
+                {
+                    "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "enabled": True,
+                }
+            ],
             ocr_enabled=True,
         )
         assert_matches_type(Optional[Profile], predefined, path=["response"])
@@ -58,12 +52,6 @@ class TestPredefined:
         response = client.zero_trust.dlp.profiles.predefined.with_raw_response.update(
             profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
-            entries=[
-                {
-                    "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "enabled": True,
-                }
-            ],
         )
 
         assert response.is_closed is True
@@ -76,12 +64,6 @@ class TestPredefined:
         with client.zero_trust.dlp.profiles.predefined.with_streaming_response.update(
             profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
-            entries=[
-                {
-                    "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "enabled": True,
-                }
-            ],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -97,24 +79,12 @@ class TestPredefined:
             client.zero_trust.dlp.profiles.predefined.with_raw_response.update(
                 profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="",
-                entries=[
-                    {
-                        "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "enabled": True,
-                    }
-                ],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `profile_id` but received ''"):
             client.zero_trust.dlp.profiles.predefined.with_raw_response.update(
                 profile_id="",
                 account_id="account_id",
-                entries=[
-                    {
-                        "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "enabled": True,
-                    }
-                ],
             )
 
     @parametrize
@@ -174,12 +144,6 @@ class TestAsyncPredefined:
         predefined = await async_client.zero_trust.dlp.profiles.predefined.update(
             profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
-            entries=[
-                {
-                    "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "enabled": True,
-                }
-            ],
         )
         assert_matches_type(Optional[Profile], predefined, path=["response"])
 
@@ -188,12 +152,6 @@ class TestAsyncPredefined:
         predefined = await async_client.zero_trust.dlp.profiles.predefined.update(
             profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
-            entries=[
-                {
-                    "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "enabled": True,
-                }
-            ],
             ai_context_enabled=True,
             allowed_match_count=0,
             confidence_threshold="confidence_threshold",
@@ -201,6 +159,12 @@ class TestAsyncPredefined:
                 "enabled": True,
                 "skip": {"files": True},
             },
+            entries=[
+                {
+                    "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "enabled": True,
+                }
+            ],
             ocr_enabled=True,
         )
         assert_matches_type(Optional[Profile], predefined, path=["response"])
@@ -210,12 +174,6 @@ class TestAsyncPredefined:
         response = await async_client.zero_trust.dlp.profiles.predefined.with_raw_response.update(
             profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
-            entries=[
-                {
-                    "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "enabled": True,
-                }
-            ],
         )
 
         assert response.is_closed is True
@@ -228,12 +186,6 @@ class TestAsyncPredefined:
         async with async_client.zero_trust.dlp.profiles.predefined.with_streaming_response.update(
             profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
-            entries=[
-                {
-                    "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "enabled": True,
-                }
-            ],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -249,24 +201,12 @@ class TestAsyncPredefined:
             await async_client.zero_trust.dlp.profiles.predefined.with_raw_response.update(
                 profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="",
-                entries=[
-                    {
-                        "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "enabled": True,
-                    }
-                ],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `profile_id` but received ''"):
             await async_client.zero_trust.dlp.profiles.predefined.with_raw_response.update(
                 profile_id="",
                 account_id="account_id",
-                entries=[
-                    {
-                        "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "enabled": True,
-                    }
-                ],
             )
 
     @parametrize
