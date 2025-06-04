@@ -83,7 +83,7 @@ class ReportsResource(SyncAPIResource):
         for detailed information about the available query parameters.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           dimensions: A comma-separated list of dimensions to group results by.
 
@@ -185,7 +185,7 @@ class AsyncReportsResource(AsyncAPIResource):
         for detailed information about the available query parameters.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           dimensions: A comma-separated list of dimensions to group results by.
 
