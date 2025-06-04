@@ -84,9 +84,9 @@ class ReportsResource(SyncAPIResource):
         for detailed information about the available query parameters.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          dns_firewall_id: Identifier
+          dns_firewall_id: Identifier.
 
           dimensions: A comma-separated list of dimensions to group results by.
 
@@ -191,9 +191,9 @@ class AsyncReportsResource(AsyncAPIResource):
         for detailed information about the available query parameters.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          dns_firewall_id: Identifier
+          dns_firewall_id: Identifier.
 
           dimensions: A comma-separated list of dimensions to group results by.
 
