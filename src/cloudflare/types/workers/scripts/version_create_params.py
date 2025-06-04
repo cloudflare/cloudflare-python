@@ -363,6 +363,18 @@ class MetadataBindingWorkersBindingKindWorkflow(TypedDict, total=False):
     workflow_name: Required[str]
     """Name of the Workflow to bind to."""
 
+    class_name: str
+    """Class name of the Workflow.
+
+    Should only be provided if the Workflow belongs to this script.
+    """
+
+    script_name: str
+    """Script name that contains the Workflow.
+
+    If not provided, defaults to this script name.
+    """
+
 
 MetadataBinding: TypeAlias = Union[
     MetadataBindingWorkersBindingKindAI,

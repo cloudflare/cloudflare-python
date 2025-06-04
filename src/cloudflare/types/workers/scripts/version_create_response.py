@@ -338,6 +338,18 @@ class ResourcesBindingsResultWorkersBindingKindWorkflow(BaseModel):
     workflow_name: str
     """Name of the Workflow to bind to."""
 
+    class_name: Optional[str] = None
+    """Class name of the Workflow.
+
+    Should only be provided if the Workflow belongs to this script.
+    """
+
+    script_name: Optional[str] = None
+    """Script name that contains the Workflow.
+
+    If not provided, defaults to this script name.
+    """
+
 
 ResourcesBindingsResult: TypeAlias = Annotated[
     Union[

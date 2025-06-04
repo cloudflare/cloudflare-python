@@ -78,18 +78,12 @@ class MetadataAssetsConfig(TypedDict, total=False):
     is no Worker script.
     """
 
-    run_worker_first: bool
-    """When true, requests will always invoke the Worker script.
+    run_worker_first: List[str]
+    """Contains a list path rules to control routing to either the Worker or assets.
 
-    Otherwise, attempt to serve an asset matching the request, falling back to the
-    Worker script.
-    """
-
-    serve_directly: bool
-    """
-    When true and the incoming request matches an asset, that will be served instead
-    of invoking the Worker script. When false, requests will always invoke the
-    Worker script.
+    Glob (\\**) and negative (!) rules are supported. Rules must start with either '/'
+    or '!/'. At least one non-negative rule must be provided, and negative rules
+    have higher precedence than non-negative rules.
     """
 
 
@@ -407,6 +401,18 @@ class MetadataBindingWorkersBindingKindWorkflow(TypedDict, total=False):
 
     workflow_name: Required[str]
     """Name of the Workflow to bind to."""
+
+    class_name: str
+    """Class name of the Workflow.
+
+    Should only be provided if the Workflow belongs to this script.
+    """
+
+    script_name: str
+    """Script name that contains the Workflow.
+
+    If not provided, defaults to this script name.
+    """
 
 
 MetadataBinding: TypeAlias = Union[
