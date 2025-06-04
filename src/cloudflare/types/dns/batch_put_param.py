@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import List, Union
-from typing_extensions import Literal, Required, TypeAlias, TypedDict
+from typing_extensions import Literal, TypeAlias, TypedDict
 
 from .ttl_param import TTLParam
 from .record_tags import RecordTags
@@ -28,94 +28,10 @@ from .sshfp_record_param import SSHFPRecordParam
 from .dnskey_record_param import DNSKEYRecordParam
 from .smimea_record_param import SMIMEARecordParam
 
-__all__ = [
-    "BatchPutParam",
-    "A",
-    "AAAA",
-    "CAA",
-    "CERT",
-    "CNAME",
-    "DNSKEY",
-    "DS",
-    "HTTPS",
-    "LOC",
-    "MX",
-    "NAPTR",
-    "NS",
-    "Openpgpkey",
-    "OpenpgpkeySettings",
-    "PTR",
-    "SMIMEA",
-    "SRV",
-    "SSHFP",
-    "SVCB",
-    "TLSA",
-    "TXT",
-    "URI",
-]
+__all__ = ["BatchPutParam", "DNSRecordsOpenpgpkeyRecord", "DNSRecordsOpenpgpkeyRecordSettings"]
 
 
-class A(ARecordParam, total=False):
-    id: str
-    """Identifier."""
-
-
-class AAAA(AAAARecordParam, total=False):
-    id: str
-    """Identifier."""
-
-
-class CAA(CAARecordParam, total=False):
-    id: str
-    """Identifier."""
-
-
-class CERT(CERTRecordParam, total=False):
-    id: str
-    """Identifier."""
-
-
-class CNAME(CNAMERecordParam, total=False):
-    id: str
-    """Identifier."""
-
-
-class DNSKEY(DNSKEYRecordParam, total=False):
-    id: str
-    """Identifier."""
-
-
-class DS(DSRecordParam, total=False):
-    id: str
-    """Identifier."""
-
-
-class HTTPS(HTTPSRecordParam, total=False):
-    id: str
-    """Identifier."""
-
-
-class LOC(LOCRecordParam, total=False):
-    id: str
-    """Identifier."""
-
-
-class MX(MXRecordParam, total=False):
-    id: str
-    """Identifier."""
-
-
-class NAPTR(NAPTRRecordParam, total=False):
-    id: str
-    """Identifier."""
-
-
-class NS(NSRecordParam, total=False):
-    id: str
-    """Identifier."""
-
-
-class OpenpgpkeySettings(TypedDict, total=False):
+class DNSRecordsOpenpgpkeyRecordSettings(TypedDict, total=False):
     ipv4_only: bool
     """
     When enabled, only A records will be generated, and AAAA records will not be
@@ -133,24 +49,18 @@ class OpenpgpkeySettings(TypedDict, total=False):
     """
 
 
-class Openpgpkey(TypedDict, total=False):
-    content: Required[str]
-    """A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)"""
-
-    name: Required[str]
-    """DNS record name (or @ for the zone apex) in Punycode."""
-
-    type: Required[Literal["OPENPGPKEY"]]
-    """Record type."""
-
-    id: str
-    """Identifier."""
-
+class DNSRecordsOpenpgpkeyRecord(TypedDict, total=False):
     comment: str
     """Comments or notes about the DNS record.
 
     This field has no effect on DNS responses.
     """
+
+    content: str
+    """A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)"""
+
+    name: str
+    """DNS record name (or @ for the zone apex) in Punycode."""
 
     proxied: bool
     """
@@ -158,7 +68,7 @@ class Openpgpkey(TypedDict, total=False):
     Cloudflare.
     """
 
-    settings: OpenpgpkeySettings
+    settings: DNSRecordsOpenpgpkeyRecordSettings
     """Settings for the DNS record."""
 
     tags: List[RecordTags]
@@ -171,67 +81,30 @@ class Openpgpkey(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
-
-class PTR(PTRRecordParam, total=False):
-    id: str
-    """Identifier."""
-
-
-class SMIMEA(SMIMEARecordParam, total=False):
-    id: str
-    """Identifier."""
-
-
-class SRV(SRVRecordParam, total=False):
-    id: str
-    """Identifier."""
-
-
-class SSHFP(SSHFPRecordParam, total=False):
-    id: str
-    """Identifier."""
-
-
-class SVCB(SVCBRecordParam, total=False):
-    id: str
-    """Identifier."""
-
-
-class TLSA(TLSARecordParam, total=False):
-    id: str
-    """Identifier."""
-
-
-class TXT(TXTRecordParam, total=False):
-    id: str
-    """Identifier."""
-
-
-class URI(URIRecordParam, total=False):
-    id: str
-    """Identifier."""
+    type: Literal["OPENPGPKEY"]
+    """Record type."""
 
 
 BatchPutParam: TypeAlias = Union[
-    A,
-    AAAA,
-    CAA,
-    CERT,
-    CNAME,
-    DNSKEY,
-    DS,
-    HTTPS,
-    LOC,
-    MX,
-    NAPTR,
-    NS,
-    Openpgpkey,
-    PTR,
-    SMIMEA,
-    SRV,
-    SSHFP,
-    SVCB,
-    TLSA,
-    TXT,
-    URI,
+    ARecordParam,
+    AAAARecordParam,
+    CNAMERecordParam,
+    MXRecordParam,
+    NSRecordParam,
+    DNSRecordsOpenpgpkeyRecord,
+    PTRRecordParam,
+    TXTRecordParam,
+    CAARecordParam,
+    CERTRecordParam,
+    DNSKEYRecordParam,
+    DSRecordParam,
+    HTTPSRecordParam,
+    LOCRecordParam,
+    NAPTRRecordParam,
+    SMIMEARecordParam,
+    SRVRecordParam,
+    SSHFPRecordParam,
+    SVCBRecordParam,
+    TLSARecordParam,
+    URIRecordParam,
 ]

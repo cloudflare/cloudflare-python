@@ -14,14 +14,24 @@ __all__ = [
     "ARecordSettings",
     "AAAARecord",
     "AAAARecordSettings",
+    "CNAMERecord",
+    "CNAMERecordSettings",
+    "MXRecord",
+    "MXRecordSettings",
+    "NSRecord",
+    "NSRecordSettings",
+    "DNSRecordsOpenpgpkeyRecord",
+    "DNSRecordsOpenpgpkeyRecordSettings",
+    "PTRRecord",
+    "PTRRecordSettings",
+    "TXTRecord",
+    "TXTRecordSettings",
     "CAARecord",
     "CAARecordData",
     "CAARecordSettings",
     "CERTRecord",
     "CERTRecordData",
     "CERTRecordSettings",
-    "CNAMERecord",
-    "CNAMERecordSettings",
     "DNSKEYRecord",
     "DNSKEYRecordData",
     "DNSKEYRecordSettings",
@@ -34,17 +44,9 @@ __all__ = [
     "LOCRecord",
     "LOCRecordData",
     "LOCRecordSettings",
-    "MXRecord",
-    "MXRecordSettings",
     "NAPTRRecord",
     "NAPTRRecordData",
     "NAPTRRecordSettings",
-    "NSRecord",
-    "NSRecordSettings",
-    "DNSRecordsOpenpgpkeyRecord",
-    "DNSRecordsOpenpgpkeyRecordSettings",
-    "PTRRecord",
-    "PTRRecordSettings",
     "SMIMEARecord",
     "SMIMEARecordData",
     "SMIMEARecordSettings",
@@ -60,8 +62,6 @@ __all__ = [
     "TLSARecord",
     "TLSARecordData",
     "TLSARecordSettings",
-    "TXTRecord",
-    "TXTRecordSettings",
     "URIRecord",
     "URIRecordData",
     "URIRecordSettings",
@@ -165,6 +165,370 @@ class AAAARecord(TypedDict, total=False):
 
 
 class AAAARecordSettings(TypedDict, total=False):
+    ipv4_only: bool
+    """
+    When enabled, only A records will be generated, and AAAA records will not be
+    created. This setting is intended for exceptional cases. Note that this option
+    only applies to proxied records and it has no effect on whether Cloudflare
+    communicates with the origin using IPv4 or IPv6.
+    """
+
+    ipv6_only: bool
+    """
+    When enabled, only AAAA records will be generated, and A records will not be
+    created. This setting is intended for exceptional cases. Note that this option
+    only applies to proxied records and it has no effect on whether Cloudflare
+    communicates with the origin using IPv4 or IPv6.
+    """
+
+
+class CNAMERecord(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier."""
+
+    comment: str
+    """Comments or notes about the DNS record.
+
+    This field has no effect on DNS responses.
+    """
+
+    content: str
+    """A valid hostname. Must not match the record's name."""
+
+    name: str
+    """DNS record name (or @ for the zone apex) in Punycode."""
+
+    proxied: bool
+    """
+    Whether the record is receiving the performance and security benefits of
+    Cloudflare.
+    """
+
+    settings: CNAMERecordSettings
+    """Settings for the DNS record."""
+
+    tags: List[RecordTags]
+    """Custom tags for the DNS record. This field has no effect on DNS responses."""
+
+    ttl: TTLParam
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
+
+    type: Literal["CNAME"]
+    """Record type."""
+
+
+class CNAMERecordSettings(TypedDict, total=False):
+    flatten_cname: bool
+    """
+    If enabled, causes the CNAME record to be resolved externally and the resulting
+    address records (e.g., A and AAAA) to be returned instead of the CNAME record
+    itself. This setting is unavailable for proxied records, since they are always
+    flattened.
+    """
+
+    ipv4_only: bool
+    """
+    When enabled, only A records will be generated, and AAAA records will not be
+    created. This setting is intended for exceptional cases. Note that this option
+    only applies to proxied records and it has no effect on whether Cloudflare
+    communicates with the origin using IPv4 or IPv6.
+    """
+
+    ipv6_only: bool
+    """
+    When enabled, only AAAA records will be generated, and A records will not be
+    created. This setting is intended for exceptional cases. Note that this option
+    only applies to proxied records and it has no effect on whether Cloudflare
+    communicates with the origin using IPv4 or IPv6.
+    """
+
+
+class MXRecord(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier."""
+
+    comment: str
+    """Comments or notes about the DNS record.
+
+    This field has no effect on DNS responses.
+    """
+
+    content: str
+    """A valid mail server hostname."""
+
+    name: str
+    """DNS record name (or @ for the zone apex) in Punycode."""
+
+    priority: float
+    """Required for MX, SRV and URI records; unused by other record types.
+
+    Records with lower priorities are preferred.
+    """
+
+    proxied: bool
+    """
+    Whether the record is receiving the performance and security benefits of
+    Cloudflare.
+    """
+
+    settings: MXRecordSettings
+    """Settings for the DNS record."""
+
+    tags: List[RecordTags]
+    """Custom tags for the DNS record. This field has no effect on DNS responses."""
+
+    ttl: TTLParam
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
+
+    type: Literal["MX"]
+    """Record type."""
+
+
+class MXRecordSettings(TypedDict, total=False):
+    ipv4_only: bool
+    """
+    When enabled, only A records will be generated, and AAAA records will not be
+    created. This setting is intended for exceptional cases. Note that this option
+    only applies to proxied records and it has no effect on whether Cloudflare
+    communicates with the origin using IPv4 or IPv6.
+    """
+
+    ipv6_only: bool
+    """
+    When enabled, only AAAA records will be generated, and A records will not be
+    created. This setting is intended for exceptional cases. Note that this option
+    only applies to proxied records and it has no effect on whether Cloudflare
+    communicates with the origin using IPv4 or IPv6.
+    """
+
+
+class NSRecord(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier."""
+
+    comment: str
+    """Comments or notes about the DNS record.
+
+    This field has no effect on DNS responses.
+    """
+
+    content: str
+    """A valid name server host name."""
+
+    name: str
+    """DNS record name (or @ for the zone apex) in Punycode."""
+
+    proxied: bool
+    """
+    Whether the record is receiving the performance and security benefits of
+    Cloudflare.
+    """
+
+    settings: NSRecordSettings
+    """Settings for the DNS record."""
+
+    tags: List[RecordTags]
+    """Custom tags for the DNS record. This field has no effect on DNS responses."""
+
+    ttl: TTLParam
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
+
+    type: Literal["NS"]
+    """Record type."""
+
+
+class NSRecordSettings(TypedDict, total=False):
+    ipv4_only: bool
+    """
+    When enabled, only A records will be generated, and AAAA records will not be
+    created. This setting is intended for exceptional cases. Note that this option
+    only applies to proxied records and it has no effect on whether Cloudflare
+    communicates with the origin using IPv4 or IPv6.
+    """
+
+    ipv6_only: bool
+    """
+    When enabled, only AAAA records will be generated, and A records will not be
+    created. This setting is intended for exceptional cases. Note that this option
+    only applies to proxied records and it has no effect on whether Cloudflare
+    communicates with the origin using IPv4 or IPv6.
+    """
+
+
+class DNSRecordsOpenpgpkeyRecord(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier."""
+
+    comment: str
+    """Comments or notes about the DNS record.
+
+    This field has no effect on DNS responses.
+    """
+
+    content: str
+    """A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)"""
+
+    name: str
+    """DNS record name (or @ for the zone apex) in Punycode."""
+
+    proxied: bool
+    """
+    Whether the record is receiving the performance and security benefits of
+    Cloudflare.
+    """
+
+    settings: DNSRecordsOpenpgpkeyRecordSettings
+    """Settings for the DNS record."""
+
+    tags: List[RecordTags]
+    """Custom tags for the DNS record. This field has no effect on DNS responses."""
+
+    ttl: TTLParam
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
+
+    type: Literal["OPENPGPKEY"]
+    """Record type."""
+
+
+class DNSRecordsOpenpgpkeyRecordSettings(TypedDict, total=False):
+    ipv4_only: bool
+    """
+    When enabled, only A records will be generated, and AAAA records will not be
+    created. This setting is intended for exceptional cases. Note that this option
+    only applies to proxied records and it has no effect on whether Cloudflare
+    communicates with the origin using IPv4 or IPv6.
+    """
+
+    ipv6_only: bool
+    """
+    When enabled, only AAAA records will be generated, and A records will not be
+    created. This setting is intended for exceptional cases. Note that this option
+    only applies to proxied records and it has no effect on whether Cloudflare
+    communicates with the origin using IPv4 or IPv6.
+    """
+
+
+class PTRRecord(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier."""
+
+    comment: str
+    """Comments or notes about the DNS record.
+
+    This field has no effect on DNS responses.
+    """
+
+    content: str
+    """Domain name pointing to the address."""
+
+    name: str
+    """DNS record name (or @ for the zone apex) in Punycode."""
+
+    proxied: bool
+    """
+    Whether the record is receiving the performance and security benefits of
+    Cloudflare.
+    """
+
+    settings: PTRRecordSettings
+    """Settings for the DNS record."""
+
+    tags: List[RecordTags]
+    """Custom tags for the DNS record. This field has no effect on DNS responses."""
+
+    ttl: TTLParam
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
+
+    type: Literal["PTR"]
+    """Record type."""
+
+
+class PTRRecordSettings(TypedDict, total=False):
+    ipv4_only: bool
+    """
+    When enabled, only A records will be generated, and AAAA records will not be
+    created. This setting is intended for exceptional cases. Note that this option
+    only applies to proxied records and it has no effect on whether Cloudflare
+    communicates with the origin using IPv4 or IPv6.
+    """
+
+    ipv6_only: bool
+    """
+    When enabled, only AAAA records will be generated, and A records will not be
+    created. This setting is intended for exceptional cases. Note that this option
+    only applies to proxied records and it has no effect on whether Cloudflare
+    communicates with the origin using IPv4 or IPv6.
+    """
+
+
+class TXTRecord(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier."""
+
+    comment: str
+    """Comments or notes about the DNS record.
+
+    This field has no effect on DNS responses.
+    """
+
+    content: str
+    """Text content for the record.
+
+    The content must consist of quoted "character strings" (RFC 1035), each with a
+    length of up to 255 bytes. Strings exceeding this allowed maximum length are
+    automatically split.
+
+    Learn more at
+    <https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/>.
+    """
+
+    name: str
+    """DNS record name (or @ for the zone apex) in Punycode."""
+
+    proxied: bool
+    """
+    Whether the record is receiving the performance and security benefits of
+    Cloudflare.
+    """
+
+    settings: TXTRecordSettings
+    """Settings for the DNS record."""
+
+    tags: List[RecordTags]
+    """Custom tags for the DNS record. This field has no effect on DNS responses."""
+
+    ttl: TTLParam
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
+
+    type: Literal["TXT"]
+    """Record type."""
+
+
+class TXTRecordSettings(TypedDict, total=False):
     ipv4_only: bool
     """
     When enabled, only A records will be generated, and AAAA records will not be
@@ -304,71 +668,6 @@ class CERTRecordData(TypedDict, total=False):
 
 
 class CERTRecordSettings(TypedDict, total=False):
-    ipv4_only: bool
-    """
-    When enabled, only A records will be generated, and AAAA records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-    ipv6_only: bool
-    """
-    When enabled, only AAAA records will be generated, and A records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-
-class CNAMERecord(TypedDict, total=False):
-    zone_id: Required[str]
-    """Identifier."""
-
-    comment: str
-    """Comments or notes about the DNS record.
-
-    This field has no effect on DNS responses.
-    """
-
-    content: str
-    """A valid hostname. Must not match the record's name."""
-
-    name: str
-    """DNS record name (or @ for the zone apex) in Punycode."""
-
-    proxied: bool
-    """
-    Whether the record is receiving the performance and security benefits of
-    Cloudflare.
-    """
-
-    settings: CNAMERecordSettings
-    """Settings for the DNS record."""
-
-    tags: List[RecordTags]
-    """Custom tags for the DNS record. This field has no effect on DNS responses."""
-
-    ttl: TTLParam
-    """Time To Live (TTL) of the DNS record in seconds.
-
-    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
-    minimum reduced to 30 for Enterprise zones.
-    """
-
-    type: Literal["CNAME"]
-    """Record type."""
-
-
-class CNAMERecordSettings(TypedDict, total=False):
-    flatten_cname: bool
-    """
-    If enabled, causes the CNAME record to be resolved externally and the resulting
-    address records (e.g., A and AAAA) to be returned instead of the CNAME record
-    itself. This setting is unavailable for proxied records, since they are always
-    flattened.
-    """
-
     ipv4_only: bool
     """
     When enabled, only A records will be generated, and AAAA records will not be
@@ -691,69 +990,6 @@ class LOCRecordSettings(TypedDict, total=False):
     """
 
 
-class MXRecord(TypedDict, total=False):
-    zone_id: Required[str]
-    """Identifier."""
-
-    comment: str
-    """Comments or notes about the DNS record.
-
-    This field has no effect on DNS responses.
-    """
-
-    content: str
-    """A valid mail server hostname."""
-
-    name: str
-    """DNS record name (or @ for the zone apex) in Punycode."""
-
-    priority: float
-    """Required for MX, SRV and URI records; unused by other record types.
-
-    Records with lower priorities are preferred.
-    """
-
-    proxied: bool
-    """
-    Whether the record is receiving the performance and security benefits of
-    Cloudflare.
-    """
-
-    settings: MXRecordSettings
-    """Settings for the DNS record."""
-
-    tags: List[RecordTags]
-    """Custom tags for the DNS record. This field has no effect on DNS responses."""
-
-    ttl: TTLParam
-    """Time To Live (TTL) of the DNS record in seconds.
-
-    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
-    minimum reduced to 30 for Enterprise zones.
-    """
-
-    type: Literal["MX"]
-    """Record type."""
-
-
-class MXRecordSettings(TypedDict, total=False):
-    ipv4_only: bool
-    """
-    When enabled, only A records will be generated, and AAAA records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-    ipv6_only: bool
-    """
-    When enabled, only AAAA records will be generated, and A records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-
 class NAPTRRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier."""
@@ -814,177 +1050,6 @@ class NAPTRRecordData(TypedDict, total=False):
 
 
 class NAPTRRecordSettings(TypedDict, total=False):
-    ipv4_only: bool
-    """
-    When enabled, only A records will be generated, and AAAA records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-    ipv6_only: bool
-    """
-    When enabled, only AAAA records will be generated, and A records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-
-class NSRecord(TypedDict, total=False):
-    zone_id: Required[str]
-    """Identifier."""
-
-    comment: str
-    """Comments or notes about the DNS record.
-
-    This field has no effect on DNS responses.
-    """
-
-    content: str
-    """A valid name server host name."""
-
-    name: str
-    """DNS record name (or @ for the zone apex) in Punycode."""
-
-    proxied: bool
-    """
-    Whether the record is receiving the performance and security benefits of
-    Cloudflare.
-    """
-
-    settings: NSRecordSettings
-    """Settings for the DNS record."""
-
-    tags: List[RecordTags]
-    """Custom tags for the DNS record. This field has no effect on DNS responses."""
-
-    ttl: TTLParam
-    """Time To Live (TTL) of the DNS record in seconds.
-
-    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
-    minimum reduced to 30 for Enterprise zones.
-    """
-
-    type: Literal["NS"]
-    """Record type."""
-
-
-class NSRecordSettings(TypedDict, total=False):
-    ipv4_only: bool
-    """
-    When enabled, only A records will be generated, and AAAA records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-    ipv6_only: bool
-    """
-    When enabled, only AAAA records will be generated, and A records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-
-class DNSRecordsOpenpgpkeyRecord(TypedDict, total=False):
-    zone_id: Required[str]
-    """Identifier."""
-
-    comment: str
-    """Comments or notes about the DNS record.
-
-    This field has no effect on DNS responses.
-    """
-
-    content: str
-    """A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)"""
-
-    name: str
-    """DNS record name (or @ for the zone apex) in Punycode."""
-
-    proxied: bool
-    """
-    Whether the record is receiving the performance and security benefits of
-    Cloudflare.
-    """
-
-    settings: DNSRecordsOpenpgpkeyRecordSettings
-    """Settings for the DNS record."""
-
-    tags: List[RecordTags]
-    """Custom tags for the DNS record. This field has no effect on DNS responses."""
-
-    ttl: TTLParam
-    """Time To Live (TTL) of the DNS record in seconds.
-
-    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
-    minimum reduced to 30 for Enterprise zones.
-    """
-
-    type: Literal["OPENPGPKEY"]
-    """Record type."""
-
-
-class DNSRecordsOpenpgpkeyRecordSettings(TypedDict, total=False):
-    ipv4_only: bool
-    """
-    When enabled, only A records will be generated, and AAAA records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-    ipv6_only: bool
-    """
-    When enabled, only AAAA records will be generated, and A records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-
-class PTRRecord(TypedDict, total=False):
-    zone_id: Required[str]
-    """Identifier."""
-
-    comment: str
-    """Comments or notes about the DNS record.
-
-    This field has no effect on DNS responses.
-    """
-
-    content: str
-    """Domain name pointing to the address."""
-
-    name: str
-    """DNS record name (or @ for the zone apex) in Punycode."""
-
-    proxied: bool
-    """
-    Whether the record is receiving the performance and security benefits of
-    Cloudflare.
-    """
-
-    settings: PTRRecordSettings
-    """Settings for the DNS record."""
-
-    tags: List[RecordTags]
-    """Custom tags for the DNS record. This field has no effect on DNS responses."""
-
-    ttl: TTLParam
-    """Time To Live (TTL) of the DNS record in seconds.
-
-    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
-    minimum reduced to 30 for Enterprise zones.
-    """
-
-    type: Literal["PTR"]
-    """Record type."""
-
-
-class PTRRecordSettings(TypedDict, total=False):
     ipv4_only: bool
     """
     When enabled, only A records will be generated, and AAAA records will not be
@@ -1354,71 +1419,6 @@ class TLSARecordSettings(TypedDict, total=False):
     """
 
 
-class TXTRecord(TypedDict, total=False):
-    zone_id: Required[str]
-    """Identifier."""
-
-    comment: str
-    """Comments or notes about the DNS record.
-
-    This field has no effect on DNS responses.
-    """
-
-    content: str
-    """Text content for the record.
-
-    The content must consist of quoted "character strings" (RFC 1035), each with a
-    length of up to 255 bytes. Strings exceeding this allowed maximum length are
-    automatically split.
-
-    Learn more at
-    <https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/>.
-    """
-
-    name: str
-    """DNS record name (or @ for the zone apex) in Punycode."""
-
-    proxied: bool
-    """
-    Whether the record is receiving the performance and security benefits of
-    Cloudflare.
-    """
-
-    settings: TXTRecordSettings
-    """Settings for the DNS record."""
-
-    tags: List[RecordTags]
-    """Custom tags for the DNS record. This field has no effect on DNS responses."""
-
-    ttl: TTLParam
-    """Time To Live (TTL) of the DNS record in seconds.
-
-    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
-    minimum reduced to 30 for Enterprise zones.
-    """
-
-    type: Literal["TXT"]
-    """Record type."""
-
-
-class TXTRecordSettings(TypedDict, total=False):
-    ipv4_only: bool
-    """
-    When enabled, only A records will be generated, and AAAA records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-    ipv6_only: bool
-    """
-    When enabled, only AAAA records will be generated, and A records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-
 class URIRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier."""
@@ -1493,23 +1493,23 @@ class URIRecordSettings(TypedDict, total=False):
 RecordEditParams: TypeAlias = Union[
     ARecord,
     AAAARecord,
+    CNAMERecord,
+    MXRecord,
+    NSRecord,
+    DNSRecordsOpenpgpkeyRecord,
+    PTRRecord,
+    TXTRecord,
     CAARecord,
     CERTRecord,
-    CNAMERecord,
     DNSKEYRecord,
     DSRecord,
     HTTPSRecord,
     LOCRecord,
-    MXRecord,
     NAPTRRecord,
-    NSRecord,
-    DNSRecordsOpenpgpkeyRecord,
-    PTRRecord,
     SMIMEARecord,
     SRVRecord,
     SSHFPRecord,
     SVCBRecord,
     TLSARecord,
-    TXTRecord,
     URIRecord,
 ]
