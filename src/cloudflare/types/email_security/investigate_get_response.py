@@ -7,7 +7,11 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["InvestigateGetResponse", "Validation"]
+__all__ = ["InvestigateGetResponse", "Properties", "Validation"]
+
+
+class Properties(BaseModel):
+    whitelisted_pattern_type: Optional[str] = None
 
 
 class Validation(BaseModel):
@@ -35,6 +39,8 @@ class InvestigateGetResponse(BaseModel):
 
     postfix_id: str
     """The identifier of the message."""
+
+    properties: Properties
 
     ts: str
 
