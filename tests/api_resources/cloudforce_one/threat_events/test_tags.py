@@ -21,7 +21,7 @@ class TestTags:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         tag = client.cloudforce_one.threat_events.tags.create(
-            account_id=0,
+            account_id="account_id",
             name="name",
         )
         assert_matches_type(TagCreateResponse, tag, path=["response"])
@@ -30,7 +30,7 @@ class TestTags:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.threat_events.tags.with_raw_response.create(
-            account_id=0,
+            account_id="account_id",
             name="name",
         )
 
@@ -43,7 +43,7 @@ class TestTags:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.cloudforce_one.threat_events.tags.with_streaming_response.create(
-            account_id=0,
+            account_id="account_id",
             name="name",
         ) as response:
             assert not response.is_closed
@@ -54,6 +54,15 @@ class TestTags:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
+    @parametrize
+    def test_path_params_create(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.cloudforce_one.threat_events.tags.with_raw_response.create(
+                account_id="",
+                name="name",
+            )
+
 
 class TestAsyncTags:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -62,7 +71,7 @@ class TestAsyncTags:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         tag = await async_client.cloudforce_one.threat_events.tags.create(
-            account_id=0,
+            account_id="account_id",
             name="name",
         )
         assert_matches_type(TagCreateResponse, tag, path=["response"])
@@ -71,7 +80,7 @@ class TestAsyncTags:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloudforce_one.threat_events.tags.with_raw_response.create(
-            account_id=0,
+            account_id="account_id",
             name="name",
         )
 
@@ -84,7 +93,7 @@ class TestAsyncTags:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloudforce_one.threat_events.tags.with_streaming_response.create(
-            account_id=0,
+            account_id="account_id",
             name="name",
         ) as response:
             assert not response.is_closed
@@ -94,3 +103,12 @@ class TestAsyncTags:
             assert_matches_type(TagCreateResponse, tag, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
+    @parametrize
+    async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.cloudforce_one.threat_events.tags.with_raw_response.create(
+                account_id="",
+                name="name",
+            )

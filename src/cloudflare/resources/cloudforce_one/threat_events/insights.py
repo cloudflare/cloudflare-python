@@ -51,7 +51,7 @@ class InsightsResource(SyncAPIResource):
         self,
         event_id: str,
         *,
-        account_id: float,
+        account_id: str,
         content: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -76,6 +76,8 @@ class InsightsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not event_id:
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return self._post(
@@ -95,7 +97,7 @@ class InsightsResource(SyncAPIResource):
         self,
         insight_id: str,
         *,
-        account_id: float,
+        account_id: str,
         event_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -122,6 +124,8 @@ class InsightsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not event_id:
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         if not insight_id:
@@ -142,7 +146,7 @@ class InsightsResource(SyncAPIResource):
         self,
         insight_id: str,
         *,
-        account_id: float,
+        account_id: str,
         event_id: str,
         content: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -170,6 +174,8 @@ class InsightsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not event_id:
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         if not insight_id:
@@ -191,7 +197,7 @@ class InsightsResource(SyncAPIResource):
         self,
         insight_id: str,
         *,
-        account_id: float,
+        account_id: str,
         event_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -218,6 +224,8 @@ class InsightsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not event_id:
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         if not insight_id:
@@ -259,7 +267,7 @@ class AsyncInsightsResource(AsyncAPIResource):
         self,
         event_id: str,
         *,
-        account_id: float,
+        account_id: str,
         content: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -284,6 +292,8 @@ class AsyncInsightsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not event_id:
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return await self._post(
@@ -303,7 +313,7 @@ class AsyncInsightsResource(AsyncAPIResource):
         self,
         insight_id: str,
         *,
-        account_id: float,
+        account_id: str,
         event_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -330,6 +340,8 @@ class AsyncInsightsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not event_id:
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         if not insight_id:
@@ -350,7 +362,7 @@ class AsyncInsightsResource(AsyncAPIResource):
         self,
         insight_id: str,
         *,
-        account_id: float,
+        account_id: str,
         event_id: str,
         content: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -378,6 +390,8 @@ class AsyncInsightsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not event_id:
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         if not insight_id:
@@ -399,7 +413,7 @@ class AsyncInsightsResource(AsyncAPIResource):
         self,
         insight_id: str,
         *,
-        account_id: float,
+        account_id: str,
         event_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -426,6 +440,8 @@ class AsyncInsightsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not event_id:
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         if not insight_id:

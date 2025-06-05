@@ -11,7 +11,7 @@ __all__ = ["CategoryCreateParams"]
 
 
 class CategoryCreateParams(TypedDict, total=False):
-    account_id: Required[float]
+    account_id: Required[str]
     """Account ID."""
 
     kill_chain: Required[Annotated[float, PropertyInfo(alias="killChain")]]
