@@ -62,4 +62,4 @@ class Device(TypedDict, total=False):
 
 class User(TypedDict, total=False):
     id: List[str]
-    """Filter by Access user ID."""
+    """Filter by user ID."""
