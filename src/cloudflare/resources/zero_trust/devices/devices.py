@@ -194,11 +194,8 @@ class DevicesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncSinglePage[Device]:
-        """List WARP devices.
-
-        Not supported when
-        [multi-user mode](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/deployment/mdm-deployment/windows-multiuser/)
-        is enabled for the account.
+        """
+        List WARP registrations.
 
         **Deprecated**: please use one of the following endpoints instead:
 
@@ -238,11 +235,8 @@ class DevicesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[DeviceGetResponse]:
-        """Fetches a single WARP device.
-
-        Not supported when
-        [multi-user mode](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/deployment/mdm-deployment/windows-multiuser/)
-        is enabled for the account.
+        """
+        Fetches a single WARP registration.
 
         **Deprecated**: please use one of the following endpoints instead:
 
@@ -358,11 +352,8 @@ class AsyncDevicesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[Device, AsyncSinglePage[Device]]:
-        """List WARP devices.
-
-        Not supported when
-        [multi-user mode](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/deployment/mdm-deployment/windows-multiuser/)
-        is enabled for the account.
+        """
+        List WARP registrations.
 
         **Deprecated**: please use one of the following endpoints instead:
 
@@ -402,11 +393,8 @@ class AsyncDevicesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[DeviceGetResponse]:
-        """Fetches a single WARP device.
-
-        Not supported when
-        [multi-user mode](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/deployment/mdm-deployment/windows-multiuser/)
-        is enabled for the account.
+        """
+        Fetches a single WARP registration.
 
         **Deprecated**: please use one of the following endpoints instead:
 

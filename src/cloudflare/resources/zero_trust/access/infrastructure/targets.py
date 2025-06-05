@@ -27,6 +27,7 @@ from .....types.zero_trust.access.infrastructure import (
     target_create_params,
     target_update_params,
     target_bulk_update_params,
+    target_bulk_delete_v2_params,
 )
 from .....types.zero_trust.access.infrastructure.target_get_response import TargetGetResponse
 from .....types.zero_trust.access.infrastructure.target_list_response import TargetListResponse
@@ -375,6 +376,46 @@ class TargetsResource(SyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/accounts/{account_id}/infrastructure/targets/batch",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=NoneType,
+        )
+
+    def bulk_delete_v2(
+        self,
+        *,
+        account_id: str,
+        target_ids: List[str],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> None:
+        """
+        Removes one or more targets.
+
+        Args:
+          account_id: Account identifier
+
+          target_ids: List of target IDs to bulk delete
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return self._post(
+            f"/accounts/{account_id}/infrastructure/targets/batch_delete",
+            body=maybe_transform({"target_ids": target_ids}, target_bulk_delete_v2_params.TargetBulkDeleteV2Params),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -809,6 +850,48 @@ class AsyncTargetsResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
+    async def bulk_delete_v2(
+        self,
+        *,
+        account_id: str,
+        target_ids: List[str],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> None:
+        """
+        Removes one or more targets.
+
+        Args:
+          account_id: Account identifier
+
+          target_ids: List of target IDs to bulk delete
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return await self._post(
+            f"/accounts/{account_id}/infrastructure/targets/batch_delete",
+            body=await async_maybe_transform(
+                {"target_ids": target_ids}, target_bulk_delete_v2_params.TargetBulkDeleteV2Params
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=NoneType,
+        )
+
     def bulk_update(
         self,
         *,
@@ -914,6 +997,9 @@ class TargetsResourceWithRawResponse:
                 targets.bulk_delete  # pyright: ignore[reportDeprecated],
             )
         )
+        self.bulk_delete_v2 = to_raw_response_wrapper(
+            targets.bulk_delete_v2,
+        )
         self.bulk_update = to_raw_response_wrapper(
             targets.bulk_update,
         )
@@ -942,6 +1028,9 @@ class AsyncTargetsResourceWithRawResponse:
             async_to_raw_response_wrapper(
                 targets.bulk_delete  # pyright: ignore[reportDeprecated],
             )
+        )
+        self.bulk_delete_v2 = async_to_raw_response_wrapper(
+            targets.bulk_delete_v2,
         )
         self.bulk_update = async_to_raw_response_wrapper(
             targets.bulk_update,
@@ -972,6 +1061,9 @@ class TargetsResourceWithStreamingResponse:
                 targets.bulk_delete  # pyright: ignore[reportDeprecated],
             )
         )
+        self.bulk_delete_v2 = to_streamed_response_wrapper(
+            targets.bulk_delete_v2,
+        )
         self.bulk_update = to_streamed_response_wrapper(
             targets.bulk_update,
         )
@@ -1000,6 +1092,9 @@ class AsyncTargetsResourceWithStreamingResponse:
             async_to_streamed_response_wrapper(
                 targets.bulk_delete  # pyright: ignore[reportDeprecated],
             )
+        )
+        self.bulk_delete_v2 = async_to_streamed_response_wrapper(
+            targets.bulk_delete_v2,
         )
         self.bulk_update = async_to_streamed_response_wrapper(
             targets.bulk_update,
