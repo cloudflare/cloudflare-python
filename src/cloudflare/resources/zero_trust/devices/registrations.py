@@ -76,7 +76,7 @@ class RegistrationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncCursorPagination[RegistrationListResponse]:
         """
-        Lists WARP registrations.
+        List WARP registrations.
 
         Args:
           id: Filter by registration ID.
@@ -388,7 +388,7 @@ class AsyncRegistrationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[RegistrationListResponse, AsyncCursorPagination[RegistrationListResponse]]:
         """
-        Lists WARP registrations.
+        List WARP registrations.
 
         Args:
           id: Filter by registration ID.
