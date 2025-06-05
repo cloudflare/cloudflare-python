@@ -57,8 +57,11 @@ class UnrevokeResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[UnrevokeCreateResponse]:
-        """
-        Unrevokes a list of registrations.
+        """Unrevokes a list of devices.
+
+        Not supported when
+        [multi-user mode](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/deployment/mdm-deployment/windows-multiuser/)
+        is enabled.
 
         **Deprecated**: please use POST
         /accounts/{account_id}/devices/registrations/unrevoke instead.
@@ -128,8 +131,11 @@ class AsyncUnrevokeResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[UnrevokeCreateResponse]:
-        """
-        Unrevokes a list of registrations.
+        """Unrevokes a list of devices.
+
+        Not supported when
+        [multi-user mode](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/deployment/mdm-deployment/windows-multiuser/)
+        is enabled.
 
         **Deprecated**: please use POST
         /accounts/{account_id}/devices/registrations/unrevoke instead.
