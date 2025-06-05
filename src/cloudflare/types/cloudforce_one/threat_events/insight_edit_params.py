@@ -8,7 +8,7 @@ __all__ = ["InsightEditParams"]
 
 
 class InsightEditParams(TypedDict, total=False):
-    account_id: Required[float]
+    account_id: Required[str]
     """Account ID."""
 
     event_id: Required[str]

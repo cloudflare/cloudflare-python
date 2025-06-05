@@ -50,7 +50,7 @@ class CategoriesResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: float,
+        account_id: str,
         kill_chain: float,
         name: str,
         mitre_attack: List[str] | NotGiven = NOT_GIVEN,
@@ -76,6 +76,8 @@ class CategoriesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/cloudforce-one/events/categories/create",
             body=maybe_transform(
@@ -96,7 +98,7 @@ class CategoriesResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: float,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -118,6 +120,8 @@ class CategoriesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
             f"/accounts/{account_id}/cloudforce-one/events/categories",
             options=make_request_options(
@@ -130,7 +134,7 @@ class CategoriesResource(SyncAPIResource):
         self,
         category_id: str,
         *,
-        account_id: float,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -154,6 +158,8 @@ class CategoriesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not category_id:
             raise ValueError(f"Expected a non-empty value for `category_id` but received {category_id!r}")
         return self._delete(
@@ -168,7 +174,7 @@ class CategoriesResource(SyncAPIResource):
         self,
         category_id: str,
         *,
-        account_id: float,
+        account_id: str,
         kill_chain: float | NotGiven = NOT_GIVEN,
         mitre_attack: List[str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
@@ -196,6 +202,8 @@ class CategoriesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not category_id:
             raise ValueError(f"Expected a non-empty value for `category_id` but received {category_id!r}")
         return self._patch(
@@ -219,7 +227,7 @@ class CategoriesResource(SyncAPIResource):
         self,
         category_id: str,
         *,
-        account_id: float,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -243,6 +251,8 @@ class CategoriesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not category_id:
             raise ValueError(f"Expected a non-empty value for `category_id` but received {category_id!r}")
         return self._get(
@@ -277,7 +287,7 @@ class AsyncCategoriesResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: float,
+        account_id: str,
         kill_chain: float,
         name: str,
         mitre_attack: List[str] | NotGiven = NOT_GIVEN,
@@ -303,6 +313,8 @@ class AsyncCategoriesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/cloudforce-one/events/categories/create",
             body=await async_maybe_transform(
@@ -323,7 +335,7 @@ class AsyncCategoriesResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        account_id: float,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -345,6 +357,8 @@ class AsyncCategoriesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
             f"/accounts/{account_id}/cloudforce-one/events/categories",
             options=make_request_options(
@@ -357,7 +371,7 @@ class AsyncCategoriesResource(AsyncAPIResource):
         self,
         category_id: str,
         *,
-        account_id: float,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -381,6 +395,8 @@ class AsyncCategoriesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not category_id:
             raise ValueError(f"Expected a non-empty value for `category_id` but received {category_id!r}")
         return await self._delete(
@@ -395,7 +411,7 @@ class AsyncCategoriesResource(AsyncAPIResource):
         self,
         category_id: str,
         *,
-        account_id: float,
+        account_id: str,
         kill_chain: float | NotGiven = NOT_GIVEN,
         mitre_attack: List[str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
@@ -423,6 +439,8 @@ class AsyncCategoriesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not category_id:
             raise ValueError(f"Expected a non-empty value for `category_id` but received {category_id!r}")
         return await self._patch(
@@ -446,7 +464,7 @@ class AsyncCategoriesResource(AsyncAPIResource):
         self,
         category_id: str,
         *,
-        account_id: float,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -470,6 +488,8 @@ class AsyncCategoriesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not category_id:
             raise ValueError(f"Expected a non-empty value for `category_id` but received {category_id!r}")
         return await self._get(

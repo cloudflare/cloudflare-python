@@ -12,7 +12,7 @@ __all__ = ["ThreatEventCreateParams", "Raw"]
 
 
 class ThreatEventCreateParams(TypedDict, total=False):
-    path_account_id: Required[Annotated[float, PropertyInfo(alias="account_id")]]
+    path_account_id: Required[Annotated[str, PropertyInfo(alias="account_id")]]
     """Account ID."""
 
     attacker: Required[str]

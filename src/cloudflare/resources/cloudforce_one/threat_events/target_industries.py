@@ -42,7 +42,7 @@ class TargetIndustriesResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: float,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -64,6 +64,8 @@ class TargetIndustriesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
             f"/accounts/{account_id}/cloudforce-one/events/targetIndustries",
             options=make_request_options(
@@ -96,7 +98,7 @@ class AsyncTargetIndustriesResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        account_id: float,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -118,6 +120,8 @@ class AsyncTargetIndustriesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
             f"/accounts/{account_id}/cloudforce-one/events/targetIndustries",
             options=make_request_options(

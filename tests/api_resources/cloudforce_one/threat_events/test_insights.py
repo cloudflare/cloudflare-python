@@ -27,7 +27,7 @@ class TestInsights:
     def test_method_create(self, client: Cloudflare) -> None:
         insight = client.cloudforce_one.threat_events.insights.create(
             event_id="event_id",
-            account_id=0,
+            account_id="account_id",
             content="Here is some additional context _in markdown_",
         )
         assert_matches_type(InsightCreateResponse, insight, path=["response"])
@@ -37,7 +37,7 @@ class TestInsights:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.threat_events.insights.with_raw_response.create(
             event_id="event_id",
-            account_id=0,
+            account_id="account_id",
             content="Here is some additional context _in markdown_",
         )
 
@@ -51,7 +51,7 @@ class TestInsights:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.cloudforce_one.threat_events.insights.with_streaming_response.create(
             event_id="event_id",
-            account_id=0,
+            account_id="account_id",
             content="Here is some additional context _in markdown_",
         ) as response:
             assert not response.is_closed
@@ -65,10 +65,17 @@ class TestInsights:
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.cloudforce_one.threat_events.insights.with_raw_response.create(
+                event_id="event_id",
+                account_id="",
+                content="Here is some additional context _in markdown_",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `event_id` but received ''"):
             client.cloudforce_one.threat_events.insights.with_raw_response.create(
                 event_id="",
-                account_id=0,
+                account_id="account_id",
                 content="Here is some additional context _in markdown_",
             )
 
@@ -77,7 +84,7 @@ class TestInsights:
     def test_method_delete(self, client: Cloudflare) -> None:
         insight = client.cloudforce_one.threat_events.insights.delete(
             insight_id="insight_id",
-            account_id=0,
+            account_id="account_id",
             event_id="event_id",
         )
         assert_matches_type(InsightDeleteResponse, insight, path=["response"])
@@ -87,7 +94,7 @@ class TestInsights:
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.threat_events.insights.with_raw_response.delete(
             insight_id="insight_id",
-            account_id=0,
+            account_id="account_id",
             event_id="event_id",
         )
 
@@ -101,7 +108,7 @@ class TestInsights:
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.cloudforce_one.threat_events.insights.with_streaming_response.delete(
             insight_id="insight_id",
-            account_id=0,
+            account_id="account_id",
             event_id="event_id",
         ) as response:
             assert not response.is_closed
@@ -115,17 +122,24 @@ class TestInsights:
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.cloudforce_one.threat_events.insights.with_raw_response.delete(
+                insight_id="insight_id",
+                account_id="",
+                event_id="event_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `event_id` but received ''"):
             client.cloudforce_one.threat_events.insights.with_raw_response.delete(
                 insight_id="insight_id",
-                account_id=0,
+                account_id="account_id",
                 event_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `insight_id` but received ''"):
             client.cloudforce_one.threat_events.insights.with_raw_response.delete(
                 insight_id="",
-                account_id=0,
+                account_id="account_id",
                 event_id="event_id",
             )
 
@@ -134,7 +148,7 @@ class TestInsights:
     def test_method_edit(self, client: Cloudflare) -> None:
         insight = client.cloudforce_one.threat_events.insights.edit(
             insight_id="insight_id",
-            account_id=0,
+            account_id="account_id",
             event_id="event_id",
             content="Updated: Here is some additional context _in markdown_",
         )
@@ -145,7 +159,7 @@ class TestInsights:
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.threat_events.insights.with_raw_response.edit(
             insight_id="insight_id",
-            account_id=0,
+            account_id="account_id",
             event_id="event_id",
             content="Updated: Here is some additional context _in markdown_",
         )
@@ -160,7 +174,7 @@ class TestInsights:
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.cloudforce_one.threat_events.insights.with_streaming_response.edit(
             insight_id="insight_id",
-            account_id=0,
+            account_id="account_id",
             event_id="event_id",
             content="Updated: Here is some additional context _in markdown_",
         ) as response:
@@ -175,10 +189,18 @@ class TestInsights:
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.cloudforce_one.threat_events.insights.with_raw_response.edit(
+                insight_id="insight_id",
+                account_id="",
+                event_id="event_id",
+                content="Updated: Here is some additional context _in markdown_",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `event_id` but received ''"):
             client.cloudforce_one.threat_events.insights.with_raw_response.edit(
                 insight_id="insight_id",
-                account_id=0,
+                account_id="account_id",
                 event_id="",
                 content="Updated: Here is some additional context _in markdown_",
             )
@@ -186,7 +208,7 @@ class TestInsights:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `insight_id` but received ''"):
             client.cloudforce_one.threat_events.insights.with_raw_response.edit(
                 insight_id="",
-                account_id=0,
+                account_id="account_id",
                 event_id="event_id",
                 content="Updated: Here is some additional context _in markdown_",
             )
@@ -196,7 +218,7 @@ class TestInsights:
     def test_method_get(self, client: Cloudflare) -> None:
         insight = client.cloudforce_one.threat_events.insights.get(
             insight_id="insight_id",
-            account_id=0,
+            account_id="account_id",
             event_id="event_id",
         )
         assert_matches_type(InsightGetResponse, insight, path=["response"])
@@ -206,7 +228,7 @@ class TestInsights:
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.threat_events.insights.with_raw_response.get(
             insight_id="insight_id",
-            account_id=0,
+            account_id="account_id",
             event_id="event_id",
         )
 
@@ -220,7 +242,7 @@ class TestInsights:
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.cloudforce_one.threat_events.insights.with_streaming_response.get(
             insight_id="insight_id",
-            account_id=0,
+            account_id="account_id",
             event_id="event_id",
         ) as response:
             assert not response.is_closed
@@ -234,17 +256,24 @@ class TestInsights:
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.cloudforce_one.threat_events.insights.with_raw_response.get(
+                insight_id="insight_id",
+                account_id="",
+                event_id="event_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `event_id` but received ''"):
             client.cloudforce_one.threat_events.insights.with_raw_response.get(
                 insight_id="insight_id",
-                account_id=0,
+                account_id="account_id",
                 event_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `insight_id` but received ''"):
             client.cloudforce_one.threat_events.insights.with_raw_response.get(
                 insight_id="",
-                account_id=0,
+                account_id="account_id",
                 event_id="event_id",
             )
 
@@ -257,7 +286,7 @@ class TestAsyncInsights:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         insight = await async_client.cloudforce_one.threat_events.insights.create(
             event_id="event_id",
-            account_id=0,
+            account_id="account_id",
             content="Here is some additional context _in markdown_",
         )
         assert_matches_type(InsightCreateResponse, insight, path=["response"])
@@ -267,7 +296,7 @@ class TestAsyncInsights:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloudforce_one.threat_events.insights.with_raw_response.create(
             event_id="event_id",
-            account_id=0,
+            account_id="account_id",
             content="Here is some additional context _in markdown_",
         )
 
@@ -281,7 +310,7 @@ class TestAsyncInsights:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloudforce_one.threat_events.insights.with_streaming_response.create(
             event_id="event_id",
-            account_id=0,
+            account_id="account_id",
             content="Here is some additional context _in markdown_",
         ) as response:
             assert not response.is_closed
@@ -295,10 +324,17 @@ class TestAsyncInsights:
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.cloudforce_one.threat_events.insights.with_raw_response.create(
+                event_id="event_id",
+                account_id="",
+                content="Here is some additional context _in markdown_",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `event_id` but received ''"):
             await async_client.cloudforce_one.threat_events.insights.with_raw_response.create(
                 event_id="",
-                account_id=0,
+                account_id="account_id",
                 content="Here is some additional context _in markdown_",
             )
 
@@ -307,7 +343,7 @@ class TestAsyncInsights:
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         insight = await async_client.cloudforce_one.threat_events.insights.delete(
             insight_id="insight_id",
-            account_id=0,
+            account_id="account_id",
             event_id="event_id",
         )
         assert_matches_type(InsightDeleteResponse, insight, path=["response"])
@@ -317,7 +353,7 @@ class TestAsyncInsights:
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloudforce_one.threat_events.insights.with_raw_response.delete(
             insight_id="insight_id",
-            account_id=0,
+            account_id="account_id",
             event_id="event_id",
         )
 
@@ -331,7 +367,7 @@ class TestAsyncInsights:
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloudforce_one.threat_events.insights.with_streaming_response.delete(
             insight_id="insight_id",
-            account_id=0,
+            account_id="account_id",
             event_id="event_id",
         ) as response:
             assert not response.is_closed
@@ -345,17 +381,24 @@ class TestAsyncInsights:
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.cloudforce_one.threat_events.insights.with_raw_response.delete(
+                insight_id="insight_id",
+                account_id="",
+                event_id="event_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `event_id` but received ''"):
             await async_client.cloudforce_one.threat_events.insights.with_raw_response.delete(
                 insight_id="insight_id",
-                account_id=0,
+                account_id="account_id",
                 event_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `insight_id` but received ''"):
             await async_client.cloudforce_one.threat_events.insights.with_raw_response.delete(
                 insight_id="",
-                account_id=0,
+                account_id="account_id",
                 event_id="event_id",
             )
 
@@ -364,7 +407,7 @@ class TestAsyncInsights:
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         insight = await async_client.cloudforce_one.threat_events.insights.edit(
             insight_id="insight_id",
-            account_id=0,
+            account_id="account_id",
             event_id="event_id",
             content="Updated: Here is some additional context _in markdown_",
         )
@@ -375,7 +418,7 @@ class TestAsyncInsights:
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloudforce_one.threat_events.insights.with_raw_response.edit(
             insight_id="insight_id",
-            account_id=0,
+            account_id="account_id",
             event_id="event_id",
             content="Updated: Here is some additional context _in markdown_",
         )
@@ -390,7 +433,7 @@ class TestAsyncInsights:
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloudforce_one.threat_events.insights.with_streaming_response.edit(
             insight_id="insight_id",
-            account_id=0,
+            account_id="account_id",
             event_id="event_id",
             content="Updated: Here is some additional context _in markdown_",
         ) as response:
@@ -405,10 +448,18 @@ class TestAsyncInsights:
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.cloudforce_one.threat_events.insights.with_raw_response.edit(
+                insight_id="insight_id",
+                account_id="",
+                event_id="event_id",
+                content="Updated: Here is some additional context _in markdown_",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `event_id` but received ''"):
             await async_client.cloudforce_one.threat_events.insights.with_raw_response.edit(
                 insight_id="insight_id",
-                account_id=0,
+                account_id="account_id",
                 event_id="",
                 content="Updated: Here is some additional context _in markdown_",
             )
@@ -416,7 +467,7 @@ class TestAsyncInsights:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `insight_id` but received ''"):
             await async_client.cloudforce_one.threat_events.insights.with_raw_response.edit(
                 insight_id="",
-                account_id=0,
+                account_id="account_id",
                 event_id="event_id",
                 content="Updated: Here is some additional context _in markdown_",
             )
@@ -426,7 +477,7 @@ class TestAsyncInsights:
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         insight = await async_client.cloudforce_one.threat_events.insights.get(
             insight_id="insight_id",
-            account_id=0,
+            account_id="account_id",
             event_id="event_id",
         )
         assert_matches_type(InsightGetResponse, insight, path=["response"])
@@ -436,7 +487,7 @@ class TestAsyncInsights:
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloudforce_one.threat_events.insights.with_raw_response.get(
             insight_id="insight_id",
-            account_id=0,
+            account_id="account_id",
             event_id="event_id",
         )
 
@@ -450,7 +501,7 @@ class TestAsyncInsights:
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloudforce_one.threat_events.insights.with_streaming_response.get(
             insight_id="insight_id",
-            account_id=0,
+            account_id="account_id",
             event_id="event_id",
         ) as response:
             assert not response.is_closed
@@ -464,16 +515,23 @@ class TestAsyncInsights:
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.cloudforce_one.threat_events.insights.with_raw_response.get(
+                insight_id="insight_id",
+                account_id="",
+                event_id="event_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `event_id` but received ''"):
             await async_client.cloudforce_one.threat_events.insights.with_raw_response.get(
                 insight_id="insight_id",
-                account_id=0,
+                account_id="account_id",
                 event_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `insight_id` but received ''"):
             await async_client.cloudforce_one.threat_events.insights.with_raw_response.get(
                 insight_id="",
-                account_id=0,
+                account_id="account_id",
                 event_id="event_id",
             )

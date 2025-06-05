@@ -21,7 +21,7 @@ class TestHealth:
     def test_method_get(self, client: Cloudflare) -> None:
         health = client.cloudforce_one.threat_events.datasets.health.get(
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            account_id=0,
+            account_id="account_id",
         )
         assert_matches_type(HealthGetResponse, health, path=["response"])
 
@@ -29,7 +29,7 @@ class TestHealth:
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.threat_events.datasets.health.with_raw_response.get(
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            account_id=0,
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -41,7 +41,7 @@ class TestHealth:
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.cloudforce_one.threat_events.datasets.health.with_streaming_response.get(
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            account_id=0,
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -53,10 +53,16 @@ class TestHealth:
 
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.cloudforce_one.threat_events.datasets.health.with_raw_response.get(
+                dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                account_id="",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
             client.cloudforce_one.threat_events.datasets.health.with_raw_response.get(
                 dataset_id="",
-                account_id=0,
+                account_id="account_id",
             )
 
 
@@ -67,7 +73,7 @@ class TestAsyncHealth:
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         health = await async_client.cloudforce_one.threat_events.datasets.health.get(
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            account_id=0,
+            account_id="account_id",
         )
         assert_matches_type(HealthGetResponse, health, path=["response"])
 
@@ -75,7 +81,7 @@ class TestAsyncHealth:
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloudforce_one.threat_events.datasets.health.with_raw_response.get(
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            account_id=0,
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -87,7 +93,7 @@ class TestAsyncHealth:
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloudforce_one.threat_events.datasets.health.with_streaming_response.get(
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            account_id=0,
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -99,8 +105,14 @@ class TestAsyncHealth:
 
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.cloudforce_one.threat_events.datasets.health.with_raw_response.get(
+                dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                account_id="",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
             await async_client.cloudforce_one.threat_events.datasets.health.with_raw_response.get(
                 dataset_id="",
-                account_id=0,
+                account_id="account_id",
             )

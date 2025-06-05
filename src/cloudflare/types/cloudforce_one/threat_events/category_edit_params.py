@@ -11,7 +11,7 @@ __all__ = ["CategoryEditParams"]
 
 
 class CategoryEditParams(TypedDict, total=False):
-    account_id: Required[float]
+    account_id: Required[str]
     """Account ID."""
 
     kill_chain: Annotated[float, PropertyInfo(alias="killChain")]
