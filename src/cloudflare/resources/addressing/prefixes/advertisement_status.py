@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Type, Optional, cast
 
 import httpx
@@ -45,6 +46,7 @@ class AdvertisementStatusResource(SyncAPIResource):
         """
         return AdvertisementStatusResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def edit(
         self,
         prefix_id: str,
@@ -101,6 +103,7 @@ class AdvertisementStatusResource(SyncAPIResource):
             ),
         )
 
+    @typing_extensions.deprecated("deprecated")
     def get(
         self,
         prefix_id: str,
@@ -169,6 +172,7 @@ class AsyncAdvertisementStatusResource(AsyncAPIResource):
         """
         return AsyncAdvertisementStatusResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def edit(
         self,
         prefix_id: str,
@@ -225,6 +229,7 @@ class AsyncAdvertisementStatusResource(AsyncAPIResource):
             ),
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def get(
         self,
         prefix_id: str,
@@ -277,11 +282,15 @@ class AdvertisementStatusResourceWithRawResponse:
     def __init__(self, advertisement_status: AdvertisementStatusResource) -> None:
         self._advertisement_status = advertisement_status
 
-        self.edit = to_raw_response_wrapper(
-            advertisement_status.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                advertisement_status.edit  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_raw_response_wrapper(
-            advertisement_status.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                advertisement_status.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -289,11 +298,15 @@ class AsyncAdvertisementStatusResourceWithRawResponse:
     def __init__(self, advertisement_status: AsyncAdvertisementStatusResource) -> None:
         self._advertisement_status = advertisement_status
 
-        self.edit = async_to_raw_response_wrapper(
-            advertisement_status.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                advertisement_status.edit  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_raw_response_wrapper(
-            advertisement_status.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                advertisement_status.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -301,11 +314,15 @@ class AdvertisementStatusResourceWithStreamingResponse:
     def __init__(self, advertisement_status: AdvertisementStatusResource) -> None:
         self._advertisement_status = advertisement_status
 
-        self.edit = to_streamed_response_wrapper(
-            advertisement_status.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                advertisement_status.edit  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_streamed_response_wrapper(
-            advertisement_status.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                advertisement_status.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -313,9 +330,13 @@ class AsyncAdvertisementStatusResourceWithStreamingResponse:
     def __init__(self, advertisement_status: AsyncAdvertisementStatusResource) -> None:
         self._advertisement_status = advertisement_status
 
-        self.edit = async_to_streamed_response_wrapper(
-            advertisement_status.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                advertisement_status.edit  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_streamed_response_wrapper(
-            advertisement_status.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                advertisement_status.get  # pyright: ignore[reportDeprecated],
+            )
         )

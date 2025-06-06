@@ -74,7 +74,7 @@ class BytimesResource(SyncAPIResource):
         for detailed information about the available query parameters.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           dimensions: A comma-separated list of dimensions to group results by.
 
@@ -177,7 +177,7 @@ class AsyncBytimesResource(AsyncAPIResource):
         for detailed information about the available query parameters.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           dimensions: A comma-separated list of dimensions to group results by.
 

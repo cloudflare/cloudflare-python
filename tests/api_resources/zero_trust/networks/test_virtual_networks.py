@@ -35,6 +35,7 @@ class TestVirtualNetworks:
             name="us-east-1-vpc",
             comment="Staging VPC for data science",
             is_default=True,
+            is_default_network=False,
         )
         assert_matches_type(VirtualNetwork, virtual_network, path=["response"])
 
@@ -183,7 +184,7 @@ class TestVirtualNetworks:
             virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             comment="Staging VPC for data science",
-            is_default_network=True,
+            is_default_network=False,
             name="us-east-1-vpc",
         )
         assert_matches_type(VirtualNetwork, virtual_network, path=["response"])
@@ -295,6 +296,7 @@ class TestAsyncVirtualNetworks:
             name="us-east-1-vpc",
             comment="Staging VPC for data science",
             is_default=True,
+            is_default_network=False,
         )
         assert_matches_type(VirtualNetwork, virtual_network, path=["response"])
 
@@ -443,7 +445,7 @@ class TestAsyncVirtualNetworks:
             virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             comment="Staging VPC for data science",
-            is_default_network=True,
+            is_default_network=False,
             name="us-east-1-vpc",
         )
         assert_matches_type(VirtualNetwork, virtual_network, path=["response"])

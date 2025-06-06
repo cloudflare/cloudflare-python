@@ -16,13 +16,13 @@ class PermissionGroupMeta(BaseModel):
 
 class PermissionGroup(BaseModel):
     id: str
-    """Identifier of the group."""
+    """Identifier of the permission group."""
 
     meta: Optional[PermissionGroupMeta] = None
     """Attributes associated to the permission group."""
 
     name: Optional[str] = None
-    """Name of the group."""
+    """Name of the permission group."""
 
 
 class TokenPolicy(BaseModel):

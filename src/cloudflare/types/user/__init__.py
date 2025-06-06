@@ -6,7 +6,9 @@ from .invite import Invite as Invite
 from .organization import Organization as Organization
 from .user_edit_params import UserEditParams as UserEditParams
 from .token_list_params import TokenListParams as TokenListParams
+from .user_get_response import UserGetResponse as UserGetResponse
 from .invite_edit_params import InviteEditParams as InviteEditParams
+from .user_edit_response import UserEditResponse as UserEditResponse
 from .token_create_params import TokenCreateParams as TokenCreateParams
 from .token_update_params import TokenUpdateParams as TokenUpdateParams
 from .audit_log_list_params import AuditLogListParams as AuditLogListParams

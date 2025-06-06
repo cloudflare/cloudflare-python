@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Type, Optional, cast
 from typing_extensions import Literal
 
@@ -47,6 +48,7 @@ class OrganizationsResource(SyncAPIResource):
         """
         return OrganizationsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
@@ -114,6 +116,7 @@ class OrganizationsResource(SyncAPIResource):
             model=Organization,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def delete(
         self,
         organization_id: str,
@@ -149,6 +152,7 @@ class OrganizationsResource(SyncAPIResource):
             cast_to=OrganizationDeleteResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def get(
         self,
         organization_id: str,
@@ -209,6 +213,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         """
         return AsyncOrganizationsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
@@ -276,6 +281,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
             model=Organization,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def delete(
         self,
         organization_id: str,
@@ -311,6 +317,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
             cast_to=OrganizationDeleteResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def get(
         self,
         organization_id: str,
@@ -355,14 +362,20 @@ class OrganizationsResourceWithRawResponse:
     def __init__(self, organizations: OrganizationsResource) -> None:
         self._organizations = organizations
 
-        self.list = to_raw_response_wrapper(
-            organizations.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                organizations.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = to_raw_response_wrapper(
-            organizations.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                organizations.delete  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_raw_response_wrapper(
-            organizations.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                organizations.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -370,14 +383,20 @@ class AsyncOrganizationsResourceWithRawResponse:
     def __init__(self, organizations: AsyncOrganizationsResource) -> None:
         self._organizations = organizations
 
-        self.list = async_to_raw_response_wrapper(
-            organizations.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                organizations.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = async_to_raw_response_wrapper(
-            organizations.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                organizations.delete  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_raw_response_wrapper(
-            organizations.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                organizations.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -385,14 +404,20 @@ class OrganizationsResourceWithStreamingResponse:
     def __init__(self, organizations: OrganizationsResource) -> None:
         self._organizations = organizations
 
-        self.list = to_streamed_response_wrapper(
-            organizations.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                organizations.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = to_streamed_response_wrapper(
-            organizations.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                organizations.delete  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_streamed_response_wrapper(
-            organizations.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                organizations.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -400,12 +425,18 @@ class AsyncOrganizationsResourceWithStreamingResponse:
     def __init__(self, organizations: AsyncOrganizationsResource) -> None:
         self._organizations = organizations
 
-        self.list = async_to_streamed_response_wrapper(
-            organizations.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                organizations.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = async_to_streamed_response_wrapper(
-            organizations.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                organizations.delete  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_streamed_response_wrapper(
-            organizations.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                organizations.get  # pyright: ignore[reportDeprecated],
+            )
         )

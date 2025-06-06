@@ -52,30 +52,30 @@ class AuditResource(SyncAPIResource):
         account_id: str,
         before: Union[str, date],
         since: Union[str, date],
-        account_name: str | NotGiven = NOT_GIVEN,
-        action_result: Literal["success", "failure"] | NotGiven = NOT_GIVEN,
-        action_type: Literal["create", "delete", "view", "update"] | NotGiven = NOT_GIVEN,
-        actor_context: Literal["api_key", "api_token", "dash", "oauth", "origin_ca_key"] | NotGiven = NOT_GIVEN,
-        actor_email: str | NotGiven = NOT_GIVEN,
-        actor_id: str | NotGiven = NOT_GIVEN,
-        actor_ip_address: str | NotGiven = NOT_GIVEN,
-        actor_token_id: str | NotGiven = NOT_GIVEN,
-        actor_token_name: str | NotGiven = NOT_GIVEN,
-        actor_type: Literal["cloudflare_admin", "account", "user"] | NotGiven = NOT_GIVEN,
-        audit_log_id: str | NotGiven = NOT_GIVEN,
+        account_name: audit_list_params.AccountName | NotGiven = NOT_GIVEN,
+        action_result: audit_list_params.ActionResult | NotGiven = NOT_GIVEN,
+        action_type: audit_list_params.ActionType | NotGiven = NOT_GIVEN,
+        actor_context: audit_list_params.ActorContext | NotGiven = NOT_GIVEN,
+        actor_email: audit_list_params.ActorEmail | NotGiven = NOT_GIVEN,
+        actor_id: audit_list_params.ActorID | NotGiven = NOT_GIVEN,
+        actor_ip_address: audit_list_params.ActorIPAddress | NotGiven = NOT_GIVEN,
+        actor_token_id: audit_list_params.ActorTokenID | NotGiven = NOT_GIVEN,
+        actor_token_name: audit_list_params.ActorTokenName | NotGiven = NOT_GIVEN,
+        actor_type: audit_list_params.ActorType | NotGiven = NOT_GIVEN,
+        audit_log_id: audit_list_params.AuditLogID | NotGiven = NOT_GIVEN,
         cursor: str | NotGiven = NOT_GIVEN,
         direction: Literal["desc", "asc"] | NotGiven = NOT_GIVEN,
         limit: float | NotGiven = NOT_GIVEN,
-        raw_cf_rayid: str | NotGiven = NOT_GIVEN,
-        raw_method: str | NotGiven = NOT_GIVEN,
-        raw_status_code: int | NotGiven = NOT_GIVEN,
-        raw_uri: str | NotGiven = NOT_GIVEN,
-        resource_id: str | NotGiven = NOT_GIVEN,
-        resource_product: str | NotGiven = NOT_GIVEN,
-        resource_scope: Literal["accounts", "user", "zones"] | NotGiven = NOT_GIVEN,
-        resource_type: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        zone_name: str | NotGiven = NOT_GIVEN,
+        raw_cf_rayid: audit_list_params.RawCfRayID | NotGiven = NOT_GIVEN,
+        raw_method: audit_list_params.RawMethod | NotGiven = NOT_GIVEN,
+        raw_status_code: audit_list_params.RawStatusCode | NotGiven = NOT_GIVEN,
+        raw_uri: audit_list_params.RawURI | NotGiven = NOT_GIVEN,
+        resource_id: audit_list_params.ResourceID | NotGiven = NOT_GIVEN,
+        resource_product: audit_list_params.ResourceProduct | NotGiven = NOT_GIVEN,
+        resource_scope: audit_list_params.ResourceScope | NotGiven = NOT_GIVEN,
+        resource_type: audit_list_params.ResourceType | NotGiven = NOT_GIVEN,
+        zone_id: audit_list_params.ZoneID | NotGiven = NOT_GIVEN,
+        zone_name: audit_list_params.ZoneName | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -94,33 +94,13 @@ class AuditResource(SyncAPIResource):
         Args:
           account_id: The unique id that identifies the account.
 
-          before: Filters actions based on a given timestamp in the format yyyy-mm-dd, returning
-              only logs that occurred on and before the specified date.
+          before: Limits the returned results to logs older than the specified date. This can be a
+              date string 2019-04-30 (interpreted in UTC) or an absolute timestamp that
+              conforms to RFC3339.
 
-          since: Filters actions based on a given timestamp in the format yyyy-mm-dd, returning
-              only logs that occurred on and after the specified date.
-
-          account_name: Filters by the account name.
-
-          action_result: Whether the action was successful or not.
-
-          action_type: Filters by the action type.
-
-          actor_context: Filters by the actor context.
-
-          actor_email: Filters by the actor's email address.
-
-          actor_id: Filters by the actor ID. This can be either the Account ID or User ID.
-
-          actor_ip_address: The IP address where the action was initiated.
-
-          actor_token_id: Filters by the API token ID when the actor context is an api_token or oauth.
-
-          actor_token_name: Filters by the API token name when the actor context is an api_token or oauth.
-
-          actor_type: Filters by the actor type.
-
-          audit_log_id: Finds a specific log by its ID.
+          since: Limits the returned results to logs newer than the specified date. This can be a
+              date string 2019-04-30 (interpreted in UTC) or an absolute timestamp that
+              conforms to RFC3339.
 
           cursor: The cursor is an opaque token used to paginate through large sets of records. It
               indicates the position from which to continue when requesting the next set of
@@ -131,28 +111,6 @@ class AuditResource(SyncAPIResource):
 
           limit: The number limits the objects to return. The cursor attribute may be used to
               iterate over the next batch of objects if there are more than the limit.
-
-          raw_cf_rayid: Filters by the response CF Ray ID.
-
-          raw_method: The HTTP method for the API call.
-
-          raw_status_code: The response status code that was returned.
-
-          raw_uri: Filters by the request URI.
-
-          resource_id: Filters by the resource ID.
-
-          resource_product: Filters audit logs by the Cloudflare product associated with the changed
-              resource.
-
-          resource_scope: Filters by the resource scope, specifying whether the resource is associated
-              with an user, an account, or a zone.
-
-          resource_type: Filters audit logs based on the unique type of resource changed by the action.
-
-          zone_id: Filters by the zone ID.
-
-          zone_name: Filters by the zone name associated with the change.
 
           extra_headers: Send extra headers
 
@@ -234,30 +192,30 @@ class AsyncAuditResource(AsyncAPIResource):
         account_id: str,
         before: Union[str, date],
         since: Union[str, date],
-        account_name: str | NotGiven = NOT_GIVEN,
-        action_result: Literal["success", "failure"] | NotGiven = NOT_GIVEN,
-        action_type: Literal["create", "delete", "view", "update"] | NotGiven = NOT_GIVEN,
-        actor_context: Literal["api_key", "api_token", "dash", "oauth", "origin_ca_key"] | NotGiven = NOT_GIVEN,
-        actor_email: str | NotGiven = NOT_GIVEN,
-        actor_id: str | NotGiven = NOT_GIVEN,
-        actor_ip_address: str | NotGiven = NOT_GIVEN,
-        actor_token_id: str | NotGiven = NOT_GIVEN,
-        actor_token_name: str | NotGiven = NOT_GIVEN,
-        actor_type: Literal["cloudflare_admin", "account", "user"] | NotGiven = NOT_GIVEN,
-        audit_log_id: str | NotGiven = NOT_GIVEN,
+        account_name: audit_list_params.AccountName | NotGiven = NOT_GIVEN,
+        action_result: audit_list_params.ActionResult | NotGiven = NOT_GIVEN,
+        action_type: audit_list_params.ActionType | NotGiven = NOT_GIVEN,
+        actor_context: audit_list_params.ActorContext | NotGiven = NOT_GIVEN,
+        actor_email: audit_list_params.ActorEmail | NotGiven = NOT_GIVEN,
+        actor_id: audit_list_params.ActorID | NotGiven = NOT_GIVEN,
+        actor_ip_address: audit_list_params.ActorIPAddress | NotGiven = NOT_GIVEN,
+        actor_token_id: audit_list_params.ActorTokenID | NotGiven = NOT_GIVEN,
+        actor_token_name: audit_list_params.ActorTokenName | NotGiven = NOT_GIVEN,
+        actor_type: audit_list_params.ActorType | NotGiven = NOT_GIVEN,
+        audit_log_id: audit_list_params.AuditLogID | NotGiven = NOT_GIVEN,
         cursor: str | NotGiven = NOT_GIVEN,
         direction: Literal["desc", "asc"] | NotGiven = NOT_GIVEN,
         limit: float | NotGiven = NOT_GIVEN,
-        raw_cf_rayid: str | NotGiven = NOT_GIVEN,
-        raw_method: str | NotGiven = NOT_GIVEN,
-        raw_status_code: int | NotGiven = NOT_GIVEN,
-        raw_uri: str | NotGiven = NOT_GIVEN,
-        resource_id: str | NotGiven = NOT_GIVEN,
-        resource_product: str | NotGiven = NOT_GIVEN,
-        resource_scope: Literal["accounts", "user", "zones"] | NotGiven = NOT_GIVEN,
-        resource_type: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        zone_name: str | NotGiven = NOT_GIVEN,
+        raw_cf_rayid: audit_list_params.RawCfRayID | NotGiven = NOT_GIVEN,
+        raw_method: audit_list_params.RawMethod | NotGiven = NOT_GIVEN,
+        raw_status_code: audit_list_params.RawStatusCode | NotGiven = NOT_GIVEN,
+        raw_uri: audit_list_params.RawURI | NotGiven = NOT_GIVEN,
+        resource_id: audit_list_params.ResourceID | NotGiven = NOT_GIVEN,
+        resource_product: audit_list_params.ResourceProduct | NotGiven = NOT_GIVEN,
+        resource_scope: audit_list_params.ResourceScope | NotGiven = NOT_GIVEN,
+        resource_type: audit_list_params.ResourceType | NotGiven = NOT_GIVEN,
+        zone_id: audit_list_params.ZoneID | NotGiven = NOT_GIVEN,
+        zone_name: audit_list_params.ZoneName | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -276,33 +234,13 @@ class AsyncAuditResource(AsyncAPIResource):
         Args:
           account_id: The unique id that identifies the account.
 
-          before: Filters actions based on a given timestamp in the format yyyy-mm-dd, returning
-              only logs that occurred on and before the specified date.
+          before: Limits the returned results to logs older than the specified date. This can be a
+              date string 2019-04-30 (interpreted in UTC) or an absolute timestamp that
+              conforms to RFC3339.
 
-          since: Filters actions based on a given timestamp in the format yyyy-mm-dd, returning
-              only logs that occurred on and after the specified date.
-
-          account_name: Filters by the account name.
-
-          action_result: Whether the action was successful or not.
-
-          action_type: Filters by the action type.
-
-          actor_context: Filters by the actor context.
-
-          actor_email: Filters by the actor's email address.
-
-          actor_id: Filters by the actor ID. This can be either the Account ID or User ID.
-
-          actor_ip_address: The IP address where the action was initiated.
-
-          actor_token_id: Filters by the API token ID when the actor context is an api_token or oauth.
-
-          actor_token_name: Filters by the API token name when the actor context is an api_token or oauth.
-
-          actor_type: Filters by the actor type.
-
-          audit_log_id: Finds a specific log by its ID.
+          since: Limits the returned results to logs newer than the specified date. This can be a
+              date string 2019-04-30 (interpreted in UTC) or an absolute timestamp that
+              conforms to RFC3339.
 
           cursor: The cursor is an opaque token used to paginate through large sets of records. It
               indicates the position from which to continue when requesting the next set of
@@ -313,28 +251,6 @@ class AsyncAuditResource(AsyncAPIResource):
 
           limit: The number limits the objects to return. The cursor attribute may be used to
               iterate over the next batch of objects if there are more than the limit.
-
-          raw_cf_rayid: Filters by the response CF Ray ID.
-
-          raw_method: The HTTP method for the API call.
-
-          raw_status_code: The response status code that was returned.
-
-          raw_uri: Filters by the request URI.
-
-          resource_id: Filters by the resource ID.
-
-          resource_product: Filters audit logs by the Cloudflare product associated with the changed
-              resource.
-
-          resource_scope: Filters by the resource scope, specifying whether the resource is associated
-              with an user, an account, or a zone.
-
-          resource_type: Filters audit logs based on the unique type of resource changed by the action.
-
-          zone_id: Filters by the zone ID.
-
-          zone_name: Filters by the zone name associated with the change.
 
           extra_headers: Send extra headers
 

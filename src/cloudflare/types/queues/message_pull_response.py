@@ -1,13 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 
 from ..._models import BaseModel
 
-__all__ = ["MessagePullResponse"]
+__all__ = ["MessagePullResponse", "Message"]
 
 
-class MessagePullResponse(BaseModel):
+class Message(BaseModel):
     id: Optional[str] = None
 
     attempts: Optional[float] = None
@@ -23,3 +23,10 @@ class MessagePullResponse(BaseModel):
     metadata: Optional[object] = None
 
     timestamp_ms: Optional[float] = None
+
+
+class MessagePullResponse(BaseModel):
+    message_backlog_count: Optional[float] = None
+    """The number of unacknowledged messages in the queue"""
+
+    messages: Optional[List[Message]] = None

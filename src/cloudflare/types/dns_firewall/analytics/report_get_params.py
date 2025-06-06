@@ -13,7 +13,7 @@ __all__ = ["ReportGetParams"]
 
 class ReportGetParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     dimensions: str
     """A comma-separated list of dimensions to group results by."""

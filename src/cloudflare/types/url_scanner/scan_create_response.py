@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Optional
+from typing_extensions import Literal
 
 from ..._models import BaseModel
 
@@ -18,7 +19,7 @@ class ScanCreateResponse(BaseModel):
     message: str
 
     result: str
-    """URL to report."""
+    """Public URL to report."""
 
     url: str
     """Canonical form of submitted URL. Use this if you want to later search by URL."""
@@ -26,7 +27,7 @@ class ScanCreateResponse(BaseModel):
     uuid: str
     """Scan ID."""
 
-    visibility: str
+    visibility: Literal["public", "unlisted"]
     """Submitted visibility status."""
 
     options: Optional[Options] = None

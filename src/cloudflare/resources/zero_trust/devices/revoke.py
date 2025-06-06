@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Any, List, Optional, cast
 
 import httpx
@@ -43,6 +44,7 @@ class RevokeResource(SyncAPIResource):
         """
         return RevokeResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def create(
         self,
         *,
@@ -55,8 +57,11 @@ class RevokeResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RevokeCreateResponse]:
-        """
-        Revokes a list of registrations.
+        """Revokes a list of devices.
+
+        Not supported when
+        [multi-user mode](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/deployment/mdm-deployment/windows-multiuser/)
+        is enabled.
 
         **Deprecated**: please use POST
         /accounts/{account_id}/devices/registrations/revoke instead.
@@ -113,6 +118,7 @@ class AsyncRevokeResource(AsyncAPIResource):
         """
         return AsyncRevokeResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def create(
         self,
         *,
@@ -125,8 +131,11 @@ class AsyncRevokeResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RevokeCreateResponse]:
-        """
-        Revokes a list of registrations.
+        """Revokes a list of devices.
+
+        Not supported when
+        [multi-user mode](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/deployment/mdm-deployment/windows-multiuser/)
+        is enabled.
 
         **Deprecated**: please use POST
         /accounts/{account_id}/devices/registrations/revoke instead.
@@ -167,8 +176,10 @@ class RevokeResourceWithRawResponse:
     def __init__(self, revoke: RevokeResource) -> None:
         self._revoke = revoke
 
-        self.create = to_raw_response_wrapper(
-            revoke.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                revoke.create  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -176,8 +187,10 @@ class AsyncRevokeResourceWithRawResponse:
     def __init__(self, revoke: AsyncRevokeResource) -> None:
         self._revoke = revoke
 
-        self.create = async_to_raw_response_wrapper(
-            revoke.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                revoke.create  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -185,8 +198,10 @@ class RevokeResourceWithStreamingResponse:
     def __init__(self, revoke: RevokeResource) -> None:
         self._revoke = revoke
 
-        self.create = to_streamed_response_wrapper(
-            revoke.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                revoke.create  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -194,6 +209,8 @@ class AsyncRevokeResourceWithStreamingResponse:
     def __init__(self, revoke: AsyncRevokeResource) -> None:
         self._revoke = revoke
 
-        self.create = async_to_streamed_response_wrapper(
-            revoke.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                revoke.create  # pyright: ignore[reportDeprecated],
+            )
         )

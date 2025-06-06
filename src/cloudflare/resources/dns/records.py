@@ -31,7 +31,6 @@ from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.dns.ttl_param import TTLParam
 from ...types.dns.record_tags import RecordTags
-from ...types.dns.record_param import RecordParam
 from ...types.dns.batch_put_param import BatchPutParam
 from ...types.dns.record_response import RecordResponse
 from ...types.dns.batch_patch_param import BatchPatchParam
@@ -196,6 +195,393 @@ class RecordsResource(SyncAPIResource):
         *,
         zone_id: str,
         comment: str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        type: Literal["CNAME"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordResponse]:
+        """
+        Create a new DNS record for a zone.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier.
+
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
+          content: A valid hostname. Must not match the record's name.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          settings: Settings for the DNS record.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.MXRecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        type: Literal["MX"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordResponse]:
+        """
+        Create a new DNS record for a zone.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier.
+
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
+          content: A valid mail server hostname.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          priority: Required for MX, SRV and URI records; unused by other record types. Records with
+              lower priorities are preferred.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          settings: Settings for the DNS record.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.NSRecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        type: Literal["NS"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordResponse]:
+        """
+        Create a new DNS record for a zone.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier.
+
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
+          content: A valid name server host name.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          settings: Settings for the DNS record.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.DNSRecordsOpenpgpkeyRecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        type: Literal["OPENPGPKEY"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordResponse]:
+        """
+        Create a new DNS record for a zone.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier.
+
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
+          content: A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          settings: Settings for the DNS record.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.PTRRecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        type: Literal["PTR"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordResponse]:
+        """
+        Create a new DNS record for a zone.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier.
+
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
+          content: Domain name pointing to the address.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          settings: Settings for the DNS record.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.TXTRecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        type: Literal["TXT"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordResponse]:
+        """
+        Create a new DNS record for a zone.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier.
+
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
+          content: Text content for the record. The content must consist of quoted "character
+              strings" (RFC 1035), each with a length of up to 255 bytes. Strings exceeding
+              this allowed maximum length are automatically split.
+
+              Learn more at
+              <https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/>.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          settings: Settings for the DNS record.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_create_params.CAARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
@@ -290,69 +676,6 @@ class RecordsResource(SyncAPIResource):
               responses.
 
           data: Components of a CERT record.
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          settings: Settings for the DNS record.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
-
-          type: Record type.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def create(
-        self,
-        *,
-        zone_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
-        type: Literal["CNAME"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
-        """
-        Create a new DNS record for a zone.
-
-        Notes:
-
-        - A/AAAA records cannot exist on the same name as CNAME records.
-        - NS records cannot exist on the same name as any other record type.
-        - Domain names are always represented in Punycode, even if Unicode characters
-          were used when creating the record.
-
-        Args:
-          zone_id: Identifier.
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          content: A valid hostname. Must not match the record's name.
 
           name: DNS record name (or @ for the zone apex) in Punycode.
 
@@ -637,73 +960,6 @@ class RecordsResource(SyncAPIResource):
         *,
         zone_id: str,
         comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.MXRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
-        type: Literal["MX"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
-        """
-        Create a new DNS record for a zone.
-
-        Notes:
-
-        - A/AAAA records cannot exist on the same name as CNAME records.
-        - NS records cannot exist on the same name as any other record type.
-        - Domain names are always represented in Punycode, even if Unicode characters
-          were used when creating the record.
-
-        Args:
-          zone_id: Identifier.
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          content: A valid mail server hostname.
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
-          priority: Required for MX, SRV and URI records; unused by other record types. Records with
-              lower priorities are preferred.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          settings: Settings for the DNS record.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
-
-          type: Record type.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def create(
-        self,
-        *,
-        zone_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
         data: record_create_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
@@ -735,195 +991,6 @@ class RecordsResource(SyncAPIResource):
               responses.
 
           data: Components of a NAPTR record.
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          settings: Settings for the DNS record.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
-
-          type: Record type.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def create(
-        self,
-        *,
-        zone_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.NSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
-        type: Literal["NS"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
-        """
-        Create a new DNS record for a zone.
-
-        Notes:
-
-        - A/AAAA records cannot exist on the same name as CNAME records.
-        - NS records cannot exist on the same name as any other record type.
-        - Domain names are always represented in Punycode, even if Unicode characters
-          were used when creating the record.
-
-        Args:
-          zone_id: Identifier.
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          content: A valid name server host name.
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          settings: Settings for the DNS record.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
-
-          type: Record type.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def create(
-        self,
-        *,
-        zone_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.DNSRecordsOpenpgpkeyRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
-        type: Literal["OPENPGPKEY"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
-        """
-        Create a new DNS record for a zone.
-
-        Notes:
-
-        - A/AAAA records cannot exist on the same name as CNAME records.
-        - NS records cannot exist on the same name as any other record type.
-        - Domain names are always represented in Punycode, even if Unicode characters
-          were used when creating the record.
-
-        Args:
-          zone_id: Identifier.
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          content: A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          settings: Settings for the DNS record.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
-
-          type: Record type.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def create(
-        self,
-        *,
-        zone_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.PTRRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
-        type: Literal["PTR"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
-        """
-        Create a new DNS record for a zone.
-
-        Notes:
-
-        - A/AAAA records cannot exist on the same name as CNAME records.
-        - NS records cannot exist on the same name as any other record type.
-        - Domain names are always represented in Punycode, even if Unicode characters
-          were used when creating the record.
-
-        Args:
-          zone_id: Identifier.
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          content: Domain name pointing to the address.
 
           name: DNS record name (or @ for the zone apex) in Punycode.
 
@@ -1271,74 +1338,6 @@ class RecordsResource(SyncAPIResource):
         *,
         zone_id: str,
         comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.TXTRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
-        type: Literal["TXT"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
-        """
-        Create a new DNS record for a zone.
-
-        Notes:
-
-        - A/AAAA records cannot exist on the same name as CNAME records.
-        - NS records cannot exist on the same name as any other record type.
-        - Domain names are always represented in Punycode, even if Unicode characters
-          were used when creating the record.
-
-        Args:
-          zone_id: Identifier.
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          content: Text content for the record. The content must consist of quoted "character
-              strings" (RFC 1035), each with a length of up to 255 bytes. Strings exceeding
-              this allowed maximum length are automatically split.
-
-              Learn more at
-              <https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/>.
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          settings: Settings for the DNS record.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
-
-          type: Record type.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def create(
-        self,
-        *,
-        zone_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
         data: record_create_params.URIRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
@@ -1416,26 +1415,27 @@ class RecordsResource(SyncAPIResource):
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"]
         | Literal["AAAA"]
+        | Literal["CNAME"]
+        | Literal["MX"]
+        | Literal["NS"]
+        | Literal["OPENPGPKEY"]
+        | Literal["PTR"]
+        | Literal["TXT"]
         | Literal["CAA"]
         | Literal["CERT"]
-        | Literal["CNAME"]
         | Literal["DNSKEY"]
         | Literal["DS"]
         | Literal["HTTPS"]
         | Literal["LOC"]
-        | Literal["MX"]
         | Literal["NAPTR"]
-        | Literal["NS"]
-        | Literal["OPENPGPKEY"]
-        | Literal["PTR"]
         | Literal["SMIMEA"]
         | Literal["SRV"]
         | Literal["SSHFP"]
         | Literal["SVCB"]
         | Literal["TLSA"]
-        | Literal["TXT"]
         | Literal["URI"]
         | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
         data: record_create_params.CAARecordData
         | record_create_params.CERTRecordData
         | record_create_params.DNSKEYRecordData
@@ -1448,7 +1448,6 @@ class RecordsResource(SyncAPIResource):
         | record_create_params.SSHFPRecordData
         | record_create_params.URIRecordData
         | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1472,8 +1471,8 @@ class RecordsResource(SyncAPIResource):
                         "tags": tags,
                         "ttl": ttl,
                         "type": type,
-                        "data": data,
                         "priority": priority,
+                        "data": data,
                     },
                     record_create_params.RecordCreateParams,
                 ),
@@ -1629,6 +1628,411 @@ class RecordsResource(SyncAPIResource):
         *,
         zone_id: str,
         comment: str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        type: Literal["CNAME"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordResponse]:
+        """
+        Overwrite an existing DNS record.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier.
+
+          dns_record_id: Identifier.
+
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
+          content: A valid hostname. Must not match the record's name.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          settings: Settings for the DNS record.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def update(
+        self,
+        dns_record_id: str,
+        *,
+        zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.MXRecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        type: Literal["MX"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordResponse]:
+        """
+        Overwrite an existing DNS record.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier.
+
+          dns_record_id: Identifier.
+
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
+          content: A valid mail server hostname.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          priority: Required for MX, SRV and URI records; unused by other record types. Records with
+              lower priorities are preferred.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          settings: Settings for the DNS record.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def update(
+        self,
+        dns_record_id: str,
+        *,
+        zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.NSRecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        type: Literal["NS"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordResponse]:
+        """
+        Overwrite an existing DNS record.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier.
+
+          dns_record_id: Identifier.
+
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
+          content: A valid name server host name.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          settings: Settings for the DNS record.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def update(
+        self,
+        dns_record_id: str,
+        *,
+        zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.DNSRecordsOpenpgpkeyRecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        type: Literal["OPENPGPKEY"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordResponse]:
+        """
+        Overwrite an existing DNS record.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier.
+
+          dns_record_id: Identifier.
+
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
+          content: A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          settings: Settings for the DNS record.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def update(
+        self,
+        dns_record_id: str,
+        *,
+        zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.PTRRecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        type: Literal["PTR"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordResponse]:
+        """
+        Overwrite an existing DNS record.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier.
+
+          dns_record_id: Identifier.
+
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
+          content: Domain name pointing to the address.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          settings: Settings for the DNS record.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def update(
+        self,
+        dns_record_id: str,
+        *,
+        zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.TXTRecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        type: Literal["TXT"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordResponse]:
+        """
+        Overwrite an existing DNS record.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier.
+
+          dns_record_id: Identifier.
+
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
+          content: Text content for the record. The content must consist of quoted "character
+              strings" (RFC 1035), each with a length of up to 255 bytes. Strings exceeding
+              this allowed maximum length are automatically split.
+
+              Learn more at
+              <https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/>.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          settings: Settings for the DNS record.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def update(
+        self,
+        dns_record_id: str,
+        *,
+        zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_update_params.CAARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
@@ -1728,72 +2132,6 @@ class RecordsResource(SyncAPIResource):
               responses.
 
           data: Components of a CERT record.
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          settings: Settings for the DNS record.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
-
-          type: Record type.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def update(
-        self,
-        dns_record_id: str,
-        *,
-        zone_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
-        type: Literal["CNAME"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
-        """
-        Overwrite an existing DNS record.
-
-        Notes:
-
-        - A/AAAA records cannot exist on the same name as CNAME records.
-        - NS records cannot exist on the same name as any other record type.
-        - Domain names are always represented in Punycode, even if Unicode characters
-          were used when creating the record.
-
-        Args:
-          zone_id: Identifier.
-
-          dns_record_id: Identifier.
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          content: A valid hostname. Must not match the record's name.
 
           name: DNS record name (or @ for the zone apex) in Punycode.
 
@@ -2091,76 +2429,6 @@ class RecordsResource(SyncAPIResource):
         *,
         zone_id: str,
         comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.MXRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
-        type: Literal["MX"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
-        """
-        Overwrite an existing DNS record.
-
-        Notes:
-
-        - A/AAAA records cannot exist on the same name as CNAME records.
-        - NS records cannot exist on the same name as any other record type.
-        - Domain names are always represented in Punycode, even if Unicode characters
-          were used when creating the record.
-
-        Args:
-          zone_id: Identifier.
-
-          dns_record_id: Identifier.
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          content: A valid mail server hostname.
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
-          priority: Required for MX, SRV and URI records; unused by other record types. Records with
-              lower priorities are preferred.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          settings: Settings for the DNS record.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
-
-          type: Record type.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def update(
-        self,
-        dns_record_id: str,
-        *,
-        zone_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
         data: record_update_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
@@ -2194,204 +2462,6 @@ class RecordsResource(SyncAPIResource):
               responses.
 
           data: Components of a NAPTR record.
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          settings: Settings for the DNS record.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
-
-          type: Record type.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def update(
-        self,
-        dns_record_id: str,
-        *,
-        zone_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.NSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
-        type: Literal["NS"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
-        """
-        Overwrite an existing DNS record.
-
-        Notes:
-
-        - A/AAAA records cannot exist on the same name as CNAME records.
-        - NS records cannot exist on the same name as any other record type.
-        - Domain names are always represented in Punycode, even if Unicode characters
-          were used when creating the record.
-
-        Args:
-          zone_id: Identifier.
-
-          dns_record_id: Identifier.
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          content: A valid name server host name.
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          settings: Settings for the DNS record.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
-
-          type: Record type.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def update(
-        self,
-        dns_record_id: str,
-        *,
-        zone_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.DNSRecordsOpenpgpkeyRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
-        type: Literal["OPENPGPKEY"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
-        """
-        Overwrite an existing DNS record.
-
-        Notes:
-
-        - A/AAAA records cannot exist on the same name as CNAME records.
-        - NS records cannot exist on the same name as any other record type.
-        - Domain names are always represented in Punycode, even if Unicode characters
-          were used when creating the record.
-
-        Args:
-          zone_id: Identifier.
-
-          dns_record_id: Identifier.
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          content: A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          settings: Settings for the DNS record.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
-
-          type: Record type.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def update(
-        self,
-        dns_record_id: str,
-        *,
-        zone_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.PTRRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
-        type: Literal["PTR"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
-        """
-        Overwrite an existing DNS record.
-
-        Notes:
-
-        - A/AAAA records cannot exist on the same name as CNAME records.
-        - NS records cannot exist on the same name as any other record type.
-        - Domain names are always represented in Punycode, even if Unicode characters
-          were used when creating the record.
-
-        Args:
-          zone_id: Identifier.
-
-          dns_record_id: Identifier.
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          content: Domain name pointing to the address.
 
           name: DNS record name (or @ for the zone apex) in Punycode.
 
@@ -2755,77 +2825,6 @@ class RecordsResource(SyncAPIResource):
         *,
         zone_id: str,
         comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.TXTRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
-        type: Literal["TXT"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
-        """
-        Overwrite an existing DNS record.
-
-        Notes:
-
-        - A/AAAA records cannot exist on the same name as CNAME records.
-        - NS records cannot exist on the same name as any other record type.
-        - Domain names are always represented in Punycode, even if Unicode characters
-          were used when creating the record.
-
-        Args:
-          zone_id: Identifier.
-
-          dns_record_id: Identifier.
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          content: Text content for the record. The content must consist of quoted "character
-              strings" (RFC 1035), each with a length of up to 255 bytes. Strings exceeding
-              this allowed maximum length are automatically split.
-
-              Learn more at
-              <https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/>.
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          settings: Settings for the DNS record.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
-
-          type: Record type.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def update(
-        self,
-        dns_record_id: str,
-        *,
-        zone_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
         data: record_update_params.URIRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
@@ -2906,26 +2905,27 @@ class RecordsResource(SyncAPIResource):
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"]
         | Literal["AAAA"]
+        | Literal["CNAME"]
+        | Literal["MX"]
+        | Literal["NS"]
+        | Literal["OPENPGPKEY"]
+        | Literal["PTR"]
+        | Literal["TXT"]
         | Literal["CAA"]
         | Literal["CERT"]
-        | Literal["CNAME"]
         | Literal["DNSKEY"]
         | Literal["DS"]
         | Literal["HTTPS"]
         | Literal["LOC"]
-        | Literal["MX"]
         | Literal["NAPTR"]
-        | Literal["NS"]
-        | Literal["OPENPGPKEY"]
-        | Literal["PTR"]
         | Literal["SMIMEA"]
         | Literal["SRV"]
         | Literal["SSHFP"]
         | Literal["SVCB"]
         | Literal["TLSA"]
-        | Literal["TXT"]
         | Literal["URI"]
         | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
         data: record_update_params.CAARecordData
         | record_update_params.CERTRecordData
         | record_update_params.DNSKEYRecordData
@@ -2938,7 +2938,6 @@ class RecordsResource(SyncAPIResource):
         | record_update_params.SSHFPRecordData
         | record_update_params.URIRecordData
         | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2964,8 +2963,8 @@ class RecordsResource(SyncAPIResource):
                         "tags": tags,
                         "ttl": ttl,
                         "type": type,
-                        "data": data,
                         "priority": priority,
+                        "data": data,
                     },
                     record_update_params.RecordUpdateParams,
                 ),
@@ -3154,7 +3153,7 @@ class RecordsResource(SyncAPIResource):
         zone_id: str,
         deletes: Iterable[record_batch_params.Delete] | NotGiven = NOT_GIVEN,
         patches: Iterable[BatchPatchParam] | NotGiven = NOT_GIVEN,
-        posts: Iterable[RecordParam] | NotGiven = NOT_GIVEN,
+        posts: Iterable[record_batch_params.Post] | NotGiven = NOT_GIVEN,
         puts: Iterable[BatchPutParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3355,6 +3354,411 @@ class RecordsResource(SyncAPIResource):
         *,
         zone_id: str,
         comment: str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        type: Literal["CNAME"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordResponse]:
+        """
+        Update an existing DNS record.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier.
+
+          dns_record_id: Identifier.
+
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
+          content: A valid hostname. Must not match the record's name.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          settings: Settings for the DNS record.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def edit(
+        self,
+        dns_record_id: str,
+        *,
+        zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.MXRecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        type: Literal["MX"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordResponse]:
+        """
+        Update an existing DNS record.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier.
+
+          dns_record_id: Identifier.
+
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
+          content: A valid mail server hostname.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          priority: Required for MX, SRV and URI records; unused by other record types. Records with
+              lower priorities are preferred.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          settings: Settings for the DNS record.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def edit(
+        self,
+        dns_record_id: str,
+        *,
+        zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.NSRecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        type: Literal["NS"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordResponse]:
+        """
+        Update an existing DNS record.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier.
+
+          dns_record_id: Identifier.
+
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
+          content: A valid name server host name.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          settings: Settings for the DNS record.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def edit(
+        self,
+        dns_record_id: str,
+        *,
+        zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.DNSRecordsOpenpgpkeyRecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        type: Literal["OPENPGPKEY"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordResponse]:
+        """
+        Update an existing DNS record.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier.
+
+          dns_record_id: Identifier.
+
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
+          content: A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          settings: Settings for the DNS record.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def edit(
+        self,
+        dns_record_id: str,
+        *,
+        zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.PTRRecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        type: Literal["PTR"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordResponse]:
+        """
+        Update an existing DNS record.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier.
+
+          dns_record_id: Identifier.
+
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
+          content: Domain name pointing to the address.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          settings: Settings for the DNS record.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def edit(
+        self,
+        dns_record_id: str,
+        *,
+        zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.TXTRecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        type: Literal["TXT"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordResponse]:
+        """
+        Update an existing DNS record.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier.
+
+          dns_record_id: Identifier.
+
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
+          content: Text content for the record. The content must consist of quoted "character
+              strings" (RFC 1035), each with a length of up to 255 bytes. Strings exceeding
+              this allowed maximum length are automatically split.
+
+              Learn more at
+              <https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/>.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          settings: Settings for the DNS record.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def edit(
+        self,
+        dns_record_id: str,
+        *,
+        zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_edit_params.CAARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
@@ -3454,72 +3858,6 @@ class RecordsResource(SyncAPIResource):
               responses.
 
           data: Components of a CERT record.
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          settings: Settings for the DNS record.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
-
-          type: Record type.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def edit(
-        self,
-        dns_record_id: str,
-        *,
-        zone_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
-        type: Literal["CNAME"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
-        """
-        Update an existing DNS record.
-
-        Notes:
-
-        - A/AAAA records cannot exist on the same name as CNAME records.
-        - NS records cannot exist on the same name as any other record type.
-        - Domain names are always represented in Punycode, even if Unicode characters
-          were used when creating the record.
-
-        Args:
-          zone_id: Identifier.
-
-          dns_record_id: Identifier.
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          content: A valid hostname. Must not match the record's name.
 
           name: DNS record name (or @ for the zone apex) in Punycode.
 
@@ -3817,76 +4155,6 @@ class RecordsResource(SyncAPIResource):
         *,
         zone_id: str,
         comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.MXRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
-        type: Literal["MX"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
-        """
-        Update an existing DNS record.
-
-        Notes:
-
-        - A/AAAA records cannot exist on the same name as CNAME records.
-        - NS records cannot exist on the same name as any other record type.
-        - Domain names are always represented in Punycode, even if Unicode characters
-          were used when creating the record.
-
-        Args:
-          zone_id: Identifier.
-
-          dns_record_id: Identifier.
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          content: A valid mail server hostname.
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
-          priority: Required for MX, SRV and URI records; unused by other record types. Records with
-              lower priorities are preferred.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          settings: Settings for the DNS record.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
-
-          type: Record type.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def edit(
-        self,
-        dns_record_id: str,
-        *,
-        zone_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
         data: record_edit_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
@@ -3920,204 +4188,6 @@ class RecordsResource(SyncAPIResource):
               responses.
 
           data: Components of a NAPTR record.
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          settings: Settings for the DNS record.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
-
-          type: Record type.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def edit(
-        self,
-        dns_record_id: str,
-        *,
-        zone_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.NSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
-        type: Literal["NS"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
-        """
-        Update an existing DNS record.
-
-        Notes:
-
-        - A/AAAA records cannot exist on the same name as CNAME records.
-        - NS records cannot exist on the same name as any other record type.
-        - Domain names are always represented in Punycode, even if Unicode characters
-          were used when creating the record.
-
-        Args:
-          zone_id: Identifier.
-
-          dns_record_id: Identifier.
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          content: A valid name server host name.
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          settings: Settings for the DNS record.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
-
-          type: Record type.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def edit(
-        self,
-        dns_record_id: str,
-        *,
-        zone_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.DNSRecordsOpenpgpkeyRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
-        type: Literal["OPENPGPKEY"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
-        """
-        Update an existing DNS record.
-
-        Notes:
-
-        - A/AAAA records cannot exist on the same name as CNAME records.
-        - NS records cannot exist on the same name as any other record type.
-        - Domain names are always represented in Punycode, even if Unicode characters
-          were used when creating the record.
-
-        Args:
-          zone_id: Identifier.
-
-          dns_record_id: Identifier.
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          content: A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          settings: Settings for the DNS record.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
-
-          type: Record type.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def edit(
-        self,
-        dns_record_id: str,
-        *,
-        zone_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.PTRRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
-        type: Literal["PTR"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
-        """
-        Update an existing DNS record.
-
-        Notes:
-
-        - A/AAAA records cannot exist on the same name as CNAME records.
-        - NS records cannot exist on the same name as any other record type.
-        - Domain names are always represented in Punycode, even if Unicode characters
-          were used when creating the record.
-
-        Args:
-          zone_id: Identifier.
-
-          dns_record_id: Identifier.
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          content: Domain name pointing to the address.
 
           name: DNS record name (or @ for the zone apex) in Punycode.
 
@@ -4481,77 +4551,6 @@ class RecordsResource(SyncAPIResource):
         *,
         zone_id: str,
         comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.TXTRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
-        type: Literal["TXT"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
-        """
-        Update an existing DNS record.
-
-        Notes:
-
-        - A/AAAA records cannot exist on the same name as CNAME records.
-        - NS records cannot exist on the same name as any other record type.
-        - Domain names are always represented in Punycode, even if Unicode characters
-          were used when creating the record.
-
-        Args:
-          zone_id: Identifier.
-
-          dns_record_id: Identifier.
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          content: Text content for the record. The content must consist of quoted "character
-              strings" (RFC 1035), each with a length of up to 255 bytes. Strings exceeding
-              this allowed maximum length are automatically split.
-
-              Learn more at
-              <https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/>.
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          settings: Settings for the DNS record.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
-
-          type: Record type.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def edit(
-        self,
-        dns_record_id: str,
-        *,
-        zone_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
         data: record_edit_params.URIRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
@@ -4630,26 +4629,27 @@ class RecordsResource(SyncAPIResource):
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"]
         | Literal["AAAA"]
+        | Literal["CNAME"]
+        | Literal["MX"]
+        | Literal["NS"]
+        | Literal["OPENPGPKEY"]
+        | Literal["PTR"]
+        | Literal["TXT"]
         | Literal["CAA"]
         | Literal["CERT"]
-        | Literal["CNAME"]
         | Literal["DNSKEY"]
         | Literal["DS"]
         | Literal["HTTPS"]
         | Literal["LOC"]
-        | Literal["MX"]
         | Literal["NAPTR"]
-        | Literal["NS"]
-        | Literal["OPENPGPKEY"]
-        | Literal["PTR"]
         | Literal["SMIMEA"]
         | Literal["SRV"]
         | Literal["SSHFP"]
         | Literal["SVCB"]
         | Literal["TLSA"]
-        | Literal["TXT"]
         | Literal["URI"]
         | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
         data: record_edit_params.CAARecordData
         | record_edit_params.CERTRecordData
         | record_edit_params.DNSKEYRecordData
@@ -4662,7 +4662,6 @@ class RecordsResource(SyncAPIResource):
         | record_edit_params.SSHFPRecordData
         | record_edit_params.URIRecordData
         | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4688,8 +4687,8 @@ class RecordsResource(SyncAPIResource):
                         "tags": tags,
                         "ttl": ttl,
                         "type": type,
-                        "data": data,
                         "priority": priority,
+                        "data": data,
                     },
                     record_edit_params.RecordEditParams,
                 ),
@@ -5061,6 +5060,393 @@ class AsyncRecordsResource(AsyncAPIResource):
         *,
         zone_id: str,
         comment: str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        type: Literal["CNAME"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordResponse]:
+        """
+        Create a new DNS record for a zone.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier.
+
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
+          content: A valid hostname. Must not match the record's name.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          settings: Settings for the DNS record.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.MXRecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        type: Literal["MX"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordResponse]:
+        """
+        Create a new DNS record for a zone.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier.
+
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
+          content: A valid mail server hostname.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          priority: Required for MX, SRV and URI records; unused by other record types. Records with
+              lower priorities are preferred.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          settings: Settings for the DNS record.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.NSRecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        type: Literal["NS"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordResponse]:
+        """
+        Create a new DNS record for a zone.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier.
+
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
+          content: A valid name server host name.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          settings: Settings for the DNS record.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.DNSRecordsOpenpgpkeyRecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        type: Literal["OPENPGPKEY"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordResponse]:
+        """
+        Create a new DNS record for a zone.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier.
+
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
+          content: A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          settings: Settings for the DNS record.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.PTRRecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        type: Literal["PTR"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordResponse]:
+        """
+        Create a new DNS record for a zone.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier.
+
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
+          content: Domain name pointing to the address.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          settings: Settings for the DNS record.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.TXTRecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        type: Literal["TXT"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordResponse]:
+        """
+        Create a new DNS record for a zone.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier.
+
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
+          content: Text content for the record. The content must consist of quoted "character
+              strings" (RFC 1035), each with a length of up to 255 bytes. Strings exceeding
+              this allowed maximum length are automatically split.
+
+              Learn more at
+              <https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/>.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          settings: Settings for the DNS record.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_create_params.CAARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
@@ -5155,69 +5541,6 @@ class AsyncRecordsResource(AsyncAPIResource):
               responses.
 
           data: Components of a CERT record.
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          settings: Settings for the DNS record.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
-
-          type: Record type.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def create(
-        self,
-        *,
-        zone_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
-        type: Literal["CNAME"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
-        """
-        Create a new DNS record for a zone.
-
-        Notes:
-
-        - A/AAAA records cannot exist on the same name as CNAME records.
-        - NS records cannot exist on the same name as any other record type.
-        - Domain names are always represented in Punycode, even if Unicode characters
-          were used when creating the record.
-
-        Args:
-          zone_id: Identifier.
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          content: A valid hostname. Must not match the record's name.
 
           name: DNS record name (or @ for the zone apex) in Punycode.
 
@@ -5502,73 +5825,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         *,
         zone_id: str,
         comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.MXRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
-        type: Literal["MX"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
-        """
-        Create a new DNS record for a zone.
-
-        Notes:
-
-        - A/AAAA records cannot exist on the same name as CNAME records.
-        - NS records cannot exist on the same name as any other record type.
-        - Domain names are always represented in Punycode, even if Unicode characters
-          were used when creating the record.
-
-        Args:
-          zone_id: Identifier.
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          content: A valid mail server hostname.
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
-          priority: Required for MX, SRV and URI records; unused by other record types. Records with
-              lower priorities are preferred.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          settings: Settings for the DNS record.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
-
-          type: Record type.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def create(
-        self,
-        *,
-        zone_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
         data: record_create_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
@@ -5600,195 +5856,6 @@ class AsyncRecordsResource(AsyncAPIResource):
               responses.
 
           data: Components of a NAPTR record.
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          settings: Settings for the DNS record.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
-
-          type: Record type.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def create(
-        self,
-        *,
-        zone_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.NSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
-        type: Literal["NS"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
-        """
-        Create a new DNS record for a zone.
-
-        Notes:
-
-        - A/AAAA records cannot exist on the same name as CNAME records.
-        - NS records cannot exist on the same name as any other record type.
-        - Domain names are always represented in Punycode, even if Unicode characters
-          were used when creating the record.
-
-        Args:
-          zone_id: Identifier.
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          content: A valid name server host name.
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          settings: Settings for the DNS record.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
-
-          type: Record type.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def create(
-        self,
-        *,
-        zone_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.DNSRecordsOpenpgpkeyRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
-        type: Literal["OPENPGPKEY"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
-        """
-        Create a new DNS record for a zone.
-
-        Notes:
-
-        - A/AAAA records cannot exist on the same name as CNAME records.
-        - NS records cannot exist on the same name as any other record type.
-        - Domain names are always represented in Punycode, even if Unicode characters
-          were used when creating the record.
-
-        Args:
-          zone_id: Identifier.
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          content: A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          settings: Settings for the DNS record.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
-
-          type: Record type.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def create(
-        self,
-        *,
-        zone_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.PTRRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
-        type: Literal["PTR"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
-        """
-        Create a new DNS record for a zone.
-
-        Notes:
-
-        - A/AAAA records cannot exist on the same name as CNAME records.
-        - NS records cannot exist on the same name as any other record type.
-        - Domain names are always represented in Punycode, even if Unicode characters
-          were used when creating the record.
-
-        Args:
-          zone_id: Identifier.
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          content: Domain name pointing to the address.
 
           name: DNS record name (or @ for the zone apex) in Punycode.
 
@@ -6136,74 +6203,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         *,
         zone_id: str,
         comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.TXTRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
-        type: Literal["TXT"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
-        """
-        Create a new DNS record for a zone.
-
-        Notes:
-
-        - A/AAAA records cannot exist on the same name as CNAME records.
-        - NS records cannot exist on the same name as any other record type.
-        - Domain names are always represented in Punycode, even if Unicode characters
-          were used when creating the record.
-
-        Args:
-          zone_id: Identifier.
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          content: Text content for the record. The content must consist of quoted "character
-              strings" (RFC 1035), each with a length of up to 255 bytes. Strings exceeding
-              this allowed maximum length are automatically split.
-
-              Learn more at
-              <https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/>.
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          settings: Settings for the DNS record.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
-
-          type: Record type.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def create(
-        self,
-        *,
-        zone_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
         data: record_create_params.URIRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
@@ -6281,26 +6280,27 @@ class AsyncRecordsResource(AsyncAPIResource):
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"]
         | Literal["AAAA"]
+        | Literal["CNAME"]
+        | Literal["MX"]
+        | Literal["NS"]
+        | Literal["OPENPGPKEY"]
+        | Literal["PTR"]
+        | Literal["TXT"]
         | Literal["CAA"]
         | Literal["CERT"]
-        | Literal["CNAME"]
         | Literal["DNSKEY"]
         | Literal["DS"]
         | Literal["HTTPS"]
         | Literal["LOC"]
-        | Literal["MX"]
         | Literal["NAPTR"]
-        | Literal["NS"]
-        | Literal["OPENPGPKEY"]
-        | Literal["PTR"]
         | Literal["SMIMEA"]
         | Literal["SRV"]
         | Literal["SSHFP"]
         | Literal["SVCB"]
         | Literal["TLSA"]
-        | Literal["TXT"]
         | Literal["URI"]
         | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
         data: record_create_params.CAARecordData
         | record_create_params.CERTRecordData
         | record_create_params.DNSKEYRecordData
@@ -6313,7 +6313,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         | record_create_params.SSHFPRecordData
         | record_create_params.URIRecordData
         | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -6337,8 +6336,8 @@ class AsyncRecordsResource(AsyncAPIResource):
                         "tags": tags,
                         "ttl": ttl,
                         "type": type,
-                        "data": data,
                         "priority": priority,
+                        "data": data,
                     },
                     record_create_params.RecordCreateParams,
                 ),
@@ -6494,6 +6493,411 @@ class AsyncRecordsResource(AsyncAPIResource):
         *,
         zone_id: str,
         comment: str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        type: Literal["CNAME"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordResponse]:
+        """
+        Overwrite an existing DNS record.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier.
+
+          dns_record_id: Identifier.
+
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
+          content: A valid hostname. Must not match the record's name.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          settings: Settings for the DNS record.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def update(
+        self,
+        dns_record_id: str,
+        *,
+        zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.MXRecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        type: Literal["MX"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordResponse]:
+        """
+        Overwrite an existing DNS record.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier.
+
+          dns_record_id: Identifier.
+
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
+          content: A valid mail server hostname.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          priority: Required for MX, SRV and URI records; unused by other record types. Records with
+              lower priorities are preferred.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          settings: Settings for the DNS record.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def update(
+        self,
+        dns_record_id: str,
+        *,
+        zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.NSRecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        type: Literal["NS"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordResponse]:
+        """
+        Overwrite an existing DNS record.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier.
+
+          dns_record_id: Identifier.
+
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
+          content: A valid name server host name.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          settings: Settings for the DNS record.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def update(
+        self,
+        dns_record_id: str,
+        *,
+        zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.DNSRecordsOpenpgpkeyRecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        type: Literal["OPENPGPKEY"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordResponse]:
+        """
+        Overwrite an existing DNS record.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier.
+
+          dns_record_id: Identifier.
+
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
+          content: A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          settings: Settings for the DNS record.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def update(
+        self,
+        dns_record_id: str,
+        *,
+        zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.PTRRecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        type: Literal["PTR"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordResponse]:
+        """
+        Overwrite an existing DNS record.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier.
+
+          dns_record_id: Identifier.
+
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
+          content: Domain name pointing to the address.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          settings: Settings for the DNS record.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def update(
+        self,
+        dns_record_id: str,
+        *,
+        zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.TXTRecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        type: Literal["TXT"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordResponse]:
+        """
+        Overwrite an existing DNS record.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier.
+
+          dns_record_id: Identifier.
+
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
+          content: Text content for the record. The content must consist of quoted "character
+              strings" (RFC 1035), each with a length of up to 255 bytes. Strings exceeding
+              this allowed maximum length are automatically split.
+
+              Learn more at
+              <https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/>.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          settings: Settings for the DNS record.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def update(
+        self,
+        dns_record_id: str,
+        *,
+        zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_update_params.CAARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
@@ -6593,72 +6997,6 @@ class AsyncRecordsResource(AsyncAPIResource):
               responses.
 
           data: Components of a CERT record.
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          settings: Settings for the DNS record.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
-
-          type: Record type.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def update(
-        self,
-        dns_record_id: str,
-        *,
-        zone_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
-        type: Literal["CNAME"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
-        """
-        Overwrite an existing DNS record.
-
-        Notes:
-
-        - A/AAAA records cannot exist on the same name as CNAME records.
-        - NS records cannot exist on the same name as any other record type.
-        - Domain names are always represented in Punycode, even if Unicode characters
-          were used when creating the record.
-
-        Args:
-          zone_id: Identifier.
-
-          dns_record_id: Identifier.
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          content: A valid hostname. Must not match the record's name.
 
           name: DNS record name (or @ for the zone apex) in Punycode.
 
@@ -6956,76 +7294,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         *,
         zone_id: str,
         comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.MXRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
-        type: Literal["MX"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
-        """
-        Overwrite an existing DNS record.
-
-        Notes:
-
-        - A/AAAA records cannot exist on the same name as CNAME records.
-        - NS records cannot exist on the same name as any other record type.
-        - Domain names are always represented in Punycode, even if Unicode characters
-          were used when creating the record.
-
-        Args:
-          zone_id: Identifier.
-
-          dns_record_id: Identifier.
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          content: A valid mail server hostname.
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
-          priority: Required for MX, SRV and URI records; unused by other record types. Records with
-              lower priorities are preferred.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          settings: Settings for the DNS record.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
-
-          type: Record type.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def update(
-        self,
-        dns_record_id: str,
-        *,
-        zone_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
         data: record_update_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
@@ -7059,204 +7327,6 @@ class AsyncRecordsResource(AsyncAPIResource):
               responses.
 
           data: Components of a NAPTR record.
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          settings: Settings for the DNS record.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
-
-          type: Record type.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def update(
-        self,
-        dns_record_id: str,
-        *,
-        zone_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.NSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
-        type: Literal["NS"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
-        """
-        Overwrite an existing DNS record.
-
-        Notes:
-
-        - A/AAAA records cannot exist on the same name as CNAME records.
-        - NS records cannot exist on the same name as any other record type.
-        - Domain names are always represented in Punycode, even if Unicode characters
-          were used when creating the record.
-
-        Args:
-          zone_id: Identifier.
-
-          dns_record_id: Identifier.
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          content: A valid name server host name.
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          settings: Settings for the DNS record.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
-
-          type: Record type.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def update(
-        self,
-        dns_record_id: str,
-        *,
-        zone_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.DNSRecordsOpenpgpkeyRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
-        type: Literal["OPENPGPKEY"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
-        """
-        Overwrite an existing DNS record.
-
-        Notes:
-
-        - A/AAAA records cannot exist on the same name as CNAME records.
-        - NS records cannot exist on the same name as any other record type.
-        - Domain names are always represented in Punycode, even if Unicode characters
-          were used when creating the record.
-
-        Args:
-          zone_id: Identifier.
-
-          dns_record_id: Identifier.
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          content: A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          settings: Settings for the DNS record.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
-
-          type: Record type.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def update(
-        self,
-        dns_record_id: str,
-        *,
-        zone_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.PTRRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
-        type: Literal["PTR"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
-        """
-        Overwrite an existing DNS record.
-
-        Notes:
-
-        - A/AAAA records cannot exist on the same name as CNAME records.
-        - NS records cannot exist on the same name as any other record type.
-        - Domain names are always represented in Punycode, even if Unicode characters
-          were used when creating the record.
-
-        Args:
-          zone_id: Identifier.
-
-          dns_record_id: Identifier.
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          content: Domain name pointing to the address.
 
           name: DNS record name (or @ for the zone apex) in Punycode.
 
@@ -7620,77 +7690,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         *,
         zone_id: str,
         comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.TXTRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
-        type: Literal["TXT"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
-        """
-        Overwrite an existing DNS record.
-
-        Notes:
-
-        - A/AAAA records cannot exist on the same name as CNAME records.
-        - NS records cannot exist on the same name as any other record type.
-        - Domain names are always represented in Punycode, even if Unicode characters
-          were used when creating the record.
-
-        Args:
-          zone_id: Identifier.
-
-          dns_record_id: Identifier.
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          content: Text content for the record. The content must consist of quoted "character
-              strings" (RFC 1035), each with a length of up to 255 bytes. Strings exceeding
-              this allowed maximum length are automatically split.
-
-              Learn more at
-              <https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/>.
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          settings: Settings for the DNS record.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
-
-          type: Record type.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def update(
-        self,
-        dns_record_id: str,
-        *,
-        zone_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
         data: record_update_params.URIRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
@@ -7771,26 +7770,27 @@ class AsyncRecordsResource(AsyncAPIResource):
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"]
         | Literal["AAAA"]
+        | Literal["CNAME"]
+        | Literal["MX"]
+        | Literal["NS"]
+        | Literal["OPENPGPKEY"]
+        | Literal["PTR"]
+        | Literal["TXT"]
         | Literal["CAA"]
         | Literal["CERT"]
-        | Literal["CNAME"]
         | Literal["DNSKEY"]
         | Literal["DS"]
         | Literal["HTTPS"]
         | Literal["LOC"]
-        | Literal["MX"]
         | Literal["NAPTR"]
-        | Literal["NS"]
-        | Literal["OPENPGPKEY"]
-        | Literal["PTR"]
         | Literal["SMIMEA"]
         | Literal["SRV"]
         | Literal["SSHFP"]
         | Literal["SVCB"]
         | Literal["TLSA"]
-        | Literal["TXT"]
         | Literal["URI"]
         | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
         data: record_update_params.CAARecordData
         | record_update_params.CERTRecordData
         | record_update_params.DNSKEYRecordData
@@ -7803,7 +7803,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         | record_update_params.SSHFPRecordData
         | record_update_params.URIRecordData
         | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -7829,8 +7828,8 @@ class AsyncRecordsResource(AsyncAPIResource):
                         "tags": tags,
                         "ttl": ttl,
                         "type": type,
-                        "data": data,
                         "priority": priority,
+                        "data": data,
                     },
                     record_update_params.RecordUpdateParams,
                 ),
@@ -8019,7 +8018,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         zone_id: str,
         deletes: Iterable[record_batch_params.Delete] | NotGiven = NOT_GIVEN,
         patches: Iterable[BatchPatchParam] | NotGiven = NOT_GIVEN,
-        posts: Iterable[RecordParam] | NotGiven = NOT_GIVEN,
+        posts: Iterable[record_batch_params.Post] | NotGiven = NOT_GIVEN,
         puts: Iterable[BatchPutParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -8220,6 +8219,411 @@ class AsyncRecordsResource(AsyncAPIResource):
         *,
         zone_id: str,
         comment: str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        type: Literal["CNAME"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordResponse]:
+        """
+        Update an existing DNS record.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier.
+
+          dns_record_id: Identifier.
+
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
+          content: A valid hostname. Must not match the record's name.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          settings: Settings for the DNS record.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def edit(
+        self,
+        dns_record_id: str,
+        *,
+        zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.MXRecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        type: Literal["MX"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordResponse]:
+        """
+        Update an existing DNS record.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier.
+
+          dns_record_id: Identifier.
+
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
+          content: A valid mail server hostname.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          priority: Required for MX, SRV and URI records; unused by other record types. Records with
+              lower priorities are preferred.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          settings: Settings for the DNS record.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def edit(
+        self,
+        dns_record_id: str,
+        *,
+        zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.NSRecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        type: Literal["NS"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordResponse]:
+        """
+        Update an existing DNS record.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier.
+
+          dns_record_id: Identifier.
+
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
+          content: A valid name server host name.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          settings: Settings for the DNS record.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def edit(
+        self,
+        dns_record_id: str,
+        *,
+        zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.DNSRecordsOpenpgpkeyRecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        type: Literal["OPENPGPKEY"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordResponse]:
+        """
+        Update an existing DNS record.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier.
+
+          dns_record_id: Identifier.
+
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
+          content: A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          settings: Settings for the DNS record.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def edit(
+        self,
+        dns_record_id: str,
+        *,
+        zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.PTRRecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        type: Literal["PTR"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordResponse]:
+        """
+        Update an existing DNS record.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier.
+
+          dns_record_id: Identifier.
+
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
+          content: Domain name pointing to the address.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          settings: Settings for the DNS record.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def edit(
+        self,
+        dns_record_id: str,
+        *,
+        zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.TXTRecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        type: Literal["TXT"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordResponse]:
+        """
+        Update an existing DNS record.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier.
+
+          dns_record_id: Identifier.
+
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
+          content: Text content for the record. The content must consist of quoted "character
+              strings" (RFC 1035), each with a length of up to 255 bytes. Strings exceeding
+              this allowed maximum length are automatically split.
+
+              Learn more at
+              <https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/>.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          settings: Settings for the DNS record.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def edit(
+        self,
+        dns_record_id: str,
+        *,
+        zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_edit_params.CAARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
@@ -8319,72 +8723,6 @@ class AsyncRecordsResource(AsyncAPIResource):
               responses.
 
           data: Components of a CERT record.
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          settings: Settings for the DNS record.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
-
-          type: Record type.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def edit(
-        self,
-        dns_record_id: str,
-        *,
-        zone_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
-        type: Literal["CNAME"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
-        """
-        Update an existing DNS record.
-
-        Notes:
-
-        - A/AAAA records cannot exist on the same name as CNAME records.
-        - NS records cannot exist on the same name as any other record type.
-        - Domain names are always represented in Punycode, even if Unicode characters
-          were used when creating the record.
-
-        Args:
-          zone_id: Identifier.
-
-          dns_record_id: Identifier.
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          content: A valid hostname. Must not match the record's name.
 
           name: DNS record name (or @ for the zone apex) in Punycode.
 
@@ -8682,76 +9020,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         *,
         zone_id: str,
         comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.MXRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
-        type: Literal["MX"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
-        """
-        Update an existing DNS record.
-
-        Notes:
-
-        - A/AAAA records cannot exist on the same name as CNAME records.
-        - NS records cannot exist on the same name as any other record type.
-        - Domain names are always represented in Punycode, even if Unicode characters
-          were used when creating the record.
-
-        Args:
-          zone_id: Identifier.
-
-          dns_record_id: Identifier.
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          content: A valid mail server hostname.
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
-          priority: Required for MX, SRV and URI records; unused by other record types. Records with
-              lower priorities are preferred.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          settings: Settings for the DNS record.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
-
-          type: Record type.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def edit(
-        self,
-        dns_record_id: str,
-        *,
-        zone_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
         data: record_edit_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
@@ -8785,204 +9053,6 @@ class AsyncRecordsResource(AsyncAPIResource):
               responses.
 
           data: Components of a NAPTR record.
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          settings: Settings for the DNS record.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
-
-          type: Record type.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def edit(
-        self,
-        dns_record_id: str,
-        *,
-        zone_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.NSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
-        type: Literal["NS"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
-        """
-        Update an existing DNS record.
-
-        Notes:
-
-        - A/AAAA records cannot exist on the same name as CNAME records.
-        - NS records cannot exist on the same name as any other record type.
-        - Domain names are always represented in Punycode, even if Unicode characters
-          were used when creating the record.
-
-        Args:
-          zone_id: Identifier.
-
-          dns_record_id: Identifier.
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          content: A valid name server host name.
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          settings: Settings for the DNS record.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
-
-          type: Record type.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def edit(
-        self,
-        dns_record_id: str,
-        *,
-        zone_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.DNSRecordsOpenpgpkeyRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
-        type: Literal["OPENPGPKEY"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
-        """
-        Update an existing DNS record.
-
-        Notes:
-
-        - A/AAAA records cannot exist on the same name as CNAME records.
-        - NS records cannot exist on the same name as any other record type.
-        - Domain names are always represented in Punycode, even if Unicode characters
-          were used when creating the record.
-
-        Args:
-          zone_id: Identifier.
-
-          dns_record_id: Identifier.
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          content: A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          settings: Settings for the DNS record.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
-
-          type: Record type.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def edit(
-        self,
-        dns_record_id: str,
-        *,
-        zone_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.PTRRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
-        type: Literal["PTR"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
-        """
-        Update an existing DNS record.
-
-        Notes:
-
-        - A/AAAA records cannot exist on the same name as CNAME records.
-        - NS records cannot exist on the same name as any other record type.
-        - Domain names are always represented in Punycode, even if Unicode characters
-          were used when creating the record.
-
-        Args:
-          zone_id: Identifier.
-
-          dns_record_id: Identifier.
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          content: Domain name pointing to the address.
 
           name: DNS record name (or @ for the zone apex) in Punycode.
 
@@ -9346,77 +9416,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         *,
         zone_id: str,
         comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.TXTRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
-        type: Literal["TXT"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
-        """
-        Update an existing DNS record.
-
-        Notes:
-
-        - A/AAAA records cannot exist on the same name as CNAME records.
-        - NS records cannot exist on the same name as any other record type.
-        - Domain names are always represented in Punycode, even if Unicode characters
-          were used when creating the record.
-
-        Args:
-          zone_id: Identifier.
-
-          dns_record_id: Identifier.
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          content: Text content for the record. The content must consist of quoted "character
-              strings" (RFC 1035), each with a length of up to 255 bytes. Strings exceeding
-              this allowed maximum length are automatically split.
-
-              Learn more at
-              <https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/>.
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          settings: Settings for the DNS record.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
-
-          type: Record type.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def edit(
-        self,
-        dns_record_id: str,
-        *,
-        zone_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
         data: record_edit_params.URIRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
@@ -9495,26 +9494,27 @@ class AsyncRecordsResource(AsyncAPIResource):
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"]
         | Literal["AAAA"]
+        | Literal["CNAME"]
+        | Literal["MX"]
+        | Literal["NS"]
+        | Literal["OPENPGPKEY"]
+        | Literal["PTR"]
+        | Literal["TXT"]
         | Literal["CAA"]
         | Literal["CERT"]
-        | Literal["CNAME"]
         | Literal["DNSKEY"]
         | Literal["DS"]
         | Literal["HTTPS"]
         | Literal["LOC"]
-        | Literal["MX"]
         | Literal["NAPTR"]
-        | Literal["NS"]
-        | Literal["OPENPGPKEY"]
-        | Literal["PTR"]
         | Literal["SMIMEA"]
         | Literal["SRV"]
         | Literal["SSHFP"]
         | Literal["SVCB"]
         | Literal["TLSA"]
-        | Literal["TXT"]
         | Literal["URI"]
         | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
         data: record_edit_params.CAARecordData
         | record_edit_params.CERTRecordData
         | record_edit_params.DNSKEYRecordData
@@ -9527,7 +9527,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         | record_edit_params.SSHFPRecordData
         | record_edit_params.URIRecordData
         | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -9553,8 +9552,8 @@ class AsyncRecordsResource(AsyncAPIResource):
                         "tags": tags,
                         "ttl": ttl,
                         "type": type,
-                        "data": data,
                         "priority": priority,
+                        "data": data,
                     },
                     record_edit_params.RecordEditParams,
                 ),

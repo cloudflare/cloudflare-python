@@ -69,8 +69,6 @@ class UARulesResource(SyncAPIResource):
         Args:
           zone_id: Defines an identifier.
 
-          configuration: The rule configuration.
-
           mode: The action to apply to a matched request.
 
           extra_headers: Send extra headers
@@ -368,8 +366,6 @@ class AsyncUARulesResource(AsyncAPIResource):
 
         Args:
           zone_id: Defines an identifier.
-
-          configuration: The rule configuration.
 
           mode: The action to apply to a matched request.
 

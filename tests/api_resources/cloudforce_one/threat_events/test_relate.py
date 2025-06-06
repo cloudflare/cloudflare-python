@@ -22,7 +22,7 @@ class TestRelate:
     def test_method_delete(self, client: Cloudflare) -> None:
         relate = client.cloudforce_one.threat_events.relate.delete(
             event_id="event_id",
-            account_id=0,
+            account_id="account_id",
         )
         assert_matches_type(RelateDeleteResponse, relate, path=["response"])
 
@@ -31,7 +31,7 @@ class TestRelate:
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.threat_events.relate.with_raw_response.delete(
             event_id="event_id",
-            account_id=0,
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -44,7 +44,7 @@ class TestRelate:
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.cloudforce_one.threat_events.relate.with_streaming_response.delete(
             event_id="event_id",
-            account_id=0,
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -57,10 +57,16 @@ class TestRelate:
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.cloudforce_one.threat_events.relate.with_raw_response.delete(
+                event_id="event_id",
+                account_id="",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `event_id` but received ''"):
             client.cloudforce_one.threat_events.relate.with_raw_response.delete(
                 event_id="",
-                account_id=0,
+                account_id="account_id",
             )
 
 
@@ -72,7 +78,7 @@ class TestAsyncRelate:
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         relate = await async_client.cloudforce_one.threat_events.relate.delete(
             event_id="event_id",
-            account_id=0,
+            account_id="account_id",
         )
         assert_matches_type(RelateDeleteResponse, relate, path=["response"])
 
@@ -81,7 +87,7 @@ class TestAsyncRelate:
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloudforce_one.threat_events.relate.with_raw_response.delete(
             event_id="event_id",
-            account_id=0,
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -94,7 +100,7 @@ class TestAsyncRelate:
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloudforce_one.threat_events.relate.with_streaming_response.delete(
             event_id="event_id",
-            account_id=0,
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -107,8 +113,14 @@ class TestAsyncRelate:
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.cloudforce_one.threat_events.relate.with_raw_response.delete(
+                event_id="event_id",
+                account_id="",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `event_id` but received ''"):
             await async_client.cloudforce_one.threat_events.relate.with_raw_response.delete(
                 event_id="",
-                account_id=0,
+                account_id="account_id",
             )

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Type, cast
 
 import httpx
@@ -42,6 +43,7 @@ class ProfileResource(SyncAPIResource):
         """
         return ProfileResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def get(
         self,
         *,
@@ -86,6 +88,7 @@ class AsyncProfileResource(AsyncAPIResource):
         """
         return AsyncProfileResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def get(
         self,
         *,
@@ -114,8 +117,10 @@ class ProfileResourceWithRawResponse:
     def __init__(self, profile: ProfileResource) -> None:
         self._profile = profile
 
-        self.get = to_raw_response_wrapper(
-            profile.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                profile.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -123,8 +128,10 @@ class AsyncProfileResourceWithRawResponse:
     def __init__(self, profile: AsyncProfileResource) -> None:
         self._profile = profile
 
-        self.get = async_to_raw_response_wrapper(
-            profile.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                profile.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -132,8 +139,10 @@ class ProfileResourceWithStreamingResponse:
     def __init__(self, profile: ProfileResource) -> None:
         self._profile = profile
 
-        self.get = to_streamed_response_wrapper(
-            profile.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                profile.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -141,6 +150,8 @@ class AsyncProfileResourceWithStreamingResponse:
     def __init__(self, profile: AsyncProfileResource) -> None:
         self._profile = profile
 
-        self.get = async_to_streamed_response_wrapper(
-            profile.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                profile.get  # pyright: ignore[reportDeprecated],
+            )
         )

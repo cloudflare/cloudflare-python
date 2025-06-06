@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Union
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-__all__ = ["DatabaseImportParams", "Variant0", "Variant1", "Variant2"]
+__all__ = ["DatabaseImportParams", "Init", "Ingest", "Poll"]
 
 
-class Variant0(TypedDict, total=False):
+class Init(TypedDict, total=False):
     account_id: Required[str]
     """Account identifier tag."""
 
@@ -23,7 +23,7 @@ class Variant0(TypedDict, total=False):
     """
 
 
-class Variant1(TypedDict, total=False):
+class Ingest(TypedDict, total=False):
     account_id: Required[str]
     """Account identifier tag."""
 
@@ -40,7 +40,7 @@ class Variant1(TypedDict, total=False):
     """The filename you have successfully uploaded."""
 
 
-class Variant2(TypedDict, total=False):
+class Poll(TypedDict, total=False):
     account_id: Required[str]
     """Account identifier tag."""
 
@@ -51,4 +51,4 @@ class Variant2(TypedDict, total=False):
     """This identifies the currently-running import, checking its status."""
 
 
-DatabaseImportParams: TypeAlias = Union[Variant0, Variant1, Variant2]
+DatabaseImportParams: TypeAlias = Union[Init, Ingest, Poll]

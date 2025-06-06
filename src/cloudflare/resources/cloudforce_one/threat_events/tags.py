@@ -44,7 +44,7 @@ class TagsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: float,
+        account_id: str,
         name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -67,6 +67,8 @@ class TagsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/cloudforce-one/events/tags/create",
             body=maybe_transform({"name": name}, tag_create_params.TagCreateParams),
@@ -100,7 +102,7 @@ class AsyncTagsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: float,
+        account_id: str,
         name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -123,6 +125,8 @@ class AsyncTagsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/cloudforce-one/events/tags/create",
             body=await async_maybe_transform({"name": name}, tag_create_params.TagCreateParams),

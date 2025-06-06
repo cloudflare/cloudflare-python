@@ -41,12 +41,12 @@ class ZoneListParams(TypedDict, total=False):
     """Number of zones per page."""
 
     status: Literal["initializing", "pending", "active", "moved"]
-    """A zone status"""
+    """Specify a zone status to filter by."""
 
 
 class Account(TypedDict, total=False):
     id: str
-    """An account ID"""
+    """Filter by an account ID."""
 
     name: str
     """An account Name.

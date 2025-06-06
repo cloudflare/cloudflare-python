@@ -13,7 +13,7 @@ __all__ = ["BytimeGetParams"]
 
 class BytimeGetParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     dimensions: str
     """A comma-separated list of dimensions to group results by."""

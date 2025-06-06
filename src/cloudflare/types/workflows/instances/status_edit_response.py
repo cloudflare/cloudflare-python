@@ -12,4 +12,4 @@ class StatusEditResponse(BaseModel):
     status: Literal["queued", "running", "paused", "errored", "terminated", "complete", "waitingForPause", "waiting"]
 
     timestamp: datetime
-    """In ISO 8601 with no timezone offsets and in UTC."""
+    """Accepts ISO 8601 with no timezone offsets and in UTC."""

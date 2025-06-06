@@ -13,7 +13,7 @@ class ZoneCreateParams(TypedDict, total=False):
     account: Required[Account]
 
     name: Required[str]
-    """The domain name"""
+    """The domain name."""
 
     type: Type
     """A full zone implies that DNS is hosted with Cloudflare.

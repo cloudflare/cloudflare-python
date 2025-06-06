@@ -9,7 +9,10 @@ __all__ = ["RadarEmailSummary"]
 
 class RadarEmailSummary(BaseModel):
     fail: str = FieldInfo(alias="FAIL")
+    """A numeric string."""
 
     none: str = FieldInfo(alias="NONE")
+    """A numeric string."""
 
     pass_: str = FieldInfo(alias="PASS")
+    """A numeric string."""

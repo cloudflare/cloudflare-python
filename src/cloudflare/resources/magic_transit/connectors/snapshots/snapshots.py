@@ -61,7 +61,7 @@ class SnapshotsResource(SyncAPIResource):
         self,
         connector_id: str,
         *,
-        account_id: float,
+        account_id: str,
         from_: float,
         to: float,
         cursor: str | NotGiven = NOT_GIVEN,
@@ -85,6 +85,8 @@ class SnapshotsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not connector_id:
             raise ValueError(f"Expected a non-empty value for `connector_id` but received {connector_id!r}")
         return self._get(
@@ -112,7 +114,7 @@ class SnapshotsResource(SyncAPIResource):
         self,
         snapshot_t: float,
         *,
-        account_id: float,
+        account_id: str,
         connector_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -133,6 +135,8 @@ class SnapshotsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not connector_id:
             raise ValueError(f"Expected a non-empty value for `connector_id` but received {connector_id!r}")
         return self._get(
@@ -176,7 +180,7 @@ class AsyncSnapshotsResource(AsyncAPIResource):
         self,
         connector_id: str,
         *,
-        account_id: float,
+        account_id: str,
         from_: float,
         to: float,
         cursor: str | NotGiven = NOT_GIVEN,
@@ -200,6 +204,8 @@ class AsyncSnapshotsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not connector_id:
             raise ValueError(f"Expected a non-empty value for `connector_id` but received {connector_id!r}")
         return await self._get(
@@ -227,7 +233,7 @@ class AsyncSnapshotsResource(AsyncAPIResource):
         self,
         snapshot_t: float,
         *,
-        account_id: float,
+        account_id: str,
         connector_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -248,6 +254,8 @@ class AsyncSnapshotsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not connector_id:
             raise ValueError(f"Expected a non-empty value for `connector_id` but received {connector_id!r}")
         return await self._get(

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Any, cast
 from typing_extensions import Literal
 
@@ -69,6 +70,7 @@ class PackagesResource(SyncAPIResource):
         """
         return PackagesResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
@@ -141,6 +143,7 @@ class PackagesResource(SyncAPIResource):
             model=object,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def get(
         self,
         package_id: str,
@@ -218,6 +221,7 @@ class AsyncPackagesResource(AsyncAPIResource):
         """
         return AsyncPackagesResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
@@ -290,6 +294,7 @@ class AsyncPackagesResource(AsyncAPIResource):
             model=object,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def get(
         self,
         package_id: str,
@@ -343,11 +348,15 @@ class PackagesResourceWithRawResponse:
     def __init__(self, packages: PackagesResource) -> None:
         self._packages = packages
 
-        self.list = to_raw_response_wrapper(
-            packages.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                packages.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_raw_response_wrapper(
-            packages.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                packages.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -363,11 +372,15 @@ class AsyncPackagesResourceWithRawResponse:
     def __init__(self, packages: AsyncPackagesResource) -> None:
         self._packages = packages
 
-        self.list = async_to_raw_response_wrapper(
-            packages.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                packages.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_raw_response_wrapper(
-            packages.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                packages.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -383,11 +396,15 @@ class PackagesResourceWithStreamingResponse:
     def __init__(self, packages: PackagesResource) -> None:
         self._packages = packages
 
-        self.list = to_streamed_response_wrapper(
-            packages.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                packages.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_streamed_response_wrapper(
-            packages.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                packages.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -403,11 +420,15 @@ class AsyncPackagesResourceWithStreamingResponse:
     def __init__(self, packages: AsyncPackagesResource) -> None:
         self._packages = packages
 
-        self.list = async_to_streamed_response_wrapper(
-            packages.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                packages.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_streamed_response_wrapper(
-            packages.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                packages.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property

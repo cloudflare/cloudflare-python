@@ -36,6 +36,14 @@ from .commands.commands import (
     CommandsResourceWithStreamingResponse,
     AsyncCommandsResourceWithStreamingResponse,
 )
+from .warp_change_events import (
+    WARPChangeEventsResource,
+    AsyncWARPChangeEventsResource,
+    WARPChangeEventsResourceWithRawResponse,
+    AsyncWARPChangeEventsResourceWithRawResponse,
+    WARPChangeEventsResourceWithStreamingResponse,
+    AsyncWARPChangeEventsResourceWithStreamingResponse,
+)
 from .http_tests.http_tests import (
     HTTPTestsResource,
     AsyncHTTPTestsResource,
@@ -65,6 +73,10 @@ __all__ = ["DEXResource", "AsyncDEXResource"]
 
 
 class DEXResource(SyncAPIResource):
+    @cached_property
+    def warp_change_events(self) -> WARPChangeEventsResource:
+        return WARPChangeEventsResource(self._client)
+
     @cached_property
     def commands(self) -> CommandsResource:
         return CommandsResource(self._client)
@@ -114,6 +126,10 @@ class DEXResource(SyncAPIResource):
 
 
 class AsyncDEXResource(AsyncAPIResource):
+    @cached_property
+    def warp_change_events(self) -> AsyncWARPChangeEventsResource:
+        return AsyncWARPChangeEventsResource(self._client)
+
     @cached_property
     def commands(self) -> AsyncCommandsResource:
         return AsyncCommandsResource(self._client)
@@ -167,6 +183,10 @@ class DEXResourceWithRawResponse:
         self._dex = dex
 
     @cached_property
+    def warp_change_events(self) -> WARPChangeEventsResourceWithRawResponse:
+        return WARPChangeEventsResourceWithRawResponse(self._dex.warp_change_events)
+
+    @cached_property
     def commands(self) -> CommandsResourceWithRawResponse:
         return CommandsResourceWithRawResponse(self._dex.commands)
 
@@ -198,6 +218,10 @@ class DEXResourceWithRawResponse:
 class AsyncDEXResourceWithRawResponse:
     def __init__(self, dex: AsyncDEXResource) -> None:
         self._dex = dex
+
+    @cached_property
+    def warp_change_events(self) -> AsyncWARPChangeEventsResourceWithRawResponse:
+        return AsyncWARPChangeEventsResourceWithRawResponse(self._dex.warp_change_events)
 
     @cached_property
     def commands(self) -> AsyncCommandsResourceWithRawResponse:
@@ -233,6 +257,10 @@ class DEXResourceWithStreamingResponse:
         self._dex = dex
 
     @cached_property
+    def warp_change_events(self) -> WARPChangeEventsResourceWithStreamingResponse:
+        return WARPChangeEventsResourceWithStreamingResponse(self._dex.warp_change_events)
+
+    @cached_property
     def commands(self) -> CommandsResourceWithStreamingResponse:
         return CommandsResourceWithStreamingResponse(self._dex.commands)
 
@@ -264,6 +292,10 @@ class DEXResourceWithStreamingResponse:
 class AsyncDEXResourceWithStreamingResponse:
     def __init__(self, dex: AsyncDEXResource) -> None:
         self._dex = dex
+
+    @cached_property
+    def warp_change_events(self) -> AsyncWARPChangeEventsResourceWithStreamingResponse:
+        return AsyncWARPChangeEventsResourceWithStreamingResponse(self._dex.warp_change_events)
 
     @cached_property
     def commands(self) -> AsyncCommandsResourceWithStreamingResponse:
