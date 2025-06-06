@@ -1081,6 +1081,7 @@ from cloudflare.types.dns import (
     NAPTRRecord,
     NSRecord,
     PTRRecord,
+    Record,
     RecordResponse,
     RecordTags,
     SMIMEARecord,
