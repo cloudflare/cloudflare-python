@@ -267,7 +267,7 @@ class ListsResource(SyncAPIResource):
         list_id: str,
         *,
         account_id: str,
-        append: Iterable[GatewayItemParam] | NotGiven = NOT_GIVEN,
+        append: Iterable[list_edit_params.Append] | NotGiven = NOT_GIVEN,
         remove: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -282,7 +282,7 @@ class ListsResource(SyncAPIResource):
         Args:
           list_id: API Resource UUID tag.
 
-          append: The items in the list.
+          append: items to add to the list.
 
           remove: A list of the item values you want to remove.
 
@@ -591,7 +591,7 @@ class AsyncListsResource(AsyncAPIResource):
         list_id: str,
         *,
         account_id: str,
-        append: Iterable[GatewayItemParam] | NotGiven = NOT_GIVEN,
+        append: Iterable[list_edit_params.Append] | NotGiven = NOT_GIVEN,
         remove: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -606,7 +606,7 @@ class AsyncListsResource(AsyncAPIResource):
         Args:
           list_id: API Resource UUID tag.
 
-          append: The items in the list.
+          append: items to add to the list.
 
           remove: A list of the item values you want to remove.
 
