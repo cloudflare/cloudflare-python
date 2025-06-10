@@ -14,6 +14,7 @@ __all__ = [
     "PredefinedEntryConfidence",
     "IntegrationEntry",
     "ExactDataEntry",
+    "DocumentTemplateEntry",
     "WordListEntry",
 ]
 
@@ -99,6 +100,20 @@ class ExactDataEntry(BaseModel):
     updated_at: datetime
 
 
+class DocumentTemplateEntry(BaseModel):
+    id: str
+
+    created_at: datetime
+
+    enabled: bool
+
+    name: str
+
+    type: Literal["document_template"]
+
+    updated_at: datetime
+
+
 class WordListEntry(BaseModel):
     id: str
 
@@ -117,4 +132,6 @@ class WordListEntry(BaseModel):
     profile_id: Optional[str] = None
 
 
-EntryListResponse: TypeAlias = Union[CustomEntry, PredefinedEntry, IntegrationEntry, ExactDataEntry, WordListEntry]
+EntryListResponse: TypeAlias = Union[
+    CustomEntry, PredefinedEntry, IntegrationEntry, ExactDataEntry, DocumentTemplateEntry, WordListEntry
+]
