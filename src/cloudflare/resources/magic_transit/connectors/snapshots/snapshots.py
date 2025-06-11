@@ -77,6 +77,8 @@ class SnapshotsResource(SyncAPIResource):
         List Snapshots
 
         Args:
+          account_id: Account identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -127,6 +129,8 @@ class SnapshotsResource(SyncAPIResource):
         Get Snapshot
 
         Args:
+          account_id: Account identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -196,6 +200,8 @@ class AsyncSnapshotsResource(AsyncAPIResource):
         List Snapshots
 
         Args:
+          account_id: Account identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -246,6 +252,8 @@ class AsyncSnapshotsResource(AsyncAPIResource):
         Get Snapshot
 
         Args:
+          account_id: Account identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
