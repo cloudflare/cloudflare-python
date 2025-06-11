@@ -32,7 +32,7 @@ class MetaConfidenceInfoAnnotation(BaseModel):
 
     description: str
 
-    end_time: datetime = FieldInfo(alias="endTime")
+    end_date: datetime = FieldInfo(alias="endDate")
 
     event_type: str = FieldInfo(alias="eventType")
 
@@ -41,7 +41,7 @@ class MetaConfidenceInfoAnnotation(BaseModel):
 
     linked_url: str = FieldInfo(alias="linkedUrl")
 
-    start_time: datetime = FieldInfo(alias="startTime")
+    start_date: datetime = FieldInfo(alias="startDate")
 
 
 class MetaConfidenceInfo(BaseModel):
@@ -84,6 +84,7 @@ class Meta(BaseModel):
         "PERCENTAGE_CHANGE",
         "ROLLING_AVERAGE",
         "OVERLAPPED_PERCENTAGE",
+        "RATIO",
     ]
     """Normalization method applied to the results.
 
