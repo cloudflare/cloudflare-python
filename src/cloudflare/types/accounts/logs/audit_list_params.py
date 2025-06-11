@@ -233,7 +233,7 @@ class ActorTokenName(_ActorTokenNameReservedKeywords, total=False):
 _ActorTypeReservedKeywords = TypedDict(
     "_ActorTypeReservedKeywords",
     {
-        "not": List[Literal["cloudflare_admin", "account", "user"]],
+        "not": List[Literal["account", "cloudflare_admin", "system", "user"]],
     },
     total=False,
 )
