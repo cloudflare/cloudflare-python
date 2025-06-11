@@ -55,7 +55,7 @@ class ExportResource(SyncAPIResource):
         included.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -112,7 +112,7 @@ class AsyncExportResource(AsyncAPIResource):
         included.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

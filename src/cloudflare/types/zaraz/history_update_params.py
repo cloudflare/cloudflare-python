@@ -9,7 +9,7 @@ __all__ = ["HistoryUpdateParams"]
 
 class HistoryUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     body: Required[int]
     """ID of the Zaraz configuration to restore."""
