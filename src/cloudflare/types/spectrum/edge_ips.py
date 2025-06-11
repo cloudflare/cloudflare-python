@@ -5,10 +5,10 @@ from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
 
-__all__ = ["EdgeIPs", "UnionMember0", "UnionMember1"]
+__all__ = ["EdgeIPs", "Dynamic", "Static"]
 
 
-class UnionMember0(BaseModel):
+class Dynamic(BaseModel):
     connectivity: Optional[Literal["all", "ipv4", "ipv6"]] = None
     """The IP versions supported for inbound connections on Spectrum anycast IPs."""
 
@@ -20,7 +20,7 @@ class UnionMember0(BaseModel):
     """
 
 
-class UnionMember1(BaseModel):
+class Static(BaseModel):
     ips: Optional[List[str]] = None
     """
     The array of customer owned IPs we broadcast via anycast for this hostname and
@@ -35,4 +35,4 @@ class UnionMember1(BaseModel):
     """
 
 
-EdgeIPs: TypeAlias = Union[UnionMember0, UnionMember1]
+EdgeIPs: TypeAlias = Union[Dynamic, Static]
