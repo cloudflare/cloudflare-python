@@ -179,12 +179,12 @@ class ActionParametersCacheKeyCustomKey(BaseModel):
 
 class ActionParametersCacheKey(BaseModel):
     cache_by_device_type: Optional[bool] = None
-    """Separate cached content based on the visitor’s device type"""
+    """Separate cached content based on the visitor’s device type."""
 
     cache_deception_armor: Optional[bool] = None
     """
     Protect from web cache deception attacks while allowing static assets to be
-    cached
+    cached.
     """
 
     custom_key: Optional[ActionParametersCacheKeyCustomKey] = None
@@ -214,10 +214,10 @@ class ActionParametersCacheReserve(BaseModel):
 
 class ActionParametersEdgeTTLStatusCodeTTLStatusCodeRange(BaseModel):
     from_: int = FieldInfo(alias="from")
-    """response status code lower bound"""
+    """Response status code lower bound."""
 
     to: int
-    """response status code upper bound"""
+    """Response status code upper bound."""
 
 
 class ActionParametersEdgeTTLStatusCodeTTL(BaseModel):
@@ -233,7 +233,7 @@ class ActionParametersEdgeTTLStatusCodeTTL(BaseModel):
     """The range of status codes used to apply the selected mode."""
 
     status_code_value: Optional[int] = None
-    """Set the ttl for responses with this specific status code"""
+    """Set the TTL for responses with this specific status code."""
 
 
 class ActionParametersEdgeTTL(BaseModel):
@@ -241,10 +241,10 @@ class ActionParametersEdgeTTL(BaseModel):
     """The TTL (in seconds) if you choose override_origin mode."""
 
     mode: Literal["respect_origin", "bypass_by_default", "override_origin"]
-    """edge ttl options"""
+    """Edge TTL options."""
 
     status_code_ttl: List[ActionParametersEdgeTTLStatusCodeTTL]
-    """List of single status codes, or status code ranges to apply the selected mode"""
+    """List of single status codes, or status code ranges to apply the selected mode."""
 
 
 class ActionParametersServeStale(BaseModel):
@@ -298,7 +298,7 @@ class ActionParameters(BaseModel):
     origin_error_page_passthru: Optional[bool] = None
     """Generate Cloudflare error pages from issues sent from the origin server.
 
-    When on, error pages will trigger for issues from the origin
+    When on, error pages will trigger for issues from the origin.
     """
 
     read_timeout: Optional[int] = None

@@ -65,7 +65,7 @@ class ActionParameters(TypedDict, total=False):
     """Configure the Polish level."""
 
     rocket_loader: bool
-    """Turn on or off Rocket Loader"""
+    """Turn on or off Rocket Loader."""
 
     security_level: Literal["off", "essentially_off", "low", "medium", "high", "under_attack"]
     """Configure the Security Level."""

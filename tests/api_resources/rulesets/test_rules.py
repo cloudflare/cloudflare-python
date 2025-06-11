@@ -1444,7 +1444,7 @@ class TestRules:
                 "respect_strong_etags": True,
                 "serve_stale": {"disable_stale_while_updating": True},
             },
-            description="Set cache settings when the hostname  address is not example.com",
+            description="Set cache settings when the hostname address is not example.com",
             enabled=True,
             exposed_credential_check={
                 "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
@@ -3504,7 +3504,7 @@ class TestRules:
                 "respect_strong_etags": True,
                 "serve_stale": {"disable_stale_while_updating": True},
             },
-            description="Set cache settings when the hostname  address is not example.com",
+            description="Set cache settings when the hostname address is not example.com",
             enabled=True,
             exposed_credential_check={
                 "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
@@ -5343,7 +5343,7 @@ class TestAsyncRules:
                 "respect_strong_etags": True,
                 "serve_stale": {"disable_stale_while_updating": True},
             },
-            description="Set cache settings when the hostname  address is not example.com",
+            description="Set cache settings when the hostname address is not example.com",
             enabled=True,
             exposed_credential_check={
                 "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
@@ -7403,7 +7403,7 @@ class TestAsyncRules:
                 "respect_strong_etags": True,
                 "serve_stale": {"disable_stale_while_updating": True},
             },
-            description="Set cache settings when the hostname  address is not example.com",
+            description="Set cache settings when the hostname address is not example.com",
             enabled=True,
             exposed_credential_check={
                 "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
