@@ -59,7 +59,7 @@ class ActionParameters(BaseModel):
     """Configure the Polish level."""
 
     rocket_loader: Optional[bool] = None
-    """Turn on or off Rocket Loader"""
+    """Turn on or off Rocket Loader."""
 
     security_level: Optional[Literal["off", "essentially_off", "low", "medium", "high", "under_attack"]] = None
     """Configure the Security Level."""
