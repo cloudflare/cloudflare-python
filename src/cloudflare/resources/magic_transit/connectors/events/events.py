@@ -77,6 +77,8 @@ class EventsResource(SyncAPIResource):
         List Events
 
         Args:
+          account_id: Account identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -128,6 +130,8 @@ class EventsResource(SyncAPIResource):
         Get Event
 
         Args:
+          account_id: Account identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -197,6 +201,8 @@ class AsyncEventsResource(AsyncAPIResource):
         List Events
 
         Args:
+          account_id: Account identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -248,6 +254,8 @@ class AsyncEventsResource(AsyncAPIResource):
         Get Event
 
         Args:
+          account_id: Account identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

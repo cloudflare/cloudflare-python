@@ -58,6 +58,8 @@ class LatestResource(SyncAPIResource):
         Get latest Snapshots
 
         Args:
+          account_id: Account identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -119,6 +121,8 @@ class AsyncLatestResource(AsyncAPIResource):
         Get latest Snapshots
 
         Args:
+          account_id: Account identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

@@ -21,7 +21,7 @@ class TestEvents:
     def test_method_list(self, client: Cloudflare) -> None:
         event = client.magic_transit.connectors.events.list(
             connector_id="connector_id",
-            account_id="account_id",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             from_=0,
             to=0,
         )
@@ -31,7 +31,7 @@ class TestEvents:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         event = client.magic_transit.connectors.events.list(
             connector_id="connector_id",
-            account_id="account_id",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             from_=0,
             to=0,
             cursor="cursor",
@@ -43,7 +43,7 @@ class TestEvents:
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.magic_transit.connectors.events.with_raw_response.list(
             connector_id="connector_id",
-            account_id="account_id",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             from_=0,
             to=0,
         )
@@ -57,7 +57,7 @@ class TestEvents:
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.magic_transit.connectors.events.with_streaming_response.list(
             connector_id="connector_id",
-            account_id="account_id",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             from_=0,
             to=0,
         ) as response:
@@ -82,7 +82,7 @@ class TestEvents:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `connector_id` but received ''"):
             client.magic_transit.connectors.events.with_raw_response.list(
                 connector_id="",
-                account_id="account_id",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 from_=0,
                 to=0,
             )
@@ -91,7 +91,7 @@ class TestEvents:
     def test_method_get(self, client: Cloudflare) -> None:
         event = client.magic_transit.connectors.events.get(
             event_n=0,
-            account_id="account_id",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             connector_id="connector_id",
             event_t=0,
         )
@@ -101,7 +101,7 @@ class TestEvents:
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.magic_transit.connectors.events.with_raw_response.get(
             event_n=0,
-            account_id="account_id",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             connector_id="connector_id",
             event_t=0,
         )
@@ -115,7 +115,7 @@ class TestEvents:
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.magic_transit.connectors.events.with_streaming_response.get(
             event_n=0,
-            account_id="account_id",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             connector_id="connector_id",
             event_t=0,
         ) as response:
@@ -140,7 +140,7 @@ class TestEvents:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `connector_id` but received ''"):
             client.magic_transit.connectors.events.with_raw_response.get(
                 event_n=0,
-                account_id="account_id",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 connector_id="",
                 event_t=0,
             )
@@ -153,7 +153,7 @@ class TestAsyncEvents:
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         event = await async_client.magic_transit.connectors.events.list(
             connector_id="connector_id",
-            account_id="account_id",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             from_=0,
             to=0,
         )
@@ -163,7 +163,7 @@ class TestAsyncEvents:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         event = await async_client.magic_transit.connectors.events.list(
             connector_id="connector_id",
-            account_id="account_id",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             from_=0,
             to=0,
             cursor="cursor",
@@ -175,7 +175,7 @@ class TestAsyncEvents:
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.connectors.events.with_raw_response.list(
             connector_id="connector_id",
-            account_id="account_id",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             from_=0,
             to=0,
         )
@@ -189,7 +189,7 @@ class TestAsyncEvents:
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.connectors.events.with_streaming_response.list(
             connector_id="connector_id",
-            account_id="account_id",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             from_=0,
             to=0,
         ) as response:
@@ -214,7 +214,7 @@ class TestAsyncEvents:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `connector_id` but received ''"):
             await async_client.magic_transit.connectors.events.with_raw_response.list(
                 connector_id="",
-                account_id="account_id",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 from_=0,
                 to=0,
             )
@@ -223,7 +223,7 @@ class TestAsyncEvents:
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         event = await async_client.magic_transit.connectors.events.get(
             event_n=0,
-            account_id="account_id",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             connector_id="connector_id",
             event_t=0,
         )
@@ -233,7 +233,7 @@ class TestAsyncEvents:
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.connectors.events.with_raw_response.get(
             event_n=0,
-            account_id="account_id",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             connector_id="connector_id",
             event_t=0,
         )
@@ -247,7 +247,7 @@ class TestAsyncEvents:
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.connectors.events.with_streaming_response.get(
             event_n=0,
-            account_id="account_id",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             connector_id="connector_id",
             event_t=0,
         ) as response:
@@ -272,7 +272,7 @@ class TestAsyncEvents:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `connector_id` but received ''"):
             await async_client.magic_transit.connectors.events.with_raw_response.get(
                 event_n=0,
-                account_id="account_id",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 connector_id="",
                 event_t=0,
             )
