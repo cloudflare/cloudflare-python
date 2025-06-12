@@ -37,6 +37,12 @@ class Settings(BaseModel):
 
 
 class URIRecord(BaseModel):
+    name: str
+    """DNS record name (or @ for the zone apex) in Punycode."""
+
+    type: Literal["URI"]
+    """Record type."""
+
     comment: Optional[str] = None
     """Comments or notes about the DNS record.
 
@@ -48,9 +54,6 @@ class URIRecord(BaseModel):
 
     data: Optional[Data] = None
     """Components of a URI record."""
-
-    name: Optional[str] = None
-    """DNS record name (or @ for the zone apex) in Punycode."""
 
     priority: Optional[float] = None
     """Required for MX, SRV and URI records; unused by other record types.
@@ -76,6 +79,3 @@ class URIRecord(BaseModel):
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
     minimum reduced to 30 for Enterprise zones.
     """
-
-    type: Optional[Literal["URI"]] = None
-    """Record type."""

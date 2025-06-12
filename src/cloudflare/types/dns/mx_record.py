@@ -29,6 +29,12 @@ class Settings(BaseModel):
 
 
 class MXRecord(BaseModel):
+    name: str
+    """DNS record name (or @ for the zone apex) in Punycode."""
+
+    type: Literal["MX"]
+    """Record type."""
+
     comment: Optional[str] = None
     """Comments or notes about the DNS record.
 
@@ -37,9 +43,6 @@ class MXRecord(BaseModel):
 
     content: Optional[str] = None
     """A valid mail server hostname."""
-
-    name: Optional[str] = None
-    """DNS record name (or @ for the zone apex) in Punycode."""
 
     priority: Optional[float] = None
     """Required for MX, SRV and URI records; unused by other record types.
@@ -65,6 +68,3 @@ class MXRecord(BaseModel):
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
     minimum reduced to 30 for Enterprise zones.
     """
-
-    type: Optional[Literal["MX"]] = None
-    """Record type."""

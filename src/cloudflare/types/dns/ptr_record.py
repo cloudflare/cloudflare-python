@@ -29,6 +29,12 @@ class Settings(BaseModel):
 
 
 class PTRRecord(BaseModel):
+    name: str
+    """DNS record name (or @ for the zone apex) in Punycode."""
+
+    type: Literal["PTR"]
+    """Record type."""
+
     comment: Optional[str] = None
     """Comments or notes about the DNS record.
 
@@ -37,9 +43,6 @@ class PTRRecord(BaseModel):
 
     content: Optional[str] = None
     """Domain name pointing to the address."""
-
-    name: Optional[str] = None
-    """DNS record name (or @ for the zone apex) in Punycode."""
 
     proxied: Optional[bool] = None
     """
@@ -59,6 +62,3 @@ class PTRRecord(BaseModel):
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
     minimum reduced to 30 for Enterprise zones.
     """
-
-    type: Optional[Literal["PTR"]] = None
-    """Record type."""
