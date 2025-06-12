@@ -53,7 +53,7 @@ class DeviceGetResponse(BaseModel):
     """A string that uniquely identifies the hardware or virtual machine (VM)."""
 
     last_seen_user: Optional[LastSeenUser] = None
-    """The last Access user to use the WARP device."""
+    """The last user to use the WARP device."""
 
     mac_address: Optional[str] = None
     """The device MAC address."""

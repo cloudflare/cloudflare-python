@@ -13,4 +13,4 @@ class StatusEditParams(TypedDict, total=False):
     workflow_name: Required[str]
 
     status: Required[Literal["resume", "pause", "terminate"]]
-    """Possible actions to apply to instance."""
+    """Apply action to instance."""

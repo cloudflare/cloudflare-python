@@ -3,12 +3,11 @@
 from __future__ import annotations
 
 from typing import Any, Type, Iterable, Optional, cast
-from typing_extensions import overload
 
 import httpx
 
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import required_args, maybe_transform, async_maybe_transform
+from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -22,7 +21,6 @@ from ....._base_client import make_request_options
 from .....types.zero_trust.dlp.profile import Profile
 from .....types.zero_trust.dlp.profiles import custom_create_params, custom_update_params
 from .....types.zero_trust.dlp.context_awareness_param import ContextAwarenessParam
-from .....types.zero_trust.dlp.profiles.custom_create_response import CustomCreateResponse
 
 __all__ = ["CustomResource", "AsyncCustomResource"]
 
@@ -47,39 +45,11 @@ class CustomResource(SyncAPIResource):
         """
         return CustomResourceWithStreamingResponse(self)
 
-    @overload
     def create(
         self,
         *,
         account_id: str,
-        profiles: Iterable[custom_create_params.Variant0Profile],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomCreateResponse]:
-        """
-        Creates a DLP custom profile.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def create(
-        self,
-        *,
-        account_id: str,
-        entries: Iterable[custom_create_params.DLPNewCustomProfileEntry],
+        entries: Iterable[custom_create_params.Entry],
         name: str,
         ai_context_enabled: bool | NotGiven = NOT_GIVEN,
         allowed_match_count: int | NotGiven = NOT_GIVEN,
@@ -87,14 +57,14 @@ class CustomResource(SyncAPIResource):
         context_awareness: ContextAwarenessParam | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         ocr_enabled: bool | NotGiven = NOT_GIVEN,
-        shared_entries: Iterable[custom_create_params.DLPNewCustomProfileSharedEntry] | NotGiven = NOT_GIVEN,
+        shared_entries: Iterable[custom_create_params.SharedEntry] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomCreateResponse]:
+    ) -> Optional[Profile]:
         """
         Creates a DLP custom profile.
 
@@ -117,39 +87,14 @@ class CustomResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        ...
-
-    @required_args(["account_id", "profiles"], ["account_id", "entries", "name"])
-    def create(
-        self,
-        *,
-        account_id: str,
-        profiles: Iterable[custom_create_params.Variant0Profile] | NotGiven = NOT_GIVEN,
-        entries: Iterable[custom_create_params.DLPNewCustomProfileEntry] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        ai_context_enabled: bool | NotGiven = NOT_GIVEN,
-        allowed_match_count: int | NotGiven = NOT_GIVEN,
-        confidence_threshold: Optional[str] | NotGiven = NOT_GIVEN,
-        context_awareness: ContextAwarenessParam | NotGiven = NOT_GIVEN,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        ocr_enabled: bool | NotGiven = NOT_GIVEN,
-        shared_entries: Iterable[custom_create_params.DLPNewCustomProfileSharedEntry] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomCreateResponse]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            Optional[CustomCreateResponse],
+            Optional[Profile],
             self._post(
                 f"/accounts/{account_id}/dlp/profiles/custom",
                 body=maybe_transform(
                     {
-                        "profiles": profiles,
                         "entries": entries,
                         "name": name,
                         "ai_context_enabled": ai_context_enabled,
@@ -167,10 +112,10 @@ class CustomResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CustomCreateResponse]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[Profile]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[CustomCreateResponse]
+                    Any, ResultWrapper[Profile]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -359,39 +304,11 @@ class AsyncCustomResource(AsyncAPIResource):
         """
         return AsyncCustomResourceWithStreamingResponse(self)
 
-    @overload
     async def create(
         self,
         *,
         account_id: str,
-        profiles: Iterable[custom_create_params.Variant0Profile],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomCreateResponse]:
-        """
-        Creates a DLP custom profile.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def create(
-        self,
-        *,
-        account_id: str,
-        entries: Iterable[custom_create_params.DLPNewCustomProfileEntry],
+        entries: Iterable[custom_create_params.Entry],
         name: str,
         ai_context_enabled: bool | NotGiven = NOT_GIVEN,
         allowed_match_count: int | NotGiven = NOT_GIVEN,
@@ -399,14 +316,14 @@ class AsyncCustomResource(AsyncAPIResource):
         context_awareness: ContextAwarenessParam | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         ocr_enabled: bool | NotGiven = NOT_GIVEN,
-        shared_entries: Iterable[custom_create_params.DLPNewCustomProfileSharedEntry] | NotGiven = NOT_GIVEN,
+        shared_entries: Iterable[custom_create_params.SharedEntry] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomCreateResponse]:
+    ) -> Optional[Profile]:
         """
         Creates a DLP custom profile.
 
@@ -429,39 +346,14 @@ class AsyncCustomResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        ...
-
-    @required_args(["account_id", "profiles"], ["account_id", "entries", "name"])
-    async def create(
-        self,
-        *,
-        account_id: str,
-        profiles: Iterable[custom_create_params.Variant0Profile] | NotGiven = NOT_GIVEN,
-        entries: Iterable[custom_create_params.DLPNewCustomProfileEntry] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        ai_context_enabled: bool | NotGiven = NOT_GIVEN,
-        allowed_match_count: int | NotGiven = NOT_GIVEN,
-        confidence_threshold: Optional[str] | NotGiven = NOT_GIVEN,
-        context_awareness: ContextAwarenessParam | NotGiven = NOT_GIVEN,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        ocr_enabled: bool | NotGiven = NOT_GIVEN,
-        shared_entries: Iterable[custom_create_params.DLPNewCustomProfileSharedEntry] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomCreateResponse]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            Optional[CustomCreateResponse],
+            Optional[Profile],
             await self._post(
                 f"/accounts/{account_id}/dlp/profiles/custom",
                 body=await async_maybe_transform(
                     {
-                        "profiles": profiles,
                         "entries": entries,
                         "name": name,
                         "ai_context_enabled": ai_context_enabled,
@@ -479,10 +371,10 @@ class AsyncCustomResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CustomCreateResponse]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[Profile]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[CustomCreateResponse]
+                    Any, ResultWrapper[Profile]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

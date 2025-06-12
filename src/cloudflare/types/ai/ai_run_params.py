@@ -24,10 +24,10 @@ __all__ = [
     "MessagesToolUnionMember0",
     "MessagesToolUnionMember0Parameters",
     "MessagesToolUnionMember0ParametersProperties",
-    "MessagesToolUnionMember1",
-    "MessagesToolUnionMember1Function",
-    "MessagesToolUnionMember1FunctionParameters",
-    "MessagesToolUnionMember1FunctionParametersProperties",
+    "MessagesToolFunction",
+    "MessagesToolFunctionFunction",
+    "MessagesToolFunctionFunctionParameters",
+    "MessagesToolFunctionFunctionParametersProperties",
     "Translation",
     "Summarization",
     "ImageToText",
@@ -331,7 +331,7 @@ class MessagesToolUnionMember0(TypedDict, total=False):
     """Schema defining the parameters accepted by the tool."""
 
 
-class MessagesToolUnionMember1FunctionParametersProperties(TypedDict, total=False):
+class MessagesToolFunctionFunctionParametersProperties(TypedDict, total=False):
     description: Required[str]
     """A description of the expected parameter."""
 
@@ -339,8 +339,8 @@ class MessagesToolUnionMember1FunctionParametersProperties(TypedDict, total=Fals
     """The data type of the parameter."""
 
 
-class MessagesToolUnionMember1FunctionParameters(TypedDict, total=False):
-    properties: Required[Dict[str, MessagesToolUnionMember1FunctionParametersProperties]]
+class MessagesToolFunctionFunctionParameters(TypedDict, total=False):
+    properties: Required[Dict[str, MessagesToolFunctionFunctionParametersProperties]]
     """Definitions of each parameter."""
 
     type: Required[str]
@@ -350,26 +350,26 @@ class MessagesToolUnionMember1FunctionParameters(TypedDict, total=False):
     """List of required parameter names."""
 
 
-class MessagesToolUnionMember1Function(TypedDict, total=False):
+class MessagesToolFunctionFunction(TypedDict, total=False):
     description: Required[str]
     """A brief description of what the function does."""
 
     name: Required[str]
     """The name of the function."""
 
-    parameters: Required[MessagesToolUnionMember1FunctionParameters]
+    parameters: Required[MessagesToolFunctionFunctionParameters]
     """Schema defining the parameters accepted by the function."""
 
 
-class MessagesToolUnionMember1(TypedDict, total=False):
-    function: Required[MessagesToolUnionMember1Function]
+class MessagesToolFunction(TypedDict, total=False):
+    function: Required[MessagesToolFunctionFunction]
     """Details of the function tool."""
 
     type: Required[str]
     """Specifies the type of tool (e.g., 'function')."""
 
 
-MessagesTool: TypeAlias = Union[MessagesToolUnionMember0, MessagesToolUnionMember1]
+MessagesTool: TypeAlias = Union[MessagesToolUnionMember0, MessagesToolFunction]
 
 
 class Translation(TypedDict, total=False):

@@ -55,6 +55,9 @@ class LockdownsResource(SyncAPIResource):
         zone_id: str,
         configurations: ConfigurationParam,
         urls: List[OverrideURL],
+        description: str | NotGiven = NOT_GIVEN,
+        paused: bool | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -76,6 +79,15 @@ class LockdownsResource(SyncAPIResource):
               entered URL will be escaped before use, which means you can only use simple
               wildcard patterns.
 
+          description: An informative summary of the rate limit. This value is sanitized and any tags
+              will be removed.
+
+          paused: When true, indicates that the rule is currently paused.
+
+          priority: The priority of the rule to control the processing order. A lower number
+              indicates higher priority. If not provided, any rules with a configured priority
+              will be processed before rules without a priority.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -92,6 +104,9 @@ class LockdownsResource(SyncAPIResource):
                 {
                     "configurations": configurations,
                     "urls": urls,
+                    "description": description,
+                    "paused": paused,
+                    "priority": priority,
                 },
                 lockdown_create_params.LockdownCreateParams,
             ),
@@ -374,6 +389,9 @@ class AsyncLockdownsResource(AsyncAPIResource):
         zone_id: str,
         configurations: ConfigurationParam,
         urls: List[OverrideURL],
+        description: str | NotGiven = NOT_GIVEN,
+        paused: bool | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -395,6 +413,15 @@ class AsyncLockdownsResource(AsyncAPIResource):
               entered URL will be escaped before use, which means you can only use simple
               wildcard patterns.
 
+          description: An informative summary of the rate limit. This value is sanitized and any tags
+              will be removed.
+
+          paused: When true, indicates that the rule is currently paused.
+
+          priority: The priority of the rule to control the processing order. A lower number
+              indicates higher priority. If not provided, any rules with a configured priority
+              will be processed before rules without a priority.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -411,6 +438,9 @@ class AsyncLockdownsResource(AsyncAPIResource):
                 {
                     "configurations": configurations,
                     "urls": urls,
+                    "description": description,
+                    "paused": paused,
+                    "priority": priority,
                 },
                 lockdown_create_params.LockdownCreateParams,
             ),

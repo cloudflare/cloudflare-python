@@ -46,7 +46,7 @@ class RawResource(SyncAPIResource):
         self,
         raw_id: str,
         *,
-        account_id: float,
+        account_id: str,
         event_id: str,
         data: object | NotGiven = NOT_GIVEN,
         source: str | NotGiven = NOT_GIVEN,
@@ -76,6 +76,8 @@ class RawResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not event_id:
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         if not raw_id:
@@ -100,7 +102,7 @@ class RawResource(SyncAPIResource):
         self,
         raw_id: str,
         *,
-        account_id: float,
+        account_id: str,
         event_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -127,6 +129,8 @@ class RawResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not event_id:
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         if not raw_id:
@@ -164,7 +168,7 @@ class AsyncRawResource(AsyncAPIResource):
         self,
         raw_id: str,
         *,
-        account_id: float,
+        account_id: str,
         event_id: str,
         data: object | NotGiven = NOT_GIVEN,
         source: str | NotGiven = NOT_GIVEN,
@@ -194,6 +198,8 @@ class AsyncRawResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not event_id:
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         if not raw_id:
@@ -218,7 +224,7 @@ class AsyncRawResource(AsyncAPIResource):
         self,
         raw_id: str,
         *,
-        account_id: float,
+        account_id: str,
         event_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -245,6 +251,8 @@ class AsyncRawResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not event_id:
             raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         if not raw_id:

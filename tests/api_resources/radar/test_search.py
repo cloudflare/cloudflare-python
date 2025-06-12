@@ -28,9 +28,9 @@ class TestSearch:
     def test_method_global_with_all_params(self, client: Cloudflare) -> None:
         search = client.radar.search.global_(
             query="United",
-            exclude=["SPECIAL_EVENTS"],
+            exclude=["ASNS"],
             format="JSON",
-            include=["SPECIAL_EVENTS"],
+            include=["ASNS"],
             limit=5,
             limit_per_group=0,
         )
@@ -75,9 +75,9 @@ class TestAsyncSearch:
     async def test_method_global_with_all_params(self, async_client: AsyncCloudflare) -> None:
         search = await async_client.radar.search.global_(
             query="United",
-            exclude=["SPECIAL_EVENTS"],
+            exclude=["ASNS"],
             format="JSON",
-            include=["SPECIAL_EVENTS"],
+            include=["ASNS"],
             limit=5,
             limit_per_group=0,
         )

@@ -60,7 +60,7 @@ class PublishResource(SyncAPIResource):
         Publish current Zaraz preview configuration for a zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           body: Zaraz configuration description.
 
@@ -124,7 +124,7 @@ class AsyncPublishResource(AsyncAPIResource):
         Publish current Zaraz preview configuration for a zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           body: Zaraz configuration description.
 

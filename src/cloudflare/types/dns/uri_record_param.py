@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import List
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 from .ttl_param import TTLParam
 from .record_tags import RecordTags
@@ -38,6 +38,12 @@ class Settings(TypedDict, total=False):
 
 
 class URIRecordParam(TypedDict, total=False):
+    name: Required[str]
+    """DNS record name (or @ for the zone apex) in Punycode."""
+
+    type: Required[Literal["URI"]]
+    """Record type."""
+
     comment: str
     """Comments or notes about the DNS record.
 
@@ -46,9 +52,6 @@ class URIRecordParam(TypedDict, total=False):
 
     data: Data
     """Components of a URI record."""
-
-    name: str
-    """DNS record name (or @ for the zone apex) in Punycode."""
 
     priority: float
     """Required for MX, SRV and URI records; unused by other record types.
@@ -74,6 +77,3 @@ class URIRecordParam(TypedDict, total=False):
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
     minimum reduced to 30 for Enterprise zones.
     """
-
-    type: Literal["URI"]
-    """Record type."""

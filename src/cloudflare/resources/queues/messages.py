@@ -18,8 +18,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...pagination import SyncSinglePage, AsyncSinglePage
-from ..._base_client import AsyncPaginator, make_request_options
+from ..._base_client import make_request_options
 from ...types.queues import message_ack_params, message_pull_params, message_push_params, message_bulk_push_params
 from ...types.queues.message_ack_response import MessageAckResponse
 from ...types.queues.message_pull_response import MessagePullResponse
@@ -166,7 +165,7 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[MessagePullResponse]:
+    ) -> Optional[MessagePullResponse]:
         """
         Pull a batch of messages from a Queue
 
@@ -192,9 +191,8 @@ class MessagesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
-        return self._get_api_list(
+        return self._post(
             f"/accounts/{account_id}/queues/{queue_id}/messages/pull",
-            page=SyncSinglePage[MessagePullResponse],
             body=maybe_transform(
                 {
                     "batch_size": batch_size,
@@ -203,10 +201,13 @@ class MessagesResource(SyncAPIResource):
                 message_pull_params.MessagePullParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[MessagePullResponse]]._unwrapper,
             ),
-            model=MessagePullResponse,
-            method="post",
+            cast_to=cast(Type[Optional[MessagePullResponse]], ResultWrapper[MessagePullResponse]),
         )
 
     @overload
@@ -444,7 +445,7 @@ class AsyncMessagesResource(AsyncAPIResource):
             cast_to=MessageBulkPushResponse,
         )
 
-    def pull(
+    async def pull(
         self,
         queue_id: str,
         *,
@@ -457,7 +458,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[MessagePullResponse, AsyncSinglePage[MessagePullResponse]]:
+    ) -> Optional[MessagePullResponse]:
         """
         Pull a batch of messages from a Queue
 
@@ -483,10 +484,9 @@ class AsyncMessagesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
-        return self._get_api_list(
+        return await self._post(
             f"/accounts/{account_id}/queues/{queue_id}/messages/pull",
-            page=AsyncSinglePage[MessagePullResponse],
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "batch_size": batch_size,
                     "visibility_timeout_ms": visibility_timeout_ms,
@@ -494,10 +494,13 @@ class AsyncMessagesResource(AsyncAPIResource):
                 message_pull_params.MessagePullParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[MessagePullResponse]]._unwrapper,
             ),
-            model=MessagePullResponse,
-            method="post",
+            cast_to=cast(Type[Optional[MessagePullResponse]], ResultWrapper[MessagePullResponse]),
         )
 
     @overload

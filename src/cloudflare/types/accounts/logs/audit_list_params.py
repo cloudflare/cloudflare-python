@@ -2,13 +2,36 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import List, Union, Iterable
 from datetime import date
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ...._utils import PropertyInfo
 
-__all__ = ["AuditListParams"]
+__all__ = [
+    "AuditListParams",
+    "AccountName",
+    "ActionResult",
+    "ActionType",
+    "ActorContext",
+    "ActorEmail",
+    "ActorID",
+    "ActorIPAddress",
+    "ActorTokenID",
+    "ActorTokenName",
+    "ActorType",
+    "AuditLogID",
+    "RawCfRayID",
+    "RawMethod",
+    "RawStatusCode",
+    "RawURI",
+    "ResourceID",
+    "ResourceProduct",
+    "ResourceScope",
+    "ResourceType",
+    "ZoneID",
+    "ZoneName",
+]
 
 
 class AuditListParams(TypedDict, total=False):
@@ -16,49 +39,40 @@ class AuditListParams(TypedDict, total=False):
     """The unique id that identifies the account."""
 
     before: Required[Annotated[Union[str, date], PropertyInfo(format="iso8601")]]
-    """
-    Filters actions based on a given timestamp in the format yyyy-mm-dd, returning
-    only logs that occurred on and before the specified date.
+    """Limits the returned results to logs older than the specified date.
+
+    This can be a date string 2019-04-30 (interpreted in UTC) or an absolute
+    timestamp that conforms to RFC3339.
     """
 
     since: Required[Annotated[Union[str, date], PropertyInfo(format="iso8601")]]
+    """Limits the returned results to logs newer than the specified date.
+
+    This can be a date string 2019-04-30 (interpreted in UTC) or an absolute
+    timestamp that conforms to RFC3339.
     """
-    Filters actions based on a given timestamp in the format yyyy-mm-dd, returning
-    only logs that occurred on and after the specified date.
-    """
 
-    account_name: str
-    """Filters by the account name."""
+    account_name: AccountName
 
-    action_result: Literal["success", "failure"]
-    """Whether the action was successful or not."""
+    action_result: ActionResult
 
-    action_type: Literal["create", "delete", "view", "update"]
-    """Filters by the action type."""
+    action_type: ActionType
 
-    actor_context: Literal["api_key", "api_token", "dash", "oauth", "origin_ca_key"]
-    """Filters by the actor context."""
+    actor_context: ActorContext
 
-    actor_email: str
-    """Filters by the actor's email address."""
+    actor_email: ActorEmail
 
-    actor_id: str
-    """Filters by the actor ID. This can be either the Account ID or User ID."""
+    actor_id: ActorID
 
-    actor_ip_address: str
-    """The IP address where the action was initiated."""
+    actor_ip_address: ActorIPAddress
 
-    actor_token_id: str
-    """Filters by the API token ID when the actor context is an api_token or oauth."""
+    actor_token_id: ActorTokenID
 
-    actor_token_name: str
-    """Filters by the API token name when the actor context is an api_token or oauth."""
+    actor_token_name: ActorTokenName
 
-    actor_type: Literal["cloudflare_admin", "account", "user"]
-    """Filters by the actor type."""
+    actor_type: ActorType
 
-    audit_log_id: str
-    """Finds a specific log by its ID."""
+    audit_log_id: AuditLogID
 
     cursor: str
     """The cursor is an opaque token used to paginate through large sets of records.
@@ -78,38 +92,295 @@ class AuditListParams(TypedDict, total=False):
     there are more than the limit.
     """
 
-    raw_cf_rayid: Annotated[str, PropertyInfo(alias="raw_cf_ray_id")]
-    """Filters by the response CF Ray ID."""
+    raw_cf_rayid: Annotated[RawCfRayID, PropertyInfo(alias="raw_cf_ray_id")]
 
-    raw_method: str
-    """The HTTP method for the API call."""
+    raw_method: RawMethod
 
-    raw_status_code: int
-    """The response status code that was returned."""
+    raw_status_code: RawStatusCode
 
-    raw_uri: str
-    """Filters by the request URI."""
+    raw_uri: RawURI
 
-    resource_id: str
-    """Filters by the resource ID."""
+    resource_id: ResourceID
 
-    resource_product: str
-    """
-    Filters audit logs by the Cloudflare product associated with the changed
-    resource.
-    """
+    resource_product: ResourceProduct
 
-    resource_scope: Literal["accounts", "user", "zones"]
-    """
-    Filters by the resource scope, specifying whether the resource is associated
-    with an user, an account, or a zone.
-    """
+    resource_scope: ResourceScope
 
-    resource_type: str
-    """Filters audit logs based on the unique type of resource changed by the action."""
+    resource_type: ResourceType
 
-    zone_id: str
-    """Filters by the zone ID."""
+    zone_id: ZoneID
 
-    zone_name: str
-    """Filters by the zone name associated with the change."""
+    zone_name: ZoneName
+
+
+_AccountNameReservedKeywords = TypedDict(
+    "_AccountNameReservedKeywords",
+    {
+        "not": List[str],
+    },
+    total=False,
+)
+
+
+class AccountName(_AccountNameReservedKeywords, total=False):
+    pass
+
+
+_ActionResultReservedKeywords = TypedDict(
+    "_ActionResultReservedKeywords",
+    {
+        "not": List[Literal["success", "failure"]],
+    },
+    total=False,
+)
+
+
+class ActionResult(_ActionResultReservedKeywords, total=False):
+    pass
+
+
+_ActionTypeReservedKeywords = TypedDict(
+    "_ActionTypeReservedKeywords",
+    {
+        "not": List[Literal["create", "delete", "view", "update"]],
+    },
+    total=False,
+)
+
+
+class ActionType(_ActionTypeReservedKeywords, total=False):
+    pass
+
+
+_ActorContextReservedKeywords = TypedDict(
+    "_ActorContextReservedKeywords",
+    {
+        "not": List[Literal["api_key", "api_token", "dash", "oauth", "origin_ca_key"]],
+    },
+    total=False,
+)
+
+
+class ActorContext(_ActorContextReservedKeywords, total=False):
+    pass
+
+
+_ActorEmailReservedKeywords = TypedDict(
+    "_ActorEmailReservedKeywords",
+    {
+        "not": List[str],
+    },
+    total=False,
+)
+
+
+class ActorEmail(_ActorEmailReservedKeywords, total=False):
+    pass
+
+
+_ActorIDReservedKeywords = TypedDict(
+    "_ActorIDReservedKeywords",
+    {
+        "not": List[str],
+    },
+    total=False,
+)
+
+
+class ActorID(_ActorIDReservedKeywords, total=False):
+    pass
+
+
+_ActorIPAddressReservedKeywords = TypedDict(
+    "_ActorIPAddressReservedKeywords",
+    {
+        "not": List[str],
+    },
+    total=False,
+)
+
+
+class ActorIPAddress(_ActorIPAddressReservedKeywords, total=False):
+    pass
+
+
+_ActorTokenIDReservedKeywords = TypedDict(
+    "_ActorTokenIDReservedKeywords",
+    {
+        "not": List[str],
+    },
+    total=False,
+)
+
+
+class ActorTokenID(_ActorTokenIDReservedKeywords, total=False):
+    pass
+
+
+_ActorTokenNameReservedKeywords = TypedDict(
+    "_ActorTokenNameReservedKeywords",
+    {
+        "not": List[str],
+    },
+    total=False,
+)
+
+
+class ActorTokenName(_ActorTokenNameReservedKeywords, total=False):
+    pass
+
+
+_ActorTypeReservedKeywords = TypedDict(
+    "_ActorTypeReservedKeywords",
+    {
+        "not": List[Literal["account", "cloudflare_admin", "system", "user"]],
+    },
+    total=False,
+)
+
+
+class ActorType(_ActorTypeReservedKeywords, total=False):
+    pass
+
+
+_AuditLogIDReservedKeywords = TypedDict(
+    "_AuditLogIDReservedKeywords",
+    {
+        "not": List[str],
+    },
+    total=False,
+)
+
+
+class AuditLogID(_AuditLogIDReservedKeywords, total=False):
+    pass
+
+
+_RawCfRayIDReservedKeywords = TypedDict(
+    "_RawCfRayIDReservedKeywords",
+    {
+        "not": List[str],
+    },
+    total=False,
+)
+
+
+class RawCfRayID(_RawCfRayIDReservedKeywords, total=False):
+    pass
+
+
+_RawMethodReservedKeywords = TypedDict(
+    "_RawMethodReservedKeywords",
+    {
+        "not": List[str],
+    },
+    total=False,
+)
+
+
+class RawMethod(_RawMethodReservedKeywords, total=False):
+    pass
+
+
+_RawStatusCodeReservedKeywords = TypedDict(
+    "_RawStatusCodeReservedKeywords",
+    {
+        "not": Iterable[int],
+    },
+    total=False,
+)
+
+
+class RawStatusCode(_RawStatusCodeReservedKeywords, total=False):
+    pass
+
+
+_RawURIReservedKeywords = TypedDict(
+    "_RawURIReservedKeywords",
+    {
+        "not": List[str],
+    },
+    total=False,
+)
+
+
+class RawURI(_RawURIReservedKeywords, total=False):
+    pass
+
+
+_ResourceIDReservedKeywords = TypedDict(
+    "_ResourceIDReservedKeywords",
+    {
+        "not": List[str],
+    },
+    total=False,
+)
+
+
+class ResourceID(_ResourceIDReservedKeywords, total=False):
+    pass
+
+
+_ResourceProductReservedKeywords = TypedDict(
+    "_ResourceProductReservedKeywords",
+    {
+        "not": List[str],
+    },
+    total=False,
+)
+
+
+class ResourceProduct(_ResourceProductReservedKeywords, total=False):
+    pass
+
+
+_ResourceScopeReservedKeywords = TypedDict(
+    "_ResourceScopeReservedKeywords",
+    {
+        "not": List[Literal["accounts", "user", "zones"]],
+    },
+    total=False,
+)
+
+
+class ResourceScope(_ResourceScopeReservedKeywords, total=False):
+    pass
+
+
+_ResourceTypeReservedKeywords = TypedDict(
+    "_ResourceTypeReservedKeywords",
+    {
+        "not": List[str],
+    },
+    total=False,
+)
+
+
+class ResourceType(_ResourceTypeReservedKeywords, total=False):
+    pass
+
+
+_ZoneIDReservedKeywords = TypedDict(
+    "_ZoneIDReservedKeywords",
+    {
+        "not": List[str],
+    },
+    total=False,
+)
+
+
+class ZoneID(_ZoneIDReservedKeywords, total=False):
+    pass
+
+
+_ZoneNameReservedKeywords = TypedDict(
+    "_ZoneNameReservedKeywords",
+    {
+        "not": List[str],
+    },
+    total=False,
+)
+
+
+class ZoneName(_ZoneNameReservedKeywords, total=False):
+    pass

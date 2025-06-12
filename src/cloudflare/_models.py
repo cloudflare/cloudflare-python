@@ -739,6 +739,7 @@ class FinalRequestOptionsInput(TypedDict, total=False):
     json_data: Body
     extra_json: AnyMapping
     multipart_syntax: MultipartSyntax
+    follow_redirects: bool
 
 
 @final
@@ -753,6 +754,7 @@ class FinalRequestOptions(pydantic.BaseModel):
     idempotency_key: Union[str, None] = None
     multipart_syntax: Union[MultipartSyntax, None] = None
     post_parser: Union[Callable[[Any], Any], NotGiven] = NotGiven()
+    follow_redirects: Union[bool, None] = None
 
     # It should be noted that we cannot use `json` here as that would override
     # a BaseModel method in an incompatible fashion.

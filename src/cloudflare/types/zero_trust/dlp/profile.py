@@ -18,6 +18,7 @@ __all__ = [
     "CustomProfileEntryPredefinedEntryConfidence",
     "CustomProfileEntryIntegrationEntry",
     "CustomProfileEntryExactDataEntry",
+    "CustomProfileEntryDocumentTemplateEntry",
     "CustomProfileEntryWordListEntry",
     "PredefinedProfile",
     "PredefinedProfileEntry",
@@ -26,6 +27,7 @@ __all__ = [
     "PredefinedProfileEntryPredefinedEntryConfidence",
     "PredefinedProfileEntryIntegrationEntry",
     "PredefinedProfileEntryExactDataEntry",
+    "PredefinedProfileEntryDocumentTemplateEntry",
     "PredefinedProfileEntryWordListEntry",
     "IntegrationProfile",
     "IntegrationProfileEntry",
@@ -34,6 +36,7 @@ __all__ = [
     "IntegrationProfileEntryPredefinedEntryConfidence",
     "IntegrationProfileEntryIntegrationEntry",
     "IntegrationProfileEntryExactDataEntry",
+    "IntegrationProfileEntryDocumentTemplateEntry",
     "IntegrationProfileEntryWordListEntry",
 ]
 
@@ -119,6 +122,20 @@ class CustomProfileEntryExactDataEntry(BaseModel):
     updated_at: datetime
 
 
+class CustomProfileEntryDocumentTemplateEntry(BaseModel):
+    id: str
+
+    created_at: datetime
+
+    enabled: bool
+
+    name: str
+
+    type: Literal["document_template"]
+
+    updated_at: datetime
+
+
 class CustomProfileEntryWordListEntry(BaseModel):
     id: str
 
@@ -142,6 +159,7 @@ CustomProfileEntry: TypeAlias = Union[
     CustomProfileEntryPredefinedEntry,
     CustomProfileEntryIntegrationEntry,
     CustomProfileEntryExactDataEntry,
+    CustomProfileEntryDocumentTemplateEntry,
     CustomProfileEntryWordListEntry,
 ]
 
@@ -263,6 +281,20 @@ class PredefinedProfileEntryExactDataEntry(BaseModel):
     updated_at: datetime
 
 
+class PredefinedProfileEntryDocumentTemplateEntry(BaseModel):
+    id: str
+
+    created_at: datetime
+
+    enabled: bool
+
+    name: str
+
+    type: Literal["document_template"]
+
+    updated_at: datetime
+
+
 class PredefinedProfileEntryWordListEntry(BaseModel):
     id: str
 
@@ -286,6 +318,7 @@ PredefinedProfileEntry: TypeAlias = Union[
     PredefinedProfileEntryPredefinedEntry,
     PredefinedProfileEntryIntegrationEntry,
     PredefinedProfileEntryExactDataEntry,
+    PredefinedProfileEntryDocumentTemplateEntry,
     PredefinedProfileEntryWordListEntry,
 ]
 
@@ -400,6 +433,20 @@ class IntegrationProfileEntryExactDataEntry(BaseModel):
     updated_at: datetime
 
 
+class IntegrationProfileEntryDocumentTemplateEntry(BaseModel):
+    id: str
+
+    created_at: datetime
+
+    enabled: bool
+
+    name: str
+
+    type: Literal["document_template"]
+
+    updated_at: datetime
+
+
 class IntegrationProfileEntryWordListEntry(BaseModel):
     id: str
 
@@ -423,6 +470,7 @@ IntegrationProfileEntry: TypeAlias = Union[
     IntegrationProfileEntryPredefinedEntry,
     IntegrationProfileEntryIntegrationEntry,
     IntegrationProfileEntryExactDataEntry,
+    IntegrationProfileEntryDocumentTemplateEntry,
     IntegrationProfileEntryWordListEntry,
 ]
 

@@ -14,9 +14,9 @@ __all__ = [
     "EntryDLPNewCustomEntryWithID",
     "EntryDLPNewCustomEntry",
     "SharedEntry",
-    "SharedEntryUnionMember0",
-    "SharedEntryUnionMember1",
-    "SharedEntryUnionMember2",
+    "SharedEntryPredefined",
+    "SharedEntryIntegration",
+    "SharedEntryExactData",
 ]
 
 
@@ -73,7 +73,7 @@ class EntryDLPNewCustomEntry(TypedDict, total=False):
 Entry: TypeAlias = Union[EntryDLPNewCustomEntryWithID, EntryDLPNewCustomEntry]
 
 
-class SharedEntryUnionMember0(TypedDict, total=False):
+class SharedEntryPredefined(TypedDict, total=False):
     enabled: Required[bool]
 
     entry_id: Required[str]
@@ -81,7 +81,7 @@ class SharedEntryUnionMember0(TypedDict, total=False):
     entry_type: Required[Literal["predefined"]]
 
 
-class SharedEntryUnionMember1(TypedDict, total=False):
+class SharedEntryIntegration(TypedDict, total=False):
     enabled: Required[bool]
 
     entry_id: Required[str]
@@ -89,7 +89,7 @@ class SharedEntryUnionMember1(TypedDict, total=False):
     entry_type: Required[Literal["integration"]]
 
 
-class SharedEntryUnionMember2(TypedDict, total=False):
+class SharedEntryExactData(TypedDict, total=False):
     enabled: Required[bool]
 
     entry_id: Required[str]
@@ -97,4 +97,4 @@ class SharedEntryUnionMember2(TypedDict, total=False):
     entry_type: Required[Literal["exact_data"]]
 
 
-SharedEntry: TypeAlias = Union[SharedEntryUnionMember0, SharedEntryUnionMember1, SharedEntryUnionMember2]
+SharedEntry: TypeAlias = Union[SharedEntryPredefined, SharedEntryIntegration, SharedEntryExactData]

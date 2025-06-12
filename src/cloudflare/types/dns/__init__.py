@@ -23,7 +23,6 @@ from .tlsa_record import TLSARecord as TLSARecord
 from .cname_record import CNAMERecord as CNAMERecord
 from .https_record import HTTPSRecord as HTTPSRecord
 from .naptr_record import NAPTRRecord as NAPTRRecord
-from .record_param import RecordParam as RecordParam
 from .sshfp_record import SSHFPRecord as SSHFPRecord
 from .dnskey_record import DNSKEYRecord as DNSKEYRecord
 from .smimea_record import SMIMEARecord as SMIMEARecord

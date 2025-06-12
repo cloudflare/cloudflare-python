@@ -13,8 +13,6 @@ __all__ = ["PredefinedUpdateParams", "Entry"]
 class PredefinedUpdateParams(TypedDict, total=False):
     account_id: Required[str]
 
-    entries: Required[Iterable[Entry]]
-
     ai_context_enabled: bool
 
     allowed_match_count: Optional[int]
@@ -26,6 +24,8 @@ class PredefinedUpdateParams(TypedDict, total=False):
     Scan the context of predefined entries to only return matches surrounded by
     keywords.
     """
+
+    entries: Iterable[Entry]
 
     ocr_enabled: bool
 

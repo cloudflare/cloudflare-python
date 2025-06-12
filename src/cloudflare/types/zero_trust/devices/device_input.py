@@ -86,7 +86,7 @@ class TeamsDevicesClientCertificateV2InputRequest(BaseModel):
     """Operating system."""
 
     cn: Optional[str] = None
-    """Common Name that is protected by the client certificate.
+    """Certificate Common Name.
 
     This may include one or more variables in the ${ } notation. Only
     ${serial_number} and ${hostname} are valid variables.
@@ -99,6 +99,9 @@ class TeamsDevicesClientCertificateV2InputRequest(BaseModel):
     """
 
     locations: Optional[TeamsDevicesClientCertificateV2InputRequestLocations] = None
+
+    subject_alternative_names: Optional[List[str]] = None
+    """List of certificate Subject Alternative Names."""
 
 
 class TeamsDevicesCustomS2sInputRequest(BaseModel):

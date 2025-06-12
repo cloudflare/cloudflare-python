@@ -55,11 +55,11 @@ class ActionParameters(BaseModel):
     opportunistic_encryption: Optional[bool] = None
     """Turn on or off Opportunistic Encryption."""
 
-    polish: Optional[Literal["off", "lossless", "lossy"]] = None
+    polish: Optional[Literal["off", "lossless", "lossy", "webp"]] = None
     """Configure the Polish level."""
 
     rocket_loader: Optional[bool] = None
-    """Turn on or off Rocket Loader"""
+    """Turn on or off Rocket Loader."""
 
     security_level: Optional[Literal["off", "essentially_off", "low", "medium", "high", "under_attack"]] = None
     """Configure the Security Level."""

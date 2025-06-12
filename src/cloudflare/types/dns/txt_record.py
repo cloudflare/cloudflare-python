@@ -29,6 +29,12 @@ class Settings(BaseModel):
 
 
 class TXTRecord(BaseModel):
+    name: str
+    """DNS record name (or @ for the zone apex) in Punycode."""
+
+    type: Literal["TXT"]
+    """Record type."""
+
     comment: Optional[str] = None
     """Comments or notes about the DNS record.
 
@@ -45,9 +51,6 @@ class TXTRecord(BaseModel):
     Learn more at
     <https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/>.
     """
-
-    name: Optional[str] = None
-    """DNS record name (or @ for the zone apex) in Punycode."""
 
     proxied: Optional[bool] = None
     """
@@ -67,6 +70,3 @@ class TXTRecord(BaseModel):
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
     minimum reduced to 30 for Enterprise zones.
     """
-
-    type: Optional[Literal["TXT"]] = None
-    """Record type."""

@@ -177,12 +177,12 @@ class ActionParametersCacheKeyCustomKey(TypedDict, total=False):
 
 class ActionParametersCacheKey(TypedDict, total=False):
     cache_by_device_type: bool
-    """Separate cached content based on the visitor’s device type"""
+    """Separate cached content based on the visitor’s device type."""
 
     cache_deception_armor: bool
     """
     Protect from web cache deception attacks while allowing static assets to be
-    cached
+    cached.
     """
 
     custom_key: ActionParametersCacheKeyCustomKey
@@ -223,7 +223,7 @@ class ActionParametersEdgeTTLStatusCodeTTLStatusCodeRange(
     _ActionParametersEdgeTTLStatusCodeTTLStatusCodeRangeReservedKeywords, total=False
 ):
     to: Required[int]
-    """response status code upper bound"""
+    """Response status code upper bound."""
 
 
 class ActionParametersEdgeTTLStatusCodeTTL(TypedDict, total=False):
@@ -239,7 +239,7 @@ class ActionParametersEdgeTTLStatusCodeTTL(TypedDict, total=False):
     """The range of status codes used to apply the selected mode."""
 
     status_code_value: int
-    """Set the ttl for responses with this specific status code"""
+    """Set the TTL for responses with this specific status code."""
 
 
 class ActionParametersEdgeTTL(TypedDict, total=False):
@@ -247,10 +247,10 @@ class ActionParametersEdgeTTL(TypedDict, total=False):
     """The TTL (in seconds) if you choose override_origin mode."""
 
     mode: Required[Literal["respect_origin", "bypass_by_default", "override_origin"]]
-    """edge ttl options"""
+    """Edge TTL options."""
 
     status_code_ttl: Required[Iterable[ActionParametersEdgeTTLStatusCodeTTL]]
-    """List of single status codes, or status code ranges to apply the selected mode"""
+    """List of single status codes, or status code ranges to apply the selected mode."""
 
 
 class ActionParametersServeStale(TypedDict, total=False):
@@ -304,7 +304,7 @@ class ActionParameters(TypedDict, total=False):
     origin_error_page_passthru: bool
     """Generate Cloudflare error pages from issues sent from the origin server.
 
-    When on, error pages will trigger for issues from the origin
+    When on, error pages will trigger for issues from the origin.
     """
 
     read_timeout: int

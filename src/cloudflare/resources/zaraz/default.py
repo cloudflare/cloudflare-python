@@ -57,7 +57,7 @@ class DefaultResource(SyncAPIResource):
         Gets default Zaraz configuration for a zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -117,7 +117,7 @@ class AsyncDefaultResource(AsyncAPIResource):
         Gets default Zaraz configuration for a zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

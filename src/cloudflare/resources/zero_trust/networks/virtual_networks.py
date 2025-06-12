@@ -56,6 +56,7 @@ class VirtualNetworksResource(SyncAPIResource):
         name: str,
         comment: str | NotGiven = NOT_GIVEN,
         is_default: bool | NotGiven = NOT_GIVEN,
+        is_default_network: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -75,6 +76,8 @@ class VirtualNetworksResource(SyncAPIResource):
 
           is_default: If `true`, this virtual network is the default for the account.
 
+          is_default_network: If `true`, this virtual network is the default for the account.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -92,6 +95,7 @@ class VirtualNetworksResource(SyncAPIResource):
                     "name": name,
                     "comment": comment,
                     "is_default": is_default,
+                    "is_default_network": is_default_network,
                 },
                 virtual_network_create_params.VirtualNetworkCreateParams,
             ),
@@ -344,6 +348,7 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
         name: str,
         comment: str | NotGiven = NOT_GIVEN,
         is_default: bool | NotGiven = NOT_GIVEN,
+        is_default_network: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -363,6 +368,8 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
 
           is_default: If `true`, this virtual network is the default for the account.
 
+          is_default_network: If `true`, this virtual network is the default for the account.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -380,6 +387,7 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
                     "name": name,
                     "comment": comment,
                     "is_default": is_default,
+                    "is_default_network": is_default_network,
                 },
                 virtual_network_create_params.VirtualNetworkCreateParams,
             ),

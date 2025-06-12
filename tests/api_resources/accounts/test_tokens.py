@@ -28,7 +28,7 @@ class TestTokens:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         token = client.accounts.tokens.create(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="readonly token",
             policies=[
                 {
@@ -50,7 +50,7 @@ class TestTokens:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         token = client.accounts.tokens.create(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="readonly token",
             policies=[
                 {
@@ -92,7 +92,7 @@ class TestTokens:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.accounts.tokens.with_raw_response.create(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="readonly token",
             policies=[
                 {
@@ -118,7 +118,7 @@ class TestTokens:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.accounts.tokens.with_streaming_response.create(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="readonly token",
             policies=[
                 {
@@ -169,7 +169,7 @@ class TestTokens:
     def test_method_update(self, client: Cloudflare) -> None:
         token = client.accounts.tokens.update(
             token_id="ed17574386854bf78a67040be0a770b0",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="readonly token",
             policies=[
                 {
@@ -193,7 +193,7 @@ class TestTokens:
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         token = client.accounts.tokens.update(
             token_id="ed17574386854bf78a67040be0a770b0",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="readonly token",
             policies=[
                 {
@@ -237,7 +237,7 @@ class TestTokens:
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.accounts.tokens.with_raw_response.update(
             token_id="ed17574386854bf78a67040be0a770b0",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="readonly token",
             policies=[
                 {
@@ -265,7 +265,7 @@ class TestTokens:
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.accounts.tokens.with_streaming_response.update(
             token_id="ed17574386854bf78a67040be0a770b0",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="readonly token",
             policies=[
                 {
@@ -317,7 +317,7 @@ class TestTokens:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `token_id` but received ''"):
             client.accounts.tokens.with_raw_response.update(
                 token_id="",
-                account_id="eb78d65290b24279ba6f44721b3ea3c4",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 name="readonly token",
                 policies=[
                     {
@@ -339,7 +339,7 @@ class TestTokens:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         token = client.accounts.tokens.list(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(SyncV4PagePaginationArray[Token], token, path=["response"])
 
@@ -347,7 +347,7 @@ class TestTokens:
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         token = client.accounts.tokens.list(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             direction="desc",
             page=1,
             per_page=5,
@@ -358,7 +358,7 @@ class TestTokens:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.accounts.tokens.with_raw_response.list(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -370,7 +370,7 @@ class TestTokens:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.accounts.tokens.with_streaming_response.list(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -393,7 +393,7 @@ class TestTokens:
     def test_method_delete(self, client: Cloudflare) -> None:
         token = client.accounts.tokens.delete(
             token_id="ed17574386854bf78a67040be0a770b0",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[TokenDeleteResponse], token, path=["response"])
 
@@ -402,7 +402,7 @@ class TestTokens:
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.accounts.tokens.with_raw_response.delete(
             token_id="ed17574386854bf78a67040be0a770b0",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -415,7 +415,7 @@ class TestTokens:
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.accounts.tokens.with_streaming_response.delete(
             token_id="ed17574386854bf78a67040be0a770b0",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -437,7 +437,7 @@ class TestTokens:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `token_id` but received ''"):
             client.accounts.tokens.with_raw_response.delete(
                 token_id="",
-                account_id="eb78d65290b24279ba6f44721b3ea3c4",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -445,7 +445,7 @@ class TestTokens:
     def test_method_get(self, client: Cloudflare) -> None:
         token = client.accounts.tokens.get(
             token_id="ed17574386854bf78a67040be0a770b0",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Token], token, path=["response"])
 
@@ -454,7 +454,7 @@ class TestTokens:
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.accounts.tokens.with_raw_response.get(
             token_id="ed17574386854bf78a67040be0a770b0",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -467,7 +467,7 @@ class TestTokens:
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.accounts.tokens.with_streaming_response.get(
             token_id="ed17574386854bf78a67040be0a770b0",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -489,14 +489,14 @@ class TestTokens:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `token_id` but received ''"):
             client.accounts.tokens.with_raw_response.get(
                 token_id="",
-                account_id="eb78d65290b24279ba6f44721b3ea3c4",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_verify(self, client: Cloudflare) -> None:
         token = client.accounts.tokens.verify(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[TokenVerifyResponse], token, path=["response"])
 
@@ -504,7 +504,7 @@ class TestTokens:
     @parametrize
     def test_raw_response_verify(self, client: Cloudflare) -> None:
         response = client.accounts.tokens.with_raw_response.verify(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -516,7 +516,7 @@ class TestTokens:
     @parametrize
     def test_streaming_response_verify(self, client: Cloudflare) -> None:
         with client.accounts.tokens.with_streaming_response.verify(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -542,7 +542,7 @@ class TestAsyncTokens:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         token = await async_client.accounts.tokens.create(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="readonly token",
             policies=[
                 {
@@ -564,7 +564,7 @@ class TestAsyncTokens:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         token = await async_client.accounts.tokens.create(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="readonly token",
             policies=[
                 {
@@ -606,7 +606,7 @@ class TestAsyncTokens:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.tokens.with_raw_response.create(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="readonly token",
             policies=[
                 {
@@ -632,7 +632,7 @@ class TestAsyncTokens:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.tokens.with_streaming_response.create(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="readonly token",
             policies=[
                 {
@@ -683,7 +683,7 @@ class TestAsyncTokens:
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         token = await async_client.accounts.tokens.update(
             token_id="ed17574386854bf78a67040be0a770b0",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="readonly token",
             policies=[
                 {
@@ -707,7 +707,7 @@ class TestAsyncTokens:
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         token = await async_client.accounts.tokens.update(
             token_id="ed17574386854bf78a67040be0a770b0",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="readonly token",
             policies=[
                 {
@@ -751,7 +751,7 @@ class TestAsyncTokens:
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.tokens.with_raw_response.update(
             token_id="ed17574386854bf78a67040be0a770b0",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="readonly token",
             policies=[
                 {
@@ -779,7 +779,7 @@ class TestAsyncTokens:
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.tokens.with_streaming_response.update(
             token_id="ed17574386854bf78a67040be0a770b0",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="readonly token",
             policies=[
                 {
@@ -831,7 +831,7 @@ class TestAsyncTokens:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `token_id` but received ''"):
             await async_client.accounts.tokens.with_raw_response.update(
                 token_id="",
-                account_id="eb78d65290b24279ba6f44721b3ea3c4",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 name="readonly token",
                 policies=[
                     {
@@ -853,7 +853,7 @@ class TestAsyncTokens:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         token = await async_client.accounts.tokens.list(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(AsyncV4PagePaginationArray[Token], token, path=["response"])
 
@@ -861,7 +861,7 @@ class TestAsyncTokens:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         token = await async_client.accounts.tokens.list(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             direction="desc",
             page=1,
             per_page=5,
@@ -872,7 +872,7 @@ class TestAsyncTokens:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.tokens.with_raw_response.list(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -884,7 +884,7 @@ class TestAsyncTokens:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.tokens.with_streaming_response.list(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -907,7 +907,7 @@ class TestAsyncTokens:
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         token = await async_client.accounts.tokens.delete(
             token_id="ed17574386854bf78a67040be0a770b0",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[TokenDeleteResponse], token, path=["response"])
 
@@ -916,7 +916,7 @@ class TestAsyncTokens:
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.tokens.with_raw_response.delete(
             token_id="ed17574386854bf78a67040be0a770b0",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -929,7 +929,7 @@ class TestAsyncTokens:
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.tokens.with_streaming_response.delete(
             token_id="ed17574386854bf78a67040be0a770b0",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -951,7 +951,7 @@ class TestAsyncTokens:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `token_id` but received ''"):
             await async_client.accounts.tokens.with_raw_response.delete(
                 token_id="",
-                account_id="eb78d65290b24279ba6f44721b3ea3c4",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -959,7 +959,7 @@ class TestAsyncTokens:
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         token = await async_client.accounts.tokens.get(
             token_id="ed17574386854bf78a67040be0a770b0",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Token], token, path=["response"])
 
@@ -968,7 +968,7 @@ class TestAsyncTokens:
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.tokens.with_raw_response.get(
             token_id="ed17574386854bf78a67040be0a770b0",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -981,7 +981,7 @@ class TestAsyncTokens:
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.tokens.with_streaming_response.get(
             token_id="ed17574386854bf78a67040be0a770b0",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1003,14 +1003,14 @@ class TestAsyncTokens:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `token_id` but received ''"):
             await async_client.accounts.tokens.with_raw_response.get(
                 token_id="",
-                account_id="eb78d65290b24279ba6f44721b3ea3c4",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_verify(self, async_client: AsyncCloudflare) -> None:
         token = await async_client.accounts.tokens.verify(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[TokenVerifyResponse], token, path=["response"])
 
@@ -1018,7 +1018,7 @@ class TestAsyncTokens:
     @parametrize
     async def test_raw_response_verify(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.tokens.with_raw_response.verify(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -1030,7 +1030,7 @@ class TestAsyncTokens:
     @parametrize
     async def test_streaming_response_verify(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.tokens.with_streaming_response.verify(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

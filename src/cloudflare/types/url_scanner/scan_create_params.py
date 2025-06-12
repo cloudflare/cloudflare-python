@@ -213,6 +213,7 @@ class ScanCreateParams(TypedDict, total=False):
         "ZM",
         "ZW",
     ]
+    """Country to geo egress from"""
 
     customagent: str
 

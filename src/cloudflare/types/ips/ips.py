@@ -1,18 +1,19 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
+from datetime import datetime
+from typing_extensions import TypeAlias
 
 from ..._models import BaseModel
 
-__all__ = ["IPs"]
+__all__ = ["IPs", "IPItem"]
 
 
-class IPs(BaseModel):
-    etag: Optional[str] = None
-    """A digest of the IP data. Useful for determining if the data has changed."""
+class IPItem(BaseModel):
+    created_at: Optional[datetime] = None
 
-    ipv4_cidrs: Optional[List[str]] = None
-    """List of Cloudflare IPv4 CIDR addresses."""
+    ip: Optional[str] = None
+    """An IPv4 or IPv6 address."""
 
-    ipv6_cidrs: Optional[List[str]] = None
-    """List of Cloudflare IPv6 CIDR addresses."""
+
+IPs: TypeAlias = List[IPItem]

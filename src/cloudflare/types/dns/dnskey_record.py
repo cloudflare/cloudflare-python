@@ -43,6 +43,12 @@ class Settings(BaseModel):
 
 
 class DNSKEYRecord(BaseModel):
+    name: str
+    """DNS record name (or @ for the zone apex) in Punycode."""
+
+    type: Literal["DNSKEY"]
+    """Record type."""
+
     comment: Optional[str] = None
     """Comments or notes about the DNS record.
 
@@ -54,9 +60,6 @@ class DNSKEYRecord(BaseModel):
 
     data: Optional[Data] = None
     """Components of a DNSKEY record."""
-
-    name: Optional[str] = None
-    """DNS record name (or @ for the zone apex) in Punycode."""
 
     proxied: Optional[bool] = None
     """
@@ -76,6 +79,3 @@ class DNSKEYRecord(BaseModel):
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
     minimum reduced to 30 for Enterprise zones.
     """
-
-    type: Optional[Literal["DNSKEY"]] = None
-    """Record type."""

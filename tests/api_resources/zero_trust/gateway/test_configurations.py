@@ -45,6 +45,7 @@ class TestConfigurations:
                         "support_url": "support_url",
                     },
                 },
+                "app_control_settings": {"enabled": False},
                 "block_page": {
                     "background_color": "background_color",
                     "enabled": True,
@@ -137,6 +138,7 @@ class TestConfigurations:
                         "support_url": "support_url",
                     },
                 },
+                "app_control_settings": {"enabled": False},
                 "block_page": {
                     "background_color": "background_color",
                     "enabled": True,
@@ -271,6 +273,7 @@ class TestAsyncConfigurations:
                         "support_url": "support_url",
                     },
                 },
+                "app_control_settings": {"enabled": False},
                 "block_page": {
                     "background_color": "background_color",
                     "enabled": True,
@@ -363,6 +366,7 @@ class TestAsyncConfigurations:
                         "support_url": "support_url",
                     },
                 },
+                "app_control_settings": {"enabled": False},
                 "block_page": {
                     "background_color": "background_color",
                     "enabled": True,

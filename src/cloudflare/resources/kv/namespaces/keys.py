@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Any, List, Type, Iterable, Optional, cast
 from typing_extensions import Literal
 
@@ -115,6 +116,7 @@ class KeysResource(SyncAPIResource):
             model=Key,
         )
 
+    @typing_extensions.deprecated("Please use kv.namespaces.bulk_delete instead")
     def bulk_delete(
         self,
         namespace_id: str,
@@ -163,6 +165,7 @@ class KeysResource(SyncAPIResource):
             cast_to=cast(Type[Optional[KeyBulkDeleteResponse]], ResultWrapper[KeyBulkDeleteResponse]),
         )
 
+    @typing_extensions.deprecated("Please use kv.namespaces.bulk_get instead")
     def bulk_get(
         self,
         namespace_id: str,
@@ -233,6 +236,7 @@ class KeysResource(SyncAPIResource):
             ),
         )
 
+    @typing_extensions.deprecated("Please use kv.namespaces.bulk_update instead")
     def bulk_update(
         self,
         namespace_id: str,
@@ -372,6 +376,7 @@ class AsyncKeysResource(AsyncAPIResource):
             model=Key,
         )
 
+    @typing_extensions.deprecated("Please use kv.namespaces.bulk_delete instead")
     async def bulk_delete(
         self,
         namespace_id: str,
@@ -420,6 +425,7 @@ class AsyncKeysResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[KeyBulkDeleteResponse]], ResultWrapper[KeyBulkDeleteResponse]),
         )
 
+    @typing_extensions.deprecated("Please use kv.namespaces.bulk_get instead")
     async def bulk_get(
         self,
         namespace_id: str,
@@ -490,6 +496,7 @@ class AsyncKeysResource(AsyncAPIResource):
             ),
         )
 
+    @typing_extensions.deprecated("Please use kv.namespaces.bulk_update instead")
     async def bulk_update(
         self,
         namespace_id: str,
@@ -550,14 +557,20 @@ class KeysResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             keys.list,
         )
-        self.bulk_delete = to_raw_response_wrapper(
-            keys.bulk_delete,
+        self.bulk_delete = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                keys.bulk_delete  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.bulk_get = to_raw_response_wrapper(
-            keys.bulk_get,
+        self.bulk_get = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                keys.bulk_get  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.bulk_update = to_raw_response_wrapper(
-            keys.bulk_update,
+        self.bulk_update = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                keys.bulk_update  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -568,14 +581,20 @@ class AsyncKeysResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             keys.list,
         )
-        self.bulk_delete = async_to_raw_response_wrapper(
-            keys.bulk_delete,
+        self.bulk_delete = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                keys.bulk_delete  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.bulk_get = async_to_raw_response_wrapper(
-            keys.bulk_get,
+        self.bulk_get = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                keys.bulk_get  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.bulk_update = async_to_raw_response_wrapper(
-            keys.bulk_update,
+        self.bulk_update = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                keys.bulk_update  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -586,14 +605,20 @@ class KeysResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             keys.list,
         )
-        self.bulk_delete = to_streamed_response_wrapper(
-            keys.bulk_delete,
+        self.bulk_delete = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                keys.bulk_delete  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.bulk_get = to_streamed_response_wrapper(
-            keys.bulk_get,
+        self.bulk_get = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                keys.bulk_get  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.bulk_update = to_streamed_response_wrapper(
-            keys.bulk_update,
+        self.bulk_update = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                keys.bulk_update  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -604,12 +629,18 @@ class AsyncKeysResourceWithStreamingResponse:
         self.list = async_to_streamed_response_wrapper(
             keys.list,
         )
-        self.bulk_delete = async_to_streamed_response_wrapper(
-            keys.bulk_delete,
+        self.bulk_delete = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                keys.bulk_delete  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.bulk_get = async_to_streamed_response_wrapper(
-            keys.bulk_get,
+        self.bulk_get = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                keys.bulk_get  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.bulk_update = async_to_streamed_response_wrapper(
-            keys.bulk_update,
+        self.bulk_update = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                keys.bulk_update  # pyright: ignore[reportDeprecated],
+            )
         )

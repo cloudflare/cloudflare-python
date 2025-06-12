@@ -69,7 +69,7 @@ class ConfigResource(SyncAPIResource):
         Updates Zaraz configuration for a zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           data_layer: Data layer compatibility mode enabled.
 
@@ -150,7 +150,7 @@ class ConfigResource(SyncAPIResource):
         be included.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -220,7 +220,7 @@ class AsyncConfigResource(AsyncAPIResource):
         Updates Zaraz configuration for a zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           data_layer: Data layer compatibility mode enabled.
 
@@ -301,7 +301,7 @@ class AsyncConfigResource(AsyncAPIResource):
         be included.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

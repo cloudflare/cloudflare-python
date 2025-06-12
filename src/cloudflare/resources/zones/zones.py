@@ -149,7 +149,7 @@ class ZonesResource(SyncAPIResource):
         Create Zone
 
         Args:
-          name: The domain name
+          name: The domain name.
 
           type: A full zone implies that DNS is hosted with Cloudflare. A partial zone is
               typically a partner-hosted zone or a CNAME setup.
@@ -228,7 +228,7 @@ class ZonesResource(SyncAPIResource):
 
           per_page: Number of zones per page.
 
-          status: A zone status
+          status: Specify a zone status to filter by.
 
           extra_headers: Send extra headers
 
@@ -469,7 +469,7 @@ class AsyncZonesResource(AsyncAPIResource):
         Create Zone
 
         Args:
-          name: The domain name
+          name: The domain name.
 
           type: A full zone implies that DNS is hosted with Cloudflare. A partial zone is
               typically a partner-hosted zone or a CNAME setup.
@@ -548,7 +548,7 @@ class AsyncZonesResource(AsyncAPIResource):
 
           per_page: Number of zones per page.
 
-          status: A zone status
+          status: Specify a zone status to filter by.
 
           extra_headers: Send extra headers
 

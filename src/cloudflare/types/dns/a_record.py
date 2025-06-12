@@ -29,6 +29,12 @@ class Settings(BaseModel):
 
 
 class ARecord(BaseModel):
+    name: str
+    """DNS record name (or @ for the zone apex) in Punycode."""
+
+    type: Literal["A"]
+    """Record type."""
+
     comment: Optional[str] = None
     """Comments or notes about the DNS record.
 
@@ -37,9 +43,6 @@ class ARecord(BaseModel):
 
     content: Optional[str] = None
     """A valid IPv4 address."""
-
-    name: Optional[str] = None
-    """DNS record name (or @ for the zone apex) in Punycode."""
 
     proxied: Optional[bool] = None
     """
@@ -59,6 +62,3 @@ class ARecord(BaseModel):
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
     minimum reduced to 30 for Enterprise zones.
     """
-
-    type: Optional[Literal["A"]] = None
-    """Record type."""

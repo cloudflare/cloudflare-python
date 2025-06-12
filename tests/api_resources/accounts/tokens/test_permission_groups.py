@@ -22,7 +22,7 @@ class TestPermissionGroups:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         permission_group = client.accounts.tokens.permission_groups.list(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(SyncSinglePage[PermissionGroupListResponse], permission_group, path=["response"])
 
@@ -30,7 +30,7 @@ class TestPermissionGroups:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.accounts.tokens.permission_groups.with_raw_response.list(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -42,7 +42,7 @@ class TestPermissionGroups:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.accounts.tokens.permission_groups.with_streaming_response.list(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -64,7 +64,7 @@ class TestPermissionGroups:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         permission_group = client.accounts.tokens.permission_groups.get(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(SyncSinglePage[PermissionGroupGetResponse], permission_group, path=["response"])
 
@@ -72,7 +72,7 @@ class TestPermissionGroups:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.accounts.tokens.permission_groups.with_raw_response.get(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -84,7 +84,7 @@ class TestPermissionGroups:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.accounts.tokens.permission_groups.with_streaming_response.get(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -110,7 +110,7 @@ class TestAsyncPermissionGroups:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         permission_group = await async_client.accounts.tokens.permission_groups.list(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(AsyncSinglePage[PermissionGroupListResponse], permission_group, path=["response"])
 
@@ -118,7 +118,7 @@ class TestAsyncPermissionGroups:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.tokens.permission_groups.with_raw_response.list(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -130,7 +130,7 @@ class TestAsyncPermissionGroups:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.tokens.permission_groups.with_streaming_response.list(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -152,7 +152,7 @@ class TestAsyncPermissionGroups:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         permission_group = await async_client.accounts.tokens.permission_groups.get(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(AsyncSinglePage[PermissionGroupGetResponse], permission_group, path=["response"])
 
@@ -160,7 +160,7 @@ class TestAsyncPermissionGroups:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.tokens.permission_groups.with_raw_response.get(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -172,7 +172,7 @@ class TestAsyncPermissionGroups:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.tokens.permission_groups.with_streaming_response.get(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

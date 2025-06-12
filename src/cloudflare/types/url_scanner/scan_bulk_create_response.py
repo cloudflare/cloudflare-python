@@ -1,7 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
-from typing_extensions import TypeAlias
+from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
 
@@ -25,7 +25,7 @@ class ScanBulkCreateResponseItem(BaseModel):
     uuid: str
     """Scan ID."""
 
-    visibility: str
+    visibility: Literal["public", "unlisted"]
     """Submitted visibility status."""
 
     options: Optional[ScanBulkCreateResponseItemOptions] = None

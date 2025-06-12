@@ -60,7 +60,7 @@ class ConfigsResource(SyncAPIResource):
         Gets a history of published Zaraz configurations by ID(s) for a zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           ids: Comma separated list of Zaraz configuration IDs
 
@@ -124,7 +124,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         Gets a history of published Zaraz configurations by ID(s) for a zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           ids: Comma separated list of Zaraz configuration IDs
 

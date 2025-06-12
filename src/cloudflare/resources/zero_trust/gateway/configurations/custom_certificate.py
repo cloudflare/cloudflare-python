@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Optional
 
 import httpx
@@ -41,6 +42,7 @@ class CustomCertificateResource(SyncAPIResource):
         """
         return CustomCertificateResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def get(
         self,
         *,
@@ -95,6 +97,7 @@ class AsyncCustomCertificateResource(AsyncAPIResource):
         """
         return AsyncCustomCertificateResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def get(
         self,
         *,
@@ -133,8 +136,10 @@ class CustomCertificateResourceWithRawResponse:
     def __init__(self, custom_certificate: CustomCertificateResource) -> None:
         self._custom_certificate = custom_certificate
 
-        self.get = to_raw_response_wrapper(
-            custom_certificate.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                custom_certificate.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -142,8 +147,10 @@ class AsyncCustomCertificateResourceWithRawResponse:
     def __init__(self, custom_certificate: AsyncCustomCertificateResource) -> None:
         self._custom_certificate = custom_certificate
 
-        self.get = async_to_raw_response_wrapper(
-            custom_certificate.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                custom_certificate.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -151,8 +158,10 @@ class CustomCertificateResourceWithStreamingResponse:
     def __init__(self, custom_certificate: CustomCertificateResource) -> None:
         self._custom_certificate = custom_certificate
 
-        self.get = to_streamed_response_wrapper(
-            custom_certificate.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                custom_certificate.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -160,6 +169,8 @@ class AsyncCustomCertificateResourceWithStreamingResponse:
     def __init__(self, custom_certificate: AsyncCustomCertificateResource) -> None:
         self._custom_certificate = custom_certificate
 
-        self.get = async_to_streamed_response_wrapper(
-            custom_certificate.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                custom_certificate.get  # pyright: ignore[reportDeprecated],
+            )
         )

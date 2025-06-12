@@ -30,92 +30,57 @@ from .smimea_record_param import SMIMEARecordParam
 
 __all__ = [
     "BatchPatchParam",
-    "A",
-    "AAAA",
-    "CAA",
-    "CERT",
-    "CNAME",
-    "DNSKEY",
-    "DS",
-    "HTTPS",
-    "LOC",
-    "MX",
-    "NAPTR",
-    "NS",
-    "Openpgpkey",
-    "OpenpgpkeySettings",
-    "PTR",
-    "SMIMEA",
-    "SRV",
-    "SSHFP",
-    "SVCB",
-    "TLSA",
-    "TXT",
-    "URI",
+    "ARecord",
+    "AAAARecord",
+    "CNAMERecord",
+    "MXRecord",
+    "NSRecord",
+    "OpenpgpkeyRecord",
+    "OpenpgpkeyRecordSettings",
+    "PTRRecord",
+    "TXTRecord",
+    "CAARecord",
+    "CERTRecord",
+    "DNSKEYRecord",
+    "DSRecord",
+    "HTTPSRecord",
+    "LOCRecord",
+    "NAPTRRecord",
+    "SMIMEARecord",
+    "SRVRecord",
+    "SSHFPRecord",
+    "SVCBRecord",
+    "TLSARecord",
+    "URIRecord",
 ]
 
 
-class A(ARecordParam, total=False):
+class ARecord(ARecordParam, total=False):
     id: Required[str]
     """Identifier."""
 
 
-class AAAA(AAAARecordParam, total=False):
+class AAAARecord(AAAARecordParam, total=False):
     id: Required[str]
     """Identifier."""
 
 
-class CAA(CAARecordParam, total=False):
+class CNAMERecord(CNAMERecordParam, total=False):
     id: Required[str]
     """Identifier."""
 
 
-class CERT(CERTRecordParam, total=False):
+class MXRecord(MXRecordParam, total=False):
     id: Required[str]
     """Identifier."""
 
 
-class CNAME(CNAMERecordParam, total=False):
+class NSRecord(NSRecordParam, total=False):
     id: Required[str]
     """Identifier."""
 
 
-class DNSKEY(DNSKEYRecordParam, total=False):
-    id: Required[str]
-    """Identifier."""
-
-
-class DS(DSRecordParam, total=False):
-    id: Required[str]
-    """Identifier."""
-
-
-class HTTPS(HTTPSRecordParam, total=False):
-    id: Required[str]
-    """Identifier."""
-
-
-class LOC(LOCRecordParam, total=False):
-    id: Required[str]
-    """Identifier."""
-
-
-class MX(MXRecordParam, total=False):
-    id: Required[str]
-    """Identifier."""
-
-
-class NAPTR(NAPTRRecordParam, total=False):
-    id: Required[str]
-    """Identifier."""
-
-
-class NS(NSRecordParam, total=False):
-    id: Required[str]
-    """Identifier."""
-
-
-class OpenpgpkeySettings(TypedDict, total=False):
+class OpenpgpkeyRecordSettings(TypedDict, total=False):
     ipv4_only: bool
     """
     When enabled, only A records will be generated, and AAAA records will not be
@@ -133,9 +98,15 @@ class OpenpgpkeySettings(TypedDict, total=False):
     """
 
 
-class Openpgpkey(TypedDict, total=False):
+class OpenpgpkeyRecord(TypedDict, total=False):
     id: Required[str]
     """Identifier."""
+
+    name: Required[str]
+    """DNS record name (or @ for the zone apex) in Punycode."""
+
+    type: Required[Literal["OPENPGPKEY"]]
+    """Record type."""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -146,16 +117,13 @@ class Openpgpkey(TypedDict, total=False):
     content: str
     """A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)"""
 
-    name: str
-    """DNS record name (or @ for the zone apex) in Punycode."""
-
     proxied: bool
     """
     Whether the record is receiving the performance and security benefits of
     Cloudflare.
     """
 
-    settings: OpenpgpkeySettings
+    settings: OpenpgpkeyRecordSettings
     """Settings for the DNS record."""
 
     tags: List[RecordTags]
@@ -168,70 +136,102 @@ class Openpgpkey(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
-    type: Literal["OPENPGPKEY"]
-    """Record type."""
 
-
-class PTR(PTRRecordParam, total=False):
+class PTRRecord(PTRRecordParam, total=False):
     id: Required[str]
     """Identifier."""
 
 
-class SMIMEA(SMIMEARecordParam, total=False):
+class TXTRecord(TXTRecordParam, total=False):
     id: Required[str]
     """Identifier."""
 
 
-class SRV(SRVRecordParam, total=False):
+class CAARecord(CAARecordParam, total=False):
     id: Required[str]
     """Identifier."""
 
 
-class SSHFP(SSHFPRecordParam, total=False):
+class CERTRecord(CERTRecordParam, total=False):
     id: Required[str]
     """Identifier."""
 
 
-class SVCB(SVCBRecordParam, total=False):
+class DNSKEYRecord(DNSKEYRecordParam, total=False):
     id: Required[str]
     """Identifier."""
 
 
-class TLSA(TLSARecordParam, total=False):
+class DSRecord(DSRecordParam, total=False):
     id: Required[str]
     """Identifier."""
 
 
-class TXT(TXTRecordParam, total=False):
+class HTTPSRecord(HTTPSRecordParam, total=False):
     id: Required[str]
     """Identifier."""
 
 
-class URI(URIRecordParam, total=False):
+class LOCRecord(LOCRecordParam, total=False):
+    id: Required[str]
+    """Identifier."""
+
+
+class NAPTRRecord(NAPTRRecordParam, total=False):
+    id: Required[str]
+    """Identifier."""
+
+
+class SMIMEARecord(SMIMEARecordParam, total=False):
+    id: Required[str]
+    """Identifier."""
+
+
+class SRVRecord(SRVRecordParam, total=False):
+    id: Required[str]
+    """Identifier."""
+
+
+class SSHFPRecord(SSHFPRecordParam, total=False):
+    id: Required[str]
+    """Identifier."""
+
+
+class SVCBRecord(SVCBRecordParam, total=False):
+    id: Required[str]
+    """Identifier."""
+
+
+class TLSARecord(TLSARecordParam, total=False):
+    id: Required[str]
+    """Identifier."""
+
+
+class URIRecord(URIRecordParam, total=False):
     id: Required[str]
     """Identifier."""
 
 
 BatchPatchParam: TypeAlias = Union[
-    A,
-    AAAA,
-    CAA,
-    CERT,
-    CNAME,
-    DNSKEY,
-    DS,
-    HTTPS,
-    LOC,
-    MX,
-    NAPTR,
-    NS,
-    Openpgpkey,
-    PTR,
-    SMIMEA,
-    SRV,
-    SSHFP,
-    SVCB,
-    TLSA,
-    TXT,
-    URI,
+    ARecord,
+    AAAARecord,
+    CNAMERecord,
+    MXRecord,
+    NSRecord,
+    OpenpgpkeyRecord,
+    PTRRecord,
+    TXTRecord,
+    CAARecord,
+    CERTRecord,
+    DNSKEYRecord,
+    DSRecord,
+    HTTPSRecord,
+    LOCRecord,
+    NAPTRRecord,
+    SMIMEARecord,
+    SRVRecord,
+    SSHFPRecord,
+    SVCBRecord,
+    TLSARecord,
+    URIRecord,
 ]

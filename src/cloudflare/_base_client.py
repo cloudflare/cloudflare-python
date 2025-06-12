@@ -1002,6 +1002,9 @@ class SyncAPIClient(BaseClient[httpx.Client, Stream[Any]]):
             if self.custom_auth is not None:
                 kwargs["auth"] = self.custom_auth
 
+            if options.follow_redirects is not None:
+                kwargs["follow_redirects"] = options.follow_redirects
+
             log.debug("Sending HTTP Request: %s %s", request.method, request.url)
 
             response = None
@@ -1110,7 +1113,14 @@ class SyncAPIClient(BaseClient[httpx.Client, Stream[Any]]):
     ) -> ResponseT:
         origin = get_origin(cast_to) or cast_to
 
-        if inspect.isclass(origin) and issubclass(origin, BaseAPIResponse):
+        if (
+            inspect.isclass(origin)
+            and issubclass(origin, BaseAPIResponse)
+            # we only want to actually return the custom BaseAPIResponse class if we're
+            # returning the raw response, or if we're not streaming SSE, as if we're streaming
+            # SSE then `cast_to` doesn't actively reflect the type we need to parse into
+            and (not stream or bool(response.request.headers.get(RAW_RESPONSE_HEADER)))
+        ):
             if not issubclass(origin, APIResponse):
                 raise TypeError(f"API Response types must subclass {APIResponse}; Received {origin}")
 
@@ -1504,6 +1514,9 @@ class AsyncAPIClient(BaseClient[httpx.AsyncClient, AsyncStream[Any]]):
             if self.custom_auth is not None:
                 kwargs["auth"] = self.custom_auth
 
+            if options.follow_redirects is not None:
+                kwargs["follow_redirects"] = options.follow_redirects
+
             log.debug("Sending HTTP Request: %s %s", request.method, request.url)
 
             response = None
@@ -1612,7 +1625,14 @@ class AsyncAPIClient(BaseClient[httpx.AsyncClient, AsyncStream[Any]]):
     ) -> ResponseT:
         origin = get_origin(cast_to) or cast_to
 
-        if inspect.isclass(origin) and issubclass(origin, BaseAPIResponse):
+        if (
+            inspect.isclass(origin)
+            and issubclass(origin, BaseAPIResponse)
+            # we only want to actually return the custom BaseAPIResponse class if we're
+            # returning the raw response, or if we're not streaming SSE, as if we're streaming
+            # SSE then `cast_to` doesn't actively reflect the type we need to parse into
+            and (not stream or bool(response.request.headers.get(RAW_RESPONSE_HEADER)))
+        ):
             if not issubclass(origin, AsyncAPIResponse):
                 raise TypeError(f"API Response types must subclass {AsyncAPIResponse}; Received {origin}")
 

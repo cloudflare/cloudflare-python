@@ -75,7 +75,7 @@ class HistoryResource(SyncAPIResource):
         Restores a historical published Zaraz configuration by ID for a zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           body: ID of the Zaraz configuration to restore.
 
@@ -121,7 +121,7 @@ class HistoryResource(SyncAPIResource):
         Lists a history of published Zaraz configuration records for a zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           limit: Maximum amount of results to list. Default value is 10.
 
@@ -203,7 +203,7 @@ class AsyncHistoryResource(AsyncAPIResource):
         Restores a historical published Zaraz configuration by ID for a zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           body: ID of the Zaraz configuration to restore.
 
@@ -249,7 +249,7 @@ class AsyncHistoryResource(AsyncAPIResource):
         Lists a history of published Zaraz configuration records for a zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           limit: Maximum amount of results to list. Default value is 10.
 

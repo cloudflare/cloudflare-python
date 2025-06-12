@@ -230,7 +230,7 @@ class DevicesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        Revokes all registrations associated with the specified device.
+        Revokes all WARP registrations associated with the specified device.
 
         Args:
           extra_headers: Send extra headers
@@ -461,7 +461,7 @@ class AsyncDevicesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        Revokes all registrations associated with the specified device.
+        Revokes all WARP registrations associated with the specified device.
 
         Args:
           extra_headers: Send extra headers

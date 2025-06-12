@@ -50,11 +50,11 @@ class PredefinedResource(SyncAPIResource):
         profile_id: str,
         *,
         account_id: str,
-        entries: Iterable[predefined_update_params.Entry],
         ai_context_enabled: bool | NotGiven = NOT_GIVEN,
         allowed_match_count: Optional[int] | NotGiven = NOT_GIVEN,
         confidence_threshold: Optional[str] | NotGiven = NOT_GIVEN,
         context_awareness: ContextAwarenessParam | NotGiven = NOT_GIVEN,
+        entries: Iterable[predefined_update_params.Entry] | NotGiven = NOT_GIVEN,
         ocr_enabled: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -89,11 +89,11 @@ class PredefinedResource(SyncAPIResource):
                 f"/accounts/{account_id}/dlp/profiles/predefined/{profile_id}",
                 body=maybe_transform(
                     {
-                        "entries": entries,
                         "ai_context_enabled": ai_context_enabled,
                         "allowed_match_count": allowed_match_count,
                         "confidence_threshold": confidence_threshold,
                         "context_awareness": context_awareness,
+                        "entries": entries,
                         "ocr_enabled": ocr_enabled,
                     },
                     predefined_update_params.PredefinedUpdateParams,
@@ -182,11 +182,11 @@ class AsyncPredefinedResource(AsyncAPIResource):
         profile_id: str,
         *,
         account_id: str,
-        entries: Iterable[predefined_update_params.Entry],
         ai_context_enabled: bool | NotGiven = NOT_GIVEN,
         allowed_match_count: Optional[int] | NotGiven = NOT_GIVEN,
         confidence_threshold: Optional[str] | NotGiven = NOT_GIVEN,
         context_awareness: ContextAwarenessParam | NotGiven = NOT_GIVEN,
+        entries: Iterable[predefined_update_params.Entry] | NotGiven = NOT_GIVEN,
         ocr_enabled: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -221,11 +221,11 @@ class AsyncPredefinedResource(AsyncAPIResource):
                 f"/accounts/{account_id}/dlp/profiles/predefined/{profile_id}",
                 body=await async_maybe_transform(
                     {
-                        "entries": entries,
                         "ai_context_enabled": ai_context_enabled,
                         "allowed_match_count": allowed_match_count,
                         "confidence_threshold": confidence_threshold,
                         "context_awareness": context_awareness,
+                        "entries": entries,
                         "ocr_enabled": ocr_enabled,
                     },
                     predefined_update_params.PredefinedUpdateParams,

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import List, Type, Optional, cast
 
 import httpx
@@ -53,6 +54,7 @@ class OverridesResource(SyncAPIResource):
         """
         return OverridesResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def create(
         self,
         *,
@@ -101,6 +103,7 @@ class OverridesResource(SyncAPIResource):
             cast_to=cast(Type[Override], ResultWrapper[Override]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     def update(
         self,
         overrides_id: str,
@@ -176,6 +179,7 @@ class OverridesResource(SyncAPIResource):
             cast_to=cast(Type[Override], ResultWrapper[Override]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
@@ -231,6 +235,7 @@ class OverridesResource(SyncAPIResource):
             model=Override,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def delete(
         self,
         overrides_id: str,
@@ -278,6 +283,7 @@ class OverridesResource(SyncAPIResource):
             cast_to=cast(Type[Optional[OverrideDeleteResponse]], ResultWrapper[OverrideDeleteResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     def get(
         self,
         overrides_id: str,
@@ -346,6 +352,7 @@ class AsyncOverridesResource(AsyncAPIResource):
         """
         return AsyncOverridesResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def create(
         self,
         *,
@@ -394,6 +401,7 @@ class AsyncOverridesResource(AsyncAPIResource):
             cast_to=cast(Type[Override], ResultWrapper[Override]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def update(
         self,
         overrides_id: str,
@@ -469,6 +477,7 @@ class AsyncOverridesResource(AsyncAPIResource):
             cast_to=cast(Type[Override], ResultWrapper[Override]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
@@ -524,6 +533,7 @@ class AsyncOverridesResource(AsyncAPIResource):
             model=Override,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def delete(
         self,
         overrides_id: str,
@@ -571,6 +581,7 @@ class AsyncOverridesResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[OverrideDeleteResponse]], ResultWrapper[OverrideDeleteResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def get(
         self,
         overrides_id: str,
@@ -623,20 +634,30 @@ class OverridesResourceWithRawResponse:
     def __init__(self, overrides: OverridesResource) -> None:
         self._overrides = overrides
 
-        self.create = to_raw_response_wrapper(
-            overrides.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                overrides.create  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.update = to_raw_response_wrapper(
-            overrides.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                overrides.update  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = to_raw_response_wrapper(
-            overrides.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                overrides.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = to_raw_response_wrapper(
-            overrides.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                overrides.delete  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_raw_response_wrapper(
-            overrides.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                overrides.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -644,20 +665,30 @@ class AsyncOverridesResourceWithRawResponse:
     def __init__(self, overrides: AsyncOverridesResource) -> None:
         self._overrides = overrides
 
-        self.create = async_to_raw_response_wrapper(
-            overrides.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                overrides.create  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.update = async_to_raw_response_wrapper(
-            overrides.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                overrides.update  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = async_to_raw_response_wrapper(
-            overrides.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                overrides.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = async_to_raw_response_wrapper(
-            overrides.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                overrides.delete  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_raw_response_wrapper(
-            overrides.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                overrides.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -665,20 +696,30 @@ class OverridesResourceWithStreamingResponse:
     def __init__(self, overrides: OverridesResource) -> None:
         self._overrides = overrides
 
-        self.create = to_streamed_response_wrapper(
-            overrides.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                overrides.create  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.update = to_streamed_response_wrapper(
-            overrides.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                overrides.update  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = to_streamed_response_wrapper(
-            overrides.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                overrides.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = to_streamed_response_wrapper(
-            overrides.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                overrides.delete  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_streamed_response_wrapper(
-            overrides.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                overrides.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -686,18 +727,28 @@ class AsyncOverridesResourceWithStreamingResponse:
     def __init__(self, overrides: AsyncOverridesResource) -> None:
         self._overrides = overrides
 
-        self.create = async_to_streamed_response_wrapper(
-            overrides.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                overrides.create  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.update = async_to_streamed_response_wrapper(
-            overrides.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                overrides.update  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = async_to_streamed_response_wrapper(
-            overrides.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                overrides.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = async_to_streamed_response_wrapper(
-            overrides.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                overrides.delete  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_streamed_response_wrapper(
-            overrides.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                overrides.get  # pyright: ignore[reportDeprecated],
+            )
         )

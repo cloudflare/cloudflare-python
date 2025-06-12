@@ -32,5 +32,5 @@ class Rule(TypedDict, total=False):
     parameters: RuleParameters
     """Parameters of Cloud Connector Rule"""
 
-    provider: Literal["aws_s3", "r2", "gcp_storage", "azure_storage"]
+    provider: Literal["aws_s3", "cloudflare_r2", "gcp_storage", "azure_storage"]
     """Cloud Provider type"""

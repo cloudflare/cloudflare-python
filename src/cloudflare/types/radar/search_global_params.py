@@ -14,13 +14,13 @@ class SearchGlobalParams(TypedDict, total=False):
     query: Required[str]
     """Search for locations, autonomous systems and reports."""
 
-    exclude: List[Literal["SPECIAL_EVENTS", "NOTEBOOKS", "LOCATIONS", "ASNS"]]
+    exclude: List[Literal["ASNS", "LOCATIONS", "NOTEBOOKS", "SPECIAL_EVENTS"]]
     """Search types excluded from results."""
 
     format: Literal["JSON", "CSV"]
     """Format in which results will be returned."""
 
-    include: List[Literal["SPECIAL_EVENTS", "NOTEBOOKS", "LOCATIONS", "ASNS"]]
+    include: List[Literal["ASNS", "LOCATIONS", "NOTEBOOKS", "SPECIAL_EVENTS"]]
     """Search types included in results."""
 
     limit: int
