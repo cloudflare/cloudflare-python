@@ -49,6 +49,12 @@ class Settings(BaseModel):
 
 
 class NAPTRRecord(BaseModel):
+    name: str
+    """DNS record name (or @ for the zone apex) in Punycode."""
+
+    type: Literal["NAPTR"]
+    """Record type."""
+
     comment: Optional[str] = None
     """Comments or notes about the DNS record.
 
@@ -60,9 +66,6 @@ class NAPTRRecord(BaseModel):
 
     data: Optional[Data] = None
     """Components of a NAPTR record."""
-
-    name: Optional[str] = None
-    """DNS record name (or @ for the zone apex) in Punycode."""
 
     proxied: Optional[bool] = None
     """
@@ -82,6 +85,3 @@ class NAPTRRecord(BaseModel):
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
     minimum reduced to 30 for Enterprise zones.
     """
-
-    type: Optional[Literal["NAPTR"]] = None
-    """Record type."""

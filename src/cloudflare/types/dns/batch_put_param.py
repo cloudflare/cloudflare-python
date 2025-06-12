@@ -102,6 +102,12 @@ class OpenpgpkeyRecord(TypedDict, total=False):
     id: Required[str]
     """Identifier."""
 
+    name: Required[str]
+    """DNS record name (or @ for the zone apex) in Punycode."""
+
+    type: Required[Literal["OPENPGPKEY"]]
+    """Record type."""
+
     comment: str
     """Comments or notes about the DNS record.
 
@@ -110,9 +116,6 @@ class OpenpgpkeyRecord(TypedDict, total=False):
 
     content: str
     """A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)"""
-
-    name: str
-    """DNS record name (or @ for the zone apex) in Punycode."""
 
     proxied: bool
     """
@@ -132,9 +135,6 @@ class OpenpgpkeyRecord(TypedDict, total=False):
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
     minimum reduced to 30 for Enterprise zones.
     """
-
-    type: Literal["OPENPGPKEY"]
-    """Record type."""
 
 
 class PTRRecord(PTRRecordParam, total=False):
