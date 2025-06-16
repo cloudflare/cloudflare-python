@@ -38,6 +38,7 @@ __all__ = [
     "BindingWorkersBindingKindVersionMetadata",
     "BindingWorkersBindingKindSecretsStoreSecret",
     "BindingWorkersBindingKindSecretKey",
+    "BindingWorkersBindingKindWorkflow",
     "Limits",
     "Migrations",
     "MigrationsWorkersMultipleStepMigrations",
@@ -329,6 +330,29 @@ class BindingWorkersBindingKindSecretKey(BaseModel):
     """
 
 
+class BindingWorkersBindingKindWorkflow(BaseModel):
+    name: str
+    """A JavaScript variable name for the binding."""
+
+    type: Literal["workflow"]
+    """The kind of resource that the binding provides."""
+
+    workflow_name: str
+    """Name of the Workflow to bind to."""
+
+    class_name: Optional[str] = None
+    """Class name of the Workflow.
+
+    Should only be provided if the Workflow belongs to this script.
+    """
+
+    script_name: Optional[str] = None
+    """Script name that contains the Workflow.
+
+    If not provided, defaults to this script name.
+    """
+
+
 Binding: TypeAlias = Annotated[
     Union[
         BindingWorkersBindingKindAI,
@@ -353,6 +377,7 @@ Binding: TypeAlias = Annotated[
         BindingWorkersBindingKindVersionMetadata,
         BindingWorkersBindingKindSecretsStoreSecret,
         BindingWorkersBindingKindSecretKey,
+        BindingWorkersBindingKindWorkflow,
     ],
     PropertyInfo(discriminator="type"),
 ]

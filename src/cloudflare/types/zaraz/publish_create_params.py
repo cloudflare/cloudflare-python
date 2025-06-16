@@ -9,7 +9,7 @@ __all__ = ["PublishCreateParams"]
 
 class PublishCreateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     body: str
     """Zaraz configuration description."""

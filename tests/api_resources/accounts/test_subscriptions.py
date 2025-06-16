@@ -11,11 +11,7 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.shared import Subscription
-from cloudflare.types.accounts import (
-    SubscriptionCreateResponse,
-    SubscriptionDeleteResponse,
-    SubscriptionUpdateResponse,
-)
+from cloudflare.types.accounts import SubscriptionDeleteResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -28,7 +24,7 @@ class TestSubscriptions:
         subscription = client.accounts.subscriptions.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SubscriptionCreateResponse, subscription, path=["response"])
+        assert_matches_type(Subscription, subscription, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
@@ -45,7 +41,7 @@ class TestSubscriptions:
                 "sets": ["string"],
             },
         )
-        assert_matches_type(SubscriptionCreateResponse, subscription, path=["response"])
+        assert_matches_type(Subscription, subscription, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -56,7 +52,7 @@ class TestSubscriptions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         subscription = response.parse()
-        assert_matches_type(SubscriptionCreateResponse, subscription, path=["response"])
+        assert_matches_type(Subscription, subscription, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -67,7 +63,7 @@ class TestSubscriptions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             subscription = response.parse()
-            assert_matches_type(SubscriptionCreateResponse, subscription, path=["response"])
+            assert_matches_type(Subscription, subscription, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -84,7 +80,7 @@ class TestSubscriptions:
             subscription_identifier="506e3185e9c882d175a2d0cb0093d9f2",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SubscriptionUpdateResponse, subscription, path=["response"])
+        assert_matches_type(Subscription, subscription, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
@@ -102,7 +98,7 @@ class TestSubscriptions:
                 "sets": ["string"],
             },
         )
-        assert_matches_type(SubscriptionUpdateResponse, subscription, path=["response"])
+        assert_matches_type(Subscription, subscription, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
@@ -114,7 +110,7 @@ class TestSubscriptions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         subscription = response.parse()
-        assert_matches_type(SubscriptionUpdateResponse, subscription, path=["response"])
+        assert_matches_type(Subscription, subscription, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
@@ -126,7 +122,7 @@ class TestSubscriptions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             subscription = response.parse()
-            assert_matches_type(SubscriptionUpdateResponse, subscription, path=["response"])
+            assert_matches_type(Subscription, subscription, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -243,7 +239,7 @@ class TestAsyncSubscriptions:
         subscription = await async_client.accounts.subscriptions.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SubscriptionCreateResponse, subscription, path=["response"])
+        assert_matches_type(Subscription, subscription, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -260,7 +256,7 @@ class TestAsyncSubscriptions:
                 "sets": ["string"],
             },
         )
-        assert_matches_type(SubscriptionCreateResponse, subscription, path=["response"])
+        assert_matches_type(Subscription, subscription, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -271,7 +267,7 @@ class TestAsyncSubscriptions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         subscription = await response.parse()
-        assert_matches_type(SubscriptionCreateResponse, subscription, path=["response"])
+        assert_matches_type(Subscription, subscription, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -282,7 +278,7 @@ class TestAsyncSubscriptions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             subscription = await response.parse()
-            assert_matches_type(SubscriptionCreateResponse, subscription, path=["response"])
+            assert_matches_type(Subscription, subscription, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -299,7 +295,7 @@ class TestAsyncSubscriptions:
             subscription_identifier="506e3185e9c882d175a2d0cb0093d9f2",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SubscriptionUpdateResponse, subscription, path=["response"])
+        assert_matches_type(Subscription, subscription, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -317,7 +313,7 @@ class TestAsyncSubscriptions:
                 "sets": ["string"],
             },
         )
-        assert_matches_type(SubscriptionUpdateResponse, subscription, path=["response"])
+        assert_matches_type(Subscription, subscription, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -329,7 +325,7 @@ class TestAsyncSubscriptions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         subscription = await response.parse()
-        assert_matches_type(SubscriptionUpdateResponse, subscription, path=["response"])
+        assert_matches_type(Subscription, subscription, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -341,7 +337,7 @@ class TestAsyncSubscriptions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             subscription = await response.parse()
-            assert_matches_type(SubscriptionUpdateResponse, subscription, path=["response"])
+            assert_matches_type(Subscription, subscription, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

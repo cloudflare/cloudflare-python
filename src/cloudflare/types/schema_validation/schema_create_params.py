@@ -20,5 +20,5 @@ class SchemaCreateParams(TypedDict, total=False):
     source: Required[str]
     """The raw schema, e.g., the OpenAPI schema, either as JSON or YAML"""
 
-    validation_enabled: bool
+    validation_enabled: Required[bool]
     """An indicator if this schema is enabled"""

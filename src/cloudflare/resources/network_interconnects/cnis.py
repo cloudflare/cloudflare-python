@@ -170,6 +170,7 @@ class CNIsResource(SyncAPIResource):
         cursor: Optional[int] | NotGiven = NOT_GIVEN,
         limit: Optional[int] | NotGiven = NOT_GIVEN,
         slot: Optional[str] | NotGiven = NOT_GIVEN,
+        tunnel_id: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -184,6 +185,8 @@ class CNIsResource(SyncAPIResource):
           account_id: Customer account tag
 
           slot: If specified, only show CNIs associated with the specified slot
+
+          tunnel_id: If specified, only show cnis associated with the specified tunnel id
 
           extra_headers: Send extra headers
 
@@ -207,6 +210,7 @@ class CNIsResource(SyncAPIResource):
                         "cursor": cursor,
                         "limit": limit,
                         "slot": slot,
+                        "tunnel_id": tunnel_id,
                     },
                     cni_list_params.CNIListParams,
                 ),
@@ -436,6 +440,7 @@ class AsyncCNIsResource(AsyncAPIResource):
         cursor: Optional[int] | NotGiven = NOT_GIVEN,
         limit: Optional[int] | NotGiven = NOT_GIVEN,
         slot: Optional[str] | NotGiven = NOT_GIVEN,
+        tunnel_id: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -450,6 +455,8 @@ class AsyncCNIsResource(AsyncAPIResource):
           account_id: Customer account tag
 
           slot: If specified, only show CNIs associated with the specified slot
+
+          tunnel_id: If specified, only show cnis associated with the specified tunnel id
 
           extra_headers: Send extra headers
 
@@ -473,6 +480,7 @@ class AsyncCNIsResource(AsyncAPIResource):
                         "cursor": cursor,
                         "limit": limit,
                         "slot": slot,
+                        "tunnel_id": tunnel_id,
                     },
                     cni_list_params.CNIListParams,
                 ),

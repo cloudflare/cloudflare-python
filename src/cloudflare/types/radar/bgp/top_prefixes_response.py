@@ -26,6 +26,7 @@ class Top0(BaseModel):
     prefix: str
 
     value: str
+    """A numeric string."""
 
 
 class TopPrefixesResponse(BaseModel):

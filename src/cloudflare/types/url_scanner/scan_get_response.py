@@ -241,7 +241,7 @@ class DataRequestResponseGeoip(BaseModel):
 
     geoname_id: str = FieldInfo(alias="geonameId")
 
-    ll: List[object]
+    ll: List[float]
 
     region: str
 

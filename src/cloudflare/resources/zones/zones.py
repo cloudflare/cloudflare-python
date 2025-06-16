@@ -52,14 +52,6 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...types.zones import zone_edit_params, zone_list_params, zone_create_params
-from .subscriptions import (
-    SubscriptionsResource,
-    AsyncSubscriptionsResource,
-    SubscriptionsResourceWithRawResponse,
-    AsyncSubscriptionsResourceWithRawResponse,
-    SubscriptionsResourceWithStreamingResponse,
-    AsyncSubscriptionsResourceWithStreamingResponse,
-)
 from ..._base_client import AsyncPaginator, make_request_options
 from .activation_check import (
     ActivationCheckResource,
@@ -100,10 +92,6 @@ class ZonesResource(SyncAPIResource):
     @cached_property
     def holds(self) -> HoldsResource:
         return HoldsResource(self._client)
-
-    @cached_property
-    def subscriptions(self) -> SubscriptionsResource:
-        return SubscriptionsResource(self._client)
 
     @cached_property
     def plans(self) -> PlansResource:
@@ -149,7 +137,7 @@ class ZonesResource(SyncAPIResource):
         Create Zone
 
         Args:
-          name: The domain name
+          name: The domain name.
 
           type: A full zone implies that DNS is hosted with Cloudflare. A partial zone is
               typically a partner-hosted zone or a CNAME setup.
@@ -228,7 +216,7 @@ class ZonesResource(SyncAPIResource):
 
           per_page: Number of zones per page.
 
-          status: A zone status
+          status: Specify a zone status to filter by.
 
           extra_headers: Send extra headers
 
@@ -422,10 +410,6 @@ class AsyncZonesResource(AsyncAPIResource):
         return AsyncHoldsResource(self._client)
 
     @cached_property
-    def subscriptions(self) -> AsyncSubscriptionsResource:
-        return AsyncSubscriptionsResource(self._client)
-
-    @cached_property
     def plans(self) -> AsyncPlansResource:
         return AsyncPlansResource(self._client)
 
@@ -469,7 +453,7 @@ class AsyncZonesResource(AsyncAPIResource):
         Create Zone
 
         Args:
-          name: The domain name
+          name: The domain name.
 
           type: A full zone implies that DNS is hosted with Cloudflare. A partial zone is
               typically a partner-hosted zone or a CNAME setup.
@@ -548,7 +532,7 @@ class AsyncZonesResource(AsyncAPIResource):
 
           per_page: Number of zones per page.
 
-          status: A zone status
+          status: Specify a zone status to filter by.
 
           extra_headers: Send extra headers
 
@@ -761,10 +745,6 @@ class ZonesResourceWithRawResponse:
         return HoldsResourceWithRawResponse(self._zones.holds)
 
     @cached_property
-    def subscriptions(self) -> SubscriptionsResourceWithRawResponse:
-        return SubscriptionsResourceWithRawResponse(self._zones.subscriptions)
-
-    @cached_property
     def plans(self) -> PlansResourceWithRawResponse:
         return PlansResourceWithRawResponse(self._zones.plans)
 
@@ -808,10 +788,6 @@ class AsyncZonesResourceWithRawResponse:
     @cached_property
     def holds(self) -> AsyncHoldsResourceWithRawResponse:
         return AsyncHoldsResourceWithRawResponse(self._zones.holds)
-
-    @cached_property
-    def subscriptions(self) -> AsyncSubscriptionsResourceWithRawResponse:
-        return AsyncSubscriptionsResourceWithRawResponse(self._zones.subscriptions)
 
     @cached_property
     def plans(self) -> AsyncPlansResourceWithRawResponse:
@@ -859,10 +835,6 @@ class ZonesResourceWithStreamingResponse:
         return HoldsResourceWithStreamingResponse(self._zones.holds)
 
     @cached_property
-    def subscriptions(self) -> SubscriptionsResourceWithStreamingResponse:
-        return SubscriptionsResourceWithStreamingResponse(self._zones.subscriptions)
-
-    @cached_property
     def plans(self) -> PlansResourceWithStreamingResponse:
         return PlansResourceWithStreamingResponse(self._zones.plans)
 
@@ -906,10 +878,6 @@ class AsyncZonesResourceWithStreamingResponse:
     @cached_property
     def holds(self) -> AsyncHoldsResourceWithStreamingResponse:
         return AsyncHoldsResourceWithStreamingResponse(self._zones.holds)
-
-    @cached_property
-    def subscriptions(self) -> AsyncSubscriptionsResourceWithStreamingResponse:
-        return AsyncSubscriptionsResourceWithStreamingResponse(self._zones.subscriptions)
 
     @cached_property
     def plans(self) -> AsyncPlansResourceWithStreamingResponse:

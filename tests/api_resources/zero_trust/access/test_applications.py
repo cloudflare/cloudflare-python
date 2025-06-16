@@ -316,7 +316,7 @@ class TestApplications:
     def test_method_create_overload_3(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.create(
             domain="test.example.com/admin",
-            type="ssh",
+            type="self_hosted",
             account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
@@ -326,7 +326,7 @@ class TestApplications:
     def test_method_create_with_all_params_overload_3(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.create(
             domain="test.example.com/admin",
-            type="ssh",
+            type="self_hosted",
             account_id="account_id",
             allow_authenticate_via_warp=True,
             allow_iframe=True,
@@ -433,7 +433,7 @@ class TestApplications:
     def test_raw_response_create_overload_3(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.create(
             domain="test.example.com/admin",
-            type="ssh",
+            type="self_hosted",
             account_id="account_id",
         )
 
@@ -447,7 +447,7 @@ class TestApplications:
     def test_streaming_response_create_overload_3(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.create(
             domain="test.example.com/admin",
-            type="ssh",
+            type="self_hosted",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -464,14 +464,14 @@ class TestApplications:
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.applications.with_raw_response.create(
                 domain="test.example.com/admin",
-                type="ssh",
+                type="self_hosted",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.applications.with_raw_response.create(
                 domain="test.example.com/admin",
-                type="ssh",
+                type="self_hosted",
                 account_id="account_id",
             )
 
@@ -480,7 +480,7 @@ class TestApplications:
     def test_method_create_overload_4(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.create(
             domain="test.example.com/admin",
-            type="vnc",
+            type="self_hosted",
             account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
@@ -490,7 +490,7 @@ class TestApplications:
     def test_method_create_with_all_params_overload_4(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.create(
             domain="test.example.com/admin",
-            type="vnc",
+            type="self_hosted",
             account_id="account_id",
             allow_authenticate_via_warp=True,
             allow_iframe=True,
@@ -597,7 +597,7 @@ class TestApplications:
     def test_raw_response_create_overload_4(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.create(
             domain="test.example.com/admin",
-            type="vnc",
+            type="self_hosted",
             account_id="account_id",
         )
 
@@ -611,7 +611,7 @@ class TestApplications:
     def test_streaming_response_create_overload_4(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.create(
             domain="test.example.com/admin",
-            type="vnc",
+            type="self_hosted",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -628,14 +628,14 @@ class TestApplications:
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.applications.with_raw_response.create(
                 domain="test.example.com/admin",
-                type="vnc",
+                type="self_hosted",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.applications.with_raw_response.create(
                 domain="test.example.com/admin",
-                type="vnc",
+                type="self_hosted",
                 account_id="account_id",
             )
 
@@ -643,7 +643,7 @@ class TestApplications:
     @parametrize
     def test_method_create_overload_5(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.create(
-            type="app_launcher",
+            type="self_hosted",
             account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
@@ -652,7 +652,7 @@ class TestApplications:
     @parametrize
     def test_method_create_with_all_params_overload_5(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.create(
-            type="app_launcher",
+            type="self_hosted",
             account_id="account_id",
             allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -712,7 +712,7 @@ class TestApplications:
     @parametrize
     def test_raw_response_create_overload_5(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.create(
-            type="app_launcher",
+            type="self_hosted",
             account_id="account_id",
         )
 
@@ -725,7 +725,7 @@ class TestApplications:
     @parametrize
     def test_streaming_response_create_overload_5(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.create(
-            type="app_launcher",
+            type="self_hosted",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -741,13 +741,13 @@ class TestApplications:
     def test_path_params_create_overload_5(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.applications.with_raw_response.create(
-                type="app_launcher",
+                type="self_hosted",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.applications.with_raw_response.create(
-                type="app_launcher",
+                type="self_hosted",
                 account_id="account_id",
             )
 
@@ -755,7 +755,7 @@ class TestApplications:
     @parametrize
     def test_method_create_overload_6(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.create(
-            type="warp",
+            type="self_hosted",
             account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
@@ -764,7 +764,7 @@ class TestApplications:
     @parametrize
     def test_method_create_with_all_params_overload_6(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.create(
-            type="warp",
+            type="self_hosted",
             account_id="account_id",
             allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -824,7 +824,7 @@ class TestApplications:
     @parametrize
     def test_raw_response_create_overload_6(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.create(
-            type="warp",
+            type="self_hosted",
             account_id="account_id",
         )
 
@@ -837,7 +837,7 @@ class TestApplications:
     @parametrize
     def test_streaming_response_create_overload_6(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.create(
-            type="warp",
+            type="self_hosted",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -853,13 +853,13 @@ class TestApplications:
     def test_path_params_create_overload_6(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.applications.with_raw_response.create(
-                type="warp",
+                type="self_hosted",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.applications.with_raw_response.create(
-                type="warp",
+                type="self_hosted",
                 account_id="account_id",
             )
 
@@ -867,7 +867,7 @@ class TestApplications:
     @parametrize
     def test_method_create_overload_7(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.create(
-            type="biso",
+            type="self_hosted",
             account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
@@ -876,7 +876,7 @@ class TestApplications:
     @parametrize
     def test_method_create_with_all_params_overload_7(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.create(
-            type="biso",
+            type="self_hosted",
             account_id="account_id",
             allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -936,7 +936,7 @@ class TestApplications:
     @parametrize
     def test_raw_response_create_overload_7(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.create(
-            type="biso",
+            type="self_hosted",
             account_id="account_id",
         )
 
@@ -949,7 +949,7 @@ class TestApplications:
     @parametrize
     def test_streaming_response_create_overload_7(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.create(
-            type="biso",
+            type="self_hosted",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -965,13 +965,13 @@ class TestApplications:
     def test_path_params_create_overload_7(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.applications.with_raw_response.create(
-                type="biso",
+                type="self_hosted",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.applications.with_raw_response.create(
-                type="biso",
+                type="self_hosted",
                 account_id="account_id",
             )
 
@@ -1068,7 +1068,7 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -1084,7 +1084,7 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -1116,7 +1116,7 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -1136,7 +1136,7 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -1159,7 +1159,7 @@ class TestApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -1172,7 +1172,7 @@ class TestApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -1188,11 +1188,11 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
-            type="rdp",
+            type="self_hosted",
             account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
@@ -1205,11 +1205,11 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
-            type="rdp",
+            type="self_hosted",
             account_id="account_id",
             allow_authenticate_via_warp=True,
             allow_iframe=True,
@@ -1319,11 +1319,11 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
-            type="rdp",
+            type="self_hosted",
             account_id="account_id",
         )
 
@@ -1340,11 +1340,11 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
-            type="rdp",
+            type="self_hosted",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -1364,11 +1364,11 @@ class TestApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
-                type="rdp",
+                type="self_hosted",
                 account_id="",
             )
 
@@ -1378,11 +1378,11 @@ class TestApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
-                type="rdp",
+                type="self_hosted",
                 account_id="account_id",
             )
 
@@ -1705,7 +1705,7 @@ class TestApplications:
         application = client.zero_trust.access.applications.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
-            type="ssh",
+            type="self_hosted",
             account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
@@ -1716,7 +1716,7 @@ class TestApplications:
         application = client.zero_trust.access.applications.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
-            type="ssh",
+            type="self_hosted",
             account_id="account_id",
             allow_authenticate_via_warp=True,
             allow_iframe=True,
@@ -1824,7 +1824,7 @@ class TestApplications:
         response = client.zero_trust.access.applications.with_raw_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
-            type="ssh",
+            type="self_hosted",
             account_id="account_id",
         )
 
@@ -1839,7 +1839,7 @@ class TestApplications:
         with client.zero_trust.access.applications.with_streaming_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
-            type="ssh",
+            type="self_hosted",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -1857,7 +1857,7 @@ class TestApplications:
             client.zero_trust.access.applications.with_raw_response.update(
                 app_id="",
                 domain="test.example.com/admin",
-                type="ssh",
+                type="self_hosted",
                 account_id="account_id",
             )
 
@@ -1865,7 +1865,7 @@ class TestApplications:
             client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 domain="test.example.com/admin",
-                type="ssh",
+                type="self_hosted",
                 account_id="",
             )
 
@@ -1873,7 +1873,7 @@ class TestApplications:
             client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 domain="test.example.com/admin",
-                type="ssh",
+                type="self_hosted",
                 account_id="account_id",
             )
 
@@ -1883,7 +1883,7 @@ class TestApplications:
         application = client.zero_trust.access.applications.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
-            type="vnc",
+            type="self_hosted",
             account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
@@ -1894,7 +1894,7 @@ class TestApplications:
         application = client.zero_trust.access.applications.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
-            type="vnc",
+            type="self_hosted",
             account_id="account_id",
             allow_authenticate_via_warp=True,
             allow_iframe=True,
@@ -2002,7 +2002,7 @@ class TestApplications:
         response = client.zero_trust.access.applications.with_raw_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
-            type="vnc",
+            type="self_hosted",
             account_id="account_id",
         )
 
@@ -2017,7 +2017,7 @@ class TestApplications:
         with client.zero_trust.access.applications.with_streaming_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
-            type="vnc",
+            type="self_hosted",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -2035,7 +2035,7 @@ class TestApplications:
             client.zero_trust.access.applications.with_raw_response.update(
                 app_id="",
                 domain="test.example.com/admin",
-                type="vnc",
+                type="self_hosted",
                 account_id="account_id",
             )
 
@@ -2043,7 +2043,7 @@ class TestApplications:
             client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 domain="test.example.com/admin",
-                type="vnc",
+                type="self_hosted",
                 account_id="",
             )
 
@@ -2051,7 +2051,7 @@ class TestApplications:
             client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 domain="test.example.com/admin",
-                type="vnc",
+                type="self_hosted",
                 account_id="account_id",
             )
 
@@ -2060,7 +2060,7 @@ class TestApplications:
     def test_method_update_overload_5(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            type="app_launcher",
+            type="self_hosted",
             account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
@@ -2070,7 +2070,7 @@ class TestApplications:
     def test_method_update_with_all_params_overload_5(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            type="app_launcher",
+            type="self_hosted",
             account_id="account_id",
             allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -2131,7 +2131,7 @@ class TestApplications:
     def test_raw_response_update_overload_5(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            type="app_launcher",
+            type="self_hosted",
             account_id="account_id",
         )
 
@@ -2145,7 +2145,7 @@ class TestApplications:
     def test_streaming_response_update_overload_5(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            type="app_launcher",
+            type="self_hosted",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -2162,21 +2162,21 @@ class TestApplications:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
                 app_id="",
-                type="app_launcher",
+                type="self_hosted",
                 account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
-                type="app_launcher",
+                type="self_hosted",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
-                type="app_launcher",
+                type="self_hosted",
                 account_id="account_id",
             )
 
@@ -2185,7 +2185,7 @@ class TestApplications:
     def test_method_update_overload_6(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            type="warp",
+            type="self_hosted",
             account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
@@ -2195,7 +2195,7 @@ class TestApplications:
     def test_method_update_with_all_params_overload_6(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            type="warp",
+            type="self_hosted",
             account_id="account_id",
             allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -2256,7 +2256,7 @@ class TestApplications:
     def test_raw_response_update_overload_6(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            type="warp",
+            type="self_hosted",
             account_id="account_id",
         )
 
@@ -2270,7 +2270,7 @@ class TestApplications:
     def test_streaming_response_update_overload_6(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            type="warp",
+            type="self_hosted",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -2287,21 +2287,21 @@ class TestApplications:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
                 app_id="",
-                type="warp",
+                type="self_hosted",
                 account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
-                type="warp",
+                type="self_hosted",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
-                type="warp",
+                type="self_hosted",
                 account_id="account_id",
             )
 
@@ -2310,7 +2310,7 @@ class TestApplications:
     def test_method_update_overload_7(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            type="biso",
+            type="self_hosted",
             account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
@@ -2320,7 +2320,7 @@ class TestApplications:
     def test_method_update_with_all_params_overload_7(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            type="biso",
+            type="self_hosted",
             account_id="account_id",
             allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -2381,7 +2381,7 @@ class TestApplications:
     def test_raw_response_update_overload_7(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            type="biso",
+            type="self_hosted",
             account_id="account_id",
         )
 
@@ -2395,7 +2395,7 @@ class TestApplications:
     def test_streaming_response_update_overload_7(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            type="biso",
+            type="self_hosted",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -2412,21 +2412,21 @@ class TestApplications:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
                 app_id="",
-                type="biso",
+                type="self_hosted",
                 account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
-                type="biso",
+                type="self_hosted",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
-                type="biso",
+                type="self_hosted",
                 account_id="account_id",
             )
 
@@ -2536,7 +2536,7 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -2553,7 +2553,7 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -2586,7 +2586,7 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -2607,7 +2607,7 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -2631,7 +2631,7 @@ class TestApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -2645,7 +2645,7 @@ class TestApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -2659,7 +2659,7 @@ class TestApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -2676,11 +2676,11 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
-            type="rdp",
+            type="self_hosted",
             account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
@@ -2694,11 +2694,11 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
-            type="rdp",
+            type="self_hosted",
             account_id="account_id",
             allow_authenticate_via_warp=True,
             allow_iframe=True,
@@ -2809,11 +2809,11 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
-            type="rdp",
+            type="self_hosted",
             account_id="account_id",
         )
 
@@ -2831,11 +2831,11 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
-            type="rdp",
+            type="self_hosted",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -2856,11 +2856,11 @@ class TestApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
-                type="rdp",
+                type="self_hosted",
                 account_id="account_id",
             )
 
@@ -2871,11 +2871,11 @@ class TestApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
-                type="rdp",
+                type="self_hosted",
                 account_id="",
             )
 
@@ -2886,11 +2886,11 @@ class TestApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
-                type="rdp",
+                type="self_hosted",
                 account_id="account_id",
             )
 
@@ -3450,7 +3450,7 @@ class TestAsyncApplications:
     async def test_method_create_overload_3(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.create(
             domain="test.example.com/admin",
-            type="ssh",
+            type="self_hosted",
             account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
@@ -3460,7 +3460,7 @@ class TestAsyncApplications:
     async def test_method_create_with_all_params_overload_3(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.create(
             domain="test.example.com/admin",
-            type="ssh",
+            type="self_hosted",
             account_id="account_id",
             allow_authenticate_via_warp=True,
             allow_iframe=True,
@@ -3567,7 +3567,7 @@ class TestAsyncApplications:
     async def test_raw_response_create_overload_3(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.create(
             domain="test.example.com/admin",
-            type="ssh",
+            type="self_hosted",
             account_id="account_id",
         )
 
@@ -3581,7 +3581,7 @@ class TestAsyncApplications:
     async def test_streaming_response_create_overload_3(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.create(
             domain="test.example.com/admin",
-            type="ssh",
+            type="self_hosted",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -3598,14 +3598,14 @@ class TestAsyncApplications:
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.applications.with_raw_response.create(
                 domain="test.example.com/admin",
-                type="ssh",
+                type="self_hosted",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.applications.with_raw_response.create(
                 domain="test.example.com/admin",
-                type="ssh",
+                type="self_hosted",
                 account_id="account_id",
             )
 
@@ -3614,7 +3614,7 @@ class TestAsyncApplications:
     async def test_method_create_overload_4(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.create(
             domain="test.example.com/admin",
-            type="vnc",
+            type="self_hosted",
             account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
@@ -3624,7 +3624,7 @@ class TestAsyncApplications:
     async def test_method_create_with_all_params_overload_4(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.create(
             domain="test.example.com/admin",
-            type="vnc",
+            type="self_hosted",
             account_id="account_id",
             allow_authenticate_via_warp=True,
             allow_iframe=True,
@@ -3731,7 +3731,7 @@ class TestAsyncApplications:
     async def test_raw_response_create_overload_4(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.create(
             domain="test.example.com/admin",
-            type="vnc",
+            type="self_hosted",
             account_id="account_id",
         )
 
@@ -3745,7 +3745,7 @@ class TestAsyncApplications:
     async def test_streaming_response_create_overload_4(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.create(
             domain="test.example.com/admin",
-            type="vnc",
+            type="self_hosted",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -3762,14 +3762,14 @@ class TestAsyncApplications:
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.applications.with_raw_response.create(
                 domain="test.example.com/admin",
-                type="vnc",
+                type="self_hosted",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.applications.with_raw_response.create(
                 domain="test.example.com/admin",
-                type="vnc",
+                type="self_hosted",
                 account_id="account_id",
             )
 
@@ -3777,7 +3777,7 @@ class TestAsyncApplications:
     @parametrize
     async def test_method_create_overload_5(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.create(
-            type="app_launcher",
+            type="self_hosted",
             account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
@@ -3786,7 +3786,7 @@ class TestAsyncApplications:
     @parametrize
     async def test_method_create_with_all_params_overload_5(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.create(
-            type="app_launcher",
+            type="self_hosted",
             account_id="account_id",
             allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -3846,7 +3846,7 @@ class TestAsyncApplications:
     @parametrize
     async def test_raw_response_create_overload_5(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.create(
-            type="app_launcher",
+            type="self_hosted",
             account_id="account_id",
         )
 
@@ -3859,7 +3859,7 @@ class TestAsyncApplications:
     @parametrize
     async def test_streaming_response_create_overload_5(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.create(
-            type="app_launcher",
+            type="self_hosted",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -3875,13 +3875,13 @@ class TestAsyncApplications:
     async def test_path_params_create_overload_5(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.applications.with_raw_response.create(
-                type="app_launcher",
+                type="self_hosted",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.applications.with_raw_response.create(
-                type="app_launcher",
+                type="self_hosted",
                 account_id="account_id",
             )
 
@@ -3889,7 +3889,7 @@ class TestAsyncApplications:
     @parametrize
     async def test_method_create_overload_6(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.create(
-            type="warp",
+            type="self_hosted",
             account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
@@ -3898,7 +3898,7 @@ class TestAsyncApplications:
     @parametrize
     async def test_method_create_with_all_params_overload_6(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.create(
-            type="warp",
+            type="self_hosted",
             account_id="account_id",
             allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -3958,7 +3958,7 @@ class TestAsyncApplications:
     @parametrize
     async def test_raw_response_create_overload_6(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.create(
-            type="warp",
+            type="self_hosted",
             account_id="account_id",
         )
 
@@ -3971,7 +3971,7 @@ class TestAsyncApplications:
     @parametrize
     async def test_streaming_response_create_overload_6(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.create(
-            type="warp",
+            type="self_hosted",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -3987,13 +3987,13 @@ class TestAsyncApplications:
     async def test_path_params_create_overload_6(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.applications.with_raw_response.create(
-                type="warp",
+                type="self_hosted",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.applications.with_raw_response.create(
-                type="warp",
+                type="self_hosted",
                 account_id="account_id",
             )
 
@@ -4001,7 +4001,7 @@ class TestAsyncApplications:
     @parametrize
     async def test_method_create_overload_7(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.create(
-            type="biso",
+            type="self_hosted",
             account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
@@ -4010,7 +4010,7 @@ class TestAsyncApplications:
     @parametrize
     async def test_method_create_with_all_params_overload_7(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.create(
-            type="biso",
+            type="self_hosted",
             account_id="account_id",
             allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -4070,7 +4070,7 @@ class TestAsyncApplications:
     @parametrize
     async def test_raw_response_create_overload_7(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.create(
-            type="biso",
+            type="self_hosted",
             account_id="account_id",
         )
 
@@ -4083,7 +4083,7 @@ class TestAsyncApplications:
     @parametrize
     async def test_streaming_response_create_overload_7(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.create(
-            type="biso",
+            type="self_hosted",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -4099,13 +4099,13 @@ class TestAsyncApplications:
     async def test_path_params_create_overload_7(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.applications.with_raw_response.create(
-                type="biso",
+                type="self_hosted",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.applications.with_raw_response.create(
-                type="biso",
+                type="self_hosted",
                 account_id="account_id",
             )
 
@@ -4202,7 +4202,7 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -4218,7 +4218,7 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -4250,7 +4250,7 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -4270,7 +4270,7 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -4293,7 +4293,7 @@ class TestAsyncApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -4306,7 +4306,7 @@ class TestAsyncApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -4322,11 +4322,11 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
-            type="rdp",
+            type="self_hosted",
             account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
@@ -4339,11 +4339,11 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
-            type="rdp",
+            type="self_hosted",
             account_id="account_id",
             allow_authenticate_via_warp=True,
             allow_iframe=True,
@@ -4453,11 +4453,11 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
-            type="rdp",
+            type="self_hosted",
             account_id="account_id",
         )
 
@@ -4474,11 +4474,11 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
-            type="rdp",
+            type="self_hosted",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -4498,11 +4498,11 @@ class TestAsyncApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
-                type="rdp",
+                type="self_hosted",
                 account_id="",
             )
 
@@ -4512,11 +4512,11 @@ class TestAsyncApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
-                type="rdp",
+                type="self_hosted",
                 account_id="account_id",
             )
 
@@ -4839,7 +4839,7 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
-            type="ssh",
+            type="self_hosted",
             account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
@@ -4850,7 +4850,7 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
-            type="ssh",
+            type="self_hosted",
             account_id="account_id",
             allow_authenticate_via_warp=True,
             allow_iframe=True,
@@ -4958,7 +4958,7 @@ class TestAsyncApplications:
         response = await async_client.zero_trust.access.applications.with_raw_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
-            type="ssh",
+            type="self_hosted",
             account_id="account_id",
         )
 
@@ -4973,7 +4973,7 @@ class TestAsyncApplications:
         async with async_client.zero_trust.access.applications.with_streaming_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
-            type="ssh",
+            type="self_hosted",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -4991,7 +4991,7 @@ class TestAsyncApplications:
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 app_id="",
                 domain="test.example.com/admin",
-                type="ssh",
+                type="self_hosted",
                 account_id="account_id",
             )
 
@@ -4999,7 +4999,7 @@ class TestAsyncApplications:
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 domain="test.example.com/admin",
-                type="ssh",
+                type="self_hosted",
                 account_id="",
             )
 
@@ -5007,7 +5007,7 @@ class TestAsyncApplications:
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 domain="test.example.com/admin",
-                type="ssh",
+                type="self_hosted",
                 account_id="account_id",
             )
 
@@ -5017,7 +5017,7 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
-            type="vnc",
+            type="self_hosted",
             account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
@@ -5028,7 +5028,7 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
-            type="vnc",
+            type="self_hosted",
             account_id="account_id",
             allow_authenticate_via_warp=True,
             allow_iframe=True,
@@ -5136,7 +5136,7 @@ class TestAsyncApplications:
         response = await async_client.zero_trust.access.applications.with_raw_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
-            type="vnc",
+            type="self_hosted",
             account_id="account_id",
         )
 
@@ -5151,7 +5151,7 @@ class TestAsyncApplications:
         async with async_client.zero_trust.access.applications.with_streaming_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
-            type="vnc",
+            type="self_hosted",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -5169,7 +5169,7 @@ class TestAsyncApplications:
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 app_id="",
                 domain="test.example.com/admin",
-                type="vnc",
+                type="self_hosted",
                 account_id="account_id",
             )
 
@@ -5177,7 +5177,7 @@ class TestAsyncApplications:
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 domain="test.example.com/admin",
-                type="vnc",
+                type="self_hosted",
                 account_id="",
             )
 
@@ -5185,7 +5185,7 @@ class TestAsyncApplications:
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 domain="test.example.com/admin",
-                type="vnc",
+                type="self_hosted",
                 account_id="account_id",
             )
 
@@ -5194,7 +5194,7 @@ class TestAsyncApplications:
     async def test_method_update_overload_5(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            type="app_launcher",
+            type="self_hosted",
             account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
@@ -5204,7 +5204,7 @@ class TestAsyncApplications:
     async def test_method_update_with_all_params_overload_5(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            type="app_launcher",
+            type="self_hosted",
             account_id="account_id",
             allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -5265,7 +5265,7 @@ class TestAsyncApplications:
     async def test_raw_response_update_overload_5(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            type="app_launcher",
+            type="self_hosted",
             account_id="account_id",
         )
 
@@ -5279,7 +5279,7 @@ class TestAsyncApplications:
     async def test_streaming_response_update_overload_5(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            type="app_launcher",
+            type="self_hosted",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -5296,21 +5296,21 @@ class TestAsyncApplications:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 app_id="",
-                type="app_launcher",
+                type="self_hosted",
                 account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
-                type="app_launcher",
+                type="self_hosted",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
-                type="app_launcher",
+                type="self_hosted",
                 account_id="account_id",
             )
 
@@ -5319,7 +5319,7 @@ class TestAsyncApplications:
     async def test_method_update_overload_6(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            type="warp",
+            type="self_hosted",
             account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
@@ -5329,7 +5329,7 @@ class TestAsyncApplications:
     async def test_method_update_with_all_params_overload_6(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            type="warp",
+            type="self_hosted",
             account_id="account_id",
             allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -5390,7 +5390,7 @@ class TestAsyncApplications:
     async def test_raw_response_update_overload_6(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            type="warp",
+            type="self_hosted",
             account_id="account_id",
         )
 
@@ -5404,7 +5404,7 @@ class TestAsyncApplications:
     async def test_streaming_response_update_overload_6(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            type="warp",
+            type="self_hosted",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -5421,21 +5421,21 @@ class TestAsyncApplications:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 app_id="",
-                type="warp",
+                type="self_hosted",
                 account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
-                type="warp",
+                type="self_hosted",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
-                type="warp",
+                type="self_hosted",
                 account_id="account_id",
             )
 
@@ -5444,7 +5444,7 @@ class TestAsyncApplications:
     async def test_method_update_overload_7(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            type="biso",
+            type="self_hosted",
             account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
@@ -5454,7 +5454,7 @@ class TestAsyncApplications:
     async def test_method_update_with_all_params_overload_7(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            type="biso",
+            type="self_hosted",
             account_id="account_id",
             allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -5515,7 +5515,7 @@ class TestAsyncApplications:
     async def test_raw_response_update_overload_7(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            type="biso",
+            type="self_hosted",
             account_id="account_id",
         )
 
@@ -5529,7 +5529,7 @@ class TestAsyncApplications:
     async def test_streaming_response_update_overload_7(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            type="biso",
+            type="self_hosted",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -5546,21 +5546,21 @@ class TestAsyncApplications:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 app_id="",
-                type="biso",
+                type="self_hosted",
                 account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
-                type="biso",
+                type="self_hosted",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
-                type="biso",
+                type="self_hosted",
                 account_id="account_id",
             )
 
@@ -5670,7 +5670,7 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -5687,7 +5687,7 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -5720,7 +5720,7 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -5741,7 +5741,7 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -5765,7 +5765,7 @@ class TestAsyncApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -5779,7 +5779,7 @@ class TestAsyncApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -5793,7 +5793,7 @@ class TestAsyncApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -5810,11 +5810,11 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
-            type="rdp",
+            type="self_hosted",
             account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
@@ -5828,11 +5828,11 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
-            type="rdp",
+            type="self_hosted",
             account_id="account_id",
             allow_authenticate_via_warp=True,
             allow_iframe=True,
@@ -5943,11 +5943,11 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
-            type="rdp",
+            type="self_hosted",
             account_id="account_id",
         )
 
@@ -5965,11 +5965,11 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "ssh",
+                    "protocol": "SSH",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
-            type="rdp",
+            type="self_hosted",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -5990,11 +5990,11 @@ class TestAsyncApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
-                type="rdp",
+                type="self_hosted",
                 account_id="account_id",
             )
 
@@ -6005,11 +6005,11 @@ class TestAsyncApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
-                type="rdp",
+                type="self_hosted",
                 account_id="",
             )
 
@@ -6020,11 +6020,11 @@ class TestAsyncApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "ssh",
+                        "protocol": "SSH",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
-                type="rdp",
+                type="self_hosted",
                 account_id="account_id",
             )
 

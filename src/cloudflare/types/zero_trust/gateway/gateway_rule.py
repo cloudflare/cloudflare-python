@@ -123,3 +123,6 @@ class GatewayRule(BaseModel):
 
     version: Optional[int] = None
     """version number of the rule"""
+
+    warning_status: Optional[str] = None
+    """Warning for a misconfigured rule, if any."""

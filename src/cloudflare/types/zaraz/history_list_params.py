@@ -11,7 +11,7 @@ __all__ = ["HistoryListParams"]
 
 class HistoryListParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     limit: int
     """Maximum amount of results to list. Default value is 10."""

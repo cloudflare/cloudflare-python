@@ -320,7 +320,7 @@ class SelfHostedApplication(BaseModel):
     This domain will be displayed if the app is visible in the App Launcher.
     """
 
-    type: str
+    type: ApplicationType
     """The application type."""
 
     id: Optional[str] = None
@@ -685,7 +685,7 @@ class SaaSApplication(BaseModel):
     Tags are used to filter applications in the App Launcher dashboard.
     """
 
-    type: Optional[str] = None
+    type: Optional[ApplicationType] = None
     """The application type."""
 
     updated_at: Optional[datetime] = None
@@ -895,7 +895,19 @@ class BrowserSSHApplication(BaseModel):
     This domain will be displayed if the app is visible in the App Launcher.
     """
 
-    type: str
+    type: Literal[
+        "self_hosted",
+        "saas",
+        "ssh",
+        "vnc",
+        "app_launcher",
+        "warp",
+        "biso",
+        "bookmark",
+        "dash_sso",
+        "infrastructure",
+        "rdp",
+    ]
     """The application type."""
 
     id: Optional[str] = None
@@ -1254,7 +1266,19 @@ class BrowserVNCApplication(BaseModel):
     This domain will be displayed if the app is visible in the App Launcher.
     """
 
-    type: str
+    type: Literal[
+        "self_hosted",
+        "saas",
+        "ssh",
+        "vnc",
+        "app_launcher",
+        "warp",
+        "biso",
+        "bookmark",
+        "dash_sso",
+        "infrastructure",
+        "rdp",
+    ]
     """The application type."""
 
     id: Optional[str] = None
@@ -1591,7 +1615,19 @@ class AppLauncherApplicationSCIMConfig(BaseModel):
 
 
 class AppLauncherApplication(BaseModel):
-    type: ApplicationType
+    type: Literal[
+        "self_hosted",
+        "saas",
+        "ssh",
+        "vnc",
+        "app_launcher",
+        "warp",
+        "biso",
+        "bookmark",
+        "dash_sso",
+        "infrastructure",
+        "rdp",
+    ]
     """The application type."""
 
     id: Optional[str] = None
@@ -2287,7 +2323,7 @@ class BookmarkApplication(BaseModel):
     Tags are used to filter applications in the App Launcher dashboard.
     """
 
-    type: Optional[str] = None
+    type: Optional[ApplicationType] = None
     """The application type."""
 
     updated_at: Optional[datetime] = None
@@ -2300,7 +2336,7 @@ class InfrastructureApplicationTargetCriterion(BaseModel):
     A port cannot be assigned to multiple protocols.
     """
 
-    protocol: Literal["ssh"]
+    protocol: Literal["SSH"]
     """The communication protocol your application secures."""
 
     target_attributes: Dict[str, List[str]]
@@ -2485,7 +2521,7 @@ class BrowserRdpApplicationTargetCriterion(BaseModel):
     A port cannot be assigned to multiple protocols.
     """
 
-    protocol: Literal["ssh"]
+    protocol: Literal["SSH"]
     """The communication protocol your application secures."""
 
     target_attributes: Dict[str, List[str]]
@@ -2698,7 +2734,7 @@ class BrowserRdpApplication(BaseModel):
 
     target_criteria: List[BrowserRdpApplicationTargetCriterion]
 
-    type: str
+    type: ApplicationType
     """The application type."""
 
     id: Optional[str] = None

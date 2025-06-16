@@ -87,7 +87,7 @@ class TeamsDevicesClientCertificateV2InputRequest(TypedDict, total=False):
     """Operating system."""
 
     cn: str
-    """Common Name that is protected by the client certificate.
+    """Certificate Common Name.
 
     This may include one or more variables in the ${ } notation. Only
     ${serial_number} and ${hostname} are valid variables.
@@ -100,6 +100,9 @@ class TeamsDevicesClientCertificateV2InputRequest(TypedDict, total=False):
     """
 
     locations: TeamsDevicesClientCertificateV2InputRequestLocations
+
+    subject_alternative_names: List[str]
+    """List of certificate Subject Alternative Names."""
 
 
 class TeamsDevicesCustomS2sInputRequest(TypedDict, total=False):

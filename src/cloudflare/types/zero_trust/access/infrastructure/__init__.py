@@ -11,3 +11,4 @@ from .target_create_response import TargetCreateResponse as TargetCreateResponse
 from .target_update_response import TargetUpdateResponse as TargetUpdateResponse
 from .target_bulk_update_params import TargetBulkUpdateParams as TargetBulkUpdateParams
 from .target_bulk_update_response import TargetBulkUpdateResponse as TargetBulkUpdateResponse
+from .target_bulk_delete_v2_params import TargetBulkDeleteV2Params as TargetBulkDeleteV2Params

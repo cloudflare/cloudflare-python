@@ -50,10 +50,11 @@ class BISOAdminControls(BaseModel):
     dk: Optional[bool] = None
     """Set to false to enable keyboard usage. Only applies when `version == "v1"`."""
 
-    download: Optional[Literal["enabled", "disabled"]] = None
+    download: Optional[Literal["enabled", "disabled", "remote_only"]] = None
     """Configure whether downloading enabled or not.
 
-    When absent, downloading is enabled. Only applies when `version == "v2"`.
+    When set with "remote_only", downloads are only available for viewing. Only
+    applies when `version == "v2"`.
     """
 
     dp: Optional[bool] = None

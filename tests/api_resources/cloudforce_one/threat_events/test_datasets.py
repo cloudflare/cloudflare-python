@@ -27,7 +27,7 @@ class TestDatasets:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         dataset = client.cloudforce_one.threat_events.datasets.create(
-            account_id=0,
+            account_id="account_id",
             is_public=True,
             name="x",
         )
@@ -37,7 +37,7 @@ class TestDatasets:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.threat_events.datasets.with_raw_response.create(
-            account_id=0,
+            account_id="account_id",
             is_public=True,
             name="x",
         )
@@ -51,7 +51,7 @@ class TestDatasets:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.cloudforce_one.threat_events.datasets.with_streaming_response.create(
-            account_id=0,
+            account_id="account_id",
             is_public=True,
             name="x",
         ) as response:
@@ -65,9 +65,19 @@ class TestDatasets:
 
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
+    def test_path_params_create(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.cloudforce_one.threat_events.datasets.with_raw_response.create(
+                account_id="",
+                is_public=True,
+                name="x",
+            )
+
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
+    @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         dataset = client.cloudforce_one.threat_events.datasets.list(
-            account_id=0,
+            account_id="account_id",
         )
         assert_matches_type(DatasetListResponse, dataset, path=["response"])
 
@@ -75,7 +85,7 @@ class TestDatasets:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.threat_events.datasets.with_raw_response.list(
-            account_id=0,
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -87,7 +97,7 @@ class TestDatasets:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.cloudforce_one.threat_events.datasets.with_streaming_response.list(
-            account_id=0,
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -99,10 +109,18 @@ class TestDatasets:
 
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
+    def test_path_params_list(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.cloudforce_one.threat_events.datasets.with_raw_response.list(
+                account_id="",
+            )
+
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
+    @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         dataset = client.cloudforce_one.threat_events.datasets.edit(
-            dataset_id="dataset_id",
-            account_id=0,
+            dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
             is_public=True,
             name="x",
         )
@@ -112,8 +130,8 @@ class TestDatasets:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.threat_events.datasets.with_raw_response.edit(
-            dataset_id="dataset_id",
-            account_id=0,
+            dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
             is_public=True,
             name="x",
         )
@@ -127,8 +145,8 @@ class TestDatasets:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.cloudforce_one.threat_events.datasets.with_streaming_response.edit(
-            dataset_id="dataset_id",
-            account_id=0,
+            dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
             is_public=True,
             name="x",
         ) as response:
@@ -143,10 +161,18 @@ class TestDatasets:
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.cloudforce_one.threat_events.datasets.with_raw_response.edit(
+                dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                account_id="",
+                is_public=True,
+                name="x",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
             client.cloudforce_one.threat_events.datasets.with_raw_response.edit(
                 dataset_id="",
-                account_id=0,
+                account_id="account_id",
                 is_public=True,
                 name="x",
             )
@@ -155,8 +181,8 @@ class TestDatasets:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         dataset = client.cloudforce_one.threat_events.datasets.get(
-            dataset_id="dataset_id",
-            account_id=0,
+            dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
         )
         assert_matches_type(DatasetGetResponse, dataset, path=["response"])
 
@@ -164,8 +190,8 @@ class TestDatasets:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.threat_events.datasets.with_raw_response.get(
-            dataset_id="dataset_id",
-            account_id=0,
+            dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -177,8 +203,8 @@ class TestDatasets:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.cloudforce_one.threat_events.datasets.with_streaming_response.get(
-            dataset_id="dataset_id",
-            account_id=0,
+            dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -191,10 +217,16 @@ class TestDatasets:
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.cloudforce_one.threat_events.datasets.with_raw_response.get(
+                dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                account_id="",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
             client.cloudforce_one.threat_events.datasets.with_raw_response.get(
                 dataset_id="",
-                account_id=0,
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
@@ -202,7 +234,7 @@ class TestDatasets:
     def test_method_raw(self, client: Cloudflare) -> None:
         dataset = client.cloudforce_one.threat_events.datasets.raw(
             event_id="event_id",
-            account_id=0,
+            account_id="account_id",
             dataset_id="dataset_id",
         )
         assert_matches_type(DatasetRawResponse, dataset, path=["response"])
@@ -212,7 +244,7 @@ class TestDatasets:
     def test_raw_response_raw(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.threat_events.datasets.with_raw_response.raw(
             event_id="event_id",
-            account_id=0,
+            account_id="account_id",
             dataset_id="dataset_id",
         )
 
@@ -226,7 +258,7 @@ class TestDatasets:
     def test_streaming_response_raw(self, client: Cloudflare) -> None:
         with client.cloudforce_one.threat_events.datasets.with_streaming_response.raw(
             event_id="event_id",
-            account_id=0,
+            account_id="account_id",
             dataset_id="dataset_id",
         ) as response:
             assert not response.is_closed
@@ -240,17 +272,24 @@ class TestDatasets:
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
     def test_path_params_raw(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.cloudforce_one.threat_events.datasets.with_raw_response.raw(
+                event_id="event_id",
+                account_id="",
+                dataset_id="dataset_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
             client.cloudforce_one.threat_events.datasets.with_raw_response.raw(
                 event_id="event_id",
-                account_id=0,
+                account_id="account_id",
                 dataset_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `event_id` but received ''"):
             client.cloudforce_one.threat_events.datasets.with_raw_response.raw(
                 event_id="",
-                account_id=0,
+                account_id="account_id",
                 dataset_id="dataset_id",
             )
 
@@ -262,7 +301,7 @@ class TestAsyncDatasets:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         dataset = await async_client.cloudforce_one.threat_events.datasets.create(
-            account_id=0,
+            account_id="account_id",
             is_public=True,
             name="x",
         )
@@ -272,7 +311,7 @@ class TestAsyncDatasets:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloudforce_one.threat_events.datasets.with_raw_response.create(
-            account_id=0,
+            account_id="account_id",
             is_public=True,
             name="x",
         )
@@ -286,7 +325,7 @@ class TestAsyncDatasets:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloudforce_one.threat_events.datasets.with_streaming_response.create(
-            account_id=0,
+            account_id="account_id",
             is_public=True,
             name="x",
         ) as response:
@@ -300,9 +339,19 @@ class TestAsyncDatasets:
 
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
+    async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.cloudforce_one.threat_events.datasets.with_raw_response.create(
+                account_id="",
+                is_public=True,
+                name="x",
+            )
+
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
+    @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         dataset = await async_client.cloudforce_one.threat_events.datasets.list(
-            account_id=0,
+            account_id="account_id",
         )
         assert_matches_type(DatasetListResponse, dataset, path=["response"])
 
@@ -310,7 +359,7 @@ class TestAsyncDatasets:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloudforce_one.threat_events.datasets.with_raw_response.list(
-            account_id=0,
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -322,7 +371,7 @@ class TestAsyncDatasets:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloudforce_one.threat_events.datasets.with_streaming_response.list(
-            account_id=0,
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -334,10 +383,18 @@ class TestAsyncDatasets:
 
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
+    async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.cloudforce_one.threat_events.datasets.with_raw_response.list(
+                account_id="",
+            )
+
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
+    @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         dataset = await async_client.cloudforce_one.threat_events.datasets.edit(
-            dataset_id="dataset_id",
-            account_id=0,
+            dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
             is_public=True,
             name="x",
         )
@@ -347,8 +404,8 @@ class TestAsyncDatasets:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloudforce_one.threat_events.datasets.with_raw_response.edit(
-            dataset_id="dataset_id",
-            account_id=0,
+            dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
             is_public=True,
             name="x",
         )
@@ -362,8 +419,8 @@ class TestAsyncDatasets:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloudforce_one.threat_events.datasets.with_streaming_response.edit(
-            dataset_id="dataset_id",
-            account_id=0,
+            dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
             is_public=True,
             name="x",
         ) as response:
@@ -378,10 +435,18 @@ class TestAsyncDatasets:
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.cloudforce_one.threat_events.datasets.with_raw_response.edit(
+                dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                account_id="",
+                is_public=True,
+                name="x",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
             await async_client.cloudforce_one.threat_events.datasets.with_raw_response.edit(
                 dataset_id="",
-                account_id=0,
+                account_id="account_id",
                 is_public=True,
                 name="x",
             )
@@ -390,8 +455,8 @@ class TestAsyncDatasets:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         dataset = await async_client.cloudforce_one.threat_events.datasets.get(
-            dataset_id="dataset_id",
-            account_id=0,
+            dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
         )
         assert_matches_type(DatasetGetResponse, dataset, path=["response"])
 
@@ -399,8 +464,8 @@ class TestAsyncDatasets:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloudforce_one.threat_events.datasets.with_raw_response.get(
-            dataset_id="dataset_id",
-            account_id=0,
+            dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -412,8 +477,8 @@ class TestAsyncDatasets:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloudforce_one.threat_events.datasets.with_streaming_response.get(
-            dataset_id="dataset_id",
-            account_id=0,
+            dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -426,10 +491,16 @@ class TestAsyncDatasets:
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.cloudforce_one.threat_events.datasets.with_raw_response.get(
+                dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                account_id="",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
             await async_client.cloudforce_one.threat_events.datasets.with_raw_response.get(
                 dataset_id="",
-                account_id=0,
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
@@ -437,7 +508,7 @@ class TestAsyncDatasets:
     async def test_method_raw(self, async_client: AsyncCloudflare) -> None:
         dataset = await async_client.cloudforce_one.threat_events.datasets.raw(
             event_id="event_id",
-            account_id=0,
+            account_id="account_id",
             dataset_id="dataset_id",
         )
         assert_matches_type(DatasetRawResponse, dataset, path=["response"])
@@ -447,7 +518,7 @@ class TestAsyncDatasets:
     async def test_raw_response_raw(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloudforce_one.threat_events.datasets.with_raw_response.raw(
             event_id="event_id",
-            account_id=0,
+            account_id="account_id",
             dataset_id="dataset_id",
         )
 
@@ -461,7 +532,7 @@ class TestAsyncDatasets:
     async def test_streaming_response_raw(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloudforce_one.threat_events.datasets.with_streaming_response.raw(
             event_id="event_id",
-            account_id=0,
+            account_id="account_id",
             dataset_id="dataset_id",
         ) as response:
             assert not response.is_closed
@@ -475,16 +546,23 @@ class TestAsyncDatasets:
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
     async def test_path_params_raw(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.cloudforce_one.threat_events.datasets.with_raw_response.raw(
+                event_id="event_id",
+                account_id="",
+                dataset_id="dataset_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
             await async_client.cloudforce_one.threat_events.datasets.with_raw_response.raw(
                 event_id="event_id",
-                account_id=0,
+                account_id="account_id",
                 dataset_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `event_id` but received ''"):
             await async_client.cloudforce_one.threat_events.datasets.with_raw_response.raw(
                 event_id="",
-                account_id=0,
+                account_id="account_id",
                 dataset_id="dataset_id",
             )

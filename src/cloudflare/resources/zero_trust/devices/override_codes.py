@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Type, cast
 
 import httpx
@@ -43,6 +44,7 @@ class OverrideCodesResource(SyncAPIResource):
         """
         return OverrideCodesResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         device_id: str,
@@ -55,12 +57,13 @@ class OverrideCodesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncSinglePage[object]:
-        """Fetches a one-time use admin override code for a registration.
+        """Fetches a one-time use admin override code for a device.
 
-        This relies on
-        the **Admin Override** setting being enabled in your device configuration.
-
-        **Deprecated:** please use GET
+        This relies on the
+        **Admin Override** setting being enabled in your device configuration. Not
+        supported when
+        [multi-user mode](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/deployment/mdm-deployment/windows-multiuser/)
+        is enabled for the account. **Deprecated:** please use GET
         /accounts/{account_id}/devices/registrations/{registration_id}/override_codes
         instead.
 
@@ -152,6 +155,7 @@ class AsyncOverrideCodesResource(AsyncAPIResource):
         """
         return AsyncOverrideCodesResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         device_id: str,
@@ -164,12 +168,13 @@ class AsyncOverrideCodesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[object, AsyncSinglePage[object]]:
-        """Fetches a one-time use admin override code for a registration.
+        """Fetches a one-time use admin override code for a device.
 
-        This relies on
-        the **Admin Override** setting being enabled in your device configuration.
-
-        **Deprecated:** please use GET
+        This relies on the
+        **Admin Override** setting being enabled in your device configuration. Not
+        supported when
+        [multi-user mode](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/deployment/mdm-deployment/windows-multiuser/)
+        is enabled for the account. **Deprecated:** please use GET
         /accounts/{account_id}/devices/registrations/{registration_id}/override_codes
         instead.
 
@@ -245,8 +250,10 @@ class OverrideCodesResourceWithRawResponse:
     def __init__(self, override_codes: OverrideCodesResource) -> None:
         self._override_codes = override_codes
 
-        self.list = to_raw_response_wrapper(
-            override_codes.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                override_codes.list  # pyright: ignore[reportDeprecated],
+            )
         )
         self.get = to_raw_response_wrapper(
             override_codes.get,
@@ -257,8 +264,10 @@ class AsyncOverrideCodesResourceWithRawResponse:
     def __init__(self, override_codes: AsyncOverrideCodesResource) -> None:
         self._override_codes = override_codes
 
-        self.list = async_to_raw_response_wrapper(
-            override_codes.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                override_codes.list  # pyright: ignore[reportDeprecated],
+            )
         )
         self.get = async_to_raw_response_wrapper(
             override_codes.get,
@@ -269,8 +278,10 @@ class OverrideCodesResourceWithStreamingResponse:
     def __init__(self, override_codes: OverrideCodesResource) -> None:
         self._override_codes = override_codes
 
-        self.list = to_streamed_response_wrapper(
-            override_codes.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                override_codes.list  # pyright: ignore[reportDeprecated],
+            )
         )
         self.get = to_streamed_response_wrapper(
             override_codes.get,
@@ -281,8 +292,10 @@ class AsyncOverrideCodesResourceWithStreamingResponse:
     def __init__(self, override_codes: AsyncOverrideCodesResource) -> None:
         self._override_codes = override_codes
 
-        self.list = async_to_streamed_response_wrapper(
-            override_codes.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                override_codes.list  # pyright: ignore[reportDeprecated],
+            )
         )
         self.get = async_to_streamed_response_wrapper(
             override_codes.get,

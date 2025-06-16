@@ -33,10 +33,8 @@ class TestSearches:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             page=1,
             per_page=1,
-            search_params={
-                "query": "primary",
-                "references": "*",
-            },
+            query="primary",
+            references="*",
         )
         assert_matches_type(SyncV4PagePagination[SearchListResponse], search, path=["response"])
 
@@ -93,10 +91,8 @@ class TestAsyncSearches:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             page=1,
             per_page=1,
-            search_params={
-                "query": "primary",
-                "references": "*",
-            },
+            query="primary",
+            references="*",
         )
         assert_matches_type(AsyncV4PagePagination[SearchListResponse], search, path=["response"])
 

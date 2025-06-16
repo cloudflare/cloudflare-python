@@ -48,6 +48,7 @@ class ConfigResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        allow_out_of_region_access: bool | NotGiven = NOT_GIVEN,
         regions: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -61,6 +62,8 @@ class ConfigResource(SyncAPIResource):
 
         Args:
           account_id: Identifier.
+
+          allow_out_of_region_access: Allow out of region access
 
           regions: Name of the region.
 
@@ -76,7 +79,13 @@ class ConfigResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/logs/control/cmb/config",
-            body=maybe_transform({"regions": regions}, config_create_params.ConfigCreateParams),
+            body=maybe_transform(
+                {
+                    "allow_out_of_region_access": allow_out_of_region_access,
+                    "regions": regions,
+                },
+                config_create_params.ConfigCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -190,6 +199,7 @@ class AsyncConfigResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        allow_out_of_region_access: bool | NotGiven = NOT_GIVEN,
         regions: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -203,6 +213,8 @@ class AsyncConfigResource(AsyncAPIResource):
 
         Args:
           account_id: Identifier.
+
+          allow_out_of_region_access: Allow out of region access
 
           regions: Name of the region.
 
@@ -218,7 +230,13 @@ class AsyncConfigResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/logs/control/cmb/config",
-            body=await async_maybe_transform({"regions": regions}, config_create_params.ConfigCreateParams),
+            body=await async_maybe_transform(
+                {
+                    "allow_out_of_region_access": allow_out_of_region_access,
+                    "regions": regions,
+                },
+                config_create_params.ConfigCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

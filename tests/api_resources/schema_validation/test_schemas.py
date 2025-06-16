@@ -31,16 +31,6 @@ class TestSchemas:
             kind="openapi_v3",
             name="petstore schema",
             source="<schema file contents>",
-        )
-        assert_matches_type(SchemaCreateResponse, schema, path=["response"])
-
-    @parametrize
-    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
-        schema = client.schema_validation.schemas.create(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            kind="openapi_v3",
-            name="petstore schema",
-            source="<schema file contents>",
             validation_enabled=True,
         )
         assert_matches_type(SchemaCreateResponse, schema, path=["response"])
@@ -52,6 +42,7 @@ class TestSchemas:
             kind="openapi_v3",
             name="petstore schema",
             source="<schema file contents>",
+            validation_enabled=True,
         )
 
         assert response.is_closed is True
@@ -66,6 +57,7 @@ class TestSchemas:
             kind="openapi_v3",
             name="petstore schema",
             source="<schema file contents>",
+            validation_enabled=True,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -83,6 +75,7 @@ class TestSchemas:
                 kind="openapi_v3",
                 name="petstore schema",
                 source="<schema file contents>",
+                validation_enabled=True,
             )
 
     @parametrize
@@ -307,16 +300,6 @@ class TestAsyncSchemas:
             kind="openapi_v3",
             name="petstore schema",
             source="<schema file contents>",
-        )
-        assert_matches_type(SchemaCreateResponse, schema, path=["response"])
-
-    @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        schema = await async_client.schema_validation.schemas.create(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            kind="openapi_v3",
-            name="petstore schema",
-            source="<schema file contents>",
             validation_enabled=True,
         )
         assert_matches_type(SchemaCreateResponse, schema, path=["response"])
@@ -328,6 +311,7 @@ class TestAsyncSchemas:
             kind="openapi_v3",
             name="petstore schema",
             source="<schema file contents>",
+            validation_enabled=True,
         )
 
         assert response.is_closed is True
@@ -342,6 +326,7 @@ class TestAsyncSchemas:
             kind="openapi_v3",
             name="petstore schema",
             source="<schema file contents>",
+            validation_enabled=True,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -359,6 +344,7 @@ class TestAsyncSchemas:
                 kind="openapi_v3",
                 name="petstore schema",
                 source="<schema file contents>",
+                validation_enabled=True,
             )
 
     @parametrize

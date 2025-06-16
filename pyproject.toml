@@ -1,6 +1,6 @@
 [project]
 name = "cloudflare"
-version = "4.2.0"
+version = "4.3.0"
 description = "The official Python library for the cloudflare API"
 dynamic = ["readme"]
 license = "Apache-2.0"
@@ -54,6 +54,7 @@ dev-dependencies = [
     "importlib-metadata>=6.7.0",
     "rich>=13.7.1",
     "nest_asyncio==1.6.0",
+    "pytest-xdist>=3.6.1",
 ]
 
 [tool.rye.scripts]
@@ -125,7 +126,7 @@ replacement = '[\1](https://github.com/cloudflare/cloudflare-python/tree/main/\g
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "--tb=short"
+addopts = "--tb=short -n auto"
 xfail_strict = true
 asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "session"

@@ -49,9 +49,9 @@ class SearchResource(SyncAPIResource):
         self,
         *,
         query: str,
-        exclude: List[Literal["SPECIAL_EVENTS", "NOTEBOOKS", "LOCATIONS", "ASNS"]] | NotGiven = NOT_GIVEN,
+        exclude: List[Literal["ASNS", "LOCATIONS", "NOTEBOOKS", "SPECIAL_EVENTS"]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        include: List[Literal["SPECIAL_EVENTS", "NOTEBOOKS", "LOCATIONS", "ASNS"]] | NotGiven = NOT_GIVEN,
+        include: List[Literal["ASNS", "LOCATIONS", "NOTEBOOKS", "SPECIAL_EVENTS"]] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         limit_per_group: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -133,9 +133,9 @@ class AsyncSearchResource(AsyncAPIResource):
         self,
         *,
         query: str,
-        exclude: List[Literal["SPECIAL_EVENTS", "NOTEBOOKS", "LOCATIONS", "ASNS"]] | NotGiven = NOT_GIVEN,
+        exclude: List[Literal["ASNS", "LOCATIONS", "NOTEBOOKS", "SPECIAL_EVENTS"]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        include: List[Literal["SPECIAL_EVENTS", "NOTEBOOKS", "LOCATIONS", "ASNS"]] | NotGiven = NOT_GIVEN,
+        include: List[Literal["ASNS", "LOCATIONS", "NOTEBOOKS", "SPECIAL_EVENTS"]] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         limit_per_group: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

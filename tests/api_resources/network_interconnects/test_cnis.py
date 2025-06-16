@@ -242,6 +242,7 @@ class TestCNIs:
             cursor=0,
             limit=0,
             slot="slot",
+            tunnel_id="tunnel_id",
         )
         assert_matches_type(CNIListResponse, cni, path=["response"])
 
@@ -596,6 +597,7 @@ class TestAsyncCNIs:
             cursor=0,
             limit=0,
             slot="slot",
+            tunnel_id="tunnel_id",
         )
         assert_matches_type(CNIListResponse, cni, path=["response"])
 

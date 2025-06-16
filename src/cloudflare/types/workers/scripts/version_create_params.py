@@ -36,6 +36,7 @@ __all__ = [
     "MetadataBindingWorkersBindingKindVersionMetadata",
     "MetadataBindingWorkersBindingKindSecretsStoreSecret",
     "MetadataBindingWorkersBindingKindSecretKey",
+    "MetadataBindingWorkersBindingKindWorkflow",
 ]
 
 
@@ -352,6 +353,29 @@ class MetadataBindingWorkersBindingKindSecretKey(TypedDict, total=False):
     """
 
 
+class MetadataBindingWorkersBindingKindWorkflow(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    type: Required[Literal["workflow"]]
+    """The kind of resource that the binding provides."""
+
+    workflow_name: Required[str]
+    """Name of the Workflow to bind to."""
+
+    class_name: str
+    """Class name of the Workflow.
+
+    Should only be provided if the Workflow belongs to this script.
+    """
+
+    script_name: str
+    """Script name that contains the Workflow.
+
+    If not provided, defaults to this script name.
+    """
+
+
 MetadataBinding: TypeAlias = Union[
     MetadataBindingWorkersBindingKindAI,
     MetadataBindingWorkersBindingKindAnalyticsEngine,
@@ -375,6 +399,7 @@ MetadataBinding: TypeAlias = Union[
     MetadataBindingWorkersBindingKindVersionMetadata,
     MetadataBindingWorkersBindingKindSecretsStoreSecret,
     MetadataBindingWorkersBindingKindSecretKey,
+    MetadataBindingWorkersBindingKindWorkflow,
 ]
 
 

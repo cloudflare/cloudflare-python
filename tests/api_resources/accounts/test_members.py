@@ -25,7 +25,7 @@ class TestMembers:
     @parametrize
     def test_method_create_overload_1(self, client: Cloudflare) -> None:
         member = client.accounts.members.create(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             email="user@example.com",
             roles=["3536bcfad5faccb999b47003c79917fb"],
         )
@@ -35,7 +35,7 @@ class TestMembers:
     @parametrize
     def test_method_create_with_all_params_overload_1(self, client: Cloudflare) -> None:
         member = client.accounts.members.create(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             email="user@example.com",
             roles=["3536bcfad5faccb999b47003c79917fb"],
             status="accepted",
@@ -46,7 +46,7 @@ class TestMembers:
     @parametrize
     def test_raw_response_create_overload_1(self, client: Cloudflare) -> None:
         response = client.accounts.members.with_raw_response.create(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             email="user@example.com",
             roles=["3536bcfad5faccb999b47003c79917fb"],
         )
@@ -60,7 +60,7 @@ class TestMembers:
     @parametrize
     def test_streaming_response_create_overload_1(self, client: Cloudflare) -> None:
         with client.accounts.members.with_streaming_response.create(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             email="user@example.com",
             roles=["3536bcfad5faccb999b47003c79917fb"],
         ) as response:
@@ -86,7 +86,7 @@ class TestMembers:
     @parametrize
     def test_method_create_overload_2(self, client: Cloudflare) -> None:
         member = client.accounts.members.create(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             email="user@example.com",
             policies=[
                 {
@@ -105,7 +105,7 @@ class TestMembers:
     @parametrize
     def test_method_create_with_all_params_overload_2(self, client: Cloudflare) -> None:
         member = client.accounts.members.create(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             email="user@example.com",
             policies=[
                 {
@@ -125,7 +125,7 @@ class TestMembers:
     @parametrize
     def test_raw_response_create_overload_2(self, client: Cloudflare) -> None:
         response = client.accounts.members.with_raw_response.create(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             email="user@example.com",
             policies=[
                 {
@@ -148,7 +148,7 @@ class TestMembers:
     @parametrize
     def test_streaming_response_create_overload_2(self, client: Cloudflare) -> None:
         with client.accounts.members.with_streaming_response.create(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             email="user@example.com",
             policies=[
                 {
@@ -193,7 +193,7 @@ class TestMembers:
     def test_method_update_overload_1(self, client: Cloudflare) -> None:
         member = client.accounts.members.update(
             member_id="4536bcfad5faccb111b47003c79917fa",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Member], member, path=["response"])
 
@@ -202,7 +202,7 @@ class TestMembers:
     def test_method_update_with_all_params_overload_1(self, client: Cloudflare) -> None:
         member = client.accounts.members.update(
             member_id="4536bcfad5faccb111b47003c79917fa",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             roles=[{"id": "3536bcfad5faccb999b47003c79917fb"}],
         )
         assert_matches_type(Optional[Member], member, path=["response"])
@@ -212,7 +212,7 @@ class TestMembers:
     def test_raw_response_update_overload_1(self, client: Cloudflare) -> None:
         response = client.accounts.members.with_raw_response.update(
             member_id="4536bcfad5faccb111b47003c79917fa",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -225,7 +225,7 @@ class TestMembers:
     def test_streaming_response_update_overload_1(self, client: Cloudflare) -> None:
         with client.accounts.members.with_streaming_response.update(
             member_id="4536bcfad5faccb111b47003c79917fa",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -247,7 +247,7 @@ class TestMembers:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `member_id` but received ''"):
             client.accounts.members.with_raw_response.update(
                 member_id="",
-                account_id="eb78d65290b24279ba6f44721b3ea3c4",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -255,7 +255,7 @@ class TestMembers:
     def test_method_update_overload_2(self, client: Cloudflare) -> None:
         member = client.accounts.members.update(
             member_id="4536bcfad5faccb111b47003c79917fa",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             policies=[
                 {
                     "access": "allow",
@@ -274,7 +274,7 @@ class TestMembers:
     def test_raw_response_update_overload_2(self, client: Cloudflare) -> None:
         response = client.accounts.members.with_raw_response.update(
             member_id="4536bcfad5faccb111b47003c79917fa",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             policies=[
                 {
                     "access": "allow",
@@ -297,7 +297,7 @@ class TestMembers:
     def test_streaming_response_update_overload_2(self, client: Cloudflare) -> None:
         with client.accounts.members.with_streaming_response.update(
             member_id="4536bcfad5faccb111b47003c79917fa",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             policies=[
                 {
                     "access": "allow",
@@ -339,7 +339,7 @@ class TestMembers:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `member_id` but received ''"):
             client.accounts.members.with_raw_response.update(
                 member_id="",
-                account_id="eb78d65290b24279ba6f44721b3ea3c4",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 policies=[
                     {
                         "access": "allow",
@@ -355,14 +355,14 @@ class TestMembers:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         member = client.accounts.members.list(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(SyncV4PagePaginationArray[Member], member, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         member = client.accounts.members.list(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             direction="desc",
             order="status",
             page=1,
@@ -374,7 +374,7 @@ class TestMembers:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.accounts.members.with_raw_response.list(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -385,7 +385,7 @@ class TestMembers:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.accounts.members.with_streaming_response.list(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -407,7 +407,7 @@ class TestMembers:
     def test_method_delete(self, client: Cloudflare) -> None:
         member = client.accounts.members.delete(
             member_id="4536bcfad5faccb111b47003c79917fa",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[MemberDeleteResponse], member, path=["response"])
 
@@ -416,7 +416,7 @@ class TestMembers:
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.accounts.members.with_raw_response.delete(
             member_id="4536bcfad5faccb111b47003c79917fa",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -429,7 +429,7 @@ class TestMembers:
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.accounts.members.with_streaming_response.delete(
             member_id="4536bcfad5faccb111b47003c79917fa",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -451,7 +451,7 @@ class TestMembers:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `member_id` but received ''"):
             client.accounts.members.with_raw_response.delete(
                 member_id="",
-                account_id="eb78d65290b24279ba6f44721b3ea3c4",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @pytest.mark.skip(reason="HTTP 422 error from prism")
@@ -459,7 +459,7 @@ class TestMembers:
     def test_method_get(self, client: Cloudflare) -> None:
         member = client.accounts.members.get(
             member_id="4536bcfad5faccb111b47003c79917fa",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Member], member, path=["response"])
 
@@ -468,7 +468,7 @@ class TestMembers:
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.accounts.members.with_raw_response.get(
             member_id="4536bcfad5faccb111b47003c79917fa",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -481,7 +481,7 @@ class TestMembers:
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.accounts.members.with_streaming_response.get(
             member_id="4536bcfad5faccb111b47003c79917fa",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -503,7 +503,7 @@ class TestMembers:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `member_id` but received ''"):
             client.accounts.members.with_raw_response.get(
                 member_id="",
-                account_id="eb78d65290b24279ba6f44721b3ea3c4",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
 
@@ -514,7 +514,7 @@ class TestAsyncMembers:
     @parametrize
     async def test_method_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         member = await async_client.accounts.members.create(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             email="user@example.com",
             roles=["3536bcfad5faccb999b47003c79917fb"],
         )
@@ -524,7 +524,7 @@ class TestAsyncMembers:
     @parametrize
     async def test_method_create_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
         member = await async_client.accounts.members.create(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             email="user@example.com",
             roles=["3536bcfad5faccb999b47003c79917fb"],
             status="accepted",
@@ -535,7 +535,7 @@ class TestAsyncMembers:
     @parametrize
     async def test_raw_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.members.with_raw_response.create(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             email="user@example.com",
             roles=["3536bcfad5faccb999b47003c79917fb"],
         )
@@ -549,7 +549,7 @@ class TestAsyncMembers:
     @parametrize
     async def test_streaming_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.members.with_streaming_response.create(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             email="user@example.com",
             roles=["3536bcfad5faccb999b47003c79917fb"],
         ) as response:
@@ -575,7 +575,7 @@ class TestAsyncMembers:
     @parametrize
     async def test_method_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         member = await async_client.accounts.members.create(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             email="user@example.com",
             policies=[
                 {
@@ -594,7 +594,7 @@ class TestAsyncMembers:
     @parametrize
     async def test_method_create_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
         member = await async_client.accounts.members.create(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             email="user@example.com",
             policies=[
                 {
@@ -614,7 +614,7 @@ class TestAsyncMembers:
     @parametrize
     async def test_raw_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.members.with_raw_response.create(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             email="user@example.com",
             policies=[
                 {
@@ -637,7 +637,7 @@ class TestAsyncMembers:
     @parametrize
     async def test_streaming_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.members.with_streaming_response.create(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             email="user@example.com",
             policies=[
                 {
@@ -682,7 +682,7 @@ class TestAsyncMembers:
     async def test_method_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         member = await async_client.accounts.members.update(
             member_id="4536bcfad5faccb111b47003c79917fa",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Member], member, path=["response"])
 
@@ -691,7 +691,7 @@ class TestAsyncMembers:
     async def test_method_update_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
         member = await async_client.accounts.members.update(
             member_id="4536bcfad5faccb111b47003c79917fa",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             roles=[{"id": "3536bcfad5faccb999b47003c79917fb"}],
         )
         assert_matches_type(Optional[Member], member, path=["response"])
@@ -701,7 +701,7 @@ class TestAsyncMembers:
     async def test_raw_response_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.members.with_raw_response.update(
             member_id="4536bcfad5faccb111b47003c79917fa",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -714,7 +714,7 @@ class TestAsyncMembers:
     async def test_streaming_response_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.members.with_streaming_response.update(
             member_id="4536bcfad5faccb111b47003c79917fa",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -736,7 +736,7 @@ class TestAsyncMembers:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `member_id` but received ''"):
             await async_client.accounts.members.with_raw_response.update(
                 member_id="",
-                account_id="eb78d65290b24279ba6f44721b3ea3c4",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -744,7 +744,7 @@ class TestAsyncMembers:
     async def test_method_update_overload_2(self, async_client: AsyncCloudflare) -> None:
         member = await async_client.accounts.members.update(
             member_id="4536bcfad5faccb111b47003c79917fa",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             policies=[
                 {
                     "access": "allow",
@@ -763,7 +763,7 @@ class TestAsyncMembers:
     async def test_raw_response_update_overload_2(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.members.with_raw_response.update(
             member_id="4536bcfad5faccb111b47003c79917fa",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             policies=[
                 {
                     "access": "allow",
@@ -786,7 +786,7 @@ class TestAsyncMembers:
     async def test_streaming_response_update_overload_2(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.members.with_streaming_response.update(
             member_id="4536bcfad5faccb111b47003c79917fa",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             policies=[
                 {
                     "access": "allow",
@@ -828,7 +828,7 @@ class TestAsyncMembers:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `member_id` but received ''"):
             await async_client.accounts.members.with_raw_response.update(
                 member_id="",
-                account_id="eb78d65290b24279ba6f44721b3ea3c4",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 policies=[
                     {
                         "access": "allow",
@@ -844,14 +844,14 @@ class TestAsyncMembers:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         member = await async_client.accounts.members.list(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(AsyncV4PagePaginationArray[Member], member, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         member = await async_client.accounts.members.list(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             direction="desc",
             order="status",
             page=1,
@@ -863,7 +863,7 @@ class TestAsyncMembers:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.members.with_raw_response.list(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -874,7 +874,7 @@ class TestAsyncMembers:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.members.with_streaming_response.list(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -896,7 +896,7 @@ class TestAsyncMembers:
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         member = await async_client.accounts.members.delete(
             member_id="4536bcfad5faccb111b47003c79917fa",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[MemberDeleteResponse], member, path=["response"])
 
@@ -905,7 +905,7 @@ class TestAsyncMembers:
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.members.with_raw_response.delete(
             member_id="4536bcfad5faccb111b47003c79917fa",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -918,7 +918,7 @@ class TestAsyncMembers:
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.members.with_streaming_response.delete(
             member_id="4536bcfad5faccb111b47003c79917fa",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -940,7 +940,7 @@ class TestAsyncMembers:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `member_id` but received ''"):
             await async_client.accounts.members.with_raw_response.delete(
                 member_id="",
-                account_id="eb78d65290b24279ba6f44721b3ea3c4",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @pytest.mark.skip(reason="HTTP 422 error from prism")
@@ -948,7 +948,7 @@ class TestAsyncMembers:
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         member = await async_client.accounts.members.get(
             member_id="4536bcfad5faccb111b47003c79917fa",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Member], member, path=["response"])
 
@@ -957,7 +957,7 @@ class TestAsyncMembers:
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.members.with_raw_response.get(
             member_id="4536bcfad5faccb111b47003c79917fa",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -970,7 +970,7 @@ class TestAsyncMembers:
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.members.with_streaming_response.get(
             member_id="4536bcfad5faccb111b47003c79917fa",
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -992,5 +992,5 @@ class TestAsyncMembers:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `member_id` but received ''"):
             await async_client.accounts.members.with_raw_response.get(
                 member_id="",
-                account_id="eb78d65290b24279ba6f44721b3ea3c4",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

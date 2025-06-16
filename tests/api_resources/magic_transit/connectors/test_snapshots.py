@@ -21,7 +21,7 @@ class TestSnapshots:
     def test_method_list(self, client: Cloudflare) -> None:
         snapshot = client.magic_transit.connectors.snapshots.list(
             connector_id="connector_id",
-            account_id=0,
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             from_=0,
             to=0,
         )
@@ -31,7 +31,7 @@ class TestSnapshots:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         snapshot = client.magic_transit.connectors.snapshots.list(
             connector_id="connector_id",
-            account_id=0,
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             from_=0,
             to=0,
             cursor="cursor",
@@ -43,7 +43,7 @@ class TestSnapshots:
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.magic_transit.connectors.snapshots.with_raw_response.list(
             connector_id="connector_id",
-            account_id=0,
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             from_=0,
             to=0,
         )
@@ -57,7 +57,7 @@ class TestSnapshots:
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.magic_transit.connectors.snapshots.with_streaming_response.list(
             connector_id="connector_id",
-            account_id=0,
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             from_=0,
             to=0,
         ) as response:
@@ -71,10 +71,18 @@ class TestSnapshots:
 
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.magic_transit.connectors.snapshots.with_raw_response.list(
+                connector_id="connector_id",
+                account_id="",
+                from_=0,
+                to=0,
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `connector_id` but received ''"):
             client.magic_transit.connectors.snapshots.with_raw_response.list(
                 connector_id="",
-                account_id=0,
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 from_=0,
                 to=0,
             )
@@ -83,7 +91,7 @@ class TestSnapshots:
     def test_method_get(self, client: Cloudflare) -> None:
         snapshot = client.magic_transit.connectors.snapshots.get(
             snapshot_t=0,
-            account_id=0,
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             connector_id="connector_id",
         )
         assert_matches_type(SnapshotGetResponse, snapshot, path=["response"])
@@ -92,7 +100,7 @@ class TestSnapshots:
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.magic_transit.connectors.snapshots.with_raw_response.get(
             snapshot_t=0,
-            account_id=0,
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             connector_id="connector_id",
         )
 
@@ -105,7 +113,7 @@ class TestSnapshots:
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.magic_transit.connectors.snapshots.with_streaming_response.get(
             snapshot_t=0,
-            account_id=0,
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             connector_id="connector_id",
         ) as response:
             assert not response.is_closed
@@ -118,10 +126,17 @@ class TestSnapshots:
 
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.magic_transit.connectors.snapshots.with_raw_response.get(
+                snapshot_t=0,
+                account_id="",
+                connector_id="connector_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `connector_id` but received ''"):
             client.magic_transit.connectors.snapshots.with_raw_response.get(
                 snapshot_t=0,
-                account_id=0,
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 connector_id="",
             )
 
@@ -133,7 +148,7 @@ class TestAsyncSnapshots:
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         snapshot = await async_client.magic_transit.connectors.snapshots.list(
             connector_id="connector_id",
-            account_id=0,
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             from_=0,
             to=0,
         )
@@ -143,7 +158,7 @@ class TestAsyncSnapshots:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         snapshot = await async_client.magic_transit.connectors.snapshots.list(
             connector_id="connector_id",
-            account_id=0,
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             from_=0,
             to=0,
             cursor="cursor",
@@ -155,7 +170,7 @@ class TestAsyncSnapshots:
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.connectors.snapshots.with_raw_response.list(
             connector_id="connector_id",
-            account_id=0,
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             from_=0,
             to=0,
         )
@@ -169,7 +184,7 @@ class TestAsyncSnapshots:
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.connectors.snapshots.with_streaming_response.list(
             connector_id="connector_id",
-            account_id=0,
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             from_=0,
             to=0,
         ) as response:
@@ -183,10 +198,18 @@ class TestAsyncSnapshots:
 
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.magic_transit.connectors.snapshots.with_raw_response.list(
+                connector_id="connector_id",
+                account_id="",
+                from_=0,
+                to=0,
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `connector_id` but received ''"):
             await async_client.magic_transit.connectors.snapshots.with_raw_response.list(
                 connector_id="",
-                account_id=0,
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 from_=0,
                 to=0,
             )
@@ -195,7 +218,7 @@ class TestAsyncSnapshots:
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         snapshot = await async_client.magic_transit.connectors.snapshots.get(
             snapshot_t=0,
-            account_id=0,
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             connector_id="connector_id",
         )
         assert_matches_type(SnapshotGetResponse, snapshot, path=["response"])
@@ -204,7 +227,7 @@ class TestAsyncSnapshots:
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.connectors.snapshots.with_raw_response.get(
             snapshot_t=0,
-            account_id=0,
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             connector_id="connector_id",
         )
 
@@ -217,7 +240,7 @@ class TestAsyncSnapshots:
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.connectors.snapshots.with_streaming_response.get(
             snapshot_t=0,
-            account_id=0,
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             connector_id="connector_id",
         ) as response:
             assert not response.is_closed
@@ -230,9 +253,16 @@ class TestAsyncSnapshots:
 
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.magic_transit.connectors.snapshots.with_raw_response.get(
+                snapshot_t=0,
+                account_id="",
+                connector_id="connector_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `connector_id` but received ''"):
             await async_client.magic_transit.connectors.snapshots.with_raw_response.get(
                 snapshot_t=0,
-                account_id=0,
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 connector_id="",
             )

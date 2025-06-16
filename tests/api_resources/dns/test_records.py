@@ -29,6 +29,8 @@ class TestRecords:
     def test_method_create_overload_1(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="A",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -37,9 +39,10 @@ class TestRecords:
     def test_method_create_with_all_params_overload_1(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="A",
             comment="Domain verification record",
             content="198.51.100.4",
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -47,7 +50,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="A",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -56,6 +58,8 @@ class TestRecords:
     def test_raw_response_create_overload_1(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="A",
         )
 
         assert response.is_closed is True
@@ -68,6 +72,8 @@ class TestRecords:
     def test_streaming_response_create_overload_1(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="A",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -83,6 +89,8 @@ class TestRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="A",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -90,6 +98,8 @@ class TestRecords:
     def test_method_create_overload_2(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="AAAA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -98,9 +108,10 @@ class TestRecords:
     def test_method_create_with_all_params_overload_2(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="AAAA",
             comment="Domain verification record",
             content="2400:cb00:2049::1",
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -108,7 +119,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="AAAA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -117,6 +127,8 @@ class TestRecords:
     def test_raw_response_create_overload_2(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="AAAA",
         )
 
         assert response.is_closed is True
@@ -129,6 +141,8 @@ class TestRecords:
     def test_streaming_response_create_overload_2(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="AAAA",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -144,6 +158,8 @@ class TestRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="AAAA",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -151,6 +167,8 @@ class TestRecords:
     def test_method_create_overload_3(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CNAME",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -159,21 +177,18 @@ class TestRecords:
     def test_method_create_with_all_params_overload_3(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            data={
-                "flags": 1,
-                "tag": "issue",
-                "value": "value",
-            },
             name="example.com",
+            type="CNAME",
+            comment="Domain verification record",
+            content="content",
             proxied=True,
             settings={
+                "flatten_cname": True,
                 "ipv4_only": True,
                 "ipv6_only": True,
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="CAA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -182,6 +197,8 @@ class TestRecords:
     def test_raw_response_create_overload_3(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CNAME",
         )
 
         assert response.is_closed is True
@@ -194,6 +211,8 @@ class TestRecords:
     def test_streaming_response_create_overload_3(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CNAME",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -209,6 +228,8 @@ class TestRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="CNAME",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -216,6 +237,8 @@ class TestRecords:
     def test_method_create_overload_4(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="MX",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -224,14 +247,11 @@ class TestRecords:
     def test_method_create_with_all_params_overload_4(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            data={
-                "algorithm": 8,
-                "certificate": "certificate",
-                "key_tag": 1,
-                "type": 9,
-            },
             name="example.com",
+            type="MX",
+            comment="Domain verification record",
+            content="mx.example.com",
+            priority=10,
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -239,7 +259,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="CERT",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -248,6 +267,8 @@ class TestRecords:
     def test_raw_response_create_overload_4(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="MX",
         )
 
         assert response.is_closed is True
@@ -260,6 +281,8 @@ class TestRecords:
     def test_streaming_response_create_overload_4(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="MX",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -275,6 +298,8 @@ class TestRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="MX",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -282,6 +307,8 @@ class TestRecords:
     def test_method_create_overload_5(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NS",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -290,18 +317,17 @@ class TestRecords:
     def test_method_create_with_all_params_overload_5(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            content="content",
             name="example.com",
+            type="NS",
+            comment="Domain verification record",
+            content="ns1.example.com",
             proxied=True,
             settings={
-                "flatten_cname": True,
                 "ipv4_only": True,
                 "ipv6_only": True,
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="CNAME",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -310,6 +336,8 @@ class TestRecords:
     def test_raw_response_create_overload_5(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NS",
         )
 
         assert response.is_closed is True
@@ -322,6 +350,8 @@ class TestRecords:
     def test_streaming_response_create_overload_5(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NS",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -337,6 +367,8 @@ class TestRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="NS",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -344,6 +376,8 @@ class TestRecords:
     def test_method_create_overload_6(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="OPENPGPKEY",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -352,14 +386,10 @@ class TestRecords:
     def test_method_create_with_all_params_overload_6(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            data={
-                "algorithm": 5,
-                "flags": 1,
-                "protocol": 3,
-                "public_key": "public_key",
-            },
             name="example.com",
+            type="OPENPGPKEY",
+            comment="Domain verification record",
+            content="content",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -367,7 +397,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="DNSKEY",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -376,6 +405,8 @@ class TestRecords:
     def test_raw_response_create_overload_6(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="OPENPGPKEY",
         )
 
         assert response.is_closed is True
@@ -388,6 +419,8 @@ class TestRecords:
     def test_streaming_response_create_overload_6(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="OPENPGPKEY",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -403,6 +436,8 @@ class TestRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="OPENPGPKEY",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -410,6 +445,8 @@ class TestRecords:
     def test_method_create_overload_7(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="PTR",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -418,14 +455,10 @@ class TestRecords:
     def test_method_create_with_all_params_overload_7(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            data={
-                "algorithm": 3,
-                "digest": "digest",
-                "digest_type": 1,
-                "key_tag": 1,
-            },
             name="example.com",
+            type="PTR",
+            comment="Domain verification record",
+            content="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -433,7 +466,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="DS",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -442,6 +474,8 @@ class TestRecords:
     def test_raw_response_create_overload_7(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="PTR",
         )
 
         assert response.is_closed is True
@@ -454,6 +488,8 @@ class TestRecords:
     def test_streaming_response_create_overload_7(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="PTR",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -469,6 +505,8 @@ class TestRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="PTR",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -476,6 +514,8 @@ class TestRecords:
     def test_method_create_overload_8(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="TXT",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -484,13 +524,10 @@ class TestRecords:
     def test_method_create_with_all_params_overload_8(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            data={
-                "priority": 1,
-                "target": ".",
-                "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
-            },
             name="example.com",
+            type="TXT",
+            comment="Domain verification record",
+            content='"v=spf1 include:example.com -all"',
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -498,7 +535,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="HTTPS",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -507,6 +543,8 @@ class TestRecords:
     def test_raw_response_create_overload_8(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="TXT",
         )
 
         assert response.is_closed is True
@@ -519,6 +557,8 @@ class TestRecords:
     def test_streaming_response_create_overload_8(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="TXT",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -534,6 +574,8 @@ class TestRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="TXT",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -541,6 +583,8 @@ class TestRecords:
     def test_method_create_overload_9(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CAA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -549,22 +593,14 @@ class TestRecords:
     def test_method_create_with_all_params_overload_9(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CAA",
             comment="Domain verification record",
             data={
-                "altitude": 0,
-                "lat_degrees": 37,
-                "lat_direction": "N",
-                "lat_minutes": 46,
-                "lat_seconds": 46,
-                "long_degrees": 122,
-                "long_direction": "W",
-                "long_minutes": 23,
-                "long_seconds": 35,
-                "precision_horz": 0,
-                "precision_vert": 0,
-                "size": 100,
+                "flags": 1,
+                "tag": "issue",
+                "value": "value",
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -572,7 +608,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="LOC",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -581,6 +616,8 @@ class TestRecords:
     def test_raw_response_create_overload_9(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CAA",
         )
 
         assert response.is_closed is True
@@ -593,6 +630,8 @@ class TestRecords:
     def test_streaming_response_create_overload_9(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CAA",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -608,6 +647,8 @@ class TestRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="CAA",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -615,6 +656,8 @@ class TestRecords:
     def test_method_create_overload_10(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CERT",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -623,10 +666,15 @@ class TestRecords:
     def test_method_create_with_all_params_overload_10(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            content="mx.example.com",
             name="example.com",
-            priority=10,
+            type="CERT",
+            comment="Domain verification record",
+            data={
+                "algorithm": 8,
+                "certificate": "certificate",
+                "key_tag": 1,
+                "type": 9,
+            },
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -634,7 +682,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="MX",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -643,6 +690,8 @@ class TestRecords:
     def test_raw_response_create_overload_10(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CERT",
         )
 
         assert response.is_closed is True
@@ -655,6 +704,8 @@ class TestRecords:
     def test_streaming_response_create_overload_10(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CERT",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -670,6 +721,8 @@ class TestRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="CERT",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -677,6 +730,8 @@ class TestRecords:
     def test_method_create_overload_11(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DNSKEY",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -685,16 +740,15 @@ class TestRecords:
     def test_method_create_with_all_params_overload_11(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DNSKEY",
             comment="Domain verification record",
             data={
-                "flags": "flags",
-                "order": 100,
-                "preference": 10,
-                "regex": "regex",
-                "replacement": "replacement",
-                "service": "service",
+                "algorithm": 5,
+                "flags": 1,
+                "protocol": 3,
+                "public_key": "public_key",
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -702,7 +756,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="NAPTR",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -711,6 +764,8 @@ class TestRecords:
     def test_raw_response_create_overload_11(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DNSKEY",
         )
 
         assert response.is_closed is True
@@ -723,6 +778,8 @@ class TestRecords:
     def test_streaming_response_create_overload_11(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DNSKEY",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -738,6 +795,8 @@ class TestRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="DNSKEY",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -745,6 +804,8 @@ class TestRecords:
     def test_method_create_overload_12(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DS",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -753,9 +814,15 @@ class TestRecords:
     def test_method_create_with_all_params_overload_12(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            content="ns1.example.com",
             name="example.com",
+            type="DS",
+            comment="Domain verification record",
+            data={
+                "algorithm": 3,
+                "digest": "digest",
+                "digest_type": 1,
+                "key_tag": 1,
+            },
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -763,7 +830,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="NS",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -772,6 +838,8 @@ class TestRecords:
     def test_raw_response_create_overload_12(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DS",
         )
 
         assert response.is_closed is True
@@ -784,6 +852,8 @@ class TestRecords:
     def test_streaming_response_create_overload_12(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DS",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -799,6 +869,8 @@ class TestRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="DS",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -806,6 +878,8 @@ class TestRecords:
     def test_method_create_overload_13(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="HTTPS",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -814,9 +888,14 @@ class TestRecords:
     def test_method_create_with_all_params_overload_13(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            content="content",
             name="example.com",
+            type="HTTPS",
+            comment="Domain verification record",
+            data={
+                "priority": 1,
+                "target": ".",
+                "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
+            },
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -824,7 +903,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="OPENPGPKEY",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -833,6 +911,8 @@ class TestRecords:
     def test_raw_response_create_overload_13(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="HTTPS",
         )
 
         assert response.is_closed is True
@@ -845,6 +925,8 @@ class TestRecords:
     def test_streaming_response_create_overload_13(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="HTTPS",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -860,6 +942,8 @@ class TestRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="HTTPS",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -867,6 +951,8 @@ class TestRecords:
     def test_method_create_overload_14(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="LOC",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -875,9 +961,23 @@ class TestRecords:
     def test_method_create_with_all_params_overload_14(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            content="example.com",
             name="example.com",
+            type="LOC",
+            comment="Domain verification record",
+            data={
+                "altitude": 0,
+                "lat_degrees": 37,
+                "lat_direction": "N",
+                "lat_minutes": 46,
+                "lat_seconds": 46,
+                "long_degrees": 122,
+                "long_direction": "W",
+                "long_minutes": 23,
+                "long_seconds": 35,
+                "precision_horz": 0,
+                "precision_vert": 0,
+                "size": 100,
+            },
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -885,7 +985,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="PTR",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -894,6 +993,8 @@ class TestRecords:
     def test_raw_response_create_overload_14(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="LOC",
         )
 
         assert response.is_closed is True
@@ -906,6 +1007,8 @@ class TestRecords:
     def test_streaming_response_create_overload_14(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="LOC",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -921,6 +1024,8 @@ class TestRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="LOC",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -928,6 +1033,8 @@ class TestRecords:
     def test_method_create_overload_15(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NAPTR",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -936,14 +1043,17 @@ class TestRecords:
     def test_method_create_with_all_params_overload_15(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NAPTR",
             comment="Domain verification record",
             data={
-                "certificate": "certificate",
-                "matching_type": 0,
-                "selector": 0,
-                "usage": 3,
+                "flags": "flags",
+                "order": 100,
+                "preference": 10,
+                "regex": "regex",
+                "replacement": "replacement",
+                "service": "service",
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -951,7 +1061,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="SMIMEA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -960,6 +1069,8 @@ class TestRecords:
     def test_raw_response_create_overload_15(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NAPTR",
         )
 
         assert response.is_closed is True
@@ -972,6 +1083,8 @@ class TestRecords:
     def test_streaming_response_create_overload_15(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NAPTR",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -987,6 +1100,8 @@ class TestRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="NAPTR",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -994,6 +1109,8 @@ class TestRecords:
     def test_method_create_overload_16(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SMIMEA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -1002,14 +1119,15 @@ class TestRecords:
     def test_method_create_with_all_params_overload_16(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SMIMEA",
             comment="Domain verification record",
             data={
-                "port": 8806,
-                "priority": 10,
-                "target": "example.com",
-                "weight": 5,
+                "certificate": "certificate",
+                "matching_type": 0,
+                "selector": 0,
+                "usage": 3,
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -1017,7 +1135,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="SRV",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -1026,6 +1143,8 @@ class TestRecords:
     def test_raw_response_create_overload_16(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SMIMEA",
         )
 
         assert response.is_closed is True
@@ -1038,6 +1157,8 @@ class TestRecords:
     def test_streaming_response_create_overload_16(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SMIMEA",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1053,6 +1174,8 @@ class TestRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="SMIMEA",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -1060,6 +1183,8 @@ class TestRecords:
     def test_method_create_overload_17(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SRV",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -1068,13 +1193,15 @@ class TestRecords:
     def test_method_create_with_all_params_overload_17(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SRV",
             comment="Domain verification record",
             data={
-                "algorithm": 2,
-                "fingerprint": "fingerprint",
-                "type": 1,
+                "port": 8806,
+                "priority": 10,
+                "target": "example.com",
+                "weight": 5,
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -1082,7 +1209,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="SSHFP",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -1091,6 +1217,8 @@ class TestRecords:
     def test_raw_response_create_overload_17(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SRV",
         )
 
         assert response.is_closed is True
@@ -1103,6 +1231,8 @@ class TestRecords:
     def test_streaming_response_create_overload_17(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SRV",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1118,6 +1248,8 @@ class TestRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="SRV",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -1125,6 +1257,8 @@ class TestRecords:
     def test_method_create_overload_18(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SSHFP",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -1133,13 +1267,14 @@ class TestRecords:
     def test_method_create_with_all_params_overload_18(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SSHFP",
             comment="Domain verification record",
             data={
-                "priority": 1,
-                "target": ".",
-                "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
+                "algorithm": 2,
+                "fingerprint": "fingerprint",
+                "type": 1,
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -1147,7 +1282,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="SVCB",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -1156,6 +1290,8 @@ class TestRecords:
     def test_raw_response_create_overload_18(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SSHFP",
         )
 
         assert response.is_closed is True
@@ -1168,6 +1304,8 @@ class TestRecords:
     def test_streaming_response_create_overload_18(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SSHFP",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1183,6 +1321,8 @@ class TestRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="SSHFP",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -1190,6 +1330,8 @@ class TestRecords:
     def test_method_create_overload_19(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SVCB",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -1198,14 +1340,14 @@ class TestRecords:
     def test_method_create_with_all_params_overload_19(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SVCB",
             comment="Domain verification record",
             data={
-                "certificate": "certificate",
-                "matching_type": 1,
-                "selector": 0,
-                "usage": 0,
+                "priority": 1,
+                "target": ".",
+                "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -1213,7 +1355,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="TLSA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -1222,6 +1363,8 @@ class TestRecords:
     def test_raw_response_create_overload_19(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SVCB",
         )
 
         assert response.is_closed is True
@@ -1234,6 +1377,8 @@ class TestRecords:
     def test_streaming_response_create_overload_19(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SVCB",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1249,6 +1394,8 @@ class TestRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="SVCB",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -1256,6 +1403,8 @@ class TestRecords:
     def test_method_create_overload_20(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="TLSA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -1264,9 +1413,15 @@ class TestRecords:
     def test_method_create_with_all_params_overload_20(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            content='"v=spf1 include:example.com -all"',
             name="example.com",
+            type="TLSA",
+            comment="Domain verification record",
+            data={
+                "certificate": "certificate",
+                "matching_type": 1,
+                "selector": 0,
+                "usage": 0,
+            },
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -1274,7 +1429,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="TXT",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -1283,6 +1437,8 @@ class TestRecords:
     def test_raw_response_create_overload_20(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="TLSA",
         )
 
         assert response.is_closed is True
@@ -1295,6 +1451,8 @@ class TestRecords:
     def test_streaming_response_create_overload_20(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="TLSA",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1310,6 +1468,8 @@ class TestRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="TLSA",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -1317,6 +1477,8 @@ class TestRecords:
     def test_method_create_overload_21(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="URI",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -1325,12 +1487,13 @@ class TestRecords:
     def test_method_create_with_all_params_overload_21(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="URI",
             comment="Domain verification record",
             data={
                 "target": "http://example.com/example.html",
                 "weight": 20,
             },
-            name="example.com",
             priority=10,
             proxied=True,
             settings={
@@ -1339,7 +1502,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="URI",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -1348,6 +1510,8 @@ class TestRecords:
     def test_raw_response_create_overload_21(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="URI",
         )
 
         assert response.is_closed is True
@@ -1360,6 +1524,8 @@ class TestRecords:
     def test_streaming_response_create_overload_21(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="URI",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1375,6 +1541,8 @@ class TestRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="URI",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -1383,6 +1551,8 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="A",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -1392,9 +1562,10 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="A",
             comment="Domain verification record",
             content="198.51.100.4",
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -1402,7 +1573,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="A",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -1412,6 +1582,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="A",
         )
 
         assert response.is_closed is True
@@ -1425,6 +1597,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="A",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1441,12 +1615,16 @@ class TestRecords:
             client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="A",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="A",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -1455,6 +1633,8 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="AAAA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -1464,9 +1644,10 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="AAAA",
             comment="Domain verification record",
             content="2400:cb00:2049::1",
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -1474,7 +1655,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="AAAA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -1484,6 +1664,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="AAAA",
         )
 
         assert response.is_closed is True
@@ -1497,6 +1679,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="AAAA",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1513,12 +1697,16 @@ class TestRecords:
             client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="AAAA",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="AAAA",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -1527,6 +1715,8 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CNAME",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -1536,21 +1726,18 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            data={
-                "flags": 1,
-                "tag": "issue",
-                "value": "value",
-            },
             name="example.com",
+            type="CNAME",
+            comment="Domain verification record",
+            content="content",
             proxied=True,
             settings={
+                "flatten_cname": True,
                 "ipv4_only": True,
                 "ipv6_only": True,
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="CAA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -1560,6 +1747,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CNAME",
         )
 
         assert response.is_closed is True
@@ -1573,6 +1762,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CNAME",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1589,12 +1780,16 @@ class TestRecords:
             client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="CNAME",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="CNAME",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -1603,6 +1798,8 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="MX",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -1612,14 +1809,11 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            data={
-                "algorithm": 8,
-                "certificate": "certificate",
-                "key_tag": 1,
-                "type": 9,
-            },
             name="example.com",
+            type="MX",
+            comment="Domain verification record",
+            content="mx.example.com",
+            priority=10,
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -1627,7 +1821,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="CERT",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -1637,6 +1830,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="MX",
         )
 
         assert response.is_closed is True
@@ -1650,6 +1845,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="MX",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1666,12 +1863,16 @@ class TestRecords:
             client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="MX",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="MX",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -1680,6 +1881,8 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NS",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -1689,18 +1892,17 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            content="content",
             name="example.com",
+            type="NS",
+            comment="Domain verification record",
+            content="ns1.example.com",
             proxied=True,
             settings={
-                "flatten_cname": True,
                 "ipv4_only": True,
                 "ipv6_only": True,
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="CNAME",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -1710,6 +1912,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NS",
         )
 
         assert response.is_closed is True
@@ -1723,6 +1927,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NS",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1739,12 +1945,16 @@ class TestRecords:
             client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="NS",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="NS",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -1753,6 +1963,8 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="OPENPGPKEY",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -1762,14 +1974,10 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            data={
-                "algorithm": 5,
-                "flags": 1,
-                "protocol": 3,
-                "public_key": "public_key",
-            },
             name="example.com",
+            type="OPENPGPKEY",
+            comment="Domain verification record",
+            content="content",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -1777,7 +1985,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="DNSKEY",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -1787,6 +1994,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="OPENPGPKEY",
         )
 
         assert response.is_closed is True
@@ -1800,6 +2009,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="OPENPGPKEY",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1816,12 +2027,16 @@ class TestRecords:
             client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="OPENPGPKEY",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="OPENPGPKEY",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -1830,6 +2045,8 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="PTR",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -1839,14 +2056,10 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            data={
-                "algorithm": 3,
-                "digest": "digest",
-                "digest_type": 1,
-                "key_tag": 1,
-            },
             name="example.com",
+            type="PTR",
+            comment="Domain verification record",
+            content="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -1854,7 +2067,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="DS",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -1864,6 +2076,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="PTR",
         )
 
         assert response.is_closed is True
@@ -1877,6 +2091,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="PTR",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1893,12 +2109,16 @@ class TestRecords:
             client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="PTR",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="PTR",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -1907,6 +2127,8 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="TXT",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -1916,13 +2138,10 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            data={
-                "priority": 1,
-                "target": ".",
-                "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
-            },
             name="example.com",
+            type="TXT",
+            comment="Domain verification record",
+            content='"v=spf1 include:example.com -all"',
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -1930,7 +2149,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="HTTPS",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -1940,6 +2158,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="TXT",
         )
 
         assert response.is_closed is True
@@ -1953,6 +2173,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="TXT",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1969,12 +2191,16 @@ class TestRecords:
             client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="TXT",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="TXT",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -1983,6 +2209,8 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CAA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -1992,22 +2220,14 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CAA",
             comment="Domain verification record",
             data={
-                "altitude": 0,
-                "lat_degrees": 37,
-                "lat_direction": "N",
-                "lat_minutes": 46,
-                "lat_seconds": 46,
-                "long_degrees": 122,
-                "long_direction": "W",
-                "long_minutes": 23,
-                "long_seconds": 35,
-                "precision_horz": 0,
-                "precision_vert": 0,
-                "size": 100,
+                "flags": 1,
+                "tag": "issue",
+                "value": "value",
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -2015,7 +2235,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="LOC",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -2025,6 +2244,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CAA",
         )
 
         assert response.is_closed is True
@@ -2038,6 +2259,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CAA",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2054,12 +2277,16 @@ class TestRecords:
             client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="CAA",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="CAA",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -2068,6 +2295,8 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CERT",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -2077,10 +2306,15 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            content="mx.example.com",
             name="example.com",
-            priority=10,
+            type="CERT",
+            comment="Domain verification record",
+            data={
+                "algorithm": 8,
+                "certificate": "certificate",
+                "key_tag": 1,
+                "type": 9,
+            },
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -2088,7 +2322,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="MX",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -2098,6 +2331,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CERT",
         )
 
         assert response.is_closed is True
@@ -2111,6 +2346,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CERT",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2127,12 +2364,16 @@ class TestRecords:
             client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="CERT",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="CERT",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -2141,6 +2382,8 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DNSKEY",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -2150,16 +2393,15 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DNSKEY",
             comment="Domain verification record",
             data={
-                "flags": "flags",
-                "order": 100,
-                "preference": 10,
-                "regex": "regex",
-                "replacement": "replacement",
-                "service": "service",
+                "algorithm": 5,
+                "flags": 1,
+                "protocol": 3,
+                "public_key": "public_key",
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -2167,7 +2409,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="NAPTR",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -2177,6 +2418,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DNSKEY",
         )
 
         assert response.is_closed is True
@@ -2190,6 +2433,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DNSKEY",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2206,12 +2451,16 @@ class TestRecords:
             client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="DNSKEY",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="DNSKEY",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -2220,6 +2469,8 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DS",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -2229,9 +2480,15 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            content="ns1.example.com",
             name="example.com",
+            type="DS",
+            comment="Domain verification record",
+            data={
+                "algorithm": 3,
+                "digest": "digest",
+                "digest_type": 1,
+                "key_tag": 1,
+            },
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -2239,7 +2496,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="NS",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -2249,6 +2505,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DS",
         )
 
         assert response.is_closed is True
@@ -2262,6 +2520,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DS",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2278,12 +2538,16 @@ class TestRecords:
             client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="DS",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="DS",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -2292,6 +2556,8 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="HTTPS",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -2301,9 +2567,14 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            content="content",
             name="example.com",
+            type="HTTPS",
+            comment="Domain verification record",
+            data={
+                "priority": 1,
+                "target": ".",
+                "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
+            },
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -2311,7 +2582,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="OPENPGPKEY",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -2321,6 +2591,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="HTTPS",
         )
 
         assert response.is_closed is True
@@ -2334,6 +2606,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="HTTPS",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2350,12 +2624,16 @@ class TestRecords:
             client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="HTTPS",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="HTTPS",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -2364,6 +2642,8 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="LOC",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -2373,9 +2653,23 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            content="example.com",
             name="example.com",
+            type="LOC",
+            comment="Domain verification record",
+            data={
+                "altitude": 0,
+                "lat_degrees": 37,
+                "lat_direction": "N",
+                "lat_minutes": 46,
+                "lat_seconds": 46,
+                "long_degrees": 122,
+                "long_direction": "W",
+                "long_minutes": 23,
+                "long_seconds": 35,
+                "precision_horz": 0,
+                "precision_vert": 0,
+                "size": 100,
+            },
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -2383,7 +2677,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="PTR",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -2393,6 +2686,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="LOC",
         )
 
         assert response.is_closed is True
@@ -2406,6 +2701,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="LOC",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2422,12 +2719,16 @@ class TestRecords:
             client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="LOC",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="LOC",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -2436,6 +2737,8 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NAPTR",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -2445,14 +2748,17 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NAPTR",
             comment="Domain verification record",
             data={
-                "certificate": "certificate",
-                "matching_type": 0,
-                "selector": 0,
-                "usage": 3,
+                "flags": "flags",
+                "order": 100,
+                "preference": 10,
+                "regex": "regex",
+                "replacement": "replacement",
+                "service": "service",
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -2460,7 +2766,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="SMIMEA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -2470,6 +2775,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NAPTR",
         )
 
         assert response.is_closed is True
@@ -2483,6 +2790,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NAPTR",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2499,12 +2808,16 @@ class TestRecords:
             client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="NAPTR",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="NAPTR",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -2513,6 +2826,8 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SMIMEA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -2522,14 +2837,15 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SMIMEA",
             comment="Domain verification record",
             data={
-                "port": 8806,
-                "priority": 10,
-                "target": "example.com",
-                "weight": 5,
+                "certificate": "certificate",
+                "matching_type": 0,
+                "selector": 0,
+                "usage": 3,
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -2537,7 +2853,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="SRV",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -2547,6 +2862,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SMIMEA",
         )
 
         assert response.is_closed is True
@@ -2560,6 +2877,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SMIMEA",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2576,12 +2895,16 @@ class TestRecords:
             client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="SMIMEA",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="SMIMEA",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -2590,6 +2913,8 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SRV",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -2599,13 +2924,15 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SRV",
             comment="Domain verification record",
             data={
-                "algorithm": 2,
-                "fingerprint": "fingerprint",
-                "type": 1,
+                "port": 8806,
+                "priority": 10,
+                "target": "example.com",
+                "weight": 5,
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -2613,7 +2940,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="SSHFP",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -2623,6 +2949,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SRV",
         )
 
         assert response.is_closed is True
@@ -2636,6 +2964,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SRV",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2652,12 +2982,16 @@ class TestRecords:
             client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="SRV",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="SRV",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -2666,6 +3000,8 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SSHFP",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -2675,13 +3011,14 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SSHFP",
             comment="Domain verification record",
             data={
-                "priority": 1,
-                "target": ".",
-                "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
+                "algorithm": 2,
+                "fingerprint": "fingerprint",
+                "type": 1,
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -2689,7 +3026,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="SVCB",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -2699,6 +3035,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SSHFP",
         )
 
         assert response.is_closed is True
@@ -2712,6 +3050,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SSHFP",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2728,12 +3068,16 @@ class TestRecords:
             client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="SSHFP",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="SSHFP",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -2742,6 +3086,8 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SVCB",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -2751,14 +3097,14 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SVCB",
             comment="Domain verification record",
             data={
-                "certificate": "certificate",
-                "matching_type": 1,
-                "selector": 0,
-                "usage": 0,
+                "priority": 1,
+                "target": ".",
+                "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -2766,7 +3112,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="TLSA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -2776,6 +3121,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SVCB",
         )
 
         assert response.is_closed is True
@@ -2789,6 +3136,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SVCB",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2805,12 +3154,16 @@ class TestRecords:
             client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="SVCB",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="SVCB",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -2819,6 +3172,8 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="TLSA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -2828,9 +3183,15 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            content='"v=spf1 include:example.com -all"',
             name="example.com",
+            type="TLSA",
+            comment="Domain verification record",
+            data={
+                "certificate": "certificate",
+                "matching_type": 1,
+                "selector": 0,
+                "usage": 0,
+            },
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -2838,7 +3199,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="TXT",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -2848,6 +3208,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="TLSA",
         )
 
         assert response.is_closed is True
@@ -2861,6 +3223,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="TLSA",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2877,12 +3241,16 @@ class TestRecords:
             client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="TLSA",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="TLSA",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -2891,6 +3259,8 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="URI",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -2900,12 +3270,13 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="URI",
             comment="Domain verification record",
             data={
                 "target": "http://example.com/example.html",
                 "weight": 20,
             },
-            name="example.com",
             priority=10,
             proxied=True,
             settings={
@@ -2914,7 +3285,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="URI",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -2924,6 +3294,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="URI",
         )
 
         assert response.is_closed is True
@@ -2937,6 +3309,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="URI",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2953,12 +3327,16 @@ class TestRecords:
             client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="URI",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="URI",
             )
 
     @pytest.mark.skip(reason="mock server returns invalid data")
@@ -3112,9 +3490,10 @@ class TestRecords:
             deletes=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
             patches=[
                 {
+                    "name": "example.com",
+                    "type": "A",
                     "comment": "Domain verification record",
                     "content": "198.51.100.4",
-                    "name": "example.com",
                     "proxied": True,
                     "settings": {
                         "ipv4_only": True,
@@ -3122,15 +3501,15 @@ class TestRecords:
                     },
                     "tags": ["owner:dns-team"],
                     "ttl": 3600,
-                    "type": "A",
                     "id": "023e105f4ecef8ad9ca31a8372d0c353",
                 }
             ],
             posts=[
                 {
+                    "name": "example.com",
+                    "type": "A",
                     "comment": "Domain verification record",
                     "content": "198.51.100.4",
-                    "name": "example.com",
                     "proxied": True,
                     "settings": {
                         "ipv4_only": True,
@@ -3138,14 +3517,14 @@ class TestRecords:
                     },
                     "tags": ["owner:dns-team"],
                     "ttl": 3600,
-                    "type": "A",
                 }
             ],
             puts=[
                 {
+                    "name": "example.com",
+                    "type": "A",
                     "comment": "Domain verification record",
                     "content": "198.51.100.4",
-                    "name": "example.com",
                     "proxied": True,
                     "settings": {
                         "ipv4_only": True,
@@ -3153,7 +3532,6 @@ class TestRecords:
                     },
                     "tags": ["owner:dns-team"],
                     "ttl": 3600,
-                    "type": "A",
                     "id": "023e105f4ecef8ad9ca31a8372d0c353",
                 }
             ],
@@ -3200,6 +3578,8 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="A",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -3209,9 +3589,10 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="A",
             comment="Domain verification record",
             content="198.51.100.4",
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -3219,7 +3600,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="A",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -3229,6 +3609,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="A",
         )
 
         assert response.is_closed is True
@@ -3242,6 +3624,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="A",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3258,12 +3642,16 @@ class TestRecords:
             client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="A",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="A",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -3272,6 +3660,8 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="AAAA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -3281,9 +3671,10 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="AAAA",
             comment="Domain verification record",
             content="2400:cb00:2049::1",
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -3291,7 +3682,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="AAAA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -3301,6 +3691,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="AAAA",
         )
 
         assert response.is_closed is True
@@ -3314,6 +3706,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="AAAA",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3330,12 +3724,16 @@ class TestRecords:
             client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="AAAA",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="AAAA",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -3344,6 +3742,8 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CNAME",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -3353,21 +3753,18 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            data={
-                "flags": 1,
-                "tag": "issue",
-                "value": "value",
-            },
             name="example.com",
+            type="CNAME",
+            comment="Domain verification record",
+            content="content",
             proxied=True,
             settings={
+                "flatten_cname": True,
                 "ipv4_only": True,
                 "ipv6_only": True,
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="CAA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -3377,6 +3774,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CNAME",
         )
 
         assert response.is_closed is True
@@ -3390,6 +3789,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CNAME",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3406,12 +3807,16 @@ class TestRecords:
             client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="CNAME",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="CNAME",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -3420,6 +3825,8 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="MX",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -3429,14 +3836,11 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            data={
-                "algorithm": 8,
-                "certificate": "certificate",
-                "key_tag": 1,
-                "type": 9,
-            },
             name="example.com",
+            type="MX",
+            comment="Domain verification record",
+            content="mx.example.com",
+            priority=10,
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -3444,7 +3848,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="CERT",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -3454,6 +3857,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="MX",
         )
 
         assert response.is_closed is True
@@ -3467,6 +3872,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="MX",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3483,12 +3890,16 @@ class TestRecords:
             client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="MX",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="MX",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -3497,6 +3908,8 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NS",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -3506,18 +3919,17 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            content="content",
             name="example.com",
+            type="NS",
+            comment="Domain verification record",
+            content="ns1.example.com",
             proxied=True,
             settings={
-                "flatten_cname": True,
                 "ipv4_only": True,
                 "ipv6_only": True,
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="CNAME",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -3527,6 +3939,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NS",
         )
 
         assert response.is_closed is True
@@ -3540,6 +3954,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NS",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3556,12 +3972,16 @@ class TestRecords:
             client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="NS",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="NS",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -3570,6 +3990,8 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="OPENPGPKEY",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -3579,14 +4001,10 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            data={
-                "algorithm": 5,
-                "flags": 1,
-                "protocol": 3,
-                "public_key": "public_key",
-            },
             name="example.com",
+            type="OPENPGPKEY",
+            comment="Domain verification record",
+            content="content",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -3594,7 +4012,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="DNSKEY",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -3604,6 +4021,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="OPENPGPKEY",
         )
 
         assert response.is_closed is True
@@ -3617,6 +4036,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="OPENPGPKEY",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3633,12 +4054,16 @@ class TestRecords:
             client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="OPENPGPKEY",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="OPENPGPKEY",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -3647,6 +4072,8 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="PTR",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -3656,14 +4083,10 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            data={
-                "algorithm": 3,
-                "digest": "digest",
-                "digest_type": 1,
-                "key_tag": 1,
-            },
             name="example.com",
+            type="PTR",
+            comment="Domain verification record",
+            content="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -3671,7 +4094,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="DS",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -3681,6 +4103,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="PTR",
         )
 
         assert response.is_closed is True
@@ -3694,6 +4118,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="PTR",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3710,12 +4136,16 @@ class TestRecords:
             client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="PTR",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="PTR",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -3724,6 +4154,8 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="TXT",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -3733,13 +4165,10 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            data={
-                "priority": 1,
-                "target": ".",
-                "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
-            },
             name="example.com",
+            type="TXT",
+            comment="Domain verification record",
+            content='"v=spf1 include:example.com -all"',
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -3747,7 +4176,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="HTTPS",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -3757,6 +4185,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="TXT",
         )
 
         assert response.is_closed is True
@@ -3770,6 +4200,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="TXT",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3786,12 +4218,16 @@ class TestRecords:
             client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="TXT",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="TXT",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -3800,6 +4236,8 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CAA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -3809,22 +4247,14 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CAA",
             comment="Domain verification record",
             data={
-                "altitude": 0,
-                "lat_degrees": 37,
-                "lat_direction": "N",
-                "lat_minutes": 46,
-                "lat_seconds": 46,
-                "long_degrees": 122,
-                "long_direction": "W",
-                "long_minutes": 23,
-                "long_seconds": 35,
-                "precision_horz": 0,
-                "precision_vert": 0,
-                "size": 100,
+                "flags": 1,
+                "tag": "issue",
+                "value": "value",
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -3832,7 +4262,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="LOC",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -3842,6 +4271,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CAA",
         )
 
         assert response.is_closed is True
@@ -3855,6 +4286,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CAA",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3871,12 +4304,16 @@ class TestRecords:
             client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="CAA",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="CAA",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -3885,6 +4322,8 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CERT",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -3894,10 +4333,15 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            content="mx.example.com",
             name="example.com",
-            priority=10,
+            type="CERT",
+            comment="Domain verification record",
+            data={
+                "algorithm": 8,
+                "certificate": "certificate",
+                "key_tag": 1,
+                "type": 9,
+            },
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -3905,7 +4349,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="MX",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -3915,6 +4358,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CERT",
         )
 
         assert response.is_closed is True
@@ -3928,6 +4373,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CERT",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3944,12 +4391,16 @@ class TestRecords:
             client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="CERT",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="CERT",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -3958,6 +4409,8 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DNSKEY",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -3967,16 +4420,15 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DNSKEY",
             comment="Domain verification record",
             data={
-                "flags": "flags",
-                "order": 100,
-                "preference": 10,
-                "regex": "regex",
-                "replacement": "replacement",
-                "service": "service",
+                "algorithm": 5,
+                "flags": 1,
+                "protocol": 3,
+                "public_key": "public_key",
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -3984,7 +4436,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="NAPTR",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -3994,6 +4445,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DNSKEY",
         )
 
         assert response.is_closed is True
@@ -4007,6 +4460,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DNSKEY",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4023,12 +4478,16 @@ class TestRecords:
             client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="DNSKEY",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="DNSKEY",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -4037,6 +4496,8 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DS",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -4046,9 +4507,15 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            content="ns1.example.com",
             name="example.com",
+            type="DS",
+            comment="Domain verification record",
+            data={
+                "algorithm": 3,
+                "digest": "digest",
+                "digest_type": 1,
+                "key_tag": 1,
+            },
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -4056,7 +4523,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="NS",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -4066,6 +4532,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DS",
         )
 
         assert response.is_closed is True
@@ -4079,6 +4547,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DS",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4095,12 +4565,16 @@ class TestRecords:
             client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="DS",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="DS",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -4109,6 +4583,8 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="HTTPS",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -4118,9 +4594,14 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            content="content",
             name="example.com",
+            type="HTTPS",
+            comment="Domain verification record",
+            data={
+                "priority": 1,
+                "target": ".",
+                "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
+            },
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -4128,7 +4609,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="OPENPGPKEY",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -4138,6 +4618,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="HTTPS",
         )
 
         assert response.is_closed is True
@@ -4151,6 +4633,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="HTTPS",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4167,12 +4651,16 @@ class TestRecords:
             client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="HTTPS",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="HTTPS",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -4181,6 +4669,8 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="LOC",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -4190,9 +4680,23 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            content="example.com",
             name="example.com",
+            type="LOC",
+            comment="Domain verification record",
+            data={
+                "altitude": 0,
+                "lat_degrees": 37,
+                "lat_direction": "N",
+                "lat_minutes": 46,
+                "lat_seconds": 46,
+                "long_degrees": 122,
+                "long_direction": "W",
+                "long_minutes": 23,
+                "long_seconds": 35,
+                "precision_horz": 0,
+                "precision_vert": 0,
+                "size": 100,
+            },
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -4200,7 +4704,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="PTR",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -4210,6 +4713,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="LOC",
         )
 
         assert response.is_closed is True
@@ -4223,6 +4728,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="LOC",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4239,12 +4746,16 @@ class TestRecords:
             client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="LOC",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="LOC",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -4253,6 +4764,8 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NAPTR",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -4262,14 +4775,17 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NAPTR",
             comment="Domain verification record",
             data={
-                "certificate": "certificate",
-                "matching_type": 0,
-                "selector": 0,
-                "usage": 3,
+                "flags": "flags",
+                "order": 100,
+                "preference": 10,
+                "regex": "regex",
+                "replacement": "replacement",
+                "service": "service",
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -4277,7 +4793,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="SMIMEA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -4287,6 +4802,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NAPTR",
         )
 
         assert response.is_closed is True
@@ -4300,6 +4817,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NAPTR",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4316,12 +4835,16 @@ class TestRecords:
             client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="NAPTR",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="NAPTR",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -4330,6 +4853,8 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SMIMEA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -4339,14 +4864,15 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SMIMEA",
             comment="Domain verification record",
             data={
-                "port": 8806,
-                "priority": 10,
-                "target": "example.com",
-                "weight": 5,
+                "certificate": "certificate",
+                "matching_type": 0,
+                "selector": 0,
+                "usage": 3,
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -4354,7 +4880,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="SRV",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -4364,6 +4889,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SMIMEA",
         )
 
         assert response.is_closed is True
@@ -4377,6 +4904,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SMIMEA",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4393,12 +4922,16 @@ class TestRecords:
             client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="SMIMEA",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="SMIMEA",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -4407,6 +4940,8 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SRV",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -4416,13 +4951,15 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SRV",
             comment="Domain verification record",
             data={
-                "algorithm": 2,
-                "fingerprint": "fingerprint",
-                "type": 1,
+                "port": 8806,
+                "priority": 10,
+                "target": "example.com",
+                "weight": 5,
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -4430,7 +4967,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="SSHFP",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -4440,6 +4976,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SRV",
         )
 
         assert response.is_closed is True
@@ -4453,6 +4991,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SRV",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4469,12 +5009,16 @@ class TestRecords:
             client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="SRV",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="SRV",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -4483,6 +5027,8 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SSHFP",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -4492,13 +5038,14 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SSHFP",
             comment="Domain verification record",
             data={
-                "priority": 1,
-                "target": ".",
-                "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
+                "algorithm": 2,
+                "fingerprint": "fingerprint",
+                "type": 1,
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -4506,7 +5053,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="SVCB",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -4516,6 +5062,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SSHFP",
         )
 
         assert response.is_closed is True
@@ -4529,6 +5077,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SSHFP",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4545,12 +5095,16 @@ class TestRecords:
             client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="SSHFP",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="SSHFP",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -4559,6 +5113,8 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SVCB",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -4568,14 +5124,14 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SVCB",
             comment="Domain verification record",
             data={
-                "certificate": "certificate",
-                "matching_type": 1,
-                "selector": 0,
-                "usage": 0,
+                "priority": 1,
+                "target": ".",
+                "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -4583,7 +5139,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="TLSA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -4593,6 +5148,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SVCB",
         )
 
         assert response.is_closed is True
@@ -4606,6 +5163,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SVCB",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4622,12 +5181,16 @@ class TestRecords:
             client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="SVCB",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="SVCB",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -4636,6 +5199,8 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="TLSA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -4645,9 +5210,15 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            content='"v=spf1 include:example.com -all"',
             name="example.com",
+            type="TLSA",
+            comment="Domain verification record",
+            data={
+                "certificate": "certificate",
+                "matching_type": 1,
+                "selector": 0,
+                "usage": 0,
+            },
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -4655,7 +5226,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="TXT",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -4665,6 +5235,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="TLSA",
         )
 
         assert response.is_closed is True
@@ -4678,6 +5250,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="TLSA",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4694,12 +5268,16 @@ class TestRecords:
             client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="TLSA",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="TLSA",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -4708,6 +5286,8 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="URI",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -4717,12 +5297,13 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="URI",
             comment="Domain verification record",
             data={
                 "target": "http://example.com/example.html",
                 "weight": 20,
             },
-            name="example.com",
             priority=10,
             proxied=True,
             settings={
@@ -4731,7 +5312,6 @@ class TestRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="URI",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -4741,6 +5321,8 @@ class TestRecords:
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="URI",
         )
 
         assert response.is_closed is True
@@ -4754,6 +5336,8 @@ class TestRecords:
         with client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="URI",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4770,12 +5354,16 @@ class TestRecords:
             client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="URI",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="URI",
             )
 
     @parametrize
@@ -4975,6 +5563,8 @@ class TestAsyncRecords:
     async def test_method_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="A",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -4983,9 +5573,10 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="A",
             comment="Domain verification record",
             content="198.51.100.4",
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -4993,7 +5584,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="A",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -5002,6 +5592,8 @@ class TestAsyncRecords:
     async def test_raw_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="A",
         )
 
         assert response.is_closed is True
@@ -5014,6 +5606,8 @@ class TestAsyncRecords:
     async def test_streaming_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="A",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5029,6 +5623,8 @@ class TestAsyncRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="A",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -5036,6 +5632,8 @@ class TestAsyncRecords:
     async def test_method_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="AAAA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -5044,9 +5642,10 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="AAAA",
             comment="Domain verification record",
             content="2400:cb00:2049::1",
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -5054,7 +5653,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="AAAA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -5063,6 +5661,8 @@ class TestAsyncRecords:
     async def test_raw_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="AAAA",
         )
 
         assert response.is_closed is True
@@ -5075,6 +5675,8 @@ class TestAsyncRecords:
     async def test_streaming_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="AAAA",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5090,6 +5692,8 @@ class TestAsyncRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="AAAA",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -5097,6 +5701,8 @@ class TestAsyncRecords:
     async def test_method_create_overload_3(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CNAME",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -5105,21 +5711,18 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_3(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            data={
-                "flags": 1,
-                "tag": "issue",
-                "value": "value",
-            },
             name="example.com",
+            type="CNAME",
+            comment="Domain verification record",
+            content="content",
             proxied=True,
             settings={
+                "flatten_cname": True,
                 "ipv4_only": True,
                 "ipv6_only": True,
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="CAA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -5128,6 +5731,8 @@ class TestAsyncRecords:
     async def test_raw_response_create_overload_3(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CNAME",
         )
 
         assert response.is_closed is True
@@ -5140,6 +5745,8 @@ class TestAsyncRecords:
     async def test_streaming_response_create_overload_3(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CNAME",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5155,6 +5762,8 @@ class TestAsyncRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="CNAME",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -5162,6 +5771,8 @@ class TestAsyncRecords:
     async def test_method_create_overload_4(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="MX",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -5170,14 +5781,11 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_4(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            data={
-                "algorithm": 8,
-                "certificate": "certificate",
-                "key_tag": 1,
-                "type": 9,
-            },
             name="example.com",
+            type="MX",
+            comment="Domain verification record",
+            content="mx.example.com",
+            priority=10,
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -5185,7 +5793,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="CERT",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -5194,6 +5801,8 @@ class TestAsyncRecords:
     async def test_raw_response_create_overload_4(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="MX",
         )
 
         assert response.is_closed is True
@@ -5206,6 +5815,8 @@ class TestAsyncRecords:
     async def test_streaming_response_create_overload_4(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="MX",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5221,6 +5832,8 @@ class TestAsyncRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="MX",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -5228,6 +5841,8 @@ class TestAsyncRecords:
     async def test_method_create_overload_5(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NS",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -5236,18 +5851,17 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_5(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            content="content",
             name="example.com",
+            type="NS",
+            comment="Domain verification record",
+            content="ns1.example.com",
             proxied=True,
             settings={
-                "flatten_cname": True,
                 "ipv4_only": True,
                 "ipv6_only": True,
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="CNAME",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -5256,6 +5870,8 @@ class TestAsyncRecords:
     async def test_raw_response_create_overload_5(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NS",
         )
 
         assert response.is_closed is True
@@ -5268,6 +5884,8 @@ class TestAsyncRecords:
     async def test_streaming_response_create_overload_5(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NS",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5283,6 +5901,8 @@ class TestAsyncRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="NS",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -5290,6 +5910,8 @@ class TestAsyncRecords:
     async def test_method_create_overload_6(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="OPENPGPKEY",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -5298,14 +5920,10 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_6(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            data={
-                "algorithm": 5,
-                "flags": 1,
-                "protocol": 3,
-                "public_key": "public_key",
-            },
             name="example.com",
+            type="OPENPGPKEY",
+            comment="Domain verification record",
+            content="content",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -5313,7 +5931,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="DNSKEY",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -5322,6 +5939,8 @@ class TestAsyncRecords:
     async def test_raw_response_create_overload_6(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="OPENPGPKEY",
         )
 
         assert response.is_closed is True
@@ -5334,6 +5953,8 @@ class TestAsyncRecords:
     async def test_streaming_response_create_overload_6(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="OPENPGPKEY",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5349,6 +5970,8 @@ class TestAsyncRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="OPENPGPKEY",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -5356,6 +5979,8 @@ class TestAsyncRecords:
     async def test_method_create_overload_7(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="PTR",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -5364,14 +5989,10 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_7(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            data={
-                "algorithm": 3,
-                "digest": "digest",
-                "digest_type": 1,
-                "key_tag": 1,
-            },
             name="example.com",
+            type="PTR",
+            comment="Domain verification record",
+            content="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -5379,7 +6000,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="DS",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -5388,6 +6008,8 @@ class TestAsyncRecords:
     async def test_raw_response_create_overload_7(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="PTR",
         )
 
         assert response.is_closed is True
@@ -5400,6 +6022,8 @@ class TestAsyncRecords:
     async def test_streaming_response_create_overload_7(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="PTR",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5415,6 +6039,8 @@ class TestAsyncRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="PTR",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -5422,6 +6048,8 @@ class TestAsyncRecords:
     async def test_method_create_overload_8(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="TXT",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -5430,13 +6058,10 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_8(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            data={
-                "priority": 1,
-                "target": ".",
-                "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
-            },
             name="example.com",
+            type="TXT",
+            comment="Domain verification record",
+            content='"v=spf1 include:example.com -all"',
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -5444,7 +6069,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="HTTPS",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -5453,6 +6077,8 @@ class TestAsyncRecords:
     async def test_raw_response_create_overload_8(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="TXT",
         )
 
         assert response.is_closed is True
@@ -5465,6 +6091,8 @@ class TestAsyncRecords:
     async def test_streaming_response_create_overload_8(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="TXT",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5480,6 +6108,8 @@ class TestAsyncRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="TXT",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -5487,6 +6117,8 @@ class TestAsyncRecords:
     async def test_method_create_overload_9(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CAA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -5495,22 +6127,14 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_9(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CAA",
             comment="Domain verification record",
             data={
-                "altitude": 0,
-                "lat_degrees": 37,
-                "lat_direction": "N",
-                "lat_minutes": 46,
-                "lat_seconds": 46,
-                "long_degrees": 122,
-                "long_direction": "W",
-                "long_minutes": 23,
-                "long_seconds": 35,
-                "precision_horz": 0,
-                "precision_vert": 0,
-                "size": 100,
+                "flags": 1,
+                "tag": "issue",
+                "value": "value",
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -5518,7 +6142,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="LOC",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -5527,6 +6150,8 @@ class TestAsyncRecords:
     async def test_raw_response_create_overload_9(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CAA",
         )
 
         assert response.is_closed is True
@@ -5539,6 +6164,8 @@ class TestAsyncRecords:
     async def test_streaming_response_create_overload_9(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CAA",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5554,6 +6181,8 @@ class TestAsyncRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="CAA",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -5561,6 +6190,8 @@ class TestAsyncRecords:
     async def test_method_create_overload_10(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CERT",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -5569,10 +6200,15 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_10(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            content="mx.example.com",
             name="example.com",
-            priority=10,
+            type="CERT",
+            comment="Domain verification record",
+            data={
+                "algorithm": 8,
+                "certificate": "certificate",
+                "key_tag": 1,
+                "type": 9,
+            },
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -5580,7 +6216,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="MX",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -5589,6 +6224,8 @@ class TestAsyncRecords:
     async def test_raw_response_create_overload_10(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CERT",
         )
 
         assert response.is_closed is True
@@ -5601,6 +6238,8 @@ class TestAsyncRecords:
     async def test_streaming_response_create_overload_10(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CERT",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5616,6 +6255,8 @@ class TestAsyncRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="CERT",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -5623,6 +6264,8 @@ class TestAsyncRecords:
     async def test_method_create_overload_11(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DNSKEY",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -5631,16 +6274,15 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_11(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DNSKEY",
             comment="Domain verification record",
             data={
-                "flags": "flags",
-                "order": 100,
-                "preference": 10,
-                "regex": "regex",
-                "replacement": "replacement",
-                "service": "service",
+                "algorithm": 5,
+                "flags": 1,
+                "protocol": 3,
+                "public_key": "public_key",
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -5648,7 +6290,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="NAPTR",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -5657,6 +6298,8 @@ class TestAsyncRecords:
     async def test_raw_response_create_overload_11(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DNSKEY",
         )
 
         assert response.is_closed is True
@@ -5669,6 +6312,8 @@ class TestAsyncRecords:
     async def test_streaming_response_create_overload_11(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DNSKEY",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5684,6 +6329,8 @@ class TestAsyncRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="DNSKEY",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -5691,6 +6338,8 @@ class TestAsyncRecords:
     async def test_method_create_overload_12(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DS",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -5699,9 +6348,15 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_12(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            content="ns1.example.com",
             name="example.com",
+            type="DS",
+            comment="Domain verification record",
+            data={
+                "algorithm": 3,
+                "digest": "digest",
+                "digest_type": 1,
+                "key_tag": 1,
+            },
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -5709,7 +6364,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="NS",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -5718,6 +6372,8 @@ class TestAsyncRecords:
     async def test_raw_response_create_overload_12(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DS",
         )
 
         assert response.is_closed is True
@@ -5730,6 +6386,8 @@ class TestAsyncRecords:
     async def test_streaming_response_create_overload_12(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DS",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5745,6 +6403,8 @@ class TestAsyncRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="DS",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -5752,6 +6412,8 @@ class TestAsyncRecords:
     async def test_method_create_overload_13(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="HTTPS",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -5760,9 +6422,14 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_13(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            content="content",
             name="example.com",
+            type="HTTPS",
+            comment="Domain verification record",
+            data={
+                "priority": 1,
+                "target": ".",
+                "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
+            },
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -5770,7 +6437,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="OPENPGPKEY",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -5779,6 +6445,8 @@ class TestAsyncRecords:
     async def test_raw_response_create_overload_13(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="HTTPS",
         )
 
         assert response.is_closed is True
@@ -5791,6 +6459,8 @@ class TestAsyncRecords:
     async def test_streaming_response_create_overload_13(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="HTTPS",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5806,6 +6476,8 @@ class TestAsyncRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="HTTPS",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -5813,6 +6485,8 @@ class TestAsyncRecords:
     async def test_method_create_overload_14(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="LOC",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -5821,9 +6495,23 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_14(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            content="example.com",
             name="example.com",
+            type="LOC",
+            comment="Domain verification record",
+            data={
+                "altitude": 0,
+                "lat_degrees": 37,
+                "lat_direction": "N",
+                "lat_minutes": 46,
+                "lat_seconds": 46,
+                "long_degrees": 122,
+                "long_direction": "W",
+                "long_minutes": 23,
+                "long_seconds": 35,
+                "precision_horz": 0,
+                "precision_vert": 0,
+                "size": 100,
+            },
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -5831,7 +6519,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="PTR",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -5840,6 +6527,8 @@ class TestAsyncRecords:
     async def test_raw_response_create_overload_14(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="LOC",
         )
 
         assert response.is_closed is True
@@ -5852,6 +6541,8 @@ class TestAsyncRecords:
     async def test_streaming_response_create_overload_14(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="LOC",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5867,6 +6558,8 @@ class TestAsyncRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="LOC",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -5874,6 +6567,8 @@ class TestAsyncRecords:
     async def test_method_create_overload_15(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NAPTR",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -5882,14 +6577,17 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_15(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NAPTR",
             comment="Domain verification record",
             data={
-                "certificate": "certificate",
-                "matching_type": 0,
-                "selector": 0,
-                "usage": 3,
+                "flags": "flags",
+                "order": 100,
+                "preference": 10,
+                "regex": "regex",
+                "replacement": "replacement",
+                "service": "service",
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -5897,7 +6595,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="SMIMEA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -5906,6 +6603,8 @@ class TestAsyncRecords:
     async def test_raw_response_create_overload_15(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NAPTR",
         )
 
         assert response.is_closed is True
@@ -5918,6 +6617,8 @@ class TestAsyncRecords:
     async def test_streaming_response_create_overload_15(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NAPTR",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5933,6 +6634,8 @@ class TestAsyncRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="NAPTR",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -5940,6 +6643,8 @@ class TestAsyncRecords:
     async def test_method_create_overload_16(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SMIMEA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -5948,14 +6653,15 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_16(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SMIMEA",
             comment="Domain verification record",
             data={
-                "port": 8806,
-                "priority": 10,
-                "target": "example.com",
-                "weight": 5,
+                "certificate": "certificate",
+                "matching_type": 0,
+                "selector": 0,
+                "usage": 3,
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -5963,7 +6669,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="SRV",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -5972,6 +6677,8 @@ class TestAsyncRecords:
     async def test_raw_response_create_overload_16(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SMIMEA",
         )
 
         assert response.is_closed is True
@@ -5984,6 +6691,8 @@ class TestAsyncRecords:
     async def test_streaming_response_create_overload_16(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SMIMEA",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5999,6 +6708,8 @@ class TestAsyncRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="SMIMEA",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -6006,6 +6717,8 @@ class TestAsyncRecords:
     async def test_method_create_overload_17(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SRV",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -6014,13 +6727,15 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_17(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SRV",
             comment="Domain verification record",
             data={
-                "algorithm": 2,
-                "fingerprint": "fingerprint",
-                "type": 1,
+                "port": 8806,
+                "priority": 10,
+                "target": "example.com",
+                "weight": 5,
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -6028,7 +6743,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="SSHFP",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -6037,6 +6751,8 @@ class TestAsyncRecords:
     async def test_raw_response_create_overload_17(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SRV",
         )
 
         assert response.is_closed is True
@@ -6049,6 +6765,8 @@ class TestAsyncRecords:
     async def test_streaming_response_create_overload_17(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SRV",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -6064,6 +6782,8 @@ class TestAsyncRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="SRV",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -6071,6 +6791,8 @@ class TestAsyncRecords:
     async def test_method_create_overload_18(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SSHFP",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -6079,13 +6801,14 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_18(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SSHFP",
             comment="Domain verification record",
             data={
-                "priority": 1,
-                "target": ".",
-                "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
+                "algorithm": 2,
+                "fingerprint": "fingerprint",
+                "type": 1,
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -6093,7 +6816,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="SVCB",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -6102,6 +6824,8 @@ class TestAsyncRecords:
     async def test_raw_response_create_overload_18(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SSHFP",
         )
 
         assert response.is_closed is True
@@ -6114,6 +6838,8 @@ class TestAsyncRecords:
     async def test_streaming_response_create_overload_18(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SSHFP",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -6129,6 +6855,8 @@ class TestAsyncRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="SSHFP",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -6136,6 +6864,8 @@ class TestAsyncRecords:
     async def test_method_create_overload_19(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SVCB",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -6144,14 +6874,14 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_19(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SVCB",
             comment="Domain verification record",
             data={
-                "certificate": "certificate",
-                "matching_type": 1,
-                "selector": 0,
-                "usage": 0,
+                "priority": 1,
+                "target": ".",
+                "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -6159,7 +6889,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="TLSA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -6168,6 +6897,8 @@ class TestAsyncRecords:
     async def test_raw_response_create_overload_19(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SVCB",
         )
 
         assert response.is_closed is True
@@ -6180,6 +6911,8 @@ class TestAsyncRecords:
     async def test_streaming_response_create_overload_19(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SVCB",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -6195,6 +6928,8 @@ class TestAsyncRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="SVCB",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -6202,6 +6937,8 @@ class TestAsyncRecords:
     async def test_method_create_overload_20(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="TLSA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -6210,9 +6947,15 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_20(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            content='"v=spf1 include:example.com -all"',
             name="example.com",
+            type="TLSA",
+            comment="Domain verification record",
+            data={
+                "certificate": "certificate",
+                "matching_type": 1,
+                "selector": 0,
+                "usage": 0,
+            },
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -6220,7 +6963,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="TXT",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -6229,6 +6971,8 @@ class TestAsyncRecords:
     async def test_raw_response_create_overload_20(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="TLSA",
         )
 
         assert response.is_closed is True
@@ -6241,6 +6985,8 @@ class TestAsyncRecords:
     async def test_streaming_response_create_overload_20(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="TLSA",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -6256,6 +7002,8 @@ class TestAsyncRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="TLSA",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -6263,6 +7011,8 @@ class TestAsyncRecords:
     async def test_method_create_overload_21(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="URI",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -6271,12 +7021,13 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_21(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="URI",
             comment="Domain verification record",
             data={
                 "target": "http://example.com/example.html",
                 "weight": 20,
             },
-            name="example.com",
             priority=10,
             proxied=True,
             settings={
@@ -6285,7 +7036,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="URI",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -6294,6 +7044,8 @@ class TestAsyncRecords:
     async def test_raw_response_create_overload_21(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="URI",
         )
 
         assert response.is_closed is True
@@ -6306,6 +7058,8 @@ class TestAsyncRecords:
     async def test_streaming_response_create_overload_21(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="URI",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -6321,6 +7075,8 @@ class TestAsyncRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
                 zone_id="",
+                name="example.com",
+                type="URI",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -6329,6 +7085,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="A",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -6338,9 +7096,10 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="A",
             comment="Domain verification record",
             content="198.51.100.4",
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -6348,7 +7107,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="A",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -6358,6 +7116,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="A",
         )
 
         assert response.is_closed is True
@@ -6371,6 +7131,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="A",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -6387,12 +7149,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="A",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="A",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -6401,6 +7167,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="AAAA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -6410,9 +7178,10 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="AAAA",
             comment="Domain verification record",
             content="2400:cb00:2049::1",
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -6420,7 +7189,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="AAAA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -6430,6 +7198,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="AAAA",
         )
 
         assert response.is_closed is True
@@ -6443,6 +7213,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="AAAA",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -6459,12 +7231,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="AAAA",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="AAAA",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -6473,6 +7249,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CNAME",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -6482,21 +7260,18 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            data={
-                "flags": 1,
-                "tag": "issue",
-                "value": "value",
-            },
             name="example.com",
+            type="CNAME",
+            comment="Domain verification record",
+            content="content",
             proxied=True,
             settings={
+                "flatten_cname": True,
                 "ipv4_only": True,
                 "ipv6_only": True,
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="CAA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -6506,6 +7281,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CNAME",
         )
 
         assert response.is_closed is True
@@ -6519,6 +7296,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CNAME",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -6535,12 +7314,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="CNAME",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="CNAME",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -6549,6 +7332,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="MX",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -6558,14 +7343,11 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            data={
-                "algorithm": 8,
-                "certificate": "certificate",
-                "key_tag": 1,
-                "type": 9,
-            },
             name="example.com",
+            type="MX",
+            comment="Domain verification record",
+            content="mx.example.com",
+            priority=10,
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -6573,7 +7355,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="CERT",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -6583,6 +7364,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="MX",
         )
 
         assert response.is_closed is True
@@ -6596,6 +7379,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="MX",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -6612,12 +7397,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="MX",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="MX",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -6626,6 +7415,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NS",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -6635,18 +7426,17 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            content="content",
             name="example.com",
+            type="NS",
+            comment="Domain verification record",
+            content="ns1.example.com",
             proxied=True,
             settings={
-                "flatten_cname": True,
                 "ipv4_only": True,
                 "ipv6_only": True,
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="CNAME",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -6656,6 +7446,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NS",
         )
 
         assert response.is_closed is True
@@ -6669,6 +7461,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NS",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -6685,12 +7479,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="NS",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="NS",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -6699,6 +7497,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="OPENPGPKEY",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -6708,14 +7508,10 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            data={
-                "algorithm": 5,
-                "flags": 1,
-                "protocol": 3,
-                "public_key": "public_key",
-            },
             name="example.com",
+            type="OPENPGPKEY",
+            comment="Domain verification record",
+            content="content",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -6723,7 +7519,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="DNSKEY",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -6733,6 +7528,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="OPENPGPKEY",
         )
 
         assert response.is_closed is True
@@ -6746,6 +7543,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="OPENPGPKEY",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -6762,12 +7561,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="OPENPGPKEY",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="OPENPGPKEY",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -6776,6 +7579,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="PTR",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -6785,14 +7590,10 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            data={
-                "algorithm": 3,
-                "digest": "digest",
-                "digest_type": 1,
-                "key_tag": 1,
-            },
             name="example.com",
+            type="PTR",
+            comment="Domain verification record",
+            content="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -6800,7 +7601,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="DS",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -6810,6 +7610,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="PTR",
         )
 
         assert response.is_closed is True
@@ -6823,6 +7625,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="PTR",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -6839,12 +7643,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="PTR",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="PTR",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -6853,6 +7661,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="TXT",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -6862,13 +7672,10 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            data={
-                "priority": 1,
-                "target": ".",
-                "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
-            },
             name="example.com",
+            type="TXT",
+            comment="Domain verification record",
+            content='"v=spf1 include:example.com -all"',
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -6876,7 +7683,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="HTTPS",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -6886,6 +7692,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="TXT",
         )
 
         assert response.is_closed is True
@@ -6899,6 +7707,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="TXT",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -6915,12 +7725,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="TXT",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="TXT",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -6929,6 +7743,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CAA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -6938,22 +7754,14 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CAA",
             comment="Domain verification record",
             data={
-                "altitude": 0,
-                "lat_degrees": 37,
-                "lat_direction": "N",
-                "lat_minutes": 46,
-                "lat_seconds": 46,
-                "long_degrees": 122,
-                "long_direction": "W",
-                "long_minutes": 23,
-                "long_seconds": 35,
-                "precision_horz": 0,
-                "precision_vert": 0,
-                "size": 100,
+                "flags": 1,
+                "tag": "issue",
+                "value": "value",
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -6961,7 +7769,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="LOC",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -6971,6 +7778,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CAA",
         )
 
         assert response.is_closed is True
@@ -6984,6 +7793,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CAA",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -7000,12 +7811,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="CAA",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="CAA",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -7014,6 +7829,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CERT",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -7023,10 +7840,15 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            content="mx.example.com",
             name="example.com",
-            priority=10,
+            type="CERT",
+            comment="Domain verification record",
+            data={
+                "algorithm": 8,
+                "certificate": "certificate",
+                "key_tag": 1,
+                "type": 9,
+            },
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -7034,7 +7856,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="MX",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -7044,6 +7865,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CERT",
         )
 
         assert response.is_closed is True
@@ -7057,6 +7880,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CERT",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -7073,12 +7898,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="CERT",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="CERT",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -7087,6 +7916,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DNSKEY",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -7096,16 +7927,15 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DNSKEY",
             comment="Domain verification record",
             data={
-                "flags": "flags",
-                "order": 100,
-                "preference": 10,
-                "regex": "regex",
-                "replacement": "replacement",
-                "service": "service",
+                "algorithm": 5,
+                "flags": 1,
+                "protocol": 3,
+                "public_key": "public_key",
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -7113,7 +7943,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="NAPTR",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -7123,6 +7952,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DNSKEY",
         )
 
         assert response.is_closed is True
@@ -7136,6 +7967,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DNSKEY",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -7152,12 +7985,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="DNSKEY",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="DNSKEY",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -7166,6 +8003,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DS",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -7175,9 +8014,15 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            content="ns1.example.com",
             name="example.com",
+            type="DS",
+            comment="Domain verification record",
+            data={
+                "algorithm": 3,
+                "digest": "digest",
+                "digest_type": 1,
+                "key_tag": 1,
+            },
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -7185,7 +8030,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="NS",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -7195,6 +8039,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DS",
         )
 
         assert response.is_closed is True
@@ -7208,6 +8054,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DS",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -7224,12 +8072,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="DS",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="DS",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -7238,6 +8090,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="HTTPS",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -7247,9 +8101,14 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            content="content",
             name="example.com",
+            type="HTTPS",
+            comment="Domain verification record",
+            data={
+                "priority": 1,
+                "target": ".",
+                "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
+            },
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -7257,7 +8116,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="OPENPGPKEY",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -7267,6 +8125,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="HTTPS",
         )
 
         assert response.is_closed is True
@@ -7280,6 +8140,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="HTTPS",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -7296,12 +8158,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="HTTPS",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="HTTPS",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -7310,6 +8176,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="LOC",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -7319,9 +8187,23 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            content="example.com",
             name="example.com",
+            type="LOC",
+            comment="Domain verification record",
+            data={
+                "altitude": 0,
+                "lat_degrees": 37,
+                "lat_direction": "N",
+                "lat_minutes": 46,
+                "lat_seconds": 46,
+                "long_degrees": 122,
+                "long_direction": "W",
+                "long_minutes": 23,
+                "long_seconds": 35,
+                "precision_horz": 0,
+                "precision_vert": 0,
+                "size": 100,
+            },
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -7329,7 +8211,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="PTR",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -7339,6 +8220,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="LOC",
         )
 
         assert response.is_closed is True
@@ -7352,6 +8235,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="LOC",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -7368,12 +8253,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="LOC",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="LOC",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -7382,6 +8271,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NAPTR",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -7391,14 +8282,17 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NAPTR",
             comment="Domain verification record",
             data={
-                "certificate": "certificate",
-                "matching_type": 0,
-                "selector": 0,
-                "usage": 3,
+                "flags": "flags",
+                "order": 100,
+                "preference": 10,
+                "regex": "regex",
+                "replacement": "replacement",
+                "service": "service",
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -7406,7 +8300,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="SMIMEA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -7416,6 +8309,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NAPTR",
         )
 
         assert response.is_closed is True
@@ -7429,6 +8324,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NAPTR",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -7445,12 +8342,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="NAPTR",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="NAPTR",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -7459,6 +8360,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SMIMEA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -7468,14 +8371,15 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SMIMEA",
             comment="Domain verification record",
             data={
-                "port": 8806,
-                "priority": 10,
-                "target": "example.com",
-                "weight": 5,
+                "certificate": "certificate",
+                "matching_type": 0,
+                "selector": 0,
+                "usage": 3,
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -7483,7 +8387,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="SRV",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -7493,6 +8396,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SMIMEA",
         )
 
         assert response.is_closed is True
@@ -7506,6 +8411,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SMIMEA",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -7522,12 +8429,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="SMIMEA",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="SMIMEA",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -7536,6 +8447,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SRV",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -7545,13 +8458,15 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SRV",
             comment="Domain verification record",
             data={
-                "algorithm": 2,
-                "fingerprint": "fingerprint",
-                "type": 1,
+                "port": 8806,
+                "priority": 10,
+                "target": "example.com",
+                "weight": 5,
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -7559,7 +8474,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="SSHFP",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -7569,6 +8483,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SRV",
         )
 
         assert response.is_closed is True
@@ -7582,6 +8498,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SRV",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -7598,12 +8516,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="SRV",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="SRV",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -7612,6 +8534,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SSHFP",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -7621,13 +8545,14 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SSHFP",
             comment="Domain verification record",
             data={
-                "priority": 1,
-                "target": ".",
-                "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
+                "algorithm": 2,
+                "fingerprint": "fingerprint",
+                "type": 1,
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -7635,7 +8560,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="SVCB",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -7645,6 +8569,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SSHFP",
         )
 
         assert response.is_closed is True
@@ -7658,6 +8584,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SSHFP",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -7674,12 +8602,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="SSHFP",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="SSHFP",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -7688,6 +8620,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SVCB",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -7697,14 +8631,14 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SVCB",
             comment="Domain verification record",
             data={
-                "certificate": "certificate",
-                "matching_type": 1,
-                "selector": 0,
-                "usage": 0,
+                "priority": 1,
+                "target": ".",
+                "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -7712,7 +8646,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="TLSA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -7722,6 +8655,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SVCB",
         )
 
         assert response.is_closed is True
@@ -7735,6 +8670,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SVCB",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -7751,12 +8688,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="SVCB",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="SVCB",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -7765,6 +8706,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="TLSA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -7774,9 +8717,15 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            content='"v=spf1 include:example.com -all"',
             name="example.com",
+            type="TLSA",
+            comment="Domain verification record",
+            data={
+                "certificate": "certificate",
+                "matching_type": 1,
+                "selector": 0,
+                "usage": 0,
+            },
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -7784,7 +8733,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="TXT",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -7794,6 +8742,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="TLSA",
         )
 
         assert response.is_closed is True
@@ -7807,6 +8757,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="TLSA",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -7823,12 +8775,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="TLSA",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="TLSA",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -7837,6 +8793,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="URI",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -7846,12 +8804,13 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="URI",
             comment="Domain verification record",
             data={
                 "target": "http://example.com/example.html",
                 "weight": 20,
             },
-            name="example.com",
             priority=10,
             proxied=True,
             settings={
@@ -7860,7 +8819,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="URI",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -7870,6 +8828,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="URI",
         )
 
         assert response.is_closed is True
@@ -7883,6 +8843,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="URI",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -7899,12 +8861,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="URI",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="URI",
             )
 
     @pytest.mark.skip(reason="mock server returns invalid data")
@@ -8058,9 +9024,10 @@ class TestAsyncRecords:
             deletes=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
             patches=[
                 {
+                    "name": "example.com",
+                    "type": "A",
                     "comment": "Domain verification record",
                     "content": "198.51.100.4",
-                    "name": "example.com",
                     "proxied": True,
                     "settings": {
                         "ipv4_only": True,
@@ -8068,15 +9035,15 @@ class TestAsyncRecords:
                     },
                     "tags": ["owner:dns-team"],
                     "ttl": 3600,
-                    "type": "A",
                     "id": "023e105f4ecef8ad9ca31a8372d0c353",
                 }
             ],
             posts=[
                 {
+                    "name": "example.com",
+                    "type": "A",
                     "comment": "Domain verification record",
                     "content": "198.51.100.4",
-                    "name": "example.com",
                     "proxied": True,
                     "settings": {
                         "ipv4_only": True,
@@ -8084,14 +9051,14 @@ class TestAsyncRecords:
                     },
                     "tags": ["owner:dns-team"],
                     "ttl": 3600,
-                    "type": "A",
                 }
             ],
             puts=[
                 {
+                    "name": "example.com",
+                    "type": "A",
                     "comment": "Domain verification record",
                     "content": "198.51.100.4",
-                    "name": "example.com",
                     "proxied": True,
                     "settings": {
                         "ipv4_only": True,
@@ -8099,7 +9066,6 @@ class TestAsyncRecords:
                     },
                     "tags": ["owner:dns-team"],
                     "ttl": 3600,
-                    "type": "A",
                     "id": "023e105f4ecef8ad9ca31a8372d0c353",
                 }
             ],
@@ -8146,6 +9112,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="A",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -8155,9 +9123,10 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="A",
             comment="Domain verification record",
             content="198.51.100.4",
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -8165,7 +9134,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="A",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -8175,6 +9143,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="A",
         )
 
         assert response.is_closed is True
@@ -8188,6 +9158,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="A",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -8204,12 +9176,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="A",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="A",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -8218,6 +9194,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="AAAA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -8227,9 +9205,10 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="AAAA",
             comment="Domain verification record",
             content="2400:cb00:2049::1",
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -8237,7 +9216,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="AAAA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -8247,6 +9225,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="AAAA",
         )
 
         assert response.is_closed is True
@@ -8260,6 +9240,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="AAAA",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -8276,12 +9258,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="AAAA",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="AAAA",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -8290,6 +9276,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CNAME",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -8299,21 +9287,18 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            data={
-                "flags": 1,
-                "tag": "issue",
-                "value": "value",
-            },
             name="example.com",
+            type="CNAME",
+            comment="Domain verification record",
+            content="content",
             proxied=True,
             settings={
+                "flatten_cname": True,
                 "ipv4_only": True,
                 "ipv6_only": True,
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="CAA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -8323,6 +9308,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CNAME",
         )
 
         assert response.is_closed is True
@@ -8336,6 +9323,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CNAME",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -8352,12 +9341,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="CNAME",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="CNAME",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -8366,6 +9359,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="MX",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -8375,14 +9370,11 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            data={
-                "algorithm": 8,
-                "certificate": "certificate",
-                "key_tag": 1,
-                "type": 9,
-            },
             name="example.com",
+            type="MX",
+            comment="Domain verification record",
+            content="mx.example.com",
+            priority=10,
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -8390,7 +9382,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="CERT",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -8400,6 +9391,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="MX",
         )
 
         assert response.is_closed is True
@@ -8413,6 +9406,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="MX",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -8429,12 +9424,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="MX",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="MX",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -8443,6 +9442,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NS",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -8452,18 +9453,17 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            content="content",
             name="example.com",
+            type="NS",
+            comment="Domain verification record",
+            content="ns1.example.com",
             proxied=True,
             settings={
-                "flatten_cname": True,
                 "ipv4_only": True,
                 "ipv6_only": True,
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="CNAME",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -8473,6 +9473,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NS",
         )
 
         assert response.is_closed is True
@@ -8486,6 +9488,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NS",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -8502,12 +9506,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="NS",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="NS",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -8516,6 +9524,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="OPENPGPKEY",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -8525,14 +9535,10 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            data={
-                "algorithm": 5,
-                "flags": 1,
-                "protocol": 3,
-                "public_key": "public_key",
-            },
             name="example.com",
+            type="OPENPGPKEY",
+            comment="Domain verification record",
+            content="content",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -8540,7 +9546,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="DNSKEY",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -8550,6 +9555,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="OPENPGPKEY",
         )
 
         assert response.is_closed is True
@@ -8563,6 +9570,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="OPENPGPKEY",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -8579,12 +9588,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="OPENPGPKEY",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="OPENPGPKEY",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -8593,6 +9606,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="PTR",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -8602,14 +9617,10 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            data={
-                "algorithm": 3,
-                "digest": "digest",
-                "digest_type": 1,
-                "key_tag": 1,
-            },
             name="example.com",
+            type="PTR",
+            comment="Domain verification record",
+            content="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -8617,7 +9628,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="DS",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -8627,6 +9637,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="PTR",
         )
 
         assert response.is_closed is True
@@ -8640,6 +9652,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="PTR",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -8656,12 +9670,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="PTR",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="PTR",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -8670,6 +9688,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="TXT",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -8679,13 +9699,10 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            data={
-                "priority": 1,
-                "target": ".",
-                "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
-            },
             name="example.com",
+            type="TXT",
+            comment="Domain verification record",
+            content='"v=spf1 include:example.com -all"',
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -8693,7 +9710,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="HTTPS",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -8703,6 +9719,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="TXT",
         )
 
         assert response.is_closed is True
@@ -8716,6 +9734,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="TXT",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -8732,12 +9752,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="TXT",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="TXT",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -8746,6 +9770,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CAA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -8755,22 +9781,14 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CAA",
             comment="Domain verification record",
             data={
-                "altitude": 0,
-                "lat_degrees": 37,
-                "lat_direction": "N",
-                "lat_minutes": 46,
-                "lat_seconds": 46,
-                "long_degrees": 122,
-                "long_direction": "W",
-                "long_minutes": 23,
-                "long_seconds": 35,
-                "precision_horz": 0,
-                "precision_vert": 0,
-                "size": 100,
+                "flags": 1,
+                "tag": "issue",
+                "value": "value",
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -8778,7 +9796,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="LOC",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -8788,6 +9805,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CAA",
         )
 
         assert response.is_closed is True
@@ -8801,6 +9820,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CAA",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -8817,12 +9838,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="CAA",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="CAA",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -8831,6 +9856,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CERT",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -8840,10 +9867,15 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            content="mx.example.com",
             name="example.com",
-            priority=10,
+            type="CERT",
+            comment="Domain verification record",
+            data={
+                "algorithm": 8,
+                "certificate": "certificate",
+                "key_tag": 1,
+                "type": 9,
+            },
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -8851,7 +9883,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="MX",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -8861,6 +9892,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CERT",
         )
 
         assert response.is_closed is True
@@ -8874,6 +9907,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="CERT",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -8890,12 +9925,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="CERT",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="CERT",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -8904,6 +9943,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DNSKEY",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -8913,16 +9954,15 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DNSKEY",
             comment="Domain verification record",
             data={
-                "flags": "flags",
-                "order": 100,
-                "preference": 10,
-                "regex": "regex",
-                "replacement": "replacement",
-                "service": "service",
+                "algorithm": 5,
+                "flags": 1,
+                "protocol": 3,
+                "public_key": "public_key",
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -8930,7 +9970,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="NAPTR",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -8940,6 +9979,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DNSKEY",
         )
 
         assert response.is_closed is True
@@ -8953,6 +9994,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DNSKEY",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -8969,12 +10012,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="DNSKEY",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="DNSKEY",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -8983,6 +10030,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DS",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -8992,9 +10041,15 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            content="ns1.example.com",
             name="example.com",
+            type="DS",
+            comment="Domain verification record",
+            data={
+                "algorithm": 3,
+                "digest": "digest",
+                "digest_type": 1,
+                "key_tag": 1,
+            },
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -9002,7 +10057,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="NS",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -9012,6 +10066,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DS",
         )
 
         assert response.is_closed is True
@@ -9025,6 +10081,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="DS",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -9041,12 +10099,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="DS",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="DS",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -9055,6 +10117,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="HTTPS",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -9064,9 +10128,14 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            content="content",
             name="example.com",
+            type="HTTPS",
+            comment="Domain verification record",
+            data={
+                "priority": 1,
+                "target": ".",
+                "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
+            },
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -9074,7 +10143,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="OPENPGPKEY",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -9084,6 +10152,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="HTTPS",
         )
 
         assert response.is_closed is True
@@ -9097,6 +10167,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="HTTPS",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -9113,12 +10185,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="HTTPS",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="HTTPS",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -9127,6 +10203,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="LOC",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -9136,9 +10214,23 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            content="example.com",
             name="example.com",
+            type="LOC",
+            comment="Domain verification record",
+            data={
+                "altitude": 0,
+                "lat_degrees": 37,
+                "lat_direction": "N",
+                "lat_minutes": 46,
+                "lat_seconds": 46,
+                "long_degrees": 122,
+                "long_direction": "W",
+                "long_minutes": 23,
+                "long_seconds": 35,
+                "precision_horz": 0,
+                "precision_vert": 0,
+                "size": 100,
+            },
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -9146,7 +10238,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="PTR",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -9156,6 +10247,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="LOC",
         )
 
         assert response.is_closed is True
@@ -9169,6 +10262,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="LOC",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -9185,12 +10280,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="LOC",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="LOC",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -9199,6 +10298,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NAPTR",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -9208,14 +10309,17 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NAPTR",
             comment="Domain verification record",
             data={
-                "certificate": "certificate",
-                "matching_type": 0,
-                "selector": 0,
-                "usage": 3,
+                "flags": "flags",
+                "order": 100,
+                "preference": 10,
+                "regex": "regex",
+                "replacement": "replacement",
+                "service": "service",
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -9223,7 +10327,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="SMIMEA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -9233,6 +10336,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NAPTR",
         )
 
         assert response.is_closed is True
@@ -9246,6 +10351,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="NAPTR",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -9262,12 +10369,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="NAPTR",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="NAPTR",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -9276,6 +10387,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SMIMEA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -9285,14 +10398,15 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SMIMEA",
             comment="Domain verification record",
             data={
-                "port": 8806,
-                "priority": 10,
-                "target": "example.com",
-                "weight": 5,
+                "certificate": "certificate",
+                "matching_type": 0,
+                "selector": 0,
+                "usage": 3,
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -9300,7 +10414,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="SRV",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -9310,6 +10423,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SMIMEA",
         )
 
         assert response.is_closed is True
@@ -9323,6 +10438,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SMIMEA",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -9339,12 +10456,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="SMIMEA",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="SMIMEA",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -9353,6 +10474,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SRV",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -9362,13 +10485,15 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SRV",
             comment="Domain verification record",
             data={
-                "algorithm": 2,
-                "fingerprint": "fingerprint",
-                "type": 1,
+                "port": 8806,
+                "priority": 10,
+                "target": "example.com",
+                "weight": 5,
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -9376,7 +10501,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="SSHFP",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -9386,6 +10510,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SRV",
         )
 
         assert response.is_closed is True
@@ -9399,6 +10525,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SRV",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -9415,12 +10543,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="SRV",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="SRV",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -9429,6 +10561,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SSHFP",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -9438,13 +10572,14 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SSHFP",
             comment="Domain verification record",
             data={
-                "priority": 1,
-                "target": ".",
-                "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
+                "algorithm": 2,
+                "fingerprint": "fingerprint",
+                "type": 1,
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -9452,7 +10587,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="SVCB",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -9462,6 +10596,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SSHFP",
         )
 
         assert response.is_closed is True
@@ -9475,6 +10611,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SSHFP",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -9491,12 +10629,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="SSHFP",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="SSHFP",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -9505,6 +10647,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SVCB",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -9514,14 +10658,14 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SVCB",
             comment="Domain verification record",
             data={
-                "certificate": "certificate",
-                "matching_type": 1,
-                "selector": 0,
-                "usage": 0,
+                "priority": 1,
+                "target": ".",
+                "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
             },
-            name="example.com",
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -9529,7 +10673,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="TLSA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -9539,6 +10682,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SVCB",
         )
 
         assert response.is_closed is True
@@ -9552,6 +10697,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="SVCB",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -9568,12 +10715,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="SVCB",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="SVCB",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -9582,6 +10733,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="TLSA",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -9591,9 +10744,15 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            comment="Domain verification record",
-            content='"v=spf1 include:example.com -all"',
             name="example.com",
+            type="TLSA",
+            comment="Domain verification record",
+            data={
+                "certificate": "certificate",
+                "matching_type": 1,
+                "selector": 0,
+                "usage": 0,
+            },
             proxied=True,
             settings={
                 "ipv4_only": True,
@@ -9601,7 +10760,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="TXT",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -9611,6 +10769,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="TLSA",
         )
 
         assert response.is_closed is True
@@ -9624,6 +10784,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="TLSA",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -9640,12 +10802,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="TLSA",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="TLSA",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -9654,6 +10820,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="URI",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -9663,12 +10831,13 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="URI",
             comment="Domain verification record",
             data={
                 "target": "http://example.com/example.html",
                 "weight": 20,
             },
-            name="example.com",
             priority=10,
             proxied=True,
             settings={
@@ -9677,7 +10846,6 @@ class TestAsyncRecords:
             },
             tags=["owner:dns-team"],
             ttl=3600,
-            type="URI",
         )
         assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
@@ -9687,6 +10855,8 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="URI",
         )
 
         assert response.is_closed is True
@@ -9700,6 +10870,8 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
+            type="URI",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -9716,12 +10888,16 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
+                name="example.com",
+                type="URI",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                name="example.com",
+                type="URI",
             )
 
     @parametrize

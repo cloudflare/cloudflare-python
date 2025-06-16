@@ -4,28 +4,40 @@ from __future__ import annotations
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform, async_maybe_transform
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
+from .health import (
+    HealthResource,
+    AsyncHealthResource,
+    HealthResourceWithRawResponse,
+    AsyncHealthResourceWithRawResponse,
+    HealthResourceWithStreamingResponse,
+    AsyncHealthResourceWithStreamingResponse,
+)
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import maybe_transform, async_maybe_transform
+from ....._compat import cached_property
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._base_client import make_request_options
-from ....types.cloudforce_one.threat_events import dataset_edit_params, dataset_create_params
-from ....types.cloudforce_one.threat_events.dataset_get_response import DatasetGetResponse
-from ....types.cloudforce_one.threat_events.dataset_raw_response import DatasetRawResponse
-from ....types.cloudforce_one.threat_events.dataset_edit_response import DatasetEditResponse
-from ....types.cloudforce_one.threat_events.dataset_list_response import DatasetListResponse
-from ....types.cloudforce_one.threat_events.dataset_create_response import DatasetCreateResponse
+from ....._base_client import make_request_options
+from .....types.cloudforce_one.threat_events import dataset_edit_params, dataset_create_params
+from .....types.cloudforce_one.threat_events.dataset_get_response import DatasetGetResponse
+from .....types.cloudforce_one.threat_events.dataset_raw_response import DatasetRawResponse
+from .....types.cloudforce_one.threat_events.dataset_edit_response import DatasetEditResponse
+from .....types.cloudforce_one.threat_events.dataset_list_response import DatasetListResponse
+from .....types.cloudforce_one.threat_events.dataset_create_response import DatasetCreateResponse
 
 __all__ = ["DatasetsResource", "AsyncDatasetsResource"]
 
 
 class DatasetsResource(SyncAPIResource):
+    @cached_property
+    def health(self) -> HealthResource:
+        return HealthResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> DatasetsResourceWithRawResponse:
         """
@@ -48,7 +60,7 @@ class DatasetsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: float,
+        account_id: str,
         is_public: bool,
         name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -77,6 +89,8 @@ class DatasetsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/cloudforce-one/events/dataset/create",
             body=maybe_transform(
@@ -95,7 +109,7 @@ class DatasetsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: float,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -117,6 +131,8 @@ class DatasetsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
             f"/accounts/{account_id}/cloudforce-one/events/dataset",
             options=make_request_options(
@@ -129,7 +145,7 @@ class DatasetsResource(SyncAPIResource):
         self,
         dataset_id: str,
         *,
-        account_id: float,
+        account_id: str,
         is_public: bool,
         name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -160,6 +176,8 @@ class DatasetsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dataset_id:
             raise ValueError(f"Expected a non-empty value for `dataset_id` but received {dataset_id!r}")
         return self._patch(
@@ -181,7 +199,7 @@ class DatasetsResource(SyncAPIResource):
         self,
         dataset_id: str,
         *,
-        account_id: float,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -205,6 +223,8 @@ class DatasetsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dataset_id:
             raise ValueError(f"Expected a non-empty value for `dataset_id` but received {dataset_id!r}")
         return self._get(
@@ -219,7 +239,7 @@ class DatasetsResource(SyncAPIResource):
         self,
         event_id: str,
         *,
-        account_id: float,
+        account_id: str,
         dataset_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -246,6 +266,8 @@ class DatasetsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dataset_id:
             raise ValueError(f"Expected a non-empty value for `dataset_id` but received {dataset_id!r}")
         if not event_id:
@@ -260,6 +282,10 @@ class DatasetsResource(SyncAPIResource):
 
 
 class AsyncDatasetsResource(AsyncAPIResource):
+    @cached_property
+    def health(self) -> AsyncHealthResource:
+        return AsyncHealthResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncDatasetsResourceWithRawResponse:
         """
@@ -282,7 +308,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: float,
+        account_id: str,
         is_public: bool,
         name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -311,6 +337,8 @@ class AsyncDatasetsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/cloudforce-one/events/dataset/create",
             body=await async_maybe_transform(
@@ -329,7 +357,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        account_id: float,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -351,6 +379,8 @@ class AsyncDatasetsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
             f"/accounts/{account_id}/cloudforce-one/events/dataset",
             options=make_request_options(
@@ -363,7 +393,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         self,
         dataset_id: str,
         *,
-        account_id: float,
+        account_id: str,
         is_public: bool,
         name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -394,6 +424,8 @@ class AsyncDatasetsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dataset_id:
             raise ValueError(f"Expected a non-empty value for `dataset_id` but received {dataset_id!r}")
         return await self._patch(
@@ -415,7 +447,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         self,
         dataset_id: str,
         *,
-        account_id: float,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -439,6 +471,8 @@ class AsyncDatasetsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dataset_id:
             raise ValueError(f"Expected a non-empty value for `dataset_id` but received {dataset_id!r}")
         return await self._get(
@@ -453,7 +487,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         self,
         event_id: str,
         *,
-        account_id: float,
+        account_id: str,
         dataset_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -480,6 +514,8 @@ class AsyncDatasetsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dataset_id:
             raise ValueError(f"Expected a non-empty value for `dataset_id` but received {dataset_id!r}")
         if not event_id:
@@ -513,6 +549,10 @@ class DatasetsResourceWithRawResponse:
             datasets.raw,
         )
 
+    @cached_property
+    def health(self) -> HealthResourceWithRawResponse:
+        return HealthResourceWithRawResponse(self._datasets.health)
+
 
 class AsyncDatasetsResourceWithRawResponse:
     def __init__(self, datasets: AsyncDatasetsResource) -> None:
@@ -533,6 +573,10 @@ class AsyncDatasetsResourceWithRawResponse:
         self.raw = async_to_raw_response_wrapper(
             datasets.raw,
         )
+
+    @cached_property
+    def health(self) -> AsyncHealthResourceWithRawResponse:
+        return AsyncHealthResourceWithRawResponse(self._datasets.health)
 
 
 class DatasetsResourceWithStreamingResponse:
@@ -555,6 +599,10 @@ class DatasetsResourceWithStreamingResponse:
             datasets.raw,
         )
 
+    @cached_property
+    def health(self) -> HealthResourceWithStreamingResponse:
+        return HealthResourceWithStreamingResponse(self._datasets.health)
+
 
 class AsyncDatasetsResourceWithStreamingResponse:
     def __init__(self, datasets: AsyncDatasetsResource) -> None:
@@ -575,3 +623,7 @@ class AsyncDatasetsResourceWithStreamingResponse:
         self.raw = async_to_streamed_response_wrapper(
             datasets.raw,
         )
+
+    @cached_property
+    def health(self) -> AsyncHealthResourceWithStreamingResponse:
+        return AsyncHealthResourceWithStreamingResponse(self._datasets.health)

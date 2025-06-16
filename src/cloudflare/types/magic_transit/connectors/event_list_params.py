@@ -10,7 +10,8 @@ __all__ = ["EventListParams"]
 
 
 class EventListParams(TypedDict, total=False):
-    account_id: Required[float]
+    account_id: Required[str]
+    """Account identifier"""
 
     from_: Required[Annotated[float, PropertyInfo(alias="from")]]
 

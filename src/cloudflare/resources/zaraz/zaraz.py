@@ -132,7 +132,7 @@ class ZarazResource(SyncAPIResource):
         Updates Zaraz workflow for a zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           workflow: Zaraz workflow
 
@@ -222,7 +222,7 @@ class AsyncZarazResource(AsyncAPIResource):
         Updates Zaraz workflow for a zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           workflow: Zaraz workflow
 

@@ -12,7 +12,7 @@ __all__ = ["ThreatEventEditParams"]
 
 
 class ThreatEventEditParams(TypedDict, total=False):
-    account_id: Required[float]
+    account_id: Required[str]
     """Account ID."""
 
     attacker: str

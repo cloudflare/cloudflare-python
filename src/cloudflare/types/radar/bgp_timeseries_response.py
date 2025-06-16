@@ -1,7 +1,8 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import List
 from datetime import datetime
+from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
@@ -10,11 +11,35 @@ from ..._models import BaseModel
 __all__ = [
     "BGPTimeseriesResponse",
     "Meta",
-    "MetaDateRange",
     "MetaConfidenceInfo",
     "MetaConfidenceInfoAnnotation",
+    "MetaDateRange",
     "Serie0",
 ]
+
+
+class MetaConfidenceInfoAnnotation(BaseModel):
+    data_source: str = FieldInfo(alias="dataSource")
+
+    description: str
+
+    end_date: datetime = FieldInfo(alias="endDate")
+
+    event_type: str = FieldInfo(alias="eventType")
+
+    is_instantaneous: bool = FieldInfo(alias="isInstantaneous")
+    """Whether event is a single point in time or a time range."""
+
+    linked_url: str = FieldInfo(alias="linkedUrl")
+
+    start_date: datetime = FieldInfo(alias="startDate")
+
+
+class MetaConfidenceInfo(BaseModel):
+    annotations: List[MetaConfidenceInfoAnnotation]
+
+    level: int
+    """Provides an indication of how much confidence Cloudflare has in the data."""
 
 
 class MetaDateRange(BaseModel):
@@ -25,36 +50,14 @@ class MetaDateRange(BaseModel):
     """Adjusted start of date range."""
 
 
-class MetaConfidenceInfoAnnotation(BaseModel):
-    data_source: str = FieldInfo(alias="dataSource")
-
-    description: str
-
-    event_type: str = FieldInfo(alias="eventType")
-
-    is_instantaneous: bool = FieldInfo(alias="isInstantaneous")
-
-    end_time: Optional[datetime] = FieldInfo(alias="endTime", default=None)
-
-    linked_url: Optional[str] = FieldInfo(alias="linkedUrl", default=None)
-
-    start_time: Optional[datetime] = FieldInfo(alias="startTime", default=None)
-
-
-class MetaConfidenceInfo(BaseModel):
-    annotations: Optional[List[MetaConfidenceInfoAnnotation]] = None
-
-    level: Optional[int] = None
-
-
 class Meta(BaseModel):
-    agg_interval: str = FieldInfo(alias="aggInterval")
+    agg_interval: Literal["15m", "1h", "1d", "1w"] = FieldInfo(alias="aggInterval")
+
+    confidence_info: MetaConfidenceInfo = FieldInfo(alias="confidenceInfo")
 
     date_range: List[MetaDateRange] = FieldInfo(alias="dateRange")
 
     last_updated: datetime = FieldInfo(alias="lastUpdated")
-
-    confidence_info: Optional[MetaConfidenceInfo] = FieldInfo(alias="confidenceInfo", default=None)
 
 
 class Serie0(BaseModel):

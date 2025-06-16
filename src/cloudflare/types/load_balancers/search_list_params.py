@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["SearchListParams", "SearchParams"]
+__all__ = ["SearchListParams"]
 
 
 class SearchListParams(TypedDict, total=False):
@@ -15,12 +15,12 @@ class SearchListParams(TypedDict, total=False):
 
     per_page: float
 
-    search_params: SearchParams
-
-
-class SearchParams(TypedDict, total=False):
     query: str
     """Search query term."""
 
     references: Literal["", "*", "referral", "referrer"]
-    """The type of references to include ("\\**" for all)."""
+    """The type of references to include.
+
+    "\\**" to include both referral and referrer references. "" to not include any
+    reference information.
+    """

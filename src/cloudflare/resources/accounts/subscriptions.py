@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, cast
+from typing import Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -23,9 +23,7 @@ from ..._base_client import AsyncPaginator, make_request_options
 from ...types.accounts import subscription_create_params, subscription_update_params
 from ...types.shared.subscription import Subscription
 from ...types.shared_params.rate_plan import RatePlan
-from ...types.accounts.subscription_create_response import SubscriptionCreateResponse
 from ...types.accounts.subscription_delete_response import SubscriptionDeleteResponse
-from ...types.accounts.subscription_update_response import SubscriptionUpdateResponse
 
 __all__ = ["SubscriptionsResource", "AsyncSubscriptionsResource"]
 
@@ -62,7 +60,7 @@ class SubscriptionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SubscriptionCreateResponse:
+    ) -> Subscription:
         """
         Creates an account subscription.
 
@@ -83,28 +81,23 @@ class SubscriptionsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return cast(
-            SubscriptionCreateResponse,
-            self._post(
-                f"/accounts/{account_id}/subscriptions",
-                body=maybe_transform(
-                    {
-                        "frequency": frequency,
-                        "rate_plan": rate_plan,
-                    },
-                    subscription_create_params.SubscriptionCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[SubscriptionCreateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[SubscriptionCreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._post(
+            f"/accounts/{account_id}/subscriptions",
+            body=maybe_transform(
+                {
+                    "frequency": frequency,
+                    "rate_plan": rate_plan,
+                },
+                subscription_create_params.SubscriptionCreateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Subscription]._unwrapper,
+            ),
+            cast_to=cast(Type[Subscription], ResultWrapper[Subscription]),
         )
 
     def update(
@@ -120,7 +113,7 @@ class SubscriptionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SubscriptionUpdateResponse:
+    ) -> Subscription:
         """
         Updates an account subscription.
 
@@ -147,28 +140,23 @@ class SubscriptionsResource(SyncAPIResource):
             raise ValueError(
                 f"Expected a non-empty value for `subscription_identifier` but received {subscription_identifier!r}"
             )
-        return cast(
-            SubscriptionUpdateResponse,
-            self._put(
-                f"/accounts/{account_id}/subscriptions/{subscription_identifier}",
-                body=maybe_transform(
-                    {
-                        "frequency": frequency,
-                        "rate_plan": rate_plan,
-                    },
-                    subscription_update_params.SubscriptionUpdateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[SubscriptionUpdateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[SubscriptionUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._put(
+            f"/accounts/{account_id}/subscriptions/{subscription_identifier}",
+            body=maybe_transform(
+                {
+                    "frequency": frequency,
+                    "rate_plan": rate_plan,
+                },
+                subscription_update_params.SubscriptionUpdateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Subscription]._unwrapper,
+            ),
+            cast_to=cast(Type[Subscription], ResultWrapper[Subscription]),
         )
 
     def delete(
@@ -286,7 +274,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SubscriptionCreateResponse:
+    ) -> Subscription:
         """
         Creates an account subscription.
 
@@ -307,28 +295,23 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return cast(
-            SubscriptionCreateResponse,
-            await self._post(
-                f"/accounts/{account_id}/subscriptions",
-                body=await async_maybe_transform(
-                    {
-                        "frequency": frequency,
-                        "rate_plan": rate_plan,
-                    },
-                    subscription_create_params.SubscriptionCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[SubscriptionCreateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[SubscriptionCreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._post(
+            f"/accounts/{account_id}/subscriptions",
+            body=await async_maybe_transform(
+                {
+                    "frequency": frequency,
+                    "rate_plan": rate_plan,
+                },
+                subscription_create_params.SubscriptionCreateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Subscription]._unwrapper,
+            ),
+            cast_to=cast(Type[Subscription], ResultWrapper[Subscription]),
         )
 
     async def update(
@@ -344,7 +327,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SubscriptionUpdateResponse:
+    ) -> Subscription:
         """
         Updates an account subscription.
 
@@ -371,28 +354,23 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
             raise ValueError(
                 f"Expected a non-empty value for `subscription_identifier` but received {subscription_identifier!r}"
             )
-        return cast(
-            SubscriptionUpdateResponse,
-            await self._put(
-                f"/accounts/{account_id}/subscriptions/{subscription_identifier}",
-                body=await async_maybe_transform(
-                    {
-                        "frequency": frequency,
-                        "rate_plan": rate_plan,
-                    },
-                    subscription_update_params.SubscriptionUpdateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[SubscriptionUpdateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[SubscriptionUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._put(
+            f"/accounts/{account_id}/subscriptions/{subscription_identifier}",
+            body=await async_maybe_transform(
+                {
+                    "frequency": frequency,
+                    "rate_plan": rate_plan,
+                },
+                subscription_update_params.SubscriptionUpdateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Subscription]._unwrapper,
+            ),
+            cast_to=cast(Type[Subscription], ResultWrapper[Subscription]),
         )
 
     async def delete(

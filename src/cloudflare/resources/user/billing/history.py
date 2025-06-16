@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Union
 from datetime import datetime
 from typing_extensions import Literal
@@ -46,6 +47,7 @@ class HistoryResource(SyncAPIResource):
         """
         return HistoryResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
@@ -130,6 +132,7 @@ class AsyncHistoryResource(AsyncAPIResource):
         """
         return AsyncHistoryResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
@@ -198,8 +201,10 @@ class HistoryResourceWithRawResponse:
     def __init__(self, history: HistoryResource) -> None:
         self._history = history
 
-        self.list = to_raw_response_wrapper(
-            history.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                history.list  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -207,8 +212,10 @@ class AsyncHistoryResourceWithRawResponse:
     def __init__(self, history: AsyncHistoryResource) -> None:
         self._history = history
 
-        self.list = async_to_raw_response_wrapper(
-            history.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                history.list  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -216,8 +223,10 @@ class HistoryResourceWithStreamingResponse:
     def __init__(self, history: HistoryResource) -> None:
         self._history = history
 
-        self.list = to_streamed_response_wrapper(
-            history.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                history.list  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -225,6 +234,8 @@ class AsyncHistoryResourceWithStreamingResponse:
     def __init__(self, history: AsyncHistoryResource) -> None:
         self._history = history
 
-        self.list = async_to_streamed_response_wrapper(
-            history.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                history.list  # pyright: ignore[reportDeprecated],
+            )
         )

@@ -134,7 +134,7 @@ class SelfHostedApplication(TypedDict, total=False):
     This domain will be displayed if the app is visible in the App Launcher.
     """
 
-    type: Required[str]
+    type: Required[ApplicationType]
     """The application type."""
 
     account_id: str
@@ -528,7 +528,7 @@ class SaaSApplication(TypedDict, total=False):
     Tags are used to filter applications in the App Launcher dashboard.
     """
 
-    type: str
+    type: ApplicationType
     """The application type."""
 
 
@@ -682,7 +682,21 @@ class BrowserSSHApplication(TypedDict, total=False):
     This domain will be displayed if the app is visible in the App Launcher.
     """
 
-    type: Required[str]
+    type: Required[
+        Literal[
+            "self_hosted",
+            "saas",
+            "ssh",
+            "vnc",
+            "app_launcher",
+            "warp",
+            "biso",
+            "bookmark",
+            "dash_sso",
+            "infrastructure",
+            "rdp",
+        ]
+    ]
     """The application type."""
 
     account_id: str
@@ -1029,7 +1043,21 @@ class BrowserVNCApplication(TypedDict, total=False):
     This domain will be displayed if the app is visible in the App Launcher.
     """
 
-    type: Required[str]
+    type: Required[
+        Literal[
+            "self_hosted",
+            "saas",
+            "ssh",
+            "vnc",
+            "app_launcher",
+            "warp",
+            "biso",
+            "bookmark",
+            "dash_sso",
+            "infrastructure",
+            "rdp",
+        ]
+    ]
     """The application type."""
 
     account_id: str
@@ -1370,7 +1398,21 @@ class BrowserVNCApplicationSCIMConfig(TypedDict, total=False):
 
 
 class AppLauncherApplication(TypedDict, total=False):
-    type: Required[ApplicationType]
+    type: Required[
+        Literal[
+            "self_hosted",
+            "saas",
+            "ssh",
+            "vnc",
+            "app_launcher",
+            "warp",
+            "biso",
+            "bookmark",
+            "dash_sso",
+            "infrastructure",
+            "rdp",
+        ]
+    ]
     """The application type."""
 
     account_id: str
@@ -2097,7 +2139,7 @@ class BookmarkApplication(TypedDict, total=False):
     Tags are used to filter applications in the App Launcher dashboard.
     """
 
-    type: str
+    type: ApplicationType
     """The application type."""
 
 
@@ -2214,7 +2256,7 @@ class InfrastructureApplicationTargetCriterion(TypedDict, total=False):
     A port cannot be assigned to multiple protocols.
     """
 
-    protocol: Required[Literal["ssh"]]
+    protocol: Required[Literal["SSH"]]
     """The communication protocol your application secures."""
 
     target_attributes: Required[Dict[str, List[str]]]
@@ -2281,7 +2323,7 @@ class BrowserRdpApplication(TypedDict, total=False):
 
     target_criteria: Required[Iterable[BrowserRdpApplicationTargetCriterion]]
 
-    type: Required[str]
+    type: Required[ApplicationType]
     """The application type."""
 
     account_id: str
@@ -2444,7 +2486,7 @@ class BrowserRdpApplicationTargetCriterion(TypedDict, total=False):
     A port cannot be assigned to multiple protocols.
     """
 
-    protocol: Required[Literal["ssh"]]
+    protocol: Required[Literal["SSH"]]
     """The communication protocol your application secures."""
 
     target_attributes: Required[Dict[str, List[str]]]
