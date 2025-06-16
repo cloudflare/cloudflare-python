@@ -40,14 +40,6 @@ from .rate_plans import (
     RatePlansResourceWithStreamingResponse,
     AsyncRatePlansResourceWithStreamingResponse,
 )
-from .subscriptions import (
-    SubscriptionsResource,
-    AsyncSubscriptionsResource,
-    SubscriptionsResourceWithRawResponse,
-    AsyncSubscriptionsResourceWithRawResponse,
-    SubscriptionsResourceWithStreamingResponse,
-    AsyncSubscriptionsResourceWithStreamingResponse,
-)
 from .activation_check import (
     ActivationCheckResource,
     AsyncActivationCheckResource,
@@ -90,12 +82,6 @@ __all__ = [
     "AsyncHoldsResourceWithRawResponse",
     "HoldsResourceWithStreamingResponse",
     "AsyncHoldsResourceWithStreamingResponse",
-    "SubscriptionsResource",
-    "AsyncSubscriptionsResource",
-    "SubscriptionsResourceWithRawResponse",
-    "AsyncSubscriptionsResourceWithRawResponse",
-    "SubscriptionsResourceWithStreamingResponse",
-    "AsyncSubscriptionsResourceWithStreamingResponse",
     "PlansResource",
     "AsyncPlansResource",
     "PlansResourceWithRawResponse",
