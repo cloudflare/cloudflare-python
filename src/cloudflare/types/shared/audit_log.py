@@ -77,4 +77,4 @@ class AuditLog(BaseModel):
     resource: Optional[Resource] = None
 
     when: Optional[datetime] = None
-    """A UTC RFC3339 timestamp that specifies when the action being logged occured."""
+    """A UTC RFC3339 timestamp that specifies when the action being logged occurred."""
