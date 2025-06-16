@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.3.1 (2025-06-16)
+
+Full Changelog: [v4.3.0...v4.3.1](https://github.com/cloudflare/cloudflare-python/compare/v4.3.0...v4.3.1)
+
+### Bug Fixes
+
+* **api:** Update zone subscription paths ([8917497](https://github.com/cloudflare/cloudflare-python/commit/8917497520e4a1fcc97681685175ab4107e3041c))
+
+
+### Chores
+
+* **internal:** update conftest.py ([c8ae1c4](https://github.com/cloudflare/cloudflare-python/commit/c8ae1c4a73cc8d5804dfcfb059b102eb2443ca86))
+
 ## 4.3.0 (2025-06-16)
 
 Full Changelog: [v4.2.0...v4.3.0](https://github.com/cloudflare/cloudflare-python/compare/v4.2.0...v4.3.0)
