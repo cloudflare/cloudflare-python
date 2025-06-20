@@ -23,9 +23,7 @@ from pydantic import ValidationError
 
 from cloudflare import Cloudflare, AsyncCloudflare, APIResponseValidationError
 from cloudflare._types import Omit
-from cloudflare._utils import maybe_transform
 from cloudflare._models import BaseModel, FinalRequestOptions
-from cloudflare._constants import RAW_RESPONSE_HEADER
 from cloudflare._exceptions import APIStatusError, APITimeoutError, APIResponseValidationError
 from cloudflare._base_client import (
     DEFAULT_TIMEOUT,
@@ -35,7 +33,6 @@ from cloudflare._base_client import (
     DefaultAsyncHttpxClient,
     make_request_options,
 )
-from cloudflare.types.zones.zone_create_params import ZoneCreateParams
 
 from .utils import update_env
 
@@ -893,44 +890,21 @@ class TestCloudflare:
 
     @mock.patch("cloudflare._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
+    def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter, client: Cloudflare) -> None:
         respx_mock.post("/zones").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            self.client.post(
-                "/zones",
-                body=cast(
-                    object,
-                    maybe_transform(
-                        dict(account={"id": "023e105f4ecef8ad9ca31a8372d0c353"}, name="example.com", type="full"),
-                        ZoneCreateParams,
-                    ),
-                ),
-                cast_to=httpx.Response,
-                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
-            )
+            client.zones.with_streaming_response.create(account={}, name="example.com").__enter__()
 
         assert _get_open_connections(self.client) == 0
 
     @mock.patch("cloudflare._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
+    def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter, client: Cloudflare) -> None:
         respx_mock.post("/zones").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            self.client.post(
-                "/zones",
-                body=cast(
-                    object,
-                    maybe_transform(
-                        dict(account={"id": "023e105f4ecef8ad9ca31a8372d0c353"}, name="example.com", type="full"),
-                        ZoneCreateParams,
-                    ),
-                ),
-                cast_to=httpx.Response,
-                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
-            )
-
+            client.zones.with_streaming_response.create(account={}, name="example.com").__enter__()
         assert _get_open_connections(self.client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
@@ -1821,44 +1795,25 @@ class TestAsyncCloudflare:
 
     @mock.patch("cloudflare._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    async def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
+    async def test_retrying_timeout_errors_doesnt_leak(
+        self, respx_mock: MockRouter, async_client: AsyncCloudflare
+    ) -> None:
         respx_mock.post("/zones").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            await self.client.post(
-                "/zones",
-                body=cast(
-                    object,
-                    maybe_transform(
-                        dict(account={"id": "023e105f4ecef8ad9ca31a8372d0c353"}, name="example.com", type="full"),
-                        ZoneCreateParams,
-                    ),
-                ),
-                cast_to=httpx.Response,
-                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
-            )
+            await async_client.zones.with_streaming_response.create(account={}, name="example.com").__aenter__()
 
         assert _get_open_connections(self.client) == 0
 
     @mock.patch("cloudflare._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    async def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
+    async def test_retrying_status_errors_doesnt_leak(
+        self, respx_mock: MockRouter, async_client: AsyncCloudflare
+    ) -> None:
         respx_mock.post("/zones").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            await self.client.post(
-                "/zones",
-                body=cast(
-                    object,
-                    maybe_transform(
-                        dict(account={"id": "023e105f4ecef8ad9ca31a8372d0c353"}, name="example.com", type="full"),
-                        ZoneCreateParams,
-                    ),
-                ),
-                cast_to=httpx.Response,
-                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
-            )
-
+            await async_client.zones.with_streaming_response.create(account={}, name="example.com").__aenter__()
         assert _get_open_connections(self.client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])

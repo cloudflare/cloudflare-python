@@ -77,11 +77,10 @@ class JobCreateParams(TypedDict, total=False):
     in smaller quantities of larger files.
     """
 
-    kind: Literal["edge"]
+    kind: Literal["", "edge"]
     """
     The kind parameter (optional) is used to differentiate between Logpush and Edge
-    Log Delivery jobs. Currently, Edge Log Delivery is only supported for the
-    `http_requests` dataset.
+    Log Delivery jobs (when supported by the dataset).
     """
 
     logpull_options: Optional[str]
