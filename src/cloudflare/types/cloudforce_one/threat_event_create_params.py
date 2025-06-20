@@ -15,10 +15,6 @@ class ThreatEventCreateParams(TypedDict, total=False):
     path_account_id: Required[Annotated[str, PropertyInfo(alias="account_id")]]
     """Account ID."""
 
-    attacker: Required[str]
-
-    attacker_country: Required[Annotated[str, PropertyInfo(alias="attackerCountry")]]
-
     category: Required[str]
 
     date: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
@@ -32,6 +28,10 @@ class ThreatEventCreateParams(TypedDict, total=False):
     tlp: Required[str]
 
     body_account_id: Annotated[float, PropertyInfo(alias="accountId")]
+
+    attacker: str
+
+    attacker_country: Annotated[str, PropertyInfo(alias="attackerCountry")]
 
     dataset_id: Annotated[str, PropertyInfo(alias="datasetId")]
 

@@ -30,7 +30,6 @@ from .....pagination import SyncSinglePage, AsyncSinglePage
 from ....._base_client import AsyncPaginator, make_request_options
 from .....types.zero_trust.gateway import list_edit_params, list_list_params, list_create_params, list_update_params
 from .....types.zero_trust.gateway.gateway_list import GatewayList
-from .....types.zero_trust.gateway.gateway_item_param import GatewayItemParam
 from .....types.zero_trust.gateway.list_create_response import ListCreateResponse
 
 __all__ = ["ListsResource", "AsyncListsResource"]
@@ -67,7 +66,7 @@ class ListsResource(SyncAPIResource):
         name: str,
         type: Literal["SERIAL", "URL", "DOMAIN", "EMAIL", "IP"],
         description: str | NotGiven = NOT_GIVEN,
-        items: Iterable[GatewayItemParam] | NotGiven = NOT_GIVEN,
+        items: Iterable[list_create_params.Item] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -85,7 +84,7 @@ class ListsResource(SyncAPIResource):
 
           description: The description of the list.
 
-          items: The items in the list.
+          items: items to add to the list.
 
           extra_headers: Send extra headers
 
@@ -125,7 +124,7 @@ class ListsResource(SyncAPIResource):
         account_id: str,
         name: str,
         description: str | NotGiven = NOT_GIVEN,
-        items: Iterable[GatewayItemParam] | NotGiven = NOT_GIVEN,
+        items: Iterable[list_update_params.Item] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -145,7 +144,7 @@ class ListsResource(SyncAPIResource):
 
           description: The description of the list.
 
-          items: The items in the list.
+          items: items to add to the list.
 
           extra_headers: Send extra headers
 
@@ -391,7 +390,7 @@ class AsyncListsResource(AsyncAPIResource):
         name: str,
         type: Literal["SERIAL", "URL", "DOMAIN", "EMAIL", "IP"],
         description: str | NotGiven = NOT_GIVEN,
-        items: Iterable[GatewayItemParam] | NotGiven = NOT_GIVEN,
+        items: Iterable[list_create_params.Item] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -409,7 +408,7 @@ class AsyncListsResource(AsyncAPIResource):
 
           description: The description of the list.
 
-          items: The items in the list.
+          items: items to add to the list.
 
           extra_headers: Send extra headers
 
@@ -449,7 +448,7 @@ class AsyncListsResource(AsyncAPIResource):
         account_id: str,
         name: str,
         description: str | NotGiven = NOT_GIVEN,
-        items: Iterable[GatewayItemParam] | NotGiven = NOT_GIVEN,
+        items: Iterable[list_update_params.Item] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -469,7 +468,7 @@ class AsyncListsResource(AsyncAPIResource):
 
           description: The description of the list.
 
-          items: The items in the list.
+          items: items to add to the list.
 
           extra_headers: Send extra headers
 

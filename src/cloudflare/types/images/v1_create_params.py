@@ -13,6 +13,9 @@ class V1CreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Account identifier tag."""
 
+    id: object
+    """An optional custom unique identifier for your image."""
+
     file: object
     """An image binary data. Only needed when type is uploading a file."""
 

@@ -338,7 +338,12 @@ class TestNamespaces:
         namespace = client.kv.namespaces.bulk_update(
             namespace_id="0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}],
+            body=[
+                {
+                    "key": "My-Key",
+                    "value": "Some string",
+                }
+            ],
         )
         assert_matches_type(Optional[NamespaceBulkUpdateResponse], namespace, path=["response"])
 
@@ -347,7 +352,12 @@ class TestNamespaces:
         response = client.kv.namespaces.with_raw_response.bulk_update(
             namespace_id="0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}],
+            body=[
+                {
+                    "key": "My-Key",
+                    "value": "Some string",
+                }
+            ],
         )
 
         assert response.is_closed is True
@@ -360,7 +370,12 @@ class TestNamespaces:
         with client.kv.namespaces.with_streaming_response.bulk_update(
             namespace_id="0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}],
+            body=[
+                {
+                    "key": "My-Key",
+                    "value": "Some string",
+                }
+            ],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -376,14 +391,24 @@ class TestNamespaces:
             client.kv.namespaces.with_raw_response.bulk_update(
                 namespace_id="0f2ac74b498b48028cb68387c421e279",
                 account_id="",
-                body=[{}],
+                body=[
+                    {
+                        "key": "My-Key",
+                        "value": "Some string",
+                    }
+                ],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace_id` but received ''"):
             client.kv.namespaces.with_raw_response.bulk_update(
                 namespace_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body=[{}],
+                body=[
+                    {
+                        "key": "My-Key",
+                        "value": "Some string",
+                    }
+                ],
             )
 
     @parametrize
@@ -752,7 +777,12 @@ class TestAsyncNamespaces:
         namespace = await async_client.kv.namespaces.bulk_update(
             namespace_id="0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}],
+            body=[
+                {
+                    "key": "My-Key",
+                    "value": "Some string",
+                }
+            ],
         )
         assert_matches_type(Optional[NamespaceBulkUpdateResponse], namespace, path=["response"])
 
@@ -761,7 +791,12 @@ class TestAsyncNamespaces:
         response = await async_client.kv.namespaces.with_raw_response.bulk_update(
             namespace_id="0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}],
+            body=[
+                {
+                    "key": "My-Key",
+                    "value": "Some string",
+                }
+            ],
         )
 
         assert response.is_closed is True
@@ -774,7 +809,12 @@ class TestAsyncNamespaces:
         async with async_client.kv.namespaces.with_streaming_response.bulk_update(
             namespace_id="0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}],
+            body=[
+                {
+                    "key": "My-Key",
+                    "value": "Some string",
+                }
+            ],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -790,14 +830,24 @@ class TestAsyncNamespaces:
             await async_client.kv.namespaces.with_raw_response.bulk_update(
                 namespace_id="0f2ac74b498b48028cb68387c421e279",
                 account_id="",
-                body=[{}],
+                body=[
+                    {
+                        "key": "My-Key",
+                        "value": "Some string",
+                    }
+                ],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace_id` but received ''"):
             await async_client.kv.namespaces.with_raw_response.bulk_update(
                 namespace_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body=[{}],
+                body=[
+                    {
+                        "key": "My-Key",
+                        "value": "Some string",
+                    }
+                ],
             )
 
     @parametrize

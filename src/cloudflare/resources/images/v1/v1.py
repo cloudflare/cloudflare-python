@@ -100,6 +100,7 @@ class V1Resource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        id: object | NotGiven = NOT_GIVEN,
         file: object | NotGiven = NOT_GIVEN,
         metadata: object | NotGiven = NOT_GIVEN,
         require_signed_urls: bool | NotGiven = NOT_GIVEN,
@@ -118,6 +119,8 @@ class V1Resource(SyncAPIResource):
 
         Args:
           account_id: Account identifier tag.
+
+          id: An optional custom unique identifier for your image.
 
           file: An image binary data. Only needed when type is uploading a file.
 
@@ -147,6 +150,7 @@ class V1Resource(SyncAPIResource):
             f"/accounts/{account_id}/images/v1",
             body=maybe_transform(
                 {
+                    "id": id,
                     "file": file,
                     "metadata": metadata,
                     "require_signed_urls": require_signed_urls,
@@ -417,6 +421,7 @@ class AsyncV1Resource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        id: object | NotGiven = NOT_GIVEN,
         file: object | NotGiven = NOT_GIVEN,
         metadata: object | NotGiven = NOT_GIVEN,
         require_signed_urls: bool | NotGiven = NOT_GIVEN,
@@ -435,6 +440,8 @@ class AsyncV1Resource(AsyncAPIResource):
 
         Args:
           account_id: Account identifier tag.
+
+          id: An optional custom unique identifier for your image.
 
           file: An image binary data. Only needed when type is uploading a file.
 
@@ -464,6 +471,7 @@ class AsyncV1Resource(AsyncAPIResource):
             f"/accounts/{account_id}/images/v1",
             body=await async_maybe_transform(
                 {
+                    "id": id,
                     "file": file,
                     "metadata": metadata,
                     "require_signed_urls": require_signed_urls,

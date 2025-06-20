@@ -75,11 +75,10 @@ class LogpushJob(BaseModel):
     in smaller quantities of larger files.
     """
 
-    kind: Optional[Literal["edge"]] = None
+    kind: Optional[Literal["", "edge"]] = None
     """
     The kind parameter (optional) is used to differentiate between Logpush and Edge
-    Log Delivery jobs. Currently, Edge Log Delivery is only supported for the
-    `http_requests` dataset.
+    Log Delivery jobs (when supported by the dataset).
     """
 
     last_complete: Optional[datetime] = None

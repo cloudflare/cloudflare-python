@@ -30,8 +30,6 @@ class TestThreatEvents:
     def test_method_create(self, client: Cloudflare) -> None:
         threat_event = client.cloudforce_one.threat_events.create(
             path_account_id="account_id",
-            attacker="Flying Yeti",
-            attacker_country="CN",
             category="Domain Resolution",
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
@@ -46,8 +44,6 @@ class TestThreatEvents:
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         threat_event = client.cloudforce_one.threat_events.create(
             path_account_id="account_id",
-            attacker="Flying Yeti",
-            attacker_country="CN",
             category="Domain Resolution",
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
@@ -59,6 +55,8 @@ class TestThreatEvents:
             },
             tlp="amber",
             body_account_id=123456,
+            attacker="Flying Yeti",
+            attacker_country="CN",
             dataset_id="durableObjectName",
             indicator="domain.com",
             tags=["malware"],
@@ -72,8 +70,6 @@ class TestThreatEvents:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.threat_events.with_raw_response.create(
             path_account_id="account_id",
-            attacker="Flying Yeti",
-            attacker_country="CN",
             category="Domain Resolution",
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
@@ -92,8 +88,6 @@ class TestThreatEvents:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.cloudforce_one.threat_events.with_streaming_response.create(
             path_account_id="account_id",
-            attacker="Flying Yeti",
-            attacker_country="CN",
             category="Domain Resolution",
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
@@ -115,8 +109,6 @@ class TestThreatEvents:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_account_id` but received ''"):
             client.cloudforce_one.threat_events.with_raw_response.create(
                 path_account_id="",
-                attacker="Flying Yeti",
-                attacker_country="CN",
                 category="Domain Resolution",
                 date=parse_datetime("2022-04-01T00:00:00Z"),
                 event="An attacker registered the domain domain.com",
@@ -247,8 +239,6 @@ class TestThreatEvents:
             account_id="account_id",
             data=[
                 {
-                    "attacker": "Flying Yeti",
-                    "attacker_country": "CN",
                     "category": "Domain Resolution",
                     "date": parse_datetime("2022-04-01T00:00:00Z"),
                     "event": "An attacker registered the domain domain.com",
@@ -268,8 +258,6 @@ class TestThreatEvents:
             account_id="account_id",
             data=[
                 {
-                    "attacker": "Flying Yeti",
-                    "attacker_country": "CN",
                     "category": "Domain Resolution",
                     "date": parse_datetime("2022-04-01T00:00:00Z"),
                     "event": "An attacker registered the domain domain.com",
@@ -293,8 +281,6 @@ class TestThreatEvents:
             account_id="account_id",
             data=[
                 {
-                    "attacker": "Flying Yeti",
-                    "attacker_country": "CN",
                     "category": "Domain Resolution",
                     "date": parse_datetime("2022-04-01T00:00:00Z"),
                     "event": "An attacker registered the domain domain.com",
@@ -321,8 +307,6 @@ class TestThreatEvents:
                 account_id="",
                 data=[
                     {
-                        "attacker": "Flying Yeti",
-                        "attacker_country": "CN",
                         "category": "Domain Resolution",
                         "date": parse_datetime("2022-04-01T00:00:00Z"),
                         "event": "An attacker registered the domain domain.com",
@@ -466,8 +450,6 @@ class TestAsyncThreatEvents:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         threat_event = await async_client.cloudforce_one.threat_events.create(
             path_account_id="account_id",
-            attacker="Flying Yeti",
-            attacker_country="CN",
             category="Domain Resolution",
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
@@ -482,8 +464,6 @@ class TestAsyncThreatEvents:
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         threat_event = await async_client.cloudforce_one.threat_events.create(
             path_account_id="account_id",
-            attacker="Flying Yeti",
-            attacker_country="CN",
             category="Domain Resolution",
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
@@ -495,6 +475,8 @@ class TestAsyncThreatEvents:
             },
             tlp="amber",
             body_account_id=123456,
+            attacker="Flying Yeti",
+            attacker_country="CN",
             dataset_id="durableObjectName",
             indicator="domain.com",
             tags=["malware"],
@@ -508,8 +490,6 @@ class TestAsyncThreatEvents:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloudforce_one.threat_events.with_raw_response.create(
             path_account_id="account_id",
-            attacker="Flying Yeti",
-            attacker_country="CN",
             category="Domain Resolution",
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
@@ -528,8 +508,6 @@ class TestAsyncThreatEvents:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloudforce_one.threat_events.with_streaming_response.create(
             path_account_id="account_id",
-            attacker="Flying Yeti",
-            attacker_country="CN",
             category="Domain Resolution",
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
@@ -551,8 +529,6 @@ class TestAsyncThreatEvents:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_account_id` but received ''"):
             await async_client.cloudforce_one.threat_events.with_raw_response.create(
                 path_account_id="",
-                attacker="Flying Yeti",
-                attacker_country="CN",
                 category="Domain Resolution",
                 date=parse_datetime("2022-04-01T00:00:00Z"),
                 event="An attacker registered the domain domain.com",
@@ -683,8 +659,6 @@ class TestAsyncThreatEvents:
             account_id="account_id",
             data=[
                 {
-                    "attacker": "Flying Yeti",
-                    "attacker_country": "CN",
                     "category": "Domain Resolution",
                     "date": parse_datetime("2022-04-01T00:00:00Z"),
                     "event": "An attacker registered the domain domain.com",
@@ -704,8 +678,6 @@ class TestAsyncThreatEvents:
             account_id="account_id",
             data=[
                 {
-                    "attacker": "Flying Yeti",
-                    "attacker_country": "CN",
                     "category": "Domain Resolution",
                     "date": parse_datetime("2022-04-01T00:00:00Z"),
                     "event": "An attacker registered the domain domain.com",
@@ -729,8 +701,6 @@ class TestAsyncThreatEvents:
             account_id="account_id",
             data=[
                 {
-                    "attacker": "Flying Yeti",
-                    "attacker_country": "CN",
                     "category": "Domain Resolution",
                     "date": parse_datetime("2022-04-01T00:00:00Z"),
                     "event": "An attacker registered the domain domain.com",
@@ -757,8 +727,6 @@ class TestAsyncThreatEvents:
                 account_id="",
                 data=[
                     {
-                        "attacker": "Flying Yeti",
-                        "attacker_country": "CN",
                         "category": "Domain Resolution",
                         "date": parse_datetime("2022-04-01T00:00:00Z"),
                         "event": "An attacker registered the domain domain.com",

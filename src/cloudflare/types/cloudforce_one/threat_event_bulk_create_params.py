@@ -29,10 +29,6 @@ class DataRaw(TypedDict, total=False):
 
 
 class Data(TypedDict, total=False):
-    attacker: Required[str]
-
-    attacker_country: Required[Annotated[str, PropertyInfo(alias="attackerCountry")]]
-
     category: Required[str]
 
     date: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
@@ -46,6 +42,10 @@ class Data(TypedDict, total=False):
     tlp: Required[str]
 
     account_id: Annotated[float, PropertyInfo(alias="accountId")]
+
+    attacker: str
+
+    attacker_country: Annotated[str, PropertyInfo(alias="attackerCountry")]
 
     dataset_id: Annotated[str, PropertyInfo(alias="datasetId")]
 
