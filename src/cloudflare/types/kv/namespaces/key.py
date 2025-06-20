@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
+from typing import Optional
 
 from ...._models import BaseModel
 
@@ -21,5 +21,4 @@ class Key(BaseModel):
     will expire. This property is omitted for keys that will not expire.
     """
 
-    metadata: Optional[Dict[str, object]] = None
-    """Arbitrary JSON that is associated with a key."""
+    metadata: Optional[object] = None

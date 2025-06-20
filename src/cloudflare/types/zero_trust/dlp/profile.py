@@ -17,7 +17,7 @@ __all__ = [
     "CustomProfileEntryPredefinedEntryConfidence",
     "CustomProfileEntryIntegrationEntry",
     "CustomProfileEntryExactDataEntry",
-    "CustomProfileEntryDocumentTemplateEntry",
+    "CustomProfileEntryDocumentFingerprintEntry",
     "CustomProfileEntryWordListEntry",
     "PredefinedProfile",
     "PredefinedProfileEntry",
@@ -26,7 +26,7 @@ __all__ = [
     "PredefinedProfileEntryPredefinedEntryConfidence",
     "PredefinedProfileEntryIntegrationEntry",
     "PredefinedProfileEntryExactDataEntry",
-    "PredefinedProfileEntryDocumentTemplateEntry",
+    "PredefinedProfileEntryDocumentFingerprintEntry",
     "PredefinedProfileEntryWordListEntry",
     "IntegrationProfile",
     "IntegrationProfileEntry",
@@ -35,7 +35,7 @@ __all__ = [
     "IntegrationProfileEntryPredefinedEntryConfidence",
     "IntegrationProfileEntryIntegrationEntry",
     "IntegrationProfileEntryExactDataEntry",
-    "IntegrationProfileEntryDocumentTemplateEntry",
+    "IntegrationProfileEntryDocumentFingerprintEntry",
     "IntegrationProfileEntryWordListEntry",
 ]
 
@@ -121,7 +121,7 @@ class CustomProfileEntryExactDataEntry(BaseModel):
     updated_at: datetime
 
 
-class CustomProfileEntryDocumentTemplateEntry(BaseModel):
+class CustomProfileEntryDocumentFingerprintEntry(BaseModel):
     id: str
 
     created_at: datetime
@@ -130,7 +130,7 @@ class CustomProfileEntryDocumentTemplateEntry(BaseModel):
 
     name: str
 
-    type: Literal["document_template"]
+    type: Literal["document_fingerprint"]
 
     updated_at: datetime
 
@@ -158,7 +158,7 @@ CustomProfileEntry: TypeAlias = Union[
     CustomProfileEntryPredefinedEntry,
     CustomProfileEntryIntegrationEntry,
     CustomProfileEntryExactDataEntry,
-    CustomProfileEntryDocumentTemplateEntry,
+    CustomProfileEntryDocumentFingerprintEntry,
     CustomProfileEntryWordListEntry,
 ]
 
@@ -280,7 +280,7 @@ class PredefinedProfileEntryExactDataEntry(BaseModel):
     updated_at: datetime
 
 
-class PredefinedProfileEntryDocumentTemplateEntry(BaseModel):
+class PredefinedProfileEntryDocumentFingerprintEntry(BaseModel):
     id: str
 
     created_at: datetime
@@ -289,7 +289,7 @@ class PredefinedProfileEntryDocumentTemplateEntry(BaseModel):
 
     name: str
 
-    type: Literal["document_template"]
+    type: Literal["document_fingerprint"]
 
     updated_at: datetime
 
@@ -317,7 +317,7 @@ PredefinedProfileEntry: TypeAlias = Union[
     PredefinedProfileEntryPredefinedEntry,
     PredefinedProfileEntryIntegrationEntry,
     PredefinedProfileEntryExactDataEntry,
-    PredefinedProfileEntryDocumentTemplateEntry,
+    PredefinedProfileEntryDocumentFingerprintEntry,
     PredefinedProfileEntryWordListEntry,
 ]
 
@@ -432,7 +432,7 @@ class IntegrationProfileEntryExactDataEntry(BaseModel):
     updated_at: datetime
 
 
-class IntegrationProfileEntryDocumentTemplateEntry(BaseModel):
+class IntegrationProfileEntryDocumentFingerprintEntry(BaseModel):
     id: str
 
     created_at: datetime
@@ -441,7 +441,7 @@ class IntegrationProfileEntryDocumentTemplateEntry(BaseModel):
 
     name: str
 
-    type: Literal["document_template"]
+    type: Literal["document_fingerprint"]
 
     updated_at: datetime
 
@@ -469,7 +469,7 @@ IntegrationProfileEntry: TypeAlias = Union[
     IntegrationProfileEntryPredefinedEntry,
     IntegrationProfileEntryIntegrationEntry,
     IntegrationProfileEntryExactDataEntry,
-    IntegrationProfileEntryDocumentTemplateEntry,
+    IntegrationProfileEntryDocumentFingerprintEntry,
     IntegrationProfileEntryWordListEntry,
 ]
 

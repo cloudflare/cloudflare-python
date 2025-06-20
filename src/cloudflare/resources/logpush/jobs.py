@@ -86,7 +86,7 @@ class JobsResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         filter: Optional[str] | NotGiven = NOT_GIVEN,
         frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
-        kind: Literal["edge"] | NotGiven = NOT_GIVEN,
+        kind: Literal["", "edge"] | NotGiven = NOT_GIVEN,
         logpull_options: Optional[str] | NotGiven = NOT_GIVEN,
         max_upload_bytes: Optional[int] | NotGiven = NOT_GIVEN,
         max_upload_interval_seconds: Optional[int] | NotGiven = NOT_GIVEN,
@@ -128,8 +128,7 @@ class JobsResource(SyncAPIResource):
               frequency to low sends logs in smaller quantities of larger files.
 
           kind: The kind parameter (optional) is used to differentiate between Logpush and Edge
-              Log Delivery jobs. Currently, Edge Log Delivery is only supported for the
-              `http_requests` dataset.
+              Log Delivery jobs (when supported by the dataset).
 
           logpull_options: This field is deprecated. Use `output_options` instead. Configuration string. It
               specifies things like requested fields and timestamp formats. If migrating from
@@ -223,7 +222,7 @@ class JobsResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         filter: Optional[str] | NotGiven = NOT_GIVEN,
         frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
-        kind: Literal["edge"] | NotGiven = NOT_GIVEN,
+        kind: Literal["", "edge"] | NotGiven = NOT_GIVEN,
         logpull_options: Optional[str] | NotGiven = NOT_GIVEN,
         max_upload_bytes: Optional[int] | NotGiven = NOT_GIVEN,
         max_upload_interval_seconds: Optional[int] | NotGiven = NOT_GIVEN,
@@ -264,8 +263,7 @@ class JobsResource(SyncAPIResource):
               frequency to low sends logs in smaller quantities of larger files.
 
           kind: The kind parameter (optional) is used to differentiate between Logpush and Edge
-              Log Delivery jobs. Currently, Edge Log Delivery is only supported for the
-              `http_requests` dataset.
+              Log Delivery jobs (when supported by the dataset).
 
           logpull_options: This field is deprecated. Use `output_options` instead. Configuration string. It
               specifies things like requested fields and timestamp formats. If migrating from
@@ -566,7 +564,7 @@ class AsyncJobsResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         filter: Optional[str] | NotGiven = NOT_GIVEN,
         frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
-        kind: Literal["edge"] | NotGiven = NOT_GIVEN,
+        kind: Literal["", "edge"] | NotGiven = NOT_GIVEN,
         logpull_options: Optional[str] | NotGiven = NOT_GIVEN,
         max_upload_bytes: Optional[int] | NotGiven = NOT_GIVEN,
         max_upload_interval_seconds: Optional[int] | NotGiven = NOT_GIVEN,
@@ -608,8 +606,7 @@ class AsyncJobsResource(AsyncAPIResource):
               frequency to low sends logs in smaller quantities of larger files.
 
           kind: The kind parameter (optional) is used to differentiate between Logpush and Edge
-              Log Delivery jobs. Currently, Edge Log Delivery is only supported for the
-              `http_requests` dataset.
+              Log Delivery jobs (when supported by the dataset).
 
           logpull_options: This field is deprecated. Use `output_options` instead. Configuration string. It
               specifies things like requested fields and timestamp formats. If migrating from
@@ -703,7 +700,7 @@ class AsyncJobsResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         filter: Optional[str] | NotGiven = NOT_GIVEN,
         frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
-        kind: Literal["edge"] | NotGiven = NOT_GIVEN,
+        kind: Literal["", "edge"] | NotGiven = NOT_GIVEN,
         logpull_options: Optional[str] | NotGiven = NOT_GIVEN,
         max_upload_bytes: Optional[int] | NotGiven = NOT_GIVEN,
         max_upload_interval_seconds: Optional[int] | NotGiven = NOT_GIVEN,
@@ -744,8 +741,7 @@ class AsyncJobsResource(AsyncAPIResource):
               frequency to low sends logs in smaller quantities of larger files.
 
           kind: The kind parameter (optional) is used to differentiate between Logpush and Edge
-              Log Delivery jobs. Currently, Edge Log Delivery is only supported for the
-              `http_requests` dataset.
+              Log Delivery jobs (when supported by the dataset).
 
           logpull_options: This field is deprecated. Use `output_options` instead. Configuration string. It
               specifies things like requested fields and timestamp formats. If migrating from

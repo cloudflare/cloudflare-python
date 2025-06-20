@@ -12,13 +12,13 @@ __all__ = ["NamespaceBulkGetParams"]
 
 class NamespaceBulkGetParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     keys: Required[List[str]]
-    """Array of keys to retrieve (maximum 100)"""
+    """Array of keys to retrieve (maximum of 100)."""
 
     type: Literal["text", "json"]
-    """Whether to parse JSON values in the response"""
+    """Whether to parse JSON values in the response."""
 
     with_metadata: Annotated[bool, PropertyInfo(alias="withMetadata")]
-    """Whether to include metadata in the response"""
+    """Whether to include metadata in the response."""
