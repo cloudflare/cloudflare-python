@@ -287,11 +287,11 @@ class TrustedDomainsResource(SyncAPIResource):
         trusted_domain_id: int,
         *,
         account_id: str,
-        comments: Optional[str] | NotGiven = NOT_GIVEN,
-        is_recent: Optional[bool] | NotGiven = NOT_GIVEN,
-        is_regex: Optional[bool] | NotGiven = NOT_GIVEN,
-        is_similarity: Optional[bool] | NotGiven = NOT_GIVEN,
-        pattern: Optional[str] | NotGiven = NOT_GIVEN,
+        comments: str | NotGiven = NOT_GIVEN,
+        is_recent: bool | NotGiven = NOT_GIVEN,
+        is_regex: bool | NotGiven = NOT_GIVEN,
+        is_similarity: bool | NotGiven = NOT_GIVEN,
+        pattern: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -641,11 +641,11 @@ class AsyncTrustedDomainsResource(AsyncAPIResource):
         trusted_domain_id: int,
         *,
         account_id: str,
-        comments: Optional[str] | NotGiven = NOT_GIVEN,
-        is_recent: Optional[bool] | NotGiven = NOT_GIVEN,
-        is_regex: Optional[bool] | NotGiven = NOT_GIVEN,
-        is_similarity: Optional[bool] | NotGiven = NOT_GIVEN,
-        pattern: Optional[str] | NotGiven = NOT_GIVEN,
+        comments: str | NotGiven = NOT_GIVEN,
+        is_recent: bool | NotGiven = NOT_GIVEN,
+        is_regex: bool | NotGiven = NOT_GIVEN,
+        is_similarity: bool | NotGiven = NOT_GIVEN,
+        pattern: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
