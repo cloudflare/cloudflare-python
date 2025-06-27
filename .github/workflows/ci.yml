@@ -22,6 +22,7 @@ jobs:
     timeout-minutes: 10
     name: lint
     runs-on: ${{ github.repository == 'stainless-sdks/cloudflare-python' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.fork
     steps:
       - uses: actions/checkout@v4
 
@@ -47,6 +48,7 @@ jobs:
       contents: read
       id-token: write
     runs-on: depot-ubuntu-24.04
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.fork
     steps:
       - uses: actions/checkout@v4
 
@@ -67,6 +69,7 @@ jobs:
     timeout-minutes: 30
     name: test
     runs-on: ${{ github.repository == 'stainless-sdks/cloudflare-python' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.fork
     steps:
       - uses: actions/checkout@v4
 
@@ -88,7 +91,7 @@ jobs:
     timeout-minutes: 10
     name: examples
     runs-on: ${{ github.repository == 'stainless-sdks/cloudflare-python' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
-    if: github.repository == 'cloudflare/cloudflare-python'
+    if: github.repository == 'cloudflare/cloudflare-python && (github.event_name == 'push' || github.event.pull_request.head.repo.fork)'
 
     steps:
       - uses: actions/checkout@v4
