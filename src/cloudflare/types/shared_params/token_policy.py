@@ -29,5 +29,5 @@ class TokenPolicy(TypedDict, total=False):
     permission_groups: Required[Iterable[PermissionGroup]]
     """A set of permission groups that are specified to the policy."""
 
-    resources: Required[Union[Dict[str, str], Dict[str, Dict[str, str]]]]
+    resources: Required[Dict[str, Union[str, Dict[str, str]]]]
     """A list of resource names that the policy applies to."""
