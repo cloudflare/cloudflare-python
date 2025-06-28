@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -107,31 +107,28 @@ class LogpushJob(BaseModel):
     keep on making this call for you, setting start and end times appropriately.
     """
 
-    max_upload_bytes: Optional[int] = None
+    max_upload_bytes: Union[Literal[0], object, None] = None
     """The maximum uncompressed file size of a batch of logs.
 
     This setting value must be between `5 MB` and `1 GB`, or `0` to disable it. Note
     that you cannot set a minimum file size; this means that log files may be much
-    smaller than this batch size. This parameter is not available for jobs with
-    `edge` as its kind.
+    smaller than this batch size.
     """
 
-    max_upload_interval_seconds: Optional[int] = None
+    max_upload_interval_seconds: Union[Literal[0], object, None] = None
     """The maximum interval in seconds for log batches.
 
     This setting must be between 30 and 300 seconds (5 minutes), or `0` to disable
     it. Note that you cannot specify a minimum interval for log batches; this means
-    that log files may be sent in shorter intervals than this. This parameter is
-    only used for jobs with `edge` as its kind.
+    that log files may be sent in shorter intervals than this.
     """
 
-    max_upload_records: Optional[int] = None
+    max_upload_records: Union[Literal[0], object, None] = None
     """The maximum number of log lines per batch.
 
     This setting must be between 1000 and 1,000,000 lines, or `0` to disable it.
     Note that you cannot specify a minimum number of log lines per batch; this means
-    that log files may contain many fewer lines than this. This parameter is not
-    available for jobs with `edge` as its kind.
+    that log files may contain many fewer lines than this.
     """
 
     name: Optional[str] = None
