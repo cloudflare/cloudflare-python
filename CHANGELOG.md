@@ -1,5 +1,44 @@
 # Changelog
 
+## 4.4.0 (2025-06-29)
+
+Full Changelog: [v4.3.1...v4.4.0](https://github.com/cloudflare/cloudflare-python/compare/v4.3.1...v4.4.0)
+
+### Features
+
+* **api:** api update ([427f8f1](https://github.com/cloudflare/cloudflare-python/commit/427f8f1c4f8e6431e8593718658a954b9503d41d))
+* **api:** api update ([ec2e81c](https://github.com/cloudflare/cloudflare-python/commit/ec2e81ceae5ebb21bfedb8f5706a8ce51094340a))
+* **api:** api update ([16cdf47](https://github.com/cloudflare/cloudflare-python/commit/16cdf47bdb7be097bb7a83e9ccfbdc4b61e8405b))
+* **api:** api update ([fc20862](https://github.com/cloudflare/cloudflare-python/commit/fc20862274dcf03e7e90a90b37a5b812f3c63235))
+* **api:** api update ([18a6fde](https://github.com/cloudflare/cloudflare-python/commit/18a6fdeab07b6753252135f21304dcfc2fa1faf2))
+* **api:** api update ([23499df](https://github.com/cloudflare/cloudflare-python/commit/23499df3b54944c84a552a0e20ce09b075e4bc44))
+* **api:** api update ([211ddfc](https://github.com/cloudflare/cloudflare-python/commit/211ddfcf9176cf778d6de310817ee01194f6844e))
+* **api:** api update ([2bf9737](https://github.com/cloudflare/cloudflare-python/commit/2bf9737af8db398d3e00c9ddb3f67d0c9527491f))
+* **api:** api update ([764b4ea](https://github.com/cloudflare/cloudflare-python/commit/764b4ea4333e86e8c1c76c7625887c077c435f8a))
+* **api:** api update ([4c6cda0](https://github.com/cloudflare/cloudflare-python/commit/4c6cda072e94640d2ea181dd1de2e4ef3f943e76))
+* **client:** add support for aiohttp ([80d9fef](https://github.com/cloudflare/cloudflare-python/commit/80d9fefc3aabba6ee9d6addea001a7108b9684cd))
+
+
+### Bug Fixes
+
+* **ci:** correct conditional ([a071a9a](https://github.com/cloudflare/cloudflare-python/commit/a071a9ac7b25de7454f6ad37ee39af0f5dbcd2b0))
+* **ci:** release-doctor — report correct token name ([736bc3f](https://github.com/cloudflare/cloudflare-python/commit/736bc3f6a1009bdb69e3505c0f9116235914e4fb))
+* **tests:** fix: tests which call HTTP endpoints directly with the example parameters ([721188d](https://github.com/cloudflare/cloudflare-python/commit/721188dddf88b71ba2c0754461c8d7f8d4359304))
+
+
+### Chores
+
+* **api:** TTL is required on DNS records ([2f9af7b](https://github.com/cloudflare/cloudflare-python/commit/2f9af7be7ec065f07ed714c627777874b5e86f16))
+* **ci:** enable for pull requests ([ad0f8c2](https://github.com/cloudflare/cloudflare-python/commit/ad0f8c218463493e3a7798ed724debe91471ff35))
+* **ci:** only run for pushes and fork pull requests ([9900f90](https://github.com/cloudflare/cloudflare-python/commit/9900f90f87f4a58b92c7f89d2b92a63be552c102))
+* **readme:** update badges ([b84a94e](https://github.com/cloudflare/cloudflare-python/commit/b84a94e1ba4d55e05cd07acc04fdbbdd7a0fd0ae))
+* **tests:** skip some failing tests on the latest python versions ([dbbb02d](https://github.com/cloudflare/cloudflare-python/commit/dbbb02d2077911a1eac2069ac1e82b54e2ae5b1b))
+
+
+### Documentation
+
+* **client:** fix httpx.Timeout documentation reference ([0114564](https://github.com/cloudflare/cloudflare-python/commit/0114564d5cfb8459f19fe3dd80ce6e55617096ec))
+
 ## 4.3.1 (2025-06-16)
 
 Full Changelog: [v4.3.0...v4.3.1](https://github.com/cloudflare/cloudflare-python/compare/v4.3.0...v4.3.1)

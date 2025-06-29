@@ -31,7 +31,6 @@ from .list_edit_params import ListEditParams as ListEditParams
 from .list_list_params import ListListParams as ListListParams
 from .doh_endpoint_param import DOHEndpointParam as DOHEndpointParam
 from .dot_endpoint_param import DOTEndpointParam as DOTEndpointParam
-from .gateway_item_param import GatewayItemParam as GatewayItemParam
 from .ipv6_network_param import IPV6NetworkParam as IPV6NetworkParam
 from .list_create_params import ListCreateParams as ListCreateParams
 from .list_update_params import ListUpdateParams as ListUpdateParams

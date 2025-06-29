@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, Union, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -86,11 +86,11 @@ class JobsResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         filter: Optional[str] | NotGiven = NOT_GIVEN,
         frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
-        kind: Literal["edge"] | NotGiven = NOT_GIVEN,
+        kind: Literal["", "edge"] | NotGiven = NOT_GIVEN,
         logpull_options: Optional[str] | NotGiven = NOT_GIVEN,
-        max_upload_bytes: Optional[int] | NotGiven = NOT_GIVEN,
-        max_upload_interval_seconds: Optional[int] | NotGiven = NOT_GIVEN,
-        max_upload_records: Optional[int] | NotGiven = NOT_GIVEN,
+        max_upload_bytes: Union[Literal[0], object, None] | NotGiven = NOT_GIVEN,
+        max_upload_interval_seconds: Union[Literal[0], object, None] | NotGiven = NOT_GIVEN,
+        max_upload_records: Union[Literal[0], object, None] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         output_options: Optional[OutputOptionsParam] | NotGiven = NOT_GIVEN,
         ownership_challenge: str | NotGiven = NOT_GIVEN,
@@ -128,8 +128,7 @@ class JobsResource(SyncAPIResource):
               frequency to low sends logs in smaller quantities of larger files.
 
           kind: The kind parameter (optional) is used to differentiate between Logpush and Edge
-              Log Delivery jobs. Currently, Edge Log Delivery is only supported for the
-              `http_requests` dataset.
+              Log Delivery jobs (when supported by the dataset).
 
           logpull_options: This field is deprecated. Use `output_options` instead. Configuration string. It
               specifies things like requested fields and timestamp formats. If migrating from
@@ -140,19 +139,17 @@ class JobsResource(SyncAPIResource):
           max_upload_bytes: The maximum uncompressed file size of a batch of logs. This setting value must
               be between `5 MB` and `1 GB`, or `0` to disable it. Note that you cannot set a
               minimum file size; this means that log files may be much smaller than this batch
-              size. This parameter is not available for jobs with `edge` as its kind.
+              size.
 
           max_upload_interval_seconds: The maximum interval in seconds for log batches. This setting must be between 30
               and 300 seconds (5 minutes), or `0` to disable it. Note that you cannot specify
               a minimum interval for log batches; this means that log files may be sent in
-              shorter intervals than this. This parameter is only used for jobs with `edge` as
-              its kind.
+              shorter intervals than this.
 
           max_upload_records: The maximum number of log lines per batch. This setting must be between 1000 and
               1,000,000 lines, or `0` to disable it. Note that you cannot specify a minimum
               number of log lines per batch; this means that log files may contain many fewer
-              lines than this. This parameter is not available for jobs with `edge` as its
-              kind.
+              lines than this.
 
           name: Optional human readable job name. Not unique. Cloudflare suggests that you set
               this to a meaningful string, like the domain name, to make it easier to identify
@@ -223,11 +220,11 @@ class JobsResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         filter: Optional[str] | NotGiven = NOT_GIVEN,
         frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
-        kind: Literal["edge"] | NotGiven = NOT_GIVEN,
+        kind: Literal["", "edge"] | NotGiven = NOT_GIVEN,
         logpull_options: Optional[str] | NotGiven = NOT_GIVEN,
-        max_upload_bytes: Optional[int] | NotGiven = NOT_GIVEN,
-        max_upload_interval_seconds: Optional[int] | NotGiven = NOT_GIVEN,
-        max_upload_records: Optional[int] | NotGiven = NOT_GIVEN,
+        max_upload_bytes: Union[Literal[0], object, None] | NotGiven = NOT_GIVEN,
+        max_upload_interval_seconds: Union[Literal[0], object, None] | NotGiven = NOT_GIVEN,
+        max_upload_records: Union[Literal[0], object, None] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         output_options: Optional[OutputOptionsParam] | NotGiven = NOT_GIVEN,
         ownership_challenge: str | NotGiven = NOT_GIVEN,
@@ -264,8 +261,7 @@ class JobsResource(SyncAPIResource):
               frequency to low sends logs in smaller quantities of larger files.
 
           kind: The kind parameter (optional) is used to differentiate between Logpush and Edge
-              Log Delivery jobs. Currently, Edge Log Delivery is only supported for the
-              `http_requests` dataset.
+              Log Delivery jobs (when supported by the dataset).
 
           logpull_options: This field is deprecated. Use `output_options` instead. Configuration string. It
               specifies things like requested fields and timestamp formats. If migrating from
@@ -276,19 +272,17 @@ class JobsResource(SyncAPIResource):
           max_upload_bytes: The maximum uncompressed file size of a batch of logs. This setting value must
               be between `5 MB` and `1 GB`, or `0` to disable it. Note that you cannot set a
               minimum file size; this means that log files may be much smaller than this batch
-              size. This parameter is not available for jobs with `edge` as its kind.
+              size.
 
           max_upload_interval_seconds: The maximum interval in seconds for log batches. This setting must be between 30
               and 300 seconds (5 minutes), or `0` to disable it. Note that you cannot specify
               a minimum interval for log batches; this means that log files may be sent in
-              shorter intervals than this. This parameter is only used for jobs with `edge` as
-              its kind.
+              shorter intervals than this.
 
           max_upload_records: The maximum number of log lines per batch. This setting must be between 1000 and
               1,000,000 lines, or `0` to disable it. Note that you cannot specify a minimum
               number of log lines per batch; this means that log files may contain many fewer
-              lines than this. This parameter is not available for jobs with `edge` as its
-              kind.
+              lines than this.
 
           name: Optional human readable job name. Not unique. Cloudflare suggests that you set
               this to a meaningful string, like the domain name, to make it easier to identify
@@ -566,11 +560,11 @@ class AsyncJobsResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         filter: Optional[str] | NotGiven = NOT_GIVEN,
         frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
-        kind: Literal["edge"] | NotGiven = NOT_GIVEN,
+        kind: Literal["", "edge"] | NotGiven = NOT_GIVEN,
         logpull_options: Optional[str] | NotGiven = NOT_GIVEN,
-        max_upload_bytes: Optional[int] | NotGiven = NOT_GIVEN,
-        max_upload_interval_seconds: Optional[int] | NotGiven = NOT_GIVEN,
-        max_upload_records: Optional[int] | NotGiven = NOT_GIVEN,
+        max_upload_bytes: Union[Literal[0], object, None] | NotGiven = NOT_GIVEN,
+        max_upload_interval_seconds: Union[Literal[0], object, None] | NotGiven = NOT_GIVEN,
+        max_upload_records: Union[Literal[0], object, None] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         output_options: Optional[OutputOptionsParam] | NotGiven = NOT_GIVEN,
         ownership_challenge: str | NotGiven = NOT_GIVEN,
@@ -608,8 +602,7 @@ class AsyncJobsResource(AsyncAPIResource):
               frequency to low sends logs in smaller quantities of larger files.
 
           kind: The kind parameter (optional) is used to differentiate between Logpush and Edge
-              Log Delivery jobs. Currently, Edge Log Delivery is only supported for the
-              `http_requests` dataset.
+              Log Delivery jobs (when supported by the dataset).
 
           logpull_options: This field is deprecated. Use `output_options` instead. Configuration string. It
               specifies things like requested fields and timestamp formats. If migrating from
@@ -620,19 +613,17 @@ class AsyncJobsResource(AsyncAPIResource):
           max_upload_bytes: The maximum uncompressed file size of a batch of logs. This setting value must
               be between `5 MB` and `1 GB`, or `0` to disable it. Note that you cannot set a
               minimum file size; this means that log files may be much smaller than this batch
-              size. This parameter is not available for jobs with `edge` as its kind.
+              size.
 
           max_upload_interval_seconds: The maximum interval in seconds for log batches. This setting must be between 30
               and 300 seconds (5 minutes), or `0` to disable it. Note that you cannot specify
               a minimum interval for log batches; this means that log files may be sent in
-              shorter intervals than this. This parameter is only used for jobs with `edge` as
-              its kind.
+              shorter intervals than this.
 
           max_upload_records: The maximum number of log lines per batch. This setting must be between 1000 and
               1,000,000 lines, or `0` to disable it. Note that you cannot specify a minimum
               number of log lines per batch; this means that log files may contain many fewer
-              lines than this. This parameter is not available for jobs with `edge` as its
-              kind.
+              lines than this.
 
           name: Optional human readable job name. Not unique. Cloudflare suggests that you set
               this to a meaningful string, like the domain name, to make it easier to identify
@@ -703,11 +694,11 @@ class AsyncJobsResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         filter: Optional[str] | NotGiven = NOT_GIVEN,
         frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
-        kind: Literal["edge"] | NotGiven = NOT_GIVEN,
+        kind: Literal["", "edge"] | NotGiven = NOT_GIVEN,
         logpull_options: Optional[str] | NotGiven = NOT_GIVEN,
-        max_upload_bytes: Optional[int] | NotGiven = NOT_GIVEN,
-        max_upload_interval_seconds: Optional[int] | NotGiven = NOT_GIVEN,
-        max_upload_records: Optional[int] | NotGiven = NOT_GIVEN,
+        max_upload_bytes: Union[Literal[0], object, None] | NotGiven = NOT_GIVEN,
+        max_upload_interval_seconds: Union[Literal[0], object, None] | NotGiven = NOT_GIVEN,
+        max_upload_records: Union[Literal[0], object, None] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         output_options: Optional[OutputOptionsParam] | NotGiven = NOT_GIVEN,
         ownership_challenge: str | NotGiven = NOT_GIVEN,
@@ -744,8 +735,7 @@ class AsyncJobsResource(AsyncAPIResource):
               frequency to low sends logs in smaller quantities of larger files.
 
           kind: The kind parameter (optional) is used to differentiate between Logpush and Edge
-              Log Delivery jobs. Currently, Edge Log Delivery is only supported for the
-              `http_requests` dataset.
+              Log Delivery jobs (when supported by the dataset).
 
           logpull_options: This field is deprecated. Use `output_options` instead. Configuration string. It
               specifies things like requested fields and timestamp formats. If migrating from
@@ -756,19 +746,17 @@ class AsyncJobsResource(AsyncAPIResource):
           max_upload_bytes: The maximum uncompressed file size of a batch of logs. This setting value must
               be between `5 MB` and `1 GB`, or `0` to disable it. Note that you cannot set a
               minimum file size; this means that log files may be much smaller than this batch
-              size. This parameter is not available for jobs with `edge` as its kind.
+              size.
 
           max_upload_interval_seconds: The maximum interval in seconds for log batches. This setting must be between 30
               and 300 seconds (5 minutes), or `0` to disable it. Note that you cannot specify
               a minimum interval for log batches; this means that log files may be sent in
-              shorter intervals than this. This parameter is only used for jobs with `edge` as
-              its kind.
+              shorter intervals than this.
 
           max_upload_records: The maximum number of log lines per batch. This setting must be between 1000 and
               1,000,000 lines, or `0` to disable it. Note that you cannot specify a minimum
               number of log lines per batch; this means that log files may contain many fewer
-              lines than this. This parameter is not available for jobs with `edge` as its
-              kind.
+              lines than this.
 
           name: Optional human readable job name. Not unique. Cloudflare suggests that you set
               this to a meaningful string, like the domain name, to make it easier to identify

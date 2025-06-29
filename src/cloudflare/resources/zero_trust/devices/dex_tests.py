@@ -204,7 +204,7 @@ class DEXTestsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncSinglePage[DEXTestListResponse]:
         """
-        Fetch all DEX tests.
+        Fetch all DEX tests
 
         Args:
           extra_headers: Send extra headers
@@ -488,7 +488,7 @@ class AsyncDEXTestsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[DEXTestListResponse, AsyncSinglePage[DEXTestListResponse]]:
         """
-        Fetch all DEX tests.
+        Fetch all DEX tests
 
         Args:
           extra_headers: Send extra headers

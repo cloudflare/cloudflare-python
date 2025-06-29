@@ -14,7 +14,7 @@ __all__ = [
     "PredefinedEntryConfidence",
     "IntegrationEntry",
     "ExactDataEntry",
-    "DocumentTemplateEntry",
+    "DocumentFingerprintEntry",
     "WordListEntry",
 ]
 
@@ -100,7 +100,7 @@ class ExactDataEntry(BaseModel):
     updated_at: datetime
 
 
-class DocumentTemplateEntry(BaseModel):
+class DocumentFingerprintEntry(BaseModel):
     id: str
 
     created_at: datetime
@@ -109,7 +109,7 @@ class DocumentTemplateEntry(BaseModel):
 
     name: str
 
-    type: Literal["document_template"]
+    type: Literal["document_fingerprint"]
 
     updated_at: datetime
 
@@ -133,5 +133,5 @@ class WordListEntry(BaseModel):
 
 
 EntryGetResponse: TypeAlias = Union[
-    CustomEntry, PredefinedEntry, IntegrationEntry, ExactDataEntry, DocumentTemplateEntry, WordListEntry
+    CustomEntry, PredefinedEntry, IntegrationEntry, ExactDataEntry, DocumentFingerprintEntry, WordListEntry
 ]

@@ -69,7 +69,7 @@ class KeysResource(SyncAPIResource):
         Lists a namespace's keys.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 
@@ -78,11 +78,11 @@ class KeysResource(SyncAPIResource):
               parameter. A valid value for the cursor can be obtained from the `cursors`
               object in the `result_info` structure.
 
-          limit: The number of keys to return. The cursor attribute may be used to iterate over
-              the next batch of keys if there are more than the limit.
+          limit: Limits the number of keys returned in the response. The cursor attribute may be
+              used to iterate over the next batch of keys if there are more than the limit.
 
-          prefix: A string prefix used to filter down which keys will be returned. Exact matches
-              and any key names that begin with the prefix will be returned.
+          prefix: Filters returned keys by a name prefix. Exact matches and any key names that
+              begin with the prefix will be returned.
 
           extra_headers: Send extra headers
 
@@ -136,7 +136,7 @@ class KeysResource(SyncAPIResource):
         10,000 keys to be removed.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 
@@ -181,23 +181,22 @@ class KeysResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[KeyBulkGetResponse]:
-        """Get multiple KV pairs from the namespace.
+        """Retrieve up to 100 KV pairs from the namespace.
 
-        Body should contain keys to retrieve
-        at most 100. Keys must contain text-based values. If value is json, it can be
-        requested to return in JSON, instead of string. Metadata can be return if
-        withMetadata is true.
+        Keys must contain text-based
+        values. JSON values can optionally be parsed instead of being returned as a
+        string value. Metadata can be included if `withMetadata` is true.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 
-          keys: Array of keys to retrieve (maximum 100)
+          keys: Array of keys to retrieve (maximum of 100).
 
-          type: Whether to parse JSON values in the response
+          type: Whether to parse JSON values in the response.
 
-          with_metadata: Whether to include metadata in the response
+          with_metadata: Whether to include metadata in the response.
 
           extra_headers: Send extra headers
 
@@ -260,7 +259,7 @@ class KeysResource(SyncAPIResource):
         size must be 100 megabytes or less.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 
@@ -329,7 +328,7 @@ class AsyncKeysResource(AsyncAPIResource):
         Lists a namespace's keys.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 
@@ -338,11 +337,11 @@ class AsyncKeysResource(AsyncAPIResource):
               parameter. A valid value for the cursor can be obtained from the `cursors`
               object in the `result_info` structure.
 
-          limit: The number of keys to return. The cursor attribute may be used to iterate over
-              the next batch of keys if there are more than the limit.
+          limit: Limits the number of keys returned in the response. The cursor attribute may be
+              used to iterate over the next batch of keys if there are more than the limit.
 
-          prefix: A string prefix used to filter down which keys will be returned. Exact matches
-              and any key names that begin with the prefix will be returned.
+          prefix: Filters returned keys by a name prefix. Exact matches and any key names that
+              begin with the prefix will be returned.
 
           extra_headers: Send extra headers
 
@@ -396,7 +395,7 @@ class AsyncKeysResource(AsyncAPIResource):
         10,000 keys to be removed.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 
@@ -441,23 +440,22 @@ class AsyncKeysResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[KeyBulkGetResponse]:
-        """Get multiple KV pairs from the namespace.
+        """Retrieve up to 100 KV pairs from the namespace.
 
-        Body should contain keys to retrieve
-        at most 100. Keys must contain text-based values. If value is json, it can be
-        requested to return in JSON, instead of string. Metadata can be return if
-        withMetadata is true.
+        Keys must contain text-based
+        values. JSON values can optionally be parsed instead of being returned as a
+        string value. Metadata can be included if `withMetadata` is true.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 
-          keys: Array of keys to retrieve (maximum 100)
+          keys: Array of keys to retrieve (maximum of 100).
 
-          type: Whether to parse JSON values in the response
+          type: Whether to parse JSON values in the response.
 
-          with_metadata: Whether to include metadata in the response
+          with_metadata: Whether to include metadata in the response.
 
           extra_headers: Send extra headers
 
@@ -520,7 +518,7 @@ class AsyncKeysResource(AsyncAPIResource):
         size must be 100 megabytes or less.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 

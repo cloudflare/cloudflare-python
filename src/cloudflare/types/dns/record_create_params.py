@@ -75,6 +75,13 @@ class ARecord(TypedDict, total=False):
     name: Required[str]
     """DNS record name (or @ for the zone apex) in Punycode."""
 
+    ttl: Required[TTLParam]
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
+
     type: Required[Literal["A"]]
     """Record type."""
 
@@ -98,13 +105,6 @@ class ARecord(TypedDict, total=False):
 
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
-
-    ttl: TTLParam
-    """Time To Live (TTL) of the DNS record in seconds.
-
-    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
-    minimum reduced to 30 for Enterprise zones.
-    """
 
 
 class ARecordSettings(TypedDict, total=False):
@@ -132,6 +132,13 @@ class AAAARecord(TypedDict, total=False):
     name: Required[str]
     """DNS record name (or @ for the zone apex) in Punycode."""
 
+    ttl: Required[TTLParam]
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
+
     type: Required[Literal["AAAA"]]
     """Record type."""
 
@@ -155,13 +162,6 @@ class AAAARecord(TypedDict, total=False):
 
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
-
-    ttl: TTLParam
-    """Time To Live (TTL) of the DNS record in seconds.
-
-    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
-    minimum reduced to 30 for Enterprise zones.
-    """
 
 
 class AAAARecordSettings(TypedDict, total=False):
@@ -189,6 +189,13 @@ class CNAMERecord(TypedDict, total=False):
     name: Required[str]
     """DNS record name (or @ for the zone apex) in Punycode."""
 
+    ttl: Required[TTLParam]
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
+
     type: Required[Literal["CNAME"]]
     """Record type."""
 
@@ -212,13 +219,6 @@ class CNAMERecord(TypedDict, total=False):
 
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
-
-    ttl: TTLParam
-    """Time To Live (TTL) of the DNS record in seconds.
-
-    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
-    minimum reduced to 30 for Enterprise zones.
-    """
 
 
 class CNAMERecordSettings(TypedDict, total=False):
@@ -254,6 +254,13 @@ class MXRecord(TypedDict, total=False):
     name: Required[str]
     """DNS record name (or @ for the zone apex) in Punycode."""
 
+    ttl: Required[TTLParam]
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
+
     type: Required[Literal["MX"]]
     """Record type."""
 
@@ -284,13 +291,6 @@ class MXRecord(TypedDict, total=False):
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
-    ttl: TTLParam
-    """Time To Live (TTL) of the DNS record in seconds.
-
-    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
-    minimum reduced to 30 for Enterprise zones.
-    """
-
 
 class MXRecordSettings(TypedDict, total=False):
     ipv4_only: bool
@@ -317,6 +317,13 @@ class NSRecord(TypedDict, total=False):
     name: Required[str]
     """DNS record name (or @ for the zone apex) in Punycode."""
 
+    ttl: Required[TTLParam]
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
+
     type: Required[Literal["NS"]]
     """Record type."""
 
@@ -340,13 +347,6 @@ class NSRecord(TypedDict, total=False):
 
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
-
-    ttl: TTLParam
-    """Time To Live (TTL) of the DNS record in seconds.
-
-    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
-    minimum reduced to 30 for Enterprise zones.
-    """
 
 
 class NSRecordSettings(TypedDict, total=False):
@@ -374,6 +374,13 @@ class DNSRecordsOpenpgpkeyRecord(TypedDict, total=False):
     name: Required[str]
     """DNS record name (or @ for the zone apex) in Punycode."""
 
+    ttl: Required[TTLParam]
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
+
     type: Required[Literal["OPENPGPKEY"]]
     """Record type."""
 
@@ -397,13 +404,6 @@ class DNSRecordsOpenpgpkeyRecord(TypedDict, total=False):
 
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
-
-    ttl: TTLParam
-    """Time To Live (TTL) of the DNS record in seconds.
-
-    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
-    minimum reduced to 30 for Enterprise zones.
-    """
 
 
 class DNSRecordsOpenpgpkeyRecordSettings(TypedDict, total=False):
@@ -431,6 +431,13 @@ class PTRRecord(TypedDict, total=False):
     name: Required[str]
     """DNS record name (or @ for the zone apex) in Punycode."""
 
+    ttl: Required[TTLParam]
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
+
     type: Required[Literal["PTR"]]
     """Record type."""
 
@@ -454,13 +461,6 @@ class PTRRecord(TypedDict, total=False):
 
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
-
-    ttl: TTLParam
-    """Time To Live (TTL) of the DNS record in seconds.
-
-    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
-    minimum reduced to 30 for Enterprise zones.
-    """
 
 
 class PTRRecordSettings(TypedDict, total=False):
@@ -487,6 +487,13 @@ class TXTRecord(TypedDict, total=False):
 
     name: Required[str]
     """DNS record name (or @ for the zone apex) in Punycode."""
+
+    ttl: Required[TTLParam]
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
 
     type: Required[Literal["TXT"]]
     """Record type."""
@@ -520,13 +527,6 @@ class TXTRecord(TypedDict, total=False):
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
-    ttl: TTLParam
-    """Time To Live (TTL) of the DNS record in seconds.
-
-    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
-    minimum reduced to 30 for Enterprise zones.
-    """
-
 
 class TXTRecordSettings(TypedDict, total=False):
     ipv4_only: bool
@@ -553,6 +553,13 @@ class CAARecord(TypedDict, total=False):
     name: Required[str]
     """DNS record name (or @ for the zone apex) in Punycode."""
 
+    ttl: Required[TTLParam]
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
+
     type: Required[Literal["CAA"]]
     """Record type."""
 
@@ -576,13 +583,6 @@ class CAARecord(TypedDict, total=False):
 
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
-
-    ttl: TTLParam
-    """Time To Live (TTL) of the DNS record in seconds.
-
-    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
-    minimum reduced to 30 for Enterprise zones.
-    """
 
 
 class CAARecordData(TypedDict, total=False):
@@ -621,6 +621,13 @@ class CERTRecord(TypedDict, total=False):
     name: Required[str]
     """DNS record name (or @ for the zone apex) in Punycode."""
 
+    ttl: Required[TTLParam]
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
+
     type: Required[Literal["CERT"]]
     """Record type."""
 
@@ -644,13 +651,6 @@ class CERTRecord(TypedDict, total=False):
 
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
-
-    ttl: TTLParam
-    """Time To Live (TTL) of the DNS record in seconds.
-
-    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
-    minimum reduced to 30 for Enterprise zones.
-    """
 
 
 class CERTRecordData(TypedDict, total=False):
@@ -692,6 +692,13 @@ class DNSKEYRecord(TypedDict, total=False):
     name: Required[str]
     """DNS record name (or @ for the zone apex) in Punycode."""
 
+    ttl: Required[TTLParam]
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
+
     type: Required[Literal["DNSKEY"]]
     """Record type."""
 
@@ -715,13 +722,6 @@ class DNSKEYRecord(TypedDict, total=False):
 
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
-
-    ttl: TTLParam
-    """Time To Live (TTL) of the DNS record in seconds.
-
-    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
-    minimum reduced to 30 for Enterprise zones.
-    """
 
 
 class DNSKEYRecordData(TypedDict, total=False):
@@ -763,6 +763,13 @@ class DSRecord(TypedDict, total=False):
     name: Required[str]
     """DNS record name (or @ for the zone apex) in Punycode."""
 
+    ttl: Required[TTLParam]
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
+
     type: Required[Literal["DS"]]
     """Record type."""
 
@@ -786,13 +793,6 @@ class DSRecord(TypedDict, total=False):
 
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
-
-    ttl: TTLParam
-    """Time To Live (TTL) of the DNS record in seconds.
-
-    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
-    minimum reduced to 30 for Enterprise zones.
-    """
 
 
 class DSRecordData(TypedDict, total=False):
@@ -834,6 +834,13 @@ class HTTPSRecord(TypedDict, total=False):
     name: Required[str]
     """DNS record name (or @ for the zone apex) in Punycode."""
 
+    ttl: Required[TTLParam]
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
+
     type: Required[Literal["HTTPS"]]
     """Record type."""
 
@@ -857,13 +864,6 @@ class HTTPSRecord(TypedDict, total=False):
 
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
-
-    ttl: TTLParam
-    """Time To Live (TTL) of the DNS record in seconds.
-
-    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
-    minimum reduced to 30 for Enterprise zones.
-    """
 
 
 class HTTPSRecordData(TypedDict, total=False):
@@ -902,6 +902,13 @@ class LOCRecord(TypedDict, total=False):
     name: Required[str]
     """DNS record name (or @ for the zone apex) in Punycode."""
 
+    ttl: Required[TTLParam]
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
+
     type: Required[Literal["LOC"]]
     """Record type."""
 
@@ -925,13 +932,6 @@ class LOCRecord(TypedDict, total=False):
 
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
-
-    ttl: TTLParam
-    """Time To Live (TTL) of the DNS record in seconds.
-
-    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
-    minimum reduced to 30 for Enterprise zones.
-    """
 
 
 class LOCRecordData(TypedDict, total=False):
@@ -997,6 +997,13 @@ class NAPTRRecord(TypedDict, total=False):
     name: Required[str]
     """DNS record name (or @ for the zone apex) in Punycode."""
 
+    ttl: Required[TTLParam]
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
+
     type: Required[Literal["NAPTR"]]
     """Record type."""
 
@@ -1020,13 +1027,6 @@ class NAPTRRecord(TypedDict, total=False):
 
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
-
-    ttl: TTLParam
-    """Time To Live (TTL) of the DNS record in seconds.
-
-    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
-    minimum reduced to 30 for Enterprise zones.
-    """
 
 
 class NAPTRRecordData(TypedDict, total=False):
@@ -1074,6 +1074,13 @@ class SMIMEARecord(TypedDict, total=False):
     name: Required[str]
     """DNS record name (or @ for the zone apex) in Punycode."""
 
+    ttl: Required[TTLParam]
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
+
     type: Required[Literal["SMIMEA"]]
     """Record type."""
 
@@ -1097,13 +1104,6 @@ class SMIMEARecord(TypedDict, total=False):
 
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
-
-    ttl: TTLParam
-    """Time To Live (TTL) of the DNS record in seconds.
-
-    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
-    minimum reduced to 30 for Enterprise zones.
-    """
 
 
 class SMIMEARecordData(TypedDict, total=False):
@@ -1145,6 +1145,13 @@ class SRVRecord(TypedDict, total=False):
     name: Required[str]
     """DNS record name (or @ for the zone apex) in Punycode."""
 
+    ttl: Required[TTLParam]
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
+
     type: Required[Literal["SRV"]]
     """Record type."""
 
@@ -1168,13 +1175,6 @@ class SRVRecord(TypedDict, total=False):
 
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
-
-    ttl: TTLParam
-    """Time To Live (TTL) of the DNS record in seconds.
-
-    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
-    minimum reduced to 30 for Enterprise zones.
-    """
 
 
 class SRVRecordData(TypedDict, total=False):
@@ -1219,6 +1219,13 @@ class SSHFPRecord(TypedDict, total=False):
     name: Required[str]
     """DNS record name (or @ for the zone apex) in Punycode."""
 
+    ttl: Required[TTLParam]
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
+
     type: Required[Literal["SSHFP"]]
     """Record type."""
 
@@ -1242,13 +1249,6 @@ class SSHFPRecord(TypedDict, total=False):
 
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
-
-    ttl: TTLParam
-    """Time To Live (TTL) of the DNS record in seconds.
-
-    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
-    minimum reduced to 30 for Enterprise zones.
-    """
 
 
 class SSHFPRecordData(TypedDict, total=False):
@@ -1287,6 +1287,13 @@ class SVCBRecord(TypedDict, total=False):
     name: Required[str]
     """DNS record name (or @ for the zone apex) in Punycode."""
 
+    ttl: Required[TTLParam]
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
+
     type: Required[Literal["SVCB"]]
     """Record type."""
 
@@ -1310,13 +1317,6 @@ class SVCBRecord(TypedDict, total=False):
 
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
-
-    ttl: TTLParam
-    """Time To Live (TTL) of the DNS record in seconds.
-
-    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
-    minimum reduced to 30 for Enterprise zones.
-    """
 
 
 class SVCBRecordData(TypedDict, total=False):
@@ -1355,6 +1355,13 @@ class TLSARecord(TypedDict, total=False):
     name: Required[str]
     """DNS record name (or @ for the zone apex) in Punycode."""
 
+    ttl: Required[TTLParam]
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
+
     type: Required[Literal["TLSA"]]
     """Record type."""
 
@@ -1378,13 +1385,6 @@ class TLSARecord(TypedDict, total=False):
 
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
-
-    ttl: TTLParam
-    """Time To Live (TTL) of the DNS record in seconds.
-
-    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
-    minimum reduced to 30 for Enterprise zones.
-    """
 
 
 class TLSARecordData(TypedDict, total=False):
@@ -1426,6 +1426,13 @@ class URIRecord(TypedDict, total=False):
     name: Required[str]
     """DNS record name (or @ for the zone apex) in Punycode."""
 
+    ttl: Required[TTLParam]
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
+
     type: Required[Literal["URI"]]
     """Record type."""
 
@@ -1455,13 +1462,6 @@ class URIRecord(TypedDict, total=False):
 
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
-
-    ttl: TTLParam
-    """Time To Live (TTL) of the DNS record in seconds.
-
-    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
-    minimum reduced to 30 for Enterprise zones.
-    """
 
 
 class URIRecordData(TypedDict, total=False):

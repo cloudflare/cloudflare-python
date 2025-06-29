@@ -5,9 +5,7 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
 
-from .gateway_item_param import GatewayItemParam
-
-__all__ = ["ListCreateParams"]
+__all__ = ["ListCreateParams", "Item"]
 
 
 class ListCreateParams(TypedDict, total=False):
@@ -22,5 +20,13 @@ class ListCreateParams(TypedDict, total=False):
     description: str
     """The description of the list."""
 
-    items: Iterable[GatewayItemParam]
-    """The items in the list."""
+    items: Iterable[Item]
+    """items to add to the list."""
+
+
+class Item(TypedDict, total=False):
+    description: str
+    """The description of the list item, if present"""
+
+    value: str
+    """The value of the item in a list."""

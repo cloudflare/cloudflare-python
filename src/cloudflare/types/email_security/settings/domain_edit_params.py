@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import List
 from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["DomainEditParams"]
@@ -16,7 +16,7 @@ class DomainEditParams(TypedDict, total=False):
 
     allowed_delivery_modes: List[Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"]]
 
-    domain: Optional[str]
+    domain: str
 
     drop_dispositions: List[
         Literal[
@@ -35,9 +35,9 @@ class DomainEditParams(TypedDict, total=False):
 
     folder: Literal["AllItems", "Inbox"]
 
-    integration_id: Optional[str]
+    integration_id: str
 
-    lookback_hops: Optional[int]
+    lookback_hops: int
 
     require_tls_inbound: bool
 
