@@ -44,6 +44,8 @@ class TestUARules:
                 "value": "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)",
             },
             mode="challenge",
+            description="Prevent multiple login failures to mitigate brute force attacks",
+            paused=False,
         )
         assert_matches_type(UARuleCreateResponse, ua_rule, path=["response"])
 
@@ -109,6 +111,8 @@ class TestUARules:
                 "value": "198.51.100.4",
             },
             mode="challenge",
+            description="Prevent multiple login failures to mitigate brute force attacks",
+            paused=False,
         )
         assert_matches_type(UARuleUpdateResponse, ua_rule, path=["response"])
 
@@ -175,10 +179,10 @@ class TestUARules:
         ua_rule = client.firewall.ua_rules.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             description="abusive",
-            description_search="abusive",
             page=1,
+            paused=False,
             per_page=1,
-            ua_search="Safari",
+            user_agent="Safari",
         )
         assert_matches_type(SyncV4PagePaginationArray[UARuleListResponse], ua_rule, path=["response"])
 
@@ -335,6 +339,8 @@ class TestAsyncUARules:
                 "value": "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)",
             },
             mode="challenge",
+            description="Prevent multiple login failures to mitigate brute force attacks",
+            paused=False,
         )
         assert_matches_type(UARuleCreateResponse, ua_rule, path=["response"])
 
@@ -400,6 +406,8 @@ class TestAsyncUARules:
                 "value": "198.51.100.4",
             },
             mode="challenge",
+            description="Prevent multiple login failures to mitigate brute force attacks",
+            paused=False,
         )
         assert_matches_type(UARuleUpdateResponse, ua_rule, path=["response"])
 
@@ -466,10 +474,10 @@ class TestAsyncUARules:
         ua_rule = await async_client.firewall.ua_rules.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             description="abusive",
-            description_search="abusive",
             page=1,
+            paused=False,
             per_page=1,
-            ua_search="Safari",
+            user_agent="Safari",
         )
         assert_matches_type(AsyncV4PagePaginationArray[UARuleListResponse], ua_rule, path=["response"])
 

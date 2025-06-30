@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, cast
+from typing import Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -56,6 +56,8 @@ class UARulesResource(SyncAPIResource):
         zone_id: str,
         configuration: ua_rule_create_params.Configuration,
         mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"],
+        description: str | NotGiven = NOT_GIVEN,
+        paused: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -71,6 +73,11 @@ class UARulesResource(SyncAPIResource):
 
           mode: The action to apply to a matched request.
 
+          description: An informative summary of the rule. This value is sanitized and any tags will be
+              removed.
+
+          paused: When true, indicates that the rule is currently paused.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -81,28 +88,25 @@ class UARulesResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            UARuleCreateResponse,
-            self._post(
-                f"/zones/{zone_id}/firewall/ua_rules",
-                body=maybe_transform(
-                    {
-                        "configuration": configuration,
-                        "mode": mode,
-                    },
-                    ua_rule_create_params.UARuleCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[UARuleCreateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[UARuleCreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._post(
+            f"/zones/{zone_id}/firewall/ua_rules",
+            body=maybe_transform(
+                {
+                    "configuration": configuration,
+                    "mode": mode,
+                    "description": description,
+                    "paused": paused,
+                },
+                ua_rule_create_params.UARuleCreateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[UARuleCreateResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[UARuleCreateResponse], ResultWrapper[UARuleCreateResponse]),
         )
 
     def update(
@@ -112,6 +116,8 @@ class UARulesResource(SyncAPIResource):
         zone_id: str,
         configuration: ua_rule_update_params.Configuration,
         mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"],
+        description: str | NotGiven = NOT_GIVEN,
+        paused: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -131,6 +137,11 @@ class UARulesResource(SyncAPIResource):
 
           mode: The action to apply to a matched request.
 
+          description: An informative summary of the rule. This value is sanitized and any tags will be
+              removed.
+
+          paused: When true, indicates that the rule is currently paused.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -143,28 +154,25 @@ class UARulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not ua_rule_id:
             raise ValueError(f"Expected a non-empty value for `ua_rule_id` but received {ua_rule_id!r}")
-        return cast(
-            UARuleUpdateResponse,
-            self._put(
-                f"/zones/{zone_id}/firewall/ua_rules/{ua_rule_id}",
-                body=maybe_transform(
-                    {
-                        "configuration": configuration,
-                        "mode": mode,
-                    },
-                    ua_rule_update_params.UARuleUpdateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[UARuleUpdateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[UARuleUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._put(
+            f"/zones/{zone_id}/firewall/ua_rules/{ua_rule_id}",
+            body=maybe_transform(
+                {
+                    "configuration": configuration,
+                    "mode": mode,
+                    "description": description,
+                    "paused": paused,
+                },
+                ua_rule_update_params.UARuleUpdateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[UARuleUpdateResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[UARuleUpdateResponse], ResultWrapper[UARuleUpdateResponse]),
         )
 
     def list(
@@ -172,10 +180,10 @@ class UARulesResource(SyncAPIResource):
         *,
         zone_id: str,
         description: str | NotGiven = NOT_GIVEN,
-        description_search: str | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
+        paused: bool | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
-        ua_search: str | NotGiven = NOT_GIVEN,
+        user_agent: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -193,14 +201,14 @@ class UARulesResource(SyncAPIResource):
 
           description: A string to search for in the description of existing rules.
 
-          description_search: A string to search for in the description of existing rules.
-
           page: Page number of paginated results.
+
+          paused: When true, indicates that the rule is currently paused.
 
           per_page: The maximum number of results per page. You can only set the value to `1` or to
               a multiple of 5 such as `5`, `10`, `15`, or `20`.
 
-          ua_search: A string to search for in the user agent values of existing rules.
+          user_agent: A string to search for in the user agent values of existing rules.
 
           extra_headers: Send extra headers
 
@@ -223,10 +231,10 @@ class UARulesResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "description": description,
-                        "description_search": description_search,
                         "page": page,
+                        "paused": paused,
                         "per_page": per_page,
-                        "ua_search": ua_search,
+                        "user_agent": user_agent,
                     },
                     ua_rule_list_params.UARuleListParams,
                 ),
@@ -310,21 +318,16 @@ class UARulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not ua_rule_id:
             raise ValueError(f"Expected a non-empty value for `ua_rule_id` but received {ua_rule_id!r}")
-        return cast(
-            UARuleGetResponse,
-            self._get(
-                f"/zones/{zone_id}/firewall/ua_rules/{ua_rule_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[UARuleGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[UARuleGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            f"/zones/{zone_id}/firewall/ua_rules/{ua_rule_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[UARuleGetResponse]._unwrapper,
             ),
+            cast_to=cast(Type[UARuleGetResponse], ResultWrapper[UARuleGetResponse]),
         )
 
 
@@ -354,6 +357,8 @@ class AsyncUARulesResource(AsyncAPIResource):
         zone_id: str,
         configuration: ua_rule_create_params.Configuration,
         mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"],
+        description: str | NotGiven = NOT_GIVEN,
+        paused: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -369,6 +374,11 @@ class AsyncUARulesResource(AsyncAPIResource):
 
           mode: The action to apply to a matched request.
 
+          description: An informative summary of the rule. This value is sanitized and any tags will be
+              removed.
+
+          paused: When true, indicates that the rule is currently paused.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -379,28 +389,25 @@ class AsyncUARulesResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            UARuleCreateResponse,
-            await self._post(
-                f"/zones/{zone_id}/firewall/ua_rules",
-                body=await async_maybe_transform(
-                    {
-                        "configuration": configuration,
-                        "mode": mode,
-                    },
-                    ua_rule_create_params.UARuleCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[UARuleCreateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[UARuleCreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._post(
+            f"/zones/{zone_id}/firewall/ua_rules",
+            body=await async_maybe_transform(
+                {
+                    "configuration": configuration,
+                    "mode": mode,
+                    "description": description,
+                    "paused": paused,
+                },
+                ua_rule_create_params.UARuleCreateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[UARuleCreateResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[UARuleCreateResponse], ResultWrapper[UARuleCreateResponse]),
         )
 
     async def update(
@@ -410,6 +417,8 @@ class AsyncUARulesResource(AsyncAPIResource):
         zone_id: str,
         configuration: ua_rule_update_params.Configuration,
         mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"],
+        description: str | NotGiven = NOT_GIVEN,
+        paused: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -429,6 +438,11 @@ class AsyncUARulesResource(AsyncAPIResource):
 
           mode: The action to apply to a matched request.
 
+          description: An informative summary of the rule. This value is sanitized and any tags will be
+              removed.
+
+          paused: When true, indicates that the rule is currently paused.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -441,28 +455,25 @@ class AsyncUARulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not ua_rule_id:
             raise ValueError(f"Expected a non-empty value for `ua_rule_id` but received {ua_rule_id!r}")
-        return cast(
-            UARuleUpdateResponse,
-            await self._put(
-                f"/zones/{zone_id}/firewall/ua_rules/{ua_rule_id}",
-                body=await async_maybe_transform(
-                    {
-                        "configuration": configuration,
-                        "mode": mode,
-                    },
-                    ua_rule_update_params.UARuleUpdateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[UARuleUpdateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[UARuleUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._put(
+            f"/zones/{zone_id}/firewall/ua_rules/{ua_rule_id}",
+            body=await async_maybe_transform(
+                {
+                    "configuration": configuration,
+                    "mode": mode,
+                    "description": description,
+                    "paused": paused,
+                },
+                ua_rule_update_params.UARuleUpdateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[UARuleUpdateResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[UARuleUpdateResponse], ResultWrapper[UARuleUpdateResponse]),
         )
 
     def list(
@@ -470,10 +481,10 @@ class AsyncUARulesResource(AsyncAPIResource):
         *,
         zone_id: str,
         description: str | NotGiven = NOT_GIVEN,
-        description_search: str | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
+        paused: bool | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
-        ua_search: str | NotGiven = NOT_GIVEN,
+        user_agent: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -491,14 +502,14 @@ class AsyncUARulesResource(AsyncAPIResource):
 
           description: A string to search for in the description of existing rules.
 
-          description_search: A string to search for in the description of existing rules.
-
           page: Page number of paginated results.
+
+          paused: When true, indicates that the rule is currently paused.
 
           per_page: The maximum number of results per page. You can only set the value to `1` or to
               a multiple of 5 such as `5`, `10`, `15`, or `20`.
 
-          ua_search: A string to search for in the user agent values of existing rules.
+          user_agent: A string to search for in the user agent values of existing rules.
 
           extra_headers: Send extra headers
 
@@ -521,10 +532,10 @@ class AsyncUARulesResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "description": description,
-                        "description_search": description_search,
                         "page": page,
+                        "paused": paused,
                         "per_page": per_page,
-                        "ua_search": ua_search,
+                        "user_agent": user_agent,
                     },
                     ua_rule_list_params.UARuleListParams,
                 ),
@@ -608,21 +619,16 @@ class AsyncUARulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not ua_rule_id:
             raise ValueError(f"Expected a non-empty value for `ua_rule_id` but received {ua_rule_id!r}")
-        return cast(
-            UARuleGetResponse,
-            await self._get(
-                f"/zones/{zone_id}/firewall/ua_rules/{ua_rule_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[UARuleGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[UARuleGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            f"/zones/{zone_id}/firewall/ua_rules/{ua_rule_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[UARuleGetResponse]._unwrapper,
             ),
+            cast_to=cast(Type[UARuleGetResponse], ResultWrapper[UARuleGetResponse]),
         )
 
 
