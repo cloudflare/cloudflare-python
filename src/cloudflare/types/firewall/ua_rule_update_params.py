@@ -24,6 +24,15 @@ class UARuleUpdateParams(TypedDict, total=False):
     mode: Required[Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"]]
     """The action to apply to a matched request."""
 
+    description: str
+    """An informative summary of the rule.
+
+    This value is sanitized and any tags will be removed.
+    """
+
+    paused: bool
+    """When true, indicates that the rule is currently paused."""
+
 
 Configuration: TypeAlias = Union[
     AccessRuleIPConfigurationParam,
