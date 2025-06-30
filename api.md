@@ -7274,6 +7274,44 @@ Methods:
 
 - <code title="get /radar/bgp/ips/timeseries">client.radar.bgp.ips.<a href="./src/cloudflare/resources/radar/bgp/ips.py">timeseries</a>(\*\*<a href="src/cloudflare/types/radar/bgp/ip_timeseries_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/ip_timeseries_response.py">IPTimeseriesResponse</a></code>
 
+## Bots
+
+Types:
+
+```python
+from cloudflare.types.radar import (
+    BotListResponse,
+    BotGetResponse,
+    BotSummaryResponse,
+    BotTimeseriesResponse,
+    BotTimeseriesGroupsResponse,
+)
+```
+
+Methods:
+
+- <code title="get /radar/bots">client.radar.bots.<a href="./src/cloudflare/resources/radar/bots/bots.py">list</a>(\*\*<a href="src/cloudflare/types/radar/bot_list_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bot_list_response.py">BotListResponse</a></code>
+- <code title="get /radar/bots/{bot_slug}">client.radar.bots.<a href="./src/cloudflare/resources/radar/bots/bots.py">get</a>(bot_slug, \*\*<a href="src/cloudflare/types/radar/bot_get_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bot_get_response.py">BotGetResponse</a></code>
+- <code title="get /radar/bots/summary/{dimension}">client.radar.bots.<a href="./src/cloudflare/resources/radar/bots/bots.py">summary</a>(dimension, \*\*<a href="src/cloudflare/types/radar/bot_summary_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bot_summary_response.py">BotSummaryResponse</a></code>
+- <code title="get /radar/bots/timeseries">client.radar.bots.<a href="./src/cloudflare/resources/radar/bots/bots.py">timeseries</a>(\*\*<a href="src/cloudflare/types/radar/bot_timeseries_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bot_timeseries_response.py">BotTimeseriesResponse</a></code>
+- <code title="get /radar/bots/timeseries_groups/{dimension}">client.radar.bots.<a href="./src/cloudflare/resources/radar/bots/bots.py">timeseries_groups</a>(dimension, \*\*<a href="src/cloudflare/types/radar/bot_timeseries_groups_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bot_timeseries_groups_response.py">BotTimeseriesGroupsResponse</a></code>
+
+### WebCrawlers
+
+Types:
+
+```python
+from cloudflare.types.radar.bots import (
+    WebCrawlerSummaryResponse,
+    WebCrawlerTimeseriesGroupsResponse,
+)
+```
+
+Methods:
+
+- <code title="get /radar/bots/crawlers/summary/{dimension}">client.radar.bots.web_crawlers.<a href="./src/cloudflare/resources/radar/bots/web_crawlers.py">summary</a>(dimension, \*\*<a href="src/cloudflare/types/radar/bots/web_crawler_summary_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bots/web_crawler_summary_response.py">WebCrawlerSummaryResponse</a></code>
+- <code title="get /radar/bots/crawlers/timeseries_groups/{dimension}">client.radar.bots.web_crawlers.<a href="./src/cloudflare/resources/radar/bots/web_crawlers.py">timeseries_groups</a>(dimension, \*\*<a href="src/cloudflare/types/radar/bots/web_crawler_timeseries_groups_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bots/web_crawler_timeseries_groups_response.py">WebCrawlerTimeseriesGroupsResponse</a></code>
+
 ## Datasets
 
 Types:

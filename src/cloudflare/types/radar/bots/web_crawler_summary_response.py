@@ -1,16 +1,15 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import TYPE_CHECKING, List
+from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
-from ..._models import BaseModel
-from .http_timeseries_response import UnnamedTypeWithobjectParent4UnnamedTypeWithobjectParent4Item
+from ...._models import BaseModel
 
 __all__ = [
-    "HTTPTimeseriesResponse",
+    "WebCrawlerSummaryResponse",
     "Meta",
     "MetaConfidenceInfo",
     "MetaConfidenceInfoAnnotation",
@@ -58,16 +57,7 @@ class MetaUnit(BaseModel):
 
 
 class Meta(BaseModel):
-    agg_interval: Literal["FIFTEEN_MINUTES", "ONE_HOUR", "ONE_DAY", "ONE_WEEK", "ONE_MONTH"] = FieldInfo(
-        alias="aggInterval"
-    )
-    """Aggregation interval of the results (e.g., in 15 minutes or 1 hour intervals).
-
-    Refer to
-    [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
-    """
-
-    confidence_info: MetaConfidenceInfo = FieldInfo(alias="confidenceInfo")
+    confidence_info: Optional[MetaConfidenceInfo] = FieldInfo(alias="confidenceInfo", default=None)
 
     date_range: List[MetaDateRange] = FieldInfo(alias="dateRange")
 
@@ -94,12 +84,8 @@ class Meta(BaseModel):
     """Measurement units for the results."""
 
 
-class HTTPTimeseriesResponse(BaseModel):
+class WebCrawlerSummaryResponse(BaseModel):
     meta: Meta
     """Metadata for the results."""
 
-    if TYPE_CHECKING:
-        # Stub to indicate that arbitrary properties are accepted.
-        # To access properties that are not valid identifiers you can use `getattr`, e.g.
-        # `getattr(obj, '$type')`
-        def __getattr__(self, attr: str) -> UnnamedTypeWithobjectParent4UnnamedTypeWithobjectParent4Item: ...
+    summary_0: Dict[str, str]
