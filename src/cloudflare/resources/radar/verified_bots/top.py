@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import List, Type, Union, cast
 from datetime import datetime
 from typing_extensions import Literal
@@ -47,6 +48,9 @@ class TopResource(SyncAPIResource):
         """
         return TopResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [Radar Bots API](https://developers.cloudflare.com/api/resources/radar/subresources/bots/) instead."
+    )
     def bots(
         self,
         *,
@@ -131,6 +135,9 @@ class TopResource(SyncAPIResource):
             cast_to=cast(Type[TopBotsResponse], ResultWrapper[TopBotsResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Bots API](https://developers.cloudflare.com/api/resources/radar/subresources/bots/) instead."
+    )
     def categories(
         self,
         *,
@@ -237,6 +244,9 @@ class AsyncTopResource(AsyncAPIResource):
         """
         return AsyncTopResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [Radar Bots API](https://developers.cloudflare.com/api/resources/radar/subresources/bots/) instead."
+    )
     async def bots(
         self,
         *,
@@ -321,6 +331,9 @@ class AsyncTopResource(AsyncAPIResource):
             cast_to=cast(Type[TopBotsResponse], ResultWrapper[TopBotsResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Bots API](https://developers.cloudflare.com/api/resources/radar/subresources/bots/) instead."
+    )
     async def categories(
         self,
         *,
@@ -411,11 +424,15 @@ class TopResourceWithRawResponse:
     def __init__(self, top: TopResource) -> None:
         self._top = top
 
-        self.bots = to_raw_response_wrapper(
-            top.bots,
+        self.bots = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                top.bots  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.categories = to_raw_response_wrapper(
-            top.categories,
+        self.categories = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                top.categories  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -423,11 +440,15 @@ class AsyncTopResourceWithRawResponse:
     def __init__(self, top: AsyncTopResource) -> None:
         self._top = top
 
-        self.bots = async_to_raw_response_wrapper(
-            top.bots,
+        self.bots = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                top.bots  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.categories = async_to_raw_response_wrapper(
-            top.categories,
+        self.categories = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                top.categories  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -435,11 +456,15 @@ class TopResourceWithStreamingResponse:
     def __init__(self, top: TopResource) -> None:
         self._top = top
 
-        self.bots = to_streamed_response_wrapper(
-            top.bots,
+        self.bots = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                top.bots  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.categories = to_streamed_response_wrapper(
-            top.categories,
+        self.categories = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                top.categories  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -447,9 +472,13 @@ class AsyncTopResourceWithStreamingResponse:
     def __init__(self, top: AsyncTopResource) -> None:
         self._top = top
 
-        self.bots = async_to_streamed_response_wrapper(
-            top.bots,
+        self.bots = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                top.bots  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.categories = async_to_streamed_response_wrapper(
-            top.categories,
+        self.categories = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                top.categories  # pyright: ignore[reportDeprecated],
+            )
         )
