@@ -6,16 +6,16 @@ from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
-from ..._models import BaseModel
-from .http_timeseries_response import UnnamedTypeWithobjectParent4UnnamedTypeWithobjectParent4Item
+from ...._models import BaseModel
 
 __all__ = [
-    "HTTPTimeseriesResponse",
+    "WebCrawlerTimeseriesGroupsResponse",
     "Meta",
     "MetaConfidenceInfo",
     "MetaConfidenceInfoAnnotation",
     "MetaDateRange",
     "MetaUnit",
+    "Serie0",
 ]
 
 
@@ -94,12 +94,18 @@ class Meta(BaseModel):
     """Measurement units for the results."""
 
 
-class HTTPTimeseriesResponse(BaseModel):
-    meta: Meta
-    """Metadata for the results."""
+class Serie0(BaseModel):
+    timestamps: List[datetime]
 
     if TYPE_CHECKING:
         # Stub to indicate that arbitrary properties are accepted.
         # To access properties that are not valid identifiers you can use `getattr`, e.g.
         # `getattr(obj, '$type')`
-        def __getattr__(self, attr: str) -> UnnamedTypeWithobjectParent4UnnamedTypeWithobjectParent4Item: ...
+        def __getattr__(self, attr: str) -> List[str]: ...
+
+
+class WebCrawlerTimeseriesGroupsResponse(BaseModel):
+    meta: Meta
+    """Metadata for the results."""
+
+    serie_0: Serie0
