@@ -20,7 +20,7 @@ class StaleZoneConfiguration(BaseModel):
 
 
 class SuperBotFightModeDefinitelyConfiguration(BaseModel):
-    ai_bots_protection: Optional[Literal["block", "disabled"]] = None
+    ai_bots_protection: Optional[Literal["block", "disabled", "only_on_ad_pages"]] = None
     """Enable rule to block AI Scrapers and Crawlers."""
 
     crawler_protection: Optional[Literal["enabled", "disabled"]] = None

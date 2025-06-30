@@ -8,7 +8,7 @@ __all__ = ["BotFightModeConfigurationParam"]
 
 
 class BotFightModeConfigurationParam(TypedDict, total=False):
-    ai_bots_protection: Literal["block", "disabled"]
+    ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"]
     """Enable rule to block AI Scrapers and Crawlers."""
 
     crawler_protection: Literal["enabled", "disabled"]
