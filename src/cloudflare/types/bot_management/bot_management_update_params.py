@@ -18,7 +18,7 @@ class BotFightModeConfiguration(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier."""
 
-    ai_bots_protection: Literal["block", "disabled"]
+    ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"]
     """Enable rule to block AI Scrapers and Crawlers."""
 
     crawler_protection: Literal["enabled", "disabled"]
@@ -38,7 +38,7 @@ class SuperBotFightModeDefinitelyConfiguration(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier."""
 
-    ai_bots_protection: Literal["block", "disabled"]
+    ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"]
     """Enable rule to block AI Scrapers and Crawlers."""
 
     crawler_protection: Literal["enabled", "disabled"]
@@ -71,7 +71,7 @@ class SuperBotFightModeLikelyConfiguration(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier."""
 
-    ai_bots_protection: Literal["block", "disabled"]
+    ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"]
     """Enable rule to block AI Scrapers and Crawlers."""
 
     crawler_protection: Literal["enabled", "disabled"]
@@ -107,7 +107,7 @@ class SubscriptionConfiguration(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier."""
 
-    ai_bots_protection: Literal["block", "disabled"]
+    ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"]
     """Enable rule to block AI Scrapers and Crawlers."""
 
     auto_update_model: bool

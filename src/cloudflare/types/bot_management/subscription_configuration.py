@@ -35,7 +35,7 @@ class StaleZoneConfiguration(BaseModel):
 
 
 class SubscriptionConfiguration(BaseModel):
-    ai_bots_protection: Optional[Literal["block", "disabled"]] = None
+    ai_bots_protection: Optional[Literal["block", "disabled", "only_on_ad_pages"]] = None
     """Enable rule to block AI Scrapers and Crawlers."""
 
     auto_update_model: Optional[bool] = None
