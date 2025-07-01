@@ -30,6 +30,12 @@ class ConfigEditParams(TypedDict, total=False):
 
     origin: Origin
 
+    origin_connection_limit: int
+    """
+    The (soft) maximum number of connections the Hyperdrive is allowed to make to
+    the origin database.
+    """
+
 
 class CachingHyperdriveHyperdriveCachingCommon(TypedDict, total=False):
     disabled: bool

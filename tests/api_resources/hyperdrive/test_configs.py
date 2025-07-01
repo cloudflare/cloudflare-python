@@ -55,6 +55,7 @@ class TestConfigs:
                 "mtls_certificate_id": "00000000-0000-0000-0000-0000000000",
                 "sslmode": "verify-full",
             },
+            origin_connection_limit=60,
         )
         assert_matches_type(Hyperdrive, config, path=["response"])
 
@@ -158,6 +159,7 @@ class TestConfigs:
                 "mtls_certificate_id": "00000000-0000-0000-0000-0000000000",
                 "sslmode": "verify-full",
             },
+            origin_connection_limit=60,
         )
         assert_matches_type(Hyperdrive, config, path=["response"])
 
@@ -353,6 +355,7 @@ class TestConfigs:
                 "scheme": "postgres",
                 "user": "postgres",
             },
+            origin_connection_limit=60,
         )
         assert_matches_type(Hyperdrive, config, path=["response"])
 
@@ -490,6 +493,7 @@ class TestAsyncConfigs:
                 "mtls_certificate_id": "00000000-0000-0000-0000-0000000000",
                 "sslmode": "verify-full",
             },
+            origin_connection_limit=60,
         )
         assert_matches_type(Hyperdrive, config, path=["response"])
 
@@ -593,6 +597,7 @@ class TestAsyncConfigs:
                 "mtls_certificate_id": "00000000-0000-0000-0000-0000000000",
                 "sslmode": "verify-full",
             },
+            origin_connection_limit=60,
         )
         assert_matches_type(Hyperdrive, config, path=["response"])
 
@@ -788,6 +793,7 @@ class TestAsyncConfigs:
                 "scheme": "postgres",
                 "user": "postgres",
             },
+            origin_connection_limit=60,
         )
         assert_matches_type(Hyperdrive, config, path=["response"])
 

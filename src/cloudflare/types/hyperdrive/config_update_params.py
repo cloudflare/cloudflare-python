@@ -29,6 +29,12 @@ class ConfigUpdateParams(TypedDict, total=False):
 
     mtls: MTLS
 
+    origin_connection_limit: int
+    """
+    The (soft) maximum number of connections the Hyperdrive is allowed to make to
+    the origin database.
+    """
+
 
 class OriginPublicDatabase(TypedDict, total=False):
     database: Required[str]
