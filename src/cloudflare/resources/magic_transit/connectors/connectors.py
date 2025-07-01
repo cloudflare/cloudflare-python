@@ -183,7 +183,7 @@ class ConnectorsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ConnectorEditResponse:
         """
-        Update Connector
+        Edit Connector to update specific properties
 
         Args:
           account_id: Account identifier
@@ -404,7 +404,7 @@ class AsyncConnectorsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ConnectorEditResponse:
         """
-        Update Connector
+        Edit Connector to update specific properties
 
         Args:
           account_id: Account identifier
