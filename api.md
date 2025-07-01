@@ -3923,8 +3923,10 @@ Types:
 
 ```python
 from cloudflare.types.magic_transit import (
+    ConnectorCreateResponse,
     ConnectorUpdateResponse,
     ConnectorListResponse,
+    ConnectorDeleteResponse,
     ConnectorEditResponse,
     ConnectorGetResponse,
 )
@@ -3932,8 +3934,10 @@ from cloudflare.types.magic_transit import (
 
 Methods:
 
+- <code title="post /accounts/{account_id}/magic/connectors">client.magic_transit.connectors.<a href="./src/cloudflare/resources/magic_transit/connectors/connectors.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/connector_create_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/connector_create_response.py">ConnectorCreateResponse</a></code>
 - <code title="put /accounts/{account_id}/magic/connectors/{connector_id}">client.magic_transit.connectors.<a href="./src/cloudflare/resources/magic_transit/connectors/connectors.py">update</a>(connector_id, \*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/connector_update_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/connector_update_response.py">ConnectorUpdateResponse</a></code>
 - <code title="get /accounts/{account_id}/magic/connectors">client.magic_transit.connectors.<a href="./src/cloudflare/resources/magic_transit/connectors/connectors.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/magic_transit/connector_list_response.py">SyncSinglePage[ConnectorListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/magic/connectors/{connector_id}">client.magic_transit.connectors.<a href="./src/cloudflare/resources/magic_transit/connectors/connectors.py">delete</a>(connector_id, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/connector_delete_response.py">ConnectorDeleteResponse</a></code>
 - <code title="patch /accounts/{account_id}/magic/connectors/{connector_id}">client.magic_transit.connectors.<a href="./src/cloudflare/resources/magic_transit/connectors/connectors.py">edit</a>(connector_id, \*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/connector_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/connector_edit_response.py">ConnectorEditResponse</a></code>
 - <code title="get /accounts/{account_id}/magic/connectors/{connector_id}">client.magic_transit.connectors.<a href="./src/cloudflare/resources/magic_transit/connectors/connectors.py">get</a>(connector_id, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/connector_get_response.py">ConnectorGetResponse</a></code>
 
