@@ -169,7 +169,6 @@ if TYPE_CHECKING:
     from .resources.billing.billing import BillingResource, AsyncBillingResource
     from .resources.logpush.logpush import LogpushResource, AsyncLogpushResource
     from .resources.workers.workers import WorkersResource, AsyncWorkersResource
-    from .resources.brand_protection import BrandProtectionResource, AsyncBrandProtectionResource
     from .resources.accounts.accounts import AccountsResource, AsyncAccountsResource
     from .resources.alerting.alerting import AlertingResource, AsyncAlertingResource
     from .resources.firewall.firewall import FirewallResource, AsyncFirewallResource
@@ -213,6 +212,7 @@ if TYPE_CHECKING:
     from .resources.durable_objects.durable_objects import DurableObjectsResource, AsyncDurableObjectsResource
     from .resources.request_tracers.request_tracers import RequestTracersResource, AsyncRequestTracersResource
     from .resources.security_center.security_center import SecurityCenterResource, AsyncSecurityCenterResource
+    from .resources.brand_protection.brand_protection import BrandProtectionResource, AsyncBrandProtectionResource
     from .resources.content_scanning.content_scanning import ContentScanningResource, AsyncContentScanningResource
     from .resources.custom_hostnames.custom_hostnames import CustomHostnamesResource, AsyncCustomHostnamesResource
     from .resources.resource_sharing.resource_sharing import ResourceSharingResource, AsyncResourceSharingResource
