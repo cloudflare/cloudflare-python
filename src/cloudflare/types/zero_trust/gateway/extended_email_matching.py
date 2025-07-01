@@ -13,3 +13,12 @@ class ExtendedEmailMatching(BaseModel):
 
     modifiers) used as criteria in Firewall policies.
     """
+
+    read_only: Optional[bool] = None
+    """
+    This setting was shared via the Orgs API and cannot be edited by the current
+    account
+    """
+
+    source_account: Optional[str] = None
+    """Account tag of account that shared this setting"""
