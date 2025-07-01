@@ -35,10 +35,12 @@ from .snapshots.snapshots import (
     SnapshotsResourceWithStreamingResponse,
     AsyncSnapshotsResourceWithStreamingResponse,
 )
-from ....types.magic_transit import connector_edit_params, connector_update_params
+from ....types.magic_transit import connector_edit_params, connector_create_params, connector_update_params
 from ....types.magic_transit.connector_get_response import ConnectorGetResponse
 from ....types.magic_transit.connector_edit_response import ConnectorEditResponse
 from ....types.magic_transit.connector_list_response import ConnectorListResponse
+from ....types.magic_transit.connector_create_response import ConnectorCreateResponse
+from ....types.magic_transit.connector_delete_response import ConnectorDeleteResponse
 from ....types.magic_transit.connector_update_response import ConnectorUpdateResponse
 
 __all__ = ["ConnectorsResource", "AsyncConnectorsResource"]
@@ -71,6 +73,62 @@ class ConnectorsResource(SyncAPIResource):
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
         return ConnectorsResourceWithStreamingResponse(self)
+
+    def create(
+        self,
+        *,
+        account_id: str,
+        device: connector_create_params.Device,
+        activated: bool | NotGiven = NOT_GIVEN,
+        interrupt_window_duration_hours: float | NotGiven = NOT_GIVEN,
+        interrupt_window_hour_of_day: float | NotGiven = NOT_GIVEN,
+        notes: str | NotGiven = NOT_GIVEN,
+        timezone: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ConnectorCreateResponse:
+        """
+        Add a connector to your account
+
+        Args:
+          account_id: Account identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._post(
+            f"/accounts/{account_id}/magic/connectors",
+            body=maybe_transform(
+                {
+                    "device": device,
+                    "activated": activated,
+                    "interrupt_window_duration_hours": interrupt_window_duration_hours,
+                    "interrupt_window_hour_of_day": interrupt_window_hour_of_day,
+                    "notes": notes,
+                    "timezone": timezone,
+                },
+                connector_create_params.ConnectorCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ConnectorCreateResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[ConnectorCreateResponse], ResultWrapper[ConnectorCreateResponse]),
+        )
 
     def update(
         self,
@@ -163,6 +221,48 @@ class ConnectorsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             model=ConnectorListResponse,
+        )
+
+    def delete(
+        self,
+        connector_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ConnectorDeleteResponse:
+        """
+        Remove a connector from your account
+
+        Args:
+          account_id: Account identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not connector_id:
+            raise ValueError(f"Expected a non-empty value for `connector_id` but received {connector_id!r}")
+        return self._delete(
+            f"/accounts/{account_id}/magic/connectors/{connector_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ConnectorDeleteResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[ConnectorDeleteResponse], ResultWrapper[ConnectorDeleteResponse]),
         )
 
     def edit(
@@ -293,6 +393,62 @@ class AsyncConnectorsResource(AsyncAPIResource):
         """
         return AsyncConnectorsResourceWithStreamingResponse(self)
 
+    async def create(
+        self,
+        *,
+        account_id: str,
+        device: connector_create_params.Device,
+        activated: bool | NotGiven = NOT_GIVEN,
+        interrupt_window_duration_hours: float | NotGiven = NOT_GIVEN,
+        interrupt_window_hour_of_day: float | NotGiven = NOT_GIVEN,
+        notes: str | NotGiven = NOT_GIVEN,
+        timezone: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ConnectorCreateResponse:
+        """
+        Add a connector to your account
+
+        Args:
+          account_id: Account identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._post(
+            f"/accounts/{account_id}/magic/connectors",
+            body=await async_maybe_transform(
+                {
+                    "device": device,
+                    "activated": activated,
+                    "interrupt_window_duration_hours": interrupt_window_duration_hours,
+                    "interrupt_window_hour_of_day": interrupt_window_hour_of_day,
+                    "notes": notes,
+                    "timezone": timezone,
+                },
+                connector_create_params.ConnectorCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ConnectorCreateResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[ConnectorCreateResponse], ResultWrapper[ConnectorCreateResponse]),
+        )
+
     async def update(
         self,
         connector_id: str,
@@ -384,6 +540,48 @@ class AsyncConnectorsResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             model=ConnectorListResponse,
+        )
+
+    async def delete(
+        self,
+        connector_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ConnectorDeleteResponse:
+        """
+        Remove a connector from your account
+
+        Args:
+          account_id: Account identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not connector_id:
+            raise ValueError(f"Expected a non-empty value for `connector_id` but received {connector_id!r}")
+        return await self._delete(
+            f"/accounts/{account_id}/magic/connectors/{connector_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ConnectorDeleteResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[ConnectorDeleteResponse], ResultWrapper[ConnectorDeleteResponse]),
         )
 
     async def edit(
@@ -490,11 +688,17 @@ class ConnectorsResourceWithRawResponse:
     def __init__(self, connectors: ConnectorsResource) -> None:
         self._connectors = connectors
 
+        self.create = to_raw_response_wrapper(
+            connectors.create,
+        )
         self.update = to_raw_response_wrapper(
             connectors.update,
         )
         self.list = to_raw_response_wrapper(
             connectors.list,
+        )
+        self.delete = to_raw_response_wrapper(
+            connectors.delete,
         )
         self.edit = to_raw_response_wrapper(
             connectors.edit,
@@ -516,11 +720,17 @@ class AsyncConnectorsResourceWithRawResponse:
     def __init__(self, connectors: AsyncConnectorsResource) -> None:
         self._connectors = connectors
 
+        self.create = async_to_raw_response_wrapper(
+            connectors.create,
+        )
         self.update = async_to_raw_response_wrapper(
             connectors.update,
         )
         self.list = async_to_raw_response_wrapper(
             connectors.list,
+        )
+        self.delete = async_to_raw_response_wrapper(
+            connectors.delete,
         )
         self.edit = async_to_raw_response_wrapper(
             connectors.edit,
@@ -542,11 +752,17 @@ class ConnectorsResourceWithStreamingResponse:
     def __init__(self, connectors: ConnectorsResource) -> None:
         self._connectors = connectors
 
+        self.create = to_streamed_response_wrapper(
+            connectors.create,
+        )
         self.update = to_streamed_response_wrapper(
             connectors.update,
         )
         self.list = to_streamed_response_wrapper(
             connectors.list,
+        )
+        self.delete = to_streamed_response_wrapper(
+            connectors.delete,
         )
         self.edit = to_streamed_response_wrapper(
             connectors.edit,
@@ -568,11 +784,17 @@ class AsyncConnectorsResourceWithStreamingResponse:
     def __init__(self, connectors: AsyncConnectorsResource) -> None:
         self._connectors = connectors
 
+        self.create = async_to_streamed_response_wrapper(
+            connectors.create,
+        )
         self.update = async_to_streamed_response_wrapper(
             connectors.update,
         )
         self.list = async_to_streamed_response_wrapper(
             connectors.list,
+        )
+        self.delete = async_to_streamed_response_wrapper(
+            connectors.delete,
         )
         self.edit = async_to_streamed_response_wrapper(
             connectors.edit,
