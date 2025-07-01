@@ -111,3 +111,9 @@ class Hyperdrive(BaseModel):
     """Defines the last modified time of the Hyperdrive configuration."""
 
     mtls: Optional[MTLS] = None
+
+    origin_connection_limit: Optional[int] = None
+    """
+    The (soft) maximum number of connections the Hyperdrive is allowed to make to
+    the origin database.
+    """
