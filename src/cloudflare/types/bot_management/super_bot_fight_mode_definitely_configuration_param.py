@@ -9,7 +9,11 @@ __all__ = ["SuperBotFightModeDefinitelyConfigurationParam"]
 
 class SuperBotFightModeDefinitelyConfigurationParam(TypedDict, total=False):
     ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"]
-    """Enable rule to block AI Scrapers and Crawlers."""
+    """Enable rule to block AI Scrapers and Crawlers.
+
+    Please note the value `only_on_ad_pages` is currently not available for
+    Enterprise customers.
+    """
 
     crawler_protection: Literal["enabled", "disabled"]
     """Enable rule to punish AI Scrapers and Crawlers via a link maze."""
