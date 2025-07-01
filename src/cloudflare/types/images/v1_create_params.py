@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing_extensions import Required, Annotated, TypedDict
 
+from ..._types import FileTypes
 from ..._utils import PropertyInfo
 
 __all__ = ["V1CreateParams"]
@@ -13,10 +14,10 @@ class V1CreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Account identifier tag."""
 
-    id: object
+    id: str
     """An optional custom unique identifier for your image."""
 
-    file: object
+    file: FileTypes
     """An image binary data. Only needed when type is uploading a file."""
 
     metadata: object

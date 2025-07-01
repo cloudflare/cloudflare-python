@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import typing_extensions
-from typing import Any, Type, cast
+from typing import Any, Type, Mapping, cast
 
 import httpx
 
@@ -39,8 +39,8 @@ from .variants import (
     VariantsResourceWithStreamingResponse,
     AsyncVariantsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
+from ...._utils import extract_files, maybe_transform, deepcopy_minimal, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -100,8 +100,8 @@ class V1Resource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        id: object | NotGiven = NOT_GIVEN,
-        file: object | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        file: FileTypes | NotGiven = NOT_GIVEN,
         metadata: object | NotGiven = NOT_GIVEN,
         require_signed_urls: bool | NotGiven = NOT_GIVEN,
         url: str | NotGiven = NOT_GIVEN,
@@ -142,22 +142,24 @@ class V1Resource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        body = deepcopy_minimal(
+            {
+                "id": id,
+                "file": file,
+                "metadata": metadata,
+                "require_signed_urls": require_signed_urls,
+                "url": url,
+            }
+        )
+        files = extract_files(cast(Mapping[str, object], body), paths=[["file"]])
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
             f"/accounts/{account_id}/images/v1",
-            body=maybe_transform(
-                {
-                    "id": id,
-                    "file": file,
-                    "metadata": metadata,
-                    "require_signed_urls": require_signed_urls,
-                    "url": url,
-                },
-                v1_create_params.V1CreateParams,
-            ),
+            body=maybe_transform(body, v1_create_params.V1CreateParams),
+            files=files,
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -421,8 +423,8 @@ class AsyncV1Resource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        id: object | NotGiven = NOT_GIVEN,
-        file: object | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        file: FileTypes | NotGiven = NOT_GIVEN,
         metadata: object | NotGiven = NOT_GIVEN,
         require_signed_urls: bool | NotGiven = NOT_GIVEN,
         url: str | NotGiven = NOT_GIVEN,
@@ -463,22 +465,24 @@ class AsyncV1Resource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        body = deepcopy_minimal(
+            {
+                "id": id,
+                "file": file,
+                "metadata": metadata,
+                "require_signed_urls": require_signed_urls,
+                "url": url,
+            }
+        )
+        files = extract_files(cast(Mapping[str, object], body), paths=[["file"]])
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
             f"/accounts/{account_id}/images/v1",
-            body=await async_maybe_transform(
-                {
-                    "id": id,
-                    "file": file,
-                    "metadata": metadata,
-                    "require_signed_urls": require_signed_urls,
-                    "url": url,
-                },
-                v1_create_params.V1CreateParams,
-            ),
+            body=await async_maybe_transform(body, v1_create_params.V1CreateParams),
+            files=files,
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
