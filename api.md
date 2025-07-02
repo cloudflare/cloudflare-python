@@ -6506,7 +6506,9 @@ from cloudflare.types.zero_trust.dlp.profiles import PredefinedProfile
 
 Methods:
 
+- <code title="post /accounts/{account_id}/dlp/profiles/predefined">client.zero_trust.dlp.profiles.predefined.<a href="./src/cloudflare/resources/zero_trust/dlp/profiles/predefined.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/profiles/predefined_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/profile.py">Optional[Profile]</a></code>
 - <code title="put /accounts/{account_id}/dlp/profiles/predefined/{profile_id}">client.zero_trust.dlp.profiles.predefined.<a href="./src/cloudflare/resources/zero_trust/dlp/profiles/predefined.py">update</a>(profile_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/profiles/predefined_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/profile.py">Optional[Profile]</a></code>
+- <code title="delete /accounts/{account_id}/dlp/profiles/predefined/{profile_id}">client.zero_trust.dlp.profiles.predefined.<a href="./src/cloudflare/resources/zero_trust/dlp/profiles/predefined.py">delete</a>(profile_id, \*, account_id) -> object</code>
 - <code title="get /accounts/{account_id}/dlp/profiles/predefined/{profile_id}">client.zero_trust.dlp.profiles.predefined.<a href="./src/cloudflare/resources/zero_trust/dlp/profiles/predefined.py">get</a>(profile_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/profile.py">Optional[Profile]</a></code>
 
 ### Limits
@@ -6536,11 +6538,59 @@ from cloudflare.types.zero_trust.dlp import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/dlp/entries">client.zero_trust.dlp.entries.<a href="./src/cloudflare/resources/zero_trust/dlp/entries.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/entry_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/entry_create_response.py">Optional[EntryCreateResponse]</a></code>
-- <code title="put /accounts/{account_id}/dlp/entries/{entry_id}">client.zero_trust.dlp.entries.<a href="./src/cloudflare/resources/zero_trust/dlp/entries.py">update</a>(entry_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/entry_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/entry_update_response.py">Optional[EntryUpdateResponse]</a></code>
-- <code title="get /accounts/{account_id}/dlp/entries">client.zero_trust.dlp.entries.<a href="./src/cloudflare/resources/zero_trust/dlp/entries.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/entry_list_response.py">SyncSinglePage[EntryListResponse]</a></code>
-- <code title="delete /accounts/{account_id}/dlp/entries/{entry_id}">client.zero_trust.dlp.entries.<a href="./src/cloudflare/resources/zero_trust/dlp/entries.py">delete</a>(entry_id, \*, account_id) -> object</code>
-- <code title="get /accounts/{account_id}/dlp/entries/{entry_id}">client.zero_trust.dlp.entries.<a href="./src/cloudflare/resources/zero_trust/dlp/entries.py">get</a>(entry_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/entry_get_response.py">Optional[EntryGetResponse]</a></code>
+- <code title="post /accounts/{account_id}/dlp/entries">client.zero_trust.dlp.entries.<a href="./src/cloudflare/resources/zero_trust/dlp/entries/entries.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/entry_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/entry_create_response.py">Optional[EntryCreateResponse]</a></code>
+- <code title="put /accounts/{account_id}/dlp/entries/{entry_id}">client.zero_trust.dlp.entries.<a href="./src/cloudflare/resources/zero_trust/dlp/entries/entries.py">update</a>(entry_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/entry_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/entry_update_response.py">Optional[EntryUpdateResponse]</a></code>
+- <code title="get /accounts/{account_id}/dlp/entries">client.zero_trust.dlp.entries.<a href="./src/cloudflare/resources/zero_trust/dlp/entries/entries.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/entry_list_response.py">SyncSinglePage[EntryListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/dlp/entries/{entry_id}">client.zero_trust.dlp.entries.<a href="./src/cloudflare/resources/zero_trust/dlp/entries/entries.py">delete</a>(entry_id, \*, account_id) -> object</code>
+- <code title="get /accounts/{account_id}/dlp/entries/{entry_id}">client.zero_trust.dlp.entries.<a href="./src/cloudflare/resources/zero_trust/dlp/entries/entries.py">get</a>(entry_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/entry_get_response.py">Optional[EntryGetResponse]</a></code>
+
+#### Custom
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.dlp.entries import CustomCreateResponse, CustomUpdateResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/dlp/entries">client.zero_trust.dlp.entries.custom.<a href="./src/cloudflare/resources/zero_trust/dlp/entries/custom.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/entries/custom_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/entries/custom_create_response.py">Optional[CustomCreateResponse]</a></code>
+- <code title="put /accounts/{account_id}/dlp/entries/{entry_id}">client.zero_trust.dlp.entries.custom.<a href="./src/cloudflare/resources/zero_trust/dlp/entries/custom.py">update</a>(entry_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/entries/custom_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/entries/custom_update_response.py">Optional[CustomUpdateResponse]</a></code>
+- <code title="delete /accounts/{account_id}/dlp/entries/{entry_id}">client.zero_trust.dlp.entries.custom.<a href="./src/cloudflare/resources/zero_trust/dlp/entries/custom.py">delete</a>(entry_id, \*, account_id) -> object</code>
+
+#### Predefined
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.dlp.entries import (
+    PredefinedCreateResponse,
+    PredefinedUpdateResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/dlp/entries/predefined">client.zero_trust.dlp.entries.predefined.<a href="./src/cloudflare/resources/zero_trust/dlp/entries/predefined.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/entries/predefined_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/entries/predefined_create_response.py">Optional[PredefinedCreateResponse]</a></code>
+- <code title="put /accounts/{account_id}/dlp/entries/predefined/{entry_id}">client.zero_trust.dlp.entries.predefined.<a href="./src/cloudflare/resources/zero_trust/dlp/entries/predefined.py">update</a>(entry_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/entries/predefined_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/entries/predefined_update_response.py">Optional[PredefinedUpdateResponse]</a></code>
+- <code title="delete /accounts/{account_id}/dlp/entries/predefined/{entry_id}">client.zero_trust.dlp.entries.predefined.<a href="./src/cloudflare/resources/zero_trust/dlp/entries/predefined.py">delete</a>(entry_id, \*, account_id) -> object</code>
+
+#### Integration
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.dlp.entries import (
+    IntegrationCreateResponse,
+    IntegrationUpdateResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/dlp/entries/integration">client.zero_trust.dlp.entries.integration.<a href="./src/cloudflare/resources/zero_trust/dlp/entries/integration.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/entries/integration_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/entries/integration_create_response.py">Optional[IntegrationCreateResponse]</a></code>
+- <code title="put /accounts/{account_id}/dlp/entries/integration/{entry_id}">client.zero_trust.dlp.entries.integration.<a href="./src/cloudflare/resources/zero_trust/dlp/entries/integration.py">update</a>(entry_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/entries/integration_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/entries/integration_update_response.py">Optional[IntegrationUpdateResponse]</a></code>
+- <code title="delete /accounts/{account_id}/dlp/entries/integration/{entry_id}">client.zero_trust.dlp.entries.integration.<a href="./src/cloudflare/resources/zero_trust/dlp/entries/integration.py">delete</a>(entry_id, \*, account_id) -> object</code>
 
 ## Gateway
 

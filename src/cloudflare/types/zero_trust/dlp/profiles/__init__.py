@@ -6,4 +6,5 @@ from .pattern import Pattern as Pattern
 from .pattern_param import PatternParam as PatternParam
 from .custom_create_params import CustomCreateParams as CustomCreateParams
 from .custom_update_params import CustomUpdateParams as CustomUpdateParams
+from .predefined_create_params import PredefinedCreateParams as PredefinedCreateParams
 from .predefined_update_params import PredefinedUpdateParams as PredefinedUpdateParams
