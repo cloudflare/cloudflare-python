@@ -38,6 +38,7 @@ class TestInstances:
             workflow_name="x",
             account_id="account_id",
             instance_id="instance_id",
+            instance_retention={},
             params={},
         )
         assert_matches_type(InstanceCreateResponse, instance, path=["response"])
@@ -159,6 +160,7 @@ class TestInstances:
             body=[
                 {
                     "instance_id": "instance_id",
+                    "instance_retention": {},
                     "params": {},
                 }
             ],
@@ -285,6 +287,7 @@ class TestAsyncInstances:
             workflow_name="x",
             account_id="account_id",
             instance_id="instance_id",
+            instance_retention={},
             params={},
         )
         assert_matches_type(InstanceCreateResponse, instance, path=["response"])
@@ -406,6 +409,7 @@ class TestAsyncInstances:
             body=[
                 {
                     "instance_id": "instance_id",
+                    "instance_retention": {},
                     "params": {},
                 }
             ],

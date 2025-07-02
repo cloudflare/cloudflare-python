@@ -12,4 +12,6 @@ class InstanceCreateParams(TypedDict, total=False):
 
     instance_id: str
 
+    instance_retention: object
+
     params: object
