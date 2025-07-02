@@ -80,6 +80,7 @@ class InstancesResource(SyncAPIResource):
         *,
         account_id: str,
         instance_id: str | NotGiven = NOT_GIVEN,
+        instance_retention: object | NotGiven = NOT_GIVEN,
         params: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -109,6 +110,7 @@ class InstancesResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "instance_id": instance_id,
+                    "instance_retention": instance_retention,
                     "params": params,
                 },
                 instance_create_params.InstanceCreateParams,
@@ -303,6 +305,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         *,
         account_id: str,
         instance_id: str | NotGiven = NOT_GIVEN,
+        instance_retention: object | NotGiven = NOT_GIVEN,
         params: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -332,6 +335,7 @@ class AsyncInstancesResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "instance_id": instance_id,
+                    "instance_retention": instance_retention,
                     "params": params,
                 },
                 instance_create_params.InstanceCreateParams,
