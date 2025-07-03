@@ -38,6 +38,7 @@ class TestInstances:
             workflow_name="x",
             account_id="account_id",
             instance_id="instance_id",
+            instance_retention={},
             params={},
         )
         assert_matches_type(InstanceCreateResponse, instance, path=["response"])
@@ -159,6 +160,7 @@ class TestInstances:
             body=[
                 {
                     "instance_id": "instance_id",
+                    "instance_retention": {},
                     "params": {},
                 }
             ],
@@ -267,7 +269,9 @@ class TestInstances:
 
 
 class TestAsyncInstances:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
@@ -283,6 +287,7 @@ class TestAsyncInstances:
             workflow_name="x",
             account_id="account_id",
             instance_id="instance_id",
+            instance_retention={},
             params={},
         )
         assert_matches_type(InstanceCreateResponse, instance, path=["response"])
@@ -404,6 +409,7 @@ class TestAsyncInstances:
             body=[
                 {
                     "instance_id": "instance_id",
+                    "instance_retention": {},
                     "params": {},
                 }
             ],

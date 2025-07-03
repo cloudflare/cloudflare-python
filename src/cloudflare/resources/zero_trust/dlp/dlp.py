@@ -10,14 +10,6 @@ from .limits import (
     LimitsResourceWithStreamingResponse,
     AsyncLimitsResourceWithStreamingResponse,
 )
-from .entries import (
-    EntriesResource,
-    AsyncEntriesResource,
-    EntriesResourceWithRawResponse,
-    AsyncEntriesResourceWithRawResponse,
-    EntriesResourceWithStreamingResponse,
-    AsyncEntriesResourceWithStreamingResponse,
-)
 from .patterns import (
     PatternsResource,
     AsyncPatternsResource,
@@ -43,6 +35,14 @@ from .payload_logs import (
     AsyncPayloadLogsResourceWithRawResponse,
     PayloadLogsResourceWithStreamingResponse,
     AsyncPayloadLogsResourceWithStreamingResponse,
+)
+from .entries.entries import (
+    EntriesResource,
+    AsyncEntriesResource,
+    EntriesResourceWithRawResponse,
+    AsyncEntriesResourceWithRawResponse,
+    EntriesResourceWithStreamingResponse,
+    AsyncEntriesResourceWithStreamingResponse,
 )
 from .datasets.datasets import (
     DatasetsResource,

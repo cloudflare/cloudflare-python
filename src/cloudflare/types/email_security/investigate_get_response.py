@@ -11,6 +11,8 @@ __all__ = ["InvestigateGetResponse", "Properties", "Validation"]
 
 
 class Properties(BaseModel):
+    allowlisted_pattern_type: Optional[str] = None
+
     whitelisted_pattern_type: Optional[str] = None
 
 

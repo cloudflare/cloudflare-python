@@ -79,8 +79,8 @@ class LockdownsResource(SyncAPIResource):
               entered URL will be escaped before use, which means you can only use simple
               wildcard patterns.
 
-          description: An informative summary of the rate limit. This value is sanitized and any tags
-              will be removed.
+          description: An informative summary of the rule. This value is sanitized and any tags will be
+              removed.
 
           paused: When true, indicates that the rule is currently paused.
 
@@ -413,8 +413,8 @@ class AsyncLockdownsResource(AsyncAPIResource):
               entered URL will be escaped before use, which means you can only use simple
               wildcard patterns.
 
-          description: An informative summary of the rate limit. This value is sanitized and any tags
-              will be removed.
+          description: An informative summary of the rule. This value is sanitized and any tags will be
+              removed.
 
           paused: When true, indicates that the rule is currently paused.
 

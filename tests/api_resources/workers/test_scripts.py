@@ -45,6 +45,7 @@ class TestScripts:
                         "html_handling": "auto-trailing-slash",
                         "not_found_handling": "404-page",
                         "run_worker_first": ["string"],
+                        "serve_directly": True,
                     },
                     "jwt": "jwt",
                 },
@@ -297,7 +298,9 @@ class TestScripts:
 
 
 class TestAsyncScripts:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -323,6 +326,7 @@ class TestAsyncScripts:
                         "html_handling": "auto-trailing-slash",
                         "not_found_handling": "404-page",
                         "run_worker_first": ["string"],
+                        "serve_directly": True,
                     },
                     "jwt": "jwt",
                 },

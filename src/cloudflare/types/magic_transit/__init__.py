@@ -41,6 +41,7 @@ from .route_create_response import RouteCreateResponse as RouteCreateResponse
 from .route_delete_response import RouteDeleteResponse as RouteDeleteResponse
 from .route_update_response import RouteUpdateResponse as RouteUpdateResponse
 from .connector_get_response import ConnectorGetResponse as ConnectorGetResponse
+from .connector_create_params import ConnectorCreateParams as ConnectorCreateParams
 from .connector_edit_response import ConnectorEditResponse as ConnectorEditResponse
 from .connector_list_response import ConnectorListResponse as ConnectorListResponse
 from .connector_update_params import ConnectorUpdateParams as ConnectorUpdateParams
@@ -49,6 +50,8 @@ from .gre_tunnel_create_params import GRETunnelCreateParams as GRETunnelCreatePa
 from .gre_tunnel_list_response import GRETunnelListResponse as GRETunnelListResponse
 from .gre_tunnel_update_params import GRETunnelUpdateParams as GRETunnelUpdateParams
 from .route_bulk_update_params import RouteBulkUpdateParams as RouteBulkUpdateParams
+from .connector_create_response import ConnectorCreateResponse as ConnectorCreateResponse
+from .connector_delete_response import ConnectorDeleteResponse as ConnectorDeleteResponse
 from .connector_update_response import ConnectorUpdateResponse as ConnectorUpdateResponse
 from .ipsec_tunnel_get_response import IPSECTunnelGetResponse as IPSECTunnelGetResponse
 from .gre_tunnel_create_response import GRETunnelCreateResponse as GRETunnelCreateResponse

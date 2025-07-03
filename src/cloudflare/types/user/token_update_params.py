@@ -20,9 +20,6 @@ class TokenUpdateParams(TypedDict, total=False):
     policies: Required[Iterable[TokenPolicy]]
     """List of access policies assigned to the token."""
 
-    status: Required[Literal["active", "disabled", "expired"]]
-    """Status of the token."""
-
     condition: Condition
 
     expires_on: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
@@ -33,6 +30,9 @@ class TokenUpdateParams(TypedDict, total=False):
 
     not_before: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """The time before which the token MUST NOT be accepted for processing."""
+
+    status: Literal["active", "disabled", "expired"]
+    """Status of the token."""
 
 
 _ConditionRequestIPReservedKeywords = TypedDict(

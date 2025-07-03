@@ -2,16 +2,23 @@
 
 from __future__ import annotations
 
+from .bot_get_params import BotGetParams as BotGetParams
+from .bot_list_params import BotListParams as BotListParams
+from .bot_get_response import BotGetResponse as BotGetResponse
+from .bot_list_response import BotListResponse as BotListResponse
 from .entity_get_params import EntityGetParams as EntityGetParams
+from .bot_summary_params import BotSummaryParams as BotSummaryParams
 from .radar_email_series import RadarEmailSeries as RadarEmailSeries
 from .ranking_top_params import RankingTopParams as RankingTopParams
 from .dataset_list_params import DatasetListParams as DatasetListParams
 from .entity_get_response import EntityGetResponse as EntityGetResponse
 from .radar_email_summary import RadarEmailSummary as RadarEmailSummary
+from .bot_summary_response import BotSummaryResponse as BotSummaryResponse
 from .dataset_get_response import DatasetGetResponse as DatasetGetResponse
 from .ranking_top_response import RankingTopResponse as RankingTopResponse
 from .search_global_params import SearchGlobalParams as SearchGlobalParams
 from .bgp_timeseries_params import BGPTimeseriesParams as BGPTimeseriesParams
+from .bot_timeseries_params import BotTimeseriesParams as BotTimeseriesParams
 from .dataset_list_response import DatasetListResponse as DatasetListResponse
 from .dns_timeseries_params import DNSTimeseriesParams as DNSTimeseriesParams
 from .annotation_list_params import AnnotationListParams as AnnotationListParams
@@ -20,6 +27,7 @@ from .netflow_summary_params import NetflowSummaryParams as NetflowSummaryParams
 from .search_global_response import SearchGlobalResponse as SearchGlobalResponse
 from .as112_timeseries_params import AS112TimeseriesParams as AS112TimeseriesParams
 from .bgp_timeseries_response import BGPTimeseriesResponse as BGPTimeseriesResponse
+from .bot_timeseries_response import BotTimeseriesResponse as BotTimeseriesResponse
 from .dataset_download_params import DatasetDownloadParams as DatasetDownloadParams
 from .dns_timeseries_response import DNSTimeseriesResponse as DNSTimeseriesResponse
 from .annotation_list_response import AnnotationListResponse as AnnotationListResponse
@@ -30,7 +38,9 @@ from .dataset_download_response import DatasetDownloadResponse as DatasetDownloa
 from .netflow_timeseries_params import NetflowTimeseriesParams as NetflowTimeseriesParams
 from .traffic_anomaly_get_params import TrafficAnomalyGetParams as TrafficAnomalyGetParams
 from .netflow_timeseries_response import NetflowTimeseriesResponse as NetflowTimeseriesResponse
+from .bot_timeseries_groups_params import BotTimeseriesGroupsParams as BotTimeseriesGroupsParams
 from .traffic_anomaly_get_response import TrafficAnomalyGetResponse as TrafficAnomalyGetResponse
+from .bot_timeseries_groups_response import BotTimeseriesGroupsResponse as BotTimeseriesGroupsResponse
 from .ranking_timeseries_groups_params import RankingTimeseriesGroupsParams as RankingTimeseriesGroupsParams
 from .tcp_resets_timeout_summary_params import TCPResetsTimeoutSummaryParams as TCPResetsTimeoutSummaryParams
 from .ranking_timeseries_groups_response import RankingTimeseriesGroupsResponse as RankingTimeseriesGroupsResponse

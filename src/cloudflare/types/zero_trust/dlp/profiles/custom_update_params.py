@@ -17,6 +17,7 @@ __all__ = [
     "SharedEntryPredefined",
     "SharedEntryIntegration",
     "SharedEntryExactData",
+    "SharedEntryUnionMember3",
 ]
 
 
@@ -97,4 +98,14 @@ class SharedEntryExactData(TypedDict, total=False):
     entry_type: Required[Literal["exact_data"]]
 
 
-SharedEntry: TypeAlias = Union[SharedEntryPredefined, SharedEntryIntegration, SharedEntryExactData]
+class SharedEntryUnionMember3(TypedDict, total=False):
+    enabled: Required[bool]
+
+    entry_id: Required[str]
+
+    entry_type: Required[Literal["document_fingerprint"]]
+
+
+SharedEntry: TypeAlias = Union[
+    SharedEntryPredefined, SharedEntryIntegration, SharedEntryExactData, SharedEntryUnionMember3
+]

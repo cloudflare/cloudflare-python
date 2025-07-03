@@ -203,8 +203,6 @@ class ThreatEventsResource(SyncAPIResource):
         self,
         *,
         path_account_id: str,
-        attacker: str,
-        attacker_country: str,
         category: str,
         date: Union[str, datetime],
         event: str,
@@ -212,6 +210,8 @@ class ThreatEventsResource(SyncAPIResource):
         raw: threat_event_create_params.Raw,
         tlp: str,
         body_account_id: float | NotGiven = NOT_GIVEN,
+        attacker: str | NotGiven = NOT_GIVEN,
+        attacker_country: str | NotGiven = NOT_GIVEN,
         dataset_id: str | NotGiven = NOT_GIVEN,
         indicator: str | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
@@ -247,8 +247,6 @@ class ThreatEventsResource(SyncAPIResource):
             f"/accounts/{path_account_id}/cloudforce-one/events/create",
             body=maybe_transform(
                 {
-                    "attacker": attacker,
-                    "attacker_country": attacker_country,
                     "category": category,
                     "date": date,
                     "event": event,
@@ -256,6 +254,8 @@ class ThreatEventsResource(SyncAPIResource):
                     "raw": raw,
                     "tlp": tlp,
                     "body_account_id": body_account_id,
+                    "attacker": attacker,
+                    "attacker_country": attacker_country,
                     "dataset_id": dataset_id,
                     "indicator": indicator,
                     "tags": tags,
@@ -419,7 +419,7 @@ class ThreatEventsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ThreatEventBulkCreateResponse,
+            cast_to=float,
         )
 
     def edit(
@@ -600,8 +600,6 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         self,
         *,
         path_account_id: str,
-        attacker: str,
-        attacker_country: str,
         category: str,
         date: Union[str, datetime],
         event: str,
@@ -609,6 +607,8 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         raw: threat_event_create_params.Raw,
         tlp: str,
         body_account_id: float | NotGiven = NOT_GIVEN,
+        attacker: str | NotGiven = NOT_GIVEN,
+        attacker_country: str | NotGiven = NOT_GIVEN,
         dataset_id: str | NotGiven = NOT_GIVEN,
         indicator: str | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
@@ -644,8 +644,6 @@ class AsyncThreatEventsResource(AsyncAPIResource):
             f"/accounts/{path_account_id}/cloudforce-one/events/create",
             body=await async_maybe_transform(
                 {
-                    "attacker": attacker,
-                    "attacker_country": attacker_country,
                     "category": category,
                     "date": date,
                     "event": event,
@@ -653,6 +651,8 @@ class AsyncThreatEventsResource(AsyncAPIResource):
                     "raw": raw,
                     "tlp": tlp,
                     "body_account_id": body_account_id,
+                    "attacker": attacker,
+                    "attacker_country": attacker_country,
                     "dataset_id": dataset_id,
                     "indicator": indicator,
                     "tags": tags,
@@ -816,7 +816,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ThreatEventBulkCreateResponse,
+            cast_to=float,
         )
 
     async def edit(

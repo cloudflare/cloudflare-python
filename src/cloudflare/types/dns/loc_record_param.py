@@ -71,6 +71,13 @@ class LOCRecordParam(TypedDict, total=False):
     name: Required[str]
     """DNS record name (or @ for the zone apex) in Punycode."""
 
+    ttl: Required[TTLParam]
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
+
     type: Required[Literal["LOC"]]
     """Record type."""
 
@@ -94,10 +101,3 @@ class LOCRecordParam(TypedDict, total=False):
 
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
-
-    ttl: TTLParam
-    """Time To Live (TTL) of the DNS record in seconds.
-
-    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
-    minimum reduced to 30 for Enterprise zones.
-    """

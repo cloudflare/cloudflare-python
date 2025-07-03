@@ -37,7 +37,8 @@ class TestV1:
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         v1 = client.images.v1.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            file={},
+            id="id",
+            file=b"raw file contents",
             metadata={},
             require_signed_urls=True,
             url="https://example.com/path/to/logo.png",
@@ -288,7 +289,9 @@ class TestV1:
 
 
 class TestAsyncV1:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -303,7 +306,8 @@ class TestAsyncV1:
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         v1 = await async_client.images.v1.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            file={},
+            id="id",
+            file=b"raw file contents",
             metadata={},
             require_signed_urls=True,
             url="https://example.com/path/to/logo.png",

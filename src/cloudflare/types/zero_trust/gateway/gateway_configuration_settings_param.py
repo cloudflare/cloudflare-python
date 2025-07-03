@@ -3,9 +3,8 @@
 from __future__ import annotations
 
 from typing import Optional
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
-from ...._utils import PropertyInfo
 from .tls_settings_param import TLSSettingsParam
 from .fips_settings_param import FipsSettingsParam
 from .protocol_detection_param import ProtocolDetectionParam
@@ -17,12 +16,7 @@ from .extended_email_matching_param import ExtendedEmailMatchingParam
 from .browser_isolation_settings_param import BrowserIsolationSettingsParam
 from .custom_certificate_settings_param import CustomCertificateSettingsParam
 
-__all__ = ["GatewayConfigurationSettingsParam", "AppControlSettings", "Certificate", "HostSelector", "Sandbox"]
-
-
-class AppControlSettings(TypedDict, total=False):
-    enabled: bool
-    """Enable App Control"""
+__all__ = ["GatewayConfigurationSettingsParam", "Certificate", "HostSelector", "Sandbox"]
 
 
 class Certificate(TypedDict, total=False):
@@ -53,9 +47,6 @@ class GatewayConfigurationSettingsParam(TypedDict, total=False):
 
     antivirus: Optional[AntiVirusSettingsParam]
     """Anti-virus settings."""
-
-    app_control_settings: Annotated[Optional[AppControlSettings], PropertyInfo(alias="app-control-settings")]
-    """Setting to enable App Control"""
 
     block_page: Optional[BlockPageSettingsParam]
     """Block page layout settings."""

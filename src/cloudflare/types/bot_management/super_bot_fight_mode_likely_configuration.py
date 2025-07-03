@@ -14,8 +14,12 @@ class StaleZoneConfiguration(BaseModel):
 
 
 class SuperBotFightModeLikelyConfiguration(BaseModel):
-    ai_bots_protection: Optional[Literal["block", "disabled"]] = None
-    """Enable rule to block AI Scrapers and Crawlers."""
+    ai_bots_protection: Optional[Literal["block", "disabled", "only_on_ad_pages"]] = None
+    """Enable rule to block AI Scrapers and Crawlers.
+
+    Please note the value `only_on_ad_pages` is currently not available for
+    Enterprise customers.
+    """
 
     crawler_protection: Optional[Literal["enabled", "disabled"]] = None
     """Enable rule to punish AI Scrapers and Crawlers via a link maze."""

@@ -17,4 +17,6 @@ class InstanceBulkParams(TypedDict, total=False):
 class Body(TypedDict, total=False):
     instance_id: str
 
+    instance_retention: object
+
     params: object

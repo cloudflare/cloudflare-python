@@ -111,7 +111,7 @@ class NamespacesResource(SyncAPIResource):
         to be replaced.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           title: A human-readable string name for a Namespace.
 
@@ -155,7 +155,7 @@ class NamespacesResource(SyncAPIResource):
         Modifies a namespace's title.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 
@@ -205,7 +205,7 @@ class NamespacesResource(SyncAPIResource):
         Returns the namespaces owned by an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           direction: Direction to order namespaces.
 
@@ -262,7 +262,7 @@ class NamespacesResource(SyncAPIResource):
         Deletes the namespace corresponding to the given ID.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 
@@ -309,7 +309,7 @@ class NamespacesResource(SyncAPIResource):
         10,000 keys to be removed.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 
@@ -353,23 +353,22 @@ class NamespacesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[NamespaceBulkGetResponse]:
-        """Get multiple KV pairs from the namespace.
+        """Retrieve up to 100 KV pairs from the namespace.
 
-        Body should contain keys to retrieve
-        at most 100. Keys must contain text-based values. If value is json, it can be
-        requested to return in JSON, instead of string. Metadata can be return if
-        withMetadata is true.
+        Keys must contain text-based
+        values. JSON values can optionally be parsed instead of being returned as a
+        string value. Metadata can be included if `withMetadata` is true.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 
-          keys: Array of keys to retrieve (maximum 100)
+          keys: Array of keys to retrieve (maximum of 100).
 
-          type: Whether to parse JSON values in the response
+          type: Whether to parse JSON values in the response.
 
-          with_metadata: Whether to include metadata in the response
+          with_metadata: Whether to include metadata in the response.
 
           extra_headers: Send extra headers
 
@@ -431,7 +430,7 @@ class NamespacesResource(SyncAPIResource):
         size must be 100 megabytes or less.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 
@@ -476,7 +475,7 @@ class NamespacesResource(SyncAPIResource):
         Get the namespace corresponding to the given ID.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 
@@ -556,7 +555,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         to be replaced.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           title: A human-readable string name for a Namespace.
 
@@ -600,7 +599,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         Modifies a namespace's title.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 
@@ -650,7 +649,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         Returns the namespaces owned by an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           direction: Direction to order namespaces.
 
@@ -707,7 +706,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         Deletes the namespace corresponding to the given ID.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 
@@ -754,7 +753,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         10,000 keys to be removed.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 
@@ -798,23 +797,22 @@ class AsyncNamespacesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[NamespaceBulkGetResponse]:
-        """Get multiple KV pairs from the namespace.
+        """Retrieve up to 100 KV pairs from the namespace.
 
-        Body should contain keys to retrieve
-        at most 100. Keys must contain text-based values. If value is json, it can be
-        requested to return in JSON, instead of string. Metadata can be return if
-        withMetadata is true.
+        Keys must contain text-based
+        values. JSON values can optionally be parsed instead of being returned as a
+        string value. Metadata can be included if `withMetadata` is true.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 
-          keys: Array of keys to retrieve (maximum 100)
+          keys: Array of keys to retrieve (maximum of 100).
 
-          type: Whether to parse JSON values in the response
+          type: Whether to parse JSON values in the response.
 
-          with_metadata: Whether to include metadata in the response
+          with_metadata: Whether to include metadata in the response.
 
           extra_headers: Send extra headers
 
@@ -876,7 +874,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         size must be 100 megabytes or less.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 
@@ -921,7 +919,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         Get the namespace corresponding to the given ID.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 

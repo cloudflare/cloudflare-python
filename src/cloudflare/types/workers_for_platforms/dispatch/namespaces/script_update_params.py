@@ -81,12 +81,19 @@ class MetadataAssetsConfig(TypedDict, total=False):
     is no Worker script.
     """
 
-    run_worker_first: List[str]
+    run_worker_first: Union[List[str], bool]
     """Contains a list path rules to control routing to either the Worker or assets.
 
     Glob (\\**) and negative (!) rules are supported. Rules must start with either '/'
     or '!/'. At least one non-negative rule must be provided, and negative rules
     have higher precedence than non-negative rules.
+    """
+
+    serve_directly: bool
+    """
+    When true and the incoming request matches an asset, that will be served instead
+    of invoking the Worker script. When false, requests will always invoke the
+    Worker script.
     """
 
 

@@ -7,30 +7,66 @@ from typing_extensions import Literal, overload
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import required_args, maybe_transform, async_maybe_transform
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
+from .custom import (
+    CustomResource,
+    AsyncCustomResource,
+    CustomResourceWithRawResponse,
+    AsyncCustomResourceWithRawResponse,
+    CustomResourceWithStreamingResponse,
+    AsyncCustomResourceWithStreamingResponse,
+)
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import required_args, maybe_transform, async_maybe_transform
+from .predefined import (
+    PredefinedResource,
+    AsyncPredefinedResource,
+    PredefinedResourceWithRawResponse,
+    AsyncPredefinedResourceWithRawResponse,
+    PredefinedResourceWithStreamingResponse,
+    AsyncPredefinedResourceWithStreamingResponse,
+)
+from ....._compat import cached_property
+from .integration import (
+    IntegrationResource,
+    AsyncIntegrationResource,
+    IntegrationResourceWithRawResponse,
+    AsyncIntegrationResourceWithRawResponse,
+    IntegrationResourceWithStreamingResponse,
+    AsyncIntegrationResourceWithStreamingResponse,
+)
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
-from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.zero_trust.dlp import entry_create_params, entry_update_params
-from ....types.zero_trust.dlp.entry_get_response import EntryGetResponse
-from ....types.zero_trust.dlp.entry_list_response import EntryListResponse
-from ....types.zero_trust.dlp.entry_create_response import EntryCreateResponse
-from ....types.zero_trust.dlp.entry_update_response import EntryUpdateResponse
-from ....types.zero_trust.dlp.profiles.pattern_param import PatternParam
+from ....._wrappers import ResultWrapper
+from .....pagination import SyncSinglePage, AsyncSinglePage
+from ....._base_client import AsyncPaginator, make_request_options
+from .....types.zero_trust.dlp import entry_create_params, entry_update_params
+from .....types.zero_trust.dlp.entry_get_response import EntryGetResponse
+from .....types.zero_trust.dlp.entry_list_response import EntryListResponse
+from .....types.zero_trust.dlp.entry_create_response import EntryCreateResponse
+from .....types.zero_trust.dlp.entry_update_response import EntryUpdateResponse
+from .....types.zero_trust.dlp.profiles.pattern_param import PatternParam
 
 __all__ = ["EntriesResource", "AsyncEntriesResource"]
 
 
 class EntriesResource(SyncAPIResource):
+    @cached_property
+    def custom(self) -> CustomResource:
+        return CustomResource(self._client)
+
+    @cached_property
+    def predefined(self) -> PredefinedResource:
+        return PredefinedResource(self._client)
+
+    @cached_property
+    def integration(self) -> IntegrationResource:
+        return IntegrationResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> EntriesResourceWithRawResponse:
         """
@@ -357,6 +393,18 @@ class EntriesResource(SyncAPIResource):
 
 
 class AsyncEntriesResource(AsyncAPIResource):
+    @cached_property
+    def custom(self) -> AsyncCustomResource:
+        return AsyncCustomResource(self._client)
+
+    @cached_property
+    def predefined(self) -> AsyncPredefinedResource:
+        return AsyncPredefinedResource(self._client)
+
+    @cached_property
+    def integration(self) -> AsyncIntegrationResource:
+        return AsyncIntegrationResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncEntriesResourceWithRawResponse:
         """
@@ -702,6 +750,18 @@ class EntriesResourceWithRawResponse:
             entries.get,
         )
 
+    @cached_property
+    def custom(self) -> CustomResourceWithRawResponse:
+        return CustomResourceWithRawResponse(self._entries.custom)
+
+    @cached_property
+    def predefined(self) -> PredefinedResourceWithRawResponse:
+        return PredefinedResourceWithRawResponse(self._entries.predefined)
+
+    @cached_property
+    def integration(self) -> IntegrationResourceWithRawResponse:
+        return IntegrationResourceWithRawResponse(self._entries.integration)
+
 
 class AsyncEntriesResourceWithRawResponse:
     def __init__(self, entries: AsyncEntriesResource) -> None:
@@ -722,6 +782,18 @@ class AsyncEntriesResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             entries.get,
         )
+
+    @cached_property
+    def custom(self) -> AsyncCustomResourceWithRawResponse:
+        return AsyncCustomResourceWithRawResponse(self._entries.custom)
+
+    @cached_property
+    def predefined(self) -> AsyncPredefinedResourceWithRawResponse:
+        return AsyncPredefinedResourceWithRawResponse(self._entries.predefined)
+
+    @cached_property
+    def integration(self) -> AsyncIntegrationResourceWithRawResponse:
+        return AsyncIntegrationResourceWithRawResponse(self._entries.integration)
 
 
 class EntriesResourceWithStreamingResponse:
@@ -744,6 +816,18 @@ class EntriesResourceWithStreamingResponse:
             entries.get,
         )
 
+    @cached_property
+    def custom(self) -> CustomResourceWithStreamingResponse:
+        return CustomResourceWithStreamingResponse(self._entries.custom)
+
+    @cached_property
+    def predefined(self) -> PredefinedResourceWithStreamingResponse:
+        return PredefinedResourceWithStreamingResponse(self._entries.predefined)
+
+    @cached_property
+    def integration(self) -> IntegrationResourceWithStreamingResponse:
+        return IntegrationResourceWithStreamingResponse(self._entries.integration)
+
 
 class AsyncEntriesResourceWithStreamingResponse:
     def __init__(self, entries: AsyncEntriesResource) -> None:
@@ -764,3 +848,15 @@ class AsyncEntriesResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             entries.get,
         )
+
+    @cached_property
+    def custom(self) -> AsyncCustomResourceWithStreamingResponse:
+        return AsyncCustomResourceWithStreamingResponse(self._entries.custom)
+
+    @cached_property
+    def predefined(self) -> AsyncPredefinedResourceWithStreamingResponse:
+        return AsyncPredefinedResourceWithStreamingResponse(self._entries.predefined)
+
+    @cached_property
+    def integration(self) -> AsyncIntegrationResourceWithStreamingResponse:
+        return AsyncIntegrationResourceWithStreamingResponse(self._entries.integration)

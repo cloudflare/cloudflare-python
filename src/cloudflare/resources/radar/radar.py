@@ -43,6 +43,14 @@ from .datasets import (
     AsyncDatasetsResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
+from .bots.bots import (
+    BotsResource,
+    AsyncBotsResource,
+    BotsResourceWithRawResponse,
+    AsyncBotsResourceWithRawResponse,
+    BotsResourceWithStreamingResponse,
+    AsyncBotsResourceWithStreamingResponse,
+)
 from .http.http import (
     HTTPResource,
     AsyncHTTPResource,
@@ -174,6 +182,10 @@ class RadarResource(SyncAPIResource):
         return BGPResource(self._client)
 
     @cached_property
+    def bots(self) -> BotsResource:
+        return BotsResource(self._client)
+
+    @cached_property
     def datasets(self) -> DatasetsResource:
         return DatasetsResource(self._client)
 
@@ -269,6 +281,10 @@ class AsyncRadarResource(AsyncAPIResource):
     @cached_property
     def bgp(self) -> AsyncBGPResource:
         return AsyncBGPResource(self._client)
+
+    @cached_property
+    def bots(self) -> AsyncBotsResource:
+        return AsyncBotsResource(self._client)
 
     @cached_property
     def datasets(self) -> AsyncDatasetsResource:
@@ -371,6 +387,10 @@ class RadarResourceWithRawResponse:
         return BGPResourceWithRawResponse(self._radar.bgp)
 
     @cached_property
+    def bots(self) -> BotsResourceWithRawResponse:
+        return BotsResourceWithRawResponse(self._radar.bots)
+
+    @cached_property
     def datasets(self) -> DatasetsResourceWithRawResponse:
         return DatasetsResourceWithRawResponse(self._radar.datasets)
 
@@ -450,6 +470,10 @@ class AsyncRadarResourceWithRawResponse:
     @cached_property
     def bgp(self) -> AsyncBGPResourceWithRawResponse:
         return AsyncBGPResourceWithRawResponse(self._radar.bgp)
+
+    @cached_property
+    def bots(self) -> AsyncBotsResourceWithRawResponse:
+        return AsyncBotsResourceWithRawResponse(self._radar.bots)
 
     @cached_property
     def datasets(self) -> AsyncDatasetsResourceWithRawResponse:
@@ -533,6 +557,10 @@ class RadarResourceWithStreamingResponse:
         return BGPResourceWithStreamingResponse(self._radar.bgp)
 
     @cached_property
+    def bots(self) -> BotsResourceWithStreamingResponse:
+        return BotsResourceWithStreamingResponse(self._radar.bots)
+
+    @cached_property
     def datasets(self) -> DatasetsResourceWithStreamingResponse:
         return DatasetsResourceWithStreamingResponse(self._radar.datasets)
 
@@ -612,6 +640,10 @@ class AsyncRadarResourceWithStreamingResponse:
     @cached_property
     def bgp(self) -> AsyncBGPResourceWithStreamingResponse:
         return AsyncBGPResourceWithStreamingResponse(self._radar.bgp)
+
+    @cached_property
+    def bots(self) -> AsyncBotsResourceWithStreamingResponse:
+        return AsyncBotsResourceWithStreamingResponse(self._radar.bots)
 
     @cached_property
     def datasets(self) -> AsyncDatasetsResourceWithStreamingResponse:

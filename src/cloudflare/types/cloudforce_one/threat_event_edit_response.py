@@ -20,8 +20,6 @@ class ThreatEventEditResponse(BaseModel):
 
     category: str
 
-    category_id: float = FieldInfo(alias="categoryId")
-
     date: str
 
     event: str
