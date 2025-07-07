@@ -20,6 +20,9 @@ class ApplicationListParams(TypedDict, total=False):
     domain: str
     """The domain of the app."""
 
+    exact: bool
+    """True for only exact string matches against passed name/domain query parameters."""
+
     name: str
     """The name of the app."""
 

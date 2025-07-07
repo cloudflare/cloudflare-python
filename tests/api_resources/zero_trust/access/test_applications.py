@@ -2909,6 +2909,7 @@ class TestApplications:
             account_id="account_id",
             aud="aud",
             domain="domain",
+            exact=True,
             name="name",
             search="search",
         )
@@ -6045,6 +6046,7 @@ class TestAsyncApplications:
             account_id="account_id",
             aud="aud",
             domain="domain",
+            exact=True,
             name="name",
             search="search",
         )

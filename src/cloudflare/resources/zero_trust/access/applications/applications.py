@@ -2399,6 +2399,7 @@ class ApplicationsResource(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         aud: str | NotGiven = NOT_GIVEN,
         domain: str | NotGiven = NOT_GIVEN,
+        exact: bool | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         search: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -2419,6 +2420,8 @@ class ApplicationsResource(SyncAPIResource):
           aud: The aud of the app.
 
           domain: The domain of the app.
+
+          exact: True for only exact string matches against passed name/domain query parameters.
 
           name: The name of the app.
 
@@ -2456,6 +2459,7 @@ class ApplicationsResource(SyncAPIResource):
                     {
                         "aud": aud,
                         "domain": domain,
+                        "exact": exact,
                         "name": name,
                         "search": search,
                     },
@@ -4960,6 +4964,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         aud: str | NotGiven = NOT_GIVEN,
         domain: str | NotGiven = NOT_GIVEN,
+        exact: bool | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         search: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -4980,6 +4985,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
           aud: The aud of the app.
 
           domain: The domain of the app.
+
+          exact: True for only exact string matches against passed name/domain query parameters.
 
           name: The name of the app.
 
@@ -5017,6 +5024,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
                     {
                         "aud": aud,
                         "domain": domain,
+                        "exact": exact,
                         "name": name,
                         "search": search,
                     },
