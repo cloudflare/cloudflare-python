@@ -14,6 +14,8 @@ __all__ = [
     "Authenticate",
     "Cookie",
     "GotoOptions",
+    "PDFOptions",
+    "PDFOptionsMargin",
     "Viewport",
     "WaitForSelector",
 ]
@@ -94,6 +96,9 @@ class PDFCreateParams(TypedDict, total=False):
 
     Either `html` or `url` must be set.
     """
+
+    pdf_options: Annotated[PDFOptions, PropertyInfo(alias="pdfOptions")]
+    """Check [options](https://pptr.dev/api/puppeteer.pdfoptions)."""
 
     reject_request_pattern: Annotated[List[str], PropertyInfo(alias="rejectRequestPattern")]
     """Block undesired requests that match the provided regex patterns, eg.
@@ -219,6 +224,66 @@ class GotoOptions(TypedDict, total=False):
         ],
         PropertyInfo(alias="waitUntil"),
     ]
+
+
+class PDFOptionsMargin(TypedDict, total=False):
+    bottom: Union[str, float]
+
+    left: Union[str, float]
+
+    right: Union[str, float]
+
+    top: Union[str, float]
+
+
+class PDFOptions(TypedDict, total=False):
+    display_header_footer: Annotated[bool, PropertyInfo(alias="displayHeaderFooter")]
+    """Whether to show the header and footer."""
+
+    footer_template: Annotated[str, PropertyInfo(alias="footerTemplate")]
+    """HTML template for the print footer."""
+
+    format: Literal["letter", "legal", "tabloid", "ledger", "a0", "a1", "a2", "a3", "a4", "a5", "a6"]
+    """Paper format. Takes priority over width and height if set."""
+
+    header_template: Annotated[str, PropertyInfo(alias="headerTemplate")]
+    """HTML template for the print header."""
+
+    height: Union[str, float]
+    """Sets the height of paper. Can be a number or string with unit."""
+
+    landscape: bool
+    """Whether to print in landscape orientation."""
+
+    margin: PDFOptionsMargin
+    """Set the PDF margins. Useful when setting header and footer."""
+
+    omit_background: Annotated[bool, PropertyInfo(alias="omitBackground")]
+    """Hides default white background and allows generating pdfs with transparency."""
+
+    outline: bool
+    """Generate document outline."""
+
+    page_ranges: Annotated[str, PropertyInfo(alias="pageRanges")]
+    """Paper ranges to print, e.g. '1-5, 8, 11-13'."""
+
+    prefer_css_page_size: Annotated[bool, PropertyInfo(alias="preferCSSPageSize")]
+    """Give CSS @page size priority over other size declarations."""
+
+    print_background: Annotated[bool, PropertyInfo(alias="printBackground")]
+    """Set to true to print background graphics."""
+
+    scale: float
+    """Scales the rendering of the web page. Amount must be between 0.1 and 2."""
+
+    tagged: bool
+    """Generate tagged (accessible) PDF."""
+
+    timeout: float
+    """Timeout in milliseconds."""
+
+    width: Union[str, float]
+    """Sets the width of paper. Can be a number or string with unit."""
 
 
 class Viewport(TypedDict, total=False):

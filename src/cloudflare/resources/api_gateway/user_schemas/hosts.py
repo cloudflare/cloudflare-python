@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import typing_extensions
+
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
@@ -42,6 +44,9 @@ class HostsResource(SyncAPIResource):
         """
         return HostsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation) instead."
+    )
     def list(
         self,
         *,
@@ -115,6 +120,9 @@ class AsyncHostsResource(AsyncAPIResource):
         """
         return AsyncHostsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation) instead."
+    )
     def list(
         self,
         *,
@@ -172,8 +180,10 @@ class HostsResourceWithRawResponse:
     def __init__(self, hosts: HostsResource) -> None:
         self._hosts = hosts
 
-        self.list = to_raw_response_wrapper(
-            hosts.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                hosts.list  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -181,8 +191,10 @@ class AsyncHostsResourceWithRawResponse:
     def __init__(self, hosts: AsyncHostsResource) -> None:
         self._hosts = hosts
 
-        self.list = async_to_raw_response_wrapper(
-            hosts.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                hosts.list  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -190,8 +202,10 @@ class HostsResourceWithStreamingResponse:
     def __init__(self, hosts: HostsResource) -> None:
         self._hosts = hosts
 
-        self.list = to_streamed_response_wrapper(
-            hosts.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                hosts.list  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -199,6 +213,8 @@ class AsyncHostsResourceWithStreamingResponse:
     def __init__(self, hosts: AsyncHostsResource) -> None:
         self._hosts = hosts
 
-        self.list = async_to_streamed_response_wrapper(
-            hosts.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                hosts.list  # pyright: ignore[reportDeprecated],
+            )
         )

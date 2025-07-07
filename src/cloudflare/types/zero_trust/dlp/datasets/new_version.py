@@ -15,7 +15,7 @@ class Column(BaseModel):
 
     num_cells: int
 
-    upload_status: Literal["empty", "uploading", "processing", "failed", "complete"]
+    upload_status: Literal["empty", "uploading", "pending", "processing", "failed", "complete"]
 
 
 class NewVersion(BaseModel):
