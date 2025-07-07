@@ -33,13 +33,13 @@ class RegistrationListParams(TypedDict, total=False):
 
     seen_after: str
     """
-    Filters by the last_seen timestamp - returns only registrations last seen after
+    Filter by the last_seen timestamp - returns only registrations last seen after
     this timestamp.
     """
 
     seen_before: str
     """
-    Filters by the last_seen timestamp - returns only registrations last seen before
+    Filter by the last_seen timestamp - returns only registrations last seen before
     this timestamp.
     """
 

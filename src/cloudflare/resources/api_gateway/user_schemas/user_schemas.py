@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Type, Mapping, cast
 from typing_extensions import Literal
 
@@ -77,6 +78,9 @@ class UserSchemasResource(SyncAPIResource):
         """
         return UserSchemasResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation) instead."
+    )
     def create(
         self,
         *,
@@ -143,6 +147,9 @@ class UserSchemasResource(SyncAPIResource):
             cast_to=cast(Type[SchemaUpload], ResultWrapper[SchemaUpload]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation) instead."
+    )
     def list(
         self,
         *,
@@ -203,6 +210,9 @@ class UserSchemasResource(SyncAPIResource):
             model=PublicSchema,
         )
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation) instead."
+    )
     def delete(
         self,
         schema_id: str,
@@ -241,6 +251,9 @@ class UserSchemasResource(SyncAPIResource):
             cast_to=UserSchemaDeleteResponse,
         )
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation) instead."
+    )
     def edit(
         self,
         schema_id: str,
@@ -289,6 +302,9 @@ class UserSchemasResource(SyncAPIResource):
             cast_to=cast(Type[PublicSchema], ResultWrapper[PublicSchema]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation) instead."
+    )
     def get(
         self,
         schema_id: str,
@@ -364,6 +380,9 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         """
         return AsyncUserSchemasResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation) instead."
+    )
     async def create(
         self,
         *,
@@ -430,6 +449,9 @@ class AsyncUserSchemasResource(AsyncAPIResource):
             cast_to=cast(Type[SchemaUpload], ResultWrapper[SchemaUpload]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation) instead."
+    )
     def list(
         self,
         *,
@@ -490,6 +512,9 @@ class AsyncUserSchemasResource(AsyncAPIResource):
             model=PublicSchema,
         )
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation) instead."
+    )
     async def delete(
         self,
         schema_id: str,
@@ -528,6 +553,9 @@ class AsyncUserSchemasResource(AsyncAPIResource):
             cast_to=UserSchemaDeleteResponse,
         )
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation) instead."
+    )
     async def edit(
         self,
         schema_id: str,
@@ -576,6 +604,9 @@ class AsyncUserSchemasResource(AsyncAPIResource):
             cast_to=cast(Type[PublicSchema], ResultWrapper[PublicSchema]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation) instead."
+    )
     async def get(
         self,
         schema_id: str,
@@ -629,20 +660,30 @@ class UserSchemasResourceWithRawResponse:
     def __init__(self, user_schemas: UserSchemasResource) -> None:
         self._user_schemas = user_schemas
 
-        self.create = to_raw_response_wrapper(
-            user_schemas.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                user_schemas.create  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = to_raw_response_wrapper(
-            user_schemas.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                user_schemas.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = to_raw_response_wrapper(
-            user_schemas.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                user_schemas.delete  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = to_raw_response_wrapper(
-            user_schemas.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                user_schemas.edit  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_raw_response_wrapper(
-            user_schemas.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                user_schemas.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -658,20 +699,30 @@ class AsyncUserSchemasResourceWithRawResponse:
     def __init__(self, user_schemas: AsyncUserSchemasResource) -> None:
         self._user_schemas = user_schemas
 
-        self.create = async_to_raw_response_wrapper(
-            user_schemas.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                user_schemas.create  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = async_to_raw_response_wrapper(
-            user_schemas.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                user_schemas.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = async_to_raw_response_wrapper(
-            user_schemas.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                user_schemas.delete  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = async_to_raw_response_wrapper(
-            user_schemas.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                user_schemas.edit  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_raw_response_wrapper(
-            user_schemas.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                user_schemas.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -687,20 +738,30 @@ class UserSchemasResourceWithStreamingResponse:
     def __init__(self, user_schemas: UserSchemasResource) -> None:
         self._user_schemas = user_schemas
 
-        self.create = to_streamed_response_wrapper(
-            user_schemas.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                user_schemas.create  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = to_streamed_response_wrapper(
-            user_schemas.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                user_schemas.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = to_streamed_response_wrapper(
-            user_schemas.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                user_schemas.delete  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = to_streamed_response_wrapper(
-            user_schemas.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                user_schemas.edit  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_streamed_response_wrapper(
-            user_schemas.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                user_schemas.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -716,20 +777,30 @@ class AsyncUserSchemasResourceWithStreamingResponse:
     def __init__(self, user_schemas: AsyncUserSchemasResource) -> None:
         self._user_schemas = user_schemas
 
-        self.create = async_to_streamed_response_wrapper(
-            user_schemas.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                user_schemas.create  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = async_to_streamed_response_wrapper(
-            user_schemas.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                user_schemas.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = async_to_streamed_response_wrapper(
-            user_schemas.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                user_schemas.delete  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = async_to_streamed_response_wrapper(
-            user_schemas.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                user_schemas.edit  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_streamed_response_wrapper(
-            user_schemas.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                user_schemas.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property

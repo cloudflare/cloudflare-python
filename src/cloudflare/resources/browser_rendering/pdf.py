@@ -85,6 +85,7 @@ class PDFResource(SyncAPIResource):
         emulate_media_type: str | NotGiven = NOT_GIVEN,
         goto_options: pdf_create_params.GotoOptions | NotGiven = NOT_GIVEN,
         html: str | NotGiven = NOT_GIVEN,
+        pdf_options: pdf_create_params.PDFOptions | NotGiven = NOT_GIVEN,
         reject_request_pattern: List[str] | NotGiven = NOT_GIVEN,
         reject_resource_types: List[
             Literal[
@@ -158,6 +159,8 @@ class PDFResource(SyncAPIResource):
           html: Set the content of the page, eg: `<h1>Hello World!!</h1>`. Either `html` or
               `url` must be set.
 
+          pdf_options: Check [options](https://pptr.dev/api/puppeteer.pdfoptions).
+
           reject_request_pattern: Block undesired requests that match the provided regex patterns, eg.
               '/^.\\**\\..(css)'.
 
@@ -199,6 +202,7 @@ class PDFResource(SyncAPIResource):
                     "emulate_media_type": emulate_media_type,
                     "goto_options": goto_options,
                     "html": html,
+                    "pdf_options": pdf_options,
                     "reject_request_pattern": reject_request_pattern,
                     "reject_resource_types": reject_resource_types,
                     "set_extra_http_headers": set_extra_http_headers,
@@ -280,6 +284,7 @@ class AsyncPDFResource(AsyncAPIResource):
         emulate_media_type: str | NotGiven = NOT_GIVEN,
         goto_options: pdf_create_params.GotoOptions | NotGiven = NOT_GIVEN,
         html: str | NotGiven = NOT_GIVEN,
+        pdf_options: pdf_create_params.PDFOptions | NotGiven = NOT_GIVEN,
         reject_request_pattern: List[str] | NotGiven = NOT_GIVEN,
         reject_resource_types: List[
             Literal[
@@ -353,6 +358,8 @@ class AsyncPDFResource(AsyncAPIResource):
           html: Set the content of the page, eg: `<h1>Hello World!!</h1>`. Either `html` or
               `url` must be set.
 
+          pdf_options: Check [options](https://pptr.dev/api/puppeteer.pdfoptions).
+
           reject_request_pattern: Block undesired requests that match the provided regex patterns, eg.
               '/^.\\**\\..(css)'.
 
@@ -394,6 +401,7 @@ class AsyncPDFResource(AsyncAPIResource):
                     "emulate_media_type": emulate_media_type,
                     "goto_options": goto_options,
                     "html": html,
+                    "pdf_options": pdf_options,
                     "reject_request_pattern": reject_request_pattern,
                     "reject_resource_types": reject_resource_types,
                     "set_extra_http_headers": set_extra_http_headers,

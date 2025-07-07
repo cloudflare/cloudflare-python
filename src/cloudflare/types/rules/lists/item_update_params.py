@@ -32,10 +32,7 @@ class Body(TypedDict, total=False):
     """
 
     ip: str
-    """An IPv4 address, an IPv4 CIDR, or an IPv6 CIDR.
-
-    IPv6 CIDRs are limited to a maximum of /64.
-    """
+    """An IPv4 address, an IPv4 CIDR, an IPv6 address, or an IPv6 CIDR."""
 
     redirect: RedirectParam
     """The definition of the redirect."""

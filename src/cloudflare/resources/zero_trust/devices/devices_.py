@@ -89,7 +89,7 @@ class DevicesResource(SyncAPIResource):
 
           search: Search by device details.
 
-          seen_after: Filters by the last_seen timestamp - returns only devices last seen after this
+          seen_after: Filter by the last_seen timestamp - returns only devices last seen after this
               timestamp.
 
           seen_before: Filter by the last_seen timestamp - returns only devices last seen before this
@@ -320,7 +320,7 @@ class AsyncDevicesResource(AsyncAPIResource):
 
           search: Search by device details.
 
-          seen_after: Filters by the last_seen timestamp - returns only devices last seen after this
+          seen_after: Filter by the last_seen timestamp - returns only devices last seen after this
               timestamp.
 
           seen_before: Filter by the last_seen timestamp - returns only devices last seen before this

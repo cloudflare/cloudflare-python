@@ -89,10 +89,10 @@ class RegistrationsResource(SyncAPIResource):
 
           search: Filter by registration details.
 
-          seen_after: Filters by the last_seen timestamp - returns only registrations last seen after
+          seen_after: Filter by the last_seen timestamp - returns only registrations last seen after
               this timestamp.
 
-          seen_before: Filters by the last_seen timestamp - returns only registrations last seen before
+          seen_before: Filter by the last_seen timestamp - returns only registrations last seen before
               this timestamp.
 
           sort_by: The registration field to order results by.
@@ -401,10 +401,10 @@ class AsyncRegistrationsResource(AsyncAPIResource):
 
           search: Filter by registration details.
 
-          seen_after: Filters by the last_seen timestamp - returns only registrations last seen after
+          seen_after: Filter by the last_seen timestamp - returns only registrations last seen after
               this timestamp.
 
-          seen_before: Filters by the last_seen timestamp - returns only registrations last seen before
+          seen_before: Filter by the last_seen timestamp - returns only registrations last seen before
               this timestamp.
 
           sort_by: The registration field to order results by.
