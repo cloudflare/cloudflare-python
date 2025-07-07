@@ -32,6 +32,8 @@ __all__ = [
     "AccessCommonNameRuleCommonName",
     "AccessLoginMethodRule",
     "AccessLoginMethodRuleLoginMethod",
+    "AccessOIDCClaimRule",
+    "AccessOIDCClaimRuleOIDC",
 ]
 
 
@@ -68,6 +70,21 @@ class AccessLoginMethodRule(BaseModel):
     login_method: AccessLoginMethodRuleLoginMethod
 
 
+class AccessOIDCClaimRuleOIDC(BaseModel):
+    claim_name: str
+    """The name of the OIDC claim."""
+
+    claim_value: str
+    """The OIDC claim value to look for."""
+
+    identity_provider_id: str
+    """The ID of your OIDC identity provider."""
+
+
+class AccessOIDCClaimRule(BaseModel):
+    oidc: AccessOIDCClaimRuleOIDC
+
+
 AccessRule: TypeAlias = Union[
     GroupRule,
     AnyValidServiceTokenRule,
@@ -90,5 +107,6 @@ AccessRule: TypeAlias = Union[
     IPRule,
     OktaGroupRule,
     SAMLGroupRule,
+    AccessOIDCClaimRule,
     ServiceTokenRule,
 ]
