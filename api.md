@@ -110,8 +110,8 @@ from cloudflare.types.accounts.tokens import PermissionGroupListResponse, Permis
 
 Methods:
 
-- <code title="get /accounts/{account_id}/tokens/permission_groups">client.accounts.tokens.permission_groups.<a href="./src/cloudflare/resources/accounts/tokens/permission_groups.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/accounts/tokens/permission_group_list_response.py">SyncSinglePage[PermissionGroupListResponse]</a></code>
-- <code title="get /accounts/{account_id}/tokens/permission_groups">client.accounts.tokens.permission_groups.<a href="./src/cloudflare/resources/accounts/tokens/permission_groups.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/accounts/tokens/permission_group_get_response.py">SyncSinglePage[PermissionGroupGetResponse]</a></code>
+- <code title="get /accounts/{account_id}/tokens/permission_groups">client.accounts.tokens.permission_groups.<a href="./src/cloudflare/resources/accounts/tokens/permission_groups.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/accounts/tokens/permission_group_list_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/tokens/permission_group_list_response.py">SyncSinglePage[PermissionGroupListResponse]</a></code>
+- <code title="get /accounts/{account_id}/tokens/permission_groups">client.accounts.tokens.permission_groups.<a href="./src/cloudflare/resources/accounts/tokens/permission_groups.py">get</a>(\*, account_id, \*\*<a href="src/cloudflare/types/accounts/tokens/permission_group_get_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/tokens/permission_group_get_response.py">Optional[PermissionGroupGetResponse]</a></code>
 
 ### Value
 
@@ -297,7 +297,7 @@ from cloudflare.types.user.tokens import PermissionGroupListResponse
 
 Methods:
 
-- <code title="get /user/tokens/permission_groups">client.user.tokens.permission_groups.<a href="./src/cloudflare/resources/user/tokens/permission_groups.py">list</a>() -> <a href="./src/cloudflare/types/user/tokens/permission_group_list_response.py">SyncSinglePage[PermissionGroupListResponse]</a></code>
+- <code title="get /user/tokens/permission_groups">client.user.tokens.permission_groups.<a href="./src/cloudflare/resources/user/tokens/permission_groups.py">list</a>(\*\*<a href="src/cloudflare/types/user/tokens/permission_group_list_params.py">params</a>) -> <a href="./src/cloudflare/types/user/tokens/permission_group_list_response.py">SyncSinglePage[PermissionGroupListResponse]</a></code>
 
 ### Value
 
