@@ -5,10 +5,10 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["ListGetResponse"]
+__all__ = ["ListsList"]
 
 
-class ListGetResponse(BaseModel):
+class ListsList(BaseModel):
     id: Optional[str] = None
     """The unique ID of the list."""
 
