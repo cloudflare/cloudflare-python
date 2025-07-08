@@ -54,7 +54,7 @@ class SchemaValidationResource(SyncAPIResource):
         return SchemaValidationResourceWithStreamingResponse(self)
 
     @typing_extensions.deprecated(
-        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation) instead."
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation/) instead."
     )
     def update(
         self,
@@ -110,7 +110,7 @@ class SchemaValidationResource(SyncAPIResource):
         )
 
     @typing_extensions.deprecated(
-        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation) instead."
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation/) instead."
     )
     def edit(
         self,
@@ -154,7 +154,7 @@ class SchemaValidationResource(SyncAPIResource):
         )
 
     @typing_extensions.deprecated(
-        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation) instead."
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation/) instead."
     )
     def get(
         self,
@@ -218,7 +218,7 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
         return AsyncSchemaValidationResourceWithStreamingResponse(self)
 
     @typing_extensions.deprecated(
-        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation) instead."
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation/) instead."
     )
     async def update(
         self,
@@ -274,7 +274,7 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
         )
 
     @typing_extensions.deprecated(
-        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation) instead."
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation/) instead."
     )
     async def edit(
         self,
@@ -320,7 +320,7 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
         )
 
     @typing_extensions.deprecated(
-        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation) instead."
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation/) instead."
     )
     async def get(
         self,
