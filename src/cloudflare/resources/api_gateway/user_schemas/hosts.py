@@ -45,7 +45,7 @@ class HostsResource(SyncAPIResource):
         return HostsResourceWithStreamingResponse(self)
 
     @typing_extensions.deprecated(
-        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation) instead."
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation/) instead."
     )
     def list(
         self,
@@ -121,7 +121,7 @@ class AsyncHostsResource(AsyncAPIResource):
         return AsyncHostsResourceWithStreamingResponse(self)
 
     @typing_extensions.deprecated(
-        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation) instead."
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation/) instead."
     )
     def list(
         self,
