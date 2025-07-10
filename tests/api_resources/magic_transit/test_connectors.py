@@ -25,6 +25,9 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestConnectors:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(
+        reason="TODO: consider oneOf instead of maxProperties to indicate that this can be either id or serial_number"
+    )
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         connector = client.magic_transit.connectors.create(
@@ -33,6 +36,9 @@ class TestConnectors:
         )
         assert_matches_type(ConnectorCreateResponse, connector, path=["response"])
 
+    @pytest.mark.skip(
+        reason="TODO: consider oneOf instead of maxProperties to indicate that this can be either id or serial_number"
+    )
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         connector = client.magic_transit.connectors.create(
@@ -49,6 +55,9 @@ class TestConnectors:
         )
         assert_matches_type(ConnectorCreateResponse, connector, path=["response"])
 
+    @pytest.mark.skip(
+        reason="TODO: consider oneOf instead of maxProperties to indicate that this can be either id or serial_number"
+    )
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.magic_transit.connectors.with_raw_response.create(
@@ -61,6 +70,9 @@ class TestConnectors:
         connector = response.parse()
         assert_matches_type(ConnectorCreateResponse, connector, path=["response"])
 
+    @pytest.mark.skip(
+        reason="TODO: consider oneOf instead of maxProperties to indicate that this can be either id or serial_number"
+    )
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.magic_transit.connectors.with_streaming_response.create(
@@ -75,6 +87,9 @@ class TestConnectors:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(
+        reason="TODO: consider oneOf instead of maxProperties to indicate that this can be either id or serial_number"
+    )
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -345,6 +360,9 @@ class TestAsyncConnectors:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(
+        reason="TODO: consider oneOf instead of maxProperties to indicate that this can be either id or serial_number"
+    )
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         connector = await async_client.magic_transit.connectors.create(
@@ -353,6 +371,9 @@ class TestAsyncConnectors:
         )
         assert_matches_type(ConnectorCreateResponse, connector, path=["response"])
 
+    @pytest.mark.skip(
+        reason="TODO: consider oneOf instead of maxProperties to indicate that this can be either id or serial_number"
+    )
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         connector = await async_client.magic_transit.connectors.create(
@@ -369,6 +390,9 @@ class TestAsyncConnectors:
         )
         assert_matches_type(ConnectorCreateResponse, connector, path=["response"])
 
+    @pytest.mark.skip(
+        reason="TODO: consider oneOf instead of maxProperties to indicate that this can be either id or serial_number"
+    )
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.connectors.with_raw_response.create(
@@ -381,6 +405,9 @@ class TestAsyncConnectors:
         connector = await response.parse()
         assert_matches_type(ConnectorCreateResponse, connector, path=["response"])
 
+    @pytest.mark.skip(
+        reason="TODO: consider oneOf instead of maxProperties to indicate that this can be either id or serial_number"
+    )
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.connectors.with_streaming_response.create(
@@ -395,6 +422,9 @@ class TestAsyncConnectors:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(
+        reason="TODO: consider oneOf instead of maxProperties to indicate that this can be either id or serial_number"
+    )
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
