@@ -19,7 +19,7 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncCursorPagination, AsyncCursorPagination
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.rules.lists import item_list_params, item_create_params, item_update_params
+from ....types.rules.lists import item_list_params, item_create_params, item_delete_params, item_update_params
 from ....types.rules.lists.item_get_response import ItemGetResponse
 from ....types.rules.lists.item_list_response import ItemListResponse
 from ....types.rules.lists.item_create_response import ItemCreateResponse
@@ -222,6 +222,7 @@ class ItemsResource(SyncAPIResource):
         list_id: str,
         *,
         account_id: str,
+        items: Iterable[item_delete_params.Item] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -255,6 +256,7 @@ class ItemsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         return self._delete(
             f"/accounts/{account_id}/rules/lists/{list_id}/items",
+            body=maybe_transform({"items": items}, item_delete_params.ItemDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -508,6 +510,7 @@ class AsyncItemsResource(AsyncAPIResource):
         list_id: str,
         *,
         account_id: str,
+        items: Iterable[item_delete_params.Item] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -541,6 +544,7 @@ class AsyncItemsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         return await self._delete(
             f"/accounts/{account_id}/rules/lists/{list_id}/items",
+            body=await async_maybe_transform({"items": items}, item_delete_params.ItemDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

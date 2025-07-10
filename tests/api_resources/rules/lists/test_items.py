@@ -198,6 +198,15 @@ class TestItems:
         assert_matches_type(ItemDeleteResponse, item, path=["response"])
 
     @parametrize
+    def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
+        item = client.rules.lists.items.delete(
+            list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            items=[{}],
+        )
+        assert_matches_type(ItemDeleteResponse, item, path=["response"])
+
+    @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.rules.lists.items.with_raw_response.delete(
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
@@ -473,6 +482,15 @@ class TestAsyncItems:
         item = await async_client.rules.lists.items.delete(
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(ItemDeleteResponse, item, path=["response"])
+
+    @parametrize
+    async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        item = await async_client.rules.lists.items.delete(
+            list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            items=[{}],
         )
         assert_matches_type(ItemDeleteResponse, item, path=["response"])
 
