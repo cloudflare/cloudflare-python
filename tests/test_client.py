@@ -521,7 +521,7 @@ class TestCloudflare:
     def test_multipart_repeating_array(self, client: Cloudflare) -> None:
         request = client._build_request(
             FinalRequestOptions.construct(
-                method="get",
+                method="post",
                 url="/foo",
                 headers={"Content-Type": "multipart/form-data; boundary=6b7ba517decee4a450543ea6ae821c82"},
                 json_data={"array": ["foo", "bar"]},
@@ -1505,7 +1505,7 @@ class TestAsyncCloudflare:
     def test_multipart_repeating_array(self, async_client: AsyncCloudflare) -> None:
         request = async_client._build_request(
             FinalRequestOptions.construct(
-                method="get",
+                method="post",
                 url="/foo",
                 headers={"Content-Type": "multipart/form-data; boundary=6b7ba517decee4a450543ea6ae821c82"},
                 json_data={"array": ["foo", "bar"]},
