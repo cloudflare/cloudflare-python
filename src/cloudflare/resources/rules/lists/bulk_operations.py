@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Type, cast
 
 import httpx
 
@@ -78,21 +78,16 @@ class BulkOperationsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not operation_id:
             raise ValueError(f"Expected a non-empty value for `operation_id` but received {operation_id!r}")
-        return cast(
-            BulkOperationGetResponse,
-            self._get(
-                f"/accounts/{account_id}/rules/lists/bulk_operations/{operation_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[BulkOperationGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[BulkOperationGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            f"/accounts/{account_id}/rules/lists/bulk_operations/{operation_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[BulkOperationGetResponse]._unwrapper,
             ),
+            cast_to=cast(Type[BulkOperationGetResponse], ResultWrapper[BulkOperationGetResponse]),
         )
 
 
@@ -152,21 +147,16 @@ class AsyncBulkOperationsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not operation_id:
             raise ValueError(f"Expected a non-empty value for `operation_id` but received {operation_id!r}")
-        return cast(
-            BulkOperationGetResponse,
-            await self._get(
-                f"/accounts/{account_id}/rules/lists/bulk_operations/{operation_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[BulkOperationGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[BulkOperationGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            f"/accounts/{account_id}/rules/lists/bulk_operations/{operation_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[BulkOperationGetResponse]._unwrapper,
             ),
+            cast_to=cast(Type[BulkOperationGetResponse], ResultWrapper[BulkOperationGetResponse]),
         )
 
 

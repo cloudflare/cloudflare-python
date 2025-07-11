@@ -51,7 +51,7 @@ class BotManagementResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        ai_bots_protection: Literal["block", "disabled"] | NotGiven = NOT_GIVEN,
+        ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | NotGiven = NOT_GIVEN,
         crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
         enable_js: bool | NotGiven = NOT_GIVEN,
         fight_mode: bool | NotGiven = NOT_GIVEN,
@@ -128,7 +128,8 @@ class BotManagementResource(SyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          ai_bots_protection: Enable rule to block AI Scrapers and Crawlers.
+          ai_bots_protection: Enable rule to block AI Scrapers and Crawlers. Please note the value
+              `only_on_ad_pages` is currently not available for Enterprise customers.
 
           crawler_protection: Enable rule to punish AI Scrapers and Crawlers via a link maze.
 
@@ -152,7 +153,7 @@ class BotManagementResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        ai_bots_protection: Literal["block", "disabled"] | NotGiven = NOT_GIVEN,
+        ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | NotGiven = NOT_GIVEN,
         crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
         enable_js: bool | NotGiven = NOT_GIVEN,
         optimize_wordpress: bool | NotGiven = NOT_GIVEN,
@@ -232,7 +233,8 @@ class BotManagementResource(SyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          ai_bots_protection: Enable rule to block AI Scrapers and Crawlers.
+          ai_bots_protection: Enable rule to block AI Scrapers and Crawlers. Please note the value
+              `only_on_ad_pages` is currently not available for Enterprise customers.
 
           crawler_protection: Enable rule to punish AI Scrapers and Crawlers via a link maze.
 
@@ -264,7 +266,7 @@ class BotManagementResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        ai_bots_protection: Literal["block", "disabled"] | NotGiven = NOT_GIVEN,
+        ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | NotGiven = NOT_GIVEN,
         crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
         enable_js: bool | NotGiven = NOT_GIVEN,
         optimize_wordpress: bool | NotGiven = NOT_GIVEN,
@@ -345,7 +347,8 @@ class BotManagementResource(SyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          ai_bots_protection: Enable rule to block AI Scrapers and Crawlers.
+          ai_bots_protection: Enable rule to block AI Scrapers and Crawlers. Please note the value
+              `only_on_ad_pages` is currently not available for Enterprise customers.
 
           crawler_protection: Enable rule to punish AI Scrapers and Crawlers via a link maze.
 
@@ -379,7 +382,7 @@ class BotManagementResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        ai_bots_protection: Literal["block", "disabled"] | NotGiven = NOT_GIVEN,
+        ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | NotGiven = NOT_GIVEN,
         auto_update_model: bool | NotGiven = NOT_GIVEN,
         crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
         enable_js: bool | NotGiven = NOT_GIVEN,
@@ -457,7 +460,8 @@ class BotManagementResource(SyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          ai_bots_protection: Enable rule to block AI Scrapers and Crawlers.
+          ai_bots_protection: Enable rule to block AI Scrapers and Crawlers. Please note the value
+              `only_on_ad_pages` is currently not available for Enterprise customers.
 
           auto_update_model: Automatically update to the newest bot detection models created by Cloudflare as
               they are released.
@@ -486,7 +490,7 @@ class BotManagementResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        ai_bots_protection: Literal["block", "disabled"] | NotGiven = NOT_GIVEN,
+        ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | NotGiven = NOT_GIVEN,
         crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
         enable_js: bool | NotGiven = NOT_GIVEN,
         fight_mode: bool | NotGiven = NOT_GIVEN,
@@ -609,7 +613,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        ai_bots_protection: Literal["block", "disabled"] | NotGiven = NOT_GIVEN,
+        ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | NotGiven = NOT_GIVEN,
         crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
         enable_js: bool | NotGiven = NOT_GIVEN,
         fight_mode: bool | NotGiven = NOT_GIVEN,
@@ -686,7 +690,8 @@ class AsyncBotManagementResource(AsyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          ai_bots_protection: Enable rule to block AI Scrapers and Crawlers.
+          ai_bots_protection: Enable rule to block AI Scrapers and Crawlers. Please note the value
+              `only_on_ad_pages` is currently not available for Enterprise customers.
 
           crawler_protection: Enable rule to punish AI Scrapers and Crawlers via a link maze.
 
@@ -710,7 +715,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        ai_bots_protection: Literal["block", "disabled"] | NotGiven = NOT_GIVEN,
+        ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | NotGiven = NOT_GIVEN,
         crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
         enable_js: bool | NotGiven = NOT_GIVEN,
         optimize_wordpress: bool | NotGiven = NOT_GIVEN,
@@ -790,7 +795,8 @@ class AsyncBotManagementResource(AsyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          ai_bots_protection: Enable rule to block AI Scrapers and Crawlers.
+          ai_bots_protection: Enable rule to block AI Scrapers and Crawlers. Please note the value
+              `only_on_ad_pages` is currently not available for Enterprise customers.
 
           crawler_protection: Enable rule to punish AI Scrapers and Crawlers via a link maze.
 
@@ -822,7 +828,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        ai_bots_protection: Literal["block", "disabled"] | NotGiven = NOT_GIVEN,
+        ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | NotGiven = NOT_GIVEN,
         crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
         enable_js: bool | NotGiven = NOT_GIVEN,
         optimize_wordpress: bool | NotGiven = NOT_GIVEN,
@@ -903,7 +909,8 @@ class AsyncBotManagementResource(AsyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          ai_bots_protection: Enable rule to block AI Scrapers and Crawlers.
+          ai_bots_protection: Enable rule to block AI Scrapers and Crawlers. Please note the value
+              `only_on_ad_pages` is currently not available for Enterprise customers.
 
           crawler_protection: Enable rule to punish AI Scrapers and Crawlers via a link maze.
 
@@ -937,7 +944,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        ai_bots_protection: Literal["block", "disabled"] | NotGiven = NOT_GIVEN,
+        ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | NotGiven = NOT_GIVEN,
         auto_update_model: bool | NotGiven = NOT_GIVEN,
         crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
         enable_js: bool | NotGiven = NOT_GIVEN,
@@ -1015,7 +1022,8 @@ class AsyncBotManagementResource(AsyncAPIResource):
         Args:
           zone_id: Identifier.
 
-          ai_bots_protection: Enable rule to block AI Scrapers and Crawlers.
+          ai_bots_protection: Enable rule to block AI Scrapers and Crawlers. Please note the value
+              `only_on_ad_pages` is currently not available for Enterprise customers.
 
           auto_update_model: Automatically update to the newest bot detection models created by Cloudflare as
               they are released.
@@ -1044,7 +1052,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        ai_bots_protection: Literal["block", "disabled"] | NotGiven = NOT_GIVEN,
+        ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | NotGiven = NOT_GIVEN,
         crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
         enable_js: bool | NotGiven = NOT_GIVEN,
         fight_mode: bool | NotGiven = NOT_GIVEN,

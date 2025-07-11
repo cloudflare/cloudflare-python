@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Any, List, cast
 from typing_extensions import Literal
 
@@ -45,6 +46,9 @@ class OperationsResource(SyncAPIResource):
         """
         return OperationsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation/) instead."
+    )
     def list(
         self,
         schema_id: str,
@@ -148,6 +152,9 @@ class AsyncOperationsResource(AsyncAPIResource):
         """
         return AsyncOperationsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation/) instead."
+    )
     def list(
         self,
         schema_id: str,
@@ -235,8 +242,10 @@ class OperationsResourceWithRawResponse:
     def __init__(self, operations: OperationsResource) -> None:
         self._operations = operations
 
-        self.list = to_raw_response_wrapper(
-            operations.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                operations.list  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -244,8 +253,10 @@ class AsyncOperationsResourceWithRawResponse:
     def __init__(self, operations: AsyncOperationsResource) -> None:
         self._operations = operations
 
-        self.list = async_to_raw_response_wrapper(
-            operations.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                operations.list  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -253,8 +264,10 @@ class OperationsResourceWithStreamingResponse:
     def __init__(self, operations: OperationsResource) -> None:
         self._operations = operations
 
-        self.list = to_streamed_response_wrapper(
-            operations.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                operations.list  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -262,6 +275,8 @@ class AsyncOperationsResourceWithStreamingResponse:
     def __init__(self, operations: AsyncOperationsResource) -> None:
         self._operations = operations
 
-        self.list = async_to_streamed_response_wrapper(
-            operations.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                operations.list  # pyright: ignore[reportDeprecated],
+            )
         )

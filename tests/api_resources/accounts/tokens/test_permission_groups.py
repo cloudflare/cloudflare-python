@@ -3,14 +3,17 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.accounts.tokens import PermissionGroupGetResponse, PermissionGroupListResponse
+from cloudflare.types.accounts.tokens import (
+    PermissionGroupGetResponse,
+    PermissionGroupListResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,6 +26,16 @@ class TestPermissionGroups:
     def test_method_list(self, client: Cloudflare) -> None:
         permission_group = client.accounts.tokens.permission_groups.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(SyncSinglePage[PermissionGroupListResponse], permission_group, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
+        permission_group = client.accounts.tokens.permission_groups.list(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="Account%20Settings%20Write",
+            scope="com.cloudflare.api.account.zone",
         )
         assert_matches_type(SyncSinglePage[PermissionGroupListResponse], permission_group, path=["response"])
 
@@ -66,7 +79,17 @@ class TestPermissionGroups:
         permission_group = client.accounts.tokens.permission_groups.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncSinglePage[PermissionGroupGetResponse], permission_group, path=["response"])
+        assert_matches_type(Optional[PermissionGroupGetResponse], permission_group, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
+        permission_group = client.accounts.tokens.permission_groups.get(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="Account%20Settings%20Write",
+            scope="com.cloudflare.api.account.zone",
+        )
+        assert_matches_type(Optional[PermissionGroupGetResponse], permission_group, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -78,7 +101,7 @@ class TestPermissionGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         permission_group = response.parse()
-        assert_matches_type(SyncSinglePage[PermissionGroupGetResponse], permission_group, path=["response"])
+        assert_matches_type(Optional[PermissionGroupGetResponse], permission_group, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -90,7 +113,7 @@ class TestPermissionGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             permission_group = response.parse()
-            assert_matches_type(SyncSinglePage[PermissionGroupGetResponse], permission_group, path=["response"])
+            assert_matches_type(Optional[PermissionGroupGetResponse], permission_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -104,13 +127,25 @@ class TestPermissionGroups:
 
 
 class TestAsyncPermissionGroups:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         permission_group = await async_client.accounts.tokens.permission_groups.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(AsyncSinglePage[PermissionGroupListResponse], permission_group, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        permission_group = await async_client.accounts.tokens.permission_groups.list(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="Account%20Settings%20Write",
+            scope="com.cloudflare.api.account.zone",
         )
         assert_matches_type(AsyncSinglePage[PermissionGroupListResponse], permission_group, path=["response"])
 
@@ -154,7 +189,17 @@ class TestAsyncPermissionGroups:
         permission_group = await async_client.accounts.tokens.permission_groups.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncSinglePage[PermissionGroupGetResponse], permission_group, path=["response"])
+        assert_matches_type(Optional[PermissionGroupGetResponse], permission_group, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        permission_group = await async_client.accounts.tokens.permission_groups.get(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="Account%20Settings%20Write",
+            scope="com.cloudflare.api.account.zone",
+        )
+        assert_matches_type(Optional[PermissionGroupGetResponse], permission_group, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -166,7 +211,7 @@ class TestAsyncPermissionGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         permission_group = await response.parse()
-        assert_matches_type(AsyncSinglePage[PermissionGroupGetResponse], permission_group, path=["response"])
+        assert_matches_type(Optional[PermissionGroupGetResponse], permission_group, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -178,7 +223,7 @@ class TestAsyncPermissionGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             permission_group = await response.parse()
-            assert_matches_type(AsyncSinglePage[PermissionGroupGetResponse], permission_group, path=["response"])
+            assert_matches_type(Optional[PermissionGroupGetResponse], permission_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -50,6 +50,15 @@ class BlockPageSettings(BaseModel):
     name: Optional[str] = None
     """If mode is customized_block_page: block page title."""
 
+    read_only: Optional[bool] = None
+    """
+    This setting was shared via the Orgs API and cannot be edited by the current
+    account
+    """
+
+    source_account: Optional[str] = None
+    """Account tag of account that shared this setting"""
+
     suppress_footer: Optional[bool] = None
     """
     If mode is customized_block_page: suppress detailed info at the bottom of the

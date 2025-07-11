@@ -3,8 +3,6 @@
 from typing import Optional
 from typing_extensions import Literal
 
-from pydantic import Field as FieldInfo
-
 from ...._models import BaseModel
 from .tls_settings import TLSSettings
 from .fips_settings import FipsSettings
@@ -17,12 +15,7 @@ from .extended_email_matching import ExtendedEmailMatching
 from .browser_isolation_settings import BrowserIsolationSettings
 from .custom_certificate_settings import CustomCertificateSettings
 
-__all__ = ["GatewayConfigurationSettings", "AppControlSettings", "Certificate", "HostSelector", "Sandbox"]
-
-
-class AppControlSettings(BaseModel):
-    enabled: Optional[bool] = None
-    """Enable App Control"""
+__all__ = ["GatewayConfigurationSettings", "Certificate", "HostSelector", "Sandbox"]
 
 
 class Certificate(BaseModel):
@@ -53,9 +46,6 @@ class GatewayConfigurationSettings(BaseModel):
 
     antivirus: Optional[AntiVirusSettings] = None
     """Anti-virus settings."""
-
-    app_control_settings: Optional[AppControlSettings] = FieldInfo(alias="app-control-settings", default=None)
-    """Setting to enable App Control"""
 
     block_page: Optional[BlockPageSettings] = None
     """Block page layout settings."""

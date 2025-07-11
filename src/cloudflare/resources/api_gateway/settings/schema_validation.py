@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Optional
 from typing_extensions import Literal
 
@@ -44,6 +45,9 @@ class SchemaValidationResource(SyncAPIResource):
         """
         return SchemaValidationResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation/) instead."
+    )
     def update(
         self,
         *,
@@ -106,6 +110,9 @@ class SchemaValidationResource(SyncAPIResource):
             cast_to=Settings,
         )
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation/) instead."
+    )
     def edit(
         self,
         *,
@@ -169,6 +176,9 @@ class SchemaValidationResource(SyncAPIResource):
             cast_to=Settings,
         )
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation/) instead."
+    )
     def get(
         self,
         *,
@@ -225,6 +235,9 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
         """
         return AsyncSchemaValidationResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation/) instead."
+    )
     async def update(
         self,
         *,
@@ -287,6 +300,9 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
             cast_to=Settings,
         )
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation/) instead."
+    )
     async def edit(
         self,
         *,
@@ -350,6 +366,9 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
             cast_to=Settings,
         )
 
+    @typing_extensions.deprecated(
+        "Use [Schema Validation API](https://developers.cloudflare.com/api/resources/schema_validation/) instead."
+    )
     async def get(
         self,
         *,
@@ -390,14 +409,20 @@ class SchemaValidationResourceWithRawResponse:
     def __init__(self, schema_validation: SchemaValidationResource) -> None:
         self._schema_validation = schema_validation
 
-        self.update = to_raw_response_wrapper(
-            schema_validation.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                schema_validation.update  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = to_raw_response_wrapper(
-            schema_validation.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                schema_validation.edit  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_raw_response_wrapper(
-            schema_validation.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                schema_validation.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -405,14 +430,20 @@ class AsyncSchemaValidationResourceWithRawResponse:
     def __init__(self, schema_validation: AsyncSchemaValidationResource) -> None:
         self._schema_validation = schema_validation
 
-        self.update = async_to_raw_response_wrapper(
-            schema_validation.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                schema_validation.update  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = async_to_raw_response_wrapper(
-            schema_validation.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                schema_validation.edit  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_raw_response_wrapper(
-            schema_validation.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                schema_validation.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -420,14 +451,20 @@ class SchemaValidationResourceWithStreamingResponse:
     def __init__(self, schema_validation: SchemaValidationResource) -> None:
         self._schema_validation = schema_validation
 
-        self.update = to_streamed_response_wrapper(
-            schema_validation.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                schema_validation.update  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = to_streamed_response_wrapper(
-            schema_validation.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                schema_validation.edit  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_streamed_response_wrapper(
-            schema_validation.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                schema_validation.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -435,12 +472,18 @@ class AsyncSchemaValidationResourceWithStreamingResponse:
     def __init__(self, schema_validation: AsyncSchemaValidationResource) -> None:
         self._schema_validation = schema_validation
 
-        self.update = async_to_streamed_response_wrapper(
-            schema_validation.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                schema_validation.update  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = async_to_streamed_response_wrapper(
-            schema_validation.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                schema_validation.edit  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_streamed_response_wrapper(
-            schema_validation.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                schema_validation.get  # pyright: ignore[reportDeprecated],
+            )
         )

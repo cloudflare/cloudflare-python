@@ -30,7 +30,7 @@ class LockdownCreateParams(TypedDict, total=False):
     """
 
     description: str
-    """An informative summary of the rate limit.
+    """An informative summary of the rule.
 
     This value is sanitized and any tags will be removed.
     """

@@ -37,10 +37,7 @@ class TestTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {"foo": "string"},
                 }
             ],
         )
@@ -71,10 +68,7 @@ class TestTokens:
                             },
                         },
                     ],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {"foo": "string"},
                 }
             ],
             condition={
@@ -101,10 +95,7 @@ class TestTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {"foo": "string"},
                 }
             ],
         )
@@ -127,10 +118,7 @@ class TestTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {"foo": "string"},
                 }
             ],
         ) as response:
@@ -156,10 +144,7 @@ class TestTokens:
                             {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                             {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                         ],
-                        "resources": {
-                            "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                            "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                        },
+                        "resources": {"foo": "string"},
                     }
                 ],
             )
@@ -178,13 +163,9 @@ class TestTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {"foo": "string"},
                 }
             ],
-            status="active",
         )
         assert_matches_type(Optional[Token], token, path=["response"])
 
@@ -214,13 +195,9 @@ class TestTokens:
                             },
                         },
                     ],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {"foo": "string"},
                 }
             ],
-            status="active",
             condition={
                 "request_ip": {
                     "in": ["123.123.123.0/24", "2606:4700::/32"],
@@ -229,6 +206,7 @@ class TestTokens:
             },
             expires_on=parse_datetime("2020-01-01T00:00:00Z"),
             not_before=parse_datetime("2018-07-01T05:20:00Z"),
+            status="active",
         )
         assert_matches_type(Optional[Token], token, path=["response"])
 
@@ -246,13 +224,9 @@ class TestTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {"foo": "string"},
                 }
             ],
-            status="active",
         )
 
         assert response.is_closed is True
@@ -274,13 +248,9 @@ class TestTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {"foo": "string"},
                 }
             ],
-            status="active",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -305,13 +275,9 @@ class TestTokens:
                             {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                             {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                         ],
-                        "resources": {
-                            "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                            "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                        },
+                        "resources": {"foo": "string"},
                     }
                 ],
-                status="active",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `token_id` but received ''"):
@@ -326,13 +292,9 @@ class TestTokens:
                             {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                             {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                         ],
-                        "resources": {
-                            "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                            "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                        },
+                        "resources": {"foo": "string"},
                     }
                 ],
-                status="active",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -536,7 +498,9 @@ class TestTokens:
 
 
 class TestAsyncTokens:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -551,10 +515,7 @@ class TestAsyncTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {"foo": "string"},
                 }
             ],
         )
@@ -585,10 +546,7 @@ class TestAsyncTokens:
                             },
                         },
                     ],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {"foo": "string"},
                 }
             ],
             condition={
@@ -615,10 +573,7 @@ class TestAsyncTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {"foo": "string"},
                 }
             ],
         )
@@ -641,10 +596,7 @@ class TestAsyncTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {"foo": "string"},
                 }
             ],
         ) as response:
@@ -670,10 +622,7 @@ class TestAsyncTokens:
                             {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                             {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                         ],
-                        "resources": {
-                            "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                            "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                        },
+                        "resources": {"foo": "string"},
                     }
                 ],
             )
@@ -692,13 +641,9 @@ class TestAsyncTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {"foo": "string"},
                 }
             ],
-            status="active",
         )
         assert_matches_type(Optional[Token], token, path=["response"])
 
@@ -728,13 +673,9 @@ class TestAsyncTokens:
                             },
                         },
                     ],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {"foo": "string"},
                 }
             ],
-            status="active",
             condition={
                 "request_ip": {
                     "in": ["123.123.123.0/24", "2606:4700::/32"],
@@ -743,6 +684,7 @@ class TestAsyncTokens:
             },
             expires_on=parse_datetime("2020-01-01T00:00:00Z"),
             not_before=parse_datetime("2018-07-01T05:20:00Z"),
+            status="active",
         )
         assert_matches_type(Optional[Token], token, path=["response"])
 
@@ -760,13 +702,9 @@ class TestAsyncTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {"foo": "string"},
                 }
             ],
-            status="active",
         )
 
         assert response.is_closed is True
@@ -788,13 +726,9 @@ class TestAsyncTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {"foo": "string"},
                 }
             ],
-            status="active",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -819,13 +753,9 @@ class TestAsyncTokens:
                             {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                             {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                         ],
-                        "resources": {
-                            "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                            "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                        },
+                        "resources": {"foo": "string"},
                     }
                 ],
-                status="active",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `token_id` but received ''"):
@@ -840,13 +770,9 @@ class TestAsyncTokens:
                             {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                             {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                         ],
-                        "resources": {
-                            "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                            "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                        },
+                        "resources": {"foo": "string"},
                     }
                 ],
-                status="active",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")

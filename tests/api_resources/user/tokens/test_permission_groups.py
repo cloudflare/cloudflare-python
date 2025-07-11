@@ -26,6 +26,15 @@ class TestPermissionGroups:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
+        permission_group = client.user.tokens.permission_groups.list(
+            name="Account%20Settings%20Write",
+            scope="com.cloudflare.api.account.zone",
+        )
+        assert_matches_type(SyncSinglePage[PermissionGroupListResponse], permission_group, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.user.tokens.permission_groups.with_raw_response.list()
 
@@ -48,12 +57,23 @@ class TestPermissionGroups:
 
 
 class TestAsyncPermissionGroups:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         permission_group = await async_client.user.tokens.permission_groups.list()
+        assert_matches_type(AsyncSinglePage[PermissionGroupListResponse], permission_group, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        permission_group = await async_client.user.tokens.permission_groups.list(
+            name="Account%20Settings%20Write",
+            scope="com.cloudflare.api.account.zone",
+        )
         assert_matches_type(AsyncSinglePage[PermissionGroupListResponse], permission_group, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")

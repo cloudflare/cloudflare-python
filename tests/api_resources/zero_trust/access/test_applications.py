@@ -2909,6 +2909,7 @@ class TestApplications:
             account_id="account_id",
             aud="aud",
             domain="domain",
+            exact=True,
             name="name",
             search="search",
         )
@@ -3156,7 +3157,9 @@ class TestApplications:
 
 
 class TestAsyncApplications:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6043,6 +6046,7 @@ class TestAsyncApplications:
             account_id="account_id",
             aud="aud",
             domain="domain",
+            exact=True,
             name="name",
             search="search",
         )

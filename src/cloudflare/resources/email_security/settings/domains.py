@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Optional, cast
+from typing import List, Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -214,7 +214,7 @@ class DomainsResource(SyncAPIResource):
         account_id: str,
         ip_restrictions: List[str],
         allowed_delivery_modes: List[Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"]] | NotGiven = NOT_GIVEN,
-        domain: Optional[str] | NotGiven = NOT_GIVEN,
+        domain: str | NotGiven = NOT_GIVEN,
         drop_dispositions: List[
             Literal[
                 "MALICIOUS",
@@ -231,8 +231,8 @@ class DomainsResource(SyncAPIResource):
         ]
         | NotGiven = NOT_GIVEN,
         folder: Literal["AllItems", "Inbox"] | NotGiven = NOT_GIVEN,
-        integration_id: Optional[str] | NotGiven = NOT_GIVEN,
-        lookback_hops: Optional[int] | NotGiven = NOT_GIVEN,
+        integration_id: str | NotGiven = NOT_GIVEN,
+        lookback_hops: int | NotGiven = NOT_GIVEN,
         require_tls_inbound: bool | NotGiven = NOT_GIVEN,
         require_tls_outbound: bool | NotGiven = NOT_GIVEN,
         transport: str | NotGiven = NOT_GIVEN,
@@ -515,7 +515,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         account_id: str,
         ip_restrictions: List[str],
         allowed_delivery_modes: List[Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"]] | NotGiven = NOT_GIVEN,
-        domain: Optional[str] | NotGiven = NOT_GIVEN,
+        domain: str | NotGiven = NOT_GIVEN,
         drop_dispositions: List[
             Literal[
                 "MALICIOUS",
@@ -532,8 +532,8 @@ class AsyncDomainsResource(AsyncAPIResource):
         ]
         | NotGiven = NOT_GIVEN,
         folder: Literal["AllItems", "Inbox"] | NotGiven = NOT_GIVEN,
-        integration_id: Optional[str] | NotGiven = NOT_GIVEN,
-        lookback_hops: Optional[int] | NotGiven = NOT_GIVEN,
+        integration_id: str | NotGiven = NOT_GIVEN,
+        lookback_hops: int | NotGiven = NOT_GIVEN,
         require_tls_inbound: bool | NotGiven = NOT_GIVEN,
         require_tls_outbound: bool | NotGiven = NOT_GIVEN,
         transport: str | NotGiven = NOT_GIVEN,

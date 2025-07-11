@@ -5,6 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -15,6 +16,7 @@ from ...._response import (
 )
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
+from ....types.user.tokens import permission_group_list_params
 from ....types.user.tokens.permission_group_list_response import PermissionGroupListResponse
 
 __all__ = ["PermissionGroupsResource", "AsyncPermissionGroupsResource"]
@@ -43,6 +45,8 @@ class PermissionGroupsResource(SyncAPIResource):
     def list(
         self,
         *,
+        name: str | NotGiven = NOT_GIVEN,
+        scope: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -50,12 +54,37 @@ class PermissionGroupsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncSinglePage[PermissionGroupListResponse]:
-        """Find all available permission groups for API Tokens"""
+        """
+        Find all available permission groups for API Tokens
+
+        Args:
+          name: Filter by the name of the permission group. The value must be URL-encoded.
+
+          scope: Filter by the scope of the permission group. The value must be URL-encoded.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return self._get_api_list(
             "/user/tokens/permission_groups",
             page=SyncSinglePage[PermissionGroupListResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "name": name,
+                        "scope": scope,
+                    },
+                    permission_group_list_params.PermissionGroupListParams,
+                ),
             ),
             model=PermissionGroupListResponse,
         )
@@ -84,6 +113,8 @@ class AsyncPermissionGroupsResource(AsyncAPIResource):
     def list(
         self,
         *,
+        name: str | NotGiven = NOT_GIVEN,
+        scope: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -91,12 +122,37 @@ class AsyncPermissionGroupsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[PermissionGroupListResponse, AsyncSinglePage[PermissionGroupListResponse]]:
-        """Find all available permission groups for API Tokens"""
+        """
+        Find all available permission groups for API Tokens
+
+        Args:
+          name: Filter by the name of the permission group. The value must be URL-encoded.
+
+          scope: Filter by the scope of the permission group. The value must be URL-encoded.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return self._get_api_list(
             "/user/tokens/permission_groups",
             page=AsyncSinglePage[PermissionGroupListResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "name": name,
+                        "scope": scope,
+                    },
+                    permission_group_list_params.PermissionGroupListParams,
+                ),
             ),
             model=PermissionGroupListResponse,
         )

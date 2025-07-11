@@ -16,13 +16,13 @@ class Column(BaseModel):
 
     num_cells: int
 
-    upload_status: Literal["empty", "uploading", "processing", "failed", "complete"]
+    upload_status: Literal["empty", "uploading", "pending", "processing", "failed", "complete"]
 
 
 class Upload(BaseModel):
     num_cells: int
 
-    status: Literal["empty", "uploading", "processing", "failed", "complete"]
+    status: Literal["empty", "uploading", "pending", "processing", "failed", "complete"]
 
     version: int
 
@@ -42,7 +42,7 @@ class Dataset(BaseModel):
 
     secret: bool
 
-    status: Literal["empty", "uploading", "processing", "failed", "complete"]
+    status: Literal["empty", "uploading", "pending", "processing", "failed", "complete"]
 
     updated_at: datetime
     """When the dataset was last updated.

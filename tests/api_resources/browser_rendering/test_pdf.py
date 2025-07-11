@@ -94,6 +94,29 @@ class TestPDF:
                 "wait_until": "load",
             },
             html="x",
+            pdf_options={
+                "display_header_footer": True,
+                "footer_template": "footerTemplate",
+                "format": "letter",
+                "header_template": "headerTemplate",
+                "height": "string",
+                "landscape": True,
+                "margin": {
+                    "bottom": "string",
+                    "left": "string",
+                    "right": "string",
+                    "top": "string",
+                },
+                "omit_background": True,
+                "outline": True,
+                "page_ranges": "pageRanges",
+                "prefer_css_page_size": True,
+                "print_background": True,
+                "scale": 0.1,
+                "tagged": True,
+                "timeout": 0,
+                "width": "string",
+            },
             reject_request_pattern=["string"],
             reject_resource_types=["document"],
             set_extra_http_headers={"foo": "string"},
@@ -165,7 +188,9 @@ class TestPDF:
 
 
 class TestAsyncPDF:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     @pytest.mark.respx(base_url=base_url)
@@ -238,6 +263,29 @@ class TestAsyncPDF:
                 "wait_until": "load",
             },
             html="x",
+            pdf_options={
+                "display_header_footer": True,
+                "footer_template": "footerTemplate",
+                "format": "letter",
+                "header_template": "headerTemplate",
+                "height": "string",
+                "landscape": True,
+                "margin": {
+                    "bottom": "string",
+                    "left": "string",
+                    "right": "string",
+                    "top": "string",
+                },
+                "omit_background": True,
+                "outline": True,
+                "page_ranges": "pageRanges",
+                "prefer_css_page_size": True,
+                "print_background": True,
+                "scale": 0.1,
+                "tagged": True,
+                "timeout": 0,
+                "width": "string",
+            },
             reject_request_pattern=["string"],
             reject_resource_types=["document"],
             set_extra_http_headers={"foo": "string"},

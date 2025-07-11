@@ -8,8 +8,12 @@ __all__ = ["SubscriptionConfigurationParam"]
 
 
 class SubscriptionConfigurationParam(TypedDict, total=False):
-    ai_bots_protection: Literal["block", "disabled"]
-    """Enable rule to block AI Scrapers and Crawlers."""
+    ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"]
+    """Enable rule to block AI Scrapers and Crawlers.
+
+    Please note the value `only_on_ad_pages` is currently not available for
+    Enterprise customers.
+    """
 
     auto_update_model: bool
     """

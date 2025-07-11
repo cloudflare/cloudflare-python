@@ -53,6 +53,7 @@ class ConfigsResource(SyncAPIResource):
         origin: config_create_params.Origin,
         caching: config_create_params.Caching | NotGiven = NOT_GIVEN,
         mtls: config_create_params.MTLS | NotGiven = NOT_GIVEN,
+        origin_connection_limit: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -65,6 +66,9 @@ class ConfigsResource(SyncAPIResource):
 
         Args:
           account_id: Define configurations using a unique string identifier.
+
+          origin_connection_limit: The (soft) maximum number of connections the Hyperdrive is allowed to make to
+              the origin database.
 
           extra_headers: Send extra headers
 
@@ -84,6 +88,7 @@ class ConfigsResource(SyncAPIResource):
                     "origin": origin,
                     "caching": caching,
                     "mtls": mtls,
+                    "origin_connection_limit": origin_connection_limit,
                 },
                 config_create_params.ConfigCreateParams,
             ),
@@ -106,6 +111,7 @@ class ConfigsResource(SyncAPIResource):
         origin: config_update_params.Origin,
         caching: config_update_params.Caching | NotGiven = NOT_GIVEN,
         mtls: config_update_params.MTLS | NotGiven = NOT_GIVEN,
+        origin_connection_limit: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -120,6 +126,9 @@ class ConfigsResource(SyncAPIResource):
           account_id: Define configurations using a unique string identifier.
 
           hyperdrive_id: Define configurations using a unique string identifier.
+
+          origin_connection_limit: The (soft) maximum number of connections the Hyperdrive is allowed to make to
+              the origin database.
 
           extra_headers: Send extra headers
 
@@ -141,6 +150,7 @@ class ConfigsResource(SyncAPIResource):
                     "origin": origin,
                     "caching": caching,
                     "mtls": mtls,
+                    "origin_connection_limit": origin_connection_limit,
                 },
                 config_update_params.ConfigUpdateParams,
             ),
@@ -243,6 +253,7 @@ class ConfigsResource(SyncAPIResource):
         mtls: config_edit_params.MTLS | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         origin: config_edit_params.Origin | NotGiven = NOT_GIVEN,
+        origin_connection_limit: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -259,6 +270,9 @@ class ConfigsResource(SyncAPIResource):
           account_id: Define configurations using a unique string identifier.
 
           hyperdrive_id: Define configurations using a unique string identifier.
+
+          origin_connection_limit: The (soft) maximum number of connections the Hyperdrive is allowed to make to
+              the origin database.
 
           extra_headers: Send extra headers
 
@@ -280,6 +294,7 @@ class ConfigsResource(SyncAPIResource):
                     "mtls": mtls,
                     "name": name,
                     "origin": origin,
+                    "origin_connection_limit": origin_connection_limit,
                 },
                 config_edit_params.ConfigEditParams,
             ),
@@ -366,6 +381,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         origin: config_create_params.Origin,
         caching: config_create_params.Caching | NotGiven = NOT_GIVEN,
         mtls: config_create_params.MTLS | NotGiven = NOT_GIVEN,
+        origin_connection_limit: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -378,6 +394,9 @@ class AsyncConfigsResource(AsyncAPIResource):
 
         Args:
           account_id: Define configurations using a unique string identifier.
+
+          origin_connection_limit: The (soft) maximum number of connections the Hyperdrive is allowed to make to
+              the origin database.
 
           extra_headers: Send extra headers
 
@@ -397,6 +416,7 @@ class AsyncConfigsResource(AsyncAPIResource):
                     "origin": origin,
                     "caching": caching,
                     "mtls": mtls,
+                    "origin_connection_limit": origin_connection_limit,
                 },
                 config_create_params.ConfigCreateParams,
             ),
@@ -419,6 +439,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         origin: config_update_params.Origin,
         caching: config_update_params.Caching | NotGiven = NOT_GIVEN,
         mtls: config_update_params.MTLS | NotGiven = NOT_GIVEN,
+        origin_connection_limit: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -433,6 +454,9 @@ class AsyncConfigsResource(AsyncAPIResource):
           account_id: Define configurations using a unique string identifier.
 
           hyperdrive_id: Define configurations using a unique string identifier.
+
+          origin_connection_limit: The (soft) maximum number of connections the Hyperdrive is allowed to make to
+              the origin database.
 
           extra_headers: Send extra headers
 
@@ -454,6 +478,7 @@ class AsyncConfigsResource(AsyncAPIResource):
                     "origin": origin,
                     "caching": caching,
                     "mtls": mtls,
+                    "origin_connection_limit": origin_connection_limit,
                 },
                 config_update_params.ConfigUpdateParams,
             ),
@@ -556,6 +581,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         mtls: config_edit_params.MTLS | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         origin: config_edit_params.Origin | NotGiven = NOT_GIVEN,
+        origin_connection_limit: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -572,6 +598,9 @@ class AsyncConfigsResource(AsyncAPIResource):
           account_id: Define configurations using a unique string identifier.
 
           hyperdrive_id: Define configurations using a unique string identifier.
+
+          origin_connection_limit: The (soft) maximum number of connections the Hyperdrive is allowed to make to
+              the origin database.
 
           extra_headers: Send extra headers
 
@@ -593,6 +622,7 @@ class AsyncConfigsResource(AsyncAPIResource):
                     "mtls": mtls,
                     "name": name,
                     "origin": origin,
+                    "origin_connection_limit": origin_connection_limit,
                 },
                 config_edit_params.ConfigEditParams,
             ),

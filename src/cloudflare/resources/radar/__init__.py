@@ -24,6 +24,14 @@ from .dns import (
     DNSResourceWithStreamingResponse,
     AsyncDNSResourceWithStreamingResponse,
 )
+from .bots import (
+    BotsResource,
+    AsyncBotsResource,
+    BotsResourceWithRawResponse,
+    AsyncBotsResourceWithRawResponse,
+    BotsResourceWithStreamingResponse,
+    AsyncBotsResourceWithStreamingResponse,
+)
 from .http import (
     HTTPResource,
     AsyncHTTPResource,
@@ -180,6 +188,12 @@ __all__ = [
     "AsyncBGPResourceWithRawResponse",
     "BGPResourceWithStreamingResponse",
     "AsyncBGPResourceWithStreamingResponse",
+    "BotsResource",
+    "AsyncBotsResource",
+    "BotsResourceWithRawResponse",
+    "AsyncBotsResourceWithRawResponse",
+    "BotsResourceWithStreamingResponse",
+    "AsyncBotsResourceWithStreamingResponse",
     "DatasetsResource",
     "AsyncDatasetsResource",
     "DatasetsResourceWithRawResponse",
