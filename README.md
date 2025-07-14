@@ -87,7 +87,6 @@ pip install cloudflare[aiohttp]
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
 
 ```python
-import os
 import asyncio
 from cloudflare import DefaultAioHttpClient
 from cloudflare import AsyncCloudflare
@@ -95,7 +94,7 @@ from cloudflare import AsyncCloudflare
 
 async def main() -> None:
     async with AsyncCloudflare(
-        api_token=os.environ.get("CLOUDFLARE_API_TOKEN"),  # This is the default and can be omitted
+        api_token="Sn3lZJTBX6kkg7OdcBUAxOO963GEIyGQqnFTOFYY",
         http_client=DefaultAioHttpClient(),
     ) as client:
         zone = await client.zones.create(
