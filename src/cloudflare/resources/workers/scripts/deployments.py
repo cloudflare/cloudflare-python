@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, Optional, cast
+from typing import Type, Iterable, cast
 from typing_extensions import Literal
 
 import httpx
@@ -20,7 +20,6 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.workers.scripts import deployment_create_params
-from ....types.workers.scripts.deployment_param import DeploymentParam
 from ....types.workers.scripts.deployment_get_response import DeploymentGetResponse
 from ....types.workers.scripts.deployment_create_response import DeploymentCreateResponse
 
@@ -55,14 +54,14 @@ class DeploymentsResource(SyncAPIResource):
         strategy: Literal["percentage"],
         versions: Iterable[deployment_create_params.Version],
         force: bool | NotGiven = NOT_GIVEN,
-        annotations: DeploymentParam | NotGiven = NOT_GIVEN,
+        annotations: deployment_create_params.Annotations | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DeploymentCreateResponse]:
+    ) -> DeploymentCreateResponse:
         """
         Deployments configure how
         [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions)
@@ -72,7 +71,7 @@ class DeploymentsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script.
+          script_name: Name of the script, used in URLs and route configuration.
 
           force: If set to true, the deployment will be created even if normally blocked by
               something such rolling back to an older version when a secret has changed.
@@ -105,9 +104,9 @@ class DeploymentsResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"force": force}, deployment_create_params.DeploymentCreateParams),
-                post_parser=ResultWrapper[Optional[DeploymentCreateResponse]]._unwrapper,
+                post_parser=ResultWrapper[DeploymentCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DeploymentCreateResponse]], ResultWrapper[DeploymentCreateResponse]),
+            cast_to=cast(Type[DeploymentCreateResponse], ResultWrapper[DeploymentCreateResponse]),
         )
 
     def get(
@@ -121,7 +120,7 @@ class DeploymentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DeploymentGetResponse]:
+    ) -> DeploymentGetResponse:
         """List of Worker Deployments.
 
         The first deployment in the list is the latest
@@ -130,7 +129,7 @@ class DeploymentsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script.
+          script_name: Name of the script, used in URLs and route configuration.
 
           extra_headers: Send extra headers
 
@@ -151,9 +150,9 @@ class DeploymentsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[DeploymentGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[DeploymentGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DeploymentGetResponse]], ResultWrapper[DeploymentGetResponse]),
+            cast_to=cast(Type[DeploymentGetResponse], ResultWrapper[DeploymentGetResponse]),
         )
 
 
@@ -185,14 +184,14 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         strategy: Literal["percentage"],
         versions: Iterable[deployment_create_params.Version],
         force: bool | NotGiven = NOT_GIVEN,
-        annotations: DeploymentParam | NotGiven = NOT_GIVEN,
+        annotations: deployment_create_params.Annotations | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DeploymentCreateResponse]:
+    ) -> DeploymentCreateResponse:
         """
         Deployments configure how
         [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions)
@@ -202,7 +201,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script.
+          script_name: Name of the script, used in URLs and route configuration.
 
           force: If set to true, the deployment will be created even if normally blocked by
               something such rolling back to an older version when a secret has changed.
@@ -235,9 +234,9 @@ class AsyncDeploymentsResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform({"force": force}, deployment_create_params.DeploymentCreateParams),
-                post_parser=ResultWrapper[Optional[DeploymentCreateResponse]]._unwrapper,
+                post_parser=ResultWrapper[DeploymentCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DeploymentCreateResponse]], ResultWrapper[DeploymentCreateResponse]),
+            cast_to=cast(Type[DeploymentCreateResponse], ResultWrapper[DeploymentCreateResponse]),
         )
 
     async def get(
@@ -251,7 +250,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DeploymentGetResponse]:
+    ) -> DeploymentGetResponse:
         """List of Worker Deployments.
 
         The first deployment in the list is the latest
@@ -260,7 +259,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          script_name: Name of the script.
+          script_name: Name of the script, used in URLs and route configuration.
 
           extra_headers: Send extra headers
 
@@ -281,9 +280,9 @@ class AsyncDeploymentsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[DeploymentGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[DeploymentGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DeploymentGetResponse]], ResultWrapper[DeploymentGetResponse]),
+            cast_to=cast(Type[DeploymentGetResponse], ResultWrapper[DeploymentGetResponse]),
         )
 
 

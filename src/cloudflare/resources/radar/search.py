@@ -49,9 +49,11 @@ class SearchResource(SyncAPIResource):
         self,
         *,
         query: str,
-        exclude: List[Literal["ASNS", "BOTS", "LOCATIONS", "NOTEBOOKS", "SPECIAL_EVENTS"]] | NotGiven = NOT_GIVEN,
+        exclude: List[Literal["ASNS", "BOTS", "CERTIFICATE_AUTHORITIES", "CERTIFICATE_LOGS", "LOCATIONS", "NOTEBOOKS"]]
+        | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        include: List[Literal["ASNS", "BOTS", "LOCATIONS", "NOTEBOOKS", "SPECIAL_EVENTS"]] | NotGiven = NOT_GIVEN,
+        include: List[Literal["ASNS", "BOTS", "CERTIFICATE_AUTHORITIES", "CERTIFICATE_LOGS", "LOCATIONS", "NOTEBOOKS"]]
+        | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         limit_per_group: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -62,10 +64,11 @@ class SearchResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SearchGlobalResponse:
         """
-        Searches for locations, autonomous systems, reports, and bots.
+        Searches for locations, autonomous systems, reports, bots, certificate logs, and
+        certificate authorities.
 
         Args:
-          query: Search for locations, autonomous systems and reports.
+          query: String used to perform the search operation.
 
           exclude: Search types excluded from results.
 
@@ -133,9 +136,11 @@ class AsyncSearchResource(AsyncAPIResource):
         self,
         *,
         query: str,
-        exclude: List[Literal["ASNS", "BOTS", "LOCATIONS", "NOTEBOOKS", "SPECIAL_EVENTS"]] | NotGiven = NOT_GIVEN,
+        exclude: List[Literal["ASNS", "BOTS", "CERTIFICATE_AUTHORITIES", "CERTIFICATE_LOGS", "LOCATIONS", "NOTEBOOKS"]]
+        | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        include: List[Literal["ASNS", "BOTS", "LOCATIONS", "NOTEBOOKS", "SPECIAL_EVENTS"]] | NotGiven = NOT_GIVEN,
+        include: List[Literal["ASNS", "BOTS", "CERTIFICATE_AUTHORITIES", "CERTIFICATE_LOGS", "LOCATIONS", "NOTEBOOKS"]]
+        | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         limit_per_group: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -146,10 +151,11 @@ class AsyncSearchResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SearchGlobalResponse:
         """
-        Searches for locations, autonomous systems, reports, and bots.
+        Searches for locations, autonomous systems, reports, bots, certificate logs, and
+        certificate authorities.
 
         Args:
-          query: Search for locations, autonomous systems and reports.
+          query: String used to perform the search operation.
 
           exclude: Search types excluded from results.
 

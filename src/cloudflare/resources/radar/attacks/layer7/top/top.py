@@ -86,7 +86,6 @@ class TopResource(SyncAPIResource):
         limit_direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
         limit_per_location: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
-        magnitude: Literal["AFFECTED_ZONES", "MITIGATED_REQUESTS"] | NotGiven = NOT_GIVEN,
         mitigation_product: List[
             Literal[
                 "DDOS", "WAF", "BOT_MANAGEMENT", "ACCESS_RULES", "IP_REPUTATION", "API_SHIELD", "DATA_LOSS_PREVENTION"
@@ -142,9 +141,6 @@ class TopResource(SyncAPIResource):
               Prefix with `-` to exclude locations from results. For example, `-US,PT`
               excludes results from the US, but includes results from PT.
 
-          magnitude: Deprecated parameter. Future support includes only attack magnitude defined by
-              total mitigated requests (MITIGATED_REQUESTS).
-
           mitigation_product: Filters the results by layer 7 mitigation product.
 
           name: Array of names used to label the series in the response.
@@ -179,7 +175,6 @@ class TopResource(SyncAPIResource):
                         "limit_direction": limit_direction,
                         "limit_per_location": limit_per_location,
                         "location": location,
-                        "magnitude": magnitude,
                         "mitigation_product": mitigation_product,
                         "name": name,
                         "normalization": normalization,
@@ -549,7 +544,6 @@ class AsyncTopResource(AsyncAPIResource):
         limit_direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
         limit_per_location: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
-        magnitude: Literal["AFFECTED_ZONES", "MITIGATED_REQUESTS"] | NotGiven = NOT_GIVEN,
         mitigation_product: List[
             Literal[
                 "DDOS", "WAF", "BOT_MANAGEMENT", "ACCESS_RULES", "IP_REPUTATION", "API_SHIELD", "DATA_LOSS_PREVENTION"
@@ -605,9 +599,6 @@ class AsyncTopResource(AsyncAPIResource):
               Prefix with `-` to exclude locations from results. For example, `-US,PT`
               excludes results from the US, but includes results from PT.
 
-          magnitude: Deprecated parameter. Future support includes only attack magnitude defined by
-              total mitigated requests (MITIGATED_REQUESTS).
-
           mitigation_product: Filters the results by layer 7 mitigation product.
 
           name: Array of names used to label the series in the response.
@@ -642,7 +633,6 @@ class AsyncTopResource(AsyncAPIResource):
                         "limit_direction": limit_direction,
                         "limit_per_location": limit_per_location,
                         "location": location,
-                        "magnitude": magnitude,
                         "mitigation_product": mitigation_product,
                         "name": name,
                         "normalization": normalization,

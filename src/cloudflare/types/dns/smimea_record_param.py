@@ -45,7 +45,7 @@ class Settings(TypedDict, total=False):
 
 class SMIMEARecordParam(TypedDict, total=False):
     name: Required[str]
-    """DNS record name (or @ for the zone apex) in Punycode."""
+    """Complete DNS record name, including the zone name, in Punycode."""
 
     ttl: Required[TTLParam]
     """Time To Live (TTL) of the DNS record in seconds.

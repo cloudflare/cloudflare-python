@@ -68,13 +68,6 @@ class TopAttacksParams(TypedDict, total=False):
     includes results from PT.
     """
 
-    magnitude: Literal["AFFECTED_ZONES", "MITIGATED_REQUESTS"]
-    """Deprecated parameter.
-
-    Future support includes only attack magnitude defined by total mitigated
-    requests (MITIGATED_REQUESTS).
-    """
-
     mitigation_product: Annotated[
         List[
             Literal[

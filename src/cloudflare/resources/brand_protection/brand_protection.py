@@ -2,12 +2,33 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Iterable, Optional, cast
-
 import httpx
 
+from .logos import (
+    LogosResource,
+    AsyncLogosResource,
+    LogosResourceWithRawResponse,
+    AsyncLogosResourceWithRawResponse,
+    LogosResourceWithStreamingResponse,
+    AsyncLogosResourceWithStreamingResponse,
+)
+from .matches import (
+    MatchesResource,
+    AsyncMatchesResource,
+    MatchesResourceWithRawResponse,
+    AsyncMatchesResourceWithRawResponse,
+    MatchesResourceWithStreamingResponse,
+    AsyncMatchesResourceWithStreamingResponse,
+)
+from .queries import (
+    QueriesResource,
+    AsyncQueriesResource,
+    QueriesResourceWithRawResponse,
+    AsyncQueriesResourceWithRawResponse,
+    QueriesResourceWithStreamingResponse,
+    AsyncQueriesResourceWithStreamingResponse,
+)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -16,16 +37,38 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
+from .logo_matches import (
+    LogoMatchesResource,
+    AsyncLogoMatchesResource,
+    LogoMatchesResourceWithRawResponse,
+    AsyncLogoMatchesResourceWithRawResponse,
+    LogoMatchesResourceWithStreamingResponse,
+    AsyncLogoMatchesResourceWithStreamingResponse,
+)
 from ..._base_client import make_request_options
-from ...types.brand_protection import brand_protection_submit_params, brand_protection_url_info_params
-from ...types.brand_protection.info import Info
-from ...types.brand_protection.submit import Submit
+from ...types.brand_protection.brand_protection_submit_response import BrandProtectionSubmitResponse
+from ...types.brand_protection.brand_protection_url_info_response import BrandProtectionURLInfoResponse
 
 __all__ = ["BrandProtectionResource", "AsyncBrandProtectionResource"]
 
 
 class BrandProtectionResource(SyncAPIResource):
+    @cached_property
+    def queries(self) -> QueriesResource:
+        return QueriesResource(self._client)
+
+    @cached_property
+    def matches(self) -> MatchesResource:
+        return MatchesResource(self._client)
+
+    @cached_property
+    def logos(self) -> LogosResource:
+        return LogosResource(self._client)
+
+    @cached_property
+    def logo_matches(self) -> LogoMatchesResource:
+        return LogoMatchesResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> BrandProtectionResourceWithRawResponse:
         """
@@ -49,22 +92,17 @@ class BrandProtectionResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        url: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Submit]:
+    ) -> BrandProtectionSubmitResponse:
         """
-        Submit suspicious URL for scanning.
+        Return new URL submissions
 
         Args:
-          account_id: Identifier.
-
-          url: URL(s) to filter submissions results by.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -77,40 +115,27 @@ class BrandProtectionResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/brand-protection/submit",
-            body=maybe_transform({"url": url}, brand_protection_submit_params.BrandProtectionSubmitParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Submit]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[Submit]], ResultWrapper[Submit]),
+            cast_to=BrandProtectionSubmitResponse,
         )
 
     def url_info(
         self,
         *,
         account_id: str,
-        url: List[str] | NotGiven = NOT_GIVEN,
-        url_id: Iterable[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Info]:
+    ) -> BrandProtectionURLInfoResponse:
         """
-        Gets phishing details about a URL.
+        Return submitted URLs based on ID
 
         Args:
-          account_id: Identifier.
-
-          url: Submission URL(s) to filter submission results by.
-
-          url_id: Submission ID(s) to filter submission results by.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -124,24 +149,29 @@ class BrandProtectionResource(SyncAPIResource):
         return self._get(
             f"/accounts/{account_id}/brand-protection/url-info",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "url": url,
-                        "url_id": url_id,
-                    },
-                    brand_protection_url_info_params.BrandProtectionURLInfoParams,
-                ),
-                post_parser=ResultWrapper[Optional[Info]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[Info]], ResultWrapper[Info]),
+            cast_to=BrandProtectionURLInfoResponse,
         )
 
 
 class AsyncBrandProtectionResource(AsyncAPIResource):
+    @cached_property
+    def queries(self) -> AsyncQueriesResource:
+        return AsyncQueriesResource(self._client)
+
+    @cached_property
+    def matches(self) -> AsyncMatchesResource:
+        return AsyncMatchesResource(self._client)
+
+    @cached_property
+    def logos(self) -> AsyncLogosResource:
+        return AsyncLogosResource(self._client)
+
+    @cached_property
+    def logo_matches(self) -> AsyncLogoMatchesResource:
+        return AsyncLogoMatchesResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncBrandProtectionResourceWithRawResponse:
         """
@@ -165,22 +195,17 @@ class AsyncBrandProtectionResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        url: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Submit]:
+    ) -> BrandProtectionSubmitResponse:
         """
-        Submit suspicious URL for scanning.
+        Return new URL submissions
 
         Args:
-          account_id: Identifier.
-
-          url: URL(s) to filter submissions results by.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -193,40 +218,27 @@ class AsyncBrandProtectionResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/brand-protection/submit",
-            body=await async_maybe_transform({"url": url}, brand_protection_submit_params.BrandProtectionSubmitParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Submit]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[Submit]], ResultWrapper[Submit]),
+            cast_to=BrandProtectionSubmitResponse,
         )
 
     async def url_info(
         self,
         *,
         account_id: str,
-        url: List[str] | NotGiven = NOT_GIVEN,
-        url_id: Iterable[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Info]:
+    ) -> BrandProtectionURLInfoResponse:
         """
-        Gets phishing details about a URL.
+        Return submitted URLs based on ID
 
         Args:
-          account_id: Identifier.
-
-          url: Submission URL(s) to filter submission results by.
-
-          url_id: Submission ID(s) to filter submission results by.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -240,20 +252,9 @@ class AsyncBrandProtectionResource(AsyncAPIResource):
         return await self._get(
             f"/accounts/{account_id}/brand-protection/url-info",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "url": url,
-                        "url_id": url_id,
-                    },
-                    brand_protection_url_info_params.BrandProtectionURLInfoParams,
-                ),
-                post_parser=ResultWrapper[Optional[Info]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[Info]], ResultWrapper[Info]),
+            cast_to=BrandProtectionURLInfoResponse,
         )
 
 
@@ -268,6 +269,22 @@ class BrandProtectionResourceWithRawResponse:
             brand_protection.url_info,
         )
 
+    @cached_property
+    def queries(self) -> QueriesResourceWithRawResponse:
+        return QueriesResourceWithRawResponse(self._brand_protection.queries)
+
+    @cached_property
+    def matches(self) -> MatchesResourceWithRawResponse:
+        return MatchesResourceWithRawResponse(self._brand_protection.matches)
+
+    @cached_property
+    def logos(self) -> LogosResourceWithRawResponse:
+        return LogosResourceWithRawResponse(self._brand_protection.logos)
+
+    @cached_property
+    def logo_matches(self) -> LogoMatchesResourceWithRawResponse:
+        return LogoMatchesResourceWithRawResponse(self._brand_protection.logo_matches)
+
 
 class AsyncBrandProtectionResourceWithRawResponse:
     def __init__(self, brand_protection: AsyncBrandProtectionResource) -> None:
@@ -279,6 +296,22 @@ class AsyncBrandProtectionResourceWithRawResponse:
         self.url_info = async_to_raw_response_wrapper(
             brand_protection.url_info,
         )
+
+    @cached_property
+    def queries(self) -> AsyncQueriesResourceWithRawResponse:
+        return AsyncQueriesResourceWithRawResponse(self._brand_protection.queries)
+
+    @cached_property
+    def matches(self) -> AsyncMatchesResourceWithRawResponse:
+        return AsyncMatchesResourceWithRawResponse(self._brand_protection.matches)
+
+    @cached_property
+    def logos(self) -> AsyncLogosResourceWithRawResponse:
+        return AsyncLogosResourceWithRawResponse(self._brand_protection.logos)
+
+    @cached_property
+    def logo_matches(self) -> AsyncLogoMatchesResourceWithRawResponse:
+        return AsyncLogoMatchesResourceWithRawResponse(self._brand_protection.logo_matches)
 
 
 class BrandProtectionResourceWithStreamingResponse:
@@ -292,6 +325,22 @@ class BrandProtectionResourceWithStreamingResponse:
             brand_protection.url_info,
         )
 
+    @cached_property
+    def queries(self) -> QueriesResourceWithStreamingResponse:
+        return QueriesResourceWithStreamingResponse(self._brand_protection.queries)
+
+    @cached_property
+    def matches(self) -> MatchesResourceWithStreamingResponse:
+        return MatchesResourceWithStreamingResponse(self._brand_protection.matches)
+
+    @cached_property
+    def logos(self) -> LogosResourceWithStreamingResponse:
+        return LogosResourceWithStreamingResponse(self._brand_protection.logos)
+
+    @cached_property
+    def logo_matches(self) -> LogoMatchesResourceWithStreamingResponse:
+        return LogoMatchesResourceWithStreamingResponse(self._brand_protection.logo_matches)
+
 
 class AsyncBrandProtectionResourceWithStreamingResponse:
     def __init__(self, brand_protection: AsyncBrandProtectionResource) -> None:
@@ -303,3 +352,19 @@ class AsyncBrandProtectionResourceWithStreamingResponse:
         self.url_info = async_to_streamed_response_wrapper(
             brand_protection.url_info,
         )
+
+    @cached_property
+    def queries(self) -> AsyncQueriesResourceWithStreamingResponse:
+        return AsyncQueriesResourceWithStreamingResponse(self._brand_protection.queries)
+
+    @cached_property
+    def matches(self) -> AsyncMatchesResourceWithStreamingResponse:
+        return AsyncMatchesResourceWithStreamingResponse(self._brand_protection.matches)
+
+    @cached_property
+    def logos(self) -> AsyncLogosResourceWithStreamingResponse:
+        return AsyncLogosResourceWithStreamingResponse(self._brand_protection.logos)
+
+    @cached_property
+    def logo_matches(self) -> AsyncLogoMatchesResourceWithStreamingResponse:
+        return AsyncLogoMatchesResourceWithStreamingResponse(self._brand_protection.logo_matches)

@@ -24,6 +24,8 @@ class TrustedDomainListParams(TypedDict, total=False):
     page: int
     """The page number of paginated results."""
 
+    pattern: str
+
     per_page: int
     """The number of results per page."""
 

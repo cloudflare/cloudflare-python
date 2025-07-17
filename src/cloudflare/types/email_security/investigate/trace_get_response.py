@@ -19,6 +19,8 @@ class InboundLine(BaseModel):
 class Inbound(BaseModel):
     lines: Optional[List[InboundLine]] = None
 
+    pending: Optional[bool] = None
+
 
 class OutboundLine(BaseModel):
     lineno: int
@@ -30,6 +32,8 @@ class OutboundLine(BaseModel):
 
 class Outbound(BaseModel):
     lines: Optional[List[OutboundLine]] = None
+
+    pending: Optional[bool] = None
 
 
 class TraceGetResponse(BaseModel):

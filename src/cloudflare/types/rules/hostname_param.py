@@ -9,3 +9,10 @@ __all__ = ["HostnameParam"]
 
 class HostnameParam(TypedDict, total=False):
     url_hostname: Required[str]
+
+    exclude_exact_hostname: bool
+    """Only applies to wildcard hostnames (e.g., \\**.example.com).
+
+    When true (default), only subdomains are blocked. When false, both the root
+    domain and subdomains are blocked.
+    """

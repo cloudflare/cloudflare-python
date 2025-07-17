@@ -45,6 +45,7 @@ class TestInvestigate:
             recipient="recipient",
             sender="sender",
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            subject="subject",
         )
         assert_matches_type(SyncV4PagePaginationArray[InvestigateListResponse], investigate, path=["response"])
 
@@ -159,6 +160,7 @@ class TestAsyncInvestigate:
             recipient="recipient",
             sender="sender",
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            subject="subject",
         )
         assert_matches_type(AsyncV4PagePaginationArray[InvestigateListResponse], investigate, path=["response"])
 

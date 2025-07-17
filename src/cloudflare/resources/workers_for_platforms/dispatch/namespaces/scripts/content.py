@@ -2,12 +2,18 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import List, Type, Mapping, cast
 
 import httpx
 
-from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ......_utils import maybe_transform, strip_not_given, async_maybe_transform
+from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
+from ......_utils import (
+    extract_files,
+    maybe_transform,
+    strip_not_given,
+    deepcopy_minimal,
+    async_maybe_transform,
+)
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -60,6 +66,7 @@ class ContentResource(SyncAPIResource):
         account_id: str,
         dispatch_namespace: str,
         metadata: WorkerMetadataParam,
+        files: List[FileTypes] | NotGiven = NOT_GIVEN,
         cf_worker_body_part: str | NotGiven = NOT_GIVEN,
         cf_worker_main_module_part: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -80,6 +87,13 @@ class ContentResource(SyncAPIResource):
           script_name: Name of the script, used in URLs and route configuration.
 
           metadata: JSON encoded metadata about the uploaded parts and Worker configuration.
+
+          files: An array of modules (often JavaScript files) comprising a Worker script. At
+              least one module must be present and referenced in the metadata as `main_module`
+              or `body_part` by filename.<br/>Possible Content-Type(s) are:
+              `application/javascript+module`, `text/javascript+module`,
+              `application/javascript`, `text/javascript`, `application/wasm`, `text/plain`,
+              `application/octet-stream`, `application/source-map`.
 
           extra_headers: Send extra headers
 
@@ -104,13 +118,21 @@ class ContentResource(SyncAPIResource):
             ),
             **(extra_headers or {}),
         }
+        body = deepcopy_minimal(
+            {
+                "metadata": metadata,
+                "files": files,
+            }
+        )
+        extracted_files = extract_files(cast(Mapping[str, object], body), paths=[["files", "<array>"]])
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._put(
             f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/content",
-            body=maybe_transform({"metadata": metadata}, content_update_params.ContentUpdateParams),
+            body=maybe_transform(body, content_update_params.ContentUpdateParams),
+            files=extracted_files,
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -196,6 +218,7 @@ class AsyncContentResource(AsyncAPIResource):
         account_id: str,
         dispatch_namespace: str,
         metadata: WorkerMetadataParam,
+        files: List[FileTypes] | NotGiven = NOT_GIVEN,
         cf_worker_body_part: str | NotGiven = NOT_GIVEN,
         cf_worker_main_module_part: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -216,6 +239,13 @@ class AsyncContentResource(AsyncAPIResource):
           script_name: Name of the script, used in URLs and route configuration.
 
           metadata: JSON encoded metadata about the uploaded parts and Worker configuration.
+
+          files: An array of modules (often JavaScript files) comprising a Worker script. At
+              least one module must be present and referenced in the metadata as `main_module`
+              or `body_part` by filename.<br/>Possible Content-Type(s) are:
+              `application/javascript+module`, `text/javascript+module`,
+              `application/javascript`, `text/javascript`, `application/wasm`, `text/plain`,
+              `application/octet-stream`, `application/source-map`.
 
           extra_headers: Send extra headers
 
@@ -240,13 +270,21 @@ class AsyncContentResource(AsyncAPIResource):
             ),
             **(extra_headers or {}),
         }
+        body = deepcopy_minimal(
+            {
+                "metadata": metadata,
+                "files": files,
+            }
+        )
+        extracted_files = extract_files(cast(Mapping[str, object], body), paths=[["files", "<array>"]])
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._put(
             f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/content",
-            body=await async_maybe_transform({"metadata": metadata}, content_update_params.ContentUpdateParams),
+            body=await async_maybe_transform(body, content_update_params.ContentUpdateParams),
+            files=extracted_files,
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -179,6 +179,7 @@ class TrustedDomainsResource(SyncAPIResource):
         is_similarity: bool | NotGiven = NOT_GIVEN,
         order: Literal["pattern", "created_at"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
+        pattern: str | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         search: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -231,6 +232,7 @@ class TrustedDomainsResource(SyncAPIResource):
                         "is_similarity": is_similarity,
                         "order": order,
                         "page": page,
+                        "pattern": pattern,
                         "per_page": per_page,
                         "search": search,
                     },
@@ -533,6 +535,7 @@ class AsyncTrustedDomainsResource(AsyncAPIResource):
         is_similarity: bool | NotGiven = NOT_GIVEN,
         order: Literal["pattern", "created_at"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
+        pattern: str | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         search: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -585,6 +588,7 @@ class AsyncTrustedDomainsResource(AsyncAPIResource):
                         "is_similarity": is_similarity,
                         "order": order,
                         "page": page,
+                        "pattern": pattern,
                         "per_page": per_page,
                         "search": search,
                     },

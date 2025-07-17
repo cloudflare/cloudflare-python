@@ -13,7 +13,7 @@ __all__ = ["ItemUpdateParams", "Body"]
 
 class ItemUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Defines an identifier."""
+    """The Account ID for this resource."""
 
     body: Required[Iterable[Body]]
 

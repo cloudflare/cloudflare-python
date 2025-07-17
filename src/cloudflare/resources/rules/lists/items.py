@@ -70,7 +70,7 @@ class ItemsResource(SyncAPIResource):
         `Get bulk operation status` endpoint with the returned `operation_id`.
 
         Args:
-          account_id: Defines an identifier.
+          account_id: The Account ID for this resource.
 
           list_id: The unique ID of the list.
 
@@ -120,7 +120,7 @@ class ItemsResource(SyncAPIResource):
         `Get bulk operation status` endpoint with the returned `operation_id`.
 
         Args:
-          account_id: Defines an identifier.
+          account_id: The Account ID for this resource.
 
           list_id: The unique ID of the list.
 
@@ -168,7 +168,7 @@ class ItemsResource(SyncAPIResource):
         Fetches all the items in the list.
 
         Args:
-          account_id: Defines an identifier.
+          account_id: The Account ID for this resource.
 
           list_id: The unique ID of the list.
 
@@ -238,7 +238,7 @@ class ItemsResource(SyncAPIResource):
         `Get bulk operation status` endpoint with the returned `operation_id`.
 
         Args:
-          account_id: Defines an identifier.
+          account_id: The Account ID for this resource.
 
           list_id: The unique ID of the list.
 
@@ -284,7 +284,7 @@ class ItemsResource(SyncAPIResource):
         Fetches a list item in the list.
 
         Args:
-          account_id: Defines an identifier.
+          account_id: The Account ID for this resource.
 
           list_id: The unique ID of the list.
 
@@ -358,7 +358,7 @@ class AsyncItemsResource(AsyncAPIResource):
         `Get bulk operation status` endpoint with the returned `operation_id`.
 
         Args:
-          account_id: Defines an identifier.
+          account_id: The Account ID for this resource.
 
           list_id: The unique ID of the list.
 
@@ -408,7 +408,7 @@ class AsyncItemsResource(AsyncAPIResource):
         `Get bulk operation status` endpoint with the returned `operation_id`.
 
         Args:
-          account_id: Defines an identifier.
+          account_id: The Account ID for this resource.
 
           list_id: The unique ID of the list.
 
@@ -456,7 +456,7 @@ class AsyncItemsResource(AsyncAPIResource):
         Fetches all the items in the list.
 
         Args:
-          account_id: Defines an identifier.
+          account_id: The Account ID for this resource.
 
           list_id: The unique ID of the list.
 
@@ -526,7 +526,7 @@ class AsyncItemsResource(AsyncAPIResource):
         `Get bulk operation status` endpoint with the returned `operation_id`.
 
         Args:
-          account_id: Defines an identifier.
+          account_id: The Account ID for this resource.
 
           list_id: The unique ID of the list.
 
@@ -572,7 +572,7 @@ class AsyncItemsResource(AsyncAPIResource):
         Fetches a list item in the list.
 
         Args:
-          account_id: Defines an identifier.
+          account_id: The Account ID for this resource.
 
           list_id: The unique ID of the list.
 

@@ -31,7 +31,7 @@ class TestPredefined:
             account_id="account_id",
             profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             ai_context_enabled=True,
-            allowed_match_count=0,
+            allowed_match_count=5,
             confidence_threshold="confidence_threshold",
             context_awareness={
                 "enabled": True,
@@ -95,7 +95,7 @@ class TestPredefined:
             profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
             ai_context_enabled=True,
-            allowed_match_count=0,
+            allowed_match_count=5,
             confidence_threshold="confidence_threshold",
             context_awareness={
                 "enabled": True,
@@ -267,7 +267,7 @@ class TestAsyncPredefined:
             account_id="account_id",
             profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             ai_context_enabled=True,
-            allowed_match_count=0,
+            allowed_match_count=5,
             confidence_threshold="confidence_threshold",
             context_awareness={
                 "enabled": True,
@@ -331,7 +331,7 @@ class TestAsyncPredefined:
             profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
             ai_context_enabled=True,
-            allowed_match_count=0,
+            allowed_match_count=5,
             confidence_threshold="confidence_threshold",
             context_awareness={
                 "enabled": True,

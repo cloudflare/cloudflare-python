@@ -44,7 +44,7 @@ class Settings(BaseModel):
 
 class CERTRecord(BaseModel):
     name: str
-    """DNS record name (or @ for the zone apex) in Punycode."""
+    """Complete DNS record name, including the zone name, in Punycode."""
 
     ttl: TTL
     """Time To Live (TTL) of the DNS record in seconds.

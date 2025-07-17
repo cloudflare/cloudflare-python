@@ -213,7 +213,7 @@ class OpenpgpkeyRecord(BaseModel):
     """When the record was last modified."""
 
     name: str
-    """DNS record name (or @ for the zone apex) in Punycode."""
+    """Complete DNS record name, including the zone name, in Punycode."""
 
     proxiable: bool
     """Whether the record can be proxied by Cloudflare or not."""

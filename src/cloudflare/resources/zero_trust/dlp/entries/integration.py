@@ -60,7 +60,8 @@ class IntegrationResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[IntegrationCreateResponse]:
         """
-        This will update an existing integration entry
+        Integration entries can't be created, this will update an existing integration
+        entry This is needed for our generated terraform API
 
         Args:
           profile_id: This field is not actually used as the owning profile for a predefined entry is
@@ -215,7 +216,8 @@ class AsyncIntegrationResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[IntegrationCreateResponse]:
         """
-        This will update an existing integration entry
+        Integration entries can't be created, this will update an existing integration
+        entry This is needed for our generated terraform API
 
         Args:
           profile_id: This field is not actually used as the owning profile for a predefined entry is

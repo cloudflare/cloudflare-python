@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import List
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -69,7 +69,7 @@ class Meta(BaseModel):
     bucket_size: int = FieldInfo(alias="bucketSize")
     """The width for every bucket in the histogram."""
 
-    confidence_info: Optional[MetaConfidenceInfo] = FieldInfo(alias="confidenceInfo", default=None)
+    confidence_info: MetaConfidenceInfo = FieldInfo(alias="confidenceInfo")
 
     date_range: List[MetaDateRange] = FieldInfo(alias="dateRange")
 

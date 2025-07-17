@@ -1188,7 +1188,7 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "SSH",
+                    "protocol": "RDP",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -1205,7 +1205,7 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "SSH",
+                    "protocol": "RDP",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -1319,7 +1319,7 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "SSH",
+                    "protocol": "RDP",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -1340,7 +1340,7 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "SSH",
+                    "protocol": "RDP",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -1364,7 +1364,7 @@ class TestApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "SSH",
+                        "protocol": "RDP",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -1378,7 +1378,7 @@ class TestApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "SSH",
+                        "protocol": "RDP",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -2676,7 +2676,7 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "SSH",
+                    "protocol": "RDP",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -2694,7 +2694,7 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "SSH",
+                    "protocol": "RDP",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -2809,7 +2809,7 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "SSH",
+                    "protocol": "RDP",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -2831,7 +2831,7 @@ class TestApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "SSH",
+                    "protocol": "RDP",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -2856,7 +2856,7 @@ class TestApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "SSH",
+                        "protocol": "RDP",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -2871,7 +2871,7 @@ class TestApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "SSH",
+                        "protocol": "RDP",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -2886,7 +2886,7 @@ class TestApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "SSH",
+                        "protocol": "RDP",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -4325,7 +4325,7 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "SSH",
+                    "protocol": "RDP",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -4342,7 +4342,7 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "SSH",
+                    "protocol": "RDP",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -4456,7 +4456,7 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "SSH",
+                    "protocol": "RDP",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -4477,7 +4477,7 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "SSH",
+                    "protocol": "RDP",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -4501,7 +4501,7 @@ class TestAsyncApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "SSH",
+                        "protocol": "RDP",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -4515,7 +4515,7 @@ class TestAsyncApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "SSH",
+                        "protocol": "RDP",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -5813,7 +5813,7 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "SSH",
+                    "protocol": "RDP",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -5831,7 +5831,7 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "SSH",
+                    "protocol": "RDP",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -5946,7 +5946,7 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "SSH",
+                    "protocol": "RDP",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -5968,7 +5968,7 @@ class TestAsyncApplications:
             target_criteria=[
                 {
                     "port": 22,
-                    "protocol": "SSH",
+                    "protocol": "RDP",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
                 }
             ],
@@ -5993,7 +5993,7 @@ class TestAsyncApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "SSH",
+                        "protocol": "RDP",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -6008,7 +6008,7 @@ class TestAsyncApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "SSH",
+                        "protocol": "RDP",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],
@@ -6023,7 +6023,7 @@ class TestAsyncApplications:
                 target_criteria=[
                     {
                         "port": 22,
-                        "protocol": "SSH",
+                        "protocol": "RDP",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
                     }
                 ],

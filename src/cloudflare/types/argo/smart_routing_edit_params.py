@@ -9,7 +9,7 @@ __all__ = ["SmartRoutingEditParams"]
 
 class SmartRoutingEditParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Specifies the zone associated with the API call."""
 
     value: Required[Literal["on", "off"]]
     """Enables Argo Smart Routing."""

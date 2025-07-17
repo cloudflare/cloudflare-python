@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import List, Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
+from ....._types import FileTypes
 from ....workers.migration_step_param import MigrationStepParam
 from ....workers.single_step_migration_param import SingleStepMigrationParam
 from ....workers.scripts.consumer_script_param import ConsumerScriptParam
@@ -57,6 +58,16 @@ class ScriptUpdateParams(TypedDict, total=False):
 
     metadata: Required[Metadata]
     """JSON encoded metadata about the uploaded parts and Worker configuration."""
+
+    files: List[FileTypes]
+    """An array of modules (often JavaScript files) comprising a Worker script.
+
+    At least one module must be present and referenced in the metadata as
+    `main_module` or `body_part` by filename.<br/>Possible Content-Type(s) are:
+    `application/javascript+module`, `text/javascript+module`,
+    `application/javascript`, `text/javascript`, `application/wasm`, `text/plain`,
+    `application/octet-stream`, `application/source-map`.
+    """
 
 
 class MetadataAssetsConfig(TypedDict, total=False):

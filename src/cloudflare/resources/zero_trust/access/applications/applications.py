@@ -1162,6 +1162,7 @@ class ApplicationsResource(SyncAPIResource):
         landing_page_design: application_create_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
         skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         target_criteria: Iterable[application_create_params.InfrastructureApplicationTargetCriterion]
+        | Iterable[application_create_params.BrowserRdpApplicationTargetCriterion]
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2312,6 +2313,7 @@ class ApplicationsResource(SyncAPIResource):
         landing_page_design: application_update_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
         skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         target_criteria: Iterable[application_update_params.InfrastructureApplicationTargetCriterion]
+        | Iterable[application_update_params.BrowserRdpApplicationTargetCriterion]
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3727,6 +3729,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         landing_page_design: application_create_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
         skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         target_criteria: Iterable[application_create_params.InfrastructureApplicationTargetCriterion]
+        | Iterable[application_create_params.BrowserRdpApplicationTargetCriterion]
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4877,6 +4880,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         landing_page_design: application_update_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
         skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         target_criteria: Iterable[application_update_params.InfrastructureApplicationTargetCriterion]
+        | Iterable[application_update_params.BrowserRdpApplicationTargetCriterion]
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
+from typing import List
 from typing_extensions import Required, Annotated, TypedDict
 
+from ......_types import FileTypes
 from ......_utils import PropertyInfo
 from .....workers.worker_metadata_param import WorkerMetadataParam
 
@@ -19,6 +21,16 @@ class ContentUpdateParams(TypedDict, total=False):
 
     metadata: Required[WorkerMetadataParam]
     """JSON encoded metadata about the uploaded parts and Worker configuration."""
+
+    files: List[FileTypes]
+    """An array of modules (often JavaScript files) comprising a Worker script.
+
+    At least one module must be present and referenced in the metadata as
+    `main_module` or `body_part` by filename.<br/>Possible Content-Type(s) are:
+    `application/javascript+module`, `text/javascript+module`,
+    `application/javascript`, `text/javascript`, `application/wasm`, `text/plain`,
+    `application/octet-stream`, `application/source-map`.
+    """
 
     cf_worker_body_part: Annotated[str, PropertyInfo(alias="CF-WORKER-BODY-PART")]
 

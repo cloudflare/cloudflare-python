@@ -11,33 +11,32 @@ from ...._models import BaseModel
 __all__ = [
     "VersionCreateResponse",
     "Resources",
-    "ResourcesBindings",
-    "ResourcesBindingsResult",
-    "ResourcesBindingsResultWorkersBindingKindAI",
-    "ResourcesBindingsResultWorkersBindingKindAnalyticsEngine",
-    "ResourcesBindingsResultWorkersBindingKindAssets",
-    "ResourcesBindingsResultWorkersBindingKindBrowser",
-    "ResourcesBindingsResultWorkersBindingKindD1",
-    "ResourcesBindingsResultWorkersBindingKindDispatchNamespace",
-    "ResourcesBindingsResultWorkersBindingKindDispatchNamespaceOutbound",
-    "ResourcesBindingsResultWorkersBindingKindDispatchNamespaceOutboundWorker",
-    "ResourcesBindingsResultWorkersBindingKindDurableObjectNamespace",
-    "ResourcesBindingsResultWorkersBindingKindHyperdrive",
-    "ResourcesBindingsResultWorkersBindingKindJson",
-    "ResourcesBindingsResultWorkersBindingKindKVNamespace",
-    "ResourcesBindingsResultWorkersBindingKindMTLSCertificate",
-    "ResourcesBindingsResultWorkersBindingKindPlainText",
-    "ResourcesBindingsResultWorkersBindingKindPipelines",
-    "ResourcesBindingsResultWorkersBindingKindQueue",
-    "ResourcesBindingsResultWorkersBindingKindR2Bucket",
-    "ResourcesBindingsResultWorkersBindingKindSecretText",
-    "ResourcesBindingsResultWorkersBindingKindService",
-    "ResourcesBindingsResultWorkersBindingKindTailConsumer",
-    "ResourcesBindingsResultWorkersBindingKindVectorize",
-    "ResourcesBindingsResultWorkersBindingKindVersionMetadata",
-    "ResourcesBindingsResultWorkersBindingKindSecretsStoreSecret",
-    "ResourcesBindingsResultWorkersBindingKindSecretKey",
-    "ResourcesBindingsResultWorkersBindingKindWorkflow",
+    "ResourcesBinding",
+    "ResourcesBindingWorkersBindingKindAI",
+    "ResourcesBindingWorkersBindingKindAnalyticsEngine",
+    "ResourcesBindingWorkersBindingKindAssets",
+    "ResourcesBindingWorkersBindingKindBrowser",
+    "ResourcesBindingWorkersBindingKindD1",
+    "ResourcesBindingWorkersBindingKindDispatchNamespace",
+    "ResourcesBindingWorkersBindingKindDispatchNamespaceOutbound",
+    "ResourcesBindingWorkersBindingKindDispatchNamespaceOutboundWorker",
+    "ResourcesBindingWorkersBindingKindDurableObjectNamespace",
+    "ResourcesBindingWorkersBindingKindHyperdrive",
+    "ResourcesBindingWorkersBindingKindJson",
+    "ResourcesBindingWorkersBindingKindKVNamespace",
+    "ResourcesBindingWorkersBindingKindMTLSCertificate",
+    "ResourcesBindingWorkersBindingKindPlainText",
+    "ResourcesBindingWorkersBindingKindPipelines",
+    "ResourcesBindingWorkersBindingKindQueue",
+    "ResourcesBindingWorkersBindingKindR2Bucket",
+    "ResourcesBindingWorkersBindingKindSecretText",
+    "ResourcesBindingWorkersBindingKindService",
+    "ResourcesBindingWorkersBindingKindTailConsumer",
+    "ResourcesBindingWorkersBindingKindVectorize",
+    "ResourcesBindingWorkersBindingKindVersionMetadata",
+    "ResourcesBindingWorkersBindingKindSecretsStoreSecret",
+    "ResourcesBindingWorkersBindingKindSecretKey",
+    "ResourcesBindingWorkersBindingKindWorkflow",
     "ResourcesScript",
     "ResourcesScriptNamedHandler",
     "ResourcesScriptRuntime",
@@ -46,7 +45,7 @@ __all__ = [
 ]
 
 
-class ResourcesBindingsResultWorkersBindingKindAI(BaseModel):
+class ResourcesBindingWorkersBindingKindAI(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
@@ -54,7 +53,7 @@ class ResourcesBindingsResultWorkersBindingKindAI(BaseModel):
     """The kind of resource that the binding provides."""
 
 
-class ResourcesBindingsResultWorkersBindingKindAnalyticsEngine(BaseModel):
+class ResourcesBindingWorkersBindingKindAnalyticsEngine(BaseModel):
     dataset: str
     """The name of the dataset to bind to."""
 
@@ -65,7 +64,7 @@ class ResourcesBindingsResultWorkersBindingKindAnalyticsEngine(BaseModel):
     """The kind of resource that the binding provides."""
 
 
-class ResourcesBindingsResultWorkersBindingKindAssets(BaseModel):
+class ResourcesBindingWorkersBindingKindAssets(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
@@ -73,7 +72,7 @@ class ResourcesBindingsResultWorkersBindingKindAssets(BaseModel):
     """The kind of resource that the binding provides."""
 
 
-class ResourcesBindingsResultWorkersBindingKindBrowser(BaseModel):
+class ResourcesBindingWorkersBindingKindBrowser(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
@@ -81,7 +80,7 @@ class ResourcesBindingsResultWorkersBindingKindBrowser(BaseModel):
     """The kind of resource that the binding provides."""
 
 
-class ResourcesBindingsResultWorkersBindingKindD1(BaseModel):
+class ResourcesBindingWorkersBindingKindD1(BaseModel):
     id: str
     """Identifier of the D1 database to bind to."""
 
@@ -92,7 +91,7 @@ class ResourcesBindingsResultWorkersBindingKindD1(BaseModel):
     """The kind of resource that the binding provides."""
 
 
-class ResourcesBindingsResultWorkersBindingKindDispatchNamespaceOutboundWorker(BaseModel):
+class ResourcesBindingWorkersBindingKindDispatchNamespaceOutboundWorker(BaseModel):
     environment: Optional[str] = None
     """Environment of the outbound worker."""
 
@@ -100,18 +99,18 @@ class ResourcesBindingsResultWorkersBindingKindDispatchNamespaceOutboundWorker(B
     """Name of the outbound worker."""
 
 
-class ResourcesBindingsResultWorkersBindingKindDispatchNamespaceOutbound(BaseModel):
+class ResourcesBindingWorkersBindingKindDispatchNamespaceOutbound(BaseModel):
     params: Optional[List[str]] = None
     """
     Pass information from the Dispatch Worker to the Outbound Worker through the
     parameters.
     """
 
-    worker: Optional[ResourcesBindingsResultWorkersBindingKindDispatchNamespaceOutboundWorker] = None
+    worker: Optional[ResourcesBindingWorkersBindingKindDispatchNamespaceOutboundWorker] = None
     """Outbound worker."""
 
 
-class ResourcesBindingsResultWorkersBindingKindDispatchNamespace(BaseModel):
+class ResourcesBindingWorkersBindingKindDispatchNamespace(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
@@ -121,11 +120,11 @@ class ResourcesBindingsResultWorkersBindingKindDispatchNamespace(BaseModel):
     type: Literal["dispatch_namespace"]
     """The kind of resource that the binding provides."""
 
-    outbound: Optional[ResourcesBindingsResultWorkersBindingKindDispatchNamespaceOutbound] = None
+    outbound: Optional[ResourcesBindingWorkersBindingKindDispatchNamespaceOutbound] = None
     """Outbound worker."""
 
 
-class ResourcesBindingsResultWorkersBindingKindDurableObjectNamespace(BaseModel):
+class ResourcesBindingWorkersBindingKindDurableObjectNamespace(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
@@ -148,7 +147,7 @@ class ResourcesBindingsResultWorkersBindingKindDurableObjectNamespace(BaseModel)
     """
 
 
-class ResourcesBindingsResultWorkersBindingKindHyperdrive(BaseModel):
+class ResourcesBindingWorkersBindingKindHyperdrive(BaseModel):
     id: str
     """Identifier of the Hyperdrive connection to bind to."""
 
@@ -159,7 +158,7 @@ class ResourcesBindingsResultWorkersBindingKindHyperdrive(BaseModel):
     """The kind of resource that the binding provides."""
 
 
-class ResourcesBindingsResultWorkersBindingKindJson(BaseModel):
+class ResourcesBindingWorkersBindingKindJson(BaseModel):
     json_: str = FieldInfo(alias="json")
     """JSON data to use."""
 
@@ -170,7 +169,7 @@ class ResourcesBindingsResultWorkersBindingKindJson(BaseModel):
     """The kind of resource that the binding provides."""
 
 
-class ResourcesBindingsResultWorkersBindingKindKVNamespace(BaseModel):
+class ResourcesBindingWorkersBindingKindKVNamespace(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
@@ -181,7 +180,7 @@ class ResourcesBindingsResultWorkersBindingKindKVNamespace(BaseModel):
     """The kind of resource that the binding provides."""
 
 
-class ResourcesBindingsResultWorkersBindingKindMTLSCertificate(BaseModel):
+class ResourcesBindingWorkersBindingKindMTLSCertificate(BaseModel):
     certificate_id: str
     """Identifier of the certificate to bind to."""
 
@@ -192,7 +191,7 @@ class ResourcesBindingsResultWorkersBindingKindMTLSCertificate(BaseModel):
     """The kind of resource that the binding provides."""
 
 
-class ResourcesBindingsResultWorkersBindingKindPlainText(BaseModel):
+class ResourcesBindingWorkersBindingKindPlainText(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
@@ -203,7 +202,7 @@ class ResourcesBindingsResultWorkersBindingKindPlainText(BaseModel):
     """The kind of resource that the binding provides."""
 
 
-class ResourcesBindingsResultWorkersBindingKindPipelines(BaseModel):
+class ResourcesBindingWorkersBindingKindPipelines(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
@@ -214,7 +213,7 @@ class ResourcesBindingsResultWorkersBindingKindPipelines(BaseModel):
     """The kind of resource that the binding provides."""
 
 
-class ResourcesBindingsResultWorkersBindingKindQueue(BaseModel):
+class ResourcesBindingWorkersBindingKindQueue(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
@@ -225,7 +224,7 @@ class ResourcesBindingsResultWorkersBindingKindQueue(BaseModel):
     """The kind of resource that the binding provides."""
 
 
-class ResourcesBindingsResultWorkersBindingKindR2Bucket(BaseModel):
+class ResourcesBindingWorkersBindingKindR2Bucket(BaseModel):
     bucket_name: str
     """R2 bucket to bind to."""
 
@@ -236,7 +235,7 @@ class ResourcesBindingsResultWorkersBindingKindR2Bucket(BaseModel):
     """The kind of resource that the binding provides."""
 
 
-class ResourcesBindingsResultWorkersBindingKindSecretText(BaseModel):
+class ResourcesBindingWorkersBindingKindSecretText(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
@@ -244,7 +243,7 @@ class ResourcesBindingsResultWorkersBindingKindSecretText(BaseModel):
     """The kind of resource that the binding provides."""
 
 
-class ResourcesBindingsResultWorkersBindingKindService(BaseModel):
+class ResourcesBindingWorkersBindingKindService(BaseModel):
     environment: str
     """Optional environment if the Worker utilizes one."""
 
@@ -258,7 +257,7 @@ class ResourcesBindingsResultWorkersBindingKindService(BaseModel):
     """The kind of resource that the binding provides."""
 
 
-class ResourcesBindingsResultWorkersBindingKindTailConsumer(BaseModel):
+class ResourcesBindingWorkersBindingKindTailConsumer(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
@@ -269,7 +268,7 @@ class ResourcesBindingsResultWorkersBindingKindTailConsumer(BaseModel):
     """The kind of resource that the binding provides."""
 
 
-class ResourcesBindingsResultWorkersBindingKindVectorize(BaseModel):
+class ResourcesBindingWorkersBindingKindVectorize(BaseModel):
     index_name: str
     """Name of the Vectorize index to bind to."""
 
@@ -280,7 +279,7 @@ class ResourcesBindingsResultWorkersBindingKindVectorize(BaseModel):
     """The kind of resource that the binding provides."""
 
 
-class ResourcesBindingsResultWorkersBindingKindVersionMetadata(BaseModel):
+class ResourcesBindingWorkersBindingKindVersionMetadata(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
@@ -288,7 +287,7 @@ class ResourcesBindingsResultWorkersBindingKindVersionMetadata(BaseModel):
     """The kind of resource that the binding provides."""
 
 
-class ResourcesBindingsResultWorkersBindingKindSecretsStoreSecret(BaseModel):
+class ResourcesBindingWorkersBindingKindSecretsStoreSecret(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
@@ -302,7 +301,7 @@ class ResourcesBindingsResultWorkersBindingKindSecretsStoreSecret(BaseModel):
     """The kind of resource that the binding provides."""
 
 
-class ResourcesBindingsResultWorkersBindingKindSecretKey(BaseModel):
+class ResourcesBindingWorkersBindingKindSecretKey(BaseModel):
     algorithm: object
     """Algorithm-specific key parameters.
 
@@ -328,7 +327,7 @@ class ResourcesBindingsResultWorkersBindingKindSecretKey(BaseModel):
     """
 
 
-class ResourcesBindingsResultWorkersBindingKindWorkflow(BaseModel):
+class ResourcesBindingWorkersBindingKindWorkflow(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
@@ -351,43 +350,34 @@ class ResourcesBindingsResultWorkersBindingKindWorkflow(BaseModel):
     """
 
 
-ResourcesBindingsResult: TypeAlias = Annotated[
+ResourcesBinding: TypeAlias = Annotated[
     Union[
-        ResourcesBindingsResultWorkersBindingKindAI,
-        ResourcesBindingsResultWorkersBindingKindAnalyticsEngine,
-        ResourcesBindingsResultWorkersBindingKindAssets,
-        ResourcesBindingsResultWorkersBindingKindBrowser,
-        ResourcesBindingsResultWorkersBindingKindD1,
-        ResourcesBindingsResultWorkersBindingKindDispatchNamespace,
-        ResourcesBindingsResultWorkersBindingKindDurableObjectNamespace,
-        ResourcesBindingsResultWorkersBindingKindHyperdrive,
-        ResourcesBindingsResultWorkersBindingKindJson,
-        ResourcesBindingsResultWorkersBindingKindKVNamespace,
-        ResourcesBindingsResultWorkersBindingKindMTLSCertificate,
-        ResourcesBindingsResultWorkersBindingKindPlainText,
-        ResourcesBindingsResultWorkersBindingKindPipelines,
-        ResourcesBindingsResultWorkersBindingKindQueue,
-        ResourcesBindingsResultWorkersBindingKindR2Bucket,
-        ResourcesBindingsResultWorkersBindingKindSecretText,
-        ResourcesBindingsResultWorkersBindingKindService,
-        ResourcesBindingsResultWorkersBindingKindTailConsumer,
-        ResourcesBindingsResultWorkersBindingKindVectorize,
-        ResourcesBindingsResultWorkersBindingKindVersionMetadata,
-        ResourcesBindingsResultWorkersBindingKindSecretsStoreSecret,
-        ResourcesBindingsResultWorkersBindingKindSecretKey,
-        ResourcesBindingsResultWorkersBindingKindWorkflow,
+        ResourcesBindingWorkersBindingKindAI,
+        ResourcesBindingWorkersBindingKindAnalyticsEngine,
+        ResourcesBindingWorkersBindingKindAssets,
+        ResourcesBindingWorkersBindingKindBrowser,
+        ResourcesBindingWorkersBindingKindD1,
+        ResourcesBindingWorkersBindingKindDispatchNamespace,
+        ResourcesBindingWorkersBindingKindDurableObjectNamespace,
+        ResourcesBindingWorkersBindingKindHyperdrive,
+        ResourcesBindingWorkersBindingKindJson,
+        ResourcesBindingWorkersBindingKindKVNamespace,
+        ResourcesBindingWorkersBindingKindMTLSCertificate,
+        ResourcesBindingWorkersBindingKindPlainText,
+        ResourcesBindingWorkersBindingKindPipelines,
+        ResourcesBindingWorkersBindingKindQueue,
+        ResourcesBindingWorkersBindingKindR2Bucket,
+        ResourcesBindingWorkersBindingKindSecretText,
+        ResourcesBindingWorkersBindingKindService,
+        ResourcesBindingWorkersBindingKindTailConsumer,
+        ResourcesBindingWorkersBindingKindVectorize,
+        ResourcesBindingWorkersBindingKindVersionMetadata,
+        ResourcesBindingWorkersBindingKindSecretsStoreSecret,
+        ResourcesBindingWorkersBindingKindSecretKey,
+        ResourcesBindingWorkersBindingKindWorkflow,
     ],
     PropertyInfo(discriminator="type"),
 ]
-
-
-class ResourcesBindings(BaseModel):
-    result: Optional[List[ResourcesBindingsResult]] = None
-    """List of bindings attached to a Worker.
-
-    You can find more about bindings on our docs:
-    https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/#bindings.
-    """
 
 
 class ResourcesScriptNamedHandler(BaseModel):
@@ -423,7 +413,12 @@ class ResourcesScriptRuntime(BaseModel):
 
 
 class Resources(BaseModel):
-    bindings: Optional[ResourcesBindings] = None
+    bindings: Optional[List[ResourcesBinding]] = None
+    """List of bindings attached to a Worker.
+
+    You can find more about bindings on our docs:
+    https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/#bindings.
+    """
 
     script: Optional[ResourcesScript] = None
 

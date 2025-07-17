@@ -3,11 +3,11 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
-from .deployment_param import DeploymentParam
+from ...._utils import PropertyInfo
 
-__all__ = ["DeploymentCreateParams", "Version"]
+__all__ = ["DeploymentCreateParams", "Version", "Annotations"]
 
 
 class DeploymentCreateParams(TypedDict, total=False):
@@ -24,10 +24,15 @@ class DeploymentCreateParams(TypedDict, total=False):
     something such rolling back to an older version when a secret has changed.
     """
 
-    annotations: DeploymentParam
+    annotations: Annotations
 
 
 class Version(TypedDict, total=False):
     percentage: Required[float]
 
     version_id: Required[str]
+
+
+class Annotations(TypedDict, total=False):
+    workers_message: Annotated[str, PropertyInfo(alias="workers/message")]
+    """Human-readable message about the deployment. Truncated to 100 bytes."""

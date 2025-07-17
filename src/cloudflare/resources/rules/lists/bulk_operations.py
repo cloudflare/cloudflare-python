@@ -62,7 +62,7 @@ class BulkOperationsResource(SyncAPIResource):
         property will contain a message describing the error.
 
         Args:
-          account_id: Defines an identifier.
+          account_id: The Account ID for this resource.
 
           operation_id: The unique operation ID of the asynchronous action.
 
@@ -131,7 +131,7 @@ class AsyncBulkOperationsResource(AsyncAPIResource):
         property will contain a message describing the error.
 
         Args:
-          account_id: Defines an identifier.
+          account_id: The Account ID for this resource.
 
           operation_id: The unique operation ID of the asynchronous action.
 

@@ -98,6 +98,9 @@ class GatewayRule(BaseModel):
     name: Optional[str] = None
     """The name of the rule."""
 
+    not_sharable: Optional[bool] = None
+    """The rule cannot be shared via the Orgs API"""
+
     precedence: Optional[int] = None
     """Precedence sets the order of your rules.
 
@@ -105,6 +108,11 @@ class GatewayRule(BaseModel):
     rules are evaluated in ascending order of this value. Refer to
     [Order of enforcement](http://developers.cloudflare.com/learning-paths/secure-internet-traffic/understand-policies/order-of-enforcement/#manage-precedence-with-terraform)
     docs on how to manage precedence via Terraform.
+    """
+
+    read_only: Optional[bool] = None
+    """
+    The rule was shared via the Orgs API and cannot be edited by the current account
     """
 
     rule_settings: Optional[RuleSetting] = None
@@ -115,6 +123,9 @@ class GatewayRule(BaseModel):
 
     This does not apply to HTTP or network policies.
     """
+
+    source_account: Optional[str] = None
+    """account tag of account that created the rule"""
 
     traffic: Optional[str] = None
     """The wirefilter expression used for traffic matching."""

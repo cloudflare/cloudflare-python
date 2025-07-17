@@ -2,9 +2,7 @@
 
 from __future__ import annotations
 
-from .deployment import Deployment as Deployment
 from .consumer_script import ConsumerScript as ConsumerScript
-from .deployment_param import DeploymentParam as DeploymentParam
 from .tail_get_response import TailGetResponse as TailGetResponse
 from .tail_create_params import TailCreateParams as TailCreateParams
 from .secret_get_response import SecretGetResponse as SecretGetResponse

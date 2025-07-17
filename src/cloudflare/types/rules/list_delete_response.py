@@ -9,4 +9,4 @@ __all__ = ["ListDeleteResponse"]
 
 class ListDeleteResponse(BaseModel):
     id: Optional[str] = None
-    """Defines the unique ID of the item in the List."""
+    """The unique ID of the list."""

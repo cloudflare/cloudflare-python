@@ -292,7 +292,7 @@ class StreamResource(SyncAPIResource):
         include_counts: bool | NotGiven = NOT_GIVEN,
         search: str | NotGiven = NOT_GIVEN,
         start: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        status: Literal["pendingupload", "downloading", "queued", "inprogress", "ready", "error"]
+        status: Literal["pendingupload", "downloading", "queued", "inprogress", "ready", "error", "live-inprogress"]
         | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -705,7 +705,7 @@ class AsyncStreamResource(AsyncAPIResource):
         include_counts: bool | NotGiven = NOT_GIVEN,
         search: str | NotGiven = NOT_GIVEN,
         start: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        status: Literal["pendingupload", "downloading", "queued", "inprogress", "ready", "error"]
+        status: Literal["pendingupload", "downloading", "queued", "inprogress", "ready", "error", "live-inprogress"]
         | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

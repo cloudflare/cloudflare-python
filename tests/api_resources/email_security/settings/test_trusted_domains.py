@@ -185,6 +185,7 @@ class TestTrustedDomains:
             is_similarity=True,
             order="pattern",
             page=1,
+            pattern="pattern",
             per_page=1,
             search="search",
         )
@@ -527,6 +528,7 @@ class TestAsyncTrustedDomains:
             is_similarity=True,
             order="pattern",
             page=1,
+            pattern="pattern",
             per_page=1,
             search="search",
         )

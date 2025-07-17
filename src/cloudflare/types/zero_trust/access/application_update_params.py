@@ -2486,7 +2486,7 @@ class BrowserRdpApplicationTargetCriterion(TypedDict, total=False):
     A port cannot be assigned to multiple protocols.
     """
 
-    protocol: Required[Literal["SSH"]]
+    protocol: Required[Literal["RDP"]]
     """The communication protocol your application secures."""
 
     target_attributes: Required[Dict[str, List[str]]]

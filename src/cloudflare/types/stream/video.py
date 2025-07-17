@@ -57,7 +57,9 @@ class Status(BaseModel):
     The value must be a non-negative integer.
     """
 
-    state: Optional[Literal["pendingupload", "downloading", "queued", "inprogress", "ready", "error"]] = None
+    state: Optional[
+        Literal["pendingupload", "downloading", "queued", "inprogress", "ready", "error", "live-inprogress"]
+    ] = None
     """Specifies the processing status for all quality levels for a video."""
 
 

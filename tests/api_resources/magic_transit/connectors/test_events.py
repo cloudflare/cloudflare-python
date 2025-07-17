@@ -35,6 +35,7 @@ class TestEvents:
             from_=0,
             to=0,
             cursor="cursor",
+            k="k",
             limit=0,
         )
         assert_matches_type(EventListResponse, event, path=["response"])
@@ -169,6 +170,7 @@ class TestAsyncEvents:
             from_=0,
             to=0,
             cursor="cursor",
+            k="k",
             limit=0,
         )
         assert_matches_type(EventListResponse, event, path=["response"])

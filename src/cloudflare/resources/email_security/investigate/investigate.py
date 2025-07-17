@@ -151,6 +151,7 @@ class InvestigateResource(SyncAPIResource):
         recipient: str | NotGiven = NOT_GIVEN,
         sender: str | NotGiven = NOT_GIVEN,
         start: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        subject: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -242,6 +243,7 @@ class InvestigateResource(SyncAPIResource):
                         "recipient": recipient,
                         "sender": sender,
                         "start": start,
+                        "subject": subject,
                     },
                     investigate_list_params.InvestigateListParams,
                 ),
@@ -361,6 +363,7 @@ class AsyncInvestigateResource(AsyncAPIResource):
         recipient: str | NotGiven = NOT_GIVEN,
         sender: str | NotGiven = NOT_GIVEN,
         start: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        subject: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -452,6 +455,7 @@ class AsyncInvestigateResource(AsyncAPIResource):
                         "recipient": recipient,
                         "sender": sender,
                         "start": start,
+                        "subject": subject,
                     },
                     investigate_list_params.InvestigateListParams,
                 ),

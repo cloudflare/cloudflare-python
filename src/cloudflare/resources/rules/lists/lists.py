@@ -89,10 +89,10 @@ class ListsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ListCreateResponse:
         """
-        Creates a new list of the specified type.
+        Creates a new list of the specified kind.
 
         Args:
-          account_id: Defines an identifier.
+          account_id: The Account ID for this resource.
 
           kind: The type of the list. Each type supports specific list items (IP addresses,
               ASNs, hostnames or redirects).
@@ -148,7 +148,7 @@ class ListsResource(SyncAPIResource):
         Updates the description of a list.
 
         Args:
-          account_id: Defines an identifier.
+          account_id: The Account ID for this resource.
 
           list_id: The unique ID of the list.
 
@@ -194,7 +194,7 @@ class ListsResource(SyncAPIResource):
         Fetches all lists in the account.
 
         Args:
-          account_id: Defines an identifier.
+          account_id: The Account ID for this resource.
 
           extra_headers: Send extra headers
 
@@ -231,7 +231,7 @@ class ListsResource(SyncAPIResource):
         Deletes a specific list and all its items.
 
         Args:
-          account_id: Defines an identifier.
+          account_id: The Account ID for this resource.
 
           list_id: The unique ID of the list.
 
@@ -275,7 +275,7 @@ class ListsResource(SyncAPIResource):
         Fetches the details of a list.
 
         Args:
-          account_id: Defines an identifier.
+          account_id: The Account ID for this resource.
 
           list_id: The unique ID of the list.
 
@@ -347,10 +347,10 @@ class AsyncListsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ListCreateResponse:
         """
-        Creates a new list of the specified type.
+        Creates a new list of the specified kind.
 
         Args:
-          account_id: Defines an identifier.
+          account_id: The Account ID for this resource.
 
           kind: The type of the list. Each type supports specific list items (IP addresses,
               ASNs, hostnames or redirects).
@@ -406,7 +406,7 @@ class AsyncListsResource(AsyncAPIResource):
         Updates the description of a list.
 
         Args:
-          account_id: Defines an identifier.
+          account_id: The Account ID for this resource.
 
           list_id: The unique ID of the list.
 
@@ -452,7 +452,7 @@ class AsyncListsResource(AsyncAPIResource):
         Fetches all lists in the account.
 
         Args:
-          account_id: Defines an identifier.
+          account_id: The Account ID for this resource.
 
           extra_headers: Send extra headers
 
@@ -489,7 +489,7 @@ class AsyncListsResource(AsyncAPIResource):
         Deletes a specific list and all its items.
 
         Args:
-          account_id: Defines an identifier.
+          account_id: The Account ID for this resource.
 
           list_id: The unique ID of the list.
 
@@ -533,7 +533,7 @@ class AsyncListsResource(AsyncAPIResource):
         Fetches the details of a list.
 
         Args:
-          account_id: Defines an identifier.
+          account_id: The Account ID for this resource.
 
           list_id: The unique ID of the list.
 

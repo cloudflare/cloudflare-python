@@ -7,13 +7,49 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["InvestigateGetResponse", "Properties", "Validation"]
+__all__ = ["InvestigateGetResponse", "Properties", "Finding", "Validation"]
 
 
 class Properties(BaseModel):
-    allowlisted_pattern_type: Optional[str] = None
+    allowlisted_pattern: Optional[str] = None
 
-    whitelisted_pattern_type: Optional[str] = None
+    allowlisted_pattern_type: Optional[
+        Literal[
+            "quarantine_release",
+            "blocked_sender",
+            "acceptable_sender",
+            "allowed_sender",
+            "allowed_recipient",
+            "domain_similarity",
+            "domain_recency",
+            "managed_acceptable_sender",
+        ]
+    ] = None
+
+    blocklisted_message: Optional[bool] = None
+
+    blocklisted_pattern: Optional[str] = None
+
+    whitelisted_pattern_type: Optional[
+        Literal[
+            "quarantine_release",
+            "blocked_sender",
+            "acceptable_sender",
+            "allowed_sender",
+            "allowed_recipient",
+            "domain_similarity",
+            "domain_recency",
+            "managed_acceptable_sender",
+        ]
+    ] = None
+
+
+class Finding(BaseModel):
+    detail: Optional[str] = None
+
+    name: Optional[str] = None
+
+    value: Optional[str] = None
 
 
 class Validation(BaseModel):
@@ -80,6 +116,8 @@ class InvestigateGetResponse(BaseModel):
             "NONE",
         ]
     ] = None
+
+    findings: Optional[List[Finding]] = None
 
     from_: Optional[str] = FieldInfo(alias="from", default=None)
 

@@ -470,9 +470,6 @@ class ScriptAndVersionSettingGetResponse(BaseModel):
     logpush: Optional[bool] = None
     """Whether Logpush is turned on for the Worker."""
 
-    migrations: Optional[Migrations] = None
-    """Migrations to apply for Durable Objects associated with this Worker."""
-
     observability: Optional[Observability] = None
     """Observability settings for the Worker."""
 

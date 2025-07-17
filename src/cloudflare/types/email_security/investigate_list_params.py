@@ -78,3 +78,5 @@ class InvestigateListParams(TypedDict, total=False):
 
     start: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """The beginning of the search date range. Defaults to `now - 30 days`."""
+
+    subject: str

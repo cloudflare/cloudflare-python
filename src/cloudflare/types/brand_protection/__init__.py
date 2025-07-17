@@ -2,10 +2,17 @@
 
 from __future__ import annotations
 
-from .info import Info as Info
-from .submit import Submit as Submit
-from .rule_match import RuleMatch as RuleMatch
-from .scan_status import ScanStatus as ScanStatus
-from .url_info_model_results import URLInfoModelResults as URLInfoModelResults
-from .brand_protection_submit_params import BrandProtectionSubmitParams as BrandProtectionSubmitParams
-from .brand_protection_url_info_params import BrandProtectionURLInfoParams as BrandProtectionURLInfoParams
+from .match_get_params import MatchGetParams as MatchGetParams
+from .logo_create_params import LogoCreateParams as LogoCreateParams
+from .match_get_response import MatchGetResponse as MatchGetResponse
+from .query_create_params import QueryCreateParams as QueryCreateParams
+from .query_delete_params import QueryDeleteParams as QueryDeleteParams
+from .logo_create_response import LogoCreateResponse as LogoCreateResponse
+from .logo_match_get_params import LogoMatchGetParams as LogoMatchGetParams
+from .match_download_params import MatchDownloadParams as MatchDownloadParams
+from .logo_match_get_response import LogoMatchGetResponse as LogoMatchGetResponse
+from .match_download_response import MatchDownloadResponse as MatchDownloadResponse
+from .logo_match_download_params import LogoMatchDownloadParams as LogoMatchDownloadParams
+from .logo_match_download_response import LogoMatchDownloadResponse as LogoMatchDownloadResponse
+from .brand_protection_submit_response import BrandProtectionSubmitResponse as BrandProtectionSubmitResponse
+from .brand_protection_url_info_response import BrandProtectionURLInfoResponse as BrandProtectionURLInfoResponse

@@ -77,7 +77,9 @@ class Clip(BaseModel):
     start_time_seconds: Optional[int] = FieldInfo(alias="startTimeSeconds", default=None)
     """Specifies the start time for the video clip in seconds."""
 
-    status: Optional[Literal["pendingupload", "downloading", "queued", "inprogress", "ready", "error"]] = None
+    status: Optional[
+        Literal["pendingupload", "downloading", "queued", "inprogress", "ready", "error", "live-inprogress"]
+    ] = None
     """Specifies the processing status for all quality levels for a video."""
 
     thumbnail_timestamp_pct: Optional[float] = FieldInfo(alias="thumbnailTimestampPct", default=None)

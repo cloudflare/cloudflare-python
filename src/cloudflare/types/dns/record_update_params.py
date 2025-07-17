@@ -73,7 +73,7 @@ class ARecord(TypedDict, total=False):
     """Identifier."""
 
     name: Required[str]
-    """DNS record name (or @ for the zone apex) in Punycode."""
+    """Complete DNS record name, including the zone name, in Punycode."""
 
     ttl: Required[TTLParam]
     """Time To Live (TTL) of the DNS record in seconds.
@@ -130,7 +130,7 @@ class AAAARecord(TypedDict, total=False):
     """Identifier."""
 
     name: Required[str]
-    """DNS record name (or @ for the zone apex) in Punycode."""
+    """Complete DNS record name, including the zone name, in Punycode."""
 
     ttl: Required[TTLParam]
     """Time To Live (TTL) of the DNS record in seconds.
@@ -187,7 +187,7 @@ class CNAMERecord(TypedDict, total=False):
     """Identifier."""
 
     name: Required[str]
-    """DNS record name (or @ for the zone apex) in Punycode."""
+    """Complete DNS record name, including the zone name, in Punycode."""
 
     ttl: Required[TTLParam]
     """Time To Live (TTL) of the DNS record in seconds.
@@ -252,7 +252,7 @@ class MXRecord(TypedDict, total=False):
     """Identifier."""
 
     name: Required[str]
-    """DNS record name (or @ for the zone apex) in Punycode."""
+    """Complete DNS record name, including the zone name, in Punycode."""
 
     ttl: Required[TTLParam]
     """Time To Live (TTL) of the DNS record in seconds.
@@ -315,7 +315,7 @@ class NSRecord(TypedDict, total=False):
     """Identifier."""
 
     name: Required[str]
-    """DNS record name (or @ for the zone apex) in Punycode."""
+    """Complete DNS record name, including the zone name, in Punycode."""
 
     ttl: Required[TTLParam]
     """Time To Live (TTL) of the DNS record in seconds.
@@ -372,7 +372,7 @@ class DNSRecordsOpenpgpkeyRecord(TypedDict, total=False):
     """Identifier."""
 
     name: Required[str]
-    """DNS record name (or @ for the zone apex) in Punycode."""
+    """Complete DNS record name, including the zone name, in Punycode."""
 
     ttl: Required[TTLParam]
     """Time To Live (TTL) of the DNS record in seconds.
@@ -429,7 +429,7 @@ class PTRRecord(TypedDict, total=False):
     """Identifier."""
 
     name: Required[str]
-    """DNS record name (or @ for the zone apex) in Punycode."""
+    """Complete DNS record name, including the zone name, in Punycode."""
 
     ttl: Required[TTLParam]
     """Time To Live (TTL) of the DNS record in seconds.
@@ -486,7 +486,7 @@ class TXTRecord(TypedDict, total=False):
     """Identifier."""
 
     name: Required[str]
-    """DNS record name (or @ for the zone apex) in Punycode."""
+    """Complete DNS record name, including the zone name, in Punycode."""
 
     ttl: Required[TTLParam]
     """Time To Live (TTL) of the DNS record in seconds.
@@ -551,7 +551,7 @@ class CAARecord(TypedDict, total=False):
     """Identifier."""
 
     name: Required[str]
-    """DNS record name (or @ for the zone apex) in Punycode."""
+    """Complete DNS record name, including the zone name, in Punycode."""
 
     ttl: Required[TTLParam]
     """Time To Live (TTL) of the DNS record in seconds.
@@ -619,7 +619,7 @@ class CERTRecord(TypedDict, total=False):
     """Identifier."""
 
     name: Required[str]
-    """DNS record name (or @ for the zone apex) in Punycode."""
+    """Complete DNS record name, including the zone name, in Punycode."""
 
     ttl: Required[TTLParam]
     """Time To Live (TTL) of the DNS record in seconds.
@@ -690,7 +690,7 @@ class DNSKEYRecord(TypedDict, total=False):
     """Identifier."""
 
     name: Required[str]
-    """DNS record name (or @ for the zone apex) in Punycode."""
+    """Complete DNS record name, including the zone name, in Punycode."""
 
     ttl: Required[TTLParam]
     """Time To Live (TTL) of the DNS record in seconds.
@@ -761,7 +761,7 @@ class DSRecord(TypedDict, total=False):
     """Identifier."""
 
     name: Required[str]
-    """DNS record name (or @ for the zone apex) in Punycode."""
+    """Complete DNS record name, including the zone name, in Punycode."""
 
     ttl: Required[TTLParam]
     """Time To Live (TTL) of the DNS record in seconds.
@@ -832,7 +832,7 @@ class HTTPSRecord(TypedDict, total=False):
     """Identifier."""
 
     name: Required[str]
-    """DNS record name (or @ for the zone apex) in Punycode."""
+    """Complete DNS record name, including the zone name, in Punycode."""
 
     ttl: Required[TTLParam]
     """Time To Live (TTL) of the DNS record in seconds.
@@ -900,7 +900,7 @@ class LOCRecord(TypedDict, total=False):
     """Identifier."""
 
     name: Required[str]
-    """DNS record name (or @ for the zone apex) in Punycode."""
+    """Complete DNS record name, including the zone name, in Punycode."""
 
     ttl: Required[TTLParam]
     """Time To Live (TTL) of the DNS record in seconds.
@@ -995,7 +995,7 @@ class NAPTRRecord(TypedDict, total=False):
     """Identifier."""
 
     name: Required[str]
-    """DNS record name (or @ for the zone apex) in Punycode."""
+    """Complete DNS record name, including the zone name, in Punycode."""
 
     ttl: Required[TTLParam]
     """Time To Live (TTL) of the DNS record in seconds.
@@ -1072,7 +1072,7 @@ class SMIMEARecord(TypedDict, total=False):
     """Identifier."""
 
     name: Required[str]
-    """DNS record name (or @ for the zone apex) in Punycode."""
+    """Complete DNS record name, including the zone name, in Punycode."""
 
     ttl: Required[TTLParam]
     """Time To Live (TTL) of the DNS record in seconds.
@@ -1143,7 +1143,7 @@ class SRVRecord(TypedDict, total=False):
     """Identifier."""
 
     name: Required[str]
-    """DNS record name (or @ for the zone apex) in Punycode."""
+    """Complete DNS record name, including the zone name, in Punycode."""
 
     ttl: Required[TTLParam]
     """Time To Live (TTL) of the DNS record in seconds.
@@ -1217,7 +1217,7 @@ class SSHFPRecord(TypedDict, total=False):
     """Identifier."""
 
     name: Required[str]
-    """DNS record name (or @ for the zone apex) in Punycode."""
+    """Complete DNS record name, including the zone name, in Punycode."""
 
     ttl: Required[TTLParam]
     """Time To Live (TTL) of the DNS record in seconds.
@@ -1285,7 +1285,7 @@ class SVCBRecord(TypedDict, total=False):
     """Identifier."""
 
     name: Required[str]
-    """DNS record name (or @ for the zone apex) in Punycode."""
+    """Complete DNS record name, including the zone name, in Punycode."""
 
     ttl: Required[TTLParam]
     """Time To Live (TTL) of the DNS record in seconds.
@@ -1353,7 +1353,7 @@ class TLSARecord(TypedDict, total=False):
     """Identifier."""
 
     name: Required[str]
-    """DNS record name (or @ for the zone apex) in Punycode."""
+    """Complete DNS record name, including the zone name, in Punycode."""
 
     ttl: Required[TTLParam]
     """Time To Live (TTL) of the DNS record in seconds.
@@ -1424,7 +1424,7 @@ class URIRecord(TypedDict, total=False):
     """Identifier."""
 
     name: Required[str]
-    """DNS record name (or @ for the zone apex) in Punycode."""
+    """Complete DNS record name, including the zone name, in Punycode."""
 
     ttl: Required[TTLParam]
     """Time To Live (TTL) of the DNS record in seconds.

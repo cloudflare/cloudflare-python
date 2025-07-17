@@ -10,9 +10,16 @@ __all__ = ["RecommendationGetResponse"]
 
 
 class RecommendationGetResponse(BaseModel):
-    id: Optional[str] = None
-    """Identifier of a recommendation result."""
+    id: str
 
-    modified_on: Optional[datetime] = None
+    editable: bool
+    """Whether this setting can be updated or not."""
 
-    value: Optional[Literal["flexible", "full", "strict"]] = None
+    modified_on: datetime
+    """Last time this setting was modified."""
+
+    value: Literal["auto", "custom"]
+    """Current setting of the automatic SSL/TLS."""
+
+    next_scheduled_scan: Optional[datetime] = None
+    """Next time this zone will be scanned by the Automatic SSL/TLS."""

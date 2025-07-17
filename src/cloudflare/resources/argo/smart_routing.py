@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -20,8 +20,6 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...types.argo import smart_routing_edit_params
 from ..._base_client import make_request_options
-from ...types.argo.smart_routing_get_response import SmartRoutingGetResponse
-from ...types.argo.smart_routing_edit_response import SmartRoutingEditResponse
 
 __all__ = ["SmartRoutingResource", "AsyncSmartRoutingResource"]
 
@@ -57,12 +55,12 @@ class SmartRoutingResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SmartRoutingEditResponse:
+    ) -> object:
         """
-        Updates enablement of Argo Smart Routing.
+        Configures the value of the Argo Smart Routing enablement setting.
 
         Args:
-          zone_id: Identifier
+          zone_id: Specifies the zone associated with the API call.
 
           value: Enables Argo Smart Routing.
 
@@ -76,22 +74,17 @@ class SmartRoutingResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            SmartRoutingEditResponse,
-            self._patch(
-                f"/zones/{zone_id}/argo/smart_routing",
-                body=maybe_transform({"value": value}, smart_routing_edit_params.SmartRoutingEditParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[SmartRoutingEditResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[SmartRoutingEditResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._patch(
+            f"/zones/{zone_id}/argo/smart_routing",
+            body=maybe_transform({"value": value}, smart_routing_edit_params.SmartRoutingEditParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def get(
@@ -104,12 +97,12 @@ class SmartRoutingResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SmartRoutingGetResponse:
+    ) -> object:
         """
-        Get Argo Smart Routing setting
+        Retrieves the value of Argo Smart Routing enablement setting.
 
         Args:
-          zone_id: Identifier
+          zone_id: Specifies the zone associated with the API call.
 
           extra_headers: Send extra headers
 
@@ -121,21 +114,16 @@ class SmartRoutingResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            SmartRoutingGetResponse,
-            self._get(
-                f"/zones/{zone_id}/argo/smart_routing",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[SmartRoutingGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[SmartRoutingGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            f"/zones/{zone_id}/argo/smart_routing",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 
@@ -170,12 +158,12 @@ class AsyncSmartRoutingResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SmartRoutingEditResponse:
+    ) -> object:
         """
-        Updates enablement of Argo Smart Routing.
+        Configures the value of the Argo Smart Routing enablement setting.
 
         Args:
-          zone_id: Identifier
+          zone_id: Specifies the zone associated with the API call.
 
           value: Enables Argo Smart Routing.
 
@@ -189,22 +177,17 @@ class AsyncSmartRoutingResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            SmartRoutingEditResponse,
-            await self._patch(
-                f"/zones/{zone_id}/argo/smart_routing",
-                body=await async_maybe_transform({"value": value}, smart_routing_edit_params.SmartRoutingEditParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[SmartRoutingEditResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[SmartRoutingEditResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._patch(
+            f"/zones/{zone_id}/argo/smart_routing",
+            body=await async_maybe_transform({"value": value}, smart_routing_edit_params.SmartRoutingEditParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     async def get(
@@ -217,12 +200,12 @@ class AsyncSmartRoutingResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SmartRoutingGetResponse:
+    ) -> object:
         """
-        Get Argo Smart Routing setting
+        Retrieves the value of Argo Smart Routing enablement setting.
 
         Args:
-          zone_id: Identifier
+          zone_id: Specifies the zone associated with the API call.
 
           extra_headers: Send extra headers
 
@@ -234,21 +217,16 @@ class AsyncSmartRoutingResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            SmartRoutingGetResponse,
-            await self._get(
-                f"/zones/{zone_id}/argo/smart_routing",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[SmartRoutingGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[SmartRoutingGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            f"/zones/{zone_id}/argo/smart_routing",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 

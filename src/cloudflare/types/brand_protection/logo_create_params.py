@@ -4,12 +4,18 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["BrandProtectionSubmitParams"]
+from ..._types import FileTypes
+
+__all__ = ["LogoCreateParams"]
 
 
-class BrandProtectionSubmitParams(TypedDict, total=False):
+class LogoCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier."""
 
-    url: str
-    """URL(s) to filter submissions results by."""
+    match_type: str
+
+    tag: str
+
+    threshold: float
+
+    image: FileTypes

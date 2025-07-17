@@ -19,4 +19,7 @@ class EventListParams(TypedDict, total=False):
 
     cursor: str
 
+    k: str
+    """Filter by event kind"""
+
     limit: float

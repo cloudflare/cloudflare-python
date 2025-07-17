@@ -34,6 +34,8 @@ __all__ = [
     "AccessLoginMethodRuleLoginMethod",
     "AccessOIDCClaimRule",
     "AccessOIDCClaimRuleOIDC",
+    "AccessLinkedAppTokenRule",
+    "AccessLinkedAppTokenRuleLinkedAppToken",
 ]
 
 
@@ -85,6 +87,15 @@ class AccessOIDCClaimRule(BaseModel):
     oidc: AccessOIDCClaimRuleOIDC
 
 
+class AccessLinkedAppTokenRuleLinkedAppToken(BaseModel):
+    app_uid: str
+    """The ID of an Access OIDC SaaS application"""
+
+
+class AccessLinkedAppTokenRule(BaseModel):
+    linked_app_token: AccessLinkedAppTokenRuleLinkedAppToken
+
+
 AccessRule: TypeAlias = Union[
     GroupRule,
     AnyValidServiceTokenRule,
@@ -109,4 +120,5 @@ AccessRule: TypeAlias = Union[
     SAMLGroupRule,
     AccessOIDCClaimRule,
     ServiceTokenRule,
+    AccessLinkedAppTokenRule,
 ]

@@ -12,15 +12,15 @@ __all__ = ["SearchGlobalParams"]
 
 class SearchGlobalParams(TypedDict, total=False):
     query: Required[str]
-    """Search for locations, autonomous systems and reports."""
+    """String used to perform the search operation."""
 
-    exclude: List[Literal["ASNS", "BOTS", "LOCATIONS", "NOTEBOOKS", "SPECIAL_EVENTS"]]
+    exclude: List[Literal["ASNS", "BOTS", "CERTIFICATE_AUTHORITIES", "CERTIFICATE_LOGS", "LOCATIONS", "NOTEBOOKS"]]
     """Search types excluded from results."""
 
     format: Literal["JSON", "CSV"]
     """Format in which results will be returned."""
 
-    include: List[Literal["ASNS", "BOTS", "LOCATIONS", "NOTEBOOKS", "SPECIAL_EVENTS"]]
+    include: List[Literal["ASNS", "BOTS", "CERTIFICATE_AUTHORITIES", "CERTIFICATE_LOGS", "LOCATIONS", "NOTEBOOKS"]]
     """Search types included in results."""
 
     limit: int
