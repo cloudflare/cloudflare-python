@@ -37,6 +37,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ...pagination import SyncSinglePage, AsyncSinglePage
 from .logo_matches import (
     LogoMatchesResource,
     AsyncLogoMatchesResource,
@@ -45,7 +46,7 @@ from .logo_matches import (
     LogoMatchesResourceWithStreamingResponse,
     AsyncLogoMatchesResourceWithStreamingResponse,
 )
-from ..._base_client import make_request_options
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.brand_protection.brand_protection_submit_response import BrandProtectionSubmitResponse
 from ...types.brand_protection.brand_protection_url_info_response import BrandProtectionURLInfoResponse
 
@@ -131,7 +132,7 @@ class BrandProtectionResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BrandProtectionURLInfoResponse:
+    ) -> SyncSinglePage[BrandProtectionURLInfoResponse]:
         """
         Return submitted URLs based on ID
 
@@ -146,12 +147,13 @@ class BrandProtectionResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/brand-protection/url-info",
+            page=SyncSinglePage[BrandProtectionURLInfoResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BrandProtectionURLInfoResponse,
+            model=BrandProtectionURLInfoResponse,
         )
 
 
@@ -224,7 +226,7 @@ class AsyncBrandProtectionResource(AsyncAPIResource):
             cast_to=BrandProtectionSubmitResponse,
         )
 
-    async def url_info(
+    def url_info(
         self,
         *,
         account_id: str,
@@ -234,7 +236,7 @@ class AsyncBrandProtectionResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BrandProtectionURLInfoResponse:
+    ) -> AsyncPaginator[BrandProtectionURLInfoResponse, AsyncSinglePage[BrandProtectionURLInfoResponse]]:
         """
         Return submitted URLs based on ID
 
@@ -249,12 +251,13 @@ class AsyncBrandProtectionResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/brand-protection/url-info",
+            page=AsyncSinglePage[BrandProtectionURLInfoResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BrandProtectionURLInfoResponse,
+            model=BrandProtectionURLInfoResponse,
         )
 
 

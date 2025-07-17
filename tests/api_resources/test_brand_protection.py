@@ -9,6 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.brand_protection import BrandProtectionSubmitResponse, BrandProtectionURLInfoResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -60,7 +61,7 @@ class TestBrandProtection:
         brand_protection = client.brand_protection.url_info(
             account_id="x",
         )
-        assert_matches_type(BrandProtectionURLInfoResponse, brand_protection, path=["response"])
+        assert_matches_type(SyncSinglePage[BrandProtectionURLInfoResponse], brand_protection, path=["response"])
 
     @parametrize
     def test_raw_response_url_info(self, client: Cloudflare) -> None:
@@ -71,7 +72,7 @@ class TestBrandProtection:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         brand_protection = response.parse()
-        assert_matches_type(BrandProtectionURLInfoResponse, brand_protection, path=["response"])
+        assert_matches_type(SyncSinglePage[BrandProtectionURLInfoResponse], brand_protection, path=["response"])
 
     @parametrize
     def test_streaming_response_url_info(self, client: Cloudflare) -> None:
@@ -82,7 +83,7 @@ class TestBrandProtection:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             brand_protection = response.parse()
-            assert_matches_type(BrandProtectionURLInfoResponse, brand_protection, path=["response"])
+            assert_matches_type(SyncSinglePage[BrandProtectionURLInfoResponse], brand_protection, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -142,7 +143,7 @@ class TestAsyncBrandProtection:
         brand_protection = await async_client.brand_protection.url_info(
             account_id="x",
         )
-        assert_matches_type(BrandProtectionURLInfoResponse, brand_protection, path=["response"])
+        assert_matches_type(AsyncSinglePage[BrandProtectionURLInfoResponse], brand_protection, path=["response"])
 
     @parametrize
     async def test_raw_response_url_info(self, async_client: AsyncCloudflare) -> None:
@@ -153,7 +154,7 @@ class TestAsyncBrandProtection:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         brand_protection = await response.parse()
-        assert_matches_type(BrandProtectionURLInfoResponse, brand_protection, path=["response"])
+        assert_matches_type(AsyncSinglePage[BrandProtectionURLInfoResponse], brand_protection, path=["response"])
 
     @parametrize
     async def test_streaming_response_url_info(self, async_client: AsyncCloudflare) -> None:
@@ -164,7 +165,7 @@ class TestAsyncBrandProtection:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             brand_protection = await response.parse()
-            assert_matches_type(BrandProtectionURLInfoResponse, brand_protection, path=["response"])
+            assert_matches_type(AsyncSinglePage[BrandProtectionURLInfoResponse], brand_protection, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
