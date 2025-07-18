@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable
+from typing import Dict, Union, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["TokenPolicy", "PermissionGroup", "PermissionGroupMeta", "Resources"]
+__all__ = ["TokenPolicy", "PermissionGroup", "PermissionGroupMeta"]
 
 
 class PermissionGroupMeta(TypedDict, total=False):
@@ -22,14 +22,6 @@ class PermissionGroup(TypedDict, total=False):
     """Attributes associated to the permission group."""
 
 
-class Resources(TypedDict, total=False):
-    nested: Dict[str, Dict[str, str]]
-    """Nested resource permissions for hierarchical scoping."""
-
-    simple: Dict[str, str]
-    """Simple resource permissions where each resource maps to a permission string."""
-
-
 class TokenPolicy(TypedDict, total=False):
     effect: Required[Literal["allow", "deny"]]
     """Allow or deny operations against the resources."""
@@ -37,5 +29,5 @@ class TokenPolicy(TypedDict, total=False):
     permission_groups: Required[Iterable[PermissionGroup]]
     """A set of permission groups that are specified to the policy."""
 
-    resources: Required[Resources]
-    """Resource permissions for the policy. Use either simple or nested permissions."""
+    resources: Required[Dict[str, Union[str, Dict[str, str]]]]
+    """A list of resource names that the policy applies to."""

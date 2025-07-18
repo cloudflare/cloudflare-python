@@ -37,7 +37,7 @@ class TestTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {},
+                    "resources": {"foo": "string"},
                 }
             ],
         )
@@ -68,14 +68,7 @@ class TestTokens:
                             },
                         },
                     ],
-                    "resources": {
-                        "nested": {
-                            "com.cloudflare.api.account.472e41d66440f10635de39c7ffaf6080": {
-                                "com.cloudflare.api.account.zone.*": "*"
-                            }
-                        },
-                        "simple": {"com.cloudflare.api.account.472e41d66440f10635de39c7ffaf6080": "*"},
-                    },
+                    "resources": {"foo": "string"},
                 }
             ],
             condition={
@@ -102,7 +95,7 @@ class TestTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {},
+                    "resources": {"foo": "string"},
                 }
             ],
         )
@@ -125,7 +118,7 @@ class TestTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {},
+                    "resources": {"foo": "string"},
                 }
             ],
         ) as response:
@@ -151,7 +144,7 @@ class TestTokens:
                             {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                             {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                         ],
-                        "resources": {},
+                        "resources": {"foo": "string"},
                     }
                 ],
             )
@@ -170,7 +163,7 @@ class TestTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {},
+                    "resources": {"foo": "string"},
                 }
             ],
         )
@@ -202,14 +195,7 @@ class TestTokens:
                             },
                         },
                     ],
-                    "resources": {
-                        "nested": {
-                            "com.cloudflare.api.account.472e41d66440f10635de39c7ffaf6080": {
-                                "com.cloudflare.api.account.zone.*": "*"
-                            }
-                        },
-                        "simple": {"com.cloudflare.api.account.472e41d66440f10635de39c7ffaf6080": "*"},
-                    },
+                    "resources": {"foo": "string"},
                 }
             ],
             condition={
@@ -238,7 +224,7 @@ class TestTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {},
+                    "resources": {"foo": "string"},
                 }
             ],
         )
@@ -262,7 +248,7 @@ class TestTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {},
+                    "resources": {"foo": "string"},
                 }
             ],
         ) as response:
@@ -289,7 +275,7 @@ class TestTokens:
                             {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                             {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                         ],
-                        "resources": {},
+                        "resources": {"foo": "string"},
                     }
                 ],
             )
@@ -306,7 +292,7 @@ class TestTokens:
                             {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                             {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                         ],
-                        "resources": {},
+                        "resources": {"foo": "string"},
                     }
                 ],
             )
@@ -529,7 +515,7 @@ class TestAsyncTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {},
+                    "resources": {"foo": "string"},
                 }
             ],
         )
@@ -560,14 +546,7 @@ class TestAsyncTokens:
                             },
                         },
                     ],
-                    "resources": {
-                        "nested": {
-                            "com.cloudflare.api.account.472e41d66440f10635de39c7ffaf6080": {
-                                "com.cloudflare.api.account.zone.*": "*"
-                            }
-                        },
-                        "simple": {"com.cloudflare.api.account.472e41d66440f10635de39c7ffaf6080": "*"},
-                    },
+                    "resources": {"foo": "string"},
                 }
             ],
             condition={
@@ -594,7 +573,7 @@ class TestAsyncTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {},
+                    "resources": {"foo": "string"},
                 }
             ],
         )
@@ -617,7 +596,7 @@ class TestAsyncTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {},
+                    "resources": {"foo": "string"},
                 }
             ],
         ) as response:
@@ -643,7 +622,7 @@ class TestAsyncTokens:
                             {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                             {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                         ],
-                        "resources": {},
+                        "resources": {"foo": "string"},
                     }
                 ],
             )
@@ -662,7 +641,7 @@ class TestAsyncTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {},
+                    "resources": {"foo": "string"},
                 }
             ],
         )
@@ -694,14 +673,7 @@ class TestAsyncTokens:
                             },
                         },
                     ],
-                    "resources": {
-                        "nested": {
-                            "com.cloudflare.api.account.472e41d66440f10635de39c7ffaf6080": {
-                                "com.cloudflare.api.account.zone.*": "*"
-                            }
-                        },
-                        "simple": {"com.cloudflare.api.account.472e41d66440f10635de39c7ffaf6080": "*"},
-                    },
+                    "resources": {"foo": "string"},
                 }
             ],
             condition={
@@ -730,7 +702,7 @@ class TestAsyncTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {},
+                    "resources": {"foo": "string"},
                 }
             ],
         )
@@ -754,7 +726,7 @@ class TestAsyncTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {},
+                    "resources": {"foo": "string"},
                 }
             ],
         ) as response:
@@ -781,7 +753,7 @@ class TestAsyncTokens:
                             {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                             {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                         ],
-                        "resources": {},
+                        "resources": {"foo": "string"},
                     }
                 ],
             )
@@ -798,7 +770,7 @@ class TestAsyncTokens:
                             {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                             {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                         ],
-                        "resources": {},
+                        "resources": {"foo": "string"},
                     }
                 ],
             )
