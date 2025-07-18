@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Mapping, cast
+from typing import Mapping, cast
 
 import httpx
 
@@ -16,7 +16,6 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.ai.finetunes import asset_create_params
 from ....types.ai.finetunes.asset_create_response import AssetCreateResponse
@@ -90,13 +89,9 @@ class AssetsResource(SyncAPIResource):
             body=maybe_transform(body, asset_create_params.AssetCreateParams),
             files=files,
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[AssetCreateResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[AssetCreateResponse], ResultWrapper[AssetCreateResponse]),
+            cast_to=AssetCreateResponse,
         )
 
 
@@ -166,13 +161,9 @@ class AsyncAssetsResource(AsyncAPIResource):
             body=await async_maybe_transform(body, asset_create_params.AssetCreateParams),
             files=files,
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[AssetCreateResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[AssetCreateResponse], ResultWrapper[AssetCreateResponse]),
+            cast_to=AssetCreateResponse,
         )
 
 
