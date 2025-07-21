@@ -21,7 +21,9 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.workers.scripts import deployment_create_params
 from ....types.workers.scripts.deployment_get_response import DeploymentGetResponse
+from ....types.workers.scripts.deployment_list_response import DeploymentListResponse
 from ....types.workers.scripts.deployment_create_response import DeploymentCreateResponse
+from ....types.workers.scripts.deployment_delete_response import DeploymentDeleteResponse
 
 __all__ = ["DeploymentsResource", "AsyncDeploymentsResource"]
 
@@ -109,7 +111,7 @@ class DeploymentsResource(SyncAPIResource):
             cast_to=cast(Type[DeploymentCreateResponse], ResultWrapper[DeploymentCreateResponse]),
         )
 
-    def get(
+    def list(
         self,
         script_name: str,
         *,
@@ -120,7 +122,7 @@ class DeploymentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DeploymentGetResponse:
+    ) -> DeploymentListResponse:
         """List of Worker Deployments.
 
         The first deployment in the list is the latest
@@ -145,6 +147,98 @@ class DeploymentsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return self._get(
             f"/accounts/{account_id}/workers/scripts/{script_name}/deployments",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[DeploymentListResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[DeploymentListResponse], ResultWrapper[DeploymentListResponse]),
+        )
+
+    def delete(
+        self,
+        deployment_id: str,
+        *,
+        account_id: str,
+        script_name: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DeploymentDeleteResponse:
+        """Delete a Worker Deployment.
+
+        The latest deployment, which is actively serving
+        traffic, cannot be deleted. All other deployments can be deleted.
+
+        Args:
+          account_id: Identifier.
+
+          script_name: Name of the script, used in URLs and route configuration.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not script_name:
+            raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
+        if not deployment_id:
+            raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
+        return self._delete(
+            f"/accounts/{account_id}/workers/scripts/{script_name}/deployments/{deployment_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DeploymentDeleteResponse,
+        )
+
+    def get(
+        self,
+        deployment_id: str,
+        *,
+        account_id: str,
+        script_name: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DeploymentGetResponse:
+        """
+        Get information about a Worker Deployment.
+
+        Args:
+          account_id: Identifier.
+
+          script_name: Name of the script, used in URLs and route configuration.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not script_name:
+            raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
+        if not deployment_id:
+            raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
+        return self._get(
+            f"/accounts/{account_id}/workers/scripts/{script_name}/deployments/{deployment_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -239,7 +333,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
             cast_to=cast(Type[DeploymentCreateResponse], ResultWrapper[DeploymentCreateResponse]),
         )
 
-    async def get(
+    async def list(
         self,
         script_name: str,
         *,
@@ -250,7 +344,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DeploymentGetResponse:
+    ) -> DeploymentListResponse:
         """List of Worker Deployments.
 
         The first deployment in the list is the latest
@@ -280,6 +374,98 @@ class AsyncDeploymentsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                post_parser=ResultWrapper[DeploymentListResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[DeploymentListResponse], ResultWrapper[DeploymentListResponse]),
+        )
+
+    async def delete(
+        self,
+        deployment_id: str,
+        *,
+        account_id: str,
+        script_name: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DeploymentDeleteResponse:
+        """Delete a Worker Deployment.
+
+        The latest deployment, which is actively serving
+        traffic, cannot be deleted. All other deployments can be deleted.
+
+        Args:
+          account_id: Identifier.
+
+          script_name: Name of the script, used in URLs and route configuration.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not script_name:
+            raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
+        if not deployment_id:
+            raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
+        return await self._delete(
+            f"/accounts/{account_id}/workers/scripts/{script_name}/deployments/{deployment_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DeploymentDeleteResponse,
+        )
+
+    async def get(
+        self,
+        deployment_id: str,
+        *,
+        account_id: str,
+        script_name: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DeploymentGetResponse:
+        """
+        Get information about a Worker Deployment.
+
+        Args:
+          account_id: Identifier.
+
+          script_name: Name of the script, used in URLs and route configuration.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not script_name:
+            raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
+        if not deployment_id:
+            raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
+        return await self._get(
+            f"/accounts/{account_id}/workers/scripts/{script_name}/deployments/{deployment_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
                 post_parser=ResultWrapper[DeploymentGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[DeploymentGetResponse], ResultWrapper[DeploymentGetResponse]),
@@ -293,6 +479,12 @@ class DeploymentsResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             deployments.create,
         )
+        self.list = to_raw_response_wrapper(
+            deployments.list,
+        )
+        self.delete = to_raw_response_wrapper(
+            deployments.delete,
+        )
         self.get = to_raw_response_wrapper(
             deployments.get,
         )
@@ -304,6 +496,12 @@ class AsyncDeploymentsResourceWithRawResponse:
 
         self.create = async_to_raw_response_wrapper(
             deployments.create,
+        )
+        self.list = async_to_raw_response_wrapper(
+            deployments.list,
+        )
+        self.delete = async_to_raw_response_wrapper(
+            deployments.delete,
         )
         self.get = async_to_raw_response_wrapper(
             deployments.get,
@@ -317,6 +515,12 @@ class DeploymentsResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             deployments.create,
         )
+        self.list = to_streamed_response_wrapper(
+            deployments.list,
+        )
+        self.delete = to_streamed_response_wrapper(
+            deployments.delete,
+        )
         self.get = to_streamed_response_wrapper(
             deployments.get,
         )
@@ -328,6 +532,12 @@ class AsyncDeploymentsResourceWithStreamingResponse:
 
         self.create = async_to_streamed_response_wrapper(
             deployments.create,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            deployments.list,
+        )
+        self.delete = async_to_streamed_response_wrapper(
+            deployments.delete,
         )
         self.get = async_to_streamed_response_wrapper(
             deployments.get,

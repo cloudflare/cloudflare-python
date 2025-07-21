@@ -25,10 +25,12 @@ from .deployment_get_response import DeploymentGetResponse as DeploymentGetRespo
 from .subdomain_create_params import SubdomainCreateParams as SubdomainCreateParams
 from .version_create_response import VersionCreateResponse as VersionCreateResponse
 from .deployment_create_params import DeploymentCreateParams as DeploymentCreateParams
+from .deployment_list_response import DeploymentListResponse as DeploymentListResponse
 from .schedule_update_response import ScheduleUpdateResponse as ScheduleUpdateResponse
 from .subdomain_create_response import SubdomainCreateResponse as SubdomainCreateResponse
 from .subdomain_delete_response import SubdomainDeleteResponse as SubdomainDeleteResponse
 from .deployment_create_response import DeploymentCreateResponse as DeploymentCreateResponse
+from .deployment_delete_response import DeploymentDeleteResponse as DeploymentDeleteResponse
 from .script_and_version_setting_edit_params import (
     ScriptAndVersionSettingEditParams as ScriptAndVersionSettingEditParams,
 )

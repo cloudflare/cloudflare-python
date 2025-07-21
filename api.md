@@ -2389,13 +2389,20 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.workers.scripts import DeploymentCreateResponse, DeploymentGetResponse
+from cloudflare.types.workers.scripts import (
+    DeploymentCreateResponse,
+    DeploymentListResponse,
+    DeploymentDeleteResponse,
+    DeploymentGetResponse,
+)
 ```
 
 Methods:
 
 - <code title="post /accounts/{account_id}/workers/scripts/{script_name}/deployments">client.workers.scripts.deployments.<a href="./src/cloudflare/resources/workers/scripts/deployments.py">create</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/scripts/deployment_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/scripts/deployment_create_response.py">DeploymentCreateResponse</a></code>
-- <code title="get /accounts/{account_id}/workers/scripts/{script_name}/deployments">client.workers.scripts.deployments.<a href="./src/cloudflare/resources/workers/scripts/deployments.py">get</a>(script_name, \*, account_id) -> <a href="./src/cloudflare/types/workers/scripts/deployment_get_response.py">DeploymentGetResponse</a></code>
+- <code title="get /accounts/{account_id}/workers/scripts/{script_name}/deployments">client.workers.scripts.deployments.<a href="./src/cloudflare/resources/workers/scripts/deployments.py">list</a>(script_name, \*, account_id) -> <a href="./src/cloudflare/types/workers/scripts/deployment_list_response.py">DeploymentListResponse</a></code>
+- <code title="delete /accounts/{account_id}/workers/scripts/{script_name}/deployments/{deployment_id}">client.workers.scripts.deployments.<a href="./src/cloudflare/resources/workers/scripts/deployments.py">delete</a>(deployment_id, \*, account_id, script_name) -> <a href="./src/cloudflare/types/workers/scripts/deployment_delete_response.py">DeploymentDeleteResponse</a></code>
+- <code title="get /accounts/{account_id}/workers/scripts/{script_name}/deployments/{deployment_id}">client.workers.scripts.deployments.<a href="./src/cloudflare/resources/workers/scripts/deployments.py">get</a>(deployment_id, \*, account_id, script_name) -> <a href="./src/cloudflare/types/workers/scripts/deployment_get_response.py">DeploymentGetResponse</a></code>
 
 ### Versions
 
