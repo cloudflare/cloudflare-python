@@ -20,7 +20,7 @@ class TestAbuseReports:
     @parametrize
     def test_method_create_overload_1(self, client: Cloudflare) -> None:
         abuse_report = client.abuse_reports.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_dmca",
             address1="x",
@@ -44,7 +44,7 @@ class TestAbuseReports:
     @parametrize
     def test_method_create_with_all_params_overload_1(self, client: Cloudflare) -> None:
         abuse_report = client.abuse_reports.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_dmca",
             address1="x",
@@ -74,7 +74,7 @@ class TestAbuseReports:
     @parametrize
     def test_raw_response_create_overload_1(self, client: Cloudflare) -> None:
         response = client.abuse_reports.with_raw_response.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_dmca",
             address1="x",
@@ -102,7 +102,7 @@ class TestAbuseReports:
     @parametrize
     def test_streaming_response_create_overload_1(self, client: Cloudflare) -> None:
         with client.abuse_reports.with_streaming_response.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_dmca",
             address1="x",
@@ -133,8 +133,29 @@ class TestAbuseReports:
     def test_path_params_create_overload_1(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.abuse_reports.with_raw_response.create(
-                report_type="abuse_general",
+                report_type="report_type",
                 account_id="",
+                act="abuse_dmca",
+                address1="x",
+                agent_name="x",
+                agree=1,
+                city="x",
+                country="x",
+                email="email",
+                email2="email2",
+                host_notification="send",
+                name="x",
+                original_work="x",
+                owner_notification="send",
+                signature="signature",
+                state="x",
+                urls="urls",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `report_type` but received ''"):
+            client.abuse_reports.with_raw_response.create(
+                report_type="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 act="abuse_dmca",
                 address1="x",
                 agent_name="x",
@@ -156,7 +177,7 @@ class TestAbuseReports:
     @parametrize
     def test_method_create_overload_2(self, client: Cloudflare) -> None:
         abuse_report = client.abuse_reports.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_trademark",
             email="email",
@@ -176,7 +197,7 @@ class TestAbuseReports:
     @parametrize
     def test_method_create_with_all_params_overload_2(self, client: Cloudflare) -> None:
         abuse_report = client.abuse_reports.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_trademark",
             email="email",
@@ -202,7 +223,7 @@ class TestAbuseReports:
     @parametrize
     def test_raw_response_create_overload_2(self, client: Cloudflare) -> None:
         response = client.abuse_reports.with_raw_response.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_trademark",
             email="email",
@@ -226,7 +247,7 @@ class TestAbuseReports:
     @parametrize
     def test_streaming_response_create_overload_2(self, client: Cloudflare) -> None:
         with client.abuse_reports.with_streaming_response.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_trademark",
             email="email",
@@ -253,8 +274,25 @@ class TestAbuseReports:
     def test_path_params_create_overload_2(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.abuse_reports.with_raw_response.create(
-                report_type="abuse_general",
+                report_type="report_type",
                 account_id="",
+                act="abuse_trademark",
+                email="email",
+                email2="email2",
+                host_notification="send",
+                justification="x",
+                name="x",
+                owner_notification="send",
+                trademark_number="x",
+                trademark_office="x",
+                trademark_symbol="x",
+                urls="urls",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `report_type` but received ''"):
+            client.abuse_reports.with_raw_response.create(
+                report_type="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 act="abuse_trademark",
                 email="email",
                 email2="email2",
@@ -272,7 +310,7 @@ class TestAbuseReports:
     @parametrize
     def test_method_create_overload_3(self, client: Cloudflare) -> None:
         abuse_report = client.abuse_reports.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_general",
             email="email",
@@ -289,7 +327,7 @@ class TestAbuseReports:
     @parametrize
     def test_method_create_with_all_params_overload_3(self, client: Cloudflare) -> None:
         abuse_report = client.abuse_reports.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_general",
             email="email",
@@ -315,7 +353,7 @@ class TestAbuseReports:
     @parametrize
     def test_raw_response_create_overload_3(self, client: Cloudflare) -> None:
         response = client.abuse_reports.with_raw_response.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_general",
             email="email",
@@ -336,7 +374,7 @@ class TestAbuseReports:
     @parametrize
     def test_streaming_response_create_overload_3(self, client: Cloudflare) -> None:
         with client.abuse_reports.with_streaming_response.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_general",
             email="email",
@@ -360,8 +398,22 @@ class TestAbuseReports:
     def test_path_params_create_overload_3(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.abuse_reports.with_raw_response.create(
-                report_type="abuse_general",
+                report_type="report_type",
                 account_id="",
+                act="abuse_general",
+                email="email",
+                email2="email2",
+                host_notification="send",
+                justification="x",
+                name="x",
+                owner_notification="send",
+                urls="urls",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `report_type` but received ''"):
+            client.abuse_reports.with_raw_response.create(
+                report_type="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 act="abuse_general",
                 email="email",
                 email2="email2",
@@ -376,7 +428,7 @@ class TestAbuseReports:
     @parametrize
     def test_method_create_overload_4(self, client: Cloudflare) -> None:
         abuse_report = client.abuse_reports.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_phishing",
             email="email",
@@ -393,7 +445,7 @@ class TestAbuseReports:
     @parametrize
     def test_method_create_with_all_params_overload_4(self, client: Cloudflare) -> None:
         abuse_report = client.abuse_reports.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_phishing",
             email="email",
@@ -417,7 +469,7 @@ class TestAbuseReports:
     @parametrize
     def test_raw_response_create_overload_4(self, client: Cloudflare) -> None:
         response = client.abuse_reports.with_raw_response.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_phishing",
             email="email",
@@ -438,7 +490,7 @@ class TestAbuseReports:
     @parametrize
     def test_streaming_response_create_overload_4(self, client: Cloudflare) -> None:
         with client.abuse_reports.with_streaming_response.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_phishing",
             email="email",
@@ -462,8 +514,22 @@ class TestAbuseReports:
     def test_path_params_create_overload_4(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.abuse_reports.with_raw_response.create(
-                report_type="abuse_general",
+                report_type="report_type",
                 account_id="",
+                act="abuse_phishing",
+                email="email",
+                email2="email2",
+                host_notification="send",
+                justification="xxxxxxxxxxxxxxxxxxxx",
+                name="x",
+                owner_notification="send",
+                urls="urls",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `report_type` but received ''"):
+            client.abuse_reports.with_raw_response.create(
+                report_type="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 act="abuse_phishing",
                 email="email",
                 email2="email2",
@@ -478,7 +544,7 @@ class TestAbuseReports:
     @parametrize
     def test_method_create_overload_5(self, client: Cloudflare) -> None:
         abuse_report = client.abuse_reports.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_children",
             email="email",
@@ -496,7 +562,7 @@ class TestAbuseReports:
     @parametrize
     def test_method_create_with_all_params_overload_5(self, client: Cloudflare) -> None:
         abuse_report = client.abuse_reports.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_children",
             email="email",
@@ -521,7 +587,7 @@ class TestAbuseReports:
     @parametrize
     def test_raw_response_create_overload_5(self, client: Cloudflare) -> None:
         response = client.abuse_reports.with_raw_response.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_children",
             email="email",
@@ -543,7 +609,7 @@ class TestAbuseReports:
     @parametrize
     def test_streaming_response_create_overload_5(self, client: Cloudflare) -> None:
         with client.abuse_reports.with_streaming_response.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_children",
             email="email",
@@ -568,8 +634,23 @@ class TestAbuseReports:
     def test_path_params_create_overload_5(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.abuse_reports.with_raw_response.create(
-                report_type="abuse_general",
+                report_type="report_type",
                 account_id="",
+                act="abuse_children",
+                email="email",
+                email2="email2",
+                host_notification="send",
+                justification="x",
+                name="x",
+                ncmec_notification="send",
+                owner_notification="send",
+                urls="urls",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `report_type` but received ''"):
+            client.abuse_reports.with_raw_response.create(
+                report_type="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 act="abuse_children",
                 email="email",
                 email2="email2",
@@ -585,7 +666,7 @@ class TestAbuseReports:
     @parametrize
     def test_method_create_overload_6(self, client: Cloudflare) -> None:
         abuse_report = client.abuse_reports.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_threat",
             email="email",
@@ -602,7 +683,7 @@ class TestAbuseReports:
     @parametrize
     def test_method_create_with_all_params_overload_6(self, client: Cloudflare) -> None:
         abuse_report = client.abuse_reports.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_threat",
             email="email",
@@ -625,7 +706,7 @@ class TestAbuseReports:
     @parametrize
     def test_raw_response_create_overload_6(self, client: Cloudflare) -> None:
         response = client.abuse_reports.with_raw_response.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_threat",
             email="email",
@@ -646,7 +727,7 @@ class TestAbuseReports:
     @parametrize
     def test_streaming_response_create_overload_6(self, client: Cloudflare) -> None:
         with client.abuse_reports.with_streaming_response.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_threat",
             email="email",
@@ -670,8 +751,22 @@ class TestAbuseReports:
     def test_path_params_create_overload_6(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.abuse_reports.with_raw_response.create(
-                report_type="abuse_general",
+                report_type="report_type",
                 account_id="",
+                act="abuse_threat",
+                email="email",
+                email2="email2",
+                host_notification="send",
+                justification="x",
+                name="x",
+                owner_notification="send",
+                urls="urls",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `report_type` but received ''"):
+            client.abuse_reports.with_raw_response.create(
+                report_type="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 act="abuse_threat",
                 email="email",
                 email2="email2",
@@ -686,7 +781,7 @@ class TestAbuseReports:
     @parametrize
     def test_method_create_overload_7(self, client: Cloudflare) -> None:
         abuse_report = client.abuse_reports.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_registrar_whois",
             email="email",
@@ -701,7 +796,7 @@ class TestAbuseReports:
     @parametrize
     def test_method_create_with_all_params_overload_7(self, client: Cloudflare) -> None:
         abuse_report = client.abuse_reports.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_registrar_whois",
             email="email",
@@ -722,7 +817,7 @@ class TestAbuseReports:
     @parametrize
     def test_raw_response_create_overload_7(self, client: Cloudflare) -> None:
         response = client.abuse_reports.with_raw_response.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_registrar_whois",
             email="email",
@@ -741,7 +836,7 @@ class TestAbuseReports:
     @parametrize
     def test_streaming_response_create_overload_7(self, client: Cloudflare) -> None:
         with client.abuse_reports.with_streaming_response.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_registrar_whois",
             email="email",
@@ -763,8 +858,20 @@ class TestAbuseReports:
     def test_path_params_create_overload_7(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.abuse_reports.with_raw_response.create(
-                report_type="abuse_general",
+                report_type="report_type",
                 account_id="",
+                act="abuse_registrar_whois",
+                email="email",
+                email2="email2",
+                name="x",
+                owner_notification="send",
+                urls="urls",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `report_type` but received ''"):
+            client.abuse_reports.with_raw_response.create(
+                report_type="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 act="abuse_registrar_whois",
                 email="email",
                 email2="email2",
@@ -777,7 +884,7 @@ class TestAbuseReports:
     @parametrize
     def test_method_create_overload_8(self, client: Cloudflare) -> None:
         abuse_report = client.abuse_reports.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_ncsei",
             email="email",
@@ -794,7 +901,7 @@ class TestAbuseReports:
     @parametrize
     def test_method_create_with_all_params_overload_8(self, client: Cloudflare) -> None:
         abuse_report = client.abuse_reports.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_ncsei",
             email="email",
@@ -818,7 +925,7 @@ class TestAbuseReports:
     @parametrize
     def test_raw_response_create_overload_8(self, client: Cloudflare) -> None:
         response = client.abuse_reports.with_raw_response.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_ncsei",
             email="email",
@@ -839,7 +946,7 @@ class TestAbuseReports:
     @parametrize
     def test_streaming_response_create_overload_8(self, client: Cloudflare) -> None:
         with client.abuse_reports.with_streaming_response.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_ncsei",
             email="email",
@@ -863,8 +970,22 @@ class TestAbuseReports:
     def test_path_params_create_overload_8(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.abuse_reports.with_raw_response.create(
-                report_type="abuse_general",
+                report_type="report_type",
                 account_id="",
+                act="abuse_ncsei",
+                email="email",
+                email2="email2",
+                host_notification="send",
+                name="x",
+                ncsei_subject_representation=True,
+                owner_notification="send",
+                urls="urls",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `report_type` but received ''"):
+            client.abuse_reports.with_raw_response.create(
+                report_type="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 act="abuse_ncsei",
                 email="email",
                 email2="email2",
@@ -885,7 +1006,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_method_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         abuse_report = await async_client.abuse_reports.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_dmca",
             address1="x",
@@ -909,7 +1030,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_method_create_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
         abuse_report = await async_client.abuse_reports.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_dmca",
             address1="x",
@@ -939,7 +1060,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_raw_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.abuse_reports.with_raw_response.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_dmca",
             address1="x",
@@ -967,7 +1088,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_streaming_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         async with async_client.abuse_reports.with_streaming_response.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_dmca",
             address1="x",
@@ -998,8 +1119,29 @@ class TestAsyncAbuseReports:
     async def test_path_params_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.abuse_reports.with_raw_response.create(
-                report_type="abuse_general",
+                report_type="report_type",
                 account_id="",
+                act="abuse_dmca",
+                address1="x",
+                agent_name="x",
+                agree=1,
+                city="x",
+                country="x",
+                email="email",
+                email2="email2",
+                host_notification="send",
+                name="x",
+                original_work="x",
+                owner_notification="send",
+                signature="signature",
+                state="x",
+                urls="urls",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `report_type` but received ''"):
+            await async_client.abuse_reports.with_raw_response.create(
+                report_type="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 act="abuse_dmca",
                 address1="x",
                 agent_name="x",
@@ -1021,7 +1163,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_method_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         abuse_report = await async_client.abuse_reports.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_trademark",
             email="email",
@@ -1041,7 +1183,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_method_create_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
         abuse_report = await async_client.abuse_reports.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_trademark",
             email="email",
@@ -1067,7 +1209,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_raw_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.abuse_reports.with_raw_response.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_trademark",
             email="email",
@@ -1091,7 +1233,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_streaming_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         async with async_client.abuse_reports.with_streaming_response.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_trademark",
             email="email",
@@ -1118,8 +1260,25 @@ class TestAsyncAbuseReports:
     async def test_path_params_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.abuse_reports.with_raw_response.create(
-                report_type="abuse_general",
+                report_type="report_type",
                 account_id="",
+                act="abuse_trademark",
+                email="email",
+                email2="email2",
+                host_notification="send",
+                justification="x",
+                name="x",
+                owner_notification="send",
+                trademark_number="x",
+                trademark_office="x",
+                trademark_symbol="x",
+                urls="urls",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `report_type` but received ''"):
+            await async_client.abuse_reports.with_raw_response.create(
+                report_type="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 act="abuse_trademark",
                 email="email",
                 email2="email2",
@@ -1137,7 +1296,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_method_create_overload_3(self, async_client: AsyncCloudflare) -> None:
         abuse_report = await async_client.abuse_reports.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_general",
             email="email",
@@ -1154,7 +1313,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_method_create_with_all_params_overload_3(self, async_client: AsyncCloudflare) -> None:
         abuse_report = await async_client.abuse_reports.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_general",
             email="email",
@@ -1180,7 +1339,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_raw_response_create_overload_3(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.abuse_reports.with_raw_response.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_general",
             email="email",
@@ -1201,7 +1360,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_streaming_response_create_overload_3(self, async_client: AsyncCloudflare) -> None:
         async with async_client.abuse_reports.with_streaming_response.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_general",
             email="email",
@@ -1225,8 +1384,22 @@ class TestAsyncAbuseReports:
     async def test_path_params_create_overload_3(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.abuse_reports.with_raw_response.create(
-                report_type="abuse_general",
+                report_type="report_type",
                 account_id="",
+                act="abuse_general",
+                email="email",
+                email2="email2",
+                host_notification="send",
+                justification="x",
+                name="x",
+                owner_notification="send",
+                urls="urls",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `report_type` but received ''"):
+            await async_client.abuse_reports.with_raw_response.create(
+                report_type="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 act="abuse_general",
                 email="email",
                 email2="email2",
@@ -1241,7 +1414,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_method_create_overload_4(self, async_client: AsyncCloudflare) -> None:
         abuse_report = await async_client.abuse_reports.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_phishing",
             email="email",
@@ -1258,7 +1431,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_method_create_with_all_params_overload_4(self, async_client: AsyncCloudflare) -> None:
         abuse_report = await async_client.abuse_reports.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_phishing",
             email="email",
@@ -1282,7 +1455,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_raw_response_create_overload_4(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.abuse_reports.with_raw_response.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_phishing",
             email="email",
@@ -1303,7 +1476,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_streaming_response_create_overload_4(self, async_client: AsyncCloudflare) -> None:
         async with async_client.abuse_reports.with_streaming_response.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_phishing",
             email="email",
@@ -1327,8 +1500,22 @@ class TestAsyncAbuseReports:
     async def test_path_params_create_overload_4(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.abuse_reports.with_raw_response.create(
-                report_type="abuse_general",
+                report_type="report_type",
                 account_id="",
+                act="abuse_phishing",
+                email="email",
+                email2="email2",
+                host_notification="send",
+                justification="xxxxxxxxxxxxxxxxxxxx",
+                name="x",
+                owner_notification="send",
+                urls="urls",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `report_type` but received ''"):
+            await async_client.abuse_reports.with_raw_response.create(
+                report_type="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 act="abuse_phishing",
                 email="email",
                 email2="email2",
@@ -1343,7 +1530,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_method_create_overload_5(self, async_client: AsyncCloudflare) -> None:
         abuse_report = await async_client.abuse_reports.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_children",
             email="email",
@@ -1361,7 +1548,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_method_create_with_all_params_overload_5(self, async_client: AsyncCloudflare) -> None:
         abuse_report = await async_client.abuse_reports.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_children",
             email="email",
@@ -1386,7 +1573,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_raw_response_create_overload_5(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.abuse_reports.with_raw_response.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_children",
             email="email",
@@ -1408,7 +1595,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_streaming_response_create_overload_5(self, async_client: AsyncCloudflare) -> None:
         async with async_client.abuse_reports.with_streaming_response.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_children",
             email="email",
@@ -1433,8 +1620,23 @@ class TestAsyncAbuseReports:
     async def test_path_params_create_overload_5(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.abuse_reports.with_raw_response.create(
-                report_type="abuse_general",
+                report_type="report_type",
                 account_id="",
+                act="abuse_children",
+                email="email",
+                email2="email2",
+                host_notification="send",
+                justification="x",
+                name="x",
+                ncmec_notification="send",
+                owner_notification="send",
+                urls="urls",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `report_type` but received ''"):
+            await async_client.abuse_reports.with_raw_response.create(
+                report_type="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 act="abuse_children",
                 email="email",
                 email2="email2",
@@ -1450,7 +1652,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_method_create_overload_6(self, async_client: AsyncCloudflare) -> None:
         abuse_report = await async_client.abuse_reports.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_threat",
             email="email",
@@ -1467,7 +1669,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_method_create_with_all_params_overload_6(self, async_client: AsyncCloudflare) -> None:
         abuse_report = await async_client.abuse_reports.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_threat",
             email="email",
@@ -1490,7 +1692,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_raw_response_create_overload_6(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.abuse_reports.with_raw_response.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_threat",
             email="email",
@@ -1511,7 +1713,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_streaming_response_create_overload_6(self, async_client: AsyncCloudflare) -> None:
         async with async_client.abuse_reports.with_streaming_response.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_threat",
             email="email",
@@ -1535,8 +1737,22 @@ class TestAsyncAbuseReports:
     async def test_path_params_create_overload_6(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.abuse_reports.with_raw_response.create(
-                report_type="abuse_general",
+                report_type="report_type",
                 account_id="",
+                act="abuse_threat",
+                email="email",
+                email2="email2",
+                host_notification="send",
+                justification="x",
+                name="x",
+                owner_notification="send",
+                urls="urls",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `report_type` but received ''"):
+            await async_client.abuse_reports.with_raw_response.create(
+                report_type="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 act="abuse_threat",
                 email="email",
                 email2="email2",
@@ -1551,7 +1767,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_method_create_overload_7(self, async_client: AsyncCloudflare) -> None:
         abuse_report = await async_client.abuse_reports.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_registrar_whois",
             email="email",
@@ -1566,7 +1782,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_method_create_with_all_params_overload_7(self, async_client: AsyncCloudflare) -> None:
         abuse_report = await async_client.abuse_reports.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_registrar_whois",
             email="email",
@@ -1587,7 +1803,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_raw_response_create_overload_7(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.abuse_reports.with_raw_response.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_registrar_whois",
             email="email",
@@ -1606,7 +1822,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_streaming_response_create_overload_7(self, async_client: AsyncCloudflare) -> None:
         async with async_client.abuse_reports.with_streaming_response.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_registrar_whois",
             email="email",
@@ -1628,8 +1844,20 @@ class TestAsyncAbuseReports:
     async def test_path_params_create_overload_7(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.abuse_reports.with_raw_response.create(
-                report_type="abuse_general",
+                report_type="report_type",
                 account_id="",
+                act="abuse_registrar_whois",
+                email="email",
+                email2="email2",
+                name="x",
+                owner_notification="send",
+                urls="urls",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `report_type` but received ''"):
+            await async_client.abuse_reports.with_raw_response.create(
+                report_type="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 act="abuse_registrar_whois",
                 email="email",
                 email2="email2",
@@ -1642,7 +1870,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_method_create_overload_8(self, async_client: AsyncCloudflare) -> None:
         abuse_report = await async_client.abuse_reports.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_ncsei",
             email="email",
@@ -1659,7 +1887,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_method_create_with_all_params_overload_8(self, async_client: AsyncCloudflare) -> None:
         abuse_report = await async_client.abuse_reports.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_ncsei",
             email="email",
@@ -1683,7 +1911,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_raw_response_create_overload_8(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.abuse_reports.with_raw_response.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_ncsei",
             email="email",
@@ -1704,7 +1932,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_streaming_response_create_overload_8(self, async_client: AsyncCloudflare) -> None:
         async with async_client.abuse_reports.with_streaming_response.create(
-            report_type="abuse_general",
+            report_type="report_type",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             act="abuse_ncsei",
             email="email",
@@ -1728,8 +1956,22 @@ class TestAsyncAbuseReports:
     async def test_path_params_create_overload_8(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.abuse_reports.with_raw_response.create(
-                report_type="abuse_general",
+                report_type="report_type",
                 account_id="",
+                act="abuse_ncsei",
+                email="email",
+                email2="email2",
+                host_notification="send",
+                name="x",
+                ncsei_subject_representation=True,
+                owner_notification="send",
+                urls="urls",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `report_type` but received ''"):
+            await async_client.abuse_reports.with_raw_response.create(
+                report_type="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 act="abuse_ncsei",
                 email="email",
                 email2="email2",

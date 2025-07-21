@@ -48,28 +48,10 @@ class AbuseReportsResource(SyncAPIResource):
     @overload
     def create(
         self,
-        report_type: Literal[
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ],
+        report_type: str,
         *,
         account_id: str,
-        act: Literal[
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ],
+        act: Literal["abuse_dmca"],
         address1: str,
         agent_name: str,
         agree: Literal[1],
@@ -102,6 +84,8 @@ class AbuseReportsResource(SyncAPIResource):
 
         Args:
           report_type: The abuse report type.
+
+          act: The abuse report type.
 
           address1: Text not exceeding 100 characters. This field may be released by Cloudflare to
               third parties such as the Lumen Database (https://lumendatabase.org/).
@@ -174,28 +158,10 @@ class AbuseReportsResource(SyncAPIResource):
     @overload
     def create(
         self,
-        report_type: Literal[
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ],
+        report_type: str,
         *,
         account_id: str,
-        act: Literal[
-            "abuse_trademark",
-            "abuse_dmca",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ],
+        act: Literal["abuse_trademark"],
         email: str,
         email2: str,
         host_notification: Literal["send"],
@@ -224,6 +190,8 @@ class AbuseReportsResource(SyncAPIResource):
 
         Args:
           report_type: The abuse report type.
+
+          act: The abuse report type.
 
           email: A valid email of the abuse reporter. This field may be released by Cloudflare to
               third parties such as the Lumen Database (https://lumendatabase.org/).
@@ -281,28 +249,10 @@ class AbuseReportsResource(SyncAPIResource):
     @overload
     def create(
         self,
-        report_type: Literal[
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ],
+        report_type: str,
         *,
         account_id: str,
-        act: Literal[
-            "abuse_general",
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ],
+        act: Literal["abuse_general"],
         email: str,
         email2: str,
         host_notification: Literal["send", "send-anon"],
@@ -331,6 +281,8 @@ class AbuseReportsResource(SyncAPIResource):
 
         Args:
           report_type: The abuse report type.
+
+          act: The abuse report type.
 
           email: A valid email of the abuse reporter. This field may be released by Cloudflare to
               third parties such as the Lumen Database (https://lumendatabase.org/).
@@ -395,28 +347,10 @@ class AbuseReportsResource(SyncAPIResource):
     @overload
     def create(
         self,
-        report_type: Literal[
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ],
+        report_type: str,
         *,
         account_id: str,
-        act: Literal[
-            "abuse_phishing",
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ],
+        act: Literal["abuse_phishing"],
         email: str,
         email2: str,
         host_notification: Literal["send", "send-anon"],
@@ -443,6 +377,8 @@ class AbuseReportsResource(SyncAPIResource):
 
         Args:
           report_type: The abuse report type.
+
+          act: The abuse report type.
 
           email: A valid email of the abuse reporter. This field may be released by Cloudflare to
               third parties such as the Lumen Database (https://lumendatabase.org/).
@@ -497,28 +433,10 @@ class AbuseReportsResource(SyncAPIResource):
     @overload
     def create(
         self,
-        report_type: Literal[
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ],
+        report_type: str,
         *,
         account_id: str,
-        act: Literal[
-            "abuse_children",
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_threat",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ],
+        act: Literal["abuse_children"],
         email: str,
         email2: str,
         host_notification: Literal["send", "send-anon"],
@@ -546,6 +464,8 @@ class AbuseReportsResource(SyncAPIResource):
 
         Args:
           report_type: The abuse report type.
+
+          act: The abuse report type.
 
           email: A valid email of the abuse reporter. This field may be released by Cloudflare to
               third parties such as the Lumen Database (https://lumendatabase.org/).
@@ -603,28 +523,10 @@ class AbuseReportsResource(SyncAPIResource):
     @overload
     def create(
         self,
-        report_type: Literal[
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ],
+        report_type: str,
         *,
         account_id: str,
-        act: Literal[
-            "abuse_threat",
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ],
+        act: Literal["abuse_threat"],
         email: str,
         email2: str,
         host_notification: Literal["send", "send-anon"],
@@ -650,6 +552,8 @@ class AbuseReportsResource(SyncAPIResource):
 
         Args:
           report_type: The abuse report type.
+
+          act: The abuse report type.
 
           email: A valid email of the abuse reporter. This field may be released by Cloudflare to
               third parties such as the Lumen Database (https://lumendatabase.org/).
@@ -701,28 +605,10 @@ class AbuseReportsResource(SyncAPIResource):
     @overload
     def create(
         self,
-        report_type: Literal[
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ],
+        report_type: str,
         *,
         account_id: str,
-        act: Literal[
-            "abuse_registrar_whois",
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_ncsei",
-        ],
+        act: Literal["abuse_registrar_whois"],
         email: str,
         email2: str,
         name: str,
@@ -746,6 +632,8 @@ class AbuseReportsResource(SyncAPIResource):
 
         Args:
           report_type: The abuse report type.
+
+          act: The abuse report type.
 
           email: A valid email of the abuse reporter. This field may be released by Cloudflare to
               third parties such as the Lumen Database (https://lumendatabase.org/).
@@ -790,28 +678,10 @@ class AbuseReportsResource(SyncAPIResource):
     @overload
     def create(
         self,
-        report_type: Literal[
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ],
+        report_type: str,
         *,
         account_id: str,
-        act: Literal[
-            "abuse_ncsei",
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_registrar_whois",
-        ],
+        act: Literal["abuse_ncsei"],
         email: str,
         email2: str,
         host_notification: Literal["send", "send-anon"],
@@ -838,6 +708,8 @@ class AbuseReportsResource(SyncAPIResource):
 
         Args:
           report_type: The abuse report type.
+
+          act: The abuse report type.
 
           email: A valid email of the abuse reporter. This field may be released by Cloudflare to
               third parties such as the Lumen Database (https://lumendatabase.org/).
@@ -958,28 +830,17 @@ class AbuseReportsResource(SyncAPIResource):
     )
     def create(
         self,
-        report_type: Literal[
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ],
+        report_type: str,
         *,
         account_id: str,
-        act: Literal[
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ],
+        act: Literal["abuse_dmca"]
+        | Literal["abuse_trademark"]
+        | Literal["abuse_general"]
+        | Literal["abuse_phishing"]
+        | Literal["abuse_children"]
+        | Literal["abuse_threat"]
+        | Literal["abuse_registrar_whois"]
+        | Literal["abuse_ncsei"],
         address1: str | NotGiven = NOT_GIVEN,
         agent_name: str | NotGiven = NOT_GIVEN,
         agree: Literal[1] | NotGiven = NOT_GIVEN,
@@ -1091,28 +952,10 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
     @overload
     async def create(
         self,
-        report_type: Literal[
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ],
+        report_type: str,
         *,
         account_id: str,
-        act: Literal[
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ],
+        act: Literal["abuse_dmca"],
         address1: str,
         agent_name: str,
         agree: Literal[1],
@@ -1145,6 +988,8 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
 
         Args:
           report_type: The abuse report type.
+
+          act: The abuse report type.
 
           address1: Text not exceeding 100 characters. This field may be released by Cloudflare to
               third parties such as the Lumen Database (https://lumendatabase.org/).
@@ -1217,28 +1062,10 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
     @overload
     async def create(
         self,
-        report_type: Literal[
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ],
+        report_type: str,
         *,
         account_id: str,
-        act: Literal[
-            "abuse_trademark",
-            "abuse_dmca",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ],
+        act: Literal["abuse_trademark"],
         email: str,
         email2: str,
         host_notification: Literal["send"],
@@ -1267,6 +1094,8 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
 
         Args:
           report_type: The abuse report type.
+
+          act: The abuse report type.
 
           email: A valid email of the abuse reporter. This field may be released by Cloudflare to
               third parties such as the Lumen Database (https://lumendatabase.org/).
@@ -1324,28 +1153,10 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
     @overload
     async def create(
         self,
-        report_type: Literal[
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ],
+        report_type: str,
         *,
         account_id: str,
-        act: Literal[
-            "abuse_general",
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ],
+        act: Literal["abuse_general"],
         email: str,
         email2: str,
         host_notification: Literal["send", "send-anon"],
@@ -1374,6 +1185,8 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
 
         Args:
           report_type: The abuse report type.
+
+          act: The abuse report type.
 
           email: A valid email of the abuse reporter. This field may be released by Cloudflare to
               third parties such as the Lumen Database (https://lumendatabase.org/).
@@ -1438,28 +1251,10 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
     @overload
     async def create(
         self,
-        report_type: Literal[
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ],
+        report_type: str,
         *,
         account_id: str,
-        act: Literal[
-            "abuse_phishing",
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ],
+        act: Literal["abuse_phishing"],
         email: str,
         email2: str,
         host_notification: Literal["send", "send-anon"],
@@ -1486,6 +1281,8 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
 
         Args:
           report_type: The abuse report type.
+
+          act: The abuse report type.
 
           email: A valid email of the abuse reporter. This field may be released by Cloudflare to
               third parties such as the Lumen Database (https://lumendatabase.org/).
@@ -1540,28 +1337,10 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
     @overload
     async def create(
         self,
-        report_type: Literal[
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ],
+        report_type: str,
         *,
         account_id: str,
-        act: Literal[
-            "abuse_children",
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_threat",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ],
+        act: Literal["abuse_children"],
         email: str,
         email2: str,
         host_notification: Literal["send", "send-anon"],
@@ -1589,6 +1368,8 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
 
         Args:
           report_type: The abuse report type.
+
+          act: The abuse report type.
 
           email: A valid email of the abuse reporter. This field may be released by Cloudflare to
               third parties such as the Lumen Database (https://lumendatabase.org/).
@@ -1646,28 +1427,10 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
     @overload
     async def create(
         self,
-        report_type: Literal[
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ],
+        report_type: str,
         *,
         account_id: str,
-        act: Literal[
-            "abuse_threat",
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ],
+        act: Literal["abuse_threat"],
         email: str,
         email2: str,
         host_notification: Literal["send", "send-anon"],
@@ -1693,6 +1456,8 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
 
         Args:
           report_type: The abuse report type.
+
+          act: The abuse report type.
 
           email: A valid email of the abuse reporter. This field may be released by Cloudflare to
               third parties such as the Lumen Database (https://lumendatabase.org/).
@@ -1744,28 +1509,10 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
     @overload
     async def create(
         self,
-        report_type: Literal[
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ],
+        report_type: str,
         *,
         account_id: str,
-        act: Literal[
-            "abuse_registrar_whois",
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_ncsei",
-        ],
+        act: Literal["abuse_registrar_whois"],
         email: str,
         email2: str,
         name: str,
@@ -1789,6 +1536,8 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
 
         Args:
           report_type: The abuse report type.
+
+          act: The abuse report type.
 
           email: A valid email of the abuse reporter. This field may be released by Cloudflare to
               third parties such as the Lumen Database (https://lumendatabase.org/).
@@ -1833,28 +1582,10 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
     @overload
     async def create(
         self,
-        report_type: Literal[
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ],
+        report_type: str,
         *,
         account_id: str,
-        act: Literal[
-            "abuse_ncsei",
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_registrar_whois",
-        ],
+        act: Literal["abuse_ncsei"],
         email: str,
         email2: str,
         host_notification: Literal["send", "send-anon"],
@@ -1881,6 +1612,8 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
 
         Args:
           report_type: The abuse report type.
+
+          act: The abuse report type.
 
           email: A valid email of the abuse reporter. This field may be released by Cloudflare to
               third parties such as the Lumen Database (https://lumendatabase.org/).
@@ -2001,28 +1734,17 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
     )
     async def create(
         self,
-        report_type: Literal[
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ],
+        report_type: str,
         *,
         account_id: str,
-        act: Literal[
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ],
+        act: Literal["abuse_dmca"]
+        | Literal["abuse_trademark"]
+        | Literal["abuse_general"]
+        | Literal["abuse_phishing"]
+        | Literal["abuse_children"]
+        | Literal["abuse_threat"]
+        | Literal["abuse_registrar_whois"]
+        | Literal["abuse_ncsei"],
         address1: str | NotGiven = NOT_GIVEN,
         agent_name: str | NotGiven = NOT_GIVEN,
         agree: Literal[1] | NotGiven = NOT_GIVEN,

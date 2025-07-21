@@ -21,18 +21,8 @@ __all__ = [
 class AbuseReportsDmcaReport(TypedDict, total=False):
     account_id: Required[str]
 
-    act: Required[
-        Literal[
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ]
-    ]
+    act: Required[Literal["abuse_dmca"]]
+    """The abuse report type."""
 
     address1: Required[str]
     """Text not exceeding 100 characters.
@@ -153,18 +143,8 @@ class AbuseReportsDmcaReport(TypedDict, total=False):
 class AbuseReportsTrademarkReport(TypedDict, total=False):
     account_id: Required[str]
 
-    act: Required[
-        Literal[
-            "abuse_trademark",
-            "abuse_dmca",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ]
-    ]
+    act: Required[Literal["abuse_trademark"]]
+    """The abuse report type."""
 
     email: Required[str]
     """A valid email of the abuse reporter.
@@ -249,18 +229,8 @@ class AbuseReportsTrademarkReport(TypedDict, total=False):
 class AbuseReportsGeneralReport(TypedDict, total=False):
     account_id: Required[str]
 
-    act: Required[
-        Literal[
-            "abuse_general",
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ]
-    ]
+    act: Required[Literal["abuse_general"]]
+    """The abuse report type."""
 
     email: Required[str]
     """A valid email of the abuse reporter.
@@ -358,18 +328,8 @@ class AbuseReportsGeneralReport(TypedDict, total=False):
 class AbuseReportsPhishingReport(TypedDict, total=False):
     account_id: Required[str]
 
-    act: Required[
-        Literal[
-            "abuse_phishing",
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ]
-    ]
+    act: Required[Literal["abuse_phishing"]]
+    """The abuse report type."""
 
     email: Required[str]
     """A valid email of the abuse reporter.
@@ -452,18 +412,8 @@ class AbuseReportsPhishingReport(TypedDict, total=False):
 class AbuseReportsCsamReport(TypedDict, total=False):
     account_id: Required[str]
 
-    act: Required[
-        Literal[
-            "abuse_children",
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_threat",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ]
-    ]
+    act: Required[Literal["abuse_children"]]
+    """The abuse report type."""
 
     email: Required[str]
     """A valid email of the abuse reporter.
@@ -552,18 +502,8 @@ class AbuseReportsCsamReport(TypedDict, total=False):
 class AbuseReportsThreatReport(TypedDict, total=False):
     account_id: Required[str]
 
-    act: Required[
-        Literal[
-            "abuse_threat",
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_registrar_whois",
-            "abuse_ncsei",
-        ]
-    ]
+    act: Required[Literal["abuse_threat"]]
+    """The abuse report type."""
 
     email: Required[str]
     """A valid email of the abuse reporter.
@@ -639,18 +579,8 @@ class AbuseReportsThreatReport(TypedDict, total=False):
 class AbuseReportsRegistrarWhoisReport(TypedDict, total=False):
     account_id: Required[str]
 
-    act: Required[
-        Literal[
-            "abuse_registrar_whois",
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_ncsei",
-        ]
-    ]
+    act: Required[Literal["abuse_registrar_whois"]]
+    """The abuse report type."""
 
     email: Required[str]
     """A valid email of the abuse reporter.
@@ -713,18 +643,8 @@ class AbuseReportsRegistrarWhoisReport(TypedDict, total=False):
 class AbuseReportsNcseiReport(TypedDict, total=False):
     account_id: Required[str]
 
-    act: Required[
-        Literal[
-            "abuse_ncsei",
-            "abuse_dmca",
-            "abuse_trademark",
-            "abuse_general",
-            "abuse_phishing",
-            "abuse_children",
-            "abuse_threat",
-            "abuse_registrar_whois",
-        ]
-    ]
+    act: Required[Literal["abuse_ncsei"]]
+    """The abuse report type."""
 
     email: Required[str]
     """A valid email of the abuse reporter.
