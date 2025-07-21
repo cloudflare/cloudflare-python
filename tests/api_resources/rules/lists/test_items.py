@@ -29,7 +29,7 @@ class TestItems:
         item = client.rules.lists.items.create(
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}],
+            body=[{"ip": "10.0.0.1"}],
         )
         assert_matches_type(ItemCreateResponse, item, path=["response"])
 
@@ -38,7 +38,7 @@ class TestItems:
         response = client.rules.lists.items.with_raw_response.create(
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}],
+            body=[{"ip": "10.0.0.1"}],
         )
 
         assert response.is_closed is True
@@ -51,7 +51,7 @@ class TestItems:
         with client.rules.lists.items.with_streaming_response.create(
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}],
+            body=[{"ip": "10.0.0.1"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -67,14 +67,14 @@ class TestItems:
             client.rules.lists.items.with_raw_response.create(
                 list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
                 account_id="",
-                body=[{}],
+                body=[{"ip": "10.0.0.1"}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `list_id` but received ''"):
             client.rules.lists.items.with_raw_response.create(
                 list_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body=[{}],
+                body=[{"ip": "10.0.0.1"}],
             )
 
     @parametrize
@@ -82,7 +82,7 @@ class TestItems:
         item = client.rules.lists.items.update(
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}],
+            body=[{"ip": "10.0.0.1"}],
         )
         assert_matches_type(ItemUpdateResponse, item, path=["response"])
 
@@ -91,7 +91,7 @@ class TestItems:
         response = client.rules.lists.items.with_raw_response.update(
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}],
+            body=[{"ip": "10.0.0.1"}],
         )
 
         assert response.is_closed is True
@@ -104,7 +104,7 @@ class TestItems:
         with client.rules.lists.items.with_streaming_response.update(
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}],
+            body=[{"ip": "10.0.0.1"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -120,14 +120,14 @@ class TestItems:
             client.rules.lists.items.with_raw_response.update(
                 list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
                 account_id="",
-                body=[{}],
+                body=[{"ip": "10.0.0.1"}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `list_id` but received ''"):
             client.rules.lists.items.with_raw_response.update(
                 list_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body=[{}],
+                body=[{"ip": "10.0.0.1"}],
             )
 
     @parametrize
@@ -317,7 +317,7 @@ class TestAsyncItems:
         item = await async_client.rules.lists.items.create(
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}],
+            body=[{"ip": "10.0.0.1"}],
         )
         assert_matches_type(ItemCreateResponse, item, path=["response"])
 
@@ -326,7 +326,7 @@ class TestAsyncItems:
         response = await async_client.rules.lists.items.with_raw_response.create(
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}],
+            body=[{"ip": "10.0.0.1"}],
         )
 
         assert response.is_closed is True
@@ -339,7 +339,7 @@ class TestAsyncItems:
         async with async_client.rules.lists.items.with_streaming_response.create(
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}],
+            body=[{"ip": "10.0.0.1"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -355,14 +355,14 @@ class TestAsyncItems:
             await async_client.rules.lists.items.with_raw_response.create(
                 list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
                 account_id="",
-                body=[{}],
+                body=[{"ip": "10.0.0.1"}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `list_id` but received ''"):
             await async_client.rules.lists.items.with_raw_response.create(
                 list_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body=[{}],
+                body=[{"ip": "10.0.0.1"}],
             )
 
     @parametrize
@@ -370,7 +370,7 @@ class TestAsyncItems:
         item = await async_client.rules.lists.items.update(
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}],
+            body=[{"ip": "10.0.0.1"}],
         )
         assert_matches_type(ItemUpdateResponse, item, path=["response"])
 
@@ -379,7 +379,7 @@ class TestAsyncItems:
         response = await async_client.rules.lists.items.with_raw_response.update(
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}],
+            body=[{"ip": "10.0.0.1"}],
         )
 
         assert response.is_closed is True
@@ -392,7 +392,7 @@ class TestAsyncItems:
         async with async_client.rules.lists.items.with_streaming_response.update(
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}],
+            body=[{"ip": "10.0.0.1"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -408,14 +408,14 @@ class TestAsyncItems:
             await async_client.rules.lists.items.with_raw_response.update(
                 list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
                 account_id="",
-                body=[{}],
+                body=[{"ip": "10.0.0.1"}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `list_id` but received ''"):
             await async_client.rules.lists.items.with_raw_response.update(
                 list_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body=[{}],
+                body=[{"ip": "10.0.0.1"}],
             )
 
     @parametrize
