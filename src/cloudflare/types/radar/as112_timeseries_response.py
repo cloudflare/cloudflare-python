@@ -7,7 +7,6 @@ from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
-from .as112_timeseries_response import UnnamedTypeWithobjectParent2UnnamedTypeWithobjectParent2Item
 
 __all__ = [
     "AS112TimeseriesResponse",
@@ -16,6 +15,7 @@ __all__ = [
     "MetaConfidenceInfoAnnotation",
     "MetaDateRange",
     "MetaUnit",
+    "AS112TimeseriesResponseItem",
 ]
 
 
@@ -94,6 +94,12 @@ class Meta(BaseModel):
     """Measurement units for the results."""
 
 
+class AS112TimeseriesResponseItem(BaseModel):
+    timestamps: List[datetime]
+
+    values: List[str]
+
+
 class AS112TimeseriesResponse(BaseModel):
     meta: Meta
     """Metadata for the results."""
@@ -102,4 +108,4 @@ class AS112TimeseriesResponse(BaseModel):
         # Stub to indicate that arbitrary properties are accepted.
         # To access properties that are not valid identifiers you can use `getattr`, e.g.
         # `getattr(obj, '$type')`
-        def __getattr__(self, attr: str) -> UnnamedTypeWithobjectParent2UnnamedTypeWithobjectParent2Item: ...
+        def __getattr__(self, attr: str) -> AS112TimeseriesResponseItem: ...
