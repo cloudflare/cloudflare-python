@@ -40,14 +40,6 @@ from .datasets import (
     DatasetsResourceWithStreamingResponse,
     AsyncDatasetsResourceWithStreamingResponse,
 )
-from .insights import (
-    InsightsResource,
-    AsyncInsightsResource,
-    InsightsResourceWithRawResponse,
-    AsyncInsightsResourceWithRawResponse,
-    InsightsResourceWithStreamingResponse,
-    AsyncInsightsResourceWithStreamingResponse,
-)
 from .attackers import (
     AttackersResource,
     AsyncAttackersResource,
@@ -172,12 +164,6 @@ __all__ = [
     "AsyncTargetIndustriesResourceWithRawResponse",
     "TargetIndustriesResourceWithStreamingResponse",
     "AsyncTargetIndustriesResourceWithStreamingResponse",
-    "InsightsResource",
-    "AsyncInsightsResource",
-    "InsightsResourceWithRawResponse",
-    "AsyncInsightsResourceWithRawResponse",
-    "InsightsResourceWithStreamingResponse",
-    "AsyncInsightsResourceWithStreamingResponse",
     "ThreatEventsResource",
     "AsyncThreatEventsResource",
     "ThreatEventsResourceWithRawResponse",

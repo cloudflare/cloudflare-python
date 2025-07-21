@@ -9152,26 +9152,6 @@ Methods:
 
 - <code title="get /accounts/{account_id}/cloudforce-one/events/targetIndustries">client.cloudforce_one.threat_events.target_industries.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/target_industries.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/target_industry_list_response.py">TargetIndustryListResponse</a></code>
 
-### Insights
-
-Types:
-
-```python
-from cloudflare.types.cloudforce_one.threat_events import (
-    InsightCreateResponse,
-    InsightDeleteResponse,
-    InsightEditResponse,
-    InsightGetResponse,
-)
-```
-
-Methods:
-
-- <code title="post /accounts/{account_id}/cloudforce-one/events/{event_id}/insight/create">client.cloudforce_one.threat_events.insights.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/insights.py">create</a>(event_id, \*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/insight_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/insight_create_response.py">InsightCreateResponse</a></code>
-- <code title="delete /accounts/{account_id}/cloudforce-one/events/{event_id}/insight/{insight_id}">client.cloudforce_one.threat_events.insights.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/insights.py">delete</a>(insight_id, \*, account_id, event_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/insight_delete_response.py">InsightDeleteResponse</a></code>
-- <code title="patch /accounts/{account_id}/cloudforce-one/events/{event_id}/insight/{insight_id}">client.cloudforce_one.threat_events.insights.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/insights.py">edit</a>(insight_id, \*, account_id, event_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/insight_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/insight_edit_response.py">InsightEditResponse</a></code>
-- <code title="get /accounts/{account_id}/cloudforce-one/events/{event_id}/insight/{insight_id}">client.cloudforce_one.threat_events.insights.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/insights.py">get</a>(insight_id, \*, account_id, event_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/insight_get_response.py">InsightGetResponse</a></code>
-
 # AIGateway
 
 Types:

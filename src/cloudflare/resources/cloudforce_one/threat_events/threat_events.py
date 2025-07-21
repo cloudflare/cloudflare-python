@@ -40,14 +40,6 @@ from .relate import (
     RelateResourceWithStreamingResponse,
     AsyncRelateResourceWithStreamingResponse,
 )
-from .insights import (
-    InsightsResource,
-    AsyncInsightsResource,
-    InsightsResourceWithRawResponse,
-    AsyncInsightsResourceWithRawResponse,
-    InsightsResourceWithStreamingResponse,
-    AsyncInsightsResourceWithStreamingResponse,
-)
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import maybe_transform, async_maybe_transform
 from .attackers import (
@@ -175,10 +167,6 @@ class ThreatEventsResource(SyncAPIResource):
     @cached_property
     def target_industries(self) -> TargetIndustriesResource:
         return TargetIndustriesResource(self._client)
-
-    @cached_property
-    def insights(self) -> InsightsResource:
-        return InsightsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> ThreatEventsResourceWithRawResponse:
@@ -434,6 +422,8 @@ class ThreatEventsResource(SyncAPIResource):
         event: str | NotGiven = NOT_GIVEN,
         indicator: str | NotGiven = NOT_GIVEN,
         indicator_type: str | NotGiven = NOT_GIVEN,
+        insight: str | NotGiven = NOT_GIVEN,
+        raw: threat_event_edit_params.Raw | NotGiven = NOT_GIVEN,
         target_country: str | NotGiven = NOT_GIVEN,
         target_industry: str | NotGiven = NOT_GIVEN,
         tlp: str | NotGiven = NOT_GIVEN,
@@ -475,6 +465,8 @@ class ThreatEventsResource(SyncAPIResource):
                     "event": event,
                     "indicator": indicator,
                     "indicator_type": indicator_type,
+                    "insight": insight,
+                    "raw": raw,
                     "target_country": target_country,
                     "target_industry": target_industry,
                     "tlp": tlp,
@@ -572,10 +564,6 @@ class AsyncThreatEventsResource(AsyncAPIResource):
     @cached_property
     def target_industries(self) -> AsyncTargetIndustriesResource:
         return AsyncTargetIndustriesResource(self._client)
-
-    @cached_property
-    def insights(self) -> AsyncInsightsResource:
-        return AsyncInsightsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncThreatEventsResourceWithRawResponse:
@@ -831,6 +819,8 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         event: str | NotGiven = NOT_GIVEN,
         indicator: str | NotGiven = NOT_GIVEN,
         indicator_type: str | NotGiven = NOT_GIVEN,
+        insight: str | NotGiven = NOT_GIVEN,
+        raw: threat_event_edit_params.Raw | NotGiven = NOT_GIVEN,
         target_country: str | NotGiven = NOT_GIVEN,
         target_industry: str | NotGiven = NOT_GIVEN,
         tlp: str | NotGiven = NOT_GIVEN,
@@ -872,6 +862,8 @@ class AsyncThreatEventsResource(AsyncAPIResource):
                     "event": event,
                     "indicator": indicator,
                     "indicator_type": indicator_type,
+                    "insight": insight,
+                    "raw": raw,
                     "target_country": target_country,
                     "target_industry": target_industry,
                     "tlp": tlp,
@@ -992,10 +984,6 @@ class ThreatEventsResourceWithRawResponse:
     def target_industries(self) -> TargetIndustriesResourceWithRawResponse:
         return TargetIndustriesResourceWithRawResponse(self._threat_events.target_industries)
 
-    @cached_property
-    def insights(self) -> InsightsResourceWithRawResponse:
-        return InsightsResourceWithRawResponse(self._threat_events.insights)
-
 
 class AsyncThreatEventsResourceWithRawResponse:
     def __init__(self, threat_events: AsyncThreatEventsResource) -> None:
@@ -1063,10 +1051,6 @@ class AsyncThreatEventsResourceWithRawResponse:
     @cached_property
     def target_industries(self) -> AsyncTargetIndustriesResourceWithRawResponse:
         return AsyncTargetIndustriesResourceWithRawResponse(self._threat_events.target_industries)
-
-    @cached_property
-    def insights(self) -> AsyncInsightsResourceWithRawResponse:
-        return AsyncInsightsResourceWithRawResponse(self._threat_events.insights)
 
 
 class ThreatEventsResourceWithStreamingResponse:
@@ -1136,10 +1120,6 @@ class ThreatEventsResourceWithStreamingResponse:
     def target_industries(self) -> TargetIndustriesResourceWithStreamingResponse:
         return TargetIndustriesResourceWithStreamingResponse(self._threat_events.target_industries)
 
-    @cached_property
-    def insights(self) -> InsightsResourceWithStreamingResponse:
-        return InsightsResourceWithStreamingResponse(self._threat_events.insights)
-
 
 class AsyncThreatEventsResourceWithStreamingResponse:
     def __init__(self, threat_events: AsyncThreatEventsResource) -> None:
@@ -1207,7 +1187,3 @@ class AsyncThreatEventsResourceWithStreamingResponse:
     @cached_property
     def target_industries(self) -> AsyncTargetIndustriesResourceWithStreamingResponse:
         return AsyncTargetIndustriesResourceWithStreamingResponse(self._threat_events.target_industries)
-
-    @cached_property
-    def insights(self) -> AsyncInsightsResourceWithStreamingResponse:
-        return AsyncInsightsResourceWithStreamingResponse(self._threat_events.insights)
