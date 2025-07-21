@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable
+from typing import Dict, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["TokenPolicy", "PermissionGroup", "PermissionGroupMeta"]
@@ -29,5 +29,5 @@ class TokenPolicy(TypedDict, total=False):
     permission_groups: Required[Iterable[PermissionGroup]]
     """A set of permission groups that are specified to the policy."""
 
-    resources: Required[Dict[str, Union[str, Dict[str, str]]]]
+    resources: Required[Dict[str, object]]
     """A list of resource names that the policy applies to."""

@@ -36,7 +36,10 @@ class TestTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {"foo": "string"},
+                    "resources": {
+                        "object": "bar",
+                        "string": "bar",
+                    },
                 }
             ],
         )
@@ -66,7 +69,10 @@ class TestTokens:
                             },
                         },
                     ],
-                    "resources": {"foo": "string"},
+                    "resources": {
+                        "object": "bar",
+                        "string": "bar",
+                    },
                 }
             ],
             condition={
@@ -92,7 +98,10 @@ class TestTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {"foo": "string"},
+                    "resources": {
+                        "object": "bar",
+                        "string": "bar",
+                    },
                 }
             ],
         )
@@ -114,7 +123,10 @@ class TestTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {"foo": "string"},
+                    "resources": {
+                        "object": "bar",
+                        "string": "bar",
+                    },
                 }
             ],
         ) as response:
@@ -139,7 +151,10 @@ class TestTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {"foo": "string"},
+                    "resources": {
+                        "object": "bar",
+                        "string": "bar",
+                    },
                 }
             ],
         )
@@ -170,7 +185,10 @@ class TestTokens:
                             },
                         },
                     ],
-                    "resources": {"foo": "string"},
+                    "resources": {
+                        "object": "bar",
+                        "string": "bar",
+                    },
                 }
             ],
             condition={
@@ -198,7 +216,10 @@ class TestTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {"foo": "string"},
+                    "resources": {
+                        "object": "bar",
+                        "string": "bar",
+                    },
                 }
             ],
         )
@@ -221,7 +242,10 @@ class TestTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {"foo": "string"},
+                    "resources": {
+                        "object": "bar",
+                        "string": "bar",
+                    },
                 }
             ],
         ) as response:
@@ -247,7 +271,10 @@ class TestTokens:
                             {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                             {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                         ],
-                        "resources": {"foo": "string"},
+                        "resources": {
+                            "object": "bar",
+                            "string": "bar",
+                        },
                     }
                 ],
             )
@@ -420,7 +447,10 @@ class TestAsyncTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {"foo": "string"},
+                    "resources": {
+                        "object": "bar",
+                        "string": "bar",
+                    },
                 }
             ],
         )
@@ -450,7 +480,10 @@ class TestAsyncTokens:
                             },
                         },
                     ],
-                    "resources": {"foo": "string"},
+                    "resources": {
+                        "object": "bar",
+                        "string": "bar",
+                    },
                 }
             ],
             condition={
@@ -476,7 +509,10 @@ class TestAsyncTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {"foo": "string"},
+                    "resources": {
+                        "object": "bar",
+                        "string": "bar",
+                    },
                 }
             ],
         )
@@ -498,7 +534,10 @@ class TestAsyncTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {"foo": "string"},
+                    "resources": {
+                        "object": "bar",
+                        "string": "bar",
+                    },
                 }
             ],
         ) as response:
@@ -523,7 +562,10 @@ class TestAsyncTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {"foo": "string"},
+                    "resources": {
+                        "object": "bar",
+                        "string": "bar",
+                    },
                 }
             ],
         )
@@ -554,7 +596,10 @@ class TestAsyncTokens:
                             },
                         },
                     ],
-                    "resources": {"foo": "string"},
+                    "resources": {
+                        "object": "bar",
+                        "string": "bar",
+                    },
                 }
             ],
             condition={
@@ -582,7 +627,10 @@ class TestAsyncTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {"foo": "string"},
+                    "resources": {
+                        "object": "bar",
+                        "string": "bar",
+                    },
                 }
             ],
         )
@@ -605,7 +653,10 @@ class TestAsyncTokens:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resources": {"foo": "string"},
+                    "resources": {
+                        "object": "bar",
+                        "string": "bar",
+                    },
                 }
             ],
         ) as response:
@@ -631,7 +682,10 @@ class TestAsyncTokens:
                             {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                             {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                         ],
-                        "resources": {"foo": "string"},
+                        "resources": {
+                            "object": "bar",
+                            "string": "bar",
+                        },
                     }
                 ],
             )
