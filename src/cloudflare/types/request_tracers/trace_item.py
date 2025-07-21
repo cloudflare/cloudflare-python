@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from typing import Optional
 
-from ..._compat import PYDANTIC_V2
 from ..._models import BaseModel
 
 __all__ = ["TraceItem"]
@@ -42,8 +41,3 @@ class TraceItem(BaseModel):
 
 
 from .trace import Trace
-
-if PYDANTIC_V2:
-    TraceItem.model_rebuild()
-else:
-    TraceItem.update_forward_refs()  # type: ignore
