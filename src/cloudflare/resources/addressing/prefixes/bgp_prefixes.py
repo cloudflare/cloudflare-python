@@ -147,8 +147,8 @@ class BGPPrefixesResource(SyncAPIResource):
         account_id: str,
         prefix_id: str,
         asn_prepend_count: int | NotGiven = NOT_GIVEN,
+        auto_advertise_withdraw: bool | NotGiven = NOT_GIVEN,
         on_demand: bgp_prefix_edit_params.OnDemand | NotGiven = NOT_GIVEN,
-        withdraw_if_no_route: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -169,9 +169,10 @@ class BGPPrefixesResource(SyncAPIResource):
 
           asn_prepend_count: Number of times to prepend the Cloudflare ASN to the BGP AS-Path attribute
 
-          withdraw_if_no_route: Controls whether the BGP prefix is automatically withdrawn when prefix is
-              withdrawn from Magic routing table (for Magic Transit customers using Direct
-              CNI)
+          auto_advertise_withdraw: Determines if Cloudflare advertises a BYOIP BGP prefix even when there is no
+              matching BGP prefix in the Magic routing table. When true, Cloudflare will
+              automatically withdraw the BGP prefix when there are no matching BGP routes, and
+              will resume advertising when there is at least one matching BGP route.
 
           extra_headers: Send extra headers
 
@@ -192,8 +193,8 @@ class BGPPrefixesResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "asn_prepend_count": asn_prepend_count,
+                    "auto_advertise_withdraw": auto_advertise_withdraw,
                     "on_demand": on_demand,
-                    "withdraw_if_no_route": withdraw_if_no_route,
                 },
                 bgp_prefix_edit_params.BGPPrefixEditParams,
             ),
@@ -379,8 +380,8 @@ class AsyncBGPPrefixesResource(AsyncAPIResource):
         account_id: str,
         prefix_id: str,
         asn_prepend_count: int | NotGiven = NOT_GIVEN,
+        auto_advertise_withdraw: bool | NotGiven = NOT_GIVEN,
         on_demand: bgp_prefix_edit_params.OnDemand | NotGiven = NOT_GIVEN,
-        withdraw_if_no_route: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -401,9 +402,10 @@ class AsyncBGPPrefixesResource(AsyncAPIResource):
 
           asn_prepend_count: Number of times to prepend the Cloudflare ASN to the BGP AS-Path attribute
 
-          withdraw_if_no_route: Controls whether the BGP prefix is automatically withdrawn when prefix is
-              withdrawn from Magic routing table (for Magic Transit customers using Direct
-              CNI)
+          auto_advertise_withdraw: Determines if Cloudflare advertises a BYOIP BGP prefix even when there is no
+              matching BGP prefix in the Magic routing table. When true, Cloudflare will
+              automatically withdraw the BGP prefix when there are no matching BGP routes, and
+              will resume advertising when there is at least one matching BGP route.
 
           extra_headers: Send extra headers
 
@@ -424,8 +426,8 @@ class AsyncBGPPrefixesResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "asn_prepend_count": asn_prepend_count,
+                    "auto_advertise_withdraw": auto_advertise_withdraw,
                     "on_demand": on_demand,
-                    "withdraw_if_no_route": withdraw_if_no_route,
                 },
                 bgp_prefix_edit_params.BGPPrefixEditParams,
             ),

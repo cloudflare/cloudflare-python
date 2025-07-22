@@ -139,8 +139,8 @@ class TestBGPPrefixes:
             account_id="258def64c72dae45f3e4c8516e2111f2",
             prefix_id="2af39739cc4e3b5910c918468bb89828",
             asn_prepend_count=2,
+            auto_advertise_withdraw=True,
             on_demand={"advertised": True},
-            withdraw_if_no_route=True,
         )
         assert_matches_type(Optional[BGPPrefix], bgp_prefix, path=["response"])
 
@@ -382,8 +382,8 @@ class TestAsyncBGPPrefixes:
             account_id="258def64c72dae45f3e4c8516e2111f2",
             prefix_id="2af39739cc4e3b5910c918468bb89828",
             asn_prepend_count=2,
+            auto_advertise_withdraw=True,
             on_demand={"advertised": True},
-            withdraw_if_no_route=True,
         )
         assert_matches_type(Optional[BGPPrefix], bgp_prefix, path=["response"])
 

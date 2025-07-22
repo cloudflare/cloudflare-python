@@ -58,6 +58,14 @@ class BGPPrefix(BaseModel):
     asn_prepend_count: Optional[int] = None
     """Number of times to prepend the Cloudflare ASN to the BGP AS-Path attribute"""
 
+    auto_advertise_withdraw: Optional[bool] = None
+    """
+    Determines if Cloudflare advertises a BYOIP BGP prefix even when there is no
+    matching BGP prefix in the Magic routing table. When true, Cloudflare will
+    automatically withdraw the BGP prefix when there are no matching BGP routes, and
+    will resume advertising when there is at least one matching BGP route.
+    """
+
     bgp_signal_opts: Optional[BGPSignalOpts] = None
 
     cidr: Optional[str] = None
@@ -68,10 +76,3 @@ class BGPPrefix(BaseModel):
     modified_at: Optional[datetime] = None
 
     on_demand: Optional[OnDemand] = None
-
-    withdraw_if_no_route: Optional[bool] = None
-    """
-    Controls whether the BGP prefix is automatically withdrawn when prefix is
-    withdrawn from Magic routing table (for Magic Transit customers using Direct
-    CNI)
-    """
