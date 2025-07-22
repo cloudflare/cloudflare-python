@@ -213,7 +213,7 @@ class RuleSettingParam(TypedDict, total=False):
     audit_ssh: Optional[AuditSSH]
     """Settings for the Audit SSH action."""
 
-    biso_admin_controls: Optional[BISOAdminControls]
+    biso_admin_controls: BISOAdminControls
     """Configure how browser isolation behaves."""
 
     block_page: Optional[BlockPage]
