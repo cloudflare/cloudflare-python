@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import TYPE_CHECKING, List
+from typing import TYPE_CHECKING, Dict, List
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -104,6 +104,7 @@ class AS112TimeseriesResponse(BaseModel):
     meta: Meta
     """Metadata for the results."""
 
+    __pydantic_extra__: Dict[str, AS112TimeseriesResponseItem] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
     if TYPE_CHECKING:
         # Stub to indicate that arbitrary properties are accepted.
         # To access properties that are not valid identifiers you can use `getattr`, e.g.

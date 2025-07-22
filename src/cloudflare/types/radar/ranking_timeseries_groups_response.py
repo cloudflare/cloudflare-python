@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import TYPE_CHECKING, List, Union
+from typing import TYPE_CHECKING, Dict, List, Union
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -97,6 +97,7 @@ class Meta(BaseModel):
 class Serie0(BaseModel):
     timestamps: List[datetime]
 
+    __pydantic_extra__: Dict[str, List[Union[str, float]]] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
     if TYPE_CHECKING:
         # Stub to indicate that arbitrary properties are accepted.
         # To access properties that are not valid identifiers you can use `getattr`, e.g.
