@@ -60,7 +60,7 @@ class GatewayRule(BaseModel):
         ]
     ] = None
     """
-    The action to preform when the associated traffic, identity, and device posture
+    The action to perform when the associated traffic, identity, and device posture
     expressions are either absent or evaluate to `true`.
     """
 

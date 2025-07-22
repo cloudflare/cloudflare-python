@@ -202,7 +202,7 @@ class UntrustedCERT(BaseModel):
 
 
 class RuleSetting(BaseModel):
-    add_headers: Optional[Dict[str, str]] = None
+    add_headers: Optional[Dict[str, List[str]]] = None
     """Add custom headers to allowed requests, in the form of key-value pairs.
 
     Keys are header names, pointing to an array with its header value(s).

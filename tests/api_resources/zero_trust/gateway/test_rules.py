@@ -47,7 +47,10 @@ class TestRules:
             identity='any(identity.groups.name[*] in {"finance"})',
             precedence=0,
             rule_settings={
-                "add_headers": {"foo": "string"},
+                "add_headers": {
+                    "My-Next-Header": ["foo", "bar"],
+                    "X-Custom-Header-Name": ["somecustomvalue"],
+                },
                 "allow_child_bypass": False,
                 "audit_ssh": {"command_logging": False},
                 "biso_admin_controls": {
@@ -207,7 +210,10 @@ class TestRules:
             identity='any(identity.groups.name[*] in {"finance"})',
             precedence=0,
             rule_settings={
-                "add_headers": {"foo": "string"},
+                "add_headers": {
+                    "My-Next-Header": ["foo", "bar"],
+                    "X-Custom-Header-Name": ["somecustomvalue"],
+                },
                 "allow_child_bypass": False,
                 "audit_ssh": {"command_logging": False},
                 "biso_admin_controls": {
@@ -564,7 +570,10 @@ class TestAsyncRules:
             identity='any(identity.groups.name[*] in {"finance"})',
             precedence=0,
             rule_settings={
-                "add_headers": {"foo": "string"},
+                "add_headers": {
+                    "My-Next-Header": ["foo", "bar"],
+                    "X-Custom-Header-Name": ["somecustomvalue"],
+                },
                 "allow_child_bypass": False,
                 "audit_ssh": {"command_logging": False},
                 "biso_admin_controls": {
@@ -724,7 +733,10 @@ class TestAsyncRules:
             identity='any(identity.groups.name[*] in {"finance"})',
             precedence=0,
             rule_settings={
-                "add_headers": {"foo": "string"},
+                "add_headers": {
+                    "My-Next-Header": ["foo", "bar"],
+                    "X-Custom-Header-Name": ["somecustomvalue"],
+                },
                 "allow_child_bypass": False,
                 "audit_ssh": {"command_logging": False},
                 "biso_admin_controls": {

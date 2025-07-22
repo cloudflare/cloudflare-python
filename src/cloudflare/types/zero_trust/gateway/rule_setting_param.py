@@ -201,7 +201,7 @@ class UntrustedCERT(TypedDict, total=False):
 
 
 class RuleSettingParam(TypedDict, total=False):
-    add_headers: Optional[Dict[str, str]]
+    add_headers: Optional[Dict[str, List[str]]]
     """Add custom headers to allowed requests, in the form of key-value pairs.
 
     Keys are header names, pointing to an array with its header value(s).

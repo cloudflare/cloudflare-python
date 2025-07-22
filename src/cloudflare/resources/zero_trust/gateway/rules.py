@@ -93,7 +93,7 @@ class RulesResource(SyncAPIResource):
         Creates a new Zero Trust Gateway rule.
 
         Args:
-          action: The action to preform when the associated traffic, identity, and device posture
+          action: The action to perform when the associated traffic, identity, and device posture
               expressions are either absent or evaluate to `true`.
 
           name: The name of the rule.
@@ -213,7 +213,7 @@ class RulesResource(SyncAPIResource):
         Args:
           rule_id: The API resource UUID.
 
-          action: The action to preform when the associated traffic, identity, and device posture
+          action: The action to perform when the associated traffic, identity, and device posture
               expressions are either absent or evaluate to `true`.
 
           name: The name of the rule.
@@ -517,7 +517,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Creates a new Zero Trust Gateway rule.
 
         Args:
-          action: The action to preform when the associated traffic, identity, and device posture
+          action: The action to perform when the associated traffic, identity, and device posture
               expressions are either absent or evaluate to `true`.
 
           name: The name of the rule.
@@ -637,7 +637,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Args:
           rule_id: The API resource UUID.
 
-          action: The action to preform when the associated traffic, identity, and device posture
+          action: The action to perform when the associated traffic, identity, and device posture
               expressions are either absent or evaluate to `true`.
 
           name: The name of the rule.

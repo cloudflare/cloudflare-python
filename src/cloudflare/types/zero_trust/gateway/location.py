@@ -29,7 +29,7 @@ class Location(BaseModel):
     """
     The uuid identifier of the IPv6 block brought to the gateway, so that this
     location's IPv6 address is allocated from the Bring Your Own Ipv6(BYOIPv6) block
-    and not from the standard CloudFlare IPv6 block.
+    and not from the standard Cloudflare IPv6 block.
     """
 
     doh_subdomain: Optional[str] = None
