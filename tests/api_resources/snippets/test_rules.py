@@ -21,20 +21,11 @@ class TestRules:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         rule = client.snippets.rules.update(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(SyncSinglePage[RuleUpdateResponse], rule, path=["response"])
-
-    @parametrize
-    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
-        rule = client.snippets.rules.update(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            rules=[
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
+            body=[
                 {
-                    "description": "Rule description",
-                    "enabled": True,
-                    "expression": 'http.cookie eq "a=b"',
-                    "snippet_name": "snippet_name_01",
+                    "expression": "ip.src ne 1.1.1.1",
+                    "snippet_name": "my_snippet",
                 }
             ],
         )
@@ -43,7 +34,13 @@ class TestRules:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.snippets.rules.with_raw_response.update(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
+            body=[
+                {
+                    "expression": "ip.src ne 1.1.1.1",
+                    "snippet_name": "my_snippet",
+                }
+            ],
         )
 
         assert response.is_closed is True
@@ -54,7 +51,13 @@ class TestRules:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.snippets.rules.with_streaming_response.update(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
+            body=[
+                {
+                    "expression": "ip.src ne 1.1.1.1",
+                    "snippet_name": "my_snippet",
+                }
+            ],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -69,19 +72,25 @@ class TestRules:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.snippets.rules.with_raw_response.update(
                 zone_id="",
+                body=[
+                    {
+                        "expression": "ip.src ne 1.1.1.1",
+                        "snippet_name": "my_snippet",
+                    }
+                ],
             )
 
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         rule = client.snippets.rules.list(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
         )
         assert_matches_type(SyncSinglePage[RuleListResponse], rule, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.snippets.rules.with_raw_response.list(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
         )
 
         assert response.is_closed is True
@@ -92,7 +101,7 @@ class TestRules:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.snippets.rules.with_streaming_response.list(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -112,31 +121,31 @@ class TestRules:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         rule = client.snippets.rules.delete(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
         )
-        assert_matches_type(RuleDeleteResponse, rule, path=["response"])
+        assert_matches_type(SyncSinglePage[RuleDeleteResponse], rule, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.snippets.rules.with_raw_response.delete(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(RuleDeleteResponse, rule, path=["response"])
+        assert_matches_type(SyncSinglePage[RuleDeleteResponse], rule, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.snippets.rules.with_streaming_response.delete(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = response.parse()
-            assert_matches_type(RuleDeleteResponse, rule, path=["response"])
+            assert_matches_type(SyncSinglePage[RuleDeleteResponse], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -156,20 +165,11 @@ class TestAsyncRules:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         rule = await async_client.snippets.rules.update(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(AsyncSinglePage[RuleUpdateResponse], rule, path=["response"])
-
-    @parametrize
-    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        rule = await async_client.snippets.rules.update(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            rules=[
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
+            body=[
                 {
-                    "description": "Rule description",
-                    "enabled": True,
-                    "expression": 'http.cookie eq "a=b"',
-                    "snippet_name": "snippet_name_01",
+                    "expression": "ip.src ne 1.1.1.1",
+                    "snippet_name": "my_snippet",
                 }
             ],
         )
@@ -178,7 +178,13 @@ class TestAsyncRules:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.snippets.rules.with_raw_response.update(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
+            body=[
+                {
+                    "expression": "ip.src ne 1.1.1.1",
+                    "snippet_name": "my_snippet",
+                }
+            ],
         )
 
         assert response.is_closed is True
@@ -189,7 +195,13 @@ class TestAsyncRules:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.snippets.rules.with_streaming_response.update(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
+            body=[
+                {
+                    "expression": "ip.src ne 1.1.1.1",
+                    "snippet_name": "my_snippet",
+                }
+            ],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -204,19 +216,25 @@ class TestAsyncRules:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.snippets.rules.with_raw_response.update(
                 zone_id="",
+                body=[
+                    {
+                        "expression": "ip.src ne 1.1.1.1",
+                        "snippet_name": "my_snippet",
+                    }
+                ],
             )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         rule = await async_client.snippets.rules.list(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
         )
         assert_matches_type(AsyncSinglePage[RuleListResponse], rule, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.snippets.rules.with_raw_response.list(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
         )
 
         assert response.is_closed is True
@@ -227,7 +245,7 @@ class TestAsyncRules:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.snippets.rules.with_streaming_response.list(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -247,31 +265,31 @@ class TestAsyncRules:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         rule = await async_client.snippets.rules.delete(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
         )
-        assert_matches_type(RuleDeleteResponse, rule, path=["response"])
+        assert_matches_type(AsyncSinglePage[RuleDeleteResponse], rule, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.snippets.rules.with_raw_response.delete(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(RuleDeleteResponse, rule, path=["response"])
+        assert_matches_type(AsyncSinglePage[RuleDeleteResponse], rule, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.snippets.rules.with_streaming_response.delete(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = await response.parse()
-            assert_matches_type(RuleDeleteResponse, rule, path=["response"])
+            assert_matches_type(AsyncSinglePage[RuleDeleteResponse], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

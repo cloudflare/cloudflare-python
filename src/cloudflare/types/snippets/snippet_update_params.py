@@ -2,21 +2,25 @@
 
 from __future__ import annotations
 
+from typing import List
 from typing_extensions import Required, TypedDict
+
+from ..._types import FileTypes
 
 __all__ = ["SnippetUpdateParams", "Metadata"]
 
 
 class SnippetUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """The unique ID of the zone."""
 
-    files: str
-    """Content files of uploaded snippet"""
+    files: Required[List[FileTypes]]
+    """The list of files belonging to the snippet."""
 
-    metadata: Metadata
+    metadata: Required[Metadata]
+    """Metadata about the snippet."""
 
 
 class Metadata(TypedDict, total=False):
-    main_module: str
-    """Main module name of uploaded snippet"""
+    main_module: Required[str]
+    """Name of the file that contains the main module of the snippet."""

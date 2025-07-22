@@ -55,12 +55,12 @@ class ContentResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BinaryAPIResponse:
         """
-        Snippet Content
+        Fetches the content of a snippet belonging to the zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: The unique ID of the zone.
 
-          snippet_name: Snippet identifying name
+          snippet_name: The identifying name of the snippet.
 
           extra_headers: Send extra headers
 
@@ -117,12 +117,12 @@ class AsyncContentResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncBinaryAPIResponse:
         """
-        Snippet Content
+        Fetches the content of a snippet belonging to the zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: The unique ID of the zone.
 
-          snippet_name: Snippet identifying name
+          snippet_name: The identifying name of the snippet.
 
           extra_headers: Send extra headers
 

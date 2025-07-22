@@ -5,23 +5,26 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-__all__ = ["RuleUpdateParams", "Rule"]
+__all__ = ["RuleUpdateParams", "Body"]
 
 
 class RuleUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """The unique ID of the zone."""
 
-    rules: Iterable[Rule]
-    """List of snippet rules"""
+    body: Required[Iterable[Body]]
+    """A list of snippet rules."""
 
 
-class Rule(TypedDict, total=False):
+class Body(TypedDict, total=False):
+    expression: Required[str]
+    """The expression defining which traffic will match the rule."""
+
+    snippet_name: Required[str]
+    """The identifying name of the snippet."""
+
     description: str
+    """An informative description of the rule."""
 
     enabled: bool
-
-    expression: str
-
-    snippet_name: str
-    """Snippet identifying name"""
+    """Whether the rule should be executed."""

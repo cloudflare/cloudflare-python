@@ -50,7 +50,7 @@ class RulesResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        rules: Iterable[rule_update_params.Rule] | NotGiven = NOT_GIVEN,
+        body: Iterable[rule_update_params.Body],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -59,12 +59,12 @@ class RulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncSinglePage[RuleUpdateResponse]:
         """
-        Put Rules
+        Updates all snippet rules belonging to the zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: The unique ID of the zone.
 
-          rules: List of snippet rules
+          body: A list of snippet rules.
 
           extra_headers: Send extra headers
 
@@ -79,7 +79,7 @@ class RulesResource(SyncAPIResource):
         return self._get_api_list(
             f"/zones/{zone_id}/snippets/snippet_rules",
             page=SyncSinglePage[RuleUpdateResponse],
-            body=maybe_transform({"rules": rules}, rule_update_params.RuleUpdateParams),
+            body=maybe_transform(body, Iterable[rule_update_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -99,10 +99,10 @@ class RulesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncSinglePage[RuleListResponse]:
         """
-        Rules
+        Fetches all snippet rules belonging to the zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: The unique ID of the zone.
 
           extra_headers: Send extra headers
 
@@ -133,12 +133,12 @@ class RulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RuleDeleteResponse:
+    ) -> SyncSinglePage[RuleDeleteResponse]:
         """
-        Delete All Rules
+        Deletes all snippet rules belonging to the zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: The unique ID of the zone.
 
           extra_headers: Send extra headers
 
@@ -150,12 +150,14 @@ class RulesResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._delete(
+        return self._get_api_list(
             f"/zones/{zone_id}/snippets/snippet_rules",
+            page=SyncSinglePage[RuleDeleteResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RuleDeleteResponse,
+            model=RuleDeleteResponse,
+            method="delete",
         )
 
 
@@ -183,7 +185,7 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        rules: Iterable[rule_update_params.Rule] | NotGiven = NOT_GIVEN,
+        body: Iterable[rule_update_params.Body],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -192,12 +194,12 @@ class AsyncRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[RuleUpdateResponse, AsyncSinglePage[RuleUpdateResponse]]:
         """
-        Put Rules
+        Updates all snippet rules belonging to the zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: The unique ID of the zone.
 
-          rules: List of snippet rules
+          body: A list of snippet rules.
 
           extra_headers: Send extra headers
 
@@ -212,7 +214,7 @@ class AsyncRulesResource(AsyncAPIResource):
         return self._get_api_list(
             f"/zones/{zone_id}/snippets/snippet_rules",
             page=AsyncSinglePage[RuleUpdateResponse],
-            body=maybe_transform({"rules": rules}, rule_update_params.RuleUpdateParams),
+            body=maybe_transform(body, Iterable[rule_update_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -232,10 +234,10 @@ class AsyncRulesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[RuleListResponse, AsyncSinglePage[RuleListResponse]]:
         """
-        Rules
+        Fetches all snippet rules belonging to the zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: The unique ID of the zone.
 
           extra_headers: Send extra headers
 
@@ -256,7 +258,7 @@ class AsyncRulesResource(AsyncAPIResource):
             model=RuleListResponse,
         )
 
-    async def delete(
+    def delete(
         self,
         *,
         zone_id: str,
@@ -266,12 +268,12 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RuleDeleteResponse:
+    ) -> AsyncPaginator[RuleDeleteResponse, AsyncSinglePage[RuleDeleteResponse]]:
         """
-        Delete All Rules
+        Deletes all snippet rules belonging to the zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: The unique ID of the zone.
 
           extra_headers: Send extra headers
 
@@ -283,12 +285,14 @@ class AsyncRulesResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._delete(
+        return self._get_api_list(
             f"/zones/{zone_id}/snippets/snippet_rules",
+            page=AsyncSinglePage[RuleDeleteResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RuleDeleteResponse,
+            model=RuleDeleteResponse,
+            method="delete",
         )
 
 

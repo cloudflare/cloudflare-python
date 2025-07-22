@@ -1,18 +1,28 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
-from typing_extensions import Literal
+from typing import Optional
+from datetime import datetime
 
 from ..._models import BaseModel
-from ..shared.response_info import ResponseInfo
 
 __all__ = ["RuleDeleteResponse"]
 
 
 class RuleDeleteResponse(BaseModel):
-    errors: List[ResponseInfo]
+    id: str
+    """The unique ID of the rule."""
 
-    messages: List[ResponseInfo]
+    expression: str
+    """The expression defining which traffic will match the rule."""
 
-    success: Literal[True]
-    """Whether the API call was successful"""
+    last_updated: datetime
+    """The timestamp of when the rule was last modified."""
+
+    snippet_name: str
+    """The identifying name of the snippet."""
+
+    description: Optional[str] = None
+    """An informative description of the rule."""
+
+    enabled: Optional[bool] = None
+    """Whether the rule should be executed."""
