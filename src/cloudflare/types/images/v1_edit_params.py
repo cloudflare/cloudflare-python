@@ -13,6 +13,9 @@ class V1EditParams(TypedDict, total=False):
     account_id: Required[str]
     """Account identifier tag."""
 
+    creator: str
+    """Can set the creator field with an internal user ID."""
+
     metadata: object
     """User modifiable key-value store.
 

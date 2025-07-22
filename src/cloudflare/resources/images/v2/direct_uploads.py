@@ -50,6 +50,7 @@ class DirectUploadsResource(SyncAPIResource):
         *,
         account_id: str,
         id: str | NotGiven = NOT_GIVEN,
+        creator: str | NotGiven = NOT_GIVEN,
         expiry: Union[str, datetime] | NotGiven = NOT_GIVEN,
         metadata: object | NotGiven = NOT_GIVEN,
         require_signed_urls: bool | NotGiven = NOT_GIVEN,
@@ -76,6 +77,8 @@ class DirectUploadsResource(SyncAPIResource):
           id: Optional Image Custom ID. Up to 1024 chars. Can include any number of subpaths,
               and utf8 characters. Cannot start nor end with a / (forward slash). Cannot be a
               UUID.
+
+          creator: Can set the creator field with an internal user ID.
 
           expiry: The date after which the upload will not be accepted. Minimum: Now + 2 minutes.
               Maximum: Now + 6 hours.
@@ -104,6 +107,7 @@ class DirectUploadsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "id": id,
+                    "creator": creator,
                     "expiry": expiry,
                     "metadata": metadata,
                     "require_signed_urls": require_signed_urls,
@@ -146,6 +150,7 @@ class AsyncDirectUploadsResource(AsyncAPIResource):
         *,
         account_id: str,
         id: str | NotGiven = NOT_GIVEN,
+        creator: str | NotGiven = NOT_GIVEN,
         expiry: Union[str, datetime] | NotGiven = NOT_GIVEN,
         metadata: object | NotGiven = NOT_GIVEN,
         require_signed_urls: bool | NotGiven = NOT_GIVEN,
@@ -172,6 +177,8 @@ class AsyncDirectUploadsResource(AsyncAPIResource):
           id: Optional Image Custom ID. Up to 1024 chars. Can include any number of subpaths,
               and utf8 characters. Cannot start nor end with a / (forward slash). Cannot be a
               UUID.
+
+          creator: Can set the creator field with an internal user ID.
 
           expiry: The date after which the upload will not be accepted. Minimum: Now + 2 minutes.
               Maximum: Now + 6 hours.
@@ -200,6 +207,7 @@ class AsyncDirectUploadsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "id": id,
+                    "creator": creator,
                     "expiry": expiry,
                     "metadata": metadata,
                     "require_signed_urls": require_signed_urls,

@@ -32,6 +32,7 @@ class TestDirectUploads:
         direct_upload = client.images.v2.direct_uploads.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="this/is/my-customid",
+            creator="creator",
             expiry=parse_datetime("2021-01-02T02:20:00Z"),
             metadata={},
             require_signed_urls=True,
@@ -92,6 +93,7 @@ class TestAsyncDirectUploads:
         direct_upload = await async_client.images.v2.direct_uploads.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="this/is/my-customid",
+            creator="creator",
             expiry=parse_datetime("2021-01-02T02:20:00Z"),
             metadata={},
             require_signed_urls=True,

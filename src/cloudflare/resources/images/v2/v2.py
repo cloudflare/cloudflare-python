@@ -62,6 +62,7 @@ class V2Resource(SyncAPIResource):
         *,
         account_id: str,
         continuation_token: Optional[str] | NotGiven = NOT_GIVEN,
+        creator: Optional[str] | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -81,6 +82,9 @@ class V2Resource(SyncAPIResource):
           account_id: Account identifier tag.
 
           continuation_token: Continuation token for a next page. List images V2 returns continuation_token
+
+          creator: Internal user ID set within the creator field. Setting to empty string "" will
+              return images where creator field is not set
 
           per_page: Number of items per page.
 
@@ -106,6 +110,7 @@ class V2Resource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "continuation_token": continuation_token,
+                        "creator": creator,
                         "per_page": per_page,
                         "sort_order": sort_order,
                     },
@@ -146,6 +151,7 @@ class AsyncV2Resource(AsyncAPIResource):
         *,
         account_id: str,
         continuation_token: Optional[str] | NotGiven = NOT_GIVEN,
+        creator: Optional[str] | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -165,6 +171,9 @@ class AsyncV2Resource(AsyncAPIResource):
           account_id: Account identifier tag.
 
           continuation_token: Continuation token for a next page. List images V2 returns continuation_token
+
+          creator: Internal user ID set within the creator field. Setting to empty string "" will
+              return images where creator field is not set
 
           per_page: Number of items per page.
 
@@ -190,6 +199,7 @@ class AsyncV2Resource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "continuation_token": continuation_token,
+                        "creator": creator,
                         "per_page": per_page,
                         "sort_order": sort_order,
                     },

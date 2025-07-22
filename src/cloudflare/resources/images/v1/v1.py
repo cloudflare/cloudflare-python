@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import typing_extensions
-from typing import Any, Type, Mapping, cast
+from typing import Any, Type, Mapping, Optional, cast
 
 import httpx
 
@@ -101,6 +101,7 @@ class V1Resource(SyncAPIResource):
         *,
         account_id: str,
         id: str | NotGiven = NOT_GIVEN,
+        creator: str | NotGiven = NOT_GIVEN,
         file: FileTypes | NotGiven = NOT_GIVEN,
         metadata: object | NotGiven = NOT_GIVEN,
         require_signed_urls: bool | NotGiven = NOT_GIVEN,
@@ -121,6 +122,8 @@ class V1Resource(SyncAPIResource):
           account_id: Account identifier tag.
 
           id: An optional custom unique identifier for your image.
+
+          creator: Can set the creator field with an internal user ID.
 
           file: An image binary data. Only needed when type is uploading a file.
 
@@ -145,6 +148,7 @@ class V1Resource(SyncAPIResource):
         body = deepcopy_minimal(
             {
                 "id": id,
+                "creator": creator,
                 "file": file,
                 "metadata": metadata,
                 "require_signed_urls": require_signed_urls,
@@ -175,6 +179,7 @@ class V1Resource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        creator: Optional[str] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -191,6 +196,9 @@ class V1Resource(SyncAPIResource):
 
         Args:
           account_id: Account identifier tag.
+
+          creator: Internal user ID set within the creator field. Setting to empty string "" will
+              return images where creator field is not set
 
           page: Page number of paginated results.
 
@@ -216,6 +224,7 @@ class V1Resource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "creator": creator,
                         "page": page,
                         "per_page": per_page,
                     },
@@ -281,6 +290,7 @@ class V1Resource(SyncAPIResource):
         image_id: str,
         *,
         account_id: str,
+        creator: str | NotGiven = NOT_GIVEN,
         metadata: object | NotGiven = NOT_GIVEN,
         require_signed_urls: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -299,6 +309,8 @@ class V1Resource(SyncAPIResource):
           account_id: Account identifier tag.
 
           image_id: Image unique identifier.
+
+          creator: Can set the creator field with an internal user ID.
 
           metadata: User modifiable key-value store. Can be used for keeping references to another
               system of record for managing images. No change if not specified.
@@ -323,6 +335,7 @@ class V1Resource(SyncAPIResource):
             f"/accounts/{account_id}/images/v1/{image_id}",
             body=maybe_transform(
                 {
+                    "creator": creator,
                     "metadata": metadata,
                     "require_signed_urls": require_signed_urls,
                 },
@@ -424,6 +437,7 @@ class AsyncV1Resource(AsyncAPIResource):
         *,
         account_id: str,
         id: str | NotGiven = NOT_GIVEN,
+        creator: str | NotGiven = NOT_GIVEN,
         file: FileTypes | NotGiven = NOT_GIVEN,
         metadata: object | NotGiven = NOT_GIVEN,
         require_signed_urls: bool | NotGiven = NOT_GIVEN,
@@ -444,6 +458,8 @@ class AsyncV1Resource(AsyncAPIResource):
           account_id: Account identifier tag.
 
           id: An optional custom unique identifier for your image.
+
+          creator: Can set the creator field with an internal user ID.
 
           file: An image binary data. Only needed when type is uploading a file.
 
@@ -468,6 +484,7 @@ class AsyncV1Resource(AsyncAPIResource):
         body = deepcopy_minimal(
             {
                 "id": id,
+                "creator": creator,
                 "file": file,
                 "metadata": metadata,
                 "require_signed_urls": require_signed_urls,
@@ -498,6 +515,7 @@ class AsyncV1Resource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        creator: Optional[str] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -514,6 +532,9 @@ class AsyncV1Resource(AsyncAPIResource):
 
         Args:
           account_id: Account identifier tag.
+
+          creator: Internal user ID set within the creator field. Setting to empty string "" will
+              return images where creator field is not set
 
           page: Page number of paginated results.
 
@@ -539,6 +560,7 @@ class AsyncV1Resource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "creator": creator,
                         "page": page,
                         "per_page": per_page,
                     },
@@ -604,6 +626,7 @@ class AsyncV1Resource(AsyncAPIResource):
         image_id: str,
         *,
         account_id: str,
+        creator: str | NotGiven = NOT_GIVEN,
         metadata: object | NotGiven = NOT_GIVEN,
         require_signed_urls: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -622,6 +645,8 @@ class AsyncV1Resource(AsyncAPIResource):
           account_id: Account identifier tag.
 
           image_id: Image unique identifier.
+
+          creator: Can set the creator field with an internal user ID.
 
           metadata: User modifiable key-value store. Can be used for keeping references to another
               system of record for managing images. No change if not specified.
@@ -646,6 +671,7 @@ class AsyncV1Resource(AsyncAPIResource):
             f"/accounts/{account_id}/images/v1/{image_id}",
             body=await async_maybe_transform(
                 {
+                    "creator": creator,
                     "metadata": metadata,
                     "require_signed_urls": require_signed_urls,
                 },

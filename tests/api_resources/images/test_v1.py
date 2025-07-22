@@ -38,6 +38,7 @@ class TestV1:
         v1 = client.images.v1.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="id",
+            creator="creator",
             file=b"raw file contents",
             metadata={},
             require_signed_urls=True,
@@ -93,6 +94,7 @@ class TestV1:
         with pytest.warns(DeprecationWarning):
             v1 = client.images.v1.list(
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                creator="creator",
                 page=1,
                 per_page=10,
             )
@@ -194,6 +196,7 @@ class TestV1:
         v1 = client.images.v1.edit(
             image_id="image_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            creator="creator",
             metadata={},
             require_signed_urls=True,
         )
@@ -307,6 +310,7 @@ class TestAsyncV1:
         v1 = await async_client.images.v1.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="id",
+            creator="creator",
             file=b"raw file contents",
             metadata={},
             require_signed_urls=True,
@@ -362,6 +366,7 @@ class TestAsyncV1:
         with pytest.warns(DeprecationWarning):
             v1 = await async_client.images.v1.list(
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                creator="creator",
                 page=1,
                 per_page=10,
             )
@@ -463,6 +468,7 @@ class TestAsyncV1:
         v1 = await async_client.images.v1.edit(
             image_id="image_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            creator="creator",
             metadata={},
             require_signed_urls=True,
         )

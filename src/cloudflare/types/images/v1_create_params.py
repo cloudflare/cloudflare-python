@@ -17,6 +17,9 @@ class V1CreateParams(TypedDict, total=False):
     id: str
     """An optional custom unique identifier for your image."""
 
+    creator: str
+    """Can set the creator field with an internal user ID."""
+
     file: FileTypes
     """An image binary data. Only needed when type is uploading a file."""
 
