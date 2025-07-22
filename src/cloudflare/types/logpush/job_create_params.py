@@ -92,7 +92,7 @@ class JobCreateParams(TypedDict, total=False):
     keep on making this call for you, setting start and end times appropriately.
     """
 
-    max_upload_bytes: Union[Literal[0], object, None]
+    max_upload_bytes: Union[Literal[0], int, None]
     """The maximum uncompressed file size of a batch of logs.
 
     This setting value must be between `5 MB` and `1 GB`, or `0` to disable it. Note
@@ -100,7 +100,7 @@ class JobCreateParams(TypedDict, total=False):
     smaller than this batch size.
     """
 
-    max_upload_interval_seconds: Union[Literal[0], object, None]
+    max_upload_interval_seconds: Union[Literal[0], int, None]
     """The maximum interval in seconds for log batches.
 
     This setting must be between 30 and 300 seconds (5 minutes), or `0` to disable
@@ -108,7 +108,7 @@ class JobCreateParams(TypedDict, total=False):
     that log files may be sent in shorter intervals than this.
     """
 
-    max_upload_records: Union[Literal[0], object, None]
+    max_upload_records: Union[Literal[0], int, None]
     """The maximum number of log lines per batch.
 
     This setting must be between 1000 and 1,000,000 lines, or `0` to disable it.
