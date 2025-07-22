@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Iterable, Optional
 from typing_extensions import Required, TypedDict
 
 from .endpoint_param import EndpointParam
@@ -38,7 +38,7 @@ class LocationUpdateParams(TypedDict, total=False):
     endpoints configuration remains unchanged.
     """
 
-    networks: Iterable[Network]
+    networks: Optional[Iterable[Network]]
     """A list of network ranges that requests from this location would originate from.
 
     A non-empty list is only effective if the ipv4 endpoint is enabled for this
