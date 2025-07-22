@@ -31,7 +31,7 @@ class LocationCreateParams(TypedDict, total=False):
     ecs_support: bool
     """True if the location needs to resolve EDNS queries."""
 
-    endpoints: EndpointParam
+    endpoints: Optional[EndpointParam]
     """The destination endpoints configured for this location.
 
     When updating a location, if this field is absent or set with null, the

@@ -54,7 +54,7 @@ class LocationsResource(SyncAPIResource):
         client_default: bool | NotGiven = NOT_GIVEN,
         dns_destination_ips_id: str | NotGiven = NOT_GIVEN,
         ecs_support: bool | NotGiven = NOT_GIVEN,
-        endpoints: EndpointParam | NotGiven = NOT_GIVEN,
+        endpoints: Optional[EndpointParam] | NotGiven = NOT_GIVEN,
         networks: Optional[Iterable[location_create_params.Network]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -129,7 +129,7 @@ class LocationsResource(SyncAPIResource):
         client_default: bool | NotGiven = NOT_GIVEN,
         dns_destination_ips_id: str | NotGiven = NOT_GIVEN,
         ecs_support: bool | NotGiven = NOT_GIVEN,
-        endpoints: EndpointParam | NotGiven = NOT_GIVEN,
+        endpoints: Optional[EndpointParam] | NotGiven = NOT_GIVEN,
         networks: Optional[Iterable[location_update_params.Network]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -340,7 +340,7 @@ class AsyncLocationsResource(AsyncAPIResource):
         client_default: bool | NotGiven = NOT_GIVEN,
         dns_destination_ips_id: str | NotGiven = NOT_GIVEN,
         ecs_support: bool | NotGiven = NOT_GIVEN,
-        endpoints: EndpointParam | NotGiven = NOT_GIVEN,
+        endpoints: Optional[EndpointParam] | NotGiven = NOT_GIVEN,
         networks: Optional[Iterable[location_create_params.Network]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -415,7 +415,7 @@ class AsyncLocationsResource(AsyncAPIResource):
         client_default: bool | NotGiven = NOT_GIVEN,
         dns_destination_ips_id: str | NotGiven = NOT_GIVEN,
         ecs_support: bool | NotGiven = NOT_GIVEN,
-        endpoints: EndpointParam | NotGiven = NOT_GIVEN,
+        endpoints: Optional[EndpointParam] | NotGiven = NOT_GIVEN,
         networks: Optional[Iterable[location_update_params.Network]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
