@@ -12,6 +12,12 @@ __all__ = ["SkipRuleParam", "ActionParameters", "ExposedCredentialCheck", "Ratel
 
 
 class ActionParameters(TypedDict, total=False):
+    phase: Literal["current"]
+    """A phase to skip the execution of.
+
+    This property is only compatible with products.
+    """
+
     phases: List[Phase]
     """A list of phases to skip the execution of.
 

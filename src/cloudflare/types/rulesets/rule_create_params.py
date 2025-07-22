@@ -2102,6 +2102,12 @@ class SkipRule(TypedDict, total=False):
 
 
 class SkipRuleActionParameters(TypedDict, total=False):
+    phase: Literal["current"]
+    """A phase to skip the execution of.
+
+    This property is only compatible with products.
+    """
+
     phases: List[Phase]
     """A list of phases to skip the execution of.
 
@@ -2250,7 +2256,7 @@ class SetCacheSettingsRule(TypedDict, total=False):
 
 
 class SetCacheSettingsRuleActionParametersBrowserTTL(TypedDict, total=False):
-    mode: Required[Literal["respect_origin", "bypass_by_default", "override_origin"]]
+    mode: Required[Literal["respect_origin", "bypass_by_default", "override_origin", "bypass"]]
     """Determines which browser ttl mode to use."""
 
     default: int

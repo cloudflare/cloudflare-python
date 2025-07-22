@@ -1294,6 +1294,7 @@ class TestRules:
             id="3a03d665bac047339bb530ecb439a90d",
             action="skip",
             action_parameters={
+                "phase": "current",
                 "phases": ["http_request_firewall_custom"],
                 "products": ["bic"],
                 "rules": {"4814384a9e5d4991b9815dcfc25d2f1f": ["8ac8bc2a661e475d940980f9317f28e1"]},
@@ -3340,6 +3341,7 @@ class TestRules:
             id="3a03d665bac047339bb530ecb439a90d",
             action="skip",
             action_parameters={
+                "phase": "current",
                 "phases": ["http_request_firewall_custom"],
                 "products": ["bic"],
                 "rules": {"4814384a9e5d4991b9815dcfc25d2f1f": ["8ac8bc2a661e475d940980f9317f28e1"]},
@@ -5195,6 +5197,7 @@ class TestAsyncRules:
             id="3a03d665bac047339bb530ecb439a90d",
             action="skip",
             action_parameters={
+                "phase": "current",
                 "phases": ["http_request_firewall_custom"],
                 "products": ["bic"],
                 "rules": {"4814384a9e5d4991b9815dcfc25d2f1f": ["8ac8bc2a661e475d940980f9317f28e1"]},
@@ -7241,6 +7244,7 @@ class TestAsyncRules:
             id="3a03d665bac047339bb530ecb439a90d",
             action="skip",
             action_parameters={
+                "phase": "current",
                 "phases": ["http_request_firewall_custom"],
                 "products": ["bic"],
                 "rules": {"4814384a9e5d4991b9815dcfc25d2f1f": ["8ac8bc2a661e475d940980f9317f28e1"]},

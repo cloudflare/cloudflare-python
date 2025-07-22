@@ -37,7 +37,7 @@ __all__ = [
 
 
 class ActionParametersBrowserTTL(TypedDict, total=False):
-    mode: Required[Literal["respect_origin", "bypass_by_default", "override_origin"]]
+    mode: Required[Literal["respect_origin", "bypass_by_default", "override_origin", "bypass"]]
     """Determines which browser ttl mode to use."""
 
     default: int

@@ -12,6 +12,12 @@ __all__ = ["SkipRule", "ActionParameters", "ExposedCredentialCheck", "Ratelimit"
 
 
 class ActionParameters(BaseModel):
+    phase: Optional[Literal["current"]] = None
+    """A phase to skip the execution of.
+
+    This property is only compatible with products.
+    """
+
     phases: Optional[List[Phase]] = None
     """A list of phases to skip the execution of.
 

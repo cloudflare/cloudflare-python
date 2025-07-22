@@ -39,7 +39,7 @@ __all__ = [
 
 
 class ActionParametersBrowserTTL(BaseModel):
-    mode: Literal["respect_origin", "bypass_by_default", "override_origin"]
+    mode: Literal["respect_origin", "bypass_by_default", "override_origin", "bypass"]
     """Determines which browser ttl mode to use."""
 
     default: Optional[int] = None
