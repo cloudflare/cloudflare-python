@@ -16,6 +16,14 @@ from .traceroutes import (
     TraceroutesResourceWithStreamingResponse,
     AsyncTraceroutesResourceWithStreamingResponse,
 )
+from .endpoint_healthchecks import (
+    EndpointHealthchecksResource,
+    AsyncEndpointHealthchecksResource,
+    EndpointHealthchecksResourceWithRawResponse,
+    AsyncEndpointHealthchecksResourceWithRawResponse,
+    EndpointHealthchecksResourceWithStreamingResponse,
+    AsyncEndpointHealthchecksResourceWithStreamingResponse,
+)
 
 __all__ = [
     "TraceroutesResource",
@@ -24,6 +32,12 @@ __all__ = [
     "AsyncTraceroutesResourceWithRawResponse",
     "TraceroutesResourceWithStreamingResponse",
     "AsyncTraceroutesResourceWithStreamingResponse",
+    "EndpointHealthchecksResource",
+    "AsyncEndpointHealthchecksResource",
+    "EndpointHealthchecksResourceWithRawResponse",
+    "AsyncEndpointHealthchecksResourceWithRawResponse",
+    "EndpointHealthchecksResourceWithStreamingResponse",
+    "AsyncEndpointHealthchecksResourceWithStreamingResponse",
     "DiagnosticsResource",
     "AsyncDiagnosticsResource",
     "DiagnosticsResourceWithRawResponse",

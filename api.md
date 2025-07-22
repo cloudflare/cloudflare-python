@@ -3430,6 +3430,23 @@ Methods:
 
 - <code title="post /accounts/{account_id}/diagnostics/traceroute">client.diagnostics.traceroutes.<a href="./src/cloudflare/resources/diagnostics/traceroutes.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/diagnostics/traceroute_create_params.py">params</a>) -> <a href="./src/cloudflare/types/diagnostics/traceroute.py">SyncSinglePage[Traceroute]</a></code>
 
+## EndpointHealthchecks
+
+Types:
+
+```python
+from cloudflare.types.diagnostics import (
+    EndpointHealthcheck,
+    EndpointHealthcheckCreateResponse,
+    EndpointHealthcheckListResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/diagnostics/endpoint-healthchecks">client.diagnostics.endpoint_healthchecks.<a href="./src/cloudflare/resources/diagnostics/endpoint_healthchecks.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/diagnostics/endpoint_healthcheck_create_params.py">params</a>) -> <a href="./src/cloudflare/types/diagnostics/endpoint_healthcheck_create_response.py">Optional[EndpointHealthcheckCreateResponse]</a></code>
+- <code title="get /accounts/{account_id}/diagnostics/endpoint-healthchecks">client.diagnostics.endpoint_healthchecks.<a href="./src/cloudflare/resources/diagnostics/endpoint_healthchecks.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/diagnostics/endpoint_healthcheck_list_response.py">Optional[EndpointHealthcheckListResponse]</a></code>
+
 # Images
 
 ## V1

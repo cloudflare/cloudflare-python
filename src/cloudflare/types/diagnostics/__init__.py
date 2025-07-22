@@ -4,3 +4,6 @@ from __future__ import annotations
 
 from .traceroute import Traceroute as Traceroute
 from .traceroute_create_params import TracerouteCreateParams as TracerouteCreateParams
+from .endpoint_healthcheck_create_params import EndpointHealthcheckCreateParams as EndpointHealthcheckCreateParams
+from .endpoint_healthcheck_list_response import EndpointHealthcheckListResponse as EndpointHealthcheckListResponse
+from .endpoint_healthcheck_create_response import EndpointHealthcheckCreateResponse as EndpointHealthcheckCreateResponse
