@@ -36,33 +36,55 @@ class Expiration(BaseModel):
 
 
 class GatewayRule(BaseModel):
-    id: Optional[str] = None
-    """The API resource UUID."""
-
-    action: Optional[
-        Literal[
-            "on",
-            "off",
-            "allow",
-            "block",
-            "scan",
-            "noscan",
-            "safesearch",
-            "ytrestricted",
-            "isolate",
-            "noisolate",
-            "override",
-            "l4_override",
-            "egress",
-            "resolve",
-            "quarantine",
-            "redirect",
-        ]
-    ] = None
+    action: Literal[
+        "on",
+        "off",
+        "allow",
+        "block",
+        "scan",
+        "noscan",
+        "safesearch",
+        "ytrestricted",
+        "isolate",
+        "noisolate",
+        "override",
+        "l4_override",
+        "egress",
+        "resolve",
+        "quarantine",
+        "redirect",
+    ]
     """
     The action to perform when the associated traffic, identity, and device posture
     expressions are either absent or evaluate to `true`.
     """
+
+    enabled: bool
+    """True if the rule is enabled."""
+
+    filters: List[GatewayFilter]
+    """
+    The protocol or layer to evaluate the traffic, identity, and device posture
+    expressions.
+    """
+
+    name: str
+    """The name of the rule."""
+
+    precedence: int
+    """Precedence sets the order of your rules.
+
+    Lower values indicate higher precedence. At each processing phase, applicable
+    rules are evaluated in ascending order of this value. Refer to
+    [Order of enforcement](http://developers.cloudflare.com/learning-paths/secure-internet-traffic/understand-policies/order-of-enforcement/#manage-precedence-with-terraform)
+    docs on how to manage precedence via Terraform.
+    """
+
+    traffic: str
+    """The wirefilter expression used for traffic matching."""
+
+    id: Optional[str] = None
+    """The API resource UUID."""
 
     created_at: Optional[datetime] = None
 
@@ -75,9 +97,6 @@ class GatewayRule(BaseModel):
     device_posture: Optional[str] = None
     """The wirefilter expression used for device posture check matching."""
 
-    enabled: Optional[bool] = None
-    """True if the rule is enabled."""
-
     expiration: Optional[Expiration] = None
     """The expiration time stamp and default duration of a DNS policy.
 
@@ -86,29 +105,11 @@ class GatewayRule(BaseModel):
     This does not apply to HTTP or network policies.
     """
 
-    filters: Optional[List[GatewayFilter]] = None
-    """
-    The protocol or layer to evaluate the traffic, identity, and device posture
-    expressions.
-    """
-
     identity: Optional[str] = None
     """The wirefilter expression used for identity matching."""
 
-    name: Optional[str] = None
-    """The name of the rule."""
-
     not_sharable: Optional[bool] = None
     """The rule cannot be shared via the Orgs API"""
-
-    precedence: Optional[int] = None
-    """Precedence sets the order of your rules.
-
-    Lower values indicate higher precedence. At each processing phase, applicable
-    rules are evaluated in ascending order of this value. Refer to
-    [Order of enforcement](http://developers.cloudflare.com/learning-paths/secure-internet-traffic/understand-policies/order-of-enforcement/#manage-precedence-with-terraform)
-    docs on how to manage precedence via Terraform.
-    """
 
     read_only: Optional[bool] = None
     """
@@ -126,9 +127,6 @@ class GatewayRule(BaseModel):
 
     source_account: Optional[str] = None
     """account tag of account that created the rule"""
-
-    traffic: Optional[str] = None
-    """The wirefilter expression used for traffic matching."""
 
     updated_at: Optional[datetime] = None
 
