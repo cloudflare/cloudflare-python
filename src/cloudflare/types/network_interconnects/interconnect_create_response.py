@@ -1,7 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Union, Optional
-from typing_extensions import Literal, TypeAlias
+from typing_extensions import TypeAlias
 
 from ..._models import BaseModel
 
@@ -48,11 +48,6 @@ class NscInterconnectGcpPartnerBody(BaseModel):
     type: str
 
     owner: Optional[str] = None
-
-    speed: Optional[Literal["50M", "100M", "200M", "300M", "400M", "500M", "1G", "2G", "5G", "10G", "20G", "50G"]] = (
-        None
-    )
-    """Bandwidth structure as visible through the customer-facing API."""
 
 
 InterconnectCreateResponse: TypeAlias = Union[NscInterconnectPhysicalBody, NscInterconnectGcpPartnerBody]
