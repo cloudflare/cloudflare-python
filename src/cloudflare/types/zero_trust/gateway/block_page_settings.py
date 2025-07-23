@@ -67,3 +67,6 @@ class BlockPageSettings(BaseModel):
 
     target_uri: Optional[str] = None
     """If mode is redirect_uri: URI to which the user should be redirected."""
+
+    version: Optional[int] = None
+    """Version number of the setting"""

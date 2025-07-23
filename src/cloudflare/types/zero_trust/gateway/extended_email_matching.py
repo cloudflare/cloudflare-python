@@ -22,3 +22,6 @@ class ExtendedEmailMatching(BaseModel):
 
     source_account: Optional[str] = None
     """Account tag of account that shared this setting"""
+
+    version: Optional[int] = None
+    """Version number of the setting"""
