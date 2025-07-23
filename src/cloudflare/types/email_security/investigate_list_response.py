@@ -16,7 +16,6 @@ class Properties(BaseModel):
     allowlisted_pattern_type: Optional[
         Literal[
             "quarantine_release",
-            "blocked_sender",
             "acceptable_sender",
             "allowed_sender",
             "allowed_recipient",
@@ -33,7 +32,6 @@ class Properties(BaseModel):
     whitelisted_pattern_type: Optional[
         Literal[
             "quarantine_release",
-            "blocked_sender",
             "acceptable_sender",
             "allowed_sender",
             "allowed_recipient",

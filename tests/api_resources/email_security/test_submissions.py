@@ -38,6 +38,7 @@ class TestSubmissions:
             query="query",
             requested_disposition="MALICIOUS",
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            status="status",
             submission_id="submission_id",
             type="TEAM",
         )
@@ -99,6 +100,7 @@ class TestAsyncSubmissions:
             query="query",
             requested_disposition="MALICIOUS",
             start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            status="status",
             submission_id="submission_id",
             type="TEAM",
         )

@@ -60,6 +60,7 @@ class SubmissionsResource(SyncAPIResource):
         requested_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"]
         | NotGiven = NOT_GIVEN,
         start: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        status: str | NotGiven = NOT_GIVEN,
         submission_id: str | NotGiven = NOT_GIVEN,
         type: Literal["TEAM", "USER"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -111,6 +112,7 @@ class SubmissionsResource(SyncAPIResource):
                         "query": query,
                         "requested_disposition": requested_disposition,
                         "start": start,
+                        "status": status,
                         "submission_id": submission_id,
                         "type": type,
                     },
@@ -155,6 +157,7 @@ class AsyncSubmissionsResource(AsyncAPIResource):
         requested_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"]
         | NotGiven = NOT_GIVEN,
         start: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        status: str | NotGiven = NOT_GIVEN,
         submission_id: str | NotGiven = NOT_GIVEN,
         type: Literal["TEAM", "USER"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -206,6 +209,7 @@ class AsyncSubmissionsResource(AsyncAPIResource):
                         "query": query,
                         "requested_disposition": requested_disposition,
                         "start": start,
+                        "status": status,
                         "submission_id": submission_id,
                         "type": type,
                     },
