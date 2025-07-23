@@ -10,8 +10,11 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.diagnostics import (
+    EndpointHealthcheckGetResponse,
     EndpointHealthcheckListResponse,
     EndpointHealthcheckCreateResponse,
+    EndpointHealthcheckDeleteResponse,
+    EndpointHealthcheckUpdateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -77,6 +80,75 @@ class TestEndpointHealthchecks:
             )
 
     @parametrize
+    def test_method_update(self, client: Cloudflare) -> None:
+        endpoint_healthcheck = client.diagnostics.endpoint_healthchecks.update(
+            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            check_type="icmp",
+            endpoint="203.0.113.1",
+        )
+        assert_matches_type(Optional[EndpointHealthcheckUpdateResponse], endpoint_healthcheck, path=["response"])
+
+    @parametrize
+    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
+        endpoint_healthcheck = client.diagnostics.endpoint_healthchecks.update(
+            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            check_type="icmp",
+            endpoint="203.0.113.1",
+            name="My Endpoint",
+        )
+        assert_matches_type(Optional[EndpointHealthcheckUpdateResponse], endpoint_healthcheck, path=["response"])
+
+    @parametrize
+    def test_raw_response_update(self, client: Cloudflare) -> None:
+        response = client.diagnostics.endpoint_healthchecks.with_raw_response.update(
+            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            check_type="icmp",
+            endpoint="203.0.113.1",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        endpoint_healthcheck = response.parse()
+        assert_matches_type(Optional[EndpointHealthcheckUpdateResponse], endpoint_healthcheck, path=["response"])
+
+    @parametrize
+    def test_streaming_response_update(self, client: Cloudflare) -> None:
+        with client.diagnostics.endpoint_healthchecks.with_streaming_response.update(
+            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            check_type="icmp",
+            endpoint="203.0.113.1",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            endpoint_healthcheck = response.parse()
+            assert_matches_type(Optional[EndpointHealthcheckUpdateResponse], endpoint_healthcheck, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_update(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.diagnostics.endpoint_healthchecks.with_raw_response.update(
+                id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+                check_type="icmp",
+                endpoint="203.0.113.1",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.diagnostics.endpoint_healthchecks.with_raw_response.update(
+                id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                check_type="icmp",
+                endpoint="203.0.113.1",
+            )
+
+    @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         endpoint_healthcheck = client.diagnostics.endpoint_healthchecks.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -112,6 +184,102 @@ class TestEndpointHealthchecks:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.diagnostics.endpoint_healthchecks.with_raw_response.list(
                 account_id="",
+            )
+
+    @parametrize
+    def test_method_delete(self, client: Cloudflare) -> None:
+        endpoint_healthcheck = client.diagnostics.endpoint_healthchecks.delete(
+            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(EndpointHealthcheckDeleteResponse, endpoint_healthcheck, path=["response"])
+
+    @parametrize
+    def test_raw_response_delete(self, client: Cloudflare) -> None:
+        response = client.diagnostics.endpoint_healthchecks.with_raw_response.delete(
+            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        endpoint_healthcheck = response.parse()
+        assert_matches_type(EndpointHealthcheckDeleteResponse, endpoint_healthcheck, path=["response"])
+
+    @parametrize
+    def test_streaming_response_delete(self, client: Cloudflare) -> None:
+        with client.diagnostics.endpoint_healthchecks.with_streaming_response.delete(
+            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            endpoint_healthcheck = response.parse()
+            assert_matches_type(EndpointHealthcheckDeleteResponse, endpoint_healthcheck, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_delete(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.diagnostics.endpoint_healthchecks.with_raw_response.delete(
+                id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.diagnostics.endpoint_healthchecks.with_raw_response.delete(
+                id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @parametrize
+    def test_method_get(self, client: Cloudflare) -> None:
+        endpoint_healthcheck = client.diagnostics.endpoint_healthchecks.get(
+            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Optional[EndpointHealthcheckGetResponse], endpoint_healthcheck, path=["response"])
+
+    @parametrize
+    def test_raw_response_get(self, client: Cloudflare) -> None:
+        response = client.diagnostics.endpoint_healthchecks.with_raw_response.get(
+            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        endpoint_healthcheck = response.parse()
+        assert_matches_type(Optional[EndpointHealthcheckGetResponse], endpoint_healthcheck, path=["response"])
+
+    @parametrize
+    def test_streaming_response_get(self, client: Cloudflare) -> None:
+        with client.diagnostics.endpoint_healthchecks.with_streaming_response.get(
+            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            endpoint_healthcheck = response.parse()
+            assert_matches_type(Optional[EndpointHealthcheckGetResponse], endpoint_healthcheck, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_get(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.diagnostics.endpoint_healthchecks.with_raw_response.get(
+                id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.diagnostics.endpoint_healthchecks.with_raw_response.get(
+                id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
 
@@ -177,6 +345,75 @@ class TestAsyncEndpointHealthchecks:
             )
 
     @parametrize
+    async def test_method_update(self, async_client: AsyncCloudflare) -> None:
+        endpoint_healthcheck = await async_client.diagnostics.endpoint_healthchecks.update(
+            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            check_type="icmp",
+            endpoint="203.0.113.1",
+        )
+        assert_matches_type(Optional[EndpointHealthcheckUpdateResponse], endpoint_healthcheck, path=["response"])
+
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        endpoint_healthcheck = await async_client.diagnostics.endpoint_healthchecks.update(
+            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            check_type="icmp",
+            endpoint="203.0.113.1",
+            name="My Endpoint",
+        )
+        assert_matches_type(Optional[EndpointHealthcheckUpdateResponse], endpoint_healthcheck, path=["response"])
+
+    @parametrize
+    async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.diagnostics.endpoint_healthchecks.with_raw_response.update(
+            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            check_type="icmp",
+            endpoint="203.0.113.1",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        endpoint_healthcheck = await response.parse()
+        assert_matches_type(Optional[EndpointHealthcheckUpdateResponse], endpoint_healthcheck, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.diagnostics.endpoint_healthchecks.with_streaming_response.update(
+            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            check_type="icmp",
+            endpoint="203.0.113.1",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            endpoint_healthcheck = await response.parse()
+            assert_matches_type(Optional[EndpointHealthcheckUpdateResponse], endpoint_healthcheck, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.diagnostics.endpoint_healthchecks.with_raw_response.update(
+                id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+                check_type="icmp",
+                endpoint="203.0.113.1",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.diagnostics.endpoint_healthchecks.with_raw_response.update(
+                id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                check_type="icmp",
+                endpoint="203.0.113.1",
+            )
+
+    @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         endpoint_healthcheck = await async_client.diagnostics.endpoint_healthchecks.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -212,4 +449,100 @@ class TestAsyncEndpointHealthchecks:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.diagnostics.endpoint_healthchecks.with_raw_response.list(
                 account_id="",
+            )
+
+    @parametrize
+    async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
+        endpoint_healthcheck = await async_client.diagnostics.endpoint_healthchecks.delete(
+            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(EndpointHealthcheckDeleteResponse, endpoint_healthcheck, path=["response"])
+
+    @parametrize
+    async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.diagnostics.endpoint_healthchecks.with_raw_response.delete(
+            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        endpoint_healthcheck = await response.parse()
+        assert_matches_type(EndpointHealthcheckDeleteResponse, endpoint_healthcheck, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.diagnostics.endpoint_healthchecks.with_streaming_response.delete(
+            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            endpoint_healthcheck = await response.parse()
+            assert_matches_type(EndpointHealthcheckDeleteResponse, endpoint_healthcheck, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.diagnostics.endpoint_healthchecks.with_raw_response.delete(
+                id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.diagnostics.endpoint_healthchecks.with_raw_response.delete(
+                id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @parametrize
+    async def test_method_get(self, async_client: AsyncCloudflare) -> None:
+        endpoint_healthcheck = await async_client.diagnostics.endpoint_healthchecks.get(
+            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Optional[EndpointHealthcheckGetResponse], endpoint_healthcheck, path=["response"])
+
+    @parametrize
+    async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.diagnostics.endpoint_healthchecks.with_raw_response.get(
+            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        endpoint_healthcheck = await response.parse()
+        assert_matches_type(Optional[EndpointHealthcheckGetResponse], endpoint_healthcheck, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.diagnostics.endpoint_healthchecks.with_streaming_response.get(
+            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            endpoint_healthcheck = await response.parse()
+            assert_matches_type(Optional[EndpointHealthcheckGetResponse], endpoint_healthcheck, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.diagnostics.endpoint_healthchecks.with_raw_response.get(
+                id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.diagnostics.endpoint_healthchecks.with_raw_response.get(
+                id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
