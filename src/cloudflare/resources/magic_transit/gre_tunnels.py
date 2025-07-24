@@ -59,6 +59,7 @@ class GRETunnelsResource(SyncAPIResource):
         name: str,
         description: str | NotGiven = NOT_GIVEN,
         health_check: gre_tunnel_create_params.HealthCheck | NotGiven = NOT_GIVEN,
+        interface_address6: str | NotGiven = NOT_GIVEN,
         mtu: int | NotGiven = NOT_GIVEN,
         ttl: int | NotGiven = NOT_GIVEN,
         x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
@@ -89,6 +90,11 @@ class GRETunnelsResource(SyncAPIResource):
               must be 15 characters or less, and cannot share a name with another GRE tunnel.
 
           description: An optional description of the GRE tunnel.
+
+          interface_address6: A 127 bit IPV6 prefix from within the virtual_subnet6 prefix space with the
+              address being the first IP of the subnet and not same as the address of
+              virtual_subnet6. Eg if virtual_subnet6 is 2606:54c1:7:0:a9fe:12d2::/127 ,
+              interface_address6 could be 2606:54c1:7:0:a9fe:12d2:1:200/127
 
           mtu: Maximum Transmission Unit (MTU) in bytes for the GRE tunnel. The minimum value
               is 576.
@@ -125,6 +131,7 @@ class GRETunnelsResource(SyncAPIResource):
                     "name": name,
                     "description": description,
                     "health_check": health_check,
+                    "interface_address6": interface_address6,
                     "mtu": mtu,
                     "ttl": ttl,
                 },
@@ -151,6 +158,7 @@ class GRETunnelsResource(SyncAPIResource):
         name: str,
         description: str | NotGiven = NOT_GIVEN,
         health_check: gre_tunnel_update_params.HealthCheck | NotGiven = NOT_GIVEN,
+        interface_address6: str | NotGiven = NOT_GIVEN,
         mtu: int | NotGiven = NOT_GIVEN,
         ttl: int | NotGiven = NOT_GIVEN,
         x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
@@ -183,6 +191,11 @@ class GRETunnelsResource(SyncAPIResource):
               must be 15 characters or less, and cannot share a name with another GRE tunnel.
 
           description: An optional description of the GRE tunnel.
+
+          interface_address6: A 127 bit IPV6 prefix from within the virtual_subnet6 prefix space with the
+              address being the first IP of the subnet and not same as the address of
+              virtual_subnet6. Eg if virtual_subnet6 is 2606:54c1:7:0:a9fe:12d2::/127 ,
+              interface_address6 could be 2606:54c1:7:0:a9fe:12d2:1:200/127
 
           mtu: Maximum Transmission Unit (MTU) in bytes for the GRE tunnel. The minimum value
               is 576.
@@ -221,6 +234,7 @@ class GRETunnelsResource(SyncAPIResource):
                     "name": name,
                     "description": description,
                     "health_check": health_check,
+                    "interface_address6": interface_address6,
                     "mtu": mtu,
                     "ttl": ttl,
                 },
@@ -483,6 +497,7 @@ class AsyncGRETunnelsResource(AsyncAPIResource):
         name: str,
         description: str | NotGiven = NOT_GIVEN,
         health_check: gre_tunnel_create_params.HealthCheck | NotGiven = NOT_GIVEN,
+        interface_address6: str | NotGiven = NOT_GIVEN,
         mtu: int | NotGiven = NOT_GIVEN,
         ttl: int | NotGiven = NOT_GIVEN,
         x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
@@ -513,6 +528,11 @@ class AsyncGRETunnelsResource(AsyncAPIResource):
               must be 15 characters or less, and cannot share a name with another GRE tunnel.
 
           description: An optional description of the GRE tunnel.
+
+          interface_address6: A 127 bit IPV6 prefix from within the virtual_subnet6 prefix space with the
+              address being the first IP of the subnet and not same as the address of
+              virtual_subnet6. Eg if virtual_subnet6 is 2606:54c1:7:0:a9fe:12d2::/127 ,
+              interface_address6 could be 2606:54c1:7:0:a9fe:12d2:1:200/127
 
           mtu: Maximum Transmission Unit (MTU) in bytes for the GRE tunnel. The minimum value
               is 576.
@@ -549,6 +569,7 @@ class AsyncGRETunnelsResource(AsyncAPIResource):
                     "name": name,
                     "description": description,
                     "health_check": health_check,
+                    "interface_address6": interface_address6,
                     "mtu": mtu,
                     "ttl": ttl,
                 },
@@ -575,6 +596,7 @@ class AsyncGRETunnelsResource(AsyncAPIResource):
         name: str,
         description: str | NotGiven = NOT_GIVEN,
         health_check: gre_tunnel_update_params.HealthCheck | NotGiven = NOT_GIVEN,
+        interface_address6: str | NotGiven = NOT_GIVEN,
         mtu: int | NotGiven = NOT_GIVEN,
         ttl: int | NotGiven = NOT_GIVEN,
         x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
@@ -607,6 +629,11 @@ class AsyncGRETunnelsResource(AsyncAPIResource):
               must be 15 characters or less, and cannot share a name with another GRE tunnel.
 
           description: An optional description of the GRE tunnel.
+
+          interface_address6: A 127 bit IPV6 prefix from within the virtual_subnet6 prefix space with the
+              address being the first IP of the subnet and not same as the address of
+              virtual_subnet6. Eg if virtual_subnet6 is 2606:54c1:7:0:a9fe:12d2::/127 ,
+              interface_address6 could be 2606:54c1:7:0:a9fe:12d2:1:200/127
 
           mtu: Maximum Transmission Unit (MTU) in bytes for the GRE tunnel. The minimum value
               is 576.
@@ -645,6 +672,7 @@ class AsyncGRETunnelsResource(AsyncAPIResource):
                     "name": name,
                     "description": description,
                     "health_check": health_check,
+                    "interface_address6": interface_address6,
                     "mtu": mtu,
                     "ttl": ttl,
                 },

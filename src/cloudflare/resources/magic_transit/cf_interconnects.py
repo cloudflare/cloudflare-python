@@ -57,6 +57,7 @@ class CfInterconnectsResource(SyncAPIResource):
         gre: cf_interconnect_update_params.GRE | NotGiven = NOT_GIVEN,
         health_check: HealthCheckParam | NotGiven = NOT_GIVEN,
         interface_address: str | NotGiven = NOT_GIVEN,
+        interface_address6: str | NotGiven = NOT_GIVEN,
         mtu: int | NotGiven = NOT_GIVEN,
         x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -84,6 +85,11 @@ class CfInterconnectsResource(SyncAPIResource):
           interface_address: A 31-bit prefix (/31 in CIDR notation) supporting two hosts, one for each side
               of the tunnel. Select the subnet from the following private IP space:
               10.0.0.0–10.255.255.255, 172.16.0.0–172.31.255.255, 192.168.0.0–192.168.255.255.
+
+          interface_address6: A 127 bit IPV6 prefix from within the virtual_subnet6 prefix space with the
+              address being the first IP of the subnet and not same as the address of
+              virtual_subnet6. Eg if virtual_subnet6 is 2606:54c1:7:0:a9fe:12d2::/127 ,
+              interface_address6 could be 2606:54c1:7:0:a9fe:12d2:1:200/127
 
           mtu: The Maximum Transmission Unit (MTU) in bytes for the interconnect. The minimum
               value is 576.
@@ -118,6 +124,7 @@ class CfInterconnectsResource(SyncAPIResource):
                     "gre": gre,
                     "health_check": health_check,
                     "interface_address": interface_address,
+                    "interface_address6": interface_address6,
                     "mtu": mtu,
                 },
                 cf_interconnect_update_params.CfInterconnectUpdateParams,
@@ -322,6 +329,7 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
         gre: cf_interconnect_update_params.GRE | NotGiven = NOT_GIVEN,
         health_check: HealthCheckParam | NotGiven = NOT_GIVEN,
         interface_address: str | NotGiven = NOT_GIVEN,
+        interface_address6: str | NotGiven = NOT_GIVEN,
         mtu: int | NotGiven = NOT_GIVEN,
         x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -349,6 +357,11 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
           interface_address: A 31-bit prefix (/31 in CIDR notation) supporting two hosts, one for each side
               of the tunnel. Select the subnet from the following private IP space:
               10.0.0.0–10.255.255.255, 172.16.0.0–172.31.255.255, 192.168.0.0–192.168.255.255.
+
+          interface_address6: A 127 bit IPV6 prefix from within the virtual_subnet6 prefix space with the
+              address being the first IP of the subnet and not same as the address of
+              virtual_subnet6. Eg if virtual_subnet6 is 2606:54c1:7:0:a9fe:12d2::/127 ,
+              interface_address6 could be 2606:54c1:7:0:a9fe:12d2:1:200/127
 
           mtu: The Maximum Transmission Unit (MTU) in bytes for the interconnect. The minimum
               value is 576.
@@ -383,6 +396,7 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
                     "gre": gre,
                     "health_check": health_check,
                     "interface_address": interface_address,
+                    "interface_address6": interface_address6,
                     "mtu": mtu,
                 },
                 cf_interconnect_update_params.CfInterconnectUpdateParams,

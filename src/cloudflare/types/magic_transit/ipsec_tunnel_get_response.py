@@ -105,6 +105,14 @@ class IPSECTunnel(BaseModel):
 
     health_check: Optional[IPSECTunnelHealthCheck] = None
 
+    interface_address6: Optional[str] = None
+    """
+    A 127 bit IPV6 prefix from within the virtual_subnet6 prefix space with the
+    address being the first IP of the subnet and not same as the address of
+    virtual_subnet6. Eg if virtual_subnet6 is 2606:54c1:7:0:a9fe:12d2::/127 ,
+    interface_address6 could be 2606:54c1:7:0:a9fe:12d2:1:200/127
+    """
+
     modified_on: Optional[datetime] = None
     """The date and time the tunnel was last modified."""
 

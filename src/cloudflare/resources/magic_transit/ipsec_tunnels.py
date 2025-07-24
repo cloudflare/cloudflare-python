@@ -65,6 +65,7 @@ class IPSECTunnelsResource(SyncAPIResource):
         customer_endpoint: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         health_check: ipsec_tunnel_create_params.HealthCheck | NotGiven = NOT_GIVEN,
+        interface_address6: str | NotGiven = NOT_GIVEN,
         psk: str | NotGiven = NOT_GIVEN,
         replay_protection: bool | NotGiven = NOT_GIVEN,
         x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
@@ -96,6 +97,11 @@ class IPSECTunnelsResource(SyncAPIResource):
               but must be set for proactive traceroutes to work.
 
           description: An optional description forthe IPsec tunnel.
+
+          interface_address6: A 127 bit IPV6 prefix from within the virtual_subnet6 prefix space with the
+              address being the first IP of the subnet and not same as the address of
+              virtual_subnet6. Eg if virtual_subnet6 is 2606:54c1:7:0:a9fe:12d2::/127 ,
+              interface_address6 could be 2606:54c1:7:0:a9fe:12d2:1:200/127
 
           psk: A randomly generated or provided string for use in the IPsec tunnel.
 
@@ -132,6 +138,7 @@ class IPSECTunnelsResource(SyncAPIResource):
                     "customer_endpoint": customer_endpoint,
                     "description": description,
                     "health_check": health_check,
+                    "interface_address6": interface_address6,
                     "psk": psk,
                     "replay_protection": replay_protection,
                 },
@@ -158,6 +165,7 @@ class IPSECTunnelsResource(SyncAPIResource):
         customer_endpoint: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         health_check: ipsec_tunnel_update_params.HealthCheck | NotGiven = NOT_GIVEN,
+        interface_address6: str | NotGiven = NOT_GIVEN,
         psk: str | NotGiven = NOT_GIVEN,
         replay_protection: bool | NotGiven = NOT_GIVEN,
         x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
@@ -191,6 +199,11 @@ class IPSECTunnelsResource(SyncAPIResource):
               but must be set for proactive traceroutes to work.
 
           description: An optional description forthe IPsec tunnel.
+
+          interface_address6: A 127 bit IPV6 prefix from within the virtual_subnet6 prefix space with the
+              address being the first IP of the subnet and not same as the address of
+              virtual_subnet6. Eg if virtual_subnet6 is 2606:54c1:7:0:a9fe:12d2::/127 ,
+              interface_address6 could be 2606:54c1:7:0:a9fe:12d2:1:200/127
 
           psk: A randomly generated or provided string for use in the IPsec tunnel.
 
@@ -229,6 +242,7 @@ class IPSECTunnelsResource(SyncAPIResource):
                     "customer_endpoint": customer_endpoint,
                     "description": description,
                     "health_check": health_check,
+                    "interface_address6": interface_address6,
                     "psk": psk,
                     "replay_protection": replay_protection,
                 },
@@ -542,6 +556,7 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
         customer_endpoint: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         health_check: ipsec_tunnel_create_params.HealthCheck | NotGiven = NOT_GIVEN,
+        interface_address6: str | NotGiven = NOT_GIVEN,
         psk: str | NotGiven = NOT_GIVEN,
         replay_protection: bool | NotGiven = NOT_GIVEN,
         x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
@@ -573,6 +588,11 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
               but must be set for proactive traceroutes to work.
 
           description: An optional description forthe IPsec tunnel.
+
+          interface_address6: A 127 bit IPV6 prefix from within the virtual_subnet6 prefix space with the
+              address being the first IP of the subnet and not same as the address of
+              virtual_subnet6. Eg if virtual_subnet6 is 2606:54c1:7:0:a9fe:12d2::/127 ,
+              interface_address6 could be 2606:54c1:7:0:a9fe:12d2:1:200/127
 
           psk: A randomly generated or provided string for use in the IPsec tunnel.
 
@@ -609,6 +629,7 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
                     "customer_endpoint": customer_endpoint,
                     "description": description,
                     "health_check": health_check,
+                    "interface_address6": interface_address6,
                     "psk": psk,
                     "replay_protection": replay_protection,
                 },
@@ -635,6 +656,7 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
         customer_endpoint: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         health_check: ipsec_tunnel_update_params.HealthCheck | NotGiven = NOT_GIVEN,
+        interface_address6: str | NotGiven = NOT_GIVEN,
         psk: str | NotGiven = NOT_GIVEN,
         replay_protection: bool | NotGiven = NOT_GIVEN,
         x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
@@ -668,6 +690,11 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
               but must be set for proactive traceroutes to work.
 
           description: An optional description forthe IPsec tunnel.
+
+          interface_address6: A 127 bit IPV6 prefix from within the virtual_subnet6 prefix space with the
+              address being the first IP of the subnet and not same as the address of
+              virtual_subnet6. Eg if virtual_subnet6 is 2606:54c1:7:0:a9fe:12d2::/127 ,
+              interface_address6 could be 2606:54c1:7:0:a9fe:12d2:1:200/127
 
           psk: A randomly generated or provided string for use in the IPsec tunnel.
 
@@ -706,6 +733,7 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
                     "customer_endpoint": customer_endpoint,
                     "description": description,
                     "health_check": health_check,
+                    "interface_address6": interface_address6,
                     "psk": psk,
                     "replay_protection": replay_protection,
                 },

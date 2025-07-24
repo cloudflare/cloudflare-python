@@ -46,6 +46,7 @@ class TestCfInterconnects:
                 "type": "request",
             },
             interface_address="192.0.2.0/31",
+            interface_address6="2606:54c1:7:0:a9fe:12d2:1:200/127",
             mtu=0,
             x_magic_new_hc_target=True,
         )
@@ -283,6 +284,7 @@ class TestAsyncCfInterconnects:
                 "type": "request",
             },
             interface_address="192.0.2.0/31",
+            interface_address6="2606:54c1:7:0:a9fe:12d2:1:200/127",
             mtu=0,
             x_magic_new_hc_target=True,
         )
