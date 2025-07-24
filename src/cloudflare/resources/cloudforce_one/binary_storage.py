@@ -56,7 +56,7 @@ class BinaryStorageResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BinaryStorageCreateResponse:
         """
-        Posts a file to BinDB
+        Posts a file to Binary Storage
 
         Args:
           account_id: Account ID.
@@ -102,7 +102,7 @@ class BinaryStorageResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Posts a file to BinDB
+        Retrieves a file from Binary Storage
 
         Args:
           account_id: Account ID.
@@ -164,7 +164,7 @@ class AsyncBinaryStorageResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BinaryStorageCreateResponse:
         """
-        Posts a file to BinDB
+        Posts a file to Binary Storage
 
         Args:
           account_id: Account ID.
@@ -210,7 +210,7 @@ class AsyncBinaryStorageResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Posts a file to BinDB
+        Retrieves a file from Binary Storage
 
         Args:
           account_id: Account ID.
