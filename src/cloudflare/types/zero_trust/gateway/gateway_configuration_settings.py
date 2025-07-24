@@ -15,7 +15,7 @@ from .extended_email_matching import ExtendedEmailMatching
 from .browser_isolation_settings import BrowserIsolationSettings
 from .custom_certificate_settings import CustomCertificateSettings
 
-__all__ = ["GatewayConfigurationSettings", "Certificate", "HostSelector", "Sandbox"]
+__all__ = ["GatewayConfigurationSettings", "Certificate", "HostSelector", "Inspection", "Sandbox"]
 
 
 class Certificate(BaseModel):
@@ -30,6 +30,17 @@ class Certificate(BaseModel):
 class HostSelector(BaseModel):
     enabled: Optional[bool] = None
     """Enable filtering via hosts for egress policies."""
+
+
+class Inspection(BaseModel):
+    mode: Optional[Literal["static", "dynamic"]] = None
+    """Defines the mode of inspection the proxy will use.
+
+    - static: Gateway will use static inspection to inspect HTTP on TCP(80). If TLS
+      decryption is on, Gateway will inspect HTTPS traffic on TCP(443) & UDP(443).
+    - dynamic: Gateway will use protocol detection to dynamically inspect HTTP and
+      HTTPS traffic on any port. TLS decryption must be on to inspect HTTPS traffic.
+    """
 
 
 class Sandbox(BaseModel):
@@ -76,6 +87,9 @@ class GatewayConfigurationSettings(BaseModel):
 
     host_selector: Optional[HostSelector] = None
     """Setting to enable host selector in egress policies."""
+
+    inspection: Optional[Inspection] = None
+    """Setting to define inspection settings"""
 
     protocol_detection: Optional[ProtocolDetection] = None
     """Protocol Detection settings."""

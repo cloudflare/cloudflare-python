@@ -9,7 +9,7 @@ __all__ = ["CustomCertificateSettings"]
 
 
 class CustomCertificateSettings(BaseModel):
-    enabled: bool
+    enabled: Optional[bool] = None
     """Enable use of custom certificate authority for signing Gateway traffic."""
 
     id: Optional[str] = None

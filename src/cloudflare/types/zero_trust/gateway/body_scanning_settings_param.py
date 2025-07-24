@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["BodyScanningSettingsParam"]
 
 
 class BodyScanningSettingsParam(TypedDict, total=False):
-    inspection_mode: str
+    inspection_mode: Literal["deep", "shallow"]
     """Set the inspection mode to either `deep` or `shallow`."""
