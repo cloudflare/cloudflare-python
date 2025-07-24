@@ -12,14 +12,6 @@ from .scans.scans import (
     ScansResourceWithStreamingResponse,
     AsyncScansResourceWithStreamingResponse,
 )
-from .binary_storage import (
-    BinaryStorageResource,
-    AsyncBinaryStorageResource,
-    BinaryStorageResourceWithRawResponse,
-    AsyncBinaryStorageResourceWithRawResponse,
-    BinaryStorageResourceWithStreamingResponse,
-    AsyncBinaryStorageResourceWithStreamingResponse,
-)
 from .requests.requests import (
     RequestsResource,
     AsyncRequestsResource,
@@ -44,10 +36,6 @@ class CloudforceOneResource(SyncAPIResource):
     @cached_property
     def scans(self) -> ScansResource:
         return ScansResource(self._client)
-
-    @cached_property
-    def binary_storage(self) -> BinaryStorageResource:
-        return BinaryStorageResource(self._client)
 
     @cached_property
     def requests(self) -> RequestsResource:
@@ -81,10 +69,6 @@ class AsyncCloudforceOneResource(AsyncAPIResource):
     @cached_property
     def scans(self) -> AsyncScansResource:
         return AsyncScansResource(self._client)
-
-    @cached_property
-    def binary_storage(self) -> AsyncBinaryStorageResource:
-        return AsyncBinaryStorageResource(self._client)
 
     @cached_property
     def requests(self) -> AsyncRequestsResource:
@@ -123,10 +107,6 @@ class CloudforceOneResourceWithRawResponse:
         return ScansResourceWithRawResponse(self._cloudforce_one.scans)
 
     @cached_property
-    def binary_storage(self) -> BinaryStorageResourceWithRawResponse:
-        return BinaryStorageResourceWithRawResponse(self._cloudforce_one.binary_storage)
-
-    @cached_property
     def requests(self) -> RequestsResourceWithRawResponse:
         return RequestsResourceWithRawResponse(self._cloudforce_one.requests)
 
@@ -142,10 +122,6 @@ class AsyncCloudforceOneResourceWithRawResponse:
     @cached_property
     def scans(self) -> AsyncScansResourceWithRawResponse:
         return AsyncScansResourceWithRawResponse(self._cloudforce_one.scans)
-
-    @cached_property
-    def binary_storage(self) -> AsyncBinaryStorageResourceWithRawResponse:
-        return AsyncBinaryStorageResourceWithRawResponse(self._cloudforce_one.binary_storage)
 
     @cached_property
     def requests(self) -> AsyncRequestsResourceWithRawResponse:
@@ -165,10 +141,6 @@ class CloudforceOneResourceWithStreamingResponse:
         return ScansResourceWithStreamingResponse(self._cloudforce_one.scans)
 
     @cached_property
-    def binary_storage(self) -> BinaryStorageResourceWithStreamingResponse:
-        return BinaryStorageResourceWithStreamingResponse(self._cloudforce_one.binary_storage)
-
-    @cached_property
     def requests(self) -> RequestsResourceWithStreamingResponse:
         return RequestsResourceWithStreamingResponse(self._cloudforce_one.requests)
 
@@ -184,10 +156,6 @@ class AsyncCloudforceOneResourceWithStreamingResponse:
     @cached_property
     def scans(self) -> AsyncScansResourceWithStreamingResponse:
         return AsyncScansResourceWithStreamingResponse(self._cloudforce_one.scans)
-
-    @cached_property
-    def binary_storage(self) -> AsyncBinaryStorageResourceWithStreamingResponse:
-        return AsyncBinaryStorageResourceWithStreamingResponse(self._cloudforce_one.binary_storage)
 
     @cached_property
     def requests(self) -> AsyncRequestsResourceWithStreamingResponse:

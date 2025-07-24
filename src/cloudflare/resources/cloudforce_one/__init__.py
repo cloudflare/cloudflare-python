@@ -24,14 +24,6 @@ from .threat_events import (
     ThreatEventsResourceWithStreamingResponse,
     AsyncThreatEventsResourceWithStreamingResponse,
 )
-from .binary_storage import (
-    BinaryStorageResource,
-    AsyncBinaryStorageResource,
-    BinaryStorageResourceWithRawResponse,
-    AsyncBinaryStorageResourceWithRawResponse,
-    BinaryStorageResourceWithStreamingResponse,
-    AsyncBinaryStorageResourceWithStreamingResponse,
-)
 from .cloudforce_one import (
     CloudforceOneResource,
     AsyncCloudforceOneResource,
@@ -48,12 +40,6 @@ __all__ = [
     "AsyncScansResourceWithRawResponse",
     "ScansResourceWithStreamingResponse",
     "AsyncScansResourceWithStreamingResponse",
-    "BinaryStorageResource",
-    "AsyncBinaryStorageResource",
-    "BinaryStorageResourceWithRawResponse",
-    "AsyncBinaryStorageResourceWithRawResponse",
-    "BinaryStorageResourceWithStreamingResponse",
-    "AsyncBinaryStorageResourceWithStreamingResponse",
     "RequestsResource",
     "AsyncRequestsResource",
     "RequestsResourceWithRawResponse",

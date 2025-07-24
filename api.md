@@ -8910,19 +8910,6 @@ Methods:
 - <code title="delete /accounts/{account_id}/cloudforce-one/scans/config/{config_id}">client.cloudforce_one.scans.config.<a href="./src/cloudflare/resources/cloudforce_one/scans/config.py">delete</a>(config_id, \*, account_id) -> object</code>
 - <code title="patch /accounts/{account_id}/cloudforce-one/scans/config/{config_id}">client.cloudforce_one.scans.config.<a href="./src/cloudflare/resources/cloudforce_one/scans/config.py">edit</a>(config_id, \*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/scans/config_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/scans/config_edit_response.py">Optional[ConfigEditResponse]</a></code>
 
-## BinaryStorage
-
-Types:
-
-```python
-from cloudflare.types.cloudforce_one import BinaryStorageCreateResponse
-```
-
-Methods:
-
-- <code title="post /accounts/{account_id}/cloudforce-one/binary">client.cloudforce_one.binary_storage.<a href="./src/cloudflare/resources/cloudforce_one/binary_storage.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/binary_storage_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/binary_storage_create_response.py">BinaryStorageCreateResponse</a></code>
-- <code title="get /accounts/{account_id}/cloudforce-one/binary/{hash}">client.cloudforce_one.binary_storage.<a href="./src/cloudflare/resources/cloudforce_one/binary_storage.py">get</a>(hash, \*, account_id) -> None</code>
-
 ## Requests
 
 Types:
