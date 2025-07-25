@@ -7,7 +7,6 @@ from pydantic import Field as FieldInfo
 
 from ......_utils import PropertyInfo
 from ......_models import BaseModel
-from .....workers.migration_step import MigrationStep
 from .....workers.single_step_migration import SingleStepMigration
 from .....workers.scripts.consumer_script import ConsumerScript
 
@@ -389,17 +388,7 @@ class Limits(BaseModel):
 
 
 class MigrationsWorkersMultipleStepMigrations(BaseModel):
-    new_tag: Optional[str] = None
-    """Tag to set as the latest migration tag."""
-
-    old_tag: Optional[str] = None
-    """Tag used to verify against the latest migration tag for this Worker.
-
-    If they don't match, the upload is rejected.
-    """
-
-    steps: Optional[List[MigrationStep]] = None
-    """Migrations to apply in order."""
+    pass
 
 
 Migrations: TypeAlias = Union[SingleStepMigration, MigrationsWorkersMultipleStepMigrations]
