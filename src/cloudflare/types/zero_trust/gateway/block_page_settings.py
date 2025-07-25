@@ -9,19 +9,13 @@ __all__ = ["BlockPageSettings"]
 
 
 class BlockPageSettings(BaseModel):
-    enabled: Optional[bool] = None
-    """Enable only cipher suites and TLS versions compliant with FIPS 140-2."""
-
-    mode: Literal["customized_block_page", "redirect_uri"]
-    """
-    Controls whether the user is redirected to a Cloudflare-hosted block page or to
-    a customer-provided URI.
-    """
-
     background_color: Optional[str] = None
     """
     If mode is customized_block_page: block page background color in #rrggbb format.
     """
+
+    enabled: Optional[bool] = None
+    """Enable only cipher suites and TLS versions compliant with FIPS 140-2."""
 
     footer_text: Optional[str] = None
     """If mode is customized_block_page: block page footer text."""
@@ -45,6 +39,12 @@ class BlockPageSettings(BaseModel):
     """
     If mode is customized_block_page: subject line for emails created from block
     page.
+    """
+
+    mode: Optional[Literal["customized_block_page", "redirect_uri"]] = None
+    """
+    Controls whether the user is redirected to a Cloudflare-hosted block page or to
+    a customer-provided URI.
     """
 
     name: Optional[str] = None

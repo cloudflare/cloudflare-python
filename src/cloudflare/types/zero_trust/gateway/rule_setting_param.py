@@ -225,7 +225,7 @@ class RuleSettingParam(TypedDict, total=False):
     block_page_enabled: bool
     """Enable the custom block page."""
 
-    block_reason: str
+    block_reason: Optional[str]
     """
     The text describing why this block occurred, displayed on the custom block page
     (if enabled).

@@ -3,25 +3,19 @@
 from __future__ import annotations
 
 from typing import Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["BlockPageSettingsParam"]
 
 
 class BlockPageSettingsParam(TypedDict, total=False):
-    enabled: Required[Optional[bool]]
-    """Enable only cipher suites and TLS versions compliant with FIPS 140-2."""
-
-    mode: Required[Literal["customized_block_page", "redirect_uri"]]
-    """
-    Controls whether the user is redirected to a Cloudflare-hosted block page or to
-    a customer-provided URI.
-    """
-
     background_color: str
     """
     If mode is customized_block_page: block page background color in #rrggbb format.
     """
+
+    enabled: Optional[bool]
+    """Enable only cipher suites and TLS versions compliant with FIPS 140-2."""
 
     footer_text: str
     """If mode is customized_block_page: block page footer text."""
@@ -45,6 +39,12 @@ class BlockPageSettingsParam(TypedDict, total=False):
     """
     If mode is customized_block_page: subject line for emails created from block
     page.
+    """
+
+    mode: Literal["customized_block_page", "redirect_uri"]
+    """
+    Controls whether the user is redirected to a Cloudflare-hosted block page or to
+    a customer-provided URI.
     """
 
     name: str
