@@ -15,15 +15,8 @@ class SecretEditParams(TypedDict, total=False):
     store_id: Required[str]
     """Store Identifier"""
 
-    name: Required[str]
-    """The name of the secret"""
+    comment: str
+    """Freeform text describing the secret"""
 
     scopes: List[str]
     """The list of services that can use this secret."""
-
-    value: str
-    """The value of the secret.
-
-    Note that this is 'write only' - no API reponse will provide this value, it is
-    only used to create/modify secrets.
-    """

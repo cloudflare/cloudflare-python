@@ -110,6 +110,7 @@ class SecretsResource(SyncAPIResource):
         order: Literal["name", "comment", "created", "modified", "status"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
+        scopes: Iterable[List[str]] | NotGiven = NOT_GIVEN,
         search: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -133,6 +134,8 @@ class SecretsResource(SyncAPIResource):
           page: Page number
 
           per_page: Number of objects to return per page
+
+          scopes: Only secrets with the given scopes will be returned
 
           search: Search secrets using a filter string, filtering across name and comment
 
@@ -162,6 +165,7 @@ class SecretsResource(SyncAPIResource):
                         "order": order,
                         "page": page,
                         "per_page": per_page,
+                        "scopes": scopes,
                         "search": search,
                     },
                     secret_list_params.SecretListParams,
@@ -268,6 +272,8 @@ class SecretsResource(SyncAPIResource):
         account_id: str,
         store_id: str,
         name: str,
+        scopes: List[str],
+        comment: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -287,6 +293,10 @@ class SecretsResource(SyncAPIResource):
 
           name: The name of the secret
 
+          scopes: The list of services that can use this secret.
+
+          comment: Freeform text describing the secret
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -303,7 +313,14 @@ class SecretsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `secret_id` but received {secret_id!r}")
         return self._post(
             f"/accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate",
-            body=maybe_transform({"name": name}, secret_duplicate_params.SecretDuplicateParams),
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "scopes": scopes,
+                    "comment": comment,
+                },
+                secret_duplicate_params.SecretDuplicateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -320,9 +337,8 @@ class SecretsResource(SyncAPIResource):
         *,
         account_id: str,
         store_id: str,
-        name: str,
+        comment: str | NotGiven = NOT_GIVEN,
         scopes: List[str] | NotGiven = NOT_GIVEN,
-        value: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -340,12 +356,9 @@ class SecretsResource(SyncAPIResource):
 
           secret_id: Secret identifier tag.
 
-          name: The name of the secret
+          comment: Freeform text describing the secret
 
           scopes: The list of services that can use this secret.
-
-          value: The value of the secret. Note that this is 'write only' - no API reponse will
-              provide this value, it is only used to create/modify secrets.
 
           extra_headers: Send extra headers
 
@@ -365,9 +378,8 @@ class SecretsResource(SyncAPIResource):
             f"/accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}",
             body=maybe_transform(
                 {
-                    "name": name,
+                    "comment": comment,
                     "scopes": scopes,
-                    "value": value,
                 },
                 secret_edit_params.SecretEditParams,
             ),
@@ -504,6 +516,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         order: Literal["name", "comment", "created", "modified", "status"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
+        scopes: Iterable[List[str]] | NotGiven = NOT_GIVEN,
         search: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -527,6 +540,8 @@ class AsyncSecretsResource(AsyncAPIResource):
           page: Page number
 
           per_page: Number of objects to return per page
+
+          scopes: Only secrets with the given scopes will be returned
 
           search: Search secrets using a filter string, filtering across name and comment
 
@@ -556,6 +571,7 @@ class AsyncSecretsResource(AsyncAPIResource):
                         "order": order,
                         "page": page,
                         "per_page": per_page,
+                        "scopes": scopes,
                         "search": search,
                     },
                     secret_list_params.SecretListParams,
@@ -662,6 +678,8 @@ class AsyncSecretsResource(AsyncAPIResource):
         account_id: str,
         store_id: str,
         name: str,
+        scopes: List[str],
+        comment: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -681,6 +699,10 @@ class AsyncSecretsResource(AsyncAPIResource):
 
           name: The name of the secret
 
+          scopes: The list of services that can use this secret.
+
+          comment: Freeform text describing the secret
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -697,7 +719,14 @@ class AsyncSecretsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `secret_id` but received {secret_id!r}")
         return await self._post(
             f"/accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate",
-            body=await async_maybe_transform({"name": name}, secret_duplicate_params.SecretDuplicateParams),
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "scopes": scopes,
+                    "comment": comment,
+                },
+                secret_duplicate_params.SecretDuplicateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -714,9 +743,8 @@ class AsyncSecretsResource(AsyncAPIResource):
         *,
         account_id: str,
         store_id: str,
-        name: str,
+        comment: str | NotGiven = NOT_GIVEN,
         scopes: List[str] | NotGiven = NOT_GIVEN,
-        value: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -734,12 +762,9 @@ class AsyncSecretsResource(AsyncAPIResource):
 
           secret_id: Secret identifier tag.
 
-          name: The name of the secret
+          comment: Freeform text describing the secret
 
           scopes: The list of services that can use this secret.
-
-          value: The value of the secret. Note that this is 'write only' - no API reponse will
-              provide this value, it is only used to create/modify secrets.
 
           extra_headers: Send extra headers
 
@@ -759,9 +784,8 @@ class AsyncSecretsResource(AsyncAPIResource):
             f"/accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}",
             body=await async_maybe_transform(
                 {
-                    "name": name,
+                    "comment": comment,
                     "scopes": scopes,
-                    "value": value,
                 },
                 secret_edit_params.SecretEditParams,
             ),

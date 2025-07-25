@@ -28,3 +28,6 @@ class Body(TypedDict, total=False):
     Note that this is 'write only' - no API reponse will provide this value, it is
     only used to create/modify secrets.
     """
+
+    comment: str
+    """Freeform text describing the secret"""

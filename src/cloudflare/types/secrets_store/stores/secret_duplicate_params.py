@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import List
 from typing_extensions import Required, TypedDict
 
 __all__ = ["SecretDuplicateParams"]
@@ -16,3 +17,9 @@ class SecretDuplicateParams(TypedDict, total=False):
 
     name: Required[str]
     """The name of the secret"""
+
+    scopes: Required[List[str]]
+    """The list of services that can use this secret."""
+
+    comment: str
+    """Freeform text describing the secret"""

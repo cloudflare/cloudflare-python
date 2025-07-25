@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import List, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["SecretListParams"]
@@ -22,6 +23,9 @@ class SecretListParams(TypedDict, total=False):
 
     per_page: int
     """Number of objects to return per page"""
+
+    scopes: Iterable[List[str]]
+    """Only secrets with the given scopes will be returned"""
 
     search: str
     """Search secrets using a filter string, filtering across name and comment"""
