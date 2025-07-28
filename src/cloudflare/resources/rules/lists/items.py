@@ -20,8 +20,6 @@ from ...._wrappers import ResultWrapper
 from ....pagination import SyncCursorPagination, AsyncCursorPagination
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.rules.lists import item_list_params, item_create_params, item_delete_params, item_update_params
-from ....types.rules.lists.item_get_response import ItemGetResponse
-from ....types.rules.lists.item_list_response import ItemListResponse
 from ....types.rules.lists.item_create_response import ItemCreateResponse
 from ....types.rules.lists.item_delete_response import ItemDeleteResponse
 from ....types.rules.lists.item_update_response import ItemUpdateResponse
@@ -163,7 +161,7 @@ class ItemsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncCursorPagination[ItemListResponse]:
+    ) -> SyncCursorPagination[object]:
         """
         Fetches all the items in the list.
 
@@ -199,7 +197,7 @@ class ItemsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/rules/lists/{list_id}/items",
-            page=SyncCursorPagination[ItemListResponse],
+            page=SyncCursorPagination[object],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -214,7 +212,7 @@ class ItemsResource(SyncAPIResource):
                     item_list_params.ItemListParams,
                 ),
             ),
-            model=ItemListResponse,
+            model=object,
         )
 
     def delete(
@@ -279,7 +277,7 @@ class ItemsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ItemGetResponse:
+    ) -> object:
         """
         Fetches a list item in the list.
 
@@ -311,9 +309,9 @@ class ItemsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ItemGetResponse]._unwrapper,
+                post_parser=ResultWrapper[object]._unwrapper,
             ),
-            cast_to=cast(Type[ItemGetResponse], ResultWrapper[ItemGetResponse]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 
@@ -451,7 +449,7 @@ class AsyncItemsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[ItemListResponse, AsyncCursorPagination[ItemListResponse]]:
+    ) -> AsyncPaginator[object, AsyncCursorPagination[object]]:
         """
         Fetches all the items in the list.
 
@@ -487,7 +485,7 @@ class AsyncItemsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/rules/lists/{list_id}/items",
-            page=AsyncCursorPagination[ItemListResponse],
+            page=AsyncCursorPagination[object],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -502,7 +500,7 @@ class AsyncItemsResource(AsyncAPIResource):
                     item_list_params.ItemListParams,
                 ),
             ),
-            model=ItemListResponse,
+            model=object,
         )
 
     async def delete(
@@ -567,7 +565,7 @@ class AsyncItemsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ItemGetResponse:
+    ) -> object:
         """
         Fetches a list item in the list.
 
@@ -599,9 +597,9 @@ class AsyncItemsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ItemGetResponse]._unwrapper,
+                post_parser=ResultWrapper[object]._unwrapper,
             ),
-            cast_to=cast(Type[ItemGetResponse], ResultWrapper[ItemGetResponse]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 

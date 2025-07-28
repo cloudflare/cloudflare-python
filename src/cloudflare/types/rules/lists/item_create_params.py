@@ -8,7 +8,14 @@ from typing_extensions import Required, TypeAlias, TypedDict
 from ..hostname_param import HostnameParam
 from ..redirect_param import RedirectParam
 
-__all__ = ["ItemCreateParams", "Body", "BodyUnionMember0", "BodyUnionMember1", "BodyUnionMember2", "BodyUnionMember3"]
+__all__ = [
+    "ItemCreateParams",
+    "Body",
+    "BodyListsListItemIPComment",
+    "BodyListsListItemRedirectComment",
+    "BodyListsListItemHostnameComment",
+    "BodyListsListItemASNComment",
+]
 
 
 class ItemCreateParams(TypedDict, total=False):
@@ -18,7 +25,7 @@ class ItemCreateParams(TypedDict, total=False):
     body: Required[Iterable[Body]]
 
 
-class BodyUnionMember0(TypedDict, total=False):
+class BodyListsListItemIPComment(TypedDict, total=False):
     ip: Required[str]
     """An IPv4 address, an IPv4 CIDR, an IPv6 address, or an IPv6 CIDR."""
 
@@ -26,7 +33,7 @@ class BodyUnionMember0(TypedDict, total=False):
     """Defines an informative summary of the list item."""
 
 
-class BodyUnionMember1(TypedDict, total=False):
+class BodyListsListItemRedirectComment(TypedDict, total=False):
     redirect: Required[RedirectParam]
     """The definition of the redirect."""
 
@@ -34,7 +41,7 @@ class BodyUnionMember1(TypedDict, total=False):
     """Defines an informative summary of the list item."""
 
 
-class BodyUnionMember2(TypedDict, total=False):
+class BodyListsListItemHostnameComment(TypedDict, total=False):
     hostname: Required[HostnameParam]
     """
     Valid characters for hostnames are ASCII(7) letters from a to z, the digits from
@@ -45,7 +52,7 @@ class BodyUnionMember2(TypedDict, total=False):
     """Defines an informative summary of the list item."""
 
 
-class BodyUnionMember3(TypedDict, total=False):
+class BodyListsListItemASNComment(TypedDict, total=False):
     asn: Required[int]
     """Defines a non-negative 32 bit integer."""
 
@@ -53,4 +60,9 @@ class BodyUnionMember3(TypedDict, total=False):
     """Defines an informative summary of the list item."""
 
 
-Body: TypeAlias = Union[BodyUnionMember0, BodyUnionMember1, BodyUnionMember2, BodyUnionMember3]
+Body: TypeAlias = Union[
+    BodyListsListItemIPComment,
+    BodyListsListItemRedirectComment,
+    BodyListsListItemHostnameComment,
+    BodyListsListItemASNComment,
+]
