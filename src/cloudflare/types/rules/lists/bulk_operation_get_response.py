@@ -7,13 +7,13 @@ from ...._models import BaseModel
 
 __all__ = [
     "BulkOperationGetResponse",
-    "ListsPendingOrRunningBulkOperation",
-    "ListsCompletedBulkOperation",
-    "ListsFailedBulkOperation",
+    "ListsBulkOperationPendingOrRunning",
+    "ListsBulkOperationCompleted",
+    "ListsBulkOperationFailed",
 ]
 
 
-class ListsPendingOrRunningBulkOperation(BaseModel):
+class ListsBulkOperationPendingOrRunning(BaseModel):
     id: str
     """The unique operation ID of the asynchronous action."""
 
@@ -21,7 +21,7 @@ class ListsPendingOrRunningBulkOperation(BaseModel):
     """The current status of the asynchronous operation."""
 
 
-class ListsCompletedBulkOperation(BaseModel):
+class ListsBulkOperationCompleted(BaseModel):
     id: str
     """The unique operation ID of the asynchronous action."""
 
@@ -32,7 +32,7 @@ class ListsCompletedBulkOperation(BaseModel):
     """The current status of the asynchronous operation."""
 
 
-class ListsFailedBulkOperation(BaseModel):
+class ListsBulkOperationFailed(BaseModel):
     id: str
     """The unique operation ID of the asynchronous action."""
 
@@ -47,5 +47,5 @@ class ListsFailedBulkOperation(BaseModel):
 
 
 BulkOperationGetResponse: TypeAlias = Union[
-    ListsPendingOrRunningBulkOperation, ListsCompletedBulkOperation, ListsFailedBulkOperation
+    ListsBulkOperationPendingOrRunning, ListsBulkOperationCompleted, ListsBulkOperationFailed
 ]
