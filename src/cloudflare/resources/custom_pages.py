@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Optional, cast
+from typing import Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -22,6 +22,7 @@ from ..pagination import SyncSinglePage, AsyncSinglePage
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.custom_pages import custom_page_update_params
 from ..types.custom_pages.custom_page_get_response import CustomPageGetResponse
+from ..types.custom_pages.custom_page_list_response import CustomPageListResponse
 from ..types.custom_pages.custom_page_update_response import CustomPageUpdateResponse
 
 __all__ = ["CustomPagesResource", "AsyncCustomPagesResource"]
@@ -49,7 +50,15 @@ class CustomPagesResource(SyncAPIResource):
 
     def update(
         self,
-        identifier: str,
+        identifier: Literal[
+            "waf_block",
+            "ip_block",
+            "country_challenge",
+            "500_errors",
+            "1000_errors",
+            "managed_challenge",
+            "ratelimit_block",
+        ],
         *,
         state: Literal["default", "customized"],
         url: str,
@@ -66,7 +75,7 @@ class CustomPagesResource(SyncAPIResource):
         Updates the configuration of an existing custom page.
 
         Args:
-          identifier: Identifier
+          identifier: Error Page Types
 
           state: The custom page state.
 
@@ -98,28 +107,23 @@ class CustomPagesResource(SyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return cast(
-            Optional[CustomPageUpdateResponse],
-            self._put(
-                f"/{account_or_zone}/{account_or_zone_id}/custom_pages/{identifier}",
-                body=maybe_transform(
-                    {
-                        "state": state,
-                        "url": url,
-                    },
-                    custom_page_update_params.CustomPageUpdateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CustomPageUpdateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[CustomPageUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._put(
+            f"/{account_or_zone}/{account_or_zone_id}/custom_pages/{identifier}",
+            body=maybe_transform(
+                {
+                    "state": state,
+                    "url": url,
+                },
+                custom_page_update_params.CustomPageUpdateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CustomPageUpdateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[CustomPageUpdateResponse]], ResultWrapper[CustomPageUpdateResponse]),
         )
 
     def list(
@@ -133,7 +137,7 @@ class CustomPagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[object]:
+    ) -> SyncSinglePage[CustomPageListResponse]:
         """
         Fetches all the custom pages.
 
@@ -164,16 +168,24 @@ class CustomPagesResource(SyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/custom_pages",
-            page=SyncSinglePage[object],
+            page=SyncSinglePage[CustomPageListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=object,
+            model=CustomPageListResponse,
         )
 
     def get(
         self,
-        identifier: str,
+        identifier: Literal[
+            "waf_block",
+            "ip_block",
+            "country_challenge",
+            "500_errors",
+            "1000_errors",
+            "managed_challenge",
+            "ratelimit_block",
+        ],
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -188,7 +200,7 @@ class CustomPagesResource(SyncAPIResource):
         Fetches the details of a custom page.
 
         Args:
-          identifier: Identifier
+          identifier: Error Page Types
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -216,21 +228,16 @@ class CustomPagesResource(SyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return cast(
-            Optional[CustomPageGetResponse],
-            self._get(
-                f"/{account_or_zone}/{account_or_zone_id}/custom_pages/{identifier}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CustomPageGetResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[CustomPageGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            f"/{account_or_zone}/{account_or_zone_id}/custom_pages/{identifier}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CustomPageGetResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[CustomPageGetResponse]], ResultWrapper[CustomPageGetResponse]),
         )
 
 
@@ -256,7 +263,15 @@ class AsyncCustomPagesResource(AsyncAPIResource):
 
     async def update(
         self,
-        identifier: str,
+        identifier: Literal[
+            "waf_block",
+            "ip_block",
+            "country_challenge",
+            "500_errors",
+            "1000_errors",
+            "managed_challenge",
+            "ratelimit_block",
+        ],
         *,
         state: Literal["default", "customized"],
         url: str,
@@ -273,7 +288,7 @@ class AsyncCustomPagesResource(AsyncAPIResource):
         Updates the configuration of an existing custom page.
 
         Args:
-          identifier: Identifier
+          identifier: Error Page Types
 
           state: The custom page state.
 
@@ -305,28 +320,23 @@ class AsyncCustomPagesResource(AsyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return cast(
-            Optional[CustomPageUpdateResponse],
-            await self._put(
-                f"/{account_or_zone}/{account_or_zone_id}/custom_pages/{identifier}",
-                body=await async_maybe_transform(
-                    {
-                        "state": state,
-                        "url": url,
-                    },
-                    custom_page_update_params.CustomPageUpdateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CustomPageUpdateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[CustomPageUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._put(
+            f"/{account_or_zone}/{account_or_zone_id}/custom_pages/{identifier}",
+            body=await async_maybe_transform(
+                {
+                    "state": state,
+                    "url": url,
+                },
+                custom_page_update_params.CustomPageUpdateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CustomPageUpdateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[CustomPageUpdateResponse]], ResultWrapper[CustomPageUpdateResponse]),
         )
 
     def list(
@@ -340,7 +350,7 @@ class AsyncCustomPagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[object, AsyncSinglePage[object]]:
+    ) -> AsyncPaginator[CustomPageListResponse, AsyncSinglePage[CustomPageListResponse]]:
         """
         Fetches all the custom pages.
 
@@ -371,16 +381,24 @@ class AsyncCustomPagesResource(AsyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/custom_pages",
-            page=AsyncSinglePage[object],
+            page=AsyncSinglePage[CustomPageListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=object,
+            model=CustomPageListResponse,
         )
 
     async def get(
         self,
-        identifier: str,
+        identifier: Literal[
+            "waf_block",
+            "ip_block",
+            "country_challenge",
+            "500_errors",
+            "1000_errors",
+            "managed_challenge",
+            "ratelimit_block",
+        ],
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -395,7 +413,7 @@ class AsyncCustomPagesResource(AsyncAPIResource):
         Fetches the details of a custom page.
 
         Args:
-          identifier: Identifier
+          identifier: Error Page Types
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -423,21 +441,16 @@ class AsyncCustomPagesResource(AsyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return cast(
-            Optional[CustomPageGetResponse],
-            await self._get(
-                f"/{account_or_zone}/{account_or_zone_id}/custom_pages/{identifier}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CustomPageGetResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[CustomPageGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            f"/{account_or_zone}/{account_or_zone_id}/custom_pages/{identifier}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CustomPageGetResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[CustomPageGetResponse]], ResultWrapper[CustomPageGetResponse]),
         )
 
 

@@ -6,10 +6,10 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["CustomPageGetResponse"]
+__all__ = ["CustomPageListResponse"]
 
 
-class CustomPageGetResponse(BaseModel):
+class CustomPageListResponse(BaseModel):
     id: Optional[str] = None
 
     created_on: Optional[datetime] = None
