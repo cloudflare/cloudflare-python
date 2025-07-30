@@ -50,7 +50,7 @@ class RulesResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        body: Iterable[rule_update_params.Body],
+        rules: Iterable[rule_update_params.Rule],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -64,7 +64,7 @@ class RulesResource(SyncAPIResource):
         Args:
           zone_id: The unique ID of the zone.
 
-          body: A list of snippet rules.
+          rules: A list of snippet rules.
 
           extra_headers: Send extra headers
 
@@ -79,7 +79,7 @@ class RulesResource(SyncAPIResource):
         return self._get_api_list(
             f"/zones/{zone_id}/snippets/snippet_rules",
             page=SyncSinglePage[RuleUpdateResponse],
-            body=maybe_transform(body, Iterable[rule_update_params.Body]),
+            body=maybe_transform({"rules": rules}, rule_update_params.RuleUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -185,7 +185,7 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        body: Iterable[rule_update_params.Body],
+        rules: Iterable[rule_update_params.Rule],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -199,7 +199,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Args:
           zone_id: The unique ID of the zone.
 
-          body: A list of snippet rules.
+          rules: A list of snippet rules.
 
           extra_headers: Send extra headers
 
@@ -214,7 +214,7 @@ class AsyncRulesResource(AsyncAPIResource):
         return self._get_api_list(
             f"/zones/{zone_id}/snippets/snippet_rules",
             page=AsyncSinglePage[RuleUpdateResponse],
-            body=maybe_transform(body, Iterable[rule_update_params.Body]),
+            body=maybe_transform({"rules": rules}, rule_update_params.RuleUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

@@ -5,18 +5,18 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-__all__ = ["RuleUpdateParams", "Body"]
+__all__ = ["RuleUpdateParams", "Rule"]
 
 
 class RuleUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
     """The unique ID of the zone."""
 
-    body: Required[Iterable[Body]]
+    rules: Required[Iterable[Rule]]
     """A list of snippet rules."""
 
 
-class Body(TypedDict, total=False):
+class Rule(TypedDict, total=False):
     expression: Required[str]
     """The expression defining which traffic will match the rule."""
 
