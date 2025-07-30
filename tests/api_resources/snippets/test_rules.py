@@ -22,9 +22,9 @@ class TestRules:
     def test_method_update(self, client: Cloudflare) -> None:
         rule = client.snippets.rules.update(
             zone_id="9f1839b6152d298aca64c4e906b6d074",
-            body=[
+            rules=[
                 {
-                    "expression": "ip.src ne 1.1.1.1",
+                    "expression": "ip.src eq 1.1.1.1",
                     "snippet_name": "my_snippet",
                 }
             ],
@@ -35,9 +35,9 @@ class TestRules:
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.snippets.rules.with_raw_response.update(
             zone_id="9f1839b6152d298aca64c4e906b6d074",
-            body=[
+            rules=[
                 {
-                    "expression": "ip.src ne 1.1.1.1",
+                    "expression": "ip.src eq 1.1.1.1",
                     "snippet_name": "my_snippet",
                 }
             ],
@@ -52,9 +52,9 @@ class TestRules:
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.snippets.rules.with_streaming_response.update(
             zone_id="9f1839b6152d298aca64c4e906b6d074",
-            body=[
+            rules=[
                 {
-                    "expression": "ip.src ne 1.1.1.1",
+                    "expression": "ip.src eq 1.1.1.1",
                     "snippet_name": "my_snippet",
                 }
             ],
@@ -72,9 +72,9 @@ class TestRules:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.snippets.rules.with_raw_response.update(
                 zone_id="",
-                body=[
+                rules=[
                     {
-                        "expression": "ip.src ne 1.1.1.1",
+                        "expression": "ip.src eq 1.1.1.1",
                         "snippet_name": "my_snippet",
                     }
                 ],
@@ -166,9 +166,9 @@ class TestAsyncRules:
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         rule = await async_client.snippets.rules.update(
             zone_id="9f1839b6152d298aca64c4e906b6d074",
-            body=[
+            rules=[
                 {
-                    "expression": "ip.src ne 1.1.1.1",
+                    "expression": "ip.src eq 1.1.1.1",
                     "snippet_name": "my_snippet",
                 }
             ],
@@ -179,9 +179,9 @@ class TestAsyncRules:
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.snippets.rules.with_raw_response.update(
             zone_id="9f1839b6152d298aca64c4e906b6d074",
-            body=[
+            rules=[
                 {
-                    "expression": "ip.src ne 1.1.1.1",
+                    "expression": "ip.src eq 1.1.1.1",
                     "snippet_name": "my_snippet",
                 }
             ],
@@ -196,9 +196,9 @@ class TestAsyncRules:
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.snippets.rules.with_streaming_response.update(
             zone_id="9f1839b6152d298aca64c4e906b6d074",
-            body=[
+            rules=[
                 {
-                    "expression": "ip.src ne 1.1.1.1",
+                    "expression": "ip.src eq 1.1.1.1",
                     "snippet_name": "my_snippet",
                 }
             ],
@@ -216,9 +216,9 @@ class TestAsyncRules:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.snippets.rules.with_raw_response.update(
                 zone_id="",
-                body=[
+                rules=[
                     {
-                        "expression": "ip.src ne 1.1.1.1",
+                        "expression": "ip.src eq 1.1.1.1",
                         "snippet_name": "my_snippet",
                     }
                 ],

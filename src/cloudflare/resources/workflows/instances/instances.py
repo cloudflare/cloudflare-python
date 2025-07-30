@@ -130,6 +130,7 @@ class InstancesResource(SyncAPIResource):
         workflow_name: str,
         *,
         account_id: str,
+        cursor: str | NotGiven = NOT_GIVEN,
         date_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
         date_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
@@ -149,9 +150,13 @@ class InstancesResource(SyncAPIResource):
         List of workflow instances
 
         Args:
+          cursor: `page` and `cursor` are mutually exclusive, use one or the other.
+
           date_end: Accepts ISO 8601 with no timezone offsets and in UTC.
 
           date_start: Accepts ISO 8601 with no timezone offsets and in UTC.
+
+          page: `page` and `cursor` are mutually exclusive, use one or the other.
 
           extra_headers: Send extra headers
 
@@ -175,6 +180,7 @@ class InstancesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "cursor": cursor,
                         "date_end": date_end,
                         "date_start": date_start,
                         "page": page,
@@ -355,6 +361,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         workflow_name: str,
         *,
         account_id: str,
+        cursor: str | NotGiven = NOT_GIVEN,
         date_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
         date_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
@@ -374,9 +381,13 @@ class AsyncInstancesResource(AsyncAPIResource):
         List of workflow instances
 
         Args:
+          cursor: `page` and `cursor` are mutually exclusive, use one or the other.
+
           date_end: Accepts ISO 8601 with no timezone offsets and in UTC.
 
           date_start: Accepts ISO 8601 with no timezone offsets and in UTC.
+
+          page: `page` and `cursor` are mutually exclusive, use one or the other.
 
           extra_headers: Send extra headers
 
@@ -400,6 +411,7 @@ class AsyncInstancesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "cursor": cursor,
                         "date_end": date_end,
                         "date_start": date_start,
                         "page": page,

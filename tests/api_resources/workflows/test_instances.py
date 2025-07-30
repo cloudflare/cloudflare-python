@@ -96,6 +96,7 @@ class TestInstances:
         instance = client.workflows.instances.list(
             workflow_name="x",
             account_id="account_id",
+            cursor="cursor",
             date_end=parse_datetime("2019-12-27T18:11:19.117Z"),
             date_start=parse_datetime("2019-12-27T18:11:19.117Z"),
             page=1,
@@ -345,6 +346,7 @@ class TestAsyncInstances:
         instance = await async_client.workflows.instances.list(
             workflow_name="x",
             account_id="account_id",
+            cursor="cursor",
             date_end=parse_datetime("2019-12-27T18:11:19.117Z"),
             date_start=parse_datetime("2019-12-27T18:11:19.117Z"),
             page=1,
