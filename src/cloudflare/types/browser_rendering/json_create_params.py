@@ -13,7 +13,6 @@ __all__ = [
     "AddStyleTag",
     "Authenticate",
     "Cookie",
-    "CustomAI",
     "GotoOptions",
     "ResponseFormat",
     "Viewport",
@@ -85,13 +84,6 @@ class JsonCreateParams(TypedDict, total=False):
 
     cookies: Iterable[Cookie]
     """Check [options](https://pptr.dev/api/puppeteer.page.setcookie)."""
-
-    custom_ai: Iterable[CustomAI]
-    """Optional list of custom AI models to use for the request.
-
-    The models will be tried in the order provided, and in case a model returns an
-    error, the next one will be used as fallback.
-    """
 
     emulate_media_type: Annotated[str, PropertyInfo(alias="emulateMediaType")]
 
@@ -216,18 +208,6 @@ class Cookie(TypedDict, total=False):
     source_scheme: Annotated[Literal["Unset", "NonSecure", "Secure"], PropertyInfo(alias="sourceScheme")]
 
     url: str
-
-
-class CustomAI(TypedDict, total=False):
-    authorization: Required[str]
-    """Authorization token for the AI model: `Bearer <token>`."""
-
-    model: Required[str]
-    """AI model to use for the request.
-
-    Must be formed as `<provider>/<model_name>`, e.g.
-    `workers-ai/@cf/meta/llama-3.3-70b-instruct-fp8-fast`
-    """
 
 
 class GotoOptions(TypedDict, total=False):

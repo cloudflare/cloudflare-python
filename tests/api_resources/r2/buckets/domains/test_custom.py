@@ -44,7 +44,6 @@ class TestCustom:
             domain="prefix.example-domain.com",
             enabled=True,
             zone_id="36ca64a6d92827b8a6b90be344bb1bfd",
-            ciphers=["string"],
             min_tls="1.0",
             jurisdiction="default",
         )
@@ -122,7 +121,6 @@ class TestCustom:
             domain="example-domain/custom-domain.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
-            ciphers=["string"],
             enabled=True,
             min_tls="1.2",
             jurisdiction="default",
@@ -422,7 +420,6 @@ class TestAsyncCustom:
             domain="prefix.example-domain.com",
             enabled=True,
             zone_id="36ca64a6d92827b8a6b90be344bb1bfd",
-            ciphers=["string"],
             min_tls="1.0",
             jurisdiction="default",
         )
@@ -500,7 +497,6 @@ class TestAsyncCustom:
             domain="example-domain/custom-domain.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
-            ciphers=["string"],
             enabled=True,
             min_tls="1.2",
             jurisdiction="default",

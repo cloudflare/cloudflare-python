@@ -48,6 +48,14 @@ from .subdomains import (
     SubdomainsResourceWithStreamingResponse,
     AsyncSubdomainsResourceWithStreamingResponse,
 )
+from .observability import (
+    ObservabilityResource,
+    AsyncObservabilityResource,
+    ObservabilityResourceWithRawResponse,
+    AsyncObservabilityResourceWithRawResponse,
+    ObservabilityResourceWithStreamingResponse,
+    AsyncObservabilityResourceWithStreamingResponse,
+)
 from .account_settings import (
     AccountSettingsResource,
     AsyncAccountSettingsResource,
@@ -94,6 +102,12 @@ __all__ = [
     "AsyncSubdomainsResourceWithRawResponse",
     "SubdomainsResourceWithStreamingResponse",
     "AsyncSubdomainsResourceWithStreamingResponse",
+    "ObservabilityResource",
+    "AsyncObservabilityResource",
+    "ObservabilityResourceWithRawResponse",
+    "AsyncObservabilityResourceWithRawResponse",
+    "ObservabilityResourceWithStreamingResponse",
+    "AsyncObservabilityResourceWithStreamingResponse",
     "WorkersResource",
     "AsyncWorkersResource",
     "WorkersResourceWithRawResponse",

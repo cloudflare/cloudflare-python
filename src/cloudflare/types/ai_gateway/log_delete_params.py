@@ -39,7 +39,6 @@ class Filter(TypedDict, total=False):
             "created_at",
             "request_content_type",
             "response_content_type",
-            "request_type",
             "success",
             "cached",
             "provider",
@@ -52,13 +51,11 @@ class Filter(TypedDict, total=False):
             "duration",
             "feedback",
             "event_id",
+            "request_type",
             "metadata.key",
             "metadata.value",
             "prompts.prompt_id",
             "prompts.version_id",
-            "authentication",
-            "wholesale",
-            "compatibilityMode",
         ]
     ]
 

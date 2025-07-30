@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ....._utils import PropertyInfo
@@ -16,12 +15,6 @@ class CustomUpdateParams(TypedDict, total=False):
 
     bucket_name: Required[str]
     """Name of the bucket."""
-
-    ciphers: List[str]
-    """An allowlist of ciphers for TLS termination.
-
-    These ciphers must be in the BoringSSL format.
-    """
 
     enabled: bool
     """Whether to enable public bucket access at the specified custom domain."""

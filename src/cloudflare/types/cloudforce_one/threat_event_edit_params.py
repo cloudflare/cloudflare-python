@@ -15,7 +15,7 @@ class ThreatEventEditParams(TypedDict, total=False):
     account_id: Required[str]
     """Account ID."""
 
-    attacker: Optional[str]
+    attacker: str
 
     attacker_country: Annotated[str, PropertyInfo(alias="attackerCountry")]
 

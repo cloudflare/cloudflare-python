@@ -22,7 +22,6 @@ __all__ = [
     "Summarization",
     "ImageToText",
     "ImageTextToText",
-    "MultimodalEmbeddings",
 ]
 
 
@@ -154,12 +153,6 @@ class ImageTextToText(BaseModel):
     description: Optional[str] = None
 
 
-class MultimodalEmbeddings(BaseModel):
-    data: Optional[List[List[float]]] = None
-
-    shape: Optional[List[float]] = None
-
-
 AIRunResponse: TypeAlias = Union[
     List[TextClassification],
     object,
@@ -173,5 +166,4 @@ AIRunResponse: TypeAlias = Union[
     Summarization,
     ImageToText,
     ImageTextToText,
-    MultimodalEmbeddings,
 ]

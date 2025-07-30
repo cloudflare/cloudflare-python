@@ -44,5 +44,3 @@ class AIGatewayListResponse(BaseModel):
     logpush: Optional[bool] = None
 
     logpush_public_key: Optional[str] = None
-
-    store_id: Optional[str] = None

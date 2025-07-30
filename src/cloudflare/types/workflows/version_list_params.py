@@ -4,15 +4,12 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["NamespaceListParams"]
+__all__ = ["VersionListParams"]
 
 
-class NamespaceListParams(TypedDict, total=False):
+class VersionListParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier."""
 
-    page: int
-    """Current page."""
+    page: float
 
-    per_page: int
-    """Items per-page."""
+    per_page: float

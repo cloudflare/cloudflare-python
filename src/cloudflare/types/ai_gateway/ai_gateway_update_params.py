@@ -32,5 +32,3 @@ class AIGatewayUpdateParams(TypedDict, total=False):
     logpush: bool
 
     logpush_public_key: Optional[str]
-
-    store_id: Optional[str]

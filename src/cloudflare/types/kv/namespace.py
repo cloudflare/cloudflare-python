@@ -14,6 +14,9 @@ class Namespace(BaseModel):
     title: str
     """A human-readable string name for a Namespace."""
 
+    beta: Optional[bool] = None
+    """True if new beta namespace, with additional preview features."""
+
     supports_url_encoding: Optional[bool] = None
     """True if keys written on the URL will be URL-decoded before storing.
 
