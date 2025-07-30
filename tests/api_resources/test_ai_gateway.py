@@ -139,6 +139,7 @@ class TestAIGateway:
             log_management_strategy="STOP_INSERTING",
             logpush=True,
             logpush_public_key="xxxxxxxxxxxxxxxx",
+            store_id="store_id",
         )
         assert_matches_type(AIGatewayUpdateResponse, ai_gateway, path=["response"])
 
@@ -471,6 +472,7 @@ class TestAsyncAIGateway:
             log_management_strategy="STOP_INSERTING",
             logpush=True,
             logpush_public_key="xxxxxxxxxxxxxxxx",
+            store_id="store_id",
         )
         assert_matches_type(AIGatewayUpdateResponse, ai_gateway, path=["response"])
 

@@ -3,12 +3,11 @@
 from __future__ import annotations
 
 from typing import Type, Iterable, Optional, cast
-from typing_extensions import Literal, overload
 
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import required_args, maybe_transform, async_maybe_transform
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -18,12 +17,11 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ..._base_client import make_request_options
-from ...types.queues import message_ack_params, message_pull_params, message_push_params, message_bulk_push_params
+from ...pagination import SyncSinglePage, AsyncSinglePage
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.queues import message_ack_params, message_pull_params
 from ...types.queues.message_ack_response import MessageAckResponse
 from ...types.queues.message_pull_response import MessagePullResponse
-from ...types.queues.message_push_response import MessagePushResponse
-from ...types.queues.message_bulk_push_response import MessageBulkPushResponse
 
 __all__ = ["MessagesResource", "AsyncMessagesResource"]
 
@@ -101,57 +99,6 @@ class MessagesResource(SyncAPIResource):
             cast_to=cast(Type[Optional[MessageAckResponse]], ResultWrapper[MessageAckResponse]),
         )
 
-    def bulk_push(
-        self,
-        queue_id: str,
-        *,
-        account_id: str,
-        delay_seconds: float | NotGiven = NOT_GIVEN,
-        messages: Iterable[message_bulk_push_params.Message] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessageBulkPushResponse:
-        """
-        Push a batch of message to a Queue
-
-        Args:
-          account_id: A Resource identifier.
-
-          queue_id: A Resource identifier.
-
-          delay_seconds: The number of seconds to wait for attempting to deliver this batch to consumers
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not queue_id:
-            raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
-        return self._post(
-            f"/accounts/{account_id}/queues/{queue_id}/messages/batch",
-            body=maybe_transform(
-                {
-                    "delay_seconds": delay_seconds,
-                    "messages": messages,
-                },
-                message_bulk_push_params.MessageBulkPushParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=MessageBulkPushResponse,
-        )
-
     def pull(
         self,
         queue_id: str,
@@ -165,7 +112,7 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MessagePullResponse]:
+    ) -> SyncSinglePage[MessagePullResponse]:
         """
         Pull a batch of messages from a Queue
 
@@ -191,8 +138,9 @@ class MessagesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
-        return self._post(
+        return self._get_api_list(
             f"/accounts/{account_id}/queues/{queue_id}/messages/pull",
+            page=SyncSinglePage[MessagePullResponse],
             body=maybe_transform(
                 {
                     "batch_size": batch_size,
@@ -201,123 +149,10 @@ class MessagesResource(SyncAPIResource):
                 message_pull_params.MessagePullParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[MessagePullResponse]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[MessagePullResponse]], ResultWrapper[MessagePullResponse]),
-        )
-
-    @overload
-    def push(
-        self,
-        queue_id: str,
-        *,
-        account_id: str,
-        body: str | NotGiven = NOT_GIVEN,
-        content_type: Literal["text"] | NotGiven = NOT_GIVEN,
-        delay_seconds: float | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessagePushResponse:
-        """
-        Push a message to a Queue
-
-        Args:
-          account_id: A Resource identifier.
-
-          queue_id: A Resource identifier.
-
-          delay_seconds: The number of seconds to wait for attempting to deliver this message to
-              consumers
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def push(
-        self,
-        queue_id: str,
-        *,
-        account_id: str,
-        body: object | NotGiven = NOT_GIVEN,
-        content_type: Literal["json"] | NotGiven = NOT_GIVEN,
-        delay_seconds: float | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessagePushResponse:
-        """
-        Push a message to a Queue
-
-        Args:
-          account_id: A Resource identifier.
-
-          queue_id: A Resource identifier.
-
-          delay_seconds: The number of seconds to wait for attempting to deliver this message to
-              consumers
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @required_args(["account_id"])
-    def push(
-        self,
-        queue_id: str,
-        *,
-        account_id: str,
-        body: str | object | NotGiven = NOT_GIVEN,
-        content_type: Literal["text"] | Literal["json"] | NotGiven = NOT_GIVEN,
-        delay_seconds: float | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessagePushResponse:
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not queue_id:
-            raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
-        return self._post(
-            f"/accounts/{account_id}/queues/{queue_id}/messages",
-            body=maybe_transform(
-                {
-                    "body": body,
-                    "content_type": content_type,
-                    "delay_seconds": delay_seconds,
-                },
-                message_push_params.MessagePushParams,
-            ),
-            options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MessagePushResponse,
+            model=MessagePullResponse,
+            method="post",
         )
 
 
@@ -394,58 +229,7 @@ class AsyncMessagesResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[MessageAckResponse]], ResultWrapper[MessageAckResponse]),
         )
 
-    async def bulk_push(
-        self,
-        queue_id: str,
-        *,
-        account_id: str,
-        delay_seconds: float | NotGiven = NOT_GIVEN,
-        messages: Iterable[message_bulk_push_params.Message] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessageBulkPushResponse:
-        """
-        Push a batch of message to a Queue
-
-        Args:
-          account_id: A Resource identifier.
-
-          queue_id: A Resource identifier.
-
-          delay_seconds: The number of seconds to wait for attempting to deliver this batch to consumers
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not queue_id:
-            raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
-        return await self._post(
-            f"/accounts/{account_id}/queues/{queue_id}/messages/batch",
-            body=await async_maybe_transform(
-                {
-                    "delay_seconds": delay_seconds,
-                    "messages": messages,
-                },
-                message_bulk_push_params.MessageBulkPushParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=MessageBulkPushResponse,
-        )
-
-    async def pull(
+    def pull(
         self,
         queue_id: str,
         *,
@@ -458,7 +242,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MessagePullResponse]:
+    ) -> AsyncPaginator[MessagePullResponse, AsyncSinglePage[MessagePullResponse]]:
         """
         Pull a batch of messages from a Queue
 
@@ -484,9 +268,10 @@ class AsyncMessagesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
-        return await self._post(
+        return self._get_api_list(
             f"/accounts/{account_id}/queues/{queue_id}/messages/pull",
-            body=await async_maybe_transform(
+            page=AsyncSinglePage[MessagePullResponse],
+            body=maybe_transform(
                 {
                     "batch_size": batch_size,
                     "visibility_timeout_ms": visibility_timeout_ms,
@@ -494,123 +279,10 @@ class AsyncMessagesResource(AsyncAPIResource):
                 message_pull_params.MessagePullParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[MessagePullResponse]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[MessagePullResponse]], ResultWrapper[MessagePullResponse]),
-        )
-
-    @overload
-    async def push(
-        self,
-        queue_id: str,
-        *,
-        account_id: str,
-        body: str | NotGiven = NOT_GIVEN,
-        content_type: Literal["text"] | NotGiven = NOT_GIVEN,
-        delay_seconds: float | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessagePushResponse:
-        """
-        Push a message to a Queue
-
-        Args:
-          account_id: A Resource identifier.
-
-          queue_id: A Resource identifier.
-
-          delay_seconds: The number of seconds to wait for attempting to deliver this message to
-              consumers
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def push(
-        self,
-        queue_id: str,
-        *,
-        account_id: str,
-        body: object | NotGiven = NOT_GIVEN,
-        content_type: Literal["json"] | NotGiven = NOT_GIVEN,
-        delay_seconds: float | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessagePushResponse:
-        """
-        Push a message to a Queue
-
-        Args:
-          account_id: A Resource identifier.
-
-          queue_id: A Resource identifier.
-
-          delay_seconds: The number of seconds to wait for attempting to deliver this message to
-              consumers
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @required_args(["account_id"])
-    async def push(
-        self,
-        queue_id: str,
-        *,
-        account_id: str,
-        body: str | object | NotGiven = NOT_GIVEN,
-        content_type: Literal["text"] | Literal["json"] | NotGiven = NOT_GIVEN,
-        delay_seconds: float | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessagePushResponse:
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not queue_id:
-            raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
-        return await self._post(
-            f"/accounts/{account_id}/queues/{queue_id}/messages",
-            body=await async_maybe_transform(
-                {
-                    "body": body,
-                    "content_type": content_type,
-                    "delay_seconds": delay_seconds,
-                },
-                message_push_params.MessagePushParams,
-            ),
-            options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MessagePushResponse,
+            model=MessagePullResponse,
+            method="post",
         )
 
 
@@ -621,14 +293,8 @@ class MessagesResourceWithRawResponse:
         self.ack = to_raw_response_wrapper(
             messages.ack,
         )
-        self.bulk_push = to_raw_response_wrapper(
-            messages.bulk_push,
-        )
         self.pull = to_raw_response_wrapper(
             messages.pull,
-        )
-        self.push = to_raw_response_wrapper(
-            messages.push,
         )
 
 
@@ -639,14 +305,8 @@ class AsyncMessagesResourceWithRawResponse:
         self.ack = async_to_raw_response_wrapper(
             messages.ack,
         )
-        self.bulk_push = async_to_raw_response_wrapper(
-            messages.bulk_push,
-        )
         self.pull = async_to_raw_response_wrapper(
             messages.pull,
-        )
-        self.push = async_to_raw_response_wrapper(
-            messages.push,
         )
 
 
@@ -657,14 +317,8 @@ class MessagesResourceWithStreamingResponse:
         self.ack = to_streamed_response_wrapper(
             messages.ack,
         )
-        self.bulk_push = to_streamed_response_wrapper(
-            messages.bulk_push,
-        )
         self.pull = to_streamed_response_wrapper(
             messages.pull,
-        )
-        self.push = to_streamed_response_wrapper(
-            messages.push,
         )
 
 
@@ -675,12 +329,6 @@ class AsyncMessagesResourceWithStreamingResponse:
         self.ack = async_to_streamed_response_wrapper(
             messages.ack,
         )
-        self.bulk_push = async_to_streamed_response_wrapper(
-            messages.bulk_push,
-        )
         self.pull = async_to_streamed_response_wrapper(
             messages.pull,
-        )
-        self.push = async_to_streamed_response_wrapper(
-            messages.push,
         )

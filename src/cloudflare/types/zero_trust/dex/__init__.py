@@ -8,6 +8,7 @@ from .traceroute import Traceroute as Traceroute
 from .http_details import HTTPDetails as HTTPDetails
 from .colo_list_params import ColoListParams as ColoListParams
 from .test_list_params import TestListParams as TestListParams
+from .colo_list_response import ColoListResponse as ColoListResponse
 from .command_list_params import CommandListParams as CommandListParams
 from .http_test_get_params import HTTPTestGetParams as HTTPTestGetParams
 from .aggregate_time_period import AggregateTimePeriod as AggregateTimePeriod

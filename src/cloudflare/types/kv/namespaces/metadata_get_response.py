@@ -1,8 +1,8 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Union
+from typing import Dict
 from typing_extensions import TypeAlias
 
-__all__ = ["ReceivedGetResponse"]
+__all__ = ["MetadataGetResponse"]
 
-ReceivedGetResponse: TypeAlias = Union[str, object]
+MetadataGetResponse: TypeAlias = Dict[str, object]

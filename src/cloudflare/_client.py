@@ -44,7 +44,6 @@ if TYPE_CHECKING:
         rum,
         ssl,
         argo,
-        logs,
         user,
         web3,
         cache,
@@ -74,7 +73,6 @@ if TYPE_CHECKING:
         registrar,
         turnstile,
         vectorize,
-        workflows,
         addressing,
         ai_gateway,
         audit_logs,
@@ -141,7 +139,6 @@ if TYPE_CHECKING:
     from .resources.rum.rum import RUMResource, AsyncRUMResource
     from .resources.ssl.ssl import SSLResource, AsyncSSLResource
     from .resources.argo.argo import ArgoResource, AsyncArgoResource
-    from .resources.logs.logs import LogsResource, AsyncLogsResource
     from .resources.pipelines import PipelinesResource, AsyncPipelinesResource
     from .resources.user.user import UserResource, AsyncUserResource
     from .resources.web3.web3 import Web3Resource, AsyncWeb3Resource
@@ -183,7 +180,6 @@ if TYPE_CHECKING:
     from .resources.registrar.registrar import RegistrarResource, AsyncRegistrarResource
     from .resources.turnstile.turnstile import TurnstileResource, AsyncTurnstileResource
     from .resources.vectorize.vectorize import VectorizeResource, AsyncVectorizeResource
-    from .resources.workflows.workflows import WorkflowsResource, AsyncWorkflowsResource
     from .resources.keyless_certificates import KeylessCertificatesResource, AsyncKeylessCertificatesResource
     from .resources.addressing.addressing import AddressingResource, AsyncAddressingResource
     from .resources.ai_gateway.ai_gateway import AIGatewayResource, AsyncAIGatewayResource
@@ -486,12 +482,6 @@ class Cloudflare(SyncAPIClient):
         from .resources.logpush import LogpushResource
 
         return LogpushResource(self)
-
-    @cached_property
-    def logs(self) -> LogsResource:
-        from .resources.logs import LogsResource
-
-        return LogsResource(self)
 
     @cached_property
     def origin_tls_client_auth(self) -> OriginTLSClientAuthResource:
@@ -834,12 +824,6 @@ class Cloudflare(SyncAPIClient):
         from .resources.security_txt import SecurityTXTResource
 
         return SecurityTXTResource(self)
-
-    @cached_property
-    def workflows(self) -> WorkflowsResource:
-        from .resources.workflows import WorkflowsResource
-
-        return WorkflowsResource(self)
 
     @cached_property
     def resource_sharing(self) -> ResourceSharingResource:
@@ -1305,12 +1289,6 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncLogpushResource(self)
 
     @cached_property
-    def logs(self) -> AsyncLogsResource:
-        from .resources.logs import AsyncLogsResource
-
-        return AsyncLogsResource(self)
-
-    @cached_property
     def origin_tls_client_auth(self) -> AsyncOriginTLSClientAuthResource:
         from .resources.origin_tls_client_auth import AsyncOriginTLSClientAuthResource
 
@@ -1651,12 +1629,6 @@ class AsyncCloudflare(AsyncAPIClient):
         from .resources.security_txt import AsyncSecurityTXTResource
 
         return AsyncSecurityTXTResource(self)
-
-    @cached_property
-    def workflows(self) -> AsyncWorkflowsResource:
-        from .resources.workflows import AsyncWorkflowsResource
-
-        return AsyncWorkflowsResource(self)
 
     @cached_property
     def resource_sharing(self) -> AsyncResourceSharingResource:
@@ -2055,12 +2027,6 @@ class CloudflareWithRawResponse:
         return LogpushResourceWithRawResponse(self._client.logpush)
 
     @cached_property
-    def logs(self) -> logs.LogsResourceWithRawResponse:
-        from .resources.logs import LogsResourceWithRawResponse
-
-        return LogsResourceWithRawResponse(self._client.logs)
-
-    @cached_property
     def origin_tls_client_auth(self) -> origin_tls_client_auth.OriginTLSClientAuthResourceWithRawResponse:
         from .resources.origin_tls_client_auth import OriginTLSClientAuthResourceWithRawResponse
 
@@ -2405,12 +2371,6 @@ class CloudflareWithRawResponse:
         return SecurityTXTResourceWithRawResponse(self._client.security_txt)
 
     @cached_property
-    def workflows(self) -> workflows.WorkflowsResourceWithRawResponse:
-        from .resources.workflows import WorkflowsResourceWithRawResponse
-
-        return WorkflowsResourceWithRawResponse(self._client.workflows)
-
-    @cached_property
     def resource_sharing(self) -> resource_sharing.ResourceSharingResourceWithRawResponse:
         from .resources.resource_sharing import ResourceSharingResourceWithRawResponse
 
@@ -2632,12 +2592,6 @@ class AsyncCloudflareWithRawResponse:
         from .resources.logpush import AsyncLogpushResourceWithRawResponse
 
         return AsyncLogpushResourceWithRawResponse(self._client.logpush)
-
-    @cached_property
-    def logs(self) -> logs.AsyncLogsResourceWithRawResponse:
-        from .resources.logs import AsyncLogsResourceWithRawResponse
-
-        return AsyncLogsResourceWithRawResponse(self._client.logs)
 
     @cached_property
     def origin_tls_client_auth(self) -> origin_tls_client_auth.AsyncOriginTLSClientAuthResourceWithRawResponse:
@@ -2984,12 +2938,6 @@ class AsyncCloudflareWithRawResponse:
         return AsyncSecurityTXTResourceWithRawResponse(self._client.security_txt)
 
     @cached_property
-    def workflows(self) -> workflows.AsyncWorkflowsResourceWithRawResponse:
-        from .resources.workflows import AsyncWorkflowsResourceWithRawResponse
-
-        return AsyncWorkflowsResourceWithRawResponse(self._client.workflows)
-
-    @cached_property
     def resource_sharing(self) -> resource_sharing.AsyncResourceSharingResourceWithRawResponse:
         from .resources.resource_sharing import AsyncResourceSharingResourceWithRawResponse
 
@@ -3211,12 +3159,6 @@ class CloudflareWithStreamedResponse:
         from .resources.logpush import LogpushResourceWithStreamingResponse
 
         return LogpushResourceWithStreamingResponse(self._client.logpush)
-
-    @cached_property
-    def logs(self) -> logs.LogsResourceWithStreamingResponse:
-        from .resources.logs import LogsResourceWithStreamingResponse
-
-        return LogsResourceWithStreamingResponse(self._client.logs)
 
     @cached_property
     def origin_tls_client_auth(self) -> origin_tls_client_auth.OriginTLSClientAuthResourceWithStreamingResponse:
@@ -3563,12 +3505,6 @@ class CloudflareWithStreamedResponse:
         return SecurityTXTResourceWithStreamingResponse(self._client.security_txt)
 
     @cached_property
-    def workflows(self) -> workflows.WorkflowsResourceWithStreamingResponse:
-        from .resources.workflows import WorkflowsResourceWithStreamingResponse
-
-        return WorkflowsResourceWithStreamingResponse(self._client.workflows)
-
-    @cached_property
     def resource_sharing(self) -> resource_sharing.ResourceSharingResourceWithStreamingResponse:
         from .resources.resource_sharing import ResourceSharingResourceWithStreamingResponse
 
@@ -3792,12 +3728,6 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.logpush import AsyncLogpushResourceWithStreamingResponse
 
         return AsyncLogpushResourceWithStreamingResponse(self._client.logpush)
-
-    @cached_property
-    def logs(self) -> logs.AsyncLogsResourceWithStreamingResponse:
-        from .resources.logs import AsyncLogsResourceWithStreamingResponse
-
-        return AsyncLogsResourceWithStreamingResponse(self._client.logs)
 
     @cached_property
     def origin_tls_client_auth(self) -> origin_tls_client_auth.AsyncOriginTLSClientAuthResourceWithStreamingResponse:
@@ -4148,12 +4078,6 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.security_txt import AsyncSecurityTXTResourceWithStreamingResponse
 
         return AsyncSecurityTXTResourceWithStreamingResponse(self._client.security_txt)
-
-    @cached_property
-    def workflows(self) -> workflows.AsyncWorkflowsResourceWithStreamingResponse:
-        from .resources.workflows import AsyncWorkflowsResourceWithStreamingResponse
-
-        return AsyncWorkflowsResourceWithStreamingResponse(self._client.workflows)
 
     @cached_property
     def resource_sharing(self) -> resource_sharing.AsyncResourceSharingResourceWithStreamingResponse:

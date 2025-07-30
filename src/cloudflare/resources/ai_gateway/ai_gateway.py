@@ -194,6 +194,7 @@ class AIGatewayResource(SyncAPIResource):
         log_management_strategy: Optional[Literal["STOP_INSERTING", "DELETE_OLDEST"]] | NotGiven = NOT_GIVEN,
         logpush: bool | NotGiven = NOT_GIVEN,
         logpush_public_key: Optional[str] | NotGiven = NOT_GIVEN,
+        store_id: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -234,6 +235,7 @@ class AIGatewayResource(SyncAPIResource):
                     "log_management_strategy": log_management_strategy,
                     "logpush": logpush,
                     "logpush_public_key": logpush_public_key,
+                    "store_id": store_id,
                 },
                 ai_gateway_update_params.AIGatewayUpdateParams,
             ),
@@ -506,6 +508,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         log_management_strategy: Optional[Literal["STOP_INSERTING", "DELETE_OLDEST"]] | NotGiven = NOT_GIVEN,
         logpush: bool | NotGiven = NOT_GIVEN,
         logpush_public_key: Optional[str] | NotGiven = NOT_GIVEN,
+        store_id: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -546,6 +549,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
                     "log_management_strategy": log_management_strategy,
                     "logpush": logpush,
                     "logpush_public_key": logpush_public_key,
+                    "store_id": store_id,
                 },
                 ai_gateway_update_params.AIGatewayUpdateParams,
             ),

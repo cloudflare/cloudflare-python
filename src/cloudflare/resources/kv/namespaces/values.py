@@ -59,10 +59,10 @@ class ValuesResource(SyncAPIResource):
         *,
         account_id: str,
         namespace_id: str,
+        metadata: str,
         value: str,
         expiration: float | NotGiven = NOT_GIVEN,
         expiration_ttl: float | NotGiven = NOT_GIVEN,
-        metadata: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -82,19 +82,22 @@ class ValuesResource(SyncAPIResource):
         `expiration` is ignored.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           namespace_id: Namespace identifier tag.
 
           key_name: A key's name. The name may be at most 512 bytes. All printable, non-whitespace
               characters are valid. Use percent-encoding to define key names as part of a URL.
 
+          metadata: Arbitrary JSON to be associated with a key/value pair.
+
           value: A byte sequence to be stored, up to 25 MiB in length.
 
-          expiration: Expires the key at a certain time, measured in number of seconds since the UNIX
-              epoch.
+          expiration: The time, measured in number of seconds since the UNIX epoch, at which the key
+              should expire.
 
-          expiration_ttl: Expires the key after a number of seconds. Must be at least 60.
+          expiration_ttl: The number of seconds for which the key should be visible before it expires. At
+              least 60.
 
           extra_headers: Send extra headers
 
@@ -110,16 +113,12 @@ class ValuesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         if not key_name:
             raise ValueError(f"Expected a non-empty value for `key_name` but received {key_name!r}")
-        # It should be noted that the actual Content-Type header that will be
-        # sent to the server will contain a `boundary` parameter, e.g.
-        # multipart/form-data; boundary=---abc--
-        extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._put(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
             body=maybe_transform(
                 {
-                    "value": value,
                     "metadata": metadata,
+                    "value": value,
                 },
                 value_update_params.ValueUpdateParams,
             ),
@@ -159,7 +158,7 @@ class ValuesResource(SyncAPIResource):
         (for example, `:`, `!`, `%`) in the key name.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           namespace_id: Namespace identifier tag.
 
@@ -214,7 +213,7 @@ class ValuesResource(SyncAPIResource):
         response header.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           namespace_id: Namespace identifier tag.
 
@@ -271,10 +270,10 @@ class AsyncValuesResource(AsyncAPIResource):
         *,
         account_id: str,
         namespace_id: str,
+        metadata: str,
         value: str,
         expiration: float | NotGiven = NOT_GIVEN,
         expiration_ttl: float | NotGiven = NOT_GIVEN,
-        metadata: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -294,19 +293,22 @@ class AsyncValuesResource(AsyncAPIResource):
         `expiration` is ignored.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           namespace_id: Namespace identifier tag.
 
           key_name: A key's name. The name may be at most 512 bytes. All printable, non-whitespace
               characters are valid. Use percent-encoding to define key names as part of a URL.
 
+          metadata: Arbitrary JSON to be associated with a key/value pair.
+
           value: A byte sequence to be stored, up to 25 MiB in length.
 
-          expiration: Expires the key at a certain time, measured in number of seconds since the UNIX
-              epoch.
+          expiration: The time, measured in number of seconds since the UNIX epoch, at which the key
+              should expire.
 
-          expiration_ttl: Expires the key after a number of seconds. Must be at least 60.
+          expiration_ttl: The number of seconds for which the key should be visible before it expires. At
+              least 60.
 
           extra_headers: Send extra headers
 
@@ -322,16 +324,12 @@ class AsyncValuesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         if not key_name:
             raise ValueError(f"Expected a non-empty value for `key_name` but received {key_name!r}")
-        # It should be noted that the actual Content-Type header that will be
-        # sent to the server will contain a `boundary` parameter, e.g.
-        # multipart/form-data; boundary=---abc--
-        extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._put(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
             body=await async_maybe_transform(
                 {
-                    "value": value,
                     "metadata": metadata,
+                    "value": value,
                 },
                 value_update_params.ValueUpdateParams,
             ),
@@ -371,7 +369,7 @@ class AsyncValuesResource(AsyncAPIResource):
         (for example, `:`, `!`, `%`) in the key name.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           namespace_id: Namespace identifier tag.
 
@@ -426,7 +424,7 @@ class AsyncValuesResource(AsyncAPIResource):
         response header.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           namespace_id: Namespace identifier tag.
 

@@ -7,7 +7,41 @@ from .host import Host
 from .status import Status
 from ..._models import BaseModel
 
-__all__ = ["CertificatePackEditResponse"]
+__all__ = ["CertificatePackEditResponse", "ValidationError", "ValidationRecord"]
+
+
+class ValidationError(BaseModel):
+    message: Optional[str] = None
+    """A domain validation error."""
+
+
+class ValidationRecord(BaseModel):
+    emails: Optional[List[str]] = None
+    """
+    The set of email addresses that the certificate authority (CA) will use to
+    complete domain validation.
+    """
+
+    http_body: Optional[str] = None
+    """
+    The content that the certificate authority (CA) will expect to find at the
+    http_url during the domain validation.
+    """
+
+    http_url: Optional[str] = None
+    """The url that will be checked during domain validation."""
+
+    txt_name: Optional[str] = None
+    """
+    The hostname that the certificate authority (CA) will check for a TXT record
+    during domain validation .
+    """
+
+    txt_value: Optional[str] = None
+    """
+    The TXT record that the certificate authority (CA) will check during domain
+    validation.
+    """
 
 
 class CertificatePackEditResponse(BaseModel):
@@ -38,11 +72,34 @@ class CertificatePackEditResponse(BaseModel):
     status: Optional[Status] = None
     """Status of certificate pack."""
 
-    type: Optional[Literal["advanced"]] = None
+    type: Optional[
+        Literal[
+            "mh_custom",
+            "managed_hostname",
+            "sni_custom",
+            "universal",
+            "advanced",
+            "total_tls",
+            "keyless",
+            "legacy_custom",
+        ]
+    ] = None
     """Type of certificate pack."""
+
+    validation_errors: Optional[List[ValidationError]] = None
+    """
+    Domain validation errors that have been received by the certificate authority
+    (CA).
+    """
 
     validation_method: Optional[Literal["txt", "http", "email"]] = None
     """Validation Method selected for the order."""
+
+    validation_records: Optional[List[ValidationRecord]] = None
+    """Certificates' validation records.
+
+    Only present when certificate pack is in "pending_validation" status
+    """
 
     validity_days: Optional[Literal[14, 30, 90, 365]] = None
     """Validity Days selected for the order."""

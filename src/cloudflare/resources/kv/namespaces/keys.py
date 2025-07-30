@@ -3,8 +3,7 @@
 from __future__ import annotations
 
 import typing_extensions
-from typing import Any, List, Type, Iterable, Optional, cast
-from typing_extensions import Literal
+from typing import List, Type, Iterable, Optional, cast
 
 import httpx
 
@@ -21,9 +20,8 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncCursorLimitPagination, AsyncCursorLimitPagination
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.kv.namespaces import key_list_params, key_bulk_get_params, key_bulk_update_params
+from ....types.kv.namespaces import key_list_params, key_bulk_update_params
 from ....types.kv.namespaces.key import Key
-from ....types.kv.namespaces.key_bulk_get_response import KeyBulkGetResponse
 from ....types.kv.namespaces.key_bulk_delete_response import KeyBulkDeleteResponse
 from ....types.kv.namespaces.key_bulk_update_response import KeyBulkUpdateResponse
 
@@ -69,7 +67,7 @@ class KeysResource(SyncAPIResource):
         Lists a namespace's keys.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           namespace_id: Namespace identifier tag.
 
@@ -78,11 +76,11 @@ class KeysResource(SyncAPIResource):
               parameter. A valid value for the cursor can be obtained from the `cursors`
               object in the `result_info` structure.
 
-          limit: Limits the number of keys returned in the response. The cursor attribute may be
-              used to iterate over the next batch of keys if there are more than the limit.
+          limit: The number of keys to return. The cursor attribute may be used to iterate over
+              the next batch of keys if there are more than the limit.
 
-          prefix: Filters returned keys by a name prefix. Exact matches and any key names that
-              begin with the prefix will be returned.
+          prefix: A string prefix used to filter down which keys will be returned. Exact matches
+              and any key names that begin with the prefix will be returned.
 
           extra_headers: Send extra headers
 
@@ -136,7 +134,7 @@ class KeysResource(SyncAPIResource):
         10,000 keys to be removed.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           namespace_id: Namespace identifier tag.
 
@@ -165,76 +163,6 @@ class KeysResource(SyncAPIResource):
             cast_to=cast(Type[Optional[KeyBulkDeleteResponse]], ResultWrapper[KeyBulkDeleteResponse]),
         )
 
-    @typing_extensions.deprecated("Please use kv.namespaces.bulk_get instead")
-    def bulk_get(
-        self,
-        namespace_id: str,
-        *,
-        account_id: str,
-        keys: List[str],
-        type: Literal["text", "json"] | NotGiven = NOT_GIVEN,
-        with_metadata: bool | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[KeyBulkGetResponse]:
-        """Retrieve up to 100 KV pairs from the namespace.
-
-        Keys must contain text-based
-        values. JSON values can optionally be parsed instead of being returned as a
-        string value. Metadata can be included if `withMetadata` is true.
-
-        Args:
-          account_id: Identifier.
-
-          namespace_id: Namespace identifier tag.
-
-          keys: Array of keys to retrieve (maximum of 100).
-
-          type: Whether to parse JSON values in the response.
-
-          with_metadata: Whether to include metadata in the response.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not namespace_id:
-            raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
-        return cast(
-            Optional[KeyBulkGetResponse],
-            self._post(
-                f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk/get",
-                body=maybe_transform(
-                    {
-                        "keys": keys,
-                        "type": type,
-                        "with_metadata": with_metadata,
-                    },
-                    key_bulk_get_params.KeyBulkGetParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[KeyBulkGetResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[KeyBulkGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
-
     @typing_extensions.deprecated("Please use kv.namespaces.bulk_update instead")
     def bulk_update(
         self,
@@ -259,7 +187,7 @@ class KeysResource(SyncAPIResource):
         size must be 100 megabytes or less.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           namespace_id: Namespace identifier tag.
 
@@ -328,7 +256,7 @@ class AsyncKeysResource(AsyncAPIResource):
         Lists a namespace's keys.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           namespace_id: Namespace identifier tag.
 
@@ -337,11 +265,11 @@ class AsyncKeysResource(AsyncAPIResource):
               parameter. A valid value for the cursor can be obtained from the `cursors`
               object in the `result_info` structure.
 
-          limit: Limits the number of keys returned in the response. The cursor attribute may be
-              used to iterate over the next batch of keys if there are more than the limit.
+          limit: The number of keys to return. The cursor attribute may be used to iterate over
+              the next batch of keys if there are more than the limit.
 
-          prefix: Filters returned keys by a name prefix. Exact matches and any key names that
-              begin with the prefix will be returned.
+          prefix: A string prefix used to filter down which keys will be returned. Exact matches
+              and any key names that begin with the prefix will be returned.
 
           extra_headers: Send extra headers
 
@@ -395,7 +323,7 @@ class AsyncKeysResource(AsyncAPIResource):
         10,000 keys to be removed.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           namespace_id: Namespace identifier tag.
 
@@ -424,76 +352,6 @@ class AsyncKeysResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[KeyBulkDeleteResponse]], ResultWrapper[KeyBulkDeleteResponse]),
         )
 
-    @typing_extensions.deprecated("Please use kv.namespaces.bulk_get instead")
-    async def bulk_get(
-        self,
-        namespace_id: str,
-        *,
-        account_id: str,
-        keys: List[str],
-        type: Literal["text", "json"] | NotGiven = NOT_GIVEN,
-        with_metadata: bool | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[KeyBulkGetResponse]:
-        """Retrieve up to 100 KV pairs from the namespace.
-
-        Keys must contain text-based
-        values. JSON values can optionally be parsed instead of being returned as a
-        string value. Metadata can be included if `withMetadata` is true.
-
-        Args:
-          account_id: Identifier.
-
-          namespace_id: Namespace identifier tag.
-
-          keys: Array of keys to retrieve (maximum of 100).
-
-          type: Whether to parse JSON values in the response.
-
-          with_metadata: Whether to include metadata in the response.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not namespace_id:
-            raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
-        return cast(
-            Optional[KeyBulkGetResponse],
-            await self._post(
-                f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk/get",
-                body=await async_maybe_transform(
-                    {
-                        "keys": keys,
-                        "type": type,
-                        "with_metadata": with_metadata,
-                    },
-                    key_bulk_get_params.KeyBulkGetParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[KeyBulkGetResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[KeyBulkGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
-
     @typing_extensions.deprecated("Please use kv.namespaces.bulk_update instead")
     async def bulk_update(
         self,
@@ -518,7 +376,7 @@ class AsyncKeysResource(AsyncAPIResource):
         size must be 100 megabytes or less.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           namespace_id: Namespace identifier tag.
 
@@ -560,11 +418,6 @@ class KeysResourceWithRawResponse:
                 keys.bulk_delete  # pyright: ignore[reportDeprecated],
             )
         )
-        self.bulk_get = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                keys.bulk_get  # pyright: ignore[reportDeprecated],
-            )
-        )
         self.bulk_update = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
                 keys.bulk_update  # pyright: ignore[reportDeprecated],
@@ -582,11 +435,6 @@ class AsyncKeysResourceWithRawResponse:
         self.bulk_delete = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
                 keys.bulk_delete  # pyright: ignore[reportDeprecated],
-            )
-        )
-        self.bulk_get = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                keys.bulk_get  # pyright: ignore[reportDeprecated],
             )
         )
         self.bulk_update = (  # pyright: ignore[reportDeprecated]
@@ -608,11 +456,6 @@ class KeysResourceWithStreamingResponse:
                 keys.bulk_delete  # pyright: ignore[reportDeprecated],
             )
         )
-        self.bulk_get = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                keys.bulk_get  # pyright: ignore[reportDeprecated],
-            )
-        )
         self.bulk_update = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
                 keys.bulk_update  # pyright: ignore[reportDeprecated],
@@ -630,11 +473,6 @@ class AsyncKeysResourceWithStreamingResponse:
         self.bulk_delete = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
                 keys.bulk_delete  # pyright: ignore[reportDeprecated],
-            )
-        )
-        self.bulk_get = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                keys.bulk_get  # pyright: ignore[reportDeprecated],
             )
         )
         self.bulk_update = (  # pyright: ignore[reportDeprecated]

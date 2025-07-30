@@ -10,6 +10,6 @@ __all__ = ["KeyBulkDeleteParams"]
 
 class KeyBulkDeleteParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier."""
+    """Identifier"""
 
     body: Required[List[str]]
