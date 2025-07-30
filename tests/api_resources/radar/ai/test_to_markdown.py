@@ -30,8 +30,8 @@ class TestToMarkdown:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         to_markdown = client.radar.ai.to_markdown.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body=b"raw file contents",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(SyncSinglePage[ToMarkdownCreateResponse], to_markdown, path=["response"])
 
@@ -87,8 +87,8 @@ class TestAsyncToMarkdown:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         to_markdown = await async_client.radar.ai.to_markdown.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body=b"raw file contents",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(AsyncSinglePage[ToMarkdownCreateResponse], to_markdown, path=["response"])
 

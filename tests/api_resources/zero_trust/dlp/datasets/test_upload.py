@@ -71,9 +71,9 @@ class TestUpload:
     def test_method_edit(self, client: Cloudflare) -> None:
         upload = client.zero_trust.dlp.datasets.upload.edit(
             version=0,
+            body=b"raw file contents",
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            body=b"raw file contents",
         )
         assert_matches_type(Optional[Dataset], upload, path=["response"])
 
@@ -82,9 +82,9 @@ class TestUpload:
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.zero_trust.dlp.datasets.upload.with_raw_response.edit(
             version=0,
+            body=b"raw file contents",
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            body=b"raw file contents",
         )
 
         assert response.is_closed is True
@@ -97,9 +97,9 @@ class TestUpload:
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.zero_trust.dlp.datasets.upload.with_streaming_response.edit(
             version=0,
+            body=b"raw file contents",
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            body=b"raw file contents",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -115,17 +115,17 @@ class TestUpload:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.dlp.datasets.upload.with_raw_response.edit(
                 version=0,
+                body=b"raw file contents",
                 account_id="",
                 dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                body=b"raw file contents",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
             client.zero_trust.dlp.datasets.upload.with_raw_response.edit(
                 version=0,
+                body=b"raw file contents",
                 account_id="account_id",
                 dataset_id="",
-                body=b"raw file contents",
             )
 
 
@@ -187,9 +187,9 @@ class TestAsyncUpload:
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         upload = await async_client.zero_trust.dlp.datasets.upload.edit(
             version=0,
+            body=b"raw file contents",
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            body=b"raw file contents",
         )
         assert_matches_type(Optional[Dataset], upload, path=["response"])
 
@@ -198,9 +198,9 @@ class TestAsyncUpload:
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.dlp.datasets.upload.with_raw_response.edit(
             version=0,
+            body=b"raw file contents",
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            body=b"raw file contents",
         )
 
         assert response.is_closed is True
@@ -213,9 +213,9 @@ class TestAsyncUpload:
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.dlp.datasets.upload.with_streaming_response.edit(
             version=0,
+            body=b"raw file contents",
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            body=b"raw file contents",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -231,15 +231,15 @@ class TestAsyncUpload:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.dlp.datasets.upload.with_raw_response.edit(
                 version=0,
+                body=b"raw file contents",
                 account_id="",
                 dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                body=b"raw file contents",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
             await async_client.zero_trust.dlp.datasets.upload.with_raw_response.edit(
                 version=0,
+                body=b"raw file contents",
                 account_id="account_id",
                 dataset_id="",
-                body=b"raw file contents",
             )

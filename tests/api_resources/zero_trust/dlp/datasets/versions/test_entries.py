@@ -22,10 +22,10 @@ class TestEntries:
     def test_method_create(self, client: Cloudflare) -> None:
         entry = client.zero_trust.dlp.datasets.versions.entries.create(
             entry_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            body=b"raw file contents",
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             version=0,
-            body=b"raw file contents",
         )
         assert_matches_type(Optional[EntryCreateResponse], entry, path=["response"])
 
@@ -34,10 +34,10 @@ class TestEntries:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.zero_trust.dlp.datasets.versions.entries.with_raw_response.create(
             entry_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            body=b"raw file contents",
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             version=0,
-            body=b"raw file contents",
         )
 
         assert response.is_closed is True
@@ -50,10 +50,10 @@ class TestEntries:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.zero_trust.dlp.datasets.versions.entries.with_streaming_response.create(
             entry_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            body=b"raw file contents",
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             version=0,
-            body=b"raw file contents",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -69,28 +69,28 @@ class TestEntries:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.dlp.datasets.versions.entries.with_raw_response.create(
                 entry_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                body=b"raw file contents",
                 account_id="",
                 dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 version=0,
-                body=b"raw file contents",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
             client.zero_trust.dlp.datasets.versions.entries.with_raw_response.create(
                 entry_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                body=b"raw file contents",
                 account_id="account_id",
                 dataset_id="",
                 version=0,
-                body=b"raw file contents",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `entry_id` but received ''"):
             client.zero_trust.dlp.datasets.versions.entries.with_raw_response.create(
                 entry_id="",
+                body=b"raw file contents",
                 account_id="account_id",
                 dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 version=0,
-                body=b"raw file contents",
             )
 
 
@@ -104,10 +104,10 @@ class TestAsyncEntries:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         entry = await async_client.zero_trust.dlp.datasets.versions.entries.create(
             entry_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            body=b"raw file contents",
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             version=0,
-            body=b"raw file contents",
         )
         assert_matches_type(Optional[EntryCreateResponse], entry, path=["response"])
 
@@ -116,10 +116,10 @@ class TestAsyncEntries:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.dlp.datasets.versions.entries.with_raw_response.create(
             entry_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            body=b"raw file contents",
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             version=0,
-            body=b"raw file contents",
         )
 
         assert response.is_closed is True
@@ -132,10 +132,10 @@ class TestAsyncEntries:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.dlp.datasets.versions.entries.with_streaming_response.create(
             entry_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            body=b"raw file contents",
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             version=0,
-            body=b"raw file contents",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -151,26 +151,26 @@ class TestAsyncEntries:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.dlp.datasets.versions.entries.with_raw_response.create(
                 entry_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                body=b"raw file contents",
                 account_id="",
                 dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 version=0,
-                body=b"raw file contents",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
             await async_client.zero_trust.dlp.datasets.versions.entries.with_raw_response.create(
                 entry_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                body=b"raw file contents",
                 account_id="account_id",
                 dataset_id="",
                 version=0,
-                body=b"raw file contents",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `entry_id` but received ''"):
             await async_client.zero_trust.dlp.datasets.versions.entries.with_raw_response.create(
                 entry_id="",
+                body=b"raw file contents",
                 account_id="account_id",
                 dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 version=0,
-                body=b"raw file contents",
             )
