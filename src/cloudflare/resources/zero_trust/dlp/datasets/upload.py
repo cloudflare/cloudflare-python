@@ -87,7 +87,7 @@ class UploadResource(SyncAPIResource):
     def edit(
         self,
         version: int,
-        dataset: FileContent,
+        body: FileContent,
         *,
         account_id: str,
         dataset_id: str,
@@ -121,7 +121,7 @@ class UploadResource(SyncAPIResource):
         extra_headers = {"Content-Type": "application/octet-stream", **(extra_headers or {})}
         return self._post(
             f"/accounts/{account_id}/dlp/datasets/{dataset_id}/upload/{version}",
-            body=read_file_content(dataset),
+            body=read_file_content(body),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -196,7 +196,7 @@ class AsyncUploadResource(AsyncAPIResource):
     async def edit(
         self,
         version: int,
-        dataset: FileContent,
+        body: FileContent,
         *,
         account_id: str,
         dataset_id: str,
@@ -230,7 +230,7 @@ class AsyncUploadResource(AsyncAPIResource):
         extra_headers = {"Content-Type": "application/octet-stream", **(extra_headers or {})}
         return await self._post(
             f"/accounts/{account_id}/dlp/datasets/{dataset_id}/upload/{version}",
-            body=await async_read_file_content(dataset),
+            body=await async_read_file_content(body),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

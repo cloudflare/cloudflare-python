@@ -46,7 +46,7 @@ class EntriesResource(SyncAPIResource):
     def create(
         self,
         entry_id: str,
-        dataset_version_entry: FileContent,
+        body: FileContent,
         *,
         account_id: str,
         dataset_id: str,
@@ -81,7 +81,7 @@ class EntriesResource(SyncAPIResource):
         extra_headers = {"Content-Type": "application/octet-stream", **(extra_headers or {})}
         return self._post(
             f"/accounts/{account_id}/dlp/datasets/{dataset_id}/versions/{version}/entries/{entry_id}",
-            body=read_file_content(dataset_version_entry),
+            body=read_file_content(body),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -116,7 +116,7 @@ class AsyncEntriesResource(AsyncAPIResource):
     async def create(
         self,
         entry_id: str,
-        dataset_version_entry: FileContent,
+        body: FileContent,
         *,
         account_id: str,
         dataset_id: str,
@@ -151,7 +151,7 @@ class AsyncEntriesResource(AsyncAPIResource):
         extra_headers = {"Content-Type": "application/octet-stream", **(extra_headers or {})}
         return await self._post(
             f"/accounts/{account_id}/dlp/datasets/{dataset_id}/versions/{version}/entries/{entry_id}",
-            body=await async_read_file_content(dataset_version_entry),
+            body=await async_read_file_content(body),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -22,7 +22,7 @@ class TestEntries:
     def test_method_create(self, client: Cloudflare) -> None:
         entry = client.zero_trust.dlp.datasets.versions.entries.create(
             entry_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            dataset_version_entry=b"raw file contents",
+            body=b"raw file contents",
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             version=0,
@@ -34,7 +34,7 @@ class TestEntries:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.zero_trust.dlp.datasets.versions.entries.with_raw_response.create(
             entry_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            dataset_version_entry=b"raw file contents",
+            body=b"raw file contents",
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             version=0,
@@ -50,7 +50,7 @@ class TestEntries:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.zero_trust.dlp.datasets.versions.entries.with_streaming_response.create(
             entry_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            dataset_version_entry=b"raw file contents",
+            body=b"raw file contents",
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             version=0,
@@ -69,7 +69,7 @@ class TestEntries:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.dlp.datasets.versions.entries.with_raw_response.create(
                 entry_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                dataset_version_entry=b"raw file contents",
+                body=b"raw file contents",
                 account_id="",
                 dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 version=0,
@@ -78,7 +78,7 @@ class TestEntries:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
             client.zero_trust.dlp.datasets.versions.entries.with_raw_response.create(
                 entry_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                dataset_version_entry=b"raw file contents",
+                body=b"raw file contents",
                 account_id="account_id",
                 dataset_id="",
                 version=0,
@@ -87,7 +87,7 @@ class TestEntries:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `entry_id` but received ''"):
             client.zero_trust.dlp.datasets.versions.entries.with_raw_response.create(
                 entry_id="",
-                dataset_version_entry=b"raw file contents",
+                body=b"raw file contents",
                 account_id="account_id",
                 dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 version=0,
@@ -104,7 +104,7 @@ class TestAsyncEntries:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         entry = await async_client.zero_trust.dlp.datasets.versions.entries.create(
             entry_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            dataset_version_entry=b"raw file contents",
+            body=b"raw file contents",
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             version=0,
@@ -116,7 +116,7 @@ class TestAsyncEntries:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.dlp.datasets.versions.entries.with_raw_response.create(
             entry_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            dataset_version_entry=b"raw file contents",
+            body=b"raw file contents",
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             version=0,
@@ -132,7 +132,7 @@ class TestAsyncEntries:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.dlp.datasets.versions.entries.with_streaming_response.create(
             entry_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            dataset_version_entry=b"raw file contents",
+            body=b"raw file contents",
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             version=0,
@@ -151,7 +151,7 @@ class TestAsyncEntries:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.dlp.datasets.versions.entries.with_raw_response.create(
                 entry_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                dataset_version_entry=b"raw file contents",
+                body=b"raw file contents",
                 account_id="",
                 dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 version=0,
@@ -160,7 +160,7 @@ class TestAsyncEntries:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
             await async_client.zero_trust.dlp.datasets.versions.entries.with_raw_response.create(
                 entry_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                dataset_version_entry=b"raw file contents",
+                body=b"raw file contents",
                 account_id="account_id",
                 dataset_id="",
                 version=0,
@@ -169,7 +169,7 @@ class TestAsyncEntries:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `entry_id` but received ''"):
             await async_client.zero_trust.dlp.datasets.versions.entries.with_raw_response.create(
                 entry_id="",
-                dataset_version_entry=b"raw file contents",
+                body=b"raw file contents",
                 account_id="account_id",
                 dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 version=0,
