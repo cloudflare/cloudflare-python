@@ -13,6 +13,7 @@ from .objects import (
     AsyncObjectsResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -21,8 +22,9 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....pagination import SyncSinglePage, AsyncSinglePage
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
+from ....types.durable_objects import namespace_list_params
 from ....types.durable_objects.namespace import Namespace
 
 __all__ = ["NamespacesResource", "AsyncNamespacesResource"]
@@ -56,18 +58,24 @@ class NamespacesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[Namespace]:
+    ) -> SyncV4PagePaginationArray[Namespace]:
         """
         Returns the Durable Object namespaces owned by an account.
 
         Args:
           account_id: Identifier.
+
+          page: Current page.
+
+          per_page: Items per-page.
 
           extra_headers: Send extra headers
 
@@ -81,9 +89,19 @@ class NamespacesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/workers/durable_objects/namespaces",
-            page=SyncSinglePage[Namespace],
+            page=SyncV4PagePaginationArray[Namespace],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    namespace_list_params.NamespaceListParams,
+                ),
             ),
             model=Namespace,
         )
@@ -117,18 +135,24 @@ class AsyncNamespacesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Namespace, AsyncSinglePage[Namespace]]:
+    ) -> AsyncPaginator[Namespace, AsyncV4PagePaginationArray[Namespace]]:
         """
         Returns the Durable Object namespaces owned by an account.
 
         Args:
           account_id: Identifier.
+
+          page: Current page.
+
+          per_page: Items per-page.
 
           extra_headers: Send extra headers
 
@@ -142,9 +166,19 @@ class AsyncNamespacesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/workers/durable_objects/namespaces",
-            page=AsyncSinglePage[Namespace],
+            page=AsyncV4PagePaginationArray[Namespace],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    namespace_list_params.NamespaceListParams,
+                ),
             ),
             model=Namespace,
         )

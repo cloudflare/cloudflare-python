@@ -39,7 +39,7 @@ class TestRegionalHostnames:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             hostname="foo.example.com",
             region_key="ca",
-            routing="routing",
+            routing="dns",
         )
         assert_matches_type(Optional[RegionalHostnameCreateResponse], regional_hostname, path=["response"])
 
@@ -288,7 +288,7 @@ class TestAsyncRegionalHostnames:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             hostname="foo.example.com",
             region_key="ca",
-            routing="routing",
+            routing="dns",
         )
         assert_matches_type(Optional[RegionalHostnameCreateResponse], regional_hostname, path=["response"])
 
