@@ -71,7 +71,7 @@ class TestUpload:
     def test_method_edit(self, client: Cloudflare) -> None:
         upload = client.zero_trust.dlp.datasets.upload.edit(
             version=0,
-            dataset=b"raw file contents",
+            body=b"raw file contents",
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -82,7 +82,7 @@ class TestUpload:
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.zero_trust.dlp.datasets.upload.with_raw_response.edit(
             version=0,
-            dataset=b"raw file contents",
+            body=b"raw file contents",
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -97,7 +97,7 @@ class TestUpload:
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.zero_trust.dlp.datasets.upload.with_streaming_response.edit(
             version=0,
-            dataset=b"raw file contents",
+            body=b"raw file contents",
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
@@ -115,7 +115,7 @@ class TestUpload:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.dlp.datasets.upload.with_raw_response.edit(
                 version=0,
-                dataset=b"raw file contents",
+                body=b"raw file contents",
                 account_id="",
                 dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
@@ -123,7 +123,7 @@ class TestUpload:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
             client.zero_trust.dlp.datasets.upload.with_raw_response.edit(
                 version=0,
-                dataset=b"raw file contents",
+                body=b"raw file contents",
                 account_id="account_id",
                 dataset_id="",
             )
@@ -187,7 +187,7 @@ class TestAsyncUpload:
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         upload = await async_client.zero_trust.dlp.datasets.upload.edit(
             version=0,
-            dataset=b"raw file contents",
+            body=b"raw file contents",
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -198,7 +198,7 @@ class TestAsyncUpload:
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.dlp.datasets.upload.with_raw_response.edit(
             version=0,
-            dataset=b"raw file contents",
+            body=b"raw file contents",
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -213,7 +213,7 @@ class TestAsyncUpload:
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.dlp.datasets.upload.with_streaming_response.edit(
             version=0,
-            dataset=b"raw file contents",
+            body=b"raw file contents",
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
@@ -231,7 +231,7 @@ class TestAsyncUpload:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.dlp.datasets.upload.with_raw_response.edit(
                 version=0,
-                dataset=b"raw file contents",
+                body=b"raw file contents",
                 account_id="",
                 dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
@@ -239,7 +239,7 @@ class TestAsyncUpload:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
             await async_client.zero_trust.dlp.datasets.upload.with_raw_response.edit(
                 version=0,
-                dataset=b"raw file contents",
+                body=b"raw file contents",
                 account_id="account_id",
                 dataset_id="",
             )
