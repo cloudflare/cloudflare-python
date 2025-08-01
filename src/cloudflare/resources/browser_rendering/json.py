@@ -80,6 +80,7 @@ class JsonResource(SyncAPIResource):
         authenticate: json_create_params.Authenticate | NotGiven = NOT_GIVEN,
         best_attempt: bool | NotGiven = NOT_GIVEN,
         cookies: Iterable[json_create_params.Cookie] | NotGiven = NOT_GIVEN,
+        custom_ai: Iterable[json_create_params.CustomAI] | NotGiven = NOT_GIVEN,
         emulate_media_type: str | NotGiven = NOT_GIVEN,
         goto_options: json_create_params.GotoOptions | NotGiven = NOT_GIVEN,
         html: str | NotGiven = NOT_GIVEN,
@@ -153,6 +154,10 @@ class JsonResource(SyncAPIResource):
 
           cookies: Check [options](https://pptr.dev/api/puppeteer.page.setcookie).
 
+          custom_ai: Optional list of custom AI models to use for the request. The models will be
+              tried in the order provided, and in case a model returns an error, the next one
+              will be used as fallback.
+
           goto_options: Check [options](https://pptr.dev/api/puppeteer.gotooptions).
 
           html: Set the content of the page, eg: `<h1>Hello World!!</h1>`. Either `html` or
@@ -195,6 +200,7 @@ class JsonResource(SyncAPIResource):
                     "authenticate": authenticate,
                     "best_attempt": best_attempt,
                     "cookies": cookies,
+                    "custom_ai": custom_ai,
                     "emulate_media_type": emulate_media_type,
                     "goto_options": goto_options,
                     "html": html,
@@ -279,6 +285,7 @@ class AsyncJsonResource(AsyncAPIResource):
         authenticate: json_create_params.Authenticate | NotGiven = NOT_GIVEN,
         best_attempt: bool | NotGiven = NOT_GIVEN,
         cookies: Iterable[json_create_params.Cookie] | NotGiven = NOT_GIVEN,
+        custom_ai: Iterable[json_create_params.CustomAI] | NotGiven = NOT_GIVEN,
         emulate_media_type: str | NotGiven = NOT_GIVEN,
         goto_options: json_create_params.GotoOptions | NotGiven = NOT_GIVEN,
         html: str | NotGiven = NOT_GIVEN,
@@ -352,6 +359,10 @@ class AsyncJsonResource(AsyncAPIResource):
 
           cookies: Check [options](https://pptr.dev/api/puppeteer.page.setcookie).
 
+          custom_ai: Optional list of custom AI models to use for the request. The models will be
+              tried in the order provided, and in case a model returns an error, the next one
+              will be used as fallback.
+
           goto_options: Check [options](https://pptr.dev/api/puppeteer.gotooptions).
 
           html: Set the content of the page, eg: `<h1>Hello World!!</h1>`. Either `html` or
@@ -394,6 +405,7 @@ class AsyncJsonResource(AsyncAPIResource):
                     "authenticate": authenticate,
                     "best_attempt": best_attempt,
                     "cookies": cookies,
+                    "custom_ai": custom_ai,
                     "emulate_media_type": emulate_media_type,
                     "goto_options": goto_options,
                     "html": html,

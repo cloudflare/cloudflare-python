@@ -41,7 +41,7 @@ class BlockPageSettings(BaseModel):
     page.
     """
 
-    mode: Optional[Literal["customized_block_page", "redirect_uri"]] = None
+    mode: Optional[Literal["", "customized_block_page", "redirect_uri"]] = None
     """
     Controls whether the user is redirected to a Cloudflare-hosted block page or to
     a customer-provided URI.

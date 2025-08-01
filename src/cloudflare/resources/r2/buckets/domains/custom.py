@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import List, Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -57,6 +57,7 @@ class CustomResource(SyncAPIResource):
         domain: str,
         enabled: bool,
         zone_id: str,
+        ciphers: List[str] | NotGiven = NOT_GIVEN,
         min_tls: Literal["1.0", "1.1", "1.2", "1.3"] | NotGiven = NOT_GIVEN,
         jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -80,6 +81,9 @@ class CustomResource(SyncAPIResource):
               domain will be enabled.
 
           zone_id: Zone ID of the custom domain.
+
+          ciphers: An allowlist of ciphers for TLS termination. These ciphers must be in the
+              BoringSSL format.
 
           min_tls: Minimum TLS Version the custom domain will accept for incoming connections. If
               not set, defaults to 1.0.
@@ -109,6 +113,7 @@ class CustomResource(SyncAPIResource):
                     "domain": domain,
                     "enabled": enabled,
                     "zone_id": zone_id,
+                    "ciphers": ciphers,
                     "min_tls": min_tls,
                 },
                 custom_create_params.CustomCreateParams,
@@ -129,6 +134,7 @@ class CustomResource(SyncAPIResource):
         *,
         account_id: str,
         bucket_name: str,
+        ciphers: List[str] | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         min_tls: Literal["1.0", "1.1", "1.2", "1.3"] | NotGiven = NOT_GIVEN,
         jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
@@ -148,6 +154,9 @@ class CustomResource(SyncAPIResource):
           bucket_name: Name of the bucket.
 
           domain: Name of the custom domain.
+
+          ciphers: An allowlist of ciphers for TLS termination. These ciphers must be in the
+              BoringSSL format.
 
           enabled: Whether to enable public bucket access at the specified custom domain.
 
@@ -178,6 +187,7 @@ class CustomResource(SyncAPIResource):
             f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain}",
             body=maybe_transform(
                 {
+                    "ciphers": ciphers,
                     "enabled": enabled,
                     "min_tls": min_tls,
                 },
@@ -385,6 +395,7 @@ class AsyncCustomResource(AsyncAPIResource):
         domain: str,
         enabled: bool,
         zone_id: str,
+        ciphers: List[str] | NotGiven = NOT_GIVEN,
         min_tls: Literal["1.0", "1.1", "1.2", "1.3"] | NotGiven = NOT_GIVEN,
         jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -408,6 +419,9 @@ class AsyncCustomResource(AsyncAPIResource):
               domain will be enabled.
 
           zone_id: Zone ID of the custom domain.
+
+          ciphers: An allowlist of ciphers for TLS termination. These ciphers must be in the
+              BoringSSL format.
 
           min_tls: Minimum TLS Version the custom domain will accept for incoming connections. If
               not set, defaults to 1.0.
@@ -437,6 +451,7 @@ class AsyncCustomResource(AsyncAPIResource):
                     "domain": domain,
                     "enabled": enabled,
                     "zone_id": zone_id,
+                    "ciphers": ciphers,
                     "min_tls": min_tls,
                 },
                 custom_create_params.CustomCreateParams,
@@ -457,6 +472,7 @@ class AsyncCustomResource(AsyncAPIResource):
         *,
         account_id: str,
         bucket_name: str,
+        ciphers: List[str] | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         min_tls: Literal["1.0", "1.1", "1.2", "1.3"] | NotGiven = NOT_GIVEN,
         jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
@@ -476,6 +492,9 @@ class AsyncCustomResource(AsyncAPIResource):
           bucket_name: Name of the bucket.
 
           domain: Name of the custom domain.
+
+          ciphers: An allowlist of ciphers for TLS termination. These ciphers must be in the
+              BoringSSL format.
 
           enabled: Whether to enable public bucket access at the specified custom domain.
 
@@ -506,6 +525,7 @@ class AsyncCustomResource(AsyncAPIResource):
             f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain}",
             body=await async_maybe_transform(
                 {
+                    "ciphers": ciphers,
                     "enabled": enabled,
                     "min_tls": min_tls,
                 },
