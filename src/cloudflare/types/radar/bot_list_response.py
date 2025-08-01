@@ -2,8 +2,6 @@
 
 from typing import List
 
-from pydantic import Field as FieldInfo
-
 from ..._models import BaseModel
 
 __all__ = ["BotListResponse", "Bot"]
@@ -24,8 +22,6 @@ class Bot(BaseModel):
 
     slug: str
     """A kebab-case identifier derived from the bot name."""
-
-    user_agent_patterns: List[str] = FieldInfo(alias="userAgentPatterns")
 
 
 class BotListResponse(BaseModel):

@@ -69,12 +69,6 @@ class TestJson:
                     "url": "url",
                 }
             ],
-            custom_ai=[
-                {
-                    "authorization": "authorization",
-                    "model": "model",
-                }
-            ],
             emulate_media_type="emulateMediaType",
             goto_options={
                 "referer": "referer",
@@ -199,12 +193,6 @@ class TestAsyncJson:
                     "source_port": 0,
                     "source_scheme": "Unset",
                     "url": "url",
-                }
-            ],
-            custom_ai=[
-                {
-                    "authorization": "authorization",
-                    "model": "model",
                 }
             ],
             emulate_media_type="emulateMediaType",
