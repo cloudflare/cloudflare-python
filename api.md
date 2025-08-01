@@ -131,7 +131,7 @@ from cloudflare.types.accounts.logs import AuditListResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/logs/audit">client.accounts.logs.audit.<a href="./src/cloudflare/resources/accounts/logs/audit.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/accounts/logs/audit_list_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/logs/audit_list_response.py">SyncCursorLimitPagination[AuditListResponse]</a></code>
+- <code title="get /accounts/{account_id}/logs/audit">client.accounts.logs.audit.<a href="./src/cloudflare/resources/accounts/logs/audit.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/accounts/logs/audit_list_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/logs/audit_list_response.py">SyncCursorPaginationAfter[AuditListResponse]</a></code>
 
 # OriginCACertificates
 
@@ -2560,7 +2560,7 @@ from cloudflare.types.kv.namespaces import (
 
 Methods:
 
-- <code title="get /accounts/{account_id}/storage/kv/namespaces/{namespace_id}/keys">client.kv.namespaces.keys.<a href="./src/cloudflare/resources/kv/namespaces/keys.py">list</a>(namespace_id, \*, account_id, \*\*<a href="src/cloudflare/types/kv/namespaces/key_list_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespaces/key.py">SyncCursorLimitPagination[Key]</a></code>
+- <code title="get /accounts/{account_id}/storage/kv/namespaces/{namespace_id}/keys">client.kv.namespaces.keys.<a href="./src/cloudflare/resources/kv/namespaces/keys.py">list</a>(namespace_id, \*, account_id, \*\*<a href="src/cloudflare/types/kv/namespaces/key_list_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespaces/key.py">SyncCursorPaginationAfter[Key]</a></code>
 - <code title="post /accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk/delete">client.kv.namespaces.keys.<a href="./src/cloudflare/resources/kv/namespaces/keys.py">bulk_delete</a>(namespace_id, \*, account_id, \*\*<a href="src/cloudflare/types/kv/namespaces/key_bulk_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespaces/key_bulk_delete_response.py">Optional[KeyBulkDeleteResponse]</a></code>
 - <code title="post /accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk/get">client.kv.namespaces.keys.<a href="./src/cloudflare/resources/kv/namespaces/keys.py">bulk_get</a>(namespace_id, \*, account_id, \*\*<a href="src/cloudflare/types/kv/namespaces/key_bulk_get_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespaces/key_bulk_get_response.py">Optional[KeyBulkGetResponse]</a></code>
 - <code title="put /accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk">client.kv.namespaces.keys.<a href="./src/cloudflare/resources/kv/namespaces/keys.py">bulk_update</a>(namespace_id, \*, account_id, \*\*<a href="src/cloudflare/types/kv/namespaces/key_bulk_update_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespaces/key_bulk_update_response.py">Optional[KeyBulkUpdateResponse]</a></code>
@@ -2609,7 +2609,7 @@ from cloudflare.types.durable_objects.namespaces import DurableObject
 
 Methods:
 
-- <code title="get /accounts/{account_id}/workers/durable_objects/namespaces/{id}/objects">client.durable_objects.namespaces.objects.<a href="./src/cloudflare/resources/durable_objects/namespaces/objects.py">list</a>(id, \*, account_id, \*\*<a href="src/cloudflare/types/durable_objects/namespaces/object_list_params.py">params</a>) -> <a href="./src/cloudflare/types/durable_objects/namespaces/durable_object.py">SyncCursorLimitPagination[DurableObject]</a></code>
+- <code title="get /accounts/{account_id}/workers/durable_objects/namespaces/{id}/objects">client.durable_objects.namespaces.objects.<a href="./src/cloudflare/resources/durable_objects/namespaces/objects.py">list</a>(id, \*, account_id, \*\*<a href="src/cloudflare/types/durable_objects/namespaces/object_list_params.py">params</a>) -> <a href="./src/cloudflare/types/durable_objects/namespaces/durable_object.py">SyncCursorPaginationAfter[DurableObject]</a></code>
 
 # Queues
 

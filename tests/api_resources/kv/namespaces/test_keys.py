@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncCursorLimitPagination, AsyncCursorLimitPagination
+from cloudflare.pagination import SyncCursorPaginationAfter, AsyncCursorPaginationAfter
 from cloudflare.types.kv.namespaces import (
     Key,
     KeyBulkGetResponse,
@@ -31,7 +31,7 @@ class TestKeys:
             namespace_id="0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncCursorLimitPagination[Key], key, path=["response"])
+        assert_matches_type(SyncCursorPaginationAfter[Key], key, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
@@ -42,7 +42,7 @@ class TestKeys:
             limit=10,
             prefix="My-Prefix",
         )
-        assert_matches_type(SyncCursorLimitPagination[Key], key, path=["response"])
+        assert_matches_type(SyncCursorPaginationAfter[Key], key, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -54,7 +54,7 @@ class TestKeys:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         key = response.parse()
-        assert_matches_type(SyncCursorLimitPagination[Key], key, path=["response"])
+        assert_matches_type(SyncCursorPaginationAfter[Key], key, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -66,7 +66,7 @@ class TestKeys:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             key = response.parse()
-            assert_matches_type(SyncCursorLimitPagination[Key], key, path=["response"])
+            assert_matches_type(SyncCursorPaginationAfter[Key], key, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -308,7 +308,7 @@ class TestAsyncKeys:
             namespace_id="0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncCursorLimitPagination[Key], key, path=["response"])
+        assert_matches_type(AsyncCursorPaginationAfter[Key], key, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -319,7 +319,7 @@ class TestAsyncKeys:
             limit=10,
             prefix="My-Prefix",
         )
-        assert_matches_type(AsyncCursorLimitPagination[Key], key, path=["response"])
+        assert_matches_type(AsyncCursorPaginationAfter[Key], key, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -331,7 +331,7 @@ class TestAsyncKeys:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         key = await response.parse()
-        assert_matches_type(AsyncCursorLimitPagination[Key], key, path=["response"])
+        assert_matches_type(AsyncCursorPaginationAfter[Key], key, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -343,7 +343,7 @@ class TestAsyncKeys:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             key = await response.parse()
-            assert_matches_type(AsyncCursorLimitPagination[Key], key, path=["response"])
+            assert_matches_type(AsyncCursorPaginationAfter[Key], key, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
