@@ -295,6 +295,7 @@ class StreamResource(SyncAPIResource):
         status: Literal["pendingupload", "downloading", "queued", "inprogress", "ready", "error", "live-inprogress"]
         | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
+        video_name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -319,14 +320,16 @@ class StreamResource(SyncAPIResource):
           include_counts: Includes the total number of videos associated with the submitted query
               parameters.
 
-          search: Searches over the `name` key in the `meta` field. This field can be set with or
-              after the upload request.
+          search: Provides a partial word match of the `name` key in the `meta` field. Slow for
+              medium to large video libraries. May be unavailable for very large libraries.
 
           start: Lists videos created after the specified date.
 
           status: Specifies the processing status for all quality levels for a video.
 
           type: Specifies whether the video is `vod` or `live`.
+
+          video_name: Provides a fast, exact string match on the `name` key in the `meta` field.
 
           extra_headers: Send extra headers
 
@@ -356,6 +359,7 @@ class StreamResource(SyncAPIResource):
                         "start": start,
                         "status": status,
                         "type": type,
+                        "video_name": video_name,
                     },
                     stream_list_params.StreamListParams,
                 ),
@@ -708,6 +712,7 @@ class AsyncStreamResource(AsyncAPIResource):
         status: Literal["pendingupload", "downloading", "queued", "inprogress", "ready", "error", "live-inprogress"]
         | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
+        video_name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -732,14 +737,16 @@ class AsyncStreamResource(AsyncAPIResource):
           include_counts: Includes the total number of videos associated with the submitted query
               parameters.
 
-          search: Searches over the `name` key in the `meta` field. This field can be set with or
-              after the upload request.
+          search: Provides a partial word match of the `name` key in the `meta` field. Slow for
+              medium to large video libraries. May be unavailable for very large libraries.
 
           start: Lists videos created after the specified date.
 
           status: Specifies the processing status for all quality levels for a video.
 
           type: Specifies whether the video is `vod` or `live`.
+
+          video_name: Provides a fast, exact string match on the `name` key in the `meta` field.
 
           extra_headers: Send extra headers
 
@@ -769,6 +776,7 @@ class AsyncStreamResource(AsyncAPIResource):
                         "start": start,
                         "status": status,
                         "type": type,
+                        "video_name": video_name,
                     },
                     stream_list_params.StreamListParams,
                 ),

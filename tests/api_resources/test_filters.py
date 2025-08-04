@@ -3,14 +3,18 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage, SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.filters import FirewallFilter
+from cloudflare.types.filters import (
+    FirewallFilter,
+    FilterDeleteResponse,
+    FilterBulkDeleteResponse,
+)
 
 # pyright: reportDeprecated=false
 
@@ -26,7 +30,7 @@ class TestFilters:
         with pytest.warns(DeprecationWarning):
             filter = client.filters.create(
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                expression='(http.request.uri.path ~ ".*wp-login.php" or http.request.uri.path ~ ".*xmlrpc.php") and ip.addr ne 172.16.22.155',
+                body=[{}],
             )
 
         assert_matches_type(SyncSinglePage[FirewallFilter], filter, path=["response"])
@@ -37,7 +41,7 @@ class TestFilters:
         with pytest.warns(DeprecationWarning):
             response = client.filters.with_raw_response.create(
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                expression='(http.request.uri.path ~ ".*wp-login.php" or http.request.uri.path ~ ".*xmlrpc.php") and ip.addr ne 172.16.22.155',
+                body=[{}],
             )
 
         assert response.is_closed is True
@@ -51,7 +55,7 @@ class TestFilters:
         with pytest.warns(DeprecationWarning):
             with client.filters.with_streaming_response.create(
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                expression='(http.request.uri.path ~ ".*wp-login.php" or http.request.uri.path ~ ".*xmlrpc.php") and ip.addr ne 172.16.22.155',
+                body=[{}],
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -68,7 +72,7 @@ class TestFilters:
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 client.filters.with_raw_response.create(
                     zone_id="",
-                    expression='(http.request.uri.path ~ ".*wp-login.php" or http.request.uri.path ~ ".*xmlrpc.php") and ip.addr ne 172.16.22.155',
+                    body=[{}],
                 )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -78,7 +82,21 @@ class TestFilters:
             filter = client.filters.update(
                 filter_id="372e67954025e0ba6aaa6d586b9e0b61",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+            )
+
+        assert_matches_type(FirewallFilter, filter, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            filter = client.filters.update(
+                filter_id="372e67954025e0ba6aaa6d586b9e0b61",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                description="Restrict access from these browsers on this address range.",
+                expression='(http.request.uri.path ~ ".*wp-login.php" or http.request.uri.path ~ ".*xmlrpc.php") and ip.addr ne 172.16.22.155',
+                paused=False,
+                ref="FIL-100",
             )
 
         assert_matches_type(FirewallFilter, filter, path=["response"])
@@ -90,7 +108,6 @@ class TestFilters:
             response = client.filters.with_raw_response.update(
                 filter_id="372e67954025e0ba6aaa6d586b9e0b61",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
         assert response.is_closed is True
@@ -105,7 +122,6 @@ class TestFilters:
             with client.filters.with_streaming_response.update(
                 filter_id="372e67954025e0ba6aaa6d586b9e0b61",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -123,14 +139,12 @@ class TestFilters:
                 client.filters.with_raw_response.update(
                     filter_id="372e67954025e0ba6aaa6d586b9e0b61",
                     zone_id="",
-                    body={},
                 )
 
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `filter_id` but received ''"):
                 client.filters.with_raw_response.update(
                     filter_id="",
                     zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                    body={},
                 )
 
     @parametrize
@@ -200,7 +214,7 @@ class TestFilters:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-        assert_matches_type(FirewallFilter, filter, path=["response"])
+        assert_matches_type(FilterDeleteResponse, filter, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -213,7 +227,7 @@ class TestFilters:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         filter = response.parse()
-        assert_matches_type(FirewallFilter, filter, path=["response"])
+        assert_matches_type(FilterDeleteResponse, filter, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -226,7 +240,7 @@ class TestFilters:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 filter = response.parse()
-                assert_matches_type(FirewallFilter, filter, path=["response"])
+                assert_matches_type(FilterDeleteResponse, filter, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -250,33 +264,36 @@ class TestFilters:
         with pytest.warns(DeprecationWarning):
             filter = client.filters.bulk_delete(
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                id=["372e67954025e0ba6aaa6d586b9e0b61"],
             )
 
-        assert_matches_type(SyncSinglePage[FirewallFilter], filter, path=["response"])
+        assert_matches_type(Optional[FilterBulkDeleteResponse], filter, path=["response"])
 
     @parametrize
     def test_raw_response_bulk_delete(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.filters.with_raw_response.bulk_delete(
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                id=["372e67954025e0ba6aaa6d586b9e0b61"],
             )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         filter = response.parse()
-        assert_matches_type(SyncSinglePage[FirewallFilter], filter, path=["response"])
+        assert_matches_type(Optional[FilterBulkDeleteResponse], filter, path=["response"])
 
     @parametrize
     def test_streaming_response_bulk_delete(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             with client.filters.with_streaming_response.bulk_delete(
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                id=["372e67954025e0ba6aaa6d586b9e0b61"],
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 filter = response.parse()
-                assert_matches_type(SyncSinglePage[FirewallFilter], filter, path=["response"])
+                assert_matches_type(Optional[FilterBulkDeleteResponse], filter, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -286,6 +303,7 @@ class TestFilters:
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 client.filters.with_raw_response.bulk_delete(
                     zone_id="",
+                    id=["372e67954025e0ba6aaa6d586b9e0b61"],
                 )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -294,6 +312,7 @@ class TestFilters:
         with pytest.warns(DeprecationWarning):
             filter = client.filters.bulk_update(
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body=[{}],
             )
 
         assert_matches_type(SyncSinglePage[FirewallFilter], filter, path=["response"])
@@ -304,6 +323,7 @@ class TestFilters:
         with pytest.warns(DeprecationWarning):
             response = client.filters.with_raw_response.bulk_update(
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body=[{}],
             )
 
         assert response.is_closed is True
@@ -317,6 +337,7 @@ class TestFilters:
         with pytest.warns(DeprecationWarning):
             with client.filters.with_streaming_response.bulk_update(
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body=[{}],
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -333,6 +354,7 @@ class TestFilters:
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 client.filters.with_raw_response.bulk_update(
                     zone_id="",
+                    body=[{}],
                 )
 
     @parametrize
@@ -400,7 +422,7 @@ class TestAsyncFilters:
         with pytest.warns(DeprecationWarning):
             filter = await async_client.filters.create(
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                expression='(http.request.uri.path ~ ".*wp-login.php" or http.request.uri.path ~ ".*xmlrpc.php") and ip.addr ne 172.16.22.155',
+                body=[{}],
             )
 
         assert_matches_type(AsyncSinglePage[FirewallFilter], filter, path=["response"])
@@ -411,7 +433,7 @@ class TestAsyncFilters:
         with pytest.warns(DeprecationWarning):
             response = await async_client.filters.with_raw_response.create(
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                expression='(http.request.uri.path ~ ".*wp-login.php" or http.request.uri.path ~ ".*xmlrpc.php") and ip.addr ne 172.16.22.155',
+                body=[{}],
             )
 
         assert response.is_closed is True
@@ -425,7 +447,7 @@ class TestAsyncFilters:
         with pytest.warns(DeprecationWarning):
             async with async_client.filters.with_streaming_response.create(
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                expression='(http.request.uri.path ~ ".*wp-login.php" or http.request.uri.path ~ ".*xmlrpc.php") and ip.addr ne 172.16.22.155',
+                body=[{}],
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -442,7 +464,7 @@ class TestAsyncFilters:
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 await async_client.filters.with_raw_response.create(
                     zone_id="",
-                    expression='(http.request.uri.path ~ ".*wp-login.php" or http.request.uri.path ~ ".*xmlrpc.php") and ip.addr ne 172.16.22.155',
+                    body=[{}],
                 )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -452,7 +474,21 @@ class TestAsyncFilters:
             filter = await async_client.filters.update(
                 filter_id="372e67954025e0ba6aaa6d586b9e0b61",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+            )
+
+        assert_matches_type(FirewallFilter, filter, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            filter = await async_client.filters.update(
+                filter_id="372e67954025e0ba6aaa6d586b9e0b61",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                description="Restrict access from these browsers on this address range.",
+                expression='(http.request.uri.path ~ ".*wp-login.php" or http.request.uri.path ~ ".*xmlrpc.php") and ip.addr ne 172.16.22.155',
+                paused=False,
+                ref="FIL-100",
             )
 
         assert_matches_type(FirewallFilter, filter, path=["response"])
@@ -464,7 +500,6 @@ class TestAsyncFilters:
             response = await async_client.filters.with_raw_response.update(
                 filter_id="372e67954025e0ba6aaa6d586b9e0b61",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
         assert response.is_closed is True
@@ -479,7 +514,6 @@ class TestAsyncFilters:
             async with async_client.filters.with_streaming_response.update(
                 filter_id="372e67954025e0ba6aaa6d586b9e0b61",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -497,14 +531,12 @@ class TestAsyncFilters:
                 await async_client.filters.with_raw_response.update(
                     filter_id="372e67954025e0ba6aaa6d586b9e0b61",
                     zone_id="",
-                    body={},
                 )
 
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `filter_id` but received ''"):
                 await async_client.filters.with_raw_response.update(
                     filter_id="",
                     zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                    body={},
                 )
 
     @parametrize
@@ -574,7 +606,7 @@ class TestAsyncFilters:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-        assert_matches_type(FirewallFilter, filter, path=["response"])
+        assert_matches_type(FilterDeleteResponse, filter, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -587,7 +619,7 @@ class TestAsyncFilters:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         filter = await response.parse()
-        assert_matches_type(FirewallFilter, filter, path=["response"])
+        assert_matches_type(FilterDeleteResponse, filter, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -600,7 +632,7 @@ class TestAsyncFilters:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 filter = await response.parse()
-                assert_matches_type(FirewallFilter, filter, path=["response"])
+                assert_matches_type(FilterDeleteResponse, filter, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -624,33 +656,36 @@ class TestAsyncFilters:
         with pytest.warns(DeprecationWarning):
             filter = await async_client.filters.bulk_delete(
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                id=["372e67954025e0ba6aaa6d586b9e0b61"],
             )
 
-        assert_matches_type(AsyncSinglePage[FirewallFilter], filter, path=["response"])
+        assert_matches_type(Optional[FilterBulkDeleteResponse], filter, path=["response"])
 
     @parametrize
     async def test_raw_response_bulk_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = await async_client.filters.with_raw_response.bulk_delete(
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                id=["372e67954025e0ba6aaa6d586b9e0b61"],
             )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         filter = await response.parse()
-        assert_matches_type(AsyncSinglePage[FirewallFilter], filter, path=["response"])
+        assert_matches_type(Optional[FilterBulkDeleteResponse], filter, path=["response"])
 
     @parametrize
     async def test_streaming_response_bulk_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             async with async_client.filters.with_streaming_response.bulk_delete(
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                id=["372e67954025e0ba6aaa6d586b9e0b61"],
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 filter = await response.parse()
-                assert_matches_type(AsyncSinglePage[FirewallFilter], filter, path=["response"])
+                assert_matches_type(Optional[FilterBulkDeleteResponse], filter, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -660,6 +695,7 @@ class TestAsyncFilters:
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 await async_client.filters.with_raw_response.bulk_delete(
                     zone_id="",
+                    id=["372e67954025e0ba6aaa6d586b9e0b61"],
                 )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -668,6 +704,7 @@ class TestAsyncFilters:
         with pytest.warns(DeprecationWarning):
             filter = await async_client.filters.bulk_update(
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body=[{}],
             )
 
         assert_matches_type(AsyncSinglePage[FirewallFilter], filter, path=["response"])
@@ -678,6 +715,7 @@ class TestAsyncFilters:
         with pytest.warns(DeprecationWarning):
             response = await async_client.filters.with_raw_response.bulk_update(
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body=[{}],
             )
 
         assert response.is_closed is True
@@ -691,6 +729,7 @@ class TestAsyncFilters:
         with pytest.warns(DeprecationWarning):
             async with async_client.filters.with_streaming_response.bulk_update(
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body=[{}],
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -707,6 +746,7 @@ class TestAsyncFilters:
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 await async_client.filters.with_raw_response.bulk_update(
                     zone_id="",
+                    body=[{}],
                 )
 
     @parametrize

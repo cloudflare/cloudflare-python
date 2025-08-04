@@ -41,7 +41,7 @@ class BlockPageSettingsParam(TypedDict, total=False):
     page.
     """
 
-    mode: Literal["customized_block_page", "redirect_uri"]
+    mode: Literal["", "customized_block_page", "redirect_uri"]
     """
     Controls whether the user is redirected to a Cloudflare-hosted block page or to
     a customer-provided URI.

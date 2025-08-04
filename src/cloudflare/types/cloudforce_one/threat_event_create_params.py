@@ -29,7 +29,7 @@ class ThreatEventCreateParams(TypedDict, total=False):
 
     body_account_id: Annotated[float, PropertyInfo(alias="accountId")]
 
-    attacker: str
+    attacker: Optional[str]
 
     attacker_country: Annotated[str, PropertyInfo(alias="attackerCountry")]
 

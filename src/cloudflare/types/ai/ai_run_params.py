@@ -34,6 +34,7 @@ __all__ = [
     "Variant12",
     "Variant13",
     "Variant13Message",
+    "MultimodalEmbeddings",
 ]
 
 
@@ -562,6 +563,15 @@ class Variant13Message(TypedDict, total=False):
     """The role of the message sender (e.g., 'user', 'assistant', 'system', 'tool')."""
 
 
+class MultimodalEmbeddings(TypedDict, total=False):
+    account_id: Required[str]
+
+    image: str
+    """Image in base64 encoded format."""
+
+    text: List[str]
+
+
 AIRunParams: TypeAlias = Union[
     TextClassification,
     TextToImage,
@@ -577,4 +587,5 @@ AIRunParams: TypeAlias = Union[
     ImageToText,
     Variant12,
     Variant13,
+    MultimodalEmbeddings,
 ]

@@ -43,7 +43,7 @@ class Data(TypedDict, total=False):
 
     account_id: Annotated[float, PropertyInfo(alias="accountId")]
 
-    attacker: str
+    attacker: Optional[str]
 
     attacker_country: Annotated[str, PropertyInfo(alias="attackerCountry")]
 

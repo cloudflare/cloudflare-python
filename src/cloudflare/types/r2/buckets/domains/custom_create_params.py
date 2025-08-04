@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import List
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ....._utils import PropertyInfo
@@ -24,6 +25,12 @@ class CustomCreateParams(TypedDict, total=False):
 
     zone_id: Required[Annotated[str, PropertyInfo(alias="zoneId")]]
     """Zone ID of the custom domain."""
+
+    ciphers: List[str]
+    """An allowlist of ciphers for TLS termination.
+
+    These ciphers must be in the BoringSSL format.
+    """
 
     min_tls: Annotated[Literal["1.0", "1.1", "1.2", "1.3"], PropertyInfo(alias="minTLS")]
     """Minimum TLS Version the custom domain will accept for incoming connections.

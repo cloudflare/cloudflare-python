@@ -2,16 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import List
 from typing_extensions import Required, TypedDict
 
-from .firewall_filter_param import FirewallFilterParam
-
-__all__ = ["FilterCreateParams"]
+__all__ = ["FilterBulkDeleteParams"]
 
 
-class FilterCreateParams(TypedDict, total=False):
+class FilterBulkDeleteParams(TypedDict, total=False):
     zone_id: Required[str]
     """Defines an identifier."""
 
-    body: Required[Iterable[FirewallFilterParam]]
+    id: Required[List[str]]

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import List, Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -198,7 +198,7 @@ class ThreatEventsResource(SyncAPIResource):
         raw: threat_event_create_params.Raw,
         tlp: str,
         body_account_id: float | NotGiven = NOT_GIVEN,
-        attacker: str | NotGiven = NOT_GIVEN,
+        attacker: Optional[str] | NotGiven = NOT_GIVEN,
         attacker_country: str | NotGiven = NOT_GIVEN,
         dataset_id: str | NotGiven = NOT_GIVEN,
         indicator: str | NotGiven = NOT_GIVEN,
@@ -416,7 +416,7 @@ class ThreatEventsResource(SyncAPIResource):
         event_id: str,
         *,
         account_id: str,
-        attacker: str | NotGiven = NOT_GIVEN,
+        attacker: Optional[str] | NotGiven = NOT_GIVEN,
         attacker_country: str | NotGiven = NOT_GIVEN,
         category: str | NotGiven = NOT_GIVEN,
         date: Union[str, datetime] | NotGiven = NOT_GIVEN,
@@ -596,7 +596,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         raw: threat_event_create_params.Raw,
         tlp: str,
         body_account_id: float | NotGiven = NOT_GIVEN,
-        attacker: str | NotGiven = NOT_GIVEN,
+        attacker: Optional[str] | NotGiven = NOT_GIVEN,
         attacker_country: str | NotGiven = NOT_GIVEN,
         dataset_id: str | NotGiven = NOT_GIVEN,
         indicator: str | NotGiven = NOT_GIVEN,
@@ -814,7 +814,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         event_id: str,
         *,
         account_id: str,
-        attacker: str | NotGiven = NOT_GIVEN,
+        attacker: Optional[str] | NotGiven = NOT_GIVEN,
         attacker_country: str | NotGiven = NOT_GIVEN,
         category: str | NotGiven = NOT_GIVEN,
         date: Union[str, datetime] | NotGiven = NOT_GIVEN,

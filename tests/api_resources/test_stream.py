@@ -106,6 +106,7 @@ class TestStream:
             start=parse_datetime("2014-01-02T02:20:00Z"),
             status="inprogress",
             type="live",
+            video_name="puppy.mp4",
         )
         assert_matches_type(SyncSinglePage[Video], stream, path=["response"])
 
@@ -393,6 +394,7 @@ class TestAsyncStream:
             start=parse_datetime("2014-01-02T02:20:00Z"),
             status="inprogress",
             type="live",
+            video_name="puppy.mp4",
         )
         assert_matches_type(AsyncSinglePage[Video], stream, path=["response"])
 
