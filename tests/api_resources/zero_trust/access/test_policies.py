@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.zero_trust.access import (
     PolicyGetResponse,
     PolicyListResponse,
@@ -201,7 +201,16 @@ class TestPolicies:
         policy = client.zero_trust.access.policies.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncSinglePage[PolicyListResponse], policy, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[PolicyListResponse], policy, path=["response"])
+
+    @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
+        policy = client.zero_trust.access.policies.list(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            page=0,
+            per_page=0,
+        )
+        assert_matches_type(SyncV4PagePaginationArray[PolicyListResponse], policy, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -212,7 +221,7 @@ class TestPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = response.parse()
-        assert_matches_type(SyncSinglePage[PolicyListResponse], policy, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[PolicyListResponse], policy, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -223,7 +232,7 @@ class TestPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = response.parse()
-            assert_matches_type(SyncSinglePage[PolicyListResponse], policy, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[PolicyListResponse], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -513,7 +522,16 @@ class TestAsyncPolicies:
         policy = await async_client.zero_trust.access.policies.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncSinglePage[PolicyListResponse], policy, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[PolicyListResponse], policy, path=["response"])
+
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        policy = await async_client.zero_trust.access.policies.list(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            page=0,
+            per_page=0,
+        )
+        assert_matches_type(AsyncV4PagePaginationArray[PolicyListResponse], policy, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -524,7 +542,7 @@ class TestAsyncPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = await response.parse()
-        assert_matches_type(AsyncSinglePage[PolicyListResponse], policy, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[PolicyListResponse], policy, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -535,7 +553,7 @@ class TestAsyncPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = await response.parse()
-            assert_matches_type(AsyncSinglePage[PolicyListResponse], policy, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[PolicyListResponse], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

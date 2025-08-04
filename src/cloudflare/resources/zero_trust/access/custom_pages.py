@@ -18,9 +18,9 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....pagination import SyncSinglePage, AsyncSinglePage
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.zero_trust.access import custom_page_create_params, custom_page_update_params
+from ....types.zero_trust.access import custom_page_list_params, custom_page_create_params, custom_page_update_params
 from ....types.zero_trust.access.custom_page import CustomPage
 from ....types.zero_trust.access.custom_page_without_html import CustomPageWithoutHTML
 from ....types.zero_trust.access.custom_page_delete_response import CustomPageDeleteResponse
@@ -177,18 +177,24 @@ class CustomPagesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[CustomPageWithoutHTML]:
+    ) -> SyncV4PagePaginationArray[CustomPageWithoutHTML]:
         """
         List custom pages
 
         Args:
           account_id: Identifier.
+
+          page: Page number of results.
+
+          per_page: Number of results per page.
 
           extra_headers: Send extra headers
 
@@ -202,9 +208,19 @@ class CustomPagesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/access/custom_pages",
-            page=SyncSinglePage[CustomPageWithoutHTML],
+            page=SyncV4PagePaginationArray[CustomPageWithoutHTML],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    custom_page_list_params.CustomPageListParams,
+                ),
             ),
             model=CustomPageWithoutHTML,
         )
@@ -447,18 +463,24 @@ class AsyncCustomPagesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[CustomPageWithoutHTML, AsyncSinglePage[CustomPageWithoutHTML]]:
+    ) -> AsyncPaginator[CustomPageWithoutHTML, AsyncV4PagePaginationArray[CustomPageWithoutHTML]]:
         """
         List custom pages
 
         Args:
           account_id: Identifier.
+
+          page: Page number of results.
+
+          per_page: Number of results per page.
 
           extra_headers: Send extra headers
 
@@ -472,9 +494,19 @@ class AsyncCustomPagesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/access/custom_pages",
-            page=AsyncSinglePage[CustomPageWithoutHTML],
+            page=AsyncV4PagePaginationArray[CustomPageWithoutHTML],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    custom_page_list_params.CustomPageListParams,
+                ),
             ),
             model=CustomPageWithoutHTML,
         )

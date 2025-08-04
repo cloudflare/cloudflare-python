@@ -17,7 +17,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....pagination import SyncSinglePage, AsyncSinglePage
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.zero_trust.access import group_list_params, group_create_params, group_update_params
 from ....types.zero_trust.access.group_get_response import GroupGetResponse
@@ -221,6 +221,8 @@ class GroupsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         search: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -228,7 +230,7 @@ class GroupsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[GroupListResponse]:
+    ) -> SyncV4PagePaginationArray[GroupListResponse]:
         """
         Lists all Access groups.
 
@@ -238,6 +240,10 @@ class GroupsResource(SyncAPIResource):
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           name: The name of the group.
+
+          page: Page number of results.
+
+          per_page: Number of results per page.
 
           search: Search for groups by other listed query parameters.
 
@@ -263,7 +269,7 @@ class GroupsResource(SyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/groups",
-            page=SyncSinglePage[GroupListResponse],
+            page=SyncV4PagePaginationArray[GroupListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -272,6 +278,8 @@ class GroupsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "name": name,
+                        "page": page,
+                        "per_page": per_page,
                         "search": search,
                     },
                     group_list_params.GroupListParams,
@@ -586,6 +594,8 @@ class AsyncGroupsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         search: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -593,7 +603,7 @@ class AsyncGroupsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[GroupListResponse, AsyncSinglePage[GroupListResponse]]:
+    ) -> AsyncPaginator[GroupListResponse, AsyncV4PagePaginationArray[GroupListResponse]]:
         """
         Lists all Access groups.
 
@@ -603,6 +613,10 @@ class AsyncGroupsResource(AsyncAPIResource):
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           name: The name of the group.
+
+          page: Page number of results.
+
+          per_page: Number of results per page.
 
           search: Search for groups by other listed query parameters.
 
@@ -628,7 +642,7 @@ class AsyncGroupsResource(AsyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/groups",
-            page=AsyncSinglePage[GroupListResponse],
+            page=AsyncV4PagePaginationArray[GroupListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -637,6 +651,8 @@ class AsyncGroupsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "name": name,
+                        "page": page,
+                        "per_page": per_page,
                         "search": search,
                     },
                     group_list_params.GroupListParams,

@@ -21,6 +21,12 @@ class AccessRequestListParams(TypedDict, total=False):
     limit: int
     """The maximum number of log entries to retrieve."""
 
+    page: int
+    """Page number of results."""
+
+    per_page: int
+    """Number of results per page."""
+
     since: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """The earliest event timestamp to query."""
 

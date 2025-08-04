@@ -17,7 +17,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....pagination import SyncSinglePage, AsyncSinglePage
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.zero_trust.access import (
     service_token_list_params,
@@ -199,6 +199,8 @@ class ServiceTokensResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         search: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -206,7 +208,7 @@ class ServiceTokensResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[ServiceToken]:
+    ) -> SyncV4PagePaginationArray[ServiceToken]:
         """
         Lists all service tokens.
 
@@ -216,6 +218,10 @@ class ServiceTokensResource(SyncAPIResource):
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           name: The name of the service token.
+
+          page: Page number of results.
+
+          per_page: Number of results per page.
 
           search: Search for service tokens by other listed query parameters.
 
@@ -241,7 +247,7 @@ class ServiceTokensResource(SyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/service_tokens",
-            page=SyncSinglePage[ServiceToken],
+            page=SyncV4PagePaginationArray[ServiceToken],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -250,6 +256,8 @@ class ServiceTokensResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "name": name,
+                        "page": page,
+                        "per_page": per_page,
                         "search": search,
                     },
                     service_token_list_params.ServiceTokenListParams,
@@ -629,6 +637,8 @@ class AsyncServiceTokensResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         search: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -636,7 +646,7 @@ class AsyncServiceTokensResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[ServiceToken, AsyncSinglePage[ServiceToken]]:
+    ) -> AsyncPaginator[ServiceToken, AsyncV4PagePaginationArray[ServiceToken]]:
         """
         Lists all service tokens.
 
@@ -646,6 +656,10 @@ class AsyncServiceTokensResource(AsyncAPIResource):
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           name: The name of the service token.
+
+          page: Page number of results.
+
+          per_page: Number of results per page.
 
           search: Search for service tokens by other listed query parameters.
 
@@ -671,7 +685,7 @@ class AsyncServiceTokensResource(AsyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/service_tokens",
-            page=AsyncSinglePage[ServiceToken],
+            page=AsyncV4PagePaginationArray[ServiceToken],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -680,6 +694,8 @@ class AsyncServiceTokensResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "name": name,
+                        "page": page,
+                        "per_page": per_page,
                         "search": search,
                     },
                     service_token_list_params.ServiceTokenListParams,

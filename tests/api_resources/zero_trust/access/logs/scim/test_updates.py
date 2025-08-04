@@ -10,7 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
-from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.zero_trust.access.logs.scim import UpdateListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -25,7 +25,7 @@ class TestUpdates:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             idp_id=["df7e2w5f-02b7-4d9d-af26-8d1988fca630", "0194ae2c-efcf-7cfb-8884-055f1a161fa5"],
         )
-        assert_matches_type(SyncSinglePage[UpdateListResponse], update, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[UpdateListResponse], update, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
@@ -36,6 +36,8 @@ class TestUpdates:
             direction="desc",
             idp_resource_id="idp_resource_id",
             limit=10,
+            page=0,
+            per_page=0,
             request_method=["DELETE", "PATCH"],
             resource_group_name="ALL_EMPLOYEES",
             resource_type=["USER", "GROUP"],
@@ -44,7 +46,7 @@ class TestUpdates:
             status=["FAILURE", "SUCCESS"],
             until=parse_datetime("2025-01-02T00:00:00Z"),
         )
-        assert_matches_type(SyncSinglePage[UpdateListResponse], update, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[UpdateListResponse], update, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -56,7 +58,7 @@ class TestUpdates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         update = response.parse()
-        assert_matches_type(SyncSinglePage[UpdateListResponse], update, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[UpdateListResponse], update, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -68,7 +70,7 @@ class TestUpdates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             update = response.parse()
-            assert_matches_type(SyncSinglePage[UpdateListResponse], update, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[UpdateListResponse], update, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -92,7 +94,7 @@ class TestAsyncUpdates:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             idp_id=["df7e2w5f-02b7-4d9d-af26-8d1988fca630", "0194ae2c-efcf-7cfb-8884-055f1a161fa5"],
         )
-        assert_matches_type(AsyncSinglePage[UpdateListResponse], update, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[UpdateListResponse], update, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -103,6 +105,8 @@ class TestAsyncUpdates:
             direction="desc",
             idp_resource_id="idp_resource_id",
             limit=10,
+            page=0,
+            per_page=0,
             request_method=["DELETE", "PATCH"],
             resource_group_name="ALL_EMPLOYEES",
             resource_type=["USER", "GROUP"],
@@ -111,7 +115,7 @@ class TestAsyncUpdates:
             status=["FAILURE", "SUCCESS"],
             until=parse_datetime("2025-01-02T00:00:00Z"),
         )
-        assert_matches_type(AsyncSinglePage[UpdateListResponse], update, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[UpdateListResponse], update, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -123,7 +127,7 @@ class TestAsyncUpdates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         update = await response.parse()
-        assert_matches_type(AsyncSinglePage[UpdateListResponse], update, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[UpdateListResponse], update, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -135,7 +139,7 @@ class TestAsyncUpdates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             update = await response.parse()
-            assert_matches_type(AsyncSinglePage[UpdateListResponse], update, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[UpdateListResponse], update, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

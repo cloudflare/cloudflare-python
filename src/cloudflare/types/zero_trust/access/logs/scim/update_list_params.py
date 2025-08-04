@@ -30,6 +30,12 @@ class UpdateListParams(TypedDict, total=False):
     limit: int
     """The maximum number of update logs to retrieve."""
 
+    page: int
+    """Page number of results."""
+
+    per_page: int
+    """Number of results per page."""
+
     request_method: List[Literal["DELETE", "PATCH", "POST", "PUT"]]
     """The request method of the SCIM request."""
 

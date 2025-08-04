@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.zero_trust.access.applications import CA, CADeleteResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -91,15 +91,17 @@ class TestCAs:
         ca = client.zero_trust.access.applications.cas.list(
             account_id="account_id",
         )
-        assert_matches_type(SyncSinglePage[CA], ca, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[CA], ca, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         ca = client.zero_trust.access.applications.cas.list(
             account_id="account_id",
+            page=0,
+            per_page=0,
         )
-        assert_matches_type(SyncSinglePage[CA], ca, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[CA], ca, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -111,7 +113,7 @@ class TestCAs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ca = response.parse()
-        assert_matches_type(SyncSinglePage[CA], ca, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[CA], ca, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -123,7 +125,7 @@ class TestCAs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ca = response.parse()
-            assert_matches_type(SyncSinglePage[CA], ca, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[CA], ca, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -353,15 +355,17 @@ class TestAsyncCAs:
         ca = await async_client.zero_trust.access.applications.cas.list(
             account_id="account_id",
         )
-        assert_matches_type(AsyncSinglePage[CA], ca, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[CA], ca, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ca = await async_client.zero_trust.access.applications.cas.list(
             account_id="account_id",
+            page=0,
+            per_page=0,
         )
-        assert_matches_type(AsyncSinglePage[CA], ca, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[CA], ca, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -373,7 +377,7 @@ class TestAsyncCAs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ca = await response.parse()
-        assert_matches_type(AsyncSinglePage[CA], ca, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[CA], ca, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -385,7 +389,7 @@ class TestAsyncCAs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ca = await response.parse()
-            assert_matches_type(AsyncSinglePage[CA], ca, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[CA], ca, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

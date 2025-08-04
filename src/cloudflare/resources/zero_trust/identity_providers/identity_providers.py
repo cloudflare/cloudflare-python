@@ -26,7 +26,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....pagination import SyncSinglePage, AsyncSinglePage
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.zero_trust import (
     IdentityProviderType,
@@ -1594,6 +1594,8 @@ class IdentityProvidersResource(SyncAPIResource):
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         scim_enabled: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1601,7 +1603,7 @@ class IdentityProvidersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[IdentityProviderListResponse]:
+    ) -> SyncV4PagePaginationArray[IdentityProviderListResponse]:
         """
         Lists all configured identity providers.
 
@@ -1609,6 +1611,10 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          page: Page number of results.
+
+          per_page: Number of results per page.
 
           scim_enabled: Indicates to Access to only retrieve identity providers that have the System for
               Cross-Domain Identity Management (SCIM) enabled.
@@ -1635,14 +1641,19 @@ class IdentityProvidersResource(SyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers",
-            page=SyncSinglePage[IdentityProviderListResponse],
+            page=SyncV4PagePaginationArray[IdentityProviderListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {"scim_enabled": scim_enabled}, identity_provider_list_params.IdentityProviderListParams
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                        "scim_enabled": scim_enabled,
+                    },
+                    identity_provider_list_params.IdentityProviderListParams,
                 ),
             ),
             model=cast(
@@ -3324,6 +3335,8 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         scim_enabled: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3331,7 +3344,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[IdentityProviderListResponse, AsyncSinglePage[IdentityProviderListResponse]]:
+    ) -> AsyncPaginator[IdentityProviderListResponse, AsyncV4PagePaginationArray[IdentityProviderListResponse]]:
         """
         Lists all configured identity providers.
 
@@ -3339,6 +3352,10 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          page: Page number of results.
+
+          per_page: Number of results per page.
 
           scim_enabled: Indicates to Access to only retrieve identity providers that have the System for
               Cross-Domain Identity Management (SCIM) enabled.
@@ -3365,14 +3382,19 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers",
-            page=AsyncSinglePage[IdentityProviderListResponse],
+            page=AsyncV4PagePaginationArray[IdentityProviderListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {"scim_enabled": scim_enabled}, identity_provider_list_params.IdentityProviderListParams
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                        "scim_enabled": scim_enabled,
+                    },
+                    identity_provider_list_params.IdentityProviderListParams,
                 ),
             ),
             model=cast(

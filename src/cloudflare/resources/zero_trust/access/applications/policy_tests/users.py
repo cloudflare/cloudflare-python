@@ -67,6 +67,8 @@ class UsersResource(SyncAPIResource):
 
           policy_test_id: The UUID of the policy test.
 
+          page: Page number of results.
+
           status: Filter users by their policy evaluation status.
 
           extra_headers: Send extra headers
@@ -144,6 +146,8 @@ class AsyncUsersResource(AsyncAPIResource):
           account_id: Identifier.
 
           policy_test_id: The UUID of the policy test.
+
+          page: Page number of results.
 
           status: Filter users by their policy evaluation status.
 

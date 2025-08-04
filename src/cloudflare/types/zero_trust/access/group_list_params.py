@@ -17,5 +17,11 @@ class GroupListParams(TypedDict, total=False):
     name: str
     """The name of the group."""
 
+    page: int
+    """Page number of results."""
+
+    per_page: int
+    """Number of results per page."""
+
     search: str
     """Search for groups by other listed query parameters."""

@@ -52,6 +52,8 @@ class AccessRequestsResource(SyncAPIResource):
         account_id: str,
         direction: Literal["desc", "asc"] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         since: Union[str, datetime] | NotGiven = NOT_GIVEN,
         until: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -70,6 +72,10 @@ class AccessRequestsResource(SyncAPIResource):
           direction: The chronological sorting order for the logs.
 
           limit: The maximum number of log entries to retrieve.
+
+          page: Page number of results.
+
+          per_page: Number of results per page.
 
           since: The earliest event timestamp to query.
 
@@ -96,6 +102,8 @@ class AccessRequestsResource(SyncAPIResource):
                     {
                         "direction": direction,
                         "limit": limit,
+                        "page": page,
+                        "per_page": per_page,
                         "since": since,
                         "until": until,
                     },
@@ -133,6 +141,8 @@ class AsyncAccessRequestsResource(AsyncAPIResource):
         account_id: str,
         direction: Literal["desc", "asc"] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         since: Union[str, datetime] | NotGiven = NOT_GIVEN,
         until: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -151,6 +161,10 @@ class AsyncAccessRequestsResource(AsyncAPIResource):
           direction: The chronological sorting order for the logs.
 
           limit: The maximum number of log entries to retrieve.
+
+          page: Page number of results.
+
+          per_page: Number of results per page.
 
           since: The earliest event timestamp to query.
 
@@ -177,6 +191,8 @@ class AsyncAccessRequestsResource(AsyncAPIResource):
                     {
                         "direction": direction,
                         "limit": limit,
+                        "page": page,
+                        "per_page": per_page,
                         "since": since,
                         "until": until,
                     },

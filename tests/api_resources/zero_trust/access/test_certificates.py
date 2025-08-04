@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.zero_trust.access import (
     Certificate,
     CertificateDeleteResponse,
@@ -170,15 +170,17 @@ class TestCertificates:
         certificate = client.zero_trust.access.certificates.list(
             account_id="account_id",
         )
-        assert_matches_type(SyncSinglePage[Certificate], certificate, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Certificate], certificate, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         certificate = client.zero_trust.access.certificates.list(
             account_id="account_id",
+            page=0,
+            per_page=0,
         )
-        assert_matches_type(SyncSinglePage[Certificate], certificate, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Certificate], certificate, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -190,7 +192,7 @@ class TestCertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         certificate = response.parse()
-        assert_matches_type(SyncSinglePage[Certificate], certificate, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Certificate], certificate, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -202,7 +204,7 @@ class TestCertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             certificate = response.parse()
-            assert_matches_type(SyncSinglePage[Certificate], certificate, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[Certificate], certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -508,15 +510,17 @@ class TestAsyncCertificates:
         certificate = await async_client.zero_trust.access.certificates.list(
             account_id="account_id",
         )
-        assert_matches_type(AsyncSinglePage[Certificate], certificate, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Certificate], certificate, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         certificate = await async_client.zero_trust.access.certificates.list(
             account_id="account_id",
+            page=0,
+            per_page=0,
         )
-        assert_matches_type(AsyncSinglePage[Certificate], certificate, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Certificate], certificate, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -528,7 +532,7 @@ class TestAsyncCertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         certificate = await response.parse()
-        assert_matches_type(AsyncSinglePage[Certificate], certificate, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Certificate], certificate, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -540,7 +544,7 @@ class TestAsyncCertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             certificate = await response.parse()
-            assert_matches_type(AsyncSinglePage[Certificate], certificate, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[Certificate], certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

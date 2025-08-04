@@ -73,39 +73,15 @@ __all__ = [
     "AppLauncherApplicationPolicy",
     "AppLauncherApplicationPolicyAccessAppPolicyLink",
     "AppLauncherApplicationPolicyUnionMember2",
-    "AppLauncherApplicationSCIMConfig",
-    "AppLauncherApplicationSCIMConfigAuthentication",
-    "AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
-    "AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication",
-    "AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
     "DeviceEnrollmentPermissionsApplication",
-    "DeviceEnrollmentPermissionsApplicationFooterLink",
-    "DeviceEnrollmentPermissionsApplicationLandingPageDesign",
     "DeviceEnrollmentPermissionsApplicationPolicy",
     "DeviceEnrollmentPermissionsApplicationPolicyAccessAppPolicyLink",
     "DeviceEnrollmentPermissionsApplicationPolicyUnionMember2",
-    "DeviceEnrollmentPermissionsApplicationSCIMConfig",
-    "DeviceEnrollmentPermissionsApplicationSCIMConfigAuthentication",
-    "DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
-    "DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication",
-    "DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
     "BrowserIsolationPermissionsApplication",
-    "BrowserIsolationPermissionsApplicationFooterLink",
-    "BrowserIsolationPermissionsApplicationLandingPageDesign",
     "BrowserIsolationPermissionsApplicationPolicy",
     "BrowserIsolationPermissionsApplicationPolicyAccessAppPolicyLink",
     "BrowserIsolationPermissionsApplicationPolicyUnionMember2",
-    "BrowserIsolationPermissionsApplicationSCIMConfig",
-    "BrowserIsolationPermissionsApplicationSCIMConfigAuthentication",
-    "BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
-    "BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication",
-    "BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
-    "BookmarkApplication",
-    "BookmarkApplicationSCIMConfig",
-    "BookmarkApplicationSCIMConfigAuthentication",
-    "BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
-    "BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication",
-    "BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
+    "AccessBookmarkProps",
     "InfrastructureApplication",
     "InfrastructureApplicationTargetCriterion",
     "InfrastructureApplicationPolicy",
@@ -1441,6 +1417,21 @@ class AppLauncherApplication(TypedDict, total=False):
     bg_color: str
     """The background color of the App Launcher page."""
 
+    custom_deny_url: str
+    """
+    The custom URL a user is redirected to when they are denied access to the
+    application when failing identity-based rules.
+    """
+
+    custom_non_identity_deny_url: str
+    """
+    The custom URL a user is redirected to when they are denied access to the
+    application when failing non-identity rules.
+    """
+
+    custom_pages: List[str]
+    """The custom pages that will be displayed when applicable for this application"""
+
     footer_links: Iterable[AppLauncherApplicationFooterLink]
     """The links in the App Launcher footer."""
 
@@ -1455,12 +1446,6 @@ class AppLauncherApplication(TypedDict, total=False):
     The policies that Access applies to the application, in ascending order of
     precedence. Items can reference existing policies or create new policies
     exclusive to the application.
-    """
-
-    scim_config: AppLauncherApplicationSCIMConfig
-    """Configuration for provisioning to this application via SCIM.
-
-    This is currently in closed beta.
     """
 
     session_duration: str
@@ -1555,93 +1540,6 @@ AppLauncherApplicationPolicy: TypeAlias = Union[
 ]
 
 
-class AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
-    TypedDict, total=False
-):
-    client_id: Required[str]
-    """
-    Client ID of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    client_secret: Required[str]
-    """
-    Client secret of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    scheme: Required[Literal["access_service_token"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-
-class AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
-    TypedDict, total=False
-):
-    client_id: Required[str]
-    """
-    Client ID of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    client_secret: Required[str]
-    """
-    Client secret of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    scheme: Required[Literal["access_service_token"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-
-AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasicParam,
-    SCIMConfigAuthenticationOAuthBearerTokenParam,
-    SCIMConfigAuthenticationOauth2Param,
-    AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
-]
-
-AppLauncherApplicationSCIMConfigAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasicParam,
-    SCIMConfigAuthenticationOAuthBearerTokenParam,
-    SCIMConfigAuthenticationOauth2Param,
-    AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
-    Iterable[AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication],
-]
-
-
-class AppLauncherApplicationSCIMConfig(TypedDict, total=False):
-    idp_uid: Required[str]
-    """
-    The UID of the IdP to use as the source for SCIM resources to provision to this
-    application.
-    """
-
-    remote_uri: Required[str]
-    """The base URI for the application's SCIM-compatible API."""
-
-    authentication: AppLauncherApplicationSCIMConfigAuthentication
-    """
-    Attributes for configuring HTTP Basic authentication scheme for SCIM
-    provisioning to an application.
-    """
-
-    deactivate_on_delete: bool
-    """
-    If false, propagates DELETE requests to the target application for SCIM
-    resources. If true, sets 'active' to false on the SCIM resource. Note: Some
-    targets do not support DELETE operations.
-    """
-
-    enabled: bool
-    """Whether SCIM provisioning is turned on for this application."""
-
-    mappings: Iterable[SCIMConfigMappingParam]
-    """
-    A list of mappings to apply to SCIM resources before provisioning them in this
-    application. These can transform or filter the resources to be provisioned.
-    """
-
-
 class DeviceEnrollmentPermissionsApplication(TypedDict, total=False):
     type: Required[ApplicationType]
     """The application type."""
@@ -1659,9 +1557,6 @@ class DeviceEnrollmentPermissionsApplication(TypedDict, total=False):
     Defaults to all IdPs configured in your account.
     """
 
-    app_launcher_logo_url: str
-    """The image URL of the logo shown in the App Launcher header."""
-
     auto_redirect_to_identity: bool
     """When set to `true`, users skip the identity provider selection step during
     login.
@@ -1669,17 +1564,20 @@ class DeviceEnrollmentPermissionsApplication(TypedDict, total=False):
     You must specify only one identity provider in allowed_idps.
     """
 
-    bg_color: str
-    """The background color of the App Launcher page."""
+    custom_deny_url: str
+    """
+    The custom URL a user is redirected to when they are denied access to the
+    application when failing identity-based rules.
+    """
 
-    footer_links: Iterable[DeviceEnrollmentPermissionsApplicationFooterLink]
-    """The links in the App Launcher footer."""
+    custom_non_identity_deny_url: str
+    """
+    The custom URL a user is redirected to when they are denied access to the
+    application when failing non-identity rules.
+    """
 
-    header_bg_color: str
-    """The background color of the App Launcher header."""
-
-    landing_page_design: DeviceEnrollmentPermissionsApplicationLandingPageDesign
-    """The design of the App Launcher landing page shown to users when they log in."""
+    custom_pages: List[str]
+    """The custom pages that will be displayed when applicable for this application"""
 
     policies: List[DeviceEnrollmentPermissionsApplicationPolicy]
     """
@@ -1688,46 +1586,12 @@ class DeviceEnrollmentPermissionsApplication(TypedDict, total=False):
     exclusive to the application.
     """
 
-    scim_config: DeviceEnrollmentPermissionsApplicationSCIMConfig
-    """Configuration for provisioning to this application via SCIM.
-
-    This is currently in closed beta.
-    """
-
     session_duration: str
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
     ms, s, m, h. Note: unsupported for infrastructure type applications.
     """
-
-    skip_app_launcher_login_page: bool
-    """Determines when to skip the App Launcher landing page."""
-
-
-class DeviceEnrollmentPermissionsApplicationFooterLink(TypedDict, total=False):
-    name: Required[str]
-    """The hypertext in the footer link."""
-
-    url: Required[str]
-    """the hyperlink in the footer link."""
-
-
-class DeviceEnrollmentPermissionsApplicationLandingPageDesign(TypedDict, total=False):
-    button_color: str
-    """The background color of the log in button on the landing page."""
-
-    button_text_color: str
-    """The color of the text in the log in button on the landing page."""
-
-    image_url: str
-    """The URL of the image shown on the landing page."""
-
-    message: str
-    """The message shown on the landing page."""
-
-    title: str
-    """The title shown on the landing page."""
 
 
 class DeviceEnrollmentPermissionsApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
@@ -1788,93 +1652,6 @@ DeviceEnrollmentPermissionsApplicationPolicy: TypeAlias = Union[
 ]
 
 
-class DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
-    TypedDict, total=False
-):
-    client_id: Required[str]
-    """
-    Client ID of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    client_secret: Required[str]
-    """
-    Client secret of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    scheme: Required[Literal["access_service_token"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-
-class DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
-    TypedDict, total=False
-):
-    client_id: Required[str]
-    """
-    Client ID of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    client_secret: Required[str]
-    """
-    Client secret of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    scheme: Required[Literal["access_service_token"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-
-DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasicParam,
-    SCIMConfigAuthenticationOAuthBearerTokenParam,
-    SCIMConfigAuthenticationOauth2Param,
-    DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
-]
-
-DeviceEnrollmentPermissionsApplicationSCIMConfigAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasicParam,
-    SCIMConfigAuthenticationOAuthBearerTokenParam,
-    SCIMConfigAuthenticationOauth2Param,
-    DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
-    Iterable[DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication],
-]
-
-
-class DeviceEnrollmentPermissionsApplicationSCIMConfig(TypedDict, total=False):
-    idp_uid: Required[str]
-    """
-    The UID of the IdP to use as the source for SCIM resources to provision to this
-    application.
-    """
-
-    remote_uri: Required[str]
-    """The base URI for the application's SCIM-compatible API."""
-
-    authentication: DeviceEnrollmentPermissionsApplicationSCIMConfigAuthentication
-    """
-    Attributes for configuring HTTP Basic authentication scheme for SCIM
-    provisioning to an application.
-    """
-
-    deactivate_on_delete: bool
-    """
-    If false, propagates DELETE requests to the target application for SCIM
-    resources. If true, sets 'active' to false on the SCIM resource. Note: Some
-    targets do not support DELETE operations.
-    """
-
-    enabled: bool
-    """Whether SCIM provisioning is turned on for this application."""
-
-    mappings: Iterable[SCIMConfigMappingParam]
-    """
-    A list of mappings to apply to SCIM resources before provisioning them in this
-    application. These can transform or filter the resources to be provisioned.
-    """
-
-
 class BrowserIsolationPermissionsApplication(TypedDict, total=False):
     type: Required[ApplicationType]
     """The application type."""
@@ -1892,9 +1669,6 @@ class BrowserIsolationPermissionsApplication(TypedDict, total=False):
     Defaults to all IdPs configured in your account.
     """
 
-    app_launcher_logo_url: str
-    """The image URL of the logo shown in the App Launcher header."""
-
     auto_redirect_to_identity: bool
     """When set to `true`, users skip the identity provider selection step during
     login.
@@ -1902,17 +1676,20 @@ class BrowserIsolationPermissionsApplication(TypedDict, total=False):
     You must specify only one identity provider in allowed_idps.
     """
 
-    bg_color: str
-    """The background color of the App Launcher page."""
+    custom_deny_url: str
+    """
+    The custom URL a user is redirected to when they are denied access to the
+    application when failing identity-based rules.
+    """
 
-    footer_links: Iterable[BrowserIsolationPermissionsApplicationFooterLink]
-    """The links in the App Launcher footer."""
+    custom_non_identity_deny_url: str
+    """
+    The custom URL a user is redirected to when they are denied access to the
+    application when failing non-identity rules.
+    """
 
-    header_bg_color: str
-    """The background color of the App Launcher header."""
-
-    landing_page_design: BrowserIsolationPermissionsApplicationLandingPageDesign
-    """The design of the App Launcher landing page shown to users when they log in."""
+    custom_pages: List[str]
+    """The custom pages that will be displayed when applicable for this application"""
 
     policies: List[BrowserIsolationPermissionsApplicationPolicy]
     """
@@ -1921,46 +1698,12 @@ class BrowserIsolationPermissionsApplication(TypedDict, total=False):
     exclusive to the application.
     """
 
-    scim_config: BrowserIsolationPermissionsApplicationSCIMConfig
-    """Configuration for provisioning to this application via SCIM.
-
-    This is currently in closed beta.
-    """
-
     session_duration: str
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
     ms, s, m, h. Note: unsupported for infrastructure type applications.
     """
-
-    skip_app_launcher_login_page: bool
-    """Determines when to skip the App Launcher landing page."""
-
-
-class BrowserIsolationPermissionsApplicationFooterLink(TypedDict, total=False):
-    name: Required[str]
-    """The hypertext in the footer link."""
-
-    url: Required[str]
-    """the hyperlink in the footer link."""
-
-
-class BrowserIsolationPermissionsApplicationLandingPageDesign(TypedDict, total=False):
-    button_color: str
-    """The background color of the log in button on the landing page."""
-
-    button_text_color: str
-    """The color of the text in the log in button on the landing page."""
-
-    image_url: str
-    """The URL of the image shown on the landing page."""
-
-    message: str
-    """The message shown on the landing page."""
-
-    title: str
-    """The title shown on the landing page."""
 
 
 class BrowserIsolationPermissionsApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
@@ -2021,94 +1764,7 @@ BrowserIsolationPermissionsApplicationPolicy: TypeAlias = Union[
 ]
 
 
-class BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
-    TypedDict, total=False
-):
-    client_id: Required[str]
-    """
-    Client ID of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    client_secret: Required[str]
-    """
-    Client secret of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    scheme: Required[Literal["access_service_token"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-
-class BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
-    TypedDict, total=False
-):
-    client_id: Required[str]
-    """
-    Client ID of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    client_secret: Required[str]
-    """
-    Client secret of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    scheme: Required[Literal["access_service_token"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-
-BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasicParam,
-    SCIMConfigAuthenticationOAuthBearerTokenParam,
-    SCIMConfigAuthenticationOauth2Param,
-    BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
-]
-
-BrowserIsolationPermissionsApplicationSCIMConfigAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasicParam,
-    SCIMConfigAuthenticationOAuthBearerTokenParam,
-    SCIMConfigAuthenticationOauth2Param,
-    BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
-    Iterable[BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication],
-]
-
-
-class BrowserIsolationPermissionsApplicationSCIMConfig(TypedDict, total=False):
-    idp_uid: Required[str]
-    """
-    The UID of the IdP to use as the source for SCIM resources to provision to this
-    application.
-    """
-
-    remote_uri: Required[str]
-    """The base URI for the application's SCIM-compatible API."""
-
-    authentication: BrowserIsolationPermissionsApplicationSCIMConfigAuthentication
-    """
-    Attributes for configuring HTTP Basic authentication scheme for SCIM
-    provisioning to an application.
-    """
-
-    deactivate_on_delete: bool
-    """
-    If false, propagates DELETE requests to the target application for SCIM
-    resources. If true, sets 'active' to false on the SCIM resource. Note: Some
-    targets do not support DELETE operations.
-    """
-
-    enabled: bool
-    """Whether SCIM provisioning is turned on for this application."""
-
-    mappings: Iterable[SCIMConfigMappingParam]
-    """
-    A list of mappings to apply to SCIM resources before provisioning them in this
-    application. These can transform or filter the resources to be provisioned.
-    """
-
-
-class BookmarkApplication(TypedDict, total=False):
+class AccessBookmarkProps(TypedDict, total=False):
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
 
@@ -2127,12 +1783,6 @@ class BookmarkApplication(TypedDict, total=False):
     name: str
     """The name of the application."""
 
-    scim_config: BookmarkApplicationSCIMConfig
-    """Configuration for provisioning to this application via SCIM.
-
-    This is currently in closed beta.
-    """
-
     tags: List[str]
     """The tags you want assigned to an application.
 
@@ -2141,93 +1791,6 @@ class BookmarkApplication(TypedDict, total=False):
 
     type: ApplicationType
     """The application type."""
-
-
-class BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
-    TypedDict, total=False
-):
-    client_id: Required[str]
-    """
-    Client ID of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    client_secret: Required[str]
-    """
-    Client secret of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    scheme: Required[Literal["access_service_token"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-
-class BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
-    TypedDict, total=False
-):
-    client_id: Required[str]
-    """
-    Client ID of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    client_secret: Required[str]
-    """
-    Client secret of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    scheme: Required[Literal["access_service_token"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-
-BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasicParam,
-    SCIMConfigAuthenticationOAuthBearerTokenParam,
-    SCIMConfigAuthenticationOauth2Param,
-    BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
-]
-
-BookmarkApplicationSCIMConfigAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasicParam,
-    SCIMConfigAuthenticationOAuthBearerTokenParam,
-    SCIMConfigAuthenticationOauth2Param,
-    BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
-    Iterable[BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication],
-]
-
-
-class BookmarkApplicationSCIMConfig(TypedDict, total=False):
-    idp_uid: Required[str]
-    """
-    The UID of the IdP to use as the source for SCIM resources to provision to this
-    application.
-    """
-
-    remote_uri: Required[str]
-    """The base URI for the application's SCIM-compatible API."""
-
-    authentication: BookmarkApplicationSCIMConfigAuthentication
-    """
-    Attributes for configuring HTTP Basic authentication scheme for SCIM
-    provisioning to an application.
-    """
-
-    deactivate_on_delete: bool
-    """
-    If false, propagates DELETE requests to the target application for SCIM
-    resources. If true, sets 'active' to false on the SCIM resource. Note: Some
-    targets do not support DELETE operations.
-    """
-
-    enabled: bool
-    """Whether SCIM provisioning is turned on for this application."""
-
-    mappings: Iterable[SCIMConfigMappingParam]
-    """
-    A list of mappings to apply to SCIM resources before provisioning them in this
-    application. These can transform or filter the resources to be provisioned.
-    """
 
 
 class InfrastructureApplication(TypedDict, total=False):
@@ -2685,7 +2248,7 @@ ApplicationCreateParams: TypeAlias = Union[
     AppLauncherApplication,
     DeviceEnrollmentPermissionsApplication,
     BrowserIsolationPermissionsApplication,
-    BookmarkApplication,
+    AccessBookmarkProps,
     InfrastructureApplication,
     BrowserRdpApplication,
 ]

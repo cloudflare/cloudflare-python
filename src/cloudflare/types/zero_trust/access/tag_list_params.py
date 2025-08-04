@@ -4,24 +4,15 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["UserListParams"]
+__all__ = ["TagListParams"]
 
 
-class UserListParams(TypedDict, total=False):
+class TagListParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier."""
-
-    email: str
-    """The email of the user."""
-
-    name: str
-    """The name of the user."""
 
     page: int
     """Page number of results."""
 
     per_page: int
     """Number of results per page."""
-
-    search: str
-    """Search for users by other listed query parameters."""

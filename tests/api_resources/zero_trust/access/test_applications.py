@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.zero_trust.access import (
     ApplicationGetResponse,
     ApplicationListResponse,
@@ -658,6 +658,9 @@ class TestApplications:
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
             bg_color="#ff0000",
+            custom_deny_url="custom_deny_url",
+            custom_non_identity_deny_url="custom_non_identity_deny_url",
+            custom_pages=["699d98642c564d2e855e9661899b7252"],
             footer_links=[
                 {
                     "name": "Cloudflare's Privacy Policy",
@@ -678,31 +681,6 @@ class TestApplications:
                     "precedence": 0,
                 }
             ],
-            scim_config={
-                "idp_uid": "idp_uid",
-                "remote_uri": "remote_uri",
-                "authentication": {
-                    "password": "password",
-                    "scheme": "httpbasic",
-                    "user": "user",
-                },
-                "deactivate_on_delete": True,
-                "enabled": True,
-                "mappings": [
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    }
-                ],
-            },
             session_duration="24h",
             skip_app_launcher_login_page=True,
         )
@@ -767,56 +745,17 @@ class TestApplications:
             type="self_hosted",
             account_id="account_id",
             allowed_idps=["699d98642c564d2e855e9661899b7252"],
-            app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
-            bg_color="#ff0000",
-            footer_links=[
-                {
-                    "name": "Cloudflare's Privacy Policy",
-                    "url": "https://www.cloudflare.com/privacypolicy/",
-                }
-            ],
-            header_bg_color="#ff0000",
-            landing_page_design={
-                "button_color": "#ff0000",
-                "button_text_color": "#ff0000",
-                "image_url": "https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
-                "message": "Log in below to reach your applications behind Access.",
-                "title": "Welcome back!",
-            },
+            custom_deny_url="custom_deny_url",
+            custom_non_identity_deny_url="custom_non_identity_deny_url",
+            custom_pages=["699d98642c564d2e855e9661899b7252"],
             policies=[
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "precedence": 0,
                 }
             ],
-            scim_config={
-                "idp_uid": "idp_uid",
-                "remote_uri": "remote_uri",
-                "authentication": {
-                    "password": "password",
-                    "scheme": "httpbasic",
-                    "user": "user",
-                },
-                "deactivate_on_delete": True,
-                "enabled": True,
-                "mappings": [
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    }
-                ],
-            },
             session_duration="24h",
-            skip_app_launcher_login_page=True,
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -879,56 +818,17 @@ class TestApplications:
             type="self_hosted",
             account_id="account_id",
             allowed_idps=["699d98642c564d2e855e9661899b7252"],
-            app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
-            bg_color="#ff0000",
-            footer_links=[
-                {
-                    "name": "Cloudflare's Privacy Policy",
-                    "url": "https://www.cloudflare.com/privacypolicy/",
-                }
-            ],
-            header_bg_color="#ff0000",
-            landing_page_design={
-                "button_color": "#ff0000",
-                "button_text_color": "#ff0000",
-                "image_url": "https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
-                "message": "Log in below to reach your applications behind Access.",
-                "title": "Welcome back!",
-            },
+            custom_deny_url="custom_deny_url",
+            custom_non_identity_deny_url="custom_non_identity_deny_url",
+            custom_pages=["699d98642c564d2e855e9661899b7252"],
             policies=[
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "precedence": 0,
                 }
             ],
-            scim_config={
-                "idp_uid": "idp_uid",
-                "remote_uri": "remote_uri",
-                "authentication": {
-                    "password": "password",
-                    "scheme": "httpbasic",
-                    "user": "user",
-                },
-                "deactivate_on_delete": True,
-                "enabled": True,
-                "mappings": [
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    }
-                ],
-            },
             session_duration="24h",
-            skip_app_launcher_login_page=True,
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -992,31 +892,6 @@ class TestApplications:
             domain="https://mybookmark.com",
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
-            scim_config={
-                "idp_uid": "idp_uid",
-                "remote_uri": "remote_uri",
-                "authentication": {
-                    "password": "password",
-                    "scheme": "httpbasic",
-                    "user": "user",
-                },
-                "deactivate_on_delete": True,
-                "enabled": True,
-                "mappings": [
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    }
-                ],
-            },
             tags=["engineers"],
             type="bookmark",
         )
@@ -2076,6 +1951,9 @@ class TestApplications:
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
             bg_color="#ff0000",
+            custom_deny_url="custom_deny_url",
+            custom_non_identity_deny_url="custom_non_identity_deny_url",
+            custom_pages=["699d98642c564d2e855e9661899b7252"],
             footer_links=[
                 {
                     "name": "Cloudflare's Privacy Policy",
@@ -2096,31 +1974,6 @@ class TestApplications:
                     "precedence": 0,
                 }
             ],
-            scim_config={
-                "idp_uid": "idp_uid",
-                "remote_uri": "remote_uri",
-                "authentication": {
-                    "password": "password",
-                    "scheme": "httpbasic",
-                    "user": "user",
-                },
-                "deactivate_on_delete": True,
-                "enabled": True,
-                "mappings": [
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    }
-                ],
-            },
             session_duration="24h",
             skip_app_launcher_login_page=True,
         )
@@ -2198,56 +2051,17 @@ class TestApplications:
             type="self_hosted",
             account_id="account_id",
             allowed_idps=["699d98642c564d2e855e9661899b7252"],
-            app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
-            bg_color="#ff0000",
-            footer_links=[
-                {
-                    "name": "Cloudflare's Privacy Policy",
-                    "url": "https://www.cloudflare.com/privacypolicy/",
-                }
-            ],
-            header_bg_color="#ff0000",
-            landing_page_design={
-                "button_color": "#ff0000",
-                "button_text_color": "#ff0000",
-                "image_url": "https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
-                "message": "Log in below to reach your applications behind Access.",
-                "title": "Welcome back!",
-            },
+            custom_deny_url="custom_deny_url",
+            custom_non_identity_deny_url="custom_non_identity_deny_url",
+            custom_pages=["699d98642c564d2e855e9661899b7252"],
             policies=[
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "precedence": 0,
                 }
             ],
-            scim_config={
-                "idp_uid": "idp_uid",
-                "remote_uri": "remote_uri",
-                "authentication": {
-                    "password": "password",
-                    "scheme": "httpbasic",
-                    "user": "user",
-                },
-                "deactivate_on_delete": True,
-                "enabled": True,
-                "mappings": [
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    }
-                ],
-            },
             session_duration="24h",
-            skip_app_launcher_login_page=True,
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -2323,56 +2137,17 @@ class TestApplications:
             type="self_hosted",
             account_id="account_id",
             allowed_idps=["699d98642c564d2e855e9661899b7252"],
-            app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
-            bg_color="#ff0000",
-            footer_links=[
-                {
-                    "name": "Cloudflare's Privacy Policy",
-                    "url": "https://www.cloudflare.com/privacypolicy/",
-                }
-            ],
-            header_bg_color="#ff0000",
-            landing_page_design={
-                "button_color": "#ff0000",
-                "button_text_color": "#ff0000",
-                "image_url": "https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
-                "message": "Log in below to reach your applications behind Access.",
-                "title": "Welcome back!",
-            },
+            custom_deny_url="custom_deny_url",
+            custom_non_identity_deny_url="custom_non_identity_deny_url",
+            custom_pages=["699d98642c564d2e855e9661899b7252"],
             policies=[
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "precedence": 0,
                 }
             ],
-            scim_config={
-                "idp_uid": "idp_uid",
-                "remote_uri": "remote_uri",
-                "authentication": {
-                    "password": "password",
-                    "scheme": "httpbasic",
-                    "user": "user",
-                },
-                "deactivate_on_delete": True,
-                "enabled": True,
-                "mappings": [
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    }
-                ],
-            },
             session_duration="24h",
-            skip_app_launcher_login_page=True,
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -2449,31 +2224,6 @@ class TestApplications:
             domain="https://mybookmark.com",
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
-            scim_config={
-                "idp_uid": "idp_uid",
-                "remote_uri": "remote_uri",
-                "authentication": {
-                    "password": "password",
-                    "scheme": "httpbasic",
-                    "user": "user",
-                },
-                "deactivate_on_delete": True,
-                "enabled": True,
-                "mappings": [
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    }
-                ],
-            },
             tags=["engineers"],
             type="bookmark",
         )
@@ -2900,7 +2650,7 @@ class TestApplications:
         application = client.zero_trust.access.applications.list(
             account_id="account_id",
         )
-        assert_matches_type(SyncSinglePage[ApplicationListResponse], application, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[ApplicationListResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2911,9 +2661,11 @@ class TestApplications:
             domain="domain",
             exact=True,
             name="name",
+            page=0,
+            per_page=0,
             search="search",
         )
-        assert_matches_type(SyncSinglePage[ApplicationListResponse], application, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[ApplicationListResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2925,7 +2677,7 @@ class TestApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(SyncSinglePage[ApplicationListResponse], application, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[ApplicationListResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2937,7 +2689,7 @@ class TestApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(SyncSinglePage[ApplicationListResponse], application, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[ApplicationListResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3795,6 +3547,9 @@ class TestAsyncApplications:
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
             bg_color="#ff0000",
+            custom_deny_url="custom_deny_url",
+            custom_non_identity_deny_url="custom_non_identity_deny_url",
+            custom_pages=["699d98642c564d2e855e9661899b7252"],
             footer_links=[
                 {
                     "name": "Cloudflare's Privacy Policy",
@@ -3815,31 +3570,6 @@ class TestAsyncApplications:
                     "precedence": 0,
                 }
             ],
-            scim_config={
-                "idp_uid": "idp_uid",
-                "remote_uri": "remote_uri",
-                "authentication": {
-                    "password": "password",
-                    "scheme": "httpbasic",
-                    "user": "user",
-                },
-                "deactivate_on_delete": True,
-                "enabled": True,
-                "mappings": [
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    }
-                ],
-            },
             session_duration="24h",
             skip_app_launcher_login_page=True,
         )
@@ -3904,56 +3634,17 @@ class TestAsyncApplications:
             type="self_hosted",
             account_id="account_id",
             allowed_idps=["699d98642c564d2e855e9661899b7252"],
-            app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
-            bg_color="#ff0000",
-            footer_links=[
-                {
-                    "name": "Cloudflare's Privacy Policy",
-                    "url": "https://www.cloudflare.com/privacypolicy/",
-                }
-            ],
-            header_bg_color="#ff0000",
-            landing_page_design={
-                "button_color": "#ff0000",
-                "button_text_color": "#ff0000",
-                "image_url": "https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
-                "message": "Log in below to reach your applications behind Access.",
-                "title": "Welcome back!",
-            },
+            custom_deny_url="custom_deny_url",
+            custom_non_identity_deny_url="custom_non_identity_deny_url",
+            custom_pages=["699d98642c564d2e855e9661899b7252"],
             policies=[
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "precedence": 0,
                 }
             ],
-            scim_config={
-                "idp_uid": "idp_uid",
-                "remote_uri": "remote_uri",
-                "authentication": {
-                    "password": "password",
-                    "scheme": "httpbasic",
-                    "user": "user",
-                },
-                "deactivate_on_delete": True,
-                "enabled": True,
-                "mappings": [
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    }
-                ],
-            },
             session_duration="24h",
-            skip_app_launcher_login_page=True,
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -4016,56 +3707,17 @@ class TestAsyncApplications:
             type="self_hosted",
             account_id="account_id",
             allowed_idps=["699d98642c564d2e855e9661899b7252"],
-            app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
-            bg_color="#ff0000",
-            footer_links=[
-                {
-                    "name": "Cloudflare's Privacy Policy",
-                    "url": "https://www.cloudflare.com/privacypolicy/",
-                }
-            ],
-            header_bg_color="#ff0000",
-            landing_page_design={
-                "button_color": "#ff0000",
-                "button_text_color": "#ff0000",
-                "image_url": "https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
-                "message": "Log in below to reach your applications behind Access.",
-                "title": "Welcome back!",
-            },
+            custom_deny_url="custom_deny_url",
+            custom_non_identity_deny_url="custom_non_identity_deny_url",
+            custom_pages=["699d98642c564d2e855e9661899b7252"],
             policies=[
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "precedence": 0,
                 }
             ],
-            scim_config={
-                "idp_uid": "idp_uid",
-                "remote_uri": "remote_uri",
-                "authentication": {
-                    "password": "password",
-                    "scheme": "httpbasic",
-                    "user": "user",
-                },
-                "deactivate_on_delete": True,
-                "enabled": True,
-                "mappings": [
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    }
-                ],
-            },
             session_duration="24h",
-            skip_app_launcher_login_page=True,
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -4129,31 +3781,6 @@ class TestAsyncApplications:
             domain="https://mybookmark.com",
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
-            scim_config={
-                "idp_uid": "idp_uid",
-                "remote_uri": "remote_uri",
-                "authentication": {
-                    "password": "password",
-                    "scheme": "httpbasic",
-                    "user": "user",
-                },
-                "deactivate_on_delete": True,
-                "enabled": True,
-                "mappings": [
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    }
-                ],
-            },
             tags=["engineers"],
             type="bookmark",
         )
@@ -5213,6 +4840,9 @@ class TestAsyncApplications:
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
             bg_color="#ff0000",
+            custom_deny_url="custom_deny_url",
+            custom_non_identity_deny_url="custom_non_identity_deny_url",
+            custom_pages=["699d98642c564d2e855e9661899b7252"],
             footer_links=[
                 {
                     "name": "Cloudflare's Privacy Policy",
@@ -5233,31 +4863,6 @@ class TestAsyncApplications:
                     "precedence": 0,
                 }
             ],
-            scim_config={
-                "idp_uid": "idp_uid",
-                "remote_uri": "remote_uri",
-                "authentication": {
-                    "password": "password",
-                    "scheme": "httpbasic",
-                    "user": "user",
-                },
-                "deactivate_on_delete": True,
-                "enabled": True,
-                "mappings": [
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    }
-                ],
-            },
             session_duration="24h",
             skip_app_launcher_login_page=True,
         )
@@ -5335,56 +4940,17 @@ class TestAsyncApplications:
             type="self_hosted",
             account_id="account_id",
             allowed_idps=["699d98642c564d2e855e9661899b7252"],
-            app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
-            bg_color="#ff0000",
-            footer_links=[
-                {
-                    "name": "Cloudflare's Privacy Policy",
-                    "url": "https://www.cloudflare.com/privacypolicy/",
-                }
-            ],
-            header_bg_color="#ff0000",
-            landing_page_design={
-                "button_color": "#ff0000",
-                "button_text_color": "#ff0000",
-                "image_url": "https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
-                "message": "Log in below to reach your applications behind Access.",
-                "title": "Welcome back!",
-            },
+            custom_deny_url="custom_deny_url",
+            custom_non_identity_deny_url="custom_non_identity_deny_url",
+            custom_pages=["699d98642c564d2e855e9661899b7252"],
             policies=[
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "precedence": 0,
                 }
             ],
-            scim_config={
-                "idp_uid": "idp_uid",
-                "remote_uri": "remote_uri",
-                "authentication": {
-                    "password": "password",
-                    "scheme": "httpbasic",
-                    "user": "user",
-                },
-                "deactivate_on_delete": True,
-                "enabled": True,
-                "mappings": [
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    }
-                ],
-            },
             session_duration="24h",
-            skip_app_launcher_login_page=True,
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -5460,56 +5026,17 @@ class TestAsyncApplications:
             type="self_hosted",
             account_id="account_id",
             allowed_idps=["699d98642c564d2e855e9661899b7252"],
-            app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
-            bg_color="#ff0000",
-            footer_links=[
-                {
-                    "name": "Cloudflare's Privacy Policy",
-                    "url": "https://www.cloudflare.com/privacypolicy/",
-                }
-            ],
-            header_bg_color="#ff0000",
-            landing_page_design={
-                "button_color": "#ff0000",
-                "button_text_color": "#ff0000",
-                "image_url": "https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
-                "message": "Log in below to reach your applications behind Access.",
-                "title": "Welcome back!",
-            },
+            custom_deny_url="custom_deny_url",
+            custom_non_identity_deny_url="custom_non_identity_deny_url",
+            custom_pages=["699d98642c564d2e855e9661899b7252"],
             policies=[
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "precedence": 0,
                 }
             ],
-            scim_config={
-                "idp_uid": "idp_uid",
-                "remote_uri": "remote_uri",
-                "authentication": {
-                    "password": "password",
-                    "scheme": "httpbasic",
-                    "user": "user",
-                },
-                "deactivate_on_delete": True,
-                "enabled": True,
-                "mappings": [
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    }
-                ],
-            },
             session_duration="24h",
-            skip_app_launcher_login_page=True,
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -5586,31 +5113,6 @@ class TestAsyncApplications:
             domain="https://mybookmark.com",
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
-            scim_config={
-                "idp_uid": "idp_uid",
-                "remote_uri": "remote_uri",
-                "authentication": {
-                    "password": "password",
-                    "scheme": "httpbasic",
-                    "user": "user",
-                },
-                "deactivate_on_delete": True,
-                "enabled": True,
-                "mappings": [
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    }
-                ],
-            },
             tags=["engineers"],
             type="bookmark",
         )
@@ -6037,7 +5539,7 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.list(
             account_id="account_id",
         )
-        assert_matches_type(AsyncSinglePage[ApplicationListResponse], application, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[ApplicationListResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6048,9 +5550,11 @@ class TestAsyncApplications:
             domain="domain",
             exact=True,
             name="name",
+            page=0,
+            per_page=0,
             search="search",
         )
-        assert_matches_type(AsyncSinglePage[ApplicationListResponse], application, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[ApplicationListResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6062,7 +5566,7 @@ class TestAsyncApplications:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(AsyncSinglePage[ApplicationListResponse], application, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[ApplicationListResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6074,7 +5578,7 @@ class TestAsyncApplications:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(AsyncSinglePage[ApplicationListResponse], application, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[ApplicationListResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

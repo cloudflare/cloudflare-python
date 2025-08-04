@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.zero_trust.access import (
     CustomPage,
     CustomPageWithoutHTML,
@@ -163,7 +163,16 @@ class TestCustomPages:
         custom_page = client.zero_trust.access.custom_pages.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncSinglePage[CustomPageWithoutHTML], custom_page, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[CustomPageWithoutHTML], custom_page, path=["response"])
+
+    @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
+        custom_page = client.zero_trust.access.custom_pages.list(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            page=0,
+            per_page=0,
+        )
+        assert_matches_type(SyncV4PagePaginationArray[CustomPageWithoutHTML], custom_page, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -174,7 +183,7 @@ class TestCustomPages:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_page = response.parse()
-        assert_matches_type(SyncSinglePage[CustomPageWithoutHTML], custom_page, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[CustomPageWithoutHTML], custom_page, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -185,7 +194,7 @@ class TestCustomPages:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_page = response.parse()
-            assert_matches_type(SyncSinglePage[CustomPageWithoutHTML], custom_page, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[CustomPageWithoutHTML], custom_page, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -439,7 +448,16 @@ class TestAsyncCustomPages:
         custom_page = await async_client.zero_trust.access.custom_pages.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncSinglePage[CustomPageWithoutHTML], custom_page, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[CustomPageWithoutHTML], custom_page, path=["response"])
+
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        custom_page = await async_client.zero_trust.access.custom_pages.list(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            page=0,
+            per_page=0,
+        )
+        assert_matches_type(AsyncV4PagePaginationArray[CustomPageWithoutHTML], custom_page, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -450,7 +468,7 @@ class TestAsyncCustomPages:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_page = await response.parse()
-        assert_matches_type(AsyncSinglePage[CustomPageWithoutHTML], custom_page, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[CustomPageWithoutHTML], custom_page, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -461,7 +479,7 @@ class TestAsyncCustomPages:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_page = await response.parse()
-            assert_matches_type(AsyncSinglePage[CustomPageWithoutHTML], custom_page, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[CustomPageWithoutHTML], custom_page, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

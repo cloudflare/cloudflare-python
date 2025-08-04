@@ -22,7 +22,7 @@ from .failed_logins import (
     FailedLoginsResourceWithStreamingResponse,
     AsyncFailedLoginsResourceWithStreamingResponse,
 )
-from .....pagination import SyncSinglePage, AsyncSinglePage
+from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from .active_sessions import (
     ActiveSessionsResource,
     AsyncActiveSessionsResource,
@@ -84,6 +84,8 @@ class UsersResource(SyncAPIResource):
         account_id: str,
         email: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         search: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -91,7 +93,7 @@ class UsersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[UserListResponse]:
+    ) -> SyncV4PagePaginationArray[UserListResponse]:
         """
         Gets a list of users for an account.
 
@@ -101,6 +103,10 @@ class UsersResource(SyncAPIResource):
           email: The email of the user.
 
           name: The name of the user.
+
+          page: Page number of results.
+
+          per_page: Number of results per page.
 
           search: Search for users by other listed query parameters.
 
@@ -116,7 +122,7 @@ class UsersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/access/users",
-            page=SyncSinglePage[UserListResponse],
+            page=SyncV4PagePaginationArray[UserListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -126,6 +132,8 @@ class UsersResource(SyncAPIResource):
                     {
                         "email": email,
                         "name": name,
+                        "page": page,
+                        "per_page": per_page,
                         "search": search,
                     },
                     user_list_params.UserListParams,
@@ -173,6 +181,8 @@ class AsyncUsersResource(AsyncAPIResource):
         account_id: str,
         email: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         search: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -180,7 +190,7 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[UserListResponse, AsyncSinglePage[UserListResponse]]:
+    ) -> AsyncPaginator[UserListResponse, AsyncV4PagePaginationArray[UserListResponse]]:
         """
         Gets a list of users for an account.
 
@@ -190,6 +200,10 @@ class AsyncUsersResource(AsyncAPIResource):
           email: The email of the user.
 
           name: The name of the user.
+
+          page: Page number of results.
+
+          per_page: Number of results per page.
 
           search: Search for users by other listed query parameters.
 
@@ -205,7 +219,7 @@ class AsyncUsersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/access/users",
-            page=AsyncSinglePage[UserListResponse],
+            page=AsyncV4PagePaginationArray[UserListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -215,6 +229,8 @@ class AsyncUsersResource(AsyncAPIResource):
                     {
                         "email": email,
                         "name": name,
+                        "page": page,
+                        "per_page": per_page,
                         "search": search,
                     },
                     user_list_params.UserListParams,

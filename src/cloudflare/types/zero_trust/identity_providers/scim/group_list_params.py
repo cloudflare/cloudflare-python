@@ -25,3 +25,9 @@ class GroupListParams(TypedDict, total=False):
 
     name: str
     """The display name of the SCIM Group resource."""
+
+    page: int
+    """Page number of results."""
+
+    per_page: int
+    """Number of results per page."""

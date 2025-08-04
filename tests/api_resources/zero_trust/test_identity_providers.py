@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.zero_trust import (
     IdentityProvider,
     IdentityProviderListResponse,
@@ -2612,16 +2612,22 @@ class TestIdentityProviders:
         identity_provider = client.zero_trust.identity_providers.list(
             account_id="account_id",
         )
-        assert_matches_type(SyncSinglePage[IdentityProviderListResponse], identity_provider, path=["response"])
+        assert_matches_type(
+            SyncV4PagePaginationArray[IdentityProviderListResponse], identity_provider, path=["response"]
+        )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.list(
             account_id="account_id",
+            page=0,
+            per_page=0,
             scim_enabled="scim_enabled",
         )
-        assert_matches_type(SyncSinglePage[IdentityProviderListResponse], identity_provider, path=["response"])
+        assert_matches_type(
+            SyncV4PagePaginationArray[IdentityProviderListResponse], identity_provider, path=["response"]
+        )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2633,7 +2639,9 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(SyncSinglePage[IdentityProviderListResponse], identity_provider, path=["response"])
+        assert_matches_type(
+            SyncV4PagePaginationArray[IdentityProviderListResponse], identity_provider, path=["response"]
+        )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2645,7 +2653,9 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(SyncSinglePage[IdentityProviderListResponse], identity_provider, path=["response"])
+            assert_matches_type(
+                SyncV4PagePaginationArray[IdentityProviderListResponse], identity_provider, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -5392,16 +5402,22 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.zero_trust.identity_providers.list(
             account_id="account_id",
         )
-        assert_matches_type(AsyncSinglePage[IdentityProviderListResponse], identity_provider, path=["response"])
+        assert_matches_type(
+            AsyncV4PagePaginationArray[IdentityProviderListResponse], identity_provider, path=["response"]
+        )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.list(
             account_id="account_id",
+            page=0,
+            per_page=0,
             scim_enabled="scim_enabled",
         )
-        assert_matches_type(AsyncSinglePage[IdentityProviderListResponse], identity_provider, path=["response"])
+        assert_matches_type(
+            AsyncV4PagePaginationArray[IdentityProviderListResponse], identity_provider, path=["response"]
+        )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5413,7 +5429,9 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(AsyncSinglePage[IdentityProviderListResponse], identity_provider, path=["response"])
+        assert_matches_type(
+            AsyncV4PagePaginationArray[IdentityProviderListResponse], identity_provider, path=["response"]
+        )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5425,7 +5443,9 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(AsyncSinglePage[IdentityProviderListResponse], identity_provider, path=["response"])
+            assert_matches_type(
+                AsyncV4PagePaginationArray[IdentityProviderListResponse], identity_provider, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 

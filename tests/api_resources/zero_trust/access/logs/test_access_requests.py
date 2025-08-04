@@ -31,6 +31,8 @@ class TestAccessRequests:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             direction="desc",
             limit=0,
+            page=0,
+            per_page=0,
             since=parse_datetime("2020-07-01T05:20:00Z"),
             until=parse_datetime("2020-10-01T05:20:00Z"),
         )
@@ -86,6 +88,8 @@ class TestAsyncAccessRequests:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             direction="desc",
             limit=0,
+            page=0,
+            per_page=0,
             since=parse_datetime("2020-07-01T05:20:00Z"),
             until=parse_datetime("2020-10-01T05:20:00Z"),
         )

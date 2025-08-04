@@ -42,7 +42,7 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._wrappers import ResultWrapper
-from .....pagination import SyncSinglePage, AsyncSinglePage
+from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ....._base_client import AsyncPaginator, make_request_options
 from .user_policy_checks import (
     UserPolicyChecksResource,
@@ -665,11 +665,13 @@ class ApplicationsResource(SyncAPIResource):
         app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         bg_color: str | NotGiven = NOT_GIVEN,
+        custom_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
         footer_links: Iterable[application_create_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
         header_bg_color: str | NotGiven = NOT_GIVEN,
         landing_page_design: application_create_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.AppLauncherApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -699,6 +701,14 @@ class ApplicationsResource(SyncAPIResource):
 
           bg_color: The background color of the App Launcher page.
 
+          custom_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing identity-based rules.
+
+          custom_non_identity_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing non-identity rules.
+
+          custom_pages: The custom pages that will be displayed when applicable for this application
+
           footer_links: The links in the App Launcher footer.
 
           header_bg_color: The background color of the App Launcher header.
@@ -708,9 +718,6 @@ class ApplicationsResource(SyncAPIResource):
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
-
-          scim_config: Configuration for provisioning to this application via SCIM. This is currently
-              in closed beta.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -736,18 +743,12 @@ class ApplicationsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        bg_color: str | NotGiven = NOT_GIVEN,
-        footer_links: Iterable[application_create_params.DeviceEnrollmentPermissionsApplicationFooterLink]
-        | NotGiven = NOT_GIVEN,
-        header_bg_color: str | NotGiven = NOT_GIVEN,
-        landing_page_design: application_create_params.DeviceEnrollmentPermissionsApplicationLandingPageDesign
-        | NotGiven = NOT_GIVEN,
+        custom_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.DeviceEnrollmentPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
-        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -768,31 +769,24 @@ class ApplicationsResource(SyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
-          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
-
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
 
-          bg_color: The background color of the App Launcher page.
+          custom_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing identity-based rules.
 
-          footer_links: The links in the App Launcher footer.
+          custom_non_identity_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing non-identity rules.
 
-          header_bg_color: The background color of the App Launcher header.
-
-          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
+          custom_pages: The custom pages that will be displayed when applicable for this application
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
-          scim_config: Configuration for provisioning to this application via SCIM. This is currently
-              in closed beta.
-
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h. Note: unsupported for infrastructure type applications.
-
-          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -812,18 +806,12 @@ class ApplicationsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        bg_color: str | NotGiven = NOT_GIVEN,
-        footer_links: Iterable[application_create_params.BrowserIsolationPermissionsApplicationFooterLink]
-        | NotGiven = NOT_GIVEN,
-        header_bg_color: str | NotGiven = NOT_GIVEN,
-        landing_page_design: application_create_params.BrowserIsolationPermissionsApplicationLandingPageDesign
-        | NotGiven = NOT_GIVEN,
+        custom_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.BrowserIsolationPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
-        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -844,31 +832,24 @@ class ApplicationsResource(SyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
-          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
-
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
 
-          bg_color: The background color of the App Launcher page.
+          custom_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing identity-based rules.
 
-          footer_links: The links in the App Launcher footer.
+          custom_non_identity_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing non-identity rules.
 
-          header_bg_color: The background color of the App Launcher header.
-
-          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
+          custom_pages: The custom pages that will be displayed when applicable for this application
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
-          scim_config: Configuration for provisioning to this application via SCIM. This is currently
-              in closed beta.
-
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h. Note: unsupported for infrastructure type applications.
-
-          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -890,7 +871,6 @@ class ApplicationsResource(SyncAPIResource):
         domain: str | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.BookmarkApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         type: ApplicationType | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -915,9 +895,6 @@ class ApplicationsResource(SyncAPIResource):
           logo_url: The image URL for the logo shown in the App Launcher dashboard.
 
           name: The name of the application.
-
-          scim_config: Configuration for provisioning to this application via SCIM. This is currently
-              in closed beta.
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
@@ -1798,11 +1775,13 @@ class ApplicationsResource(SyncAPIResource):
         app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         bg_color: str | NotGiven = NOT_GIVEN,
+        custom_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
         footer_links: Iterable[application_update_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
         header_bg_color: str | NotGiven = NOT_GIVEN,
         landing_page_design: application_update_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.AppLauncherApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1834,6 +1813,14 @@ class ApplicationsResource(SyncAPIResource):
 
           bg_color: The background color of the App Launcher page.
 
+          custom_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing identity-based rules.
+
+          custom_non_identity_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing non-identity rules.
+
+          custom_pages: The custom pages that will be displayed when applicable for this application
+
           footer_links: The links in the App Launcher footer.
 
           header_bg_color: The background color of the App Launcher header.
@@ -1843,9 +1830,6 @@ class ApplicationsResource(SyncAPIResource):
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
-
-          scim_config: Configuration for provisioning to this application via SCIM. This is currently
-              in closed beta.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -1872,18 +1856,12 @@ class ApplicationsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        bg_color: str | NotGiven = NOT_GIVEN,
-        footer_links: Iterable[application_update_params.DeviceEnrollmentPermissionsApplicationFooterLink]
-        | NotGiven = NOT_GIVEN,
-        header_bg_color: str | NotGiven = NOT_GIVEN,
-        landing_page_design: application_update_params.DeviceEnrollmentPermissionsApplicationLandingPageDesign
-        | NotGiven = NOT_GIVEN,
+        custom_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.DeviceEnrollmentPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
-        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1906,31 +1884,24 @@ class ApplicationsResource(SyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
-          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
-
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
 
-          bg_color: The background color of the App Launcher page.
+          custom_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing identity-based rules.
 
-          footer_links: The links in the App Launcher footer.
+          custom_non_identity_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing non-identity rules.
 
-          header_bg_color: The background color of the App Launcher header.
-
-          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
+          custom_pages: The custom pages that will be displayed when applicable for this application
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
-          scim_config: Configuration for provisioning to this application via SCIM. This is currently
-              in closed beta.
-
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h. Note: unsupported for infrastructure type applications.
-
-          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -1951,18 +1922,12 @@ class ApplicationsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        bg_color: str | NotGiven = NOT_GIVEN,
-        footer_links: Iterable[application_update_params.BrowserIsolationPermissionsApplicationFooterLink]
-        | NotGiven = NOT_GIVEN,
-        header_bg_color: str | NotGiven = NOT_GIVEN,
-        landing_page_design: application_update_params.BrowserIsolationPermissionsApplicationLandingPageDesign
-        | NotGiven = NOT_GIVEN,
+        custom_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.BrowserIsolationPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
-        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1985,31 +1950,24 @@ class ApplicationsResource(SyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
-          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
-
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
 
-          bg_color: The background color of the App Launcher page.
+          custom_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing identity-based rules.
 
-          footer_links: The links in the App Launcher footer.
+          custom_non_identity_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing non-identity rules.
 
-          header_bg_color: The background color of the App Launcher header.
-
-          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
+          custom_pages: The custom pages that will be displayed when applicable for this application
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
-          scim_config: Configuration for provisioning to this application via SCIM. This is currently
-              in closed beta.
-
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h. Note: unsupported for infrastructure type applications.
-
-          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -2032,7 +1990,6 @@ class ApplicationsResource(SyncAPIResource):
         domain: str | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.BookmarkApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         type: ApplicationType | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -2059,9 +2016,6 @@ class ApplicationsResource(SyncAPIResource):
           logo_url: The image URL for the logo shown in the App Launcher dashboard.
 
           name: The name of the application.
-
-          scim_config: Configuration for provisioning to this application via SCIM. This is currently
-              in closed beta.
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
@@ -2403,6 +2357,8 @@ class ApplicationsResource(SyncAPIResource):
         domain: str | NotGiven = NOT_GIVEN,
         exact: bool | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         search: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2410,7 +2366,7 @@ class ApplicationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[ApplicationListResponse]:
+    ) -> SyncV4PagePaginationArray[ApplicationListResponse]:
         """
         Lists all Access applications in an account or zone.
 
@@ -2426,6 +2382,10 @@ class ApplicationsResource(SyncAPIResource):
           exact: True for only exact string matches against passed name/domain query parameters.
 
           name: The name of the app.
+
+          page: Page number of results.
+
+          per_page: Number of results per page.
 
           search: Search for apps by other listed query parameters.
 
@@ -2451,7 +2411,7 @@ class ApplicationsResource(SyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps",
-            page=SyncSinglePage[ApplicationListResponse],
+            page=SyncV4PagePaginationArray[ApplicationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -2463,6 +2423,8 @@ class ApplicationsResource(SyncAPIResource):
                         "domain": domain,
                         "exact": exact,
                         "name": name,
+                        "page": page,
+                        "per_page": per_page,
                         "search": search,
                     },
                     application_list_params.ApplicationListParams,
@@ -3232,11 +3194,13 @@ class AsyncApplicationsResource(AsyncAPIResource):
         app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         bg_color: str | NotGiven = NOT_GIVEN,
+        custom_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
         footer_links: Iterable[application_create_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
         header_bg_color: str | NotGiven = NOT_GIVEN,
         landing_page_design: application_create_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.AppLauncherApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -3266,6 +3230,14 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           bg_color: The background color of the App Launcher page.
 
+          custom_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing identity-based rules.
+
+          custom_non_identity_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing non-identity rules.
+
+          custom_pages: The custom pages that will be displayed when applicable for this application
+
           footer_links: The links in the App Launcher footer.
 
           header_bg_color: The background color of the App Launcher header.
@@ -3275,9 +3247,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
-
-          scim_config: Configuration for provisioning to this application via SCIM. This is currently
-              in closed beta.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -3303,18 +3272,12 @@ class AsyncApplicationsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        bg_color: str | NotGiven = NOT_GIVEN,
-        footer_links: Iterable[application_create_params.DeviceEnrollmentPermissionsApplicationFooterLink]
-        | NotGiven = NOT_GIVEN,
-        header_bg_color: str | NotGiven = NOT_GIVEN,
-        landing_page_design: application_create_params.DeviceEnrollmentPermissionsApplicationLandingPageDesign
-        | NotGiven = NOT_GIVEN,
+        custom_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.DeviceEnrollmentPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
-        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3335,31 +3298,24 @@ class AsyncApplicationsResource(AsyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
-          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
-
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
 
-          bg_color: The background color of the App Launcher page.
+          custom_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing identity-based rules.
 
-          footer_links: The links in the App Launcher footer.
+          custom_non_identity_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing non-identity rules.
 
-          header_bg_color: The background color of the App Launcher header.
-
-          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
+          custom_pages: The custom pages that will be displayed when applicable for this application
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
-          scim_config: Configuration for provisioning to this application via SCIM. This is currently
-              in closed beta.
-
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h. Note: unsupported for infrastructure type applications.
-
-          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -3379,18 +3335,12 @@ class AsyncApplicationsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        bg_color: str | NotGiven = NOT_GIVEN,
-        footer_links: Iterable[application_create_params.BrowserIsolationPermissionsApplicationFooterLink]
-        | NotGiven = NOT_GIVEN,
-        header_bg_color: str | NotGiven = NOT_GIVEN,
-        landing_page_design: application_create_params.BrowserIsolationPermissionsApplicationLandingPageDesign
-        | NotGiven = NOT_GIVEN,
+        custom_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.BrowserIsolationPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
-        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3411,31 +3361,24 @@ class AsyncApplicationsResource(AsyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
-          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
-
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
 
-          bg_color: The background color of the App Launcher page.
+          custom_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing identity-based rules.
 
-          footer_links: The links in the App Launcher footer.
+          custom_non_identity_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing non-identity rules.
 
-          header_bg_color: The background color of the App Launcher header.
-
-          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
+          custom_pages: The custom pages that will be displayed when applicable for this application
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
-          scim_config: Configuration for provisioning to this application via SCIM. This is currently
-              in closed beta.
-
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h. Note: unsupported for infrastructure type applications.
-
-          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -3457,7 +3400,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
         domain: str | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.BookmarkApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         type: ApplicationType | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -3482,9 +3424,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
           logo_url: The image URL for the logo shown in the App Launcher dashboard.
 
           name: The name of the application.
-
-          scim_config: Configuration for provisioning to this application via SCIM. This is currently
-              in closed beta.
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
@@ -4365,11 +4304,13 @@ class AsyncApplicationsResource(AsyncAPIResource):
         app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         bg_color: str | NotGiven = NOT_GIVEN,
+        custom_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
         footer_links: Iterable[application_update_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
         header_bg_color: str | NotGiven = NOT_GIVEN,
         landing_page_design: application_update_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.AppLauncherApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -4401,6 +4342,14 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           bg_color: The background color of the App Launcher page.
 
+          custom_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing identity-based rules.
+
+          custom_non_identity_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing non-identity rules.
+
+          custom_pages: The custom pages that will be displayed when applicable for this application
+
           footer_links: The links in the App Launcher footer.
 
           header_bg_color: The background color of the App Launcher header.
@@ -4410,9 +4359,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
-
-          scim_config: Configuration for provisioning to this application via SCIM. This is currently
-              in closed beta.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -4439,18 +4385,12 @@ class AsyncApplicationsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        bg_color: str | NotGiven = NOT_GIVEN,
-        footer_links: Iterable[application_update_params.DeviceEnrollmentPermissionsApplicationFooterLink]
-        | NotGiven = NOT_GIVEN,
-        header_bg_color: str | NotGiven = NOT_GIVEN,
-        landing_page_design: application_update_params.DeviceEnrollmentPermissionsApplicationLandingPageDesign
-        | NotGiven = NOT_GIVEN,
+        custom_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.DeviceEnrollmentPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
-        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4473,31 +4413,24 @@ class AsyncApplicationsResource(AsyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
-          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
-
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
 
-          bg_color: The background color of the App Launcher page.
+          custom_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing identity-based rules.
 
-          footer_links: The links in the App Launcher footer.
+          custom_non_identity_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing non-identity rules.
 
-          header_bg_color: The background color of the App Launcher header.
-
-          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
+          custom_pages: The custom pages that will be displayed when applicable for this application
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
-          scim_config: Configuration for provisioning to this application via SCIM. This is currently
-              in closed beta.
-
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h. Note: unsupported for infrastructure type applications.
-
-          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -4518,18 +4451,12 @@ class AsyncApplicationsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        bg_color: str | NotGiven = NOT_GIVEN,
-        footer_links: Iterable[application_update_params.BrowserIsolationPermissionsApplicationFooterLink]
-        | NotGiven = NOT_GIVEN,
-        header_bg_color: str | NotGiven = NOT_GIVEN,
-        landing_page_design: application_update_params.BrowserIsolationPermissionsApplicationLandingPageDesign
-        | NotGiven = NOT_GIVEN,
+        custom_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.BrowserIsolationPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
-        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4552,31 +4479,24 @@ class AsyncApplicationsResource(AsyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
-          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
-
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
 
-          bg_color: The background color of the App Launcher page.
+          custom_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing identity-based rules.
 
-          footer_links: The links in the App Launcher footer.
+          custom_non_identity_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing non-identity rules.
 
-          header_bg_color: The background color of the App Launcher header.
-
-          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
+          custom_pages: The custom pages that will be displayed when applicable for this application
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
-          scim_config: Configuration for provisioning to this application via SCIM. This is currently
-              in closed beta.
-
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h. Note: unsupported for infrastructure type applications.
-
-          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -4599,7 +4519,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
         domain: str | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.BookmarkApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         type: ApplicationType | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -4626,9 +4545,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
           logo_url: The image URL for the logo shown in the App Launcher dashboard.
 
           name: The name of the application.
-
-          scim_config: Configuration for provisioning to this application via SCIM. This is currently
-              in closed beta.
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
@@ -4970,6 +4886,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         domain: str | NotGiven = NOT_GIVEN,
         exact: bool | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         search: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4977,7 +4895,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[ApplicationListResponse, AsyncSinglePage[ApplicationListResponse]]:
+    ) -> AsyncPaginator[ApplicationListResponse, AsyncV4PagePaginationArray[ApplicationListResponse]]:
         """
         Lists all Access applications in an account or zone.
 
@@ -4993,6 +4911,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
           exact: True for only exact string matches against passed name/domain query parameters.
 
           name: The name of the app.
+
+          page: Page number of results.
+
+          per_page: Number of results per page.
 
           search: Search for apps by other listed query parameters.
 
@@ -5018,7 +4940,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps",
-            page=AsyncSinglePage[ApplicationListResponse],
+            page=AsyncV4PagePaginationArray[ApplicationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -5030,6 +4952,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
                         "domain": domain,
                         "exact": exact,
                         "name": name,
+                        "page": page,
+                        "per_page": per_page,
                         "search": search,
                     },
                     application_list_params.ApplicationListParams,

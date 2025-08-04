@@ -17,9 +17,9 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._wrappers import ResultWrapper
-from .....pagination import SyncSinglePage, AsyncSinglePage
+from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ....._base_client import AsyncPaginator, make_request_options
-from .....types.zero_trust.access.applications import policy_create_params, policy_update_params
+from .....types.zero_trust.access.applications import policy_list_params, policy_create_params, policy_update_params
 from .....types.zero_trust.access.approval_group_param import ApprovalGroupParam
 from .....types.zero_trust.access.applications.policy_get_response import PolicyGetResponse
 from .....types.zero_trust.access.applications.policy_list_response import PolicyListResponse
@@ -258,13 +258,15 @@ class PoliciesResource(SyncAPIResource):
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[PolicyListResponse]:
+    ) -> SyncV4PagePaginationArray[PolicyListResponse]:
         """Lists Access policies configured for an application.
 
         Returns both exclusively
@@ -276,6 +278,10 @@ class PoliciesResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          page: Page number of results.
+
+          per_page: Number of results per page.
 
           extra_headers: Send extra headers
 
@@ -301,9 +307,19 @@ class PoliciesResource(SyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
-            page=SyncSinglePage[PolicyListResponse],
+            page=SyncV4PagePaginationArray[PolicyListResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    policy_list_params.PolicyListParams,
+                ),
             ),
             model=PolicyListResponse,
         )
@@ -665,13 +681,15 @@ class AsyncPoliciesResource(AsyncAPIResource):
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[PolicyListResponse, AsyncSinglePage[PolicyListResponse]]:
+    ) -> AsyncPaginator[PolicyListResponse, AsyncV4PagePaginationArray[PolicyListResponse]]:
         """Lists Access policies configured for an application.
 
         Returns both exclusively
@@ -683,6 +701,10 @@ class AsyncPoliciesResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          page: Page number of results.
+
+          per_page: Number of results per page.
 
           extra_headers: Send extra headers
 
@@ -708,9 +730,19 @@ class AsyncPoliciesResource(AsyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
-            page=AsyncSinglePage[PolicyListResponse],
+            page=AsyncV4PagePaginationArray[PolicyListResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    policy_list_params.PolicyListParams,
+                ),
             ),
             model=PolicyListResponse,
         )

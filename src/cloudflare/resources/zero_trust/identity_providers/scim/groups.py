@@ -14,7 +14,7 @@ from ....._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .....pagination import SyncSinglePage, AsyncSinglePage
+from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ....._base_client import AsyncPaginator, make_request_options
 from .....types.zero_trust.access.zero_trust_group import ZeroTrustGroup
 from .....types.zero_trust.identity_providers.scim import group_list_params
@@ -50,13 +50,15 @@ class GroupsResource(SyncAPIResource):
         cf_resource_id: str | NotGiven = NOT_GIVEN,
         idp_resource_id: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[ZeroTrustGroup]:
+    ) -> SyncV4PagePaginationArray[ZeroTrustGroup]:
         """
         Lists SCIM Group resources synced to Cloudflare via the System for Cross-domain
         Identity Management (SCIM).
@@ -74,6 +76,10 @@ class GroupsResource(SyncAPIResource):
 
           name: The display name of the SCIM Group resource.
 
+          page: Page number of results.
+
+          per_page: Number of results per page.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -90,7 +96,7 @@ class GroupsResource(SyncAPIResource):
             )
         return self._get_api_list(
             f"/accounts/{account_id}/access/identity_providers/{identity_provider_id}/scim/groups",
-            page=SyncSinglePage[ZeroTrustGroup],
+            page=SyncV4PagePaginationArray[ZeroTrustGroup],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -101,6 +107,8 @@ class GroupsResource(SyncAPIResource):
                         "cf_resource_id": cf_resource_id,
                         "idp_resource_id": idp_resource_id,
                         "name": name,
+                        "page": page,
+                        "per_page": per_page,
                     },
                     group_list_params.GroupListParams,
                 ),
@@ -137,13 +145,15 @@ class AsyncGroupsResource(AsyncAPIResource):
         cf_resource_id: str | NotGiven = NOT_GIVEN,
         idp_resource_id: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[ZeroTrustGroup, AsyncSinglePage[ZeroTrustGroup]]:
+    ) -> AsyncPaginator[ZeroTrustGroup, AsyncV4PagePaginationArray[ZeroTrustGroup]]:
         """
         Lists SCIM Group resources synced to Cloudflare via the System for Cross-domain
         Identity Management (SCIM).
@@ -161,6 +171,10 @@ class AsyncGroupsResource(AsyncAPIResource):
 
           name: The display name of the SCIM Group resource.
 
+          page: Page number of results.
+
+          per_page: Number of results per page.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -177,7 +191,7 @@ class AsyncGroupsResource(AsyncAPIResource):
             )
         return self._get_api_list(
             f"/accounts/{account_id}/access/identity_providers/{identity_provider_id}/scim/groups",
-            page=AsyncSinglePage[ZeroTrustGroup],
+            page=AsyncV4PagePaginationArray[ZeroTrustGroup],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -188,6 +202,8 @@ class AsyncGroupsResource(AsyncAPIResource):
                         "cf_resource_id": cf_resource_id,
                         "idp_resource_id": idp_resource_id,
                         "name": name,
+                        "page": page,
+                        "per_page": per_page,
                     },
                     group_list_params.GroupListParams,
                 ),

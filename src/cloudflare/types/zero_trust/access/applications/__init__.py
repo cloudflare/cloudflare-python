@@ -12,6 +12,7 @@ from .country_rule import CountryRule as CountryRule
 from .ip_list_rule import IPListRule as IPListRule
 from .everyone_rule import EveryoneRule as EveryoneRule
 from .ip_rule_param import IPRuleParam as IPRuleParam
+from .ca_list_params import CAListParams as CAListParams
 from .email_list_rule import EmailListRule as EmailListRule
 from .okta_group_rule import OktaGroupRule as OktaGroupRule
 from .saml_group_rule import SAMLGroupRule as SAMLGroupRule
@@ -25,6 +26,7 @@ from .gsuite_group_rule import GSuiteGroupRule as GSuiteGroupRule
 from .ca_delete_response import CADeleteResponse as CADeleteResponse
 from .country_rule_param import CountryRuleParam as CountryRuleParam
 from .ip_list_rule_param import IPListRuleParam as IPListRuleParam
+from .policy_list_params import PolicyListParams as PolicyListParams
 from .service_token_rule import ServiceTokenRule as ServiceTokenRule
 from .everyone_rule_param import EveryoneRuleParam as EveryoneRuleParam
 from .policy_get_response import PolicyGetResponse as PolicyGetResponse

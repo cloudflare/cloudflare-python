@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.zero_trust.access import (
     GroupGetResponse,
     GroupListResponse,
@@ -184,7 +184,7 @@ class TestGroups:
         group = client.zero_trust.access.groups.list(
             account_id="account_id",
         )
-        assert_matches_type(SyncSinglePage[GroupListResponse], group, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[GroupListResponse], group, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -192,9 +192,11 @@ class TestGroups:
         group = client.zero_trust.access.groups.list(
             account_id="account_id",
             name="name",
+            page=0,
+            per_page=0,
             search="search",
         )
-        assert_matches_type(SyncSinglePage[GroupListResponse], group, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[GroupListResponse], group, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -206,7 +208,7 @@ class TestGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         group = response.parse()
-        assert_matches_type(SyncSinglePage[GroupListResponse], group, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[GroupListResponse], group, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -218,7 +220,7 @@ class TestGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             group = response.parse()
-            assert_matches_type(SyncSinglePage[GroupListResponse], group, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[GroupListResponse], group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -535,7 +537,7 @@ class TestAsyncGroups:
         group = await async_client.zero_trust.access.groups.list(
             account_id="account_id",
         )
-        assert_matches_type(AsyncSinglePage[GroupListResponse], group, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[GroupListResponse], group, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -543,9 +545,11 @@ class TestAsyncGroups:
         group = await async_client.zero_trust.access.groups.list(
             account_id="account_id",
             name="name",
+            page=0,
+            per_page=0,
             search="search",
         )
-        assert_matches_type(AsyncSinglePage[GroupListResponse], group, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[GroupListResponse], group, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -557,7 +561,7 @@ class TestAsyncGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         group = await response.parse()
-        assert_matches_type(AsyncSinglePage[GroupListResponse], group, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[GroupListResponse], group, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -569,7 +573,7 @@ class TestAsyncGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             group = await response.parse()
-            assert_matches_type(AsyncSinglePage[GroupListResponse], group, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[GroupListResponse], group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
