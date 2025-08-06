@@ -6,16 +6,16 @@ from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
-from ...._models import BaseModel
+from ....._models import BaseModel
 
 __all__ = [
-    "BotTimeseriesGroupsResponse",
+    "SummaryTimeseriesResponse",
     "Meta",
     "MetaConfidenceInfo",
     "MetaConfidenceInfoAnnotation",
     "MetaDateRange",
     "MetaUnit",
-    "Serie0",
+    "SummaryTimeseriesResponseItem",
 ]
 
 
@@ -94,19 +94,19 @@ class Meta(BaseModel):
     """Measurement units for the results."""
 
 
-class Serie0(BaseModel):
+class SummaryTimeseriesResponseItem(BaseModel):
     timestamps: List[datetime]
 
-    __pydantic_extra__: Dict[str, List[str]] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+    values: List[str]
+
+
+class SummaryTimeseriesResponse(BaseModel):
+    meta: Meta
+    """Metadata for the results."""
+
+    __pydantic_extra__: Dict[str, SummaryTimeseriesResponseItem] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
     if TYPE_CHECKING:
         # Stub to indicate that arbitrary properties are accepted.
         # To access properties that are not valid identifiers you can use `getattr`, e.g.
         # `getattr(obj, '$type')`
-        def __getattr__(self, attr: str) -> List[str]: ...
-
-
-class BotTimeseriesGroupsResponse(BaseModel):
-    meta: Meta
-    """Metadata for the results."""
-
-    serie_0: Serie0
+        def __getattr__(self, attr: str) -> SummaryTimeseriesResponseItem: ...

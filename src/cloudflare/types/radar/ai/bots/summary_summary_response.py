@@ -6,10 +6,10 @@ from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
-from ...._models import BaseModel
+from ....._models import BaseModel
 
 __all__ = [
-    "BotSummaryResponse",
+    "SummarySummaryResponse",
     "Meta",
     "MetaConfidenceInfo",
     "MetaConfidenceInfoAnnotation",
@@ -84,7 +84,7 @@ class Meta(BaseModel):
     """Measurement units for the results."""
 
 
-class BotSummaryResponse(BaseModel):
+class SummarySummaryResponse(BaseModel):
     meta: Meta
     """Metadata for the results."""
 

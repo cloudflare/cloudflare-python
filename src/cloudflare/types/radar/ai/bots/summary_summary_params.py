@@ -6,19 +6,12 @@ from typing import List, Union
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
-from ...._utils import PropertyInfo
+from ....._utils import PropertyInfo
 
-__all__ = ["BotTimeseriesGroupsParams"]
+__all__ = ["SummarySummaryParams"]
 
 
-class BotTimeseriesGroupsParams(TypedDict, total=False):
-    agg_interval: Annotated[Literal["15m", "1h", "1d", "1w"], PropertyInfo(alias="aggInterval")]
-    """Aggregation interval of the results (e.g., in 15 minutes or 1 hour intervals).
-
-    Refer to
-    [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
-    """
-
+class SummarySummaryParams(TypedDict, total=False):
     asn: List[str]
     """Filters results by Autonomous System.
 
@@ -72,10 +65,3 @@ class BotTimeseriesGroupsParams(TypedDict, total=False):
 
     name: List[str]
     """Array of names used to label the series in the response."""
-
-    normalization: Literal["PERCENTAGE_CHANGE", "MIN0_MAX"]
-    """Normalization method applied to the results.
-
-    Refer to
-    [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
-    """

@@ -8,45 +8,45 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform, async_maybe_transform
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import maybe_transform, async_maybe_transform
+from ....._compat import cached_property
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
-from ...._base_client import make_request_options
-from ....types.radar.ai import bot_summary_params, bot_timeseries_params, bot_timeseries_groups_params
-from ....types.radar.ai.bot_summary_response import BotSummaryResponse
-from ....types.radar.ai.bot_timeseries_response import BotTimeseriesResponse
-from ....types.radar.ai.bot_timeseries_groups_response import BotTimeseriesGroupsResponse
+from ....._wrappers import ResultWrapper
+from ....._base_client import make_request_options
+from .....types.radar.ai.bots import summary_summary_params, summary_timeseries_params, summary_timeseries_groups_params
+from .....types.radar.ai.bots.summary_summary_response import SummarySummaryResponse
+from .....types.radar.ai.bots.summary_timeseries_response import SummaryTimeseriesResponse
+from .....types.radar.ai.bots.summary_timeseries_groups_response import SummaryTimeseriesGroupsResponse
 
-__all__ = ["BotsResource", "AsyncBotsResource"]
+__all__ = ["SummaryResource", "AsyncSummaryResource"]
 
 
-class BotsResource(SyncAPIResource):
+class SummaryResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> BotsResourceWithRawResponse:
+    def with_raw_response(self) -> SummaryResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return BotsResourceWithRawResponse(self)
+        return SummaryResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> BotsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> SummaryResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return BotsResourceWithStreamingResponse(self)
+        return SummaryResourceWithStreamingResponse(self)
 
     def summary(
         self,
@@ -68,7 +68,7 @@ class BotsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BotSummaryResponse:
+    ) -> SummarySummaryResponse:
         """
         Retrieves an aggregated summary of AI bots HTTP requests grouped by the
         specified dimension.
@@ -137,11 +137,11 @@ class BotsResource(SyncAPIResource):
                         "location": location,
                         "name": name,
                     },
-                    bot_summary_params.BotSummaryParams,
+                    summary_summary_params.SummarySummaryParams,
                 ),
-                post_parser=ResultWrapper[BotSummaryResponse]._unwrapper,
+                post_parser=ResultWrapper[SummarySummaryResponse]._unwrapper,
             ),
-            cast_to=cast(Type[BotSummaryResponse], ResultWrapper[BotSummaryResponse]),
+            cast_to=cast(Type[SummarySummaryResponse], ResultWrapper[SummarySummaryResponse]),
         )
 
     def timeseries(
@@ -165,7 +165,7 @@ class BotsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BotTimeseriesResponse:
+    ) -> SummaryTimeseriesResponse:
         """
         Retrieves AI bots HTTP request volume over time.
 
@@ -237,11 +237,11 @@ class BotsResource(SyncAPIResource):
                         "name": name,
                         "user_agent": user_agent,
                     },
-                    bot_timeseries_params.BotTimeseriesParams,
+                    summary_timeseries_params.SummaryTimeseriesParams,
                 ),
-                post_parser=ResultWrapper[BotTimeseriesResponse]._unwrapper,
+                post_parser=ResultWrapper[SummaryTimeseriesResponse]._unwrapper,
             ),
-            cast_to=cast(Type[BotTimeseriesResponse], ResultWrapper[BotTimeseriesResponse]),
+            cast_to=cast(Type[SummaryTimeseriesResponse], ResultWrapper[SummaryTimeseriesResponse]),
         )
 
     def timeseries_groups(
@@ -266,7 +266,7 @@ class BotsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BotTimeseriesGroupsResponse:
+    ) -> SummaryTimeseriesGroupsResponse:
         """
         Retrieves the distribution of HTTP requests from AI bots, grouped by chosen the
         specified dimension over time.
@@ -344,33 +344,33 @@ class BotsResource(SyncAPIResource):
                         "name": name,
                         "normalization": normalization,
                     },
-                    bot_timeseries_groups_params.BotTimeseriesGroupsParams,
+                    summary_timeseries_groups_params.SummaryTimeseriesGroupsParams,
                 ),
-                post_parser=ResultWrapper[BotTimeseriesGroupsResponse]._unwrapper,
+                post_parser=ResultWrapper[SummaryTimeseriesGroupsResponse]._unwrapper,
             ),
-            cast_to=cast(Type[BotTimeseriesGroupsResponse], ResultWrapper[BotTimeseriesGroupsResponse]),
+            cast_to=cast(Type[SummaryTimeseriesGroupsResponse], ResultWrapper[SummaryTimeseriesGroupsResponse]),
         )
 
 
-class AsyncBotsResource(AsyncAPIResource):
+class AsyncSummaryResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncBotsResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncSummaryResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncBotsResourceWithRawResponse(self)
+        return AsyncSummaryResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncBotsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncSummaryResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return AsyncBotsResourceWithStreamingResponse(self)
+        return AsyncSummaryResourceWithStreamingResponse(self)
 
     async def summary(
         self,
@@ -392,7 +392,7 @@ class AsyncBotsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BotSummaryResponse:
+    ) -> SummarySummaryResponse:
         """
         Retrieves an aggregated summary of AI bots HTTP requests grouped by the
         specified dimension.
@@ -461,11 +461,11 @@ class AsyncBotsResource(AsyncAPIResource):
                         "location": location,
                         "name": name,
                     },
-                    bot_summary_params.BotSummaryParams,
+                    summary_summary_params.SummarySummaryParams,
                 ),
-                post_parser=ResultWrapper[BotSummaryResponse]._unwrapper,
+                post_parser=ResultWrapper[SummarySummaryResponse]._unwrapper,
             ),
-            cast_to=cast(Type[BotSummaryResponse], ResultWrapper[BotSummaryResponse]),
+            cast_to=cast(Type[SummarySummaryResponse], ResultWrapper[SummarySummaryResponse]),
         )
 
     async def timeseries(
@@ -489,7 +489,7 @@ class AsyncBotsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BotTimeseriesResponse:
+    ) -> SummaryTimeseriesResponse:
         """
         Retrieves AI bots HTTP request volume over time.
 
@@ -561,11 +561,11 @@ class AsyncBotsResource(AsyncAPIResource):
                         "name": name,
                         "user_agent": user_agent,
                     },
-                    bot_timeseries_params.BotTimeseriesParams,
+                    summary_timeseries_params.SummaryTimeseriesParams,
                 ),
-                post_parser=ResultWrapper[BotTimeseriesResponse]._unwrapper,
+                post_parser=ResultWrapper[SummaryTimeseriesResponse]._unwrapper,
             ),
-            cast_to=cast(Type[BotTimeseriesResponse], ResultWrapper[BotTimeseriesResponse]),
+            cast_to=cast(Type[SummaryTimeseriesResponse], ResultWrapper[SummaryTimeseriesResponse]),
         )
 
     async def timeseries_groups(
@@ -590,7 +590,7 @@ class AsyncBotsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BotTimeseriesGroupsResponse:
+    ) -> SummaryTimeseriesGroupsResponse:
         """
         Retrieves the distribution of HTTP requests from AI bots, grouped by chosen the
         specified dimension over time.
@@ -668,69 +668,69 @@ class AsyncBotsResource(AsyncAPIResource):
                         "name": name,
                         "normalization": normalization,
                     },
-                    bot_timeseries_groups_params.BotTimeseriesGroupsParams,
+                    summary_timeseries_groups_params.SummaryTimeseriesGroupsParams,
                 ),
-                post_parser=ResultWrapper[BotTimeseriesGroupsResponse]._unwrapper,
+                post_parser=ResultWrapper[SummaryTimeseriesGroupsResponse]._unwrapper,
             ),
-            cast_to=cast(Type[BotTimeseriesGroupsResponse], ResultWrapper[BotTimeseriesGroupsResponse]),
+            cast_to=cast(Type[SummaryTimeseriesGroupsResponse], ResultWrapper[SummaryTimeseriesGroupsResponse]),
         )
 
 
-class BotsResourceWithRawResponse:
-    def __init__(self, bots: BotsResource) -> None:
-        self._bots = bots
+class SummaryResourceWithRawResponse:
+    def __init__(self, summary: SummaryResource) -> None:
+        self._summary = summary
 
         self.summary = to_raw_response_wrapper(
-            bots.summary,
+            summary.summary,
         )
         self.timeseries = to_raw_response_wrapper(
-            bots.timeseries,
+            summary.timeseries,
         )
         self.timeseries_groups = to_raw_response_wrapper(
-            bots.timeseries_groups,
+            summary.timeseries_groups,
         )
 
 
-class AsyncBotsResourceWithRawResponse:
-    def __init__(self, bots: AsyncBotsResource) -> None:
-        self._bots = bots
+class AsyncSummaryResourceWithRawResponse:
+    def __init__(self, summary: AsyncSummaryResource) -> None:
+        self._summary = summary
 
         self.summary = async_to_raw_response_wrapper(
-            bots.summary,
+            summary.summary,
         )
         self.timeseries = async_to_raw_response_wrapper(
-            bots.timeseries,
+            summary.timeseries,
         )
         self.timeseries_groups = async_to_raw_response_wrapper(
-            bots.timeseries_groups,
+            summary.timeseries_groups,
         )
 
 
-class BotsResourceWithStreamingResponse:
-    def __init__(self, bots: BotsResource) -> None:
-        self._bots = bots
+class SummaryResourceWithStreamingResponse:
+    def __init__(self, summary: SummaryResource) -> None:
+        self._summary = summary
 
         self.summary = to_streamed_response_wrapper(
-            bots.summary,
+            summary.summary,
         )
         self.timeseries = to_streamed_response_wrapper(
-            bots.timeseries,
+            summary.timeseries,
         )
         self.timeseries_groups = to_streamed_response_wrapper(
-            bots.timeseries_groups,
+            summary.timeseries_groups,
         )
 
 
-class AsyncBotsResourceWithStreamingResponse:
-    def __init__(self, bots: AsyncBotsResource) -> None:
-        self._bots = bots
+class AsyncSummaryResourceWithStreamingResponse:
+    def __init__(self, summary: AsyncSummaryResource) -> None:
+        self._summary = summary
 
         self.summary = async_to_streamed_response_wrapper(
-            bots.summary,
+            summary.summary,
         )
         self.timeseries = async_to_streamed_response_wrapper(
-            bots.timeseries,
+            summary.timeseries,
         )
         self.timeseries_groups = async_to_streamed_response_wrapper(
-            bots.timeseries_groups,
+            summary.timeseries_groups,
         )
