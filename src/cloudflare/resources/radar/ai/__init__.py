@@ -8,6 +8,14 @@ from .ai import (
     AIResourceWithStreamingResponse,
     AsyncAIResourceWithStreamingResponse,
 )
+from .bots import (
+    BotsResource,
+    AsyncBotsResource,
+    BotsResourceWithRawResponse,
+    AsyncBotsResourceWithRawResponse,
+    BotsResourceWithStreamingResponse,
+    AsyncBotsResourceWithStreamingResponse,
+)
 from .inference import (
     InferenceResource,
     AsyncInferenceResource,
@@ -38,6 +46,12 @@ __all__ = [
     "AsyncInferenceResourceWithRawResponse",
     "InferenceResourceWithStreamingResponse",
     "AsyncInferenceResourceWithStreamingResponse",
+    "BotsResource",
+    "AsyncBotsResource",
+    "BotsResourceWithRawResponse",
+    "AsyncBotsResourceWithRawResponse",
+    "BotsResourceWithStreamingResponse",
+    "AsyncBotsResourceWithStreamingResponse",
     "AIResource",
     "AsyncAIResource",
     "AIResourceWithRawResponse",
