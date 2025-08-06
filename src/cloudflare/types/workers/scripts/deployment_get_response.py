@@ -8,16 +8,16 @@ from pydantic import Field as FieldInfo
 
 from ...._models import BaseModel
 
-__all__ = ["DeploymentListResponse", "Deployment", "DeploymentVersion", "DeploymentAnnotations"]
+__all__ = ["DeploymentGetResponse", "Version", "Annotations"]
 
 
-class DeploymentVersion(BaseModel):
+class Version(BaseModel):
     percentage: float
 
     version_id: str
 
 
-class DeploymentAnnotations(BaseModel):
+class Annotations(BaseModel):
     workers_message: Optional[str] = FieldInfo(alias="workers/message", default=None)
     """Human-readable message about the deployment. Truncated to 100 bytes."""
 
@@ -25,7 +25,7 @@ class DeploymentAnnotations(BaseModel):
     """Operation that triggered the creation of the deployment."""
 
 
-class Deployment(BaseModel):
+class DeploymentGetResponse(BaseModel):
     id: str
 
     created_on: datetime
@@ -34,12 +34,8 @@ class Deployment(BaseModel):
 
     strategy: Literal["percentage"]
 
-    versions: List[DeploymentVersion]
+    versions: List[Version]
 
-    annotations: Optional[DeploymentAnnotations] = None
+    annotations: Optional[Annotations] = None
 
     author_email: Optional[str] = None
-
-
-class DeploymentListResponse(BaseModel):
-    deployments: List[Deployment]

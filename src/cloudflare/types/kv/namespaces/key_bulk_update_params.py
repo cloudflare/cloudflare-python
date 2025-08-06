@@ -5,8 +5,6 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-from ..any_param import AnyParam
-
 __all__ = ["KeyBulkUpdateParams", "Body"]
 
 
@@ -44,4 +42,4 @@ class Body(TypedDict, total=False):
     expiration_ttl: float
     """Expires the key after a number of seconds. Must be at least 60."""
 
-    metadata: AnyParam
+    metadata: object
