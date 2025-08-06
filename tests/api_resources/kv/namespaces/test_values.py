@@ -11,6 +11,7 @@ from respx import MockRouter
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.types.kv import Any
 from cloudflare._response import (
     BinaryAPIResponse,
     AsyncBinaryAPIResponse,
