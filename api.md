@@ -7202,18 +7202,6 @@ Methods:
 
 ## AI
 
-### ToMarkdown
-
-Types:
-
-```python
-from cloudflare.types.radar.ai import ToMarkdownCreateResponse
-```
-
-Methods:
-
-- <code title="post /accounts/{account_id}/ai/tomarkdown">client.radar.ai.to_markdown.<a href="./src/cloudflare/resources/radar/ai/to_markdown.py">create</a>(body, \*, account_id, \*\*<a href="src/cloudflare/types/radar/ai/to_markdown_create_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ai/to_markdown_create_response.py">SyncSinglePage[ToMarkdownCreateResponse]</a></code>
-
 ### Inference
 
 #### Summary
@@ -7246,6 +7234,24 @@ Methods:
 
 - <code title="get /radar/ai/inference/timeseries_groups/model">client.radar.ai.inference.timeseries_groups.summary.<a href="./src/cloudflare/resources/radar/ai/inference/timeseries_groups/summary.py">model</a>(\*\*<a href="src/cloudflare/types/radar/ai/inference/timeseries_groups/summary_model_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ai/inference/timeseries_groups/summary_model_response.py">SummaryModelResponse</a></code>
 - <code title="get /radar/ai/inference/timeseries_groups/task">client.radar.ai.inference.timeseries_groups.summary.<a href="./src/cloudflare/resources/radar/ai/inference/timeseries_groups/summary.py">task</a>(\*\*<a href="src/cloudflare/types/radar/ai/inference/timeseries_groups/summary_task_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ai/inference/timeseries_groups/summary_task_response.py">SummaryTaskResponse</a></code>
+
+### Bots
+
+Types:
+
+```python
+from cloudflare.types.radar.ai import (
+    BotSummaryResponse,
+    BotTimeseriesResponse,
+    BotTimeseriesGroupsResponse,
+)
+```
+
+Methods:
+
+- <code title="get /radar/ai/bots/summary/{dimension}">client.radar.ai.bots.<a href="./src/cloudflare/resources/radar/ai/bots.py">summary</a>(dimension, \*\*<a href="src/cloudflare/types/radar/ai/bot_summary_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ai/bot_summary_response.py">BotSummaryResponse</a></code>
+- <code title="get /radar/ai/bots/timeseries">client.radar.ai.bots.<a href="./src/cloudflare/resources/radar/ai/bots.py">timeseries</a>(\*\*<a href="src/cloudflare/types/radar/ai/bot_timeseries_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ai/bot_timeseries_response.py">BotTimeseriesResponse</a></code>
+- <code title="get /radar/ai/bots/timeseries_groups/{dimension}">client.radar.ai.bots.<a href="./src/cloudflare/resources/radar/ai/bots.py">timeseries_groups</a>(dimension, \*\*<a href="src/cloudflare/types/radar/ai/bot_timeseries_groups_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ai/bot_timeseries_groups_response.py">BotTimeseriesGroupsResponse</a></code>
 
 ## Annotations
 
@@ -7408,6 +7414,50 @@ Methods:
 
 - <code title="get /radar/bots/crawlers/summary/{dimension}">client.radar.bots.web_crawlers.<a href="./src/cloudflare/resources/radar/bots/web_crawlers.py">summary</a>(dimension, \*\*<a href="src/cloudflare/types/radar/bots/web_crawler_summary_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bots/web_crawler_summary_response.py">WebCrawlerSummaryResponse</a></code>
 - <code title="get /radar/bots/crawlers/timeseries_groups/{dimension}">client.radar.bots.web_crawlers.<a href="./src/cloudflare/resources/radar/bots/web_crawlers.py">timeseries_groups</a>(dimension, \*\*<a href="src/cloudflare/types/radar/bots/web_crawler_timeseries_groups_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bots/web_crawler_timeseries_groups_response.py">WebCrawlerTimeseriesGroupsResponse</a></code>
+
+## Ct
+
+Types:
+
+```python
+from cloudflare.types.radar import (
+    CtSummaryResponse,
+    CtTimeseriesResponse,
+    CtTimeseriesGroupsResponse,
+)
+```
+
+Methods:
+
+- <code title="get /radar/ct/summary/{dimension}">client.radar.ct.<a href="./src/cloudflare/resources/radar/ct/ct.py">summary</a>(dimension, \*\*<a href="src/cloudflare/types/radar/ct_summary_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ct_summary_response.py">CtSummaryResponse</a></code>
+- <code title="get /radar/ct/timeseries">client.radar.ct.<a href="./src/cloudflare/resources/radar/ct/ct.py">timeseries</a>(\*\*<a href="src/cloudflare/types/radar/ct_timeseries_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ct_timeseries_response.py">CtTimeseriesResponse</a></code>
+- <code title="get /radar/ct/timeseries_groups/{dimension}">client.radar.ct.<a href="./src/cloudflare/resources/radar/ct/ct.py">timeseries_groups</a>(dimension, \*\*<a href="src/cloudflare/types/radar/ct_timeseries_groups_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ct_timeseries_groups_response.py">CtTimeseriesGroupsResponse</a></code>
+
+### Authorities
+
+Types:
+
+```python
+from cloudflare.types.radar.ct import AuthorityListResponse, AuthorityGetResponse
+```
+
+Methods:
+
+- <code title="get /radar/ct/authorities">client.radar.ct.authorities.<a href="./src/cloudflare/resources/radar/ct/authorities.py">list</a>(\*\*<a href="src/cloudflare/types/radar/ct/authority_list_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ct/authority_list_response.py">AuthorityListResponse</a></code>
+- <code title="get /radar/ct/authorities/{ca_slug}">client.radar.ct.authorities.<a href="./src/cloudflare/resources/radar/ct/authorities.py">get</a>(ca_slug, \*\*<a href="src/cloudflare/types/radar/ct/authority_get_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ct/authority_get_response.py">AuthorityGetResponse</a></code>
+
+### Logs
+
+Types:
+
+```python
+from cloudflare.types.radar.ct import LogListResponse, LogGetResponse
+```
+
+Methods:
+
+- <code title="get /radar/ct/logs">client.radar.ct.logs.<a href="./src/cloudflare/resources/radar/ct/logs.py">list</a>(\*\*<a href="src/cloudflare/types/radar/ct/log_list_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ct/log_list_response.py">LogListResponse</a></code>
+- <code title="get /radar/ct/logs/{log_slug}">client.radar.ct.logs.<a href="./src/cloudflare/resources/radar/ct/logs.py">get</a>(log_slug, \*\*<a href="src/cloudflare/types/radar/ct/log_get_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ct/log_get_response.py">LogGetResponse</a></code>
 
 ## Datasets
 
