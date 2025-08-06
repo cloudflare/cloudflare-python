@@ -8,6 +8,7 @@ from .migration_step import MigrationStep as MigrationStep
 from .script_setting import ScriptSetting as ScriptSetting
 from .domain_list_params import DomainListParams as DomainListParams
 from .route_get_response import RouteGetResponse as RouteGetResponse
+from .script_list_params import ScriptListParams as ScriptListParams
 from .route_create_params import RouteCreateParams as RouteCreateParams
 from .route_list_response import RouteListResponse as RouteListResponse
 from .route_update_params import RouteUpdateParams as RouteUpdateParams

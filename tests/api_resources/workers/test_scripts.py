@@ -162,6 +162,14 @@ class TestScripts:
         assert_matches_type(SyncSinglePage[Script], script, path=["response"])
 
     @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
+        script = client.workers.scripts.list(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            tags="production:yes,staging:no",
+        )
+        assert_matches_type(SyncSinglePage[Script], script, path=["response"])
+
+    @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.workers.scripts.with_raw_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -440,6 +448,14 @@ class TestAsyncScripts:
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         script = await async_client.workers.scripts.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(AsyncSinglePage[Script], script, path=["response"])
+
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        script = await async_client.workers.scripts.list(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            tags="production:yes,staging:no",
         )
         assert_matches_type(AsyncSinglePage[Script], script, path=["response"])
 
