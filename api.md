@@ -2531,6 +2531,7 @@ Types:
 
 ```python
 from cloudflare.types.kv import (
+    Any,
     Namespace,
     NamespaceDeleteResponse,
     NamespaceBulkDeleteResponse,
@@ -2574,7 +2575,7 @@ Methods:
 
 Methods:
 
-- <code title="get /accounts/{account_id}/storage/kv/namespaces/{namespace_id}/metadata/{key_name}">client.kv.namespaces.metadata.<a href="./src/cloudflare/resources/kv/namespaces/metadata.py">get</a>(key_name, \*, account_id, namespace_id) -> object</code>
+- <code title="get /accounts/{account_id}/storage/kv/namespaces/{namespace_id}/metadata/{key_name}">client.kv.namespaces.metadata.<a href="./src/cloudflare/resources/kv/namespaces/metadata.py">get</a>(key_name, \*, account_id, namespace_id) -> <a href="./src/cloudflare/types/kv/any.py">object</a></code>
 
 ### Values
 

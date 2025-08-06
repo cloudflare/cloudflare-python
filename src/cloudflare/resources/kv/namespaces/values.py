@@ -26,6 +26,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
+from ....types.kv.any_param import AnyParam
 from ....types.kv.namespaces import value_update_params
 from ....types.kv.namespaces.value_delete_response import ValueDeleteResponse
 from ....types.kv.namespaces.value_update_response import ValueUpdateResponse
@@ -62,7 +63,7 @@ class ValuesResource(SyncAPIResource):
         value: str,
         expiration: float | NotGiven = NOT_GIVEN,
         expiration_ttl: float | NotGiven = NOT_GIVEN,
-        metadata: object | NotGiven = NOT_GIVEN,
+        metadata: AnyParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -95,8 +96,6 @@ class ValuesResource(SyncAPIResource):
               epoch.
 
           expiration_ttl: Expires the key after a number of seconds. Must be at least 60.
-
-          metadata: Associates arbitrary JSON data with a key/value pair.
 
           extra_headers: Send extra headers
 
@@ -276,7 +275,7 @@ class AsyncValuesResource(AsyncAPIResource):
         value: str,
         expiration: float | NotGiven = NOT_GIVEN,
         expiration_ttl: float | NotGiven = NOT_GIVEN,
-        metadata: object | NotGiven = NOT_GIVEN,
+        metadata: AnyParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -309,8 +308,6 @@ class AsyncValuesResource(AsyncAPIResource):
               epoch.
 
           expiration_ttl: Expires the key after a number of seconds. Must be at least 60.
-
-          metadata: Associates arbitrary JSON data with a key/value pair.
 
           extra_headers: Send extra headers
 

@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
+from ..any_param import AnyParam
+
 __all__ = ["ValueUpdateParams"]
 
 
@@ -26,5 +28,4 @@ class ValueUpdateParams(TypedDict, total=False):
     expiration_ttl: float
     """Expires the key after a number of seconds. Must be at least 60."""
 
-    metadata: object
-    """Associates arbitrary JSON data with a key/value pair."""
+    metadata: AnyParam
