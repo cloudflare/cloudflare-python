@@ -11,6 +11,7 @@ from respx import MockRouter
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.types.kv import Any
 from cloudflare._response import (
     BinaryAPIResponse,
     AsyncBinaryAPIResponse,
@@ -46,7 +47,7 @@ class TestValues:
             value="Some Value",
             expiration=1578435000,
             expiration_ttl=300,
-            metadata={},
+            metadata={"someMetadataKey": "someMetadataValue"},
         )
         assert_matches_type(Optional[ValueUpdateResponse], value, path=["response"])
 
@@ -278,7 +279,7 @@ class TestAsyncValues:
             value="Some Value",
             expiration=1578435000,
             expiration_ttl=300,
-            metadata={},
+            metadata={"someMetadataKey": "someMetadataValue"},
         )
         assert_matches_type(Optional[ValueUpdateResponse], value, path=["response"])
 
