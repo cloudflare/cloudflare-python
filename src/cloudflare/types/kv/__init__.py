@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from .any_param import AnyParam as AnyParam
 from .namespace import Namespace as Namespace
 from .namespace_list_params import NamespaceListParams as NamespaceListParams
 from .namespace_create_params import NamespaceCreateParams as NamespaceCreateParams
