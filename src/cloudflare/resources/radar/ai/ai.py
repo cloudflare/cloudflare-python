@@ -2,14 +2,6 @@
 
 from __future__ import annotations
 
-from .bots.bots import (
-    BotsResource,
-    AsyncBotsResource,
-    BotsResourceWithRawResponse,
-    AsyncBotsResourceWithRawResponse,
-    BotsResourceWithStreamingResponse,
-    AsyncBotsResourceWithStreamingResponse,
-)
 from ...._compat import cached_property
 from .to_markdown import (
     ToMarkdownResource,
@@ -42,10 +34,6 @@ class AIResource(SyncAPIResource):
         return InferenceResource(self._client)
 
     @cached_property
-    def bots(self) -> BotsResource:
-        return BotsResource(self._client)
-
-    @cached_property
     def with_raw_response(self) -> AIResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -73,10 +61,6 @@ class AsyncAIResource(AsyncAPIResource):
     @cached_property
     def inference(self) -> AsyncInferenceResource:
         return AsyncInferenceResource(self._client)
-
-    @cached_property
-    def bots(self) -> AsyncBotsResource:
-        return AsyncBotsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncAIResourceWithRawResponse:
@@ -110,10 +94,6 @@ class AIResourceWithRawResponse:
     def inference(self) -> InferenceResourceWithRawResponse:
         return InferenceResourceWithRawResponse(self._ai.inference)
 
-    @cached_property
-    def bots(self) -> BotsResourceWithRawResponse:
-        return BotsResourceWithRawResponse(self._ai.bots)
-
 
 class AsyncAIResourceWithRawResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
@@ -126,10 +106,6 @@ class AsyncAIResourceWithRawResponse:
     @cached_property
     def inference(self) -> AsyncInferenceResourceWithRawResponse:
         return AsyncInferenceResourceWithRawResponse(self._ai.inference)
-
-    @cached_property
-    def bots(self) -> AsyncBotsResourceWithRawResponse:
-        return AsyncBotsResourceWithRawResponse(self._ai.bots)
 
 
 class AIResourceWithStreamingResponse:
@@ -144,10 +120,6 @@ class AIResourceWithStreamingResponse:
     def inference(self) -> InferenceResourceWithStreamingResponse:
         return InferenceResourceWithStreamingResponse(self._ai.inference)
 
-    @cached_property
-    def bots(self) -> BotsResourceWithStreamingResponse:
-        return BotsResourceWithStreamingResponse(self._ai.bots)
-
 
 class AsyncAIResourceWithStreamingResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
@@ -160,7 +132,3 @@ class AsyncAIResourceWithStreamingResponse:
     @cached_property
     def inference(self) -> AsyncInferenceResourceWithStreamingResponse:
         return AsyncInferenceResourceWithStreamingResponse(self._ai.inference)
-
-    @cached_property
-    def bots(self) -> AsyncBotsResourceWithStreamingResponse:
-        return AsyncBotsResourceWithStreamingResponse(self._ai.bots)
