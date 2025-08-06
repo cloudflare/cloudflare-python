@@ -10,14 +10,6 @@ from .ai.ai import (
     AIResourceWithStreamingResponse,
     AsyncAIResourceWithStreamingResponse,
 )
-from .ct.ct import (
-    CtResource,
-    AsyncCtResource,
-    CtResourceWithRawResponse,
-    AsyncCtResourceWithRawResponse,
-    CtResourceWithStreamingResponse,
-    AsyncCtResourceWithStreamingResponse,
-)
 from .search import (
     SearchResource,
     AsyncSearchResource,
@@ -182,10 +174,6 @@ class RadarResource(SyncAPIResource):
         return AIResource(self._client)
 
     @cached_property
-    def ct(self) -> CtResource:
-        return CtResource(self._client)
-
-    @cached_property
     def annotations(self) -> AnnotationsResource:
         return AnnotationsResource(self._client)
 
@@ -285,10 +273,6 @@ class AsyncRadarResource(AsyncAPIResource):
     @cached_property
     def ai(self) -> AsyncAIResource:
         return AsyncAIResource(self._client)
-
-    @cached_property
-    def ct(self) -> AsyncCtResource:
-        return AsyncCtResource(self._client)
 
     @cached_property
     def annotations(self) -> AsyncAnnotationsResource:
@@ -395,10 +379,6 @@ class RadarResourceWithRawResponse:
         return AIResourceWithRawResponse(self._radar.ai)
 
     @cached_property
-    def ct(self) -> CtResourceWithRawResponse:
-        return CtResourceWithRawResponse(self._radar.ct)
-
-    @cached_property
     def annotations(self) -> AnnotationsResourceWithRawResponse:
         return AnnotationsResourceWithRawResponse(self._radar.annotations)
 
@@ -482,10 +462,6 @@ class AsyncRadarResourceWithRawResponse:
     @cached_property
     def ai(self) -> AsyncAIResourceWithRawResponse:
         return AsyncAIResourceWithRawResponse(self._radar.ai)
-
-    @cached_property
-    def ct(self) -> AsyncCtResourceWithRawResponse:
-        return AsyncCtResourceWithRawResponse(self._radar.ct)
 
     @cached_property
     def annotations(self) -> AsyncAnnotationsResourceWithRawResponse:
@@ -573,10 +549,6 @@ class RadarResourceWithStreamingResponse:
         return AIResourceWithStreamingResponse(self._radar.ai)
 
     @cached_property
-    def ct(self) -> CtResourceWithStreamingResponse:
-        return CtResourceWithStreamingResponse(self._radar.ct)
-
-    @cached_property
     def annotations(self) -> AnnotationsResourceWithStreamingResponse:
         return AnnotationsResourceWithStreamingResponse(self._radar.annotations)
 
@@ -660,10 +632,6 @@ class AsyncRadarResourceWithStreamingResponse:
     @cached_property
     def ai(self) -> AsyncAIResourceWithStreamingResponse:
         return AsyncAIResourceWithStreamingResponse(self._radar.ai)
-
-    @cached_property
-    def ct(self) -> AsyncCtResourceWithStreamingResponse:
-        return AsyncCtResourceWithStreamingResponse(self._radar.ct)
 
     @cached_property
     def annotations(self) -> AsyncAnnotationsResourceWithStreamingResponse:
