@@ -12,7 +12,7 @@ __all__ = ["PreviewCreateParams"]
 
 class PreviewCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     allow_insecure: bool
     """Do not validate the certificate when monitor use HTTPS.

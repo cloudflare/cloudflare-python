@@ -2,15 +2,15 @@
 
 from __future__ import annotations
 
-from ...._compat import cached_property
-from .to_markdown import (
-    ToMarkdownResource,
-    AsyncToMarkdownResource,
-    ToMarkdownResourceWithRawResponse,
-    AsyncToMarkdownResourceWithRawResponse,
-    ToMarkdownResourceWithStreamingResponse,
-    AsyncToMarkdownResourceWithStreamingResponse,
+from .bots import (
+    BotsResource,
+    AsyncBotsResource,
+    BotsResourceWithRawResponse,
+    AsyncBotsResourceWithRawResponse,
+    BotsResourceWithStreamingResponse,
+    AsyncBotsResourceWithStreamingResponse,
 )
+from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from .inference.inference import (
     InferenceResource,
@@ -26,12 +26,12 @@ __all__ = ["AIResource", "AsyncAIResource"]
 
 class AIResource(SyncAPIResource):
     @cached_property
-    def to_markdown(self) -> ToMarkdownResource:
-        return ToMarkdownResource(self._client)
-
-    @cached_property
     def inference(self) -> InferenceResource:
         return InferenceResource(self._client)
+
+    @cached_property
+    def bots(self) -> BotsResource:
+        return BotsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AIResourceWithRawResponse:
@@ -55,12 +55,12 @@ class AIResource(SyncAPIResource):
 
 class AsyncAIResource(AsyncAPIResource):
     @cached_property
-    def to_markdown(self) -> AsyncToMarkdownResource:
-        return AsyncToMarkdownResource(self._client)
-
-    @cached_property
     def inference(self) -> AsyncInferenceResource:
         return AsyncInferenceResource(self._client)
+
+    @cached_property
+    def bots(self) -> AsyncBotsResource:
+        return AsyncBotsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncAIResourceWithRawResponse:
@@ -87,12 +87,12 @@ class AIResourceWithRawResponse:
         self._ai = ai
 
     @cached_property
-    def to_markdown(self) -> ToMarkdownResourceWithRawResponse:
-        return ToMarkdownResourceWithRawResponse(self._ai.to_markdown)
-
-    @cached_property
     def inference(self) -> InferenceResourceWithRawResponse:
         return InferenceResourceWithRawResponse(self._ai.inference)
+
+    @cached_property
+    def bots(self) -> BotsResourceWithRawResponse:
+        return BotsResourceWithRawResponse(self._ai.bots)
 
 
 class AsyncAIResourceWithRawResponse:
@@ -100,12 +100,12 @@ class AsyncAIResourceWithRawResponse:
         self._ai = ai
 
     @cached_property
-    def to_markdown(self) -> AsyncToMarkdownResourceWithRawResponse:
-        return AsyncToMarkdownResourceWithRawResponse(self._ai.to_markdown)
-
-    @cached_property
     def inference(self) -> AsyncInferenceResourceWithRawResponse:
         return AsyncInferenceResourceWithRawResponse(self._ai.inference)
+
+    @cached_property
+    def bots(self) -> AsyncBotsResourceWithRawResponse:
+        return AsyncBotsResourceWithRawResponse(self._ai.bots)
 
 
 class AIResourceWithStreamingResponse:
@@ -113,12 +113,12 @@ class AIResourceWithStreamingResponse:
         self._ai = ai
 
     @cached_property
-    def to_markdown(self) -> ToMarkdownResourceWithStreamingResponse:
-        return ToMarkdownResourceWithStreamingResponse(self._ai.to_markdown)
-
-    @cached_property
     def inference(self) -> InferenceResourceWithStreamingResponse:
         return InferenceResourceWithStreamingResponse(self._ai.inference)
+
+    @cached_property
+    def bots(self) -> BotsResourceWithStreamingResponse:
+        return BotsResourceWithStreamingResponse(self._ai.bots)
 
 
 class AsyncAIResourceWithStreamingResponse:
@@ -126,9 +126,9 @@ class AsyncAIResourceWithStreamingResponse:
         self._ai = ai
 
     @cached_property
-    def to_markdown(self) -> AsyncToMarkdownResourceWithStreamingResponse:
-        return AsyncToMarkdownResourceWithStreamingResponse(self._ai.to_markdown)
-
-    @cached_property
     def inference(self) -> AsyncInferenceResourceWithStreamingResponse:
         return AsyncInferenceResourceWithStreamingResponse(self._ai.inference)
+
+    @cached_property
+    def bots(self) -> AsyncBotsResourceWithStreamingResponse:
+        return AsyncBotsResourceWithStreamingResponse(self._ai.bots)

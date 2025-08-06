@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -20,6 +20,8 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...types.argo import smart_routing_edit_params
 from ..._base_client import make_request_options
+from ...types.argo.smart_routing_get_response import SmartRoutingGetResponse
+from ...types.argo.smart_routing_edit_response import SmartRoutingEditResponse
 
 __all__ = ["SmartRoutingResource", "AsyncSmartRoutingResource"]
 
@@ -55,14 +57,14 @@ class SmartRoutingResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> SmartRoutingEditResponse:
         """
         Configures the value of the Argo Smart Routing enablement setting.
 
         Args:
           zone_id: Specifies the zone associated with the API call.
 
-          value: Enables Argo Smart Routing.
+          value: Specifies the enablement value of Argo Smart Routing.
 
           extra_headers: Send extra headers
 
@@ -82,9 +84,9 @@ class SmartRoutingResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[SmartRoutingEditResponse]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[SmartRoutingEditResponse], ResultWrapper[SmartRoutingEditResponse]),
         )
 
     def get(
@@ -97,7 +99,7 @@ class SmartRoutingResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> SmartRoutingGetResponse:
         """
         Retrieves the value of Argo Smart Routing enablement setting.
 
@@ -121,9 +123,9 @@ class SmartRoutingResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[SmartRoutingGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[SmartRoutingGetResponse], ResultWrapper[SmartRoutingGetResponse]),
         )
 
 
@@ -158,14 +160,14 @@ class AsyncSmartRoutingResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> SmartRoutingEditResponse:
         """
         Configures the value of the Argo Smart Routing enablement setting.
 
         Args:
           zone_id: Specifies the zone associated with the API call.
 
-          value: Enables Argo Smart Routing.
+          value: Specifies the enablement value of Argo Smart Routing.
 
           extra_headers: Send extra headers
 
@@ -185,9 +187,9 @@ class AsyncSmartRoutingResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[SmartRoutingEditResponse]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[SmartRoutingEditResponse], ResultWrapper[SmartRoutingEditResponse]),
         )
 
     async def get(
@@ -200,7 +202,7 @@ class AsyncSmartRoutingResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> SmartRoutingGetResponse:
         """
         Retrieves the value of Argo Smart Routing enablement setting.
 
@@ -224,9 +226,9 @@ class AsyncSmartRoutingResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[SmartRoutingGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[SmartRoutingGetResponse], ResultWrapper[SmartRoutingGetResponse]),
         )
 
 

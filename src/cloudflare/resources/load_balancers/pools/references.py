@@ -56,7 +56,7 @@ class ReferencesResource(SyncAPIResource):
         Get the list of resources that reference the provided pool.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -116,7 +116,7 @@ class AsyncReferencesResource(AsyncAPIResource):
         Get the list of resources that reference the provided pool.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 

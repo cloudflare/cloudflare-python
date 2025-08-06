@@ -34,7 +34,7 @@ class POPHealth(BaseModel):
 
 class HealthGetResponse(BaseModel):
     pool_id: Optional[str] = None
-    """Pool ID"""
+    """Pool ID."""
 
     pop_health: Optional[POPHealth] = None
     """List of regions and associated health status."""

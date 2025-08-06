@@ -16,7 +16,7 @@ class ContentUpdateParams(TypedDict, total=False):
     """Identifier."""
 
     metadata: Required[Metadata]
-    """JSON encoded metadata about the uploaded parts and Worker configuration."""
+    """JSON-encoded metadata about the uploaded parts and Worker configuration."""
 
     files: List[FileTypes]
     """An array of modules (often JavaScript files) comprising a Worker script.

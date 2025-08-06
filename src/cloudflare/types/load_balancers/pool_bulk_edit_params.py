@@ -9,7 +9,7 @@ __all__ = ["PoolBulkEditParams"]
 
 class PoolBulkEditParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     notification_email: Literal[""]
     """The email address to send health status notifications to.

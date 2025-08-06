@@ -102,7 +102,7 @@ class MonitorsResource(SyncAPIResource):
         Create a configured monitor.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           allow_insecure: Do not validate the certificate when monitor use HTTPS. This parameter is
               currently only valid for HTTP and HTTPS monitors.
@@ -228,7 +228,7 @@ class MonitorsResource(SyncAPIResource):
         Modify a configured monitor.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           allow_insecure: Do not validate the certificate when monitor use HTTPS. This parameter is
               currently only valid for HTTP and HTTPS monitors.
@@ -339,7 +339,7 @@ class MonitorsResource(SyncAPIResource):
         List configured monitors for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -376,7 +376,7 @@ class MonitorsResource(SyncAPIResource):
         Delete a configured monitor.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -434,7 +434,7 @@ class MonitorsResource(SyncAPIResource):
         Apply changes to an existing monitor, overwriting the supplied properties.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           allow_insecure: Do not validate the certificate when monitor use HTTPS. This parameter is
               currently only valid for HTTP and HTTPS monitors.
@@ -546,7 +546,7 @@ class MonitorsResource(SyncAPIResource):
         List a single configured monitor for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -632,7 +632,7 @@ class AsyncMonitorsResource(AsyncAPIResource):
         Create a configured monitor.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           allow_insecure: Do not validate the certificate when monitor use HTTPS. This parameter is
               currently only valid for HTTP and HTTPS monitors.
@@ -758,7 +758,7 @@ class AsyncMonitorsResource(AsyncAPIResource):
         Modify a configured monitor.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           allow_insecure: Do not validate the certificate when monitor use HTTPS. This parameter is
               currently only valid for HTTP and HTTPS monitors.
@@ -869,7 +869,7 @@ class AsyncMonitorsResource(AsyncAPIResource):
         List configured monitors for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -906,7 +906,7 @@ class AsyncMonitorsResource(AsyncAPIResource):
         Delete a configured monitor.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -964,7 +964,7 @@ class AsyncMonitorsResource(AsyncAPIResource):
         Apply changes to an existing monitor, overwriting the supplied properties.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           allow_insecure: Do not validate the certificate when monitor use HTTPS. This parameter is
               currently only valid for HTTP and HTTPS monitors.
@@ -1076,7 +1076,7 @@ class AsyncMonitorsResource(AsyncAPIResource):
         List a single configured monitor for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 

@@ -1,0 +1,106 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from typing import List, Optional
+from datetime import datetime
+from typing_extensions import Literal
+
+from pydantic import Field as FieldInfo
+
+from ...._models import BaseModel
+
+__all__ = [
+    "LogGetResponse",
+    "CertificateLog",
+    "CertificateLogPerformance",
+    "CertificateLogPerformanceEndpoint",
+    "CertificateLogRelated",
+]
+
+
+class CertificateLogPerformanceEndpoint(BaseModel):
+    endpoint: Literal[
+        "add-chain (new)",
+        "add-chain (old)",
+        "add-pre-chain (new)",
+        "add-pre-chain (old)",
+        "get-entries",
+        "get-roots",
+        "get-sth",
+    ]
+    """The certificate log endpoint names used in performance metrics."""
+
+    response_time: float = FieldInfo(alias="responseTime")
+
+    uptime: float
+
+
+class CertificateLogPerformance(BaseModel):
+    endpoints: List[CertificateLogPerformanceEndpoint]
+
+    response_time: float = FieldInfo(alias="responseTime")
+
+    uptime: float
+
+
+class CertificateLogRelated(BaseModel):
+    description: str
+    """A brief description of the certificate log."""
+
+    end_exclusive: datetime = FieldInfo(alias="endExclusive")
+    """The end date and time for when the log will stop accepting certificates."""
+
+    slug: str
+    """A URL-friendly, kebab-case identifier for the certificate log."""
+
+    start_inclusive: datetime = FieldInfo(alias="startInclusive")
+    """The start date and time for when the log starts accepting certificates."""
+
+    state: Literal["USABLE", "PENDING", "QUALIFIED", "READ_ONLY", "RETIRED", "REJECTED"]
+    """The current state of the certificate log.
+
+    More details about log states can be found here:
+    https://googlechrome.github.io/CertificateTransparency/log_states.html
+    """
+
+
+class CertificateLog(BaseModel):
+    api: Literal["RFC6962", "STATIC"]
+    """The API standard that the certificate log follows."""
+
+    description: str
+    """A brief description of the certificate log."""
+
+    end_exclusive: datetime = FieldInfo(alias="endExclusive")
+    """The end date and time for when the log will stop accepting certificates."""
+
+    operator: str
+    """The organization responsible for operating the certificate log."""
+
+    performance: Optional[CertificateLogPerformance] = None
+    """Log performance metrics, including averages and per-endpoint details."""
+
+    related: List[CertificateLogRelated]
+    """Logs from the same operator."""
+
+    slug: str
+    """A URL-friendly, kebab-case identifier for the certificate log."""
+
+    start_inclusive: datetime = FieldInfo(alias="startInclusive")
+    """The start date and time for when the log starts accepting certificates."""
+
+    state: Literal["USABLE", "PENDING", "QUALIFIED", "READ_ONLY", "RETIRED", "REJECTED"]
+    """The current state of the certificate log.
+
+    More details about log states can be found here:
+    https://googlechrome.github.io/CertificateTransparency/log_states.html
+    """
+
+    state_timestamp: datetime = FieldInfo(alias="stateTimestamp")
+    """Timestamp of when the log state was last updated."""
+
+    url: str
+    """The URL for the certificate log."""
+
+
+class LogGetResponse(BaseModel):
+    certificate_log: CertificateLog = FieldInfo(alias="certificateLog")

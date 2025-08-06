@@ -9,7 +9,7 @@ __all__ = ["SearchListParams"]
 
 class SearchListParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     page: float
 

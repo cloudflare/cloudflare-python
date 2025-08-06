@@ -63,7 +63,7 @@ class SearchesResource(SyncAPIResource):
         Search for Load Balancing resources.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           query: Search query term.
 
@@ -141,7 +141,7 @@ class AsyncSearchesResource(AsyncAPIResource):
         Search for Load Balancing resources.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           query: Search query term.
 

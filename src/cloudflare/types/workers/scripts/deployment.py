@@ -8,7 +8,7 @@ from pydantic import Field as FieldInfo
 
 from ...._models import BaseModel
 
-__all__ = ["DeploymentCreateResponse", "Version", "Annotations"]
+__all__ = ["Deployment", "Version", "Annotations"]
 
 
 class Version(BaseModel):
@@ -25,7 +25,7 @@ class Annotations(BaseModel):
     """Operation that triggered the creation of the deployment."""
 
 
-class DeploymentCreateResponse(BaseModel):
+class Deployment(BaseModel):
     id: str
 
     created_on: datetime

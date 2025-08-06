@@ -57,7 +57,7 @@ class ScriptUpdateParams(TypedDict, total=False):
     """Name of the Workers for Platforms dispatch namespace."""
 
     metadata: Required[Metadata]
-    """JSON encoded metadata about the uploaded parts and Worker configuration."""
+    """JSON-encoded metadata about the uploaded parts and Worker configuration."""
 
     files: List[FileTypes]
     """An array of modules (often JavaScript files) comprising a Worker script.

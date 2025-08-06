@@ -58,7 +58,7 @@ class PreviewsResource(SyncAPIResource):
         Get the result of a previous preview operation using the provided preview_id.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -121,7 +121,7 @@ class AsyncPreviewsResource(AsyncAPIResource):
         Get the result of a previous preview operation using the provided preview_id.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 

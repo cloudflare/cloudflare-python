@@ -191,7 +191,7 @@ class ScriptsResource(SyncAPIResource):
 
           script_name: Name of the script, used in URLs and route configuration.
 
-          metadata: JSON encoded metadata about the uploaded parts and Worker configuration.
+          metadata: JSON-encoded metadata about the uploaded parts and Worker configuration.
 
           files: An array of modules (often JavaScript files) comprising a Worker script. At
               least one module must be present and referenced in the metadata as `main_module`
@@ -455,7 +455,7 @@ class AsyncScriptsResource(AsyncAPIResource):
 
           script_name: Name of the script, used in URLs and route configuration.
 
-          metadata: JSON encoded metadata about the uploaded parts and Worker configuration.
+          metadata: JSON-encoded metadata about the uploaded parts and Worker configuration.
 
           files: An array of modules (often JavaScript files) comprising a Worker script. At
               least one module must be present and referenced in the metadata as `main_module`

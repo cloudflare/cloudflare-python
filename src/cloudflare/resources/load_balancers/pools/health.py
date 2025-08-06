@@ -80,7 +80,7 @@ class HealthResource(SyncAPIResource):
         be used in the preview endpoint to retrieve the results.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           allow_insecure: Do not validate the certificate when monitor use HTTPS. This parameter is
               currently only valid for HTTP and HTTPS monitors.
@@ -192,7 +192,7 @@ class HealthResource(SyncAPIResource):
         Fetch the latest pool health status for a single pool.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -273,7 +273,7 @@ class AsyncHealthResource(AsyncAPIResource):
         be used in the preview endpoint to retrieve the results.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           allow_insecure: Do not validate the certificate when monitor use HTTPS. This parameter is
               currently only valid for HTTP and HTTPS monitors.
@@ -385,7 +385,7 @@ class AsyncHealthResource(AsyncAPIResource):
         Fetch the latest pool health status for a single pool.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 

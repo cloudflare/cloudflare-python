@@ -31,14 +31,11 @@ class SessionAffinityAttributes(BaseModel):
     """
     When header `session_affinity` is enabled, this option can be used to specify
     how HTTP headers on load balancing requests will be used. The supported values
-    are:
-
-    - `"true"`: Load balancing requests must contain _all_ of the HTTP headers
-      specified by the `headers` session affinity attribute, otherwise sessions
-      aren't created.
-    - `"false"`: Load balancing requests must contain _at least one_ of the HTTP
-      headers specified by the `headers` session affinity attribute, otherwise
-      sessions aren't created.
+    are: - `"true"`: Load balancing requests must contain _all_ of the HTTP headers
+    specified by the `headers` session affinity attribute, otherwise sessions aren't
+    created. - `"false"`: Load balancing requests must contain _at least one_ of the
+    HTTP headers specified by the `headers` session affinity attribute, otherwise
+    sessions aren't created.
     """
 
     samesite: Optional[Literal["Auto", "Lax", "None", "Strict"]] = None
@@ -61,13 +58,11 @@ class SessionAffinityAttributes(BaseModel):
     """
     Configures the zero-downtime failover between origins within a pool when session
     affinity is enabled. This feature is currently incompatible with Argo, Tiered
-    Cache, and Bandwidth Alliance. The supported values are:
-
-    - `"none"`: No failover takes place for sessions pinned to the origin (default).
-    - `"temporary"`: Traffic will be sent to another other healthy origin until the
-      originally pinned origin is available; note that this can potentially result
-      in heavy origin flapping.
-    - `"sticky"`: The session affinity cookie is updated and subsequent requests are
-      sent to the new origin. Note: Zero-downtime failover with sticky sessions is
-      currently not supported for session affinity by header.
+    Cache, and Bandwidth Alliance. The supported values are: - `"none"`: No failover
+    takes place for sessions pinned to the origin (default). - `"temporary"`:
+    Traffic will be sent to another other healthy origin until the originally pinned
+    origin is available; note that this can potentially result in heavy origin
+    flapping. - `"sticky"`: The session affinity cookie is updated and subsequent
+    requests are sent to the new origin. Note: Zero-downtime failover with sticky
+    sessions is currently not supported for session affinity by header.
     """

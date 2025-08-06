@@ -16,7 +16,7 @@ __all__ = ["PoolEditParams"]
 
 class PoolEditParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     check_regions: Optional[List[CheckRegion]]
     """A list of regions from which to run health checks.

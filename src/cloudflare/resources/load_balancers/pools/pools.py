@@ -109,7 +109,7 @@ class PoolsResource(SyncAPIResource):
         Create a new pool.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           name: A short name (tag) for the pool. Only alphanumeric characters, hyphens, and
               underscores are allowed.
@@ -218,7 +218,7 @@ class PoolsResource(SyncAPIResource):
         Modify a configured pool.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           name: A short name (tag) for the pool. Only alphanumeric characters, hyphens, and
               underscores are allowed.
@@ -320,7 +320,7 @@ class PoolsResource(SyncAPIResource):
         List configured pools.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           monitor: The ID of the Monitor to use for checking the health of origins within this
               pool.
@@ -364,7 +364,7 @@ class PoolsResource(SyncAPIResource):
         Delete a configured pool.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -410,7 +410,7 @@ class PoolsResource(SyncAPIResource):
         `limit`/`offset` or `per_page`/`page`.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           notification_email: The email address to send health status notifications to. This field is now
               deprecated in favor of Cloudflare Notifications for Load Balancing, so only
@@ -466,7 +466,7 @@ class PoolsResource(SyncAPIResource):
         Apply changes to an existing pool, overwriting the supplied properties.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           check_regions: A list of regions from which to run health checks. Null means every Cloudflare
               data center.
@@ -568,7 +568,7 @@ class PoolsResource(SyncAPIResource):
         Fetch a single configured pool.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -650,7 +650,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         Create a new pool.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           name: A short name (tag) for the pool. Only alphanumeric characters, hyphens, and
               underscores are allowed.
@@ -759,7 +759,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         Modify a configured pool.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           name: A short name (tag) for the pool. Only alphanumeric characters, hyphens, and
               underscores are allowed.
@@ -861,7 +861,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         List configured pools.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           monitor: The ID of the Monitor to use for checking the health of origins within this
               pool.
@@ -905,7 +905,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         Delete a configured pool.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -951,7 +951,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         `limit`/`offset` or `per_page`/`page`.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           notification_email: The email address to send health status notifications to. This field is now
               deprecated in favor of Cloudflare Notifications for Load Balancing, so only
@@ -1007,7 +1007,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         Apply changes to an existing pool, overwriting the supplied properties.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           check_regions: A list of regions from which to run health checks. Null means every Cloudflare
               data center.
@@ -1109,7 +1109,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         Fetch a single configured pool.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 

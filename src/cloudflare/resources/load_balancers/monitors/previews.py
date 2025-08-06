@@ -79,7 +79,7 @@ class PreviewsResource(SyncAPIResource):
         returned preview_id can be used in the preview endpoint to retrieve the results.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           allow_insecure: Do not validate the certificate when monitor use HTTPS. This parameter is
               currently only valid for HTTP and HTTPS monitors.
@@ -230,7 +230,7 @@ class AsyncPreviewsResource(AsyncAPIResource):
         returned preview_id can be used in the preview endpoint to retrieve the results.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           allow_insecure: Do not validate the certificate when monitor use HTTPS. This parameter is
               currently only valid for HTTP and HTTPS monitors.

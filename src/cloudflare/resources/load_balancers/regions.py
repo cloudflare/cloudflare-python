@@ -64,7 +64,7 @@ class RegionsResource(SyncAPIResource):
         List all region mappings.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           country_code_a2: Two-letter alpha-2 country code followed in ISO 3166-1.
 
@@ -125,7 +125,7 @@ class RegionsResource(SyncAPIResource):
         Get a single region mapping.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           region_id: A list of Cloudflare regions. WNAM: Western North America, ENAM: Eastern North
               America, WEU: Western Europe, EEU: Eastern Europe, NSAM: Northern South America,
@@ -201,7 +201,7 @@ class AsyncRegionsResource(AsyncAPIResource):
         List all region mappings.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           country_code_a2: Two-letter alpha-2 country code followed in ISO 3166-1.
 
@@ -262,7 +262,7 @@ class AsyncRegionsResource(AsyncAPIResource):
         Get a single region mapping.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           region_id: A list of Cloudflare regions. WNAM: Western North America, ENAM: Eastern North
               America, WEU: Western Europe, EEU: Eastern Europe, NSAM: Northern South America,

@@ -8,6 +8,14 @@ from .ai import (
     AIResourceWithStreamingResponse,
     AsyncAIResourceWithStreamingResponse,
 )
+from .bots import (
+    BotsResource,
+    AsyncBotsResource,
+    BotsResourceWithRawResponse,
+    AsyncBotsResourceWithRawResponse,
+    BotsResourceWithStreamingResponse,
+    AsyncBotsResourceWithStreamingResponse,
+)
 from .inference import (
     InferenceResource,
     AsyncInferenceResource,
@@ -16,28 +24,20 @@ from .inference import (
     InferenceResourceWithStreamingResponse,
     AsyncInferenceResourceWithStreamingResponse,
 )
-from .to_markdown import (
-    ToMarkdownResource,
-    AsyncToMarkdownResource,
-    ToMarkdownResourceWithRawResponse,
-    AsyncToMarkdownResourceWithRawResponse,
-    ToMarkdownResourceWithStreamingResponse,
-    AsyncToMarkdownResourceWithStreamingResponse,
-)
 
 __all__ = [
-    "ToMarkdownResource",
-    "AsyncToMarkdownResource",
-    "ToMarkdownResourceWithRawResponse",
-    "AsyncToMarkdownResourceWithRawResponse",
-    "ToMarkdownResourceWithStreamingResponse",
-    "AsyncToMarkdownResourceWithStreamingResponse",
     "InferenceResource",
     "AsyncInferenceResource",
     "InferenceResourceWithRawResponse",
     "AsyncInferenceResourceWithRawResponse",
     "InferenceResourceWithStreamingResponse",
     "AsyncInferenceResourceWithStreamingResponse",
+    "BotsResource",
+    "AsyncBotsResource",
+    "BotsResourceWithRawResponse",
+    "AsyncBotsResourceWithRawResponse",
+    "BotsResourceWithStreamingResponse",
+    "AsyncBotsResourceWithStreamingResponse",
     "AIResource",
     "AsyncAIResource",
     "AIResourceWithRawResponse",
