@@ -96,6 +96,8 @@ class ValuesResource(SyncAPIResource):
 
           expiration_ttl: Expires the key after a number of seconds. Must be at least 60.
 
+          metadata: Associates arbitrary JSON data with a key/value pair.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -307,6 +309,8 @@ class AsyncValuesResource(AsyncAPIResource):
               epoch.
 
           expiration_ttl: Expires the key after a number of seconds. Must be at least 60.
+
+          metadata: Associates arbitrary JSON data with a key/value pair.
 
           extra_headers: Send extra headers
 

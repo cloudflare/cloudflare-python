@@ -43,3 +43,4 @@ class Body(TypedDict, total=False):
     """Expires the key after a number of seconds. Must be at least 60."""
 
     metadata: object
+    """Arbitrary JSON that is associated with a key."""

@@ -2396,19 +2396,18 @@ Types:
 
 ```python
 from cloudflare.types.workers.scripts import (
-    DeploymentCreateResponse,
+    Deployment,
     DeploymentListResponse,
     DeploymentDeleteResponse,
-    DeploymentGetResponse,
 )
 ```
 
 Methods:
 
-- <code title="post /accounts/{account_id}/workers/scripts/{script_name}/deployments">client.workers.scripts.deployments.<a href="./src/cloudflare/resources/workers/scripts/deployments.py">create</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/scripts/deployment_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/scripts/deployment_create_response.py">DeploymentCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/workers/scripts/{script_name}/deployments">client.workers.scripts.deployments.<a href="./src/cloudflare/resources/workers/scripts/deployments.py">create</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/scripts/deployment_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/scripts/deployment.py">Deployment</a></code>
 - <code title="get /accounts/{account_id}/workers/scripts/{script_name}/deployments">client.workers.scripts.deployments.<a href="./src/cloudflare/resources/workers/scripts/deployments.py">list</a>(script_name, \*, account_id) -> <a href="./src/cloudflare/types/workers/scripts/deployment_list_response.py">DeploymentListResponse</a></code>
 - <code title="delete /accounts/{account_id}/workers/scripts/{script_name}/deployments/{deployment_id}">client.workers.scripts.deployments.<a href="./src/cloudflare/resources/workers/scripts/deployments.py">delete</a>(deployment_id, \*, account_id, script_name) -> <a href="./src/cloudflare/types/workers/scripts/deployment_delete_response.py">DeploymentDeleteResponse</a></code>
-- <code title="get /accounts/{account_id}/workers/scripts/{script_name}/deployments/{deployment_id}">client.workers.scripts.deployments.<a href="./src/cloudflare/resources/workers/scripts/deployments.py">get</a>(deployment_id, \*, account_id, script_name) -> <a href="./src/cloudflare/types/workers/scripts/deployment_get_response.py">DeploymentGetResponse</a></code>
+- <code title="get /accounts/{account_id}/workers/scripts/{script_name}/deployments/{deployment_id}">client.workers.scripts.deployments.<a href="./src/cloudflare/resources/workers/scripts/deployments.py">get</a>(deployment_id, \*, account_id, script_name) -> <a href="./src/cloudflare/types/workers/scripts/deployment.py">Deployment</a></code>
 
 ### Versions
 
@@ -7246,6 +7245,68 @@ Methods:
 
 - <code title="get /radar/ai/inference/timeseries_groups/model">client.radar.ai.inference.timeseries_groups.summary.<a href="./src/cloudflare/resources/radar/ai/inference/timeseries_groups/summary.py">model</a>(\*\*<a href="src/cloudflare/types/radar/ai/inference/timeseries_groups/summary_model_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ai/inference/timeseries_groups/summary_model_response.py">SummaryModelResponse</a></code>
 - <code title="get /radar/ai/inference/timeseries_groups/task">client.radar.ai.inference.timeseries_groups.summary.<a href="./src/cloudflare/resources/radar/ai/inference/timeseries_groups/summary.py">task</a>(\*\*<a href="src/cloudflare/types/radar/ai/inference/timeseries_groups/summary_task_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ai/inference/timeseries_groups/summary_task_response.py">SummaryTaskResponse</a></code>
+
+### TimeseriesGroups
+
+Types:
+
+```python
+from cloudflare.types.radar.ai import (
+    TimeseriesGroupSummaryResponse,
+    TimeseriesGroupTimeseriesResponse,
+    TimeseriesGroupTimeseriesGroupsResponse,
+)
+```
+
+Methods:
+
+- <code title="get /radar/ai/bots/summary/{dimension}">client.radar.ai.timeseries_groups.<a href="./src/cloudflare/resources/radar/ai/timeseries_groups.py">summary</a>(dimension, \*\*<a href="src/cloudflare/types/radar/ai/timeseries_group_summary_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ai/timeseries_group_summary_response.py">TimeseriesGroupSummaryResponse</a></code>
+- <code title="get /radar/ai/bots/timeseries">client.radar.ai.timeseries_groups.<a href="./src/cloudflare/resources/radar/ai/timeseries_groups.py">timeseries</a>(\*\*<a href="src/cloudflare/types/radar/ai/timeseries_group_timeseries_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ai/timeseries_group_timeseries_response.py">TimeseriesGroupTimeseriesResponse</a></code>
+- <code title="get /radar/ai/bots/timeseries_groups/{dimension}">client.radar.ai.timeseries_groups.<a href="./src/cloudflare/resources/radar/ai/timeseries_groups.py">timeseries_groups</a>(dimension, \*\*<a href="src/cloudflare/types/radar/ai/timeseries_group_timeseries_groups_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ai/timeseries_group_timeseries_groups_response.py">TimeseriesGroupTimeseriesGroupsResponse</a></code>
+
+## Ct
+
+Types:
+
+```python
+from cloudflare.types.radar import (
+    CtSummaryResponse,
+    CtTimeseriesResponse,
+    CtTimeseriesGroupsResponse,
+)
+```
+
+Methods:
+
+- <code title="get /radar/ct/summary/{dimension}">client.radar.ct.<a href="./src/cloudflare/resources/radar/ct/ct.py">summary</a>(dimension, \*\*<a href="src/cloudflare/types/radar/ct_summary_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ct_summary_response.py">CtSummaryResponse</a></code>
+- <code title="get /radar/ct/timeseries">client.radar.ct.<a href="./src/cloudflare/resources/radar/ct/ct.py">timeseries</a>(\*\*<a href="src/cloudflare/types/radar/ct_timeseries_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ct_timeseries_response.py">CtTimeseriesResponse</a></code>
+- <code title="get /radar/ct/timeseries_groups/{dimension}">client.radar.ct.<a href="./src/cloudflare/resources/radar/ct/ct.py">timeseries_groups</a>(dimension, \*\*<a href="src/cloudflare/types/radar/ct_timeseries_groups_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ct_timeseries_groups_response.py">CtTimeseriesGroupsResponse</a></code>
+
+### Authorities
+
+Types:
+
+```python
+from cloudflare.types.radar.ct import AuthorityListResponse, AuthorityGetResponse
+```
+
+Methods:
+
+- <code title="get /radar/ct/authorities">client.radar.ct.authorities.<a href="./src/cloudflare/resources/radar/ct/authorities.py">list</a>(\*\*<a href="src/cloudflare/types/radar/ct/authority_list_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ct/authority_list_response.py">AuthorityListResponse</a></code>
+- <code title="get /radar/ct/authorities/{ca_slug}">client.radar.ct.authorities.<a href="./src/cloudflare/resources/radar/ct/authorities.py">get</a>(ca_slug, \*\*<a href="src/cloudflare/types/radar/ct/authority_get_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ct/authority_get_response.py">AuthorityGetResponse</a></code>
+
+### Logs
+
+Types:
+
+```python
+from cloudflare.types.radar.ct import LogListResponse, LogGetResponse
+```
+
+Methods:
+
+- <code title="get /radar/ct/logs">client.radar.ct.logs.<a href="./src/cloudflare/resources/radar/ct/logs.py">list</a>(\*\*<a href="src/cloudflare/types/radar/ct/log_list_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ct/log_list_response.py">LogListResponse</a></code>
+- <code title="get /radar/ct/logs/{log_slug}">client.radar.ct.logs.<a href="./src/cloudflare/resources/radar/ct/logs.py">get</a>(log_slug, \*\*<a href="src/cloudflare/types/radar/ct/log_get_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ct/log_get_response.py">LogGetResponse</a></code>
 
 ## Annotations
 

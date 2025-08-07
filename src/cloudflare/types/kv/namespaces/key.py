@@ -22,3 +22,4 @@ class Key(BaseModel):
     """
 
     metadata: Optional[object] = None
+    """Arbitrary JSON that is associated with a key."""
