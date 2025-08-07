@@ -46,7 +46,7 @@ class TestValues:
             value="Some Value",
             expiration=1578435000,
             expiration_ttl=300,
-            metadata={"someMetadataKey": "someMetadataValue"},
+            metadata={},
         )
         assert_matches_type(Optional[ValueUpdateResponse], value, path=["response"])
 
@@ -278,7 +278,7 @@ class TestAsyncValues:
             value="Some Value",
             expiration=1578435000,
             expiration_ttl=300,
-            metadata={"someMetadataKey": "someMetadataValue"},
+            metadata={},
         )
         assert_matches_type(Optional[ValueUpdateResponse], value, path=["response"])
 

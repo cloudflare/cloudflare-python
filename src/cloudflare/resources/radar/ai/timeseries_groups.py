@@ -21,8 +21,16 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
-from ....types.radar.ai import timeseries_group_user_agent_params
+from ....types.radar.ai import (
+    timeseries_group_summary_params,
+    timeseries_group_timeseries_params,
+    timeseries_group_user_agent_params,
+    timeseries_group_timeseries_groups_params,
+)
+from ....types.radar.ai.timeseries_group_summary_response import TimeseriesGroupSummaryResponse
+from ....types.radar.ai.timeseries_group_timeseries_response import TimeseriesGroupTimeseriesResponse
 from ....types.radar.ai.timeseries_group_user_agent_response import TimeseriesGroupUserAgentResponse
+from ....types.radar.ai.timeseries_group_timeseries_groups_response import TimeseriesGroupTimeseriesGroupsResponse
 
 __all__ = ["TimeseriesGroupsResource", "AsyncTimeseriesGroupsResource"]
 
@@ -46,6 +54,311 @@ class TimeseriesGroupsResource(SyncAPIResource):
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
         return TimeseriesGroupsResourceWithStreamingResponse(self)
+
+    def summary(
+        self,
+        dimension: Literal["USER_AGENT", "CRAWL_PURPOSE"],
+        *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        crawl_purpose: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TimeseriesGroupSummaryResponse:
+        """
+        Retrieves an aggregated summary of AI bots HTTP requests grouped by the
+        specified dimension.
+
+        Args:
+          dimension: Specifies the attribute by which to group the results.
+
+          asn: Filters results by Autonomous System. Specify one or more Autonomous System
+              Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
+              results. For example, `-174, 3356` excludes results from AS174, but includes
+              results from AS3356.
+
+          continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude continents from results. For example, `-EU,NA`
+              excludes results from EU, but includes results from NA.
+
+          crawl_purpose: Filters results by bot crawl purpose.
+
+          date_end: End of the date range (inclusive).
+
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
+
+          date_start: Start of the date range.
+
+          format: Format in which results will be returned.
+
+          limit_per_group: Limits the number of objects per group to the top items within the specified
+              time range. When item count exceeds the limit, extra items appear grouped under
+              an "other" category.
+
+          location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude locations from results. For example, `-US,PT`
+              excludes results from the US, but includes results from PT.
+
+          name: Array of names used to label the series in the response.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not dimension:
+            raise ValueError(f"Expected a non-empty value for `dimension` but received {dimension!r}")
+        return self._get(
+            f"/radar/ai/bots/summary/{dimension}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "asn": asn,
+                        "continent": continent,
+                        "crawl_purpose": crawl_purpose,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "limit_per_group": limit_per_group,
+                        "location": location,
+                        "name": name,
+                    },
+                    timeseries_group_summary_params.TimeseriesGroupSummaryParams,
+                ),
+                post_parser=ResultWrapper[TimeseriesGroupSummaryResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[TimeseriesGroupSummaryResponse], ResultWrapper[TimeseriesGroupSummaryResponse]),
+        )
+
+    def timeseries(
+        self,
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        crawl_purpose: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        user_agent: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TimeseriesGroupTimeseriesResponse:
+        """
+        Retrieves AI bots HTTP request volume over time.
+
+        Args:
+          agg_interval: Aggregation interval of the results (e.g., in 15 minutes or 1 hour intervals).
+              Refer to
+              [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
+
+          asn: Filters results by Autonomous System. Specify one or more Autonomous System
+              Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
+              results. For example, `-174, 3356` excludes results from AS174, but includes
+              results from AS3356.
+
+          continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude continents from results. For example, `-EU,NA`
+              excludes results from EU, but includes results from NA.
+
+          crawl_purpose: Filters results by bot crawl purpose.
+
+          date_end: End of the date range (inclusive).
+
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
+
+          date_start: Start of the date range.
+
+          format: Format in which results will be returned.
+
+          limit_per_group: Limits the number of objects per group to the top items within the specified
+              time range. When item count exceeds the limit, extra items appear grouped under
+              an "other" category.
+
+          location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude locations from results. For example, `-US,PT`
+              excludes results from the US, but includes results from PT.
+
+          name: Array of names used to label the series in the response.
+
+          user_agent: Filters results by user agent.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            "/radar/ai/bots/timeseries",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "asn": asn,
+                        "continent": continent,
+                        "crawl_purpose": crawl_purpose,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "limit_per_group": limit_per_group,
+                        "location": location,
+                        "name": name,
+                        "user_agent": user_agent,
+                    },
+                    timeseries_group_timeseries_params.TimeseriesGroupTimeseriesParams,
+                ),
+                post_parser=ResultWrapper[TimeseriesGroupTimeseriesResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[TimeseriesGroupTimeseriesResponse], ResultWrapper[TimeseriesGroupTimeseriesResponse]),
+        )
+
+    def timeseries_groups(
+        self,
+        dimension: Literal["USER_AGENT", "CRAWL_PURPOSE"],
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        crawl_purpose: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        normalization: Literal["PERCENTAGE_CHANGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TimeseriesGroupTimeseriesGroupsResponse:
+        """
+        Retrieves the distribution of HTTP requests from AI bots, grouped by chosen the
+        specified dimension over time.
+
+        Args:
+          dimension: Specifies the attribute by which to group the results.
+
+          agg_interval: Aggregation interval of the results (e.g., in 15 minutes or 1 hour intervals).
+              Refer to
+              [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
+
+          asn: Filters results by Autonomous System. Specify one or more Autonomous System
+              Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
+              results. For example, `-174, 3356` excludes results from AS174, but includes
+              results from AS3356.
+
+          continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude continents from results. For example, `-EU,NA`
+              excludes results from EU, but includes results from NA.
+
+          crawl_purpose: Filters results by bot crawl purpose.
+
+          date_end: End of the date range (inclusive).
+
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
+
+          date_start: Start of the date range.
+
+          format: Format in which results will be returned.
+
+          limit_per_group: Limits the number of objects per group to the top items within the specified
+              time range. When item count exceeds the limit, extra items appear grouped under
+              an "other" category.
+
+          location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude locations from results. For example, `-US,PT`
+              excludes results from the US, but includes results from PT.
+
+          name: Array of names used to label the series in the response.
+
+          normalization: Normalization method applied to the results. Refer to
+              [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not dimension:
+            raise ValueError(f"Expected a non-empty value for `dimension` but received {dimension!r}")
+        return self._get(
+            f"/radar/ai/bots/timeseries_groups/{dimension}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "asn": asn,
+                        "continent": continent,
+                        "crawl_purpose": crawl_purpose,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "limit_per_group": limit_per_group,
+                        "location": location,
+                        "name": name,
+                        "normalization": normalization,
+                    },
+                    timeseries_group_timeseries_groups_params.TimeseriesGroupTimeseriesGroupsParams,
+                ),
+                post_parser=ResultWrapper[TimeseriesGroupTimeseriesGroupsResponse]._unwrapper,
+            ),
+            cast_to=cast(
+                Type[TimeseriesGroupTimeseriesGroupsResponse], ResultWrapper[TimeseriesGroupTimeseriesGroupsResponse]
+            ),
+        )
 
     @typing_extensions.deprecated("deprecated")
     def user_agent(
@@ -161,6 +474,311 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         """
         return AsyncTimeseriesGroupsResourceWithStreamingResponse(self)
 
+    async def summary(
+        self,
+        dimension: Literal["USER_AGENT", "CRAWL_PURPOSE"],
+        *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        crawl_purpose: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TimeseriesGroupSummaryResponse:
+        """
+        Retrieves an aggregated summary of AI bots HTTP requests grouped by the
+        specified dimension.
+
+        Args:
+          dimension: Specifies the attribute by which to group the results.
+
+          asn: Filters results by Autonomous System. Specify one or more Autonomous System
+              Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
+              results. For example, `-174, 3356` excludes results from AS174, but includes
+              results from AS3356.
+
+          continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude continents from results. For example, `-EU,NA`
+              excludes results from EU, but includes results from NA.
+
+          crawl_purpose: Filters results by bot crawl purpose.
+
+          date_end: End of the date range (inclusive).
+
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
+
+          date_start: Start of the date range.
+
+          format: Format in which results will be returned.
+
+          limit_per_group: Limits the number of objects per group to the top items within the specified
+              time range. When item count exceeds the limit, extra items appear grouped under
+              an "other" category.
+
+          location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude locations from results. For example, `-US,PT`
+              excludes results from the US, but includes results from PT.
+
+          name: Array of names used to label the series in the response.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not dimension:
+            raise ValueError(f"Expected a non-empty value for `dimension` but received {dimension!r}")
+        return await self._get(
+            f"/radar/ai/bots/summary/{dimension}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "asn": asn,
+                        "continent": continent,
+                        "crawl_purpose": crawl_purpose,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "limit_per_group": limit_per_group,
+                        "location": location,
+                        "name": name,
+                    },
+                    timeseries_group_summary_params.TimeseriesGroupSummaryParams,
+                ),
+                post_parser=ResultWrapper[TimeseriesGroupSummaryResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[TimeseriesGroupSummaryResponse], ResultWrapper[TimeseriesGroupSummaryResponse]),
+        )
+
+    async def timeseries(
+        self,
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        crawl_purpose: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        user_agent: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TimeseriesGroupTimeseriesResponse:
+        """
+        Retrieves AI bots HTTP request volume over time.
+
+        Args:
+          agg_interval: Aggregation interval of the results (e.g., in 15 minutes or 1 hour intervals).
+              Refer to
+              [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
+
+          asn: Filters results by Autonomous System. Specify one or more Autonomous System
+              Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
+              results. For example, `-174, 3356` excludes results from AS174, but includes
+              results from AS3356.
+
+          continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude continents from results. For example, `-EU,NA`
+              excludes results from EU, but includes results from NA.
+
+          crawl_purpose: Filters results by bot crawl purpose.
+
+          date_end: End of the date range (inclusive).
+
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
+
+          date_start: Start of the date range.
+
+          format: Format in which results will be returned.
+
+          limit_per_group: Limits the number of objects per group to the top items within the specified
+              time range. When item count exceeds the limit, extra items appear grouped under
+              an "other" category.
+
+          location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude locations from results. For example, `-US,PT`
+              excludes results from the US, but includes results from PT.
+
+          name: Array of names used to label the series in the response.
+
+          user_agent: Filters results by user agent.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            "/radar/ai/bots/timeseries",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "asn": asn,
+                        "continent": continent,
+                        "crawl_purpose": crawl_purpose,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "limit_per_group": limit_per_group,
+                        "location": location,
+                        "name": name,
+                        "user_agent": user_agent,
+                    },
+                    timeseries_group_timeseries_params.TimeseriesGroupTimeseriesParams,
+                ),
+                post_parser=ResultWrapper[TimeseriesGroupTimeseriesResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[TimeseriesGroupTimeseriesResponse], ResultWrapper[TimeseriesGroupTimeseriesResponse]),
+        )
+
+    async def timeseries_groups(
+        self,
+        dimension: Literal["USER_AGENT", "CRAWL_PURPOSE"],
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        crawl_purpose: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        normalization: Literal["PERCENTAGE_CHANGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TimeseriesGroupTimeseriesGroupsResponse:
+        """
+        Retrieves the distribution of HTTP requests from AI bots, grouped by chosen the
+        specified dimension over time.
+
+        Args:
+          dimension: Specifies the attribute by which to group the results.
+
+          agg_interval: Aggregation interval of the results (e.g., in 15 minutes or 1 hour intervals).
+              Refer to
+              [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
+
+          asn: Filters results by Autonomous System. Specify one or more Autonomous System
+              Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
+              results. For example, `-174, 3356` excludes results from AS174, but includes
+              results from AS3356.
+
+          continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude continents from results. For example, `-EU,NA`
+              excludes results from EU, but includes results from NA.
+
+          crawl_purpose: Filters results by bot crawl purpose.
+
+          date_end: End of the date range (inclusive).
+
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
+
+          date_start: Start of the date range.
+
+          format: Format in which results will be returned.
+
+          limit_per_group: Limits the number of objects per group to the top items within the specified
+              time range. When item count exceeds the limit, extra items appear grouped under
+              an "other" category.
+
+          location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude locations from results. For example, `-US,PT`
+              excludes results from the US, but includes results from PT.
+
+          name: Array of names used to label the series in the response.
+
+          normalization: Normalization method applied to the results. Refer to
+              [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not dimension:
+            raise ValueError(f"Expected a non-empty value for `dimension` but received {dimension!r}")
+        return await self._get(
+            f"/radar/ai/bots/timeseries_groups/{dimension}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "asn": asn,
+                        "continent": continent,
+                        "crawl_purpose": crawl_purpose,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "limit_per_group": limit_per_group,
+                        "location": location,
+                        "name": name,
+                        "normalization": normalization,
+                    },
+                    timeseries_group_timeseries_groups_params.TimeseriesGroupTimeseriesGroupsParams,
+                ),
+                post_parser=ResultWrapper[TimeseriesGroupTimeseriesGroupsResponse]._unwrapper,
+            ),
+            cast_to=cast(
+                Type[TimeseriesGroupTimeseriesGroupsResponse], ResultWrapper[TimeseriesGroupTimeseriesGroupsResponse]
+            ),
+        )
+
     @typing_extensions.deprecated("deprecated")
     async def user_agent(
         self,
@@ -259,6 +877,15 @@ class TimeseriesGroupsResourceWithRawResponse:
     def __init__(self, timeseries_groups: TimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
+        self.summary = to_raw_response_wrapper(
+            timeseries_groups.summary,
+        )
+        self.timeseries = to_raw_response_wrapper(
+            timeseries_groups.timeseries,
+        )
+        self.timeseries_groups = to_raw_response_wrapper(
+            timeseries_groups.timeseries_groups,
+        )
         self.user_agent = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
                 timeseries_groups.user_agent  # pyright: ignore[reportDeprecated],
@@ -270,6 +897,15 @@ class AsyncTimeseriesGroupsResourceWithRawResponse:
     def __init__(self, timeseries_groups: AsyncTimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
+        self.summary = async_to_raw_response_wrapper(
+            timeseries_groups.summary,
+        )
+        self.timeseries = async_to_raw_response_wrapper(
+            timeseries_groups.timeseries,
+        )
+        self.timeseries_groups = async_to_raw_response_wrapper(
+            timeseries_groups.timeseries_groups,
+        )
         self.user_agent = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
                 timeseries_groups.user_agent  # pyright: ignore[reportDeprecated],
@@ -281,6 +917,15 @@ class TimeseriesGroupsResourceWithStreamingResponse:
     def __init__(self, timeseries_groups: TimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
+        self.summary = to_streamed_response_wrapper(
+            timeseries_groups.summary,
+        )
+        self.timeseries = to_streamed_response_wrapper(
+            timeseries_groups.timeseries,
+        )
+        self.timeseries_groups = to_streamed_response_wrapper(
+            timeseries_groups.timeseries_groups,
+        )
         self.user_agent = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
                 timeseries_groups.user_agent  # pyright: ignore[reportDeprecated],
@@ -292,6 +937,15 @@ class AsyncTimeseriesGroupsResourceWithStreamingResponse:
     def __init__(self, timeseries_groups: AsyncTimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
+        self.summary = async_to_streamed_response_wrapper(
+            timeseries_groups.summary,
+        )
+        self.timeseries = async_to_streamed_response_wrapper(
+            timeseries_groups.timeseries,
+        )
+        self.timeseries_groups = async_to_streamed_response_wrapper(
+            timeseries_groups.timeseries_groups,
+        )
         self.user_agent = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
                 timeseries_groups.user_agent  # pyright: ignore[reportDeprecated],
