@@ -17,6 +17,10 @@ __all__ = [
     "CursorPaginationResultInfo",
     "SyncCursorPagination",
     "AsyncCursorPagination",
+    "CursorPaginationAfterResultInfo",
+    "CursorPaginationAfterCursors",
+    "SyncCursorPaginationAfter",
+    "AsyncCursorPaginationAfter",
     "CursorLimitPaginationResultInfo",
     "SyncCursorLimitPagination",
     "AsyncCursorLimitPagination",
@@ -173,6 +177,62 @@ class AsyncCursorPagination(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
             return None
 
         return PageInfo(params={"cursor": cursor})
+
+
+class CursorPaginationAfterCursors(BaseModel):
+    after: Optional[str] = None
+
+
+class CursorPaginationAfterResultInfo(BaseModel):
+    cursors: Optional[CursorPaginationAfterCursors] = None
+
+
+class SyncCursorPaginationAfter(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
+    result: List[_T]
+    result_info: Optional[CursorPaginationAfterResultInfo] = None
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        result = self.result
+        if not result:
+            return []
+        return result
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        after = None
+        if self.result_info is not None:
+            if self.result_info.cursors is not None:
+                if self.result_info.cursors.after is not None:
+                    after = self.result_info.cursors.after
+        if not after:
+            return None
+
+        return PageInfo(params={"cursor": after})
+
+
+class AsyncCursorPaginationAfter(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
+    result: List[_T]
+    result_info: Optional[CursorPaginationAfterResultInfo] = None
+
+    @override
+    def _get_page_items(self) -> List[_T]:
+        result = self.result
+        if not result:
+            return []
+        return result
+
+    @override
+    def next_page_info(self) -> Optional[PageInfo]:
+        after = None
+        if self.result_info is not None:
+            if self.result_info.cursors is not None:
+                if self.result_info.cursors.after is not None:
+                    after = self.result_info.cursors.after
+        if not after:
+            return None
+
+        return PageInfo(params={"cursor": after})
 
 
 class CursorLimitPaginationResultInfo(BaseModel):

@@ -20,8 +20,9 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.workers.scripts import deployment_create_params
-from ....types.workers.scripts.deployment import Deployment
+from ....types.workers.scripts.deployment_get_response import DeploymentGetResponse
 from ....types.workers.scripts.deployment_list_response import DeploymentListResponse
+from ....types.workers.scripts.deployment_create_response import DeploymentCreateResponse
 from ....types.workers.scripts.deployment_delete_response import DeploymentDeleteResponse
 
 __all__ = ["DeploymentsResource", "AsyncDeploymentsResource"]
@@ -62,7 +63,7 @@ class DeploymentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Deployment:
+    ) -> DeploymentCreateResponse:
         """
         Deployments configure how
         [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions)
@@ -105,9 +106,9 @@ class DeploymentsResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"force": force}, deployment_create_params.DeploymentCreateParams),
-                post_parser=ResultWrapper[Deployment]._unwrapper,
+                post_parser=ResultWrapper[DeploymentCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
+            cast_to=cast(Type[DeploymentCreateResponse], ResultWrapper[DeploymentCreateResponse]),
         )
 
     def list(
@@ -213,7 +214,7 @@ class DeploymentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Deployment:
+    ) -> DeploymentGetResponse:
         """
         Get information about a Worker Deployment.
 
@@ -243,9 +244,9 @@ class DeploymentsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Deployment]._unwrapper,
+                post_parser=ResultWrapper[DeploymentGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
+            cast_to=cast(Type[DeploymentGetResponse], ResultWrapper[DeploymentGetResponse]),
         )
 
 
@@ -284,7 +285,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Deployment:
+    ) -> DeploymentCreateResponse:
         """
         Deployments configure how
         [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions)
@@ -327,9 +328,9 @@ class AsyncDeploymentsResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform({"force": force}, deployment_create_params.DeploymentCreateParams),
-                post_parser=ResultWrapper[Deployment]._unwrapper,
+                post_parser=ResultWrapper[DeploymentCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
+            cast_to=cast(Type[DeploymentCreateResponse], ResultWrapper[DeploymentCreateResponse]),
         )
 
     async def list(
@@ -435,7 +436,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Deployment:
+    ) -> DeploymentGetResponse:
         """
         Get information about a Worker Deployment.
 
@@ -465,9 +466,9 @@ class AsyncDeploymentsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Deployment]._unwrapper,
+                post_parser=ResultWrapper[DeploymentGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
+            cast_to=cast(Type[DeploymentGetResponse], ResultWrapper[DeploymentGetResponse]),
         )
 
 
