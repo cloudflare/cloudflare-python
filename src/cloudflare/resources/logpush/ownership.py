@@ -62,8 +62,8 @@ class OwnershipResource(SyncAPIResource):
         Gets a new ownership challenge sent to your destination.
 
         Args:
-          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data will be pushed.
-              Additional configuration parameters supported by the destination may be
+          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data. will be
+              pushed. Additional configuration parameters supported by the destination may be
               included.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
@@ -121,8 +121,8 @@ class OwnershipResource(SyncAPIResource):
         Validates ownership challenge of the destination.
 
         Args:
-          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data will be pushed.
-              Additional configuration parameters supported by the destination may be
+          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data. will be
+              pushed. Additional configuration parameters supported by the destination may be
               included.
 
           ownership_challenge: Ownership challenge token to prove destination ownership.
@@ -208,8 +208,8 @@ class AsyncOwnershipResource(AsyncAPIResource):
         Gets a new ownership challenge sent to your destination.
 
         Args:
-          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data will be pushed.
-              Additional configuration parameters supported by the destination may be
+          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data. will be
+              pushed. Additional configuration parameters supported by the destination may be
               included.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
@@ -269,8 +269,8 @@ class AsyncOwnershipResource(AsyncAPIResource):
         Validates ownership challenge of the destination.
 
         Args:
-          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data will be pushed.
-              Additional configuration parameters supported by the destination may be
+          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data. will be
+              pushed. Additional configuration parameters supported by the destination may be
               included.
 
           ownership_challenge: Ownership challenge token to prove destination ownership.

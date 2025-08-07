@@ -84,7 +84,7 @@ class FieldsResource(SyncAPIResource):
     ) -> object:
         """Lists all fields available for a dataset.
 
-        The response result is an object with
+        The response result is. an object with
         key-value pairs, where keys are field names, and values are descriptions.
 
         Args:
@@ -192,7 +192,7 @@ class AsyncFieldsResource(AsyncAPIResource):
     ) -> object:
         """Lists all fields available for a dataset.
 
-        The response result is an object with
+        The response result is. an object with
         key-value pairs, where keys are field names, and values are descriptions.
 
         Args:

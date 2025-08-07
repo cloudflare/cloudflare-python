@@ -105,8 +105,8 @@ class JobsResource(SyncAPIResource):
         Creates a new Logpush job for an account or zone.
 
         Args:
-          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data will be pushed.
-              Additional configuration parameters supported by the destination may be
+          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data. will be
+              pushed. Additional configuration parameters supported by the destination may be
               included.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
@@ -122,7 +122,7 @@ class JobsResource(SyncAPIResource):
               more information, refer to
               [Filters](https://developers.cloudflare.com/logs/reference/filters/).
 
-          frequency: This field is deprecated. Please use `max_upload_*` parameters instead. The
+          frequency: This field is deprecated. Please use `max_upload_*` parameters instead. . The
               frequency at which Cloudflare sends batches of logs to your destination. Setting
               frequency to high sends your logs in larger quantities of smaller files. Setting
               frequency to low sends logs in smaller quantities of larger files.
@@ -151,7 +151,7 @@ class JobsResource(SyncAPIResource):
               number of log lines per batch; this means that log files may contain many fewer
               lines than this.
 
-          name: Optional human readable job name. Not unique. Cloudflare suggests that you set
+          name: Optional human readable job name. Not unique. Cloudflare suggests. that you set
               this to a meaningful string, like the domain name, to make it easier to identify
               your job.
 
@@ -245,8 +245,8 @@ class JobsResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
-          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data will be pushed.
-              Additional configuration parameters supported by the destination may be
+          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data. will be
+              pushed. Additional configuration parameters supported by the destination may be
               included.
 
           enabled: Flag that indicates if the job is enabled.
@@ -255,7 +255,7 @@ class JobsResource(SyncAPIResource):
               more information, refer to
               [Filters](https://developers.cloudflare.com/logs/reference/filters/).
 
-          frequency: This field is deprecated. Please use `max_upload_*` parameters instead. The
+          frequency: This field is deprecated. Please use `max_upload_*` parameters instead. . The
               frequency at which Cloudflare sends batches of logs to your destination. Setting
               frequency to high sends your logs in larger quantities of smaller files. Setting
               frequency to low sends logs in smaller quantities of larger files.
@@ -284,7 +284,7 @@ class JobsResource(SyncAPIResource):
               number of log lines per batch; this means that log files may contain many fewer
               lines than this.
 
-          name: Optional human readable job name. Not unique. Cloudflare suggests that you set
+          name: Optional human readable job name. Not unique. Cloudflare suggests. that you set
               this to a meaningful string, like the domain name, to make it easier to identify
               your job.
 
@@ -579,8 +579,8 @@ class AsyncJobsResource(AsyncAPIResource):
         Creates a new Logpush job for an account or zone.
 
         Args:
-          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data will be pushed.
-              Additional configuration parameters supported by the destination may be
+          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data. will be
+              pushed. Additional configuration parameters supported by the destination may be
               included.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
@@ -596,7 +596,7 @@ class AsyncJobsResource(AsyncAPIResource):
               more information, refer to
               [Filters](https://developers.cloudflare.com/logs/reference/filters/).
 
-          frequency: This field is deprecated. Please use `max_upload_*` parameters instead. The
+          frequency: This field is deprecated. Please use `max_upload_*` parameters instead. . The
               frequency at which Cloudflare sends batches of logs to your destination. Setting
               frequency to high sends your logs in larger quantities of smaller files. Setting
               frequency to low sends logs in smaller quantities of larger files.
@@ -625,7 +625,7 @@ class AsyncJobsResource(AsyncAPIResource):
               number of log lines per batch; this means that log files may contain many fewer
               lines than this.
 
-          name: Optional human readable job name. Not unique. Cloudflare suggests that you set
+          name: Optional human readable job name. Not unique. Cloudflare suggests. that you set
               this to a meaningful string, like the domain name, to make it easier to identify
               your job.
 
@@ -719,8 +719,8 @@ class AsyncJobsResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
-          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data will be pushed.
-              Additional configuration parameters supported by the destination may be
+          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data. will be
+              pushed. Additional configuration parameters supported by the destination may be
               included.
 
           enabled: Flag that indicates if the job is enabled.
@@ -729,7 +729,7 @@ class AsyncJobsResource(AsyncAPIResource):
               more information, refer to
               [Filters](https://developers.cloudflare.com/logs/reference/filters/).
 
-          frequency: This field is deprecated. Please use `max_upload_*` parameters instead. The
+          frequency: This field is deprecated. Please use `max_upload_*` parameters instead. . The
               frequency at which Cloudflare sends batches of logs to your destination. Setting
               frequency to high sends your logs in larger quantities of smaller files. Setting
               frequency to low sends logs in smaller quantities of larger files.
@@ -758,7 +758,7 @@ class AsyncJobsResource(AsyncAPIResource):
               number of log lines per batch; this means that log files may contain many fewer
               lines than this.
 
-          name: Optional human readable job name. Not unique. Cloudflare suggests that you set
+          name: Optional human readable job name. Not unique. Cloudflare suggests. that you set
               this to a meaningful string, like the domain name, to make it easier to identify
               your job.
 

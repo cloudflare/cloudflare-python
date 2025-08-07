@@ -63,8 +63,8 @@ class ValidateResource(SyncAPIResource):
         Validates destination.
 
         Args:
-          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data will be pushed.
-              Additional configuration parameters supported by the destination may be
+          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data. will be
+              pushed. Additional configuration parameters supported by the destination may be
               included.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
@@ -123,8 +123,8 @@ class ValidateResource(SyncAPIResource):
         Checks if there is an existing job with a destination.
 
         Args:
-          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data will be pushed.
-              Additional configuration parameters supported by the destination may be
+          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data. will be
+              pushed. Additional configuration parameters supported by the destination may be
               included.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
@@ -267,8 +267,8 @@ class AsyncValidateResource(AsyncAPIResource):
         Validates destination.
 
         Args:
-          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data will be pushed.
-              Additional configuration parameters supported by the destination may be
+          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data. will be
+              pushed. Additional configuration parameters supported by the destination may be
               included.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
@@ -327,8 +327,8 @@ class AsyncValidateResource(AsyncAPIResource):
         Checks if there is an existing job with a destination.
 
         Args:
-          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data will be pushed.
-              Additional configuration parameters supported by the destination may be
+          destination_conf: Uniquely identifies a resource (such as an s3 bucket) where data. will be
+              pushed. Additional configuration parameters supported by the destination may be
               included.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.

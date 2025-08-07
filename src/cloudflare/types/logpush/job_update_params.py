@@ -18,10 +18,10 @@ class JobUpdateParams(TypedDict, total=False):
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
     destination_conf: str
-    """Uniquely identifies a resource (such as an s3 bucket) where data will be pushed.
+    """Uniquely identifies a resource (such as an s3 bucket) where data.
 
-    Additional configuration parameters supported by the destination may be
-    included.
+    will be pushed. Additional configuration parameters supported by the destination
+    may be included.
     """
 
     enabled: bool
@@ -37,10 +37,10 @@ class JobUpdateParams(TypedDict, total=False):
     frequency: Optional[Literal["high", "low"]]
     """This field is deprecated.
 
-    Please use `max_upload_*` parameters instead. The frequency at which Cloudflare
-    sends batches of logs to your destination. Setting frequency to high sends your
-    logs in larger quantities of smaller files. Setting frequency to low sends logs
-    in smaller quantities of larger files.
+    Please use `max_upload_*` parameters instead. . The frequency at which
+    Cloudflare sends batches of logs to your destination. Setting frequency to high
+    sends your logs in larger quantities of smaller files. Setting frequency to low
+    sends logs in smaller quantities of larger files.
     """
 
     kind: Literal["", "edge"]
@@ -85,7 +85,7 @@ class JobUpdateParams(TypedDict, total=False):
     name: Optional[str]
     """Optional human readable job name.
 
-    Not unique. Cloudflare suggests that you set this to a meaningful string, like
+    Not unique. Cloudflare suggests. that you set this to a meaningful string, like
     the domain name, to make it easier to identify your job.
     """
 
