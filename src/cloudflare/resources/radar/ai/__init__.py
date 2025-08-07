@@ -8,6 +8,14 @@ from .ai import (
     AIResourceWithStreamingResponse,
     AsyncAIResourceWithStreamingResponse,
 )
+from .bots import (
+    BotsResource,
+    AsyncBotsResource,
+    BotsResourceWithRawResponse,
+    AsyncBotsResourceWithRawResponse,
+    BotsResourceWithStreamingResponse,
+    AsyncBotsResourceWithStreamingResponse,
+)
 from .inference import (
     InferenceResource,
     AsyncInferenceResource,
@@ -24,6 +32,14 @@ from .to_markdown import (
     ToMarkdownResourceWithStreamingResponse,
     AsyncToMarkdownResourceWithStreamingResponse,
 )
+from .timeseries_groups import (
+    TimeseriesGroupsResource,
+    AsyncTimeseriesGroupsResource,
+    TimeseriesGroupsResourceWithRawResponse,
+    AsyncTimeseriesGroupsResourceWithRawResponse,
+    TimeseriesGroupsResourceWithStreamingResponse,
+    AsyncTimeseriesGroupsResourceWithStreamingResponse,
+)
 
 __all__ = [
     "ToMarkdownResource",
@@ -38,6 +54,18 @@ __all__ = [
     "AsyncInferenceResourceWithRawResponse",
     "InferenceResourceWithStreamingResponse",
     "AsyncInferenceResourceWithStreamingResponse",
+    "BotsResource",
+    "AsyncBotsResource",
+    "BotsResourceWithRawResponse",
+    "AsyncBotsResourceWithRawResponse",
+    "BotsResourceWithStreamingResponse",
+    "AsyncBotsResourceWithStreamingResponse",
+    "TimeseriesGroupsResource",
+    "AsyncTimeseriesGroupsResource",
+    "TimeseriesGroupsResourceWithRawResponse",
+    "AsyncTimeseriesGroupsResourceWithRawResponse",
+    "TimeseriesGroupsResourceWithStreamingResponse",
+    "AsyncTimeseriesGroupsResourceWithStreamingResponse",
     "AIResource",
     "AsyncAIResource",
     "AIResourceWithRawResponse",

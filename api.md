@@ -7247,6 +7247,32 @@ Methods:
 - <code title="get /radar/ai/inference/timeseries_groups/model">client.radar.ai.inference.timeseries_groups.summary.<a href="./src/cloudflare/resources/radar/ai/inference/timeseries_groups/summary.py">model</a>(\*\*<a href="src/cloudflare/types/radar/ai/inference/timeseries_groups/summary_model_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ai/inference/timeseries_groups/summary_model_response.py">SummaryModelResponse</a></code>
 - <code title="get /radar/ai/inference/timeseries_groups/task">client.radar.ai.inference.timeseries_groups.summary.<a href="./src/cloudflare/resources/radar/ai/inference/timeseries_groups/summary.py">task</a>(\*\*<a href="src/cloudflare/types/radar/ai/inference/timeseries_groups/summary_task_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ai/inference/timeseries_groups/summary_task_response.py">SummaryTaskResponse</a></code>
 
+### Bots
+
+#### Summary
+
+Types:
+
+```python
+from cloudflare.types.radar.ai.bots import SummaryUserAgentResponse
+```
+
+Methods:
+
+- <code title="get /radar/ai/bots/summary/user_agent">client.radar.ai.bots.summary.<a href="./src/cloudflare/resources/radar/ai/bots/summary.py">user_agent</a>(\*\*<a href="src/cloudflare/types/radar/ai/bots/summary_user_agent_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ai/bots/summary_user_agent_response.py">SummaryUserAgentResponse</a></code>
+
+### TimeseriesGroups
+
+Types:
+
+```python
+from cloudflare.types.radar.ai import TimeseriesGroupUserAgentResponse
+```
+
+Methods:
+
+- <code title="get /radar/ai/bots/timeseries_groups/user_agent">client.radar.ai.timeseries_groups.<a href="./src/cloudflare/resources/radar/ai/timeseries_groups.py">user_agent</a>(\*\*<a href="src/cloudflare/types/radar/ai/timeseries_group_user_agent_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ai/timeseries_group_user_agent_response.py">TimeseriesGroupUserAgentResponse</a></code>
+
 ## Annotations
 
 Types:
