@@ -12,14 +12,6 @@ from .to_markdown import (
     AsyncToMarkdownResourceWithStreamingResponse,
 )
 from ...._resource import SyncAPIResource, AsyncAPIResource
-from .timeseries_groups import (
-    TimeseriesGroupsResource,
-    AsyncTimeseriesGroupsResource,
-    TimeseriesGroupsResourceWithRawResponse,
-    AsyncTimeseriesGroupsResourceWithRawResponse,
-    TimeseriesGroupsResourceWithStreamingResponse,
-    AsyncTimeseriesGroupsResourceWithStreamingResponse,
-)
 from .inference.inference import (
     InferenceResource,
     AsyncInferenceResource,
@@ -40,10 +32,6 @@ class AIResource(SyncAPIResource):
     @cached_property
     def inference(self) -> InferenceResource:
         return InferenceResource(self._client)
-
-    @cached_property
-    def timeseries_groups(self) -> TimeseriesGroupsResource:
-        return TimeseriesGroupsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AIResourceWithRawResponse:
@@ -73,10 +61,6 @@ class AsyncAIResource(AsyncAPIResource):
     @cached_property
     def inference(self) -> AsyncInferenceResource:
         return AsyncInferenceResource(self._client)
-
-    @cached_property
-    def timeseries_groups(self) -> AsyncTimeseriesGroupsResource:
-        return AsyncTimeseriesGroupsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncAIResourceWithRawResponse:
@@ -110,10 +94,6 @@ class AIResourceWithRawResponse:
     def inference(self) -> InferenceResourceWithRawResponse:
         return InferenceResourceWithRawResponse(self._ai.inference)
 
-    @cached_property
-    def timeseries_groups(self) -> TimeseriesGroupsResourceWithRawResponse:
-        return TimeseriesGroupsResourceWithRawResponse(self._ai.timeseries_groups)
-
 
 class AsyncAIResourceWithRawResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
@@ -126,10 +106,6 @@ class AsyncAIResourceWithRawResponse:
     @cached_property
     def inference(self) -> AsyncInferenceResourceWithRawResponse:
         return AsyncInferenceResourceWithRawResponse(self._ai.inference)
-
-    @cached_property
-    def timeseries_groups(self) -> AsyncTimeseriesGroupsResourceWithRawResponse:
-        return AsyncTimeseriesGroupsResourceWithRawResponse(self._ai.timeseries_groups)
 
 
 class AIResourceWithStreamingResponse:
@@ -144,10 +120,6 @@ class AIResourceWithStreamingResponse:
     def inference(self) -> InferenceResourceWithStreamingResponse:
         return InferenceResourceWithStreamingResponse(self._ai.inference)
 
-    @cached_property
-    def timeseries_groups(self) -> TimeseriesGroupsResourceWithStreamingResponse:
-        return TimeseriesGroupsResourceWithStreamingResponse(self._ai.timeseries_groups)
-
 
 class AsyncAIResourceWithStreamingResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
@@ -160,7 +132,3 @@ class AsyncAIResourceWithStreamingResponse:
     @cached_property
     def inference(self) -> AsyncInferenceResourceWithStreamingResponse:
         return AsyncInferenceResourceWithStreamingResponse(self._ai.inference)
-
-    @cached_property
-    def timeseries_groups(self) -> AsyncTimeseriesGroupsResourceWithStreamingResponse:
-        return AsyncTimeseriesGroupsResourceWithStreamingResponse(self._ai.timeseries_groups)
