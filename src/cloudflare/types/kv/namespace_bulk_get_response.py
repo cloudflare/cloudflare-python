@@ -20,10 +20,8 @@ class WorkersKVBulkGetResult(BaseModel):
 
 class WorkersKVBulkGetResultWithMetadataValues(BaseModel):
     metadata: object
-    """The metadata associated with the key."""
 
     value: object
-    """The value associated with the key."""
 
     expiration: Optional[float] = None
     """
