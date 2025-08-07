@@ -31,6 +31,13 @@ class SubscriptionConfigurationParam(TypedDict, total=False):
     [Learn more about JavaScript Detections](https://developers.cloudflare.com/bots/reference/javascript-detections/).
     """
 
+    is_robots_txt_managed: bool
+    """Enable cloudflare managed robots.txt.
+
+    If an existing robots.txt is detected, then managed robots.txt will be prepended
+    to the existing robots.txt.
+    """
+
     suppress_session_score: bool
     """
     Whether to disable tracking the highest bot score for a session in the Bot

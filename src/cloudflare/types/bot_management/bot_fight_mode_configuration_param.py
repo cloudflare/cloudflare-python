@@ -26,3 +26,10 @@ class BotFightModeConfigurationParam(TypedDict, total=False):
 
     fight_mode: bool
     """Whether to enable Bot Fight Mode."""
+
+    is_robots_txt_managed: bool
+    """Enable cloudflare managed robots.txt.
+
+    If an existing robots.txt is detected, then managed robots.txt will be prepended
+    to the existing robots.txt.
+    """

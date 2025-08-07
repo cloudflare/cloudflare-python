@@ -54,6 +54,13 @@ class BotFightModeConfiguration(BaseModel):
     fight_mode: Optional[bool] = None
     """Whether to enable Bot Fight Mode."""
 
+    is_robots_txt_managed: Optional[bool] = None
+    """Enable cloudflare managed robots.txt.
+
+    If an existing robots.txt is detected, then managed robots.txt will be prepended
+    to the existing robots.txt.
+    """
+
     stale_zone_configuration: Optional[StaleZoneConfiguration] = None
     """
     A read-only field that shows which unauthorized settings are currently active on

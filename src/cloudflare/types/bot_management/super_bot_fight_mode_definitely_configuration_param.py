@@ -24,6 +24,13 @@ class SuperBotFightModeDefinitelyConfigurationParam(TypedDict, total=False):
     [Learn more about JavaScript Detections](https://developers.cloudflare.com/bots/reference/javascript-detections/).
     """
 
+    is_robots_txt_managed: bool
+    """Enable cloudflare managed robots.txt.
+
+    If an existing robots.txt is detected, then managed robots.txt will be prepended
+    to the existing robots.txt.
+    """
+
     optimize_wordpress: bool
     """Whether to optimize Super Bot Fight Mode protections for Wordpress."""
 

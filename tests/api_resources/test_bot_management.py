@@ -35,6 +35,7 @@ class TestBotManagement:
             crawler_protection="enabled",
             enable_js=True,
             fight_mode=True,
+            is_robots_txt_managed=True,
         )
         assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
 
@@ -83,6 +84,7 @@ class TestBotManagement:
             ai_bots_protection="block",
             crawler_protection="enabled",
             enable_js=True,
+            is_robots_txt_managed=True,
             optimize_wordpress=True,
             sbfm_definitely_automated="allow",
             sbfm_static_resource_protection=True,
@@ -135,6 +137,7 @@ class TestBotManagement:
             ai_bots_protection="block",
             crawler_protection="enabled",
             enable_js=True,
+            is_robots_txt_managed=True,
             optimize_wordpress=True,
             sbfm_definitely_automated="allow",
             sbfm_likely_automated="allow",
@@ -189,6 +192,7 @@ class TestBotManagement:
             auto_update_model=True,
             crawler_protection="enabled",
             enable_js=True,
+            is_robots_txt_managed=True,
             suppress_session_score=False,
         )
         assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
@@ -283,6 +287,7 @@ class TestAsyncBotManagement:
             crawler_protection="enabled",
             enable_js=True,
             fight_mode=True,
+            is_robots_txt_managed=True,
         )
         assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
 
@@ -331,6 +336,7 @@ class TestAsyncBotManagement:
             ai_bots_protection="block",
             crawler_protection="enabled",
             enable_js=True,
+            is_robots_txt_managed=True,
             optimize_wordpress=True,
             sbfm_definitely_automated="allow",
             sbfm_static_resource_protection=True,
@@ -383,6 +389,7 @@ class TestAsyncBotManagement:
             ai_bots_protection="block",
             crawler_protection="enabled",
             enable_js=True,
+            is_robots_txt_managed=True,
             optimize_wordpress=True,
             sbfm_definitely_automated="allow",
             sbfm_likely_automated="allow",
@@ -437,6 +444,7 @@ class TestAsyncBotManagement:
             auto_update_model=True,
             crawler_protection="enabled",
             enable_js=True,
+            is_robots_txt_managed=True,
             suppress_session_score=False,
         )
         assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])

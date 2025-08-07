@@ -55,6 +55,7 @@ class BotManagementResource(SyncAPIResource):
         crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
         enable_js: bool | NotGiven = NOT_GIVEN,
         fight_mode: bool | NotGiven = NOT_GIVEN,
+        is_robots_txt_managed: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -138,6 +139,9 @@ class BotManagementResource(SyncAPIResource):
 
           fight_mode: Whether to enable Bot Fight Mode.
 
+          is_robots_txt_managed: Enable cloudflare managed robots.txt. If an existing robots.txt is detected,
+              then managed robots.txt will be prepended to the existing robots.txt.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -156,6 +160,7 @@ class BotManagementResource(SyncAPIResource):
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | NotGiven = NOT_GIVEN,
         crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
         enable_js: bool | NotGiven = NOT_GIVEN,
+        is_robots_txt_managed: bool | NotGiven = NOT_GIVEN,
         optimize_wordpress: bool | NotGiven = NOT_GIVEN,
         sbfm_definitely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
         sbfm_static_resource_protection: bool | NotGiven = NOT_GIVEN,
@@ -241,6 +246,9 @@ class BotManagementResource(SyncAPIResource):
           enable_js: Use lightweight, invisible JavaScript detections to improve Bot Management.
               [Learn more about JavaScript Detections](https://developers.cloudflare.com/bots/reference/javascript-detections/).
 
+          is_robots_txt_managed: Enable cloudflare managed robots.txt. If an existing robots.txt is detected,
+              then managed robots.txt will be prepended to the existing robots.txt.
+
           optimize_wordpress: Whether to optimize Super Bot Fight Mode protections for Wordpress.
 
           sbfm_definitely_automated: Super Bot Fight Mode (SBFM) action to take on definitely automated requests.
@@ -269,6 +277,7 @@ class BotManagementResource(SyncAPIResource):
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | NotGiven = NOT_GIVEN,
         crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
         enable_js: bool | NotGiven = NOT_GIVEN,
+        is_robots_txt_managed: bool | NotGiven = NOT_GIVEN,
         optimize_wordpress: bool | NotGiven = NOT_GIVEN,
         sbfm_definitely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
         sbfm_likely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
@@ -355,6 +364,9 @@ class BotManagementResource(SyncAPIResource):
           enable_js: Use lightweight, invisible JavaScript detections to improve Bot Management.
               [Learn more about JavaScript Detections](https://developers.cloudflare.com/bots/reference/javascript-detections/).
 
+          is_robots_txt_managed: Enable cloudflare managed robots.txt. If an existing robots.txt is detected,
+              then managed robots.txt will be prepended to the existing robots.txt.
+
           optimize_wordpress: Whether to optimize Super Bot Fight Mode protections for Wordpress.
 
           sbfm_definitely_automated: Super Bot Fight Mode (SBFM) action to take on definitely automated requests.
@@ -386,6 +398,7 @@ class BotManagementResource(SyncAPIResource):
         auto_update_model: bool | NotGiven = NOT_GIVEN,
         crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
         enable_js: bool | NotGiven = NOT_GIVEN,
+        is_robots_txt_managed: bool | NotGiven = NOT_GIVEN,
         suppress_session_score: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -472,6 +485,9 @@ class BotManagementResource(SyncAPIResource):
           enable_js: Use lightweight, invisible JavaScript detections to improve Bot Management.
               [Learn more about JavaScript Detections](https://developers.cloudflare.com/bots/reference/javascript-detections/).
 
+          is_robots_txt_managed: Enable cloudflare managed robots.txt. If an existing robots.txt is detected,
+              then managed robots.txt will be prepended to the existing robots.txt.
+
           suppress_session_score: Whether to disable tracking the highest bot score for a session in the Bot
               Management cookie.
 
@@ -494,6 +510,7 @@ class BotManagementResource(SyncAPIResource):
         crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
         enable_js: bool | NotGiven = NOT_GIVEN,
         fight_mode: bool | NotGiven = NOT_GIVEN,
+        is_robots_txt_managed: bool | NotGiven = NOT_GIVEN,
         optimize_wordpress: bool | NotGiven = NOT_GIVEN,
         sbfm_definitely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
         sbfm_static_resource_protection: bool | NotGiven = NOT_GIVEN,
@@ -520,6 +537,7 @@ class BotManagementResource(SyncAPIResource):
                         "crawler_protection": crawler_protection,
                         "enable_js": enable_js,
                         "fight_mode": fight_mode,
+                        "is_robots_txt_managed": is_robots_txt_managed,
                         "optimize_wordpress": optimize_wordpress,
                         "sbfm_definitely_automated": sbfm_definitely_automated,
                         "sbfm_static_resource_protection": sbfm_static_resource_protection,
@@ -617,6 +635,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
         enable_js: bool | NotGiven = NOT_GIVEN,
         fight_mode: bool | NotGiven = NOT_GIVEN,
+        is_robots_txt_managed: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -700,6 +719,9 @@ class AsyncBotManagementResource(AsyncAPIResource):
 
           fight_mode: Whether to enable Bot Fight Mode.
 
+          is_robots_txt_managed: Enable cloudflare managed robots.txt. If an existing robots.txt is detected,
+              then managed robots.txt will be prepended to the existing robots.txt.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -718,6 +740,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | NotGiven = NOT_GIVEN,
         crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
         enable_js: bool | NotGiven = NOT_GIVEN,
+        is_robots_txt_managed: bool | NotGiven = NOT_GIVEN,
         optimize_wordpress: bool | NotGiven = NOT_GIVEN,
         sbfm_definitely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
         sbfm_static_resource_protection: bool | NotGiven = NOT_GIVEN,
@@ -803,6 +826,9 @@ class AsyncBotManagementResource(AsyncAPIResource):
           enable_js: Use lightweight, invisible JavaScript detections to improve Bot Management.
               [Learn more about JavaScript Detections](https://developers.cloudflare.com/bots/reference/javascript-detections/).
 
+          is_robots_txt_managed: Enable cloudflare managed robots.txt. If an existing robots.txt is detected,
+              then managed robots.txt will be prepended to the existing robots.txt.
+
           optimize_wordpress: Whether to optimize Super Bot Fight Mode protections for Wordpress.
 
           sbfm_definitely_automated: Super Bot Fight Mode (SBFM) action to take on definitely automated requests.
@@ -831,6 +857,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | NotGiven = NOT_GIVEN,
         crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
         enable_js: bool | NotGiven = NOT_GIVEN,
+        is_robots_txt_managed: bool | NotGiven = NOT_GIVEN,
         optimize_wordpress: bool | NotGiven = NOT_GIVEN,
         sbfm_definitely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
         sbfm_likely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
@@ -917,6 +944,9 @@ class AsyncBotManagementResource(AsyncAPIResource):
           enable_js: Use lightweight, invisible JavaScript detections to improve Bot Management.
               [Learn more about JavaScript Detections](https://developers.cloudflare.com/bots/reference/javascript-detections/).
 
+          is_robots_txt_managed: Enable cloudflare managed robots.txt. If an existing robots.txt is detected,
+              then managed robots.txt will be prepended to the existing robots.txt.
+
           optimize_wordpress: Whether to optimize Super Bot Fight Mode protections for Wordpress.
 
           sbfm_definitely_automated: Super Bot Fight Mode (SBFM) action to take on definitely automated requests.
@@ -948,6 +978,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         auto_update_model: bool | NotGiven = NOT_GIVEN,
         crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
         enable_js: bool | NotGiven = NOT_GIVEN,
+        is_robots_txt_managed: bool | NotGiven = NOT_GIVEN,
         suppress_session_score: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1034,6 +1065,9 @@ class AsyncBotManagementResource(AsyncAPIResource):
           enable_js: Use lightweight, invisible JavaScript detections to improve Bot Management.
               [Learn more about JavaScript Detections](https://developers.cloudflare.com/bots/reference/javascript-detections/).
 
+          is_robots_txt_managed: Enable cloudflare managed robots.txt. If an existing robots.txt is detected,
+              then managed robots.txt will be prepended to the existing robots.txt.
+
           suppress_session_score: Whether to disable tracking the highest bot score for a session in the Bot
               Management cookie.
 
@@ -1056,6 +1090,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
         enable_js: bool | NotGiven = NOT_GIVEN,
         fight_mode: bool | NotGiven = NOT_GIVEN,
+        is_robots_txt_managed: bool | NotGiven = NOT_GIVEN,
         optimize_wordpress: bool | NotGiven = NOT_GIVEN,
         sbfm_definitely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
         sbfm_static_resource_protection: bool | NotGiven = NOT_GIVEN,
@@ -1082,6 +1117,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
                         "crawler_protection": crawler_protection,
                         "enable_js": enable_js,
                         "fight_mode": fight_mode,
+                        "is_robots_txt_managed": is_robots_txt_managed,
                         "optimize_wordpress": optimize_wordpress,
                         "sbfm_definitely_automated": sbfm_definitely_automated,
                         "sbfm_static_resource_protection": sbfm_static_resource_protection,

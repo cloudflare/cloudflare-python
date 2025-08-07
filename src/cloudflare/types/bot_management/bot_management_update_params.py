@@ -37,6 +37,13 @@ class BotFightModeConfiguration(TypedDict, total=False):
     fight_mode: bool
     """Whether to enable Bot Fight Mode."""
 
+    is_robots_txt_managed: bool
+    """Enable cloudflare managed robots.txt.
+
+    If an existing robots.txt is detected, then managed robots.txt will be prepended
+    to the existing robots.txt.
+    """
+
 
 class SuperBotFightModeDefinitelyConfiguration(TypedDict, total=False):
     zone_id: Required[str]
@@ -56,6 +63,13 @@ class SuperBotFightModeDefinitelyConfiguration(TypedDict, total=False):
     """Use lightweight, invisible JavaScript detections to improve Bot Management.
 
     [Learn more about JavaScript Detections](https://developers.cloudflare.com/bots/reference/javascript-detections/).
+    """
+
+    is_robots_txt_managed: bool
+    """Enable cloudflare managed robots.txt.
+
+    If an existing robots.txt is detected, then managed robots.txt will be prepended
+    to the existing robots.txt.
     """
 
     optimize_wordpress: bool
@@ -93,6 +107,13 @@ class SuperBotFightModeLikelyConfiguration(TypedDict, total=False):
     """Use lightweight, invisible JavaScript detections to improve Bot Management.
 
     [Learn more about JavaScript Detections](https://developers.cloudflare.com/bots/reference/javascript-detections/).
+    """
+
+    is_robots_txt_managed: bool
+    """Enable cloudflare managed robots.txt.
+
+    If an existing robots.txt is detected, then managed robots.txt will be prepended
+    to the existing robots.txt.
     """
 
     optimize_wordpress: bool
@@ -140,6 +161,13 @@ class SubscriptionConfiguration(TypedDict, total=False):
     """Use lightweight, invisible JavaScript detections to improve Bot Management.
 
     [Learn more about JavaScript Detections](https://developers.cloudflare.com/bots/reference/javascript-detections/).
+    """
+
+    is_robots_txt_managed: bool
+    """Enable cloudflare managed robots.txt.
+
+    If an existing robots.txt is detected, then managed robots.txt will be prepended
+    to the existing robots.txt.
     """
 
     suppress_session_score: bool
