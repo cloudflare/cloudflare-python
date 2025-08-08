@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, cast
+from typing import Any, Type, Iterable, cast
 
 import httpx
 
@@ -20,6 +20,8 @@ from ...._wrappers import ResultWrapper
 from ....pagination import SyncCursorPagination, AsyncCursorPagination
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.rules.lists import item_list_params, item_create_params, item_delete_params, item_update_params
+from ....types.rules.lists.item_get_response import ItemGetResponse
+from ....types.rules.lists.item_list_response import ItemListResponse
 from ....types.rules.lists.item_create_response import ItemCreateResponse
 from ....types.rules.lists.item_delete_response import ItemDeleteResponse
 from ....types.rules.lists.item_update_response import ItemUpdateResponse
@@ -161,7 +163,7 @@ class ItemsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncCursorPagination[object]:
+    ) -> SyncCursorPagination[ItemListResponse]:
         """
         Fetches all the items in the list.
 
@@ -197,7 +199,7 @@ class ItemsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/rules/lists/{list_id}/items",
-            page=SyncCursorPagination[object],
+            page=SyncCursorPagination[ItemListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -212,7 +214,7 @@ class ItemsResource(SyncAPIResource):
                     item_list_params.ItemListParams,
                 ),
             ),
-            model=object,
+            model=cast(Any, ItemListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     def delete(
@@ -277,7 +279,7 @@ class ItemsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> ItemGetResponse:
         """
         Fetches a list item in the list.
 
@@ -302,16 +304,21 @@ class ItemsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         if not item_id:
             raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
-        return self._get(
-            f"/accounts/{account_id}/rules/lists/{list_id}/items/{item_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[object]._unwrapper,
+        return cast(
+            ItemGetResponse,
+            self._get(
+                f"/accounts/{account_id}/rules/lists/{list_id}/items/{item_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[ItemGetResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ItemGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 
@@ -449,7 +456,7 @@ class AsyncItemsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[object, AsyncCursorPagination[object]]:
+    ) -> AsyncPaginator[ItemListResponse, AsyncCursorPagination[ItemListResponse]]:
         """
         Fetches all the items in the list.
 
@@ -485,7 +492,7 @@ class AsyncItemsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/rules/lists/{list_id}/items",
-            page=AsyncCursorPagination[object],
+            page=AsyncCursorPagination[ItemListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -500,7 +507,7 @@ class AsyncItemsResource(AsyncAPIResource):
                     item_list_params.ItemListParams,
                 ),
             ),
-            model=object,
+            model=cast(Any, ItemListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     async def delete(
@@ -565,7 +572,7 @@ class AsyncItemsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> ItemGetResponse:
         """
         Fetches a list item in the list.
 
@@ -590,16 +597,21 @@ class AsyncItemsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         if not item_id:
             raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
-        return await self._get(
-            f"/accounts/{account_id}/rules/lists/{list_id}/items/{item_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[object]._unwrapper,
+        return cast(
+            ItemGetResponse,
+            await self._get(
+                f"/accounts/{account_id}/rules/lists/{list_id}/items/{item_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[ItemGetResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ItemGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 

@@ -11,6 +11,8 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncCursorPagination, AsyncCursorPagination
 from cloudflare.types.rules.lists import (
+    ItemGetResponse,
+    ItemListResponse,
     ItemCreateResponse,
     ItemDeleteResponse,
     ItemUpdateResponse,
@@ -134,7 +136,7 @@ class TestItems:
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncCursorPagination[object], item, path=["response"])
+        assert_matches_type(SyncCursorPagination[ItemListResponse], item, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
@@ -145,7 +147,7 @@ class TestItems:
             per_page=1,
             search="1.1.1.",
         )
-        assert_matches_type(SyncCursorPagination[object], item, path=["response"])
+        assert_matches_type(SyncCursorPagination[ItemListResponse], item, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -157,7 +159,7 @@ class TestItems:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         item = response.parse()
-        assert_matches_type(SyncCursorPagination[object], item, path=["response"])
+        assert_matches_type(SyncCursorPagination[ItemListResponse], item, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -169,7 +171,7 @@ class TestItems:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             item = response.parse()
-            assert_matches_type(SyncCursorPagination[object], item, path=["response"])
+            assert_matches_type(SyncCursorPagination[ItemListResponse], item, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -251,7 +253,7 @@ class TestItems:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
         )
-        assert_matches_type(object, item, path=["response"])
+        assert_matches_type(ItemGetResponse, item, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -264,7 +266,7 @@ class TestItems:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         item = response.parse()
-        assert_matches_type(object, item, path=["response"])
+        assert_matches_type(ItemGetResponse, item, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -277,7 +279,7 @@ class TestItems:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             item = response.parse()
-            assert_matches_type(object, item, path=["response"])
+            assert_matches_type(ItemGetResponse, item, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -422,7 +424,7 @@ class TestAsyncItems:
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncCursorPagination[object], item, path=["response"])
+        assert_matches_type(AsyncCursorPagination[ItemListResponse], item, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -433,7 +435,7 @@ class TestAsyncItems:
             per_page=1,
             search="1.1.1.",
         )
-        assert_matches_type(AsyncCursorPagination[object], item, path=["response"])
+        assert_matches_type(AsyncCursorPagination[ItemListResponse], item, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -445,7 +447,7 @@ class TestAsyncItems:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         item = await response.parse()
-        assert_matches_type(AsyncCursorPagination[object], item, path=["response"])
+        assert_matches_type(AsyncCursorPagination[ItemListResponse], item, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -457,7 +459,7 @@ class TestAsyncItems:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             item = await response.parse()
-            assert_matches_type(AsyncCursorPagination[object], item, path=["response"])
+            assert_matches_type(AsyncCursorPagination[ItemListResponse], item, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -539,7 +541,7 @@ class TestAsyncItems:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
         )
-        assert_matches_type(object, item, path=["response"])
+        assert_matches_type(ItemGetResponse, item, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -552,7 +554,7 @@ class TestAsyncItems:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         item = await response.parse()
-        assert_matches_type(object, item, path=["response"])
+        assert_matches_type(ItemGetResponse, item, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -565,7 +567,7 @@ class TestAsyncItems:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             item = await response.parse()
-            assert_matches_type(object, item, path=["response"])
+            assert_matches_type(ItemGetResponse, item, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
