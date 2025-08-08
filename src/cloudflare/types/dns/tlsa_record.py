@@ -12,7 +12,7 @@ __all__ = ["TLSARecord", "Data", "Settings"]
 
 class Data(BaseModel):
     certificate: Optional[str] = None
-    """certificate."""
+    """Certificate."""
 
     matching_type: Optional[float] = None
     """Matching Type."""

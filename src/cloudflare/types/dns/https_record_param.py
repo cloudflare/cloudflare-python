@@ -13,13 +13,13 @@ __all__ = ["HTTPSRecordParam", "Data", "Settings"]
 
 class Data(TypedDict, total=False):
     priority: float
-    """priority."""
+    """Priority."""
 
     target: str
-    """target."""
+    """Target."""
 
     value: str
-    """value."""
+    """Value."""
 
 
 class Settings(TypedDict, total=False):

@@ -12,13 +12,13 @@ __all__ = ["SVCBRecord", "Data", "Settings"]
 
 class Data(BaseModel):
     priority: Optional[float] = None
-    """priority."""
+    """Priority."""
 
     target: Optional[str] = None
-    """target."""
+    """Target."""
 
     value: Optional[str] = None
-    """value."""
+    """Value."""
 
 
 class Settings(BaseModel):

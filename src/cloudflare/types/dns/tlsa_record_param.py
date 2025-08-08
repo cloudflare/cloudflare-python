@@ -13,7 +13,7 @@ __all__ = ["TLSARecordParam", "Data", "Settings"]
 
 class Data(TypedDict, total=False):
     certificate: str
-    """certificate."""
+    """Certificate."""
 
     matching_type: float
     """Matching Type."""

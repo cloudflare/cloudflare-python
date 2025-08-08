@@ -868,13 +868,13 @@ class HTTPSRecord(TypedDict, total=False):
 
 class HTTPSRecordData(TypedDict, total=False):
     priority: float
-    """priority."""
+    """Priority."""
 
     target: str
-    """target."""
+    """Target."""
 
     value: str
-    """value."""
+    """Value."""
 
 
 class HTTPSRecordSettings(TypedDict, total=False):
@@ -1253,13 +1253,13 @@ class SSHFPRecord(TypedDict, total=False):
 
 class SSHFPRecordData(TypedDict, total=False):
     algorithm: float
-    """algorithm."""
+    """Algorithm."""
 
     fingerprint: str
-    """fingerprint."""
+    """Fingerprint."""
 
     type: float
-    """type."""
+    """Type."""
 
 
 class SSHFPRecordSettings(TypedDict, total=False):
@@ -1321,13 +1321,13 @@ class SVCBRecord(TypedDict, total=False):
 
 class SVCBRecordData(TypedDict, total=False):
     priority: float
-    """priority."""
+    """Priority."""
 
     target: str
-    """target."""
+    """Target."""
 
     value: str
-    """value."""
+    """Value."""
 
 
 class SVCBRecordSettings(TypedDict, total=False):
@@ -1389,7 +1389,7 @@ class TLSARecord(TypedDict, total=False):
 
 class TLSARecordData(TypedDict, total=False):
     certificate: str
-    """certificate."""
+    """Certificate."""
 
     matching_type: float
     """Matching Type."""

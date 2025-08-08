@@ -13,13 +13,13 @@ __all__ = ["SSHFPRecordParam", "Data", "Settings"]
 
 class Data(TypedDict, total=False):
     algorithm: float
-    """algorithm."""
+    """Algorithm."""
 
     fingerprint: str
-    """fingerprint."""
+    """Fingerprint."""
 
     type: float
-    """type."""
+    """Type."""
 
 
 class Settings(TypedDict, total=False):

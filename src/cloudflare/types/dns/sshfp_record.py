@@ -12,13 +12,13 @@ __all__ = ["SSHFPRecord", "Data", "Settings"]
 
 class Data(BaseModel):
     algorithm: Optional[float] = None
-    """algorithm."""
+    """Algorithm."""
 
     fingerprint: Optional[str] = None
-    """fingerprint."""
+    """Fingerprint."""
 
     type: Optional[float] = None
-    """type."""
+    """Type."""
 
 
 class Settings(BaseModel):
