@@ -27,7 +27,7 @@ class CustomNameserver(BaseModel):
     """Verification status of the nameserver."""
 
     zone_tag: str
-    """Identifier"""
+    """Identifier."""
 
     ns_set: Optional[float] = None
     """The number of the set that this name server belongs to."""

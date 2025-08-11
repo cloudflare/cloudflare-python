@@ -5,4 +5,4 @@ from typing_extensions import TypeAlias
 
 __all__ = ["DNSAnalyticsNominalMetric"]
 
-DNSAnalyticsNominalMetric: TypeAlias = List[object]
+DNSAnalyticsNominalMetric: TypeAlias = List[float]

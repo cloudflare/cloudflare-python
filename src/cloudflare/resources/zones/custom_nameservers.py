@@ -72,7 +72,7 @@ class CustomNameserversResource(SyncAPIResource):
         [Update DNS Settings](https://developers.cloudflare.com/api/operations/dns-settings-for-a-zone-update-dns-settings).
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           enabled: Whether zone uses account-level custom nameservers.
 
@@ -126,7 +126,7 @@ class CustomNameserversResource(SyncAPIResource):
         [Show DNS Settings](https://developers.cloudflare.com/api/operations/dns-settings-for-a-zone-list-dns-settings).
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -194,7 +194,7 @@ class AsyncCustomNameserversResource(AsyncAPIResource):
         [Update DNS Settings](https://developers.cloudflare.com/api/operations/dns-settings-for-a-zone-update-dns-settings).
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           enabled: Whether zone uses account-level custom nameservers.
 
@@ -248,7 +248,7 @@ class AsyncCustomNameserversResource(AsyncAPIResource):
         [Show DNS Settings](https://developers.cloudflare.com/api/operations/dns-settings-for-a-zone-list-dns-settings).
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
