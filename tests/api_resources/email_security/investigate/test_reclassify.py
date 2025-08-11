@@ -32,6 +32,7 @@ class TestReclassify:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_disposition="NONE",
             eml_content="eml_content",
+            escalated_submission_id="escalated_submission_id",
         )
         assert_matches_type(object, reclassify, path=["response"])
 
@@ -101,6 +102,7 @@ class TestAsyncReclassify:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_disposition="NONE",
             eml_content="eml_content",
+            escalated_submission_id="escalated_submission_id",
         )
         assert_matches_type(object, reclassify, path=["response"])
 

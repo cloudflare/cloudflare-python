@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -50,7 +50,8 @@ class ReclassifyResource(SyncAPIResource):
         *,
         account_id: str,
         expected_disposition: Literal["NONE", "BULK", "MALICIOUS", "SPAM", "SPOOF", "SUSPICIOUS"],
-        eml_content: Optional[str] | NotGiven = NOT_GIVEN,
+        eml_content: str | NotGiven = NOT_GIVEN,
+        escalated_submission_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -86,6 +87,7 @@ class ReclassifyResource(SyncAPIResource):
                 {
                     "expected_disposition": expected_disposition,
                     "eml_content": eml_content,
+                    "escalated_submission_id": escalated_submission_id,
                 },
                 reclassify_create_params.ReclassifyCreateParams,
             ),
@@ -126,7 +128,8 @@ class AsyncReclassifyResource(AsyncAPIResource):
         *,
         account_id: str,
         expected_disposition: Literal["NONE", "BULK", "MALICIOUS", "SPAM", "SPOOF", "SUSPICIOUS"],
-        eml_content: Optional[str] | NotGiven = NOT_GIVEN,
+        eml_content: str | NotGiven = NOT_GIVEN,
+        escalated_submission_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -162,6 +165,7 @@ class AsyncReclassifyResource(AsyncAPIResource):
                 {
                     "expected_disposition": expected_disposition,
                     "eml_content": eml_content,
+                    "escalated_submission_id": escalated_submission_id,
                 },
                 reclassify_create_params.ReclassifyCreateParams,
             ),
