@@ -48,6 +48,7 @@ class FieldsResource(SyncAPIResource):
             Literal[
                 "access_requests",
                 "audit_logs",
+                "audit_logs_v2",
                 "biso_user_actions",
                 "casb_findings",
                 "device_posture_results",
@@ -156,6 +157,7 @@ class AsyncFieldsResource(AsyncAPIResource):
             Literal[
                 "access_requests",
                 "audit_logs",
+                "audit_logs_v2",
                 "biso_user_actions",
                 "casb_findings",
                 "device_posture_results",
