@@ -18,7 +18,7 @@ __all__ = [
 
 class ListsListItemIPFull(BaseModel):
     id: str
-    """The unique ID of the list."""
+    """Defines the unique ID of the item in the List."""
 
     created_on: str
     """The RFC 3339 timestamp of when the list was created."""
@@ -35,7 +35,7 @@ class ListsListItemIPFull(BaseModel):
 
 class ListsListItemHostnameFull(BaseModel):
     id: str
-    """The unique ID of the list."""
+    """Defines the unique ID of the item in the List."""
 
     created_on: str
     """The RFC 3339 timestamp of when the list was created."""
@@ -55,7 +55,7 @@ class ListsListItemHostnameFull(BaseModel):
 
 class ListsListItemRedirectFull(BaseModel):
     id: str
-    """The unique ID of the list."""
+    """Defines the unique ID of the item in the List."""
 
     created_on: str
     """The RFC 3339 timestamp of when the list was created."""
@@ -72,7 +72,7 @@ class ListsListItemRedirectFull(BaseModel):
 
 class ListsListItemASNFull(BaseModel):
     id: str
-    """The unique ID of the list."""
+    """Defines the unique ID of the item in the List."""
 
     asn: int
     """Defines a non-negative 32 bit integer."""
