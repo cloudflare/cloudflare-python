@@ -8,7 +8,7 @@ __all__ = ["URLNormalizationGetResponse"]
 
 
 class URLNormalizationGetResponse(BaseModel):
-    scope: Literal["incoming", "both"]
+    scope: Literal["incoming", "both", "none"]
     """The scope of the URL normalization."""
 
     type: Literal["cloudflare", "rfc3986"]

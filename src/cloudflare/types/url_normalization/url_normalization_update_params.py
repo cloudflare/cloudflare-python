@@ -11,7 +11,7 @@ class URLNormalizationUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
     """The unique ID of the zone."""
 
-    scope: Required[Literal["incoming", "both"]]
+    scope: Required[Literal["incoming", "both", "none"]]
     """The scope of the URL normalization."""
 
     type: Required[Literal["cloudflare", "rfc3986"]]
