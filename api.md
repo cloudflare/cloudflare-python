@@ -1026,12 +1026,6 @@ Methods:
 
 # DNS
 
-Types:
-
-```python
-from cloudflare.types.dns import DNSAnalyticsNominalMetric, DNSAnalyticsQuery
-```
-
 ## DNSSEC
 
 Types:
