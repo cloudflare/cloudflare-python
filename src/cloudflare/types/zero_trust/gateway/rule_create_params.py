@@ -49,7 +49,12 @@ class RuleCreateParams(TypedDict, total=False):
     """The description of the rule."""
 
     device_posture: str
-    """The wirefilter expression used for device posture check matching."""
+    """The wirefilter expression used for device posture check matching.
+
+    The API automatically formats and sanitizes this expression. This returns a
+    normalized version that may differ from your input and cause Terraform state
+    drift.
+    """
 
     enabled: bool
     """True if the rule is enabled."""
@@ -69,7 +74,12 @@ class RuleCreateParams(TypedDict, total=False):
     """
 
     identity: str
-    """The wirefilter expression used for identity matching."""
+    """The wirefilter expression used for identity matching.
+
+    The API automatically formats and sanitizes this expression. This returns a
+    normalized version that may differ from your input and cause Terraform state
+    drift.
+    """
 
     precedence: int
     """Precedence sets the order of your rules.
@@ -90,7 +100,12 @@ class RuleCreateParams(TypedDict, total=False):
     """
 
     traffic: str
-    """The wirefilter expression used for traffic matching."""
+    """The wirefilter expression used for traffic matching.
+
+    The API automatically formats and sanitizes this expression. This returns a
+    normalized version that may differ from your input and cause Terraform state
+    drift.
+    """
 
 
 class Expiration(TypedDict, total=False):

@@ -102,7 +102,12 @@ class BlockPage(TypedDict, total=False):
 
 class CheckSession(TypedDict, total=False):
     duration: str
-    """Configure how fresh the session needs to be to be considered valid."""
+    """Configure how fresh the session needs to be to be considered valid.
+
+    The API automatically formats and sanitizes this expression. This returns a
+    normalized version that may differ from your input and cause Terraform state
+    drift.
+    """
 
     enforce: bool
     """Set to true to enable session enforcement."""

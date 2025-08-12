@@ -100,7 +100,9 @@ class RulesResource(SyncAPIResource):
 
           description: The description of the rule.
 
-          device_posture: The wirefilter expression used for device posture check matching.
+          device_posture: The wirefilter expression used for device posture check matching. The API
+              automatically formats and sanitizes this expression. This returns a normalized
+              version that may differ from your input and cause Terraform state drift.
 
           enabled: True if the rule is enabled.
 
@@ -112,7 +114,9 @@ class RulesResource(SyncAPIResource):
           filters: The protocol or layer to evaluate the traffic, identity, and device posture
               expressions.
 
-          identity: The wirefilter expression used for identity matching.
+          identity: The wirefilter expression used for identity matching. The API automatically
+              formats and sanitizes this expression. This returns a normalized version that
+              may differ from your input and cause Terraform state drift.
 
           precedence: Precedence sets the order of your rules. Lower values indicate higher
               precedence. At each processing phase, applicable rules are evaluated in
@@ -125,7 +129,9 @@ class RulesResource(SyncAPIResource):
           schedule: The schedule for activating DNS policies. This does not apply to HTTP or network
               policies.
 
-          traffic: The wirefilter expression used for traffic matching.
+          traffic: The wirefilter expression used for traffic matching. The API automatically
+              formats and sanitizes this expression. This returns a normalized version that
+              may differ from your input and cause Terraform state drift.
 
           extra_headers: Send extra headers
 
@@ -220,7 +226,9 @@ class RulesResource(SyncAPIResource):
 
           description: The description of the rule.
 
-          device_posture: The wirefilter expression used for device posture check matching.
+          device_posture: The wirefilter expression used for device posture check matching. The API
+              automatically formats and sanitizes this expression. This returns a normalized
+              version that may differ from your input and cause Terraform state drift.
 
           enabled: True if the rule is enabled.
 
@@ -232,7 +240,9 @@ class RulesResource(SyncAPIResource):
           filters: The protocol or layer to evaluate the traffic, identity, and device posture
               expressions.
 
-          identity: The wirefilter expression used for identity matching.
+          identity: The wirefilter expression used for identity matching. The API automatically
+              formats and sanitizes this expression. This returns a normalized version that
+              may differ from your input and cause Terraform state drift.
 
           precedence: Precedence sets the order of your rules. Lower values indicate higher
               precedence. At each processing phase, applicable rules are evaluated in
@@ -245,7 +255,9 @@ class RulesResource(SyncAPIResource):
           schedule: The schedule for activating DNS policies. This does not apply to HTTP or network
               policies.
 
-          traffic: The wirefilter expression used for traffic matching.
+          traffic: The wirefilter expression used for traffic matching. The API automatically
+              formats and sanitizes this expression. This returns a normalized version that
+              may differ from your input and cause Terraform state drift.
 
           extra_headers: Send extra headers
 
@@ -524,7 +536,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           description: The description of the rule.
 
-          device_posture: The wirefilter expression used for device posture check matching.
+          device_posture: The wirefilter expression used for device posture check matching. The API
+              automatically formats and sanitizes this expression. This returns a normalized
+              version that may differ from your input and cause Terraform state drift.
 
           enabled: True if the rule is enabled.
 
@@ -536,7 +550,9 @@ class AsyncRulesResource(AsyncAPIResource):
           filters: The protocol or layer to evaluate the traffic, identity, and device posture
               expressions.
 
-          identity: The wirefilter expression used for identity matching.
+          identity: The wirefilter expression used for identity matching. The API automatically
+              formats and sanitizes this expression. This returns a normalized version that
+              may differ from your input and cause Terraform state drift.
 
           precedence: Precedence sets the order of your rules. Lower values indicate higher
               precedence. At each processing phase, applicable rules are evaluated in
@@ -549,7 +565,9 @@ class AsyncRulesResource(AsyncAPIResource):
           schedule: The schedule for activating DNS policies. This does not apply to HTTP or network
               policies.
 
-          traffic: The wirefilter expression used for traffic matching.
+          traffic: The wirefilter expression used for traffic matching. The API automatically
+              formats and sanitizes this expression. This returns a normalized version that
+              may differ from your input and cause Terraform state drift.
 
           extra_headers: Send extra headers
 
@@ -644,7 +662,9 @@ class AsyncRulesResource(AsyncAPIResource):
 
           description: The description of the rule.
 
-          device_posture: The wirefilter expression used for device posture check matching.
+          device_posture: The wirefilter expression used for device posture check matching. The API
+              automatically formats and sanitizes this expression. This returns a normalized
+              version that may differ from your input and cause Terraform state drift.
 
           enabled: True if the rule is enabled.
 
@@ -656,7 +676,9 @@ class AsyncRulesResource(AsyncAPIResource):
           filters: The protocol or layer to evaluate the traffic, identity, and device posture
               expressions.
 
-          identity: The wirefilter expression used for identity matching.
+          identity: The wirefilter expression used for identity matching. The API automatically
+              formats and sanitizes this expression. This returns a normalized version that
+              may differ from your input and cause Terraform state drift.
 
           precedence: Precedence sets the order of your rules. Lower values indicate higher
               precedence. At each processing phase, applicable rules are evaluated in
@@ -669,7 +691,9 @@ class AsyncRulesResource(AsyncAPIResource):
           schedule: The schedule for activating DNS policies. This does not apply to HTTP or network
               policies.
 
-          traffic: The wirefilter expression used for traffic matching.
+          traffic: The wirefilter expression used for traffic matching. The API automatically
+              formats and sanitizes this expression. This returns a normalized version that
+              may differ from your input and cause Terraform state drift.
 
           extra_headers: Send extra headers
 

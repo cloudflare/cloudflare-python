@@ -81,7 +81,12 @@ class GatewayRule(BaseModel):
     """
 
     traffic: str
-    """The wirefilter expression used for traffic matching."""
+    """The wirefilter expression used for traffic matching.
+
+    The API automatically formats and sanitizes this expression. This returns a
+    normalized version that may differ from your input and cause Terraform state
+    drift.
+    """
 
     id: Optional[str] = None
     """The API resource UUID."""
@@ -95,7 +100,12 @@ class GatewayRule(BaseModel):
     """The description of the rule."""
 
     device_posture: Optional[str] = None
-    """The wirefilter expression used for device posture check matching."""
+    """The wirefilter expression used for device posture check matching.
+
+    The API automatically formats and sanitizes this expression. This returns a
+    normalized version that may differ from your input and cause Terraform state
+    drift.
+    """
 
     expiration: Optional[Expiration] = None
     """The expiration time stamp and default duration of a DNS policy.
@@ -106,7 +116,12 @@ class GatewayRule(BaseModel):
     """
 
     identity: Optional[str] = None
-    """The wirefilter expression used for identity matching."""
+    """The wirefilter expression used for identity matching.
+
+    The API automatically formats and sanitizes this expression. This returns a
+    normalized version that may differ from your input and cause Terraform state
+    drift.
+    """
 
     not_sharable: Optional[bool] = None
     """The rule cannot be shared via the Orgs API"""

@@ -103,7 +103,12 @@ class BlockPage(BaseModel):
 
 class CheckSession(BaseModel):
     duration: Optional[str] = None
-    """Configure how fresh the session needs to be to be considered valid."""
+    """Configure how fresh the session needs to be to be considered valid.
+
+    The API automatically formats and sanitizes this expression. This returns a
+    normalized version that may differ from your input and cause Terraform state
+    drift.
+    """
 
     enforce: Optional[bool] = None
     """Set to true to enable session enforcement."""
