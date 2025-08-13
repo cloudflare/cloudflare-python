@@ -23,12 +23,6 @@ class UnionMember0(BaseModel):
     dns: DNS
     """The name and type of DNS record for the Spectrum application."""
 
-    ip_firewall: bool
-    """
-    Enables IP Access Rules for this application. Notes: Only available for TCP
-    applications.
-    """
-
     modified_on: datetime
     """When the Application was last modified."""
 
@@ -38,18 +32,6 @@ class UnionMember0(BaseModel):
     May specify a single port, for example `"tcp/1000"`, or a range of ports, for
     example `"tcp/1000-2000"`.
     """
-
-    proxy_protocol: Literal["off", "v1", "v2", "simple"]
-    """Enables Proxy Protocol to the origin.
-
-    Refer to
-    [Enable Proxy protocol](https://developers.cloudflare.com/spectrum/getting-started/proxy-protocol/)
-    for implementation details on PROXY Protocol V1, PROXY Protocol V2, and Simple
-    Proxy Protocol.
-    """
-
-    tls: Literal["off", "flexible", "full", "strict"]
-    """The type of TLS termination associated with the application."""
 
     traffic_type: Literal["direct", "http", "https"]
     """Determines how data travels from the edge to your origin.
@@ -69,6 +51,12 @@ class UnionMember0(BaseModel):
     edge_ips: Optional[EdgeIPs] = None
     """The anycast edge IP configuration for the hostname of this application."""
 
+    ip_firewall: Optional[bool] = None
+    """
+    Enables IP Access Rules for this application. Notes: Only available for TCP
+    applications.
+    """
+
     origin_direct: Optional[List[str]] = None
     """List of origin IP addresses.
 
@@ -87,6 +75,18 @@ class UnionMember0(BaseModel):
     of ports in the range must match the number of ports specified in the "protocol"
     field.
     """
+
+    proxy_protocol: Optional[Literal["off", "v1", "v2", "simple"]] = None
+    """Enables Proxy Protocol to the origin.
+
+    Refer to
+    [Enable Proxy protocol](https://developers.cloudflare.com/spectrum/getting-started/proxy-protocol/)
+    for implementation details on PROXY Protocol V1, PROXY Protocol V2, and Simple
+    Proxy Protocol.
+    """
+
+    tls: Optional[Literal["off", "flexible", "full", "strict"]] = None
+    """The type of TLS termination associated with the application."""
 
 
 class UnionMember1(BaseModel):

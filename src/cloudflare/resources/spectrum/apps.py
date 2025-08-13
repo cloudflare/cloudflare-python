@@ -60,16 +60,16 @@ class AppsResource(SyncAPIResource):
         *,
         zone_id: str,
         dns: DNSParam,
-        ip_firewall: bool,
         protocol: str,
-        proxy_protocol: Literal["off", "v1", "v2", "simple"],
-        tls: Literal["off", "flexible", "full", "strict"],
         traffic_type: Literal["direct", "http", "https"],
         argo_smart_routing: bool | NotGiven = NOT_GIVEN,
         edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
+        ip_firewall: bool | NotGiven = NOT_GIVEN,
         origin_direct: List[str] | NotGiven = NOT_GIVEN,
         origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
         origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
+        proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
+        tls: Literal["off", "flexible", "full", "strict"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -86,18 +86,8 @@ class AppsResource(SyncAPIResource):
 
           dns: The name and type of DNS record for the Spectrum application.
 
-          ip_firewall: Enables IP Access Rules for this application. Notes: Only available for TCP
-              applications.
-
           protocol: The port configuration at Cloudflare's edge. May specify a single port, for
               example `"tcp/1000"`, or a range of ports, for example `"tcp/1000-2000"`.
-
-          proxy_protocol: Enables Proxy Protocol to the origin. Refer to
-              [Enable Proxy protocol](https://developers.cloudflare.com/spectrum/getting-started/proxy-protocol/)
-              for implementation details on PROXY Protocol V1, PROXY Protocol V2, and Simple
-              Proxy Protocol.
-
-          tls: The type of TLS termination associated with the application.
 
           traffic_type: Determines how data travels from the edge to your origin. When set to "direct",
               Spectrum will send traffic directly to your origin, and the application's type
@@ -110,6 +100,9 @@ class AppsResource(SyncAPIResource):
 
           edge_ips: The anycast edge IP configuration for the hostname of this application.
 
+          ip_firewall: Enables IP Access Rules for this application. Notes: Only available for TCP
+              applications.
+
           origin_direct: List of origin IP addresses. Array may contain multiple IP addresses for load
               balancing.
 
@@ -120,6 +113,13 @@ class AppsResource(SyncAPIResource):
               `1000`, or a string to specify a range of origin ports, for example
               `"1000-2000"`. Notes: If specifying a port range, the number of ports in the
               range must match the number of ports specified in the "protocol" field.
+
+          proxy_protocol: Enables Proxy Protocol to the origin. Refer to
+              [Enable Proxy protocol](https://developers.cloudflare.com/spectrum/getting-started/proxy-protocol/)
+              for implementation details on PROXY Protocol V1, PROXY Protocol V2, and Simple
+              Proxy Protocol.
+
+          tls: The type of TLS termination associated with the application.
 
           extra_headers: Send extra headers
 
@@ -171,25 +171,22 @@ class AppsResource(SyncAPIResource):
         """
         ...
 
-    @required_args(
-        ["zone_id", "dns", "ip_firewall", "protocol", "proxy_protocol", "tls", "traffic_type"],
-        ["zone_id", "dns", "protocol"],
-    )
+    @required_args(["zone_id", "dns", "protocol", "traffic_type"], ["zone_id", "dns", "protocol"])
     def create(
         self,
         *,
         zone_id: str,
         dns: DNSParam,
-        ip_firewall: bool | NotGiven = NOT_GIVEN,
         protocol: str,
-        proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
-        tls: Literal["off", "flexible", "full", "strict"] | NotGiven = NOT_GIVEN,
         traffic_type: Literal["direct", "http", "https"] | NotGiven = NOT_GIVEN,
         argo_smart_routing: bool | NotGiven = NOT_GIVEN,
         edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
+        ip_firewall: bool | NotGiven = NOT_GIVEN,
         origin_direct: List[str] | NotGiven = NOT_GIVEN,
         origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
         origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
+        proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
+        tls: Literal["off", "flexible", "full", "strict"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -206,16 +203,16 @@ class AppsResource(SyncAPIResource):
                 body=maybe_transform(
                     {
                         "dns": dns,
-                        "ip_firewall": ip_firewall,
                         "protocol": protocol,
-                        "proxy_protocol": proxy_protocol,
-                        "tls": tls,
                         "traffic_type": traffic_type,
                         "argo_smart_routing": argo_smart_routing,
                         "edge_ips": edge_ips,
+                        "ip_firewall": ip_firewall,
                         "origin_direct": origin_direct,
                         "origin_dns": origin_dns,
                         "origin_port": origin_port,
+                        "proxy_protocol": proxy_protocol,
+                        "tls": tls,
                     },
                     app_create_params.AppCreateParams,
                 ),
@@ -239,16 +236,16 @@ class AppsResource(SyncAPIResource):
         *,
         zone_id: str,
         dns: DNSParam,
-        ip_firewall: bool,
         protocol: str,
-        proxy_protocol: Literal["off", "v1", "v2", "simple"],
-        tls: Literal["off", "flexible", "full", "strict"],
         traffic_type: Literal["direct", "http", "https"],
         argo_smart_routing: bool | NotGiven = NOT_GIVEN,
         edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
+        ip_firewall: bool | NotGiven = NOT_GIVEN,
         origin_direct: List[str] | NotGiven = NOT_GIVEN,
         origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
         origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
+        proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
+        tls: Literal["off", "flexible", "full", "strict"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -267,18 +264,8 @@ class AppsResource(SyncAPIResource):
 
           dns: The name and type of DNS record for the Spectrum application.
 
-          ip_firewall: Enables IP Access Rules for this application. Notes: Only available for TCP
-              applications.
-
           protocol: The port configuration at Cloudflare's edge. May specify a single port, for
               example `"tcp/1000"`, or a range of ports, for example `"tcp/1000-2000"`.
-
-          proxy_protocol: Enables Proxy Protocol to the origin. Refer to
-              [Enable Proxy protocol](https://developers.cloudflare.com/spectrum/getting-started/proxy-protocol/)
-              for implementation details on PROXY Protocol V1, PROXY Protocol V2, and Simple
-              Proxy Protocol.
-
-          tls: The type of TLS termination associated with the application.
 
           traffic_type: Determines how data travels from the edge to your origin. When set to "direct",
               Spectrum will send traffic directly to your origin, and the application's type
@@ -291,6 +278,9 @@ class AppsResource(SyncAPIResource):
 
           edge_ips: The anycast edge IP configuration for the hostname of this application.
 
+          ip_firewall: Enables IP Access Rules for this application. Notes: Only available for TCP
+              applications.
+
           origin_direct: List of origin IP addresses. Array may contain multiple IP addresses for load
               balancing.
 
@@ -301,6 +291,13 @@ class AppsResource(SyncAPIResource):
               `1000`, or a string to specify a range of origin ports, for example
               `"1000-2000"`. Notes: If specifying a port range, the number of ports in the
               range must match the number of ports specified in the "protocol" field.
+
+          proxy_protocol: Enables Proxy Protocol to the origin. Refer to
+              [Enable Proxy protocol](https://developers.cloudflare.com/spectrum/getting-started/proxy-protocol/)
+              for implementation details on PROXY Protocol V1, PROXY Protocol V2, and Simple
+              Proxy Protocol.
+
+          tls: The type of TLS termination associated with the application.
 
           extra_headers: Send extra headers
 
@@ -355,26 +352,23 @@ class AppsResource(SyncAPIResource):
         """
         ...
 
-    @required_args(
-        ["zone_id", "dns", "ip_firewall", "protocol", "proxy_protocol", "tls", "traffic_type"],
-        ["zone_id", "dns", "protocol"],
-    )
+    @required_args(["zone_id", "dns", "protocol", "traffic_type"], ["zone_id", "dns", "protocol"])
     def update(
         self,
         app_id: str,
         *,
         zone_id: str,
         dns: DNSParam,
-        ip_firewall: bool | NotGiven = NOT_GIVEN,
         protocol: str,
-        proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
-        tls: Literal["off", "flexible", "full", "strict"] | NotGiven = NOT_GIVEN,
         traffic_type: Literal["direct", "http", "https"] | NotGiven = NOT_GIVEN,
         argo_smart_routing: bool | NotGiven = NOT_GIVEN,
         edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
+        ip_firewall: bool | NotGiven = NOT_GIVEN,
         origin_direct: List[str] | NotGiven = NOT_GIVEN,
         origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
         origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
+        proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
+        tls: Literal["off", "flexible", "full", "strict"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -393,16 +387,16 @@ class AppsResource(SyncAPIResource):
                 body=maybe_transform(
                     {
                         "dns": dns,
-                        "ip_firewall": ip_firewall,
                         "protocol": protocol,
-                        "proxy_protocol": proxy_protocol,
-                        "tls": tls,
                         "traffic_type": traffic_type,
                         "argo_smart_routing": argo_smart_routing,
                         "edge_ips": edge_ips,
+                        "ip_firewall": ip_firewall,
                         "origin_direct": origin_direct,
                         "origin_dns": origin_dns,
                         "origin_port": origin_port,
+                        "proxy_protocol": proxy_protocol,
+                        "tls": tls,
                     },
                     app_update_params.AppUpdateParams,
                 ),
@@ -601,16 +595,16 @@ class AsyncAppsResource(AsyncAPIResource):
         *,
         zone_id: str,
         dns: DNSParam,
-        ip_firewall: bool,
         protocol: str,
-        proxy_protocol: Literal["off", "v1", "v2", "simple"],
-        tls: Literal["off", "flexible", "full", "strict"],
         traffic_type: Literal["direct", "http", "https"],
         argo_smart_routing: bool | NotGiven = NOT_GIVEN,
         edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
+        ip_firewall: bool | NotGiven = NOT_GIVEN,
         origin_direct: List[str] | NotGiven = NOT_GIVEN,
         origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
         origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
+        proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
+        tls: Literal["off", "flexible", "full", "strict"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -627,18 +621,8 @@ class AsyncAppsResource(AsyncAPIResource):
 
           dns: The name and type of DNS record for the Spectrum application.
 
-          ip_firewall: Enables IP Access Rules for this application. Notes: Only available for TCP
-              applications.
-
           protocol: The port configuration at Cloudflare's edge. May specify a single port, for
               example `"tcp/1000"`, or a range of ports, for example `"tcp/1000-2000"`.
-
-          proxy_protocol: Enables Proxy Protocol to the origin. Refer to
-              [Enable Proxy protocol](https://developers.cloudflare.com/spectrum/getting-started/proxy-protocol/)
-              for implementation details on PROXY Protocol V1, PROXY Protocol V2, and Simple
-              Proxy Protocol.
-
-          tls: The type of TLS termination associated with the application.
 
           traffic_type: Determines how data travels from the edge to your origin. When set to "direct",
               Spectrum will send traffic directly to your origin, and the application's type
@@ -651,6 +635,9 @@ class AsyncAppsResource(AsyncAPIResource):
 
           edge_ips: The anycast edge IP configuration for the hostname of this application.
 
+          ip_firewall: Enables IP Access Rules for this application. Notes: Only available for TCP
+              applications.
+
           origin_direct: List of origin IP addresses. Array may contain multiple IP addresses for load
               balancing.
 
@@ -661,6 +648,13 @@ class AsyncAppsResource(AsyncAPIResource):
               `1000`, or a string to specify a range of origin ports, for example
               `"1000-2000"`. Notes: If specifying a port range, the number of ports in the
               range must match the number of ports specified in the "protocol" field.
+
+          proxy_protocol: Enables Proxy Protocol to the origin. Refer to
+              [Enable Proxy protocol](https://developers.cloudflare.com/spectrum/getting-started/proxy-protocol/)
+              for implementation details on PROXY Protocol V1, PROXY Protocol V2, and Simple
+              Proxy Protocol.
+
+          tls: The type of TLS termination associated with the application.
 
           extra_headers: Send extra headers
 
@@ -712,25 +706,22 @@ class AsyncAppsResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(
-        ["zone_id", "dns", "ip_firewall", "protocol", "proxy_protocol", "tls", "traffic_type"],
-        ["zone_id", "dns", "protocol"],
-    )
+    @required_args(["zone_id", "dns", "protocol", "traffic_type"], ["zone_id", "dns", "protocol"])
     async def create(
         self,
         *,
         zone_id: str,
         dns: DNSParam,
-        ip_firewall: bool | NotGiven = NOT_GIVEN,
         protocol: str,
-        proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
-        tls: Literal["off", "flexible", "full", "strict"] | NotGiven = NOT_GIVEN,
         traffic_type: Literal["direct", "http", "https"] | NotGiven = NOT_GIVEN,
         argo_smart_routing: bool | NotGiven = NOT_GIVEN,
         edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
+        ip_firewall: bool | NotGiven = NOT_GIVEN,
         origin_direct: List[str] | NotGiven = NOT_GIVEN,
         origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
         origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
+        proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
+        tls: Literal["off", "flexible", "full", "strict"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -747,16 +738,16 @@ class AsyncAppsResource(AsyncAPIResource):
                 body=await async_maybe_transform(
                     {
                         "dns": dns,
-                        "ip_firewall": ip_firewall,
                         "protocol": protocol,
-                        "proxy_protocol": proxy_protocol,
-                        "tls": tls,
                         "traffic_type": traffic_type,
                         "argo_smart_routing": argo_smart_routing,
                         "edge_ips": edge_ips,
+                        "ip_firewall": ip_firewall,
                         "origin_direct": origin_direct,
                         "origin_dns": origin_dns,
                         "origin_port": origin_port,
+                        "proxy_protocol": proxy_protocol,
+                        "tls": tls,
                     },
                     app_create_params.AppCreateParams,
                 ),
@@ -780,16 +771,16 @@ class AsyncAppsResource(AsyncAPIResource):
         *,
         zone_id: str,
         dns: DNSParam,
-        ip_firewall: bool,
         protocol: str,
-        proxy_protocol: Literal["off", "v1", "v2", "simple"],
-        tls: Literal["off", "flexible", "full", "strict"],
         traffic_type: Literal["direct", "http", "https"],
         argo_smart_routing: bool | NotGiven = NOT_GIVEN,
         edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
+        ip_firewall: bool | NotGiven = NOT_GIVEN,
         origin_direct: List[str] | NotGiven = NOT_GIVEN,
         origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
         origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
+        proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
+        tls: Literal["off", "flexible", "full", "strict"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -808,18 +799,8 @@ class AsyncAppsResource(AsyncAPIResource):
 
           dns: The name and type of DNS record for the Spectrum application.
 
-          ip_firewall: Enables IP Access Rules for this application. Notes: Only available for TCP
-              applications.
-
           protocol: The port configuration at Cloudflare's edge. May specify a single port, for
               example `"tcp/1000"`, or a range of ports, for example `"tcp/1000-2000"`.
-
-          proxy_protocol: Enables Proxy Protocol to the origin. Refer to
-              [Enable Proxy protocol](https://developers.cloudflare.com/spectrum/getting-started/proxy-protocol/)
-              for implementation details on PROXY Protocol V1, PROXY Protocol V2, and Simple
-              Proxy Protocol.
-
-          tls: The type of TLS termination associated with the application.
 
           traffic_type: Determines how data travels from the edge to your origin. When set to "direct",
               Spectrum will send traffic directly to your origin, and the application's type
@@ -832,6 +813,9 @@ class AsyncAppsResource(AsyncAPIResource):
 
           edge_ips: The anycast edge IP configuration for the hostname of this application.
 
+          ip_firewall: Enables IP Access Rules for this application. Notes: Only available for TCP
+              applications.
+
           origin_direct: List of origin IP addresses. Array may contain multiple IP addresses for load
               balancing.
 
@@ -842,6 +826,13 @@ class AsyncAppsResource(AsyncAPIResource):
               `1000`, or a string to specify a range of origin ports, for example
               `"1000-2000"`. Notes: If specifying a port range, the number of ports in the
               range must match the number of ports specified in the "protocol" field.
+
+          proxy_protocol: Enables Proxy Protocol to the origin. Refer to
+              [Enable Proxy protocol](https://developers.cloudflare.com/spectrum/getting-started/proxy-protocol/)
+              for implementation details on PROXY Protocol V1, PROXY Protocol V2, and Simple
+              Proxy Protocol.
+
+          tls: The type of TLS termination associated with the application.
 
           extra_headers: Send extra headers
 
@@ -896,26 +887,23 @@ class AsyncAppsResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(
-        ["zone_id", "dns", "ip_firewall", "protocol", "proxy_protocol", "tls", "traffic_type"],
-        ["zone_id", "dns", "protocol"],
-    )
+    @required_args(["zone_id", "dns", "protocol", "traffic_type"], ["zone_id", "dns", "protocol"])
     async def update(
         self,
         app_id: str,
         *,
         zone_id: str,
         dns: DNSParam,
-        ip_firewall: bool | NotGiven = NOT_GIVEN,
         protocol: str,
-        proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
-        tls: Literal["off", "flexible", "full", "strict"] | NotGiven = NOT_GIVEN,
         traffic_type: Literal["direct", "http", "https"] | NotGiven = NOT_GIVEN,
         argo_smart_routing: bool | NotGiven = NOT_GIVEN,
         edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
+        ip_firewall: bool | NotGiven = NOT_GIVEN,
         origin_direct: List[str] | NotGiven = NOT_GIVEN,
         origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
         origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
+        proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
+        tls: Literal["off", "flexible", "full", "strict"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -934,16 +922,16 @@ class AsyncAppsResource(AsyncAPIResource):
                 body=await async_maybe_transform(
                     {
                         "dns": dns,
-                        "ip_firewall": ip_firewall,
                         "protocol": protocol,
-                        "proxy_protocol": proxy_protocol,
-                        "tls": tls,
                         "traffic_type": traffic_type,
                         "argo_smart_routing": argo_smart_routing,
                         "edge_ips": edge_ips,
+                        "ip_firewall": ip_firewall,
                         "origin_direct": origin_direct,
                         "origin_dns": origin_dns,
                         "origin_port": origin_port,
+                        "proxy_protocol": proxy_protocol,
+                        "tls": tls,
                     },
                     app_update_params.AppUpdateParams,
                 ),
