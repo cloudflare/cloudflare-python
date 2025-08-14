@@ -127,6 +127,57 @@ class TestQueries:
                 account_id="",
             )
 
+    @pytest.mark.skip(reason="TODO: investigate broken test, 401 Unauthorized")
+    @parametrize
+    def test_method_bulk(self, client: Cloudflare) -> None:
+        query = client.brand_protection.queries.bulk(
+            account_id="x",
+        )
+        assert query is None
+
+    @pytest.mark.skip(reason="TODO: investigate broken test, 401 Unauthorized")
+    @parametrize
+    def test_method_bulk_with_all_params(self, client: Cloudflare) -> None:
+        query = client.brand_protection.queries.bulk(
+            account_id="x",
+            queries=[{"foo": "bar"}],
+        )
+        assert query is None
+
+    @pytest.mark.skip(reason="TODO: investigate broken test, 401 Unauthorized")
+    @parametrize
+    def test_raw_response_bulk(self, client: Cloudflare) -> None:
+        response = client.brand_protection.queries.with_raw_response.bulk(
+            account_id="x",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        query = response.parse()
+        assert query is None
+
+    @pytest.mark.skip(reason="TODO: investigate broken test, 401 Unauthorized")
+    @parametrize
+    def test_streaming_response_bulk(self, client: Cloudflare) -> None:
+        with client.brand_protection.queries.with_streaming_response.bulk(
+            account_id="x",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            query = response.parse()
+            assert query is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test, 401 Unauthorized")
+    @parametrize
+    def test_path_params_bulk(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.brand_protection.queries.with_raw_response.bulk(
+                account_id="",
+            )
+
 
 class TestAsyncQueries:
     parametrize = pytest.mark.parametrize(
@@ -241,5 +292,56 @@ class TestAsyncQueries:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.brand_protection.queries.with_raw_response.delete(
+                account_id="",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test, 401 Unauthorized")
+    @parametrize
+    async def test_method_bulk(self, async_client: AsyncCloudflare) -> None:
+        query = await async_client.brand_protection.queries.bulk(
+            account_id="x",
+        )
+        assert query is None
+
+    @pytest.mark.skip(reason="TODO: investigate broken test, 401 Unauthorized")
+    @parametrize
+    async def test_method_bulk_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        query = await async_client.brand_protection.queries.bulk(
+            account_id="x",
+            queries=[{"foo": "bar"}],
+        )
+        assert query is None
+
+    @pytest.mark.skip(reason="TODO: investigate broken test, 401 Unauthorized")
+    @parametrize
+    async def test_raw_response_bulk(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.brand_protection.queries.with_raw_response.bulk(
+            account_id="x",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        query = await response.parse()
+        assert query is None
+
+    @pytest.mark.skip(reason="TODO: investigate broken test, 401 Unauthorized")
+    @parametrize
+    async def test_streaming_response_bulk(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.brand_protection.queries.with_streaming_response.bulk(
+            account_id="x",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            query = await response.parse()
+            assert query is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test, 401 Unauthorized")
+    @parametrize
+    async def test_path_params_bulk(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.brand_protection.queries.with_raw_response.bulk(
                 account_id="",
             )

@@ -3376,6 +3376,7 @@ Methods:
 
 - <code title="post /accounts/{account_id}/brand-protection/queries">client.brand_protection.queries.<a href="./src/cloudflare/resources/brand_protection/queries.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/brand_protection/query_create_params.py">params</a>) -> None</code>
 - <code title="delete /accounts/{account_id}/brand-protection/queries">client.brand_protection.queries.<a href="./src/cloudflare/resources/brand_protection/queries.py">delete</a>(\*, account_id, \*\*<a href="src/cloudflare/types/brand_protection/query_delete_params.py">params</a>) -> None</code>
+- <code title="post /accounts/{account_id}/brand-protection/queries/bulk">client.brand_protection.queries.<a href="./src/cloudflare/resources/brand_protection/queries.py">bulk</a>(\*, account_id, \*\*<a href="src/cloudflare/types/brand_protection/query_bulk_params.py">params</a>) -> None</code>
 
 ## Matches
 
