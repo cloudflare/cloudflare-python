@@ -30,6 +30,9 @@ jobs:
       - name: Install dependencies
         run: |
           rye sync --all-features
+      - name: Detect removed symbols
+        run: |
+          rye run python scripts/detect-breaking-changes.py "${{ github.event.pull_request.base.sha }}"
 
       - name: Detect breaking changes
         run: |
