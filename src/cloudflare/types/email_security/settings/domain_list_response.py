@@ -56,6 +56,8 @@ class DomainListResponse(BaseModel):
 
     lookback_hops: int
 
+    regions: List[Literal["GLOBAL", "AU", "DE", "IN", "US"]]
+
     transport: str
 
     authorization: Optional[Authorization] = None

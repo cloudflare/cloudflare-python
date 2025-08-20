@@ -39,6 +39,8 @@ class DomainEditParams(TypedDict, total=False):
 
     lookback_hops: int
 
+    regions: List[Literal["GLOBAL", "AU", "DE", "IN", "US"]]
+
     require_tls_inbound: bool
 
     require_tls_outbound: bool
