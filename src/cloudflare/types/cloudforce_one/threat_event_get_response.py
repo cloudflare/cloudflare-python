@@ -10,10 +10,6 @@ __all__ = ["ThreatEventGetResponse"]
 
 
 class ThreatEventGetResponse(BaseModel):
-    id: float
-
-    account_id: float = FieldInfo(alias="accountId")
-
     attacker: str
 
     attacker_country: str = FieldInfo(alias="attackerCountry")
@@ -26,10 +22,6 @@ class ThreatEventGetResponse(BaseModel):
 
     indicator: str
 
-    indicator_type: str = FieldInfo(alias="indicatorType")
-
-    indicator_type_id: float = FieldInfo(alias="indicatorTypeId")
-
     kill_chain: float = FieldInfo(alias="killChain")
 
     mitre_attack: List[str] = FieldInfo(alias="mitreAttack")
@@ -37,8 +29,6 @@ class ThreatEventGetResponse(BaseModel):
     num_referenced: float = FieldInfo(alias="numReferenced")
 
     num_references: float = FieldInfo(alias="numReferences")
-
-    raw_id: str = FieldInfo(alias="rawId")
 
     referenced: List[str]
 
@@ -59,5 +49,3 @@ class ThreatEventGetResponse(BaseModel):
     uuid: str
 
     insight: Optional[str] = None
-
-    releasability_id: Optional[str] = FieldInfo(alias="releasabilityId", default=None)

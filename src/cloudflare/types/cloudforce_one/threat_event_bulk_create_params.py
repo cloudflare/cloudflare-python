@@ -35,8 +35,6 @@ class Data(TypedDict, total=False):
 
     event: Required[str]
 
-    indicator_type: Required[Annotated[str, PropertyInfo(alias="indicatorType")]]
-
     raw: Required[DataRaw]
 
     tlp: Required[str]

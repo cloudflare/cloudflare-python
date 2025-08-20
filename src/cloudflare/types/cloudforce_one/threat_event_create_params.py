@@ -21,8 +21,6 @@ class ThreatEventCreateParams(TypedDict, total=False):
 
     event: Required[str]
 
-    indicator_type: Required[Annotated[str, PropertyInfo(alias="indicatorType")]]
-
     raw: Required[Raw]
 
     tlp: Required[str]
