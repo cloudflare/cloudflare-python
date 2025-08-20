@@ -1,13 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .edge import (
-    EdgeResource,
-    AsyncEdgeResource,
-    EdgeResourceWithRawResponse,
-    AsyncEdgeResourceWithRawResponse,
-    EdgeResourceWithStreamingResponse,
-    AsyncEdgeResourceWithStreamingResponse,
-)
 from .jobs import (
     JobsResource,
     AsyncJobsResource,
@@ -56,12 +48,6 @@ __all__ = [
     "AsyncDatasetsResourceWithRawResponse",
     "DatasetsResourceWithStreamingResponse",
     "AsyncDatasetsResourceWithStreamingResponse",
-    "EdgeResource",
-    "AsyncEdgeResource",
-    "EdgeResourceWithRawResponse",
-    "AsyncEdgeResourceWithRawResponse",
-    "EdgeResourceWithStreamingResponse",
-    "AsyncEdgeResourceWithStreamingResponse",
     "JobsResource",
     "AsyncJobsResource",
     "JobsResourceWithRawResponse",
