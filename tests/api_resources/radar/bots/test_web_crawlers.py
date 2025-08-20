@@ -37,8 +37,10 @@ class TestWebCrawlers:
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
+            industry=["string"],
             limit_per_group=10,
             name=["main_series"],
+            vertical=["string"],
         )
         assert_matches_type(WebCrawlerSummaryResponse, web_crawler, path=["response"])
 
@@ -83,8 +85,10 @@ class TestWebCrawlers:
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
+            industry=["string"],
             limit_per_group=10,
             name=["main_series"],
+            vertical=["string"],
         )
         assert_matches_type(WebCrawlerTimeseriesGroupsResponse, web_crawler, path=["response"])
 
@@ -134,8 +138,10 @@ class TestAsyncWebCrawlers:
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
+            industry=["string"],
             limit_per_group=10,
             name=["main_series"],
+            vertical=["string"],
         )
         assert_matches_type(WebCrawlerSummaryResponse, web_crawler, path=["response"])
 
@@ -180,8 +186,10 @@ class TestAsyncWebCrawlers:
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
+            industry=["string"],
             limit_per_group=10,
             name=["main_series"],
+            vertical=["string"],
         )
         assert_matches_type(WebCrawlerTimeseriesGroupsResponse, web_crawler, path=["response"])
 

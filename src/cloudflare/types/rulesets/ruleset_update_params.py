@@ -62,16 +62,16 @@ class RulesetUpdateParams(TypedDict, total=False):
 
 class RuleRulesetsChallengeRuleExposedCredentialCheck(TypedDict, total=False):
     password_expression: Required[str]
-    """Expression that selects the password used in the credentials check."""
+    """An expression that selects the password used in the credentials check."""
 
     username_expression: Required[str]
-    """Expression that selects the user ID used in the credentials check."""
+    """An expression that selects the user ID used in the credentials check."""
 
 
 class RuleRulesetsChallengeRuleRatelimit(TypedDict, total=False):
     characteristics: Required[List[str]]
     """
-    Characteristics of the request on which the ratelimiter counter will be
+    Characteristics of the request on which the rate limit counter will be
     incremented.
     """
 
@@ -79,9 +79,9 @@ class RuleRulesetsChallengeRuleRatelimit(TypedDict, total=False):
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
-    """Defines when the ratelimit counter should be incremented.
+    """An expression that defines when the rate limit counter should be incremented.
 
-    It is optional and defaults to the same as the rule's expression.
+    It defaults to the same as the rule's expression.
     """
 
     mitigation_timeout: int
@@ -97,7 +97,7 @@ class RuleRulesetsChallengeRuleRatelimit(TypedDict, total=False):
     """
 
     requests_to_origin: bool
-    """Defines if ratelimit counting is only done when an origin is reached."""
+    """Whether counting is only performed when an origin is reached."""
 
     score_per_period: int
     """
@@ -107,8 +107,8 @@ class RuleRulesetsChallengeRuleRatelimit(TypedDict, total=False):
 
     score_response_header_name: str
     """
-    The response header name provided by the origin which should contain the score
-    to increment ratelimit counter on.
+    A response header name provided by the origin, which contains the score to
+    increment rate limit counter with.
     """
 
 
@@ -129,7 +129,7 @@ class RuleRulesetsChallengeRule(TypedDict, total=False):
     """Whether the rule should be executed."""
 
     exposed_credential_check: RuleRulesetsChallengeRuleExposedCredentialCheck
-    """Configure checks for exposed credentials."""
+    """Configuration for exposed credential checking."""
 
     expression: str
     """The expression defining which traffic will match the rule."""
@@ -138,24 +138,24 @@ class RuleRulesetsChallengeRule(TypedDict, total=False):
     """An object configuring the rule's logging behavior."""
 
     ratelimit: RuleRulesetsChallengeRuleRatelimit
-    """An object configuring the rule's ratelimit behavior."""
+    """An object configuring the rule's rate limit behavior."""
 
     ref: str
-    """The reference of the rule (the rule ID by default)."""
+    """The reference of the rule (the rule's ID by default)."""
 
 
 class RuleRulesetsJSChallengeRuleExposedCredentialCheck(TypedDict, total=False):
     password_expression: Required[str]
-    """Expression that selects the password used in the credentials check."""
+    """An expression that selects the password used in the credentials check."""
 
     username_expression: Required[str]
-    """Expression that selects the user ID used in the credentials check."""
+    """An expression that selects the user ID used in the credentials check."""
 
 
 class RuleRulesetsJSChallengeRuleRatelimit(TypedDict, total=False):
     characteristics: Required[List[str]]
     """
-    Characteristics of the request on which the ratelimiter counter will be
+    Characteristics of the request on which the rate limit counter will be
     incremented.
     """
 
@@ -163,9 +163,9 @@ class RuleRulesetsJSChallengeRuleRatelimit(TypedDict, total=False):
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
-    """Defines when the ratelimit counter should be incremented.
+    """An expression that defines when the rate limit counter should be incremented.
 
-    It is optional and defaults to the same as the rule's expression.
+    It defaults to the same as the rule's expression.
     """
 
     mitigation_timeout: int
@@ -181,7 +181,7 @@ class RuleRulesetsJSChallengeRuleRatelimit(TypedDict, total=False):
     """
 
     requests_to_origin: bool
-    """Defines if ratelimit counting is only done when an origin is reached."""
+    """Whether counting is only performed when an origin is reached."""
 
     score_per_period: int
     """
@@ -191,8 +191,8 @@ class RuleRulesetsJSChallengeRuleRatelimit(TypedDict, total=False):
 
     score_response_header_name: str
     """
-    The response header name provided by the origin which should contain the score
-    to increment ratelimit counter on.
+    A response header name provided by the origin, which contains the score to
+    increment rate limit counter with.
     """
 
 
@@ -213,7 +213,7 @@ class RuleRulesetsJSChallengeRule(TypedDict, total=False):
     """Whether the rule should be executed."""
 
     exposed_credential_check: RuleRulesetsJSChallengeRuleExposedCredentialCheck
-    """Configure checks for exposed credentials."""
+    """Configuration for exposed credential checking."""
 
     expression: str
     """The expression defining which traffic will match the rule."""
@@ -222,29 +222,29 @@ class RuleRulesetsJSChallengeRule(TypedDict, total=False):
     """An object configuring the rule's logging behavior."""
 
     ratelimit: RuleRulesetsJSChallengeRuleRatelimit
-    """An object configuring the rule's ratelimit behavior."""
+    """An object configuring the rule's rate limit behavior."""
 
     ref: str
-    """The reference of the rule (the rule ID by default)."""
+    """The reference of the rule (the rule's ID by default)."""
 
 
 Rule: TypeAlias = Union[
     BlockRuleParam,
     RuleRulesetsChallengeRule,
     CompressResponseRuleParam,
+    DDoSDynamicRuleParam,
     ExecuteRuleParam,
+    ForceConnectionCloseRuleParam,
     RuleRulesetsJSChallengeRule,
     LogRuleParam,
+    LogCustomFieldRuleParam,
     ManagedChallengeRuleParam,
     RedirectRuleParam,
     RewriteRuleParam,
     RouteRuleParam,
     ScoreRuleParam,
     ServeErrorRuleParam,
+    SetCacheSettingsRuleParam,
     SetConfigRuleParam,
     SkipRuleParam,
-    SetCacheSettingsRuleParam,
-    LogCustomFieldRuleParam,
-    DDoSDynamicRuleParam,
-    ForceConnectionCloseRuleParam,
 ]

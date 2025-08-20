@@ -76,7 +76,7 @@ class GatewayConfigurationSettings(BaseModel):
     custom_certificate: Optional[CustomCertificateSettings] = None
     """Custom certificate settings for BYO-PKI.
 
-    (deprecated and replaced by `certificate`)
+    (deprecated and replaced by `certificate`).
     """
 
     extended_email_matching: Optional[ExtendedEmailMatching] = None
@@ -89,7 +89,7 @@ class GatewayConfigurationSettings(BaseModel):
     """Setting to enable host selector in egress policies."""
 
     inspection: Optional[Inspection] = None
-    """Setting to define inspection settings"""
+    """Setting to define inspection settings."""
 
     protocol_detection: Optional[ProtocolDetection] = None
     """Protocol Detection settings."""

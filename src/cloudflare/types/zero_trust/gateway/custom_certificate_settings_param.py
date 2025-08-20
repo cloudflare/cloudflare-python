@@ -10,7 +10,7 @@ __all__ = ["CustomCertificateSettingsParam"]
 
 class CustomCertificateSettingsParam(TypedDict, total=False):
     enabled: Required[Optional[bool]]
-    """Enable use of custom certificate authority for signing Gateway traffic."""
+    """Enable use of custom certificate authority for signing Gateway. traffic."""
 
     id: str
     """UUID of certificate (ID from MTLS certificate store)."""

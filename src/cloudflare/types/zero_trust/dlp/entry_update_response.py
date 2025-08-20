@@ -12,6 +12,7 @@ __all__ = [
     "CustomEntry",
     "PredefinedEntry",
     "PredefinedEntryConfidence",
+    "PredefinedEntryVariant",
     "IntegrationEntry",
     "ExactDataEntry",
     "DocumentFingerprintEntry",
@@ -48,6 +49,12 @@ class PredefinedEntryConfidence(BaseModel):
     """
 
 
+class PredefinedEntryVariant(BaseModel):
+    topic_type: Literal["Intent", "Content"]
+
+    type: Literal["PromptTopic"]
+
+
 class PredefinedEntry(BaseModel):
     id: str
 
@@ -60,6 +67,8 @@ class PredefinedEntry(BaseModel):
     type: Literal["predefined"]
 
     profile_id: Optional[str] = None
+
+    variant: Optional[PredefinedEntryVariant] = None
 
 
 class IntegrationEntry(BaseModel):

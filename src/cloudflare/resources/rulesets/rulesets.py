@@ -267,9 +267,9 @@ class RulesetsResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
-          cursor: Cursor to use for the next page.
+          cursor: The cursor to use for the next page.
 
-          per_page: Number of rulesets to return per page.
+          per_page: The number of rulesets to return per page.
 
           extra_headers: Send extra headers
 
@@ -635,9 +635,9 @@ class AsyncRulesetsResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
-          cursor: Cursor to use for the next page.
+          cursor: The cursor to use for the next page.
 
-          per_page: Number of rulesets to return per page.
+          per_page: The number of rulesets to return per page.
 
           extra_headers: Send extra headers
 

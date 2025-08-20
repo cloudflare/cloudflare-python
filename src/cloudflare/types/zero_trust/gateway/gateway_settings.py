@@ -18,6 +18,6 @@ class GatewaySettings(BaseModel):
     """
 
     seed_id: Optional[str] = None
-    """Seed ID"""
+    """Seed ID."""
 
     updated_at: Optional[datetime] = None

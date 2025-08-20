@@ -15,7 +15,7 @@ class BlockPageSettingsParam(TypedDict, total=False):
     """
 
     enabled: Optional[bool]
-    """Enable only cipher suites and TLS versions compliant with FIPS 140-2."""
+    """Enable only cipher suites and TLS versions compliant with FIPS. 140-2."""
 
     footer_text: str
     """If mode is customized_block_page: block page footer text."""

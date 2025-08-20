@@ -15,7 +15,7 @@ class BlockPageSettings(BaseModel):
     """
 
     enabled: Optional[bool] = None
-    """Enable only cipher suites and TLS versions compliant with FIPS 140-2."""
+    """Enable only cipher suites and TLS versions compliant with FIPS. 140-2."""
 
     footer_text: Optional[str] = None
     """If mode is customized_block_page: block page footer text."""
@@ -53,11 +53,11 @@ class BlockPageSettings(BaseModel):
     read_only: Optional[bool] = None
     """
     This setting was shared via the Orgs API and cannot be edited by the current
-    account
+    account.
     """
 
     source_account: Optional[str] = None
-    """Account tag of account that shared this setting"""
+    """Account tag of account that shared this setting."""
 
     suppress_footer: Optional[bool] = None
     """
@@ -69,4 +69,4 @@ class BlockPageSettings(BaseModel):
     """If mode is redirect_uri: URI to which the user should be redirected."""
 
     version: Optional[int] = None
-    """Version number of the setting"""
+    """Version number of the setting."""

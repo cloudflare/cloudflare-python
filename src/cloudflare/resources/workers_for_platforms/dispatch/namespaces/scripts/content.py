@@ -33,7 +33,6 @@ from ......_response import (
 from ......_wrappers import ResultWrapper
 from ......_base_client import make_request_options
 from ......types.workers.script import Script
-from ......types.workers.worker_metadata_param import WorkerMetadataParam
 from ......types.workers_for_platforms.dispatch.namespaces.scripts import content_update_params
 
 __all__ = ["ContentResource", "AsyncContentResource"]
@@ -65,7 +64,7 @@ class ContentResource(SyncAPIResource):
         *,
         account_id: str,
         dispatch_namespace: str,
-        metadata: WorkerMetadataParam,
+        metadata: content_update_params.Metadata,
         files: List[FileTypes] | NotGiven = NOT_GIVEN,
         cf_worker_body_part: str | NotGiven = NOT_GIVEN,
         cf_worker_main_module_part: str | NotGiven = NOT_GIVEN,
@@ -218,7 +217,7 @@ class AsyncContentResource(AsyncAPIResource):
         *,
         account_id: str,
         dispatch_namespace: str,
-        metadata: WorkerMetadataParam,
+        metadata: content_update_params.Metadata,
         files: List[FileTypes] | NotGiven = NOT_GIVEN,
         cf_worker_body_part: str | NotGiven = NOT_GIVEN,
         cf_worker_main_module_part: str | NotGiven = NOT_GIVEN,

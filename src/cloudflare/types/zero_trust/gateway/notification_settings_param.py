@@ -9,10 +9,10 @@ __all__ = ["NotificationSettingsParam"]
 
 class NotificationSettingsParam(TypedDict, total=False):
     enabled: bool
-    """Set notification on"""
+    """Set notification on."""
 
     include_context: bool
-    """If true, context information will be passed as query parameters"""
+    """If true, context information will be passed as query parameters."""
 
     msg: str
     """Customize the message shown in the notification."""

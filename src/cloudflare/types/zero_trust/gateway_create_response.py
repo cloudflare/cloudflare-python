@@ -15,4 +15,4 @@ class GatewayCreateResponse(BaseModel):
     """Gateway internal ID."""
 
     provider_name: Optional[str] = None
-    """The name of the provider. Usually Cloudflare."""
+    """Provider Name. Usually Cloudflare."""

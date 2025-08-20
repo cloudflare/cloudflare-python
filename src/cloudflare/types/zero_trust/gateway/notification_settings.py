@@ -9,10 +9,10 @@ __all__ = ["NotificationSettings"]
 
 class NotificationSettings(BaseModel):
     enabled: Optional[bool] = None
-    """Set notification on"""
+    """Set notification on."""
 
     include_context: Optional[bool] = None
-    """If true, context information will be passed as query parameters"""
+    """If true, context information will be passed as query parameters."""
 
     msg: Optional[str] = None
     """Customize the message shown in the notification."""

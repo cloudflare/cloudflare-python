@@ -111,7 +111,7 @@ class RulesResource(SyncAPIResource):
 
               This does not apply to HTTP or network policies.
 
-          filters: The protocol or layer to evaluate the traffic, identity, and device posture
+          filters: The protocol or layer to evaluate the traffic, identity, and device. posture
               expressions.
 
           identity: The wirefilter expression used for identity matching. The API automatically
@@ -237,7 +237,7 @@ class RulesResource(SyncAPIResource):
 
               This does not apply to HTTP or network policies.
 
-          filters: The protocol or layer to evaluate the traffic, identity, and device posture
+          filters: The protocol or layer to evaluate the traffic, identity, and device. posture
               expressions.
 
           identity: The wirefilter expression used for identity matching. The API automatically
@@ -547,7 +547,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
               This does not apply to HTTP or network policies.
 
-          filters: The protocol or layer to evaluate the traffic, identity, and device posture
+          filters: The protocol or layer to evaluate the traffic, identity, and device. posture
               expressions.
 
           identity: The wirefilter expression used for identity matching. The API automatically
@@ -673,7 +673,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
               This does not apply to HTTP or network policies.
 
-          filters: The protocol or layer to evaluate the traffic, identity, and device posture
+          filters: The protocol or layer to evaluate the traffic, identity, and device. posture
               expressions.
 
           identity: The wirefilter expression used for identity matching. The API automatically

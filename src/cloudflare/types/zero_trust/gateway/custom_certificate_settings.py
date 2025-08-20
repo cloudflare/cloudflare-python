@@ -10,7 +10,7 @@ __all__ = ["CustomCertificateSettings"]
 
 class CustomCertificateSettings(BaseModel):
     enabled: Optional[bool] = None
-    """Enable use of custom certificate authority for signing Gateway traffic."""
+    """Enable use of custom certificate authority for signing Gateway. traffic."""
 
     id: Optional[str] = None
     """UUID of certificate (ID from MTLS certificate store)."""

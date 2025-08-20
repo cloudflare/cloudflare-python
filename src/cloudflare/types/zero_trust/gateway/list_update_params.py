@@ -23,7 +23,7 @@ class ListUpdateParams(TypedDict, total=False):
 
 class Item(TypedDict, total=False):
     description: str
-    """The description of the list item, if present"""
+    """The description of the list item, if present."""
 
     value: str
     """The value of the item in a list."""

@@ -95,10 +95,10 @@ class BISOAdminControls(BaseModel):
 
 class BlockPage(BaseModel):
     target_uri: str
-    """URI to which the user will be redirected"""
+    """URI to which the user will be redirected."""
 
     include_context: Optional[bool] = None
-    """If true, context information will be passed as query parameters"""
+    """If true, context information will be passed as query parameters."""
 
 
 class CheckSession(BaseModel):
@@ -145,10 +145,10 @@ class L4override(BaseModel):
 
 class NotificationSettings(BaseModel):
     enabled: Optional[bool] = None
-    """Set notification on"""
+    """Set notification on."""
 
     include_context: Optional[bool] = None
-    """If true, context information will be passed as query parameters"""
+    """If true, context information will be passed as query parameters."""
 
     msg: Optional[str] = None
     """Customize the message shown in the notification."""
@@ -174,15 +174,15 @@ class Quarantine(BaseModel):
 
 class Redirect(BaseModel):
     target_uri: str
-    """URI to which the user will be redirected"""
+    """URI to which the user will be redirected."""
 
     include_context: Optional[bool] = None
-    """If true, context information will be passed as query parameters"""
+    """If true, context information will be passed as query parameters."""
 
     preserve_path_and_query: Optional[bool] = None
     """
     If true, the path and query parameters from the original request will be
-    appended to target_uri
+    appended to target_uri.
     """
 
 
@@ -281,7 +281,7 @@ class RuleSetting(BaseModel):
     """
 
     l4override: Optional[L4override] = None
-    """Send matching traffic to the supplied destination IP address and port."""
+    """Send matching traffic to the supplied destination IP address. and port."""
 
     notification_settings: Optional[NotificationSettings] = None
     """
@@ -299,10 +299,10 @@ class RuleSetting(BaseModel):
     """Configure DLP payload logging."""
 
     quarantine: Optional[Quarantine] = None
-    """Settings that apply to quarantine rules"""
+    """Settings that apply to quarantine rules."""
 
     redirect: Optional[Redirect] = None
-    """Settings that apply to redirect rules"""
+    """Settings that apply to redirect rules."""
 
     resolve_dns_internally: Optional[ResolveDNSInternally] = None
     """

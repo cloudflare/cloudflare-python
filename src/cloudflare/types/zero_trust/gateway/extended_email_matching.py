@@ -17,11 +17,11 @@ class ExtendedEmailMatching(BaseModel):
     read_only: Optional[bool] = None
     """
     This setting was shared via the Orgs API and cannot be edited by the current
-    account
+    account.
     """
 
     source_account: Optional[str] = None
-    """Account tag of account that shared this setting"""
+    """Account tag of account that shared this setting."""
 
     version: Optional[int] = None
-    """Version number of the setting"""
+    """Version number of the setting."""

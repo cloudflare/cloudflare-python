@@ -18,80 +18,83 @@ __all__ = [
 
 class ActionParametersAutominify(TypedDict, total=False):
     css: bool
-    """Minify CSS files."""
+    """Whether to minify CSS files."""
 
     html: bool
-    """Minify HTML files."""
+    """Whether to minify HTML files."""
 
     js: bool
-    """Minify JS files."""
+    """Whether to minify JavaScript files."""
 
 
 class ActionParameters(TypedDict, total=False):
     automatic_https_rewrites: bool
-    """Turn on or off Automatic HTTPS Rewrites."""
+    """Whether to enable Automatic HTTPS Rewrites."""
 
     autominify: ActionParametersAutominify
-    """Select which file extensions to minify automatically."""
+    """Which file extensions to minify automatically."""
 
     bic: bool
-    """Turn on or off Browser Integrity Check."""
+    """Whether to enable Browser Integrity Check (BIC)."""
 
     disable_apps: Literal[True]
-    """Turn off all active Cloudflare Apps."""
+    """Whether to disable Cloudflare Apps."""
+
+    disable_pay_per_crawl: Literal[True]
+    """Whether to disable Pay Per Crawl."""
 
     disable_rum: Literal[True]
-    """Turn off Real User Monitoring (RUM)."""
+    """Whether to disable Real User Monitoring (RUM)."""
 
     disable_zaraz: Literal[True]
-    """Turn off Zaraz."""
+    """Whether to disable Zaraz."""
 
     email_obfuscation: bool
-    """Turn on or off Email Obfuscation."""
+    """Whether to enable Email Obfuscation."""
 
     fonts: bool
-    """Turn on or off Cloudflare Fonts."""
+    """Whether to enable Cloudflare Fonts."""
 
     hotlink_protection: bool
-    """Turn on or off the Hotlink Protection."""
+    """Whether to enable Hotlink Protection."""
 
     mirage: bool
-    """Turn on or off Mirage."""
+    """Whether to enable Mirage."""
 
     opportunistic_encryption: bool
-    """Turn on or off Opportunistic Encryption."""
+    """Whether to enable Opportunistic Encryption."""
 
     polish: Literal["off", "lossless", "lossy", "webp"]
-    """Configure the Polish level."""
+    """The Polish level to configure."""
 
     rocket_loader: bool
-    """Turn on or off Rocket Loader."""
+    """Whether to enable Rocket Loader."""
 
     security_level: Literal["off", "essentially_off", "low", "medium", "high", "under_attack"]
-    """Configure the Security Level."""
+    """The Security Level to configure."""
 
     server_side_excludes: bool
-    """Turn on or off Server Side Excludes."""
+    """Whether to enable Server-Side Excludes."""
 
     ssl: Literal["off", "flexible", "full", "strict", "origin_pull"]
-    """Configure the SSL level."""
+    """The SSL level to configure."""
 
     sxg: bool
-    """Turn on or off Signed Exchanges (SXG)."""
+    """Whether to enable Signed Exchanges (SXG)."""
 
 
 class ExposedCredentialCheck(TypedDict, total=False):
     password_expression: Required[str]
-    """Expression that selects the password used in the credentials check."""
+    """An expression that selects the password used in the credentials check."""
 
     username_expression: Required[str]
-    """Expression that selects the user ID used in the credentials check."""
+    """An expression that selects the user ID used in the credentials check."""
 
 
 class Ratelimit(TypedDict, total=False):
     characteristics: Required[List[str]]
     """
-    Characteristics of the request on which the ratelimiter counter will be
+    Characteristics of the request on which the rate limit counter will be
     incremented.
     """
 
@@ -99,9 +102,9 @@ class Ratelimit(TypedDict, total=False):
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
-    """Defines when the ratelimit counter should be incremented.
+    """An expression that defines when the rate limit counter should be incremented.
 
-    It is optional and defaults to the same as the rule's expression.
+    It defaults to the same as the rule's expression.
     """
 
     mitigation_timeout: int
@@ -117,7 +120,7 @@ class Ratelimit(TypedDict, total=False):
     """
 
     requests_to_origin: bool
-    """Defines if ratelimit counting is only done when an origin is reached."""
+    """Whether counting is only performed when an origin is reached."""
 
     score_per_period: int
     """
@@ -127,8 +130,8 @@ class Ratelimit(TypedDict, total=False):
 
     score_response_header_name: str
     """
-    The response header name provided by the origin which should contain the score
-    to increment ratelimit counter on.
+    A response header name provided by the origin, which contains the score to
+    increment rate limit counter with.
     """
 
 
@@ -149,7 +152,7 @@ class SetConfigRuleParam(TypedDict, total=False):
     """Whether the rule should be executed."""
 
     exposed_credential_check: ExposedCredentialCheck
-    """Configure checks for exposed credentials."""
+    """Configuration for exposed credential checking."""
 
     expression: str
     """The expression defining which traffic will match the rule."""
@@ -158,7 +161,7 @@ class SetConfigRuleParam(TypedDict, total=False):
     """An object configuring the rule's logging behavior."""
 
     ratelimit: Ratelimit
-    """An object configuring the rule's ratelimit behavior."""
+    """An object configuring the rule's rate limit behavior."""
 
     ref: str
-    """The reference of the rule (the rule ID by default)."""
+    """The reference of the rule (the rule's ID by default)."""

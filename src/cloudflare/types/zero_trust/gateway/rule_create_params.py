@@ -68,9 +68,9 @@ class RuleCreateParams(TypedDict, total=False):
     """
 
     filters: List[GatewayFilter]
-    """
-    The protocol or layer to evaluate the traffic, identity, and device posture
-    expressions.
+    """The protocol or layer to evaluate the traffic, identity, and device.
+
+    posture expressions.
     """
 
     identity: str

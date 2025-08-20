@@ -3005,7 +3005,6 @@ from cloudflare.types.rulesets import (
     ManagedChallengeRule,
     RedirectRule,
     RewriteRule,
-    RewriteURIPart,
     RouteRule,
     RulesetRule,
     ScoreRule,

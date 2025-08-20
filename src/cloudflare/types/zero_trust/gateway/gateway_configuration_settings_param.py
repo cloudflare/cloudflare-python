@@ -77,7 +77,7 @@ class GatewayConfigurationSettingsParam(TypedDict, total=False):
     custom_certificate: Optional[CustomCertificateSettingsParam]
     """Custom certificate settings for BYO-PKI.
 
-    (deprecated and replaced by `certificate`)
+    (deprecated and replaced by `certificate`).
     """
 
     extended_email_matching: Optional[ExtendedEmailMatchingParam]
@@ -90,7 +90,7 @@ class GatewayConfigurationSettingsParam(TypedDict, total=False):
     """Setting to enable host selector in egress policies."""
 
     inspection: Optional[Inspection]
-    """Setting to define inspection settings"""
+    """Setting to define inspection settings."""
 
     protocol_detection: Optional[ProtocolDetectionParam]
     """Protocol Detection settings."""

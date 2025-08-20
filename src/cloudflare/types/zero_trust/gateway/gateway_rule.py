@@ -63,9 +63,9 @@ class GatewayRule(BaseModel):
     """True if the rule is enabled."""
 
     filters: List[GatewayFilter]
-    """
-    The protocol or layer to evaluate the traffic, identity, and device posture
-    expressions.
+    """The protocol or layer to evaluate the traffic, identity, and device.
+
+    posture expressions.
     """
 
     name: str
@@ -124,11 +124,12 @@ class GatewayRule(BaseModel):
     """
 
     not_sharable: Optional[bool] = None
-    """The rule cannot be shared via the Orgs API"""
+    """The rule cannot be shared via the Orgs API."""
 
     read_only: Optional[bool] = None
     """
-    The rule was shared via the Orgs API and cannot be edited by the current account
+    The rule was shared via the Orgs API and cannot be edited by the current
+    account.
     """
 
     rule_settings: Optional[RuleSetting] = None
@@ -141,12 +142,12 @@ class GatewayRule(BaseModel):
     """
 
     source_account: Optional[str] = None
-    """account tag of account that created the rule"""
+    """account tag of account that created the rule."""
 
     updated_at: Optional[datetime] = None
 
     version: Optional[int] = None
-    """version number of the rule"""
+    """version number of the rule."""
 
     warning_status: Optional[str] = None
     """Warning for a misconfigured rule, if any."""

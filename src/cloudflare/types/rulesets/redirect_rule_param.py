@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from typing import List, Union
-from typing_extensions import Literal, Required, TypeAlias, TypedDict
+from typing import List
+from typing_extensions import Literal, Required, TypedDict
 
 from .logging_param import LoggingParam
 
@@ -13,67 +13,58 @@ __all__ = [
     "ActionParametersFromList",
     "ActionParametersFromValue",
     "ActionParametersFromValueTargetURL",
-    "ActionParametersFromValueTargetURLStaticURLRedirect",
-    "ActionParametersFromValueTargetURLDynamicURLRedirect",
     "ExposedCredentialCheck",
     "Ratelimit",
 ]
 
 
 class ActionParametersFromList(TypedDict, total=False):
-    key: str
-    """Expression that evaluates to the list lookup key."""
+    key: Required[str]
+    """An expression that evaluates to the list lookup key."""
 
-    name: str
+    name: Required[str]
     """The name of the list to match against."""
 
 
-class ActionParametersFromValueTargetURLStaticURLRedirect(TypedDict, total=False):
-    value: str
-    """The URL to redirect the request to."""
-
-
-class ActionParametersFromValueTargetURLDynamicURLRedirect(TypedDict, total=False):
+class ActionParametersFromValueTargetURL(TypedDict, total=False):
     expression: str
-    """An expression to evaluate to get the URL to redirect the request to."""
+    """An expression that evaluates to a URL to redirect the request to."""
 
-
-ActionParametersFromValueTargetURL: TypeAlias = Union[
-    ActionParametersFromValueTargetURLStaticURLRedirect, ActionParametersFromValueTargetURLDynamicURLRedirect
-]
+    value: str
+    """A URL to redirect the request to."""
 
 
 class ActionParametersFromValue(TypedDict, total=False):
+    target_url: Required[ActionParametersFromValueTargetURL]
+    """A URL to redirect the request to."""
+
     preserve_query_string: bool
-    """Keep the query string of the original request."""
+    """Whether to keep the query string of the original request."""
 
     status_code: Literal[301, 302, 303, 307, 308]
-    """The status code to be used for the redirect."""
-
-    target_url: ActionParametersFromValueTargetURL
-    """The URL to redirect the request to."""
+    """The status code to use for the redirect."""
 
 
 class ActionParameters(TypedDict, total=False):
     from_list: ActionParametersFromList
-    """Serve a redirect based on a bulk list lookup."""
+    """A redirect based on a bulk list lookup."""
 
     from_value: ActionParametersFromValue
-    """Serve a redirect based on the request properties."""
+    """A redirect based on the request properties."""
 
 
 class ExposedCredentialCheck(TypedDict, total=False):
     password_expression: Required[str]
-    """Expression that selects the password used in the credentials check."""
+    """An expression that selects the password used in the credentials check."""
 
     username_expression: Required[str]
-    """Expression that selects the user ID used in the credentials check."""
+    """An expression that selects the user ID used in the credentials check."""
 
 
 class Ratelimit(TypedDict, total=False):
     characteristics: Required[List[str]]
     """
-    Characteristics of the request on which the ratelimiter counter will be
+    Characteristics of the request on which the rate limit counter will be
     incremented.
     """
 
@@ -81,9 +72,9 @@ class Ratelimit(TypedDict, total=False):
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
-    """Defines when the ratelimit counter should be incremented.
+    """An expression that defines when the rate limit counter should be incremented.
 
-    It is optional and defaults to the same as the rule's expression.
+    It defaults to the same as the rule's expression.
     """
 
     mitigation_timeout: int
@@ -99,7 +90,7 @@ class Ratelimit(TypedDict, total=False):
     """
 
     requests_to_origin: bool
-    """Defines if ratelimit counting is only done when an origin is reached."""
+    """Whether counting is only performed when an origin is reached."""
 
     score_per_period: int
     """
@@ -109,8 +100,8 @@ class Ratelimit(TypedDict, total=False):
 
     score_response_header_name: str
     """
-    The response header name provided by the origin which should contain the score
-    to increment ratelimit counter on.
+    A response header name provided by the origin, which contains the score to
+    increment rate limit counter with.
     """
 
 
@@ -131,7 +122,7 @@ class RedirectRuleParam(TypedDict, total=False):
     """Whether the rule should be executed."""
 
     exposed_credential_check: ExposedCredentialCheck
-    """Configure checks for exposed credentials."""
+    """Configuration for exposed credential checking."""
 
     expression: str
     """The expression defining which traffic will match the rule."""
@@ -140,7 +131,7 @@ class RedirectRuleParam(TypedDict, total=False):
     """An object configuring the rule's logging behavior."""
 
     ratelimit: Ratelimit
-    """An object configuring the rule's ratelimit behavior."""
+    """An object configuring the rule's rate limit behavior."""
 
     ref: str
-    """The reference of the rule (the rule ID by default)."""
+    """The reference of the rule (the rule's ID by default)."""

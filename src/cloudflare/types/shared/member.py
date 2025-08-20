@@ -113,6 +113,9 @@ class Member(BaseModel):
     id: Optional[str] = None
     """Membership identifier tag."""
 
+    email: Optional[str] = None
+    """The contact email address of the user."""
+
     policies: Optional[List[Policy]] = None
     """Access policy for the membership"""
 

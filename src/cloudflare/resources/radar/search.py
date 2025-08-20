@@ -49,10 +49,32 @@ class SearchResource(SyncAPIResource):
         self,
         *,
         query: str,
-        exclude: List[Literal["ASNS", "BOTS", "CERTIFICATE_AUTHORITIES", "CERTIFICATE_LOGS", "LOCATIONS", "NOTEBOOKS"]]
+        exclude: List[
+            Literal[
+                "ASNS",
+                "BOTS",
+                "CERTIFICATE_AUTHORITIES",
+                "CERTIFICATE_LOGS",
+                "LOCATIONS",
+                "NOTEBOOKS",
+                "VERTICALS",
+                "INDUSTRIES",
+            ]
+        ]
         | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        include: List[Literal["ASNS", "BOTS", "CERTIFICATE_AUTHORITIES", "CERTIFICATE_LOGS", "LOCATIONS", "NOTEBOOKS"]]
+        include: List[
+            Literal[
+                "ASNS",
+                "BOTS",
+                "CERTIFICATE_AUTHORITIES",
+                "CERTIFICATE_LOGS",
+                "LOCATIONS",
+                "NOTEBOOKS",
+                "VERTICALS",
+                "INDUSTRIES",
+            ]
+        ]
         | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         limit_per_group: float | NotGiven = NOT_GIVEN,
@@ -64,8 +86,8 @@ class SearchResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SearchGlobalResponse:
         """
-        Searches for locations, autonomous systems, reports, bots, certificate logs, and
-        certificate authorities.
+        Searches for locations, autonomous systems, reports, bots, certificate logs,
+        certificate authorities, industries and verticals
 
         Args:
           query: String used to perform the search operation.
@@ -136,10 +158,32 @@ class AsyncSearchResource(AsyncAPIResource):
         self,
         *,
         query: str,
-        exclude: List[Literal["ASNS", "BOTS", "CERTIFICATE_AUTHORITIES", "CERTIFICATE_LOGS", "LOCATIONS", "NOTEBOOKS"]]
+        exclude: List[
+            Literal[
+                "ASNS",
+                "BOTS",
+                "CERTIFICATE_AUTHORITIES",
+                "CERTIFICATE_LOGS",
+                "LOCATIONS",
+                "NOTEBOOKS",
+                "VERTICALS",
+                "INDUSTRIES",
+            ]
+        ]
         | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        include: List[Literal["ASNS", "BOTS", "CERTIFICATE_AUTHORITIES", "CERTIFICATE_LOGS", "LOCATIONS", "NOTEBOOKS"]]
+        include: List[
+            Literal[
+                "ASNS",
+                "BOTS",
+                "CERTIFICATE_AUTHORITIES",
+                "CERTIFICATE_LOGS",
+                "LOCATIONS",
+                "NOTEBOOKS",
+                "VERTICALS",
+                "INDUSTRIES",
+            ]
+        ]
         | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         limit_per_group: float | NotGiven = NOT_GIVEN,
@@ -151,8 +195,8 @@ class AsyncSearchResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SearchGlobalResponse:
         """
-        Searches for locations, autonomous systems, reports, bots, certificate logs, and
-        certificate authorities.
+        Searches for locations, autonomous systems, reports, bots, certificate logs,
+        certificate authorities, industries and verticals
 
         Args:
           query: String used to perform the search operation.

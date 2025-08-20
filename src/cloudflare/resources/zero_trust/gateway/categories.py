@@ -55,7 +55,7 @@ class CategoriesResource(SyncAPIResource):
         Fetches a list of all categories.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -112,7 +112,7 @@ class AsyncCategoriesResource(AsyncAPIResource):
         Fetches a list of all categories.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 

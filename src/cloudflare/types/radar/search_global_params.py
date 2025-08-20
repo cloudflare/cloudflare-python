@@ -14,13 +14,35 @@ class SearchGlobalParams(TypedDict, total=False):
     query: Required[str]
     """String used to perform the search operation."""
 
-    exclude: List[Literal["ASNS", "BOTS", "CERTIFICATE_AUTHORITIES", "CERTIFICATE_LOGS", "LOCATIONS", "NOTEBOOKS"]]
+    exclude: List[
+        Literal[
+            "ASNS",
+            "BOTS",
+            "CERTIFICATE_AUTHORITIES",
+            "CERTIFICATE_LOGS",
+            "LOCATIONS",
+            "NOTEBOOKS",
+            "VERTICALS",
+            "INDUSTRIES",
+        ]
+    ]
     """Search types excluded from results."""
 
     format: Literal["JSON", "CSV"]
     """Format in which results will be returned."""
 
-    include: List[Literal["ASNS", "BOTS", "CERTIFICATE_AUTHORITIES", "CERTIFICATE_LOGS", "LOCATIONS", "NOTEBOOKS"]]
+    include: List[
+        Literal[
+            "ASNS",
+            "BOTS",
+            "CERTIFICATE_AUTHORITIES",
+            "CERTIFICATE_LOGS",
+            "LOCATIONS",
+            "NOTEBOOKS",
+            "VERTICALS",
+            "INDUSTRIES",
+        ]
+    ]
     """Search types included in results."""
 
     limit: int

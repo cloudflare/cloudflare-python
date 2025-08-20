@@ -55,6 +55,9 @@ class TimeseriesGroupTimeseriesParams(TypedDict, total=False):
     format: Literal["JSON", "CSV"]
     """Format in which results will be returned."""
 
+    industry: List[str]
+    """Filters results by industry."""
+
     limit_per_group: Annotated[int, PropertyInfo(alias="limitPerGroup")]
     """
     Limits the number of objects per group to the top items within the specified
@@ -75,3 +78,6 @@ class TimeseriesGroupTimeseriesParams(TypedDict, total=False):
 
     user_agent: Annotated[List[str], PropertyInfo(alias="userAgent")]
     """Filters results by user agent."""
+
+    vertical: List[str]
+    """Filters results by vertical."""

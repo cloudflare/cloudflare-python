@@ -6,92 +6,127 @@ from typing_extensions import Literal, TypeAlias
 
 from .logging import Logging
 from ..._models import BaseModel
-from .rewrite_uri_part import RewriteURIPart
 
 __all__ = [
     "RewriteRule",
     "ActionParameters",
     "ActionParametersHeaders",
-    "ActionParametersHeadersRemoveHeader",
     "ActionParametersHeadersAddStaticHeader",
-    "ActionParametersHeadersSetStaticHeader",
     "ActionParametersHeadersAddDynamicHeader",
+    "ActionParametersHeadersSetStaticHeader",
     "ActionParametersHeadersSetDynamicHeader",
+    "ActionParametersHeadersRemoveHeader",
     "ActionParametersURI",
+    "ActionParametersURIURIPath",
+    "ActionParametersURIURIPathPath",
+    "ActionParametersURIURIQuery",
+    "ActionParametersURIURIQueryQuery",
     "ExposedCredentialCheck",
     "Ratelimit",
 ]
 
 
-class ActionParametersHeadersRemoveHeader(BaseModel):
-    operation: Literal["remove"]
-
-
 class ActionParametersHeadersAddStaticHeader(BaseModel):
     operation: Literal["add"]
+    """The operation to perform on the header."""
 
     value: str
-    """Static value for the header."""
-
-
-class ActionParametersHeadersSetStaticHeader(BaseModel):
-    operation: Literal["set"]
-
-    value: str
-    """Static value for the header."""
+    """A static value for the header."""
 
 
 class ActionParametersHeadersAddDynamicHeader(BaseModel):
     expression: str
-    """Expression for the header value."""
+    """An expression that evaluates to a value for the header."""
 
     operation: Literal["add"]
+    """The operation to perform on the header."""
+
+
+class ActionParametersHeadersSetStaticHeader(BaseModel):
+    operation: Literal["set"]
+    """The operation to perform on the header."""
+
+    value: str
+    """A static value for the header."""
 
 
 class ActionParametersHeadersSetDynamicHeader(BaseModel):
     expression: str
-    """Expression for the header value."""
+    """An expression that evaluates to a value for the header."""
 
     operation: Literal["set"]
+    """The operation to perform on the header."""
+
+
+class ActionParametersHeadersRemoveHeader(BaseModel):
+    operation: Literal["remove"]
+    """The operation to perform on the header."""
 
 
 ActionParametersHeaders: TypeAlias = Union[
-    ActionParametersHeadersRemoveHeader,
     ActionParametersHeadersAddStaticHeader,
-    ActionParametersHeadersSetStaticHeader,
     ActionParametersHeadersAddDynamicHeader,
+    ActionParametersHeadersSetStaticHeader,
     ActionParametersHeadersSetDynamicHeader,
+    ActionParametersHeadersRemoveHeader,
 ]
 
 
-class ActionParametersURI(BaseModel):
-    path: Optional[RewriteURIPart] = None
-    """Path portion rewrite."""
+class ActionParametersURIURIPathPath(BaseModel):
+    expression: Optional[str] = None
+    """An expression that evaluates to a value to rewrite the URI path to."""
 
-    query: Optional[RewriteURIPart] = None
-    """Query portion rewrite."""
+    value: Optional[str] = None
+    """A value to rewrite the URI path to."""
+
+
+class ActionParametersURIURIPath(BaseModel):
+    path: ActionParametersURIURIPathPath
+    """A URI path rewrite."""
+
+    origin: Optional[bool] = None
+    """Whether to propagate the rewritten URI to origin."""
+
+
+class ActionParametersURIURIQueryQuery(BaseModel):
+    expression: Optional[str] = None
+    """An expression that evaluates to a value to rewrite the URI query to."""
+
+    value: Optional[str] = None
+    """A value to rewrite the URI query to."""
+
+
+class ActionParametersURIURIQuery(BaseModel):
+    query: ActionParametersURIURIQueryQuery
+    """A URI query rewrite."""
+
+    origin: Optional[bool] = None
+    """Whether to propagate the rewritten URI to origin."""
+
+
+ActionParametersURI: TypeAlias = Union[ActionParametersURIURIPath, ActionParametersURIURIQuery]
 
 
 class ActionParameters(BaseModel):
     headers: Optional[Dict[str, ActionParametersHeaders]] = None
-    """Map of request headers to modify."""
+    """A map of headers to rewrite."""
 
     uri: Optional[ActionParametersURI] = None
-    """URI to rewrite the request to."""
+    """A URI path rewrite."""
 
 
 class ExposedCredentialCheck(BaseModel):
     password_expression: str
-    """Expression that selects the password used in the credentials check."""
+    """An expression that selects the password used in the credentials check."""
 
     username_expression: str
-    """Expression that selects the user ID used in the credentials check."""
+    """An expression that selects the user ID used in the credentials check."""
 
 
 class Ratelimit(BaseModel):
     characteristics: List[str]
     """
-    Characteristics of the request on which the ratelimiter counter will be
+    Characteristics of the request on which the rate limit counter will be
     incremented.
     """
 
@@ -99,9 +134,9 @@ class Ratelimit(BaseModel):
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: Optional[str] = None
-    """Defines when the ratelimit counter should be incremented.
+    """An expression that defines when the rate limit counter should be incremented.
 
-    It is optional and defaults to the same as the rule's expression.
+    It defaults to the same as the rule's expression.
     """
 
     mitigation_timeout: Optional[int] = None
@@ -117,7 +152,7 @@ class Ratelimit(BaseModel):
     """
 
     requests_to_origin: Optional[bool] = None
-    """Defines if ratelimit counting is only done when an origin is reached."""
+    """Whether counting is only performed when an origin is reached."""
 
     score_per_period: Optional[int] = None
     """
@@ -127,8 +162,8 @@ class Ratelimit(BaseModel):
 
     score_response_header_name: Optional[str] = None
     """
-    The response header name provided by the origin which should contain the score
-    to increment ratelimit counter on.
+    A response header name provided by the origin, which contains the score to
+    increment rate limit counter with.
     """
 
 
@@ -158,7 +193,7 @@ class RewriteRule(BaseModel):
     """Whether the rule should be executed."""
 
     exposed_credential_check: Optional[ExposedCredentialCheck] = None
-    """Configure checks for exposed credentials."""
+    """Configuration for exposed credential checking."""
 
     expression: Optional[str] = None
     """The expression defining which traffic will match the rule."""
@@ -167,7 +202,7 @@ class RewriteRule(BaseModel):
     """An object configuring the rule's logging behavior."""
 
     ratelimit: Optional[Ratelimit] = None
-    """An object configuring the rule's ratelimit behavior."""
+    """An object configuring the rule's rate limit behavior."""
 
     ref: Optional[str] = None
-    """The reference of the rule (the rule ID by default)."""
+    """The reference of the rule (the rule's ID by default)."""

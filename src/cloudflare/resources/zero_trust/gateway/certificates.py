@@ -236,7 +236,7 @@ class CertificatesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[CertificateDeactivateResponse]:
         """
-        Unbinds a single Zero Trust certificate from the edge
+        Unbinds a single Zero Trust certificate from the edge.
 
         Args:
           certificate_id: Certificate UUID tag.
@@ -511,7 +511,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[CertificateDeactivateResponse]:
         """
-        Unbinds a single Zero Trust certificate from the edge
+        Unbinds a single Zero Trust certificate from the edge.
 
         Args:
           certificate_id: Certificate UUID tag.

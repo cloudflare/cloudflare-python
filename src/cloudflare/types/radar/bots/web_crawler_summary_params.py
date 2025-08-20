@@ -32,6 +32,9 @@ class WebCrawlerSummaryParams(TypedDict, total=False):
     format: Literal["JSON", "CSV"]
     """Format in which results will be returned."""
 
+    industry: List[str]
+    """Filters results by industry."""
+
     limit_per_group: Annotated[int, PropertyInfo(alias="limitPerGroup")]
     """
     Limits the number of objects per group to the top items within the specified
@@ -41,3 +44,6 @@ class WebCrawlerSummaryParams(TypedDict, total=False):
 
     name: List[str]
     """Array of names used to label the series in the response."""
+
+    vertical: List[str]
+    """Filters results by vertical."""

@@ -1,10 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Optional
+from typing_extensions import Literal
 
 from ....._models import BaseModel
 
-__all__ = ["PredefinedCreateResponse", "Confidence"]
+__all__ = ["PredefinedCreateResponse", "Confidence", "Variant"]
 
 
 class Confidence(BaseModel):
@@ -18,6 +19,12 @@ class Confidence(BaseModel):
     """
 
 
+class Variant(BaseModel):
+    topic_type: Literal["Intent", "Content"]
+
+    type: Literal["PromptTopic"]
+
+
 class PredefinedCreateResponse(BaseModel):
     id: str
 
@@ -28,3 +35,5 @@ class PredefinedCreateResponse(BaseModel):
     name: str
 
     profile_id: Optional[str] = None
+
+    variant: Optional[Variant] = None

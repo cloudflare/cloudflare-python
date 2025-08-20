@@ -21,6 +21,13 @@ class VirtualNetworkListParams(TypedDict, total=False):
     will be included.
     """
 
+    is_default_network: bool
+    """If `true`, only include the default virtual network.
+
+    If `false`, exclude the default virtual network. If empty, all virtual networks
+    will be included.
+    """
+
     is_deleted: bool
     """If `true`, only include deleted virtual networks.
 

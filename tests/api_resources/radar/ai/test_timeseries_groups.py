@@ -43,9 +43,11 @@ class TestTimeseriesGroups:
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
+            industry=["string"],
             limit_per_group=10,
             location=["string"],
             name=["main_series"],
+            vertical=["string"],
         )
         assert_matches_type(TimeseriesGroupSummaryResponse, timeseries_group, path=["response"])
 
@@ -89,10 +91,12 @@ class TestTimeseriesGroups:
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
+            industry=["string"],
             limit_per_group=10,
             location=["string"],
             name=["main_series"],
             user_agent=["string"],
+            vertical=["string"],
         )
         assert_matches_type(TimeseriesGroupTimeseriesResponse, timeseries_group, path=["response"])
 
@@ -135,10 +139,12 @@ class TestTimeseriesGroups:
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
+            industry=["string"],
             limit_per_group=10,
             location=["string"],
             name=["main_series"],
             normalization="MIN0_MAX",
+            vertical=["string"],
         )
         assert_matches_type(TimeseriesGroupTimeseriesGroupsResponse, timeseries_group, path=["response"])
 
@@ -237,9 +243,11 @@ class TestAsyncTimeseriesGroups:
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
+            industry=["string"],
             limit_per_group=10,
             location=["string"],
             name=["main_series"],
+            vertical=["string"],
         )
         assert_matches_type(TimeseriesGroupSummaryResponse, timeseries_group, path=["response"])
 
@@ -283,10 +291,12 @@ class TestAsyncTimeseriesGroups:
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
+            industry=["string"],
             limit_per_group=10,
             location=["string"],
             name=["main_series"],
             user_agent=["string"],
+            vertical=["string"],
         )
         assert_matches_type(TimeseriesGroupTimeseriesResponse, timeseries_group, path=["response"])
 
@@ -329,10 +339,12 @@ class TestAsyncTimeseriesGroups:
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
+            industry=["string"],
             limit_per_group=10,
             location=["string"],
             name=["main_series"],
             normalization="MIN0_MAX",
+            vertical=["string"],
         )
         assert_matches_type(TimeseriesGroupTimeseriesGroupsResponse, timeseries_group, path=["response"])
 

@@ -1,8 +1,8 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
+from typing import List, Optional
 from datetime import datetime
-from typing_extensions import Literal, TypeAlias
+from typing_extensions import Literal
 
 from .logging import Logging
 from ..._models import BaseModel
@@ -13,67 +13,58 @@ __all__ = [
     "ActionParametersFromList",
     "ActionParametersFromValue",
     "ActionParametersFromValueTargetURL",
-    "ActionParametersFromValueTargetURLStaticURLRedirect",
-    "ActionParametersFromValueTargetURLDynamicURLRedirect",
     "ExposedCredentialCheck",
     "Ratelimit",
 ]
 
 
 class ActionParametersFromList(BaseModel):
-    key: Optional[str] = None
-    """Expression that evaluates to the list lookup key."""
+    key: str
+    """An expression that evaluates to the list lookup key."""
 
-    name: Optional[str] = None
+    name: str
     """The name of the list to match against."""
 
 
-class ActionParametersFromValueTargetURLStaticURLRedirect(BaseModel):
-    value: Optional[str] = None
-    """The URL to redirect the request to."""
-
-
-class ActionParametersFromValueTargetURLDynamicURLRedirect(BaseModel):
+class ActionParametersFromValueTargetURL(BaseModel):
     expression: Optional[str] = None
-    """An expression to evaluate to get the URL to redirect the request to."""
+    """An expression that evaluates to a URL to redirect the request to."""
 
-
-ActionParametersFromValueTargetURL: TypeAlias = Union[
-    ActionParametersFromValueTargetURLStaticURLRedirect, ActionParametersFromValueTargetURLDynamicURLRedirect
-]
+    value: Optional[str] = None
+    """A URL to redirect the request to."""
 
 
 class ActionParametersFromValue(BaseModel):
+    target_url: ActionParametersFromValueTargetURL
+    """A URL to redirect the request to."""
+
     preserve_query_string: Optional[bool] = None
-    """Keep the query string of the original request."""
+    """Whether to keep the query string of the original request."""
 
     status_code: Optional[Literal[301, 302, 303, 307, 308]] = None
-    """The status code to be used for the redirect."""
-
-    target_url: Optional[ActionParametersFromValueTargetURL] = None
-    """The URL to redirect the request to."""
+    """The status code to use for the redirect."""
 
 
 class ActionParameters(BaseModel):
     from_list: Optional[ActionParametersFromList] = None
-    """Serve a redirect based on a bulk list lookup."""
+    """A redirect based on a bulk list lookup."""
 
     from_value: Optional[ActionParametersFromValue] = None
-    """Serve a redirect based on the request properties."""
+    """A redirect based on the request properties."""
 
 
 class ExposedCredentialCheck(BaseModel):
     password_expression: str
-    """Expression that selects the password used in the credentials check."""
+    """An expression that selects the password used in the credentials check."""
 
     username_expression: str
-    """Expression that selects the user ID used in the credentials check."""
+    """An expression that selects the user ID used in the credentials check."""
 
 
 class Ratelimit(BaseModel):
     characteristics: List[str]
     """
-    Characteristics of the request on which the ratelimiter counter will be
+    Characteristics of the request on which the rate limit counter will be
     incremented.
     """
 
@@ -81,9 +72,9 @@ class Ratelimit(BaseModel):
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: Optional[str] = None
-    """Defines when the ratelimit counter should be incremented.
+    """An expression that defines when the rate limit counter should be incremented.
 
-    It is optional and defaults to the same as the rule's expression.
+    It defaults to the same as the rule's expression.
     """
 
     mitigation_timeout: Optional[int] = None
@@ -99,7 +90,7 @@ class Ratelimit(BaseModel):
     """
 
     requests_to_origin: Optional[bool] = None
-    """Defines if ratelimit counting is only done when an origin is reached."""
+    """Whether counting is only performed when an origin is reached."""
 
     score_per_period: Optional[int] = None
     """
@@ -109,8 +100,8 @@ class Ratelimit(BaseModel):
 
     score_response_header_name: Optional[str] = None
     """
-    The response header name provided by the origin which should contain the score
-    to increment ratelimit counter on.
+    A response header name provided by the origin, which contains the score to
+    increment rate limit counter with.
     """
 
 
@@ -140,7 +131,7 @@ class RedirectRule(BaseModel):
     """Whether the rule should be executed."""
 
     exposed_credential_check: Optional[ExposedCredentialCheck] = None
-    """Configure checks for exposed credentials."""
+    """Configuration for exposed credential checking."""
 
     expression: Optional[str] = None
     """The expression defining which traffic will match the rule."""
@@ -149,7 +140,7 @@ class RedirectRule(BaseModel):
     """An object configuring the rule's logging behavior."""
 
     ratelimit: Optional[Ratelimit] = None
-    """An object configuring the rule's ratelimit behavior."""
+    """An object configuring the rule's rate limit behavior."""
 
     ref: Optional[str] = None
-    """The reference of the rule (the rule ID by default)."""
+    """The reference of the rule (the rule's ID by default)."""

@@ -20,7 +20,7 @@ class ListEditParams(TypedDict, total=False):
 
 class Append(TypedDict, total=False):
     description: str
-    """The description of the list item, if present"""
+    """The description of the list item, if present."""
 
     value: str
     """The value of the item in a list."""

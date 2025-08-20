@@ -49,15 +49,17 @@ class WebCrawlersResource(SyncAPIResource):
 
     def summary(
         self,
-        dimension: Literal["USER_AGENT", "REFERER", "CRAWL_REFER_RATIO"],
+        dimension: Literal["USER_AGENT", "REFERER", "CRAWL_REFER_RATIO", "VERTICAL", "INDUSTRY"],
         *,
         bot_operator: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        industry: List[str] | NotGiven = NOT_GIVEN,
         limit_per_group: int | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
+        vertical: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -84,11 +86,15 @@ class WebCrawlersResource(SyncAPIResource):
 
           format: Format in which results will be returned.
 
+          industry: Filters results by industry.
+
           limit_per_group: Limits the number of objects per group to the top items within the specified
               time range. When item count exceeds the limit, extra items appear grouped under
               an "other" category.
 
           name: Array of names used to label the series in the response.
+
+          vertical: Filters results by vertical.
 
           extra_headers: Send extra headers
 
@@ -114,8 +120,10 @@ class WebCrawlersResource(SyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "industry": industry,
                         "limit_per_group": limit_per_group,
                         "name": name,
+                        "vertical": vertical,
                     },
                     web_crawler_summary_params.WebCrawlerSummaryParams,
                 ),
@@ -126,7 +134,7 @@ class WebCrawlersResource(SyncAPIResource):
 
     def timeseries_groups(
         self,
-        dimension: Literal["USER_AGENT", "REFERER", "CRAWL_REFER_RATIO"],
+        dimension: Literal["USER_AGENT", "REFERER", "CRAWL_REFER_RATIO", "VERTICAL", "INDUSTRY"],
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         bot_operator: List[str] | NotGiven = NOT_GIVEN,
@@ -134,8 +142,10 @@ class WebCrawlersResource(SyncAPIResource):
         date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        industry: List[str] | NotGiven = NOT_GIVEN,
         limit_per_group: int | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
+        vertical: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -166,11 +176,15 @@ class WebCrawlersResource(SyncAPIResource):
 
           format: Format in which results will be returned.
 
+          industry: Filters results by industry.
+
           limit_per_group: Limits the number of objects per group to the top items within the specified
               time range. When item count exceeds the limit, extra items appear grouped under
               an "other" category.
 
           name: Array of names used to label the series in the response.
+
+          vertical: Filters results by vertical.
 
           extra_headers: Send extra headers
 
@@ -197,8 +211,10 @@ class WebCrawlersResource(SyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "industry": industry,
                         "limit_per_group": limit_per_group,
                         "name": name,
+                        "vertical": vertical,
                     },
                     web_crawler_timeseries_groups_params.WebCrawlerTimeseriesGroupsParams,
                 ),
@@ -230,15 +246,17 @@ class AsyncWebCrawlersResource(AsyncAPIResource):
 
     async def summary(
         self,
-        dimension: Literal["USER_AGENT", "REFERER", "CRAWL_REFER_RATIO"],
+        dimension: Literal["USER_AGENT", "REFERER", "CRAWL_REFER_RATIO", "VERTICAL", "INDUSTRY"],
         *,
         bot_operator: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        industry: List[str] | NotGiven = NOT_GIVEN,
         limit_per_group: int | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
+        vertical: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -265,11 +283,15 @@ class AsyncWebCrawlersResource(AsyncAPIResource):
 
           format: Format in which results will be returned.
 
+          industry: Filters results by industry.
+
           limit_per_group: Limits the number of objects per group to the top items within the specified
               time range. When item count exceeds the limit, extra items appear grouped under
               an "other" category.
 
           name: Array of names used to label the series in the response.
+
+          vertical: Filters results by vertical.
 
           extra_headers: Send extra headers
 
@@ -295,8 +317,10 @@ class AsyncWebCrawlersResource(AsyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "industry": industry,
                         "limit_per_group": limit_per_group,
                         "name": name,
+                        "vertical": vertical,
                     },
                     web_crawler_summary_params.WebCrawlerSummaryParams,
                 ),
@@ -307,7 +331,7 @@ class AsyncWebCrawlersResource(AsyncAPIResource):
 
     async def timeseries_groups(
         self,
-        dimension: Literal["USER_AGENT", "REFERER", "CRAWL_REFER_RATIO"],
+        dimension: Literal["USER_AGENT", "REFERER", "CRAWL_REFER_RATIO", "VERTICAL", "INDUSTRY"],
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         bot_operator: List[str] | NotGiven = NOT_GIVEN,
@@ -315,8 +339,10 @@ class AsyncWebCrawlersResource(AsyncAPIResource):
         date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        industry: List[str] | NotGiven = NOT_GIVEN,
         limit_per_group: int | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
+        vertical: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -347,11 +373,15 @@ class AsyncWebCrawlersResource(AsyncAPIResource):
 
           format: Format in which results will be returned.
 
+          industry: Filters results by industry.
+
           limit_per_group: Limits the number of objects per group to the top items within the specified
               time range. When item count exceeds the limit, extra items appear grouped under
               an "other" category.
 
           name: Array of names used to label the series in the response.
+
+          vertical: Filters results by vertical.
 
           extra_headers: Send extra headers
 
@@ -378,8 +408,10 @@ class AsyncWebCrawlersResource(AsyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "industry": industry,
                         "limit_per_group": limit_per_group,
                         "name": name,
+                        "vertical": vertical,
                     },
                     web_crawler_timeseries_groups_params.WebCrawlerTimeseriesGroupsParams,
                 ),

@@ -22,12 +22,12 @@ __all__ = [
 
 class ActionParametersCookieField(BaseModel):
     name: str
-    """The name of the field."""
+    """The name of the cookie."""
 
 
 class ActionParametersRawResponseField(BaseModel):
     name: str
-    """The name of the field."""
+    """The name of the response header."""
 
     preserve_duplicates: Optional[bool] = None
     """Whether to log duplicate values of the same header."""
@@ -35,12 +35,12 @@ class ActionParametersRawResponseField(BaseModel):
 
 class ActionParametersRequestField(BaseModel):
     name: str
-    """The name of the field."""
+    """The name of the header."""
 
 
 class ActionParametersResponseField(BaseModel):
     name: str
-    """The name of the field."""
+    """The name of the response header."""
 
     preserve_duplicates: Optional[bool] = None
     """Whether to log duplicate values of the same header."""
@@ -48,7 +48,7 @@ class ActionParametersResponseField(BaseModel):
 
 class ActionParametersTransformedRequestField(BaseModel):
     name: str
-    """The name of the field."""
+    """The name of the header."""
 
 
 class ActionParameters(BaseModel):
@@ -70,16 +70,16 @@ class ActionParameters(BaseModel):
 
 class ExposedCredentialCheck(BaseModel):
     password_expression: str
-    """Expression that selects the password used in the credentials check."""
+    """An expression that selects the password used in the credentials check."""
 
     username_expression: str
-    """Expression that selects the user ID used in the credentials check."""
+    """An expression that selects the user ID used in the credentials check."""
 
 
 class Ratelimit(BaseModel):
     characteristics: List[str]
     """
-    Characteristics of the request on which the ratelimiter counter will be
+    Characteristics of the request on which the rate limit counter will be
     incremented.
     """
 
@@ -87,9 +87,9 @@ class Ratelimit(BaseModel):
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: Optional[str] = None
-    """Defines when the ratelimit counter should be incremented.
+    """An expression that defines when the rate limit counter should be incremented.
 
-    It is optional and defaults to the same as the rule's expression.
+    It defaults to the same as the rule's expression.
     """
 
     mitigation_timeout: Optional[int] = None
@@ -105,7 +105,7 @@ class Ratelimit(BaseModel):
     """
 
     requests_to_origin: Optional[bool] = None
-    """Defines if ratelimit counting is only done when an origin is reached."""
+    """Whether counting is only performed when an origin is reached."""
 
     score_per_period: Optional[int] = None
     """
@@ -115,8 +115,8 @@ class Ratelimit(BaseModel):
 
     score_response_header_name: Optional[str] = None
     """
-    The response header name provided by the origin which should contain the score
-    to increment ratelimit counter on.
+    A response header name provided by the origin, which contains the score to
+    increment rate limit counter with.
     """
 
 
@@ -146,7 +146,7 @@ class LogCustomFieldRule(BaseModel):
     """Whether the rule should be executed."""
 
     exposed_credential_check: Optional[ExposedCredentialCheck] = None
-    """Configure checks for exposed credentials."""
+    """Configuration for exposed credential checking."""
 
     expression: Optional[str] = None
     """The expression defining which traffic will match the rule."""
@@ -155,7 +155,7 @@ class LogCustomFieldRule(BaseModel):
     """An object configuring the rule's logging behavior."""
 
     ratelimit: Optional[Ratelimit] = None
-    """An object configuring the rule's ratelimit behavior."""
+    """An object configuring the rule's rate limit behavior."""
 
     ref: Optional[str] = None
-    """The reference of the rule (the rule ID by default)."""
+    """The reference of the rule (the rule's ID by default)."""

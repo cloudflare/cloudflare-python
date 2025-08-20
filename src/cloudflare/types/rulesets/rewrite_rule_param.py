@@ -6,92 +6,121 @@ from typing import Dict, List, Union
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .logging_param import LoggingParam
-from .rewrite_uri_part_param import RewriteURIPartParam
 
 __all__ = [
     "RewriteRuleParam",
     "ActionParameters",
     "ActionParametersHeaders",
-    "ActionParametersHeadersRemoveHeader",
     "ActionParametersHeadersAddStaticHeader",
-    "ActionParametersHeadersSetStaticHeader",
     "ActionParametersHeadersAddDynamicHeader",
+    "ActionParametersHeadersSetStaticHeader",
     "ActionParametersHeadersSetDynamicHeader",
+    "ActionParametersHeadersRemoveHeader",
     "ActionParametersURI",
+    "ActionParametersURIURIPath",
+    "ActionParametersURIURIPathPath",
+    "ActionParametersURIURIQuery",
+    "ActionParametersURIURIQueryQuery",
     "ExposedCredentialCheck",
     "Ratelimit",
 ]
 
 
-class ActionParametersHeadersRemoveHeader(TypedDict, total=False):
-    operation: Required[Literal["remove"]]
-
-
 class ActionParametersHeadersAddStaticHeader(TypedDict, total=False):
     operation: Required[Literal["add"]]
+    """The operation to perform on the header."""
 
     value: Required[str]
-    """Static value for the header."""
-
-
-class ActionParametersHeadersSetStaticHeader(TypedDict, total=False):
-    operation: Required[Literal["set"]]
-
-    value: Required[str]
-    """Static value for the header."""
+    """A static value for the header."""
 
 
 class ActionParametersHeadersAddDynamicHeader(TypedDict, total=False):
     expression: Required[str]
-    """Expression for the header value."""
+    """An expression that evaluates to a value for the header."""
 
     operation: Required[Literal["add"]]
+    """The operation to perform on the header."""
+
+
+class ActionParametersHeadersSetStaticHeader(TypedDict, total=False):
+    operation: Required[Literal["set"]]
+    """The operation to perform on the header."""
+
+    value: Required[str]
+    """A static value for the header."""
 
 
 class ActionParametersHeadersSetDynamicHeader(TypedDict, total=False):
     expression: Required[str]
-    """Expression for the header value."""
+    """An expression that evaluates to a value for the header."""
 
     operation: Required[Literal["set"]]
+    """The operation to perform on the header."""
+
+
+class ActionParametersHeadersRemoveHeader(TypedDict, total=False):
+    operation: Required[Literal["remove"]]
+    """The operation to perform on the header."""
 
 
 ActionParametersHeaders: TypeAlias = Union[
-    ActionParametersHeadersRemoveHeader,
     ActionParametersHeadersAddStaticHeader,
-    ActionParametersHeadersSetStaticHeader,
     ActionParametersHeadersAddDynamicHeader,
+    ActionParametersHeadersSetStaticHeader,
     ActionParametersHeadersSetDynamicHeader,
+    ActionParametersHeadersRemoveHeader,
 ]
 
 
-class ActionParametersURI(TypedDict, total=False):
-    path: RewriteURIPartParam
-    """Path portion rewrite."""
+class ActionParametersURIURIPathPath(TypedDict, total=False):
+    expression: str
+    """An expression that evaluates to a value to rewrite the URI path to."""
 
-    query: RewriteURIPartParam
-    """Query portion rewrite."""
+    value: str
+    """A value to rewrite the URI path to."""
+
+
+class ActionParametersURIURIPath(TypedDict, total=False):
+    path: Required[ActionParametersURIURIPathPath]
+    """A URI path rewrite."""
+
+
+class ActionParametersURIURIQueryQuery(TypedDict, total=False):
+    expression: str
+    """An expression that evaluates to a value to rewrite the URI query to."""
+
+    value: str
+    """A value to rewrite the URI query to."""
+
+
+class ActionParametersURIURIQuery(TypedDict, total=False):
+    query: Required[ActionParametersURIURIQueryQuery]
+    """A URI query rewrite."""
+
+
+ActionParametersURI: TypeAlias = Union[ActionParametersURIURIPath, ActionParametersURIURIQuery]
 
 
 class ActionParameters(TypedDict, total=False):
     headers: Dict[str, ActionParametersHeaders]
-    """Map of request headers to modify."""
+    """A map of headers to rewrite."""
 
     uri: ActionParametersURI
-    """URI to rewrite the request to."""
+    """A URI path rewrite."""
 
 
 class ExposedCredentialCheck(TypedDict, total=False):
     password_expression: Required[str]
-    """Expression that selects the password used in the credentials check."""
+    """An expression that selects the password used in the credentials check."""
 
     username_expression: Required[str]
-    """Expression that selects the user ID used in the credentials check."""
+    """An expression that selects the user ID used in the credentials check."""
 
 
 class Ratelimit(TypedDict, total=False):
     characteristics: Required[List[str]]
     """
-    Characteristics of the request on which the ratelimiter counter will be
+    Characteristics of the request on which the rate limit counter will be
     incremented.
     """
 
@@ -99,9 +128,9 @@ class Ratelimit(TypedDict, total=False):
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
-    """Defines when the ratelimit counter should be incremented.
+    """An expression that defines when the rate limit counter should be incremented.
 
-    It is optional and defaults to the same as the rule's expression.
+    It defaults to the same as the rule's expression.
     """
 
     mitigation_timeout: int
@@ -117,7 +146,7 @@ class Ratelimit(TypedDict, total=False):
     """
 
     requests_to_origin: bool
-    """Defines if ratelimit counting is only done when an origin is reached."""
+    """Whether counting is only performed when an origin is reached."""
 
     score_per_period: int
     """
@@ -127,8 +156,8 @@ class Ratelimit(TypedDict, total=False):
 
     score_response_header_name: str
     """
-    The response header name provided by the origin which should contain the score
-    to increment ratelimit counter on.
+    A response header name provided by the origin, which contains the score to
+    increment rate limit counter with.
     """
 
 
@@ -149,7 +178,7 @@ class RewriteRuleParam(TypedDict, total=False):
     """Whether the rule should be executed."""
 
     exposed_credential_check: ExposedCredentialCheck
-    """Configure checks for exposed credentials."""
+    """Configuration for exposed credential checking."""
 
     expression: str
     """The expression defining which traffic will match the rule."""
@@ -158,7 +187,7 @@ class RewriteRuleParam(TypedDict, total=False):
     """An object configuring the rule's logging behavior."""
 
     ratelimit: Ratelimit
-    """An object configuring the rule's ratelimit behavior."""
+    """An object configuring the rule's rate limit behavior."""
 
     ref: str
-    """The reference of the rule (the rule ID by default)."""
+    """The reference of the rule (the rule's ID by default)."""

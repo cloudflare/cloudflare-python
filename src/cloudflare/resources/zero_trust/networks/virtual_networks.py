@@ -115,6 +115,7 @@ class VirtualNetworksResource(SyncAPIResource):
         account_id: str,
         id: str | NotGiven = NOT_GIVEN,
         is_default: bool | NotGiven = NOT_GIVEN,
+        is_default_network: bool | NotGiven = NOT_GIVEN,
         is_deleted: bool | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -133,6 +134,9 @@ class VirtualNetworksResource(SyncAPIResource):
           id: UUID of the virtual network.
 
           is_default: If `true`, only include the default virtual network. If `false`, exclude the
+              default virtual network. If empty, all virtual networks will be included.
+
+          is_default_network: If `true`, only include the default virtual network. If `false`, exclude the
               default virtual network. If empty, all virtual networks will be included.
 
           is_deleted: If `true`, only include deleted virtual networks. If `false`, exclude deleted
@@ -162,6 +166,7 @@ class VirtualNetworksResource(SyncAPIResource):
                     {
                         "id": id,
                         "is_default": is_default,
+                        "is_default_network": is_default_network,
                         "is_deleted": is_deleted,
                         "name": name,
                     },
@@ -407,6 +412,7 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
         account_id: str,
         id: str | NotGiven = NOT_GIVEN,
         is_default: bool | NotGiven = NOT_GIVEN,
+        is_default_network: bool | NotGiven = NOT_GIVEN,
         is_deleted: bool | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -425,6 +431,9 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
           id: UUID of the virtual network.
 
           is_default: If `true`, only include the default virtual network. If `false`, exclude the
+              default virtual network. If empty, all virtual networks will be included.
+
+          is_default_network: If `true`, only include the default virtual network. If `false`, exclude the
               default virtual network. If empty, all virtual networks will be included.
 
           is_deleted: If `true`, only include deleted virtual networks. If `false`, exclude deleted
@@ -454,6 +463,7 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
                     {
                         "id": id,
                         "is_default": is_default,
+                        "is_default_network": is_default_network,
                         "is_deleted": is_deleted,
                         "name": name,
                     },

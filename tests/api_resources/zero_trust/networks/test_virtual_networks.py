@@ -86,6 +86,7 @@ class TestVirtualNetworks:
             account_id="699d98642c564d2e855e9661899b7252",
             id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             is_default=True,
+            is_default_network=True,
             is_deleted=True,
             name="us-east-1-vpc",
         )
@@ -349,6 +350,7 @@ class TestAsyncVirtualNetworks:
             account_id="699d98642c564d2e855e9661899b7252",
             id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             is_default=True,
+            is_default_network=True,
             is_deleted=True,
             name="us-east-1-vpc",
         )

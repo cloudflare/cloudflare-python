@@ -78,7 +78,7 @@ class ConfigurationsResource(SyncAPIResource):
         Updates the current Zero Trust account configuration.
 
         Args:
-          settings: Account settings
+          settings: Account settings.
 
           extra_headers: Send extra headers
 
@@ -124,7 +124,7 @@ class ConfigurationsResource(SyncAPIResource):
         error if any collection of settings is not properly configured.
 
         Args:
-          settings: Account settings
+          settings: Account settings.
 
           extra_headers: Send extra headers
 
@@ -227,7 +227,7 @@ class AsyncConfigurationsResource(AsyncAPIResource):
         Updates the current Zero Trust account configuration.
 
         Args:
-          settings: Account settings
+          settings: Account settings.
 
           extra_headers: Send extra headers
 
@@ -275,7 +275,7 @@ class AsyncConfigurationsResource(AsyncAPIResource):
         error if any collection of settings is not properly configured.
 
         Args:
-          settings: Account settings
+          settings: Account settings.
 
           extra_headers: Send extra headers
 

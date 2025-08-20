@@ -32,7 +32,7 @@ class TestPhases:
         phase = client.rulesets.phases.update(
             ruleset_phase="http_request_firewall_custom",
             account_id="account_id",
-            description="My ruleset to execute managed rulesets",
+            description="A description for my ruleset.",
             name="My ruleset",
             rules=[
                 {
@@ -45,16 +45,16 @@ class TestPhases:
                             "status_code": 400,
                         }
                     },
-                    "description": "Block when the IP address is not 1.1.1.1",
+                    "description": "Block the request.",
                     "enabled": True,
                     "exposed_credential_check": {
                         "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
                         "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
                     },
-                    "expression": "ip.src ne 1.1.1.1",
+                    "expression": "ip.src eq 1.1.1.1",
                     "logging": {"enabled": True},
                     "ratelimit": {
-                        "characteristics": ["ip.src"],
+                        "characteristics": ["cf.colo.id"],
                         "period": 60,
                         "counting_expression": 'http.request.body.raw eq "abcd"',
                         "mitigation_timeout": 600,
@@ -194,7 +194,7 @@ class TestAsyncPhases:
         phase = await async_client.rulesets.phases.update(
             ruleset_phase="http_request_firewall_custom",
             account_id="account_id",
-            description="My ruleset to execute managed rulesets",
+            description="A description for my ruleset.",
             name="My ruleset",
             rules=[
                 {
@@ -207,16 +207,16 @@ class TestAsyncPhases:
                             "status_code": 400,
                         }
                     },
-                    "description": "Block when the IP address is not 1.1.1.1",
+                    "description": "Block the request.",
                     "enabled": True,
                     "exposed_credential_check": {
                         "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
                         "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
                     },
-                    "expression": "ip.src ne 1.1.1.1",
+                    "expression": "ip.src eq 1.1.1.1",
                     "logging": {"enabled": True},
                     "ratelimit": {
-                        "characteristics": ["ip.src"],
+                        "characteristics": ["cf.colo.id"],
                         "period": 60,
                         "counting_expression": 'http.request.body.raw eq "abcd"',
                         "mitigation_timeout": 600,

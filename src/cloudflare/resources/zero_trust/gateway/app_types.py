@@ -57,7 +57,7 @@ class AppTypesResource(SyncAPIResource):
         Fetches all application and application type mappings.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -114,7 +114,7 @@ class AsyncAppTypesResource(AsyncAPIResource):
         Fetches all application and application type mappings.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 

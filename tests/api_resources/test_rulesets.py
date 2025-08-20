@@ -42,7 +42,7 @@ class TestRulesets:
             name="My ruleset",
             phase="http_request_firewall_custom",
             account_id="account_id",
-            description="My ruleset to execute managed rulesets",
+            description="A description for my ruleset.",
             rules=[
                 {
                     "id": "3a03d665bac047339bb530ecb439a90d",
@@ -54,16 +54,16 @@ class TestRulesets:
                             "status_code": 400,
                         }
                     },
-                    "description": "Block when the IP address is not 1.1.1.1",
+                    "description": "Block the request.",
                     "enabled": True,
                     "exposed_credential_check": {
                         "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
                         "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
                     },
-                    "expression": "ip.src ne 1.1.1.1",
+                    "expression": "ip.src eq 1.1.1.1",
                     "logging": {"enabled": True},
                     "ratelimit": {
-                        "characteristics": ["ip.src"],
+                        "characteristics": ["cf.colo.id"],
                         "period": 60,
                         "counting_expression": 'http.request.body.raw eq "abcd"',
                         "mitigation_timeout": 600,
@@ -144,7 +144,7 @@ class TestRulesets:
         ruleset = client.rulesets.update(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
-            description="My ruleset to execute managed rulesets",
+            description="A description for my ruleset.",
             kind="root",
             name="My ruleset",
             phase="http_request_firewall_custom",
@@ -159,16 +159,16 @@ class TestRulesets:
                             "status_code": 400,
                         }
                     },
-                    "description": "Block when the IP address is not 1.1.1.1",
+                    "description": "Block the request.",
                     "enabled": True,
                     "exposed_credential_check": {
                         "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
                         "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
                     },
-                    "expression": "ip.src ne 1.1.1.1",
+                    "expression": "ip.src eq 1.1.1.1",
                     "logging": {"enabled": True},
                     "ratelimit": {
-                        "characteristics": ["ip.src"],
+                        "characteristics": ["cf.colo.id"],
                         "period": 60,
                         "counting_expression": 'http.request.body.raw eq "abcd"',
                         "mitigation_timeout": 600,
@@ -448,7 +448,7 @@ class TestAsyncRulesets:
             name="My ruleset",
             phase="http_request_firewall_custom",
             account_id="account_id",
-            description="My ruleset to execute managed rulesets",
+            description="A description for my ruleset.",
             rules=[
                 {
                     "id": "3a03d665bac047339bb530ecb439a90d",
@@ -460,16 +460,16 @@ class TestAsyncRulesets:
                             "status_code": 400,
                         }
                     },
-                    "description": "Block when the IP address is not 1.1.1.1",
+                    "description": "Block the request.",
                     "enabled": True,
                     "exposed_credential_check": {
                         "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
                         "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
                     },
-                    "expression": "ip.src ne 1.1.1.1",
+                    "expression": "ip.src eq 1.1.1.1",
                     "logging": {"enabled": True},
                     "ratelimit": {
-                        "characteristics": ["ip.src"],
+                        "characteristics": ["cf.colo.id"],
                         "period": 60,
                         "counting_expression": 'http.request.body.raw eq "abcd"',
                         "mitigation_timeout": 600,
@@ -550,7 +550,7 @@ class TestAsyncRulesets:
         ruleset = await async_client.rulesets.update(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
-            description="My ruleset to execute managed rulesets",
+            description="A description for my ruleset.",
             kind="root",
             name="My ruleset",
             phase="http_request_firewall_custom",
@@ -565,16 +565,16 @@ class TestAsyncRulesets:
                             "status_code": 400,
                         }
                     },
-                    "description": "Block when the IP address is not 1.1.1.1",
+                    "description": "Block the request.",
                     "enabled": True,
                     "exposed_credential_check": {
                         "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
                         "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
                     },
-                    "expression": "ip.src ne 1.1.1.1",
+                    "expression": "ip.src eq 1.1.1.1",
                     "logging": {"enabled": True},
                     "ratelimit": {
-                        "characteristics": ["ip.src"],
+                        "characteristics": ["cf.colo.id"],
                         "period": 60,
                         "counting_expression": 'http.request.body.raw eq "abcd"',
                         "mitigation_timeout": 600,

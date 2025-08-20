@@ -32,7 +32,7 @@ class TestContent:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            metadata={},
+            metadata={"main_module": "worker.js"},
         )
         assert_matches_type(Script, content, path=["response"])
 
@@ -43,10 +43,7 @@ class TestContent:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            metadata={
-                "body_part": "worker.js",
-                "main_module": "worker.js",
-            },
+            metadata={"main_module": "worker.js"},
             files=[b"raw file contents"],
             cf_worker_body_part="CF-WORKER-BODY-PART",
             cf_worker_main_module_part="CF-WORKER-MAIN-MODULE-PART",
@@ -60,7 +57,7 @@ class TestContent:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            metadata={},
+            metadata={"main_module": "worker.js"},
         )
 
         assert response.is_closed is True
@@ -75,7 +72,7 @@ class TestContent:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            metadata={},
+            metadata={"main_module": "worker.js"},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -93,7 +90,7 @@ class TestContent:
                 script_name="this-is_my_script-01",
                 account_id="",
                 dispatch_namespace="my-dispatch-namespace",
-                metadata={},
+                metadata={"main_module": "worker.js"},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
@@ -101,7 +98,7 @@ class TestContent:
                 script_name="this-is_my_script-01",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="",
-                metadata={},
+                metadata={"main_module": "worker.js"},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
@@ -109,7 +106,7 @@ class TestContent:
                 script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="my-dispatch-namespace",
-                metadata={},
+                metadata={"main_module": "worker.js"},
             )
 
     @parametrize
@@ -203,7 +200,7 @@ class TestAsyncContent:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            metadata={},
+            metadata={"main_module": "worker.js"},
         )
         assert_matches_type(Script, content, path=["response"])
 
@@ -214,10 +211,7 @@ class TestAsyncContent:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            metadata={
-                "body_part": "worker.js",
-                "main_module": "worker.js",
-            },
+            metadata={"main_module": "worker.js"},
             files=[b"raw file contents"],
             cf_worker_body_part="CF-WORKER-BODY-PART",
             cf_worker_main_module_part="CF-WORKER-MAIN-MODULE-PART",
@@ -232,7 +226,7 @@ class TestAsyncContent:
                 script_name="this-is_my_script-01",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="my-dispatch-namespace",
-                metadata={},
+                metadata={"main_module": "worker.js"},
             )
         )
 
@@ -249,7 +243,7 @@ class TestAsyncContent:
                 script_name="this-is_my_script-01",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="my-dispatch-namespace",
-                metadata={},
+                metadata={"main_module": "worker.js"},
             )
         ) as response:
             assert not response.is_closed
@@ -268,7 +262,7 @@ class TestAsyncContent:
                 script_name="this-is_my_script-01",
                 account_id="",
                 dispatch_namespace="my-dispatch-namespace",
-                metadata={},
+                metadata={"main_module": "worker.js"},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
@@ -276,7 +270,7 @@ class TestAsyncContent:
                 script_name="this-is_my_script-01",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="",
-                metadata={},
+                metadata={"main_module": "worker.js"},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
@@ -284,7 +278,7 @@ class TestAsyncContent:
                 script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="my-dispatch-namespace",
-                metadata={},
+                metadata={"main_module": "worker.js"},
             )
 
     @parametrize
