@@ -24,15 +24,15 @@ __all__ = [
     "Calculation",
     "CalculationAggregate",
     "CalculationAggregateGroup",
-    "CalculationSery",
-    "CalculationSeryData",
-    "CalculationSeryDataGroup",
+    "CalculationSeries",
+    "CalculationSeriesData",
+    "CalculationSeriesDataGroup",
     "Compare",
     "CompareAggregate",
     "CompareAggregateGroup",
-    "CompareSery",
-    "CompareSeryData",
-    "CompareSeryDataGroup",
+    "CompareSeries",
+    "CompareSeriesData",
+    "CompareSeriesDataGroup",
     "Events",
     "EventsEvent",
     "EventsEventMetadata",
@@ -43,9 +43,9 @@ __all__ = [
     "EventsEventWorkersUnionMember1DiagnosticsChannelEvent",
     "EventsEventWorkersUnionMember1ScriptVersion",
     "EventsField",
-    "EventsSery",
-    "EventsSeryData",
-    "EventsSeryDataAggregates",
+    "EventsSeries",
+    "EventsSeriesData",
+    "EventsSeriesDataAggregates",
     "Invocation",
     "InvocationMetadata",
     "InvocationWorkers",
@@ -55,9 +55,9 @@ __all__ = [
     "InvocationWorkersUnionMember1DiagnosticsChannelEvent",
     "InvocationWorkersUnionMember1ScriptVersion",
     "Pattern",
-    "PatternSery",
-    "PatternSeryData",
-    "PatternSeryDataGroup",
+    "PatternSeries",
+    "PatternSeriesData",
+    "PatternSeriesDataGroup",
 ]
 
 
@@ -311,13 +311,13 @@ class CalculationAggregate(BaseModel):
     groups: Optional[List[CalculationAggregateGroup]] = None
 
 
-class CalculationSeryDataGroup(BaseModel):
+class CalculationSeriesDataGroup(BaseModel):
     key: str
 
     value: Union[str, float, bool]
 
 
-class CalculationSeryData(BaseModel):
+class CalculationSeriesData(BaseModel):
     count: float
 
     first_seen: str = FieldInfo(alias="firstSeen")
@@ -330,11 +330,11 @@ class CalculationSeryData(BaseModel):
 
     value: float
 
-    groups: Optional[List[CalculationSeryDataGroup]] = None
+    groups: Optional[List[CalculationSeriesDataGroup]] = None
 
 
-class CalculationSery(BaseModel):
-    data: List[CalculationSeryData]
+class CalculationSeries(BaseModel):
+    data: List[CalculationSeriesData]
 
     time: str
 
@@ -344,7 +344,7 @@ class Calculation(BaseModel):
 
     calculation: str
 
-    series: List[CalculationSery]
+    series: List[CalculationSeries]
 
     alias: Optional[str] = None
 
@@ -367,13 +367,13 @@ class CompareAggregate(BaseModel):
     groups: Optional[List[CompareAggregateGroup]] = None
 
 
-class CompareSeryDataGroup(BaseModel):
+class CompareSeriesDataGroup(BaseModel):
     key: str
 
     value: Union[str, float, bool]
 
 
-class CompareSeryData(BaseModel):
+class CompareSeriesData(BaseModel):
     count: float
 
     first_seen: str = FieldInfo(alias="firstSeen")
@@ -386,11 +386,11 @@ class CompareSeryData(BaseModel):
 
     value: float
 
-    groups: Optional[List[CompareSeryDataGroup]] = None
+    groups: Optional[List[CompareSeriesDataGroup]] = None
 
 
-class CompareSery(BaseModel):
-    data: List[CompareSeryData]
+class CompareSeries(BaseModel):
+    data: List[CompareSeriesData]
 
     time: str
 
@@ -400,7 +400,7 @@ class Compare(BaseModel):
 
     calculation: str
 
-    series: List[CompareSery]
+    series: List[CompareSeries]
 
     alias: Optional[str] = None
 
@@ -584,7 +584,7 @@ class EventsField(BaseModel):
     type: str
 
 
-class EventsSeryDataAggregates(BaseModel):
+class EventsSeriesDataAggregates(BaseModel):
     api_count: int = FieldInfo(alias="_count")
 
     api_first_seen: str = FieldInfo(alias="_firstSeen")
@@ -596,8 +596,8 @@ class EventsSeryDataAggregates(BaseModel):
     bin: Optional[object] = None
 
 
-class EventsSeryData(BaseModel):
-    aggregates: EventsSeryDataAggregates
+class EventsSeriesData(BaseModel):
+    aggregates: EventsSeriesDataAggregates
 
     count: float
 
@@ -611,8 +611,8 @@ class EventsSeryData(BaseModel):
     """Groups in the query results."""
 
 
-class EventsSery(BaseModel):
-    data: List[EventsSeryData]
+class EventsSeries(BaseModel):
+    data: List[EventsSeriesData]
 
     time: str
 
@@ -624,7 +624,7 @@ class Events(BaseModel):
 
     fields: Optional[List[EventsField]] = None
 
-    series: Optional[List[EventsSery]] = None
+    series: Optional[List[EventsSeries]] = None
 
 
 class InvocationMetadata(BaseModel):
@@ -800,13 +800,13 @@ class Invocation(BaseModel):
     """
 
 
-class PatternSeryDataGroup(BaseModel):
+class PatternSeriesDataGroup(BaseModel):
     key: str
 
     value: Union[str, float, bool]
 
 
-class PatternSeryData(BaseModel):
+class PatternSeriesData(BaseModel):
     count: float
 
     interval: float
@@ -815,11 +815,11 @@ class PatternSeryData(BaseModel):
 
     value: float
 
-    groups: Optional[List[PatternSeryDataGroup]] = None
+    groups: Optional[List[PatternSeriesDataGroup]] = None
 
 
-class PatternSery(BaseModel):
-    data: PatternSeryData
+class PatternSeries(BaseModel):
+    data: PatternSeriesData
 
     time: str
 
@@ -829,7 +829,7 @@ class Pattern(BaseModel):
 
     pattern: str
 
-    series: List[PatternSery]
+    series: List[PatternSeries]
 
     service: str
 
