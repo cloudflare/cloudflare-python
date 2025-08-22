@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Any, Type, Optional, cast
 
 import httpx
 
@@ -17,8 +17,11 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._wrappers import ResultWrapper
-from ....._base_client import make_request_options
+from .....pagination import SyncSinglePage, AsyncSinglePage
+from ....._base_client import AsyncPaginator, make_request_options
 from .....types.zero_trust.dlp.entries import integration_create_params, integration_update_params
+from .....types.zero_trust.dlp.entries.integration_get_response import IntegrationGetResponse
+from .....types.zero_trust.dlp.entries.integration_list_response import IntegrationListResponse
 from .....types.zero_trust.dlp.entries.integration_create_response import IntegrationCreateResponse
 from .....types.zero_trust.dlp.entries.integration_update_response import IntegrationUpdateResponse
 
@@ -139,6 +142,40 @@ class IntegrationResource(SyncAPIResource):
             cast_to=cast(Type[Optional[IntegrationUpdateResponse]], ResultWrapper[IntegrationUpdateResponse]),
         )
 
+    def list(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncSinglePage[IntegrationListResponse]:
+        """
+        Lists all DLP entries in an account.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._get_api_list(
+            f"/accounts/{account_id}/dlp/entries",
+            page=SyncSinglePage[IntegrationListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            model=cast(Any, IntegrationListResponse),  # Union types cannot be passed in as arguments in the type system
+        )
+
     def delete(
         self,
         entry_id: str,
@@ -178,6 +215,51 @@ class IntegrationResource(SyncAPIResource):
                 post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
             cast_to=cast(Type[object], ResultWrapper[object]),
+        )
+
+    def get(
+        self,
+        entry_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[IntegrationGetResponse]:
+        """
+        Fetches a DLP entry by ID.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not entry_id:
+            raise ValueError(f"Expected a non-empty value for `entry_id` but received {entry_id!r}")
+        return cast(
+            Optional[IntegrationGetResponse],
+            self._get(
+                f"/accounts/{account_id}/dlp/entries/{entry_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[IntegrationGetResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[IntegrationGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
         )
 
 
@@ -295,6 +377,40 @@ class AsyncIntegrationResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[IntegrationUpdateResponse]], ResultWrapper[IntegrationUpdateResponse]),
         )
 
+    def list(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[IntegrationListResponse, AsyncSinglePage[IntegrationListResponse]]:
+        """
+        Lists all DLP entries in an account.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._get_api_list(
+            f"/accounts/{account_id}/dlp/entries",
+            page=AsyncSinglePage[IntegrationListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            model=cast(Any, IntegrationListResponse),  # Union types cannot be passed in as arguments in the type system
+        )
+
     async def delete(
         self,
         entry_id: str,
@@ -336,6 +452,51 @@ class AsyncIntegrationResource(AsyncAPIResource):
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
+    async def get(
+        self,
+        entry_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[IntegrationGetResponse]:
+        """
+        Fetches a DLP entry by ID.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not entry_id:
+            raise ValueError(f"Expected a non-empty value for `entry_id` but received {entry_id!r}")
+        return cast(
+            Optional[IntegrationGetResponse],
+            await self._get(
+                f"/accounts/{account_id}/dlp/entries/{entry_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[IntegrationGetResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[IntegrationGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
 
 class IntegrationResourceWithRawResponse:
     def __init__(self, integration: IntegrationResource) -> None:
@@ -347,8 +508,14 @@ class IntegrationResourceWithRawResponse:
         self.update = to_raw_response_wrapper(
             integration.update,
         )
+        self.list = to_raw_response_wrapper(
+            integration.list,
+        )
         self.delete = to_raw_response_wrapper(
             integration.delete,
+        )
+        self.get = to_raw_response_wrapper(
+            integration.get,
         )
 
 
@@ -362,8 +529,14 @@ class AsyncIntegrationResourceWithRawResponse:
         self.update = async_to_raw_response_wrapper(
             integration.update,
         )
+        self.list = async_to_raw_response_wrapper(
+            integration.list,
+        )
         self.delete = async_to_raw_response_wrapper(
             integration.delete,
+        )
+        self.get = async_to_raw_response_wrapper(
+            integration.get,
         )
 
 
@@ -377,8 +550,14 @@ class IntegrationResourceWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             integration.update,
         )
+        self.list = to_streamed_response_wrapper(
+            integration.list,
+        )
         self.delete = to_streamed_response_wrapper(
             integration.delete,
+        )
+        self.get = to_streamed_response_wrapper(
+            integration.get,
         )
 
 
@@ -392,6 +571,12 @@ class AsyncIntegrationResourceWithStreamingResponse:
         self.update = async_to_streamed_response_wrapper(
             integration.update,
         )
+        self.list = async_to_streamed_response_wrapper(
+            integration.list,
+        )
         self.delete = async_to_streamed_response_wrapper(
             integration.delete,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            integration.get,
         )
