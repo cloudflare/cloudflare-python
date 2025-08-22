@@ -506,5 +506,5 @@ class Settings(TypedDict, total=False):
     tail_consumers: Iterable[ConsumerScriptParam]
     """List of Workers that will consume logs from the attached Worker."""
 
-    usage_model: Literal["standard"]
+    usage_model: Literal["standard", "bundled", "unbound"]
     """Usage model for the Worker invocations."""

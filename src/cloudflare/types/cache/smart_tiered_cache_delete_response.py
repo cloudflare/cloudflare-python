@@ -11,10 +11,10 @@ __all__ = ["SmartTieredCacheDeleteResponse"]
 
 class SmartTieredCacheDeleteResponse(BaseModel):
     id: Literal["tiered_cache_smart_topology_enable"]
-    """ID of the zone setting."""
+    """The identifier of the caching setting."""
 
     editable: bool
-    """Whether the setting is editable"""
+    """Whether the setting is editable."""
 
     modified_on: Optional[datetime] = None
     """Last time this setting was modified."""

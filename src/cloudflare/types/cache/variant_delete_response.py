@@ -11,10 +11,10 @@ __all__ = ["VariantDeleteResponse"]
 
 class VariantDeleteResponse(BaseModel):
     id: Literal["variants"]
-    """ID of the zone setting."""
+    """The identifier of the caching setting."""
 
     editable: bool
-    """Whether the setting is editable"""
+    """Whether the setting is editable."""
 
     modified_on: Optional[datetime] = None
     """Last time this setting was modified."""

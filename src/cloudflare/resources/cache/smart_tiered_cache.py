@@ -67,7 +67,7 @@ class SmartTieredCacheResource(SyncAPIResource):
         data center with the lowest latency to be the upper-tier for an origin.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -112,9 +112,9 @@ class SmartTieredCacheResource(SyncAPIResource):
         data center with the lowest latency to be the upper-tier for an origin.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          value: Enable or disable the Smart Tiered Cache
+          value: Enable or disable the Smart Tiered Cache.
 
           extra_headers: Send extra headers
 
@@ -159,7 +159,7 @@ class SmartTieredCacheResource(SyncAPIResource):
         data center with the lowest latency to be the upper-tier for an origin.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -224,7 +224,7 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
         data center with the lowest latency to be the upper-tier for an origin.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -269,9 +269,9 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
         data center with the lowest latency to be the upper-tier for an origin.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          value: Enable or disable the Smart Tiered Cache
+          value: Enable or disable the Smart Tiered Cache.
 
           extra_headers: Send extra headers
 
@@ -318,7 +318,7 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
         data center with the lowest latency to be the upper-tier for an origin.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

@@ -24,6 +24,8 @@ class Variant(BaseModel):
 
     type: Literal["PromptTopic"]
 
+    description: Optional[str] = None
+
 
 class PredefinedCreateResponse(BaseModel):
     id: str

@@ -64,7 +64,7 @@ class RegionalTieredCacheResource(SyncAPIResource):
         topologies.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           value: Value of the Regional Tiered Cache zone setting.
 
@@ -110,7 +110,7 @@ class RegionalTieredCacheResource(SyncAPIResource):
         topologies.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -173,7 +173,7 @@ class AsyncRegionalTieredCacheResource(AsyncAPIResource):
         topologies.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           value: Value of the Regional Tiered Cache zone setting.
 
@@ -221,7 +221,7 @@ class AsyncRegionalTieredCacheResource(AsyncAPIResource):
         topologies.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

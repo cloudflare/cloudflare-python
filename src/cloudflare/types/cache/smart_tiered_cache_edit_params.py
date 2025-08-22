@@ -9,7 +9,7 @@ __all__ = ["SmartTieredCacheEditParams"]
 
 class SmartTieredCacheEditParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     value: Required[Literal["on", "off"]]
-    """Enable or disable the Smart Tiered Cache"""
+    """Enable or disable the Smart Tiered Cache."""

@@ -65,7 +65,7 @@ class VariantsResource(SyncAPIResource):
         be indicated with BYPASS cache status in the response headers.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -109,7 +109,7 @@ class VariantsResource(SyncAPIResource):
         be indicated with BYPASS cache status in the response headers.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           value: Value of the zone setting.
 
@@ -155,7 +155,7 @@ class VariantsResource(SyncAPIResource):
         be indicated with BYPASS cache status in the response headers.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -219,7 +219,7 @@ class AsyncVariantsResource(AsyncAPIResource):
         be indicated with BYPASS cache status in the response headers.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -263,7 +263,7 @@ class AsyncVariantsResource(AsyncAPIResource):
         be indicated with BYPASS cache status in the response headers.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           value: Value of the zone setting.
 
@@ -309,7 +309,7 @@ class AsyncVariantsResource(AsyncAPIResource):
         be indicated with BYPASS cache status in the response headers.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

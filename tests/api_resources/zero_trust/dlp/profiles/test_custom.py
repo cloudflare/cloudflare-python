@@ -21,13 +21,6 @@ class TestCustom:
     def test_method_create(self, client: Cloudflare) -> None:
         custom = client.zero_trust.dlp.profiles.custom.create(
             account_id="account_id",
-            entries=[
-                {
-                    "enabled": True,
-                    "name": "name",
-                    "pattern": {"regex": "regex"},
-                }
-            ],
             name="name",
         )
         assert_matches_type(Optional[Profile], custom, path=["response"])
@@ -36,6 +29,15 @@ class TestCustom:
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         custom = client.zero_trust.dlp.profiles.custom.create(
             account_id="account_id",
+            name="name",
+            ai_context_enabled=True,
+            allowed_match_count=5,
+            confidence_threshold="confidence_threshold",
+            context_awareness={
+                "enabled": True,
+                "skip": {"files": True},
+            },
+            description="description",
             entries=[
                 {
                     "enabled": True,
@@ -46,15 +48,6 @@ class TestCustom:
                     },
                 }
             ],
-            name="name",
-            ai_context_enabled=True,
-            allowed_match_count=5,
-            confidence_threshold="confidence_threshold",
-            context_awareness={
-                "enabled": True,
-                "skip": {"files": True},
-            },
-            description="description",
             ocr_enabled=True,
             shared_entries=[
                 {
@@ -70,13 +63,6 @@ class TestCustom:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.zero_trust.dlp.profiles.custom.with_raw_response.create(
             account_id="account_id",
-            entries=[
-                {
-                    "enabled": True,
-                    "name": "name",
-                    "pattern": {"regex": "regex"},
-                }
-            ],
             name="name",
         )
 
@@ -89,13 +75,6 @@ class TestCustom:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.zero_trust.dlp.profiles.custom.with_streaming_response.create(
             account_id="account_id",
-            entries=[
-                {
-                    "enabled": True,
-                    "name": "name",
-                    "pattern": {"regex": "regex"},
-                }
-            ],
             name="name",
         ) as response:
             assert not response.is_closed
@@ -111,13 +90,6 @@ class TestCustom:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.dlp.profiles.custom.with_raw_response.create(
                 account_id="",
-                entries=[
-                    {
-                        "enabled": True,
-                        "name": "name",
-                        "pattern": {"regex": "regex"},
-                    }
-                ],
                 name="name",
             )
 
@@ -316,13 +288,6 @@ class TestAsyncCustom:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         custom = await async_client.zero_trust.dlp.profiles.custom.create(
             account_id="account_id",
-            entries=[
-                {
-                    "enabled": True,
-                    "name": "name",
-                    "pattern": {"regex": "regex"},
-                }
-            ],
             name="name",
         )
         assert_matches_type(Optional[Profile], custom, path=["response"])
@@ -331,6 +296,15 @@ class TestAsyncCustom:
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         custom = await async_client.zero_trust.dlp.profiles.custom.create(
             account_id="account_id",
+            name="name",
+            ai_context_enabled=True,
+            allowed_match_count=5,
+            confidence_threshold="confidence_threshold",
+            context_awareness={
+                "enabled": True,
+                "skip": {"files": True},
+            },
+            description="description",
             entries=[
                 {
                     "enabled": True,
@@ -341,15 +315,6 @@ class TestAsyncCustom:
                     },
                 }
             ],
-            name="name",
-            ai_context_enabled=True,
-            allowed_match_count=5,
-            confidence_threshold="confidence_threshold",
-            context_awareness={
-                "enabled": True,
-                "skip": {"files": True},
-            },
-            description="description",
             ocr_enabled=True,
             shared_entries=[
                 {
@@ -365,13 +330,6 @@ class TestAsyncCustom:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.dlp.profiles.custom.with_raw_response.create(
             account_id="account_id",
-            entries=[
-                {
-                    "enabled": True,
-                    "name": "name",
-                    "pattern": {"regex": "regex"},
-                }
-            ],
             name="name",
         )
 
@@ -384,13 +342,6 @@ class TestAsyncCustom:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.dlp.profiles.custom.with_streaming_response.create(
             account_id="account_id",
-            entries=[
-                {
-                    "enabled": True,
-                    "name": "name",
-                    "pattern": {"regex": "regex"},
-                }
-            ],
             name="name",
         ) as response:
             assert not response.is_closed
@@ -406,13 +357,6 @@ class TestAsyncCustom:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.dlp.profiles.custom.with_raw_response.create(
                 account_id="",
-                entries=[
-                    {
-                        "enabled": True,
-                        "name": "name",
-                        "pattern": {"regex": "regex"},
-                    }
-                ],
                 name="name",
             )
 

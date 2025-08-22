@@ -73,5 +73,5 @@ class Script(BaseModel):
     tail_consumers: Optional[List[ConsumerScript]] = None
     """List of Workers that will consume logs from the attached Worker."""
 
-    usage_model: Optional[Literal["standard"]] = None
+    usage_model: Optional[Literal["standard", "bundled", "unbound"]] = None
     """Usage model for the Worker invocations."""

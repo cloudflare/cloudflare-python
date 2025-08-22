@@ -449,5 +449,5 @@ class Metadata(TypedDict, total=False):
     keep_bindings: List[str]
     """List of binding types to keep from previous_upload."""
 
-    usage_model: Literal["standard"]
+    usage_model: Literal["standard", "bundled", "unbound"]
     """Usage model for the Worker invocations."""

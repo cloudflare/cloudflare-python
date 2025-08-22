@@ -67,7 +67,7 @@ class CacheReserveResource(SyncAPIResource):
         that you cannot undo or cancel this operation.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -113,7 +113,7 @@ class CacheReserveResource(SyncAPIResource):
         for more information.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           value: Value of the Cache Reserve zone setting.
 
@@ -160,7 +160,7 @@ class CacheReserveResource(SyncAPIResource):
         for more information.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -202,7 +202,7 @@ class CacheReserveResource(SyncAPIResource):
         that you cannot undo or cancel this operation.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -266,7 +266,7 @@ class AsyncCacheReserveResource(AsyncAPIResource):
         that you cannot undo or cancel this operation.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -312,7 +312,7 @@ class AsyncCacheReserveResource(AsyncAPIResource):
         for more information.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           value: Value of the Cache Reserve zone setting.
 
@@ -359,7 +359,7 @@ class AsyncCacheReserveResource(AsyncAPIResource):
         for more information.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -401,7 +401,7 @@ class AsyncCacheReserveResource(AsyncAPIResource):
         that you cannot undo or cancel this operation.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

@@ -11,13 +11,13 @@ __all__ = ["TieredCachingEditResponse"]
 
 class TieredCachingEditResponse(BaseModel):
     id: Literal["tiered_caching"]
-    """ID of the zone setting."""
+    """The identifier of the caching setting."""
 
     editable: bool
-    """Whether the setting is editable"""
+    """Whether the setting is editable."""
 
     value: Literal["on", "off"]
-    """The value of the feature"""
+    """Value of the Tiered Cache zone setting."""
 
     modified_on: Optional[datetime] = None
     """Last time this setting was modified."""

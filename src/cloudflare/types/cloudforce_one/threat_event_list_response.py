@@ -21,7 +21,7 @@ class ThreatEventListResponseItem(BaseModel):
 
     event: str
 
-    indicator: str
+    indicator_type: str = FieldInfo(alias="indicatorType")
 
     kill_chain: float = FieldInfo(alias="killChain")
 

@@ -54,6 +54,8 @@ class PredefinedEntryVariant(BaseModel):
 
     type: Literal["PromptTopic"]
 
+    description: Optional[str] = None
+
 
 class PredefinedEntry(BaseModel):
     id: str

@@ -25,8 +25,6 @@ __all__ = [
 class CustomCreateParams(TypedDict, total=False):
     account_id: Required[str]
 
-    entries: Required[Iterable[Entry]]
-
     name: Required[str]
 
     ai_context_enabled: bool
@@ -44,6 +42,8 @@ class CustomCreateParams(TypedDict, total=False):
 
     description: Optional[str]
     """The description of the profile."""
+
+    entries: Iterable[Entry]
 
     ocr_enabled: bool
 

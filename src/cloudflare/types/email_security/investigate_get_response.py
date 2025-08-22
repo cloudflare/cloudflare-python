@@ -29,6 +29,18 @@ class Properties(BaseModel):
 
     blocklisted_pattern: Optional[str] = None
 
+    whitelisted_pattern_type: Optional[
+        Literal[
+            "quarantine_release",
+            "acceptable_sender",
+            "allowed_sender",
+            "allowed_recipient",
+            "domain_similarity",
+            "domain_recency",
+            "managed_acceptable_sender",
+        ]
+    ] = None
+
 
 class Finding(BaseModel):
     detail: Optional[str] = None

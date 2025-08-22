@@ -72,7 +72,7 @@ class TieredCachingResource(SyncAPIResource):
         resources.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           value: Enables Tiered Caching.
 
@@ -124,7 +124,7 @@ class TieredCachingResource(SyncAPIResource):
         resources.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -195,7 +195,7 @@ class AsyncTieredCachingResource(AsyncAPIResource):
         resources.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           value: Enables Tiered Caching.
 
@@ -247,7 +247,7 @@ class AsyncTieredCachingResource(AsyncAPIResource):
         resources.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

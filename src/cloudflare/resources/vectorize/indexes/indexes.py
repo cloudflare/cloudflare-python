@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -389,7 +389,7 @@ class IndexesResource(SyncAPIResource):
         index_name: str,
         *,
         account_id: str,
-        body: str,
+        body: FileTypes,
         unparsable_behavior: Literal["error", "discard"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -510,7 +510,7 @@ class IndexesResource(SyncAPIResource):
         index_name: str,
         *,
         account_id: str,
-        body: str,
+        body: FileTypes,
         unparsable_behavior: Literal["error", "discard"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -901,7 +901,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         index_name: str,
         *,
         account_id: str,
-        body: str,
+        body: FileTypes,
         unparsable_behavior: Literal["error", "discard"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1022,7 +1022,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         index_name: str,
         *,
         account_id: str,
-        body: str,
+        body: FileTypes,
         unparsable_behavior: Literal["error", "discard"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
