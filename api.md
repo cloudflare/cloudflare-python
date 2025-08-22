@@ -2255,6 +2255,39 @@ Types:
 from cloudflare.types.workers import MigrationStep, SingleStepMigration, WorkerMetadata
 ```
 
+## Beta
+
+### Workers
+
+Types:
+
+```python
+from cloudflare.types.workers.beta import Worker, WorkerDeleteResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/workers/workers">client.workers.beta.workers.<a href="./src/cloudflare/resources/workers/beta/workers/workers.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/beta/worker_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/beta/worker.py">Worker</a></code>
+- <code title="put /accounts/{account_id}/workers/workers/{worker_id}">client.workers.beta.workers.<a href="./src/cloudflare/resources/workers/beta/workers/workers.py">update</a>(worker_id, \*, account_id, \*\*<a href="src/cloudflare/types/workers/beta/worker_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/beta/worker.py">Worker</a></code>
+- <code title="get /accounts/{account_id}/workers/workers">client.workers.beta.workers.<a href="./src/cloudflare/resources/workers/beta/workers/workers.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/beta/worker_list_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/beta/worker.py">SyncV4PagePaginationArray[Worker]</a></code>
+- <code title="delete /accounts/{account_id}/workers/workers/{worker_id}">client.workers.beta.workers.<a href="./src/cloudflare/resources/workers/beta/workers/workers.py">delete</a>(worker_id, \*, account_id) -> <a href="./src/cloudflare/types/workers/beta/worker_delete_response.py">WorkerDeleteResponse</a></code>
+- <code title="get /accounts/{account_id}/workers/workers/{worker_id}">client.workers.beta.workers.<a href="./src/cloudflare/resources/workers/beta/workers/workers.py">get</a>(worker_id, \*, account_id) -> <a href="./src/cloudflare/types/workers/beta/worker.py">Worker</a></code>
+
+#### Versions
+
+Types:
+
+```python
+from cloudflare.types.workers.beta.workers import Version, VersionDeleteResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/workers/workers/{worker_id}/versions">client.workers.beta.workers.versions.<a href="./src/cloudflare/resources/workers/beta/workers/versions.py">create</a>(worker_id, \*, account_id, \*\*<a href="src/cloudflare/types/workers/beta/workers/version_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/beta/workers/version.py">Version</a></code>
+- <code title="get /accounts/{account_id}/workers/workers/{worker_id}/versions">client.workers.beta.workers.versions.<a href="./src/cloudflare/resources/workers/beta/workers/versions.py">list</a>(worker_id, \*, account_id, \*\*<a href="src/cloudflare/types/workers/beta/workers/version_list_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/beta/workers/version.py">SyncV4PagePaginationArray[Version]</a></code>
+- <code title="delete /accounts/{account_id}/workers/workers/{worker_id}/versions/{version_id}">client.workers.beta.workers.versions.<a href="./src/cloudflare/resources/workers/beta/workers/versions.py">delete</a>(version_id, \*, account_id, worker_id) -> <a href="./src/cloudflare/types/workers/beta/workers/version_delete_response.py">VersionDeleteResponse</a></code>
+- <code title="get /accounts/{account_id}/workers/workers/{worker_id}/versions/{version_id}">client.workers.beta.workers.versions.<a href="./src/cloudflare/resources/workers/beta/workers/versions.py">get</a>(version_id, \*, account_id, worker_id, \*\*<a href="src/cloudflare/types/workers/beta/workers/version_get_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/beta/workers/version.py">Version</a></code>
+
 ## Routes
 
 Types:
