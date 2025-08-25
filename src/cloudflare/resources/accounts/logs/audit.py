@@ -18,7 +18,7 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....pagination import SyncCursorLimitPagination, AsyncCursorLimitPagination
+from ....pagination import SyncCursorPaginationAfter, AsyncCursorPaginationAfter
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.accounts.logs import audit_list_params
 from ....types.accounts.logs.audit_list_response import AuditListResponse
@@ -82,7 +82,7 @@ class AuditResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncCursorLimitPagination[AuditListResponse]:
+    ) -> SyncCursorPaginationAfter[AuditListResponse]:
         """Gets a list of audit logs for an account.
 
         <br /> <br /> This is the beta release
@@ -124,7 +124,7 @@ class AuditResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/logs/audit",
-            page=SyncCursorLimitPagination[AuditListResponse],
+            page=SyncCursorPaginationAfter[AuditListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -222,7 +222,7 @@ class AsyncAuditResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[AuditListResponse, AsyncCursorLimitPagination[AuditListResponse]]:
+    ) -> AsyncPaginator[AuditListResponse, AsyncCursorPaginationAfter[AuditListResponse]]:
         """Gets a list of audit logs for an account.
 
         <br /> <br /> This is the beta release
@@ -264,7 +264,7 @@ class AsyncAuditResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/logs/audit",
-            page=AsyncCursorLimitPagination[AuditListResponse],
+            page=AsyncCursorPaginationAfter[AuditListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
