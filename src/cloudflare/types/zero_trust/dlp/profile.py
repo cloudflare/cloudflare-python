@@ -186,8 +186,6 @@ class CustomProfile(BaseModel):
     created_at: datetime
     """When the profile was created."""
 
-    entries: List[CustomProfileEntry]
-
     name: str
     """The name of the profile."""
 
@@ -210,6 +208,8 @@ class CustomProfile(BaseModel):
 
     description: Optional[str] = None
     """The description of the profile."""
+
+    entries: Optional[List[CustomProfileEntry]] = None
 
 
 class PredefinedProfileEntryCustomEntry(BaseModel):
