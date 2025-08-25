@@ -27,7 +27,7 @@ class TestScripts:
         script = client.workers.scripts.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            metadata={"main_module": "worker.js"},
+            metadata={},
         )
         assert_matches_type(ScriptUpdateResponse, script, path=["response"])
 
@@ -38,7 +38,6 @@ class TestScripts:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             metadata={
-                "main_module": "worker.js",
                 "assets": {
                     "config": {
                         "_headers": "/dashboard/*\nX-Frame-Options: DENY\n\n/static/*\nAccess-Control-Allow-Origin: *",
@@ -57,11 +56,14 @@ class TestScripts:
                         "type": "plain_text",
                     }
                 ],
+                "body_part": "worker.js",
                 "compatibility_date": "2021-01-01",
                 "compatibility_flags": ["nodejs_compat"],
                 "keep_assets": False,
                 "keep_bindings": ["string"],
+                "limits": {"cpu_ms": 50},
                 "logpush": False,
+                "main_module": "worker.js",
                 "migrations": {
                     "deleted_classes": ["string"],
                     "new_classes": ["string"],
@@ -112,7 +114,7 @@ class TestScripts:
         response = client.workers.scripts.with_raw_response.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            metadata={"main_module": "worker.js"},
+            metadata={},
         )
 
         assert response.is_closed is True
@@ -126,7 +128,7 @@ class TestScripts:
         with client.workers.scripts.with_streaming_response.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            metadata={"main_module": "worker.js"},
+            metadata={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -143,14 +145,14 @@ class TestScripts:
             client.workers.scripts.with_raw_response.update(
                 script_name="this-is_my_script-01",
                 account_id="",
-                metadata={"main_module": "worker.js"},
+                metadata={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             client.workers.scripts.with_raw_response.update(
                 script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                metadata={"main_module": "worker.js"},
+                metadata={},
             )
 
     @parametrize
@@ -316,7 +318,7 @@ class TestAsyncScripts:
         script = await async_client.workers.scripts.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            metadata={"main_module": "worker.js"},
+            metadata={},
         )
         assert_matches_type(ScriptUpdateResponse, script, path=["response"])
 
@@ -327,7 +329,6 @@ class TestAsyncScripts:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             metadata={
-                "main_module": "worker.js",
                 "assets": {
                     "config": {
                         "_headers": "/dashboard/*\nX-Frame-Options: DENY\n\n/static/*\nAccess-Control-Allow-Origin: *",
@@ -346,11 +347,14 @@ class TestAsyncScripts:
                         "type": "plain_text",
                     }
                 ],
+                "body_part": "worker.js",
                 "compatibility_date": "2021-01-01",
                 "compatibility_flags": ["nodejs_compat"],
                 "keep_assets": False,
                 "keep_bindings": ["string"],
+                "limits": {"cpu_ms": 50},
                 "logpush": False,
+                "main_module": "worker.js",
                 "migrations": {
                     "deleted_classes": ["string"],
                     "new_classes": ["string"],
@@ -401,7 +405,7 @@ class TestAsyncScripts:
         response = await async_client.workers.scripts.with_raw_response.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            metadata={"main_module": "worker.js"},
+            metadata={},
         )
 
         assert response.is_closed is True
@@ -415,7 +419,7 @@ class TestAsyncScripts:
         async with async_client.workers.scripts.with_streaming_response.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            metadata={"main_module": "worker.js"},
+            metadata={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -432,14 +436,14 @@ class TestAsyncScripts:
             await async_client.workers.scripts.with_raw_response.update(
                 script_name="this-is_my_script-01",
                 account_id="",
-                metadata={"main_module": "worker.js"},
+                metadata={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             await async_client.workers.scripts.with_raw_response.update(
                 script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                metadata={"main_module": "worker.js"},
+                metadata={},
             )
 
     @parametrize

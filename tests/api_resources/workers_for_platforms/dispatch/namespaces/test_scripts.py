@@ -27,7 +27,7 @@ class TestScripts:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            metadata={"main_module": "worker.js"},
+            metadata={},
         )
         assert_matches_type(ScriptUpdateResponse, script, path=["response"])
 
@@ -39,7 +39,6 @@ class TestScripts:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
             metadata={
-                "main_module": "worker.js",
                 "assets": {
                     "config": {
                         "_headers": "/dashboard/*\nX-Frame-Options: DENY\n\n/static/*\nAccess-Control-Allow-Origin: *",
@@ -58,11 +57,14 @@ class TestScripts:
                         "type": "plain_text",
                     }
                 ],
+                "body_part": "worker.js",
                 "compatibility_date": "2021-01-01",
                 "compatibility_flags": ["nodejs_compat"],
                 "keep_assets": False,
                 "keep_bindings": ["string"],
+                "limits": {"cpu_ms": 50},
                 "logpush": False,
+                "main_module": "worker.js",
                 "migrations": {
                     "deleted_classes": ["string"],
                     "new_classes": ["string"],
@@ -114,7 +116,7 @@ class TestScripts:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            metadata={"main_module": "worker.js"},
+            metadata={},
         )
 
         assert response.is_closed is True
@@ -129,7 +131,7 @@ class TestScripts:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            metadata={"main_module": "worker.js"},
+            metadata={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -147,7 +149,7 @@ class TestScripts:
                 script_name="this-is_my_script-01",
                 account_id="",
                 dispatch_namespace="my-dispatch-namespace",
-                metadata={"main_module": "worker.js"},
+                metadata={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
@@ -155,7 +157,7 @@ class TestScripts:
                 script_name="this-is_my_script-01",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="",
-                metadata={"main_module": "worker.js"},
+                metadata={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
@@ -163,7 +165,7 @@ class TestScripts:
                 script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="my-dispatch-namespace",
-                metadata={"main_module": "worker.js"},
+                metadata={},
             )
 
     @parametrize
@@ -309,7 +311,7 @@ class TestAsyncScripts:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            metadata={"main_module": "worker.js"},
+            metadata={},
         )
         assert_matches_type(ScriptUpdateResponse, script, path=["response"])
 
@@ -321,7 +323,6 @@ class TestAsyncScripts:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
             metadata={
-                "main_module": "worker.js",
                 "assets": {
                     "config": {
                         "_headers": "/dashboard/*\nX-Frame-Options: DENY\n\n/static/*\nAccess-Control-Allow-Origin: *",
@@ -340,11 +341,14 @@ class TestAsyncScripts:
                         "type": "plain_text",
                     }
                 ],
+                "body_part": "worker.js",
                 "compatibility_date": "2021-01-01",
                 "compatibility_flags": ["nodejs_compat"],
                 "keep_assets": False,
                 "keep_bindings": ["string"],
+                "limits": {"cpu_ms": 50},
                 "logpush": False,
+                "main_module": "worker.js",
                 "migrations": {
                     "deleted_classes": ["string"],
                     "new_classes": ["string"],
@@ -396,7 +400,7 @@ class TestAsyncScripts:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            metadata={"main_module": "worker.js"},
+            metadata={},
         )
 
         assert response.is_closed is True
@@ -411,7 +415,7 @@ class TestAsyncScripts:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            metadata={"main_module": "worker.js"},
+            metadata={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -429,7 +433,7 @@ class TestAsyncScripts:
                 script_name="this-is_my_script-01",
                 account_id="",
                 dispatch_namespace="my-dispatch-namespace",
-                metadata={"main_module": "worker.js"},
+                metadata={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
@@ -437,7 +441,7 @@ class TestAsyncScripts:
                 script_name="this-is_my_script-01",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="",
-                metadata={"main_module": "worker.js"},
+                metadata={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
@@ -445,7 +449,7 @@ class TestAsyncScripts:
                 script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="my-dispatch-namespace",
-                metadata={"main_module": "worker.js"},
+                metadata={},
             )
 
     @parametrize

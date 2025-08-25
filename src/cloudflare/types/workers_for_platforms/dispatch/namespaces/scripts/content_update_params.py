@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
-from typing import List, Union
-from typing_extensions import Required, Annotated, TypeAlias, TypedDict
+from typing import List
+from typing_extensions import Required, Annotated, TypedDict
 
 from ......_types import FileTypes
 from ......_utils import PropertyInfo
+from .....workers.worker_metadata_param import WorkerMetadataParam
 
-__all__ = ["ContentUpdateParams", "Metadata", "MetadataMainModule", "MetadataBodyPart"]
+__all__ = ["ContentUpdateParams"]
 
 
 class ContentUpdateParams(TypedDict, total=False):
@@ -18,7 +19,7 @@ class ContentUpdateParams(TypedDict, total=False):
     dispatch_namespace: Required[str]
     """Name of the Workers for Platforms dispatch namespace."""
 
-    metadata: Required[Metadata]
+    metadata: Required[WorkerMetadataParam]
     """JSON-encoded metadata about the uploaded parts and Worker configuration."""
 
     files: List[FileTypes]
@@ -35,23 +36,3 @@ class ContentUpdateParams(TypedDict, total=False):
     cf_worker_body_part: Annotated[str, PropertyInfo(alias="CF-WORKER-BODY-PART")]
 
     cf_worker_main_module_part: Annotated[str, PropertyInfo(alias="CF-WORKER-MAIN-MODULE-PART")]
-
-
-class MetadataMainModule(TypedDict, total=False):
-    main_module: Required[str]
-    """Name of the uploaded file that contains the main module (e.g.
-
-    the file exporting a `fetch` handler). Indicates a `module syntax` Worker.
-    """
-
-
-class MetadataBodyPart(TypedDict, total=False):
-    body_part: Required[str]
-    """Name of the uploaded file that contains the Worker script (e.g.
-
-    the file adding a listener to the `fetch` event). Indicates a
-    `service worker syntax` Worker.
-    """
-
-
-Metadata: TypeAlias = Union[MetadataMainModule, MetadataBodyPart]

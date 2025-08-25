@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing import List, Union
-from typing_extensions import Required, Annotated, TypeAlias, TypedDict
+from typing import List
+from typing_extensions import Required, Annotated, TypedDict
 
 from ...._types import FileTypes
 from ...._utils import PropertyInfo
 
-__all__ = ["ContentUpdateParams", "Metadata", "MetadataMainModule", "MetadataBodyPart"]
+__all__ = ["ContentUpdateParams", "Metadata"]
 
 
 class ContentUpdateParams(TypedDict, total=False):
@@ -34,21 +34,16 @@ class ContentUpdateParams(TypedDict, total=False):
     cf_worker_main_module_part: Annotated[str, PropertyInfo(alias="CF-WORKER-MAIN-MODULE-PART")]
 
 
-class MetadataMainModule(TypedDict, total=False):
-    main_module: Required[str]
-    """Name of the uploaded file that contains the main module (e.g.
-
-    the file exporting a `fetch` handler). Indicates a `module syntax` Worker.
-    """
-
-
-class MetadataBodyPart(TypedDict, total=False):
-    body_part: Required[str]
+class Metadata(TypedDict, total=False):
+    body_part: str
     """Name of the uploaded file that contains the Worker script (e.g.
 
     the file adding a listener to the `fetch` event). Indicates a
     `service worker syntax` Worker.
     """
 
+    main_module: str
+    """Name of the uploaded file that contains the main module (e.g.
 
-Metadata: TypeAlias = Union[MetadataMainModule, MetadataBodyPart]
+    the file exporting a `fetch` handler). Indicates a `module syntax` Worker.
+    """
