@@ -49,6 +49,8 @@ class Data(TypedDict, total=False):
 
     indicator: str
 
+    indicator_type: Annotated[str, PropertyInfo(alias="indicatorType")]
+
     tags: List[str]
 
     target_country: Annotated[str, PropertyInfo(alias="targetCountry")]
