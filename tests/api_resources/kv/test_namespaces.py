@@ -133,7 +133,7 @@ class TestNamespaces:
             direction="asc",
             order="id",
             page=1,
-            per_page=5,
+            per_page=1,
         )
         assert_matches_type(SyncV4PagePaginationArray[Namespace], namespace, path=["response"])
 
@@ -574,7 +574,7 @@ class TestAsyncNamespaces:
             direction="asc",
             order="id",
             page=1,
-            per_page=5,
+            per_page=1,
         )
         assert_matches_type(AsyncV4PagePaginationArray[Namespace], namespace, path=["response"])
 
