@@ -22,13 +22,11 @@ from .token_create_params import TokenCreateParams as TokenCreateParams
 from .stream_create_params import StreamCreateParams as StreamCreateParams
 from .token_create_response import TokenCreateResponse as TokenCreateResponse
 from .webhook_update_params import WebhookUpdateParams as WebhookUpdateParams
-from .download_create_params import DownloadCreateParams as DownloadCreateParams
 from .live_input_list_params import LiveInputListParams as LiveInputListParams
 from .audio_track_copy_params import AudioTrackCopyParams as AudioTrackCopyParams
 from .audio_track_edit_params import AudioTrackEditParams as AudioTrackEditParams
 from .watermark_create_params import WatermarkCreateParams as WatermarkCreateParams
 from .webhook_delete_response import WebhookDeleteResponse as WebhookDeleteResponse
-from .download_delete_response import DownloadDeleteResponse as DownloadDeleteResponse
 from .live_input_create_params import LiveInputCreateParams as LiveInputCreateParams
 from .live_input_list_response import LiveInputListResponse as LiveInputListResponse
 from .live_input_update_params import LiveInputUpdateParams as LiveInputUpdateParams
