@@ -18,7 +18,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...types.iam import resource_group_list_params, resource_group_create_params, resource_group_update_params
-from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.iam.resource_group_get_response import ResourceGroupGetResponse
 from ...types.iam.resource_group_list_response import ResourceGroupListResponse
@@ -156,15 +156,13 @@ class ResourceGroupsResource(SyncAPIResource):
         account_id: str,
         id: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[ResourceGroupListResponse]:
+    ) -> SyncSinglePage[ResourceGroupListResponse]:
         """
         List all the resource groups for an account.
 
@@ -174,10 +172,6 @@ class ResourceGroupsResource(SyncAPIResource):
           id: ID of the resource group to be fetched.
 
           name: Name of the resource group to be fetched.
-
-          page: Page number of paginated results.
-
-          per_page: Maximum number of results per page.
 
           extra_headers: Send extra headers
 
@@ -191,7 +185,7 @@ class ResourceGroupsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/iam/resource_groups",
-            page=SyncV4PagePaginationArray[ResourceGroupListResponse],
+            page=SyncSinglePage[ResourceGroupListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -201,8 +195,6 @@ class ResourceGroupsResource(SyncAPIResource):
                     {
                         "id": id,
                         "name": name,
-                        "page": page,
-                        "per_page": per_page,
                     },
                     resource_group_list_params.ResourceGroupListParams,
                 ),
@@ -422,15 +414,13 @@ class AsyncResourceGroupsResource(AsyncAPIResource):
         account_id: str,
         id: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[ResourceGroupListResponse, AsyncV4PagePaginationArray[ResourceGroupListResponse]]:
+    ) -> AsyncPaginator[ResourceGroupListResponse, AsyncSinglePage[ResourceGroupListResponse]]:
         """
         List all the resource groups for an account.
 
@@ -440,10 +430,6 @@ class AsyncResourceGroupsResource(AsyncAPIResource):
           id: ID of the resource group to be fetched.
 
           name: Name of the resource group to be fetched.
-
-          page: Page number of paginated results.
-
-          per_page: Maximum number of results per page.
 
           extra_headers: Send extra headers
 
@@ -457,7 +443,7 @@ class AsyncResourceGroupsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/iam/resource_groups",
-            page=AsyncV4PagePaginationArray[ResourceGroupListResponse],
+            page=AsyncSinglePage[ResourceGroupListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -467,8 +453,6 @@ class AsyncResourceGroupsResource(AsyncAPIResource):
                     {
                         "id": id,
                         "name": name,
-                        "page": page,
-                        "per_page": per_page,
                     },
                     resource_group_list_params.ResourceGroupListParams,
                 ),

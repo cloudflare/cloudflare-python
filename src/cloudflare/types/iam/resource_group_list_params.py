@@ -16,9 +16,3 @@ class ResourceGroupListParams(TypedDict, total=False):
 
     name: str
     """Name of the resource group to be fetched."""
-
-    page: float
-    """Page number of paginated results."""
-
-    per_page: float
-    """Maximum number of results per page."""

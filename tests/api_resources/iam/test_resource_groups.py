@@ -16,7 +16,7 @@ from cloudflare.types.iam import (
     ResourceGroupDeleteResponse,
     ResourceGroupUpdateResponse,
 )
-from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -148,7 +148,7 @@ class TestResourceGroups:
         resource_group = client.iam.resource_groups.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncV4PagePaginationArray[ResourceGroupListResponse], resource_group, path=["response"])
+        assert_matches_type(SyncSinglePage[ResourceGroupListResponse], resource_group, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
@@ -156,10 +156,8 @@ class TestResourceGroups:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="023e105f4ecef8ad9ca31a8372d0c353",
             name="NameOfTheResourceGroup",
-            page=1,
-            per_page=5,
         )
-        assert_matches_type(SyncV4PagePaginationArray[ResourceGroupListResponse], resource_group, path=["response"])
+        assert_matches_type(SyncSinglePage[ResourceGroupListResponse], resource_group, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -170,7 +168,7 @@ class TestResourceGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         resource_group = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[ResourceGroupListResponse], resource_group, path=["response"])
+        assert_matches_type(SyncSinglePage[ResourceGroupListResponse], resource_group, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -181,7 +179,7 @@ class TestResourceGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             resource_group = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[ResourceGroupListResponse], resource_group, path=["response"])
+            assert_matches_type(SyncSinglePage[ResourceGroupListResponse], resource_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -418,7 +416,7 @@ class TestAsyncResourceGroups:
         resource_group = await async_client.iam.resource_groups.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[ResourceGroupListResponse], resource_group, path=["response"])
+        assert_matches_type(AsyncSinglePage[ResourceGroupListResponse], resource_group, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -426,10 +424,8 @@ class TestAsyncResourceGroups:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="023e105f4ecef8ad9ca31a8372d0c353",
             name="NameOfTheResourceGroup",
-            page=1,
-            per_page=5,
         )
-        assert_matches_type(AsyncV4PagePaginationArray[ResourceGroupListResponse], resource_group, path=["response"])
+        assert_matches_type(AsyncSinglePage[ResourceGroupListResponse], resource_group, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -440,7 +436,7 @@ class TestAsyncResourceGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         resource_group = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[ResourceGroupListResponse], resource_group, path=["response"])
+        assert_matches_type(AsyncSinglePage[ResourceGroupListResponse], resource_group, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -451,9 +447,7 @@ class TestAsyncResourceGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             resource_group = await response.parse()
-            assert_matches_type(
-                AsyncV4PagePaginationArray[ResourceGroupListResponse], resource_group, path=["response"]
-            )
+            assert_matches_type(AsyncSinglePage[ResourceGroupListResponse], resource_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
