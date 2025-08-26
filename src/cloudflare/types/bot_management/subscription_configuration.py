@@ -49,6 +49,12 @@ class SubscriptionConfiguration(BaseModel):
     [Learn more.](https://developers.cloudflare.com/bots/reference/machine-learning-models#model-versions-and-release-notes)
     """
 
+    bm_cookie_enabled: Optional[bool] = None
+    """
+    Indicates that the bot management cookie can be placed on end user devices
+    accessing the site. Defaults to true
+    """
+
     crawler_protection: Optional[Literal["enabled", "disabled"]] = None
     """Enable rule to punish AI Scrapers and Crawlers via a link maze."""
 

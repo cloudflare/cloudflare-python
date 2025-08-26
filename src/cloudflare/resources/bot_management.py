@@ -396,6 +396,7 @@ class BotManagementResource(SyncAPIResource):
         zone_id: str,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | NotGiven = NOT_GIVEN,
         auto_update_model: bool | NotGiven = NOT_GIVEN,
+        bm_cookie_enabled: bool | NotGiven = NOT_GIVEN,
         crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
         enable_js: bool | NotGiven = NOT_GIVEN,
         is_robots_txt_managed: bool | NotGiven = NOT_GIVEN,
@@ -480,6 +481,9 @@ class BotManagementResource(SyncAPIResource):
               they are released.
               [Learn more.](https://developers.cloudflare.com/bots/reference/machine-learning-models#model-versions-and-release-notes)
 
+          bm_cookie_enabled: Indicates that the bot management cookie can be placed on end user devices
+              accessing the site. Defaults to true
+
           crawler_protection: Enable rule to punish AI Scrapers and Crawlers via a link maze.
 
           enable_js: Use lightweight, invisible JavaScript detections to improve Bot Management.
@@ -517,6 +521,7 @@ class BotManagementResource(SyncAPIResource):
         sbfm_verified_bots: Literal["allow", "block"] | NotGiven = NOT_GIVEN,
         sbfm_likely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
         auto_update_model: bool | NotGiven = NOT_GIVEN,
+        bm_cookie_enabled: bool | NotGiven = NOT_GIVEN,
         suppress_session_score: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -544,6 +549,7 @@ class BotManagementResource(SyncAPIResource):
                         "sbfm_verified_bots": sbfm_verified_bots,
                         "sbfm_likely_automated": sbfm_likely_automated,
                         "auto_update_model": auto_update_model,
+                        "bm_cookie_enabled": bm_cookie_enabled,
                         "suppress_session_score": suppress_session_score,
                     },
                     bot_management_update_params.BotManagementUpdateParams,
@@ -976,6 +982,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         zone_id: str,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | NotGiven = NOT_GIVEN,
         auto_update_model: bool | NotGiven = NOT_GIVEN,
+        bm_cookie_enabled: bool | NotGiven = NOT_GIVEN,
         crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
         enable_js: bool | NotGiven = NOT_GIVEN,
         is_robots_txt_managed: bool | NotGiven = NOT_GIVEN,
@@ -1060,6 +1067,9 @@ class AsyncBotManagementResource(AsyncAPIResource):
               they are released.
               [Learn more.](https://developers.cloudflare.com/bots/reference/machine-learning-models#model-versions-and-release-notes)
 
+          bm_cookie_enabled: Indicates that the bot management cookie can be placed on end user devices
+              accessing the site. Defaults to true
+
           crawler_protection: Enable rule to punish AI Scrapers and Crawlers via a link maze.
 
           enable_js: Use lightweight, invisible JavaScript detections to improve Bot Management.
@@ -1097,6 +1107,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         sbfm_verified_bots: Literal["allow", "block"] | NotGiven = NOT_GIVEN,
         sbfm_likely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
         auto_update_model: bool | NotGiven = NOT_GIVEN,
+        bm_cookie_enabled: bool | NotGiven = NOT_GIVEN,
         suppress_session_score: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1124,6 +1135,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
                         "sbfm_verified_bots": sbfm_verified_bots,
                         "sbfm_likely_automated": sbfm_likely_automated,
                         "auto_update_model": auto_update_model,
+                        "bm_cookie_enabled": bm_cookie_enabled,
                         "suppress_session_score": suppress_session_score,
                     },
                     bot_management_update_params.BotManagementUpdateParams,
