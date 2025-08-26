@@ -25,7 +25,6 @@ class TestAccounts:
     def test_method_create(self, client: Cloudflare) -> None:
         account = client.accounts.create(
             name="name",
-            type="standard",
         )
         assert_matches_type(Optional[Account], account, path=["response"])
 
@@ -42,7 +41,6 @@ class TestAccounts:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.accounts.with_raw_response.create(
             name="name",
-            type="standard",
         )
 
         assert response.is_closed is True
@@ -54,7 +52,6 @@ class TestAccounts:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.accounts.with_streaming_response.create(
             name="name",
-            type="standard",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -70,6 +67,7 @@ class TestAccounts:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="023e105f4ecef8ad9ca31a8372d0c353",
             name="Demo Account",
+            type="standard",
         )
         assert_matches_type(Optional[Account], account, path=["response"])
 
@@ -79,6 +77,7 @@ class TestAccounts:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="023e105f4ecef8ad9ca31a8372d0c353",
             name="Demo Account",
+            type="standard",
             settings={
                 "abuse_contact_email": "abuse_contact_email",
                 "enforce_twofactor": True,
@@ -92,6 +91,7 @@ class TestAccounts:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="023e105f4ecef8ad9ca31a8372d0c353",
             name="Demo Account",
+            type="standard",
         )
 
         assert response.is_closed is True
@@ -105,6 +105,7 @@ class TestAccounts:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="023e105f4ecef8ad9ca31a8372d0c353",
             name="Demo Account",
+            type="standard",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -121,6 +122,7 @@ class TestAccounts:
                 account_id="",
                 id="023e105f4ecef8ad9ca31a8372d0c353",
                 name="Demo Account",
+                type="standard",
             )
 
     @parametrize
@@ -244,7 +246,6 @@ class TestAsyncAccounts:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         account = await async_client.accounts.create(
             name="name",
-            type="standard",
         )
         assert_matches_type(Optional[Account], account, path=["response"])
 
@@ -261,7 +262,6 @@ class TestAsyncAccounts:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.with_raw_response.create(
             name="name",
-            type="standard",
         )
 
         assert response.is_closed is True
@@ -273,7 +273,6 @@ class TestAsyncAccounts:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.with_streaming_response.create(
             name="name",
-            type="standard",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -289,6 +288,7 @@ class TestAsyncAccounts:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="023e105f4ecef8ad9ca31a8372d0c353",
             name="Demo Account",
+            type="standard",
         )
         assert_matches_type(Optional[Account], account, path=["response"])
 
@@ -298,6 +298,7 @@ class TestAsyncAccounts:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="023e105f4ecef8ad9ca31a8372d0c353",
             name="Demo Account",
+            type="standard",
             settings={
                 "abuse_contact_email": "abuse_contact_email",
                 "enforce_twofactor": True,
@@ -311,6 +312,7 @@ class TestAsyncAccounts:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="023e105f4ecef8ad9ca31a8372d0c353",
             name="Demo Account",
+            type="standard",
         )
 
         assert response.is_closed is True
@@ -324,6 +326,7 @@ class TestAsyncAccounts:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="023e105f4ecef8ad9ca31a8372d0c353",
             name="Demo Account",
+            type="standard",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -340,6 +343,7 @@ class TestAsyncAccounts:
                 account_id="",
                 id="023e105f4ecef8ad9ca31a8372d0c353",
                 name="Demo Account",
+                type="standard",
             )
 
     @parametrize

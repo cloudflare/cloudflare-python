@@ -2,6 +2,7 @@
 
 from typing import Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from ..._models import BaseModel
 
@@ -25,6 +26,8 @@ class Account(BaseModel):
 
     name: str
     """Account name"""
+
+    type: Literal["standard", "enterprise"]
 
     created_on: Optional[datetime] = None
     """Timestamp for the creation of the account"""

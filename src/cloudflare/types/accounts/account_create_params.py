@@ -11,12 +11,7 @@ class AccountCreateParams(TypedDict, total=False):
     name: Required[str]
     """Account name"""
 
-    type: Required[Literal["standard", "enterprise"]]
-    """the type of account being created.
-
-    For self-serve customers, use standard. for enterprise customers, use
-    enterprise.
-    """
+    type: Literal["standard", "enterprise"]
 
     unit: Unit
     """

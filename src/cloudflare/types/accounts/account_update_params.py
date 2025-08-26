@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["AccountUpdateParams", "Settings"]
 
@@ -16,6 +16,8 @@ class AccountUpdateParams(TypedDict, total=False):
 
     name: Required[str]
     """Account name"""
+
+    type: Required[Literal["standard", "enterprise"]]
 
     settings: Settings
     """Account settings"""

@@ -111,7 +111,7 @@ class AccountsResource(SyncAPIResource):
         self,
         *,
         name: str,
-        type: Literal["standard", "enterprise"],
+        type: Literal["standard", "enterprise"] | NotGiven = NOT_GIVEN,
         unit: account_create_params.Unit | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -125,9 +125,6 @@ class AccountsResource(SyncAPIResource):
 
         Args:
           name: Account name
-
-          type: the type of account being created. For self-serve customers, use standard. for
-              enterprise customers, use enterprise.
 
           unit: information related to the tenant unit, and optionally, an id of the unit to
               create the account on. see
@@ -167,6 +164,7 @@ class AccountsResource(SyncAPIResource):
         account_id: str,
         id: str,
         name: str,
+        type: Literal["standard", "enterprise"],
         settings: account_update_params.Settings | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -203,6 +201,7 @@ class AccountsResource(SyncAPIResource):
                 {
                     "id": id,
                     "name": name,
+                    "type": type,
                     "settings": settings,
                 },
                 account_update_params.AccountUpdateParams,
@@ -398,7 +397,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         self,
         *,
         name: str,
-        type: Literal["standard", "enterprise"],
+        type: Literal["standard", "enterprise"] | NotGiven = NOT_GIVEN,
         unit: account_create_params.Unit | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -412,9 +411,6 @@ class AsyncAccountsResource(AsyncAPIResource):
 
         Args:
           name: Account name
-
-          type: the type of account being created. For self-serve customers, use standard. for
-              enterprise customers, use enterprise.
 
           unit: information related to the tenant unit, and optionally, an id of the unit to
               create the account on. see
@@ -454,6 +450,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         account_id: str,
         id: str,
         name: str,
+        type: Literal["standard", "enterprise"],
         settings: account_update_params.Settings | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -490,6 +487,7 @@ class AsyncAccountsResource(AsyncAPIResource):
                 {
                     "id": id,
                     "name": name,
+                    "type": type,
                     "settings": settings,
                 },
                 account_update_params.AccountUpdateParams,
