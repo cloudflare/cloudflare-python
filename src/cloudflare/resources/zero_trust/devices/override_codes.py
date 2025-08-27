@@ -252,7 +252,7 @@ class OverrideCodesResourceWithRawResponse:
 
         self.list = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                override_codes.list  # pyright: ignore[reportDeprecated],
+                override_codes.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = to_raw_response_wrapper(
@@ -266,7 +266,7 @@ class AsyncOverrideCodesResourceWithRawResponse:
 
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                override_codes.list  # pyright: ignore[reportDeprecated],
+                override_codes.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = async_to_raw_response_wrapper(
@@ -280,7 +280,7 @@ class OverrideCodesResourceWithStreamingResponse:
 
         self.list = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                override_codes.list  # pyright: ignore[reportDeprecated],
+                override_codes.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = to_streamed_response_wrapper(
@@ -294,7 +294,7 @@ class AsyncOverrideCodesResourceWithStreamingResponse:
 
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                override_codes.list  # pyright: ignore[reportDeprecated],
+                override_codes.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = async_to_streamed_response_wrapper(

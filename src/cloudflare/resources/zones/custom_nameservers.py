@@ -275,12 +275,12 @@ class CustomNameserversResourceWithRawResponse:
 
         self.update = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                custom_nameservers.update  # pyright: ignore[reportDeprecated],
+                custom_nameservers.update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                custom_nameservers.get  # pyright: ignore[reportDeprecated],
+                custom_nameservers.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -291,12 +291,12 @@ class AsyncCustomNameserversResourceWithRawResponse:
 
         self.update = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                custom_nameservers.update  # pyright: ignore[reportDeprecated],
+                custom_nameservers.update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                custom_nameservers.get  # pyright: ignore[reportDeprecated],
+                custom_nameservers.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -307,12 +307,12 @@ class CustomNameserversResourceWithStreamingResponse:
 
         self.update = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                custom_nameservers.update  # pyright: ignore[reportDeprecated],
+                custom_nameservers.update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                custom_nameservers.get  # pyright: ignore[reportDeprecated],
+                custom_nameservers.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -323,11 +323,11 @@ class AsyncCustomNameserversResourceWithStreamingResponse:
 
         self.update = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                custom_nameservers.update  # pyright: ignore[reportDeprecated],
+                custom_nameservers.update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                custom_nameservers.get  # pyright: ignore[reportDeprecated],
+                custom_nameservers.get,  # pyright: ignore[reportDeprecated],
             )
         )

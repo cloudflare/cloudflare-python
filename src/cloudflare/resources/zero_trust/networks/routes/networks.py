@@ -448,17 +448,17 @@ class NetworksResourceWithRawResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                networks.create  # pyright: ignore[reportDeprecated],
+                networks.create,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                networks.delete  # pyright: ignore[reportDeprecated],
+                networks.delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.edit = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                networks.edit  # pyright: ignore[reportDeprecated],
+                networks.edit,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -469,17 +469,17 @@ class AsyncNetworksResourceWithRawResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                networks.create  # pyright: ignore[reportDeprecated],
+                networks.create,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                networks.delete  # pyright: ignore[reportDeprecated],
+                networks.delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.edit = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                networks.edit  # pyright: ignore[reportDeprecated],
+                networks.edit,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -490,17 +490,17 @@ class NetworksResourceWithStreamingResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                networks.create  # pyright: ignore[reportDeprecated],
+                networks.create,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                networks.delete  # pyright: ignore[reportDeprecated],
+                networks.delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.edit = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                networks.edit  # pyright: ignore[reportDeprecated],
+                networks.edit,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -511,16 +511,16 @@ class AsyncNetworksResourceWithStreamingResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                networks.create  # pyright: ignore[reportDeprecated],
+                networks.create,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                networks.delete  # pyright: ignore[reportDeprecated],
+                networks.delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.edit = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                networks.edit  # pyright: ignore[reportDeprecated],
+                networks.edit,  # pyright: ignore[reportDeprecated],
             )
         )

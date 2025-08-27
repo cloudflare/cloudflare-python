@@ -373,12 +373,12 @@ class EmailRoutingResourceWithRawResponse:
 
         self.disable = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                email_routing.disable  # pyright: ignore[reportDeprecated],
+                email_routing.disable,  # pyright: ignore[reportDeprecated],
             )
         )
         self.enable = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                email_routing.enable  # pyright: ignore[reportDeprecated],
+                email_routing.enable,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = to_raw_response_wrapper(
@@ -404,12 +404,12 @@ class AsyncEmailRoutingResourceWithRawResponse:
 
         self.disable = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                email_routing.disable  # pyright: ignore[reportDeprecated],
+                email_routing.disable,  # pyright: ignore[reportDeprecated],
             )
         )
         self.enable = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                email_routing.enable  # pyright: ignore[reportDeprecated],
+                email_routing.enable,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = async_to_raw_response_wrapper(
@@ -435,12 +435,12 @@ class EmailRoutingResourceWithStreamingResponse:
 
         self.disable = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                email_routing.disable  # pyright: ignore[reportDeprecated],
+                email_routing.disable,  # pyright: ignore[reportDeprecated],
             )
         )
         self.enable = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                email_routing.enable  # pyright: ignore[reportDeprecated],
+                email_routing.enable,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = to_streamed_response_wrapper(
@@ -466,12 +466,12 @@ class AsyncEmailRoutingResourceWithStreamingResponse:
 
         self.disable = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                email_routing.disable  # pyright: ignore[reportDeprecated],
+                email_routing.disable,  # pyright: ignore[reportDeprecated],
             )
         )
         self.enable = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                email_routing.enable  # pyright: ignore[reportDeprecated],
+                email_routing.enable,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = async_to_streamed_response_wrapper(

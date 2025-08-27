@@ -818,37 +818,37 @@ class FiltersResourceWithRawResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                filters.create  # pyright: ignore[reportDeprecated],
+                filters.create,  # pyright: ignore[reportDeprecated],
             )
         )
         self.update = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                filters.update  # pyright: ignore[reportDeprecated],
+                filters.update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                filters.list  # pyright: ignore[reportDeprecated],
+                filters.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                filters.delete  # pyright: ignore[reportDeprecated],
+                filters.delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.bulk_delete = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                filters.bulk_delete  # pyright: ignore[reportDeprecated],
+                filters.bulk_delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.bulk_update = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                filters.bulk_update  # pyright: ignore[reportDeprecated],
+                filters.bulk_update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                filters.get  # pyright: ignore[reportDeprecated],
+                filters.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -859,37 +859,37 @@ class AsyncFiltersResourceWithRawResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                filters.create  # pyright: ignore[reportDeprecated],
+                filters.create,  # pyright: ignore[reportDeprecated],
             )
         )
         self.update = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                filters.update  # pyright: ignore[reportDeprecated],
+                filters.update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                filters.list  # pyright: ignore[reportDeprecated],
+                filters.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                filters.delete  # pyright: ignore[reportDeprecated],
+                filters.delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.bulk_delete = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                filters.bulk_delete  # pyright: ignore[reportDeprecated],
+                filters.bulk_delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.bulk_update = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                filters.bulk_update  # pyright: ignore[reportDeprecated],
+                filters.bulk_update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                filters.get  # pyright: ignore[reportDeprecated],
+                filters.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -900,37 +900,37 @@ class FiltersResourceWithStreamingResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                filters.create  # pyright: ignore[reportDeprecated],
+                filters.create,  # pyright: ignore[reportDeprecated],
             )
         )
         self.update = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                filters.update  # pyright: ignore[reportDeprecated],
+                filters.update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                filters.list  # pyright: ignore[reportDeprecated],
+                filters.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                filters.delete  # pyright: ignore[reportDeprecated],
+                filters.delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.bulk_delete = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                filters.bulk_delete  # pyright: ignore[reportDeprecated],
+                filters.bulk_delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.bulk_update = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                filters.bulk_update  # pyright: ignore[reportDeprecated],
+                filters.bulk_update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                filters.get  # pyright: ignore[reportDeprecated],
+                filters.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -941,36 +941,36 @@ class AsyncFiltersResourceWithStreamingResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                filters.create  # pyright: ignore[reportDeprecated],
+                filters.create,  # pyright: ignore[reportDeprecated],
             )
         )
         self.update = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                filters.update  # pyright: ignore[reportDeprecated],
+                filters.update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                filters.list  # pyright: ignore[reportDeprecated],
+                filters.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                filters.delete  # pyright: ignore[reportDeprecated],
+                filters.delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.bulk_delete = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                filters.bulk_delete  # pyright: ignore[reportDeprecated],
+                filters.bulk_delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.bulk_update = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                filters.bulk_update  # pyright: ignore[reportDeprecated],
+                filters.bulk_update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                filters.get  # pyright: ignore[reportDeprecated],
+                filters.get,  # pyright: ignore[reportDeprecated],
             )
         )

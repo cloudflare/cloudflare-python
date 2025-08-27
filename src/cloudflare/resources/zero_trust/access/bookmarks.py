@@ -497,27 +497,27 @@ class BookmarksResourceWithRawResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                bookmarks.create  # pyright: ignore[reportDeprecated],
+                bookmarks.create,  # pyright: ignore[reportDeprecated],
             )
         )
         self.update = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                bookmarks.update  # pyright: ignore[reportDeprecated],
+                bookmarks.update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                bookmarks.list  # pyright: ignore[reportDeprecated],
+                bookmarks.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                bookmarks.delete  # pyright: ignore[reportDeprecated],
+                bookmarks.delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                bookmarks.get  # pyright: ignore[reportDeprecated],
+                bookmarks.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -528,27 +528,27 @@ class AsyncBookmarksResourceWithRawResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                bookmarks.create  # pyright: ignore[reportDeprecated],
+                bookmarks.create,  # pyright: ignore[reportDeprecated],
             )
         )
         self.update = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                bookmarks.update  # pyright: ignore[reportDeprecated],
+                bookmarks.update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                bookmarks.list  # pyright: ignore[reportDeprecated],
+                bookmarks.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                bookmarks.delete  # pyright: ignore[reportDeprecated],
+                bookmarks.delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                bookmarks.get  # pyright: ignore[reportDeprecated],
+                bookmarks.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -559,27 +559,27 @@ class BookmarksResourceWithStreamingResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                bookmarks.create  # pyright: ignore[reportDeprecated],
+                bookmarks.create,  # pyright: ignore[reportDeprecated],
             )
         )
         self.update = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                bookmarks.update  # pyright: ignore[reportDeprecated],
+                bookmarks.update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                bookmarks.list  # pyright: ignore[reportDeprecated],
+                bookmarks.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                bookmarks.delete  # pyright: ignore[reportDeprecated],
+                bookmarks.delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                bookmarks.get  # pyright: ignore[reportDeprecated],
+                bookmarks.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -590,26 +590,26 @@ class AsyncBookmarksResourceWithStreamingResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                bookmarks.create  # pyright: ignore[reportDeprecated],
+                bookmarks.create,  # pyright: ignore[reportDeprecated],
             )
         )
         self.update = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                bookmarks.update  # pyright: ignore[reportDeprecated],
+                bookmarks.update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                bookmarks.list  # pyright: ignore[reportDeprecated],
+                bookmarks.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                bookmarks.delete  # pyright: ignore[reportDeprecated],
+                bookmarks.delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                bookmarks.get  # pyright: ignore[reportDeprecated],
+                bookmarks.get,  # pyright: ignore[reportDeprecated],
             )
         )

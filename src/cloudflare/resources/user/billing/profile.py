@@ -119,7 +119,7 @@ class ProfileResourceWithRawResponse:
 
         self.get = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                profile.get  # pyright: ignore[reportDeprecated],
+                profile.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -130,7 +130,7 @@ class AsyncProfileResourceWithRawResponse:
 
         self.get = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                profile.get  # pyright: ignore[reportDeprecated],
+                profile.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -141,7 +141,7 @@ class ProfileResourceWithStreamingResponse:
 
         self.get = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                profile.get  # pyright: ignore[reportDeprecated],
+                profile.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -152,6 +152,6 @@ class AsyncProfileResourceWithStreamingResponse:
 
         self.get = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                profile.get  # pyright: ignore[reportDeprecated],
+                profile.get,  # pyright: ignore[reportDeprecated],
             )
         )

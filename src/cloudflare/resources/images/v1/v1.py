@@ -741,7 +741,7 @@ class V1ResourceWithRawResponse:
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                v1.list  # pyright: ignore[reportDeprecated],
+                v1.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = to_raw_response_wrapper(
@@ -780,7 +780,7 @@ class AsyncV1ResourceWithRawResponse:
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                v1.list  # pyright: ignore[reportDeprecated],
+                v1.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = async_to_raw_response_wrapper(
@@ -819,7 +819,7 @@ class V1ResourceWithStreamingResponse:
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                v1.list  # pyright: ignore[reportDeprecated],
+                v1.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = to_streamed_response_wrapper(
@@ -858,7 +858,7 @@ class AsyncV1ResourceWithStreamingResponse:
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                v1.list  # pyright: ignore[reportDeprecated],
+                v1.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = async_to_streamed_response_wrapper(

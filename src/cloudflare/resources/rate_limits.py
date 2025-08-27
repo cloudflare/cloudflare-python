@@ -657,27 +657,27 @@ class RateLimitsResourceWithRawResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                rate_limits.create  # pyright: ignore[reportDeprecated],
+                rate_limits.create,  # pyright: ignore[reportDeprecated],
             )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                rate_limits.list  # pyright: ignore[reportDeprecated],
+                rate_limits.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                rate_limits.delete  # pyright: ignore[reportDeprecated],
+                rate_limits.delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.edit = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                rate_limits.edit  # pyright: ignore[reportDeprecated],
+                rate_limits.edit,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                rate_limits.get  # pyright: ignore[reportDeprecated],
+                rate_limits.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -688,27 +688,27 @@ class AsyncRateLimitsResourceWithRawResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                rate_limits.create  # pyright: ignore[reportDeprecated],
+                rate_limits.create,  # pyright: ignore[reportDeprecated],
             )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                rate_limits.list  # pyright: ignore[reportDeprecated],
+                rate_limits.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                rate_limits.delete  # pyright: ignore[reportDeprecated],
+                rate_limits.delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.edit = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                rate_limits.edit  # pyright: ignore[reportDeprecated],
+                rate_limits.edit,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                rate_limits.get  # pyright: ignore[reportDeprecated],
+                rate_limits.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -719,27 +719,27 @@ class RateLimitsResourceWithStreamingResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                rate_limits.create  # pyright: ignore[reportDeprecated],
+                rate_limits.create,  # pyright: ignore[reportDeprecated],
             )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                rate_limits.list  # pyright: ignore[reportDeprecated],
+                rate_limits.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                rate_limits.delete  # pyright: ignore[reportDeprecated],
+                rate_limits.delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.edit = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                rate_limits.edit  # pyright: ignore[reportDeprecated],
+                rate_limits.edit,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                rate_limits.get  # pyright: ignore[reportDeprecated],
+                rate_limits.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -750,26 +750,26 @@ class AsyncRateLimitsResourceWithStreamingResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                rate_limits.create  # pyright: ignore[reportDeprecated],
+                rate_limits.create,  # pyright: ignore[reportDeprecated],
             )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                rate_limits.list  # pyright: ignore[reportDeprecated],
+                rate_limits.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                rate_limits.delete  # pyright: ignore[reportDeprecated],
+                rate_limits.delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.edit = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                rate_limits.edit  # pyright: ignore[reportDeprecated],
+                rate_limits.edit,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                rate_limits.get  # pyright: ignore[reportDeprecated],
+                rate_limits.get,  # pyright: ignore[reportDeprecated],
             )
         )

@@ -503,17 +503,17 @@ class RulesResourceWithRawResponse:
 
         self.list = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                rules.list  # pyright: ignore[reportDeprecated],
+                rules.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.edit = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                rules.edit  # pyright: ignore[reportDeprecated],
+                rules.edit,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                rules.get  # pyright: ignore[reportDeprecated],
+                rules.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -524,17 +524,17 @@ class AsyncRulesResourceWithRawResponse:
 
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                rules.list  # pyright: ignore[reportDeprecated],
+                rules.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.edit = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                rules.edit  # pyright: ignore[reportDeprecated],
+                rules.edit,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                rules.get  # pyright: ignore[reportDeprecated],
+                rules.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -545,17 +545,17 @@ class RulesResourceWithStreamingResponse:
 
         self.list = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                rules.list  # pyright: ignore[reportDeprecated],
+                rules.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.edit = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                rules.edit  # pyright: ignore[reportDeprecated],
+                rules.edit,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                rules.get  # pyright: ignore[reportDeprecated],
+                rules.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -566,16 +566,16 @@ class AsyncRulesResourceWithStreamingResponse:
 
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                rules.list  # pyright: ignore[reportDeprecated],
+                rules.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.edit = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                rules.edit  # pyright: ignore[reportDeprecated],
+                rules.edit,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                rules.get  # pyright: ignore[reportDeprecated],
+                rules.get,  # pyright: ignore[reportDeprecated],
             )
         )

@@ -178,7 +178,7 @@ class RevokeResourceWithRawResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                revoke.create  # pyright: ignore[reportDeprecated],
+                revoke.create,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -189,7 +189,7 @@ class AsyncRevokeResourceWithRawResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                revoke.create  # pyright: ignore[reportDeprecated],
+                revoke.create,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -200,7 +200,7 @@ class RevokeResourceWithStreamingResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                revoke.create  # pyright: ignore[reportDeprecated],
+                revoke.create,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -211,6 +211,6 @@ class AsyncRevokeResourceWithStreamingResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                revoke.create  # pyright: ignore[reportDeprecated],
+                revoke.create,  # pyright: ignore[reportDeprecated],
             )
         )

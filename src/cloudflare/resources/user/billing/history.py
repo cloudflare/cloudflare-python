@@ -203,7 +203,7 @@ class HistoryResourceWithRawResponse:
 
         self.list = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                history.list  # pyright: ignore[reportDeprecated],
+                history.list,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -214,7 +214,7 @@ class AsyncHistoryResourceWithRawResponse:
 
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                history.list  # pyright: ignore[reportDeprecated],
+                history.list,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -225,7 +225,7 @@ class HistoryResourceWithStreamingResponse:
 
         self.list = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                history.list  # pyright: ignore[reportDeprecated],
+                history.list,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -236,6 +236,6 @@ class AsyncHistoryResourceWithStreamingResponse:
 
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                history.list  # pyright: ignore[reportDeprecated],
+                history.list,  # pyright: ignore[reportDeprecated],
             )
         )

@@ -350,12 +350,12 @@ class PackagesResourceWithRawResponse:
 
         self.list = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                packages.list  # pyright: ignore[reportDeprecated],
+                packages.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                packages.get  # pyright: ignore[reportDeprecated],
+                packages.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -374,12 +374,12 @@ class AsyncPackagesResourceWithRawResponse:
 
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                packages.list  # pyright: ignore[reportDeprecated],
+                packages.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                packages.get  # pyright: ignore[reportDeprecated],
+                packages.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -398,12 +398,12 @@ class PackagesResourceWithStreamingResponse:
 
         self.list = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                packages.list  # pyright: ignore[reportDeprecated],
+                packages.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                packages.get  # pyright: ignore[reportDeprecated],
+                packages.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -422,12 +422,12 @@ class AsyncPackagesResourceWithStreamingResponse:
 
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                packages.list  # pyright: ignore[reportDeprecated],
+                packages.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                packages.get  # pyright: ignore[reportDeprecated],
+                packages.get,  # pyright: ignore[reportDeprecated],
             )
         )
 

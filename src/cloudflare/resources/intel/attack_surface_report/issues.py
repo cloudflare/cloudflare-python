@@ -720,27 +720,27 @@ class IssuesResourceWithRawResponse:
 
         self.list = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                issues.list  # pyright: ignore[reportDeprecated],
+                issues.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.class_ = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                issues.class_  # pyright: ignore[reportDeprecated],
+                issues.class_,  # pyright: ignore[reportDeprecated],
             )
         )
         self.dismiss = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                issues.dismiss  # pyright: ignore[reportDeprecated],
+                issues.dismiss,  # pyright: ignore[reportDeprecated],
             )
         )
         self.severity = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                issues.severity  # pyright: ignore[reportDeprecated],
+                issues.severity,  # pyright: ignore[reportDeprecated],
             )
         )
         self.type = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                issues.type  # pyright: ignore[reportDeprecated],
+                issues.type,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -751,27 +751,27 @@ class AsyncIssuesResourceWithRawResponse:
 
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                issues.list  # pyright: ignore[reportDeprecated],
+                issues.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.class_ = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                issues.class_  # pyright: ignore[reportDeprecated],
+                issues.class_,  # pyright: ignore[reportDeprecated],
             )
         )
         self.dismiss = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                issues.dismiss  # pyright: ignore[reportDeprecated],
+                issues.dismiss,  # pyright: ignore[reportDeprecated],
             )
         )
         self.severity = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                issues.severity  # pyright: ignore[reportDeprecated],
+                issues.severity,  # pyright: ignore[reportDeprecated],
             )
         )
         self.type = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                issues.type  # pyright: ignore[reportDeprecated],
+                issues.type,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -782,27 +782,27 @@ class IssuesResourceWithStreamingResponse:
 
         self.list = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                issues.list  # pyright: ignore[reportDeprecated],
+                issues.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.class_ = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                issues.class_  # pyright: ignore[reportDeprecated],
+                issues.class_,  # pyright: ignore[reportDeprecated],
             )
         )
         self.dismiss = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                issues.dismiss  # pyright: ignore[reportDeprecated],
+                issues.dismiss,  # pyright: ignore[reportDeprecated],
             )
         )
         self.severity = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                issues.severity  # pyright: ignore[reportDeprecated],
+                issues.severity,  # pyright: ignore[reportDeprecated],
             )
         )
         self.type = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                issues.type  # pyright: ignore[reportDeprecated],
+                issues.type,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -813,26 +813,26 @@ class AsyncIssuesResourceWithStreamingResponse:
 
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                issues.list  # pyright: ignore[reportDeprecated],
+                issues.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.class_ = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                issues.class_  # pyright: ignore[reportDeprecated],
+                issues.class_,  # pyright: ignore[reportDeprecated],
             )
         )
         self.dismiss = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                issues.dismiss  # pyright: ignore[reportDeprecated],
+                issues.dismiss,  # pyright: ignore[reportDeprecated],
             )
         )
         self.severity = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                issues.severity  # pyright: ignore[reportDeprecated],
+                issues.severity,  # pyright: ignore[reportDeprecated],
             )
         )
         self.type = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                issues.type  # pyright: ignore[reportDeprecated],
+                issues.type,  # pyright: ignore[reportDeprecated],
             )
         )

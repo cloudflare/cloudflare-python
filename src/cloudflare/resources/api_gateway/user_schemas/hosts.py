@@ -182,7 +182,7 @@ class HostsResourceWithRawResponse:
 
         self.list = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                hosts.list  # pyright: ignore[reportDeprecated],
+                hosts.list,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -193,7 +193,7 @@ class AsyncHostsResourceWithRawResponse:
 
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                hosts.list  # pyright: ignore[reportDeprecated],
+                hosts.list,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -204,7 +204,7 @@ class HostsResourceWithStreamingResponse:
 
         self.list = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                hosts.list  # pyright: ignore[reportDeprecated],
+                hosts.list,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -215,6 +215,6 @@ class AsyncHostsResourceWithStreamingResponse:
 
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                hosts.list  # pyright: ignore[reportDeprecated],
+                hosts.list,  # pyright: ignore[reportDeprecated],
             )
         )

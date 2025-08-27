@@ -975,47 +975,47 @@ class RulesResourceWithRawResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                rules.create  # pyright: ignore[reportDeprecated],
+                rules.create,  # pyright: ignore[reportDeprecated],
             )
         )
         self.update = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                rules.update  # pyright: ignore[reportDeprecated],
+                rules.update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                rules.list  # pyright: ignore[reportDeprecated],
+                rules.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                rules.delete  # pyright: ignore[reportDeprecated],
+                rules.delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.bulk_delete = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                rules.bulk_delete  # pyright: ignore[reportDeprecated],
+                rules.bulk_delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.bulk_edit = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                rules.bulk_edit  # pyright: ignore[reportDeprecated],
+                rules.bulk_edit,  # pyright: ignore[reportDeprecated],
             )
         )
         self.bulk_update = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                rules.bulk_update  # pyright: ignore[reportDeprecated],
+                rules.bulk_update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.edit = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                rules.edit  # pyright: ignore[reportDeprecated],
+                rules.edit,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                rules.get  # pyright: ignore[reportDeprecated],
+                rules.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -1026,47 +1026,47 @@ class AsyncRulesResourceWithRawResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                rules.create  # pyright: ignore[reportDeprecated],
+                rules.create,  # pyright: ignore[reportDeprecated],
             )
         )
         self.update = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                rules.update  # pyright: ignore[reportDeprecated],
+                rules.update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                rules.list  # pyright: ignore[reportDeprecated],
+                rules.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                rules.delete  # pyright: ignore[reportDeprecated],
+                rules.delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.bulk_delete = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                rules.bulk_delete  # pyright: ignore[reportDeprecated],
+                rules.bulk_delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.bulk_edit = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                rules.bulk_edit  # pyright: ignore[reportDeprecated],
+                rules.bulk_edit,  # pyright: ignore[reportDeprecated],
             )
         )
         self.bulk_update = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                rules.bulk_update  # pyright: ignore[reportDeprecated],
+                rules.bulk_update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.edit = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                rules.edit  # pyright: ignore[reportDeprecated],
+                rules.edit,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                rules.get  # pyright: ignore[reportDeprecated],
+                rules.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -1077,47 +1077,47 @@ class RulesResourceWithStreamingResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                rules.create  # pyright: ignore[reportDeprecated],
+                rules.create,  # pyright: ignore[reportDeprecated],
             )
         )
         self.update = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                rules.update  # pyright: ignore[reportDeprecated],
+                rules.update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                rules.list  # pyright: ignore[reportDeprecated],
+                rules.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                rules.delete  # pyright: ignore[reportDeprecated],
+                rules.delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.bulk_delete = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                rules.bulk_delete  # pyright: ignore[reportDeprecated],
+                rules.bulk_delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.bulk_edit = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                rules.bulk_edit  # pyright: ignore[reportDeprecated],
+                rules.bulk_edit,  # pyright: ignore[reportDeprecated],
             )
         )
         self.bulk_update = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                rules.bulk_update  # pyright: ignore[reportDeprecated],
+                rules.bulk_update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.edit = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                rules.edit  # pyright: ignore[reportDeprecated],
+                rules.edit,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                rules.get  # pyright: ignore[reportDeprecated],
+                rules.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -1128,46 +1128,46 @@ class AsyncRulesResourceWithStreamingResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                rules.create  # pyright: ignore[reportDeprecated],
+                rules.create,  # pyright: ignore[reportDeprecated],
             )
         )
         self.update = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                rules.update  # pyright: ignore[reportDeprecated],
+                rules.update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                rules.list  # pyright: ignore[reportDeprecated],
+                rules.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                rules.delete  # pyright: ignore[reportDeprecated],
+                rules.delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.bulk_delete = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                rules.bulk_delete  # pyright: ignore[reportDeprecated],
+                rules.bulk_delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.bulk_edit = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                rules.bulk_edit  # pyright: ignore[reportDeprecated],
+                rules.bulk_edit,  # pyright: ignore[reportDeprecated],
             )
         )
         self.bulk_update = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                rules.bulk_update  # pyright: ignore[reportDeprecated],
+                rules.bulk_update,  # pyright: ignore[reportDeprecated],
             )
         )
         self.edit = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                rules.edit  # pyright: ignore[reportDeprecated],
+                rules.edit,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                rules.get  # pyright: ignore[reportDeprecated],
+                rules.get,  # pyright: ignore[reportDeprecated],
             )
         )

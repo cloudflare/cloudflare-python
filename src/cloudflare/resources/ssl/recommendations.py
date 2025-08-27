@@ -147,7 +147,7 @@ class RecommendationsResourceWithRawResponse:
 
         self.get = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                recommendations.get  # pyright: ignore[reportDeprecated],
+                recommendations.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -158,7 +158,7 @@ class AsyncRecommendationsResourceWithRawResponse:
 
         self.get = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                recommendations.get  # pyright: ignore[reportDeprecated],
+                recommendations.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -169,7 +169,7 @@ class RecommendationsResourceWithStreamingResponse:
 
         self.get = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                recommendations.get  # pyright: ignore[reportDeprecated],
+                recommendations.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -180,6 +180,6 @@ class AsyncRecommendationsResourceWithStreamingResponse:
 
         self.get = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                recommendations.get  # pyright: ignore[reportDeprecated],
+                recommendations.get,  # pyright: ignore[reportDeprecated],
             )
         )

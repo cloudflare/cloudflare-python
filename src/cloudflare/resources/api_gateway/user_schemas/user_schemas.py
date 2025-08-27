@@ -662,27 +662,27 @@ class UserSchemasResourceWithRawResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                user_schemas.create  # pyright: ignore[reportDeprecated],
+                user_schemas.create,  # pyright: ignore[reportDeprecated],
             )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                user_schemas.list  # pyright: ignore[reportDeprecated],
+                user_schemas.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                user_schemas.delete  # pyright: ignore[reportDeprecated],
+                user_schemas.delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.edit = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                user_schemas.edit  # pyright: ignore[reportDeprecated],
+                user_schemas.edit,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                user_schemas.get  # pyright: ignore[reportDeprecated],
+                user_schemas.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -701,27 +701,27 @@ class AsyncUserSchemasResourceWithRawResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                user_schemas.create  # pyright: ignore[reportDeprecated],
+                user_schemas.create,  # pyright: ignore[reportDeprecated],
             )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                user_schemas.list  # pyright: ignore[reportDeprecated],
+                user_schemas.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                user_schemas.delete  # pyright: ignore[reportDeprecated],
+                user_schemas.delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.edit = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                user_schemas.edit  # pyright: ignore[reportDeprecated],
+                user_schemas.edit,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                user_schemas.get  # pyright: ignore[reportDeprecated],
+                user_schemas.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -740,27 +740,27 @@ class UserSchemasResourceWithStreamingResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                user_schemas.create  # pyright: ignore[reportDeprecated],
+                user_schemas.create,  # pyright: ignore[reportDeprecated],
             )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                user_schemas.list  # pyright: ignore[reportDeprecated],
+                user_schemas.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                user_schemas.delete  # pyright: ignore[reportDeprecated],
+                user_schemas.delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.edit = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                user_schemas.edit  # pyright: ignore[reportDeprecated],
+                user_schemas.edit,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                user_schemas.get  # pyright: ignore[reportDeprecated],
+                user_schemas.get,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -779,27 +779,27 @@ class AsyncUserSchemasResourceWithStreamingResponse:
 
         self.create = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                user_schemas.create  # pyright: ignore[reportDeprecated],
+                user_schemas.create,  # pyright: ignore[reportDeprecated],
             )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                user_schemas.list  # pyright: ignore[reportDeprecated],
+                user_schemas.list,  # pyright: ignore[reportDeprecated],
             )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                user_schemas.delete  # pyright: ignore[reportDeprecated],
+                user_schemas.delete,  # pyright: ignore[reportDeprecated],
             )
         )
         self.edit = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                user_schemas.edit  # pyright: ignore[reportDeprecated],
+                user_schemas.edit,  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                user_schemas.get  # pyright: ignore[reportDeprecated],
+                user_schemas.get,  # pyright: ignore[reportDeprecated],
             )
         )
 

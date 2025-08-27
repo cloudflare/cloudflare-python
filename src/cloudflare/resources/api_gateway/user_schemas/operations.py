@@ -244,7 +244,7 @@ class OperationsResourceWithRawResponse:
 
         self.list = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                operations.list  # pyright: ignore[reportDeprecated],
+                operations.list,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -255,7 +255,7 @@ class AsyncOperationsResourceWithRawResponse:
 
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                operations.list  # pyright: ignore[reportDeprecated],
+                operations.list,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -266,7 +266,7 @@ class OperationsResourceWithStreamingResponse:
 
         self.list = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                operations.list  # pyright: ignore[reportDeprecated],
+                operations.list,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -277,6 +277,6 @@ class AsyncOperationsResourceWithStreamingResponse:
 
         self.list = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                operations.list  # pyright: ignore[reportDeprecated],
+                operations.list,  # pyright: ignore[reportDeprecated],
             )
         )

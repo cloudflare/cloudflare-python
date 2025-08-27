@@ -936,7 +936,7 @@ class TimeseriesGroupsResourceWithRawResponse:
         )
         self.user_agent = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                timeseries_groups.user_agent  # pyright: ignore[reportDeprecated],
+                timeseries_groups.user_agent,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -956,7 +956,7 @@ class AsyncTimeseriesGroupsResourceWithRawResponse:
         )
         self.user_agent = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                timeseries_groups.user_agent  # pyright: ignore[reportDeprecated],
+                timeseries_groups.user_agent,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -976,7 +976,7 @@ class TimeseriesGroupsResourceWithStreamingResponse:
         )
         self.user_agent = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                timeseries_groups.user_agent  # pyright: ignore[reportDeprecated],
+                timeseries_groups.user_agent,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -996,6 +996,6 @@ class AsyncTimeseriesGroupsResourceWithStreamingResponse:
         )
         self.user_agent = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                timeseries_groups.user_agent  # pyright: ignore[reportDeprecated],
+                timeseries_groups.user_agent,  # pyright: ignore[reportDeprecated],
             )
         )

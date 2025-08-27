@@ -249,7 +249,7 @@ class SummaryResourceWithRawResponse:
 
         self.user_agent = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                summary.user_agent  # pyright: ignore[reportDeprecated],
+                summary.user_agent,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -260,7 +260,7 @@ class AsyncSummaryResourceWithRawResponse:
 
         self.user_agent = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                summary.user_agent  # pyright: ignore[reportDeprecated],
+                summary.user_agent,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -271,7 +271,7 @@ class SummaryResourceWithStreamingResponse:
 
         self.user_agent = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                summary.user_agent  # pyright: ignore[reportDeprecated],
+                summary.user_agent,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -282,6 +282,6 @@ class AsyncSummaryResourceWithStreamingResponse:
 
         self.user_agent = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                summary.user_agent  # pyright: ignore[reportDeprecated],
+                summary.user_agent,  # pyright: ignore[reportDeprecated],
             )
         )

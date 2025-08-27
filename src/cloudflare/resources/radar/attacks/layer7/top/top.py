@@ -970,12 +970,12 @@ class TopResourceWithRawResponse:
         )
         self.industry = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                top.industry  # pyright: ignore[reportDeprecated],
+                top.industry,  # pyright: ignore[reportDeprecated],
             )
         )
         self.vertical = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                top.vertical  # pyright: ignore[reportDeprecated],
+                top.vertical,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -997,12 +997,12 @@ class AsyncTopResourceWithRawResponse:
         )
         self.industry = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                top.industry  # pyright: ignore[reportDeprecated],
+                top.industry,  # pyright: ignore[reportDeprecated],
             )
         )
         self.vertical = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                top.vertical  # pyright: ignore[reportDeprecated],
+                top.vertical,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -1024,12 +1024,12 @@ class TopResourceWithStreamingResponse:
         )
         self.industry = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                top.industry  # pyright: ignore[reportDeprecated],
+                top.industry,  # pyright: ignore[reportDeprecated],
             )
         )
         self.vertical = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                top.vertical  # pyright: ignore[reportDeprecated],
+                top.vertical,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -1051,12 +1051,12 @@ class AsyncTopResourceWithStreamingResponse:
         )
         self.industry = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                top.industry  # pyright: ignore[reportDeprecated],
+                top.industry,  # pyright: ignore[reportDeprecated],
             )
         )
         self.vertical = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                top.vertical  # pyright: ignore[reportDeprecated],
+                top.vertical,  # pyright: ignore[reportDeprecated],
             )
         )
 
