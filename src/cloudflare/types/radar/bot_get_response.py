@@ -16,6 +16,9 @@ class Bot(BaseModel):
     description: str
     """A summary for the bot (e.g., purpose)."""
 
+    kind: str
+    """The kind of the bot."""
+
     name: str
     """The name of the bot."""
 

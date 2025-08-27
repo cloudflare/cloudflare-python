@@ -42,6 +42,9 @@ class BotListParams(TypedDict, total=False):
     format: Literal["JSON", "CSV"]
     """Format in which results will be returned."""
 
+    kind: Literal["AGENT", "BOT"]
+    """Filters results by bot kind."""
+
     limit: int
     """Limits the number of objects returned in the response."""
 

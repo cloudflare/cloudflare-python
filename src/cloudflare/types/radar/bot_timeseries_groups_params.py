@@ -55,6 +55,9 @@ class BotTimeseriesGroupsParams(TypedDict, total=False):
     ]
     """Filters results by bot category."""
 
+    bot_kind: Annotated[List[Literal["AGENT", "BOT"]], PropertyInfo(alias="botKind")]
+    """Filters results by bot kind."""
+
     bot_operator: Annotated[List[str], PropertyInfo(alias="botOperator")]
     """Filters results by bot operator."""
 

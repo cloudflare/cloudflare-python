@@ -93,6 +93,7 @@ class BotsResource(SyncAPIResource):
         bot_operator: str | NotGiven = NOT_GIVEN,
         bot_verification_status: Literal["VERIFIED"] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        kind: Literal["AGENT", "BOT"] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -113,6 +114,8 @@ class BotsResource(SyncAPIResource):
           bot_verification_status: Filters results by bot verification status.
 
           format: Format in which results will be returned.
+
+          kind: Filters results by bot kind.
 
           limit: Limits the number of objects returned in the response.
 
@@ -139,6 +142,7 @@ class BotsResource(SyncAPIResource):
                         "bot_operator": bot_operator,
                         "bot_verification_status": bot_verification_status,
                         "format": format,
+                        "kind": kind,
                         "limit": limit,
                         "offset": offset,
                     },
@@ -194,7 +198,7 @@ class BotsResource(SyncAPIResource):
 
     def summary(
         self,
-        dimension: Literal["BOT", "BOT_OPERATOR", "BOT_CATEGORY"],
+        dimension: Literal["BOT", "BOT_KIND", "BOT_OPERATOR", "BOT_CATEGORY"],
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot: List[str] | NotGiven = NOT_GIVEN,
@@ -219,6 +223,7 @@ class BotsResource(SyncAPIResource):
             ]
         ]
         | NotGiven = NOT_GIVEN,
+        bot_kind: List[Literal["AGENT", "BOT"]] | NotGiven = NOT_GIVEN,
         bot_operator: List[str] | NotGiven = NOT_GIVEN,
         bot_verification_status: List[Literal["VERIFIED"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
@@ -251,6 +256,8 @@ class BotsResource(SyncAPIResource):
           bot: Filters results by bot name.
 
           bot_category: Filters results by bot category.
+
+          bot_kind: Filters results by bot kind.
 
           bot_operator: Filters results by bot operator.
 
@@ -302,6 +309,7 @@ class BotsResource(SyncAPIResource):
                         "asn": asn,
                         "bot": bot,
                         "bot_category": bot_category,
+                        "bot_kind": bot_kind,
                         "bot_operator": bot_operator,
                         "bot_verification_status": bot_verification_status,
                         "continent": continent,
@@ -347,6 +355,7 @@ class BotsResource(SyncAPIResource):
             ]
         ]
         | NotGiven = NOT_GIVEN,
+        bot_kind: List[Literal["AGENT", "BOT"]] | NotGiven = NOT_GIVEN,
         bot_operator: List[str] | NotGiven = NOT_GIVEN,
         bot_verification_status: List[Literal["VERIFIED"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
@@ -379,6 +388,8 @@ class BotsResource(SyncAPIResource):
           bot: Filters results by bot name.
 
           bot_category: Filters results by bot category.
+
+          bot_kind: Filters results by bot kind.
 
           bot_operator: Filters results by bot operator.
 
@@ -425,6 +436,7 @@ class BotsResource(SyncAPIResource):
                         "asn": asn,
                         "bot": bot,
                         "bot_category": bot_category,
+                        "bot_kind": bot_kind,
                         "bot_operator": bot_operator,
                         "bot_verification_status": bot_verification_status,
                         "continent": continent,
@@ -444,7 +456,7 @@ class BotsResource(SyncAPIResource):
 
     def timeseries_groups(
         self,
-        dimension: Literal["BOT", "BOT_OPERATOR", "BOT_CATEGORY"],
+        dimension: Literal["BOT", "BOT_KIND", "BOT_OPERATOR", "BOT_CATEGORY"],
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
@@ -470,6 +482,7 @@ class BotsResource(SyncAPIResource):
             ]
         ]
         | NotGiven = NOT_GIVEN,
+        bot_kind: List[Literal["AGENT", "BOT"]] | NotGiven = NOT_GIVEN,
         bot_operator: List[str] | NotGiven = NOT_GIVEN,
         bot_verification_status: List[Literal["VERIFIED"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
@@ -506,6 +519,8 @@ class BotsResource(SyncAPIResource):
           bot: Filters results by bot name.
 
           bot_category: Filters results by bot category.
+
+          bot_kind: Filters results by bot kind.
 
           bot_operator: Filters results by bot operator.
 
@@ -558,6 +573,7 @@ class BotsResource(SyncAPIResource):
                         "asn": asn,
                         "bot": bot,
                         "bot_category": bot_category,
+                        "bot_kind": bot_kind,
                         "bot_operator": bot_operator,
                         "bot_verification_status": bot_verification_status,
                         "continent": continent,
@@ -626,6 +642,7 @@ class AsyncBotsResource(AsyncAPIResource):
         bot_operator: str | NotGiven = NOT_GIVEN,
         bot_verification_status: Literal["VERIFIED"] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        kind: Literal["AGENT", "BOT"] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -646,6 +663,8 @@ class AsyncBotsResource(AsyncAPIResource):
           bot_verification_status: Filters results by bot verification status.
 
           format: Format in which results will be returned.
+
+          kind: Filters results by bot kind.
 
           limit: Limits the number of objects returned in the response.
 
@@ -672,6 +691,7 @@ class AsyncBotsResource(AsyncAPIResource):
                         "bot_operator": bot_operator,
                         "bot_verification_status": bot_verification_status,
                         "format": format,
+                        "kind": kind,
                         "limit": limit,
                         "offset": offset,
                     },
@@ -727,7 +747,7 @@ class AsyncBotsResource(AsyncAPIResource):
 
     async def summary(
         self,
-        dimension: Literal["BOT", "BOT_OPERATOR", "BOT_CATEGORY"],
+        dimension: Literal["BOT", "BOT_KIND", "BOT_OPERATOR", "BOT_CATEGORY"],
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot: List[str] | NotGiven = NOT_GIVEN,
@@ -752,6 +772,7 @@ class AsyncBotsResource(AsyncAPIResource):
             ]
         ]
         | NotGiven = NOT_GIVEN,
+        bot_kind: List[Literal["AGENT", "BOT"]] | NotGiven = NOT_GIVEN,
         bot_operator: List[str] | NotGiven = NOT_GIVEN,
         bot_verification_status: List[Literal["VERIFIED"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
@@ -784,6 +805,8 @@ class AsyncBotsResource(AsyncAPIResource):
           bot: Filters results by bot name.
 
           bot_category: Filters results by bot category.
+
+          bot_kind: Filters results by bot kind.
 
           bot_operator: Filters results by bot operator.
 
@@ -835,6 +858,7 @@ class AsyncBotsResource(AsyncAPIResource):
                         "asn": asn,
                         "bot": bot,
                         "bot_category": bot_category,
+                        "bot_kind": bot_kind,
                         "bot_operator": bot_operator,
                         "bot_verification_status": bot_verification_status,
                         "continent": continent,
@@ -880,6 +904,7 @@ class AsyncBotsResource(AsyncAPIResource):
             ]
         ]
         | NotGiven = NOT_GIVEN,
+        bot_kind: List[Literal["AGENT", "BOT"]] | NotGiven = NOT_GIVEN,
         bot_operator: List[str] | NotGiven = NOT_GIVEN,
         bot_verification_status: List[Literal["VERIFIED"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
@@ -912,6 +937,8 @@ class AsyncBotsResource(AsyncAPIResource):
           bot: Filters results by bot name.
 
           bot_category: Filters results by bot category.
+
+          bot_kind: Filters results by bot kind.
 
           bot_operator: Filters results by bot operator.
 
@@ -958,6 +985,7 @@ class AsyncBotsResource(AsyncAPIResource):
                         "asn": asn,
                         "bot": bot,
                         "bot_category": bot_category,
+                        "bot_kind": bot_kind,
                         "bot_operator": bot_operator,
                         "bot_verification_status": bot_verification_status,
                         "continent": continent,
@@ -977,7 +1005,7 @@ class AsyncBotsResource(AsyncAPIResource):
 
     async def timeseries_groups(
         self,
-        dimension: Literal["BOT", "BOT_OPERATOR", "BOT_CATEGORY"],
+        dimension: Literal["BOT", "BOT_KIND", "BOT_OPERATOR", "BOT_CATEGORY"],
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
@@ -1003,6 +1031,7 @@ class AsyncBotsResource(AsyncAPIResource):
             ]
         ]
         | NotGiven = NOT_GIVEN,
+        bot_kind: List[Literal["AGENT", "BOT"]] | NotGiven = NOT_GIVEN,
         bot_operator: List[str] | NotGiven = NOT_GIVEN,
         bot_verification_status: List[Literal["VERIFIED"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
@@ -1039,6 +1068,8 @@ class AsyncBotsResource(AsyncAPIResource):
           bot: Filters results by bot name.
 
           bot_category: Filters results by bot category.
+
+          bot_kind: Filters results by bot kind.
 
           bot_operator: Filters results by bot operator.
 
@@ -1091,6 +1122,7 @@ class AsyncBotsResource(AsyncAPIResource):
                         "asn": asn,
                         "bot": bot,
                         "bot_category": bot_category,
+                        "bot_kind": bot_kind,
                         "bot_operator": bot_operator,
                         "bot_verification_status": bot_verification_status,
                         "continent": continent,

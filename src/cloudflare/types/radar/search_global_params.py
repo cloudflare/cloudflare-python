@@ -20,10 +20,11 @@ class SearchGlobalParams(TypedDict, total=False):
             "BOTS",
             "CERTIFICATE_AUTHORITIES",
             "CERTIFICATE_LOGS",
+            "INDUSTRIES",
             "LOCATIONS",
             "NOTEBOOKS",
+            "TLDS",
             "VERTICALS",
-            "INDUSTRIES",
         ]
     ]
     """Search types excluded from results."""
@@ -37,10 +38,11 @@ class SearchGlobalParams(TypedDict, total=False):
             "BOTS",
             "CERTIFICATE_AUTHORITIES",
             "CERTIFICATE_LOGS",
+            "INDUSTRIES",
             "LOCATIONS",
             "NOTEBOOKS",
+            "TLDS",
             "VERTICALS",
-            "INDUSTRIES",
         ]
     ]
     """Search types included in results."""

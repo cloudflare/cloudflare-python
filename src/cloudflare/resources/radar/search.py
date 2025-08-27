@@ -55,10 +55,11 @@ class SearchResource(SyncAPIResource):
                 "BOTS",
                 "CERTIFICATE_AUTHORITIES",
                 "CERTIFICATE_LOGS",
+                "INDUSTRIES",
                 "LOCATIONS",
                 "NOTEBOOKS",
+                "TLDS",
                 "VERTICALS",
-                "INDUSTRIES",
             ]
         ]
         | NotGiven = NOT_GIVEN,
@@ -69,10 +70,11 @@ class SearchResource(SyncAPIResource):
                 "BOTS",
                 "CERTIFICATE_AUTHORITIES",
                 "CERTIFICATE_LOGS",
+                "INDUSTRIES",
                 "LOCATIONS",
                 "NOTEBOOKS",
+                "TLDS",
                 "VERTICALS",
-                "INDUSTRIES",
             ]
         ]
         | NotGiven = NOT_GIVEN,
@@ -164,10 +166,11 @@ class AsyncSearchResource(AsyncAPIResource):
                 "BOTS",
                 "CERTIFICATE_AUTHORITIES",
                 "CERTIFICATE_LOGS",
+                "INDUSTRIES",
                 "LOCATIONS",
                 "NOTEBOOKS",
+                "TLDS",
                 "VERTICALS",
-                "INDUSTRIES",
             ]
         ]
         | NotGiven = NOT_GIVEN,
@@ -178,10 +181,11 @@ class AsyncSearchResource(AsyncAPIResource):
                 "BOTS",
                 "CERTIFICATE_AUTHORITIES",
                 "CERTIFICATE_LOGS",
+                "INDUSTRIES",
                 "LOCATIONS",
                 "NOTEBOOKS",
+                "TLDS",
                 "VERTICALS",
-                "INDUSTRIES",
             ]
         ]
         | NotGiven = NOT_GIVEN,
