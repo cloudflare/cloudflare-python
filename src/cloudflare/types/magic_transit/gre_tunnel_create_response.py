@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Union, Optional
+from typing import List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
@@ -8,7 +8,64 @@ from ..._models import BaseModel
 from .health_check_rate import HealthCheckRate
 from .health_check_type import HealthCheckType
 
-__all__ = ["GRETunnelCreateResponse", "HealthCheck", "HealthCheckTarget", "HealthCheckTargetMagicHealthCheckTarget"]
+__all__ = [
+    "GRETunnelCreateResponse",
+    "BGP",
+    "BGPStatus",
+    "HealthCheck",
+    "HealthCheckTarget",
+    "HealthCheckTargetMagicHealthCheckTarget",
+]
+
+
+class BGP(BaseModel):
+    customer_asn: int
+    """ASN used on the customer end of the BGP session"""
+
+    extra_prefixes: Optional[List[str]] = None
+    """
+    Prefixes in this list will be advertised to the customer device, in addition to
+    the routes in the Magic routing table.
+    """
+
+    md5_key: Optional[str] = None
+    """MD5 key to use for session authentication.
+
+    Note that _this is not a security measure_. MD5 is not a valid security
+    mechanism, and the key is not treated as a secret value. This is _only_
+    supported for preventing misconfiguration, not for defending against malicious
+    attacks.
+
+    The MD5 key, if set, must be of non-zero length and consist only of the
+    following types of character:
+
+    - ASCII alphanumerics: `[a-zA-Z0-9]`
+    - Special characters in the set `'!@#$%^&*()+[]{}<>/.,;:_-~`= \\||`
+
+    In other words, MD5 keys may contain any printable ASCII character aside from
+    newline (0x0A), quotation mark (`"`), vertical tab (0x0B), carriage return
+    (0x0D), tab (0x09), form feed (0x0C), and the question mark (`?`). Requests
+    specifying an MD5 key with one or more of these disallowed characters will be
+    rejected.
+    """
+
+
+class BGPStatus(BaseModel):
+    state: Literal["BGP_DOWN", "BGP_UP", "BGP_ESTABLISHING"]
+
+    tcp_established: bool
+
+    updated_at: datetime
+
+    bgp_state: Optional[str] = None
+
+    cf_speaker_ip: Optional[str] = None
+
+    cf_speaker_port: Optional[int] = None
+
+    customer_speaker_ip: Optional[str] = None
+
+    customer_speaker_port: Optional[int] = None
 
 
 class HealthCheckTargetMagicHealthCheckTarget(BaseModel):
@@ -84,6 +141,10 @@ class GRETunnelCreateResponse(BaseModel):
     The name cannot contain spaces or special characters, must be 15 characters or
     less, and cannot share a name with another GRE tunnel.
     """
+
+    bgp: Optional[BGP] = None
+
+    bgp_status: Optional[BGPStatus] = None
 
     created_on: Optional[datetime] = None
     """The date and time the tunnel was created."""

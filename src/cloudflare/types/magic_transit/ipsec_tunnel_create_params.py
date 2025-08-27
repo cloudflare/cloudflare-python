@@ -2,14 +2,20 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import List, Union
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from ..._utils import PropertyInfo
 from .health_check_rate import HealthCheckRate
 from .health_check_type import HealthCheckType
 
-__all__ = ["IPSECTunnelCreateParams", "HealthCheck", "HealthCheckTarget", "HealthCheckTargetMagicHealthCheckTarget"]
+__all__ = [
+    "IPSECTunnelCreateParams",
+    "BGP",
+    "HealthCheck",
+    "HealthCheckTarget",
+    "HealthCheckTargetMagicHealthCheckTarget",
+]
 
 
 class IPSECTunnelCreateParams(TypedDict, total=False):
@@ -28,6 +34,8 @@ class IPSECTunnelCreateParams(TypedDict, total=False):
 
     name: Required[str]
     """The name of the IPsec tunnel. The name cannot share a name with other tunnels."""
+
+    bgp: BGP
 
     customer_endpoint: str
     """The IP address assigned to the customer side of the IPsec tunnel.
@@ -58,6 +66,38 @@ class IPSECTunnelCreateParams(TypedDict, total=False):
     """
 
     x_magic_new_hc_target: Annotated[bool, PropertyInfo(alias="x-magic-new-hc-target")]
+
+
+class BGP(TypedDict, total=False):
+    customer_asn: Required[int]
+    """ASN used on the customer end of the BGP session"""
+
+    extra_prefixes: List[str]
+    """
+    Prefixes in this list will be advertised to the customer device, in addition to
+    the routes in the Magic routing table.
+    """
+
+    md5_key: str
+    """MD5 key to use for session authentication.
+
+    Note that _this is not a security measure_. MD5 is not a valid security
+    mechanism, and the key is not treated as a secret value. This is _only_
+    supported for preventing misconfiguration, not for defending against malicious
+    attacks.
+
+    The MD5 key, if set, must be of non-zero length and consist only of the
+    following types of character:
+
+    - ASCII alphanumerics: `[a-zA-Z0-9]`
+    - Special characters in the set `'!@#$%^&*()+[]{}<>/.,;:_-~`= \\||`
+
+    In other words, MD5 keys may contain any printable ASCII character aside from
+    newline (0x0A), quotation mark (`"`), vertical tab (0x0B), carriage return
+    (0x0D), tab (0x09), form feed (0x0C), and the question mark (`?`). Requests
+    specifying an MD5 key with one or more of these disallowed characters will be
+    rejected.
+    """
 
 
 class HealthCheckTargetMagicHealthCheckTarget(TypedDict, total=False):
