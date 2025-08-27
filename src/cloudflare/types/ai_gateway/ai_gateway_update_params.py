@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import List, Optional
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["AIGatewayUpdateParams"]
+__all__ = ["AIGatewayUpdateParams", "DLP"]
 
 
 class AIGatewayUpdateParams(TypedDict, total=False):
@@ -25,6 +25,8 @@ class AIGatewayUpdateParams(TypedDict, total=False):
 
     authentication: bool
 
+    dlp: DLP
+
     log_management: Optional[int]
 
     log_management_strategy: Optional[Literal["STOP_INSERTING", "DELETE_OLDEST"]]
@@ -34,3 +36,11 @@ class AIGatewayUpdateParams(TypedDict, total=False):
     logpush_public_key: Optional[str]
 
     store_id: Optional[str]
+
+
+class DLP(TypedDict, total=False):
+    action: Required[Literal["BLOCK", "FLAG"]]
+
+    enabled: Required[bool]
+
+    profiles: Required[List[str]]

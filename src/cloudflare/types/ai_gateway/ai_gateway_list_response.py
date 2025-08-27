@@ -1,12 +1,20 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["AIGatewayListResponse"]
+__all__ = ["AIGatewayListResponse", "DLP"]
+
+
+class DLP(BaseModel):
+    action: Literal["BLOCK", "FLAG"]
+
+    enabled: bool
+
+    profiles: List[str]
 
 
 class AIGatewayListResponse(BaseModel):
@@ -36,6 +44,8 @@ class AIGatewayListResponse(BaseModel):
     rate_limiting_technique: Literal["fixed", "sliding"]
 
     authentication: Optional[bool] = None
+
+    dlp: Optional[DLP] = None
 
     log_management: Optional[int] = None
 

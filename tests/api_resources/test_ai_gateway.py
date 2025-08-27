@@ -135,6 +135,11 @@ class TestAIGateway:
             rate_limiting_limit=0,
             rate_limiting_technique="fixed",
             authentication=True,
+            dlp={
+                "action": "BLOCK",
+                "enabled": True,
+                "profiles": ["string"],
+            },
             log_management=10000,
             log_management_strategy="STOP_INSERTING",
             logpush=True,
@@ -468,6 +473,11 @@ class TestAsyncAIGateway:
             rate_limiting_limit=0,
             rate_limiting_technique="fixed",
             authentication=True,
+            dlp={
+                "action": "BLOCK",
+                "enabled": True,
+                "profiles": ["string"],
+            },
             log_management=10000,
             log_management_strategy="STOP_INSERTING",
             logpush=True,
