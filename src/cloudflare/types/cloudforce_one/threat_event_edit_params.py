@@ -27,6 +27,8 @@ class ThreatEventEditParams(TypedDict, total=False):
 
     indicator: str
 
+    indicator_type: Annotated[str, PropertyInfo(alias="indicatorType")]
+
     insight: str
 
     raw: Raw

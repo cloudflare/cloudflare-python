@@ -331,6 +331,7 @@ class TestThreatEvents:
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
             indicator="domain2.com",
+            indicator_type="domain",
             insight="new insight",
             raw={
                 "data": {"foo": "bar"},
@@ -750,6 +751,7 @@ class TestAsyncThreatEvents:
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
             indicator="domain2.com",
+            indicator_type="domain",
             insight="new insight",
             raw={
                 "data": {"foo": "bar"},
