@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import Union, Iterable
 from typing_extensions import Required, TypeAlias, TypedDict
 
+from ..._types import SequenceNotStr
 from .azure_ad_param import AzureADParam
 from .identity_provider_type import IdentityProviderType
 from .generic_oauth_config_param import GenericOAuthConfigParam
@@ -45,7 +46,7 @@ class AccessCentrifyConfig(TypedDict, total=False):
     centrify_app_id: str
     """Your centrify app id"""
 
-    claims: List[str]
+    claims: SequenceNotStr[str]
     """Custom claims"""
 
     client_id: str
@@ -134,7 +135,7 @@ class AccessGitHub(TypedDict, total=False):
 
 
 class AccessGoogleConfig(TypedDict, total=False):
-    claims: List[str]
+    claims: SequenceNotStr[str]
     """Custom claims"""
 
     client_id: str
@@ -176,7 +177,7 @@ class AccessGoogleAppsConfig(TypedDict, total=False):
     apps_domain: str
     """Your companies TLD"""
 
-    claims: List[str]
+    claims: SequenceNotStr[str]
     """Custom claims"""
 
     client_id: str
@@ -246,7 +247,7 @@ class AccessOIDCConfig(TypedDict, total=False):
     certs_url: str
     """The jwks_uri endpoint of your IdP to allow the IdP keys to sign the tokens"""
 
-    claims: List[str]
+    claims: SequenceNotStr[str]
     """Custom claims"""
 
     client_id: str
@@ -261,7 +262,7 @@ class AccessOIDCConfig(TypedDict, total=False):
     pkce_enabled: bool
     """Enable Proof Key for Code Exchange (PKCE)"""
 
-    scopes: List[str]
+    scopes: SequenceNotStr[str]
     """OAuth scopes"""
 
     token_url: str
@@ -297,7 +298,7 @@ class AccessOktaConfig(TypedDict, total=False):
     authorization_server_id: str
     """Your okta authorization server id"""
 
-    claims: List[str]
+    claims: SequenceNotStr[str]
     """Custom claims"""
 
     client_id: str
@@ -339,7 +340,7 @@ class AccessOkta(TypedDict, total=False):
 
 
 class AccessOneloginConfig(TypedDict, total=False):
-    claims: List[str]
+    claims: SequenceNotStr[str]
     """Custom claims"""
 
     client_id: str
@@ -381,7 +382,7 @@ class AccessOnelogin(TypedDict, total=False):
 
 
 class AccessPingoneConfig(TypedDict, total=False):
-    claims: List[str]
+    claims: SequenceNotStr[str]
     """Custom claims"""
 
     client_id: str
@@ -431,7 +432,7 @@ class AccessSAMLConfigHeaderAttribute(TypedDict, total=False):
 
 
 class AccessSAMLConfig(TypedDict, total=False):
-    attributes: List[str]
+    attributes: SequenceNotStr[str]
     """
     A list of SAML attribute names that will be added to your signed JWT token and
     can be used in SAML policy rules.
@@ -446,7 +447,7 @@ class AccessSAMLConfig(TypedDict, total=False):
     the Access callback.
     """
 
-    idp_public_certs: List[str]
+    idp_public_certs: SequenceNotStr[str]
     """X509 certificate to verify the signature in the SAML authentication response"""
 
     issuer_url: str

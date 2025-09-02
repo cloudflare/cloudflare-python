@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
+from ..._types import SequenceNotStr
 from .logging_param import LoggingParam
 from .log_rule_param import LogRuleParam
 from .skip_rule_param import SkipRuleParam
@@ -61,7 +62,7 @@ class RuleRulesetsChallengeRuleExposedCredentialCheck(TypedDict, total=False):
 
 
 class RuleRulesetsChallengeRuleRatelimit(TypedDict, total=False):
-    characteristics: Required[List[str]]
+    characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
     incremented.
@@ -145,7 +146,7 @@ class RuleRulesetsJSChallengeRuleExposedCredentialCheck(TypedDict, total=False):
 
 
 class RuleRulesetsJSChallengeRuleRatelimit(TypedDict, total=False):
-    characteristics: Required[List[str]]
+    characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
     incremented.

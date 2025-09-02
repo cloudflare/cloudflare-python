@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
+from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
 __all__ = ["NamespaceBulkGetParams"]
@@ -14,7 +14,7 @@ class NamespaceBulkGetParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier."""
 
-    keys: Required[List[str]]
+    keys: Required[SequenceNotStr[str]]
     """Array of keys to retrieve (maximum of 100)."""
 
     type: Literal["text", "json"]

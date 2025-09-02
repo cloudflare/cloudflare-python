@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Type, cast
+from typing import Dict, Type, cast
 from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -55,8 +55,8 @@ class OperationsResource(SyncAPIResource):
         diff: bool | NotGiven = NOT_GIVEN,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         endpoint: str | NotGiven = NOT_GIVEN,
-        host: List[str] | NotGiven = NOT_GIVEN,
-        method: List[str] | NotGiven = NOT_GIVEN,
+        host: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        method: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         order: Literal["host", "method", "endpoint", "traffic_stats.requests", "traffic_stats.last_updated"]
         | NotGiven = NOT_GIVEN,
         origin: Literal["ML", "SessionIdentifier", "LabelDiscovery"] | NotGiven = NOT_GIVEN,
@@ -266,8 +266,8 @@ class AsyncOperationsResource(AsyncAPIResource):
         diff: bool | NotGiven = NOT_GIVEN,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         endpoint: str | NotGiven = NOT_GIVEN,
-        host: List[str] | NotGiven = NOT_GIVEN,
-        method: List[str] | NotGiven = NOT_GIVEN,
+        host: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        method: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         order: Literal["host", "method", "endpoint", "traffic_stats.requests", "traffic_stats.last_updated"]
         | NotGiven = NOT_GIVEN,
         origin: Literal["ML", "SessionIdentifier", "LabelDiscovery"] | NotGiven = NOT_GIVEN,

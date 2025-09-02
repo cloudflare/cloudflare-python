@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["VariantEditParams", "Value"]
 
@@ -17,67 +18,67 @@ class VariantEditParams(TypedDict, total=False):
 
 
 class Value(TypedDict, total=False):
-    avif: List[str]
+    avif: SequenceNotStr[str]
     """
     List of strings with the MIME types of all the variants that should be served
     for avif.
     """
 
-    bmp: List[str]
+    bmp: SequenceNotStr[str]
     """
     List of strings with the MIME types of all the variants that should be served
     for bmp.
     """
 
-    gif: List[str]
+    gif: SequenceNotStr[str]
     """
     List of strings with the MIME types of all the variants that should be served
     for gif.
     """
 
-    jp2: List[str]
+    jp2: SequenceNotStr[str]
     """
     List of strings with the MIME types of all the variants that should be served
     for jp2.
     """
 
-    jpeg: List[str]
+    jpeg: SequenceNotStr[str]
     """
     List of strings with the MIME types of all the variants that should be served
     for jpeg.
     """
 
-    jpg: List[str]
+    jpg: SequenceNotStr[str]
     """
     List of strings with the MIME types of all the variants that should be served
     for jpg.
     """
 
-    jpg2: List[str]
+    jpg2: SequenceNotStr[str]
     """
     List of strings with the MIME types of all the variants that should be served
     for jpg2.
     """
 
-    png: List[str]
+    png: SequenceNotStr[str]
     """
     List of strings with the MIME types of all the variants that should be served
     for png.
     """
 
-    tif: List[str]
+    tif: SequenceNotStr[str]
     """
     List of strings with the MIME types of all the variants that should be served
     for tif.
     """
 
-    tiff: List[str]
+    tiff: SequenceNotStr[str]
     """
     List of strings with the MIME types of all the variants that should be served
     for tiff.
     """
 
-    webp: List[str]
+    webp: SequenceNotStr[str]
     """
     List of strings with the MIME types of all the variants that should be served
     for webp.

@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -57,7 +57,7 @@ class DomainsResource(SyncAPIResource):
         active_delivery_mode: Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"] | NotGiven = NOT_GIVEN,
         allowed_delivery_mode: Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"] | NotGiven = NOT_GIVEN,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        domain: List[str] | NotGiven = NOT_GIVEN,
+        domain: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         order: Literal["domain", "created_at"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
@@ -212,7 +212,7 @@ class DomainsResource(SyncAPIResource):
         domain_id: int,
         *,
         account_id: str,
-        ip_restrictions: List[str],
+        ip_restrictions: SequenceNotStr[str],
         allowed_delivery_modes: List[Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"]] | NotGiven = NOT_GIVEN,
         domain: str | NotGiven = NOT_GIVEN,
         drop_dispositions: List[
@@ -360,7 +360,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         active_delivery_mode: Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"] | NotGiven = NOT_GIVEN,
         allowed_delivery_mode: Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"] | NotGiven = NOT_GIVEN,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        domain: List[str] | NotGiven = NOT_GIVEN,
+        domain: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         order: Literal["domain", "created_at"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
@@ -515,7 +515,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         domain_id: int,
         *,
         account_id: str,
-        ip_restrictions: List[str],
+        ip_restrictions: SequenceNotStr[str],
         allowed_delivery_modes: List[Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"]] | NotGiven = NOT_GIVEN,
         domain: str | NotGiven = NOT_GIVEN,
         drop_dispositions: List[

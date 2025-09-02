@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, TypedDict
+
+from ....._types import SequenceNotStr
 
 __all__ = ["ViewEditParams"]
 
@@ -15,5 +16,5 @@ class ViewEditParams(TypedDict, total=False):
     name: str
     """The name of the view."""
 
-    zones: List[str]
+    zones: SequenceNotStr[str]
     """The list of zones linked to this view."""

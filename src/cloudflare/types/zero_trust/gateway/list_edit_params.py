@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
+from typing import Iterable
 from typing_extensions import Required, TypedDict
+
+from ...._types import SequenceNotStr
 
 __all__ = ["ListEditParams", "Append"]
 
@@ -14,7 +16,7 @@ class ListEditParams(TypedDict, total=False):
     append: Iterable[Append]
     """items to add to the list."""
 
-    remove: List[str]
+    remove: SequenceNotStr[str]
     """A list of the item values you want to remove."""
 
 

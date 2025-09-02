@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import Union
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
+from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 from .health_check_rate import HealthCheckRate
 from .health_check_type import HealthCheckType
@@ -72,7 +73,7 @@ class BGP(TypedDict, total=False):
     customer_asn: Required[int]
     """ASN used on the customer end of the BGP session"""
 
-    extra_prefixes: List[str]
+    extra_prefixes: SequenceNotStr[str]
     """
     Prefixes in this list will be advertised to the customer device, in addition to
     the routes in the Magic routing table.

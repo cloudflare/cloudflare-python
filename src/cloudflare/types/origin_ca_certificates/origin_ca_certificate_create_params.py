@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import TypedDict
 
+from ..._types import SequenceNotStr
 from ..ssl.request_validity import RequestValidity
 from ..shared.certificate_request_type import CertificateRequestType
 
@@ -15,7 +15,7 @@ class OriginCACertificateCreateParams(TypedDict, total=False):
     csr: str
     """The Certificate Signing Request (CSR). Must be newline-encoded."""
 
-    hostnames: List[str]
+    hostnames: SequenceNotStr[str]
     """
     Array of hostnames or wildcard names (e.g., \\**.example.com) bound to the
     certificate.

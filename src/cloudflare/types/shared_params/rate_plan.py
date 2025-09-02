@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["RatePlan"]
 
@@ -38,5 +39,5 @@ class RatePlan(TypedDict, total=False):
     scope: str
     """The scope that this rate plan applies to."""
 
-    sets: List[str]
+    sets: SequenceNotStr[str]
     """The list of sets this rate plan applies to."""

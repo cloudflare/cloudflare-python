@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Optional
+from typing import Dict, Union, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = [
     "ProjectCreateParams",
@@ -189,7 +191,7 @@ class DeploymentConfigsPreview(TypedDict, total=False):
     compatibility_date: str
     """Compatibility date used for Pages Functions."""
 
-    compatibility_flags: List[str]
+    compatibility_flags: SequenceNotStr[str]
     """Compatibility flags used for Pages Functions."""
 
     d1_databases: Optional[Dict[str, Optional[DeploymentConfigsPreviewD1Databases]]]
@@ -328,7 +330,7 @@ class DeploymentConfigsProduction(TypedDict, total=False):
     compatibility_date: str
     """Compatibility date used for Pages Functions."""
 
-    compatibility_flags: List[str]
+    compatibility_flags: SequenceNotStr[str]
     """Compatibility flags used for Pages Functions."""
 
     d1_databases: Optional[Dict[str, Optional[DeploymentConfigsProductionD1Databases]]]
@@ -378,15 +380,15 @@ class SourceConfig(TypedDict, total=False):
 
     owner: str
 
-    path_excludes: List[str]
+    path_excludes: SequenceNotStr[str]
 
-    path_includes: List[str]
+    path_includes: SequenceNotStr[str]
 
     pr_comments_enabled: bool
 
-    preview_branch_excludes: List[str]
+    preview_branch_excludes: SequenceNotStr[str]
 
-    preview_branch_includes: List[str]
+    preview_branch_includes: SequenceNotStr[str]
 
     preview_deployment_setting: Literal["all", "none", "custom"]
 

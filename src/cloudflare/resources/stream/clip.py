@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Optional, cast
+from typing import Type, Optional, cast
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -52,7 +52,7 @@ class ClipResource(SyncAPIResource):
         clipped_from_video_uid: str,
         end_time_seconds: int,
         start_time_seconds: int,
-        allowed_origins: List[AllowedOrigins] | NotGiven = NOT_GIVEN,
+        allowed_origins: SequenceNotStr[AllowedOrigins] | NotGiven = NOT_GIVEN,
         creator: str | NotGiven = NOT_GIVEN,
         max_duration_seconds: int | NotGiven = NOT_GIVEN,
         require_signed_urls: bool | NotGiven = NOT_GIVEN,
@@ -160,7 +160,7 @@ class AsyncClipResource(AsyncAPIResource):
         clipped_from_video_uid: str,
         end_time_seconds: int,
         start_time_seconds: int,
-        allowed_origins: List[AllowedOrigins] | NotGiven = NOT_GIVEN,
+        allowed_origins: SequenceNotStr[AllowedOrigins] | NotGiven = NOT_GIVEN,
         creator: str | NotGiven = NOT_GIVEN,
         max_duration_seconds: int | NotGiven = NOT_GIVEN,
         require_signed_urls: bool | NotGiven = NOT_GIVEN,

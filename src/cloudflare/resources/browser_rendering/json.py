@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -53,7 +53,7 @@ class JsonResource(SyncAPIResource):
         action_timeout: float | NotGiven = NOT_GIVEN,
         add_script_tag: Iterable[json_create_params.AddScriptTag] | NotGiven = NOT_GIVEN,
         add_style_tag: Iterable[json_create_params.AddStyleTag] | NotGiven = NOT_GIVEN,
-        allow_request_pattern: List[str] | NotGiven = NOT_GIVEN,
+        allow_request_pattern: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         allow_resource_types: List[
             Literal[
                 "document",
@@ -85,7 +85,7 @@ class JsonResource(SyncAPIResource):
         goto_options: json_create_params.GotoOptions | NotGiven = NOT_GIVEN,
         html: str | NotGiven = NOT_GIVEN,
         prompt: str | NotGiven = NOT_GIVEN,
-        reject_request_pattern: List[str] | NotGiven = NOT_GIVEN,
+        reject_request_pattern: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         reject_resource_types: List[
             Literal[
                 "document",
@@ -258,7 +258,7 @@ class AsyncJsonResource(AsyncAPIResource):
         action_timeout: float | NotGiven = NOT_GIVEN,
         add_script_tag: Iterable[json_create_params.AddScriptTag] | NotGiven = NOT_GIVEN,
         add_style_tag: Iterable[json_create_params.AddStyleTag] | NotGiven = NOT_GIVEN,
-        allow_request_pattern: List[str] | NotGiven = NOT_GIVEN,
+        allow_request_pattern: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         allow_resource_types: List[
             Literal[
                 "document",
@@ -290,7 +290,7 @@ class AsyncJsonResource(AsyncAPIResource):
         goto_options: json_create_params.GotoOptions | NotGiven = NOT_GIVEN,
         html: str | NotGiven = NOT_GIVEN,
         prompt: str | NotGiven = NOT_GIVEN,
-        reject_request_pattern: List[str] | NotGiven = NOT_GIVEN,
+        reject_request_pattern: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         reject_resource_types: List[
             Literal[
                 "document",

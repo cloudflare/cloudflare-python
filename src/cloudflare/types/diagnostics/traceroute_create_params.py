@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["TracerouteCreateParams", "Options"]
 
@@ -12,9 +13,9 @@ class TracerouteCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
-    targets: Required[List[str]]
+    targets: Required[SequenceNotStr[str]]
 
-    colos: List[str]
+    colos: SequenceNotStr[str]
     """If no source colo names specified, all colos will be used.
 
     China colos are unavailable for traceroutes.

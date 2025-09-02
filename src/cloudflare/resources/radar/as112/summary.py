@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Union, Optional, cast
+from typing import Type, Union, Optional, cast
 from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -61,13 +61,13 @@ class SummaryResource(SyncAPIResource):
     def dnssec(
         self,
         *,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        continent: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         protocol: Literal["UDP", "TCP", "HTTPS", "TLS"] | NotGiven = NOT_GIVEN,
         query_type: Optional[
             Literal[
@@ -260,13 +260,13 @@ class SummaryResource(SyncAPIResource):
     def edns(
         self,
         *,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        continent: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         protocol: Literal["UDP", "TCP", "HTTPS", "TLS"] | NotGiven = NOT_GIVEN,
         query_type: Optional[
             Literal[
@@ -459,13 +459,13 @@ class SummaryResource(SyncAPIResource):
     def ip_version(
         self,
         *,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        continent: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         protocol: Literal["UDP", "TCP", "HTTPS", "TLS"] | NotGiven = NOT_GIVEN,
         query_type: Optional[
             Literal[
@@ -657,13 +657,13 @@ class SummaryResource(SyncAPIResource):
     def protocol(
         self,
         *,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        continent: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         query_type: Optional[
             Literal[
                 "A",
@@ -851,14 +851,14 @@ class SummaryResource(SyncAPIResource):
     def query_type(
         self,
         *,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        continent: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         limit_per_group: int | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         protocol: Literal["UDP", "TCP", "HTTPS", "TLS"] | NotGiven = NOT_GIVEN,
         response_code: Literal[
             "NOERROR",
@@ -959,14 +959,14 @@ class SummaryResource(SyncAPIResource):
     def response_codes(
         self,
         *,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        continent: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         limit_per_group: int | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         protocol: Literal["UDP", "TCP", "HTTPS", "TLS"] | NotGiven = NOT_GIVEN,
         query_type: Optional[
             Literal[
@@ -1159,13 +1159,13 @@ class AsyncSummaryResource(AsyncAPIResource):
     async def dnssec(
         self,
         *,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        continent: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         protocol: Literal["UDP", "TCP", "HTTPS", "TLS"] | NotGiven = NOT_GIVEN,
         query_type: Optional[
             Literal[
@@ -1358,13 +1358,13 @@ class AsyncSummaryResource(AsyncAPIResource):
     async def edns(
         self,
         *,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        continent: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         protocol: Literal["UDP", "TCP", "HTTPS", "TLS"] | NotGiven = NOT_GIVEN,
         query_type: Optional[
             Literal[
@@ -1557,13 +1557,13 @@ class AsyncSummaryResource(AsyncAPIResource):
     async def ip_version(
         self,
         *,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        continent: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         protocol: Literal["UDP", "TCP", "HTTPS", "TLS"] | NotGiven = NOT_GIVEN,
         query_type: Optional[
             Literal[
@@ -1755,13 +1755,13 @@ class AsyncSummaryResource(AsyncAPIResource):
     async def protocol(
         self,
         *,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        continent: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         query_type: Optional[
             Literal[
                 "A",
@@ -1949,14 +1949,14 @@ class AsyncSummaryResource(AsyncAPIResource):
     async def query_type(
         self,
         *,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        continent: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         limit_per_group: int | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         protocol: Literal["UDP", "TCP", "HTTPS", "TLS"] | NotGiven = NOT_GIVEN,
         response_code: Literal[
             "NOERROR",
@@ -2057,14 +2057,14 @@ class AsyncSummaryResource(AsyncAPIResource):
     async def response_codes(
         self,
         *,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        continent: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         limit_per_group: int | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         protocol: Literal["UDP", "TCP", "HTTPS", "TLS"] | NotGiven = NOT_GIVEN,
         query_type: Optional[
             Literal[

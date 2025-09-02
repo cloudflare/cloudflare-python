@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, Required, TypedDict
+
+from ...._types import SequenceNotStr
 
 __all__ = ["DeviceListParams", "LastSeenUser"]
 
@@ -11,7 +12,7 @@ __all__ = ["DeviceListParams", "LastSeenUser"]
 class DeviceListParams(TypedDict, total=False):
     account_id: Required[str]
 
-    id: List[str]
+    id: SequenceNotStr[str]
     """Filter by a one or more device IDs."""
 
     active_registrations: Literal["include", "only", "exclude"]

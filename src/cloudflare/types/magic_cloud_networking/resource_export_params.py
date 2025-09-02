@@ -5,6 +5,8 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Literal, Required, TypedDict
 
+from ..._types import SequenceNotStr
+
 __all__ = ["ResourceExportParams"]
 
 
@@ -22,7 +24,7 @@ class ResourceExportParams(TypedDict, total=False):
 
     resource_group: str
 
-    resource_id: List[str]
+    resource_id: SequenceNotStr[str]
 
     resource_type: List[
         Literal[
@@ -86,6 +88,6 @@ class ResourceExportParams(TypedDict, total=False):
         ]
     ]
 
-    search: List[str]
+    search: SequenceNotStr[str]
 
     v2: bool

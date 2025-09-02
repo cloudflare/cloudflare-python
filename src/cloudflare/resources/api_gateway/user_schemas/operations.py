@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ...._utils import maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -56,8 +56,8 @@ class OperationsResource(SyncAPIResource):
         zone_id: str,
         endpoint: str | NotGiven = NOT_GIVEN,
         feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | NotGiven = NOT_GIVEN,
-        host: List[str] | NotGiven = NOT_GIVEN,
-        method: List[str] | NotGiven = NOT_GIVEN,
+        host: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        method: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         operation_status: Literal["new", "existing"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
@@ -162,8 +162,8 @@ class AsyncOperationsResource(AsyncAPIResource):
         zone_id: str,
         endpoint: str | NotGiven = NOT_GIVEN,
         feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | NotGiven = NOT_GIVEN,
-        host: List[str] | NotGiven = NOT_GIVEN,
-        method: List[str] | NotGiven = NOT_GIVEN,
+        host: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        method: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         operation_status: Literal["new", "existing"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,

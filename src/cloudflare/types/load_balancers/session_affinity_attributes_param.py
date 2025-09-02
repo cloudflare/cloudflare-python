@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["SessionAffinityAttributesParam"]
 
@@ -15,7 +16,7 @@ class SessionAffinityAttributesParam(TypedDict, total=False):
     This field is only used when session affinity is enabled on the load balancer.
     """
 
-    headers: List[str]
+    headers: SequenceNotStr[str]
     """
     Configures the names of HTTP headers to base session affinity on when header
     `session_affinity` is enabled. At least one HTTP header name must be provided.

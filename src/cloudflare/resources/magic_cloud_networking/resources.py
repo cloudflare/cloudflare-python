@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -74,7 +74,7 @@ class ResourcesResource(SyncAPIResource):
         provider_id: str | NotGiven = NOT_GIVEN,
         region: str | NotGiven = NOT_GIVEN,
         resource_group: str | NotGiven = NOT_GIVEN,
-        resource_id: List[str] | NotGiven = NOT_GIVEN,
+        resource_id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         resource_type: List[
             Literal[
                 "aws_customer_gateway",
@@ -137,7 +137,7 @@ class ResourcesResource(SyncAPIResource):
             ]
         ]
         | NotGiven = NOT_GIVEN,
-        search: List[str] | NotGiven = NOT_GIVEN,
+        search: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         v2: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -201,7 +201,7 @@ class ResourcesResource(SyncAPIResource):
         provider_id: str | NotGiven = NOT_GIVEN,
         region: str | NotGiven = NOT_GIVEN,
         resource_group: str | NotGiven = NOT_GIVEN,
-        resource_id: List[str] | NotGiven = NOT_GIVEN,
+        resource_id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         resource_type: List[
             Literal[
                 "aws_customer_gateway",
@@ -264,7 +264,7 @@ class ResourcesResource(SyncAPIResource):
             ]
         ]
         | NotGiven = NOT_GIVEN,
-        search: List[str] | NotGiven = NOT_GIVEN,
+        search: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         v2: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -430,7 +430,7 @@ class AsyncResourcesResource(AsyncAPIResource):
         provider_id: str | NotGiven = NOT_GIVEN,
         region: str | NotGiven = NOT_GIVEN,
         resource_group: str | NotGiven = NOT_GIVEN,
-        resource_id: List[str] | NotGiven = NOT_GIVEN,
+        resource_id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         resource_type: List[
             Literal[
                 "aws_customer_gateway",
@@ -493,7 +493,7 @@ class AsyncResourcesResource(AsyncAPIResource):
             ]
         ]
         | NotGiven = NOT_GIVEN,
-        search: List[str] | NotGiven = NOT_GIVEN,
+        search: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         v2: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -557,7 +557,7 @@ class AsyncResourcesResource(AsyncAPIResource):
         provider_id: str | NotGiven = NOT_GIVEN,
         region: str | NotGiven = NOT_GIVEN,
         resource_group: str | NotGiven = NOT_GIVEN,
-        resource_id: List[str] | NotGiven = NOT_GIVEN,
+        resource_id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         resource_type: List[
             Literal[
                 "aws_customer_gateway",
@@ -620,7 +620,7 @@ class AsyncResourcesResource(AsyncAPIResource):
             ]
         ]
         | NotGiven = NOT_GIVEN,
-        search: List[str] | NotGiven = NOT_GIVEN,
+        search: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         v2: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import List, Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
+from ......_types import SequenceNotStr
 from .....workers.migration_step_param import MigrationStepParam
 from .....workers.single_step_migration_param import SingleStepMigrationParam
 from .....workers.scripts.consumer_script_param import ConsumerScriptParam
@@ -112,7 +113,7 @@ class SettingsBindingWorkersBindingKindDispatchNamespaceOutboundWorker(TypedDict
 
 
 class SettingsBindingWorkersBindingKindDispatchNamespaceOutbound(TypedDict, total=False):
-    params: List[str]
+    params: SequenceNotStr[str]
     """
     Pass information from the Dispatch Worker to the Outbound Worker through the
     parameters.
@@ -478,7 +479,7 @@ class Settings(TypedDict, total=False):
     this Worker.
     """
 
-    compatibility_flags: List[str]
+    compatibility_flags: SequenceNotStr[str]
     """Flags that enable or disable certain features in the Workers runtime.
 
     Used to enable upcoming features or opt in or out of specific changes not
@@ -503,7 +504,7 @@ class Settings(TypedDict, total=False):
     [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
     """
 
-    tags: List[str]
+    tags: SequenceNotStr[str]
     """Tags to help you manage your Workers."""
 
     tail_consumers: Iterable[ConsumerScriptParam]

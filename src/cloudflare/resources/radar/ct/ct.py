@@ -16,7 +16,7 @@ from .logs import (
     LogsResourceWithStreamingResponse,
     AsyncLogsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from .authorities import (
@@ -91,11 +91,11 @@ class CtResource(SyncAPIResource):
             "VALIDATION_LEVEL",
         ],
         *,
-        ca: List[str] | NotGiven = NOT_GIVEN,
-        ca_owner: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        ca: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        ca_owner: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         duration: List[
             Literal[
                 "LTE_3D",
@@ -114,10 +114,10 @@ class CtResource(SyncAPIResource):
         has_ips: Iterable[bool] | NotGiven = NOT_GIVEN,
         has_wildcards: Iterable[bool] | NotGiven = NOT_GIVEN,
         limit_per_group: int | NotGiven = NOT_GIVEN,
-        log: List[str] | NotGiven = NOT_GIVEN,
+        log: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         log_api: List[Literal["RFC6962", "STATIC"]] | NotGiven = NOT_GIVEN,
-        log_operator: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        log_operator: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         normalization: Literal["RAW_VALUES", "PERCENTAGE"] | NotGiven = NOT_GIVEN,
         public_key_algorithm: List[Literal["DSA", "ECDSA", "RSA"]] | NotGiven = NOT_GIVEN,
         signature_algorithm: List[
@@ -140,7 +140,7 @@ class CtResource(SyncAPIResource):
             ]
         ]
         | NotGiven = NOT_GIVEN,
-        tld: List[str] | NotGiven = NOT_GIVEN,
+        tld: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         unique_entries: List[Literal["true", "false"]] | NotGiven = NOT_GIVEN,
         validation_level: List[Literal["DOMAIN", "ORGANIZATION", "EXTENDED"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -261,11 +261,11 @@ class CtResource(SyncAPIResource):
         self,
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        ca: List[str] | NotGiven = NOT_GIVEN,
-        ca_owner: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        ca: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        ca_owner: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         duration: List[
             Literal[
                 "LTE_3D",
@@ -283,10 +283,10 @@ class CtResource(SyncAPIResource):
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         has_ips: Iterable[bool] | NotGiven = NOT_GIVEN,
         has_wildcards: Iterable[bool] | NotGiven = NOT_GIVEN,
-        log: List[str] | NotGiven = NOT_GIVEN,
+        log: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         log_api: List[Literal["RFC6962", "STATIC"]] | NotGiven = NOT_GIVEN,
-        log_operator: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        log_operator: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         public_key_algorithm: List[Literal["DSA", "ECDSA", "RSA"]] | NotGiven = NOT_GIVEN,
         signature_algorithm: List[
             Literal[
@@ -308,7 +308,7 @@ class CtResource(SyncAPIResource):
             ]
         ]
         | NotGiven = NOT_GIVEN,
-        tld: List[str] | NotGiven = NOT_GIVEN,
+        tld: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         unique_entries: List[Literal["true", "false"]] | NotGiven = NOT_GIVEN,
         validation_level: List[Literal["DOMAIN", "ORGANIZATION", "EXTENDED"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -436,11 +436,11 @@ class CtResource(SyncAPIResource):
         ],
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        ca: List[str] | NotGiven = NOT_GIVEN,
-        ca_owner: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        ca: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        ca_owner: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         duration: List[
             Literal[
                 "LTE_3D",
@@ -459,10 +459,10 @@ class CtResource(SyncAPIResource):
         has_ips: Iterable[bool] | NotGiven = NOT_GIVEN,
         has_wildcards: Iterable[bool] | NotGiven = NOT_GIVEN,
         limit_per_group: int | NotGiven = NOT_GIVEN,
-        log: List[str] | NotGiven = NOT_GIVEN,
+        log: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         log_api: List[Literal["RFC6962", "STATIC"]] | NotGiven = NOT_GIVEN,
-        log_operator: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        log_operator: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         normalization: Literal["RAW_VALUES", "PERCENTAGE"] | NotGiven = NOT_GIVEN,
         public_key_algorithm: List[Literal["DSA", "ECDSA", "RSA"]] | NotGiven = NOT_GIVEN,
         signature_algorithm: List[
@@ -485,7 +485,7 @@ class CtResource(SyncAPIResource):
             ]
         ]
         | NotGiven = NOT_GIVEN,
-        tld: List[str] | NotGiven = NOT_GIVEN,
+        tld: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         unique_entries: List[Literal["true", "false"]] | NotGiven = NOT_GIVEN,
         validation_level: List[Literal["DOMAIN", "ORGANIZATION", "EXTENDED"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -655,11 +655,11 @@ class AsyncCtResource(AsyncAPIResource):
             "VALIDATION_LEVEL",
         ],
         *,
-        ca: List[str] | NotGiven = NOT_GIVEN,
-        ca_owner: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        ca: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        ca_owner: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         duration: List[
             Literal[
                 "LTE_3D",
@@ -678,10 +678,10 @@ class AsyncCtResource(AsyncAPIResource):
         has_ips: Iterable[bool] | NotGiven = NOT_GIVEN,
         has_wildcards: Iterable[bool] | NotGiven = NOT_GIVEN,
         limit_per_group: int | NotGiven = NOT_GIVEN,
-        log: List[str] | NotGiven = NOT_GIVEN,
+        log: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         log_api: List[Literal["RFC6962", "STATIC"]] | NotGiven = NOT_GIVEN,
-        log_operator: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        log_operator: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         normalization: Literal["RAW_VALUES", "PERCENTAGE"] | NotGiven = NOT_GIVEN,
         public_key_algorithm: List[Literal["DSA", "ECDSA", "RSA"]] | NotGiven = NOT_GIVEN,
         signature_algorithm: List[
@@ -704,7 +704,7 @@ class AsyncCtResource(AsyncAPIResource):
             ]
         ]
         | NotGiven = NOT_GIVEN,
-        tld: List[str] | NotGiven = NOT_GIVEN,
+        tld: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         unique_entries: List[Literal["true", "false"]] | NotGiven = NOT_GIVEN,
         validation_level: List[Literal["DOMAIN", "ORGANIZATION", "EXTENDED"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -825,11 +825,11 @@ class AsyncCtResource(AsyncAPIResource):
         self,
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        ca: List[str] | NotGiven = NOT_GIVEN,
-        ca_owner: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        ca: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        ca_owner: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         duration: List[
             Literal[
                 "LTE_3D",
@@ -847,10 +847,10 @@ class AsyncCtResource(AsyncAPIResource):
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         has_ips: Iterable[bool] | NotGiven = NOT_GIVEN,
         has_wildcards: Iterable[bool] | NotGiven = NOT_GIVEN,
-        log: List[str] | NotGiven = NOT_GIVEN,
+        log: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         log_api: List[Literal["RFC6962", "STATIC"]] | NotGiven = NOT_GIVEN,
-        log_operator: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        log_operator: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         public_key_algorithm: List[Literal["DSA", "ECDSA", "RSA"]] | NotGiven = NOT_GIVEN,
         signature_algorithm: List[
             Literal[
@@ -872,7 +872,7 @@ class AsyncCtResource(AsyncAPIResource):
             ]
         ]
         | NotGiven = NOT_GIVEN,
-        tld: List[str] | NotGiven = NOT_GIVEN,
+        tld: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         unique_entries: List[Literal["true", "false"]] | NotGiven = NOT_GIVEN,
         validation_level: List[Literal["DOMAIN", "ORGANIZATION", "EXTENDED"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1000,11 +1000,11 @@ class AsyncCtResource(AsyncAPIResource):
         ],
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        ca: List[str] | NotGiven = NOT_GIVEN,
-        ca_owner: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        ca: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        ca_owner: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         duration: List[
             Literal[
                 "LTE_3D",
@@ -1023,10 +1023,10 @@ class AsyncCtResource(AsyncAPIResource):
         has_ips: Iterable[bool] | NotGiven = NOT_GIVEN,
         has_wildcards: Iterable[bool] | NotGiven = NOT_GIVEN,
         limit_per_group: int | NotGiven = NOT_GIVEN,
-        log: List[str] | NotGiven = NOT_GIVEN,
+        log: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         log_api: List[Literal["RFC6962", "STATIC"]] | NotGiven = NOT_GIVEN,
-        log_operator: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        log_operator: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         normalization: Literal["RAW_VALUES", "PERCENTAGE"] | NotGiven = NOT_GIVEN,
         public_key_algorithm: List[Literal["DSA", "ECDSA", "RSA"]] | NotGiven = NOT_GIVEN,
         signature_algorithm: List[
@@ -1049,7 +1049,7 @@ class AsyncCtResource(AsyncAPIResource):
             ]
         ]
         | NotGiven = NOT_GIVEN,
-        tld: List[str] | NotGiven = NOT_GIVEN,
+        tld: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         unique_entries: List[Literal["true", "false"]] | NotGiven = NOT_GIVEN,
         validation_level: List[Literal["DOMAIN", "ORGANIZATION", "EXTENDED"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

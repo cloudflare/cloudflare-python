@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
+from typing import Iterable
 from typing_extensions import Required, TypedDict
+
+from ...._types import SequenceNotStr
 
 __all__ = ["WorkerUpdateParams", "Observability", "ObservabilityLogs", "Subdomain", "TailConsumer"]
 
@@ -24,7 +26,7 @@ class WorkerUpdateParams(TypedDict, total=False):
     subdomain: Subdomain
     """Subdomain settings for the Worker."""
 
-    tags: List[str]
+    tags: SequenceNotStr[str]
     """Tags associated with the Worker."""
 
     tail_consumers: Iterable[TailConsumer]

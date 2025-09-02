@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["ZoneEditParams"]
 
@@ -26,7 +27,7 @@ class ZoneEditParams(TypedDict, total=False):
     enabled on a zone.
     """
 
-    vanity_name_servers: List[str]
+    vanity_name_servers: SequenceNotStr[str]
     """An array of domains used for custom name servers.
 
     This is only available for Business and Enterprise plans.

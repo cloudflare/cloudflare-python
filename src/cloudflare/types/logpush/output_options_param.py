@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Optional
 from typing_extensions import Literal, Annotated, TypedDict
 
+from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
 __all__ = ["OutputOptionsParam"]
@@ -26,7 +27,7 @@ class OutputOptionsParam(TypedDict, total=False):
     field_delimiter: Optional[str]
     """String to join fields. This field be ignored when `record_template` is set."""
 
-    field_names: List[str]
+    field_names: SequenceNotStr[str]
     """List of field names to be included in the Logpush output.
 
     For the moment, there is no option to add all fields at once, so you must

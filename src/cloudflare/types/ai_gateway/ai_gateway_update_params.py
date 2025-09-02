@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Optional
 from typing_extensions import Literal, Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["AIGatewayUpdateParams", "DLP"]
 
@@ -43,4 +45,4 @@ class DLP(TypedDict, total=False):
 
     enabled: Required[bool]
 
-    profiles: Required[List[str]]
+    profiles: Required[SequenceNotStr[str]]

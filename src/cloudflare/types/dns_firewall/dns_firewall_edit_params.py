@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Optional
 from typing_extensions import Required, TypedDict
 
+from ..._types import SequenceNotStr
 from .upstream_ips import UpstreamIPs
 from .attack_mitigation_param import AttackMitigationParam
 
@@ -59,4 +60,4 @@ class DNSFirewallEditParams(TypedDict, total=False):
     counting the initial attempt)
     """
 
-    upstream_ips: List[UpstreamIPs]
+    upstream_ips: SequenceNotStr[UpstreamIPs]

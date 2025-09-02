@@ -6,13 +6,14 @@ from typing import List, Union
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
+from ......_types import SequenceNotStr
 from ......_utils import PropertyInfo
 
 __all__ = ["LocationTargetParams"]
 
 
 class LocationTargetParams(TypedDict, total=False):
-    continent: List[str]
+    continent: SequenceNotStr[str]
     """Filters results by continent.
 
     Specify a comma-separated list of alpha-2 codes. Prefix with `-` to exclude
@@ -20,10 +21,10 @@ class LocationTargetParams(TypedDict, total=False):
     includes results from NA.
     """
 
-    date_end: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateEnd", format="iso8601")]
+    date_end: Annotated[SequenceNotStr[Union[str, datetime]], PropertyInfo(alias="dateEnd", format="iso8601")]
     """End of the date range (inclusive)."""
 
-    date_range: Annotated[List[str], PropertyInfo(alias="dateRange")]
+    date_range: Annotated[SequenceNotStr[str], PropertyInfo(alias="dateRange")]
     """Filters results by date range.
 
     For example, use `7d` and `7dcontrol` to compare this week with the previous
@@ -31,7 +32,7 @@ class LocationTargetParams(TypedDict, total=False):
     `dateEnd` parameters).
     """
 
-    date_start: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateStart", format="iso8601")]
+    date_start: Annotated[SequenceNotStr[Union[str, datetime]], PropertyInfo(alias="dateStart", format="iso8601")]
     """Start of the date range."""
 
     format: Literal["JSON", "CSV"]
@@ -50,5 +51,5 @@ class LocationTargetParams(TypedDict, total=False):
     ]
     """Filters the results by layer 7 mitigation product."""
 
-    name: List[str]
+    name: SequenceNotStr[str]
     """Array of names used to label the series in the response."""

@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Union, Optional, cast
+from typing import Type, Union, Optional, cast
 from datetime import datetime
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ..._utils import maybe_transform, strip_not_given, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -51,7 +51,7 @@ class CopyResource(SyncAPIResource):
         *,
         account_id: str,
         url: str,
-        allowed_origins: List[AllowedOrigins] | NotGiven = NOT_GIVEN,
+        allowed_origins: SequenceNotStr[AllowedOrigins] | NotGiven = NOT_GIVEN,
         creator: str | NotGiven = NOT_GIVEN,
         meta: object | NotGiven = NOT_GIVEN,
         require_signed_urls: bool | NotGiven = NOT_GIVEN,
@@ -161,7 +161,7 @@ class AsyncCopyResource(AsyncAPIResource):
         *,
         account_id: str,
         url: str,
-        allowed_origins: List[AllowedOrigins] | NotGiven = NOT_GIVEN,
+        allowed_origins: SequenceNotStr[AllowedOrigins] | NotGiven = NOT_GIVEN,
         creator: str | NotGiven = NOT_GIVEN,
         meta: object | NotGiven = NOT_GIVEN,
         require_signed_urls: bool | NotGiven = NOT_GIVEN,

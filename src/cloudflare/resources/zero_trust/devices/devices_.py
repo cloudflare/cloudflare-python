@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Optional, cast
+from typing import Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ...._utils import maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -51,7 +51,7 @@ class DevicesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        id: List[str] | NotGiven = NOT_GIVEN,
+        id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         active_registrations: Literal["include", "only", "exclude"] | NotGiven = NOT_GIVEN,
         cursor: str | NotGiven = NOT_GIVEN,
         include: str | NotGiven = NOT_GIVEN,
@@ -282,7 +282,7 @@ class AsyncDevicesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        id: List[str] | NotGiven = NOT_GIVEN,
+        id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         active_registrations: Literal["include", "only", "exclude"] | NotGiven = NOT_GIVEN,
         cursor: str | NotGiven = NOT_GIVEN,
         include: str | NotGiven = NOT_GIVEN,

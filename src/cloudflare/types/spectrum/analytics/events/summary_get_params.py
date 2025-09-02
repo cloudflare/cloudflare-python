@@ -6,6 +6,7 @@ from typing import List, Union
 from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
+from ....._types import SequenceNotStr
 from ....._utils import PropertyInfo
 from ..dimension import Dimension
 
@@ -69,7 +70,7 @@ class SummaryGetParams(TypedDict, total=False):
     Timestamp must be in RFC3339 format and uses UTC unless otherwise specified.
     """
 
-    sort: List[str]
+    sort: SequenceNotStr[str]
     """
     The sort order for the result set; sort fields must be included in `metrics` or
     `dimensions`.

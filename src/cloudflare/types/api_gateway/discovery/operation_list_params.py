@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, Required, TypedDict
+
+from ...._types import SequenceNotStr
 
 __all__ = ["OperationListParams"]
 
@@ -24,10 +25,10 @@ class OperationListParams(TypedDict, total=False):
     endpoint: str
     """Filter results to only include endpoints containing this pattern."""
 
-    host: List[str]
+    host: SequenceNotStr[str]
     """Filter results to only include the specified hosts."""
 
-    method: List[str]
+    method: SequenceNotStr[str]
     """Filter results to only include the specified HTTP methods."""
 
     order: Literal["host", "method", "endpoint", "traffic_stats.requests", "traffic_stats.last_updated"]

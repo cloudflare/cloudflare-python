@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import Union
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
+from ...._types import SequenceNotStr
 from ...._utils import PropertyInfo
 
 __all__ = ["WebCrawlerTimeseriesGroupsParams"]
@@ -19,13 +20,13 @@ class WebCrawlerTimeseriesGroupsParams(TypedDict, total=False):
     [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
     """
 
-    bot_operator: Annotated[List[str], PropertyInfo(alias="botOperator")]
+    bot_operator: Annotated[SequenceNotStr[str], PropertyInfo(alias="botOperator")]
     """Filters results by bot operator."""
 
-    date_end: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateEnd", format="iso8601")]
+    date_end: Annotated[SequenceNotStr[Union[str, datetime]], PropertyInfo(alias="dateEnd", format="iso8601")]
     """End of the date range (inclusive)."""
 
-    date_range: Annotated[List[str], PropertyInfo(alias="dateRange")]
+    date_range: Annotated[SequenceNotStr[str], PropertyInfo(alias="dateRange")]
     """Filters results by date range.
 
     For example, use `7d` and `7dcontrol` to compare this week with the previous
@@ -33,13 +34,13 @@ class WebCrawlerTimeseriesGroupsParams(TypedDict, total=False):
     `dateEnd` parameters).
     """
 
-    date_start: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateStart", format="iso8601")]
+    date_start: Annotated[SequenceNotStr[Union[str, datetime]], PropertyInfo(alias="dateStart", format="iso8601")]
     """Start of the date range."""
 
     format: Literal["JSON", "CSV"]
     """Format in which results will be returned."""
 
-    industry: List[str]
+    industry: SequenceNotStr[str]
     """Filters results by industry."""
 
     limit_per_group: Annotated[int, PropertyInfo(alias="limitPerGroup")]
@@ -49,8 +50,8 @@ class WebCrawlerTimeseriesGroupsParams(TypedDict, total=False):
     an "other" category.
     """
 
-    name: List[str]
+    name: SequenceNotStr[str]
     """Array of names used to label the series in the response."""
 
-    vertical: List[str]
+    vertical: SequenceNotStr[str]
     """Filters results by vertical."""

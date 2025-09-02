@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Union, cast
+from typing import Type, Union, cast
 from datetime import date, datetime
 from typing_extensions import Literal
 
@@ -16,7 +16,7 @@ from .domain import (
     DomainResourceWithStreamingResponse,
     AsyncDomainResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -74,15 +74,15 @@ class RankingResource(SyncAPIResource):
     def timeseries_groups(
         self,
         *,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        domain_category: List[str] | NotGiven = NOT_GIVEN,
-        domains: List[str] | NotGiven = NOT_GIVEN,
+        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        domain_category: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        domains: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         ranking_type: Literal["POPULAR", "TRENDING_RISE", "TRENDING_STEADY"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -156,12 +156,12 @@ class RankingResource(SyncAPIResource):
     def top(
         self,
         *,
-        date: List[Union[str, date]] | NotGiven = NOT_GIVEN,
-        domain_category: List[str] | NotGiven = NOT_GIVEN,
+        date: SequenceNotStr[Union[str, date]] | NotGiven = NOT_GIVEN,
+        domain_category: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         ranking_type: Literal["POPULAR", "TRENDING_RISE", "TRENDING_STEADY"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -257,15 +257,15 @@ class AsyncRankingResource(AsyncAPIResource):
     async def timeseries_groups(
         self,
         *,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        domain_category: List[str] | NotGiven = NOT_GIVEN,
-        domains: List[str] | NotGiven = NOT_GIVEN,
+        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        domain_category: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        domains: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         ranking_type: Literal["POPULAR", "TRENDING_RISE", "TRENDING_STEADY"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -339,12 +339,12 @@ class AsyncRankingResource(AsyncAPIResource):
     async def top(
         self,
         *,
-        date: List[Union[str, date]] | NotGiven = NOT_GIVEN,
-        domain_category: List[str] | NotGiven = NOT_GIVEN,
+        date: SequenceNotStr[Union[str, date]] | NotGiven = NOT_GIVEN,
+        domain_category: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         ranking_type: Literal["POPULAR", "TRENDING_RISE", "TRENDING_STEADY"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

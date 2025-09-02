@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
+from typing import Iterable
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
+from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
 __all__ = ["TokenCreateParams", "AccessRule"]
@@ -62,13 +63,13 @@ class AccessRule(TypedDict, total=False):
     rule.
     """
 
-    country: List[str]
+    country: SequenceNotStr[str]
     """
     An array of 2-letter country codes in ISO 3166-1 Alpha-2 format used to match
     requests.
     """
 
-    ip: List[str]
+    ip: SequenceNotStr[str]
     """An array of IPv4 or IPV6 addresses or CIDRs used to match requests."""
 
     type: Literal["any", "ip.src", "ip.geoip.country"]

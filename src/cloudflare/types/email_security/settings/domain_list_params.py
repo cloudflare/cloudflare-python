@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, Required, TypedDict
+
+from ...._types import SequenceNotStr
 
 __all__ = ["DomainListParams"]
 
@@ -21,7 +22,7 @@ class DomainListParams(TypedDict, total=False):
     direction: Literal["asc", "desc"]
     """The sorting direction."""
 
-    domain: List[str]
+    domain: SequenceNotStr[str]
     """Filters results by the provided domains, allowing for multiple occurrences."""
 
     order: Literal["domain", "created_at"]

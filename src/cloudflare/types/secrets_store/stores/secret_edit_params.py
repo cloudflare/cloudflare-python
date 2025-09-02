@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, TypedDict
+
+from ...._types import SequenceNotStr
 
 __all__ = ["SecretEditParams"]
 
@@ -18,5 +19,5 @@ class SecretEditParams(TypedDict, total=False):
     comment: str
     """Freeform text describing the secret"""
 
-    scopes: List[str]
+    scopes: SequenceNotStr[str]
     """The list of services that can use this secret."""

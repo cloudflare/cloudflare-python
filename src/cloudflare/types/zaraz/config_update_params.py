@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable
+from typing import Dict, Union, Iterable
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
+from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 from .neo_event_param import NeoEventParam
 from .button_text_translation_param import ButtonTextTranslationParam
@@ -154,7 +155,7 @@ class Settings(TypedDict, total=False):
 
 
 class ToolsZarazManagedComponent(TypedDict, total=False):
-    blocking_triggers: Required[Annotated[List[str], PropertyInfo(alias="blockingTriggers")]]
+    blocking_triggers: Required[Annotated[SequenceNotStr[str], PropertyInfo(alias="blockingTriggers")]]
     """List of blocking trigger IDs"""
 
     component: Required[str]
@@ -169,7 +170,7 @@ class ToolsZarazManagedComponent(TypedDict, total=False):
     name: Required[str]
     """Tool's name defined by the user"""
 
-    permissions: Required[List[str]]
+    permissions: Required[SequenceNotStr[str]]
     """List of permissions granted to the component"""
 
     settings: Required[Dict[str, Union[str, bool]]]
@@ -210,7 +211,7 @@ class ToolsWorkerWorker(TypedDict, total=False):
 
 
 class ToolsWorker(TypedDict, total=False):
-    blocking_triggers: Required[Annotated[List[str], PropertyInfo(alias="blockingTriggers")]]
+    blocking_triggers: Required[Annotated[SequenceNotStr[str], PropertyInfo(alias="blockingTriggers")]]
     """List of blocking trigger IDs"""
 
     component: Required[str]
@@ -225,7 +226,7 @@ class ToolsWorker(TypedDict, total=False):
     name: Required[str]
     """Tool's name defined by the user"""
 
-    permissions: Required[List[str]]
+    permissions: Required[SequenceNotStr[str]]
     """List of permissions granted to the component"""
 
     settings: Required[Dict[str, Union[str, bool]]]

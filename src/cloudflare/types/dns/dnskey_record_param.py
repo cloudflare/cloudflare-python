@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, Required, TypedDict
 
+from ..._types import SequenceNotStr
 from .ttl_param import TTLParam
 from .record_tags import RecordTags
 
@@ -75,5 +75,5 @@ class DNSKEYRecordParam(TypedDict, total=False):
     settings: Settings
     """Settings for the DNS record."""
 
-    tags: List[RecordTags]
+    tags: SequenceNotStr[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""

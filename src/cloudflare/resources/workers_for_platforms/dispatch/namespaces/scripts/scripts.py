@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Mapping, Optional, cast
+from typing import Type, Mapping, Optional, cast
 
 import httpx
 
@@ -46,7 +46,7 @@ from .settings import (
     SettingsResourceWithStreamingResponse,
     AsyncSettingsResourceWithStreamingResponse,
 )
-from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
+from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes, SequenceNotStr
 from ......_utils import extract_files, maybe_transform, deepcopy_minimal, async_maybe_transform
 from ......_compat import cached_property
 from .asset_upload import (
@@ -124,7 +124,7 @@ class ScriptsResource(SyncAPIResource):
         account_id: str,
         dispatch_namespace: str,
         metadata: script_update_params.Metadata,
-        files: List[FileTypes] | NotGiven = NOT_GIVEN,
+        files: SequenceNotStr[FileTypes] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -353,7 +353,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         account_id: str,
         dispatch_namespace: str,
         metadata: script_update_params.Metadata,
-        files: List[FileTypes] | NotGiven = NOT_GIVEN,
+        files: SequenceNotStr[FileTypes] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

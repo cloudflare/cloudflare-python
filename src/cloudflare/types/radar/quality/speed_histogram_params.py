@@ -2,17 +2,18 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import Union
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
+from ...._types import SequenceNotStr
 from ...._utils import PropertyInfo
 
 __all__ = ["SpeedHistogramParams"]
 
 
 class SpeedHistogramParams(TypedDict, total=False):
-    asn: List[str]
+    asn: SequenceNotStr[str]
     """Filters results by Autonomous System.
 
     Specify one or more Autonomous System Numbers (ASNs) as a comma-separated list.
@@ -23,7 +24,7 @@ class SpeedHistogramParams(TypedDict, total=False):
     bucket_size: Annotated[int, PropertyInfo(alias="bucketSize")]
     """Specifies the width for every bucket in the histogram."""
 
-    continent: List[str]
+    continent: SequenceNotStr[str]
     """Filters results by continent.
 
     Specify a comma-separated list of alpha-2 codes. Prefix with `-` to exclude
@@ -31,13 +32,13 @@ class SpeedHistogramParams(TypedDict, total=False):
     includes results from NA.
     """
 
-    date_end: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateEnd", format="iso8601")]
+    date_end: Annotated[SequenceNotStr[Union[str, datetime]], PropertyInfo(alias="dateEnd", format="iso8601")]
     """End of the date range (inclusive)."""
 
     format: Literal["JSON", "CSV"]
     """Format in which results will be returned."""
 
-    location: List[str]
+    location: SequenceNotStr[str]
     """Filters results by location.
 
     Specify a comma-separated list of alpha-2 codes. Prefix with `-` to exclude
@@ -48,5 +49,5 @@ class SpeedHistogramParams(TypedDict, total=False):
     metric_group: Annotated[Literal["BANDWIDTH", "LATENCY", "JITTER"], PropertyInfo(alias="metricGroup")]
     """Metrics to be returned."""
 
-    name: List[str]
+    name: SequenceNotStr[str]
     """Array of names used to label the series in the response."""

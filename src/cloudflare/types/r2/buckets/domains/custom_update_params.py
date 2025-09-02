@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
+from ....._types import SequenceNotStr
 from ....._utils import PropertyInfo
 
 __all__ = ["CustomUpdateParams"]
@@ -17,7 +17,7 @@ class CustomUpdateParams(TypedDict, total=False):
     bucket_name: Required[str]
     """Name of the bucket."""
 
-    ciphers: List[str]
+    ciphers: SequenceNotStr[str]
     """An allowlist of ciphers for TLS termination.
 
     These ciphers must be in the BoringSSL format.

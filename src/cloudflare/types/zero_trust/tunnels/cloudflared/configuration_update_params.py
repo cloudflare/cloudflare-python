@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
+from typing import Iterable
 from typing_extensions import Required, Annotated, TypedDict
 
+from ....._types import SequenceNotStr
 from ....._utils import PropertyInfo
 
 __all__ = [
@@ -27,7 +28,7 @@ class ConfigurationUpdateParams(TypedDict, total=False):
 
 
 class ConfigIngressOriginRequestAccess(TypedDict, total=False):
-    aud_tag: Required[Annotated[List[str], PropertyInfo(alias="audTag")]]
+    aud_tag: Required[Annotated[SequenceNotStr[str], PropertyInfo(alias="audTag")]]
     """Access applications that are allowed to reach this hostname for this Tunnel.
 
     Audience tags can be identified in the dashboard or via the List Access policies
@@ -137,7 +138,7 @@ class ConfigIngress(TypedDict, total=False):
 
 
 class ConfigOriginRequestAccess(TypedDict, total=False):
-    aud_tag: Required[Annotated[List[str], PropertyInfo(alias="audTag")]]
+    aud_tag: Required[Annotated[SequenceNotStr[str], PropertyInfo(alias="audTag")]]
     """Access applications that are allowed to reach this hostname for this Tunnel.
 
     Audience tags can be identified in the dashboard or via the List Access policies

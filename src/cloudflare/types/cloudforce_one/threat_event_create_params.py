@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Optional
+from typing import Dict, Union, Optional
 from datetime import datetime
 from typing_extensions import Required, Annotated, TypedDict
 
+from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
 __all__ = ["ThreatEventCreateParams", "Raw"]
@@ -37,7 +38,7 @@ class ThreatEventCreateParams(TypedDict, total=False):
 
     indicator_type: Annotated[str, PropertyInfo(alias="indicatorType")]
 
-    tags: List[str]
+    tags: SequenceNotStr[str]
 
     target_country: Annotated[str, PropertyInfo(alias="targetCountry")]
 

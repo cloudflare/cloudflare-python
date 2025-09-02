@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Dict, List, Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
 
+from ...._types import SequenceNotStr
 from .dns_resolver_settings_v4_param import DNSResolverSettingsV4Param
 from .dns_resolver_settings_v6_param import DNSResolverSettingsV6Param
 
@@ -206,7 +207,7 @@ class UntrustedCERT(TypedDict, total=False):
 
 
 class RuleSettingParam(TypedDict, total=False):
-    add_headers: Optional[Dict[str, List[str]]]
+    add_headers: Optional[Dict[str, SequenceNotStr[str]]]
     """Add custom headers to allowed requests, in the form of key-value pairs.
 
     Keys are header names, pointing to an array with its header value(s).
@@ -291,7 +292,7 @@ class RuleSettingParam(TypedDict, total=False):
     override_host: str
     """Override matching DNS queries with a hostname."""
 
-    override_ips: Optional[List[str]]
+    override_ips: Optional[SequenceNotStr[str]]
     """Override matching DNS queries with an IP or set of IPs."""
 
     payload_log: Optional[PayloadLog]

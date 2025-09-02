@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable
+from typing import Dict, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
+from ..._types import SequenceNotStr
 from .logging_param import LoggingParam
 
 __all__ = [
@@ -39,24 +40,24 @@ class ActionParametersBrowserTTL(TypedDict, total=False):
 
 
 class ActionParametersCacheKeyCustomKeyCookie(TypedDict, total=False):
-    check_presence: List[str]
+    check_presence: SequenceNotStr[str]
     """A list of cookies to check for the presence of.
 
     The presence of these cookies is included in the cache key.
     """
 
-    include: List[str]
+    include: SequenceNotStr[str]
     """A list of cookies to include in the cache key."""
 
 
 class ActionParametersCacheKeyCustomKeyHeader(TypedDict, total=False):
-    check_presence: List[str]
+    check_presence: SequenceNotStr[str]
     """A list of headers to check for the presence of.
 
     The presence of these headers is included in the cache key.
     """
 
-    contains: Dict[str, List[str]]
+    contains: Dict[str, SequenceNotStr[str]]
     """A mapping of header names to a list of values.
 
     If a header is present in the request and contains any of the values provided,
@@ -66,7 +67,7 @@ class ActionParametersCacheKeyCustomKeyHeader(TypedDict, total=False):
     exclude_origin: bool
     """Whether to exclude the origin header in the cache key."""
 
-    include: List[str]
+    include: SequenceNotStr[str]
     """A list of headers to include in the cache key."""
 
 
@@ -79,7 +80,7 @@ class ActionParametersCacheKeyCustomKeyQueryStringExclude(TypedDict, total=False
     all: Literal[True]
     """Whether to exclude all query string parameters from the cache key."""
 
-    list: List[str]
+    list: SequenceNotStr[str]
     """A list of query string parameters to exclude from the cache key."""
 
 
@@ -87,7 +88,7 @@ class ActionParametersCacheKeyCustomKeyQueryStringInclude(TypedDict, total=False
     all: Literal[True]
     """Whether to include all query string parameters in the cache key."""
 
-    list: List[str]
+    list: SequenceNotStr[str]
     """A list of query string parameters to include in the cache key."""
 
 
@@ -277,7 +278,7 @@ class ExposedCredentialCheck(TypedDict, total=False):
 
 
 class Ratelimit(TypedDict, total=False):
-    characteristics: Required[List[str]]
+    characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
     incremented.

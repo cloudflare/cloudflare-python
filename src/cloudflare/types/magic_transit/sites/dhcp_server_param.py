@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List
+from typing import Dict
 from typing_extensions import TypedDict
+
+from ...._types import SequenceNotStr
 
 __all__ = ["DHCPServerParam"]
 
@@ -18,7 +20,7 @@ class DHCPServerParam(TypedDict, total=False):
     dns_server: str
     """A valid IPv4 address."""
 
-    dns_servers: List[str]
+    dns_servers: SequenceNotStr[str]
 
     reservations: Dict[str, str]
     """Mapping of MAC addresses to IP addresses"""

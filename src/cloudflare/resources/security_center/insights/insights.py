@@ -30,7 +30,7 @@ from .severity import (
     SeverityResourceWithStreamingResponse,
     AsyncSeverityResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -89,18 +89,18 @@ class InsightsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         dismissed: bool | NotGiven = NOT_GIVEN,
-        issue_class: List[str] | NotGiven = NOT_GIVEN,
-        issue_class_neq: List[str] | NotGiven = NOT_GIVEN,
+        issue_class: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        issue_class_neq: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         issue_type: List[IssueType] | NotGiven = NOT_GIVEN,
         issue_type_neq: List[IssueType] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
-        product: List[str] | NotGiven = NOT_GIVEN,
-        product_neq: List[str] | NotGiven = NOT_GIVEN,
+        product: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        product_neq: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         severity: List[SeverityQueryParam] | NotGiven = NOT_GIVEN,
         severity_neq: List[SeverityQueryParam] | NotGiven = NOT_GIVEN,
-        subject: List[str] | NotGiven = NOT_GIVEN,
-        subject_neq: List[str] | NotGiven = NOT_GIVEN,
+        subject: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        subject_neq: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -262,18 +262,18 @@ class AsyncInsightsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         dismissed: bool | NotGiven = NOT_GIVEN,
-        issue_class: List[str] | NotGiven = NOT_GIVEN,
-        issue_class_neq: List[str] | NotGiven = NOT_GIVEN,
+        issue_class: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        issue_class_neq: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         issue_type: List[IssueType] | NotGiven = NOT_GIVEN,
         issue_type_neq: List[IssueType] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
-        product: List[str] | NotGiven = NOT_GIVEN,
-        product_neq: List[str] | NotGiven = NOT_GIVEN,
+        product: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        product_neq: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         severity: List[SeverityQueryParam] | NotGiven = NOT_GIVEN,
         severity_neq: List[SeverityQueryParam] | NotGiven = NOT_GIVEN,
-        subject: List[str] | NotGiven = NOT_GIVEN,
-        subject_neq: List[str] | NotGiven = NOT_GIVEN,
+        subject: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        subject_neq: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

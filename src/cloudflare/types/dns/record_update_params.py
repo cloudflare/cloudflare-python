@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import Union
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
+from ..._types import SequenceNotStr
 from .ttl_param import TTLParam
 from .record_tags import RecordTags
 
@@ -103,7 +104,7 @@ class ARecord(TypedDict, total=False):
     settings: ARecordSettings
     """Settings for the DNS record."""
 
-    tags: List[RecordTags]
+    tags: SequenceNotStr[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
 
@@ -160,7 +161,7 @@ class AAAARecord(TypedDict, total=False):
     settings: AAAARecordSettings
     """Settings for the DNS record."""
 
-    tags: List[RecordTags]
+    tags: SequenceNotStr[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
 
@@ -217,7 +218,7 @@ class CNAMERecord(TypedDict, total=False):
     settings: CNAMERecordSettings
     """Settings for the DNS record."""
 
-    tags: List[RecordTags]
+    tags: SequenceNotStr[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
 
@@ -288,7 +289,7 @@ class MXRecord(TypedDict, total=False):
     settings: MXRecordSettings
     """Settings for the DNS record."""
 
-    tags: List[RecordTags]
+    tags: SequenceNotStr[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
 
@@ -345,7 +346,7 @@ class NSRecord(TypedDict, total=False):
     settings: NSRecordSettings
     """Settings for the DNS record."""
 
-    tags: List[RecordTags]
+    tags: SequenceNotStr[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
 
@@ -402,7 +403,7 @@ class DNSRecordsOpenpgpkeyRecord(TypedDict, total=False):
     settings: DNSRecordsOpenpgpkeyRecordSettings
     """Settings for the DNS record."""
 
-    tags: List[RecordTags]
+    tags: SequenceNotStr[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
 
@@ -459,7 +460,7 @@ class PTRRecord(TypedDict, total=False):
     settings: PTRRecordSettings
     """Settings for the DNS record."""
 
-    tags: List[RecordTags]
+    tags: SequenceNotStr[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
 
@@ -524,7 +525,7 @@ class TXTRecord(TypedDict, total=False):
     settings: TXTRecordSettings
     """Settings for the DNS record."""
 
-    tags: List[RecordTags]
+    tags: SequenceNotStr[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
 
@@ -581,7 +582,7 @@ class CAARecord(TypedDict, total=False):
     settings: CAARecordSettings
     """Settings for the DNS record."""
 
-    tags: List[RecordTags]
+    tags: SequenceNotStr[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
 
@@ -649,7 +650,7 @@ class CERTRecord(TypedDict, total=False):
     settings: CERTRecordSettings
     """Settings for the DNS record."""
 
-    tags: List[RecordTags]
+    tags: SequenceNotStr[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
 
@@ -720,7 +721,7 @@ class DNSKEYRecord(TypedDict, total=False):
     settings: DNSKEYRecordSettings
     """Settings for the DNS record."""
 
-    tags: List[RecordTags]
+    tags: SequenceNotStr[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
 
@@ -791,7 +792,7 @@ class DSRecord(TypedDict, total=False):
     settings: DSRecordSettings
     """Settings for the DNS record."""
 
-    tags: List[RecordTags]
+    tags: SequenceNotStr[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
 
@@ -862,7 +863,7 @@ class HTTPSRecord(TypedDict, total=False):
     settings: HTTPSRecordSettings
     """Settings for the DNS record."""
 
-    tags: List[RecordTags]
+    tags: SequenceNotStr[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
 
@@ -930,7 +931,7 @@ class LOCRecord(TypedDict, total=False):
     settings: LOCRecordSettings
     """Settings for the DNS record."""
 
-    tags: List[RecordTags]
+    tags: SequenceNotStr[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
 
@@ -1025,7 +1026,7 @@ class NAPTRRecord(TypedDict, total=False):
     settings: NAPTRRecordSettings
     """Settings for the DNS record."""
 
-    tags: List[RecordTags]
+    tags: SequenceNotStr[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
 
@@ -1102,7 +1103,7 @@ class SMIMEARecord(TypedDict, total=False):
     settings: SMIMEARecordSettings
     """Settings for the DNS record."""
 
-    tags: List[RecordTags]
+    tags: SequenceNotStr[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
 
@@ -1173,7 +1174,7 @@ class SRVRecord(TypedDict, total=False):
     settings: SRVRecordSettings
     """Settings for the DNS record."""
 
-    tags: List[RecordTags]
+    tags: SequenceNotStr[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
 
@@ -1247,7 +1248,7 @@ class SSHFPRecord(TypedDict, total=False):
     settings: SSHFPRecordSettings
     """Settings for the DNS record."""
 
-    tags: List[RecordTags]
+    tags: SequenceNotStr[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
 
@@ -1315,7 +1316,7 @@ class SVCBRecord(TypedDict, total=False):
     settings: SVCBRecordSettings
     """Settings for the DNS record."""
 
-    tags: List[RecordTags]
+    tags: SequenceNotStr[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
 
@@ -1383,7 +1384,7 @@ class TLSARecord(TypedDict, total=False):
     settings: TLSARecordSettings
     """Settings for the DNS record."""
 
-    tags: List[RecordTags]
+    tags: SequenceNotStr[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
 
@@ -1460,7 +1461,7 @@ class URIRecord(TypedDict, total=False):
     settings: URIRecordSettings
     """Settings for the DNS record."""
 
-    tags: List[RecordTags]
+    tags: SequenceNotStr[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
 

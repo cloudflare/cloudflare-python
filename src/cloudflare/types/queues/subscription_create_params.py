@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import Union
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = [
     "SubscriptionCreateParams",
@@ -30,7 +32,7 @@ class SubscriptionCreateParams(TypedDict, total=False):
     enabled: bool
     """Whether the subscription is active"""
 
-    events: List[str]
+    events: SequenceNotStr[str]
     """List of event types this subscription handles"""
 
     name: str

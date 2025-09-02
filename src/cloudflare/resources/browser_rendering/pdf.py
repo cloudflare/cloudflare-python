@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -55,7 +55,7 @@ class PDFResource(SyncAPIResource):
         action_timeout: float | NotGiven = NOT_GIVEN,
         add_script_tag: Iterable[pdf_create_params.AddScriptTag] | NotGiven = NOT_GIVEN,
         add_style_tag: Iterable[pdf_create_params.AddStyleTag] | NotGiven = NOT_GIVEN,
-        allow_request_pattern: List[str] | NotGiven = NOT_GIVEN,
+        allow_request_pattern: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         allow_resource_types: List[
             Literal[
                 "document",
@@ -86,7 +86,7 @@ class PDFResource(SyncAPIResource):
         goto_options: pdf_create_params.GotoOptions | NotGiven = NOT_GIVEN,
         html: str | NotGiven = NOT_GIVEN,
         pdf_options: pdf_create_params.PDFOptions | NotGiven = NOT_GIVEN,
-        reject_request_pattern: List[str] | NotGiven = NOT_GIVEN,
+        reject_request_pattern: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         reject_resource_types: List[
             Literal[
                 "document",
@@ -254,7 +254,7 @@ class AsyncPDFResource(AsyncAPIResource):
         action_timeout: float | NotGiven = NOT_GIVEN,
         add_script_tag: Iterable[pdf_create_params.AddScriptTag] | NotGiven = NOT_GIVEN,
         add_style_tag: Iterable[pdf_create_params.AddStyleTag] | NotGiven = NOT_GIVEN,
-        allow_request_pattern: List[str] | NotGiven = NOT_GIVEN,
+        allow_request_pattern: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         allow_resource_types: List[
             Literal[
                 "document",
@@ -285,7 +285,7 @@ class AsyncPDFResource(AsyncAPIResource):
         goto_options: pdf_create_params.GotoOptions | NotGiven = NOT_GIVEN,
         html: str | NotGiven = NOT_GIVEN,
         pdf_options: pdf_create_params.PDFOptions | NotGiven = NOT_GIVEN,
-        reject_request_pattern: List[str] | NotGiven = NOT_GIVEN,
+        reject_request_pattern: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         reject_resource_types: List[
             Literal[
                 "document",

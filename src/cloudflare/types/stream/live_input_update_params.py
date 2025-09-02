@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
+from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
 __all__ = ["LiveInputUpdateParams", "Recording"]
@@ -42,7 +42,7 @@ class LiveInputUpdateParams(TypedDict, total=False):
 
 
 class Recording(TypedDict, total=False):
-    allowed_origins: Annotated[List[str], PropertyInfo(alias="allowedOrigins")]
+    allowed_origins: Annotated[SequenceNotStr[str], PropertyInfo(alias="allowedOrigins")]
     """Lists the origins allowed to display videos created with this input.
 
     Enter allowed origin domains in an array and use `*` for wildcard subdomains. An

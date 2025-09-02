@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable
+from typing import Dict, Iterable
 from typing_extensions import Required, TypedDict
 
+from ..._types import SequenceNotStr
 from .rules_param import RulesParam
 from .default_pools import DefaultPools
 from .steering_policy import SteeringPolicy
@@ -20,7 +21,7 @@ __all__ = ["LoadBalancerUpdateParams"]
 class LoadBalancerUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
 
-    default_pools: Required[List[DefaultPools]]
+    default_pools: Required[SequenceNotStr[DefaultPools]]
     """A list of pool IDs ordered by their failover priority.
 
     Pools defined here are used by default, or when region_pools are not configured
@@ -47,7 +48,7 @@ class LoadBalancerUpdateParams(TypedDict, total=False):
     is retried once against this alternate origin.
     """
 
-    country_pools: Dict[str, List[str]]
+    country_pools: Dict[str, SequenceNotStr[str]]
     """
     A mapping of country codes to a list of pool IDs (ordered by their failover
     priority) for the given country. Any country not explicitly defined will fall
@@ -67,10 +68,10 @@ class LoadBalancerUpdateParams(TypedDict, total=False):
     See `steering_policy` to learn how steering is affected.
     """
 
-    networks: List[str]
+    networks: SequenceNotStr[str]
     """List of networks where Load Balancer or Pool is enabled."""
 
-    pop_pools: Dict[str, List[str]]
+    pop_pools: Dict[str, SequenceNotStr[str]]
     """
     Enterprise only: A mapping of Cloudflare PoP identifiers to a list of pool IDs
     (ordered by their failover priority) for the PoP (datacenter). Any PoPs not
@@ -92,7 +93,7 @@ class LoadBalancerUpdateParams(TypedDict, total=False):
       open connections.
     """
 
-    region_pools: Dict[str, List[str]]
+    region_pools: Dict[str, SequenceNotStr[str]]
     """
     A mapping of region codes to a list of pool IDs (ordered by their failover
     priority) for the given region. Any regions not explicitly defined will fall

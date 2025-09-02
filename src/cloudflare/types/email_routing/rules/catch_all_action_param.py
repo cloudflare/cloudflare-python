@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, Required, TypedDict
+
+from ...._types import SequenceNotStr
 
 __all__ = ["CatchAllActionParam"]
 
@@ -12,4 +13,4 @@ class CatchAllActionParam(TypedDict, total=False):
     type: Required[Literal["drop", "forward", "worker"]]
     """Type of action for catch-all rule."""
 
-    value: List[str]
+    value: SequenceNotStr[str]

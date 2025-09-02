@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable, Optional
+from typing import Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -40,7 +40,7 @@ from .relate import (
     RelateResourceWithStreamingResponse,
     AsyncRelateResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ...._utils import maybe_transform, async_maybe_transform
 from .attackers import (
     AttackersResource,
@@ -202,7 +202,7 @@ class ThreatEventsResource(SyncAPIResource):
         dataset_id: str | NotGiven = NOT_GIVEN,
         indicator: str | NotGiven = NOT_GIVEN,
         indicator_type: str | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         target_country: str | NotGiven = NOT_GIVEN,
         target_industry: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -262,7 +262,7 @@ class ThreatEventsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        dataset_id: List[str] | NotGiven = NOT_GIVEN,
+        dataset_id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         force_refresh: bool | NotGiven = NOT_GIVEN,
         order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         order_by: str | NotGiven = NOT_GIVEN,
@@ -600,7 +600,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         dataset_id: str | NotGiven = NOT_GIVEN,
         indicator: str | NotGiven = NOT_GIVEN,
         indicator_type: str | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         target_country: str | NotGiven = NOT_GIVEN,
         target_industry: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -660,7 +660,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        dataset_id: List[str] | NotGiven = NOT_GIVEN,
+        dataset_id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         force_refresh: bool | NotGiven = NOT_GIVEN,
         order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         order_by: str | NotGiven = NOT_GIVEN,

@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import Union, Iterable
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
+from ...._types import SequenceNotStr
 from ...._utils import PropertyInfo
 
 __all__ = [
@@ -191,7 +192,7 @@ class Parameters(TypedDict, total=False):
     calculations: Iterable[ParametersCalculation]
     """Create Calculations to compute as part of the query."""
 
-    datasets: List[str]
+    datasets: SequenceNotStr[str]
     """Set the Datasets to query. Leave it empty to query all the datasets."""
 
     filter_combination: Annotated[Literal["and", "or", "AND", "OR"], PropertyInfo(alias="filterCombination")]

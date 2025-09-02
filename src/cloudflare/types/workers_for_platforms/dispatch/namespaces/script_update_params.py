@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import List, Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-from ....._types import FileTypes
+from ....._types import FileTypes, SequenceNotStr
 from ....workers.migration_step_param import MigrationStepParam
 from ....workers.single_step_migration_param import SingleStepMigrationParam
 from ....workers.scripts.consumer_script_param import ConsumerScriptParam
@@ -60,7 +60,7 @@ class ScriptUpdateParams(TypedDict, total=False):
     metadata: Required[Metadata]
     """JSON-encoded metadata about the uploaded parts and Worker configuration."""
 
-    files: List[FileTypes]
+    files: SequenceNotStr[FileTypes]
     """An array of modules (often JavaScript files) comprising a Worker script.
 
     At least one module must be present and referenced in the metadata as
@@ -94,7 +94,7 @@ class MetadataAssetsConfig(TypedDict, total=False):
     is no Worker script.
     """
 
-    run_worker_first: Union[List[str], bool]
+    run_worker_first: Union[SequenceNotStr[str], bool]
     """Contains a list path rules to control routing to either the Worker or assets.
 
     Glob (\\**) and negative (!) rules are supported. Rules must start with either '/'
@@ -173,7 +173,7 @@ class MetadataBindingWorkersBindingKindDispatchNamespaceOutboundWorker(TypedDict
 
 
 class MetadataBindingWorkersBindingKindDispatchNamespaceOutbound(TypedDict, total=False):
-    params: List[str]
+    params: SequenceNotStr[str]
     """
     Pass information from the Dispatch Worker to the Outbound Worker through the
     parameters.
@@ -549,7 +549,7 @@ class Metadata(TypedDict, total=False):
     this Worker.
     """
 
-    compatibility_flags: List[str]
+    compatibility_flags: SequenceNotStr[str]
     """Flags that enable or disable certain features in the Workers runtime.
 
     Used to enable upcoming features or opt in or out of specific changes not
@@ -562,7 +562,7 @@ class Metadata(TypedDict, total=False):
     of providing a completion token.
     """
 
-    keep_bindings: List[str]
+    keep_bindings: SequenceNotStr[str]
     """List of binding types to keep from previous_upload."""
 
     limits: MetadataLimits
@@ -589,7 +589,7 @@ class Metadata(TypedDict, total=False):
     [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
     """
 
-    tags: List[str]
+    tags: SequenceNotStr[str]
     """List of strings to use as tags for this Worker."""
 
     tail_consumers: Iterable[ConsumerScriptParam]

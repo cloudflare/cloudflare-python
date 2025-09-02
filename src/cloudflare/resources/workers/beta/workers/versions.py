@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Union, Iterable, cast
+from typing import Type, Union, Iterable, cast
 from typing_extensions import Literal
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -56,7 +56,7 @@ class VersionsResource(SyncAPIResource):
         assets: version_create_params.Assets | NotGiven = NOT_GIVEN,
         bindings: Iterable[version_create_params.Binding] | NotGiven = NOT_GIVEN,
         compatibility_date: str | NotGiven = NOT_GIVEN,
-        compatibility_flags: List[str] | NotGiven = NOT_GIVEN,
+        compatibility_flags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         limits: version_create_params.Limits | NotGiven = NOT_GIVEN,
         main_module: str | NotGiven = NOT_GIVEN,
         migrations: version_create_params.Migrations | NotGiven = NOT_GIVEN,
@@ -322,7 +322,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         assets: version_create_params.Assets | NotGiven = NOT_GIVEN,
         bindings: Iterable[version_create_params.Binding] | NotGiven = NOT_GIVEN,
         compatibility_date: str | NotGiven = NOT_GIVEN,
-        compatibility_flags: List[str] | NotGiven = NOT_GIVEN,
+        compatibility_flags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         limits: version_create_params.Limits | NotGiven = NOT_GIVEN,
         main_module: str | NotGiven = NOT_GIVEN,
         migrations: version_create_params.Migrations | NotGiven = NOT_GIVEN,

@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
+from typing import Iterable
 from typing_extensions import Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["RuleBulkCreateParams", "Rule"]
 
@@ -12,7 +14,7 @@ class RuleBulkCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier."""
 
-    delete_rules: List[str]
+    delete_rules: SequenceNotStr[str]
     """A list of rule identifiers to delete."""
 
     rules: Iterable[Rule]
@@ -29,4 +31,4 @@ class Rule(TypedDict, total=False):
 
     is_paused: bool
 
-    paths: List[str]
+    paths: SequenceNotStr[str]

@@ -5,6 +5,8 @@ from __future__ import annotations
 from typing import List, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
+from ..._types import SequenceNotStr
+
 __all__ = ["RateLimitEditParams", "Action", "ActionResponse", "Match", "MatchHeader", "MatchRequest", "MatchResponse"]
 
 
@@ -92,7 +94,7 @@ class MatchRequest(TypedDict, total=False):
     (`['_ALL_']`). This field is optional when creating a rate limit.
     """
 
-    schemes: List[str]
+    schemes: SequenceNotStr[str]
     """The HTTP schemes to match.
 
     You can specify one scheme (`['HTTPS']`), both schemes (`['HTTP','HTTPS']`), or

@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import List, Type, cast
+from typing import Type, cast
 from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ...._utils import maybe_transform, strip_not_given, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -90,8 +90,8 @@ class OnRampsResource(SyncAPIResource):
         name: str,
         type: Literal["OnrampTypeSingle", "OnrampTypeHub"],
         adopted_hub_id: str | NotGiven = NOT_GIVEN,
-        attached_hubs: List[str] | NotGiven = NOT_GIVEN,
-        attached_vpcs: List[str] | NotGiven = NOT_GIVEN,
+        attached_hubs: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        attached_vpcs: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         hub_provider_id: str | NotGiven = NOT_GIVEN,
         manage_hub_to_hub_attachments: bool | NotGiven = NOT_GIVEN,
@@ -157,8 +157,8 @@ class OnRampsResource(SyncAPIResource):
         onramp_id: str,
         *,
         account_id: str,
-        attached_hubs: List[str] | NotGiven = NOT_GIVEN,
-        attached_vpcs: List[str] | NotGiven = NOT_GIVEN,
+        attached_hubs: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        attached_vpcs: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         install_routes_in_cloud: bool | NotGiven = NOT_GIVEN,
         install_routes_in_magic_wan: bool | NotGiven = NOT_GIVEN,
@@ -357,8 +357,8 @@ class OnRampsResource(SyncAPIResource):
         onramp_id: str,
         *,
         account_id: str,
-        attached_hubs: List[str] | NotGiven = NOT_GIVEN,
-        attached_vpcs: List[str] | NotGiven = NOT_GIVEN,
+        attached_hubs: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        attached_vpcs: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         install_routes_in_cloud: bool | NotGiven = NOT_GIVEN,
         install_routes_in_magic_wan: bool | NotGiven = NOT_GIVEN,
@@ -576,8 +576,8 @@ class AsyncOnRampsResource(AsyncAPIResource):
         name: str,
         type: Literal["OnrampTypeSingle", "OnrampTypeHub"],
         adopted_hub_id: str | NotGiven = NOT_GIVEN,
-        attached_hubs: List[str] | NotGiven = NOT_GIVEN,
-        attached_vpcs: List[str] | NotGiven = NOT_GIVEN,
+        attached_hubs: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        attached_vpcs: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         hub_provider_id: str | NotGiven = NOT_GIVEN,
         manage_hub_to_hub_attachments: bool | NotGiven = NOT_GIVEN,
@@ -643,8 +643,8 @@ class AsyncOnRampsResource(AsyncAPIResource):
         onramp_id: str,
         *,
         account_id: str,
-        attached_hubs: List[str] | NotGiven = NOT_GIVEN,
-        attached_vpcs: List[str] | NotGiven = NOT_GIVEN,
+        attached_hubs: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        attached_vpcs: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         install_routes_in_cloud: bool | NotGiven = NOT_GIVEN,
         install_routes_in_magic_wan: bool | NotGiven = NOT_GIVEN,
@@ -843,8 +843,8 @@ class AsyncOnRampsResource(AsyncAPIResource):
         onramp_id: str,
         *,
         account_id: str,
-        attached_hubs: List[str] | NotGiven = NOT_GIVEN,
-        attached_vpcs: List[str] | NotGiven = NOT_GIVEN,
+        attached_hubs: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        attached_vpcs: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         install_routes_in_cloud: bool | NotGiven = NOT_GIVEN,
         install_routes_in_magic_wan: bool | NotGiven = NOT_GIVEN,

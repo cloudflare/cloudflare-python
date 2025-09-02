@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ......_utils import maybe_transform, async_maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
@@ -49,10 +49,10 @@ class AsesResource(SyncAPIResource):
     def origin(
         self,
         *,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        continent: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         http_method: List[
             Literal[
@@ -108,14 +108,14 @@ class AsesResource(SyncAPIResource):
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
         ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
+        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         mitigation_product: List[
             Literal[
                 "DDOS", "WAF", "BOT_MANAGEMENT", "ACCESS_RULES", "IP_REPUTATION", "API_SHIELD", "DATA_LOSS_PREVENTION"
             ]
         ]
         | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -221,10 +221,10 @@ class AsyncAsesResource(AsyncAPIResource):
     async def origin(
         self,
         *,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        continent: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         http_method: List[
             Literal[
@@ -280,14 +280,14 @@ class AsyncAsesResource(AsyncAPIResource):
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
         ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
+        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         mitigation_product: List[
             Literal[
                 "DDOS", "WAF", "BOT_MANAGEMENT", "ACCESS_RULES", "IP_REPUTATION", "API_SHIELD", "DATA_LOSS_PREVENTION"
             ]
         ]
         | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

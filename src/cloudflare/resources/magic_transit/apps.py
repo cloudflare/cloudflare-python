@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Type, Optional, cast
+from typing import Any, Type, Optional, cast
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -55,8 +55,8 @@ class AppsResource(SyncAPIResource):
         account_id: str,
         name: str,
         type: str,
-        hostnames: List[str] | NotGiven = NOT_GIVEN,
-        ip_subnets: List[str] | NotGiven = NOT_GIVEN,
+        hostnames: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        ip_subnets: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -115,8 +115,8 @@ class AppsResource(SyncAPIResource):
         account_app_id: str,
         *,
         account_id: str,
-        hostnames: List[str] | NotGiven = NOT_GIVEN,
-        ip_subnets: List[str] | NotGiven = NOT_GIVEN,
+        hostnames: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        ip_subnets: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -261,8 +261,8 @@ class AppsResource(SyncAPIResource):
         account_app_id: str,
         *,
         account_id: str,
-        hostnames: List[str] | NotGiven = NOT_GIVEN,
-        ip_subnets: List[str] | NotGiven = NOT_GIVEN,
+        hostnames: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        ip_subnets: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -349,8 +349,8 @@ class AsyncAppsResource(AsyncAPIResource):
         account_id: str,
         name: str,
         type: str,
-        hostnames: List[str] | NotGiven = NOT_GIVEN,
-        ip_subnets: List[str] | NotGiven = NOT_GIVEN,
+        hostnames: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        ip_subnets: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -409,8 +409,8 @@ class AsyncAppsResource(AsyncAPIResource):
         account_app_id: str,
         *,
         account_id: str,
-        hostnames: List[str] | NotGiven = NOT_GIVEN,
-        ip_subnets: List[str] | NotGiven = NOT_GIVEN,
+        hostnames: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        ip_subnets: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -555,8 +555,8 @@ class AsyncAppsResource(AsyncAPIResource):
         account_app_id: str,
         *,
         account_id: str,
-        hostnames: List[str] | NotGiven = NOT_GIVEN,
-        ip_subnets: List[str] | NotGiven = NOT_GIVEN,
+        hostnames: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        ip_subnets: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

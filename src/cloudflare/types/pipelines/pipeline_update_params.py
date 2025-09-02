@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = [
     "PipelineUpdateParams",
@@ -89,7 +91,7 @@ class Destination(TypedDict, total=False):
 
 
 class SourceCloudflarePipelinesWorkersPipelinesHTTPSourceCORS(TypedDict, total=False):
-    origins: List[str]
+    origins: SequenceNotStr[str]
     """Specifies allowed origins to allow Cross Origin HTTP Requests."""
 
 

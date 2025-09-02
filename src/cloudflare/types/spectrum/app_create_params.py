@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import Union
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
+from ..._types import SequenceNotStr
 from .dns_param import DNSParam
 from .edge_ips_param import EdgeIPsParam
 from .origin_dns_param import OriginDNSParam
@@ -51,7 +52,7 @@ class SpectrumConfigAppConfig(TypedDict, total=False):
     applications.
     """
 
-    origin_direct: List[str]
+    origin_direct: SequenceNotStr[str]
     """List of origin IP addresses.
 
     Array may contain multiple IP addresses for load balancing.
@@ -97,7 +98,7 @@ class SpectrumConfigPaygoAppConfig(TypedDict, total=False):
     example `"tcp/1000-2000"`.
     """
 
-    origin_direct: List[str]
+    origin_direct: SequenceNotStr[str]
     """List of origin IP addresses.
 
     Array may contain multiple IP addresses for load balancing.

@@ -5,50 +5,52 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Literal, TypedDict
 
+from ..._types import SequenceNotStr
+
 __all__ = ["PolicyFilterParam"]
 
 
 class PolicyFilterParam(TypedDict, total=False):
-    actions: List[str]
+    actions: SequenceNotStr[str]
     """Usage depends on specific alert type"""
 
-    affected_asns: List[str]
+    affected_asns: SequenceNotStr[str]
     """Used for configuring radar_notification"""
 
-    affected_components: List[str]
+    affected_components: SequenceNotStr[str]
     """Used for configuring incident_alert"""
 
-    affected_locations: List[str]
+    affected_locations: SequenceNotStr[str]
     """Used for configuring radar_notification"""
 
-    airport_code: List[str]
+    airport_code: SequenceNotStr[str]
     """Used for configuring maintenance_event_notification"""
 
-    alert_trigger_preferences: List[str]
+    alert_trigger_preferences: SequenceNotStr[str]
     """Usage depends on specific alert type"""
 
-    alert_trigger_preferences_value: List[str]
+    alert_trigger_preferences_value: SequenceNotStr[str]
     """Usage depends on specific alert type"""
 
-    enabled: List[str]
+    enabled: SequenceNotStr[str]
     """Used for configuring load_balancing_pool_enablement_alert"""
 
-    environment: List[str]
+    environment: SequenceNotStr[str]
     """Used for configuring pages_event_alert"""
 
-    event: List[str]
+    event: SequenceNotStr[str]
     """Used for configuring pages_event_alert"""
 
-    event_source: List[str]
+    event_source: SequenceNotStr[str]
     """Used for configuring load_balancing_health_alert"""
 
-    event_type: List[str]
+    event_type: SequenceNotStr[str]
     """Usage depends on specific alert type"""
 
-    group_by: List[str]
+    group_by: SequenceNotStr[str]
     """Usage depends on specific alert type"""
 
-    health_check_id: List[str]
+    health_check_id: SequenceNotStr[str]
     """Used for configuring health_check_status_notification"""
 
     incident_impact: List[
@@ -56,83 +58,83 @@ class PolicyFilterParam(TypedDict, total=False):
     ]
     """Used for configuring incident_alert"""
 
-    input_id: List[str]
+    input_id: SequenceNotStr[str]
     """Used for configuring stream_live_notifications"""
 
-    insight_class: List[str]
+    insight_class: SequenceNotStr[str]
     """Used for configuring security_insights_alert"""
 
-    limit: List[str]
+    limit: SequenceNotStr[str]
     """Used for configuring billing_usage_alert"""
 
-    logo_tag: List[str]
+    logo_tag: SequenceNotStr[str]
     """Used for configuring logo_match_alert"""
 
-    megabits_per_second: List[str]
+    megabits_per_second: SequenceNotStr[str]
     """Used for configuring advanced_ddos_attack_l4_alert"""
 
-    new_health: List[str]
+    new_health: SequenceNotStr[str]
     """Used for configuring load_balancing_health_alert"""
 
-    new_status: List[str]
+    new_status: SequenceNotStr[str]
     """Used for configuring tunnel_health_event"""
 
-    packets_per_second: List[str]
+    packets_per_second: SequenceNotStr[str]
     """Used for configuring advanced_ddos_attack_l4_alert"""
 
-    pool_id: List[str]
+    pool_id: SequenceNotStr[str]
     """Usage depends on specific alert type"""
 
-    pop_names: List[str]
+    pop_names: SequenceNotStr[str]
     """Usage depends on specific alert type"""
 
-    product: List[str]
+    product: SequenceNotStr[str]
     """Used for configuring billing_usage_alert"""
 
-    project_id: List[str]
+    project_id: SequenceNotStr[str]
     """Used for configuring pages_event_alert"""
 
-    protocol: List[str]
+    protocol: SequenceNotStr[str]
     """Used for configuring advanced_ddos_attack_l4_alert"""
 
-    query_tag: List[str]
+    query_tag: SequenceNotStr[str]
     """Usage depends on specific alert type"""
 
-    requests_per_second: List[str]
+    requests_per_second: SequenceNotStr[str]
     """Used for configuring advanced_ddos_attack_l7_alert"""
 
-    selectors: List[str]
+    selectors: SequenceNotStr[str]
     """Usage depends on specific alert type"""
 
-    services: List[str]
+    services: SequenceNotStr[str]
     """Used for configuring clickhouse_alert_fw_ent_anomaly"""
 
-    slo: List[str]
+    slo: SequenceNotStr[str]
     """Usage depends on specific alert type"""
 
-    status: List[str]
+    status: SequenceNotStr[str]
     """Used for configuring health_check_status_notification"""
 
-    target_hostname: List[str]
+    target_hostname: SequenceNotStr[str]
     """Used for configuring advanced_ddos_attack_l7_alert"""
 
-    target_ip: List[str]
+    target_ip: SequenceNotStr[str]
     """Used for configuring advanced_ddos_attack_l4_alert"""
 
-    target_zone_name: List[str]
+    target_zone_name: SequenceNotStr[str]
     """Used for configuring advanced_ddos_attack_l7_alert"""
 
     traffic_exclusions: List[Literal["security_events"]]
     """Used for configuring traffic_anomalies_alert"""
 
-    tunnel_id: List[str]
+    tunnel_id: SequenceNotStr[str]
     """Used for configuring tunnel_health_event"""
 
-    tunnel_name: List[str]
+    tunnel_name: SequenceNotStr[str]
     """Usage depends on specific alert type"""
 
-    where: List[str]
+    where: SequenceNotStr[str]
     """Usage depends on specific alert type"""
 
-    zones: List[str]
+    zones: SequenceNotStr[str]
     """Usage depends on specific alert type"""

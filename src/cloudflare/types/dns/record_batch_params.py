@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
+from ..._types import SequenceNotStr
 from .ttl_param import TTLParam
 from .record_tags import RecordTags
 from .a_record_param import ARecordParam
@@ -107,7 +108,7 @@ class PostDNSRecordsOpenpgpkeyRecord(TypedDict, total=False):
     settings: PostDNSRecordsOpenpgpkeyRecordSettings
     """Settings for the DNS record."""
 
-    tags: List[RecordTags]
+    tags: SequenceNotStr[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
 

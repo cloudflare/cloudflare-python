@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Iterable, Optional, cast
+from typing import Type, Iterable, Optional, cast
 from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -110,7 +110,7 @@ class SecretsResource(SyncAPIResource):
         order: Literal["name", "comment", "created", "modified", "status"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
-        scopes: Iterable[List[str]] | NotGiven = NOT_GIVEN,
+        scopes: Iterable[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         search: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -272,7 +272,7 @@ class SecretsResource(SyncAPIResource):
         account_id: str,
         store_id: str,
         name: str,
-        scopes: List[str],
+        scopes: SequenceNotStr[str],
         comment: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -338,7 +338,7 @@ class SecretsResource(SyncAPIResource):
         account_id: str,
         store_id: str,
         comment: str | NotGiven = NOT_GIVEN,
-        scopes: List[str] | NotGiven = NOT_GIVEN,
+        scopes: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -516,7 +516,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         order: Literal["name", "comment", "created", "modified", "status"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
-        scopes: Iterable[List[str]] | NotGiven = NOT_GIVEN,
+        scopes: Iterable[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         search: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -678,7 +678,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         account_id: str,
         store_id: str,
         name: str,
-        scopes: List[str],
+        scopes: SequenceNotStr[str],
         comment: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -744,7 +744,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         account_id: str,
         store_id: str,
         comment: str | NotGiven = NOT_GIVEN,
-        scopes: List[str] | NotGiven = NOT_GIVEN,
+        scopes: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

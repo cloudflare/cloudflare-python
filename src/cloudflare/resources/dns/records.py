@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Type, Iterable, Optional, cast
+from typing import Any, Type, Iterable, Optional, cast
 from typing_extensions import Literal, overload
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ..._utils import required_args, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -75,7 +75,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.ARecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -138,7 +138,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.AAAARecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -201,7 +201,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -265,7 +265,7 @@ class RecordsResource(SyncAPIResource):
         priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.MXRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -331,7 +331,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.NSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -394,7 +394,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.DNSRecordsOpenpgpkeyRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -457,7 +457,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.PTRRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -520,7 +520,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.TXTRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -588,7 +588,7 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.CAARecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.CAARecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -651,7 +651,7 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.CERTRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.CERTRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -714,7 +714,7 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.DNSKEYRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.DNSKEYRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -777,7 +777,7 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.DSRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.DSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -840,7 +840,7 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.HTTPSRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.HTTPSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -903,7 +903,7 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.LOCRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.LOCRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -966,7 +966,7 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.NAPTRRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1029,7 +1029,7 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.SMIMEARecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.SMIMEARecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1092,7 +1092,7 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.SRVRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.SRVRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1155,7 +1155,7 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.SSHFPRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.SSHFPRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1218,7 +1218,7 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.SVCBRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.SVCBRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1281,7 +1281,7 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.TLSARecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.TLSARecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1345,7 +1345,7 @@ class RecordsResource(SyncAPIResource):
         priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.URIRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1433,7 +1433,7 @@ class RecordsResource(SyncAPIResource):
         settings: record_create_params.ARecordSettings
         | record_create_params.CNAMERecordSettings
         | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         data: record_create_params.CAARecordData
         | record_create_params.CERTRecordData
@@ -1501,7 +1501,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.ARecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1567,7 +1567,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.AAAARecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1633,7 +1633,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1700,7 +1700,7 @@ class RecordsResource(SyncAPIResource):
         priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.MXRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1769,7 +1769,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.NSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1835,7 +1835,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.DNSRecordsOpenpgpkeyRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1901,7 +1901,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.PTRRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1967,7 +1967,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.TXTRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2038,7 +2038,7 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.CAARecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.CAARecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2104,7 +2104,7 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.CERTRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.CERTRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2170,7 +2170,7 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.DNSKEYRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.DNSKEYRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2236,7 +2236,7 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.DSRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.DSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2302,7 +2302,7 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.HTTPSRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.HTTPSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2368,7 +2368,7 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.LOCRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.LOCRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2434,7 +2434,7 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.NAPTRRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2500,7 +2500,7 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.SMIMEARecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.SMIMEARecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2566,7 +2566,7 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.SRVRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.SRVRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2632,7 +2632,7 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.SSHFPRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.SSHFPRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2698,7 +2698,7 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.SVCBRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.SVCBRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2764,7 +2764,7 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.TLSARecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.TLSARecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2831,7 +2831,7 @@ class RecordsResource(SyncAPIResource):
         priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.URIRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2922,7 +2922,7 @@ class RecordsResource(SyncAPIResource):
         settings: record_update_params.ARecordSettings
         | record_update_params.CNAMERecordSettings
         | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         data: record_update_params.CAARecordData
         | record_update_params.CERTRecordData
@@ -3226,7 +3226,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.ARecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3292,7 +3292,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.AAAARecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3358,7 +3358,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3425,7 +3425,7 @@ class RecordsResource(SyncAPIResource):
         priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.MXRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3494,7 +3494,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.NSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3560,7 +3560,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.DNSRecordsOpenpgpkeyRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3626,7 +3626,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.PTRRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3692,7 +3692,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.TXTRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3763,7 +3763,7 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.CAARecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.CAARecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3829,7 +3829,7 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.CERTRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.CERTRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3895,7 +3895,7 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.DNSKEYRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.DNSKEYRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3961,7 +3961,7 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.DSRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.DSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4027,7 +4027,7 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.HTTPSRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.HTTPSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4093,7 +4093,7 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.LOCRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.LOCRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4159,7 +4159,7 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.NAPTRRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4225,7 +4225,7 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.SMIMEARecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.SMIMEARecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4291,7 +4291,7 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.SRVRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.SRVRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4357,7 +4357,7 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.SSHFPRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.SSHFPRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4423,7 +4423,7 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.SVCBRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.SVCBRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4489,7 +4489,7 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.TLSARecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.TLSARecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4556,7 +4556,7 @@ class RecordsResource(SyncAPIResource):
         priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.URIRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4645,7 +4645,7 @@ class RecordsResource(SyncAPIResource):
         content: str | str | str | str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.ARecordSettings | record_edit_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         data: record_edit_params.CAARecordData
         | record_edit_params.CERTRecordData
@@ -4937,7 +4937,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.ARecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5000,7 +5000,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.AAAARecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5063,7 +5063,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5127,7 +5127,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.MXRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5193,7 +5193,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.NSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5256,7 +5256,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.DNSRecordsOpenpgpkeyRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5319,7 +5319,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.PTRRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5382,7 +5382,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.TXTRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5450,7 +5450,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.CAARecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.CAARecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5513,7 +5513,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.CERTRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.CERTRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5576,7 +5576,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.DNSKEYRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.DNSKEYRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5639,7 +5639,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.DSRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.DSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5702,7 +5702,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.HTTPSRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.HTTPSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5765,7 +5765,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.LOCRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.LOCRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5828,7 +5828,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.NAPTRRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5891,7 +5891,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.SMIMEARecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.SMIMEARecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5954,7 +5954,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.SRVRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.SRVRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -6017,7 +6017,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.SSHFPRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.SSHFPRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -6080,7 +6080,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.SVCBRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.SVCBRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -6143,7 +6143,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.TLSARecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.TLSARecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -6207,7 +6207,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.URIRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -6295,7 +6295,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         settings: record_create_params.ARecordSettings
         | record_create_params.CNAMERecordSettings
         | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         data: record_create_params.CAARecordData
         | record_create_params.CERTRecordData
@@ -6363,7 +6363,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.ARecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -6429,7 +6429,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.AAAARecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -6495,7 +6495,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -6562,7 +6562,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.MXRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -6631,7 +6631,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.NSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -6697,7 +6697,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.DNSRecordsOpenpgpkeyRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -6763,7 +6763,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.PTRRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -6829,7 +6829,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.TXTRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -6900,7 +6900,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.CAARecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.CAARecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -6966,7 +6966,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.CERTRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.CERTRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -7032,7 +7032,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.DNSKEYRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.DNSKEYRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -7098,7 +7098,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.DSRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.DSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -7164,7 +7164,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.HTTPSRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.HTTPSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -7230,7 +7230,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.LOCRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.LOCRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -7296,7 +7296,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.NAPTRRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -7362,7 +7362,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.SMIMEARecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.SMIMEARecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -7428,7 +7428,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.SRVRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.SRVRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -7494,7 +7494,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.SSHFPRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.SSHFPRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -7560,7 +7560,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.SVCBRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.SVCBRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -7626,7 +7626,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.TLSARecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.TLSARecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -7693,7 +7693,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.URIRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -7784,7 +7784,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         settings: record_update_params.ARecordSettings
         | record_update_params.CNAMERecordSettings
         | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         data: record_update_params.CAARecordData
         | record_update_params.CERTRecordData
@@ -8088,7 +8088,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.ARecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -8154,7 +8154,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.AAAARecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -8220,7 +8220,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -8287,7 +8287,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.MXRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -8356,7 +8356,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.NSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -8422,7 +8422,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.DNSRecordsOpenpgpkeyRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -8488,7 +8488,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.PTRRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -8554,7 +8554,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.TXTRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -8625,7 +8625,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.CAARecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.CAARecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -8691,7 +8691,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.CERTRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.CERTRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -8757,7 +8757,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.DNSKEYRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.DNSKEYRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -8823,7 +8823,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.DSRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.DSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -8889,7 +8889,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.HTTPSRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.HTTPSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -8955,7 +8955,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.LOCRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.LOCRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -9021,7 +9021,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.NAPTRRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -9087,7 +9087,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.SMIMEARecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.SMIMEARecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -9153,7 +9153,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.SRVRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.SRVRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -9219,7 +9219,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.SSHFPRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.SSHFPRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -9285,7 +9285,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.SVCBRecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.SVCBRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -9351,7 +9351,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.TLSARecordData | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.TLSARecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -9418,7 +9418,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.URIRecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -9507,7 +9507,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | str | str | str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.ARecordSettings | record_edit_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         data: record_edit_params.CAARecordData
         | record_edit_params.CERTRecordData

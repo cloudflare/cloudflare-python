@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Optional, cast
+from typing import Type, Optional, cast
 from typing_extensions import Literal, overload
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ..._utils import required_args, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ...types.d1 import (
@@ -592,7 +592,7 @@ class DatabaseResource(SyncAPIResource):
         *,
         account_id: str,
         sql: str,
-        params: List[str] | NotGiven = NOT_GIVEN,
+        params: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -646,7 +646,7 @@ class DatabaseResource(SyncAPIResource):
         *,
         account_id: str,
         sql: str,
-        params: List[str] | NotGiven = NOT_GIVEN,
+        params: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1253,7 +1253,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
         *,
         account_id: str,
         sql: str,
-        params: List[str] | NotGiven = NOT_GIVEN,
+        params: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1307,7 +1307,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
         *,
         account_id: str,
         sql: str,
-        params: List[str] | NotGiven = NOT_GIVEN,
+        params: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = [
     "MemberCreateParams",
@@ -22,7 +24,7 @@ class IAMCreateMemberWithRoles(TypedDict, total=False):
     email: Required[str]
     """The contact email address of the user."""
 
-    roles: Required[List[str]]
+    roles: Required[SequenceNotStr[str]]
     """Array of roles associated with this member."""
 
     status: Literal["accepted", "pending"]

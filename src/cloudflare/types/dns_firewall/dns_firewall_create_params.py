@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Optional
 from typing_extensions import Required, TypedDict
 
+from ..._types import SequenceNotStr
 from .upstream_ips import UpstreamIPs
 from .attack_mitigation_param import AttackMitigationParam
 
@@ -18,7 +19,7 @@ class DNSFirewallCreateParams(TypedDict, total=False):
     name: Required[str]
     """DNS Firewall cluster name"""
 
-    upstream_ips: Required[List[UpstreamIPs]]
+    upstream_ips: Required[SequenceNotStr[UpstreamIPs]]
 
     attack_mitigation: Optional[AttackMitigationParam]
     """Attack mitigation settings"""

@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable, Optional
+from typing import Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["LogDeleteParams", "Filter"]
 
@@ -64,4 +66,4 @@ class Filter(TypedDict, total=False):
 
     operator: Required[Literal["eq", "neq", "contains", "lt", "gt"]]
 
-    value: Required[List[Union[Optional[str], float, bool]]]
+    value: Required[SequenceNotStr[Union[Optional[str], float, bool]]]

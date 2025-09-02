@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Dict, List, Union, Iterable
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
+from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
 __all__ = [
@@ -42,7 +43,7 @@ class LinkCreateParams(TypedDict, total=False):
     `<style type="text/css">` tag with the content.
     """
 
-    allow_request_pattern: Annotated[List[str], PropertyInfo(alias="allowRequestPattern")]
+    allow_request_pattern: Annotated[SequenceNotStr[str], PropertyInfo(alias="allowRequestPattern")]
     """Only allow requests that match the provided regex patterns, eg. '/^.\\**\\..(css)'."""
 
     allow_resource_types: Annotated[
@@ -95,7 +96,7 @@ class LinkCreateParams(TypedDict, total=False):
     Either `html` or `url` must be set.
     """
 
-    reject_request_pattern: Annotated[List[str], PropertyInfo(alias="rejectRequestPattern")]
+    reject_request_pattern: Annotated[SequenceNotStr[str], PropertyInfo(alias="rejectRequestPattern")]
     """Block undesired requests that match the provided regex patterns, eg.
 
     '/^.\\**\\..(css)'.

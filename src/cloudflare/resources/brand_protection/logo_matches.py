@@ -2,11 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
-
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -49,7 +47,7 @@ class LogoMatchesResource(SyncAPIResource):
         *,
         account_id: str,
         limit: str | NotGiven = NOT_GIVEN,
-        logo_id: List[str] | NotGiven = NOT_GIVEN,
+        logo_id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         offset: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -96,7 +94,7 @@ class LogoMatchesResource(SyncAPIResource):
         *,
         account_id: str,
         limit: str | NotGiven = NOT_GIVEN,
-        logo_id: List[str] | NotGiven = NOT_GIVEN,
+        logo_id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         offset: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -164,7 +162,7 @@ class AsyncLogoMatchesResource(AsyncAPIResource):
         *,
         account_id: str,
         limit: str | NotGiven = NOT_GIVEN,
-        logo_id: List[str] | NotGiven = NOT_GIVEN,
+        logo_id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         offset: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -211,7 +209,7 @@ class AsyncLogoMatchesResource(AsyncAPIResource):
         *,
         account_id: str,
         limit: str | NotGiven = NOT_GIVEN,
-        logo_id: List[str] | NotGiven = NOT_GIVEN,
+        logo_id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         offset: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

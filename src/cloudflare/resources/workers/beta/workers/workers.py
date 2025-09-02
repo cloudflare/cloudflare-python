@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Iterable, cast
+from typing import Type, Iterable, cast
 
 import httpx
 
@@ -14,7 +14,7 @@ from .versions import (
     VersionsResourceWithStreamingResponse,
     AsyncVersionsResourceWithStreamingResponse,
 )
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -66,7 +66,7 @@ class WorkersResource(SyncAPIResource):
         logpush: bool | NotGiven = NOT_GIVEN,
         observability: worker_create_params.Observability | NotGiven = NOT_GIVEN,
         subdomain: worker_create_params.Subdomain | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         tail_consumers: Iterable[worker_create_params.TailConsumer] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -135,7 +135,7 @@ class WorkersResource(SyncAPIResource):
         logpush: bool | NotGiven = NOT_GIVEN,
         observability: worker_update_params.Observability | NotGiven = NOT_GIVEN,
         subdomain: worker_update_params.Subdomain | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         tail_consumers: Iterable[worker_update_params.TailConsumer] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -368,7 +368,7 @@ class AsyncWorkersResource(AsyncAPIResource):
         logpush: bool | NotGiven = NOT_GIVEN,
         observability: worker_create_params.Observability | NotGiven = NOT_GIVEN,
         subdomain: worker_create_params.Subdomain | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         tail_consumers: Iterable[worker_create_params.TailConsumer] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -437,7 +437,7 @@ class AsyncWorkersResource(AsyncAPIResource):
         logpush: bool | NotGiven = NOT_GIVEN,
         observability: worker_update_params.Observability | NotGiven = NOT_GIVEN,
         subdomain: worker_update_params.Subdomain | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         tail_consumers: Iterable[worker_update_params.TailConsumer] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

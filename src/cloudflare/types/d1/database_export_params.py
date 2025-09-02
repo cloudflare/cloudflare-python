@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["DatabaseExportParams", "DumpOptions"]
 
@@ -31,7 +32,7 @@ class DumpOptions(TypedDict, total=False):
     no_schema: bool
     """Export only each table's contents, not its definition"""
 
-    tables: List[str]
+    tables: SequenceNotStr[str]
     """Filter the export to just one or more tables.
 
     Passing an empty array is the same as not passing anything and means: export all

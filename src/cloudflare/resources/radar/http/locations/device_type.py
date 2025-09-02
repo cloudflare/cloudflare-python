@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -50,20 +50,20 @@ class DeviceTypeResource(SyncAPIResource):
         self,
         device_type: Literal["DESKTOP", "MOBILE", "OTHER"],
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
+        asn: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
         browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        continent: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
         ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
         | NotGiven = NOT_GIVEN,
         tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
@@ -190,20 +190,20 @@ class AsyncDeviceTypeResource(AsyncAPIResource):
         self,
         device_type: Literal["DESKTOP", "MOBILE", "OTHER"],
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
+        asn: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
         browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        continent: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
         ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
         | NotGiven = NOT_GIVEN,
         tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,

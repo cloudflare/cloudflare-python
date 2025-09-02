@@ -5,6 +5,8 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Literal, Required, TypedDict
 
+from ..._types import SequenceNotStr
+
 __all__ = ["SchemaListParams"]
 
 
@@ -20,5 +22,5 @@ class SchemaListParams(TypedDict, total=False):
     meaning.
     """
 
-    host: List[str]
+    host: SequenceNotStr[str]
     """Receive schema only for the given host(s)."""

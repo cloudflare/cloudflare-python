@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Union, Iterable, Optional, cast
+from typing import Any, Union, Iterable, Optional, cast
 from typing_extensions import overload
 
 import httpx
@@ -23,7 +23,7 @@ from .authors import (
     AuthorsResourceWithStreamingResponse,
     AsyncAuthorsResourceWithStreamingResponse,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ..._utils import required_args, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ...types.ai import ai_run_params
@@ -251,7 +251,7 @@ class AIResource(SyncAPIResource):
         model_name: str,
         *,
         account_id: str,
-        text: Union[str, List[str]],
+        text: Union[str, SequenceNotStr[str]],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -882,7 +882,7 @@ class AIResource(SyncAPIResource):
         *,
         account_id: str,
         image: str | NotGiven = NOT_GIVEN,
-        text: List[str] | NotGiven = NOT_GIVEN,
+        text: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -931,7 +931,7 @@ class AIResource(SyncAPIResource):
         model_name: str,
         *,
         account_id: str,
-        text: str | Union[str, List[str]] | List[str] | NotGiven = NOT_GIVEN,
+        text: str | Union[str, SequenceNotStr[str]] | SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         prompt: str | NotGiven = NOT_GIVEN,
         guidance: float | NotGiven = NOT_GIVEN,
         height: int | NotGiven = NOT_GIVEN,
@@ -1225,7 +1225,7 @@ class AsyncAIResource(AsyncAPIResource):
         model_name: str,
         *,
         account_id: str,
-        text: Union[str, List[str]],
+        text: Union[str, SequenceNotStr[str]],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1856,7 +1856,7 @@ class AsyncAIResource(AsyncAPIResource):
         *,
         account_id: str,
         image: str | NotGiven = NOT_GIVEN,
-        text: List[str] | NotGiven = NOT_GIVEN,
+        text: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1905,7 +1905,7 @@ class AsyncAIResource(AsyncAPIResource):
         model_name: str,
         *,
         account_id: str,
-        text: str | Union[str, List[str]] | List[str] | NotGiven = NOT_GIVEN,
+        text: str | Union[str, SequenceNotStr[str]] | SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         prompt: str | NotGiven = NOT_GIVEN,
         guidance: float | NotGiven = NOT_GIVEN,
         height: int | NotGiven = NOT_GIVEN,

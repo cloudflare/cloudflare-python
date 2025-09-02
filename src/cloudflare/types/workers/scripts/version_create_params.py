@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import List, Union, Iterable
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
-from ...._types import FileTypes
+from ...._types import FileTypes, SequenceNotStr
 from ...._utils import PropertyInfo
 
 __all__ = [
@@ -48,7 +48,7 @@ class VersionCreateParams(TypedDict, total=False):
     metadata: Required[Metadata]
     """JSON-encoded metadata about the uploaded parts and Worker configuration."""
 
-    files: List[FileTypes]
+    files: SequenceNotStr[FileTypes]
     """An array of modules (often JavaScript files) comprising a Worker script.
 
     At least one module must be present and referenced in the metadata as
@@ -123,7 +123,7 @@ class MetadataBindingWorkersBindingKindDispatchNamespaceOutboundWorker(TypedDict
 
 
 class MetadataBindingWorkersBindingKindDispatchNamespaceOutbound(TypedDict, total=False):
-    params: List[str]
+    params: SequenceNotStr[str]
     """
     Pass information from the Dispatch Worker to the Outbound Worker through the
     parameters.
@@ -439,14 +439,14 @@ class Metadata(TypedDict, total=False):
     this Worker.
     """
 
-    compatibility_flags: List[str]
+    compatibility_flags: SequenceNotStr[str]
     """Flags that enable or disable certain features in the Workers runtime.
 
     Used to enable upcoming features or opt in or out of specific changes not
     included in a `compatibility_date`.
     """
 
-    keep_bindings: List[str]
+    keep_bindings: SequenceNotStr[str]
     """List of binding types to keep from previous_upload."""
 
     usage_model: Literal["standard", "bundled", "unbound"]

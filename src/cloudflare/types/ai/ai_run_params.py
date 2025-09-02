@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable
+from typing import Dict, Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = [
     "AIRunParams",
@@ -113,7 +115,7 @@ class TextToSpeech(TypedDict, total=False):
 class TextEmbeddings(TypedDict, total=False):
     account_id: Required[str]
 
-    text: Required[Union[str, List[str]]]
+    text: Required[Union[str, SequenceNotStr[str]]]
     """The text to embed"""
 
 
@@ -317,7 +319,7 @@ class MessagesToolUnionMember0Parameters(TypedDict, total=False):
     type: Required[str]
     """The type of the parameters object (usually 'object')."""
 
-    required: List[str]
+    required: SequenceNotStr[str]
     """List of required parameter names."""
 
 
@@ -347,7 +349,7 @@ class MessagesToolFunctionFunctionParameters(TypedDict, total=False):
     type: Required[str]
     """The type of the parameters object (usually 'object')."""
 
-    required: List[str]
+    required: SequenceNotStr[str]
     """List of required parameter names."""
 
 
@@ -569,7 +571,7 @@ class MultimodalEmbeddings(TypedDict, total=False):
     image: str
     """Image in base64 encoded format."""
 
-    text: List[str]
+    text: SequenceNotStr[str]
 
 
 AIRunParams: TypeAlias = Union[

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Type, cast
+from typing import Dict, Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -15,7 +15,7 @@ from .previews import (
     PreviewsResourceWithStreamingResponse,
     AsyncPreviewsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from .references import (
@@ -82,7 +82,7 @@ class MonitorsResource(SyncAPIResource):
         expected_body: str | NotGiven = NOT_GIVEN,
         expected_codes: str | NotGiven = NOT_GIVEN,
         follow_redirects: bool | NotGiven = NOT_GIVEN,
-        header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
+        header: Dict[str, SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         interval: int | NotGiven = NOT_GIVEN,
         method: str | NotGiven = NOT_GIVEN,
         path: str | NotGiven = NOT_GIVEN,
@@ -208,7 +208,7 @@ class MonitorsResource(SyncAPIResource):
         expected_body: str | NotGiven = NOT_GIVEN,
         expected_codes: str | NotGiven = NOT_GIVEN,
         follow_redirects: bool | NotGiven = NOT_GIVEN,
-        header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
+        header: Dict[str, SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         interval: int | NotGiven = NOT_GIVEN,
         method: str | NotGiven = NOT_GIVEN,
         path: str | NotGiven = NOT_GIVEN,
@@ -414,7 +414,7 @@ class MonitorsResource(SyncAPIResource):
         expected_body: str | NotGiven = NOT_GIVEN,
         expected_codes: str | NotGiven = NOT_GIVEN,
         follow_redirects: bool | NotGiven = NOT_GIVEN,
-        header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
+        header: Dict[str, SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         interval: int | NotGiven = NOT_GIVEN,
         method: str | NotGiven = NOT_GIVEN,
         path: str | NotGiven = NOT_GIVEN,
@@ -612,7 +612,7 @@ class AsyncMonitorsResource(AsyncAPIResource):
         expected_body: str | NotGiven = NOT_GIVEN,
         expected_codes: str | NotGiven = NOT_GIVEN,
         follow_redirects: bool | NotGiven = NOT_GIVEN,
-        header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
+        header: Dict[str, SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         interval: int | NotGiven = NOT_GIVEN,
         method: str | NotGiven = NOT_GIVEN,
         path: str | NotGiven = NOT_GIVEN,
@@ -738,7 +738,7 @@ class AsyncMonitorsResource(AsyncAPIResource):
         expected_body: str | NotGiven = NOT_GIVEN,
         expected_codes: str | NotGiven = NOT_GIVEN,
         follow_redirects: bool | NotGiven = NOT_GIVEN,
-        header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
+        header: Dict[str, SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         interval: int | NotGiven = NOT_GIVEN,
         method: str | NotGiven = NOT_GIVEN,
         path: str | NotGiven = NOT_GIVEN,
@@ -944,7 +944,7 @@ class AsyncMonitorsResource(AsyncAPIResource):
         expected_body: str | NotGiven = NOT_GIVEN,
         expected_codes: str | NotGiven = NOT_GIVEN,
         follow_redirects: bool | NotGiven = NOT_GIVEN,
-        header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
+        header: Dict[str, SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         interval: int | NotGiven = NOT_GIVEN,
         method: str | NotGiven = NOT_GIVEN,
         path: str | NotGiven = NOT_GIVEN,

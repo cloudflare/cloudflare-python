@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import Union, Iterable
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
+from ...._types import SequenceNotStr
 from ...._utils import PropertyInfo
 
 __all__ = ["TelemetryValuesParams", "Timeframe", "Filter", "Needle"]
@@ -13,7 +14,7 @@ __all__ = ["TelemetryValuesParams", "Timeframe", "Filter", "Needle"]
 class TelemetryValuesParams(TypedDict, total=False):
     account_id: Required[str]
 
-    datasets: Required[List[str]]
+    datasets: Required[SequenceNotStr[str]]
 
     key: Required[str]
 

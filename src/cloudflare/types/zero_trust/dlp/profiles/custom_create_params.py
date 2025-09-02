@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable, Optional
+from typing import Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
+from ....._types import SequenceNotStr
 from .pattern_param import PatternParam
 from ..context_awareness_param import ContextAwarenessParam
 
@@ -68,7 +69,7 @@ class EntryDLPNewWordListEntry(TypedDict, total=False):
 
     name: Required[str]
 
-    words: Required[List[str]]
+    words: Required[SequenceNotStr[str]]
 
 
 Entry: TypeAlias = Union[EntryDLPNewCustomEntry, EntryDLPNewWordListEntry]

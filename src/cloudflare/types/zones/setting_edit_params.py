@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import Union
 from typing_extensions import Required, TypeAlias, TypedDict
 
+from ..._types import SequenceNotStr
 from .automatic_platform_optimization_param import AutomaticPlatformOptimizationParam
 
 __all__ = [
@@ -74,7 +75,7 @@ class Variant1ValueZonesSecurityHeaderValue(TypedDict, total=False):
 
 Variant1Value: TypeAlias = Union[
     Variant1ValueZonesCacheRulesAegisValue,
-    List[str],
+    SequenceNotStr[str],
     Variant1ValueZonesNELValue,
     float,
     AutomaticPlatformOptimizationParam,

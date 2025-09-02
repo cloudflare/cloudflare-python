@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["LogoMatchDownloadParams"]
 
@@ -13,6 +14,6 @@ class LogoMatchDownloadParams(TypedDict, total=False):
 
     limit: str
 
-    logo_id: List[str]
+    logo_id: SequenceNotStr[str]
 
     offset: str

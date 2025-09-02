@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Optional, cast
+from typing import Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -55,7 +55,7 @@ class SubscriptionsResource(SyncAPIResource):
         account_id: str,
         destination: subscription_create_params.Destination | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        events: List[str] | NotGiven = NOT_GIVEN,
+        events: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         source: subscription_create_params.Source | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -120,7 +120,7 @@ class SubscriptionsResource(SyncAPIResource):
         account_id: str,
         destination: subscription_update_params.Destination | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        events: List[str] | NotGiven = NOT_GIVEN,
+        events: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -309,7 +309,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         account_id: str,
         destination: subscription_create_params.Destination | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        events: List[str] | NotGiven = NOT_GIVEN,
+        events: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         source: subscription_create_params.Source | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -374,7 +374,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         account_id: str,
         destination: subscription_update_params.Destination | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        events: List[str] | NotGiven = NOT_GIVEN,
+        events: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

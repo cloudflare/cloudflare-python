@@ -2,10 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, Annotated, TypedDict
 
-from ...._types import FileTypes
+from ...._types import FileTypes, SequenceNotStr
 from ...._utils import PropertyInfo
 
 __all__ = ["ContentUpdateParams", "Metadata"]
@@ -18,7 +17,7 @@ class ContentUpdateParams(TypedDict, total=False):
     metadata: Required[Metadata]
     """JSON-encoded metadata about the uploaded parts and Worker configuration."""
 
-    files: List[FileTypes]
+    files: SequenceNotStr[FileTypes]
     """An array of modules (often JavaScript files) comprising a Worker script.
 
     At least one module must be present and referenced in the metadata as

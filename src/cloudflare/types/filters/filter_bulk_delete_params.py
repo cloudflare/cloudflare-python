@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["FilterBulkDeleteParams"]
 
@@ -12,4 +13,4 @@ class FilterBulkDeleteParams(TypedDict, total=False):
     zone_id: Required[str]
     """Defines an identifier."""
 
-    id: Required[List[str]]
+    id: Required[SequenceNotStr[str]]

@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ......_utils import maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
@@ -50,7 +50,7 @@ class UpdatesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        idp_id: List[str],
+        idp_id: SequenceNotStr[str],
         cf_resource_id: str | NotGiven = NOT_GIVEN,
         direction: Literal["desc", "asc"] | NotGiven = NOT_GIVEN,
         idp_resource_id: str | NotGiven = NOT_GIVEN,
@@ -173,7 +173,7 @@ class AsyncUpdatesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        idp_id: List[str],
+        idp_id: SequenceNotStr[str],
         cf_resource_id: str | NotGiven = NOT_GIVEN,
         direction: Literal["desc", "asc"] | NotGiven = NOT_GIVEN,
         idp_resource_id: str | NotGiven = NOT_GIVEN,

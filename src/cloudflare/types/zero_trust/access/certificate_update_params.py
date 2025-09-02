@@ -2,16 +2,16 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, TypedDict
 
+from ...._types import SequenceNotStr
 from .associated_hostnames import AssociatedHostnames
 
 __all__ = ["CertificateUpdateParams"]
 
 
 class CertificateUpdateParams(TypedDict, total=False):
-    associated_hostnames: Required[List[AssociatedHostnames]]
+    associated_hostnames: Required[SequenceNotStr[AssociatedHostnames]]
     """The hostnames of the applications that will use this certificate."""
 
     account_id: str

@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
+from typing import Iterable
 from typing_extensions import Required, TypedDict
 
 from .subnet import Subnet
+from ...._types import SequenceNotStr
 
 __all__ = ["ACLConfigurationParam"]
 
@@ -17,7 +18,7 @@ class ACLConfigurationParam(TypedDict, total=False):
     lan_name: str
     """The name of the LAN based on the provided lan_id."""
 
-    port_ranges: List[str]
+    port_ranges: SequenceNotStr[str]
     """Array of port ranges on the provided LAN that will be included in the ACL.
 
     If no ports or port rangess are provided, communication on any port on this LAN
@@ -31,7 +32,7 @@ class ACLConfigurationParam(TypedDict, total=False):
     is allowed.
     """
 
-    subnets: List[Subnet]
+    subnets: SequenceNotStr[Subnet]
     """Array of subnet IPs within the LAN that will be included in the ACL.
 
     If no subnets are provided, communication on any subnets on this LAN are

@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Optional
+from typing import Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
+from ....._types import SequenceNotStr
 from ....._utils import PropertyInfo
 
 __all__ = ["TargetListParams"]
@@ -42,7 +43,7 @@ class TargetListParams(TypedDict, total=False):
     ip_v6: Optional[str]
     """IPv6 address of the target"""
 
-    ips: List[str]
+    ips: SequenceNotStr[str]
     """Filters for targets that have any of the following IP addresses.
 
     Specify `ips` multiple times in query parameter to build list of candidates.
@@ -87,7 +88,7 @@ class TargetListParams(TypedDict, total=False):
     per_page: int
     """Max amount of entries returned per page"""
 
-    target_ids: List[str]
+    target_ids: SequenceNotStr[str]
     """Filters for targets that have any of the following UUIDs.
 
     Specify `target_ids` multiple times in query parameter to build list of

@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Optional, cast
+from typing import Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -67,7 +67,7 @@ class RulesResource(SyncAPIResource):
         automatic_advertisement: Optional[bool] | NotGiven = NOT_GIVEN,
         bandwidth: float | NotGiven = NOT_GIVEN,
         packet_threshold: float | NotGiven = NOT_GIVEN,
-        prefixes: List[str] | NotGiven = NOT_GIVEN,
+        prefixes: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -142,7 +142,7 @@ class RulesResource(SyncAPIResource):
         automatic_advertisement: Optional[bool] | NotGiven = NOT_GIVEN,
         bandwidth: float | NotGiven = NOT_GIVEN,
         packet_threshold: float | NotGiven = NOT_GIVEN,
-        prefixes: List[str] | NotGiven = NOT_GIVEN,
+        prefixes: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -294,7 +294,7 @@ class RulesResource(SyncAPIResource):
         duration: Literal["1m", "5m", "10m", "15m", "20m", "30m", "45m", "60m"] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         packet_threshold: float | NotGiven = NOT_GIVEN,
-        prefixes: List[str] | NotGiven = NOT_GIVEN,
+        prefixes: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -437,7 +437,7 @@ class AsyncRulesResource(AsyncAPIResource):
         automatic_advertisement: Optional[bool] | NotGiven = NOT_GIVEN,
         bandwidth: float | NotGiven = NOT_GIVEN,
         packet_threshold: float | NotGiven = NOT_GIVEN,
-        prefixes: List[str] | NotGiven = NOT_GIVEN,
+        prefixes: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -512,7 +512,7 @@ class AsyncRulesResource(AsyncAPIResource):
         automatic_advertisement: Optional[bool] | NotGiven = NOT_GIVEN,
         bandwidth: float | NotGiven = NOT_GIVEN,
         packet_threshold: float | NotGiven = NOT_GIVEN,
-        prefixes: List[str] | NotGiven = NOT_GIVEN,
+        prefixes: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -664,7 +664,7 @@ class AsyncRulesResource(AsyncAPIResource):
         duration: Literal["1m", "5m", "10m", "15m", "20m", "30m", "45m", "60m"] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         packet_threshold: float | NotGiven = NOT_GIVEN,
-        prefixes: List[str] | NotGiven = NOT_GIVEN,
+        prefixes: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

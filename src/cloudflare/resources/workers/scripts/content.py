@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Mapping, cast
+from typing import Type, Mapping, cast
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes, SequenceNotStr
 from ...._utils import (
     extract_files,
     maybe_transform,
@@ -64,7 +64,7 @@ class ContentResource(SyncAPIResource):
         *,
         account_id: str,
         metadata: content_update_params.Metadata,
-        files: List[FileTypes] | NotGiven = NOT_GIVEN,
+        files: SequenceNotStr[FileTypes] | NotGiven = NOT_GIVEN,
         cf_worker_body_part: str | NotGiven = NOT_GIVEN,
         cf_worker_main_module_part: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -206,7 +206,7 @@ class AsyncContentResource(AsyncAPIResource):
         *,
         account_id: str,
         metadata: content_update_params.Metadata,
-        files: List[FileTypes] | NotGiven = NOT_GIVEN,
+        files: SequenceNotStr[FileTypes] | NotGiven = NOT_GIVEN,
         cf_worker_body_part: str | NotGiven = NOT_GIVEN,
         cf_worker_main_module_part: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

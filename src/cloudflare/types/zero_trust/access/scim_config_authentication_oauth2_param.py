@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, Required, TypedDict
+
+from ...._types import SequenceNotStr
 
 __all__ = ["SCIMConfigAuthenticationOauth2Param"]
 
@@ -33,7 +34,7 @@ class SCIMConfigAuthenticationOauth2Param(TypedDict, total=False):
     service.
     """
 
-    scopes: List[str]
+    scopes: SequenceNotStr[str]
     """
     The authorization scopes to request when generating the token used to
     authenticate with the remove SCIM service.

@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Optional
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ....._utils import maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -63,7 +63,7 @@ class TestsResource(SyncAPIResource):
         *,
         account_id: str,
         colo: str | NotGiven = NOT_GIVEN,
-        device_id: List[str] | NotGiven = NOT_GIVEN,
+        device_id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         test_name: str | NotGiven = NOT_GIVEN,
@@ -152,7 +152,7 @@ class AsyncTestsResource(AsyncAPIResource):
         *,
         account_id: str,
         colo: str | NotGiven = NOT_GIVEN,
-        device_id: List[str] | NotGiven = NOT_GIVEN,
+        device_id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         test_name: str | NotGiven = NOT_GIVEN,

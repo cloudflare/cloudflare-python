@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, Required, TypedDict
+
+from ...._types import SequenceNotStr
 
 __all__ = ["RegistrationListParams", "Device", "User"]
 
@@ -11,7 +12,7 @@ __all__ = ["RegistrationListParams", "Device", "User"]
 class RegistrationListParams(TypedDict, total=False):
     account_id: Required[str]
 
-    id: List[str]
+    id: SequenceNotStr[str]
     """Filter by registration ID."""
 
     cursor: str
@@ -61,5 +62,5 @@ class Device(TypedDict, total=False):
 
 
 class User(TypedDict, total=False):
-    id: List[str]
+    id: SequenceNotStr[str]
     """Filter by user ID."""

@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, TypedDict
 
+from ..._types import SequenceNotStr
 from .waf.override_url import OverrideURL
 from .configuration_param import ConfigurationParam
 
@@ -22,7 +22,7 @@ class LockdownCreateParams(TypedDict, total=False):
     `ip_range` configurations.
     """
 
-    urls: Required[List[OverrideURL]]
+    urls: Required[SequenceNotStr[OverrideURL]]
     """The URLs to include in the current WAF override.
 
     You can use wildcards. Each entered URL will be escaped before use, which means

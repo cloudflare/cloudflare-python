@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import Union, Iterable
 from datetime import datetime
 from typing_extensions import Required, Annotated, TypedDict
 
+from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 from ..shared_params.token_policy import TokenPolicy
 from ..shared.token_condition_cidr_list import TokenConditionCIDRList
@@ -38,14 +39,14 @@ class TokenCreateParams(TypedDict, total=False):
 _ConditionRequestIPReservedKeywords = TypedDict(
     "_ConditionRequestIPReservedKeywords",
     {
-        "in": List[TokenConditionCIDRList],
+        "in": SequenceNotStr[TokenConditionCIDRList],
     },
     total=False,
 )
 
 
 class ConditionRequestIP(_ConditionRequestIPReservedKeywords, total=False):
-    not_in: List[TokenConditionCIDRList]
+    not_in: SequenceNotStr[TokenConditionCIDRList]
     """List of IPv4/IPv6 CIDR addresses."""
 
 

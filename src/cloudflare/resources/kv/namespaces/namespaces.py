@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Type, Iterable, Optional, cast
+from typing import Any, Type, Iterable, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -31,7 +31,7 @@ from .metadata import (
     MetadataResourceWithStreamingResponse,
     AsyncMetadataResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ....types.kv import (
@@ -295,7 +295,7 @@ class NamespacesResource(SyncAPIResource):
         namespace_id: str,
         *,
         account_id: str,
-        body: List[str],
+        body: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -327,7 +327,7 @@ class NamespacesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return self._post(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk/delete",
-            body=maybe_transform(body, List[str]),
+            body=maybe_transform(body, SequenceNotStr[str]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -343,7 +343,7 @@ class NamespacesResource(SyncAPIResource):
         namespace_id: str,
         *,
         account_id: str,
-        keys: List[str],
+        keys: SequenceNotStr[str],
         type: Literal["text", "json"] | NotGiven = NOT_GIVEN,
         with_metadata: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -739,7 +739,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         namespace_id: str,
         *,
         account_id: str,
-        body: List[str],
+        body: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -771,7 +771,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return await self._post(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk/delete",
-            body=await async_maybe_transform(body, List[str]),
+            body=await async_maybe_transform(body, SequenceNotStr[str]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -787,7 +787,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         namespace_id: str,
         *,
         account_id: str,
-        keys: List[str],
+        keys: SequenceNotStr[str],
         type: Literal["text", "json"] | NotGiven = NOT_GIVEN,
         with_metadata: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

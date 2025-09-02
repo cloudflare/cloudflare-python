@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Type, Optional, cast
+from typing import Any, Type, Optional, cast
 from typing_extensions import Literal, overload
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ..._utils import required_args, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -65,7 +65,7 @@ class AppsResource(SyncAPIResource):
         argo_smart_routing: bool | NotGiven = NOT_GIVEN,
         edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
         ip_firewall: bool | NotGiven = NOT_GIVEN,
-        origin_direct: List[str] | NotGiven = NOT_GIVEN,
+        origin_direct: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
         origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
         proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
@@ -138,7 +138,7 @@ class AppsResource(SyncAPIResource):
         zone_id: str,
         dns: DNSParam,
         protocol: str,
-        origin_direct: List[str] | NotGiven = NOT_GIVEN,
+        origin_direct: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -182,7 +182,7 @@ class AppsResource(SyncAPIResource):
         argo_smart_routing: bool | NotGiven = NOT_GIVEN,
         edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
         ip_firewall: bool | NotGiven = NOT_GIVEN,
-        origin_direct: List[str] | NotGiven = NOT_GIVEN,
+        origin_direct: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
         origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
         proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
@@ -241,7 +241,7 @@ class AppsResource(SyncAPIResource):
         argo_smart_routing: bool | NotGiven = NOT_GIVEN,
         edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
         ip_firewall: bool | NotGiven = NOT_GIVEN,
-        origin_direct: List[str] | NotGiven = NOT_GIVEN,
+        origin_direct: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
         origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
         proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
@@ -317,7 +317,7 @@ class AppsResource(SyncAPIResource):
         zone_id: str,
         dns: DNSParam,
         protocol: str,
-        origin_direct: List[str] | NotGiven = NOT_GIVEN,
+        origin_direct: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -364,7 +364,7 @@ class AppsResource(SyncAPIResource):
         argo_smart_routing: bool | NotGiven = NOT_GIVEN,
         edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
         ip_firewall: bool | NotGiven = NOT_GIVEN,
-        origin_direct: List[str] | NotGiven = NOT_GIVEN,
+        origin_direct: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
         origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
         proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
@@ -600,7 +600,7 @@ class AsyncAppsResource(AsyncAPIResource):
         argo_smart_routing: bool | NotGiven = NOT_GIVEN,
         edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
         ip_firewall: bool | NotGiven = NOT_GIVEN,
-        origin_direct: List[str] | NotGiven = NOT_GIVEN,
+        origin_direct: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
         origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
         proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
@@ -673,7 +673,7 @@ class AsyncAppsResource(AsyncAPIResource):
         zone_id: str,
         dns: DNSParam,
         protocol: str,
-        origin_direct: List[str] | NotGiven = NOT_GIVEN,
+        origin_direct: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -717,7 +717,7 @@ class AsyncAppsResource(AsyncAPIResource):
         argo_smart_routing: bool | NotGiven = NOT_GIVEN,
         edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
         ip_firewall: bool | NotGiven = NOT_GIVEN,
-        origin_direct: List[str] | NotGiven = NOT_GIVEN,
+        origin_direct: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
         origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
         proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
@@ -776,7 +776,7 @@ class AsyncAppsResource(AsyncAPIResource):
         argo_smart_routing: bool | NotGiven = NOT_GIVEN,
         edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
         ip_firewall: bool | NotGiven = NOT_GIVEN,
-        origin_direct: List[str] | NotGiven = NOT_GIVEN,
+        origin_direct: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
         origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
         proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
@@ -852,7 +852,7 @@ class AsyncAppsResource(AsyncAPIResource):
         zone_id: str,
         dns: DNSParam,
         protocol: str,
-        origin_direct: List[str] | NotGiven = NOT_GIVEN,
+        origin_direct: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -899,7 +899,7 @@ class AsyncAppsResource(AsyncAPIResource):
         argo_smart_routing: bool | NotGiven = NOT_GIVEN,
         edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
         ip_firewall: bool | NotGiven = NOT_GIVEN,
-        origin_direct: List[str] | NotGiven = NOT_GIVEN,
+        origin_direct: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
         origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
         proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,

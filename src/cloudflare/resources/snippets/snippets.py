@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Mapping, Optional, cast
+from typing import Type, Mapping, Optional, cast
 
 import httpx
 
@@ -22,7 +22,7 @@ from .content import (
     ContentResourceWithStreamingResponse,
     AsyncContentResourceWithStreamingResponse,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes, SequenceNotStr
 from ..._utils import extract_files, maybe_transform, deepcopy_minimal, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -77,7 +77,7 @@ class SnippetsResource(SyncAPIResource):
         snippet_name: str,
         *,
         zone_id: str,
-        files: List[FileTypes],
+        files: SequenceNotStr[FileTypes],
         metadata: snippet_update_params.Metadata,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -309,7 +309,7 @@ class AsyncSnippetsResource(AsyncAPIResource):
         snippet_name: str,
         *,
         zone_id: str,
-        files: List[FileTypes],
+        files: SequenceNotStr[FileTypes],
         metadata: snippet_update_params.Metadata,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

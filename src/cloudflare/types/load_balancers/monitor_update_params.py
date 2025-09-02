@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List
+from typing import Dict
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
+from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
 __all__ = ["MonitorUpdateParams"]
@@ -54,7 +55,7 @@ class MonitorUpdateParams(TypedDict, total=False):
     This parameter is only valid for HTTP and HTTPS monitors.
     """
 
-    header: Dict[str, List[str]]
+    header: Dict[str, SequenceNotStr[str]]
     """The HTTP request headers to send in the health check.
 
     It is recommended you set a Host header by default. The User-Agent header cannot

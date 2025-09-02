@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Union, Optional, cast
+from typing import Type, Union, Optional, cast
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -56,7 +56,7 @@ from .videos import (
     VideosResourceWithStreamingResponse,
     AsyncVideosResourceWithStreamingResponse,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, SequenceNotStr
 from ..._utils import maybe_transform, strip_not_given, async_maybe_transform
 from .webhooks import (
     WebhooksResource,
@@ -413,7 +413,7 @@ class StreamResource(SyncAPIResource):
         identifier: str,
         *,
         account_id: str,
-        allowed_origins: List[AllowedOrigins] | NotGiven = NOT_GIVEN,
+        allowed_origins: SequenceNotStr[AllowedOrigins] | NotGiven = NOT_GIVEN,
         creator: str | NotGiven = NOT_GIVEN,
         max_duration_seconds: int | NotGiven = NOT_GIVEN,
         meta: object | NotGiven = NOT_GIVEN,
@@ -830,7 +830,7 @@ class AsyncStreamResource(AsyncAPIResource):
         identifier: str,
         *,
         account_id: str,
-        allowed_origins: List[AllowedOrigins] | NotGiven = NOT_GIVEN,
+        allowed_origins: SequenceNotStr[AllowedOrigins] | NotGiven = NOT_GIVEN,
         creator: str | NotGiven = NOT_GIVEN,
         max_duration_seconds: int | NotGiven = NOT_GIVEN,
         meta: object | NotGiven = NOT_GIVEN,

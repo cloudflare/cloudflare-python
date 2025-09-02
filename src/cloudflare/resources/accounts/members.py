@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Iterable, Optional, cast
+from typing import Type, Iterable, Optional, cast
 from typing_extensions import Literal, overload
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ..._utils import required_args, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -54,7 +54,7 @@ class MembersResource(SyncAPIResource):
         *,
         account_id: str,
         email: str,
-        roles: List[str],
+        roles: SequenceNotStr[str],
         status: Literal["accepted", "pending"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -124,7 +124,7 @@ class MembersResource(SyncAPIResource):
         *,
         account_id: str,
         email: str,
-        roles: List[str] | NotGiven = NOT_GIVEN,
+        roles: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         status: Literal["accepted", "pending"] | NotGiven = NOT_GIVEN,
         policies: Iterable[member_create_params.IAMCreateMemberWithPoliciesPolicy] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -442,7 +442,7 @@ class AsyncMembersResource(AsyncAPIResource):
         *,
         account_id: str,
         email: str,
-        roles: List[str],
+        roles: SequenceNotStr[str],
         status: Literal["accepted", "pending"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -512,7 +512,7 @@ class AsyncMembersResource(AsyncAPIResource):
         *,
         account_id: str,
         email: str,
-        roles: List[str] | NotGiven = NOT_GIVEN,
+        roles: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         status: Literal["accepted", "pending"] | NotGiven = NOT_GIVEN,
         policies: Iterable[member_create_params.IAMCreateMemberWithPoliciesPolicy] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

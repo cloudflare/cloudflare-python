@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable
+from typing import Dict, Union, Iterable
 from typing_extensions import Required, TypeAlias, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = [
     "CachePurgeParams",
@@ -20,7 +22,7 @@ __all__ = [
 class CachePurgeFlexPurgeByTags(TypedDict, total=False):
     zone_id: Required[str]
 
-    tags: List[str]
+    tags: SequenceNotStr[str]
     """
     For more information on cache tags and purging by tags, please refer to
     [purge by cache-tags documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-tags/).
@@ -30,7 +32,7 @@ class CachePurgeFlexPurgeByTags(TypedDict, total=False):
 class CachePurgeFlexPurgeByHostnames(TypedDict, total=False):
     zone_id: Required[str]
 
-    hosts: List[str]
+    hosts: SequenceNotStr[str]
     """
     For more information purging by hostnames, please refer to
     [purge by hostname documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-hostname/).
@@ -40,7 +42,7 @@ class CachePurgeFlexPurgeByHostnames(TypedDict, total=False):
 class CachePurgeFlexPurgeByPrefixes(TypedDict, total=False):
     zone_id: Required[str]
 
-    prefixes: List[str]
+    prefixes: SequenceNotStr[str]
     """
     For more information on purging by prefixes, please refer to
     [purge by prefix documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge_by_prefix/).
@@ -60,7 +62,7 @@ class CachePurgeEverything(TypedDict, total=False):
 class CachePurgeSingleFile(TypedDict, total=False):
     zone_id: Required[str]
 
-    files: List[str]
+    files: SequenceNotStr[str]
     """
     For more information on purging files, please refer to
     [purge by single-file documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-single-file/).

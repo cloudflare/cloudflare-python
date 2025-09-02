@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Union, cast
+from typing import Type, Union, cast
 from datetime import date
 from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -50,11 +50,11 @@ class DomainResource(SyncAPIResource):
         self,
         domain: str,
         *,
-        date: List[Union[str, date]] | NotGiven = NOT_GIVEN,
+        date: SequenceNotStr[Union[str, date]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         include_top_locations: bool | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         ranking_type: Literal["POPULAR", "TRENDING_RISE", "TRENDING_STEADY"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -143,11 +143,11 @@ class AsyncDomainResource(AsyncAPIResource):
         self,
         domain: str,
         *,
-        date: List[Union[str, date]] | NotGiven = NOT_GIVEN,
+        date: SequenceNotStr[Union[str, date]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         include_top_locations: bool | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         ranking_type: Literal["POPULAR", "TRENDING_RISE", "TRENDING_STEADY"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

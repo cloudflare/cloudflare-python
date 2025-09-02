@@ -3,16 +3,17 @@
 from __future__ import annotations
 
 import datetime
-from typing import List, Union
+from typing import Union
 from typing_extensions import Literal, Annotated, TypedDict
 
+from ...._types import SequenceNotStr
 from ...._utils import PropertyInfo
 
 __all__ = ["InternetServiceTopParams"]
 
 
 class InternetServiceTopParams(TypedDict, total=False):
-    date: Annotated[List[Union[str, datetime.date]], PropertyInfo(format="iso8601")]
+    date: Annotated[SequenceNotStr[Union[str, datetime.date]], PropertyInfo(format="iso8601")]
     """Filters results by the specified array of dates."""
 
     format: Literal["JSON", "CSV"]
@@ -21,8 +22,8 @@ class InternetServiceTopParams(TypedDict, total=False):
     limit: int
     """Limits the number of objects returned in the response."""
 
-    name: List[str]
+    name: SequenceNotStr[str]
     """Array of names used to label the series in the response."""
 
-    service_category: Annotated[List[str], PropertyInfo(alias="serviceCategory")]
+    service_category: Annotated[SequenceNotStr[str], PropertyInfo(alias="serviceCategory")]
     """Filters results by Internet service category."""

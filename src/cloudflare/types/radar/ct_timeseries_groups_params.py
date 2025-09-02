@@ -6,6 +6,7 @@ from typing import List, Union, Iterable
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
+from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
 __all__ = ["CtTimeseriesGroupsParams"]
@@ -19,16 +20,16 @@ class CtTimeseriesGroupsParams(TypedDict, total=False):
     [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
     """
 
-    ca: List[str]
+    ca: SequenceNotStr[str]
     """Filters results by certificate authority."""
 
-    ca_owner: Annotated[List[str], PropertyInfo(alias="caOwner")]
+    ca_owner: Annotated[SequenceNotStr[str], PropertyInfo(alias="caOwner")]
     """Filters results by certificate authority owner."""
 
-    date_end: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateEnd", format="iso8601")]
+    date_end: Annotated[SequenceNotStr[Union[str, datetime]], PropertyInfo(alias="dateEnd", format="iso8601")]
     """End of the date range (inclusive)."""
 
-    date_range: Annotated[List[str], PropertyInfo(alias="dateRange")]
+    date_range: Annotated[SequenceNotStr[str], PropertyInfo(alias="dateRange")]
     """Filters results by date range.
 
     For example, use `7d` and `7dcontrol` to compare this week with the previous
@@ -36,7 +37,7 @@ class CtTimeseriesGroupsParams(TypedDict, total=False):
     `dateEnd` parameters).
     """
 
-    date_start: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateStart", format="iso8601")]
+    date_start: Annotated[SequenceNotStr[Union[str, datetime]], PropertyInfo(alias="dateStart", format="iso8601")]
     """Start of the date range."""
 
     duration: List[
@@ -77,16 +78,16 @@ class CtTimeseriesGroupsParams(TypedDict, total=False):
     an "other" category.
     """
 
-    log: List[str]
+    log: SequenceNotStr[str]
     """Filters results by certificate log."""
 
     log_api: Annotated[List[Literal["RFC6962", "STATIC"]], PropertyInfo(alias="logApi")]
     """Filters results by certificate log API (RFC6962 vs. static)."""
 
-    log_operator: Annotated[List[str], PropertyInfo(alias="logOperator")]
+    log_operator: Annotated[SequenceNotStr[str], PropertyInfo(alias="logOperator")]
     """Filters results by certificate log operator."""
 
-    name: List[str]
+    name: SequenceNotStr[str]
     """Array of names used to label the series in the response."""
 
     normalization: Literal["RAW_VALUES", "PERCENTAGE"]
@@ -123,7 +124,7 @@ class CtTimeseriesGroupsParams(TypedDict, total=False):
     ]
     """Filters results by signature algorithm."""
 
-    tld: List[str]
+    tld: SequenceNotStr[str]
     """Filters results by top-level domain."""
 
     unique_entries: Annotated[List[Literal["true", "false"]], PropertyInfo(alias="uniqueEntries")]

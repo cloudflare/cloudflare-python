@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable
+from typing import Dict, Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .decision import Decision
+from ...._types import SequenceNotStr
 from .allowed_idps import AllowedIdPs
 from .application_type import ApplicationType
 from .cors_headers_param import CORSHeadersParam
@@ -130,7 +131,7 @@ class SelfHostedApplication(TypedDict, total=False):
     allow_iframe: bool
     """Enables loading application content in an iFrame."""
 
-    allowed_idps: List[AllowedIdPs]
+    allowed_idps: SequenceNotStr[AllowedIdPs]
     """The identity providers your users can select when connecting to this
     application.
 
@@ -167,7 +168,7 @@ class SelfHostedApplication(TypedDict, total=False):
     application when failing non-identity rules.
     """
 
-    custom_pages: List[str]
+    custom_pages: SequenceNotStr[str]
     """The custom pages that will be displayed when applicable for this application"""
 
     destinations: Iterable[SelfHostedApplicationDestination]
@@ -208,7 +209,7 @@ class SelfHostedApplication(TypedDict, total=False):
     If disabled, the JWT will scope to the hostname by default
     """
 
-    policies: List[SelfHostedApplicationPolicy]
+    policies: SequenceNotStr[SelfHostedApplicationPolicy]
     """
     The policies that Access applies to the application, in ascending order of
     precedence. Items can reference existing policies or create new policies
@@ -238,7 +239,7 @@ class SelfHostedApplication(TypedDict, total=False):
     This is currently in closed beta.
     """
 
-    self_hosted_domains: List[SelfHostedDomains]
+    self_hosted_domains: SequenceNotStr[SelfHostedDomains]
     """List of public domains that Access will secure.
 
     This field is deprecated in favor of `destinations` and will be supported until
@@ -259,7 +260,7 @@ class SelfHostedApplication(TypedDict, total=False):
     skip_interstitial: bool
     """Enables automatic authentication through cloudflared."""
 
-    tags: List[str]
+    tags: SequenceNotStr[str]
     """The tags you want assigned to an application.
 
     Tags are used to filter applications in the App Launcher dashboard.
@@ -457,7 +458,7 @@ class SaaSApplication(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    allowed_idps: List[AllowedIdPs]
+    allowed_idps: SequenceNotStr[AllowedIdPs]
     """The identity providers your users can select when connecting to this
     application.
 
@@ -474,7 +475,7 @@ class SaaSApplication(TypedDict, total=False):
     You must specify only one identity provider in allowed_idps.
     """
 
-    custom_pages: List[str]
+    custom_pages: SequenceNotStr[str]
     """The custom pages that will be displayed when applicable for this application"""
 
     logo_url: str
@@ -483,7 +484,7 @@ class SaaSApplication(TypedDict, total=False):
     name: str
     """The name of the application."""
 
-    policies: List[SaaSApplicationPolicy]
+    policies: SequenceNotStr[SaaSApplicationPolicy]
     """
     The policies that Access applies to the application, in ascending order of
     precedence. Items can reference existing policies or create new policies
@@ -498,7 +499,7 @@ class SaaSApplication(TypedDict, total=False):
     This is currently in closed beta.
     """
 
-    tags: List[str]
+    tags: SequenceNotStr[str]
     """The tags you want assigned to an application.
 
     Tags are used to filter applications in the App Launcher dashboard.
@@ -692,7 +693,7 @@ class BrowserSSHApplication(TypedDict, total=False):
     allow_iframe: bool
     """Enables loading application content in an iFrame."""
 
-    allowed_idps: List[AllowedIdPs]
+    allowed_idps: SequenceNotStr[AllowedIdPs]
     """The identity providers your users can select when connecting to this
     application.
 
@@ -729,7 +730,7 @@ class BrowserSSHApplication(TypedDict, total=False):
     application when failing non-identity rules.
     """
 
-    custom_pages: List[str]
+    custom_pages: SequenceNotStr[str]
     """The custom pages that will be displayed when applicable for this application"""
 
     destinations: Iterable[BrowserSSHApplicationDestination]
@@ -770,7 +771,7 @@ class BrowserSSHApplication(TypedDict, total=False):
     If disabled, the JWT will scope to the hostname by default
     """
 
-    policies: List[BrowserSSHApplicationPolicy]
+    policies: SequenceNotStr[BrowserSSHApplicationPolicy]
     """
     The policies that Access applies to the application, in ascending order of
     precedence. Items can reference existing policies or create new policies
@@ -800,7 +801,7 @@ class BrowserSSHApplication(TypedDict, total=False):
     This is currently in closed beta.
     """
 
-    self_hosted_domains: List[SelfHostedDomains]
+    self_hosted_domains: SequenceNotStr[SelfHostedDomains]
     """List of public domains that Access will secure.
 
     This field is deprecated in favor of `destinations` and will be supported until
@@ -821,7 +822,7 @@ class BrowserSSHApplication(TypedDict, total=False):
     skip_interstitial: bool
     """Enables automatic authentication through cloudflared."""
 
-    tags: List[str]
+    tags: SequenceNotStr[str]
     """The tags you want assigned to an application.
 
     Tags are used to filter applications in the App Launcher dashboard.
@@ -1053,7 +1054,7 @@ class BrowserVNCApplication(TypedDict, total=False):
     allow_iframe: bool
     """Enables loading application content in an iFrame."""
 
-    allowed_idps: List[AllowedIdPs]
+    allowed_idps: SequenceNotStr[AllowedIdPs]
     """The identity providers your users can select when connecting to this
     application.
 
@@ -1090,7 +1091,7 @@ class BrowserVNCApplication(TypedDict, total=False):
     application when failing non-identity rules.
     """
 
-    custom_pages: List[str]
+    custom_pages: SequenceNotStr[str]
     """The custom pages that will be displayed when applicable for this application"""
 
     destinations: Iterable[BrowserVNCApplicationDestination]
@@ -1131,7 +1132,7 @@ class BrowserVNCApplication(TypedDict, total=False):
     If disabled, the JWT will scope to the hostname by default
     """
 
-    policies: List[BrowserVNCApplicationPolicy]
+    policies: SequenceNotStr[BrowserVNCApplicationPolicy]
     """
     The policies that Access applies to the application, in ascending order of
     precedence. Items can reference existing policies or create new policies
@@ -1161,7 +1162,7 @@ class BrowserVNCApplication(TypedDict, total=False):
     This is currently in closed beta.
     """
 
-    self_hosted_domains: List[SelfHostedDomains]
+    self_hosted_domains: SequenceNotStr[SelfHostedDomains]
     """List of public domains that Access will secure.
 
     This field is deprecated in favor of `destinations` and will be supported until
@@ -1182,7 +1183,7 @@ class BrowserVNCApplication(TypedDict, total=False):
     skip_interstitial: bool
     """Enables automatic authentication through cloudflared."""
 
-    tags: List[str]
+    tags: SequenceNotStr[str]
     """The tags you want assigned to an application.
 
     Tags are used to filter applications in the App Launcher dashboard.
@@ -1397,7 +1398,7 @@ class AppLauncherApplication(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    allowed_idps: List[AllowedIdPs]
+    allowed_idps: SequenceNotStr[AllowedIdPs]
     """The identity providers your users can select when connecting to this
     application.
 
@@ -1429,7 +1430,7 @@ class AppLauncherApplication(TypedDict, total=False):
     application when failing non-identity rules.
     """
 
-    custom_pages: List[str]
+    custom_pages: SequenceNotStr[str]
     """The custom pages that will be displayed when applicable for this application"""
 
     footer_links: Iterable[AppLauncherApplicationFooterLink]
@@ -1441,7 +1442,7 @@ class AppLauncherApplication(TypedDict, total=False):
     landing_page_design: AppLauncherApplicationLandingPageDesign
     """The design of the App Launcher landing page shown to users when they log in."""
 
-    policies: List[AppLauncherApplicationPolicy]
+    policies: SequenceNotStr[AppLauncherApplicationPolicy]
     """
     The policies that Access applies to the application, in ascending order of
     precedence. Items can reference existing policies or create new policies
@@ -1550,7 +1551,7 @@ class DeviceEnrollmentPermissionsApplication(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    allowed_idps: List[AllowedIdPs]
+    allowed_idps: SequenceNotStr[AllowedIdPs]
     """The identity providers your users can select when connecting to this
     application.
 
@@ -1576,10 +1577,10 @@ class DeviceEnrollmentPermissionsApplication(TypedDict, total=False):
     application when failing non-identity rules.
     """
 
-    custom_pages: List[str]
+    custom_pages: SequenceNotStr[str]
     """The custom pages that will be displayed when applicable for this application"""
 
-    policies: List[DeviceEnrollmentPermissionsApplicationPolicy]
+    policies: SequenceNotStr[DeviceEnrollmentPermissionsApplicationPolicy]
     """
     The policies that Access applies to the application, in ascending order of
     precedence. Items can reference existing policies or create new policies
@@ -1662,7 +1663,7 @@ class BrowserIsolationPermissionsApplication(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    allowed_idps: List[AllowedIdPs]
+    allowed_idps: SequenceNotStr[AllowedIdPs]
     """The identity providers your users can select when connecting to this
     application.
 
@@ -1688,10 +1689,10 @@ class BrowserIsolationPermissionsApplication(TypedDict, total=False):
     application when failing non-identity rules.
     """
 
-    custom_pages: List[str]
+    custom_pages: SequenceNotStr[str]
     """The custom pages that will be displayed when applicable for this application"""
 
-    policies: List[BrowserIsolationPermissionsApplicationPolicy]
+    policies: SequenceNotStr[BrowserIsolationPermissionsApplicationPolicy]
     """
     The policies that Access applies to the application, in ascending order of
     precedence. Items can reference existing policies or create new policies
@@ -1783,7 +1784,7 @@ class AccessBookmarkProps(TypedDict, total=False):
     name: str
     """The name of the application."""
 
-    tags: List[str]
+    tags: SequenceNotStr[str]
     """The tags you want assigned to an application.
 
     Tags are used to filter applications in the App Launcher dashboard.
@@ -1822,12 +1823,12 @@ class InfrastructureApplicationTargetCriterion(TypedDict, total=False):
     protocol: Required[Literal["SSH"]]
     """The communication protocol your application secures."""
 
-    target_attributes: Required[Dict[str, List[str]]]
+    target_attributes: Required[Dict[str, SequenceNotStr[str]]]
     """Contains a map of target attribute keys to target attribute values."""
 
 
 class InfrastructureApplicationPolicyConnectionRulesSSH(TypedDict, total=False):
-    usernames: Required[List[str]]
+    usernames: Required[SequenceNotStr[str]]
     """Contains the Unix usernames that may be used when connecting over SSH."""
 
     allow_email_alias: bool
@@ -1906,7 +1907,7 @@ class BrowserRdpApplication(TypedDict, total=False):
     allow_iframe: bool
     """Enables loading application content in an iFrame."""
 
-    allowed_idps: List[AllowedIdPs]
+    allowed_idps: SequenceNotStr[AllowedIdPs]
     """The identity providers your users can select when connecting to this
     application.
 
@@ -1943,7 +1944,7 @@ class BrowserRdpApplication(TypedDict, total=False):
     application when failing non-identity rules.
     """
 
-    custom_pages: List[str]
+    custom_pages: SequenceNotStr[str]
     """The custom pages that will be displayed when applicable for this application"""
 
     destinations: Iterable[BrowserRdpApplicationDestination]
@@ -1984,7 +1985,7 @@ class BrowserRdpApplication(TypedDict, total=False):
     If disabled, the JWT will scope to the hostname by default
     """
 
-    policies: List[BrowserRdpApplicationPolicy]
+    policies: SequenceNotStr[BrowserRdpApplicationPolicy]
     """
     The policies that Access applies to the application, in ascending order of
     precedence. Items can reference existing policies or create new policies
@@ -2014,7 +2015,7 @@ class BrowserRdpApplication(TypedDict, total=False):
     This is currently in closed beta.
     """
 
-    self_hosted_domains: List[SelfHostedDomains]
+    self_hosted_domains: SequenceNotStr[SelfHostedDomains]
     """List of public domains that Access will secure.
 
     This field is deprecated in favor of `destinations` and will be supported until
@@ -2035,7 +2036,7 @@ class BrowserRdpApplication(TypedDict, total=False):
     skip_interstitial: bool
     """Enables automatic authentication through cloudflared."""
 
-    tags: List[str]
+    tags: SequenceNotStr[str]
     """The tags you want assigned to an application.
 
     Tags are used to filter applications in the App Launcher dashboard.
@@ -2052,7 +2053,7 @@ class BrowserRdpApplicationTargetCriterion(TypedDict, total=False):
     protocol: Required[Literal["RDP"]]
     """The communication protocol your application secures."""
 
-    target_attributes: Required[Dict[str, List[str]]]
+    target_attributes: Required[Dict[str, SequenceNotStr[str]]]
     """Contains a map of target attribute keys to target attribute values."""
 
 

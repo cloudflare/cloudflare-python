@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, TypedDict
+
+from ...._types import SequenceNotStr
 
 __all__ = ["AddressSpaceEditParams"]
 
@@ -11,4 +12,4 @@ __all__ = ["AddressSpaceEditParams"]
 class AddressSpaceEditParams(TypedDict, total=False):
     account_id: Required[str]
 
-    prefixes: Required[List[str]]
+    prefixes: Required[SequenceNotStr[str]]

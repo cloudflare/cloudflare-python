@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import List, Union, Iterable
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
-from ....._types import Base64FileInput
+from ....._types import SequenceNotStr, Base64FileInput
 from ....._utils import PropertyInfo
 from ....._models import set_pydantic_config
 from ...migration_step_param import MigrationStepParam
@@ -74,7 +74,7 @@ class VersionCreateParams(TypedDict, total=False):
     this Worker.
     """
 
-    compatibility_flags: List[str]
+    compatibility_flags: SequenceNotStr[str]
     """Flags that enable or disable certain features in the Workers runtime.
 
     Used to enable upcoming features or opt in or out of specific changes not
@@ -124,7 +124,7 @@ class AssetsConfig(TypedDict, total=False):
     is no Worker script.
     """
 
-    run_worker_first: Union[List[str], bool]
+    run_worker_first: Union[SequenceNotStr[str], bool]
     """Contains a list path rules to control routing to either the Worker or assets.
 
     Glob (\\**) and negative (!) rules are supported. Rules must start with either '/'
@@ -196,7 +196,7 @@ class BindingWorkersBindingKindDispatchNamespaceOutboundWorker(TypedDict, total=
 
 
 class BindingWorkersBindingKindDispatchNamespaceOutbound(TypedDict, total=False):
-    params: List[str]
+    params: SequenceNotStr[str]
     """
     Pass information from the Dispatch Worker to the Outbound Worker through the
     parameters.

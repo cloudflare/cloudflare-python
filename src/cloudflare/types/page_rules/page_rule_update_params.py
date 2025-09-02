@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable
+from typing import Dict, Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
+from ..._types import SequenceNotStr
 from .target_param import TargetParam
 from ..zones.ssl_param import SSLParam
 from ..zones.waf_param import WAFParam
@@ -117,27 +118,27 @@ class ActionCacheDeceptionArmor(TypedDict, total=False):
 
 
 class ActionCacheKeyFieldsValueCookie(TypedDict, total=False):
-    check_presence: List[str]
+    check_presence: SequenceNotStr[str]
     """
     A list of cookies to check for the presence of, without including their actual
     values.
     """
 
-    include: List[str]
+    include: SequenceNotStr[str]
     """A list of cookies to include."""
 
 
 class ActionCacheKeyFieldsValueHeader(TypedDict, total=False):
-    check_presence: List[str]
+    check_presence: SequenceNotStr[str]
     """
     A list of headers to check for the presence of, without including their actual
     values.
     """
 
-    exclude: List[str]
+    exclude: SequenceNotStr[str]
     """A list of headers to ignore."""
 
-    include: List[str]
+    include: SequenceNotStr[str]
     """A list of headers to include."""
 
 
@@ -147,10 +148,10 @@ class ActionCacheKeyFieldsValueHost(TypedDict, total=False):
 
 
 class ActionCacheKeyFieldsValueQueryString(TypedDict, total=False):
-    exclude: Union[Literal["*"], List[str]]
+    exclude: Union[Literal["*"], SequenceNotStr[str]]
     """Ignore all query string parameters."""
 
-    include: Union[Literal["*"], List[str]]
+    include: Union[Literal["*"], SequenceNotStr[str]]
     """Include all query string parameters."""
 
 

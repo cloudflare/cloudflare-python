@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import List, Type, cast
+from typing import Type, cast
 from typing_extensions import Literal
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ....._utils import is_given, maybe_transform, strip_not_given, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -57,7 +57,7 @@ class CustomResource(SyncAPIResource):
         domain: str,
         enabled: bool,
         zone_id: str,
-        ciphers: List[str] | NotGiven = NOT_GIVEN,
+        ciphers: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         min_tls: Literal["1.0", "1.1", "1.2", "1.3"] | NotGiven = NOT_GIVEN,
         jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -134,7 +134,7 @@ class CustomResource(SyncAPIResource):
         *,
         account_id: str,
         bucket_name: str,
-        ciphers: List[str] | NotGiven = NOT_GIVEN,
+        ciphers: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         min_tls: Literal["1.0", "1.1", "1.2", "1.3"] | NotGiven = NOT_GIVEN,
         jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
@@ -395,7 +395,7 @@ class AsyncCustomResource(AsyncAPIResource):
         domain: str,
         enabled: bool,
         zone_id: str,
-        ciphers: List[str] | NotGiven = NOT_GIVEN,
+        ciphers: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         min_tls: Literal["1.0", "1.1", "1.2", "1.3"] | NotGiven = NOT_GIVEN,
         jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -472,7 +472,7 @@ class AsyncCustomResource(AsyncAPIResource):
         *,
         account_id: str,
         bucket_name: str,
-        ciphers: List[str] | NotGiven = NOT_GIVEN,
+        ciphers: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         min_tls: Literal["1.0", "1.1", "1.2", "1.3"] | NotGiven = NOT_GIVEN,
         jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,

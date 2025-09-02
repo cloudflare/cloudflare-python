@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import Union
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
+
+from ....._types import SequenceNotStr
 
 __all__ = ["AccountMappingCreateParams", "AuthRequirements", "AuthRequirementsUnionMember0", "AuthRequirementsType"]
 
@@ -15,7 +17,7 @@ class AccountMappingCreateParams(TypedDict, total=False):
 
 
 class AuthRequirementsUnionMember0(TypedDict, total=False):
-    allowed_microsoft_organizations: Required[List[str]]
+    allowed_microsoft_organizations: Required[SequenceNotStr[str]]
 
     type: Required[Literal["Org"]]
 

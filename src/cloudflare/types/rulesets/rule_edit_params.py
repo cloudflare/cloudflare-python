@@ -6,6 +6,7 @@ from typing import Dict, List, Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .phase import Phase
+from ..._types import SequenceNotStr
 from .logging_param import LoggingParam
 
 __all__ = [
@@ -291,7 +292,7 @@ BlockRulePosition: TypeAlias = Union[
 
 
 class BlockRuleRatelimit(TypedDict, total=False):
-    characteristics: Required[List[str]]
+    characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
     incremented.
@@ -413,7 +414,7 @@ ChallengeRulePosition: TypeAlias = Union[
 
 
 class ChallengeRuleRatelimit(TypedDict, total=False):
-    characteristics: Required[List[str]]
+    characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
     incremented.
@@ -547,7 +548,7 @@ ResponseCompressionRulePosition: TypeAlias = Union[
 
 
 class ResponseCompressionRuleRatelimit(TypedDict, total=False):
-    characteristics: Required[List[str]]
+    characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
     incremented.
@@ -669,7 +670,7 @@ DDoSDynamicRulePosition: TypeAlias = Union[
 
 
 class DDoSDynamicRuleRatelimit(TypedDict, total=False):
-    characteristics: Required[List[str]]
+    characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
     incremented.
@@ -874,7 +875,7 @@ ExecuteRulePosition: TypeAlias = Union[
 
 
 class ExecuteRuleRatelimit(TypedDict, total=False):
-    characteristics: Required[List[str]]
+    characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
     incremented.
@@ -998,7 +999,7 @@ ForceConnectionCloseRulePosition: TypeAlias = Union[
 
 
 class ForceConnectionCloseRuleRatelimit(TypedDict, total=False):
-    characteristics: Required[List[str]]
+    characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
     incremented.
@@ -1122,7 +1123,7 @@ JavaScriptChallengeRulePosition: TypeAlias = Union[
 
 
 class JavaScriptChallengeRuleRatelimit(TypedDict, total=False):
-    characteristics: Required[List[str]]
+    characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
     incremented.
@@ -1244,7 +1245,7 @@ LogRulePosition: TypeAlias = Union[
 
 
 class LogRuleRatelimit(TypedDict, total=False):
-    characteristics: Required[List[str]]
+    characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
     incremented.
@@ -1416,7 +1417,7 @@ LogCustomFieldRulePosition: TypeAlias = Union[
 
 
 class LogCustomFieldRuleRatelimit(TypedDict, total=False):
-    characteristics: Required[List[str]]
+    characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
     incremented.
@@ -1540,7 +1541,7 @@ ManagedChallengeRulePosition: TypeAlias = Union[
 
 
 class ManagedChallengeRuleRatelimit(TypedDict, total=False):
-    characteristics: Required[List[str]]
+    characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
     incremented.
@@ -1697,7 +1698,7 @@ RedirectRulePosition: TypeAlias = Union[
 
 
 class RedirectRuleRatelimit(TypedDict, total=False):
-    characteristics: Required[List[str]]
+    characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
     incremented.
@@ -1904,7 +1905,7 @@ RewriteRulePosition: TypeAlias = Union[
 
 
 class RewriteRuleRatelimit(TypedDict, total=False):
-    characteristics: Required[List[str]]
+    characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
     incremented.
@@ -2050,7 +2051,7 @@ RouteRulePosition: TypeAlias = Union[
 
 
 class RouteRuleRatelimit(TypedDict, total=False):
-    characteristics: Required[List[str]]
+    characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
     incremented.
@@ -2177,7 +2178,7 @@ ScoreRulePosition: TypeAlias = Union[
 
 
 class ScoreRuleRatelimit(TypedDict, total=False):
-    characteristics: Required[List[str]]
+    characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
     incremented.
@@ -2326,7 +2327,7 @@ ServeErrorRulePosition: TypeAlias = Union[
 
 
 class ServeErrorRuleRatelimit(TypedDict, total=False):
-    characteristics: Required[List[str]]
+    characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
     incremented.
@@ -2422,24 +2423,24 @@ class SetCacheSettingsRuleActionParametersBrowserTTL(TypedDict, total=False):
 
 
 class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyCookie(TypedDict, total=False):
-    check_presence: List[str]
+    check_presence: SequenceNotStr[str]
     """A list of cookies to check for the presence of.
 
     The presence of these cookies is included in the cache key.
     """
 
-    include: List[str]
+    include: SequenceNotStr[str]
     """A list of cookies to include in the cache key."""
 
 
 class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyHeader(TypedDict, total=False):
-    check_presence: List[str]
+    check_presence: SequenceNotStr[str]
     """A list of headers to check for the presence of.
 
     The presence of these headers is included in the cache key.
     """
 
-    contains: Dict[str, List[str]]
+    contains: Dict[str, SequenceNotStr[str]]
     """A mapping of header names to a list of values.
 
     If a header is present in the request and contains any of the values provided,
@@ -2449,7 +2450,7 @@ class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyHeader(TypedDict, tot
     exclude_origin: bool
     """Whether to exclude the origin header in the cache key."""
 
-    include: List[str]
+    include: SequenceNotStr[str]
     """A list of headers to include in the cache key."""
 
 
@@ -2462,7 +2463,7 @@ class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringExclude(Ty
     all: Literal[True]
     """Whether to exclude all query string parameters from the cache key."""
 
-    list: List[str]
+    list: SequenceNotStr[str]
     """A list of query string parameters to exclude from the cache key."""
 
 
@@ -2470,7 +2471,7 @@ class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringInclude(Ty
     all: Literal[True]
     """Whether to include all query string parameters in the cache key."""
 
-    list: List[str]
+    list: SequenceNotStr[str]
     """A list of query string parameters to include in the cache key."""
 
 
@@ -2688,7 +2689,7 @@ SetCacheSettingsRulePosition: TypeAlias = Union[
 
 
 class SetCacheSettingsRuleRatelimit(TypedDict, total=False):
-    characteristics: Required[List[str]]
+    characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
     incremented.
@@ -2879,7 +2880,7 @@ SetConfigurationRulePosition: TypeAlias = Union[
 
 
 class SetConfigurationRuleRatelimit(TypedDict, total=False):
-    characteristics: Required[List[str]]
+    characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
     incremented.
@@ -2982,7 +2983,7 @@ class SkipRuleActionParameters(TypedDict, total=False):
     products: List[Literal["bic", "hot", "rateLimit", "securityLevel", "uaBlock", "waf", "zoneLockdown"]]
     """A list of legacy security products to skip the execution of."""
 
-    rules: Dict[str, List[str]]
+    rules: Dict[str, SequenceNotStr[str]]
     """
     A mapping of ruleset IDs to a list of rule IDs in that ruleset to skip the
     execution of. This option is incompatible with the ruleset option.
@@ -2994,7 +2995,7 @@ class SkipRuleActionParameters(TypedDict, total=False):
     This option is incompatible with the rulesets option.
     """
 
-    rulesets: List[str]
+    rulesets: SequenceNotStr[str]
     """A list of ruleset IDs to skip the execution of.
 
     This option is incompatible with the ruleset and phases options.
@@ -3036,7 +3037,7 @@ SkipRulePosition: TypeAlias = Union[
 
 
 class SkipRuleRatelimit(TypedDict, total=False):
-    characteristics: Required[List[str]]
+    characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
     incremented.

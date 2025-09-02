@@ -6,6 +6,7 @@ from typing import Dict, List
 from typing_extensions import Literal, Required, TypedDict
 
 from .phase import Phase
+from ..._types import SequenceNotStr
 from .logging_param import LoggingParam
 
 __all__ = ["SkipRuleParam", "ActionParameters", "ExposedCredentialCheck", "Ratelimit"]
@@ -27,7 +28,7 @@ class ActionParameters(TypedDict, total=False):
     products: List[Literal["bic", "hot", "rateLimit", "securityLevel", "uaBlock", "waf", "zoneLockdown"]]
     """A list of legacy security products to skip the execution of."""
 
-    rules: Dict[str, List[str]]
+    rules: Dict[str, SequenceNotStr[str]]
     """
     A mapping of ruleset IDs to a list of rule IDs in that ruleset to skip the
     execution of. This option is incompatible with the ruleset option.
@@ -39,7 +40,7 @@ class ActionParameters(TypedDict, total=False):
     This option is incompatible with the rulesets option.
     """
 
-    rulesets: List[str]
+    rulesets: SequenceNotStr[str]
     """A list of ruleset IDs to skip the execution of.
 
     This option is incompatible with the ruleset and phases options.
@@ -55,7 +56,7 @@ class ExposedCredentialCheck(TypedDict, total=False):
 
 
 class Ratelimit(TypedDict, total=False):
-    characteristics: Required[List[str]]
+    characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
     incremented.

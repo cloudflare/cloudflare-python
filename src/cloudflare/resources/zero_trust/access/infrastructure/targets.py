@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 import typing_extensions
-from typing import List, Type, Union, Iterable, Optional, cast
+from typing import Type, Union, Iterable, Optional, cast
 from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ....._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, SequenceNotStr
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -183,7 +183,7 @@ class TargetsResource(SyncAPIResource):
         ip_like: Optional[str] | NotGiven = NOT_GIVEN,
         ip_v4: Optional[str] | NotGiven = NOT_GIVEN,
         ip_v6: Optional[str] | NotGiven = NOT_GIVEN,
-        ips: List[str] | NotGiven = NOT_GIVEN,
+        ips: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         ipv4_end: Optional[str] | NotGiven = NOT_GIVEN,
         ipv4_start: Optional[str] | NotGiven = NOT_GIVEN,
         ipv6_end: Optional[str] | NotGiven = NOT_GIVEN,
@@ -193,7 +193,7 @@ class TargetsResource(SyncAPIResource):
         order: Literal["hostname", "created_at"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
-        target_ids: List[str] | NotGiven = NOT_GIVEN,
+        target_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         virtual_network_id: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -386,7 +386,7 @@ class TargetsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        target_ids: List[str],
+        target_ids: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -651,7 +651,7 @@ class AsyncTargetsResource(AsyncAPIResource):
         ip_like: Optional[str] | NotGiven = NOT_GIVEN,
         ip_v4: Optional[str] | NotGiven = NOT_GIVEN,
         ip_v6: Optional[str] | NotGiven = NOT_GIVEN,
-        ips: List[str] | NotGiven = NOT_GIVEN,
+        ips: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         ipv4_end: Optional[str] | NotGiven = NOT_GIVEN,
         ipv4_start: Optional[str] | NotGiven = NOT_GIVEN,
         ipv6_end: Optional[str] | NotGiven = NOT_GIVEN,
@@ -661,7 +661,7 @@ class AsyncTargetsResource(AsyncAPIResource):
         order: Literal["hostname", "created_at"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
-        target_ids: List[str] | NotGiven = NOT_GIVEN,
+        target_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         virtual_network_id: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -854,7 +854,7 @@ class AsyncTargetsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        target_ids: List[str],
+        target_ids: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

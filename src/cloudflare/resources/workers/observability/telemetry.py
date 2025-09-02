@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Iterable, cast
+from typing import Type, Iterable, cast
 from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -52,7 +52,7 @@ class TelemetryResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        datasets: List[str] | NotGiven = NOT_GIVEN,
+        datasets: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         filters: Iterable[telemetry_keys_params.Filter] | NotGiven = NOT_GIVEN,
         key_needle: telemetry_keys_params.KeyNeedle | NotGiven = NOT_GIVEN,
         limit: float | NotGiven = NOT_GIVEN,
@@ -178,7 +178,7 @@ class TelemetryResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        datasets: List[str],
+        datasets: SequenceNotStr[str],
         key: str,
         timeframe: telemetry_values_params.Timeframe,
         type: Literal["string", "boolean", "number"],
@@ -255,7 +255,7 @@ class AsyncTelemetryResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        datasets: List[str] | NotGiven = NOT_GIVEN,
+        datasets: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         filters: Iterable[telemetry_keys_params.Filter] | NotGiven = NOT_GIVEN,
         key_needle: telemetry_keys_params.KeyNeedle | NotGiven = NOT_GIVEN,
         limit: float | NotGiven = NOT_GIVEN,
@@ -381,7 +381,7 @@ class AsyncTelemetryResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        datasets: List[str],
+        datasets: SequenceNotStr[str],
         key: str,
         timeframe: telemetry_values_params.Timeframe,
         type: Literal["string", "boolean", "number"],

@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, TypedDict
+
+from ...._types import SequenceNotStr
 
 __all__ = ["OutgoingUpdateParams"]
 
@@ -14,5 +15,5 @@ class OutgoingUpdateParams(TypedDict, total=False):
     name: Required[str]
     """Zone name."""
 
-    peers: Required[List[str]]
+    peers: Required[SequenceNotStr[str]]
     """A list of peer tags."""

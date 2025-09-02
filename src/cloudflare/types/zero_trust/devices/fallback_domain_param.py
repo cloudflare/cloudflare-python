@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, TypedDict
+
+from ...._types import SequenceNotStr
 
 __all__ = ["FallbackDomainParam"]
 
@@ -15,5 +16,5 @@ class FallbackDomainParam(TypedDict, total=False):
     description: str
     """A description of the fallback domain, displayed in the client UI."""
 
-    dns_server: List[str]
+    dns_server: SequenceNotStr[str]
     """A list of IP addresses to handle domain resolution."""

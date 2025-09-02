@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 from typing_extensions import Literal, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["HTTPConfigurationParam"]
 
@@ -18,7 +20,7 @@ class HTTPConfigurationParam(TypedDict, total=False):
     If this string is not found, the origin will be marked as unhealthy.
     """
 
-    expected_codes: Optional[List[str]]
+    expected_codes: Optional[SequenceNotStr[str]]
     """The expected HTTP response codes (e.g.
 
     "200") or code ranges (e.g. "2xx" for all codes starting with 2) of the health
@@ -28,7 +30,7 @@ class HTTPConfigurationParam(TypedDict, total=False):
     follow_redirects: bool
     """Follow redirects if the origin returns a 3xx status code."""
 
-    header: Optional[Dict[str, List[str]]]
+    header: Optional[Dict[str, SequenceNotStr[str]]]
     """The HTTP request headers to send in the health check.
 
     It is recommended you set a Host header by default. The User-Agent header cannot

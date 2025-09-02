@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Iterable, cast
+from typing import Type, Iterable, cast
 
 import httpx
 
@@ -14,7 +14,7 @@ from .full import (
     FullResourceWithStreamingResponse,
     AsyncFullResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -62,7 +62,7 @@ class ConfigsResource(SyncAPIResource):
         account_id: str,
         default_sampling: float,
         name: str,
-        router_ips: List[str] | NotGiven = NOT_GIVEN,
+        router_ips: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         warp_devices: Iterable[config_create_params.WARPDevice] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -117,7 +117,7 @@ class ConfigsResource(SyncAPIResource):
         account_id: str,
         default_sampling: float,
         name: str,
-        router_ips: List[str] | NotGiven = NOT_GIVEN,
+        router_ips: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         warp_devices: Iterable[config_update_params.WARPDevice] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -210,7 +210,7 @@ class ConfigsResource(SyncAPIResource):
         account_id: str,
         default_sampling: float | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        router_ips: List[str] | NotGiven = NOT_GIVEN,
+        router_ips: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         warp_devices: Iterable[config_edit_params.WARPDevice] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -327,7 +327,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         account_id: str,
         default_sampling: float,
         name: str,
-        router_ips: List[str] | NotGiven = NOT_GIVEN,
+        router_ips: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         warp_devices: Iterable[config_create_params.WARPDevice] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -382,7 +382,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         account_id: str,
         default_sampling: float,
         name: str,
-        router_ips: List[str] | NotGiven = NOT_GIVEN,
+        router_ips: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         warp_devices: Iterable[config_update_params.WARPDevice] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -475,7 +475,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         account_id: str,
         default_sampling: float | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        router_ips: List[str] | NotGiven = NOT_GIVEN,
+        router_ips: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         warp_devices: Iterable[config_edit_params.WARPDevice] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

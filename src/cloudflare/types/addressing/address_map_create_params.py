@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable, Optional
+from typing import Iterable, Optional
 from typing_extensions import Required, TypedDict
 
 from .kind import Kind
+from ..._types import SequenceNotStr
 
 __all__ = ["AddressMapCreateParams", "Membership"]
 
@@ -27,7 +28,7 @@ class AddressMapCreateParams(TypedDict, total=False):
     map is enabled.
     """
 
-    ips: List[str]
+    ips: SequenceNotStr[str]
 
     memberships: Iterable[Membership]
     """Zones and Accounts which will be assigned IPs on this Address Map.

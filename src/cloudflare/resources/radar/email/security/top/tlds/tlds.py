@@ -32,7 +32,7 @@ from .malicious import (
     MaliciousResourceWithStreamingResponse,
     AsyncMaliciousResourceWithStreamingResponse,
 )
-from ......._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ......._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ......._utils import maybe_transform, async_maybe_transform
 from ......._compat import cached_property
 from ......._resource import SyncAPIResource, AsyncAPIResource
@@ -86,14 +86,14 @@ class TldsResource(SyncAPIResource):
         self,
         *,
         arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         tld_category: Literal["CLASSIC", "COUNTRY"] | NotGiven = NOT_GIVEN,
         tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
@@ -209,14 +209,14 @@ class AsyncTldsResource(AsyncAPIResource):
         self,
         *,
         arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         tld_category: Literal["CLASSIC", "COUNTRY"] | NotGiven = NOT_GIVEN,
         tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
