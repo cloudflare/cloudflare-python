@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
-from ...._utils import maybe_transform
+from ...._files import read_file_content
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileContent
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -16,7 +16,6 @@ from ...._response import (
 )
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.radar.ai import to_markdown_create_params
 from ....types.radar.ai.to_markdown_create_response import ToMarkdownCreateResponse
 
 __all__ = ["ToMarkdownResource", "AsyncToMarkdownResource"]
@@ -44,7 +43,7 @@ class ToMarkdownResource(SyncAPIResource):
 
     def create(
         self,
-        body: FileTypes | NotGiven = NOT_GIVEN,
+        body: FileContent,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -68,10 +67,11 @@ class ToMarkdownResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        extra_headers = {"Content-Type": "application/octet-stream", **(extra_headers or {})}
         return self._get_api_list(
             f"/accounts/{account_id}/ai/tomarkdown",
             page=SyncSinglePage[ToMarkdownCreateResponse],
-            body=maybe_transform(body, to_markdown_create_params.ToMarkdownCreateParams),
+            body=read_file_content(body),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -102,7 +102,7 @@ class AsyncToMarkdownResource(AsyncAPIResource):
 
     def create(
         self,
-        body: FileTypes | NotGiven = NOT_GIVEN,
+        body: FileContent,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -126,10 +126,11 @@ class AsyncToMarkdownResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        extra_headers = {"Content-Type": "application/octet-stream", **(extra_headers or {})}
         return self._get_api_list(
             f"/accounts/{account_id}/ai/tomarkdown",
             page=AsyncSinglePage[ToMarkdownCreateResponse],
-            body=maybe_transform(body, to_markdown_create_params.ToMarkdownCreateParams),
+            body=read_file_content(body),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
