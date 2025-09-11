@@ -1102,7 +1102,21 @@ class ApplicationsResource(SyncAPIResource):
         self,
         *,
         domain: str | NotGiven = NOT_GIVEN,
-        type: ApplicationType | NotGiven = NOT_GIVEN,
+        type: ApplicationType
+        | Literal[
+            "self_hosted",
+            "saas",
+            "ssh",
+            "vnc",
+            "app_launcher",
+            "warp",
+            "biso",
+            "bookmark",
+            "dash_sso",
+            "infrastructure",
+            "rdp",
+        ]
+        | NotGiven = NOT_GIVEN,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
@@ -1115,7 +1129,11 @@ class ApplicationsResource(SyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        destinations: Iterable[application_create_params.SelfHostedApplicationDestination] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_create_params.SelfHostedApplicationDestination]
+        | Iterable[application_create_params.BrowserSSHApplicationDestination]
+        | Iterable[application_create_params.BrowserVNCApplicationDestination]
+        | Iterable[application_create_params.BrowserRdpApplicationDestination]
+        | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -1123,11 +1141,23 @@ class ApplicationsResource(SyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: SequenceNotStr[application_create_params.SelfHostedApplicationPolicy]
+        | SequenceNotStr[application_create_params.SaaSApplicationPolicy]
+        | SequenceNotStr[application_create_params.BrowserSSHApplicationPolicy]
+        | SequenceNotStr[application_create_params.BrowserVNCApplicationPolicy]
+        | SequenceNotStr[application_create_params.AppLauncherApplicationPolicy]
+        | SequenceNotStr[application_create_params.DeviceEnrollmentPermissionsApplicationPolicy]
+        | SequenceNotStr[application_create_params.BrowserIsolationPermissionsApplicationPolicy]
         | Iterable[application_create_params.InfrastructureApplicationPolicy]
+        | SequenceNotStr[application_create_params.BrowserRdpApplicationPolicy]
         | NotGiven = NOT_GIVEN,
         read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.SelfHostedApplicationSCIMConfig
+        | application_create_params.SaaSApplicationSCIMConfig
+        | application_create_params.BrowserSSHApplicationSCIMConfig
+        | application_create_params.BrowserVNCApplicationSCIMConfig
+        | application_create_params.BrowserRdpApplicationSCIMConfig
+        | NotGiven = NOT_GIVEN,
         self_hosted_domains: SequenceNotStr[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -2232,7 +2262,21 @@ class ApplicationsResource(SyncAPIResource):
         app_id: AppID,
         *,
         domain: str | NotGiven = NOT_GIVEN,
-        type: ApplicationType | NotGiven = NOT_GIVEN,
+        type: ApplicationType
+        | Literal[
+            "self_hosted",
+            "saas",
+            "ssh",
+            "vnc",
+            "app_launcher",
+            "warp",
+            "biso",
+            "bookmark",
+            "dash_sso",
+            "infrastructure",
+            "rdp",
+        ]
+        | NotGiven = NOT_GIVEN,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
@@ -2245,7 +2289,11 @@ class ApplicationsResource(SyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        destinations: Iterable[application_update_params.SelfHostedApplicationDestination] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_update_params.SelfHostedApplicationDestination]
+        | Iterable[application_update_params.BrowserSSHApplicationDestination]
+        | Iterable[application_update_params.BrowserVNCApplicationDestination]
+        | Iterable[application_update_params.BrowserRdpApplicationDestination]
+        | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -2253,11 +2301,23 @@ class ApplicationsResource(SyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: SequenceNotStr[application_update_params.SelfHostedApplicationPolicy]
+        | SequenceNotStr[application_update_params.SaaSApplicationPolicy]
+        | SequenceNotStr[application_update_params.BrowserSSHApplicationPolicy]
+        | SequenceNotStr[application_update_params.BrowserVNCApplicationPolicy]
+        | SequenceNotStr[application_update_params.AppLauncherApplicationPolicy]
+        | SequenceNotStr[application_update_params.DeviceEnrollmentPermissionsApplicationPolicy]
+        | SequenceNotStr[application_update_params.BrowserIsolationPermissionsApplicationPolicy]
         | Iterable[application_update_params.InfrastructureApplicationPolicy]
+        | SequenceNotStr[application_update_params.BrowserRdpApplicationPolicy]
         | NotGiven = NOT_GIVEN,
         read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.SelfHostedApplicationSCIMConfig
+        | application_update_params.SaaSApplicationSCIMConfig
+        | application_update_params.BrowserSSHApplicationSCIMConfig
+        | application_update_params.BrowserVNCApplicationSCIMConfig
+        | application_update_params.BrowserRdpApplicationSCIMConfig
+        | NotGiven = NOT_GIVEN,
         self_hosted_domains: SequenceNotStr[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -3635,7 +3695,21 @@ class AsyncApplicationsResource(AsyncAPIResource):
         self,
         *,
         domain: str | NotGiven = NOT_GIVEN,
-        type: ApplicationType | NotGiven = NOT_GIVEN,
+        type: ApplicationType
+        | Literal[
+            "self_hosted",
+            "saas",
+            "ssh",
+            "vnc",
+            "app_launcher",
+            "warp",
+            "biso",
+            "bookmark",
+            "dash_sso",
+            "infrastructure",
+            "rdp",
+        ]
+        | NotGiven = NOT_GIVEN,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
@@ -3648,7 +3722,11 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        destinations: Iterable[application_create_params.SelfHostedApplicationDestination] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_create_params.SelfHostedApplicationDestination]
+        | Iterable[application_create_params.BrowserSSHApplicationDestination]
+        | Iterable[application_create_params.BrowserVNCApplicationDestination]
+        | Iterable[application_create_params.BrowserRdpApplicationDestination]
+        | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -3656,11 +3734,23 @@ class AsyncApplicationsResource(AsyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: SequenceNotStr[application_create_params.SelfHostedApplicationPolicy]
+        | SequenceNotStr[application_create_params.SaaSApplicationPolicy]
+        | SequenceNotStr[application_create_params.BrowserSSHApplicationPolicy]
+        | SequenceNotStr[application_create_params.BrowserVNCApplicationPolicy]
+        | SequenceNotStr[application_create_params.AppLauncherApplicationPolicy]
+        | SequenceNotStr[application_create_params.DeviceEnrollmentPermissionsApplicationPolicy]
+        | SequenceNotStr[application_create_params.BrowserIsolationPermissionsApplicationPolicy]
         | Iterable[application_create_params.InfrastructureApplicationPolicy]
+        | SequenceNotStr[application_create_params.BrowserRdpApplicationPolicy]
         | NotGiven = NOT_GIVEN,
         read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.SelfHostedApplicationSCIMConfig
+        | application_create_params.SaaSApplicationSCIMConfig
+        | application_create_params.BrowserSSHApplicationSCIMConfig
+        | application_create_params.BrowserVNCApplicationSCIMConfig
+        | application_create_params.BrowserRdpApplicationSCIMConfig
+        | NotGiven = NOT_GIVEN,
         self_hosted_domains: SequenceNotStr[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -4765,7 +4855,21 @@ class AsyncApplicationsResource(AsyncAPIResource):
         app_id: AppID,
         *,
         domain: str | NotGiven = NOT_GIVEN,
-        type: ApplicationType | NotGiven = NOT_GIVEN,
+        type: ApplicationType
+        | Literal[
+            "self_hosted",
+            "saas",
+            "ssh",
+            "vnc",
+            "app_launcher",
+            "warp",
+            "biso",
+            "bookmark",
+            "dash_sso",
+            "infrastructure",
+            "rdp",
+        ]
+        | NotGiven = NOT_GIVEN,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
@@ -4778,7 +4882,11 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        destinations: Iterable[application_update_params.SelfHostedApplicationDestination] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_update_params.SelfHostedApplicationDestination]
+        | Iterable[application_update_params.BrowserSSHApplicationDestination]
+        | Iterable[application_update_params.BrowserVNCApplicationDestination]
+        | Iterable[application_update_params.BrowserRdpApplicationDestination]
+        | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -4786,11 +4894,23 @@ class AsyncApplicationsResource(AsyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: SequenceNotStr[application_update_params.SelfHostedApplicationPolicy]
+        | SequenceNotStr[application_update_params.SaaSApplicationPolicy]
+        | SequenceNotStr[application_update_params.BrowserSSHApplicationPolicy]
+        | SequenceNotStr[application_update_params.BrowserVNCApplicationPolicy]
+        | SequenceNotStr[application_update_params.AppLauncherApplicationPolicy]
+        | SequenceNotStr[application_update_params.DeviceEnrollmentPermissionsApplicationPolicy]
+        | SequenceNotStr[application_update_params.BrowserIsolationPermissionsApplicationPolicy]
         | Iterable[application_update_params.InfrastructureApplicationPolicy]
+        | SequenceNotStr[application_update_params.BrowserRdpApplicationPolicy]
         | NotGiven = NOT_GIVEN,
         read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.SelfHostedApplicationSCIMConfig
+        | application_update_params.SaaSApplicationSCIMConfig
+        | application_update_params.BrowserSSHApplicationSCIMConfig
+        | application_update_params.BrowserVNCApplicationSCIMConfig
+        | application_update_params.BrowserRdpApplicationSCIMConfig
+        | NotGiven = NOT_GIVEN,
         self_hosted_domains: SequenceNotStr[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,

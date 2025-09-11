@@ -146,6 +146,7 @@ class ConnectivityPrecheckResource(SyncAPIResource):
         endpoint: Optional[str] | NotGiven = NOT_GIVEN,
         secret: connectivity_precheck_source_params.R2SlurperS3SourceSchemaSecret
         | connectivity_precheck_source_params.R2SlurperGcsSourceSchemaSecret
+        | connectivity_precheck_source_params.R2SlurperR2SourceSchemaSecret
         | NotGiven = NOT_GIVEN,
         vendor: Literal["s3"] | Literal["gcs"] | Provider | NotGiven = NOT_GIVEN,
         jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
@@ -353,6 +354,7 @@ class AsyncConnectivityPrecheckResource(AsyncAPIResource):
         endpoint: Optional[str] | NotGiven = NOT_GIVEN,
         secret: connectivity_precheck_source_params.R2SlurperS3SourceSchemaSecret
         | connectivity_precheck_source_params.R2SlurperGcsSourceSchemaSecret
+        | connectivity_precheck_source_params.R2SlurperR2SourceSchemaSecret
         | NotGiven = NOT_GIVEN,
         vendor: Literal["s3"] | Literal["gcs"] | Provider | NotGiven = NOT_GIVEN,
         jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,

@@ -1428,10 +1428,29 @@ class RecordsResource(SyncAPIResource):
         | Literal["TLSA"]
         | Literal["URI"],
         comment: str | NotGiven = NOT_GIVEN,
-        content: str | str | str | str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.ARecordSettings
+        | record_create_params.AAAARecordSettings
         | record_create_params.CNAMERecordSettings
+        | record_create_params.MXRecordSettings
+        | record_create_params.NSRecordSettings
+        | record_create_params.DNSRecordsOpenpgpkeyRecordSettings
+        | record_create_params.PTRRecordSettings
+        | record_create_params.TXTRecordSettings
+        | record_create_params.CAARecordSettings
+        | record_create_params.CERTRecordSettings
+        | record_create_params.DNSKEYRecordSettings
+        | record_create_params.DSRecordSettings
+        | record_create_params.HTTPSRecordSettings
+        | record_create_params.LOCRecordSettings
+        | record_create_params.NAPTRRecordSettings
+        | record_create_params.SMIMEARecordSettings
+        | record_create_params.SRVRecordSettings
+        | record_create_params.SSHFPRecordSettings
+        | record_create_params.SVCBRecordSettings
+        | record_create_params.TLSARecordSettings
+        | record_create_params.URIRecordSettings
         | NotGiven = NOT_GIVEN,
         tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
@@ -1445,6 +1464,8 @@ class RecordsResource(SyncAPIResource):
         | record_create_params.SMIMEARecordData
         | record_create_params.SRVRecordData
         | record_create_params.SSHFPRecordData
+        | record_create_params.SVCBRecordData
+        | record_create_params.TLSARecordData
         | record_create_params.URIRecordData
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -2917,10 +2938,29 @@ class RecordsResource(SyncAPIResource):
         | Literal["TLSA"]
         | Literal["URI"],
         comment: str | NotGiven = NOT_GIVEN,
-        content: str | str | str | str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.ARecordSettings
+        | record_update_params.AAAARecordSettings
         | record_update_params.CNAMERecordSettings
+        | record_update_params.MXRecordSettings
+        | record_update_params.NSRecordSettings
+        | record_update_params.DNSRecordsOpenpgpkeyRecordSettings
+        | record_update_params.PTRRecordSettings
+        | record_update_params.TXTRecordSettings
+        | record_update_params.CAARecordSettings
+        | record_update_params.CERTRecordSettings
+        | record_update_params.DNSKEYRecordSettings
+        | record_update_params.DSRecordSettings
+        | record_update_params.HTTPSRecordSettings
+        | record_update_params.LOCRecordSettings
+        | record_update_params.NAPTRRecordSettings
+        | record_update_params.SMIMEARecordSettings
+        | record_update_params.SRVRecordSettings
+        | record_update_params.SSHFPRecordSettings
+        | record_update_params.SVCBRecordSettings
+        | record_update_params.TLSARecordSettings
+        | record_update_params.URIRecordSettings
         | NotGiven = NOT_GIVEN,
         tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
@@ -2934,6 +2974,8 @@ class RecordsResource(SyncAPIResource):
         | record_update_params.SMIMEARecordData
         | record_update_params.SRVRecordData
         | record_update_params.SSHFPRecordData
+        | record_update_params.SVCBRecordData
+        | record_update_params.TLSARecordData
         | record_update_params.URIRecordData
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -4642,9 +4684,30 @@ class RecordsResource(SyncAPIResource):
         | Literal["TLSA"]
         | Literal["URI"],
         comment: str | NotGiven = NOT_GIVEN,
-        content: str | str | str | str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.ARecordSettings | record_edit_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.ARecordSettings
+        | record_edit_params.AAAARecordSettings
+        | record_edit_params.CNAMERecordSettings
+        | record_edit_params.MXRecordSettings
+        | record_edit_params.NSRecordSettings
+        | record_edit_params.DNSRecordsOpenpgpkeyRecordSettings
+        | record_edit_params.PTRRecordSettings
+        | record_edit_params.TXTRecordSettings
+        | record_edit_params.CAARecordSettings
+        | record_edit_params.CERTRecordSettings
+        | record_edit_params.DNSKEYRecordSettings
+        | record_edit_params.DSRecordSettings
+        | record_edit_params.HTTPSRecordSettings
+        | record_edit_params.LOCRecordSettings
+        | record_edit_params.NAPTRRecordSettings
+        | record_edit_params.SMIMEARecordSettings
+        | record_edit_params.SRVRecordSettings
+        | record_edit_params.SSHFPRecordSettings
+        | record_edit_params.SVCBRecordSettings
+        | record_edit_params.TLSARecordSettings
+        | record_edit_params.URIRecordSettings
+        | NotGiven = NOT_GIVEN,
         tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         data: record_edit_params.CAARecordData
@@ -4657,6 +4720,8 @@ class RecordsResource(SyncAPIResource):
         | record_edit_params.SMIMEARecordData
         | record_edit_params.SRVRecordData
         | record_edit_params.SSHFPRecordData
+        | record_edit_params.SVCBRecordData
+        | record_edit_params.TLSARecordData
         | record_edit_params.URIRecordData
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -6290,10 +6355,29 @@ class AsyncRecordsResource(AsyncAPIResource):
         | Literal["TLSA"]
         | Literal["URI"],
         comment: str | NotGiven = NOT_GIVEN,
-        content: str | str | str | str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.ARecordSettings
+        | record_create_params.AAAARecordSettings
         | record_create_params.CNAMERecordSettings
+        | record_create_params.MXRecordSettings
+        | record_create_params.NSRecordSettings
+        | record_create_params.DNSRecordsOpenpgpkeyRecordSettings
+        | record_create_params.PTRRecordSettings
+        | record_create_params.TXTRecordSettings
+        | record_create_params.CAARecordSettings
+        | record_create_params.CERTRecordSettings
+        | record_create_params.DNSKEYRecordSettings
+        | record_create_params.DSRecordSettings
+        | record_create_params.HTTPSRecordSettings
+        | record_create_params.LOCRecordSettings
+        | record_create_params.NAPTRRecordSettings
+        | record_create_params.SMIMEARecordSettings
+        | record_create_params.SRVRecordSettings
+        | record_create_params.SSHFPRecordSettings
+        | record_create_params.SVCBRecordSettings
+        | record_create_params.TLSARecordSettings
+        | record_create_params.URIRecordSettings
         | NotGiven = NOT_GIVEN,
         tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
@@ -6307,6 +6391,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         | record_create_params.SMIMEARecordData
         | record_create_params.SRVRecordData
         | record_create_params.SSHFPRecordData
+        | record_create_params.SVCBRecordData
+        | record_create_params.TLSARecordData
         | record_create_params.URIRecordData
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -7779,10 +7865,29 @@ class AsyncRecordsResource(AsyncAPIResource):
         | Literal["TLSA"]
         | Literal["URI"],
         comment: str | NotGiven = NOT_GIVEN,
-        content: str | str | str | str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.ARecordSettings
+        | record_update_params.AAAARecordSettings
         | record_update_params.CNAMERecordSettings
+        | record_update_params.MXRecordSettings
+        | record_update_params.NSRecordSettings
+        | record_update_params.DNSRecordsOpenpgpkeyRecordSettings
+        | record_update_params.PTRRecordSettings
+        | record_update_params.TXTRecordSettings
+        | record_update_params.CAARecordSettings
+        | record_update_params.CERTRecordSettings
+        | record_update_params.DNSKEYRecordSettings
+        | record_update_params.DSRecordSettings
+        | record_update_params.HTTPSRecordSettings
+        | record_update_params.LOCRecordSettings
+        | record_update_params.NAPTRRecordSettings
+        | record_update_params.SMIMEARecordSettings
+        | record_update_params.SRVRecordSettings
+        | record_update_params.SSHFPRecordSettings
+        | record_update_params.SVCBRecordSettings
+        | record_update_params.TLSARecordSettings
+        | record_update_params.URIRecordSettings
         | NotGiven = NOT_GIVEN,
         tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
@@ -7796,6 +7901,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         | record_update_params.SMIMEARecordData
         | record_update_params.SRVRecordData
         | record_update_params.SSHFPRecordData
+        | record_update_params.SVCBRecordData
+        | record_update_params.TLSARecordData
         | record_update_params.URIRecordData
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -9504,9 +9611,30 @@ class AsyncRecordsResource(AsyncAPIResource):
         | Literal["TLSA"]
         | Literal["URI"],
         comment: str | NotGiven = NOT_GIVEN,
-        content: str | str | str | str | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.ARecordSettings | record_edit_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.ARecordSettings
+        | record_edit_params.AAAARecordSettings
+        | record_edit_params.CNAMERecordSettings
+        | record_edit_params.MXRecordSettings
+        | record_edit_params.NSRecordSettings
+        | record_edit_params.DNSRecordsOpenpgpkeyRecordSettings
+        | record_edit_params.PTRRecordSettings
+        | record_edit_params.TXTRecordSettings
+        | record_edit_params.CAARecordSettings
+        | record_edit_params.CERTRecordSettings
+        | record_edit_params.DNSKEYRecordSettings
+        | record_edit_params.DSRecordSettings
+        | record_edit_params.HTTPSRecordSettings
+        | record_edit_params.LOCRecordSettings
+        | record_edit_params.NAPTRRecordSettings
+        | record_edit_params.SMIMEARecordSettings
+        | record_edit_params.SRVRecordSettings
+        | record_edit_params.SSHFPRecordSettings
+        | record_edit_params.SVCBRecordSettings
+        | record_edit_params.TLSARecordSettings
+        | record_edit_params.URIRecordSettings
+        | NotGiven = NOT_GIVEN,
         tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         data: record_edit_params.CAARecordData
@@ -9519,6 +9647,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         | record_edit_params.SMIMEARecordData
         | record_edit_params.SRVRecordData
         | record_edit_params.SSHFPRecordData
+        | record_edit_params.SVCBRecordData
+        | record_edit_params.TLSARecordData
         | record_edit_params.URIRecordData
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

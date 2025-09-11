@@ -953,12 +953,16 @@ class AIResource(SyncAPIResource):
         presence_penalty: float | NotGiven = NOT_GIVEN,
         raw: bool | NotGiven = NOT_GIVEN,
         repetition_penalty: float | NotGiven = NOT_GIVEN,
-        response_format: ai_run_params.PromptResponseFormat | NotGiven = NOT_GIVEN,
+        response_format: ai_run_params.PromptResponseFormat
+        | ai_run_params.MessagesResponseFormat
+        | NotGiven = NOT_GIVEN,
         stream: bool | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
         top_k: int | float | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
-        messages: Iterable[ai_run_params.MessagesMessage] | NotGiven = NOT_GIVEN,
+        messages: Iterable[ai_run_params.MessagesMessage]
+        | Iterable[ai_run_params.Variant13Message]
+        | NotGiven = NOT_GIVEN,
         functions: Iterable[ai_run_params.MessagesFunction] | NotGiven = NOT_GIVEN,
         tools: Iterable[ai_run_params.MessagesTool] | NotGiven = NOT_GIVEN,
         input_text: str | NotGiven = NOT_GIVEN,
@@ -1927,12 +1931,16 @@ class AsyncAIResource(AsyncAPIResource):
         presence_penalty: float | NotGiven = NOT_GIVEN,
         raw: bool | NotGiven = NOT_GIVEN,
         repetition_penalty: float | NotGiven = NOT_GIVEN,
-        response_format: ai_run_params.PromptResponseFormat | NotGiven = NOT_GIVEN,
+        response_format: ai_run_params.PromptResponseFormat
+        | ai_run_params.MessagesResponseFormat
+        | NotGiven = NOT_GIVEN,
         stream: bool | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
         top_k: int | float | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
-        messages: Iterable[ai_run_params.MessagesMessage] | NotGiven = NOT_GIVEN,
+        messages: Iterable[ai_run_params.MessagesMessage]
+        | Iterable[ai_run_params.Variant13Message]
+        | NotGiven = NOT_GIVEN,
         functions: Iterable[ai_run_params.MessagesFunction] | NotGiven = NOT_GIVEN,
         tools: Iterable[ai_run_params.MessagesTool] | NotGiven = NOT_GIVEN,
         input_text: str | NotGiven = NOT_GIVEN,

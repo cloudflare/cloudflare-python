@@ -132,7 +132,9 @@ class SippyResource(SyncAPIResource):
         bucket_name: str,
         *,
         account_id: str,
-        destination: sippy_update_params.R2EnableSippyAwsDestination | NotGiven = NOT_GIVEN,
+        destination: sippy_update_params.R2EnableSippyAwsDestination
+        | sippy_update_params.R2EnableSippyGcsDestination
+        | NotGiven = NOT_GIVEN,
         source: sippy_update_params.R2EnableSippyAwsSource
         | sippy_update_params.R2EnableSippyGcsSource
         | NotGiven = NOT_GIVEN,
@@ -380,7 +382,9 @@ class AsyncSippyResource(AsyncAPIResource):
         bucket_name: str,
         *,
         account_id: str,
-        destination: sippy_update_params.R2EnableSippyAwsDestination | NotGiven = NOT_GIVEN,
+        destination: sippy_update_params.R2EnableSippyAwsDestination
+        | sippy_update_params.R2EnableSippyGcsDestination
+        | NotGiven = NOT_GIVEN,
         source: sippy_update_params.R2EnableSippyAwsSource
         | sippy_update_params.R2EnableSippyGcsSource
         | NotGiven = NOT_GIVEN,

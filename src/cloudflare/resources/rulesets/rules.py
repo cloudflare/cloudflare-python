@@ -1335,11 +1335,65 @@ class RulesResource(SyncAPIResource):
         | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.BlockRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
+        exposed_credential_check: rule_create_params.BlockRuleExposedCredentialCheck
+        | rule_create_params.ChallengeRuleExposedCredentialCheck
+        | rule_create_params.ResponseCompressionRuleExposedCredentialCheck
+        | rule_create_params.DDoSDynamicRuleExposedCredentialCheck
+        | rule_create_params.ExecuteRuleExposedCredentialCheck
+        | rule_create_params.ForceConnectionCloseRuleExposedCredentialCheck
+        | rule_create_params.JavaScriptChallengeRuleExposedCredentialCheck
+        | rule_create_params.LogRuleExposedCredentialCheck
+        | rule_create_params.LogCustomFieldRuleExposedCredentialCheck
+        | rule_create_params.ManagedChallengeRuleExposedCredentialCheck
+        | rule_create_params.RedirectRuleExposedCredentialCheck
+        | rule_create_params.RewriteRuleExposedCredentialCheck
+        | rule_create_params.RouteRuleExposedCredentialCheck
+        | rule_create_params.ScoreRuleExposedCredentialCheck
+        | rule_create_params.ServeErrorRuleExposedCredentialCheck
+        | rule_create_params.SetCacheSettingsRuleExposedCredentialCheck
+        | rule_create_params.SetConfigurationRuleExposedCredentialCheck
+        | rule_create_params.SkipRuleExposedCredentialCheck
+        | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.BlockRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.BlockRuleRatelimit | NotGiven = NOT_GIVEN,
+        position: rule_create_params.BlockRulePosition
+        | rule_create_params.ChallengeRulePosition
+        | rule_create_params.ResponseCompressionRulePosition
+        | rule_create_params.DDoSDynamicRulePosition
+        | rule_create_params.ExecuteRulePosition
+        | rule_create_params.ForceConnectionCloseRulePosition
+        | rule_create_params.JavaScriptChallengeRulePosition
+        | rule_create_params.LogRulePosition
+        | rule_create_params.LogCustomFieldRulePosition
+        | rule_create_params.ManagedChallengeRulePosition
+        | rule_create_params.RedirectRulePosition
+        | rule_create_params.RewriteRulePosition
+        | rule_create_params.RouteRulePosition
+        | rule_create_params.ScoreRulePosition
+        | rule_create_params.ServeErrorRulePosition
+        | rule_create_params.SetCacheSettingsRulePosition
+        | rule_create_params.SetConfigurationRulePosition
+        | rule_create_params.SkipRulePosition
+        | NotGiven = NOT_GIVEN,
+        ratelimit: rule_create_params.BlockRuleRatelimit
+        | rule_create_params.ChallengeRuleRatelimit
+        | rule_create_params.ResponseCompressionRuleRatelimit
+        | rule_create_params.DDoSDynamicRuleRatelimit
+        | rule_create_params.ExecuteRuleRatelimit
+        | rule_create_params.ForceConnectionCloseRuleRatelimit
+        | rule_create_params.JavaScriptChallengeRuleRatelimit
+        | rule_create_params.LogRuleRatelimit
+        | rule_create_params.LogCustomFieldRuleRatelimit
+        | rule_create_params.ManagedChallengeRuleRatelimit
+        | rule_create_params.RedirectRuleRatelimit
+        | rule_create_params.RewriteRuleRatelimit
+        | rule_create_params.RouteRuleRatelimit
+        | rule_create_params.ScoreRuleRatelimit
+        | rule_create_params.ServeErrorRuleRatelimit
+        | rule_create_params.SetCacheSettingsRuleRatelimit
+        | rule_create_params.SetConfigurationRuleRatelimit
+        | rule_create_params.SkipRuleRatelimit
+        | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2757,11 +2811,65 @@ class RulesResource(SyncAPIResource):
         | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.BlockRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
+        exposed_credential_check: rule_edit_params.BlockRuleExposedCredentialCheck
+        | rule_edit_params.ChallengeRuleExposedCredentialCheck
+        | rule_edit_params.ResponseCompressionRuleExposedCredentialCheck
+        | rule_edit_params.DDoSDynamicRuleExposedCredentialCheck
+        | rule_edit_params.ExecuteRuleExposedCredentialCheck
+        | rule_edit_params.ForceConnectionCloseRuleExposedCredentialCheck
+        | rule_edit_params.JavaScriptChallengeRuleExposedCredentialCheck
+        | rule_edit_params.LogRuleExposedCredentialCheck
+        | rule_edit_params.LogCustomFieldRuleExposedCredentialCheck
+        | rule_edit_params.ManagedChallengeRuleExposedCredentialCheck
+        | rule_edit_params.RedirectRuleExposedCredentialCheck
+        | rule_edit_params.RewriteRuleExposedCredentialCheck
+        | rule_edit_params.RouteRuleExposedCredentialCheck
+        | rule_edit_params.ScoreRuleExposedCredentialCheck
+        | rule_edit_params.ServeErrorRuleExposedCredentialCheck
+        | rule_edit_params.SetCacheSettingsRuleExposedCredentialCheck
+        | rule_edit_params.SetConfigurationRuleExposedCredentialCheck
+        | rule_edit_params.SkipRuleExposedCredentialCheck
+        | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.BlockRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.BlockRuleRatelimit | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.BlockRulePosition
+        | rule_edit_params.ChallengeRulePosition
+        | rule_edit_params.ResponseCompressionRulePosition
+        | rule_edit_params.DDoSDynamicRulePosition
+        | rule_edit_params.ExecuteRulePosition
+        | rule_edit_params.ForceConnectionCloseRulePosition
+        | rule_edit_params.JavaScriptChallengeRulePosition
+        | rule_edit_params.LogRulePosition
+        | rule_edit_params.LogCustomFieldRulePosition
+        | rule_edit_params.ManagedChallengeRulePosition
+        | rule_edit_params.RedirectRulePosition
+        | rule_edit_params.RewriteRulePosition
+        | rule_edit_params.RouteRulePosition
+        | rule_edit_params.ScoreRulePosition
+        | rule_edit_params.ServeErrorRulePosition
+        | rule_edit_params.SetCacheSettingsRulePosition
+        | rule_edit_params.SetConfigurationRulePosition
+        | rule_edit_params.SkipRulePosition
+        | NotGiven = NOT_GIVEN,
+        ratelimit: rule_edit_params.BlockRuleRatelimit
+        | rule_edit_params.ChallengeRuleRatelimit
+        | rule_edit_params.ResponseCompressionRuleRatelimit
+        | rule_edit_params.DDoSDynamicRuleRatelimit
+        | rule_edit_params.ExecuteRuleRatelimit
+        | rule_edit_params.ForceConnectionCloseRuleRatelimit
+        | rule_edit_params.JavaScriptChallengeRuleRatelimit
+        | rule_edit_params.LogRuleRatelimit
+        | rule_edit_params.LogCustomFieldRuleRatelimit
+        | rule_edit_params.ManagedChallengeRuleRatelimit
+        | rule_edit_params.RedirectRuleRatelimit
+        | rule_edit_params.RewriteRuleRatelimit
+        | rule_edit_params.RouteRuleRatelimit
+        | rule_edit_params.ScoreRuleRatelimit
+        | rule_edit_params.ServeErrorRuleRatelimit
+        | rule_edit_params.SetCacheSettingsRuleRatelimit
+        | rule_edit_params.SetConfigurationRuleRatelimit
+        | rule_edit_params.SkipRuleRatelimit
+        | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4122,11 +4230,65 @@ class AsyncRulesResource(AsyncAPIResource):
         | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.BlockRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
+        exposed_credential_check: rule_create_params.BlockRuleExposedCredentialCheck
+        | rule_create_params.ChallengeRuleExposedCredentialCheck
+        | rule_create_params.ResponseCompressionRuleExposedCredentialCheck
+        | rule_create_params.DDoSDynamicRuleExposedCredentialCheck
+        | rule_create_params.ExecuteRuleExposedCredentialCheck
+        | rule_create_params.ForceConnectionCloseRuleExposedCredentialCheck
+        | rule_create_params.JavaScriptChallengeRuleExposedCredentialCheck
+        | rule_create_params.LogRuleExposedCredentialCheck
+        | rule_create_params.LogCustomFieldRuleExposedCredentialCheck
+        | rule_create_params.ManagedChallengeRuleExposedCredentialCheck
+        | rule_create_params.RedirectRuleExposedCredentialCheck
+        | rule_create_params.RewriteRuleExposedCredentialCheck
+        | rule_create_params.RouteRuleExposedCredentialCheck
+        | rule_create_params.ScoreRuleExposedCredentialCheck
+        | rule_create_params.ServeErrorRuleExposedCredentialCheck
+        | rule_create_params.SetCacheSettingsRuleExposedCredentialCheck
+        | rule_create_params.SetConfigurationRuleExposedCredentialCheck
+        | rule_create_params.SkipRuleExposedCredentialCheck
+        | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_create_params.BlockRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.BlockRuleRatelimit | NotGiven = NOT_GIVEN,
+        position: rule_create_params.BlockRulePosition
+        | rule_create_params.ChallengeRulePosition
+        | rule_create_params.ResponseCompressionRulePosition
+        | rule_create_params.DDoSDynamicRulePosition
+        | rule_create_params.ExecuteRulePosition
+        | rule_create_params.ForceConnectionCloseRulePosition
+        | rule_create_params.JavaScriptChallengeRulePosition
+        | rule_create_params.LogRulePosition
+        | rule_create_params.LogCustomFieldRulePosition
+        | rule_create_params.ManagedChallengeRulePosition
+        | rule_create_params.RedirectRulePosition
+        | rule_create_params.RewriteRulePosition
+        | rule_create_params.RouteRulePosition
+        | rule_create_params.ScoreRulePosition
+        | rule_create_params.ServeErrorRulePosition
+        | rule_create_params.SetCacheSettingsRulePosition
+        | rule_create_params.SetConfigurationRulePosition
+        | rule_create_params.SkipRulePosition
+        | NotGiven = NOT_GIVEN,
+        ratelimit: rule_create_params.BlockRuleRatelimit
+        | rule_create_params.ChallengeRuleRatelimit
+        | rule_create_params.ResponseCompressionRuleRatelimit
+        | rule_create_params.DDoSDynamicRuleRatelimit
+        | rule_create_params.ExecuteRuleRatelimit
+        | rule_create_params.ForceConnectionCloseRuleRatelimit
+        | rule_create_params.JavaScriptChallengeRuleRatelimit
+        | rule_create_params.LogRuleRatelimit
+        | rule_create_params.LogCustomFieldRuleRatelimit
+        | rule_create_params.ManagedChallengeRuleRatelimit
+        | rule_create_params.RedirectRuleRatelimit
+        | rule_create_params.RewriteRuleRatelimit
+        | rule_create_params.RouteRuleRatelimit
+        | rule_create_params.ScoreRuleRatelimit
+        | rule_create_params.ServeErrorRuleRatelimit
+        | rule_create_params.SetCacheSettingsRuleRatelimit
+        | rule_create_params.SetConfigurationRuleRatelimit
+        | rule_create_params.SkipRuleRatelimit
+        | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5544,11 +5706,65 @@ class AsyncRulesResource(AsyncAPIResource):
         | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.BlockRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
+        exposed_credential_check: rule_edit_params.BlockRuleExposedCredentialCheck
+        | rule_edit_params.ChallengeRuleExposedCredentialCheck
+        | rule_edit_params.ResponseCompressionRuleExposedCredentialCheck
+        | rule_edit_params.DDoSDynamicRuleExposedCredentialCheck
+        | rule_edit_params.ExecuteRuleExposedCredentialCheck
+        | rule_edit_params.ForceConnectionCloseRuleExposedCredentialCheck
+        | rule_edit_params.JavaScriptChallengeRuleExposedCredentialCheck
+        | rule_edit_params.LogRuleExposedCredentialCheck
+        | rule_edit_params.LogCustomFieldRuleExposedCredentialCheck
+        | rule_edit_params.ManagedChallengeRuleExposedCredentialCheck
+        | rule_edit_params.RedirectRuleExposedCredentialCheck
+        | rule_edit_params.RewriteRuleExposedCredentialCheck
+        | rule_edit_params.RouteRuleExposedCredentialCheck
+        | rule_edit_params.ScoreRuleExposedCredentialCheck
+        | rule_edit_params.ServeErrorRuleExposedCredentialCheck
+        | rule_edit_params.SetCacheSettingsRuleExposedCredentialCheck
+        | rule_edit_params.SetConfigurationRuleExposedCredentialCheck
+        | rule_edit_params.SkipRuleExposedCredentialCheck
+        | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
-        position: rule_edit_params.BlockRulePosition | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.BlockRuleRatelimit | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.BlockRulePosition
+        | rule_edit_params.ChallengeRulePosition
+        | rule_edit_params.ResponseCompressionRulePosition
+        | rule_edit_params.DDoSDynamicRulePosition
+        | rule_edit_params.ExecuteRulePosition
+        | rule_edit_params.ForceConnectionCloseRulePosition
+        | rule_edit_params.JavaScriptChallengeRulePosition
+        | rule_edit_params.LogRulePosition
+        | rule_edit_params.LogCustomFieldRulePosition
+        | rule_edit_params.ManagedChallengeRulePosition
+        | rule_edit_params.RedirectRulePosition
+        | rule_edit_params.RewriteRulePosition
+        | rule_edit_params.RouteRulePosition
+        | rule_edit_params.ScoreRulePosition
+        | rule_edit_params.ServeErrorRulePosition
+        | rule_edit_params.SetCacheSettingsRulePosition
+        | rule_edit_params.SetConfigurationRulePosition
+        | rule_edit_params.SkipRulePosition
+        | NotGiven = NOT_GIVEN,
+        ratelimit: rule_edit_params.BlockRuleRatelimit
+        | rule_edit_params.ChallengeRuleRatelimit
+        | rule_edit_params.ResponseCompressionRuleRatelimit
+        | rule_edit_params.DDoSDynamicRuleRatelimit
+        | rule_edit_params.ExecuteRuleRatelimit
+        | rule_edit_params.ForceConnectionCloseRuleRatelimit
+        | rule_edit_params.JavaScriptChallengeRuleRatelimit
+        | rule_edit_params.LogRuleRatelimit
+        | rule_edit_params.LogCustomFieldRuleRatelimit
+        | rule_edit_params.ManagedChallengeRuleRatelimit
+        | rule_edit_params.RedirectRuleRatelimit
+        | rule_edit_params.RewriteRuleRatelimit
+        | rule_edit_params.RouteRuleRatelimit
+        | rule_edit_params.ScoreRuleRatelimit
+        | rule_edit_params.ServeErrorRuleRatelimit
+        | rule_edit_params.SetCacheSettingsRuleRatelimit
+        | rule_edit_params.SetConfigurationRuleRatelimit
+        | rule_edit_params.SkipRuleRatelimit
+        | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
