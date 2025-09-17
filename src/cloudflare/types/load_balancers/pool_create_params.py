@@ -69,12 +69,6 @@ class PoolCreateParams(TypedDict, total=False):
     pool.
     """
 
-    monitor_group: str
-    """
-    The ID of the Monitor Group to use for checking the health of origins within
-    this pool.
-    """
-
     notification_email: str
     """This field is now deprecated.
 
