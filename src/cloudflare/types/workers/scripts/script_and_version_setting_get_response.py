@@ -18,14 +18,11 @@ __all__ = [
     "BindingWorkersBindingKindAssets",
     "BindingWorkersBindingKindBrowser",
     "BindingWorkersBindingKindD1",
-    "BindingWorkersBindingKindDataBlob",
     "BindingWorkersBindingKindDispatchNamespace",
     "BindingWorkersBindingKindDispatchNamespaceOutbound",
     "BindingWorkersBindingKindDispatchNamespaceOutboundWorker",
     "BindingWorkersBindingKindDurableObjectNamespace",
     "BindingWorkersBindingKindHyperdrive",
-    "BindingWorkersBindingKindInherit",
-    "BindingWorkersBindingKindImages",
     "BindingWorkersBindingKindJson",
     "BindingWorkersBindingKindKVNamespace",
     "BindingWorkersBindingKindMTLSCertificate",
@@ -34,16 +31,13 @@ __all__ = [
     "BindingWorkersBindingKindQueue",
     "BindingWorkersBindingKindR2Bucket",
     "BindingWorkersBindingKindSecretText",
-    "BindingWorkersBindingKindSendEmail",
     "BindingWorkersBindingKindService",
     "BindingWorkersBindingKindTailConsumer",
-    "BindingWorkersBindingKindTextBlob",
     "BindingWorkersBindingKindVectorize",
     "BindingWorkersBindingKindVersionMetadata",
     "BindingWorkersBindingKindSecretsStoreSecret",
     "BindingWorkersBindingKindSecretKey",
     "BindingWorkersBindingKindWorkflow",
-    "BindingWorkersBindingKindWasmModule",
     "Limits",
     "Migrations",
     "MigrationsWorkersMultipleStepMigrations",
@@ -96,20 +90,6 @@ class BindingWorkersBindingKindD1(BaseModel):
     """A JavaScript variable name for the binding."""
 
     type: Literal["d1"]
-    """The kind of resource that the binding provides."""
-
-
-class BindingWorkersBindingKindDataBlob(BaseModel):
-    name: str
-    """A JavaScript variable name for the binding."""
-
-    part: str
-    """The name of the file containing the data content.
-
-    Only accepted for `service worker syntax` Workers.
-    """
-
-    type: Literal["data_blob"]
     """The kind of resource that the binding provides."""
 
 
@@ -177,36 +157,6 @@ class BindingWorkersBindingKindHyperdrive(BaseModel):
     """A JavaScript variable name for the binding."""
 
     type: Literal["hyperdrive"]
-    """The kind of resource that the binding provides."""
-
-
-class BindingWorkersBindingKindInherit(BaseModel):
-    name: str
-    """The name of the inherited binding."""
-
-    type: Literal["inherit"]
-    """The kind of resource that the binding provides."""
-
-    old_name: Optional[str] = None
-    """The old name of the inherited binding.
-
-    If set, the binding will be renamed from `old_name` to `name` in the new
-    version. If not set, the binding will keep the same name between versions.
-    """
-
-    version_id: Optional[str] = None
-    """
-    Identifier for the version to inherit the binding from, which can be the version
-    ID or the literal "latest" to inherit from the latest version. Defaults to
-    inheriting the binding from the latest version.
-    """
-
-
-class BindingWorkersBindingKindImages(BaseModel):
-    name: str
-    """A JavaScript variable name for the binding."""
-
-    type: Literal["images"]
     """The kind of resource that the binding provides."""
 
 
@@ -295,24 +245,10 @@ class BindingWorkersBindingKindSecretText(BaseModel):
     """The kind of resource that the binding provides."""
 
 
-class BindingWorkersBindingKindSendEmail(BaseModel):
-    name: str
-    """A JavaScript variable name for the binding."""
-
-    type: Literal["send_email"]
-    """The kind of resource that the binding provides."""
-
-    allowed_destination_addresses: Optional[List[str]] = None
-    """List of allowed destination addresses."""
-
-    allowed_sender_addresses: Optional[List[str]] = None
-    """List of allowed sender addresses."""
-
-    destination_address: Optional[str] = None
-    """Destination address for the email."""
-
-
 class BindingWorkersBindingKindService(BaseModel):
+    environment: str
+    """Optional environment if the Worker utilizes one."""
+
     name: str
     """A JavaScript variable name for the binding."""
 
@@ -321,9 +257,6 @@ class BindingWorkersBindingKindService(BaseModel):
 
     type: Literal["service"]
     """The kind of resource that the binding provides."""
-
-    environment: Optional[str] = None
-    """Optional environment if the Worker utilizes one."""
 
 
 class BindingWorkersBindingKindTailConsumer(BaseModel):
@@ -334,20 +267,6 @@ class BindingWorkersBindingKindTailConsumer(BaseModel):
     """Name of Tail Worker to bind to."""
 
     type: Literal["tail_consumer"]
-    """The kind of resource that the binding provides."""
-
-
-class BindingWorkersBindingKindTextBlob(BaseModel):
-    name: str
-    """A JavaScript variable name for the binding."""
-
-    part: str
-    """The name of the file containing the text content.
-
-    Only accepted for `service worker syntax` Workers.
-    """
-
-    type: Literal["text_blob"]
     """The kind of resource that the binding provides."""
 
 
@@ -433,20 +352,6 @@ class BindingWorkersBindingKindWorkflow(BaseModel):
     """
 
 
-class BindingWorkersBindingKindWasmModule(BaseModel):
-    name: str
-    """A JavaScript variable name for the binding."""
-
-    part: str
-    """The name of the file containing the WebAssembly module content.
-
-    Only accepted for `service worker syntax` Workers.
-    """
-
-    type: Literal["wasm_module"]
-    """The kind of resource that the binding provides."""
-
-
 Binding: TypeAlias = Annotated[
     Union[
         BindingWorkersBindingKindAI,
@@ -454,12 +359,9 @@ Binding: TypeAlias = Annotated[
         BindingWorkersBindingKindAssets,
         BindingWorkersBindingKindBrowser,
         BindingWorkersBindingKindD1,
-        BindingWorkersBindingKindDataBlob,
         BindingWorkersBindingKindDispatchNamespace,
         BindingWorkersBindingKindDurableObjectNamespace,
         BindingWorkersBindingKindHyperdrive,
-        BindingWorkersBindingKindInherit,
-        BindingWorkersBindingKindImages,
         BindingWorkersBindingKindJson,
         BindingWorkersBindingKindKVNamespace,
         BindingWorkersBindingKindMTLSCertificate,
@@ -468,16 +370,13 @@ Binding: TypeAlias = Annotated[
         BindingWorkersBindingKindQueue,
         BindingWorkersBindingKindR2Bucket,
         BindingWorkersBindingKindSecretText,
-        BindingWorkersBindingKindSendEmail,
         BindingWorkersBindingKindService,
         BindingWorkersBindingKindTailConsumer,
-        BindingWorkersBindingKindTextBlob,
         BindingWorkersBindingKindVectorize,
         BindingWorkersBindingKindVersionMetadata,
         BindingWorkersBindingKindSecretsStoreSecret,
         BindingWorkersBindingKindSecretKey,
         BindingWorkersBindingKindWorkflow,
-        BindingWorkersBindingKindWasmModule,
     ],
     PropertyInfo(discriminator="type"),
 ]
@@ -506,14 +405,8 @@ class ObservabilityLogs(BaseModel):
     are enabled for the Worker.
     """
 
-    destinations: Optional[List[str]] = None
-    """A list of destinations where logs will be exported to."""
-
     head_sampling_rate: Optional[float] = None
     """The sampling rate for logs. From 0 to 1 (1 = 100%, 0.1 = 10%). Default is 1."""
-
-    persist: Optional[bool] = None
-    """Whether log persistence is enabled for the Worker."""
 
 
 class Observability(BaseModel):
@@ -576,7 +469,7 @@ class ScriptAndVersionSettingGetResponse(BaseModel):
     """
 
     tags: Optional[List[str]] = None
-    """Tags associated with the Worker."""
+    """Tags to help you manage your Workers."""
 
     tail_consumers: Optional[List[ConsumerScript]] = None
     """List of Workers that will consume logs from the attached Worker."""

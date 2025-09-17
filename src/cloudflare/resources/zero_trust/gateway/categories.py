@@ -52,10 +52,10 @@ class CategoriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncSinglePage[Category]:
         """
-        List all categories.
+        Fetches a list of all categories.
 
         Args:
-          account_id: Provide the identifier string.
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -109,10 +109,10 @@ class AsyncCategoriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[Category, AsyncSinglePage[Category]]:
         """
-        List all categories.
+        Fetches a list of all categories.
 
         Args:
-          account_id: Provide the identifier string.
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 

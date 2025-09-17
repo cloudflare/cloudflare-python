@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
+from datetime import datetime
 
 from ...._models import BaseModel
 from .applications.access_rule import AccessRule
@@ -11,6 +12,8 @@ __all__ = ["GroupCreateResponse"]
 class GroupCreateResponse(BaseModel):
     id: Optional[str] = None
     """UUID."""
+
+    created_at: Optional[datetime] = None
 
     exclude: Optional[List[AccessRule]] = None
     """Rules evaluated with a NOT logical operator.
@@ -38,3 +41,5 @@ class GroupCreateResponse(BaseModel):
 
     To match a policy, a user must meet all of the Require rules.
     """
+
+    updated_at: Optional[datetime] = None

@@ -9,4 +9,4 @@ __all__ = ["BodyScanningSettingsParam"]
 
 class BodyScanningSettingsParam(TypedDict, total=False):
     inspection_mode: Literal["deep", "shallow"]
-    """Specify the inspection mode as either `deep` or `shallow`."""
+    """Set the inspection mode to either `deep` or `shallow`."""

@@ -7,4 +7,4 @@ __all__ = ["IPNetwork"]
 
 class IPNetwork(BaseModel):
     network: str
-    """Specify the IP address or IP CIDR."""
+    """The IP address or IP CIDR."""

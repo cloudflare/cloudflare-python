@@ -21,14 +21,11 @@ __all__ = [
     "BindingWorkersBindingKindAssets",
     "BindingWorkersBindingKindBrowser",
     "BindingWorkersBindingKindD1",
-    "BindingWorkersBindingKindDataBlob",
     "BindingWorkersBindingKindDispatchNamespace",
     "BindingWorkersBindingKindDispatchNamespaceOutbound",
     "BindingWorkersBindingKindDispatchNamespaceOutboundWorker",
     "BindingWorkersBindingKindDurableObjectNamespace",
     "BindingWorkersBindingKindHyperdrive",
-    "BindingWorkersBindingKindInherit",
-    "BindingWorkersBindingKindImages",
     "BindingWorkersBindingKindJson",
     "BindingWorkersBindingKindKVNamespace",
     "BindingWorkersBindingKindMTLSCertificate",
@@ -37,16 +34,13 @@ __all__ = [
     "BindingWorkersBindingKindQueue",
     "BindingWorkersBindingKindR2Bucket",
     "BindingWorkersBindingKindSecretText",
-    "BindingWorkersBindingKindSendEmail",
     "BindingWorkersBindingKindService",
     "BindingWorkersBindingKindTailConsumer",
-    "BindingWorkersBindingKindTextBlob",
     "BindingWorkersBindingKindVectorize",
     "BindingWorkersBindingKindVersionMetadata",
     "BindingWorkersBindingKindSecretsStoreSecret",
     "BindingWorkersBindingKindSecretKey",
     "BindingWorkersBindingKindWorkflow",
-    "BindingWorkersBindingKindWasmModule",
     "Limits",
     "Migrations",
     "MigrationsWorkersMultipleStepMigrations",
@@ -141,20 +135,6 @@ class BindingWorkersBindingKindD1(BaseModel):
     """The kind of resource that the binding provides."""
 
 
-class BindingWorkersBindingKindDataBlob(BaseModel):
-    name: str
-    """A JavaScript variable name for the binding."""
-
-    part: str
-    """The name of the file containing the data content.
-
-    Only accepted for `service worker syntax` Workers.
-    """
-
-    type: Literal["data_blob"]
-    """The kind of resource that the binding provides."""
-
-
 class BindingWorkersBindingKindDispatchNamespaceOutboundWorker(BaseModel):
     environment: Optional[str] = None
     """Environment of the outbound worker."""
@@ -219,36 +199,6 @@ class BindingWorkersBindingKindHyperdrive(BaseModel):
     """A JavaScript variable name for the binding."""
 
     type: Literal["hyperdrive"]
-    """The kind of resource that the binding provides."""
-
-
-class BindingWorkersBindingKindInherit(BaseModel):
-    name: str
-    """The name of the inherited binding."""
-
-    type: Literal["inherit"]
-    """The kind of resource that the binding provides."""
-
-    old_name: Optional[str] = None
-    """The old name of the inherited binding.
-
-    If set, the binding will be renamed from `old_name` to `name` in the new
-    version. If not set, the binding will keep the same name between versions.
-    """
-
-    version_id: Optional[str] = None
-    """
-    Identifier for the version to inherit the binding from, which can be the version
-    ID or the literal "latest" to inherit from the latest version. Defaults to
-    inheriting the binding from the latest version.
-    """
-
-
-class BindingWorkersBindingKindImages(BaseModel):
-    name: str
-    """A JavaScript variable name for the binding."""
-
-    type: Literal["images"]
     """The kind of resource that the binding provides."""
 
 
@@ -337,24 +287,10 @@ class BindingWorkersBindingKindSecretText(BaseModel):
     """The kind of resource that the binding provides."""
 
 
-class BindingWorkersBindingKindSendEmail(BaseModel):
-    name: str
-    """A JavaScript variable name for the binding."""
-
-    type: Literal["send_email"]
-    """The kind of resource that the binding provides."""
-
-    allowed_destination_addresses: Optional[List[str]] = None
-    """List of allowed destination addresses."""
-
-    allowed_sender_addresses: Optional[List[str]] = None
-    """List of allowed sender addresses."""
-
-    destination_address: Optional[str] = None
-    """Destination address for the email."""
-
-
 class BindingWorkersBindingKindService(BaseModel):
+    environment: str
+    """Optional environment if the Worker utilizes one."""
+
     name: str
     """A JavaScript variable name for the binding."""
 
@@ -363,9 +299,6 @@ class BindingWorkersBindingKindService(BaseModel):
 
     type: Literal["service"]
     """The kind of resource that the binding provides."""
-
-    environment: Optional[str] = None
-    """Optional environment if the Worker utilizes one."""
 
 
 class BindingWorkersBindingKindTailConsumer(BaseModel):
@@ -376,20 +309,6 @@ class BindingWorkersBindingKindTailConsumer(BaseModel):
     """Name of Tail Worker to bind to."""
 
     type: Literal["tail_consumer"]
-    """The kind of resource that the binding provides."""
-
-
-class BindingWorkersBindingKindTextBlob(BaseModel):
-    name: str
-    """A JavaScript variable name for the binding."""
-
-    part: str
-    """The name of the file containing the text content.
-
-    Only accepted for `service worker syntax` Workers.
-    """
-
-    type: Literal["text_blob"]
     """The kind of resource that the binding provides."""
 
 
@@ -475,20 +394,6 @@ class BindingWorkersBindingKindWorkflow(BaseModel):
     """
 
 
-class BindingWorkersBindingKindWasmModule(BaseModel):
-    name: str
-    """A JavaScript variable name for the binding."""
-
-    part: str
-    """The name of the file containing the WebAssembly module content.
-
-    Only accepted for `service worker syntax` Workers.
-    """
-
-    type: Literal["wasm_module"]
-    """The kind of resource that the binding provides."""
-
-
 Binding: TypeAlias = Annotated[
     Union[
         BindingWorkersBindingKindAI,
@@ -496,12 +401,9 @@ Binding: TypeAlias = Annotated[
         BindingWorkersBindingKindAssets,
         BindingWorkersBindingKindBrowser,
         BindingWorkersBindingKindD1,
-        BindingWorkersBindingKindDataBlob,
         BindingWorkersBindingKindDispatchNamespace,
         BindingWorkersBindingKindDurableObjectNamespace,
         BindingWorkersBindingKindHyperdrive,
-        BindingWorkersBindingKindInherit,
-        BindingWorkersBindingKindImages,
         BindingWorkersBindingKindJson,
         BindingWorkersBindingKindKVNamespace,
         BindingWorkersBindingKindMTLSCertificate,
@@ -510,16 +412,13 @@ Binding: TypeAlias = Annotated[
         BindingWorkersBindingKindQueue,
         BindingWorkersBindingKindR2Bucket,
         BindingWorkersBindingKindSecretText,
-        BindingWorkersBindingKindSendEmail,
         BindingWorkersBindingKindService,
         BindingWorkersBindingKindTailConsumer,
-        BindingWorkersBindingKindTextBlob,
         BindingWorkersBindingKindVectorize,
         BindingWorkersBindingKindVersionMetadata,
         BindingWorkersBindingKindSecretsStoreSecret,
         BindingWorkersBindingKindSecretKey,
         BindingWorkersBindingKindWorkflow,
-        BindingWorkersBindingKindWasmModule,
     ],
     PropertyInfo(discriminator="type"),
 ]
@@ -567,14 +466,7 @@ class Version(BaseModel):
     """Metadata about the version."""
 
     assets: Optional[Assets] = None
-    """Configuration for assets within a Worker.
-
-    [`_headers`](https://developers.cloudflare.com/workers/static-assets/headers/#custom-headers)
-    and
-    [`_redirects`](https://developers.cloudflare.com/workers/static-assets/redirects/)
-    files should be included as modules named `_headers` and `_redirects` with
-    content type `text/plain`.
-    """
+    """Configuration for assets within a Worker."""
 
     bindings: Optional[List[Binding]] = None
     """List of bindings attached to a Worker.
@@ -613,17 +505,7 @@ class Version(BaseModel):
     """
 
     modules: Optional[List[Module]] = None
-    """Code, sourcemaps, and other content used at runtime.
-
-    This includes
-    [`_headers`](https://developers.cloudflare.com/workers/static-assets/headers/#custom-headers)
-    and
-    [`_redirects`](https://developers.cloudflare.com/workers/static-assets/redirects/)
-    files used to configure
-    [Static Assets](https://developers.cloudflare.com/workers/static-assets/).
-    `_headers` and `_redirects` files should be included as modules named `_headers`
-    and `_redirects` with content type `text/plain`.
-    """
+    """Code, sourcemaps, and other content used at runtime."""
 
     placement: Optional[Placement] = None
     """Placement settings for the version."""

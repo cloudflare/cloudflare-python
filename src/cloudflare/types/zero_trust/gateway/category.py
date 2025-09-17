@@ -12,48 +12,50 @@ __all__ = ["Category", "Subcategory"]
 
 class Subcategory(BaseModel):
     id: Optional[int] = None
-    """Identify this category. Only one category per ID."""
+    """The identifier for this category. There is only one category per ID."""
 
     beta: Optional[bool] = None
-    """Indicate whether the category is in beta and subject to change."""
+    """True if the category is in beta and subject to change."""
 
     class_: Optional[Literal["free", "premium", "blocked", "removalPending", "noBlock"]] = FieldInfo(
         alias="class", default=None
     )
-    """Specify which account types can create policies for this category.
+    """Which account types are allowed to create policies based on this category.
 
-    `blocked` Blocks unconditionally for all accounts. `removalPending` Allows
-    removal from policies but disables addition. `noBlock` Prevents blocking.
+    `blocked` categories are blocked unconditionally for all accounts.
+    `removalPending` categories can be removed from policies but not added.
+    `noBlock` categories cannot be blocked.
     """
 
     description: Optional[str] = None
-    """Provide a short summary of domains in the category."""
+    """A short summary of domains in the category."""
 
     name: Optional[str] = None
-    """Specify the category name."""
+    """The name of the category."""
 
 
 class Category(BaseModel):
     id: Optional[int] = None
-    """Identify this category. Only one category per ID."""
+    """The identifier for this category. There is only one category per ID."""
 
     beta: Optional[bool] = None
-    """Indicate whether the category is in beta and subject to change."""
+    """True if the category is in beta and subject to change."""
 
     class_: Optional[Literal["free", "premium", "blocked", "removalPending", "noBlock"]] = FieldInfo(
         alias="class", default=None
     )
-    """Specify which account types can create policies for this category.
+    """Which account types are allowed to create policies based on this category.
 
-    `blocked` Blocks unconditionally for all accounts. `removalPending` Allows
-    removal from policies but disables addition. `noBlock` Prevents blocking.
+    `blocked` categories are blocked unconditionally for all accounts.
+    `removalPending` categories can be removed from policies but not added.
+    `noBlock` categories cannot be blocked.
     """
 
     description: Optional[str] = None
-    """Provide a short summary of domains in the category."""
+    """A short summary of domains in the category."""
 
     name: Optional[str] = None
-    """Specify the category name."""
+    """The name of the category."""
 
     subcategories: Optional[List[Subcategory]] = None
-    """Provide all subcategories for this category."""
+    """All subcategories for this category."""

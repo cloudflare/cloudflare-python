@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, cast
+from typing import Type, Union, Iterable, cast
 from typing_extensions import Literal
 
 import httpx
@@ -52,7 +52,6 @@ class VersionsResource(SyncAPIResource):
         worker_id: str,
         *,
         account_id: str,
-        deploy: bool | NotGiven = NOT_GIVEN,
         annotations: version_create_params.Annotations | NotGiven = NOT_GIVEN,
         assets: version_create_params.Assets | NotGiven = NOT_GIVEN,
         bindings: Iterable[version_create_params.Binding] | NotGiven = NOT_GIVEN,
@@ -77,20 +76,11 @@ class VersionsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          worker_id: Identifier for the Worker, which can be ID or name.
-
-          deploy: If true, a deployment will be created that sends 100% of traffic to the new
-              version.
+          worker_id: Identifier.
 
           annotations: Metadata about the version.
 
           assets: Configuration for assets within a Worker.
-
-              [`_headers`](https://developers.cloudflare.com/workers/static-assets/headers/#custom-headers)
-              and
-              [`_redirects`](https://developers.cloudflare.com/workers/static-assets/redirects/)
-              files should be included as modules named `_headers` and `_redirects` with
-              content type `text/plain`.
 
           bindings: List of bindings attached to a Worker. You can find more about bindings on our
               docs:
@@ -112,15 +102,6 @@ class VersionsResource(SyncAPIResource):
               applied when the version is deployed.
 
           modules: Code, sourcemaps, and other content used at runtime.
-
-              This includes
-              [`_headers`](https://developers.cloudflare.com/workers/static-assets/headers/#custom-headers)
-              and
-              [`_redirects`](https://developers.cloudflare.com/workers/static-assets/redirects/)
-              files used to configure
-              [Static Assets](https://developers.cloudflare.com/workers/static-assets/).
-              `_headers` and `_redirects` files should be included as modules named `_headers`
-              and `_redirects` with content type `text/plain`.
 
           placement: Placement settings for the version.
 
@@ -161,7 +142,6 @@ class VersionsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"deploy": deploy}, version_create_params.VersionCreateParams),
                 post_parser=ResultWrapper[Version]._unwrapper,
             ),
             cast_to=cast(Type[Version], ResultWrapper[Version]),
@@ -187,7 +167,7 @@ class VersionsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          worker_id: Identifier for the Worker, which can be ID or name.
+          worker_id: Identifier.
 
           page: Current page.
 
@@ -226,7 +206,7 @@ class VersionsResource(SyncAPIResource):
 
     def delete(
         self,
-        version_id: str,
+        version_id: Union[str, Literal["latest"]],
         *,
         account_id: str,
         worker_id: str,
@@ -243,10 +223,7 @@ class VersionsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          worker_id: Identifier for the Worker, which can be ID or name.
-
-          version_id: Identifier for the version, which can be ID or the literal "latest" to operate
-              on the most recently created version.
+          worker_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -260,8 +237,6 @@ class VersionsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not worker_id:
             raise ValueError(f"Expected a non-empty value for `worker_id` but received {worker_id!r}")
-        if not version_id:
-            raise ValueError(f"Expected a non-empty value for `version_id` but received {version_id!r}")
         return self._delete(
             f"/accounts/{account_id}/workers/workers/{worker_id}/versions/{version_id}",
             options=make_request_options(
@@ -272,7 +247,7 @@ class VersionsResource(SyncAPIResource):
 
     def get(
         self,
-        version_id: str,
+        version_id: Union[str, Literal["latest"]],
         *,
         account_id: str,
         worker_id: str,
@@ -290,14 +265,7 @@ class VersionsResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          worker_id: Identifier for the Worker, which can be ID or name.
-
-          version_id: Identifier for the version, which can be ID or the literal "latest" to operate
-              on the most recently created version.
-
-          include: Whether to include the `modules` property of the version in the response, which
-              contains code and sourcemap content and may add several megabytes to the
-              response size.
+          worker_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -311,8 +279,6 @@ class VersionsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not worker_id:
             raise ValueError(f"Expected a non-empty value for `worker_id` but received {worker_id!r}")
-        if not version_id:
-            raise ValueError(f"Expected a non-empty value for `version_id` but received {version_id!r}")
         return self._get(
             f"/accounts/{account_id}/workers/workers/{worker_id}/versions/{version_id}",
             options=make_request_options(
@@ -352,7 +318,6 @@ class AsyncVersionsResource(AsyncAPIResource):
         worker_id: str,
         *,
         account_id: str,
-        deploy: bool | NotGiven = NOT_GIVEN,
         annotations: version_create_params.Annotations | NotGiven = NOT_GIVEN,
         assets: version_create_params.Assets | NotGiven = NOT_GIVEN,
         bindings: Iterable[version_create_params.Binding] | NotGiven = NOT_GIVEN,
@@ -377,20 +342,11 @@ class AsyncVersionsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          worker_id: Identifier for the Worker, which can be ID or name.
-
-          deploy: If true, a deployment will be created that sends 100% of traffic to the new
-              version.
+          worker_id: Identifier.
 
           annotations: Metadata about the version.
 
           assets: Configuration for assets within a Worker.
-
-              [`_headers`](https://developers.cloudflare.com/workers/static-assets/headers/#custom-headers)
-              and
-              [`_redirects`](https://developers.cloudflare.com/workers/static-assets/redirects/)
-              files should be included as modules named `_headers` and `_redirects` with
-              content type `text/plain`.
 
           bindings: List of bindings attached to a Worker. You can find more about bindings on our
               docs:
@@ -412,15 +368,6 @@ class AsyncVersionsResource(AsyncAPIResource):
               applied when the version is deployed.
 
           modules: Code, sourcemaps, and other content used at runtime.
-
-              This includes
-              [`_headers`](https://developers.cloudflare.com/workers/static-assets/headers/#custom-headers)
-              and
-              [`_redirects`](https://developers.cloudflare.com/workers/static-assets/redirects/)
-              files used to configure
-              [Static Assets](https://developers.cloudflare.com/workers/static-assets/).
-              `_headers` and `_redirects` files should be included as modules named `_headers`
-              and `_redirects` with content type `text/plain`.
 
           placement: Placement settings for the version.
 
@@ -461,7 +408,6 @@ class AsyncVersionsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"deploy": deploy}, version_create_params.VersionCreateParams),
                 post_parser=ResultWrapper[Version]._unwrapper,
             ),
             cast_to=cast(Type[Version], ResultWrapper[Version]),
@@ -487,7 +433,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          worker_id: Identifier for the Worker, which can be ID or name.
+          worker_id: Identifier.
 
           page: Current page.
 
@@ -526,7 +472,7 @@ class AsyncVersionsResource(AsyncAPIResource):
 
     async def delete(
         self,
-        version_id: str,
+        version_id: Union[str, Literal["latest"]],
         *,
         account_id: str,
         worker_id: str,
@@ -543,10 +489,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          worker_id: Identifier for the Worker, which can be ID or name.
-
-          version_id: Identifier for the version, which can be ID or the literal "latest" to operate
-              on the most recently created version.
+          worker_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -560,8 +503,6 @@ class AsyncVersionsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not worker_id:
             raise ValueError(f"Expected a non-empty value for `worker_id` but received {worker_id!r}")
-        if not version_id:
-            raise ValueError(f"Expected a non-empty value for `version_id` but received {version_id!r}")
         return await self._delete(
             f"/accounts/{account_id}/workers/workers/{worker_id}/versions/{version_id}",
             options=make_request_options(
@@ -572,7 +513,7 @@ class AsyncVersionsResource(AsyncAPIResource):
 
     async def get(
         self,
-        version_id: str,
+        version_id: Union[str, Literal["latest"]],
         *,
         account_id: str,
         worker_id: str,
@@ -590,14 +531,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          worker_id: Identifier for the Worker, which can be ID or name.
-
-          version_id: Identifier for the version, which can be ID or the literal "latest" to operate
-              on the most recently created version.
-
-          include: Whether to include the `modules` property of the version in the response, which
-              contains code and sourcemap content and may add several megabytes to the
-              response size.
+          worker_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -611,8 +545,6 @@ class AsyncVersionsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not worker_id:
             raise ValueError(f"Expected a non-empty value for `worker_id` but received {worker_id!r}")
-        if not version_id:
-            raise ValueError(f"Expected a non-empty value for `version_id` but received {version_id!r}")
         return await self._get(
             f"/accounts/{account_id}/workers/workers/{worker_id}/versions/{version_id}",
             options=make_request_options(

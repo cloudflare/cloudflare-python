@@ -60,12 +60,12 @@ class ProxyEndpointsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[ProxyEndpoint]:
         """
-        Create a new Zero Trust Gateway proxy endpoint.
+        Creates a new Zero Trust Gateway proxy endpoint.
 
         Args:
-          ips: Specify the list of CIDRs to restrict ingress connections.
+          ips: A list of CIDRs to restrict ingress connections.
 
-          name: Specify the name of the proxy endpoint.
+          name: The name of the proxy endpoint.
 
           extra_headers: Send extra headers
 
@@ -108,7 +108,7 @@ class ProxyEndpointsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[ProxyEndpoint]:
         """
-        List all Zero Trust Gateway proxy endpoints for an account.
+        Fetches all Zero Trust Gateway proxy endpoints for an account.
 
         Args:
           extra_headers: Send extra headers
@@ -146,7 +146,7 @@ class ProxyEndpointsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        Delete a configured Zero Trust Gateway proxy endpoint.
+        Deletes a configured Zero Trust Gateway proxy endpoint.
 
         Args:
           extra_headers: Send extra headers
@@ -188,12 +188,12 @@ class ProxyEndpointsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[ProxyEndpoint]:
         """
-        Update a configured Zero Trust Gateway proxy endpoint.
+        Updates a configured Zero Trust Gateway proxy endpoint.
 
         Args:
-          ips: Specify the list of CIDRs to restrict ingress connections.
+          ips: A list of CIDRs to restrict ingress connections.
 
-          name: Specify the name of the proxy endpoint.
+          name: The name of the proxy endpoint.
 
           extra_headers: Send extra headers
 
@@ -239,7 +239,7 @@ class ProxyEndpointsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncSinglePage[ProxyEndpoint]:
         """
-        Get a single Zero Trust Gateway proxy endpoint.
+        Fetches a single Zero Trust Gateway proxy endpoint.
 
         Args:
           extra_headers: Send extra headers
@@ -298,12 +298,12 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[ProxyEndpoint]:
         """
-        Create a new Zero Trust Gateway proxy endpoint.
+        Creates a new Zero Trust Gateway proxy endpoint.
 
         Args:
-          ips: Specify the list of CIDRs to restrict ingress connections.
+          ips: A list of CIDRs to restrict ingress connections.
 
-          name: Specify the name of the proxy endpoint.
+          name: The name of the proxy endpoint.
 
           extra_headers: Send extra headers
 
@@ -346,7 +346,7 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[ProxyEndpoint]:
         """
-        List all Zero Trust Gateway proxy endpoints for an account.
+        Fetches all Zero Trust Gateway proxy endpoints for an account.
 
         Args:
           extra_headers: Send extra headers
@@ -384,7 +384,7 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        Delete a configured Zero Trust Gateway proxy endpoint.
+        Deletes a configured Zero Trust Gateway proxy endpoint.
 
         Args:
           extra_headers: Send extra headers
@@ -426,12 +426,12 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[ProxyEndpoint]:
         """
-        Update a configured Zero Trust Gateway proxy endpoint.
+        Updates a configured Zero Trust Gateway proxy endpoint.
 
         Args:
-          ips: Specify the list of CIDRs to restrict ingress connections.
+          ips: A list of CIDRs to restrict ingress connections.
 
-          name: Specify the name of the proxy endpoint.
+          name: The name of the proxy endpoint.
 
           extra_headers: Send extra headers
 
@@ -477,7 +477,7 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[ProxyEndpoint, AsyncSinglePage[ProxyEndpoint]]:
         """
-        Get a single Zero Trust Gateway proxy endpoint.
+        Fetches a single Zero Trust Gateway proxy endpoint.
 
         Args:
           extra_headers: Send extra headers

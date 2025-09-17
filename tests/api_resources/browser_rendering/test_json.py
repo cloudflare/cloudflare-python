@@ -88,7 +88,7 @@ class TestJson:
             reject_resource_types=["document"],
             response_format={
                 "type": "type",
-                "json_schema": {"foo": "string"},
+                "schema": {"foo": {}},
             },
             set_extra_http_headers={"foo": "string"},
             set_java_script_enabled=True,
@@ -220,7 +220,7 @@ class TestAsyncJson:
             reject_resource_types=["document"],
             response_format={
                 "type": "type",
-                "json_schema": {"foo": "string"},
+                "schema": {"foo": {}},
             },
             set_extra_http_headers={"foo": "string"},
             set_java_script_enabled=True,

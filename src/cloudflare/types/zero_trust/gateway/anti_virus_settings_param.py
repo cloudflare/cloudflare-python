@@ -12,13 +12,16 @@ __all__ = ["AntiVirusSettingsParam"]
 
 class AntiVirusSettingsParam(TypedDict, total=False):
     enabled_download_phase: Optional[bool]
-    """Specify whether to enable anti-virus scanning on downloads."""
+    """Enable anti-virus scanning on downloads."""
 
     enabled_upload_phase: Optional[bool]
-    """Specify whether to enable anti-virus scanning on uploads."""
+    """Enable anti-virus scanning on uploads."""
 
     fail_closed: Optional[bool]
-    """Specify whether to block requests for unscannable files."""
+    """Block requests for files that cannot be scanned."""
 
     notification_settings: Optional[NotificationSettingsParam]
-    """Configure the message the user's device shows during an antivirus scan."""
+    """
+    Configure a message to display on the user's device when an antivirus search is
+    performed.
+    """

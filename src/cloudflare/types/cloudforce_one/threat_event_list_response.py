@@ -21,11 +21,7 @@ class ThreatEventListResponseItem(BaseModel):
 
     event: str
 
-    indicator: str
-
     indicator_type: str = FieldInfo(alias="indicatorType")
-
-    indicator_type_id: float = FieldInfo(alias="indicatorTypeId")
 
     kill_chain: float = FieldInfo(alias="killChain")
 
@@ -34,8 +30,6 @@ class ThreatEventListResponseItem(BaseModel):
     num_referenced: float = FieldInfo(alias="numReferenced")
 
     num_references: float = FieldInfo(alias="numReferences")
-
-    raw_id: str = FieldInfo(alias="rawId")
 
     referenced: List[str]
 
@@ -56,8 +50,6 @@ class ThreatEventListResponseItem(BaseModel):
     uuid: str
 
     insight: Optional[str] = None
-
-    releasability_id: Optional[str] = FieldInfo(alias="releasabilityId", default=None)
 
 
 ThreatEventListResponse: TypeAlias = List[ThreatEventListResponseItem]

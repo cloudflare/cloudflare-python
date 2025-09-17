@@ -9,4 +9,4 @@ __all__ = ["TLSSettings"]
 
 class TLSSettings(BaseModel):
     enabled: Optional[bool] = None
-    """Specify whether to inspect encrypted HTTP traffic."""
+    """Enable inspecting encrypted HTTP traffic."""

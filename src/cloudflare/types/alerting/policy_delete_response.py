@@ -4,20 +4,9 @@ from typing import List, Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
+from ..shared.response_info import ResponseInfo
 
-__all__ = ["PolicyDeleteResponse", "Error", "Message", "ResultInfo"]
-
-
-class Error(BaseModel):
-    message: str
-
-    code: Optional[int] = None
-
-
-class Message(BaseModel):
-    message: str
-
-    code: Optional[int] = None
+__all__ = ["PolicyDeleteResponse", "ResultInfo"]
 
 
 class ResultInfo(BaseModel):
@@ -35,9 +24,9 @@ class ResultInfo(BaseModel):
 
 
 class PolicyDeleteResponse(BaseModel):
-    errors: List[Error]
+    errors: List[ResponseInfo]
 
-    messages: List[Message]
+    messages: List[ResponseInfo]
 
     success: Literal[True]
     """Whether the API call was successful"""

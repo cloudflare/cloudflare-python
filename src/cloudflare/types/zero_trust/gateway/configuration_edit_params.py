@@ -13,4 +13,4 @@ class ConfigurationEditParams(TypedDict, total=False):
     account_id: Required[str]
 
     settings: GatewayConfigurationSettingsParam
-    """Specify account settings."""
+    """Account settings."""

@@ -12,11 +12,6 @@ class VersionGetParams(TypedDict, total=False):
     """Identifier."""
 
     worker_id: Required[str]
-    """Identifier for the Worker, which can be ID or name."""
+    """Identifier."""
 
     include: Literal["modules"]
-    """
-    Whether to include the `modules` property of the version in the response, which
-    contains code and sourcemap content and may add several megabytes to the
-    response size.
-    """

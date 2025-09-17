@@ -15,12 +15,12 @@ class ProxyEndpoint(BaseModel):
     created_at: Optional[datetime] = None
 
     ips: Optional[List[GatewayIPs]] = None
-    """Specify the list of CIDRs to restrict ingress connections."""
+    """A list of CIDRs to restrict ingress connections."""
 
     name: Optional[str] = None
-    """Specify the name of the proxy endpoint."""
+    """The name of the proxy endpoint."""
 
     subdomain: Optional[str] = None
-    """Specify the subdomain to use as the destination in the proxy client."""
+    """The subdomain to be used as the destination in the proxy client."""
 
     updated_at: Optional[datetime] = None

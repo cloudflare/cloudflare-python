@@ -1,41 +1,20 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
+from typing import List, Optional
 from datetime import datetime
-from typing_extensions import Literal, TypeAlias
+from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["AIGatewayGetResponse", "DLP", "DLPUnionMember0", "DLPUnionMember1", "DLPUnionMember1Policy"]
+__all__ = ["AIGatewayGetResponse", "DLP"]
 
 
-class DLPUnionMember0(BaseModel):
+class DLP(BaseModel):
     action: Literal["BLOCK", "FLAG"]
 
     enabled: bool
 
     profiles: List[str]
-
-
-class DLPUnionMember1Policy(BaseModel):
-    id: str
-
-    action: Literal["FLAG", "BLOCK"]
-
-    check: List[Literal["REQUEST", "RESPONSE"]]
-
-    enabled: bool
-
-    profiles: List[str]
-
-
-class DLPUnionMember1(BaseModel):
-    enabled: bool
-
-    policies: List[DLPUnionMember1Policy]
-
-
-DLP: TypeAlias = Union[DLPUnionMember0, DLPUnionMember1]
 
 
 class AIGatewayGetResponse(BaseModel):

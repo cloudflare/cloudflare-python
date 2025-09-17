@@ -14,15 +14,15 @@ class ListEditParams(TypedDict, total=False):
     account_id: Required[str]
 
     append: Iterable[Append]
-    """Add items to the list."""
+    """items to add to the list."""
 
     remove: SequenceNotStr[str]
-    """Lists of item values you want to remove."""
+    """A list of the item values you want to remove."""
 
 
 class Append(TypedDict, total=False):
     description: str
-    """Provide the list item description (optional)."""
+    """The description of the list item, if present."""
 
     value: str
-    """Specify the item value."""
+    """The value of the item in a list."""

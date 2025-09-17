@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import typing_extensions
 from typing import Type, Union, cast
 from datetime import datetime
 from typing_extensions import Literal
@@ -48,7 +47,6 @@ class SummaryResource(SyncAPIResource):
         """
         return SummaryResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
     def model(
         self,
         *,
@@ -122,7 +120,6 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryModelResponse], ResultWrapper[SummaryModelResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def task(
         self,
         *,
@@ -217,7 +214,6 @@ class AsyncSummaryResource(AsyncAPIResource):
         """
         return AsyncSummaryResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
     async def model(
         self,
         *,
@@ -291,7 +287,6 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryModelResponse], ResultWrapper[SummaryModelResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def task(
         self,
         *,
@@ -370,15 +365,11 @@ class SummaryResourceWithRawResponse:
     def __init__(self, summary: SummaryResource) -> None:
         self._summary = summary
 
-        self.model = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                summary.model,  # pyright: ignore[reportDeprecated],
-            )
+        self.model = to_raw_response_wrapper(
+            summary.model,
         )
-        self.task = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                summary.task,  # pyright: ignore[reportDeprecated],
-            )
+        self.task = to_raw_response_wrapper(
+            summary.task,
         )
 
 
@@ -386,15 +377,11 @@ class AsyncSummaryResourceWithRawResponse:
     def __init__(self, summary: AsyncSummaryResource) -> None:
         self._summary = summary
 
-        self.model = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                summary.model,  # pyright: ignore[reportDeprecated],
-            )
+        self.model = async_to_raw_response_wrapper(
+            summary.model,
         )
-        self.task = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                summary.task,  # pyright: ignore[reportDeprecated],
-            )
+        self.task = async_to_raw_response_wrapper(
+            summary.task,
         )
 
 
@@ -402,15 +389,11 @@ class SummaryResourceWithStreamingResponse:
     def __init__(self, summary: SummaryResource) -> None:
         self._summary = summary
 
-        self.model = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                summary.model,  # pyright: ignore[reportDeprecated],
-            )
+        self.model = to_streamed_response_wrapper(
+            summary.model,
         )
-        self.task = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                summary.task,  # pyright: ignore[reportDeprecated],
-            )
+        self.task = to_streamed_response_wrapper(
+            summary.task,
         )
 
 
@@ -418,13 +401,9 @@ class AsyncSummaryResourceWithStreamingResponse:
     def __init__(self, summary: AsyncSummaryResource) -> None:
         self._summary = summary
 
-        self.model = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                summary.model,  # pyright: ignore[reportDeprecated],
-            )
+        self.model = async_to_streamed_response_wrapper(
+            summary.model,
         )
-        self.task = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                summary.task,  # pyright: ignore[reportDeprecated],
-            )
+        self.task = async_to_streamed_response_wrapper(
+            summary.task,
         )

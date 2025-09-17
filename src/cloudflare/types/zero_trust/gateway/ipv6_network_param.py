@@ -9,4 +9,4 @@ __all__ = ["IPV6NetworkParam"]
 
 class IPV6NetworkParam(TypedDict, total=False):
     network: Required[str]
-    """Specify the IPv6 address or IPv6 CIDR."""
+    """The IPv6 address or IPv6 CIDR."""

@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import typing_extensions
 from typing import Any, Type, Iterable, Optional, cast
 from typing_extensions import Literal, overload
 
@@ -4928,9 +4927,6 @@ class RecordsResource(SyncAPIResource):
             cast_to=cast(Type[Optional[RecordImportResponse]], ResultWrapper[RecordImportResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "This endpoint is deprecated in favor of a new asynchronous version. Please use the [/scan/trigger](https://developers.cloudflare.com/api/resources/dns/subresources/records/methods/scan/trigger) and [/scan/review](https://developers.cloudflare.com/api/resources/dns/subresources/records/methods/scan/review) endpoints instead.\n"
-    )
     def scan(
         self,
         *,
@@ -9858,9 +9854,6 @@ class AsyncRecordsResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[RecordImportResponse]], ResultWrapper[RecordImportResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "This endpoint is deprecated in favor of a new asynchronous version. Please use the [/scan/trigger](https://developers.cloudflare.com/api/resources/dns/subresources/records/methods/scan/trigger) and [/scan/review](https://developers.cloudflare.com/api/resources/dns/subresources/records/methods/scan/review) endpoints instead.\n"
-    )
     async def scan(
         self,
         *,
@@ -9935,10 +9928,8 @@ class RecordsResourceWithRawResponse:
         self.import_ = to_raw_response_wrapper(
             records.import_,
         )
-        self.scan = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                records.scan,  # pyright: ignore[reportDeprecated],
-            )
+        self.scan = to_raw_response_wrapper(
+            records.scan,
         )
 
 
@@ -9973,10 +9964,8 @@ class AsyncRecordsResourceWithRawResponse:
         self.import_ = async_to_raw_response_wrapper(
             records.import_,
         )
-        self.scan = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                records.scan,  # pyright: ignore[reportDeprecated],
-            )
+        self.scan = async_to_raw_response_wrapper(
+            records.scan,
         )
 
 
@@ -10011,10 +10000,8 @@ class RecordsResourceWithStreamingResponse:
         self.import_ = to_streamed_response_wrapper(
             records.import_,
         )
-        self.scan = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                records.scan,  # pyright: ignore[reportDeprecated],
-            )
+        self.scan = to_streamed_response_wrapper(
+            records.scan,
         )
 
 
@@ -10049,8 +10036,6 @@ class AsyncRecordsResourceWithStreamingResponse:
         self.import_ = async_to_streamed_response_wrapper(
             records.import_,
         )
-        self.scan = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                records.scan,  # pyright: ignore[reportDeprecated],
-            )
+        self.scan = async_to_streamed_response_wrapper(
+            records.scan,
         )

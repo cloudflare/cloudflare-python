@@ -9,16 +9,16 @@ __all__ = ["NotificationSettings"]
 
 class NotificationSettings(BaseModel):
     enabled: Optional[bool] = None
-    """Specify whether to enable notifications."""
+    """Set notification on."""
 
     include_context: Optional[bool] = None
-    """Specify whether to include context information as query parameters."""
+    """If true, context information will be passed as query parameters."""
 
     msg: Optional[str] = None
-    """Specify the message to show in the notification."""
+    """Customize the message shown in the notification."""
 
     support_url: Optional[str] = None
-    """Specify a URL that directs users to more information.
+    """Optional URL to direct users to additional information.
 
-    If unset, the notification opens a block page.
+    If not set, the notification will open a block page.
     """

@@ -1,23 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["RecipientDeleteResponse", "Resource"]
-
-
-class Resource(BaseModel):
-    error: str
-    """Share Recipient error message."""
-
-    resource_id: str
-    """Share Resource identifier."""
-
-    resource_version: int
-    """Resource Version."""
+__all__ = ["RecipientDeleteResponse"]
 
 
 class RecipientDeleteResponse(BaseModel):
@@ -38,5 +26,3 @@ class RecipientDeleteResponse(BaseModel):
 
     status_message: str
     """Share Recipient status message."""
-
-    resources: Optional[List[Resource]] = None

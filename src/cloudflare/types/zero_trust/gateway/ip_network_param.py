@@ -9,4 +9,4 @@ __all__ = ["IPNetworkParam"]
 
 class IPNetworkParam(TypedDict, total=False):
     network: Required[str]
-    """Specify the IP address or IP CIDR."""
+    """The IP address or IP CIDR."""

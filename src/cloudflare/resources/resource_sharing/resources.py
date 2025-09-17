@@ -58,14 +58,7 @@ class ResourcesResource(SyncAPIResource):
         meta: object,
         resource_account_id: str,
         resource_id: str,
-        resource_type: Literal[
-            "custom-ruleset",
-            "widget",
-            "gateway-policy",
-            "gateway-destination-ip",
-            "gateway-block-page-settings",
-            "gateway-extended-email-matching",
-        ],
+        resource_type: Literal["custom-ruleset", "widget"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -183,15 +176,7 @@ class ResourcesResource(SyncAPIResource):
         account_id: str,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
-        resource_type: Literal[
-            "custom-ruleset",
-            "widget",
-            "gateway-policy",
-            "gateway-destination-ip",
-            "gateway-block-page-settings",
-            "gateway-extended-email-matching",
-        ]
-        | NotGiven = NOT_GIVEN,
+        resource_type: Literal["custom-ruleset", "widget"] | NotGiven = NOT_GIVEN,
         status: Literal["active", "deleting", "deleted"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -377,14 +362,7 @@ class AsyncResourcesResource(AsyncAPIResource):
         meta: object,
         resource_account_id: str,
         resource_id: str,
-        resource_type: Literal[
-            "custom-ruleset",
-            "widget",
-            "gateway-policy",
-            "gateway-destination-ip",
-            "gateway-block-page-settings",
-            "gateway-extended-email-matching",
-        ],
+        resource_type: Literal["custom-ruleset", "widget"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -502,15 +480,7 @@ class AsyncResourcesResource(AsyncAPIResource):
         account_id: str,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
-        resource_type: Literal[
-            "custom-ruleset",
-            "widget",
-            "gateway-policy",
-            "gateway-destination-ip",
-            "gateway-block-page-settings",
-            "gateway-extended-email-matching",
-        ]
-        | NotGiven = NOT_GIVEN,
+        resource_type: Literal["custom-ruleset", "widget"] | NotGiven = NOT_GIVEN,
         status: Literal["active", "deleting", "deleted"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

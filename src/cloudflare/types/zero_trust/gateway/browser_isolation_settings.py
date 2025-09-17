@@ -9,7 +9,7 @@ __all__ = ["BrowserIsolationSettings"]
 
 class BrowserIsolationSettings(BaseModel):
     non_identity_enabled: Optional[bool] = None
-    """Specify whether to enable non-identity onramp support for Browser Isolation."""
+    """Enable non-identity onramp support for Browser Isolation."""
 
     url_browser_isolation_enabled: Optional[bool] = None
-    """Specify whether to enable Clientless Browser Isolation."""
+    """Enable Clientless Browser Isolation."""

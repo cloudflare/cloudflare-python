@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Optional
+from datetime import datetime
 
 from ...._models import BaseModel
 
@@ -24,6 +25,8 @@ class ServiceTokenRotateResponse(BaseModel):
     header.
     """
 
+    created_at: Optional[datetime] = None
+
     duration: Optional[str] = None
     """The duration for how long the service token will be valid.
 
@@ -33,3 +36,5 @@ class ServiceTokenRotateResponse(BaseModel):
 
     name: Optional[str] = None
     """The name of the service token."""
+
+    updated_at: Optional[datetime] = None

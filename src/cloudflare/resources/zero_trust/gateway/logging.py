@@ -58,14 +58,13 @@ class LoggingResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[LoggingSetting]:
         """
-        Update logging settings for the current Zero Trust account.
+        Updates logging settings for the current Zero Trust account.
 
         Args:
-          redact_pii: Indicate whether to redact personally identifiable information from activity
-              logging (PII fields include source IP, user email, user ID, device ID, URL,
-              referrer, and user agent).
+          redact_pii: Redact personally identifiable information from activity logging (PII fields
+              are: source IP, user email, user ID, device ID, URL, referrer, user agent).
 
-          settings_by_rule_type: Configure logging settings for each rule type.
+          settings_by_rule_type: Logging settings by rule type.
 
           extra_headers: Send extra headers
 
@@ -108,7 +107,7 @@ class LoggingResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[LoggingSetting]:
         """
-        Retrieve the current logging settings for the Zero Trust account.
+        Fetches the current logging settings for Zero Trust account.
 
         Args:
           extra_headers: Send extra headers
@@ -168,14 +167,13 @@ class AsyncLoggingResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[LoggingSetting]:
         """
-        Update logging settings for the current Zero Trust account.
+        Updates logging settings for the current Zero Trust account.
 
         Args:
-          redact_pii: Indicate whether to redact personally identifiable information from activity
-              logging (PII fields include source IP, user email, user ID, device ID, URL,
-              referrer, and user agent).
+          redact_pii: Redact personally identifiable information from activity logging (PII fields
+              are: source IP, user email, user ID, device ID, URL, referrer, user agent).
 
-          settings_by_rule_type: Configure logging settings for each rule type.
+          settings_by_rule_type: Logging settings by rule type.
 
           extra_headers: Send extra headers
 
@@ -218,7 +216,7 @@ class AsyncLoggingResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[LoggingSetting]:
         """
-        Retrieve the current logging settings for the Zero Trust account.
+        Fetches the current logging settings for Zero Trust account.
 
         Args:
           extra_headers: Send extra headers

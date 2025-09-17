@@ -42,7 +42,6 @@ class TestIPSECTunnels:
             cloudflare_endpoint="203.0.113.1",
             interface_address="192.0.2.0/31",
             name="IPsec_1",
-            automatic_return_routing=True,
             bgp={
                 "customer_asn": 0,
                 "extra_prefixes": ["string"],
@@ -125,7 +124,6 @@ class TestIPSECTunnels:
             cloudflare_endpoint="203.0.113.1",
             interface_address="192.0.2.0/31",
             name="IPsec_1",
-            automatic_return_routing=True,
             bgp={
                 "customer_asn": 0,
                 "extra_prefixes": ["string"],
@@ -494,7 +492,6 @@ class TestAsyncIPSECTunnels:
             cloudflare_endpoint="203.0.113.1",
             interface_address="192.0.2.0/31",
             name="IPsec_1",
-            automatic_return_routing=True,
             bgp={
                 "customer_asn": 0,
                 "extra_prefixes": ["string"],
@@ -577,7 +574,6 @@ class TestAsyncIPSECTunnels:
             cloudflare_endpoint="203.0.113.1",
             interface_address="192.0.2.0/31",
             name="IPsec_1",
-            automatic_return_routing=True,
             bgp={
                 "customer_asn": 0,
                 "extra_prefixes": ["string"],

@@ -10,11 +10,11 @@ __all__ = ["IPV6Endpoint"]
 
 class IPV6Endpoint(BaseModel):
     enabled: Optional[bool] = None
-    """Indicate whether the IPV6 endpoint is enabled for this location."""
+    """True if the endpoint is enabled for this location."""
 
     networks: Optional[List[IPV6Network]] = None
-    """Specify the list of allowed source IPv6 network ranges for this endpoint.
+    """A list of allowed source IPv6 network ranges for this endpoint.
 
-    When the list is empty, the endpoint allows all source IPs. The list takes
-    effect only if the endpoint is enabled for this location.
+    When empty, all source IPs are allowed. A non-empty list is only effective if
+    the endpoint is enabled for this location.
     """

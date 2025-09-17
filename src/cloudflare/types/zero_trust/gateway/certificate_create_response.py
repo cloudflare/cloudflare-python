@@ -11,41 +11,40 @@ __all__ = ["CertificateCreateResponse"]
 
 class CertificateCreateResponse(BaseModel):
     id: Optional[str] = None
-    """Identify the certificate with a UUID."""
+    """Certificate UUID tag."""
 
     binding_status: Optional[Literal["pending_deployment", "available", "pending_deletion", "inactive"]] = None
-    """Indicate the read-only deployment status of the certificate on Cloudflare's
-    edge.
+    """The read only deployment status of the certificate on Cloudflare's edge.
 
-    Gateway TLS interception can use certificates in the 'available' (previously
-    called 'active') state.
+    Certificates in the 'available' (previously called 'active') state may be used
+    for Gateway TLS interception.
     """
 
     certificate: Optional[str] = None
-    """Provide the CA certificate (read-only)."""
+    """The CA certificate(read only)."""
 
     created_at: Optional[datetime] = None
 
     expires_on: Optional[datetime] = None
 
     fingerprint: Optional[str] = None
-    """Provide the SHA256 fingerprint of the certificate (read-only)."""
+    """The SHA256 fingerprint of the certificate(read only)."""
 
     in_use: Optional[bool] = None
-    """Indicate whether Gateway TLS interception uses this certificate (read-only).
-
-    You cannot set this value directly. To configure interception, use the Gateway
-    configuration setting named `certificate` (read-only).
+    """
+    Read-only field that shows whether Gateway TLS interception is using this
+    certificate. This value cannot be set directly. To configure the certificate for
+    interception, use the Gateway configuration setting named certificate.
     """
 
     issuer_org: Optional[str] = None
-    """Indicate the organization that issued the certificate (read-only)."""
+    """The organization that issued the certificate(read only)."""
 
     issuer_raw: Optional[str] = None
-    """Provide the entire issuer field of the certificate (read-only)."""
+    """The entire issuer field of the certificate(read only)."""
 
     type: Optional[Literal["custom", "gateway_managed"]] = None
-    """Indicate the read-only certificate type, BYO-PKI (custom) or Gateway-managed."""
+    """The type of certificate, either BYO-PKI (custom) or Gateway-managed(read only)."""
 
     updated_at: Optional[datetime] = None
 

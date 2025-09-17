@@ -57,7 +57,6 @@ class GRETunnelsResource(SyncAPIResource):
         customer_gre_endpoint: str,
         interface_address: str,
         name: str,
-        automatic_return_routing: bool | NotGiven = NOT_GIVEN,
         bgp: gre_tunnel_create_params.BGP | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         health_check: gre_tunnel_create_params.HealthCheck | NotGiven = NOT_GIVEN,
@@ -90,9 +89,6 @@ class GRETunnelsResource(SyncAPIResource):
 
           name: The name of the tunnel. The name cannot contain spaces or special characters,
               must be 15 characters or less, and cannot share a name with another GRE tunnel.
-
-          automatic_return_routing: True if automatic stateful return routing should be enabled for a tunnel, false
-              otherwise.
 
           description: An optional description of the GRE tunnel.
 
@@ -134,7 +130,6 @@ class GRETunnelsResource(SyncAPIResource):
                     "customer_gre_endpoint": customer_gre_endpoint,
                     "interface_address": interface_address,
                     "name": name,
-                    "automatic_return_routing": automatic_return_routing,
                     "bgp": bgp,
                     "description": description,
                     "health_check": health_check,
@@ -163,7 +158,6 @@ class GRETunnelsResource(SyncAPIResource):
         customer_gre_endpoint: str,
         interface_address: str,
         name: str,
-        automatic_return_routing: bool | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         health_check: gre_tunnel_update_params.HealthCheck | NotGiven = NOT_GIVEN,
         interface_address6: str | NotGiven = NOT_GIVEN,
@@ -197,9 +191,6 @@ class GRETunnelsResource(SyncAPIResource):
 
           name: The name of the tunnel. The name cannot contain spaces or special characters,
               must be 15 characters or less, and cannot share a name with another GRE tunnel.
-
-          automatic_return_routing: True if automatic stateful return routing should be enabled for a tunnel, false
-              otherwise.
 
           description: An optional description of the GRE tunnel.
 
@@ -243,7 +234,6 @@ class GRETunnelsResource(SyncAPIResource):
                     "customer_gre_endpoint": customer_gre_endpoint,
                     "interface_address": interface_address,
                     "name": name,
-                    "automatic_return_routing": automatic_return_routing,
                     "description": description,
                     "health_check": health_check,
                     "interface_address6": interface_address6,
@@ -507,7 +497,6 @@ class AsyncGRETunnelsResource(AsyncAPIResource):
         customer_gre_endpoint: str,
         interface_address: str,
         name: str,
-        automatic_return_routing: bool | NotGiven = NOT_GIVEN,
         bgp: gre_tunnel_create_params.BGP | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         health_check: gre_tunnel_create_params.HealthCheck | NotGiven = NOT_GIVEN,
@@ -540,9 +529,6 @@ class AsyncGRETunnelsResource(AsyncAPIResource):
 
           name: The name of the tunnel. The name cannot contain spaces or special characters,
               must be 15 characters or less, and cannot share a name with another GRE tunnel.
-
-          automatic_return_routing: True if automatic stateful return routing should be enabled for a tunnel, false
-              otherwise.
 
           description: An optional description of the GRE tunnel.
 
@@ -584,7 +570,6 @@ class AsyncGRETunnelsResource(AsyncAPIResource):
                     "customer_gre_endpoint": customer_gre_endpoint,
                     "interface_address": interface_address,
                     "name": name,
-                    "automatic_return_routing": automatic_return_routing,
                     "bgp": bgp,
                     "description": description,
                     "health_check": health_check,
@@ -613,7 +598,6 @@ class AsyncGRETunnelsResource(AsyncAPIResource):
         customer_gre_endpoint: str,
         interface_address: str,
         name: str,
-        automatic_return_routing: bool | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         health_check: gre_tunnel_update_params.HealthCheck | NotGiven = NOT_GIVEN,
         interface_address6: str | NotGiven = NOT_GIVEN,
@@ -647,9 +631,6 @@ class AsyncGRETunnelsResource(AsyncAPIResource):
 
           name: The name of the tunnel. The name cannot contain spaces or special characters,
               must be 15 characters or less, and cannot share a name with another GRE tunnel.
-
-          automatic_return_routing: True if automatic stateful return routing should be enabled for a tunnel, false
-              otherwise.
 
           description: An optional description of the GRE tunnel.
 
@@ -693,7 +674,6 @@ class AsyncGRETunnelsResource(AsyncAPIResource):
                     "customer_gre_endpoint": customer_gre_endpoint,
                     "interface_address": interface_address,
                     "name": name,
-                    "automatic_return_routing": automatic_return_routing,
                     "description": description,
                     "health_check": health_check,
                     "interface_address6": interface_address6,

@@ -9,4 +9,4 @@ __all__ = ["IPV4Endpoint"]
 
 class IPV4Endpoint(BaseModel):
     enabled: Optional[bool] = None
-    """Indicate whether the IPv4 endpoint is enabled for this location."""
+    """True if the endpoint is enabled for this location."""

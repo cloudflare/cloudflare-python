@@ -73,13 +73,11 @@ class TestScriptAndVersionSettings:
                     "logs": {
                         "enabled": True,
                         "invocation_logs": True,
-                        "destinations": ["cloudflare"],
                         "head_sampling_rate": 0.1,
-                        "persist": True,
                     },
                 },
                 "placement": {"mode": "smart"},
-                "tags": ["my-team", "my-public-api"],
+                "tags": ["my-tag"],
                 "tail_consumers": [
                     {
                         "service": "my-log-consumer",
@@ -242,13 +240,11 @@ class TestAsyncScriptAndVersionSettings:
                     "logs": {
                         "enabled": True,
                         "invocation_logs": True,
-                        "destinations": ["cloudflare"],
                         "head_sampling_rate": 0.1,
-                        "persist": True,
                     },
                 },
                 "placement": {"mode": "smart"},
-                "tags": ["my-team", "my-public-api"],
+                "tags": ["my-tag"],
                 "tail_consumers": [
                     {
                         "service": "my-log-consumer",

@@ -78,13 +78,13 @@ class ListsResource(SyncAPIResource):
         Creates a new Zero Trust list.
 
         Args:
-          name: Specify the list name.
+          name: The name of the list.
 
-          type: Specify the list type.
+          type: The type of list.
 
-          description: Provide the list description.
+          description: The description of the list.
 
-          items: Add items to the list.
+          items: items to add to the list.
 
           extra_headers: Send extra headers
 
@@ -135,16 +135,16 @@ class ListsResource(SyncAPIResource):
         """Updates a configured Zero Trust list.
 
         Skips updating list items if not included
-        in the payload. A non empty list items will overwrite the existing list.
+        in the payload.
 
         Args:
-          list_id: Identify the API resource with a UUID.
+          list_id: API Resource UUID tag.
 
-          name: Specify the list name.
+          name: The name of the list.
 
-          description: Provide the list description.
+          description: The description of the list.
 
-          items: Add items to the list.
+          items: items to add to the list.
 
           extra_headers: Send extra headers
 
@@ -191,10 +191,10 @@ class ListsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncSinglePage[GatewayList]:
         """
-        Fetch all Zero Trust lists for an account.
+        Fetches all Zero Trust lists for an account.
 
         Args:
-          type: Specify the list type.
+          type: The type of list.
 
           extra_headers: Send extra headers
 
@@ -235,7 +235,7 @@ class ListsResource(SyncAPIResource):
         Deletes a Zero Trust list.
 
         Args:
-          list_id: Identify the API resource with a UUID.
+          list_id: API Resource UUID tag.
 
           extra_headers: Send extra headers
 
@@ -279,11 +279,11 @@ class ListsResource(SyncAPIResource):
         Appends or removes an item from a configured Zero Trust list.
 
         Args:
-          list_id: Identify the API resource with a UUID.
+          list_id: API Resource UUID tag.
 
-          append: Add items to the list.
+          append: items to add to the list.
 
-          remove: Lists of item values you want to remove.
+          remove: A list of the item values you want to remove.
 
           extra_headers: Send extra headers
 
@@ -329,10 +329,10 @@ class ListsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[GatewayList]:
         """
-        Fetch a single Zero Trust list.
+        Fetches a single Zero Trust list.
 
         Args:
-          list_id: Identify the API resource with a UUID.
+          list_id: API Resource UUID tag.
 
           extra_headers: Send extra headers
 
@@ -402,13 +402,13 @@ class AsyncListsResource(AsyncAPIResource):
         Creates a new Zero Trust list.
 
         Args:
-          name: Specify the list name.
+          name: The name of the list.
 
-          type: Specify the list type.
+          type: The type of list.
 
-          description: Provide the list description.
+          description: The description of the list.
 
-          items: Add items to the list.
+          items: items to add to the list.
 
           extra_headers: Send extra headers
 
@@ -459,16 +459,16 @@ class AsyncListsResource(AsyncAPIResource):
         """Updates a configured Zero Trust list.
 
         Skips updating list items if not included
-        in the payload. A non empty list items will overwrite the existing list.
+        in the payload.
 
         Args:
-          list_id: Identify the API resource with a UUID.
+          list_id: API Resource UUID tag.
 
-          name: Specify the list name.
+          name: The name of the list.
 
-          description: Provide the list description.
+          description: The description of the list.
 
-          items: Add items to the list.
+          items: items to add to the list.
 
           extra_headers: Send extra headers
 
@@ -515,10 +515,10 @@ class AsyncListsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[GatewayList, AsyncSinglePage[GatewayList]]:
         """
-        Fetch all Zero Trust lists for an account.
+        Fetches all Zero Trust lists for an account.
 
         Args:
-          type: Specify the list type.
+          type: The type of list.
 
           extra_headers: Send extra headers
 
@@ -559,7 +559,7 @@ class AsyncListsResource(AsyncAPIResource):
         Deletes a Zero Trust list.
 
         Args:
-          list_id: Identify the API resource with a UUID.
+          list_id: API Resource UUID tag.
 
           extra_headers: Send extra headers
 
@@ -603,11 +603,11 @@ class AsyncListsResource(AsyncAPIResource):
         Appends or removes an item from a configured Zero Trust list.
 
         Args:
-          list_id: Identify the API resource with a UUID.
+          list_id: API Resource UUID tag.
 
-          append: Add items to the list.
+          append: items to add to the list.
 
-          remove: Lists of item values you want to remove.
+          remove: A list of the item values you want to remove.
 
           extra_headers: Send extra headers
 
@@ -653,10 +653,10 @@ class AsyncListsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[GatewayList]:
         """
-        Fetch a single Zero Trust list.
+        Fetches a single Zero Trust list.
 
         Args:
-          list_id: Identify the API resource with a UUID.
+          list_id: API Resource UUID tag.
 
           extra_headers: Send extra headers
 

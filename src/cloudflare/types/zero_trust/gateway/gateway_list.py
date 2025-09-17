@@ -12,23 +12,23 @@ __all__ = ["GatewayList"]
 
 class GatewayList(BaseModel):
     id: Optional[str] = None
-    """Identify the API resource with a UUID."""
+    """API Resource UUID tag."""
 
     count: Optional[float] = None
-    """Indicate the number of items in the list."""
+    """The number of items in the list."""
 
     created_at: Optional[datetime] = None
 
     description: Optional[str] = None
-    """Provide the list description."""
+    """The description of the list."""
 
     items: Optional[List[GatewayItem]] = None
-    """Provide the list items."""
+    """The items in the list."""
 
     name: Optional[str] = None
-    """Specify the list name."""
+    """The name of the list."""
 
     type: Optional[Literal["SERIAL", "URL", "DOMAIN", "EMAIL", "IP"]] = None
-    """Specify the list type."""
+    """The type of list."""
 
     updated_at: Optional[datetime] = None

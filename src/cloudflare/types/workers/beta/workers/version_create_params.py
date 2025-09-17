@@ -22,14 +22,11 @@ __all__ = [
     "BindingWorkersBindingKindAssets",
     "BindingWorkersBindingKindBrowser",
     "BindingWorkersBindingKindD1",
-    "BindingWorkersBindingKindDataBlob",
     "BindingWorkersBindingKindDispatchNamespace",
     "BindingWorkersBindingKindDispatchNamespaceOutbound",
     "BindingWorkersBindingKindDispatchNamespaceOutboundWorker",
     "BindingWorkersBindingKindDurableObjectNamespace",
     "BindingWorkersBindingKindHyperdrive",
-    "BindingWorkersBindingKindInherit",
-    "BindingWorkersBindingKindImages",
     "BindingWorkersBindingKindJson",
     "BindingWorkersBindingKindKVNamespace",
     "BindingWorkersBindingKindMTLSCertificate",
@@ -38,16 +35,13 @@ __all__ = [
     "BindingWorkersBindingKindQueue",
     "BindingWorkersBindingKindR2Bucket",
     "BindingWorkersBindingKindSecretText",
-    "BindingWorkersBindingKindSendEmail",
     "BindingWorkersBindingKindService",
     "BindingWorkersBindingKindTailConsumer",
-    "BindingWorkersBindingKindTextBlob",
     "BindingWorkersBindingKindVectorize",
     "BindingWorkersBindingKindVersionMetadata",
     "BindingWorkersBindingKindSecretsStoreSecret",
     "BindingWorkersBindingKindSecretKey",
     "BindingWorkersBindingKindWorkflow",
-    "BindingWorkersBindingKindWasmModule",
     "Limits",
     "Migrations",
     "MigrationsWorkersMultipleStepMigrations",
@@ -60,24 +54,11 @@ class VersionCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier."""
 
-    deploy: bool
-    """
-    If true, a deployment will be created that sends 100% of traffic to the new
-    version.
-    """
-
     annotations: Annotations
     """Metadata about the version."""
 
     assets: Assets
-    """Configuration for assets within a Worker.
-
-    [`_headers`](https://developers.cloudflare.com/workers/static-assets/headers/#custom-headers)
-    and
-    [`_redirects`](https://developers.cloudflare.com/workers/static-assets/redirects/)
-    files should be included as modules named `_headers` and `_redirects` with
-    content type `text/plain`.
-    """
+    """Configuration for assets within a Worker."""
 
     bindings: Iterable[Binding]
     """List of bindings attached to a Worker.
@@ -116,17 +97,7 @@ class VersionCreateParams(TypedDict, total=False):
     """
 
     modules: Iterable[Module]
-    """Code, sourcemaps, and other content used at runtime.
-
-    This includes
-    [`_headers`](https://developers.cloudflare.com/workers/static-assets/headers/#custom-headers)
-    and
-    [`_redirects`](https://developers.cloudflare.com/workers/static-assets/redirects/)
-    files used to configure
-    [Static Assets](https://developers.cloudflare.com/workers/static-assets/).
-    `_headers` and `_redirects` files should be included as modules named `_headers`
-    and `_redirects` with content type `text/plain`.
-    """
+    """Code, sourcemaps, and other content used at runtime."""
 
     placement: Placement
     """Placement settings for the version."""
@@ -216,20 +187,6 @@ class BindingWorkersBindingKindD1(TypedDict, total=False):
     """The kind of resource that the binding provides."""
 
 
-class BindingWorkersBindingKindDataBlob(TypedDict, total=False):
-    name: Required[str]
-    """A JavaScript variable name for the binding."""
-
-    part: Required[str]
-    """The name of the file containing the data content.
-
-    Only accepted for `service worker syntax` Workers.
-    """
-
-    type: Required[Literal["data_blob"]]
-    """The kind of resource that the binding provides."""
-
-
 class BindingWorkersBindingKindDispatchNamespaceOutboundWorker(TypedDict, total=False):
     environment: str
     """Environment of the outbound worker."""
@@ -294,36 +251,6 @@ class BindingWorkersBindingKindHyperdrive(TypedDict, total=False):
     """A JavaScript variable name for the binding."""
 
     type: Required[Literal["hyperdrive"]]
-    """The kind of resource that the binding provides."""
-
-
-class BindingWorkersBindingKindInherit(TypedDict, total=False):
-    name: Required[str]
-    """The name of the inherited binding."""
-
-    type: Required[Literal["inherit"]]
-    """The kind of resource that the binding provides."""
-
-    old_name: str
-    """The old name of the inherited binding.
-
-    If set, the binding will be renamed from `old_name` to `name` in the new
-    version. If not set, the binding will keep the same name between versions.
-    """
-
-    version_id: str
-    """
-    Identifier for the version to inherit the binding from, which can be the version
-    ID or the literal "latest" to inherit from the latest version. Defaults to
-    inheriting the binding from the latest version.
-    """
-
-
-class BindingWorkersBindingKindImages(TypedDict, total=False):
-    name: Required[str]
-    """A JavaScript variable name for the binding."""
-
-    type: Required[Literal["images"]]
     """The kind of resource that the binding provides."""
 
 
@@ -415,24 +342,10 @@ class BindingWorkersBindingKindSecretText(TypedDict, total=False):
     """The kind of resource that the binding provides."""
 
 
-class BindingWorkersBindingKindSendEmail(TypedDict, total=False):
-    name: Required[str]
-    """A JavaScript variable name for the binding."""
-
-    type: Required[Literal["send_email"]]
-    """The kind of resource that the binding provides."""
-
-    allowed_destination_addresses: SequenceNotStr[str]
-    """List of allowed destination addresses."""
-
-    allowed_sender_addresses: SequenceNotStr[str]
-    """List of allowed sender addresses."""
-
-    destination_address: str
-    """Destination address for the email."""
-
-
 class BindingWorkersBindingKindService(TypedDict, total=False):
+    environment: Required[str]
+    """Optional environment if the Worker utilizes one."""
+
     name: Required[str]
     """A JavaScript variable name for the binding."""
 
@@ -441,9 +354,6 @@ class BindingWorkersBindingKindService(TypedDict, total=False):
 
     type: Required[Literal["service"]]
     """The kind of resource that the binding provides."""
-
-    environment: str
-    """Optional environment if the Worker utilizes one."""
 
 
 class BindingWorkersBindingKindTailConsumer(TypedDict, total=False):
@@ -454,20 +364,6 @@ class BindingWorkersBindingKindTailConsumer(TypedDict, total=False):
     """Name of Tail Worker to bind to."""
 
     type: Required[Literal["tail_consumer"]]
-    """The kind of resource that the binding provides."""
-
-
-class BindingWorkersBindingKindTextBlob(TypedDict, total=False):
-    name: Required[str]
-    """A JavaScript variable name for the binding."""
-
-    part: Required[str]
-    """The name of the file containing the text content.
-
-    Only accepted for `service worker syntax` Workers.
-    """
-
-    type: Required[Literal["text_blob"]]
     """The kind of resource that the binding provides."""
 
 
@@ -565,32 +461,15 @@ class BindingWorkersBindingKindWorkflow(TypedDict, total=False):
     """
 
 
-class BindingWorkersBindingKindWasmModule(TypedDict, total=False):
-    name: Required[str]
-    """A JavaScript variable name for the binding."""
-
-    part: Required[str]
-    """The name of the file containing the WebAssembly module content.
-
-    Only accepted for `service worker syntax` Workers.
-    """
-
-    type: Required[Literal["wasm_module"]]
-    """The kind of resource that the binding provides."""
-
-
 Binding: TypeAlias = Union[
     BindingWorkersBindingKindAI,
     BindingWorkersBindingKindAnalyticsEngine,
     BindingWorkersBindingKindAssets,
     BindingWorkersBindingKindBrowser,
     BindingWorkersBindingKindD1,
-    BindingWorkersBindingKindDataBlob,
     BindingWorkersBindingKindDispatchNamespace,
     BindingWorkersBindingKindDurableObjectNamespace,
     BindingWorkersBindingKindHyperdrive,
-    BindingWorkersBindingKindInherit,
-    BindingWorkersBindingKindImages,
     BindingWorkersBindingKindJson,
     BindingWorkersBindingKindKVNamespace,
     BindingWorkersBindingKindMTLSCertificate,
@@ -599,16 +478,13 @@ Binding: TypeAlias = Union[
     BindingWorkersBindingKindQueue,
     BindingWorkersBindingKindR2Bucket,
     BindingWorkersBindingKindSecretText,
-    BindingWorkersBindingKindSendEmail,
     BindingWorkersBindingKindService,
     BindingWorkersBindingKindTailConsumer,
-    BindingWorkersBindingKindTextBlob,
     BindingWorkersBindingKindVectorize,
     BindingWorkersBindingKindVersionMetadata,
     BindingWorkersBindingKindSecretsStoreSecret,
     BindingWorkersBindingKindSecretKey,
     BindingWorkersBindingKindWorkflow,
-    BindingWorkersBindingKindWasmModule,
 ]
 
 

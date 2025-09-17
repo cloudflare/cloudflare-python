@@ -11,66 +11,62 @@ __all__ = ["BlockPageSettings"]
 class BlockPageSettings(BaseModel):
     background_color: Optional[str] = None
     """
-    Specify the block page background color in `#rrggbb` format when the mode is
-    customized_block_page.
+    If mode is customized_block_page: block page background color in #rrggbb format.
     """
 
     enabled: Optional[bool] = None
-    """Specify whether to enable the custom block page."""
+    """Enable only cipher suites and TLS versions compliant with FIPS. 140-2."""
 
     footer_text: Optional[str] = None
-    """Specify the block page footer text when the mode is customized_block_page."""
+    """If mode is customized_block_page: block page footer text."""
 
     header_text: Optional[str] = None
-    """Specify the block page header text when the mode is customized_block_page."""
+    """If mode is customized_block_page: block page header text."""
 
     include_context: Optional[bool] = None
-    """Specify whether to append context to target_uri as query parameters.
-
-    This applies only when the mode is redirect_uri.
+    """
+    If mode is redirect_uri: when enabled, context will be appended to target_uri as
+    query parameters.
     """
 
     logo_path: Optional[str] = None
-    """Specify the full URL to the logo file when the mode is customized_block_page."""
+    """If mode is customized_block_page: full URL to the logo file."""
 
     mailto_address: Optional[str] = None
-    """
-    Specify the admin email for users to contact when the mode is
-    customized_block_page.
-    """
+    """If mode is customized_block_page: admin email for users to contact."""
 
     mailto_subject: Optional[str] = None
     """
-    Specify the subject line for emails created from the block page when the mode is
-    customized_block_page.
+    If mode is customized_block_page: subject line for emails created from block
+    page.
     """
 
     mode: Optional[Literal["", "customized_block_page", "redirect_uri"]] = None
     """
-    Specify whether to redirect users to a Cloudflare-hosted block page or a
-    customer-provided URI.
+    Controls whether the user is redirected to a Cloudflare-hosted block page or to
+    a customer-provided URI.
     """
 
     name: Optional[str] = None
-    """Specify the block page title when the mode is customized_block_page."""
+    """If mode is customized_block_page: block page title."""
 
     read_only: Optional[bool] = None
     """
-    Indicate that this setting was shared via the Orgs API and read only for the
-    current account.
+    This setting was shared via the Orgs API and cannot be edited by the current
+    account.
     """
 
     source_account: Optional[str] = None
-    """Indicate the account tag of the account that shared this setting."""
+    """Account tag of account that shared this setting."""
 
     suppress_footer: Optional[bool] = None
     """
-    Specify whether to suppress detailed information at the bottom of the block page
-    when the mode is customized_block_page.
+    If mode is customized_block_page: suppress detailed info at the bottom of the
+    block page.
     """
 
     target_uri: Optional[str] = None
-    """Specify the URI to redirect users to when the mode is redirect_uri."""
+    """If mode is redirect_uri: URI to which the user should be redirected."""
 
     version: Optional[int] = None
-    """Indicate the version number of the setting."""
+    """Version number of the setting."""

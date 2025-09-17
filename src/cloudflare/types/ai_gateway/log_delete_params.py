@@ -61,7 +61,6 @@ class Filter(TypedDict, total=False):
             "authentication",
             "wholesale",
             "compatibilityMode",
-            "dlp_action",
         ]
     ]
 

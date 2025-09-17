@@ -27,14 +27,7 @@ class ResourceListResponse(BaseModel):
     resource_id: str
     """Share Resource identifier."""
 
-    resource_type: Literal[
-        "custom-ruleset",
-        "widget",
-        "gateway-policy",
-        "gateway-destination-ip",
-        "gateway-block-page-settings",
-        "gateway-extended-email-matching",
-    ]
+    resource_type: Literal["custom-ruleset", "widget"]
     """Resource Type."""
 
     resource_version: int

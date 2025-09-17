@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Optional
+from datetime import datetime
 
 from ...._models import BaseModel
 
@@ -14,6 +15,8 @@ class Bookmark(BaseModel):
     app_launcher_visible: Optional[bool] = None
     """Displays the application in the App Launcher."""
 
+    created_at: Optional[datetime] = None
+
     domain: Optional[str] = None
     """The domain of the Bookmark application."""
 
@@ -22,3 +25,5 @@ class Bookmark(BaseModel):
 
     name: Optional[str] = None
     """The name of the Bookmark application."""
+
+    updated_at: Optional[datetime] = None

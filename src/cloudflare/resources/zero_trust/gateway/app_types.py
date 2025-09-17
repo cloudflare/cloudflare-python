@@ -54,10 +54,10 @@ class AppTypesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncSinglePage[AppType]:
         """
-        List all application and application type mappings.
+        Fetches all application and application type mappings.
 
         Args:
-          account_id: Provide the identifier string.
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -111,10 +111,10 @@ class AsyncAppTypesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[AppType, AsyncSinglePage[AppType]]:
         """
-        List all application and application type mappings.
+        Fetches all application and application type mappings.
 
         Args:
-          account_id: Provide the identifier string.
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 

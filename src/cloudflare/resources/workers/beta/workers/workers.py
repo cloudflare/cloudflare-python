@@ -27,7 +27,7 @@ from ....._response import (
 from ....._wrappers import ResultWrapper
 from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ....._base_client import AsyncPaginator, make_request_options
-from .....types.workers.beta import worker_edit_params, worker_list_params, worker_create_params, worker_update_params
+from .....types.workers.beta import worker_list_params, worker_create_params, worker_update_params
 from .....types.workers.beta.worker import Worker
 from .....types.workers.beta.worker_delete_response import WorkerDeleteResponse
 
@@ -145,15 +145,12 @@ class WorkersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Worker:
         """
-        Perform a complete replacement of a Worker, where omitted properties are set to
-        their default values. This is the exact same as the Create Worker endpoint, but
-        operates on an existing Worker. To perform a partial update instead, use the
-        Edit Worker endpoint.
+        Update an existing Worker.
 
         Args:
           account_id: Identifier.
 
-          worker_id: Identifier for the Worker, which can be ID or name.
+          worker_id: Identifier.
 
           name: Name of the Worker.
 
@@ -272,7 +269,7 @@ class WorkersResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          worker_id: Identifier for the Worker, which can be ID or name.
+          worker_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -294,80 +291,6 @@ class WorkersResource(SyncAPIResource):
             cast_to=WorkerDeleteResponse,
         )
 
-    def edit(
-        self,
-        worker_id: str,
-        *,
-        account_id: str,
-        logpush: bool,
-        name: str,
-        observability: worker_edit_params.Observability,
-        subdomain: worker_edit_params.Subdomain,
-        tags: SequenceNotStr[str],
-        tail_consumers: Iterable[worker_edit_params.TailConsumer],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Worker:
-        """
-        Perform a partial update on a Worker, where omitted properties are left
-        unchanged from their current values.
-
-        Args:
-          account_id: Identifier.
-
-          worker_id: Identifier for the Worker, which can be ID or name.
-
-          logpush: Whether logpush is enabled for the Worker.
-
-          name: Name of the Worker.
-
-          observability: Observability settings for the Worker.
-
-          subdomain: Subdomain settings for the Worker.
-
-          tags: Tags associated with the Worker.
-
-          tail_consumers: Other Workers that should consume logs from the Worker.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not worker_id:
-            raise ValueError(f"Expected a non-empty value for `worker_id` but received {worker_id!r}")
-        return self._patch(
-            f"/accounts/{account_id}/workers/workers/{worker_id}",
-            body=maybe_transform(
-                {
-                    "logpush": logpush,
-                    "name": name,
-                    "observability": observability,
-                    "subdomain": subdomain,
-                    "tags": tags,
-                    "tail_consumers": tail_consumers,
-                },
-                worker_edit_params.WorkerEditParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Worker]._unwrapper,
-            ),
-            cast_to=cast(Type[Worker], ResultWrapper[Worker]),
-        )
-
     def get(
         self,
         worker_id: str,
@@ -386,7 +309,7 @@ class WorkersResource(SyncAPIResource):
         Args:
           account_id: Identifier.
 
-          worker_id: Identifier for the Worker, which can be ID or name.
+          worker_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -524,15 +447,12 @@ class AsyncWorkersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Worker:
         """
-        Perform a complete replacement of a Worker, where omitted properties are set to
-        their default values. This is the exact same as the Create Worker endpoint, but
-        operates on an existing Worker. To perform a partial update instead, use the
-        Edit Worker endpoint.
+        Update an existing Worker.
 
         Args:
           account_id: Identifier.
 
-          worker_id: Identifier for the Worker, which can be ID or name.
+          worker_id: Identifier.
 
           name: Name of the Worker.
 
@@ -651,7 +571,7 @@ class AsyncWorkersResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          worker_id: Identifier for the Worker, which can be ID or name.
+          worker_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -673,80 +593,6 @@ class AsyncWorkersResource(AsyncAPIResource):
             cast_to=WorkerDeleteResponse,
         )
 
-    async def edit(
-        self,
-        worker_id: str,
-        *,
-        account_id: str,
-        logpush: bool,
-        name: str,
-        observability: worker_edit_params.Observability,
-        subdomain: worker_edit_params.Subdomain,
-        tags: SequenceNotStr[str],
-        tail_consumers: Iterable[worker_edit_params.TailConsumer],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Worker:
-        """
-        Perform a partial update on a Worker, where omitted properties are left
-        unchanged from their current values.
-
-        Args:
-          account_id: Identifier.
-
-          worker_id: Identifier for the Worker, which can be ID or name.
-
-          logpush: Whether logpush is enabled for the Worker.
-
-          name: Name of the Worker.
-
-          observability: Observability settings for the Worker.
-
-          subdomain: Subdomain settings for the Worker.
-
-          tags: Tags associated with the Worker.
-
-          tail_consumers: Other Workers that should consume logs from the Worker.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not worker_id:
-            raise ValueError(f"Expected a non-empty value for `worker_id` but received {worker_id!r}")
-        return await self._patch(
-            f"/accounts/{account_id}/workers/workers/{worker_id}",
-            body=await async_maybe_transform(
-                {
-                    "logpush": logpush,
-                    "name": name,
-                    "observability": observability,
-                    "subdomain": subdomain,
-                    "tags": tags,
-                    "tail_consumers": tail_consumers,
-                },
-                worker_edit_params.WorkerEditParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Worker]._unwrapper,
-            ),
-            cast_to=cast(Type[Worker], ResultWrapper[Worker]),
-        )
-
     async def get(
         self,
         worker_id: str,
@@ -765,7 +611,7 @@ class AsyncWorkersResource(AsyncAPIResource):
         Args:
           account_id: Identifier.
 
-          worker_id: Identifier for the Worker, which can be ID or name.
+          worker_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -808,9 +654,6 @@ class WorkersResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             workers.delete,
         )
-        self.edit = to_raw_response_wrapper(
-            workers.edit,
-        )
         self.get = to_raw_response_wrapper(
             workers.get,
         )
@@ -835,9 +678,6 @@ class AsyncWorkersResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             workers.delete,
-        )
-        self.edit = async_to_raw_response_wrapper(
-            workers.edit,
         )
         self.get = async_to_raw_response_wrapper(
             workers.get,
@@ -864,9 +704,6 @@ class WorkersResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             workers.delete,
         )
-        self.edit = to_streamed_response_wrapper(
-            workers.edit,
-        )
         self.get = to_streamed_response_wrapper(
             workers.get,
         )
@@ -891,9 +728,6 @@ class AsyncWorkersResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             workers.delete,
-        )
-        self.edit = async_to_streamed_response_wrapper(
-            workers.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             workers.get,

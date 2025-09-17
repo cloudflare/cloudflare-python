@@ -16,6 +16,8 @@ class Certificate(BaseModel):
     associated_hostnames: Optional[List[AssociatedHostnames]] = None
     """The hostnames of the applications that will use this certificate."""
 
+    created_at: Optional[datetime] = None
+
     expires_on: Optional[datetime] = None
 
     fingerprint: Optional[str] = None
@@ -23,3 +25,5 @@ class Certificate(BaseModel):
 
     name: Optional[str] = None
     """The name of the certificate."""
+
+    updated_at: Optional[datetime] = None

@@ -75,10 +75,10 @@ class ConfigurationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[ConfigurationUpdateResponse]:
         """
-        Update the current Zero Trust account configuration.
+        Updates the current Zero Trust account configuration.
 
         Args:
-          settings: Specify account settings.
+          settings: Account settings.
 
           extra_headers: Send extra headers
 
@@ -115,15 +115,16 @@ class ConfigurationsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[ConfigurationEditResponse]:
-        """
-        Update (PATCH) a single subcollection of settings such as `antivirus`,
-        `tls_decrypt`, `activity_log`, `block_page`, `browser_isolation`, `fips`,
-        `body_scanning`, or `certificate` without updating the entire configuration
-        object. This endpoint returns an error if any settings collection lacks proper
-        configuration.
+        """Patches the current Zero Trust account configuration.
+
+        This endpoint can update a
+        single subcollection of settings such as `antivirus`, `tls_decrypt`,
+        `activity_log`, `block_page`, `browser_isolation`, `fips`, `body_scanning`, or
+        `certificate`, without updating the entire configuration object. Returns an
+        error if any collection of settings is not properly configured.
 
         Args:
-          settings: Specify account settings.
+          settings: Account settings.
 
           extra_headers: Send extra headers
 
@@ -160,7 +161,7 @@ class ConfigurationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[ConfigurationGetResponse]:
         """
-        Retrieve the current Zero Trust account configuration.
+        Fetches the current Zero Trust account configuration.
 
         Args:
           extra_headers: Send extra headers
@@ -223,10 +224,10 @@ class AsyncConfigurationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[ConfigurationUpdateResponse]:
         """
-        Update the current Zero Trust account configuration.
+        Updates the current Zero Trust account configuration.
 
         Args:
-          settings: Specify account settings.
+          settings: Account settings.
 
           extra_headers: Send extra headers
 
@@ -265,15 +266,16 @@ class AsyncConfigurationsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[ConfigurationEditResponse]:
-        """
-        Update (PATCH) a single subcollection of settings such as `antivirus`,
-        `tls_decrypt`, `activity_log`, `block_page`, `browser_isolation`, `fips`,
-        `body_scanning`, or `certificate` without updating the entire configuration
-        object. This endpoint returns an error if any settings collection lacks proper
-        configuration.
+        """Patches the current Zero Trust account configuration.
+
+        This endpoint can update a
+        single subcollection of settings such as `antivirus`, `tls_decrypt`,
+        `activity_log`, `block_page`, `browser_isolation`, `fips`, `body_scanning`, or
+        `certificate`, without updating the entire configuration object. Returns an
+        error if any collection of settings is not properly configured.
 
         Args:
-          settings: Specify account settings.
+          settings: Account settings.
 
           extra_headers: Send extra headers
 
@@ -310,7 +312,7 @@ class AsyncConfigurationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[ConfigurationGetResponse]:
         """
-        Retrieve the current Zero Trust account configuration.
+        Fetches the current Zero Trust account configuration.
 
         Args:
           extra_headers: Send extra headers

@@ -29,16 +29,16 @@ __all__ = [
 
 class AuditSSH(TypedDict, total=False):
     command_logging: bool
-    """Enable SSH command logging."""
+    """Enable to turn on SSH command logging."""
 
 
 class BISOAdminControls(TypedDict, total=False):
     copy: Literal["enabled", "disabled", "remote_only"]
-    """Configure copy behavior.
+    """Configure whether copy is enabled or not.
 
-    If set to remote_only, users cannot copy isolated content from the remote
-    browser to the local clipboard. If this field is absent, copying remains
-    enabled. Applies only when version == "v2".
+    When set with "remote_only", copying isolated content from the remote browser to
+    the user's local clipboard is disabled. When absent, copy is enabled. Only
+    applies when `version == "v2"`.
     """
 
     dcp: bool
@@ -51,10 +51,10 @@ class BISOAdminControls(TypedDict, total=False):
     """Set to false to enable keyboard usage. Only applies when `version == "v1"`."""
 
     download: Literal["enabled", "disabled", "remote_only"]
-    """Configure download behavior.
+    """Configure whether downloading enabled or not.
 
-    When set to remote_only, users can view downloads but cannot save them. Applies
-    only when version == "v2".
+    When set with "remote_only", downloads are only available for viewing. Only
+    applies when `version == "v2"`.
     """
 
     dp: bool
@@ -64,54 +64,54 @@ class BISOAdminControls(TypedDict, total=False):
     """Set to false to enable uploading. Only applies when `version == "v1"`."""
 
     keyboard: Literal["enabled", "disabled"]
-    """Configure keyboard usage behavior.
+    """Configure whether keyboard usage is enabled or not.
 
-    If this field is absent, keyboard usage remains enabled. Applies only when
-    version == "v2".
+    When absent, keyboard usage is enabled. Only applies when `version == "v2"`.
     """
 
     paste: Literal["enabled", "disabled", "remote_only"]
-    """Configure paste behavior.
+    """Configure whether pasting is enabled or not.
 
-    If set to remote_only, users cannot paste content from the local clipboard into
-    isolated pages. If this field is absent, pasting remains enabled. Applies only
-    when version == "v2".
+    When set with "remote_only", pasting content from the user's local clipboard
+    into isolated pages is disabled. When absent, paste is enabled. Only applies
+    when `version == "v2"`.
     """
 
     printing: Literal["enabled", "disabled"]
-    """Configure print behavior.
+    """Configure whether printing is enabled or not.
 
-    Default, Printing is enabled. Applies only when version == "v2".
+    When absent, printing is enabled. Only applies when `version == "v2"`.
     """
 
     upload: Literal["enabled", "disabled"]
-    """Configure upload behavior.
+    """Configure whether uploading is enabled or not.
 
-    If this field is absent, uploading remains enabled. Applies only when version ==
-    "v2".
+    When absent, uploading is enabled. Only applies when `version == "v2"`.
     """
 
     version: Literal["v1", "v2"]
-    """Indicate which version of the browser isolation controls should apply."""
+    """Indicates which version of the browser isolation controls should apply."""
 
 
 class BlockPage(TypedDict, total=False):
     target_uri: Required[str]
-    """Specify the URI to which the user is redirected."""
+    """URI to which the user will be redirected."""
 
     include_context: bool
-    """Specify whether to pass the context information as query parameters."""
+    """If true, context information will be passed as query parameters."""
 
 
 class CheckSession(TypedDict, total=False):
     duration: str
-    """Sets the required session freshness threshold.
+    """Configure how fresh the session needs to be to be considered valid.
 
-    The API returns a normalized version of this value.
+    The API automatically formats and sanitizes this expression. This returns a
+    normalized version that may differ from your input and cause Terraform state
+    drift.
     """
 
     enforce: bool
-    """Enable session enforcement."""
+    """Set to true to enable session enforcement."""
 
 
 class DNSResolvers(TypedDict, total=False):
@@ -122,137 +122,132 @@ class DNSResolvers(TypedDict, total=False):
 
 class Egress(TypedDict, total=False):
     ipv4: str
-    """Specify the IPv4 address to use for egress."""
+    """The IPv4 address to be used for egress."""
 
     ipv4_fallback: str
-    """Specify the fallback IPv4 address to use for egress when the primary IPv4 fails.
-
-    Set '0.0.0.0' to indicate local egress via WARP IPs.
+    """
+    The fallback IPv4 address to be used for egress in the event of an error
+    egressing with the primary IPv4. Can be '0.0.0.0' to indicate local egress via
+    WARP IPs.
     """
 
     ipv6: str
-    """Specify the IPv6 range to use for egress."""
+    """The IPv6 range to be used for egress."""
 
 
 class L4override(TypedDict, total=False):
     ip: str
-    """Defines the IPv4 or IPv6 address."""
+    """IPv4 or IPv6 address."""
 
     port: int
-    """Defines a port number to use for TCP/UDP overrides."""
+    """A port number to use for TCP/UDP overrides."""
 
 
 class NotificationSettings(TypedDict, total=False):
     enabled: bool
-    """Enable notification."""
+    """Set notification on."""
 
     include_context: bool
-    """Indicates whether to pass the context information as query parameters."""
+    """If true, context information will be passed as query parameters."""
 
     msg: str
     """Customize the message shown in the notification."""
 
     support_url: str
-    """Defines an optional URL to direct users to additional information.
+    """Optional URL to direct users to additional information.
 
-    If unset, the notification opens a block page.
+    If not set, the notification will open a block page.
     """
 
 
 class PayloadLog(TypedDict, total=False):
     enabled: bool
-    """Enable DLP payload logging for this rule."""
+    """Set to true to enable DLP payload logging for this rule."""
 
 
 class Quarantine(TypedDict, total=False):
     file_types: List[
         Literal["exe", "pdf", "doc", "docm", "docx", "rtf", "ppt", "pptx", "xls", "xlsm", "xlsx", "zip", "rar"]
     ]
-    """Specify the types of files to sandbox."""
+    """Types of files to sandbox."""
 
 
 class Redirect(TypedDict, total=False):
     target_uri: Required[str]
-    """Specify the URI to which the user is redirected."""
+    """URI to which the user will be redirected."""
 
     include_context: bool
-    """Specify whether to pass the context information as query parameters."""
+    """If true, context information will be passed as query parameters."""
 
     preserve_path_and_query: bool
     """
-    Specify whether to append the path and query parameters from the original
-    request to target_uri.
+    If true, the path and query parameters from the original request will be
+    appended to target_uri.
     """
 
 
 class ResolveDNSInternally(TypedDict, total=False):
     fallback: Literal["none", "public_dns"]
     """
-    Specify the fallback behavior to apply when the internal DNS response code
-    differs from 'NOERROR' or when the response data contains only CNAME records for
-    'A' or 'AAAA' queries.
+    The fallback behavior to apply when the internal DNS response code is different
+    from 'NOERROR' or when the response data only contains CNAME records for 'A' or
+    'AAAA' queries.
     """
 
     view_id: str
-    """Specify the internal DNS view identifier to pass to the internal DNS service."""
+    """The internal DNS view identifier that's passed to the internal DNS service."""
 
 
 class UntrustedCERT(TypedDict, total=False):
     action: Literal["pass_through", "block", "error"]
-    """Defines the action performed when an untrusted certificate seen.
+    """The action performed when an untrusted certificate is seen.
 
-    The default action an error with HTTP code 526.
+    The default action is an error with HTTP code 526.
     """
 
 
 class RuleSettingParam(TypedDict, total=False):
     add_headers: Optional[Dict[str, SequenceNotStr[str]]]
-    """Add custom headers to allowed requests as key-value pairs.
+    """Add custom headers to allowed requests, in the form of key-value pairs.
 
-    Use header names as keys that map to arrays of header values.
+    Keys are header names, pointing to an array with its header value(s).
     """
 
     allow_child_bypass: Optional[bool]
-    """Set to enable MSP children to bypass this rule.
-
-    Only parent MSP accounts can set this. this rule.
-    """
+    """Set by parent MSP accounts to enable their children to bypass this rule."""
 
     audit_ssh: Optional[AuditSSH]
-    """Define the settings for the Audit SSH action."""
+    """Settings for the Audit SSH action."""
 
     biso_admin_controls: BISOAdminControls
-    """Configure browser isolation behavior."""
+    """Configure how browser isolation behaves."""
 
     block_page: Optional[BlockPage]
-    """Configure custom block page settings.
+    """Custom block page settings.
 
-    If missing or null, use the account settings.
+    If missing/null, blocking will use the the account settings.
     """
 
     block_page_enabled: bool
     """Enable the custom block page."""
 
     block_reason: Optional[str]
-    """Explain why the rule blocks the request.
-
-    The custom block page shows this text (if enabled).
+    """
+    The text describing why this block occurred, displayed on the custom block page
+    (if enabled).
     """
 
     bypass_parent_rule: Optional[bool]
-    """Set to enable MSP accounts to bypass their parent's rules.
-
-    Only MSP child accounts can set this.
-    """
+    """Set by children MSP accounts to bypass their parent's rules."""
 
     check_session: Optional[CheckSession]
-    """Configure session check behavior."""
+    """Configure how session check behaves."""
 
     dns_resolvers: Optional[DNSResolvers]
-    """Configure custom resolvers to route queries that match the resolver policy.
+    """Add your own custom resolvers to route queries that match the resolver policy.
 
-    Unused with 'resolve_dns_through_cloudflare' or 'resolve_dns_internally'
-    settings. DNS queries get routed to the address closest to their origin. Only
+    Cannot be used when 'resolve_dns_through_cloudflare' or 'resolve_dns_internally'
+    are set. DNS queries will route to the address closest to their origin. Only
     valid when a rule's action is set to 'resolve'.
     """
 
@@ -264,25 +259,25 @@ class RuleSettingParam(TypedDict, total=False):
     """
 
     ignore_cname_category_matches: bool
-    """Ignore category matches at CNAME domains in a response.
+    """Set to true, to ignore the category matches at CNAME domains in a response.
 
-    When off, evaluate categories in this rule against all CNAME domain categories
-    in the response.
+    If unchecked, the categories in this rule will be checked against all the CNAME
+    domain categories in a response.
     """
 
     insecure_disable_dnssec_validation: bool
-    """Specify whether to disable DNSSEC validation (for Allow actions) [INSECURE]."""
+    """INSECURE - disable DNSSEC validation (for Allow actions)."""
 
     ip_categories: bool
-    """Enable IPs in DNS resolver category blocks.
+    """Set to true to enable IPs in DNS resolver category blocks.
 
-    The system blocks only domain name categories unless you enable this setting.
+    By default categories only block based on domain names.
     """
 
     ip_indicator_feeds: bool
-    """Indicates whether to include IPs in DNS resolver indicator feed blocks.
+    """Set to true to include IPs in DNS resolver indicator feed blocks.
 
-    Default, indicator feeds block only domain names.
+    By default indicator feeds only block based on domain names.
     """
 
     l4override: Optional[L4override]
@@ -290,41 +285,40 @@ class RuleSettingParam(TypedDict, total=False):
 
     notification_settings: Optional[NotificationSettings]
     """
-    Configure a notification to display on the user's device when this rule matched.
+    Configure a notification to display on the user's device when this rule is
+    matched.
     """
 
     override_host: str
-    """Defines a hostname for override, for the matching DNS queries."""
+    """Override matching DNS queries with a hostname."""
 
     override_ips: Optional[SequenceNotStr[str]]
-    """Defines a an IP or set of IPs for overriding matched DNS queries."""
+    """Override matching DNS queries with an IP or set of IPs."""
 
     payload_log: Optional[PayloadLog]
     """Configure DLP payload logging."""
 
     quarantine: Optional[Quarantine]
-    """Configure settings that apply to quarantine rules."""
+    """Settings that apply to quarantine rules."""
 
     redirect: Optional[Redirect]
-    """Apply settings to redirect rules."""
+    """Settings that apply to redirect rules."""
 
     resolve_dns_internally: Optional[ResolveDNSInternally]
     """
     Configure to forward the query to the internal DNS service, passing the
-    specified 'view_id' as input. Not used when 'dns_resolvers' is specified or
-    'resolve_dns_through_cloudflare' is set. Only valid when a rule's action is set
-    to 'resolve'.
+    specified 'view_id' as input. Cannot be set when 'dns_resolvers' are specified
+    or 'resolve_dns_through_cloudflare' is set. Only valid when a rule's action is
+    set to 'resolve'.
     """
 
     resolve_dns_through_cloudflare: Optional[bool]
     """
     Enable to send queries that match the policy to Cloudflare's default 1.1.1.1 DNS
-    resolver. Cannot set when 'dns_resolvers' specified or 'resolve_dns_internally'
-    is set. Only valid when a rule's action set to 'resolve'.
+    resolver. Cannot be set when 'dns_resolvers' are specified or
+    'resolve_dns_internally' is set. Only valid when a rule's action is set to
+    'resolve'.
     """
 
     untrusted_cert: Optional[UntrustedCERT]
-    """
-    Configure behavior when an upstream certificate is invalid or an SSL error
-    occurs.
-    """
+    """Configure behavior when an upstream cert is invalid or an SSL error occurs."""

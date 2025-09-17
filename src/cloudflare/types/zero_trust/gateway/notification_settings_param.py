@@ -9,16 +9,16 @@ __all__ = ["NotificationSettingsParam"]
 
 class NotificationSettingsParam(TypedDict, total=False):
     enabled: bool
-    """Specify whether to enable notifications."""
+    """Set notification on."""
 
     include_context: bool
-    """Specify whether to include context information as query parameters."""
+    """If true, context information will be passed as query parameters."""
 
     msg: str
-    """Specify the message to show in the notification."""
+    """Customize the message shown in the notification."""
 
     support_url: str
-    """Specify a URL that directs users to more information.
+    """Optional URL to direct users to additional information.
 
-    If unset, the notification opens a block page.
+    If not set, the notification will open a block page.
     """

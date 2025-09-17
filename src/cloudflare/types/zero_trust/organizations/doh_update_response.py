@@ -18,6 +18,8 @@ class DOHUpdateResponse(BaseModel):
     Access will check for this value in the `CF-Access-Client-ID` request header.
     """
 
+    created_at: Optional[datetime] = None
+
     doh_jwt_duration: Optional[str] = None
     """The duration the DoH JWT is valid for.
 
@@ -35,5 +37,9 @@ class DOHUpdateResponse(BaseModel):
 
     expires_at: Optional[datetime] = None
 
+    last_seen_at: Optional[datetime] = None
+
     name: Optional[str] = None
     """The name of the service token."""
+
+    updated_at: Optional[datetime] = None

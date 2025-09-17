@@ -142,12 +142,6 @@ class GRETunnelCreateResponse(BaseModel):
     less, and cannot share a name with another GRE tunnel.
     """
 
-    automatic_return_routing: Optional[bool] = None
-    """
-    True if automatic stateful return routing should be enabled for a tunnel, false
-    otherwise.
-    """
-
     bgp: Optional[BGP] = None
 
     bgp_status: Optional[BGPStatus] = None

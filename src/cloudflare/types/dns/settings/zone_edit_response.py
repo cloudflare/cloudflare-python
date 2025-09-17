@@ -22,80 +22,77 @@ class Nameservers(BaseModel):
 
 
 class SOA(BaseModel):
-    expire: Optional[float] = None
+    expire: float
     """
     Time in seconds of being unable to query the primary server after which
     secondary servers should stop serving the zone.
     """
 
-    min_ttl: Optional[float] = None
+    min_ttl: float
     """The time to live (TTL) for negative caching of records within the zone."""
 
-    mname: Optional[str] = None
-    """The primary nameserver, which may be used for outbound zone transfers.
+    mname: str
+    """The primary nameserver, which may be used for outbound zone transfers."""
 
-    If null, a Cloudflare-assigned value will be used.
-    """
-
-    refresh: Optional[float] = None
+    refresh: float
     """
     Time in seconds after which secondary servers should re-check the SOA record to
     see if the zone has been updated.
     """
 
-    retry: Optional[float] = None
+    retry: float
     """
     Time in seconds after which secondary servers should retry queries after the
     primary server was unresponsive.
     """
 
-    rname: Optional[str] = None
+    rname: str
     """
     The email address of the zone administrator, with the first label representing
     the local part of the email address.
     """
 
-    ttl: Optional[float] = None
+    ttl: float
     """The time to live (TTL) of the SOA record itself."""
 
 
 class ZoneEditResponse(BaseModel):
-    flatten_all_cnames: bool
+    flatten_all_cnames: Optional[bool] = None
     """Whether to flatten all CNAME records in the zone.
 
     Note that, due to DNS limitations, a CNAME record at the zone apex will always
     be flattened.
     """
 
-    foundation_dns: bool
+    foundation_dns: Optional[bool] = None
     """Whether to enable Foundation DNS Advanced Nameservers on the zone."""
 
-    internal_dns: InternalDNS
+    internal_dns: Optional[InternalDNS] = None
     """Settings for this internal zone."""
 
-    multi_provider: bool
+    multi_provider: Optional[bool] = None
     """
     Whether to enable multi-provider DNS, which causes Cloudflare to activate the
     zone even when non-Cloudflare NS records exist, and to respect NS records at the
     zone apex during outbound zone transfers.
     """
 
-    nameservers: Nameservers
+    nameservers: Optional[Nameservers] = None
     """
     Settings determining the nameservers through which the zone should be available.
     """
 
-    ns_ttl: float
+    ns_ttl: Optional[float] = None
     """The time to live (TTL) of the zone's nameserver (NS) records."""
 
-    secondary_overrides: bool
+    secondary_overrides: Optional[bool] = None
     """
     Allows a Secondary DNS zone to use (proxied) override records and CNAME
     flattening at the zone apex.
     """
 
-    soa: SOA
+    soa: Optional[SOA] = None
     """Components of the zone's SOA record."""
 
-    zone_mode: Literal["standard", "cdn_only", "dns_only"]
+    zone_mode: Optional[Literal["standard", "cdn_only", "dns_only"]] = None
     """Whether the zone mode is a regular or CDN/DNS only zone."""

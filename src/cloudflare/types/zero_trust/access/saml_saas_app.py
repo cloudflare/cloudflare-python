@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 from ...._models import BaseModel
@@ -61,6 +62,8 @@ class SAMLSaaSApp(BaseModel):
     SAML assertion.
     """
 
+    created_at: Optional[datetime] = None
+
     custom_attributes: Optional[List[CustomAttribute]] = None
 
     default_relay_state: Optional[str] = None
@@ -100,3 +103,5 @@ class SAMLSaaSApp(BaseModel):
 
     sso_endpoint: Optional[str] = None
     """The endpoint where your SaaS application will send login requests."""
+
+    updated_at: Optional[datetime] = None

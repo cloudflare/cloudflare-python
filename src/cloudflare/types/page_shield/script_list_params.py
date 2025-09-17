@@ -35,7 +35,7 @@ class ScriptListParams(TypedDict, total=False):
     """
 
     export: Literal["csv"]
-    """Export the list of scripts as a file, limited to 50000 entries."""
+    """Export the list of scripts as a file."""
 
     hosts: str
     """

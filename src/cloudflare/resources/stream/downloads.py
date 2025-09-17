@@ -57,10 +57,8 @@ class DownloadsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
-        """Creates a download for a video when a video is ready to view.
-
-        Use
-        `/downloads/{download_type}` instead for type-specific downloads.
+        """
+        Creates a download for a video when a video is ready to view.
 
         Args:
           account_id: Identifier.
@@ -104,10 +102,8 @@ class DownloadsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> str:
-        """Delete the downloads for a video.
-
-        Use `/downloads/{download_type}` instead for
-        type-specific downloads.
+        """
+        Delete the downloads for a video.
 
         Args:
           account_id: Identifier.
@@ -216,10 +212,8 @@ class AsyncDownloadsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
-        """Creates a download for a video when a video is ready to view.
-
-        Use
-        `/downloads/{download_type}` instead for type-specific downloads.
+        """
+        Creates a download for a video when a video is ready to view.
 
         Args:
           account_id: Identifier.
@@ -263,10 +257,8 @@ class AsyncDownloadsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> str:
-        """Delete the downloads for a video.
-
-        Use `/downloads/{download_type}` instead for
-        type-specific downloads.
+        """
+        Delete the downloads for a video.
 
         Args:
           account_id: Identifier.

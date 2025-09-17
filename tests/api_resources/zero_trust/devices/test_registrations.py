@@ -192,16 +192,6 @@ class TestRegistrations:
 
     @pytest.mark.skip(reason="TODO: investigate prism error for invalid security scheme used")
     @parametrize
-    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
-        registration = client.zero_trust.devices.registrations.get(
-            registration_id="registration_id",
-            account_id="account_id",
-            include="include",
-        )
-        assert_matches_type(RegistrationGetResponse, registration, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate prism error for invalid security scheme used")
-    @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.devices.registrations.with_raw_response.get(
             registration_id="registration_id",
@@ -507,16 +497,6 @@ class TestAsyncRegistrations:
         registration = await async_client.zero_trust.devices.registrations.get(
             registration_id="registration_id",
             account_id="account_id",
-        )
-        assert_matches_type(RegistrationGetResponse, registration, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate prism error for invalid security scheme used")
-    @parametrize
-    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        registration = await async_client.zero_trust.devices.registrations.get(
-            registration_id="registration_id",
-            account_id="account_id",
-            include="include",
         )
         assert_matches_type(RegistrationGetResponse, registration, path=["response"])
 

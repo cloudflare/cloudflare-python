@@ -53,28 +53,28 @@ class TailConsumer(BaseModel):
 
 class Worker(BaseModel):
     id: str
-    """Immutable ID of the Worker."""
+    """Identifier."""
 
     created_on: datetime
     """When the Worker was created."""
 
-    logpush: bool
-    """Whether logpush is enabled for the Worker."""
-
     name: str
     """Name of the Worker."""
 
-    observability: Observability
-    """Observability settings for the Worker."""
-
-    subdomain: Subdomain
-    """Subdomain settings for the Worker."""
-
-    tags: List[str]
-    """Tags associated with the Worker."""
-
-    tail_consumers: List[TailConsumer]
-    """Other Workers that should consume logs from the Worker."""
-
     updated_on: datetime
     """When the Worker was most recently updated."""
+
+    logpush: Optional[bool] = None
+    """Whether logpush is enabled for the Worker."""
+
+    observability: Optional[Observability] = None
+    """Observability settings for the Worker."""
+
+    subdomain: Optional[Subdomain] = None
+    """Subdomain settings for the Worker."""
+
+    tags: Optional[List[str]] = None
+    """Tags associated with the Worker."""
+
+    tail_consumers: Optional[List[TailConsumer]] = None
+    """Other Workers that should consume logs from the Worker."""

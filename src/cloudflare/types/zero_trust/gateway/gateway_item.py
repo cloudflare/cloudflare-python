@@ -12,7 +12,7 @@ class GatewayItem(BaseModel):
     created_at: Optional[datetime] = None
 
     description: Optional[str] = None
-    """Provide the list item description (optional)."""
+    """The description of the list item, if present."""
 
     value: Optional[str] = None
-    """Specify the item value."""
+    """The value of the item in a list."""

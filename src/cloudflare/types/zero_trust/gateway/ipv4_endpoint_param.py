@@ -9,4 +9,4 @@ __all__ = ["IPV4EndpointParam"]
 
 class IPV4EndpointParam(TypedDict, total=False):
     enabled: bool
-    """Indicate whether the IPv4 endpoint is enabled for this location."""
+    """True if the endpoint is enabled for this location."""

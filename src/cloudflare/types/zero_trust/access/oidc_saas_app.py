@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Dict, List, Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 from ...._models import BaseModel
@@ -74,6 +75,8 @@ class OIDCSaaSApp(BaseModel):
     client_secret: Optional[str] = None
     """The application client secret, only returned on POST request."""
 
+    created_at: Optional[datetime] = None
+
     custom_claims: Optional[List[CustomClaim]] = None
 
     grant_types: Optional[
@@ -102,3 +105,5 @@ class OIDCSaaSApp(BaseModel):
     Define the user information shared with access, "offline_access" scope will be
     automatically enabled if refresh tokens are enabled
     """
+
+    updated_at: Optional[datetime] = None
