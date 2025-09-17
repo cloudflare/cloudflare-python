@@ -277,6 +277,17 @@ class TestSecrets:
         assert_matches_type(object, secret, path=["response"])
 
     @parametrize
+    def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
+        secret = client.workers_for_platforms.dispatch.namespaces.scripts.secrets.delete(
+            secret_name="mySecret",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            dispatch_namespace="my-dispatch-namespace",
+            script_name="this-is_my_script-01",
+            url_encoded=True,
+        )
+        assert_matches_type(object, secret, path=["response"])
+
+    @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.delete(
             secret_name="mySecret",
@@ -347,6 +358,17 @@ class TestSecrets:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
             script_name="this-is_my_script-01",
+        )
+        assert_matches_type(SecretGetResponse, secret, path=["response"])
+
+    @parametrize
+    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
+        secret = client.workers_for_platforms.dispatch.namespaces.scripts.secrets.get(
+            secret_name="mySecret",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            dispatch_namespace="my-dispatch-namespace",
+            script_name="this-is_my_script-01",
+            url_encoded=True,
         )
         assert_matches_type(SecretGetResponse, secret, path=["response"])
 
@@ -683,6 +705,17 @@ class TestAsyncSecrets:
         assert_matches_type(object, secret, path=["response"])
 
     @parametrize
+    async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        secret = await async_client.workers_for_platforms.dispatch.namespaces.scripts.secrets.delete(
+            secret_name="mySecret",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            dispatch_namespace="my-dispatch-namespace",
+            script_name="this-is_my_script-01",
+            url_encoded=True,
+        )
+        assert_matches_type(object, secret, path=["response"])
+
+    @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = (
             await async_client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.delete(
@@ -757,6 +790,17 @@ class TestAsyncSecrets:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
             script_name="this-is_my_script-01",
+        )
+        assert_matches_type(SecretGetResponse, secret, path=["response"])
+
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        secret = await async_client.workers_for_platforms.dispatch.namespaces.scripts.secrets.get(
+            secret_name="mySecret",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            dispatch_namespace="my-dispatch-namespace",
+            script_name="this-is_my_script-01",
+            url_encoded=True,
         )
         assert_matches_type(SecretGetResponse, secret, path=["response"])
 

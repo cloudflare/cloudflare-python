@@ -307,6 +307,13 @@ class MetadataBindingWorkersBindingKindR2Bucket(TypedDict, total=False):
     type: Required[Literal["r2_bucket"]]
     """The kind of resource that the binding provides."""
 
+    jurisdiction: Literal["eu", "fedramp"]
+    """
+    The
+    [jurisdiction](https://developers.cloudflare.com/r2/reference/data-location/#jurisdictional-restrictions)
+    of the R2 bucket.
+    """
+
 
 class MetadataBindingWorkersBindingKindSecretText(TypedDict, total=False):
     name: Required[str]

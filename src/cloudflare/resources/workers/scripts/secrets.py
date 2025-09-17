@@ -20,7 +20,7 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.workers.scripts import secret_update_params
+from ....types.workers.scripts import secret_get_params, secret_delete_params, secret_update_params
 from ....types.workers.scripts.secret_get_response import SecretGetResponse
 from ....types.workers.scripts.secret_list_response import SecretListResponse
 from ....types.workers.scripts.secret_update_response import SecretUpdateResponse
@@ -252,6 +252,7 @@ class SecretsResource(SyncAPIResource):
         *,
         account_id: str,
         script_name: str,
+        url_encoded: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -268,6 +269,8 @@ class SecretsResource(SyncAPIResource):
           script_name: Name of the script, used in URLs and route configuration.
 
           secret_name: A JavaScript variable name for the secret binding.
+
+          url_encoded: Flag that indicates whether the secret name is URL encoded.
 
           extra_headers: Send extra headers
 
@@ -290,6 +293,7 @@ class SecretsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=maybe_transform({"url_encoded": url_encoded}, secret_delete_params.SecretDeleteParams),
                 post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
             cast_to=cast(Type[object], ResultWrapper[object]),
@@ -301,6 +305,7 @@ class SecretsResource(SyncAPIResource):
         *,
         account_id: str,
         script_name: str,
+        url_encoded: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -317,6 +322,8 @@ class SecretsResource(SyncAPIResource):
           script_name: Name of the script, used in URLs and route configuration.
 
           secret_name: A JavaScript variable name for the secret binding.
+
+          url_encoded: Flag that indicates whether the secret name is URL encoded.
 
           extra_headers: Send extra headers
 
@@ -341,6 +348,7 @@ class SecretsResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
+                    query=maybe_transform({"url_encoded": url_encoded}, secret_get_params.SecretGetParams),
                     post_parser=ResultWrapper[Optional[SecretGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(
@@ -574,6 +582,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         *,
         account_id: str,
         script_name: str,
+        url_encoded: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -590,6 +599,8 @@ class AsyncSecretsResource(AsyncAPIResource):
           script_name: Name of the script, used in URLs and route configuration.
 
           secret_name: A JavaScript variable name for the secret binding.
+
+          url_encoded: Flag that indicates whether the secret name is URL encoded.
 
           extra_headers: Send extra headers
 
@@ -612,6 +623,9 @@ class AsyncSecretsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=await async_maybe_transform(
+                    {"url_encoded": url_encoded}, secret_delete_params.SecretDeleteParams
+                ),
                 post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
             cast_to=cast(Type[object], ResultWrapper[object]),
@@ -623,6 +637,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         *,
         account_id: str,
         script_name: str,
+        url_encoded: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -639,6 +654,8 @@ class AsyncSecretsResource(AsyncAPIResource):
           script_name: Name of the script, used in URLs and route configuration.
 
           secret_name: A JavaScript variable name for the secret binding.
+
+          url_encoded: Flag that indicates whether the secret name is URL encoded.
 
           extra_headers: Send extra headers
 
@@ -663,6 +680,7 @@ class AsyncSecretsResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
+                    query=await async_maybe_transform({"url_encoded": url_encoded}, secret_get_params.SecretGetParams),
                     post_parser=ResultWrapper[Optional[SecretGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(

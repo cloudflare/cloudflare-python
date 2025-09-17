@@ -4,11 +4,13 @@ from __future__ import annotations
 
 from .deployment import Deployment as Deployment
 from .consumer_script import ConsumerScript as ConsumerScript
+from .secret_get_params import SecretGetParams as SecretGetParams
 from .tail_get_response import TailGetResponse as TailGetResponse
 from .tail_create_params import TailCreateParams as TailCreateParams
 from .secret_get_response import SecretGetResponse as SecretGetResponse
 from .setting_edit_params import SettingEditParams as SettingEditParams
 from .version_list_params import VersionListParams as VersionListParams
+from .secret_delete_params import SecretDeleteParams as SecretDeleteParams
 from .secret_list_response import SecretListResponse as SecretListResponse
 from .secret_update_params import SecretUpdateParams as SecretUpdateParams
 from .tail_create_response import TailCreateResponse as TailCreateResponse
