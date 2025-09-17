@@ -30,7 +30,7 @@ class TagCreateParams(TypedDict, total=False):
 
     attribution_organization: Annotated[str, PropertyInfo(alias="attributionOrganization")]
 
-    category_id: Annotated[float, PropertyInfo(alias="categoryId")]
+    category_uuid: Annotated[str, PropertyInfo(alias="categoryUuid")]
 
     external_reference_links: Annotated[SequenceNotStr[str], PropertyInfo(alias="externalReferenceLinks")]
 
