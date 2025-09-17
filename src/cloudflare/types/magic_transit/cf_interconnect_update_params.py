@@ -14,6 +14,12 @@ class CfInterconnectUpdateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
+    automatic_return_routing: bool
+    """
+    True if automatic stateful return routing should be enabled for a tunnel, false
+    otherwise.
+    """
+
     description: str
     """An optional description of the interconnect."""
 

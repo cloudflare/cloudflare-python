@@ -330,8 +330,6 @@ class SelfHostedApplication(BaseModel):
 
     cors_headers: Optional[CORSHeaders] = None
 
-    created_at: Optional[datetime] = None
-
     custom_deny_message: Optional[str] = None
     """
     The custom error message shown to a user when they are denied access to the
@@ -442,8 +440,6 @@ class SelfHostedApplication(BaseModel):
 
     Tags are used to filter applications in the App Launcher dashboard.
     """
-
-    updated_at: Optional[datetime] = None
 
 
 class SaaSApplicationPolicy(BaseModel):
@@ -629,8 +625,6 @@ class SaaSApplication(BaseModel):
     You must specify only one identity provider in allowed_idps.
     """
 
-    created_at: Optional[datetime] = None
-
     custom_pages: Optional[List[str]] = None
     """The custom pages that will be displayed when applicable for this application"""
 
@@ -658,8 +652,6 @@ class SaaSApplication(BaseModel):
 
     type: Optional[ApplicationType] = None
     """The application type."""
-
-    updated_at: Optional[datetime] = None
 
 
 class BrowserSSHApplicationDestinationPublicDestination(BaseModel):
@@ -917,8 +909,6 @@ class BrowserSSHApplication(BaseModel):
 
     cors_headers: Optional[CORSHeaders] = None
 
-    created_at: Optional[datetime] = None
-
     custom_deny_message: Optional[str] = None
     """
     The custom error message shown to a user when they are denied access to the
@@ -1029,8 +1019,6 @@ class BrowserSSHApplication(BaseModel):
 
     Tags are used to filter applications in the App Launcher dashboard.
     """
-
-    updated_at: Optional[datetime] = None
 
 
 class BrowserVNCApplicationDestinationPublicDestination(BaseModel):
@@ -1288,8 +1276,6 @@ class BrowserVNCApplication(BaseModel):
 
     cors_headers: Optional[CORSHeaders] = None
 
-    created_at: Optional[datetime] = None
-
     custom_deny_message: Optional[str] = None
     """
     The custom error message shown to a user when they are denied access to the
@@ -1400,8 +1386,6 @@ class BrowserVNCApplication(BaseModel):
 
     Tags are used to filter applications in the App Launcher dashboard.
     """
-
-    updated_at: Optional[datetime] = None
 
 
 class AppLauncherApplicationFooterLink(BaseModel):
@@ -1542,8 +1526,6 @@ class AppLauncherApplication(BaseModel):
     bg_color: Optional[str] = None
     """The background color of the App Launcher page."""
 
-    created_at: Optional[datetime] = None
-
     custom_deny_url: Optional[str] = None
     """
     The custom URL a user is redirected to when they are denied access to the
@@ -1588,8 +1570,6 @@ class AppLauncherApplication(BaseModel):
 
     skip_app_launcher_login_page: Optional[bool] = None
     """Determines when to skip the App Launcher landing page."""
-
-    updated_at: Optional[datetime] = None
 
 
 class DeviceEnrollmentPermissionsApplicationPolicy(BaseModel):
@@ -1687,8 +1667,6 @@ class DeviceEnrollmentPermissionsApplication(BaseModel):
     You must specify only one identity provider in allowed_idps.
     """
 
-    created_at: Optional[datetime] = None
-
     custom_deny_url: Optional[str] = None
     """
     The custom URL a user is redirected to when they are denied access to the
@@ -1721,8 +1699,6 @@ class DeviceEnrollmentPermissionsApplication(BaseModel):
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
     ms, s, m, h. Note: unsupported for infrastructure type applications.
     """
-
-    updated_at: Optional[datetime] = None
 
 
 class BrowserIsolationPermissionsApplicationPolicy(BaseModel):
@@ -1820,8 +1796,6 @@ class BrowserIsolationPermissionsApplication(BaseModel):
     You must specify only one identity provider in allowed_idps.
     """
 
-    created_at: Optional[datetime] = None
-
     custom_deny_url: Optional[str] = None
     """
     The custom URL a user is redirected to when they are denied access to the
@@ -1855,8 +1829,6 @@ class BrowserIsolationPermissionsApplication(BaseModel):
     ms, s, m, h. Note: unsupported for infrastructure type applications.
     """
 
-    updated_at: Optional[datetime] = None
-
 
 class BookmarkApplication(BaseModel):
     id: Optional[str] = None
@@ -1867,8 +1839,6 @@ class BookmarkApplication(BaseModel):
 
     aud: Optional[str] = None
     """Audience tag."""
-
-    created_at: Optional[datetime] = None
 
     domain: Optional[str] = None
     """The URL or domain of the bookmark."""
@@ -1887,8 +1857,6 @@ class BookmarkApplication(BaseModel):
 
     type: Optional[ApplicationType] = None
     """The application type."""
-
-    updated_at: Optional[datetime] = None
 
 
 class InfrastructureApplicationTargetCriterion(BaseModel):
@@ -1975,14 +1943,10 @@ class InfrastructureApplication(BaseModel):
     aud: Optional[str] = None
     """Audience tag."""
 
-    created_at: Optional[datetime] = None
-
     name: Optional[str] = None
     """The name of the application."""
 
     policies: Optional[List[InfrastructureApplicationPolicy]] = None
-
-    updated_at: Optional[datetime] = None
 
 
 class BrowserRdpApplicationTargetCriterion(BaseModel):
@@ -2244,8 +2208,6 @@ class BrowserRdpApplication(BaseModel):
 
     cors_headers: Optional[CORSHeaders] = None
 
-    created_at: Optional[datetime] = None
-
     custom_deny_message: Optional[str] = None
     """
     The custom error message shown to a user when they are denied access to the
@@ -2356,8 +2318,6 @@ class BrowserRdpApplication(BaseModel):
 
     Tags are used to filter applications in the App Launcher dashboard.
     """
-
-    updated_at: Optional[datetime] = None
 
 
 ApplicationListResponse: TypeAlias = Union[

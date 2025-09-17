@@ -91,7 +91,9 @@ class TestScripts:
                     "logs": {
                         "enabled": True,
                         "invocation_logs": True,
+                        "destinations": ["cloudflare"],
                         "head_sampling_rate": 0.1,
+                        "persist": True,
                     },
                 },
                 "placement": {"mode": "smart"},
@@ -375,7 +377,9 @@ class TestAsyncScripts:
                     "logs": {
                         "enabled": True,
                         "invocation_logs": True,
+                        "destinations": ["cloudflare"],
                         "head_sampling_rate": 0.1,
+                        "persist": True,
                     },
                 },
                 "placement": {"mode": "smart"},

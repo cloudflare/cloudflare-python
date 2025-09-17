@@ -28,7 +28,6 @@ class TestSnippets:
         snippet = client.snippets.update(
             snippet_name="my_snippet",
             zone_id="9f1839b6152d298aca64c4e906b6d074",
-            files=[b"raw file contents"],
             metadata={"main_module": "main.js"},
         )
         assert_matches_type(SnippetUpdateResponse, snippet, path=["response"])
@@ -39,7 +38,6 @@ class TestSnippets:
         response = client.snippets.with_raw_response.update(
             snippet_name="my_snippet",
             zone_id="9f1839b6152d298aca64c4e906b6d074",
-            files=[b"raw file contents"],
             metadata={"main_module": "main.js"},
         )
 
@@ -54,7 +52,6 @@ class TestSnippets:
         with client.snippets.with_streaming_response.update(
             snippet_name="my_snippet",
             zone_id="9f1839b6152d298aca64c4e906b6d074",
-            files=[b"raw file contents"],
             metadata={"main_module": "main.js"},
         ) as response:
             assert not response.is_closed
@@ -72,7 +69,6 @@ class TestSnippets:
             client.snippets.with_raw_response.update(
                 snippet_name="my_snippet",
                 zone_id="",
-                files=[b"raw file contents"],
                 metadata={"main_module": "main.js"},
             )
 
@@ -80,7 +76,6 @@ class TestSnippets:
             client.snippets.with_raw_response.update(
                 snippet_name="",
                 zone_id="9f1839b6152d298aca64c4e906b6d074",
-                files=[b"raw file contents"],
                 metadata={"main_module": "main.js"},
             )
 
@@ -239,7 +234,6 @@ class TestAsyncSnippets:
         snippet = await async_client.snippets.update(
             snippet_name="my_snippet",
             zone_id="9f1839b6152d298aca64c4e906b6d074",
-            files=[b"raw file contents"],
             metadata={"main_module": "main.js"},
         )
         assert_matches_type(SnippetUpdateResponse, snippet, path=["response"])
@@ -250,7 +244,6 @@ class TestAsyncSnippets:
         response = await async_client.snippets.with_raw_response.update(
             snippet_name="my_snippet",
             zone_id="9f1839b6152d298aca64c4e906b6d074",
-            files=[b"raw file contents"],
             metadata={"main_module": "main.js"},
         )
 
@@ -265,7 +258,6 @@ class TestAsyncSnippets:
         async with async_client.snippets.with_streaming_response.update(
             snippet_name="my_snippet",
             zone_id="9f1839b6152d298aca64c4e906b6d074",
-            files=[b"raw file contents"],
             metadata={"main_module": "main.js"},
         ) as response:
             assert not response.is_closed
@@ -283,7 +275,6 @@ class TestAsyncSnippets:
             await async_client.snippets.with_raw_response.update(
                 snippet_name="my_snippet",
                 zone_id="",
-                files=[b"raw file contents"],
                 metadata={"main_module": "main.js"},
             )
 
@@ -291,7 +282,6 @@ class TestAsyncSnippets:
             await async_client.snippets.with_raw_response.update(
                 snippet_name="",
                 zone_id="9f1839b6152d298aca64c4e906b6d074",
-                files=[b"raw file contents"],
                 metadata={"main_module": "main.js"},
             )
 

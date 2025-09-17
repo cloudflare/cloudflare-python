@@ -87,6 +87,8 @@ class LinkCreateParams(TypedDict, total=False):
 
     emulate_media_type: Annotated[str, PropertyInfo(alias="emulateMediaType")]
 
+    exclude_external_links: Annotated[bool, PropertyInfo(alias="excludeExternalLinks")]
+
     goto_options: Annotated[GotoOptions, PropertyInfo(alias="gotoOptions")]
     """Check [options](https://pptr.dev/api/puppeteer.gotooptions)."""
 

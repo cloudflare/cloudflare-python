@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -45,7 +45,22 @@ class TagsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        name: str,
+        value: str,
+        active_duration: str | NotGiven = NOT_GIVEN,
+        actor_category: str | NotGiven = NOT_GIVEN,
+        alias_group_names: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        alias_group_names_internal: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        analytic_priority: float | NotGiven = NOT_GIVEN,
+        attribution_confidence: str | NotGiven = NOT_GIVEN,
+        attribution_organization: str | NotGiven = NOT_GIVEN,
+        category_id: float | NotGiven = NOT_GIVEN,
+        external_reference_links: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        internal_description: str | NotGiven = NOT_GIVEN,
+        motive: str | NotGiven = NOT_GIVEN,
+        opsec_level: str | NotGiven = NOT_GIVEN,
+        origin_country_iso: str | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
+        sophistication_level: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -54,7 +69,7 @@ class TagsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TagCreateResponse:
         """
-        Creates a new tag
+        Creates a new tag to be used accross threat events.
 
         Args:
           account_id: Account ID.
@@ -71,7 +86,27 @@ class TagsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/cloudforce-one/events/tags/create",
-            body=maybe_transform({"name": name}, tag_create_params.TagCreateParams),
+            body=maybe_transform(
+                {
+                    "value": value,
+                    "active_duration": active_duration,
+                    "actor_category": actor_category,
+                    "alias_group_names": alias_group_names,
+                    "alias_group_names_internal": alias_group_names_internal,
+                    "analytic_priority": analytic_priority,
+                    "attribution_confidence": attribution_confidence,
+                    "attribution_organization": attribution_organization,
+                    "category_id": category_id,
+                    "external_reference_links": external_reference_links,
+                    "internal_description": internal_description,
+                    "motive": motive,
+                    "opsec_level": opsec_level,
+                    "origin_country_iso": origin_country_iso,
+                    "priority": priority,
+                    "sophistication_level": sophistication_level,
+                },
+                tag_create_params.TagCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -103,7 +138,22 @@ class AsyncTagsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        name: str,
+        value: str,
+        active_duration: str | NotGiven = NOT_GIVEN,
+        actor_category: str | NotGiven = NOT_GIVEN,
+        alias_group_names: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        alias_group_names_internal: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        analytic_priority: float | NotGiven = NOT_GIVEN,
+        attribution_confidence: str | NotGiven = NOT_GIVEN,
+        attribution_organization: str | NotGiven = NOT_GIVEN,
+        category_id: float | NotGiven = NOT_GIVEN,
+        external_reference_links: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        internal_description: str | NotGiven = NOT_GIVEN,
+        motive: str | NotGiven = NOT_GIVEN,
+        opsec_level: str | NotGiven = NOT_GIVEN,
+        origin_country_iso: str | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
+        sophistication_level: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -112,7 +162,7 @@ class AsyncTagsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TagCreateResponse:
         """
-        Creates a new tag
+        Creates a new tag to be used accross threat events.
 
         Args:
           account_id: Account ID.
@@ -129,7 +179,27 @@ class AsyncTagsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/cloudforce-one/events/tags/create",
-            body=await async_maybe_transform({"name": name}, tag_create_params.TagCreateParams),
+            body=await async_maybe_transform(
+                {
+                    "value": value,
+                    "active_duration": active_duration,
+                    "actor_category": actor_category,
+                    "alias_group_names": alias_group_names,
+                    "alias_group_names_internal": alias_group_names_internal,
+                    "analytic_priority": analytic_priority,
+                    "attribution_confidence": attribution_confidence,
+                    "attribution_organization": attribution_organization,
+                    "category_id": category_id,
+                    "external_reference_links": external_reference_links,
+                    "internal_description": internal_description,
+                    "motive": motive,
+                    "opsec_level": opsec_level,
+                    "origin_country_iso": origin_country_iso,
+                    "priority": priority,
+                    "sophistication_level": sophistication_level,
+                },
+                tag_create_params.TagCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

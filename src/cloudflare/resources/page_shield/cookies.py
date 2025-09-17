@@ -82,7 +82,7 @@ class CookiesResource(SyncAPIResource):
 
           domain: Filters the returned cookies that match the specified domain attribute
 
-          export: Export the list of cookies as a file.
+          export: Export the list of cookies as a file, limited to 50000 entries.
 
           hosts: Includes cookies that match one or more URL-encoded hostnames separated by
               commas.
@@ -263,7 +263,7 @@ class AsyncCookiesResource(AsyncAPIResource):
 
           domain: Filters the returned cookies that match the specified domain attribute
 
-          export: Export the list of cookies as a file.
+          export: Export the list of cookies as a file, limited to 50000 entries.
 
           hosts: Includes cookies that match one or more URL-encoded hostnames separated by
               commas.

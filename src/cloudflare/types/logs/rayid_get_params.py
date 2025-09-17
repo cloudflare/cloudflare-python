@@ -9,7 +9,7 @@ __all__ = ["RayIDGetParams"]
 
 class RayIDGetParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     fields: str
     """

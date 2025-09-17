@@ -9,7 +9,7 @@ __all__ = ["OwnershipCreateParams"]
 
 class OwnershipCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     destination_conf: Required[str]
     """The full URI for the bucket. This field only applies to `full` packet captures."""

@@ -36,7 +36,7 @@ class TestSubdomain:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             enabled=True,
-            previews_enabled=True,
+            previews_enabled=False,
         )
         assert_matches_type(SubdomainCreateResponse, subdomain, path=["response"])
 
@@ -201,7 +201,7 @@ class TestAsyncSubdomain:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             enabled=True,
-            previews_enabled=True,
+            previews_enabled=False,
         )
         assert_matches_type(SubdomainCreateResponse, subdomain, path=["response"])
 

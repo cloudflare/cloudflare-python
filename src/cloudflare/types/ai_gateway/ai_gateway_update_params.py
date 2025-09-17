@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing import List, Union, Iterable, Optional
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from ..._types import SequenceNotStr
 
-__all__ = ["AIGatewayUpdateParams", "DLP"]
+__all__ = ["AIGatewayUpdateParams", "DLP", "DLPUnionMember0", "DLPUnionMember1", "DLPUnionMember1Policy"]
 
 
 class AIGatewayUpdateParams(TypedDict, total=False):
@@ -40,9 +40,30 @@ class AIGatewayUpdateParams(TypedDict, total=False):
     store_id: Optional[str]
 
 
-class DLP(TypedDict, total=False):
+class DLPUnionMember0(TypedDict, total=False):
     action: Required[Literal["BLOCK", "FLAG"]]
 
     enabled: Required[bool]
 
     profiles: Required[SequenceNotStr[str]]
+
+
+class DLPUnionMember1Policy(TypedDict, total=False):
+    id: Required[str]
+
+    action: Required[Literal["FLAG", "BLOCK"]]
+
+    check: Required[List[Literal["REQUEST", "RESPONSE"]]]
+
+    enabled: Required[bool]
+
+    profiles: Required[SequenceNotStr[str]]
+
+
+class DLPUnionMember1(TypedDict, total=False):
+    enabled: Required[bool]
+
+    policies: Required[Iterable[DLPUnionMember1Policy]]
+
+
+DLP: TypeAlias = Union[DLPUnionMember0, DLPUnionMember1]

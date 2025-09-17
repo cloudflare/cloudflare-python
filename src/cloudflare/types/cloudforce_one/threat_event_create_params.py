@@ -22,6 +22,8 @@ class ThreatEventCreateParams(TypedDict, total=False):
 
     event: Required[str]
 
+    indicator_type: Required[Annotated[str, PropertyInfo(alias="indicatorType")]]
+
     raw: Required[Raw]
 
     tlp: Required[str]
@@ -36,7 +38,7 @@ class ThreatEventCreateParams(TypedDict, total=False):
 
     indicator: str
 
-    indicator_type: Annotated[str, PropertyInfo(alias="indicatorType")]
+    insight: str
 
     tags: SequenceNotStr[str]
 

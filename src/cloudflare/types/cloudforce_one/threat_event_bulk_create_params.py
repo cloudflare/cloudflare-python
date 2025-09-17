@@ -36,6 +36,8 @@ class Data(TypedDict, total=False):
 
     event: Required[str]
 
+    indicator_type: Required[Annotated[str, PropertyInfo(alias="indicatorType")]]
+
     raw: Required[DataRaw]
 
     tlp: Required[str]
@@ -50,7 +52,7 @@ class Data(TypedDict, total=False):
 
     indicator: str
 
-    indicator_type: Annotated[str, PropertyInfo(alias="indicatorType")]
+    insight: str
 
     tags: SequenceNotStr[str]
 

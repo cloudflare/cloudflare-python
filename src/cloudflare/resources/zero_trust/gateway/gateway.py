@@ -175,7 +175,7 @@ class GatewayResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[GatewayCreateResponse]:
         """
-        Creates a Zero Trust account with an existing Cloudflare account.
+        Create a Zero Trust account for an existing Cloudflare account.
 
         Args:
           extra_headers: Send extra headers
@@ -212,7 +212,7 @@ class GatewayResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[GatewayListResponse]:
         """
-        Gets information about the current Zero Trust account.
+        Retrieve information about the current Zero Trust account.
 
         Args:
           extra_headers: Send extra headers
@@ -310,7 +310,7 @@ class AsyncGatewayResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[GatewayCreateResponse]:
         """
-        Creates a Zero Trust account with an existing Cloudflare account.
+        Create a Zero Trust account for an existing Cloudflare account.
 
         Args:
           extra_headers: Send extra headers
@@ -347,7 +347,7 @@ class AsyncGatewayResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[GatewayListResponse]:
         """
-        Gets information about the current Zero Trust account.
+        Retrieve information about the current Zero Trust account.
 
         Args:
           extra_headers: Send extra headers

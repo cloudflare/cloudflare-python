@@ -21,6 +21,12 @@ class Interconnect(BaseModel):
     id: Optional[str] = None
     """Identifier"""
 
+    automatic_return_routing: Optional[bool] = None
+    """
+    True if automatic stateful return routing should be enabled for a tunnel, false
+    otherwise.
+    """
+
     colo_name: Optional[str] = None
     """The name of the interconnect. The name cannot share a name with other tunnels."""
 

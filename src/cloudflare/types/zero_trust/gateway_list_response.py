@@ -9,10 +9,10 @@ __all__ = ["GatewayListResponse"]
 
 class GatewayListResponse(BaseModel):
     id: Optional[str] = None
-    """Cloudflare account ID."""
+    """Specify the Cloudflare account ID."""
 
     gateway_tag: Optional[str] = None
-    """Gateway internal ID."""
+    """Specify the gateway internal ID."""
 
     provider_name: Optional[str] = None
-    """Provider Name. Usually Cloudflare."""
+    """Specify the provider name (usually Cloudflare)."""

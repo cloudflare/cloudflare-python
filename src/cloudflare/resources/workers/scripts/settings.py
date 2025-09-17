@@ -6,7 +6,7 @@ from typing import Type, Iterable, Optional, cast
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -52,6 +52,7 @@ class SettingsResource(SyncAPIResource):
         account_id: str,
         logpush: bool | NotGiven = NOT_GIVEN,
         observability: Optional[setting_edit_params.Observability] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         tail_consumers: Optional[Iterable[ConsumerScriptParam]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -74,6 +75,8 @@ class SettingsResource(SyncAPIResource):
 
           observability: Observability settings for the Worker.
 
+          tags: Tags associated with the Worker.
+
           tail_consumers: List of Workers that will consume logs from the attached Worker.
 
           extra_headers: Send extra headers
@@ -94,6 +97,7 @@ class SettingsResource(SyncAPIResource):
                 {
                     "logpush": logpush,
                     "observability": observability,
+                    "tags": tags,
                     "tail_consumers": tail_consumers,
                 },
                 setting_edit_params.SettingEditParams,
@@ -182,6 +186,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         account_id: str,
         logpush: bool | NotGiven = NOT_GIVEN,
         observability: Optional[setting_edit_params.Observability] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         tail_consumers: Optional[Iterable[ConsumerScriptParam]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -204,6 +209,8 @@ class AsyncSettingsResource(AsyncAPIResource):
 
           observability: Observability settings for the Worker.
 
+          tags: Tags associated with the Worker.
+
           tail_consumers: List of Workers that will consume logs from the attached Worker.
 
           extra_headers: Send extra headers
@@ -224,6 +231,7 @@ class AsyncSettingsResource(AsyncAPIResource):
                 {
                     "logpush": logpush,
                     "observability": observability,
+                    "tags": tags,
                     "tail_consumers": tail_consumers,
                 },
                 setting_edit_params.SettingEditParams,

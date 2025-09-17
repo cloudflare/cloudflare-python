@@ -17,4 +17,4 @@ class TagUpdateParams(TypedDict, total=False):
     """Name of the Workers for Platforms dispatch namespace."""
 
     body: Required[SequenceNotStr[str]]
-    """Tags to help you manage your Workers."""
+    """Tags associated with the Worker."""

@@ -61,7 +61,7 @@ class OwnershipResource(SyncAPIResource):
         Adds an AWS or GCP bucket to use with full packet captures.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           destination_conf: The full URI for the bucket. This field only applies to `full` packet captures.
 
@@ -104,9 +104,9 @@ class OwnershipResource(SyncAPIResource):
         Deletes buckets added to the packet captures API.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          ownership_id: Identifier
+          ownership_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -144,7 +144,7 @@ class OwnershipResource(SyncAPIResource):
         List all buckets configured for use with PCAPs API.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -182,7 +182,7 @@ class OwnershipResource(SyncAPIResource):
         Validates buckets added to the packet captures API.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           destination_conf: The full URI for the bucket. This field only applies to `full` packet captures.
 
@@ -254,7 +254,7 @@ class AsyncOwnershipResource(AsyncAPIResource):
         Adds an AWS or GCP bucket to use with full packet captures.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           destination_conf: The full URI for the bucket. This field only applies to `full` packet captures.
 
@@ -299,9 +299,9 @@ class AsyncOwnershipResource(AsyncAPIResource):
         Deletes buckets added to the packet captures API.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          ownership_id: Identifier
+          ownership_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -339,7 +339,7 @@ class AsyncOwnershipResource(AsyncAPIResource):
         List all buckets configured for use with PCAPs API.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -377,7 +377,7 @@ class AsyncOwnershipResource(AsyncAPIResource):
         Validates buckets added to the packet captures API.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           destination_conf: The full URI for the bucket. This field only applies to `full` packet captures.
 

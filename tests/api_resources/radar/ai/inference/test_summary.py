@@ -15,6 +15,8 @@ from cloudflare.types.radar.ai.inference import (
     SummaryModelResponse,
 )
 
+# pyright: reportDeprecated=false
+
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
@@ -23,24 +25,29 @@ class TestSummary:
 
     @parametrize
     def test_method_model(self, client: Cloudflare) -> None:
-        summary = client.radar.ai.inference.summary.model()
+        with pytest.warns(DeprecationWarning):
+            summary = client.radar.ai.inference.summary.model()
+
         assert_matches_type(SummaryModelResponse, summary, path=["response"])
 
     @parametrize
     def test_method_model_with_all_params(self, client: Cloudflare) -> None:
-        summary = client.radar.ai.inference.summary.model(
-            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
-            date_range=["7d"],
-            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
-            format="JSON",
-            limit_per_group=10,
-            name=["main_series"],
-        )
+        with pytest.warns(DeprecationWarning):
+            summary = client.radar.ai.inference.summary.model(
+                date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+                date_range=["7d"],
+                date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+                format="JSON",
+                limit_per_group=10,
+                name=["main_series"],
+            )
+
         assert_matches_type(SummaryModelResponse, summary, path=["response"])
 
     @parametrize
     def test_raw_response_model(self, client: Cloudflare) -> None:
-        response = client.radar.ai.inference.summary.with_raw_response.model()
+        with pytest.warns(DeprecationWarning):
+            response = client.radar.ai.inference.summary.with_raw_response.model()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -49,35 +56,41 @@ class TestSummary:
 
     @parametrize
     def test_streaming_response_model(self, client: Cloudflare) -> None:
-        with client.radar.ai.inference.summary.with_streaming_response.model() as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.radar.ai.inference.summary.with_streaming_response.model() as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            summary = response.parse()
-            assert_matches_type(SummaryModelResponse, summary, path=["response"])
+                summary = response.parse()
+                assert_matches_type(SummaryModelResponse, summary, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_task(self, client: Cloudflare) -> None:
-        summary = client.radar.ai.inference.summary.task()
+        with pytest.warns(DeprecationWarning):
+            summary = client.radar.ai.inference.summary.task()
+
         assert_matches_type(SummaryTaskResponse, summary, path=["response"])
 
     @parametrize
     def test_method_task_with_all_params(self, client: Cloudflare) -> None:
-        summary = client.radar.ai.inference.summary.task(
-            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
-            date_range=["7d"],
-            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
-            format="JSON",
-            limit_per_group=10,
-            name=["main_series"],
-        )
+        with pytest.warns(DeprecationWarning):
+            summary = client.radar.ai.inference.summary.task(
+                date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+                date_range=["7d"],
+                date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+                format="JSON",
+                limit_per_group=10,
+                name=["main_series"],
+            )
+
         assert_matches_type(SummaryTaskResponse, summary, path=["response"])
 
     @parametrize
     def test_raw_response_task(self, client: Cloudflare) -> None:
-        response = client.radar.ai.inference.summary.with_raw_response.task()
+        with pytest.warns(DeprecationWarning):
+            response = client.radar.ai.inference.summary.with_raw_response.task()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -86,12 +99,13 @@ class TestSummary:
 
     @parametrize
     def test_streaming_response_task(self, client: Cloudflare) -> None:
-        with client.radar.ai.inference.summary.with_streaming_response.task() as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.radar.ai.inference.summary.with_streaming_response.task() as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            summary = response.parse()
-            assert_matches_type(SummaryTaskResponse, summary, path=["response"])
+                summary = response.parse()
+                assert_matches_type(SummaryTaskResponse, summary, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -103,24 +117,29 @@ class TestAsyncSummary:
 
     @parametrize
     async def test_method_model(self, async_client: AsyncCloudflare) -> None:
-        summary = await async_client.radar.ai.inference.summary.model()
+        with pytest.warns(DeprecationWarning):
+            summary = await async_client.radar.ai.inference.summary.model()
+
         assert_matches_type(SummaryModelResponse, summary, path=["response"])
 
     @parametrize
     async def test_method_model_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        summary = await async_client.radar.ai.inference.summary.model(
-            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
-            date_range=["7d"],
-            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
-            format="JSON",
-            limit_per_group=10,
-            name=["main_series"],
-        )
+        with pytest.warns(DeprecationWarning):
+            summary = await async_client.radar.ai.inference.summary.model(
+                date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+                date_range=["7d"],
+                date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+                format="JSON",
+                limit_per_group=10,
+                name=["main_series"],
+            )
+
         assert_matches_type(SummaryModelResponse, summary, path=["response"])
 
     @parametrize
     async def test_raw_response_model(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.radar.ai.inference.summary.with_raw_response.model()
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.radar.ai.inference.summary.with_raw_response.model()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -129,35 +148,41 @@ class TestAsyncSummary:
 
     @parametrize
     async def test_streaming_response_model(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.radar.ai.inference.summary.with_streaming_response.model() as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.radar.ai.inference.summary.with_streaming_response.model() as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            summary = await response.parse()
-            assert_matches_type(SummaryModelResponse, summary, path=["response"])
+                summary = await response.parse()
+                assert_matches_type(SummaryModelResponse, summary, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_task(self, async_client: AsyncCloudflare) -> None:
-        summary = await async_client.radar.ai.inference.summary.task()
+        with pytest.warns(DeprecationWarning):
+            summary = await async_client.radar.ai.inference.summary.task()
+
         assert_matches_type(SummaryTaskResponse, summary, path=["response"])
 
     @parametrize
     async def test_method_task_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        summary = await async_client.radar.ai.inference.summary.task(
-            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
-            date_range=["7d"],
-            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
-            format="JSON",
-            limit_per_group=10,
-            name=["main_series"],
-        )
+        with pytest.warns(DeprecationWarning):
+            summary = await async_client.radar.ai.inference.summary.task(
+                date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+                date_range=["7d"],
+                date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+                format="JSON",
+                limit_per_group=10,
+                name=["main_series"],
+            )
+
         assert_matches_type(SummaryTaskResponse, summary, path=["response"])
 
     @parametrize
     async def test_raw_response_task(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.radar.ai.inference.summary.with_raw_response.task()
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.radar.ai.inference.summary.with_raw_response.task()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -166,11 +191,12 @@ class TestAsyncSummary:
 
     @parametrize
     async def test_streaming_response_task(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.radar.ai.inference.summary.with_streaming_response.task() as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.radar.ai.inference.summary.with_streaming_response.task() as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            summary = await response.parse()
-            assert_matches_type(SummaryTaskResponse, summary, path=["response"])
+                summary = await response.parse()
+                assert_matches_type(SummaryTaskResponse, summary, path=["response"])
 
         assert cast(Any, response.is_closed) is True

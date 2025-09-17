@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .recipient_get_params import RecipientGetParams as RecipientGetParams
 from .resource_list_params import ResourceListParams as ResourceListParams
 from .recipient_list_params import RecipientListParams as RecipientListParams
 from .resource_get_response import ResourceGetResponse as ResourceGetResponse
@@ -16,6 +17,7 @@ from .resource_delete_response import ResourceDeleteResponse as ResourceDeleteRe
 from .resource_update_response import ResourceUpdateResponse as ResourceUpdateResponse
 from .recipient_create_response import RecipientCreateResponse as RecipientCreateResponse
 from .recipient_delete_response import RecipientDeleteResponse as RecipientDeleteResponse
+from .resource_sharing_get_params import ResourceSharingGetParams as ResourceSharingGetParams
 from .resource_sharing_list_params import ResourceSharingListParams as ResourceSharingListParams
 from .resource_sharing_get_response import ResourceSharingGetResponse as ResourceSharingGetResponse
 from .resource_sharing_create_params import ResourceSharingCreateParams as ResourceSharingCreateParams

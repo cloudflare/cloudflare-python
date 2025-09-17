@@ -250,7 +250,7 @@ class GotoOptions(TypedDict, total=False):
 class ResponseFormat(TypedDict, total=False):
     type: Required[str]
 
-    schema: Dict[str, Optional[object]]
+    json_schema: Optional[Dict[str, Union[str, float, bool, SequenceNotStr[str], object]]]
     """Schema for the response format.
 
     More information here: https://developers.cloudflare.com/workers-ai/json-mode/

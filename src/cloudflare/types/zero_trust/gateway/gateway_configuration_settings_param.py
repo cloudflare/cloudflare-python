@@ -21,82 +21,82 @@ __all__ = ["GatewayConfigurationSettingsParam", "Certificate", "HostSelector", "
 
 class Certificate(TypedDict, total=False):
     id: Required[str]
-    """UUID of certificate to be used for interception.
+    """Specify the UUID of the certificate used for interception.
 
-    Certificate must be available (previously called 'active') on the edge. A nil
-    UUID will indicate the Cloudflare Root CA should be used.
+    Ensure the certificate is available at the edge(previously called 'active'). A
+    nil UUID directs Cloudflare to use the Root CA.
     """
 
 
 class HostSelector(TypedDict, total=False):
     enabled: Optional[bool]
-    """Enable filtering via hosts for egress policies."""
+    """Specify whether to enable filtering via hosts for egress policies."""
 
 
 class Inspection(TypedDict, total=False):
     mode: Literal["static", "dynamic"]
-    """Defines the mode of inspection the proxy will use.
+    """Define the proxy inspection mode.
 
-    - static: Gateway will use static inspection to inspect HTTP on TCP(80). If TLS
-      decryption is on, Gateway will inspect HTTPS traffic on TCP(443) & UDP(443).
-    - dynamic: Gateway will use protocol detection to dynamically inspect HTTP and
-      HTTPS traffic on any port. TLS decryption must be on to inspect HTTPS traffic.
+    1. static: Gateway applies static inspection to HTTP on TCP(80). With TLS
+       decryption on, Gateway inspects HTTPS traffic on TCP(443) and UDP(443). 2.
+       dynamic: Gateway applies protocol detection to inspect HTTP and HTTPS traffic
+       on any port. TLS decryption must remain on to inspect HTTPS traffic.
     """
 
 
 class Sandbox(TypedDict, total=False):
     enabled: Optional[bool]
-    """Enable sandbox."""
+    """Specify whether to enable the sandbox."""
 
     fallback_action: Literal["allow", "block"]
-    """Action to take when the file cannot be scanned."""
+    """Specify the action to take when the system cannot scan the file."""
 
 
 class GatewayConfigurationSettingsParam(TypedDict, total=False):
     activity_log: Optional[ActivityLogSettingsParam]
-    """Activity log settings."""
+    """Specify activity log settings."""
 
     antivirus: Optional[AntiVirusSettingsParam]
-    """Anti-virus settings."""
+    """Specify anti-virus settings."""
 
     block_page: Optional[BlockPageSettingsParam]
-    """Block page layout settings."""
+    """Specify block page layout settings."""
 
     body_scanning: Optional[BodyScanningSettingsParam]
-    """DLP body scanning settings."""
+    """Specify the DLP inspection mode."""
 
     browser_isolation: Optional[BrowserIsolationSettingsParam]
-    """Browser isolation settings."""
+    """Specify Clientless Browser Isolation settings."""
 
     certificate: Optional[Certificate]
-    """Certificate settings for Gateway TLS interception.
+    """Specify certificate settings for Gateway TLS interception.
 
-    If not specified, the Cloudflare Root CA will be used.
+    If unset, the Cloudflare Root CA handles interception.
     """
 
     custom_certificate: Optional[CustomCertificateSettingsParam]
-    """Custom certificate settings for BYO-PKI.
+    """Specify custom certificate settings for BYO-PKI.
 
-    (deprecated and replaced by `certificate`).
+    This field is deprecated; use `certificate` instead.
     """
 
     extended_email_matching: Optional[ExtendedEmailMatchingParam]
-    """Extended e-mail matching settings."""
+    """Specify user emails settings for the firewall policies."""
 
     fips: Optional[FipsSettingsParam]
-    """FIPS settings."""
+    """Specify FIPS settings."""
 
     host_selector: Optional[HostSelector]
-    """Setting to enable host selector in egress policies."""
+    """Enable host selection in egress policies."""
 
     inspection: Optional[Inspection]
-    """Setting to define inspection settings."""
+    """Define the proxy inspection mode."""
 
     protocol_detection: Optional[ProtocolDetectionParam]
-    """Protocol Detection settings."""
+    """Specify whether to detect protocols from the initial bytes of client traffic."""
 
     sandbox: Optional[Sandbox]
-    """Sandbox settings."""
+    """Specify whether to enable the sandbox."""
 
     tls_decrypt: Optional[TLSSettingsParam]
-    """TLS interception settings."""
+    """Specify whether to inspect encrypted HTTP traffic."""

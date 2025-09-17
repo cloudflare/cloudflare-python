@@ -35,8 +35,8 @@ class TestZone:
             internal_dns={"reference_zone_id": "reference_zone_id"},
             multi_provider=False,
             nameservers={
-                "type": "cloudflare.standard",
                 "ns_set": 1,
+                "type": "cloudflare.standard",
             },
             ns_ttl=86400,
             secondary_overrides=False,
@@ -153,8 +153,8 @@ class TestAsyncZone:
             internal_dns={"reference_zone_id": "reference_zone_id"},
             multi_provider=False,
             nameservers={
-                "type": "cloudflare.standard",
                 "ns_set": 1,
+                "type": "cloudflare.standard",
             },
             ns_ttl=86400,
             secondary_overrides=False,

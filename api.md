@@ -1095,12 +1095,6 @@ Methods:
 
 ## Settings
 
-Types:
-
-```python
-from cloudflare.types.dns import DNSSetting
-```
-
 ### Zone
 
 Types:
@@ -2271,6 +2265,7 @@ Methods:
 - <code title="put /accounts/{account_id}/workers/workers/{worker_id}">client.workers.beta.workers.<a href="./src/cloudflare/resources/workers/beta/workers/workers.py">update</a>(worker_id, \*, account_id, \*\*<a href="src/cloudflare/types/workers/beta/worker_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/beta/worker.py">Worker</a></code>
 - <code title="get /accounts/{account_id}/workers/workers">client.workers.beta.workers.<a href="./src/cloudflare/resources/workers/beta/workers/workers.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/beta/worker_list_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/beta/worker.py">SyncV4PagePaginationArray[Worker]</a></code>
 - <code title="delete /accounts/{account_id}/workers/workers/{worker_id}">client.workers.beta.workers.<a href="./src/cloudflare/resources/workers/beta/workers/workers.py">delete</a>(worker_id, \*, account_id) -> <a href="./src/cloudflare/types/workers/beta/worker_delete_response.py">WorkerDeleteResponse</a></code>
+- <code title="patch /accounts/{account_id}/workers/workers/{worker_id}">client.workers.beta.workers.<a href="./src/cloudflare/resources/workers/beta/workers/workers.py">edit</a>(worker_id, \*, account_id, \*\*<a href="src/cloudflare/types/workers/beta/worker_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/beta/worker.py">Worker</a></code>
 - <code title="get /accounts/{account_id}/workers/workers/{worker_id}">client.workers.beta.workers.<a href="./src/cloudflare/resources/workers/beta/workers/workers.py">get</a>(worker_id, \*, account_id) -> <a href="./src/cloudflare/types/workers/beta/worker.py">Worker</a></code>
 
 #### Versions
@@ -2329,7 +2324,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.workers import Script, ScriptSetting, ScriptUpdateResponse, ScriptGetResponse
+from cloudflare.types.workers import (
+    Script,
+    ScriptSetting,
+    ScriptUpdateResponse,
+    ScriptGetResponse,
+    ScriptSearchResponse,
+)
 ```
 
 Methods:
@@ -2338,6 +2339,7 @@ Methods:
 - <code title="get /accounts/{account_id}/workers/scripts">client.workers.scripts.<a href="./src/cloudflare/resources/workers/scripts/scripts.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/script_list_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/script.py">SyncSinglePage[Script]</a></code>
 - <code title="delete /accounts/{account_id}/workers/scripts/{script_name}">client.workers.scripts.<a href="./src/cloudflare/resources/workers/scripts/scripts.py">delete</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/script_delete_params.py">params</a>) -> object</code>
 - <code title="get /accounts/{account_id}/workers/scripts/{script_name}">client.workers.scripts.<a href="./src/cloudflare/resources/workers/scripts/scripts.py">get</a>(script_name, \*, account_id) -> str</code>
+- <code title="get /accounts/{account_id}/workers/scripts-search">client.workers.scripts.<a href="./src/cloudflare/resources/workers/scripts/scripts.py">search</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/script_search_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/script_search_response.py">ScriptSearchResponse</a></code>
 
 ### Assets
 
@@ -5327,7 +5329,7 @@ Methods:
 
 - <code title="get /accounts/{account_id}/devices/physical-devices">client.zero*trust.devices.devices.<a href="./src/cloudflare/resources/zero_trust/devices/devices*.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/device_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/device_list_response.py">SyncCursorPagination[DeviceListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/devices/physical-devices/{device_id}">client.zero*trust.devices.devices.<a href="./src/cloudflare/resources/zero_trust/devices/devices*.py">delete</a>(device_id, \*, account_id) -> object</code>
-- <code title="get /accounts/{account_id}/devices/physical-devices/{device_id}">client.zero*trust.devices.devices.<a href="./src/cloudflare/resources/zero_trust/devices/devices*.py">get</a>(device_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/device_get_response.py">DeviceGetResponse</a></code>
+- <code title="get /accounts/{account_id}/devices/physical-devices/{device_id}">client.zero*trust.devices.devices.<a href="./src/cloudflare/resources/zero_trust/devices/devices*.py">get</a>(device_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/device_get_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/device_get_response.py">DeviceGetResponse</a></code>
 - <code title="post /accounts/{account_id}/devices/physical-devices/{device_id}/revoke">client.zero*trust.devices.devices.<a href="./src/cloudflare/resources/zero_trust/devices/devices*.py">revoke</a>(device_id, \*, account_id) -> object</code>
 
 ### Resilience
@@ -5361,7 +5363,7 @@ Methods:
 - <code title="get /accounts/{account_id}/devices/registrations">client.zero_trust.devices.registrations.<a href="./src/cloudflare/resources/zero_trust/devices/registrations.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/registration_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/registration_list_response.py">SyncCursorPagination[RegistrationListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/devices/registrations/{registration_id}">client.zero_trust.devices.registrations.<a href="./src/cloudflare/resources/zero_trust/devices/registrations.py">delete</a>(registration_id, \*, account_id) -> object</code>
 - <code title="delete /accounts/{account_id}/devices/registrations">client.zero_trust.devices.registrations.<a href="./src/cloudflare/resources/zero_trust/devices/registrations.py">bulk_delete</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/registration_bulk_delete_params.py">params</a>) -> object</code>
-- <code title="get /accounts/{account_id}/devices/registrations/{registration_id}">client.zero_trust.devices.registrations.<a href="./src/cloudflare/resources/zero_trust/devices/registrations.py">get</a>(registration_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/registration_get_response.py">RegistrationGetResponse</a></code>
+- <code title="get /accounts/{account_id}/devices/registrations/{registration_id}">client.zero_trust.devices.registrations.<a href="./src/cloudflare/resources/zero_trust/devices/registrations.py">get</a>(registration_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/registration_get_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/registration_get_response.py">RegistrationGetResponse</a></code>
 - <code title="post /accounts/{account_id}/devices/registrations/revoke">client.zero_trust.devices.registrations.<a href="./src/cloudflare/resources/zero_trust/devices/registrations.py">revoke</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/registration_revoke_params.py">params</a>) -> object</code>
 - <code title="post /accounts/{account_id}/devices/registrations/unrevoke">client.zero_trust.devices.registrations.<a href="./src/cloudflare/resources/zero_trust/devices/registrations.py">unrevoke</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/registration_unrevoke_params.py">params</a>) -> object</code>
 
@@ -5967,7 +5969,7 @@ Methods:
 - <code title="delete /{accounts_or_zones}/{account_or_zone_id}/access/service_tokens/{service_token_id}">client.zero_trust.access.service_tokens.<a href="./src/cloudflare/resources/zero_trust/access/service_tokens.py">delete</a>(service_token_id, \*, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/access/service_token.py">Optional[ServiceToken]</a></code>
 - <code title="get /{accounts_or_zones}/{account_or_zone_id}/access/service_tokens/{service_token_id}">client.zero_trust.access.service_tokens.<a href="./src/cloudflare/resources/zero_trust/access/service_tokens.py">get</a>(service_token_id, \*, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/access/service_token.py">Optional[ServiceToken]</a></code>
 - <code title="post /accounts/{account_id}/access/service_tokens/{service_token_id}/refresh">client.zero_trust.access.service_tokens.<a href="./src/cloudflare/resources/zero_trust/access/service_tokens.py">refresh</a>(service_token_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/access/service_token.py">Optional[ServiceToken]</a></code>
-- <code title="post /accounts/{account_id}/access/service_tokens/{service_token_id}/rotate">client.zero_trust.access.service_tokens.<a href="./src/cloudflare/resources/zero_trust/access/service_tokens.py">rotate</a>(service_token_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/access/service_token_rotate_response.py">Optional[ServiceTokenRotateResponse]</a></code>
+- <code title="post /accounts/{account_id}/access/service_tokens/{service_token_id}/rotate">client.zero_trust.access.service_tokens.<a href="./src/cloudflare/resources/zero_trust/access/service_tokens.py">rotate</a>(service_token_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/access/service_token_rotate_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/service_token_rotate_response.py">Optional[ServiceTokenRotateResponse]</a></code>
 
 ### Bookmarks
 
@@ -8991,7 +8993,7 @@ from cloudflare.types.calls import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/calls/turn_keys">client.calls.turn.<a href="./src/cloudflare/resources/calls/turn.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/calls/turn_create_params.py">params</a>) -> <a href="./src/cloudflare/types/calls/turn_create_response.py">TURNCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/calls/turn_keys">client.calls.turn.<a href="./src/cloudflare/resources/calls/turn.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/calls/turn_create_params.py">params</a>) -> <a href="./src/cloudflare/types/calls/turn_create_response.py">Optional[TURNCreateResponse]</a></code>
 - <code title="put /accounts/{account_id}/calls/turn_keys/{key_id}">client.calls.turn.<a href="./src/cloudflare/resources/calls/turn.py">update</a>(key_id, \*, account_id, \*\*<a href="src/cloudflare/types/calls/turn_update_params.py">params</a>) -> <a href="./src/cloudflare/types/calls/turn_update_response.py">Optional[TURNUpdateResponse]</a></code>
 - <code title="get /accounts/{account_id}/calls/turn_keys">client.calls.turn.<a href="./src/cloudflare/resources/calls/turn.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/calls/turn_list_response.py">SyncSinglePage[TURNListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/calls/turn_keys/{key_id}">client.calls.turn.<a href="./src/cloudflare/resources/calls/turn.py">delete</a>(key_id, \*, account_id) -> <a href="./src/cloudflare/types/calls/turn_delete_response.py">Optional[TURNDeleteResponse]</a></code>
@@ -9198,19 +9200,6 @@ Methods:
 
 - <code title="get /accounts/{account_id}/cloudforce-one/events/countries">client.cloudforce_one.threat_events.countries.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/countries.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/country_list_response.py">CountryListResponse</a></code>
 
-### Crons
-
-Types:
-
-```python
-from cloudflare.types.cloudforce_one.threat_events import CronListResponse, CronEditResponse
-```
-
-Methods:
-
-- <code title="get /accounts/{account_id}/cloudforce-one/events/cron">client.cloudforce_one.threat_events.crons.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/crons.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/cron_list_response.py">CronListResponse</a></code>
-- <code title="patch /accounts/{account_id}/cloudforce-one/events/cron">client.cloudforce_one.threat_events.crons.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/crons.py">edit</a>(\*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/cron_edit_response.py">CronEditResponse</a></code>
-
 ### Datasets
 
 Types:
@@ -9232,18 +9221,6 @@ Methods:
 - <code title="patch /accounts/{account_id}/cloudforce-one/events/dataset/{dataset_id}">client.cloudforce_one.threat_events.datasets.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/datasets/datasets.py">edit</a>(dataset_id, \*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/dataset_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/dataset_edit_response.py">DatasetEditResponse</a></code>
 - <code title="get /accounts/{account_id}/cloudforce-one/events/dataset/{dataset_id}">client.cloudforce_one.threat_events.datasets.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/datasets/datasets.py">get</a>(dataset_id, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/dataset_get_response.py">DatasetGetResponse</a></code>
 - <code title="get /accounts/{account_id}/cloudforce-one/events/raw/{dataset_id}/{event_id}">client.cloudforce_one.threat_events.datasets.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/datasets/datasets.py">raw</a>(event_id, \*, account_id, dataset_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/dataset_raw_response.py">DatasetRawResponse</a></code>
-
-#### Health
-
-Types:
-
-```python
-from cloudflare.types.cloudforce_one.threat_events.datasets import HealthGetResponse
-```
-
-Methods:
-
-- <code title="get /accounts/{account_id}/cloudforce-one/events/dataset/{dataset_id}/health">client.cloudforce_one.threat_events.datasets.health.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/datasets/health.py">get</a>(dataset_id, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/datasets/health_get_response.py">HealthGetResponse</a></code>
 
 ### IndicatorTypes
 
@@ -9660,7 +9637,7 @@ Methods:
 - <code title="put /accounts/{account_id}/shares/{share_id}">client.resource_sharing.<a href="./src/cloudflare/resources/resource_sharing/resource_sharing.py">update</a>(share_id, \*, account_id, \*\*<a href="src/cloudflare/types/resource_sharing/resource_sharing_update_params.py">params</a>) -> <a href="./src/cloudflare/types/resource_sharing/resource_sharing_update_response.py">Optional[ResourceSharingUpdateResponse]</a></code>
 - <code title="get /accounts/{account_id}/shares">client.resource_sharing.<a href="./src/cloudflare/resources/resource_sharing/resource_sharing.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/resource_sharing/resource_sharing_list_params.py">params</a>) -> <a href="./src/cloudflare/types/resource_sharing/resource_sharing_list_response.py">SyncV4PagePaginationArray[ResourceSharingListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/shares/{share_id}">client.resource_sharing.<a href="./src/cloudflare/resources/resource_sharing/resource_sharing.py">delete</a>(share_id, \*, account_id) -> <a href="./src/cloudflare/types/resource_sharing/resource_sharing_delete_response.py">Optional[ResourceSharingDeleteResponse]</a></code>
-- <code title="get /accounts/{account_id}/shares/{share_id}">client.resource_sharing.<a href="./src/cloudflare/resources/resource_sharing/resource_sharing.py">get</a>(share_id, \*, account_id) -> <a href="./src/cloudflare/types/resource_sharing/resource_sharing_get_response.py">Optional[ResourceSharingGetResponse]</a></code>
+- <code title="get /accounts/{account_id}/shares/{share_id}">client.resource_sharing.<a href="./src/cloudflare/resources/resource_sharing/resource_sharing.py">get</a>(share_id, \*, account_id, \*\*<a href="src/cloudflare/types/resource_sharing/resource_sharing_get_params.py">params</a>) -> <a href="./src/cloudflare/types/resource_sharing/resource_sharing_get_response.py">Optional[ResourceSharingGetResponse]</a></code>
 
 ## Recipients
 
@@ -9680,7 +9657,7 @@ Methods:
 - <code title="post /accounts/{account_id}/shares/{share_id}/recipients">client.resource_sharing.recipients.<a href="./src/cloudflare/resources/resource_sharing/recipients.py">create</a>(share_id, \*, path_account_id, \*\*<a href="src/cloudflare/types/resource_sharing/recipient_create_params.py">params</a>) -> <a href="./src/cloudflare/types/resource_sharing/recipient_create_response.py">Optional[RecipientCreateResponse]</a></code>
 - <code title="get /accounts/{account_id}/shares/{share_id}/recipients">client.resource_sharing.recipients.<a href="./src/cloudflare/resources/resource_sharing/recipients.py">list</a>(share_id, \*, account_id, \*\*<a href="src/cloudflare/types/resource_sharing/recipient_list_params.py">params</a>) -> <a href="./src/cloudflare/types/resource_sharing/recipient_list_response.py">SyncV4PagePaginationArray[RecipientListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/shares/{share_id}/recipients/{recipient_id}">client.resource_sharing.recipients.<a href="./src/cloudflare/resources/resource_sharing/recipients.py">delete</a>(recipient_id, \*, account_id, share_id) -> <a href="./src/cloudflare/types/resource_sharing/recipient_delete_response.py">Optional[RecipientDeleteResponse]</a></code>
-- <code title="get /accounts/{account_id}/shares/{share_id}/recipients/{recipient_id}">client.resource_sharing.recipients.<a href="./src/cloudflare/resources/resource_sharing/recipients.py">get</a>(recipient_id, \*, account_id, share_id) -> <a href="./src/cloudflare/types/resource_sharing/recipient_get_response.py">Optional[RecipientGetResponse]</a></code>
+- <code title="get /accounts/{account_id}/shares/{share_id}/recipients/{recipient_id}">client.resource_sharing.recipients.<a href="./src/cloudflare/resources/resource_sharing/recipients.py">get</a>(recipient_id, \*, account_id, share_id, \*\*<a href="src/cloudflare/types/resource_sharing/recipient_get_params.py">params</a>) -> <a href="./src/cloudflare/types/resource_sharing/recipient_get_response.py">Optional[RecipientGetResponse]</a></code>
 
 ## Resources
 
@@ -9703,41 +9680,6 @@ Methods:
 - <code title="get /accounts/{account_id}/shares/{share_id}/resources">client.resource_sharing.resources.<a href="./src/cloudflare/resources/resource_sharing/resources.py">list</a>(share_id, \*, account_id, \*\*<a href="src/cloudflare/types/resource_sharing/resource_list_params.py">params</a>) -> <a href="./src/cloudflare/types/resource_sharing/resource_list_response.py">SyncV4PagePaginationArray[ResourceListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/shares/{share_id}/resources/{resource_id}">client.resource_sharing.resources.<a href="./src/cloudflare/resources/resource_sharing/resources.py">delete</a>(resource_id, \*, account_id, share_id) -> <a href="./src/cloudflare/types/resource_sharing/resource_delete_response.py">Optional[ResourceDeleteResponse]</a></code>
 - <code title="get /accounts/{account_id}/shares/{share_id}/resources/{resource_id}">client.resource_sharing.resources.<a href="./src/cloudflare/resources/resource_sharing/resources.py">get</a>(resource_id, \*, account_id, share_id) -> <a href="./src/cloudflare/types/resource_sharing/resource_get_response.py">Optional[ResourceGetResponse]</a></code>
-
-# LeakedCredentialChecks
-
-Types:
-
-```python
-from cloudflare.types.leaked_credential_checks import (
-    LeakedCredentialCheckCreateResponse,
-    LeakedCredentialCheckGetResponse,
-)
-```
-
-Methods:
-
-- <code title="post /zones/{zone_id}/leaked-credential-checks">client.leaked_credential_checks.<a href="./src/cloudflare/resources/leaked_credential_checks/leaked_credential_checks.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/leaked_credential_checks/leaked_credential_check_create_params.py">params</a>) -> <a href="./src/cloudflare/types/leaked_credential_checks/leaked_credential_check_create_response.py">LeakedCredentialCheckCreateResponse</a></code>
-- <code title="get /zones/{zone_id}/leaked-credential-checks">client.leaked_credential_checks.<a href="./src/cloudflare/resources/leaked_credential_checks/leaked_credential_checks.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/leaked_credential_checks/leaked_credential_check_get_response.py">LeakedCredentialCheckGetResponse</a></code>
-
-## Detections
-
-Types:
-
-```python
-from cloudflare.types.leaked_credential_checks import (
-    DetectionCreateResponse,
-    DetectionUpdateResponse,
-    DetectionListResponse,
-)
-```
-
-Methods:
-
-- <code title="post /zones/{zone_id}/leaked-credential-checks/detections">client.leaked_credential_checks.detections.<a href="./src/cloudflare/resources/leaked_credential_checks/detections.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/leaked_credential_checks/detection_create_params.py">params</a>) -> <a href="./src/cloudflare/types/leaked_credential_checks/detection_create_response.py">DetectionCreateResponse</a></code>
-- <code title="put /zones/{zone_id}/leaked-credential-checks/detections/{detection_id}">client.leaked_credential_checks.detections.<a href="./src/cloudflare/resources/leaked_credential_checks/detections.py">update</a>(detection_id, \*, zone_id, \*\*<a href="src/cloudflare/types/leaked_credential_checks/detection_update_params.py">params</a>) -> <a href="./src/cloudflare/types/leaked_credential_checks/detection_update_response.py">DetectionUpdateResponse</a></code>
-- <code title="get /zones/{zone_id}/leaked-credential-checks/detections">client.leaked_credential_checks.detections.<a href="./src/cloudflare/resources/leaked_credential_checks/detections.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/leaked_credential_checks/detection_list_response.py">SyncSinglePage[DetectionListResponse]</a></code>
-- <code title="delete /zones/{zone_id}/leaked-credential-checks/detections/{detection_id}">client.leaked_credential_checks.detections.<a href="./src/cloudflare/resources/leaked_credential_checks/detections.py">delete</a>(detection_id, \*, zone_id) -> object</code>
 
 # ContentScanning
 

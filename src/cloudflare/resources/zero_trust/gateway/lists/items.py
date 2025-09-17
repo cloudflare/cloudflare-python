@@ -53,10 +53,10 @@ class ItemsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncSinglePage[ItemListResponse]:
         """
-        Fetches all items in a single Zero Trust list.
+        Fetch all items in a single Zero Trust list.
 
         Args:
-          list_id: API Resource UUID tag.
+          list_id: Identify the API resource with a UUID.
 
           extra_headers: Send extra headers
 
@@ -113,10 +113,10 @@ class AsyncItemsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[ItemListResponse, AsyncSinglePage[ItemListResponse]]:
         """
-        Fetches all items in a single Zero Trust list.
+        Fetch all items in a single Zero Trust list.
 
         Args:
-          list_id: API Resource UUID tag.
+          list_id: Identify the API resource with a UUID.
 
           extra_headers: Send extra headers
 

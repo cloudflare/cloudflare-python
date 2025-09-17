@@ -26,6 +26,13 @@ class TestDNS:
     def test_method_create(self, client: Cloudflare) -> None:
         dns = client.email_routing.dns.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Optional[Settings], dns, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        dns = client.email_routing.dns.create(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="example.net",
         )
         assert_matches_type(Optional[Settings], dns, path=["response"])
@@ -34,7 +41,6 @@ class TestDNS:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.email_routing.dns.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="example.net",
         )
 
         assert response.is_closed is True
@@ -46,7 +52,6 @@ class TestDNS:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.email_routing.dns.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="example.net",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -61,7 +66,6 @@ class TestDNS:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.email_routing.dns.with_raw_response.create(
                 zone_id="",
-                name="example.net",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken prism assertions")
@@ -110,6 +114,13 @@ class TestDNS:
     def test_method_edit(self, client: Cloudflare) -> None:
         dns = client.email_routing.dns.edit(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Optional[Settings], dns, path=["response"])
+
+    @parametrize
+    def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
+        dns = client.email_routing.dns.edit(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="example.net",
         )
         assert_matches_type(Optional[Settings], dns, path=["response"])
@@ -118,7 +129,6 @@ class TestDNS:
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.email_routing.dns.with_raw_response.edit(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="example.net",
         )
 
         assert response.is_closed is True
@@ -130,7 +140,6 @@ class TestDNS:
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.email_routing.dns.with_streaming_response.edit(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="example.net",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -145,7 +154,6 @@ class TestDNS:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.email_routing.dns.with_raw_response.edit(
                 zone_id="",
-                name="example.net",
             )
 
     @parametrize
@@ -204,6 +212,13 @@ class TestAsyncDNS:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         dns = await async_client.email_routing.dns.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Optional[Settings], dns, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        dns = await async_client.email_routing.dns.create(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="example.net",
         )
         assert_matches_type(Optional[Settings], dns, path=["response"])
@@ -212,7 +227,6 @@ class TestAsyncDNS:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.email_routing.dns.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="example.net",
         )
 
         assert response.is_closed is True
@@ -224,7 +238,6 @@ class TestAsyncDNS:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.email_routing.dns.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="example.net",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -239,7 +252,6 @@ class TestAsyncDNS:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.email_routing.dns.with_raw_response.create(
                 zone_id="",
-                name="example.net",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken prism assertions")
@@ -288,6 +300,13 @@ class TestAsyncDNS:
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         dns = await async_client.email_routing.dns.edit(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Optional[Settings], dns, path=["response"])
+
+    @parametrize
+    async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        dns = await async_client.email_routing.dns.edit(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="example.net",
         )
         assert_matches_type(Optional[Settings], dns, path=["response"])
@@ -296,7 +315,6 @@ class TestAsyncDNS:
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.email_routing.dns.with_raw_response.edit(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="example.net",
         )
 
         assert response.is_closed is True
@@ -308,7 +326,6 @@ class TestAsyncDNS:
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.email_routing.dns.with_streaming_response.edit(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="example.net",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -323,7 +340,6 @@ class TestAsyncDNS:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.email_routing.dns.with_raw_response.edit(
                 zone_id="",
-                name="example.net",
             )
 
     @parametrize

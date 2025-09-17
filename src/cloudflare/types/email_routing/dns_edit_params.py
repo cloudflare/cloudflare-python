@@ -11,5 +11,5 @@ class DNSEditParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier."""
 
-    name: Required[str]
+    name: str
     """Domain of your zone."""

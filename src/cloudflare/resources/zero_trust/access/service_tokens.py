@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, Union, Optional, cast
+from datetime import datetime
 
 import httpx
 
@@ -22,6 +23,7 @@ from ...._base_client import AsyncPaginator, make_request_options
 from ....types.zero_trust.access import (
     service_token_list_params,
     service_token_create_params,
+    service_token_rotate_params,
     service_token_update_params,
 )
 from ....types.zero_trust.access.service_token import ServiceToken
@@ -57,7 +59,9 @@ class ServiceTokensResource(SyncAPIResource):
         name: str,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
+        client_secret_version: float | NotGiven = NOT_GIVEN,
         duration: str | NotGiven = NOT_GIVEN,
+        previous_client_secret_expires_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -78,9 +82,19 @@ class ServiceTokensResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          client_secret_version: A version number identifying the current `client_secret` associated with the
+              service token. Incrementing it triggers a rotation; the previous secret will
+              still be accepted until the time indicated by
+              `previous_client_secret_expires_at`.
+
           duration: The duration for how long the service token will be valid. Must be in the format
               `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms, s, m, h. The
               default is 1 year in hours (8760h).
+
+          previous_client_secret_expires_at: The expiration of the previous `client_secret`. This can be modified at any
+              point after a rotation. For example, you may extend it further into the future
+              if you need more time to update services with the new secret; or move it into
+              the past to immediately invalidate the previous token in case of compromise.
 
           extra_headers: Send extra headers
 
@@ -107,7 +121,9 @@ class ServiceTokensResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "name": name,
+                    "client_secret_version": client_secret_version,
                     "duration": duration,
+                    "previous_client_secret_expires_at": previous_client_secret_expires_at,
                 },
                 service_token_create_params.ServiceTokenCreateParams,
             ),
@@ -127,8 +143,10 @@ class ServiceTokensResource(SyncAPIResource):
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
+        client_secret_version: float | NotGiven = NOT_GIVEN,
         duration: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        previous_client_secret_expires_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -146,11 +164,21 @@ class ServiceTokensResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          client_secret_version: A version number identifying the current `client_secret` associated with the
+              service token. Incrementing it triggers a rotation; the previous secret will
+              still be accepted until the time indicated by
+              `previous_client_secret_expires_at`.
+
           duration: The duration for how long the service token will be valid. Must be in the format
               `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms, s, m, h. The
               default is 1 year in hours (8760h).
 
           name: The name of the service token.
+
+          previous_client_secret_expires_at: The expiration of the previous `client_secret`. This can be modified at any
+              point after a rotation. For example, you may extend it further into the future
+              if you need more time to update services with the new secret; or move it into
+              the past to immediately invalidate the previous token in case of compromise.
 
           extra_headers: Send extra headers
 
@@ -178,8 +206,10 @@ class ServiceTokensResource(SyncAPIResource):
             f"/{account_or_zone}/{account_or_zone_id}/access/service_tokens/{service_token_id}",
             body=maybe_transform(
                 {
+                    "client_secret_version": client_secret_version,
                     "duration": duration,
                     "name": name,
+                    "previous_client_secret_expires_at": previous_client_secret_expires_at,
                 },
                 service_token_update_params.ServiceTokenUpdateParams,
             ),
@@ -429,6 +459,7 @@ class ServiceTokensResource(SyncAPIResource):
         service_token_id: str,
         *,
         account_id: str,
+        previous_client_secret_expires_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -444,6 +475,9 @@ class ServiceTokensResource(SyncAPIResource):
 
           service_token_id: UUID.
 
+          previous_client_secret_expires_at: The expiration of the previous `client_secret`. If not provided, it defaults to
+              the current timestamp in order to immediately expire the previous secret.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -458,6 +492,10 @@ class ServiceTokensResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `service_token_id` but received {service_token_id!r}")
         return self._post(
             f"/accounts/{account_id}/access/service_tokens/{service_token_id}/rotate",
+            body=maybe_transform(
+                {"previous_client_secret_expires_at": previous_client_secret_expires_at},
+                service_token_rotate_params.ServiceTokenRotateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -495,7 +533,9 @@ class AsyncServiceTokensResource(AsyncAPIResource):
         name: str,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
+        client_secret_version: float | NotGiven = NOT_GIVEN,
         duration: str | NotGiven = NOT_GIVEN,
+        previous_client_secret_expires_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -516,9 +556,19 @@ class AsyncServiceTokensResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          client_secret_version: A version number identifying the current `client_secret` associated with the
+              service token. Incrementing it triggers a rotation; the previous secret will
+              still be accepted until the time indicated by
+              `previous_client_secret_expires_at`.
+
           duration: The duration for how long the service token will be valid. Must be in the format
               `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms, s, m, h. The
               default is 1 year in hours (8760h).
+
+          previous_client_secret_expires_at: The expiration of the previous `client_secret`. This can be modified at any
+              point after a rotation. For example, you may extend it further into the future
+              if you need more time to update services with the new secret; or move it into
+              the past to immediately invalidate the previous token in case of compromise.
 
           extra_headers: Send extra headers
 
@@ -545,7 +595,9 @@ class AsyncServiceTokensResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "name": name,
+                    "client_secret_version": client_secret_version,
                     "duration": duration,
+                    "previous_client_secret_expires_at": previous_client_secret_expires_at,
                 },
                 service_token_create_params.ServiceTokenCreateParams,
             ),
@@ -565,8 +617,10 @@ class AsyncServiceTokensResource(AsyncAPIResource):
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
+        client_secret_version: float | NotGiven = NOT_GIVEN,
         duration: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        previous_client_secret_expires_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -584,11 +638,21 @@ class AsyncServiceTokensResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
+          client_secret_version: A version number identifying the current `client_secret` associated with the
+              service token. Incrementing it triggers a rotation; the previous secret will
+              still be accepted until the time indicated by
+              `previous_client_secret_expires_at`.
+
           duration: The duration for how long the service token will be valid. Must be in the format
               `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms, s, m, h. The
               default is 1 year in hours (8760h).
 
           name: The name of the service token.
+
+          previous_client_secret_expires_at: The expiration of the previous `client_secret`. This can be modified at any
+              point after a rotation. For example, you may extend it further into the future
+              if you need more time to update services with the new secret; or move it into
+              the past to immediately invalidate the previous token in case of compromise.
 
           extra_headers: Send extra headers
 
@@ -616,8 +680,10 @@ class AsyncServiceTokensResource(AsyncAPIResource):
             f"/{account_or_zone}/{account_or_zone_id}/access/service_tokens/{service_token_id}",
             body=await async_maybe_transform(
                 {
+                    "client_secret_version": client_secret_version,
                     "duration": duration,
                     "name": name,
+                    "previous_client_secret_expires_at": previous_client_secret_expires_at,
                 },
                 service_token_update_params.ServiceTokenUpdateParams,
             ),
@@ -867,6 +933,7 @@ class AsyncServiceTokensResource(AsyncAPIResource):
         service_token_id: str,
         *,
         account_id: str,
+        previous_client_secret_expires_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -882,6 +949,9 @@ class AsyncServiceTokensResource(AsyncAPIResource):
 
           service_token_id: UUID.
 
+          previous_client_secret_expires_at: The expiration of the previous `client_secret`. If not provided, it defaults to
+              the current timestamp in order to immediately expire the previous secret.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -896,6 +966,10 @@ class AsyncServiceTokensResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `service_token_id` but received {service_token_id!r}")
         return await self._post(
             f"/accounts/{account_id}/access/service_tokens/{service_token_id}/rotate",
+            body=await async_maybe_transform(
+                {"previous_client_secret_expires_at": previous_client_secret_expires_at},
+                service_token_rotate_params.ServiceTokenRotateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

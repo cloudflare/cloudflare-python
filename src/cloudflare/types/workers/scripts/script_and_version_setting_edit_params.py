@@ -19,11 +19,14 @@ __all__ = [
     "SettingsBindingWorkersBindingKindAssets",
     "SettingsBindingWorkersBindingKindBrowser",
     "SettingsBindingWorkersBindingKindD1",
+    "SettingsBindingWorkersBindingKindDataBlob",
     "SettingsBindingWorkersBindingKindDispatchNamespace",
     "SettingsBindingWorkersBindingKindDispatchNamespaceOutbound",
     "SettingsBindingWorkersBindingKindDispatchNamespaceOutboundWorker",
     "SettingsBindingWorkersBindingKindDurableObjectNamespace",
     "SettingsBindingWorkersBindingKindHyperdrive",
+    "SettingsBindingWorkersBindingKindInherit",
+    "SettingsBindingWorkersBindingKindImages",
     "SettingsBindingWorkersBindingKindJson",
     "SettingsBindingWorkersBindingKindKVNamespace",
     "SettingsBindingWorkersBindingKindMTLSCertificate",
@@ -32,13 +35,16 @@ __all__ = [
     "SettingsBindingWorkersBindingKindQueue",
     "SettingsBindingWorkersBindingKindR2Bucket",
     "SettingsBindingWorkersBindingKindSecretText",
+    "SettingsBindingWorkersBindingKindSendEmail",
     "SettingsBindingWorkersBindingKindService",
     "SettingsBindingWorkersBindingKindTailConsumer",
+    "SettingsBindingWorkersBindingKindTextBlob",
     "SettingsBindingWorkersBindingKindVectorize",
     "SettingsBindingWorkersBindingKindVersionMetadata",
     "SettingsBindingWorkersBindingKindSecretsStoreSecret",
     "SettingsBindingWorkersBindingKindSecretKey",
     "SettingsBindingWorkersBindingKindWorkflow",
+    "SettingsBindingWorkersBindingKindWasmModule",
     "SettingsLimits",
     "SettingsMigrations",
     "SettingsMigrationsWorkersMultipleStepMigrations",
@@ -98,6 +104,20 @@ class SettingsBindingWorkersBindingKindD1(TypedDict, total=False):
     """A JavaScript variable name for the binding."""
 
     type: Required[Literal["d1"]]
+    """The kind of resource that the binding provides."""
+
+
+class SettingsBindingWorkersBindingKindDataBlob(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    part: Required[str]
+    """The name of the file containing the data content.
+
+    Only accepted for `service worker syntax` Workers.
+    """
+
+    type: Required[Literal["data_blob"]]
     """The kind of resource that the binding provides."""
 
 
@@ -165,6 +185,36 @@ class SettingsBindingWorkersBindingKindHyperdrive(TypedDict, total=False):
     """A JavaScript variable name for the binding."""
 
     type: Required[Literal["hyperdrive"]]
+    """The kind of resource that the binding provides."""
+
+
+class SettingsBindingWorkersBindingKindInherit(TypedDict, total=False):
+    name: Required[str]
+    """The name of the inherited binding."""
+
+    type: Required[Literal["inherit"]]
+    """The kind of resource that the binding provides."""
+
+    old_name: str
+    """The old name of the inherited binding.
+
+    If set, the binding will be renamed from `old_name` to `name` in the new
+    version. If not set, the binding will keep the same name between versions.
+    """
+
+    version_id: str
+    """
+    Identifier for the version to inherit the binding from, which can be the version
+    ID or the literal "latest" to inherit from the latest version. Defaults to
+    inheriting the binding from the latest version.
+    """
+
+
+class SettingsBindingWorkersBindingKindImages(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    type: Required[Literal["images"]]
     """The kind of resource that the binding provides."""
 
 
@@ -256,10 +306,24 @@ class SettingsBindingWorkersBindingKindSecretText(TypedDict, total=False):
     """The kind of resource that the binding provides."""
 
 
-class SettingsBindingWorkersBindingKindService(TypedDict, total=False):
-    environment: Required[str]
-    """Optional environment if the Worker utilizes one."""
+class SettingsBindingWorkersBindingKindSendEmail(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
 
+    type: Required[Literal["send_email"]]
+    """The kind of resource that the binding provides."""
+
+    allowed_destination_addresses: SequenceNotStr[str]
+    """List of allowed destination addresses."""
+
+    allowed_sender_addresses: SequenceNotStr[str]
+    """List of allowed sender addresses."""
+
+    destination_address: str
+    """Destination address for the email."""
+
+
+class SettingsBindingWorkersBindingKindService(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
 
@@ -268,6 +332,9 @@ class SettingsBindingWorkersBindingKindService(TypedDict, total=False):
 
     type: Required[Literal["service"]]
     """The kind of resource that the binding provides."""
+
+    environment: str
+    """Optional environment if the Worker utilizes one."""
 
 
 class SettingsBindingWorkersBindingKindTailConsumer(TypedDict, total=False):
@@ -278,6 +345,20 @@ class SettingsBindingWorkersBindingKindTailConsumer(TypedDict, total=False):
     """Name of Tail Worker to bind to."""
 
     type: Required[Literal["tail_consumer"]]
+    """The kind of resource that the binding provides."""
+
+
+class SettingsBindingWorkersBindingKindTextBlob(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    part: Required[str]
+    """The name of the file containing the text content.
+
+    Only accepted for `service worker syntax` Workers.
+    """
+
+    type: Required[Literal["text_blob"]]
     """The kind of resource that the binding provides."""
 
 
@@ -375,15 +456,32 @@ class SettingsBindingWorkersBindingKindWorkflow(TypedDict, total=False):
     """
 
 
+class SettingsBindingWorkersBindingKindWasmModule(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    part: Required[str]
+    """The name of the file containing the WebAssembly module content.
+
+    Only accepted for `service worker syntax` Workers.
+    """
+
+    type: Required[Literal["wasm_module"]]
+    """The kind of resource that the binding provides."""
+
+
 SettingsBinding: TypeAlias = Union[
     SettingsBindingWorkersBindingKindAI,
     SettingsBindingWorkersBindingKindAnalyticsEngine,
     SettingsBindingWorkersBindingKindAssets,
     SettingsBindingWorkersBindingKindBrowser,
     SettingsBindingWorkersBindingKindD1,
+    SettingsBindingWorkersBindingKindDataBlob,
     SettingsBindingWorkersBindingKindDispatchNamespace,
     SettingsBindingWorkersBindingKindDurableObjectNamespace,
     SettingsBindingWorkersBindingKindHyperdrive,
+    SettingsBindingWorkersBindingKindInherit,
+    SettingsBindingWorkersBindingKindImages,
     SettingsBindingWorkersBindingKindJson,
     SettingsBindingWorkersBindingKindKVNamespace,
     SettingsBindingWorkersBindingKindMTLSCertificate,
@@ -392,13 +490,16 @@ SettingsBinding: TypeAlias = Union[
     SettingsBindingWorkersBindingKindQueue,
     SettingsBindingWorkersBindingKindR2Bucket,
     SettingsBindingWorkersBindingKindSecretText,
+    SettingsBindingWorkersBindingKindSendEmail,
     SettingsBindingWorkersBindingKindService,
     SettingsBindingWorkersBindingKindTailConsumer,
+    SettingsBindingWorkersBindingKindTextBlob,
     SettingsBindingWorkersBindingKindVectorize,
     SettingsBindingWorkersBindingKindVersionMetadata,
     SettingsBindingWorkersBindingKindSecretsStoreSecret,
     SettingsBindingWorkersBindingKindSecretKey,
     SettingsBindingWorkersBindingKindWorkflow,
+    SettingsBindingWorkersBindingKindWasmModule,
 ]
 
 
@@ -435,8 +536,14 @@ class SettingsObservabilityLogs(TypedDict, total=False):
     are enabled for the Worker.
     """
 
+    destinations: SequenceNotStr[str]
+    """A list of destinations where logs will be exported to."""
+
     head_sampling_rate: Optional[float]
     """The sampling rate for logs. From 0 to 1 (1 = 100%, 0.1 = 10%). Default is 1."""
+
+    persist: bool
+    """Whether log persistence is enabled for the Worker."""
 
 
 class SettingsObservability(TypedDict, total=False):
@@ -502,7 +609,7 @@ class Settings(TypedDict, total=False):
     """
 
     tags: SequenceNotStr[str]
-    """Tags to help you manage your Workers."""
+    """Tags associated with the Worker."""
 
     tail_consumers: Iterable[ConsumerScriptParam]
     """List of Workers that will consume logs from the attached Worker."""

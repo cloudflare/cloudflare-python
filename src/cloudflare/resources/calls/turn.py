@@ -60,7 +60,7 @@ class TURNResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TURNCreateResponse:
+    ) -> Optional[TURNCreateResponse]:
         """
         Creates a new Cloudflare Calls TURN key.
 
@@ -83,9 +83,13 @@ class TURNResource(SyncAPIResource):
             f"/accounts/{account_id}/calls/turn_keys",
             body=maybe_transform({"name": name}, turn_create_params.TURNCreateParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[TURNCreateResponse]]._unwrapper,
             ),
-            cast_to=TURNCreateResponse,
+            cast_to=cast(Type[Optional[TURNCreateResponse]], ResultWrapper[TURNCreateResponse]),
         )
 
     def update(
@@ -292,7 +296,7 @@ class AsyncTURNResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TURNCreateResponse:
+    ) -> Optional[TURNCreateResponse]:
         """
         Creates a new Cloudflare Calls TURN key.
 
@@ -315,9 +319,13 @@ class AsyncTURNResource(AsyncAPIResource):
             f"/accounts/{account_id}/calls/turn_keys",
             body=await async_maybe_transform({"name": name}, turn_create_params.TURNCreateParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[TURNCreateResponse]]._unwrapper,
             ),
-            cast_to=TURNCreateResponse,
+            cast_to=cast(Type[Optional[TURNCreateResponse]], ResultWrapper[TURNCreateResponse]),
         )
 
     async def update(

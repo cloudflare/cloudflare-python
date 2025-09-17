@@ -9,6 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.zero_trust.access import (
     ServiceToken,
@@ -37,7 +38,9 @@ class TestServiceTokens:
         service_token = client.zero_trust.access.service_tokens.create(
             name="CI/CD token",
             account_id="account_id",
+            client_secret_version=0,
             duration="60m",
+            previous_client_secret_expires_at=parse_datetime("2014-01-01T05:20:00.12345Z"),
         )
         assert_matches_type(Optional[ServiceTokenCreateResponse], service_token, path=["response"])
 
@@ -99,8 +102,10 @@ class TestServiceTokens:
         service_token = client.zero_trust.access.service_tokens.update(
             service_token_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
+            client_secret_version=0,
             duration="60m",
             name="CI/CD token",
+            previous_client_secret_expires_at=parse_datetime("2014-01-01T05:20:00.12345Z"),
         )
         assert_matches_type(Optional[ServiceToken], service_token, path=["response"])
 
@@ -403,6 +408,15 @@ class TestServiceTokens:
         assert_matches_type(Optional[ServiceTokenRotateResponse], service_token, path=["response"])
 
     @parametrize
+    def test_method_rotate_with_all_params(self, client: Cloudflare) -> None:
+        service_token = client.zero_trust.access.service_tokens.rotate(
+            service_token_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            previous_client_secret_expires_at=parse_datetime("2014-01-01T05:20:00.12345Z"),
+        )
+        assert_matches_type(Optional[ServiceTokenRotateResponse], service_token, path=["response"])
+
+    @parametrize
     def test_raw_response_rotate(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.service_tokens.with_raw_response.rotate(
             service_token_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -463,7 +477,9 @@ class TestAsyncServiceTokens:
         service_token = await async_client.zero_trust.access.service_tokens.create(
             name="CI/CD token",
             account_id="account_id",
+            client_secret_version=0,
             duration="60m",
+            previous_client_secret_expires_at=parse_datetime("2014-01-01T05:20:00.12345Z"),
         )
         assert_matches_type(Optional[ServiceTokenCreateResponse], service_token, path=["response"])
 
@@ -525,8 +541,10 @@ class TestAsyncServiceTokens:
         service_token = await async_client.zero_trust.access.service_tokens.update(
             service_token_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
+            client_secret_version=0,
             duration="60m",
             name="CI/CD token",
+            previous_client_secret_expires_at=parse_datetime("2014-01-01T05:20:00.12345Z"),
         )
         assert_matches_type(Optional[ServiceToken], service_token, path=["response"])
 
@@ -825,6 +843,15 @@ class TestAsyncServiceTokens:
         service_token = await async_client.zero_trust.access.service_tokens.rotate(
             service_token_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Optional[ServiceTokenRotateResponse], service_token, path=["response"])
+
+    @parametrize
+    async def test_method_rotate_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        service_token = await async_client.zero_trust.access.service_tokens.rotate(
+            service_token_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            previous_client_secret_expires_at=parse_datetime("2014-01-01T05:20:00.12345Z"),
         )
         assert_matches_type(Optional[ServiceTokenRotateResponse], service_token, path=["response"])
 

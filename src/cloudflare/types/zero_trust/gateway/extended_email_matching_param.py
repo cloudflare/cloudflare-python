@@ -10,7 +10,7 @@ __all__ = ["ExtendedEmailMatchingParam"]
 
 class ExtendedEmailMatchingParam(TypedDict, total=False):
     enabled: Optional[bool]
-    """Enable matching all variants of user emails (with + or .
+    """Specify whether to match all variants of user emails (with + or .
 
     modifiers) used as criteria in Firewall policies.
     """

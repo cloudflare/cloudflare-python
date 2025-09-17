@@ -4,14 +4,6 @@ from __future__ import annotations
 
 import httpx
 
-from .health import (
-    HealthResource,
-    AsyncHealthResource,
-    HealthResourceWithRawResponse,
-    AsyncHealthResourceWithRawResponse,
-    HealthResourceWithStreamingResponse,
-    AsyncHealthResourceWithStreamingResponse,
-)
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
@@ -34,10 +26,6 @@ __all__ = ["DatasetsResource", "AsyncDatasetsResource"]
 
 
 class DatasetsResource(SyncAPIResource):
-    @cached_property
-    def health(self) -> HealthResource:
-        return HealthResource(self._client)
-
     @cached_property
     def with_raw_response(self) -> DatasetsResourceWithRawResponse:
         """
@@ -282,10 +270,6 @@ class DatasetsResource(SyncAPIResource):
 
 
 class AsyncDatasetsResource(AsyncAPIResource):
-    @cached_property
-    def health(self) -> AsyncHealthResource:
-        return AsyncHealthResource(self._client)
-
     @cached_property
     def with_raw_response(self) -> AsyncDatasetsResourceWithRawResponse:
         """
@@ -549,10 +533,6 @@ class DatasetsResourceWithRawResponse:
             datasets.raw,
         )
 
-    @cached_property
-    def health(self) -> HealthResourceWithRawResponse:
-        return HealthResourceWithRawResponse(self._datasets.health)
-
 
 class AsyncDatasetsResourceWithRawResponse:
     def __init__(self, datasets: AsyncDatasetsResource) -> None:
@@ -573,10 +553,6 @@ class AsyncDatasetsResourceWithRawResponse:
         self.raw = async_to_raw_response_wrapper(
             datasets.raw,
         )
-
-    @cached_property
-    def health(self) -> AsyncHealthResourceWithRawResponse:
-        return AsyncHealthResourceWithRawResponse(self._datasets.health)
 
 
 class DatasetsResourceWithStreamingResponse:
@@ -599,10 +575,6 @@ class DatasetsResourceWithStreamingResponse:
             datasets.raw,
         )
 
-    @cached_property
-    def health(self) -> HealthResourceWithStreamingResponse:
-        return HealthResourceWithStreamingResponse(self._datasets.health)
-
 
 class AsyncDatasetsResourceWithStreamingResponse:
     def __init__(self, datasets: AsyncDatasetsResource) -> None:
@@ -623,7 +595,3 @@ class AsyncDatasetsResourceWithStreamingResponse:
         self.raw = async_to_streamed_response_wrapper(
             datasets.raw,
         )
-
-    @cached_property
-    def health(self) -> AsyncHealthResourceWithStreamingResponse:
-        return AsyncHealthResourceWithStreamingResponse(self._datasets.health)

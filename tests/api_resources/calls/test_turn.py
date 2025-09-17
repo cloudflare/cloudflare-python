@@ -30,7 +30,7 @@ class TestTURN:
         turn = client.calls.turn.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(TURNCreateResponse, turn, path=["response"])
+        assert_matches_type(Optional[TURNCreateResponse], turn, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate auth errors on test suite")
     @parametrize
@@ -39,7 +39,7 @@ class TestTURN:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="my-turn-key",
         )
-        assert_matches_type(TURNCreateResponse, turn, path=["response"])
+        assert_matches_type(Optional[TURNCreateResponse], turn, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate auth errors on test suite")
     @parametrize
@@ -51,7 +51,7 @@ class TestTURN:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         turn = response.parse()
-        assert_matches_type(TURNCreateResponse, turn, path=["response"])
+        assert_matches_type(Optional[TURNCreateResponse], turn, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate auth errors on test suite")
     @parametrize
@@ -63,7 +63,7 @@ class TestTURN:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             turn = response.parse()
-            assert_matches_type(TURNCreateResponse, turn, path=["response"])
+            assert_matches_type(Optional[TURNCreateResponse], turn, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -295,7 +295,7 @@ class TestAsyncTURN:
         turn = await async_client.calls.turn.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(TURNCreateResponse, turn, path=["response"])
+        assert_matches_type(Optional[TURNCreateResponse], turn, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate auth errors on test suite")
     @parametrize
@@ -304,7 +304,7 @@ class TestAsyncTURN:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="my-turn-key",
         )
-        assert_matches_type(TURNCreateResponse, turn, path=["response"])
+        assert_matches_type(Optional[TURNCreateResponse], turn, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate auth errors on test suite")
     @parametrize
@@ -316,7 +316,7 @@ class TestAsyncTURN:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         turn = await response.parse()
-        assert_matches_type(TURNCreateResponse, turn, path=["response"])
+        assert_matches_type(Optional[TURNCreateResponse], turn, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate auth errors on test suite")
     @parametrize
@@ -328,7 +328,7 @@ class TestAsyncTURN:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             turn = await response.parse()
-            assert_matches_type(TURNCreateResponse, turn, path=["response"])
+            assert_matches_type(Optional[TURNCreateResponse], turn, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, Optional, cast
+from typing import List, Type, Iterable, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -37,6 +37,7 @@ from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.resource_sharing import (
+    resource_sharing_get_params,
     resource_sharing_list_params,
     resource_sharing_create_params,
     resource_sharing_update_params,
@@ -184,10 +185,23 @@ class ResourceSharingResource(SyncAPIResource):
         *,
         account_id: str,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        include_recipient_counts: bool | NotGiven = NOT_GIVEN,
+        include_resources: bool | NotGiven = NOT_GIVEN,
         kind: Literal["sent", "received"] | NotGiven = NOT_GIVEN,
         order: Literal["name", "created"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
+        resource_types: List[
+            Literal[
+                "custom-ruleset",
+                "widget",
+                "gateway-policy",
+                "gateway-destination-ip",
+                "gateway-block-page-settings",
+                "gateway-extended-email-matching",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
         status: Literal["active", "deleting", "deleted"] | NotGiven = NOT_GIVEN,
         target_type: Literal["account", "organization"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -205,6 +219,10 @@ class ResourceSharingResource(SyncAPIResource):
 
           direction: Direction to sort objects.
 
+          include_recipient_counts: Include recipient counts in the response.
+
+          include_resources: Include resources in the response.
+
           kind: Filter shares by kind.
 
           order: Order shares by values in the given field.
@@ -212,6 +230,8 @@ class ResourceSharingResource(SyncAPIResource):
           page: Page number.
 
           per_page: Number of objects to return per page.
+
+          resource_types: Filter share resources by resource_types.
 
           status: Filter shares by status.
 
@@ -238,10 +258,13 @@ class ResourceSharingResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "direction": direction,
+                        "include_recipient_counts": include_recipient_counts,
+                        "include_resources": include_resources,
                         "kind": kind,
                         "order": order,
                         "page": page,
                         "per_page": per_page,
+                        "resource_types": resource_types,
                         "status": status,
                         "target_type": target_type,
                     },
@@ -301,6 +324,8 @@ class ResourceSharingResource(SyncAPIResource):
         share_id: str,
         *,
         account_id: str,
+        include_recipient_counts: bool | NotGiven = NOT_GIVEN,
+        include_resources: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -315,6 +340,10 @@ class ResourceSharingResource(SyncAPIResource):
           account_id: Account identifier.
 
           share_id: Share identifier tag.
+
+          include_recipient_counts: Include recipient counts in the response.
+
+          include_resources: Include resources in the response.
 
           extra_headers: Send extra headers
 
@@ -335,6 +364,13 @@ class ResourceSharingResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "include_recipient_counts": include_recipient_counts,
+                        "include_resources": include_resources,
+                    },
+                    resource_sharing_get_params.ResourceSharingGetParams,
+                ),
                 post_parser=ResultWrapper[Optional[ResourceSharingGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ResourceSharingGetResponse]], ResultWrapper[ResourceSharingGetResponse]),
@@ -477,10 +513,23 @@ class AsyncResourceSharingResource(AsyncAPIResource):
         *,
         account_id: str,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        include_recipient_counts: bool | NotGiven = NOT_GIVEN,
+        include_resources: bool | NotGiven = NOT_GIVEN,
         kind: Literal["sent", "received"] | NotGiven = NOT_GIVEN,
         order: Literal["name", "created"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
+        resource_types: List[
+            Literal[
+                "custom-ruleset",
+                "widget",
+                "gateway-policy",
+                "gateway-destination-ip",
+                "gateway-block-page-settings",
+                "gateway-extended-email-matching",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
         status: Literal["active", "deleting", "deleted"] | NotGiven = NOT_GIVEN,
         target_type: Literal["account", "organization"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -498,6 +547,10 @@ class AsyncResourceSharingResource(AsyncAPIResource):
 
           direction: Direction to sort objects.
 
+          include_recipient_counts: Include recipient counts in the response.
+
+          include_resources: Include resources in the response.
+
           kind: Filter shares by kind.
 
           order: Order shares by values in the given field.
@@ -505,6 +558,8 @@ class AsyncResourceSharingResource(AsyncAPIResource):
           page: Page number.
 
           per_page: Number of objects to return per page.
+
+          resource_types: Filter share resources by resource_types.
 
           status: Filter shares by status.
 
@@ -531,10 +586,13 @@ class AsyncResourceSharingResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "direction": direction,
+                        "include_recipient_counts": include_recipient_counts,
+                        "include_resources": include_resources,
                         "kind": kind,
                         "order": order,
                         "page": page,
                         "per_page": per_page,
+                        "resource_types": resource_types,
                         "status": status,
                         "target_type": target_type,
                     },
@@ -594,6 +652,8 @@ class AsyncResourceSharingResource(AsyncAPIResource):
         share_id: str,
         *,
         account_id: str,
+        include_recipient_counts: bool | NotGiven = NOT_GIVEN,
+        include_resources: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -608,6 +668,10 @@ class AsyncResourceSharingResource(AsyncAPIResource):
           account_id: Account identifier.
 
           share_id: Share identifier tag.
+
+          include_recipient_counts: Include recipient counts in the response.
+
+          include_resources: Include resources in the response.
 
           extra_headers: Send extra headers
 
@@ -628,6 +692,13 @@ class AsyncResourceSharingResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "include_recipient_counts": include_recipient_counts,
+                        "include_resources": include_resources,
+                    },
+                    resource_sharing_get_params.ResourceSharingGetParams,
+                ),
                 post_parser=ResultWrapper[Optional[ResourceSharingGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ResourceSharingGetResponse]], ResultWrapper[ResourceSharingGetResponse]),

@@ -18,8 +18,6 @@ class ServiceToken(BaseModel):
     Access will check for this value in the `CF-Access-Client-ID` request header.
     """
 
-    created_at: Optional[datetime] = None
-
     duration: Optional[str] = None
     """The duration for how long the service token will be valid.
 
@@ -29,9 +27,5 @@ class ServiceToken(BaseModel):
 
     expires_at: Optional[datetime] = None
 
-    last_seen_at: Optional[datetime] = None
-
     name: Optional[str] = None
     """The name of the service token."""
-
-    updated_at: Optional[datetime] = None

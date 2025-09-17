@@ -38,91 +38,87 @@ class RuleCreateParams(TypedDict, total=False):
         ]
     ]
     """
-    The action to perform when the associated traffic, identity, and device posture
-    expressions are either absent or evaluate to `true`.
+    Specify the action to perform when the associated traffic, identity, and device
+    posture expressions either absent or evaluate to `true`.
     """
 
     name: Required[str]
-    """The name of the rule."""
+    """Specify the rule name."""
 
     description: str
-    """The description of the rule."""
+    """Specify the rule description."""
 
     device_posture: str
-    """The wirefilter expression used for device posture check matching.
+    """Specify the wirefilter expression used for device posture check.
 
-    The API automatically formats and sanitizes this expression. This returns a
-    normalized version that may differ from your input and cause Terraform state
-    drift.
+    The API automatically formats and sanitizes expressions before storing them. To
+    prevent Terraform state drift, use the formatted expression returned in the API
+    response.
     """
 
     enabled: bool
-    """True if the rule is enabled."""
+    """Specify whether the rule is enabled."""
 
     expiration: Optional[Expiration]
-    """The expiration time stamp and default duration of a DNS policy.
+    """Defines the expiration time stamp and default duration of a DNS policy.
 
-    Takes precedence over the policy's `schedule` configuration, if any.
-
-    This does not apply to HTTP or network policies.
+    Takes precedence over the policy's `schedule` configuration, if any. This does
+    not apply to HTTP or network policies.
     """
 
     filters: List[GatewayFilter]
-    """The protocol or layer to evaluate the traffic, identity, and device.
-
+    """
+    Specify the protocol or layer to evaluate the traffic, identity, and device
     posture expressions.
     """
 
     identity: str
-    """The wirefilter expression used for identity matching.
+    """Specify the wirefilter expression used for identity matching.
 
-    The API automatically formats and sanitizes this expression. This returns a
-    normalized version that may differ from your input and cause Terraform state
-    drift.
+    The API automatically formats and sanitizes expressions before storing them. To
+    prevent Terraform state drift, use the formatted expression returned in the API
+    response.
     """
 
     precedence: int
-    """Precedence sets the order of your rules.
+    """Set the order of your rules.
 
-    Lower values indicate higher precedence. At each processing phase, applicable
-    rules are evaluated in ascending order of this value. Refer to
+    Lower values indicate higher precedence. At each processing phase, evaluate
+    applicable rules in ascending order of this value. Refer to
     [Order of enforcement](http://developers.cloudflare.com/learning-paths/secure-internet-traffic/understand-policies/order-of-enforcement/#manage-precedence-with-terraform)
-    docs on how to manage precedence via Terraform.
+    to manage precedence via Terraform.
     """
 
     rule_settings: RuleSettingParam
-    """Additional settings that modify the rule's action."""
+    """Set settings related to this rule."""
 
     schedule: Optional[ScheduleParam]
-    """The schedule for activating DNS policies.
+    """Defines the schedule for activating DNS policies.
 
-    This does not apply to HTTP or network policies.
+    (HTTP/Egress or L4 unsupported).
     """
 
     traffic: str
-    """The wirefilter expression used for traffic matching.
+    """Specify the wirefilter expression used for traffic matching.
 
-    The API automatically formats and sanitizes this expression. This returns a
-    normalized version that may differ from your input and cause Terraform state
-    drift.
+    The API automatically formats and sanitizes expressions before storing them. To
+    prevent Terraform state drift, use the formatted expression returned in the API
+    response.
     """
 
 
 class Expiration(TypedDict, total=False):
     expires_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
-    """The time stamp at which the policy will expire and cease to be applied.
+    """Show the timestamp when the policy expires and stops applying.
 
-    Must adhere to RFC 3339 and include a UTC offset. Non-zero offsets are accepted
-    but will be converted to the equivalent value with offset zero (UTC+00:00) and
-    will be returned as time stamps with offset zero denoted by a trailing 'Z'.
-
-    Policies with an expiration do not consider the timezone of clients they are
-    applied to, and expire "globally" at the point given by their `expires_at`
-    value.
+    The value must follow RFC 3339 and include a UTC offset. The system accepts
+    non-zero offsets but converts them to the equivalent UTC+00:00 value and returns
+    timestamps with a trailing Z. Expiration policies ignore client timezones and
+    expire globally at the specified expires_at time.
     """
 
     duration: int
-    """The default duration a policy will be active in minutes.
+    """Defines the default duration a policy active in minutes.
 
-    Must be set in order to use the `reset_expiration` endpoint on this rule.
+    Must set in order to use the `reset_expiration` endpoint on this rule.
     """

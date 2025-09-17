@@ -27,7 +27,7 @@ class ConnectionListParams(TypedDict, total=False):
     """
 
     export: Literal["csv"]
-    """Export the list of connections as a file."""
+    """Export the list of connections as a file, limited to 50000 entries."""
 
     hosts: str
     """

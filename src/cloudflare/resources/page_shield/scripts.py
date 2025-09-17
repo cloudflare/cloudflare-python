@@ -90,7 +90,7 @@ class ScriptsResource(SyncAPIResource):
           exclude_urls: Excludes scripts whose URL contains one of the URL-encoded URLs separated by
               commas.
 
-          export: Export the list of scripts as a file.
+          export: Export the list of scripts as a file, limited to 50000 entries.
 
           hosts: Includes scripts that match one or more URL-encoded hostnames separated by
               commas.
@@ -273,7 +273,7 @@ class AsyncScriptsResource(AsyncAPIResource):
           exclude_urls: Excludes scripts whose URL contains one of the URL-encoded URLs separated by
               commas.
 
-          export: Export the list of scripts as a file.
+          export: Export the list of scripts as a file, limited to 50000 entries.
 
           hosts: Includes scripts that match one or more URL-encoded hostnames separated by
               commas.

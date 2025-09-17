@@ -10,7 +10,7 @@ __all__ = ["TraceCreateParams", "Body", "Context", "ContextGeoloc"]
 
 class TraceCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     method: Required[str]
     """HTTP Method of tracing request"""

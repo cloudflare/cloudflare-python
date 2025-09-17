@@ -9,19 +9,19 @@ __all__ = ["ExtendedEmailMatching"]
 
 class ExtendedEmailMatching(BaseModel):
     enabled: Optional[bool] = None
-    """Enable matching all variants of user emails (with + or .
+    """Specify whether to match all variants of user emails (with + or .
 
     modifiers) used as criteria in Firewall policies.
     """
 
     read_only: Optional[bool] = None
     """
-    This setting was shared via the Orgs API and cannot be edited by the current
-    account.
+    Indicate that this setting was shared via the Orgs API and read only for the
+    current account.
     """
 
     source_account: Optional[str] = None
-    """Account tag of account that shared this setting."""
+    """Indicate the account tag of the account that shared this setting."""
 
     version: Optional[int] = None
-    """Version number of the setting."""
+    """Indicate the version number of the setting."""

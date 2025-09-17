@@ -133,6 +133,7 @@ class InstancesResource(SyncAPIResource):
         cursor: str | NotGiven = NOT_GIVEN,
         date_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
         date_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         status: Literal[
@@ -155,6 +156,9 @@ class InstancesResource(SyncAPIResource):
           date_end: Accepts ISO 8601 with no timezone offsets and in UTC.
 
           date_start: Accepts ISO 8601 with no timezone offsets and in UTC.
+
+          direction: should only be used when `cursor` is used, defines a new direction for the
+              cursor
 
           page: `page` and `cursor` are mutually exclusive, use one or the other.
 
@@ -183,6 +187,7 @@ class InstancesResource(SyncAPIResource):
                         "cursor": cursor,
                         "date_end": date_end,
                         "date_start": date_start,
+                        "direction": direction,
                         "page": page,
                         "per_page": per_page,
                         "status": status,
@@ -364,6 +369,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         cursor: str | NotGiven = NOT_GIVEN,
         date_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
         date_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         status: Literal[
@@ -386,6 +392,9 @@ class AsyncInstancesResource(AsyncAPIResource):
           date_end: Accepts ISO 8601 with no timezone offsets and in UTC.
 
           date_start: Accepts ISO 8601 with no timezone offsets and in UTC.
+
+          direction: should only be used when `cursor` is used, defines a new direction for the
+              cursor
 
           page: `page` and `cursor` are mutually exclusive, use one or the other.
 
@@ -414,6 +423,7 @@ class AsyncInstancesResource(AsyncAPIResource):
                         "cursor": cursor,
                         "date_end": date_end,
                         "date_start": date_start,
+                        "direction": direction,
                         "page": page,
                         "per_page": per_page,
                         "status": status,

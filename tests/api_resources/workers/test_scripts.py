@@ -12,6 +12,7 @@ from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.workers import (
     Script,
+    ScriptSearchResponse,
     ScriptUpdateResponse,
 )
 
@@ -90,7 +91,9 @@ class TestScripts:
                     "logs": {
                         "enabled": True,
                         "invocation_logs": True,
+                        "destinations": ["cloudflare"],
                         "head_sampling_rate": 0.1,
+                        "persist": True,
                     },
                 },
                 "placement": {"mode": "smart"},
@@ -306,6 +309,56 @@ class TestScripts:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @parametrize
+    def test_method_search(self, client: Cloudflare) -> None:
+        script = client.workers.scripts.search(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(ScriptSearchResponse, script, path=["response"])
+
+    @parametrize
+    def test_method_search_with_all_params(self, client: Cloudflare) -> None:
+        script = client.workers.scripts.search(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            id="bdf3567828824b74aadd550004cf4913",
+            name="my-worker",
+            order_by="created_on",
+            page=1,
+            per_page=1,
+        )
+        assert_matches_type(ScriptSearchResponse, script, path=["response"])
+
+    @parametrize
+    def test_raw_response_search(self, client: Cloudflare) -> None:
+        response = client.workers.scripts.with_raw_response.search(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        script = response.parse()
+        assert_matches_type(ScriptSearchResponse, script, path=["response"])
+
+    @parametrize
+    def test_streaming_response_search(self, client: Cloudflare) -> None:
+        with client.workers.scripts.with_streaming_response.search(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            script = response.parse()
+            assert_matches_type(ScriptSearchResponse, script, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_search(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.workers.scripts.with_raw_response.search(
+                account_id="",
+            )
+
 
 class TestAsyncScripts:
     parametrize = pytest.mark.parametrize(
@@ -381,7 +434,9 @@ class TestAsyncScripts:
                     "logs": {
                         "enabled": True,
                         "invocation_logs": True,
+                        "destinations": ["cloudflare"],
                         "head_sampling_rate": 0.1,
+                        "persist": True,
                     },
                 },
                 "placement": {"mode": "smart"},
@@ -595,4 +650,54 @@ class TestAsyncScripts:
             await async_client.workers.scripts.with_raw_response.get(
                 script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @parametrize
+    async def test_method_search(self, async_client: AsyncCloudflare) -> None:
+        script = await async_client.workers.scripts.search(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(ScriptSearchResponse, script, path=["response"])
+
+    @parametrize
+    async def test_method_search_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        script = await async_client.workers.scripts.search(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            id="bdf3567828824b74aadd550004cf4913",
+            name="my-worker",
+            order_by="created_on",
+            page=1,
+            per_page=1,
+        )
+        assert_matches_type(ScriptSearchResponse, script, path=["response"])
+
+    @parametrize
+    async def test_raw_response_search(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.workers.scripts.with_raw_response.search(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        script = await response.parse()
+        assert_matches_type(ScriptSearchResponse, script, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_search(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.workers.scripts.with_streaming_response.search(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            script = await response.parse()
+            assert_matches_type(ScriptSearchResponse, script, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_search(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.workers.scripts.with_raw_response.search(
+                account_id="",
             )

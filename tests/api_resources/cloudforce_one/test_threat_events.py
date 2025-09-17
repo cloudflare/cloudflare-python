@@ -33,6 +33,7 @@ class TestThreatEvents:
             category="Domain Resolution",
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
+            indicator_type="domain",
             raw={"data": {"foo": "bar"}},
             tlp="amber",
         )
@@ -46,6 +47,7 @@ class TestThreatEvents:
             category="Domain Resolution",
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
+            indicator_type="domain",
             raw={
                 "data": {"foo": "bar"},
                 "source": "example.com",
@@ -57,7 +59,7 @@ class TestThreatEvents:
             attacker_country="CN",
             dataset_id="durableObjectName",
             indicator="domain.com",
-            indicator_type="domain",
+            insight="This domain was likely registered for phishing purposes",
             tags=["malware"],
             target_country="US",
             target_industry="Agriculture",
@@ -72,6 +74,7 @@ class TestThreatEvents:
             category="Domain Resolution",
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
+            indicator_type="domain",
             raw={"data": {"foo": "bar"}},
             tlp="amber",
         )
@@ -89,6 +92,7 @@ class TestThreatEvents:
             category="Domain Resolution",
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
+            indicator_type="domain",
             raw={"data": {"foo": "bar"}},
             tlp="amber",
         ) as response:
@@ -109,6 +113,7 @@ class TestThreatEvents:
                 category="Domain Resolution",
                 date=parse_datetime("2022-04-01T00:00:00Z"),
                 event="An attacker registered the domain domain.com",
+                indicator_type="domain",
                 raw={"data": {"foo": "bar"}},
                 tlp="amber",
             )
@@ -238,6 +243,7 @@ class TestThreatEvents:
                     "category": "Domain Resolution",
                     "date": parse_datetime("2022-04-01T00:00:00Z"),
                     "event": "An attacker registered the domain domain.com",
+                    "indicator_type": "domain",
                     "raw": {"data": {"foo": "bar"}},
                     "tlp": "amber",
                 }
@@ -256,6 +262,7 @@ class TestThreatEvents:
                     "category": "Domain Resolution",
                     "date": parse_datetime("2022-04-01T00:00:00Z"),
                     "event": "An attacker registered the domain domain.com",
+                    "indicator_type": "domain",
                     "raw": {"data": {"foo": "bar"}},
                     "tlp": "amber",
                 }
@@ -278,6 +285,7 @@ class TestThreatEvents:
                     "category": "Domain Resolution",
                     "date": parse_datetime("2022-04-01T00:00:00Z"),
                     "event": "An attacker registered the domain domain.com",
+                    "indicator_type": "domain",
                     "raw": {"data": {"foo": "bar"}},
                     "tlp": "amber",
                 }
@@ -303,6 +311,7 @@ class TestThreatEvents:
                         "category": "Domain Resolution",
                         "date": parse_datetime("2022-04-01T00:00:00Z"),
                         "event": "An attacker registered the domain domain.com",
+                        "indicator_type": "domain",
                         "raw": {"data": {"foo": "bar"}},
                         "tlp": "amber",
                     }
@@ -453,6 +462,7 @@ class TestAsyncThreatEvents:
             category="Domain Resolution",
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
+            indicator_type="domain",
             raw={"data": {"foo": "bar"}},
             tlp="amber",
         )
@@ -466,6 +476,7 @@ class TestAsyncThreatEvents:
             category="Domain Resolution",
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
+            indicator_type="domain",
             raw={
                 "data": {"foo": "bar"},
                 "source": "example.com",
@@ -477,7 +488,7 @@ class TestAsyncThreatEvents:
             attacker_country="CN",
             dataset_id="durableObjectName",
             indicator="domain.com",
-            indicator_type="domain",
+            insight="This domain was likely registered for phishing purposes",
             tags=["malware"],
             target_country="US",
             target_industry="Agriculture",
@@ -492,6 +503,7 @@ class TestAsyncThreatEvents:
             category="Domain Resolution",
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
+            indicator_type="domain",
             raw={"data": {"foo": "bar"}},
             tlp="amber",
         )
@@ -509,6 +521,7 @@ class TestAsyncThreatEvents:
             category="Domain Resolution",
             date=parse_datetime("2022-04-01T00:00:00Z"),
             event="An attacker registered the domain domain.com",
+            indicator_type="domain",
             raw={"data": {"foo": "bar"}},
             tlp="amber",
         ) as response:
@@ -529,6 +542,7 @@ class TestAsyncThreatEvents:
                 category="Domain Resolution",
                 date=parse_datetime("2022-04-01T00:00:00Z"),
                 event="An attacker registered the domain domain.com",
+                indicator_type="domain",
                 raw={"data": {"foo": "bar"}},
                 tlp="amber",
             )
@@ -658,6 +672,7 @@ class TestAsyncThreatEvents:
                     "category": "Domain Resolution",
                     "date": parse_datetime("2022-04-01T00:00:00Z"),
                     "event": "An attacker registered the domain domain.com",
+                    "indicator_type": "domain",
                     "raw": {"data": {"foo": "bar"}},
                     "tlp": "amber",
                 }
@@ -676,6 +691,7 @@ class TestAsyncThreatEvents:
                     "category": "Domain Resolution",
                     "date": parse_datetime("2022-04-01T00:00:00Z"),
                     "event": "An attacker registered the domain domain.com",
+                    "indicator_type": "domain",
                     "raw": {"data": {"foo": "bar"}},
                     "tlp": "amber",
                 }
@@ -698,6 +714,7 @@ class TestAsyncThreatEvents:
                     "category": "Domain Resolution",
                     "date": parse_datetime("2022-04-01T00:00:00Z"),
                     "event": "An attacker registered the domain domain.com",
+                    "indicator_type": "domain",
                     "raw": {"data": {"foo": "bar"}},
                     "tlp": "amber",
                 }
@@ -723,6 +740,7 @@ class TestAsyncThreatEvents:
                         "category": "Domain Resolution",
                         "date": parse_datetime("2022-04-01T00:00:00Z"),
                         "event": "An attacker registered the domain domain.com",
+                        "indicator_type": "domain",
                         "raw": {"data": {"foo": "bar"}},
                         "tlp": "amber",
                     }

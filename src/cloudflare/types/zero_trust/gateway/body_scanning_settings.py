@@ -10,4 +10,4 @@ __all__ = ["BodyScanningSettings"]
 
 class BodyScanningSettings(BaseModel):
     inspection_mode: Optional[Literal["deep", "shallow"]] = None
-    """Set the inspection mode to either `deep` or `shallow`."""
+    """Specify the inspection mode as either `deep` or `shallow`."""

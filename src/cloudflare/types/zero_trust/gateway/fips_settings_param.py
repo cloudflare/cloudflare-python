@@ -9,4 +9,4 @@ __all__ = ["FipsSettingsParam"]
 
 class FipsSettingsParam(TypedDict, total=False):
     tls: bool
-    """Enable only cipher suites and TLS versions compliant with FIPS. 140-2."""
+    """Enforce cipher suites and TLS versions compliant with FIPS 140-2."""

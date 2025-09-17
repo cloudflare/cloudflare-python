@@ -53,6 +53,7 @@ class CfInterconnectsResource(SyncAPIResource):
         cf_interconnect_id: str,
         *,
         account_id: str,
+        automatic_return_routing: bool | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         gre: cf_interconnect_update_params.GRE | NotGiven = NOT_GIVEN,
         health_check: HealthCheckParam | NotGiven = NOT_GIVEN,
@@ -77,6 +78,9 @@ class CfInterconnectsResource(SyncAPIResource):
           account_id: Identifier
 
           cf_interconnect_id: Identifier
+
+          automatic_return_routing: True if automatic stateful return routing should be enabled for a tunnel, false
+              otherwise.
 
           description: An optional description of the interconnect.
 
@@ -120,6 +124,7 @@ class CfInterconnectsResource(SyncAPIResource):
             f"/accounts/{account_id}/magic/cf_interconnects/{cf_interconnect_id}",
             body=maybe_transform(
                 {
+                    "automatic_return_routing": automatic_return_routing,
                     "description": description,
                     "gre": gre,
                     "health_check": health_check,
@@ -325,6 +330,7 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
         cf_interconnect_id: str,
         *,
         account_id: str,
+        automatic_return_routing: bool | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         gre: cf_interconnect_update_params.GRE | NotGiven = NOT_GIVEN,
         health_check: HealthCheckParam | NotGiven = NOT_GIVEN,
@@ -349,6 +355,9 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
           account_id: Identifier
 
           cf_interconnect_id: Identifier
+
+          automatic_return_routing: True if automatic stateful return routing should be enabled for a tunnel, false
+              otherwise.
 
           description: An optional description of the interconnect.
 
@@ -392,6 +401,7 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
             f"/accounts/{account_id}/magic/cf_interconnects/{cf_interconnect_id}",
             body=await async_maybe_transform(
                 {
+                    "automatic_return_routing": automatic_return_routing,
                     "description": description,
                     "gre": gre,
                     "health_check": health_check,

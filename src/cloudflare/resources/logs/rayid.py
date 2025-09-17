@@ -64,7 +64,7 @@ class RayIDResource(SyncAPIResource):
         return zero, one, or more records (ray ids are not unique).
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           rayid: Ray identifier.
 
@@ -160,7 +160,7 @@ class AsyncRayIDResource(AsyncAPIResource):
         return zero, one, or more records (ray ids are not unique).
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           rayid: Ray identifier.
 

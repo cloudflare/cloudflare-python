@@ -15,11 +15,14 @@ __all__ = [
     "WorkersBindingKindAssets",
     "WorkersBindingKindBrowser",
     "WorkersBindingKindD1",
+    "WorkersBindingKindDataBlob",
     "WorkersBindingKindDispatchNamespace",
     "WorkersBindingKindDispatchNamespaceOutbound",
     "WorkersBindingKindDispatchNamespaceOutboundWorker",
     "WorkersBindingKindDurableObjectNamespace",
     "WorkersBindingKindHyperdrive",
+    "WorkersBindingKindInherit",
+    "WorkersBindingKindImages",
     "WorkersBindingKindJson",
     "WorkersBindingKindKVNamespace",
     "WorkersBindingKindMTLSCertificate",
@@ -28,13 +31,16 @@ __all__ = [
     "WorkersBindingKindQueue",
     "WorkersBindingKindR2Bucket",
     "WorkersBindingKindSecretText",
+    "WorkersBindingKindSendEmail",
     "WorkersBindingKindService",
     "WorkersBindingKindTailConsumer",
+    "WorkersBindingKindTextBlob",
     "WorkersBindingKindVectorize",
     "WorkersBindingKindVersionMetadata",
     "WorkersBindingKindSecretsStoreSecret",
     "WorkersBindingKindSecretKey",
     "WorkersBindingKindWorkflow",
+    "WorkersBindingKindWasmModule",
 ]
 
 
@@ -81,6 +87,20 @@ class WorkersBindingKindD1(BaseModel):
     """A JavaScript variable name for the binding."""
 
     type: Literal["d1"]
+    """The kind of resource that the binding provides."""
+
+
+class WorkersBindingKindDataBlob(BaseModel):
+    name: str
+    """A JavaScript variable name for the binding."""
+
+    part: str
+    """The name of the file containing the data content.
+
+    Only accepted for `service worker syntax` Workers.
+    """
+
+    type: Literal["data_blob"]
     """The kind of resource that the binding provides."""
 
 
@@ -148,6 +168,36 @@ class WorkersBindingKindHyperdrive(BaseModel):
     """A JavaScript variable name for the binding."""
 
     type: Literal["hyperdrive"]
+    """The kind of resource that the binding provides."""
+
+
+class WorkersBindingKindInherit(BaseModel):
+    name: str
+    """The name of the inherited binding."""
+
+    type: Literal["inherit"]
+    """The kind of resource that the binding provides."""
+
+    old_name: Optional[str] = None
+    """The old name of the inherited binding.
+
+    If set, the binding will be renamed from `old_name` to `name` in the new
+    version. If not set, the binding will keep the same name between versions.
+    """
+
+    version_id: Optional[str] = None
+    """
+    Identifier for the version to inherit the binding from, which can be the version
+    ID or the literal "latest" to inherit from the latest version. Defaults to
+    inheriting the binding from the latest version.
+    """
+
+
+class WorkersBindingKindImages(BaseModel):
+    name: str
+    """A JavaScript variable name for the binding."""
+
+    type: Literal["images"]
     """The kind of resource that the binding provides."""
 
 
@@ -236,10 +286,24 @@ class WorkersBindingKindSecretText(BaseModel):
     """The kind of resource that the binding provides."""
 
 
-class WorkersBindingKindService(BaseModel):
-    environment: str
-    """Optional environment if the Worker utilizes one."""
+class WorkersBindingKindSendEmail(BaseModel):
+    name: str
+    """A JavaScript variable name for the binding."""
 
+    type: Literal["send_email"]
+    """The kind of resource that the binding provides."""
+
+    allowed_destination_addresses: Optional[List[str]] = None
+    """List of allowed destination addresses."""
+
+    allowed_sender_addresses: Optional[List[str]] = None
+    """List of allowed sender addresses."""
+
+    destination_address: Optional[str] = None
+    """Destination address for the email."""
+
+
+class WorkersBindingKindService(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
@@ -248,6 +312,9 @@ class WorkersBindingKindService(BaseModel):
 
     type: Literal["service"]
     """The kind of resource that the binding provides."""
+
+    environment: Optional[str] = None
+    """Optional environment if the Worker utilizes one."""
 
 
 class WorkersBindingKindTailConsumer(BaseModel):
@@ -258,6 +325,20 @@ class WorkersBindingKindTailConsumer(BaseModel):
     """Name of Tail Worker to bind to."""
 
     type: Literal["tail_consumer"]
+    """The kind of resource that the binding provides."""
+
+
+class WorkersBindingKindTextBlob(BaseModel):
+    name: str
+    """A JavaScript variable name for the binding."""
+
+    part: str
+    """The name of the file containing the text content.
+
+    Only accepted for `service worker syntax` Workers.
+    """
+
+    type: Literal["text_blob"]
     """The kind of resource that the binding provides."""
 
 
@@ -343,6 +424,20 @@ class WorkersBindingKindWorkflow(BaseModel):
     """
 
 
+class WorkersBindingKindWasmModule(BaseModel):
+    name: str
+    """A JavaScript variable name for the binding."""
+
+    part: str
+    """The name of the file containing the WebAssembly module content.
+
+    Only accepted for `service worker syntax` Workers.
+    """
+
+    type: Literal["wasm_module"]
+    """The kind of resource that the binding provides."""
+
+
 BindingGetResponse: TypeAlias = Annotated[
     Union[
         WorkersBindingKindAI,
@@ -350,9 +445,12 @@ BindingGetResponse: TypeAlias = Annotated[
         WorkersBindingKindAssets,
         WorkersBindingKindBrowser,
         WorkersBindingKindD1,
+        WorkersBindingKindDataBlob,
         WorkersBindingKindDispatchNamespace,
         WorkersBindingKindDurableObjectNamespace,
         WorkersBindingKindHyperdrive,
+        WorkersBindingKindInherit,
+        WorkersBindingKindImages,
         WorkersBindingKindJson,
         WorkersBindingKindKVNamespace,
         WorkersBindingKindMTLSCertificate,
@@ -361,13 +459,16 @@ BindingGetResponse: TypeAlias = Annotated[
         WorkersBindingKindQueue,
         WorkersBindingKindR2Bucket,
         WorkersBindingKindSecretText,
+        WorkersBindingKindSendEmail,
         WorkersBindingKindService,
         WorkersBindingKindTailConsumer,
+        WorkersBindingKindTextBlob,
         WorkersBindingKindVectorize,
         WorkersBindingKindVersionMetadata,
         WorkersBindingKindSecretsStoreSecret,
         WorkersBindingKindSecretKey,
         WorkersBindingKindWorkflow,
+        WorkersBindingKindWasmModule,
     ],
     PropertyInfo(discriminator="type"),
 ]

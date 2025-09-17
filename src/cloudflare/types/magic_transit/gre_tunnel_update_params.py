@@ -36,6 +36,12 @@ class GRETunnelUpdateParams(TypedDict, total=False):
     less, and cannot share a name with another GRE tunnel.
     """
 
+    automatic_return_routing: bool
+    """
+    True if automatic stateful return routing should be enabled for a tunnel, false
+    otherwise.
+    """
+
     description: str
     """An optional description of the GRE tunnel."""
 

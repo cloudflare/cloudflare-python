@@ -29,6 +29,10 @@ class DeviceListParams(TypedDict, total=False):
     """
 
     include: str
+    """
+    Comma-separated list of additional information that should be included in the
+    device response. Supported values are: "last_seen_registration.policy".
+    """
 
     last_seen_user: LastSeenUser
 

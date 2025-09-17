@@ -24,14 +24,6 @@ from .tags import (
     TagsResourceWithStreamingResponse,
     AsyncTagsResourceWithStreamingResponse,
 )
-from .crons import (
-    CronsResource,
-    AsyncCronsResource,
-    CronsResourceWithRawResponse,
-    AsyncCronsResourceWithRawResponse,
-    CronsResourceWithStreamingResponse,
-    AsyncCronsResourceWithStreamingResponse,
-)
 from .relate import (
     RelateResource,
     AsyncRelateResource,
@@ -137,10 +129,6 @@ class ThreatEventsResource(SyncAPIResource):
         return CountriesResource(self._client)
 
     @cached_property
-    def crons(self) -> CronsResource:
-        return CronsResource(self._client)
-
-    @cached_property
     def datasets(self) -> DatasetsResource:
         return DatasetsResource(self._client)
 
@@ -194,6 +182,7 @@ class ThreatEventsResource(SyncAPIResource):
         category: str,
         date: Union[str, datetime],
         event: str,
+        indicator_type: str,
         raw: threat_event_create_params.Raw,
         tlp: str,
         body_account_id: float | NotGiven = NOT_GIVEN,
@@ -201,7 +190,7 @@ class ThreatEventsResource(SyncAPIResource):
         attacker_country: str | NotGiven = NOT_GIVEN,
         dataset_id: str | NotGiven = NOT_GIVEN,
         indicator: str | NotGiven = NOT_GIVEN,
-        indicator_type: str | NotGiven = NOT_GIVEN,
+        insight: str | NotGiven = NOT_GIVEN,
         tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         target_country: str | NotGiven = NOT_GIVEN,
         target_industry: str | NotGiven = NOT_GIVEN,
@@ -238,6 +227,7 @@ class ThreatEventsResource(SyncAPIResource):
                     "category": category,
                     "date": date,
                     "event": event,
+                    "indicator_type": indicator_type,
                     "raw": raw,
                     "tlp": tlp,
                     "body_account_id": body_account_id,
@@ -245,7 +235,7 @@ class ThreatEventsResource(SyncAPIResource):
                     "attacker_country": attacker_country,
                     "dataset_id": dataset_id,
                     "indicator": indicator,
-                    "indicator_type": indicator_type,
+                    "insight": insight,
                     "tags": tags,
                     "target_country": target_country,
                     "target_industry": target_industry,
@@ -535,10 +525,6 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         return AsyncCountriesResource(self._client)
 
     @cached_property
-    def crons(self) -> AsyncCronsResource:
-        return AsyncCronsResource(self._client)
-
-    @cached_property
     def datasets(self) -> AsyncDatasetsResource:
         return AsyncDatasetsResource(self._client)
 
@@ -592,6 +578,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         category: str,
         date: Union[str, datetime],
         event: str,
+        indicator_type: str,
         raw: threat_event_create_params.Raw,
         tlp: str,
         body_account_id: float | NotGiven = NOT_GIVEN,
@@ -599,7 +586,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         attacker_country: str | NotGiven = NOT_GIVEN,
         dataset_id: str | NotGiven = NOT_GIVEN,
         indicator: str | NotGiven = NOT_GIVEN,
-        indicator_type: str | NotGiven = NOT_GIVEN,
+        insight: str | NotGiven = NOT_GIVEN,
         tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         target_country: str | NotGiven = NOT_GIVEN,
         target_industry: str | NotGiven = NOT_GIVEN,
@@ -636,6 +623,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
                     "category": category,
                     "date": date,
                     "event": event,
+                    "indicator_type": indicator_type,
                     "raw": raw,
                     "tlp": tlp,
                     "body_account_id": body_account_id,
@@ -643,7 +631,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
                     "attacker_country": attacker_country,
                     "dataset_id": dataset_id,
                     "indicator": indicator,
-                    "indicator_type": indicator_type,
+                    "insight": insight,
                     "tags": tags,
                     "target_country": target_country,
                     "target_industry": target_industry,
@@ -955,10 +943,6 @@ class ThreatEventsResourceWithRawResponse:
         return CountriesResourceWithRawResponse(self._threat_events.countries)
 
     @cached_property
-    def crons(self) -> CronsResourceWithRawResponse:
-        return CronsResourceWithRawResponse(self._threat_events.crons)
-
-    @cached_property
     def datasets(self) -> DatasetsResourceWithRawResponse:
         return DatasetsResourceWithRawResponse(self._threat_events.datasets)
 
@@ -1021,10 +1005,6 @@ class AsyncThreatEventsResourceWithRawResponse:
     @cached_property
     def countries(self) -> AsyncCountriesResourceWithRawResponse:
         return AsyncCountriesResourceWithRawResponse(self._threat_events.countries)
-
-    @cached_property
-    def crons(self) -> AsyncCronsResourceWithRawResponse:
-        return AsyncCronsResourceWithRawResponse(self._threat_events.crons)
 
     @cached_property
     def datasets(self) -> AsyncDatasetsResourceWithRawResponse:
@@ -1091,10 +1071,6 @@ class ThreatEventsResourceWithStreamingResponse:
         return CountriesResourceWithStreamingResponse(self._threat_events.countries)
 
     @cached_property
-    def crons(self) -> CronsResourceWithStreamingResponse:
-        return CronsResourceWithStreamingResponse(self._threat_events.crons)
-
-    @cached_property
     def datasets(self) -> DatasetsResourceWithStreamingResponse:
         return DatasetsResourceWithStreamingResponse(self._threat_events.datasets)
 
@@ -1157,10 +1133,6 @@ class AsyncThreatEventsResourceWithStreamingResponse:
     @cached_property
     def countries(self) -> AsyncCountriesResourceWithStreamingResponse:
         return AsyncCountriesResourceWithStreamingResponse(self._threat_events.countries)
-
-    @cached_property
-    def crons(self) -> AsyncCronsResourceWithStreamingResponse:
-        return AsyncCronsResourceWithStreamingResponse(self._threat_events.crons)
 
     @cached_property
     def datasets(self) -> AsyncDatasetsResourceWithStreamingResponse:
