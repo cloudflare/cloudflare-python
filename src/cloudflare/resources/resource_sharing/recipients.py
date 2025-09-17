@@ -19,7 +19,7 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.resource_sharing import recipient_list_params, recipient_create_params
+from ...types.resource_sharing import recipient_get_params, recipient_list_params, recipient_create_params
 from ...types.resource_sharing.recipient_get_response import RecipientGetResponse
 from ...types.resource_sharing.recipient_list_response import RecipientListResponse
 from ...types.resource_sharing.recipient_create_response import RecipientCreateResponse
@@ -110,6 +110,7 @@ class RecipientsResource(SyncAPIResource):
         share_id: str,
         *,
         account_id: str,
+        include_resources: bool | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -126,6 +127,8 @@ class RecipientsResource(SyncAPIResource):
           account_id: Account identifier.
 
           share_id: Share identifier tag.
+
+          include_resources: Include resources in the response.
 
           page: Page number.
 
@@ -153,6 +156,7 @@ class RecipientsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "include_resources": include_resources,
                         "page": page,
                         "per_page": per_page,
                     },
@@ -218,6 +222,7 @@ class RecipientsResource(SyncAPIResource):
         *,
         account_id: str,
         share_id: str,
+        include_resources: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -234,6 +239,8 @@ class RecipientsResource(SyncAPIResource):
           share_id: Share identifier tag.
 
           recipient_id: Share Recipient identifier tag.
+
+          include_resources: Include resources in the response.
 
           extra_headers: Send extra headers
 
@@ -256,6 +263,9 @@ class RecipientsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=maybe_transform(
+                    {"include_resources": include_resources}, recipient_get_params.RecipientGetParams
+                ),
                 post_parser=ResultWrapper[Optional[RecipientGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[RecipientGetResponse]], ResultWrapper[RecipientGetResponse]),
@@ -344,6 +354,7 @@ class AsyncRecipientsResource(AsyncAPIResource):
         share_id: str,
         *,
         account_id: str,
+        include_resources: bool | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -360,6 +371,8 @@ class AsyncRecipientsResource(AsyncAPIResource):
           account_id: Account identifier.
 
           share_id: Share identifier tag.
+
+          include_resources: Include resources in the response.
 
           page: Page number.
 
@@ -387,6 +400,7 @@ class AsyncRecipientsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "include_resources": include_resources,
                         "page": page,
                         "per_page": per_page,
                     },
@@ -452,6 +466,7 @@ class AsyncRecipientsResource(AsyncAPIResource):
         *,
         account_id: str,
         share_id: str,
+        include_resources: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -468,6 +483,8 @@ class AsyncRecipientsResource(AsyncAPIResource):
           share_id: Share identifier tag.
 
           recipient_id: Share Recipient identifier tag.
+
+          include_resources: Include resources in the response.
 
           extra_headers: Send extra headers
 
@@ -490,6 +507,9 @@ class AsyncRecipientsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=await async_maybe_transform(
+                    {"include_resources": include_resources}, recipient_get_params.RecipientGetParams
+                ),
                 post_parser=ResultWrapper[Optional[RecipientGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[RecipientGetResponse]], ResultWrapper[RecipientGetResponse]),

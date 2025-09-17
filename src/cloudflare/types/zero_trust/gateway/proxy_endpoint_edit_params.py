@@ -14,7 +14,7 @@ class ProxyEndpointEditParams(TypedDict, total=False):
     account_id: Required[str]
 
     ips: SequenceNotStr[GatewayIPs]
-    """A list of CIDRs to restrict ingress connections."""
+    """Specify the list of CIDRs to restrict ingress connections."""
 
     name: str
-    """The name of the proxy endpoint."""
+    """Specify the name of the proxy endpoint."""

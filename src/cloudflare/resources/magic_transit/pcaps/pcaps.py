@@ -96,7 +96,7 @@ class PCAPsResource(SyncAPIResource):
         Create new PCAP request for account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           packet_limit: The limit of packets contained in a packet capture.
 
@@ -146,7 +146,7 @@ class PCAPsResource(SyncAPIResource):
         Create new PCAP request for account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           colo_name: The name of the data center used for the packet capture. This can be a specific
               colo (ord02) or a multi-colo name (ORD). This field only applies to `full`
@@ -250,7 +250,7 @@ class PCAPsResource(SyncAPIResource):
         Lists all packet capture requests for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -287,9 +287,9 @@ class PCAPsResource(SyncAPIResource):
         Get information for a PCAP request by id.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          pcap_id: Identifier
+          pcap_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -333,12 +333,12 @@ class PCAPsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Stop full PCAP
+        Stop full PCAP.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          pcap_id: Identifier
+          pcap_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -412,7 +412,7 @@ class AsyncPCAPsResource(AsyncAPIResource):
         Create new PCAP request for account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           packet_limit: The limit of packets contained in a packet capture.
 
@@ -462,7 +462,7 @@ class AsyncPCAPsResource(AsyncAPIResource):
         Create new PCAP request for account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           colo_name: The name of the data center used for the packet capture. This can be a specific
               colo (ord02) or a multi-colo name (ORD). This field only applies to `full`
@@ -566,7 +566,7 @@ class AsyncPCAPsResource(AsyncAPIResource):
         Lists all packet capture requests for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -603,9 +603,9 @@ class AsyncPCAPsResource(AsyncAPIResource):
         Get information for a PCAP request by id.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          pcap_id: Identifier
+          pcap_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -649,12 +649,12 @@ class AsyncPCAPsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Stop full PCAP
+        Stop full PCAP.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          pcap_id: Identifier
+          pcap_id: Identifier.
 
           extra_headers: Send extra headers
 

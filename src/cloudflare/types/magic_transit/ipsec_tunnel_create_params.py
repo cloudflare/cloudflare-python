@@ -36,6 +36,12 @@ class IPSECTunnelCreateParams(TypedDict, total=False):
     name: Required[str]
     """The name of the IPsec tunnel. The name cannot share a name with other tunnels."""
 
+    automatic_return_routing: bool
+    """
+    True if automatic stateful return routing should be enabled for a tunnel, false
+    otherwise.
+    """
+
     bgp: BGP
 
     customer_endpoint: str

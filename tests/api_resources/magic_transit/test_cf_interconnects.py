@@ -37,6 +37,7 @@ class TestCfInterconnects:
         cf_interconnect = client.magic_transit.cf_interconnects.update(
             cf_interconnect_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            automatic_return_routing=True,
             description="Tunnel for Interconnect to ORD",
             gre={"cloudflare_endpoint": "203.0.113.1"},
             health_check={
@@ -275,6 +276,7 @@ class TestAsyncCfInterconnects:
         cf_interconnect = await async_client.magic_transit.cf_interconnects.update(
             cf_interconnect_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            automatic_return_routing=True,
             description="Tunnel for Interconnect to ORD",
             gre={"cloudflare_endpoint": "203.0.113.1"},
             health_check={

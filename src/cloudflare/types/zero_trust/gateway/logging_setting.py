@@ -15,42 +15,46 @@ __all__ = [
 
 class SettingsByRuleTypeDNS(BaseModel):
     log_all: Optional[bool] = None
-    """Log all requests to this service."""
+    """Specify whether to log all requests to this service."""
 
     log_blocks: Optional[bool] = None
-    """Log only blocking requests to this service."""
+    """Specify whether to log only blocking requests to this service."""
 
 
 class SettingsByRuleTypeHTTP(BaseModel):
     log_all: Optional[bool] = None
-    """Log all requests to this service."""
+    """Specify whether to log all requests to this service."""
 
     log_blocks: Optional[bool] = None
-    """Log only blocking requests to this service."""
+    """Specify whether to log only blocking requests to this service."""
 
 
 class SettingsByRuleTypeL4(BaseModel):
     log_all: Optional[bool] = None
-    """Log all requests to this service."""
+    """Specify whether to log all requests to this service."""
 
     log_blocks: Optional[bool] = None
-    """Log only blocking requests to this service."""
+    """Specify whether to log only blocking requests to this service."""
 
 
 class SettingsByRuleType(BaseModel):
     dns: Optional[SettingsByRuleTypeDNS] = None
+    """Configure logging settings for DNS firewall."""
 
     http: Optional[SettingsByRuleTypeHTTP] = None
+    """Configure logging settings for HTTP/HTTPS firewall."""
 
     l4: Optional[SettingsByRuleTypeL4] = None
+    """Configure logging settings for Network firewall."""
 
 
 class LoggingSetting(BaseModel):
     redact_pii: Optional[bool] = None
     """
-    Redact personally identifiable information from activity logging (PII fields
-    are: source IP, user email, user ID, device ID, URL, referrer, user agent).
+    Indicate whether to redact personally identifiable information from activity
+    logging (PII fields include source IP, user email, user ID, device ID, URL,
+    referrer, and user agent).
     """
 
     settings_by_rule_type: Optional[SettingsByRuleType] = None
-    """Logging settings by rule type."""
+    """Configure logging settings for each rule type."""

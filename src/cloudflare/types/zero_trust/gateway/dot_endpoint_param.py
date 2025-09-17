@@ -12,11 +12,11 @@ __all__ = ["DOTEndpointParam"]
 
 class DOTEndpointParam(TypedDict, total=False):
     enabled: bool
-    """True if the endpoint is enabled for this location."""
+    """Indicate whether the DOT endpoint is enabled for this location."""
 
     networks: Optional[Iterable[IPNetworkParam]]
-    """A list of allowed source IP network ranges for this endpoint.
+    """Specify the list of allowed source IP network ranges for this endpoint.
 
-    When empty, all source IPs are allowed. A non-empty list is only effective if
-    the endpoint is enabled for this location.
+    When the list is empty, the endpoint allows all source IPs. The list takes
+    effect only if the endpoint is enabled for this location.
     """

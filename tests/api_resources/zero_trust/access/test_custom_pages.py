@@ -33,17 +33,6 @@ class TestCustomPages:
         assert_matches_type(Optional[CustomPageWithoutHTML], custom_page, path=["response"])
 
     @parametrize
-    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
-        custom_page = client.zero_trust.access.custom_pages.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            custom_html="<html><body><h1>Access Denied</h1></body></html>",
-            name="name",
-            type="identity_denied",
-            app_count=0,
-        )
-        assert_matches_type(Optional[CustomPageWithoutHTML], custom_page, path=["response"])
-
-    @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.custom_pages.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -91,18 +80,6 @@ class TestCustomPages:
             custom_html="<html><body><h1>Access Denied</h1></body></html>",
             name="name",
             type="identity_denied",
-        )
-        assert_matches_type(Optional[CustomPageWithoutHTML], custom_page, path=["response"])
-
-    @parametrize
-    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
-        custom_page = client.zero_trust.access.custom_pages.update(
-            custom_page_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            custom_html="<html><body><h1>Access Denied</h1></body></html>",
-            name="name",
-            type="identity_denied",
-            app_count=0,
         )
         assert_matches_type(Optional[CustomPageWithoutHTML], custom_page, path=["response"])
 
@@ -318,17 +295,6 @@ class TestAsyncCustomPages:
         assert_matches_type(Optional[CustomPageWithoutHTML], custom_page, path=["response"])
 
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        custom_page = await async_client.zero_trust.access.custom_pages.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            custom_html="<html><body><h1>Access Denied</h1></body></html>",
-            name="name",
-            type="identity_denied",
-            app_count=0,
-        )
-        assert_matches_type(Optional[CustomPageWithoutHTML], custom_page, path=["response"])
-
-    @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.custom_pages.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -376,18 +342,6 @@ class TestAsyncCustomPages:
             custom_html="<html><body><h1>Access Denied</h1></body></html>",
             name="name",
             type="identity_denied",
-        )
-        assert_matches_type(Optional[CustomPageWithoutHTML], custom_page, path=["response"])
-
-    @parametrize
-    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        custom_page = await async_client.zero_trust.access.custom_pages.update(
-            custom_page_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            custom_html="<html><body><h1>Access Denied</h1></body></html>",
-            name="name",
-            type="identity_denied",
-            app_count=0,
         )
         assert_matches_type(Optional[CustomPageWithoutHTML], custom_page, path=["response"])
 

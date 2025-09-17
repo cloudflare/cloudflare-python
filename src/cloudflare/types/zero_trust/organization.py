@@ -1,7 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Optional
-from datetime import datetime
 
 from ..._models import BaseModel
 from .login_design import LoginDesign
@@ -36,8 +35,6 @@ class Organization(BaseModel):
     login.
     """
 
-    created_at: Optional[datetime] = None
-
     custom_pages: Optional[CustomPages] = None
 
     is_ui_read_only: Optional[bool] = None
@@ -60,8 +57,6 @@ class Organization(BaseModel):
 
     ui_read_only_toggle_reason: Optional[str] = None
     """A description of the reason why the UI read only field is being toggled."""
-
-    updated_at: Optional[datetime] = None
 
     user_seat_expiration_inactive_time: Optional[str] = None
     """The amount of time a user seat is inactive before it expires.

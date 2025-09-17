@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Iterable, Optional
 from typing_extensions import Required, TypedDict
 
+from ...._types import SequenceNotStr
 from .consumer_script_param import ConsumerScriptParam
 
 __all__ = ["SettingEditParams", "Observability", "ObservabilityLogs"]
@@ -19,6 +20,9 @@ class SettingEditParams(TypedDict, total=False):
 
     observability: Optional[Observability]
     """Observability settings for the Worker."""
+
+    tags: SequenceNotStr[str]
+    """Tags associated with the Worker."""
 
     tail_consumers: Optional[Iterable[ConsumerScriptParam]]
     """List of Workers that will consume logs from the attached Worker."""
@@ -35,8 +39,14 @@ class ObservabilityLogs(TypedDict, total=False):
     are enabled for the Worker.
     """
 
+    destinations: SequenceNotStr[str]
+    """A list of destinations where logs will be exported to."""
+
     head_sampling_rate: Optional[float]
     """The sampling rate for logs. From 0 to 1 (1 = 100%, 0.1 = 10%). Default is 1."""
+
+    persist: bool
+    """Whether log persistence is enabled for the Worker."""
 
 
 class Observability(TypedDict, total=False):

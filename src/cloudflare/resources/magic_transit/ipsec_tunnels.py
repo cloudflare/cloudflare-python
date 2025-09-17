@@ -62,6 +62,7 @@ class IPSECTunnelsResource(SyncAPIResource):
         cloudflare_endpoint: str,
         interface_address: str,
         name: str,
+        automatic_return_routing: bool | NotGiven = NOT_GIVEN,
         bgp: ipsec_tunnel_create_params.BGP | NotGiven = NOT_GIVEN,
         customer_endpoint: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
@@ -93,6 +94,9 @@ class IPSECTunnelsResource(SyncAPIResource):
               10.0.0.0–10.255.255.255, 172.16.0.0–172.31.255.255, 192.168.0.0–192.168.255.255.
 
           name: The name of the IPsec tunnel. The name cannot share a name with other tunnels.
+
+          automatic_return_routing: True if automatic stateful return routing should be enabled for a tunnel, false
+              otherwise.
 
           customer_endpoint: The IP address assigned to the customer side of the IPsec tunnel. Not required,
               but must be set for proactive traceroutes to work.
@@ -136,6 +140,7 @@ class IPSECTunnelsResource(SyncAPIResource):
                     "cloudflare_endpoint": cloudflare_endpoint,
                     "interface_address": interface_address,
                     "name": name,
+                    "automatic_return_routing": automatic_return_routing,
                     "bgp": bgp,
                     "customer_endpoint": customer_endpoint,
                     "description": description,
@@ -164,6 +169,7 @@ class IPSECTunnelsResource(SyncAPIResource):
         cloudflare_endpoint: str,
         interface_address: str,
         name: str,
+        automatic_return_routing: bool | NotGiven = NOT_GIVEN,
         bgp: ipsec_tunnel_update_params.BGP | NotGiven = NOT_GIVEN,
         customer_endpoint: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
@@ -197,6 +203,9 @@ class IPSECTunnelsResource(SyncAPIResource):
               10.0.0.0–10.255.255.255, 172.16.0.0–172.31.255.255, 192.168.0.0–192.168.255.255.
 
           name: The name of the IPsec tunnel. The name cannot share a name with other tunnels.
+
+          automatic_return_routing: True if automatic stateful return routing should be enabled for a tunnel, false
+              otherwise.
 
           customer_endpoint: The IP address assigned to the customer side of the IPsec tunnel. Not required,
               but must be set for proactive traceroutes to work.
@@ -242,6 +251,7 @@ class IPSECTunnelsResource(SyncAPIResource):
                     "cloudflare_endpoint": cloudflare_endpoint,
                     "interface_address": interface_address,
                     "name": name,
+                    "automatic_return_routing": automatic_return_routing,
                     "bgp": bgp,
                     "customer_endpoint": customer_endpoint,
                     "description": description,
@@ -557,6 +567,7 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
         cloudflare_endpoint: str,
         interface_address: str,
         name: str,
+        automatic_return_routing: bool | NotGiven = NOT_GIVEN,
         bgp: ipsec_tunnel_create_params.BGP | NotGiven = NOT_GIVEN,
         customer_endpoint: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
@@ -588,6 +599,9 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
               10.0.0.0–10.255.255.255, 172.16.0.0–172.31.255.255, 192.168.0.0–192.168.255.255.
 
           name: The name of the IPsec tunnel. The name cannot share a name with other tunnels.
+
+          automatic_return_routing: True if automatic stateful return routing should be enabled for a tunnel, false
+              otherwise.
 
           customer_endpoint: The IP address assigned to the customer side of the IPsec tunnel. Not required,
               but must be set for proactive traceroutes to work.
@@ -631,6 +645,7 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
                     "cloudflare_endpoint": cloudflare_endpoint,
                     "interface_address": interface_address,
                     "name": name,
+                    "automatic_return_routing": automatic_return_routing,
                     "bgp": bgp,
                     "customer_endpoint": customer_endpoint,
                     "description": description,
@@ -659,6 +674,7 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
         cloudflare_endpoint: str,
         interface_address: str,
         name: str,
+        automatic_return_routing: bool | NotGiven = NOT_GIVEN,
         bgp: ipsec_tunnel_update_params.BGP | NotGiven = NOT_GIVEN,
         customer_endpoint: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
@@ -692,6 +708,9 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
               10.0.0.0–10.255.255.255, 172.16.0.0–172.31.255.255, 192.168.0.0–192.168.255.255.
 
           name: The name of the IPsec tunnel. The name cannot share a name with other tunnels.
+
+          automatic_return_routing: True if automatic stateful return routing should be enabled for a tunnel, false
+              otherwise.
 
           customer_endpoint: The IP address assigned to the customer side of the IPsec tunnel. Not required,
               but must be set for proactive traceroutes to work.
@@ -737,6 +756,7 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
                     "cloudflare_endpoint": cloudflare_endpoint,
                     "interface_address": interface_address,
                     "name": name,
+                    "automatic_return_routing": automatic_return_routing,
                     "bgp": bgp,
                     "customer_endpoint": customer_endpoint,
                     "description": description,

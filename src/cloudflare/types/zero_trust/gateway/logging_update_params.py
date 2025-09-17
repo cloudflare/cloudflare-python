@@ -18,41 +18,45 @@ class LoggingUpdateParams(TypedDict, total=False):
 
     redact_pii: bool
     """
-    Redact personally identifiable information from activity logging (PII fields
-    are: source IP, user email, user ID, device ID, URL, referrer, user agent).
+    Indicate whether to redact personally identifiable information from activity
+    logging (PII fields include source IP, user email, user ID, device ID, URL,
+    referrer, and user agent).
     """
 
     settings_by_rule_type: SettingsByRuleType
-    """Logging settings by rule type."""
+    """Configure logging settings for each rule type."""
 
 
 class SettingsByRuleTypeDNS(TypedDict, total=False):
     log_all: bool
-    """Log all requests to this service."""
+    """Specify whether to log all requests to this service."""
 
     log_blocks: bool
-    """Log only blocking requests to this service."""
+    """Specify whether to log only blocking requests to this service."""
 
 
 class SettingsByRuleTypeHTTP(TypedDict, total=False):
     log_all: bool
-    """Log all requests to this service."""
+    """Specify whether to log all requests to this service."""
 
     log_blocks: bool
-    """Log only blocking requests to this service."""
+    """Specify whether to log only blocking requests to this service."""
 
 
 class SettingsByRuleTypeL4(TypedDict, total=False):
     log_all: bool
-    """Log all requests to this service."""
+    """Specify whether to log all requests to this service."""
 
     log_blocks: bool
-    """Log only blocking requests to this service."""
+    """Specify whether to log only blocking requests to this service."""
 
 
 class SettingsByRuleType(TypedDict, total=False):
     dns: SettingsByRuleTypeDNS
+    """Configure logging settings for DNS firewall."""
 
     http: SettingsByRuleTypeHTTP
+    """Configure logging settings for HTTP/HTTPS firewall."""
 
     l4: SettingsByRuleTypeL4
+    """Configure logging settings for Network firewall."""

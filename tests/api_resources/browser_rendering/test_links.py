@@ -70,6 +70,7 @@ class TestLinks:
                 }
             ],
             emulate_media_type="emulateMediaType",
+            exclude_external_links=True,
             goto_options={
                 "referer": "referer",
                 "referrer_policy": "referrerPolicy",
@@ -192,6 +193,7 @@ class TestAsyncLinks:
                 }
             ],
             emulate_media_type="emulateMediaType",
+            exclude_external_links=True,
             goto_options={
                 "referer": "referer",
                 "referrer_policy": "referrerPolicy",

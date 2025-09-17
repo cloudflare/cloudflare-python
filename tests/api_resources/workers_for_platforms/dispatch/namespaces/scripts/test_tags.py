@@ -27,7 +27,7 @@ class TestTags:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            body=["my-tag"],
+            body=["my-team", "my-public-api"],
         )
         assert_matches_type(SyncSinglePage[TagUpdateResponse], tag, path=["response"])
 
@@ -37,7 +37,7 @@ class TestTags:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            body=["my-tag"],
+            body=["my-team", "my-public-api"],
         )
 
         assert response.is_closed is True
@@ -51,7 +51,7 @@ class TestTags:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            body=["my-tag"],
+            body=["my-team", "my-public-api"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -68,7 +68,7 @@ class TestTags:
                 script_name="this-is_my_script-01",
                 account_id="",
                 dispatch_namespace="my-dispatch-namespace",
-                body=["my-tag"],
+                body=["my-team", "my-public-api"],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
@@ -76,7 +76,7 @@ class TestTags:
                 script_name="this-is_my_script-01",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="",
-                body=["my-tag"],
+                body=["my-team", "my-public-api"],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
@@ -84,7 +84,7 @@ class TestTags:
                 script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="my-dispatch-namespace",
-                body=["my-tag"],
+                body=["my-team", "my-public-api"],
             )
 
     @parametrize
@@ -233,7 +233,7 @@ class TestAsyncTags:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            body=["my-tag"],
+            body=["my-team", "my-public-api"],
         )
         assert_matches_type(AsyncSinglePage[TagUpdateResponse], tag, path=["response"])
 
@@ -243,7 +243,7 @@ class TestAsyncTags:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            body=["my-tag"],
+            body=["my-team", "my-public-api"],
         )
 
         assert response.is_closed is True
@@ -257,7 +257,7 @@ class TestAsyncTags:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            body=["my-tag"],
+            body=["my-team", "my-public-api"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -274,7 +274,7 @@ class TestAsyncTags:
                 script_name="this-is_my_script-01",
                 account_id="",
                 dispatch_namespace="my-dispatch-namespace",
-                body=["my-tag"],
+                body=["my-team", "my-public-api"],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
@@ -282,7 +282,7 @@ class TestAsyncTags:
                 script_name="this-is_my_script-01",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="",
-                body=["my-tag"],
+                body=["my-team", "my-public-api"],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
@@ -290,7 +290,7 @@ class TestAsyncTags:
                 script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="my-dispatch-namespace",
-                body=["my-tag"],
+                body=["my-team", "my-public-api"],
             )
 
     @parametrize

@@ -11,7 +11,8 @@ class AuditSSHSettingUpdateParams(TypedDict, total=False):
     account_id: Required[str]
 
     public_key: Required[str]
-    """Base64 encoded HPKE public key used to encrypt all your ssh session logs.
+    """Provide the Base64-encoded HPKE public key that encrypts SSH session logs.
 
-    https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/use-cases/ssh/ssh-infrastructure-access/#enable-ssh-command-logging
+    See
+    https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/use-cases/ssh/ssh-infrastructure-access/#enable-ssh-command-logging.
     """

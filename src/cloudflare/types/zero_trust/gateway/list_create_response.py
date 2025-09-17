@@ -12,20 +12,20 @@ __all__ = ["ListCreateResponse"]
 
 class ListCreateResponse(BaseModel):
     id: Optional[str] = None
-    """API Resource UUID tag."""
+    """Identify the API resource with a UUID."""
 
     created_at: Optional[datetime] = None
 
     description: Optional[str] = None
-    """The description of the list."""
+    """Provide the list description."""
 
     items: Optional[List[GatewayItem]] = None
-    """The items in the list."""
+    """Provide the list items."""
 
     name: Optional[str] = None
-    """The name of the list."""
+    """Specify the list name."""
 
     type: Optional[Literal["SERIAL", "URL", "DOMAIN", "EMAIL", "IP"]] = None
-    """The type of list."""
+    """Specify the list type."""
 
     updated_at: Optional[datetime] = None

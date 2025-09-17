@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Type, Mapping, Optional, cast
+from typing_extensions import Literal
 
 import httpx
 
@@ -91,7 +92,7 @@ from .assets.assets import (
     AsyncAssetsResourceWithStreamingResponse,
 )
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.workers import script_list_params, script_delete_params, script_update_params
+from ....types.workers import script_list_params, script_delete_params, script_search_params, script_update_params
 from ....types.workers.script import Script
 from .script_and_version_settings import (
     ScriptAndVersionSettingsResource,
@@ -101,6 +102,7 @@ from .script_and_version_settings import (
     ScriptAndVersionSettingsResourceWithStreamingResponse,
     AsyncScriptAndVersionSettingsResourceWithStreamingResponse,
 )
+from ....types.workers.script_search_response import ScriptSearchResponse
 from ....types.workers.script_update_response import ScriptUpdateResponse
 
 __all__ = ["ScriptsResource", "AsyncScriptsResource"]
@@ -377,6 +379,70 @@ class ScriptsResource(SyncAPIResource):
             cast_to=str,
         )
 
+    def search(
+        self,
+        *,
+        account_id: str,
+        id: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        order_by: Literal["created_on", "modified_on", "name"] | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ScriptSearchResponse:
+        """
+        Search for Workers in an account.
+
+        Args:
+          account_id: Identifier.
+
+          id: Worker ID (also called tag) to search for. Only exact matches are returned.
+
+          name: Worker name to search for. Both exact and partial matches are returned.
+
+          order_by: Property to sort results by. Results are sorted in ascending order.
+
+          page: Current page.
+
+          per_page: Items per page.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._get(
+            f"/accounts/{account_id}/workers/scripts-search",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "id": id,
+                        "name": name,
+                        "order_by": order_by,
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    script_search_params.ScriptSearchParams,
+                ),
+                post_parser=ResultWrapper[ScriptSearchResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[ScriptSearchResponse], ResultWrapper[ScriptSearchResponse]),
+        )
+
 
 class AsyncScriptsResource(AsyncAPIResource):
     @cached_property
@@ -649,6 +715,70 @@ class AsyncScriptsResource(AsyncAPIResource):
             cast_to=str,
         )
 
+    async def search(
+        self,
+        *,
+        account_id: str,
+        id: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        order_by: Literal["created_on", "modified_on", "name"] | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ScriptSearchResponse:
+        """
+        Search for Workers in an account.
+
+        Args:
+          account_id: Identifier.
+
+          id: Worker ID (also called tag) to search for. Only exact matches are returned.
+
+          name: Worker name to search for. Both exact and partial matches are returned.
+
+          order_by: Property to sort results by. Results are sorted in ascending order.
+
+          page: Current page.
+
+          per_page: Items per page.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._get(
+            f"/accounts/{account_id}/workers/scripts-search",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "id": id,
+                        "name": name,
+                        "order_by": order_by,
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    script_search_params.ScriptSearchParams,
+                ),
+                post_parser=ResultWrapper[ScriptSearchResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[ScriptSearchResponse], ResultWrapper[ScriptSearchResponse]),
+        )
+
 
 class ScriptsResourceWithRawResponse:
     def __init__(self, scripts: ScriptsResource) -> None:
@@ -665,6 +795,9 @@ class ScriptsResourceWithRawResponse:
         )
         self.get = to_raw_response_wrapper(
             scripts.get,
+        )
+        self.search = to_raw_response_wrapper(
+            scripts.search,
         )
 
     @cached_property
@@ -724,6 +857,9 @@ class AsyncScriptsResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             scripts.get,
         )
+        self.search = async_to_raw_response_wrapper(
+            scripts.search,
+        )
 
     @cached_property
     def assets(self) -> AsyncAssetsResourceWithRawResponse:
@@ -782,6 +918,9 @@ class ScriptsResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             scripts.get,
         )
+        self.search = to_streamed_response_wrapper(
+            scripts.search,
+        )
 
     @cached_property
     def assets(self) -> AssetsResourceWithStreamingResponse:
@@ -839,6 +978,9 @@ class AsyncScriptsResourceWithStreamingResponse:
         )
         self.get = async_to_streamed_response_wrapper(
             scripts.get,
+        )
+        self.search = async_to_streamed_response_wrapper(
+            scripts.search,
         )
 
     @cached_property

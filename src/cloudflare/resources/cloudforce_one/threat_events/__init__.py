@@ -16,14 +16,6 @@ from .tags import (
     TagsResourceWithStreamingResponse,
     AsyncTagsResourceWithStreamingResponse,
 )
-from .crons import (
-    CronsResource,
-    AsyncCronsResource,
-    CronsResourceWithRawResponse,
-    AsyncCronsResourceWithRawResponse,
-    CronsResourceWithStreamingResponse,
-    AsyncCronsResourceWithStreamingResponse,
-)
 from .relate import (
     RelateResource,
     AsyncRelateResource,
@@ -116,12 +108,6 @@ __all__ = [
     "AsyncCountriesResourceWithRawResponse",
     "CountriesResourceWithStreamingResponse",
     "AsyncCountriesResourceWithStreamingResponse",
-    "CronsResource",
-    "AsyncCronsResource",
-    "CronsResourceWithRawResponse",
-    "AsyncCronsResourceWithRawResponse",
-    "CronsResourceWithStreamingResponse",
-    "AsyncCronsResourceWithStreamingResponse",
     "DatasetsResource",
     "AsyncDatasetsResource",
     "DatasetsResourceWithRawResponse",

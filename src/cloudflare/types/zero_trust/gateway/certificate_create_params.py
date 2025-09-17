@@ -11,9 +11,9 @@ class CertificateCreateParams(TypedDict, total=False):
     account_id: Required[str]
 
     validity_period_days: int
-    """
-    Number of days the generated certificate will be valid, minimum 1 day and
-    maximum 30 years. Defaults to 5 years. In terraform, validity_period_days can
-    only be used while creating a certificate, and this CAN NOT be used to extend
-    the validity of an already generated certificate.
+    """Sets the certificate validity period in days (range: 1-10,950 days / ~30 years).
+
+    Defaults to 1,825 days (5 years). **Important**: This field is only settable
+    during the certificate creation. Certificates becomes immutable after creation -
+    use the `/activate` and `/deactivate` endpoints to manage certificate lifecycle.
     """

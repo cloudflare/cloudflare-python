@@ -67,13 +67,13 @@ class CertificatesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[CertificateCreateResponse]:
         """
-        Creates a new Zero Trust certificate.
+        Create a new Zero Trust certificate.
 
         Args:
-          validity_period_days: Number of days the generated certificate will be valid, minimum 1 day and
-              maximum 30 years. Defaults to 5 years. In terraform, validity_period_days can
-              only be used while creating a certificate, and this CAN NOT be used to extend
-              the validity of an already generated certificate.
+          validity_period_days: Sets the certificate validity period in days (range: 1-10,950 days / ~30 years).
+              Defaults to 1,825 days (5 years). **Important**: This field is only settable
+              during the certificate creation. Certificates becomes immutable after creation -
+              use the `/activate` and `/deactivate` endpoints to manage certificate lifecycle.
 
           extra_headers: Send extra headers
 
@@ -112,7 +112,7 @@ class CertificatesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncSinglePage[CertificateListResponse]:
         """
-        Fetches all Zero Trust certificates for an account.
+        List all Zero Trust certificates for an account.
 
         Args:
           extra_headers: Send extra headers
@@ -146,13 +146,13 @@ class CertificatesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[CertificateDeleteResponse]:
-        """Deletes a gateway-managed Zero Trust certificate.
+        """Delete a gateway-managed Zero Trust certificate.
 
-        A certificate must be
-        deactivated from the edge (inactive) before it is deleted.
+        You must deactivate the
+        certificate from the edge (inactive) before deleting it.
 
         Args:
-          certificate_id: Certificate UUID tag.
+          certificate_id: Identify the certificate with a UUID.
 
           extra_headers: Send extra headers
 
@@ -192,10 +192,10 @@ class CertificatesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[CertificateActivateResponse]:
         """
-        Binds a single Zero Trust certificate to the edge.
+        Bind a single Zero Trust certificate to the edge.
 
         Args:
-          certificate_id: Certificate UUID tag.
+          certificate_id: Identify the certificate with a UUID.
 
           extra_headers: Send extra headers
 
@@ -236,10 +236,10 @@ class CertificatesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[CertificateDeactivateResponse]:
         """
-        Unbinds a single Zero Trust certificate from the edge.
+        Unbind a single Zero Trust certificate from the edge.
 
         Args:
-          certificate_id: Certificate UUID tag.
+          certificate_id: Identify the certificate with a UUID.
 
           extra_headers: Send extra headers
 
@@ -279,10 +279,10 @@ class CertificatesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[CertificateGetResponse]:
         """
-        Fetches a single Zero Trust certificate.
+        Get a single Zero Trust certificate.
 
         Args:
-          certificate_id: Certificate UUID tag.
+          certificate_id: Identify the certificate with a UUID.
 
           extra_headers: Send extra headers
 
@@ -342,13 +342,13 @@ class AsyncCertificatesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[CertificateCreateResponse]:
         """
-        Creates a new Zero Trust certificate.
+        Create a new Zero Trust certificate.
 
         Args:
-          validity_period_days: Number of days the generated certificate will be valid, minimum 1 day and
-              maximum 30 years. Defaults to 5 years. In terraform, validity_period_days can
-              only be used while creating a certificate, and this CAN NOT be used to extend
-              the validity of an already generated certificate.
+          validity_period_days: Sets the certificate validity period in days (range: 1-10,950 days / ~30 years).
+              Defaults to 1,825 days (5 years). **Important**: This field is only settable
+              during the certificate creation. Certificates becomes immutable after creation -
+              use the `/activate` and `/deactivate` endpoints to manage certificate lifecycle.
 
           extra_headers: Send extra headers
 
@@ -387,7 +387,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[CertificateListResponse, AsyncSinglePage[CertificateListResponse]]:
         """
-        Fetches all Zero Trust certificates for an account.
+        List all Zero Trust certificates for an account.
 
         Args:
           extra_headers: Send extra headers
@@ -421,13 +421,13 @@ class AsyncCertificatesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[CertificateDeleteResponse]:
-        """Deletes a gateway-managed Zero Trust certificate.
+        """Delete a gateway-managed Zero Trust certificate.
 
-        A certificate must be
-        deactivated from the edge (inactive) before it is deleted.
+        You must deactivate the
+        certificate from the edge (inactive) before deleting it.
 
         Args:
-          certificate_id: Certificate UUID tag.
+          certificate_id: Identify the certificate with a UUID.
 
           extra_headers: Send extra headers
 
@@ -467,10 +467,10 @@ class AsyncCertificatesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[CertificateActivateResponse]:
         """
-        Binds a single Zero Trust certificate to the edge.
+        Bind a single Zero Trust certificate to the edge.
 
         Args:
-          certificate_id: Certificate UUID tag.
+          certificate_id: Identify the certificate with a UUID.
 
           extra_headers: Send extra headers
 
@@ -511,10 +511,10 @@ class AsyncCertificatesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[CertificateDeactivateResponse]:
         """
-        Unbinds a single Zero Trust certificate from the edge.
+        Unbind a single Zero Trust certificate from the edge.
 
         Args:
-          certificate_id: Certificate UUID tag.
+          certificate_id: Identify the certificate with a UUID.
 
           extra_headers: Send extra headers
 
@@ -554,10 +554,10 @@ class AsyncCertificatesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[CertificateGetResponse]:
         """
-        Fetches a single Zero Trust certificate.
+        Get a single Zero Trust certificate.
 
         Args:
-          certificate_id: Certificate UUID tag.
+          certificate_id: Identify the certificate with a UUID.
 
           extra_headers: Send extra headers
 

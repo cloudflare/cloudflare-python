@@ -64,28 +64,26 @@ class LocationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Location]:
         """
-        Creates a new Zero Trust Gateway location.
+        Create a new Zero Trust Gateway location.
 
         Args:
-          name: The name of the location.
+          name: Specify the location name.
 
-          client_default: True if the location is the default location.
+          client_default: Indicate whether this location is the default location.
 
-          dns_destination_ips_id: The identifier of the pair of IPv4 addresses assigned to this location. When
-              creating a location, if this field is absent or set with null, the pair of
+          dns_destination_ips_id: Specify the identifier of the pair of IPv4 addresses assigned to this location.
+              When creating a location, if this field is absent or set to null, the pair of
               shared IPv4 addresses (0e4a32c6-6fb8-4858-9296-98f51631e8e6) is auto-assigned.
-              When updating a location, if the field is absent or set with null, the
+              When updating a location, if this field is absent or set to null, the
               pre-assigned pair remains unchanged.
 
-          ecs_support: True if the location needs to resolve EDNS queries.
+          ecs_support: Indicate whether the location must resolve EDNS queries.
 
-          endpoints: The destination endpoints configured for this location. When updating a
-              location, if this field is absent or set with null, the endpoints configuration
-              remains unchanged.
+          endpoints: Configure the destination endpoints for this location.
 
-          networks: A list of network ranges that requests from this location would originate from.
-              A non-empty list is only effective if the ipv4 endpoint is enabled for this
-              location.
+          networks: Specify the list of network ranges from which requests at this location
+              originate. The list takes effect only if it is non-empty and the IPv4 endpoint
+              is enabled for this location.
 
           extra_headers: Send extra headers
 
@@ -139,28 +137,26 @@ class LocationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Location]:
         """
-        Updates a configured Zero Trust Gateway location.
+        Update a configured Zero Trust Gateway location.
 
         Args:
-          name: The name of the location.
+          name: Specify the location name.
 
-          client_default: True if the location is the default location.
+          client_default: Indicate whether this location is the default location.
 
-          dns_destination_ips_id: The identifier of the pair of IPv4 addresses assigned to this location. When
-              creating a location, if this field is absent or set with null, the pair of
+          dns_destination_ips_id: Specify the identifier of the pair of IPv4 addresses assigned to this location.
+              When creating a location, if this field is absent or set to null, the pair of
               shared IPv4 addresses (0e4a32c6-6fb8-4858-9296-98f51631e8e6) is auto-assigned.
-              When updating a location, if the field is absent or set with null, the
+              When updating a location, if this field is absent or set to null, the
               pre-assigned pair remains unchanged.
 
-          ecs_support: True if the location needs to resolve EDNS queries.
+          ecs_support: Indicate whether the location must resolve EDNS queries.
 
-          endpoints: The destination endpoints configured for this location. When updating a
-              location, if this field is absent or set with null, the endpoints configuration
-              remains unchanged.
+          endpoints: Configure the destination endpoints for this location.
 
-          networks: A list of network ranges that requests from this location would originate from.
-              A non-empty list is only effective if the ipv4 endpoint is enabled for this
-              location.
+          networks: Specify the list of network ranges from which requests at this location
+              originate. The list takes effect only if it is non-empty and the IPv4 endpoint
+              is enabled for this location.
 
           extra_headers: Send extra headers
 
@@ -209,7 +205,7 @@ class LocationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncSinglePage[Location]:
         """
-        Fetches Zero Trust Gateway locations for an account.
+        List Zero Trust Gateway locations for an account.
 
         Args:
           extra_headers: Send extra headers
@@ -244,7 +240,7 @@ class LocationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        Deletes a configured Zero Trust Gateway location.
+        Delete a configured Zero Trust Gateway location.
 
         Args:
           extra_headers: Send extra headers
@@ -284,7 +280,7 @@ class LocationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Location]:
         """
-        Fetches a single Zero Trust Gateway location.
+        Get a single Zero Trust Gateway location.
 
         Args:
           extra_headers: Send extra headers
@@ -350,28 +346,26 @@ class AsyncLocationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Location]:
         """
-        Creates a new Zero Trust Gateway location.
+        Create a new Zero Trust Gateway location.
 
         Args:
-          name: The name of the location.
+          name: Specify the location name.
 
-          client_default: True if the location is the default location.
+          client_default: Indicate whether this location is the default location.
 
-          dns_destination_ips_id: The identifier of the pair of IPv4 addresses assigned to this location. When
-              creating a location, if this field is absent or set with null, the pair of
+          dns_destination_ips_id: Specify the identifier of the pair of IPv4 addresses assigned to this location.
+              When creating a location, if this field is absent or set to null, the pair of
               shared IPv4 addresses (0e4a32c6-6fb8-4858-9296-98f51631e8e6) is auto-assigned.
-              When updating a location, if the field is absent or set with null, the
+              When updating a location, if this field is absent or set to null, the
               pre-assigned pair remains unchanged.
 
-          ecs_support: True if the location needs to resolve EDNS queries.
+          ecs_support: Indicate whether the location must resolve EDNS queries.
 
-          endpoints: The destination endpoints configured for this location. When updating a
-              location, if this field is absent or set with null, the endpoints configuration
-              remains unchanged.
+          endpoints: Configure the destination endpoints for this location.
 
-          networks: A list of network ranges that requests from this location would originate from.
-              A non-empty list is only effective if the ipv4 endpoint is enabled for this
-              location.
+          networks: Specify the list of network ranges from which requests at this location
+              originate. The list takes effect only if it is non-empty and the IPv4 endpoint
+              is enabled for this location.
 
           extra_headers: Send extra headers
 
@@ -425,28 +419,26 @@ class AsyncLocationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Location]:
         """
-        Updates a configured Zero Trust Gateway location.
+        Update a configured Zero Trust Gateway location.
 
         Args:
-          name: The name of the location.
+          name: Specify the location name.
 
-          client_default: True if the location is the default location.
+          client_default: Indicate whether this location is the default location.
 
-          dns_destination_ips_id: The identifier of the pair of IPv4 addresses assigned to this location. When
-              creating a location, if this field is absent or set with null, the pair of
+          dns_destination_ips_id: Specify the identifier of the pair of IPv4 addresses assigned to this location.
+              When creating a location, if this field is absent or set to null, the pair of
               shared IPv4 addresses (0e4a32c6-6fb8-4858-9296-98f51631e8e6) is auto-assigned.
-              When updating a location, if the field is absent or set with null, the
+              When updating a location, if this field is absent or set to null, the
               pre-assigned pair remains unchanged.
 
-          ecs_support: True if the location needs to resolve EDNS queries.
+          ecs_support: Indicate whether the location must resolve EDNS queries.
 
-          endpoints: The destination endpoints configured for this location. When updating a
-              location, if this field is absent or set with null, the endpoints configuration
-              remains unchanged.
+          endpoints: Configure the destination endpoints for this location.
 
-          networks: A list of network ranges that requests from this location would originate from.
-              A non-empty list is only effective if the ipv4 endpoint is enabled for this
-              location.
+          networks: Specify the list of network ranges from which requests at this location
+              originate. The list takes effect only if it is non-empty and the IPv4 endpoint
+              is enabled for this location.
 
           extra_headers: Send extra headers
 
@@ -495,7 +487,7 @@ class AsyncLocationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[Location, AsyncSinglePage[Location]]:
         """
-        Fetches Zero Trust Gateway locations for an account.
+        List Zero Trust Gateway locations for an account.
 
         Args:
           extra_headers: Send extra headers
@@ -530,7 +522,7 @@ class AsyncLocationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        Deletes a configured Zero Trust Gateway location.
+        Delete a configured Zero Trust Gateway location.
 
         Args:
           extra_headers: Send extra headers
@@ -570,7 +562,7 @@ class AsyncLocationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Location]:
         """
-        Fetches a single Zero Trust Gateway location.
+        Get a single Zero Trust Gateway location.
 
         Args:
           extra_headers: Send extra headers

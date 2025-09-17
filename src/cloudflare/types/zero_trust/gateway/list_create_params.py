@@ -12,21 +12,21 @@ class ListCreateParams(TypedDict, total=False):
     account_id: Required[str]
 
     name: Required[str]
-    """The name of the list."""
+    """Specify the list name."""
 
     type: Required[Literal["SERIAL", "URL", "DOMAIN", "EMAIL", "IP"]]
-    """The type of list."""
+    """Specify the list type."""
 
     description: str
-    """The description of the list."""
+    """Provide the list description."""
 
     items: Iterable[Item]
-    """items to add to the list."""
+    """Add items to the list."""
 
 
 class Item(TypedDict, total=False):
     description: str
-    """The description of the list item, if present."""
+    """Provide the list item description (optional)."""
 
     value: str
-    """The value of the item in a list."""
+    """Specify the item value."""

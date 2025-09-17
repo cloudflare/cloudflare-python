@@ -18,11 +18,14 @@ __all__ = [
     "MetadataBindingWorkersBindingKindAssets",
     "MetadataBindingWorkersBindingKindBrowser",
     "MetadataBindingWorkersBindingKindD1",
+    "MetadataBindingWorkersBindingKindDataBlob",
     "MetadataBindingWorkersBindingKindDispatchNamespace",
     "MetadataBindingWorkersBindingKindDispatchNamespaceOutbound",
     "MetadataBindingWorkersBindingKindDispatchNamespaceOutboundWorker",
     "MetadataBindingWorkersBindingKindDurableObjectNamespace",
     "MetadataBindingWorkersBindingKindHyperdrive",
+    "MetadataBindingWorkersBindingKindInherit",
+    "MetadataBindingWorkersBindingKindImages",
     "MetadataBindingWorkersBindingKindJson",
     "MetadataBindingWorkersBindingKindKVNamespace",
     "MetadataBindingWorkersBindingKindMTLSCertificate",
@@ -31,13 +34,16 @@ __all__ = [
     "MetadataBindingWorkersBindingKindQueue",
     "MetadataBindingWorkersBindingKindR2Bucket",
     "MetadataBindingWorkersBindingKindSecretText",
+    "MetadataBindingWorkersBindingKindSendEmail",
     "MetadataBindingWorkersBindingKindService",
     "MetadataBindingWorkersBindingKindTailConsumer",
+    "MetadataBindingWorkersBindingKindTextBlob",
     "MetadataBindingWorkersBindingKindVectorize",
     "MetadataBindingWorkersBindingKindVersionMetadata",
     "MetadataBindingWorkersBindingKindSecretsStoreSecret",
     "MetadataBindingWorkersBindingKindSecretKey",
     "MetadataBindingWorkersBindingKindWorkflow",
+    "MetadataBindingWorkersBindingKindWasmModule",
 ]
 
 
@@ -114,6 +120,20 @@ class MetadataBindingWorkersBindingKindD1(TypedDict, total=False):
     """The kind of resource that the binding provides."""
 
 
+class MetadataBindingWorkersBindingKindDataBlob(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    part: Required[str]
+    """The name of the file containing the data content.
+
+    Only accepted for `service worker syntax` Workers.
+    """
+
+    type: Required[Literal["data_blob"]]
+    """The kind of resource that the binding provides."""
+
+
 class MetadataBindingWorkersBindingKindDispatchNamespaceOutboundWorker(TypedDict, total=False):
     environment: str
     """Environment of the outbound worker."""
@@ -178,6 +198,36 @@ class MetadataBindingWorkersBindingKindHyperdrive(TypedDict, total=False):
     """A JavaScript variable name for the binding."""
 
     type: Required[Literal["hyperdrive"]]
+    """The kind of resource that the binding provides."""
+
+
+class MetadataBindingWorkersBindingKindInherit(TypedDict, total=False):
+    name: Required[str]
+    """The name of the inherited binding."""
+
+    type: Required[Literal["inherit"]]
+    """The kind of resource that the binding provides."""
+
+    old_name: str
+    """The old name of the inherited binding.
+
+    If set, the binding will be renamed from `old_name` to `name` in the new
+    version. If not set, the binding will keep the same name between versions.
+    """
+
+    version_id: str
+    """
+    Identifier for the version to inherit the binding from, which can be the version
+    ID or the literal "latest" to inherit from the latest version. Defaults to
+    inheriting the binding from the latest version.
+    """
+
+
+class MetadataBindingWorkersBindingKindImages(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    type: Required[Literal["images"]]
     """The kind of resource that the binding provides."""
 
 
@@ -269,10 +319,24 @@ class MetadataBindingWorkersBindingKindSecretText(TypedDict, total=False):
     """The kind of resource that the binding provides."""
 
 
-class MetadataBindingWorkersBindingKindService(TypedDict, total=False):
-    environment: Required[str]
-    """Optional environment if the Worker utilizes one."""
+class MetadataBindingWorkersBindingKindSendEmail(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
 
+    type: Required[Literal["send_email"]]
+    """The kind of resource that the binding provides."""
+
+    allowed_destination_addresses: SequenceNotStr[str]
+    """List of allowed destination addresses."""
+
+    allowed_sender_addresses: SequenceNotStr[str]
+    """List of allowed sender addresses."""
+
+    destination_address: str
+    """Destination address for the email."""
+
+
+class MetadataBindingWorkersBindingKindService(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
 
@@ -281,6 +345,9 @@ class MetadataBindingWorkersBindingKindService(TypedDict, total=False):
 
     type: Required[Literal["service"]]
     """The kind of resource that the binding provides."""
+
+    environment: str
+    """Optional environment if the Worker utilizes one."""
 
 
 class MetadataBindingWorkersBindingKindTailConsumer(TypedDict, total=False):
@@ -291,6 +358,20 @@ class MetadataBindingWorkersBindingKindTailConsumer(TypedDict, total=False):
     """Name of Tail Worker to bind to."""
 
     type: Required[Literal["tail_consumer"]]
+    """The kind of resource that the binding provides."""
+
+
+class MetadataBindingWorkersBindingKindTextBlob(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    part: Required[str]
+    """The name of the file containing the text content.
+
+    Only accepted for `service worker syntax` Workers.
+    """
+
+    type: Required[Literal["text_blob"]]
     """The kind of resource that the binding provides."""
 
 
@@ -388,15 +469,32 @@ class MetadataBindingWorkersBindingKindWorkflow(TypedDict, total=False):
     """
 
 
+class MetadataBindingWorkersBindingKindWasmModule(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    part: Required[str]
+    """The name of the file containing the WebAssembly module content.
+
+    Only accepted for `service worker syntax` Workers.
+    """
+
+    type: Required[Literal["wasm_module"]]
+    """The kind of resource that the binding provides."""
+
+
 MetadataBinding: TypeAlias = Union[
     MetadataBindingWorkersBindingKindAI,
     MetadataBindingWorkersBindingKindAnalyticsEngine,
     MetadataBindingWorkersBindingKindAssets,
     MetadataBindingWorkersBindingKindBrowser,
     MetadataBindingWorkersBindingKindD1,
+    MetadataBindingWorkersBindingKindDataBlob,
     MetadataBindingWorkersBindingKindDispatchNamespace,
     MetadataBindingWorkersBindingKindDurableObjectNamespace,
     MetadataBindingWorkersBindingKindHyperdrive,
+    MetadataBindingWorkersBindingKindInherit,
+    MetadataBindingWorkersBindingKindImages,
     MetadataBindingWorkersBindingKindJson,
     MetadataBindingWorkersBindingKindKVNamespace,
     MetadataBindingWorkersBindingKindMTLSCertificate,
@@ -405,13 +503,16 @@ MetadataBinding: TypeAlias = Union[
     MetadataBindingWorkersBindingKindQueue,
     MetadataBindingWorkersBindingKindR2Bucket,
     MetadataBindingWorkersBindingKindSecretText,
+    MetadataBindingWorkersBindingKindSendEmail,
     MetadataBindingWorkersBindingKindService,
     MetadataBindingWorkersBindingKindTailConsumer,
+    MetadataBindingWorkersBindingKindTextBlob,
     MetadataBindingWorkersBindingKindVectorize,
     MetadataBindingWorkersBindingKindVersionMetadata,
     MetadataBindingWorkersBindingKindSecretsStoreSecret,
     MetadataBindingWorkersBindingKindSecretKey,
     MetadataBindingWorkersBindingKindWorkflow,
+    MetadataBindingWorkersBindingKindWasmModule,
 ]
 
 

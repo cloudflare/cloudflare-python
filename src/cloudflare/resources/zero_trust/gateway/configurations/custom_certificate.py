@@ -55,7 +55,7 @@ class CustomCertificateResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[CustomCertificateSettings]:
         """
-        Fetches the current Zero Trust certificate configuration.
+        Retrieve the current Zero Trust certificate configuration.
 
         Args:
           extra_headers: Send extra headers
@@ -110,7 +110,7 @@ class AsyncCustomCertificateResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[CustomCertificateSettings]:
         """
-        Fetches the current Zero Trust certificate configuration.
+        Retrieve the current Zero Trust certificate configuration.
 
         Args:
           extra_headers: Send extra headers

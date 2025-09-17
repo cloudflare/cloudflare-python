@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import List, Type, Union, cast
 from datetime import datetime
 from typing_extensions import Literal
@@ -47,6 +48,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         """
         return TimeseriesGroupsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def bot_class(
         self,
         *,
@@ -119,6 +121,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupBotClassResponse], ResultWrapper[TimeseriesGroupBotClassResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     def compromised(
         self,
         *,
@@ -213,6 +216,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         """
         return AsyncTimeseriesGroupsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def bot_class(
         self,
         *,
@@ -285,6 +289,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupBotClassResponse], ResultWrapper[TimeseriesGroupBotClassResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def compromised(
         self,
         *,
@@ -363,11 +368,15 @@ class TimeseriesGroupsResourceWithRawResponse:
     def __init__(self, timeseries_groups: TimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.bot_class = to_raw_response_wrapper(
-            timeseries_groups.bot_class,
+        self.bot_class = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.bot_class,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.compromised = to_raw_response_wrapper(
-            timeseries_groups.compromised,
+        self.compromised = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.compromised,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -375,11 +384,15 @@ class AsyncTimeseriesGroupsResourceWithRawResponse:
     def __init__(self, timeseries_groups: AsyncTimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.bot_class = async_to_raw_response_wrapper(
-            timeseries_groups.bot_class,
+        self.bot_class = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.bot_class,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.compromised = async_to_raw_response_wrapper(
-            timeseries_groups.compromised,
+        self.compromised = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.compromised,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -387,11 +400,15 @@ class TimeseriesGroupsResourceWithStreamingResponse:
     def __init__(self, timeseries_groups: TimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.bot_class = to_streamed_response_wrapper(
-            timeseries_groups.bot_class,
+        self.bot_class = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.bot_class,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.compromised = to_streamed_response_wrapper(
-            timeseries_groups.compromised,
+        self.compromised = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.compromised,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -399,9 +416,13 @@ class AsyncTimeseriesGroupsResourceWithStreamingResponse:
     def __init__(self, timeseries_groups: AsyncTimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.bot_class = async_to_streamed_response_wrapper(
-            timeseries_groups.bot_class,
+        self.bot_class = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.bot_class,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.compromised = async_to_streamed_response_wrapper(
-            timeseries_groups.compromised,
+        self.compromised = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.compromised,  # pyright: ignore[reportDeprecated],
+            )
         )

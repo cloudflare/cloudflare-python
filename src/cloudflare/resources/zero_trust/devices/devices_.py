@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
-from ...._utils import maybe_transform
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -20,7 +20,7 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncCursorPagination, AsyncCursorPagination
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.zero_trust.devices import device_list_params
+from ....types.zero_trust.devices import device_get_params, device_list_params
 from ....types.zero_trust.devices.device_get_response import DeviceGetResponse
 from ....types.zero_trust.devices.device_list_response import DeviceListResponse
 
@@ -84,6 +84,9 @@ class DevicesResource(SyncAPIResource):
           cursor: Opaque token indicating the starting position when requesting the next set of
               records. A cursor value can be obtained from the result_info.cursor field in the
               response.
+
+          include: Comma-separated list of additional information that should be included in the
+              device response. Supported values are: "last_seen_registration.policy".
 
           per_page: The maximum number of devices to return in a single response.
 
@@ -182,6 +185,7 @@ class DevicesResource(SyncAPIResource):
         device_id: str,
         *,
         account_id: str,
+        include: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -193,6 +197,9 @@ class DevicesResource(SyncAPIResource):
         Fetches a single WARP device.
 
         Args:
+          include: Comma-separated list of additional information that should be included in the
+              device response. Supported values are: "last_seen_registration.policy".
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -212,6 +219,7 @@ class DevicesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=maybe_transform({"include": include}, device_get_params.DeviceGetParams),
                 post_parser=ResultWrapper[DeviceGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[DeviceGetResponse], ResultWrapper[DeviceGetResponse]),
@@ -316,6 +324,9 @@ class AsyncDevicesResource(AsyncAPIResource):
               records. A cursor value can be obtained from the result_info.cursor field in the
               response.
 
+          include: Comma-separated list of additional information that should be included in the
+              device response. Supported values are: "last_seen_registration.policy".
+
           per_page: The maximum number of devices to return in a single response.
 
           search: Search by device details.
@@ -413,6 +424,7 @@ class AsyncDevicesResource(AsyncAPIResource):
         device_id: str,
         *,
         account_id: str,
+        include: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -424,6 +436,9 @@ class AsyncDevicesResource(AsyncAPIResource):
         Fetches a single WARP device.
 
         Args:
+          include: Comma-separated list of additional information that should be included in the
+              device response. Supported values are: "last_seen_registration.policy".
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -443,6 +458,7 @@ class AsyncDevicesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=await async_maybe_transform({"include": include}, device_get_params.DeviceGetParams),
                 post_parser=ResultWrapper[DeviceGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[DeviceGetResponse], ResultWrapper[DeviceGetResponse]),

@@ -23,6 +23,12 @@ class InstanceListParams(TypedDict, total=False):
     date_start: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Accepts ISO 8601 with no timezone offsets and in UTC."""
 
+    direction: Literal["asc", "desc"]
+    """
+    should only be used when `cursor` is used, defines a new direction for the
+    cursor
+    """
+
     page: float
     """`page` and `cursor` are mutually exclusive, use one or the other."""
 

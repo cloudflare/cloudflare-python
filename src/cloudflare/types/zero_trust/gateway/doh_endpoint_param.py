@@ -12,18 +12,14 @@ __all__ = ["DOHEndpointParam"]
 
 class DOHEndpointParam(TypedDict, total=False):
     enabled: bool
-    """True if the endpoint is enabled for this location."""
+    """Indicate whether the DOH endpoint is enabled for this location."""
 
     networks: Optional[Iterable[IPNetworkParam]]
-    """A list of allowed source IP network ranges for this endpoint.
+    """Specify the list of allowed source IP network ranges for this endpoint.
 
-    When empty, all source IPs are allowed. A non-empty list is only effective if
-    the endpoint is enabled for this location.
+    When the list is empty, the endpoint allows all source IPs. The list takes
+    effect only if the endpoint is enabled for this location.
     """
 
     require_token: bool
-    """
-    True if the endpoint requires
-    [user identity](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/agentless/dns/dns-over-https/#filter-doh-requests-by-user)
-    authentication.
-    """
+    """Specify whether the DOH endpoint requires user identity authentication."""

@@ -45,6 +45,7 @@ class TestGRETunnels:
             customer_gre_endpoint="203.0.113.1",
             interface_address="192.0.2.0/31",
             name="GRE_1",
+            automatic_return_routing=True,
             bgp={
                 "customer_asn": 0,
                 "extra_prefixes": ["string"],
@@ -134,6 +135,7 @@ class TestGRETunnels:
             customer_gre_endpoint="203.0.113.1",
             interface_address="192.0.2.0/31",
             name="GRE_1",
+            automatic_return_routing=True,
             description="Tunnel for ISP X",
             health_check={
                 "direction": "bidirectional",
@@ -451,6 +453,7 @@ class TestAsyncGRETunnels:
             customer_gre_endpoint="203.0.113.1",
             interface_address="192.0.2.0/31",
             name="GRE_1",
+            automatic_return_routing=True,
             bgp={
                 "customer_asn": 0,
                 "extra_prefixes": ["string"],
@@ -540,6 +543,7 @@ class TestAsyncGRETunnels:
             customer_gre_endpoint="203.0.113.1",
             interface_address="192.0.2.0/31",
             name="GRE_1",
+            automatic_return_routing=True,
             description="Tunnel for ISP X",
             health_check={
                 "direction": "bidirectional",

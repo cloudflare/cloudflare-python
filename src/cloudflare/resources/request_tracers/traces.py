@@ -67,7 +67,7 @@ class TracesResource(SyncAPIResource):
         Request Trace
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           method: HTTP Method of tracing request
 
@@ -162,7 +162,7 @@ class AsyncTracesResource(AsyncAPIResource):
         Request Trace
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           method: HTTP Method of tracing request
 

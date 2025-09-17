@@ -59,9 +59,9 @@ class DownloadResource(SyncAPIResource):
         Response is a binary PCAP file.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          pcap_id: Identifier
+          pcap_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -122,9 +122,9 @@ class AsyncDownloadResource(AsyncAPIResource):
         Response is a binary PCAP file.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          pcap_id: Identifier
+          pcap_id: Identifier.
 
           extra_headers: Send extra headers
 

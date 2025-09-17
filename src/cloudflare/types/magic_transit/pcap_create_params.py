@@ -14,7 +14,7 @@ __all__ = ["PCAPCreateParams", "MagicVisibilityPCAPsPCAPsRequestSimple", "MagicV
 
 class MagicVisibilityPCAPsPCAPsRequestSimple(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     packet_limit: Required[float]
     """The limit of packets contained in a packet capture."""
@@ -45,7 +45,7 @@ class MagicVisibilityPCAPsPCAPsRequestSimple(TypedDict, total=False):
 
 class MagicVisibilityPCAPsPCAPsRequestFull(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     colo_name: Required[str]
     """The name of the data center used for the packet capture.

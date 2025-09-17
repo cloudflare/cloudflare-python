@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import List
 from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["ResourceSharingListParams"]
@@ -14,6 +15,12 @@ class ResourceSharingListParams(TypedDict, total=False):
     direction: Literal["asc", "desc"]
     """Direction to sort objects."""
 
+    include_recipient_counts: bool
+    """Include recipient counts in the response."""
+
+    include_resources: bool
+    """Include resources in the response."""
+
     kind: Literal["sent", "received"]
     """Filter shares by kind."""
 
@@ -25,6 +32,18 @@ class ResourceSharingListParams(TypedDict, total=False):
 
     per_page: int
     """Number of objects to return per page."""
+
+    resource_types: List[
+        Literal[
+            "custom-ruleset",
+            "widget",
+            "gateway-policy",
+            "gateway-destination-ip",
+            "gateway-block-page-settings",
+            "gateway-extended-email-matching",
+        ]
+    ]
+    """Filter share resources by resource_types."""
 
     status: Literal["active", "deleting", "deleted"]
     """Filter shares by status."""

@@ -85,7 +85,7 @@ class ReceivedResource(SyncAPIResource):
         will be handled properly.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           end: Sets the (exclusive) end of the requested time frame. This can be a unix
               timestamp (in seconds or nanoseconds), or an absolute timestamp that conforms to
@@ -220,7 +220,7 @@ class AsyncReceivedResource(AsyncAPIResource):
         will be handled properly.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           end: Sets the (exclusive) end of the requested time frame. This can be a unix
               timestamp (in seconds or nanoseconds), or an absolute timestamp that conforms to

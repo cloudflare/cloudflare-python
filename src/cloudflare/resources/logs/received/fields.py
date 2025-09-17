@@ -56,7 +56,7 @@ class FieldsResource(SyncAPIResource):
         where keys are field names, and values are descriptions.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -114,7 +114,7 @@ class AsyncFieldsResource(AsyncAPIResource):
         where keys are field names, and values are descriptions.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

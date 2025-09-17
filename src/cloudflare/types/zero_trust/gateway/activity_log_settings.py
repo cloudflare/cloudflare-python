@@ -9,4 +9,4 @@ __all__ = ["ActivityLogSettings"]
 
 class ActivityLogSettings(BaseModel):
     enabled: Optional[bool] = None
-    """Enable activity logging."""
+    """Specify whether to log activity."""

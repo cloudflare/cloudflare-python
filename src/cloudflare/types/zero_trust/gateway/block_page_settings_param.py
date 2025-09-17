@@ -11,50 +11,54 @@ __all__ = ["BlockPageSettingsParam"]
 class BlockPageSettingsParam(TypedDict, total=False):
     background_color: str
     """
-    If mode is customized_block_page: block page background color in #rrggbb format.
+    Specify the block page background color in `#rrggbb` format when the mode is
+    customized_block_page.
     """
 
     enabled: Optional[bool]
-    """Enable only cipher suites and TLS versions compliant with FIPS. 140-2."""
+    """Specify whether to enable the custom block page."""
 
     footer_text: str
-    """If mode is customized_block_page: block page footer text."""
+    """Specify the block page footer text when the mode is customized_block_page."""
 
     header_text: str
-    """If mode is customized_block_page: block page header text."""
+    """Specify the block page header text when the mode is customized_block_page."""
 
     include_context: bool
-    """
-    If mode is redirect_uri: when enabled, context will be appended to target_uri as
-    query parameters.
+    """Specify whether to append context to target_uri as query parameters.
+
+    This applies only when the mode is redirect_uri.
     """
 
     logo_path: str
-    """If mode is customized_block_page: full URL to the logo file."""
+    """Specify the full URL to the logo file when the mode is customized_block_page."""
 
     mailto_address: str
-    """If mode is customized_block_page: admin email for users to contact."""
+    """
+    Specify the admin email for users to contact when the mode is
+    customized_block_page.
+    """
 
     mailto_subject: str
     """
-    If mode is customized_block_page: subject line for emails created from block
-    page.
+    Specify the subject line for emails created from the block page when the mode is
+    customized_block_page.
     """
 
     mode: Literal["", "customized_block_page", "redirect_uri"]
     """
-    Controls whether the user is redirected to a Cloudflare-hosted block page or to
-    a customer-provided URI.
+    Specify whether to redirect users to a Cloudflare-hosted block page or a
+    customer-provided URI.
     """
 
     name: str
-    """If mode is customized_block_page: block page title."""
+    """Specify the block page title when the mode is customized_block_page."""
 
     suppress_footer: bool
     """
-    If mode is customized_block_page: suppress detailed info at the bottom of the
-    block page.
+    Specify whether to suppress detailed information at the bottom of the block page
+    when the mode is customized_block_page.
     """
 
     target_uri: str
-    """If mode is redirect_uri: URI to which the user should be redirected."""
+    """Specify the URI to redirect users to when the mode is redirect_uri."""

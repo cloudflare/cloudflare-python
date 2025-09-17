@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["ZoneEditParams", "InternalDNS", "Nameservers", "SOA"]
@@ -58,43 +59,46 @@ class InternalDNS(TypedDict, total=False):
 
 
 class Nameservers(TypedDict, total=False):
-    type: Required[Literal["cloudflare.standard", "custom.account", "custom.tenant", "custom.zone"]]
-    """Nameserver type"""
-
     ns_set: int
     """Configured nameserver set to be used for this zone"""
 
+    type: Literal["cloudflare.standard", "custom.account", "custom.tenant", "custom.zone"]
+    """Nameserver type"""
+
 
 class SOA(TypedDict, total=False):
-    expire: Required[float]
+    expire: float
     """
     Time in seconds of being unable to query the primary server after which
     secondary servers should stop serving the zone.
     """
 
-    min_ttl: Required[float]
+    min_ttl: float
     """The time to live (TTL) for negative caching of records within the zone."""
 
-    mname: Required[str]
-    """The primary nameserver, which may be used for outbound zone transfers."""
+    mname: Optional[str]
+    """The primary nameserver, which may be used for outbound zone transfers.
 
-    refresh: Required[float]
+    If null, a Cloudflare-assigned value will be used.
+    """
+
+    refresh: float
     """
     Time in seconds after which secondary servers should re-check the SOA record to
     see if the zone has been updated.
     """
 
-    retry: Required[float]
+    retry: float
     """
     Time in seconds after which secondary servers should retry queries after the
     primary server was unresponsive.
     """
 
-    rname: Required[str]
+    rname: str
     """
     The email address of the zone administrator, with the first label representing
     the local part of the email address.
     """
 
-    ttl: Required[float]
+    ttl: float
     """The time to live (TTL) of the SOA record itself."""

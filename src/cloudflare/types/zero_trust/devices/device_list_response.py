@@ -4,7 +4,32 @@ from typing import Optional
 
 from ...._models import BaseModel
 
-__all__ = ["DeviceListResponse", "LastSeenUser"]
+__all__ = ["DeviceListResponse", "LastSeenRegistration", "LastSeenRegistrationPolicy", "LastSeenUser"]
+
+
+class LastSeenRegistrationPolicy(BaseModel):
+    id: str
+    """The ID of the device settings profile."""
+
+    default: bool
+    """Whether the device settings profile is the default profile for the account."""
+
+    deleted: bool
+    """Whether the device settings profile was deleted."""
+
+    name: str
+    """The name of the device settings profile."""
+
+    updated_at: str
+    """
+    The RFC3339 timestamp of when the device settings profile last changed for the
+    registration.
+    """
+
+
+class LastSeenRegistration(BaseModel):
+    policy: Optional[LastSeenRegistrationPolicy] = None
+    """A summary of the device profile evaluated for the registration."""
 
 
 class LastSeenUser(BaseModel):
@@ -51,6 +76,9 @@ class DeviceListResponse(BaseModel):
 
     hardware_id: Optional[str] = None
     """A string that uniquely identifies the hardware or virtual machine (VM)."""
+
+    last_seen_registration: Optional[LastSeenRegistration] = None
+    """The last seen registration for the device."""
 
     last_seen_user: Optional[LastSeenUser] = None
     """The last user to use the WARP device."""

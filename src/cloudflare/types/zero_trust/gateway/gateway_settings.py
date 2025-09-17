@@ -12,12 +12,13 @@ class GatewaySettings(BaseModel):
     created_at: Optional[datetime] = None
 
     public_key: Optional[str] = None
-    """Base64 encoded HPKE public key used to encrypt all your ssh session logs.
+    """Provide the Base64-encoded HPKE public key that encrypts SSH session logs.
 
-    https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/use-cases/ssh/ssh-infrastructure-access/#enable-ssh-command-logging
+    See
+    https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/use-cases/ssh/ssh-infrastructure-access/#enable-ssh-command-logging.
     """
 
     seed_id: Optional[str] = None
-    """Seed ID."""
+    """Identify the seed ID."""
 
     updated_at: Optional[datetime] = None

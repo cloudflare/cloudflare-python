@@ -21,6 +21,7 @@ from ...._wrappers import ResultWrapper
 from ....pagination import SyncCursorPagination, AsyncCursorPagination
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.zero_trust.devices import (
+    registration_get_params,
     registration_list_params,
     registration_revoke_params,
     registration_unrevoke_params,
@@ -84,6 +85,9 @@ class RegistrationsResource(SyncAPIResource):
           cursor: Opaque token indicating the starting position when requesting the next set of
               records. A cursor value can be obtained from the result_info.cursor field in the
               response.
+
+          include: Comma-separated list of additional information that should be included in the
+              registration response. Supported values are: "policy".
 
           per_page: The maximum number of devices to return in a single response.
 
@@ -226,6 +230,7 @@ class RegistrationsResource(SyncAPIResource):
         registration_id: str,
         *,
         account_id: str,
+        include: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -237,6 +242,9 @@ class RegistrationsResource(SyncAPIResource):
         Fetches a single WARP registration.
 
         Args:
+          include: Comma-separated list of additional information that should be included in the
+              registration response. Supported values are: "policy".
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -256,6 +264,7 @@ class RegistrationsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=maybe_transform({"include": include}, registration_get_params.RegistrationGetParams),
                 post_parser=ResultWrapper[RegistrationGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[RegistrationGetResponse], ResultWrapper[RegistrationGetResponse]),
@@ -396,6 +405,9 @@ class AsyncRegistrationsResource(AsyncAPIResource):
           cursor: Opaque token indicating the starting position when requesting the next set of
               records. A cursor value can be obtained from the result_info.cursor field in the
               response.
+
+          include: Comma-separated list of additional information that should be included in the
+              registration response. Supported values are: "policy".
 
           per_page: The maximum number of devices to return in a single response.
 
@@ -540,6 +552,7 @@ class AsyncRegistrationsResource(AsyncAPIResource):
         registration_id: str,
         *,
         account_id: str,
+        include: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -551,6 +564,9 @@ class AsyncRegistrationsResource(AsyncAPIResource):
         Fetches a single WARP registration.
 
         Args:
+          include: Comma-separated list of additional information that should be included in the
+              registration response. Supported values are: "policy".
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -570,6 +586,7 @@ class AsyncRegistrationsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=await async_maybe_transform({"include": include}, registration_get_params.RegistrationGetParams),
                 post_parser=ResultWrapper[RegistrationGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[RegistrationGetResponse], ResultWrapper[RegistrationGetResponse]),

@@ -10,7 +10,10 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncCursorPagination, AsyncCursorPagination
-from cloudflare.types.zero_trust.devices import DeviceGetResponse, DeviceListResponse
+from cloudflare.types.zero_trust.devices import (
+    DeviceGetResponse,
+    DeviceListResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -137,6 +140,16 @@ class TestDevices:
         device = client.zero_trust.devices.devices.get(
             device_id="device_id",
             account_id="account_id",
+        )
+        assert_matches_type(DeviceGetResponse, device, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate prism error for invalid security scheme used")
+    @parametrize
+    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
+        device = client.zero_trust.devices.devices.get(
+            device_id="device_id",
+            account_id="account_id",
+            include="include",
         )
         assert_matches_type(DeviceGetResponse, device, path=["response"])
 
@@ -360,6 +373,16 @@ class TestAsyncDevices:
         device = await async_client.zero_trust.devices.devices.get(
             device_id="device_id",
             account_id="account_id",
+        )
+        assert_matches_type(DeviceGetResponse, device, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate prism error for invalid security scheme used")
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        device = await async_client.zero_trust.devices.devices.get(
+            device_id="device_id",
+            account_id="account_id",
+            include="include",
         )
         assert_matches_type(DeviceGetResponse, device, path=["response"])
 

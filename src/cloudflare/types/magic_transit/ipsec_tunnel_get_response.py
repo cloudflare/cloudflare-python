@@ -14,6 +14,7 @@ __all__ = [
     "IPSECTunnel",
     "IPSECTunnelBGP",
     "IPSECTunnelBGPStatus",
+    "IPSECTunnelCustomRemoteIdentities",
     "IPSECTunnelHealthCheck",
     "IPSECTunnelHealthCheckTarget",
     "IPSECTunnelHealthCheckTargetMagicHealthCheckTarget",
@@ -68,6 +69,20 @@ class IPSECTunnelBGPStatus(BaseModel):
     customer_speaker_ip: Optional[str] = None
 
     customer_speaker_port: Optional[int] = None
+
+
+class IPSECTunnelCustomRemoteIdentities(BaseModel):
+    fqdn_id: Optional[str] = None
+    """A custom IKE ID of type FQDN that may be used to identity the IPsec tunnel.
+
+    The generated IKE IDs can still be used even if this custom value is specified.
+
+    Must be of the form `<custom label>.<account ID>.custom.ipsec.cloudflare.com`.
+
+    This custom ID does not need to be unique. Two IPsec tunnels may have the same
+    custom fqdn_id. However, if another IPsec tunnel has the same value then the two
+    tunnels cannot have the same cloudflare_endpoint.
+    """
 
 
 class IPSECTunnelHealthCheckTargetMagicHealthCheckTarget(BaseModel):
@@ -143,12 +158,20 @@ class IPSECTunnel(BaseModel):
     (Phase 2).
     """
 
+    automatic_return_routing: Optional[bool] = None
+    """
+    True if automatic stateful return routing should be enabled for a tunnel, false
+    otherwise.
+    """
+
     bgp: Optional[IPSECTunnelBGP] = None
 
     bgp_status: Optional[IPSECTunnelBGPStatus] = None
 
     created_on: Optional[datetime] = None
     """The date and time the tunnel was created."""
+
+    custom_remote_identities: Optional[IPSECTunnelCustomRemoteIdentities] = None
 
     customer_endpoint: Optional[str] = None
     """The IP address assigned to the customer side of the IPsec tunnel.

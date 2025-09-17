@@ -25,6 +25,10 @@ class RegistrationListParams(TypedDict, total=False):
     device: Device
 
     include: str
+    """
+    Comma-separated list of additional information that should be included in the
+    registration response. Supported values are: "policy".
+    """
 
     per_page: int
     """The maximum number of devices to return in a single response."""

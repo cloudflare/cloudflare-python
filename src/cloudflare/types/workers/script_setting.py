@@ -19,8 +19,14 @@ class ObservabilityLogs(BaseModel):
     are enabled for the Worker.
     """
 
+    destinations: Optional[List[str]] = None
+    """A list of destinations where logs will be exported to."""
+
     head_sampling_rate: Optional[float] = None
     """The sampling rate for logs. From 0 to 1 (1 = 100%, 0.1 = 10%). Default is 1."""
+
+    persist: Optional[bool] = None
+    """Whether log persistence is enabled for the Worker."""
 
 
 class Observability(BaseModel):
@@ -43,6 +49,9 @@ class ScriptSetting(BaseModel):
 
     observability: Optional[Observability] = None
     """Observability settings for the Worker."""
+
+    tags: Optional[List[str]] = None
+    """Tags associated with the Worker."""
 
     tail_consumers: Optional[List[ConsumerScript]] = None
     """List of Workers that will consume logs from the attached Worker."""

@@ -24,7 +24,7 @@ class TestVersions:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         version = client.workers.beta.workers.versions.create(
-            worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+            worker_id="worker_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Version, version, path=["response"])
@@ -32,8 +32,9 @@ class TestVersions:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         version = client.workers.beta.workers.versions.create(
-            worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+            worker_id="worker_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            deploy=True,
             annotations={
                 "workers_message": "Fixed bug.",
                 "workers_tag": "v1.0.1",
@@ -92,7 +93,7 @@ class TestVersions:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.workers.beta.workers.versions.with_raw_response.create(
-            worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+            worker_id="worker_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -104,7 +105,7 @@ class TestVersions:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.workers.beta.workers.versions.with_streaming_response.create(
-            worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+            worker_id="worker_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -119,7 +120,7 @@ class TestVersions:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers.beta.workers.versions.with_raw_response.create(
-                worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+                worker_id="worker_id",
                 account_id="",
             )
 
@@ -132,7 +133,7 @@ class TestVersions:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         version = client.workers.beta.workers.versions.list(
-            worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+            worker_id="worker_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(SyncV4PagePaginationArray[Version], version, path=["response"])
@@ -140,7 +141,7 @@ class TestVersions:
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         version = client.workers.beta.workers.versions.list(
-            worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+            worker_id="worker_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             page=1,
             per_page=1,
@@ -150,7 +151,7 @@ class TestVersions:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.workers.beta.workers.versions.with_raw_response.list(
-            worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+            worker_id="worker_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -162,7 +163,7 @@ class TestVersions:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.workers.beta.workers.versions.with_streaming_response.list(
-            worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+            worker_id="worker_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -177,7 +178,7 @@ class TestVersions:
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers.beta.workers.versions.with_raw_response.list(
-                worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+                worker_id="worker_id",
                 account_id="",
             )
 
@@ -190,18 +191,18 @@ class TestVersions:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         version = client.workers.beta.workers.versions.delete(
-            version_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            version_id="version_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+            worker_id="worker_id",
         )
         assert_matches_type(VersionDeleteResponse, version, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.workers.beta.workers.versions.with_raw_response.delete(
-            version_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            version_id="version_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+            worker_id="worker_id",
         )
 
         assert response.is_closed is True
@@ -212,9 +213,9 @@ class TestVersions:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.workers.beta.workers.versions.with_streaming_response.delete(
-            version_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            version_id="version_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+            worker_id="worker_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -228,33 +229,40 @@ class TestVersions:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers.beta.workers.versions.with_raw_response.delete(
-                version_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                version_id="version_id",
                 account_id="",
-                worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+                worker_id="worker_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `worker_id` but received ''"):
             client.workers.beta.workers.versions.with_raw_response.delete(
-                version_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                version_id="version_id",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 worker_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `version_id` but received ''"):
+            client.workers.beta.workers.versions.with_raw_response.delete(
+                version_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                worker_id="worker_id",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         version = client.workers.beta.workers.versions.get(
-            version_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            version_id="version_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+            worker_id="worker_id",
         )
         assert_matches_type(Version, version, path=["response"])
 
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         version = client.workers.beta.workers.versions.get(
-            version_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            version_id="version_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+            worker_id="worker_id",
             include="modules",
         )
         assert_matches_type(Version, version, path=["response"])
@@ -262,9 +270,9 @@ class TestVersions:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.workers.beta.workers.versions.with_raw_response.get(
-            version_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            version_id="version_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+            worker_id="worker_id",
         )
 
         assert response.is_closed is True
@@ -275,9 +283,9 @@ class TestVersions:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.workers.beta.workers.versions.with_streaming_response.get(
-            version_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            version_id="version_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+            worker_id="worker_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -291,16 +299,23 @@ class TestVersions:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers.beta.workers.versions.with_raw_response.get(
-                version_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                version_id="version_id",
                 account_id="",
-                worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+                worker_id="worker_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `worker_id` but received ''"):
             client.workers.beta.workers.versions.with_raw_response.get(
-                version_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                version_id="version_id",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 worker_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `version_id` but received ''"):
+            client.workers.beta.workers.versions.with_raw_response.get(
+                version_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                worker_id="worker_id",
             )
 
 
@@ -312,7 +327,7 @@ class TestAsyncVersions:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         version = await async_client.workers.beta.workers.versions.create(
-            worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+            worker_id="worker_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Version, version, path=["response"])
@@ -320,8 +335,9 @@ class TestAsyncVersions:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         version = await async_client.workers.beta.workers.versions.create(
-            worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+            worker_id="worker_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            deploy=True,
             annotations={
                 "workers_message": "Fixed bug.",
                 "workers_tag": "v1.0.1",
@@ -380,7 +396,7 @@ class TestAsyncVersions:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.beta.workers.versions.with_raw_response.create(
-            worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+            worker_id="worker_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -392,7 +408,7 @@ class TestAsyncVersions:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.beta.workers.versions.with_streaming_response.create(
-            worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+            worker_id="worker_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -407,7 +423,7 @@ class TestAsyncVersions:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers.beta.workers.versions.with_raw_response.create(
-                worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+                worker_id="worker_id",
                 account_id="",
             )
 
@@ -420,7 +436,7 @@ class TestAsyncVersions:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         version = await async_client.workers.beta.workers.versions.list(
-            worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+            worker_id="worker_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(AsyncV4PagePaginationArray[Version], version, path=["response"])
@@ -428,7 +444,7 @@ class TestAsyncVersions:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         version = await async_client.workers.beta.workers.versions.list(
-            worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+            worker_id="worker_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             page=1,
             per_page=1,
@@ -438,7 +454,7 @@ class TestAsyncVersions:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.beta.workers.versions.with_raw_response.list(
-            worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+            worker_id="worker_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -450,7 +466,7 @@ class TestAsyncVersions:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.beta.workers.versions.with_streaming_response.list(
-            worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+            worker_id="worker_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -465,7 +481,7 @@ class TestAsyncVersions:
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers.beta.workers.versions.with_raw_response.list(
-                worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+                worker_id="worker_id",
                 account_id="",
             )
 
@@ -478,18 +494,18 @@ class TestAsyncVersions:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         version = await async_client.workers.beta.workers.versions.delete(
-            version_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            version_id="version_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+            worker_id="worker_id",
         )
         assert_matches_type(VersionDeleteResponse, version, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.beta.workers.versions.with_raw_response.delete(
-            version_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            version_id="version_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+            worker_id="worker_id",
         )
 
         assert response.is_closed is True
@@ -500,9 +516,9 @@ class TestAsyncVersions:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.beta.workers.versions.with_streaming_response.delete(
-            version_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            version_id="version_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+            worker_id="worker_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -516,33 +532,40 @@ class TestAsyncVersions:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers.beta.workers.versions.with_raw_response.delete(
-                version_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                version_id="version_id",
                 account_id="",
-                worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+                worker_id="worker_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `worker_id` but received ''"):
             await async_client.workers.beta.workers.versions.with_raw_response.delete(
-                version_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                version_id="version_id",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 worker_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `version_id` but received ''"):
+            await async_client.workers.beta.workers.versions.with_raw_response.delete(
+                version_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                worker_id="worker_id",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         version = await async_client.workers.beta.workers.versions.get(
-            version_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            version_id="version_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+            worker_id="worker_id",
         )
         assert_matches_type(Version, version, path=["response"])
 
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         version = await async_client.workers.beta.workers.versions.get(
-            version_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            version_id="version_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+            worker_id="worker_id",
             include="modules",
         )
         assert_matches_type(Version, version, path=["response"])
@@ -550,9 +573,9 @@ class TestAsyncVersions:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.beta.workers.versions.with_raw_response.get(
-            version_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            version_id="version_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+            worker_id="worker_id",
         )
 
         assert response.is_closed is True
@@ -563,9 +586,9 @@ class TestAsyncVersions:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.beta.workers.versions.with_streaming_response.get(
-            version_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            version_id="version_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+            worker_id="worker_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -579,14 +602,21 @@ class TestAsyncVersions:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers.beta.workers.versions.with_raw_response.get(
-                version_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                version_id="version_id",
                 account_id="",
-                worker_id="023e105f4ecef8ad9ca31a8372d0c353",
+                worker_id="worker_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `worker_id` but received ''"):
             await async_client.workers.beta.workers.versions.with_raw_response.get(
-                version_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                version_id="version_id",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 worker_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `version_id` but received ''"):
+            await async_client.workers.beta.workers.versions.with_raw_response.get(
+                version_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                worker_id="worker_id",
             )

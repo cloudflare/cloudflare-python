@@ -18,6 +18,8 @@ from cloudflare.types.dns import (
 )
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 
+# pyright: reportDeprecated=false
+
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
@@ -5808,18 +5810,21 @@ class TestRecords:
 
     @parametrize
     def test_method_scan(self, client: Cloudflare) -> None:
-        record = client.dns.records.scan(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        )
+        with pytest.warns(DeprecationWarning):
+            record = client.dns.records.scan(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
+            )
+
         assert_matches_type(Optional[RecordScanResponse], record, path=["response"])
 
     @parametrize
     def test_raw_response_scan(self, client: Cloudflare) -> None:
-        response = client.dns.records.with_raw_response.scan(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.dns.records.with_raw_response.scan(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5828,25 +5833,27 @@ class TestRecords:
 
     @parametrize
     def test_streaming_response_scan(self, client: Cloudflare) -> None:
-        with client.dns.records.with_streaming_response.scan(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.dns.records.with_streaming_response.scan(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            record = response.parse()
-            assert_matches_type(Optional[RecordScanResponse], record, path=["response"])
+                record = response.parse()
+                assert_matches_type(Optional[RecordScanResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_scan(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.dns.records.with_raw_response.scan(
-                zone_id="",
-                body={},
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+                client.dns.records.with_raw_response.scan(
+                    zone_id="",
+                    body={},
+                )
 
 
 class TestAsyncRecords:
@@ -11638,18 +11645,21 @@ class TestAsyncRecords:
 
     @parametrize
     async def test_method_scan(self, async_client: AsyncCloudflare) -> None:
-        record = await async_client.dns.records.scan(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        )
+        with pytest.warns(DeprecationWarning):
+            record = await async_client.dns.records.scan(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
+            )
+
         assert_matches_type(Optional[RecordScanResponse], record, path=["response"])
 
     @parametrize
     async def test_raw_response_scan(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.dns.records.with_raw_response.scan(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.dns.records.with_raw_response.scan(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -11658,22 +11668,24 @@ class TestAsyncRecords:
 
     @parametrize
     async def test_streaming_response_scan(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.dns.records.with_streaming_response.scan(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.dns.records.with_streaming_response.scan(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            record = await response.parse()
-            assert_matches_type(Optional[RecordScanResponse], record, path=["response"])
+                record = await response.parse()
+                assert_matches_type(Optional[RecordScanResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_scan(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.dns.records.with_raw_response.scan(
-                zone_id="",
-                body={},
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+                await async_client.dns.records.with_raw_response.scan(
+                    zone_id="",
+                    body={},
+                )

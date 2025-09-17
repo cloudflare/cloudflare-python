@@ -22,7 +22,31 @@ class TestTags:
     def test_method_create(self, client: Cloudflare) -> None:
         tag = client.cloudforce_one.threat_events.tags.create(
             account_id="account_id",
-            name="name",
+            value="APT28",
+        )
+        assert_matches_type(TagCreateResponse, tag, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
+    @parametrize
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        tag = client.cloudforce_one.threat_events.tags.create(
+            account_id="account_id",
+            value="APT28",
+            active_duration="activeDuration",
+            actor_category="actorCategory",
+            alias_group_names=["string"],
+            alias_group_names_internal=["string"],
+            analytic_priority=0,
+            attribution_confidence="attributionConfidence",
+            attribution_organization="attributionOrganization",
+            category_id=1,
+            external_reference_links=["string"],
+            internal_description="internalDescription",
+            motive="motive",
+            opsec_level="opsecLevel",
+            origin_country_iso="originCountryISO",
+            priority=0,
+            sophistication_level="sophisticationLevel",
         )
         assert_matches_type(TagCreateResponse, tag, path=["response"])
 
@@ -31,7 +55,7 @@ class TestTags:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.threat_events.tags.with_raw_response.create(
             account_id="account_id",
-            name="name",
+            value="APT28",
         )
 
         assert response.is_closed is True
@@ -44,7 +68,7 @@ class TestTags:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.cloudforce_one.threat_events.tags.with_streaming_response.create(
             account_id="account_id",
-            name="name",
+            value="APT28",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -60,7 +84,7 @@ class TestTags:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.cloudforce_one.threat_events.tags.with_raw_response.create(
                 account_id="",
-                name="name",
+                value="APT28",
             )
 
 
@@ -74,7 +98,31 @@ class TestAsyncTags:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         tag = await async_client.cloudforce_one.threat_events.tags.create(
             account_id="account_id",
-            name="name",
+            value="APT28",
+        )
+        assert_matches_type(TagCreateResponse, tag, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        tag = await async_client.cloudforce_one.threat_events.tags.create(
+            account_id="account_id",
+            value="APT28",
+            active_duration="activeDuration",
+            actor_category="actorCategory",
+            alias_group_names=["string"],
+            alias_group_names_internal=["string"],
+            analytic_priority=0,
+            attribution_confidence="attributionConfidence",
+            attribution_organization="attributionOrganization",
+            category_id=1,
+            external_reference_links=["string"],
+            internal_description="internalDescription",
+            motive="motive",
+            opsec_level="opsecLevel",
+            origin_country_iso="originCountryISO",
+            priority=0,
+            sophistication_level="sophisticationLevel",
         )
         assert_matches_type(TagCreateResponse, tag, path=["response"])
 
@@ -83,7 +131,7 @@ class TestAsyncTags:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloudforce_one.threat_events.tags.with_raw_response.create(
             account_id="account_id",
-            name="name",
+            value="APT28",
         )
 
         assert response.is_closed is True
@@ -96,7 +144,7 @@ class TestAsyncTags:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloudforce_one.threat_events.tags.with_streaming_response.create(
             account_id="account_id",
-            name="name",
+            value="APT28",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -112,5 +160,5 @@ class TestAsyncTags:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.cloudforce_one.threat_events.tags.with_raw_response.create(
                 account_id="",
-                name="name",
+                value="APT28",
             )
