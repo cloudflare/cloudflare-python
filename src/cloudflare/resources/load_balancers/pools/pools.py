@@ -95,6 +95,7 @@ class PoolsResource(SyncAPIResource):
         longitude: float | NotGiven = NOT_GIVEN,
         minimum_origins: int | NotGiven = NOT_GIVEN,
         monitor: str | NotGiven = NOT_GIVEN,
+        monitor_group: str | NotGiven = NOT_GIVEN,
         notification_email: str | NotGiven = NOT_GIVEN,
         notification_filter: Optional[NotificationFilterParam] | NotGiven = NOT_GIVEN,
         origin_steering: OriginSteeringParam | NotGiven = NOT_GIVEN,
@@ -138,6 +139,9 @@ class PoolsResource(SyncAPIResource):
           monitor: The ID of the Monitor to use for checking the health of origins within this
               pool.
 
+          monitor_group: The ID of the Monitor Group to use for checking the health of origins within
+              this pool.
+
           notification_email: This field is now deprecated. It has been moved to Cloudflare's Centralized
               Notification service
               https://developers.cloudflare.com/fundamentals/notifications/. The email address
@@ -173,6 +177,7 @@ class PoolsResource(SyncAPIResource):
                     "longitude": longitude,
                     "minimum_origins": minimum_origins,
                     "monitor": monitor,
+                    "monitor_group": monitor_group,
                     "notification_email": notification_email,
                     "notification_filter": notification_filter,
                     "origin_steering": origin_steering,
@@ -204,6 +209,7 @@ class PoolsResource(SyncAPIResource):
         longitude: float | NotGiven = NOT_GIVEN,
         minimum_origins: int | NotGiven = NOT_GIVEN,
         monitor: str | NotGiven = NOT_GIVEN,
+        monitor_group: str | NotGiven = NOT_GIVEN,
         notification_email: str | NotGiven = NOT_GIVEN,
         notification_filter: Optional[NotificationFilterParam] | NotGiven = NOT_GIVEN,
         origin_steering: OriginSteeringParam | NotGiven = NOT_GIVEN,
@@ -250,6 +256,9 @@ class PoolsResource(SyncAPIResource):
           monitor: The ID of the Monitor to use for checking the health of origins within this
               pool.
 
+          monitor_group: The ID of the Monitor Group to use for checking the health of origins within
+              this pool.
+
           notification_email: This field is now deprecated. It has been moved to Cloudflare's Centralized
               Notification service
               https://developers.cloudflare.com/fundamentals/notifications/. The email address
@@ -288,6 +297,7 @@ class PoolsResource(SyncAPIResource):
                     "longitude": longitude,
                     "minimum_origins": minimum_origins,
                     "monitor": monitor,
+                    "monitor_group": monitor_group,
                     "notification_email": notification_email,
                     "notification_filter": notification_filter,
                     "origin_steering": origin_steering,
@@ -450,6 +460,7 @@ class PoolsResource(SyncAPIResource):
         longitude: float | NotGiven = NOT_GIVEN,
         minimum_origins: int | NotGiven = NOT_GIVEN,
         monitor: str | NotGiven = NOT_GIVEN,
+        monitor_group: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         notification_email: str | NotGiven = NOT_GIVEN,
         notification_filter: Optional[NotificationFilterParam] | NotGiven = NOT_GIVEN,
@@ -491,6 +502,9 @@ class PoolsResource(SyncAPIResource):
 
           monitor: The ID of the Monitor to use for checking the health of origins within this
               pool.
+
+          monitor_group: The ID of the Monitor Group to use for checking the health of origins within
+              this pool.
 
           name: A short name (tag) for the pool. Only alphanumeric characters, hyphens, and
               underscores are allowed.
@@ -534,6 +548,7 @@ class PoolsResource(SyncAPIResource):
                     "longitude": longitude,
                     "minimum_origins": minimum_origins,
                     "monitor": monitor,
+                    "monitor_group": monitor_group,
                     "name": name,
                     "notification_email": notification_email,
                     "notification_filter": notification_filter,
@@ -636,6 +651,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         longitude: float | NotGiven = NOT_GIVEN,
         minimum_origins: int | NotGiven = NOT_GIVEN,
         monitor: str | NotGiven = NOT_GIVEN,
+        monitor_group: str | NotGiven = NOT_GIVEN,
         notification_email: str | NotGiven = NOT_GIVEN,
         notification_filter: Optional[NotificationFilterParam] | NotGiven = NOT_GIVEN,
         origin_steering: OriginSteeringParam | NotGiven = NOT_GIVEN,
@@ -679,6 +695,9 @@ class AsyncPoolsResource(AsyncAPIResource):
           monitor: The ID of the Monitor to use for checking the health of origins within this
               pool.
 
+          monitor_group: The ID of the Monitor Group to use for checking the health of origins within
+              this pool.
+
           notification_email: This field is now deprecated. It has been moved to Cloudflare's Centralized
               Notification service
               https://developers.cloudflare.com/fundamentals/notifications/. The email address
@@ -714,6 +733,7 @@ class AsyncPoolsResource(AsyncAPIResource):
                     "longitude": longitude,
                     "minimum_origins": minimum_origins,
                     "monitor": monitor,
+                    "monitor_group": monitor_group,
                     "notification_email": notification_email,
                     "notification_filter": notification_filter,
                     "origin_steering": origin_steering,
@@ -745,6 +765,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         longitude: float | NotGiven = NOT_GIVEN,
         minimum_origins: int | NotGiven = NOT_GIVEN,
         monitor: str | NotGiven = NOT_GIVEN,
+        monitor_group: str | NotGiven = NOT_GIVEN,
         notification_email: str | NotGiven = NOT_GIVEN,
         notification_filter: Optional[NotificationFilterParam] | NotGiven = NOT_GIVEN,
         origin_steering: OriginSteeringParam | NotGiven = NOT_GIVEN,
@@ -791,6 +812,9 @@ class AsyncPoolsResource(AsyncAPIResource):
           monitor: The ID of the Monitor to use for checking the health of origins within this
               pool.
 
+          monitor_group: The ID of the Monitor Group to use for checking the health of origins within
+              this pool.
+
           notification_email: This field is now deprecated. It has been moved to Cloudflare's Centralized
               Notification service
               https://developers.cloudflare.com/fundamentals/notifications/. The email address
@@ -829,6 +853,7 @@ class AsyncPoolsResource(AsyncAPIResource):
                     "longitude": longitude,
                     "minimum_origins": minimum_origins,
                     "monitor": monitor,
+                    "monitor_group": monitor_group,
                     "notification_email": notification_email,
                     "notification_filter": notification_filter,
                     "origin_steering": origin_steering,
@@ -991,6 +1016,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         longitude: float | NotGiven = NOT_GIVEN,
         minimum_origins: int | NotGiven = NOT_GIVEN,
         monitor: str | NotGiven = NOT_GIVEN,
+        monitor_group: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         notification_email: str | NotGiven = NOT_GIVEN,
         notification_filter: Optional[NotificationFilterParam] | NotGiven = NOT_GIVEN,
@@ -1032,6 +1058,9 @@ class AsyncPoolsResource(AsyncAPIResource):
 
           monitor: The ID of the Monitor to use for checking the health of origins within this
               pool.
+
+          monitor_group: The ID of the Monitor Group to use for checking the health of origins within
+              this pool.
 
           name: A short name (tag) for the pool. Only alphanumeric characters, hyphens, and
               underscores are allowed.
@@ -1075,6 +1104,7 @@ class AsyncPoolsResource(AsyncAPIResource):
                     "longitude": longitude,
                     "minimum_origins": minimum_origins,
                     "monitor": monitor,
+                    "monitor_group": monitor_group,
                     "name": name,
                     "notification_email": notification_email,
                     "notification_filter": notification_filter,

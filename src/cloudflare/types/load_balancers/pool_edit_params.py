@@ -63,6 +63,12 @@ class PoolEditParams(TypedDict, total=False):
     pool.
     """
 
+    monitor_group: str
+    """
+    The ID of the Monitor Group to use for checking the health of origins within
+    this pool.
+    """
+
     name: str
     """A short name (tag) for the pool.
 
