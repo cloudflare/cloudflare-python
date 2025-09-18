@@ -62,8 +62,6 @@ class DomainGetResponse(BaseModel):
 
     authorization: Optional[Authorization] = None
 
-    dmarc_status: Optional[Literal["none", "good", "invalid"]] = None
-
     emails_processed: Optional[EmailsProcessed] = None
 
     folder: Optional[Literal["AllItems", "Inbox"]] = None
@@ -77,5 +75,3 @@ class DomainGetResponse(BaseModel):
     require_tls_inbound: Optional[bool] = None
 
     require_tls_outbound: Optional[bool] = None
-
-    spf_status: Optional[Literal["none", "good", "neutral", "open", "invalid"]] = None
