@@ -15,6 +15,7 @@ from .origin_param import OriginParam as OriginParam
 from .default_pools import DefaultPools as DefaultPools
 from .load_balancer import LoadBalancer as LoadBalancer
 from .load_shedding import LoadShedding as LoadShedding
+from .monitor_group import MonitorGroup as MonitorGroup
 from .filter_options import FilterOptions as FilterOptions
 from .origin_steering import OriginSteering as OriginSteering
 from .random_steering import RandomSteering as RandomSteering
@@ -46,9 +47,12 @@ from .adaptive_routing_param import AdaptiveRoutingParam as AdaptiveRoutingParam
 from .location_strategy_param import LocationStrategyParam as LocationStrategyParam
 from .monitor_delete_response import MonitorDeleteResponse as MonitorDeleteResponse
 from .load_balancer_edit_params import LoadBalancerEditParams as LoadBalancerEditParams
+from .monitor_group_edit_params import MonitorGroupEditParams as MonitorGroupEditParams
 from .notification_filter_param import NotificationFilterParam as NotificationFilterParam
 from .load_balancer_create_params import LoadBalancerCreateParams as LoadBalancerCreateParams
 from .load_balancer_update_params import LoadBalancerUpdateParams as LoadBalancerUpdateParams
+from .monitor_group_create_params import MonitorGroupCreateParams as MonitorGroupCreateParams
+from .monitor_group_update_params import MonitorGroupUpdateParams as MonitorGroupUpdateParams
 from .session_affinity_attributes import SessionAffinityAttributes as SessionAffinityAttributes
 from .load_balancer_delete_response import LoadBalancerDeleteResponse as LoadBalancerDeleteResponse
 from .session_affinity_attributes_param import SessionAffinityAttributesParam as SessionAffinityAttributesParam

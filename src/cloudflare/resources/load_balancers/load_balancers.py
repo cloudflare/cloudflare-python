@@ -51,6 +51,14 @@ from .pools.pools import (
 )
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import AsyncPaginator, make_request_options
+from .monitor_groups import (
+    MonitorGroupsResource,
+    AsyncMonitorGroupsResource,
+    MonitorGroupsResourceWithRawResponse,
+    AsyncMonitorGroupsResourceWithRawResponse,
+    MonitorGroupsResourceWithStreamingResponse,
+    AsyncMonitorGroupsResourceWithStreamingResponse,
+)
 from .monitors.monitors import (
     MonitorsResource,
     AsyncMonitorsResource,
@@ -84,6 +92,10 @@ class LoadBalancersResource(SyncAPIResource):
     @cached_property
     def monitors(self) -> MonitorsResource:
         return MonitorsResource(self._client)
+
+    @cached_property
+    def monitor_groups(self) -> MonitorGroupsResource:
+        return MonitorGroupsResource(self._client)
 
     @cached_property
     def pools(self) -> PoolsResource:
@@ -813,6 +825,10 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
     @cached_property
     def monitors(self) -> AsyncMonitorsResource:
         return AsyncMonitorsResource(self._client)
+
+    @cached_property
+    def monitor_groups(self) -> AsyncMonitorGroupsResource:
+        return AsyncMonitorGroupsResource(self._client)
 
     @cached_property
     def pools(self) -> AsyncPoolsResource:
@@ -1566,6 +1582,10 @@ class LoadBalancersResourceWithRawResponse:
         return MonitorsResourceWithRawResponse(self._load_balancers.monitors)
 
     @cached_property
+    def monitor_groups(self) -> MonitorGroupsResourceWithRawResponse:
+        return MonitorGroupsResourceWithRawResponse(self._load_balancers.monitor_groups)
+
+    @cached_property
     def pools(self) -> PoolsResourceWithRawResponse:
         return PoolsResourceWithRawResponse(self._load_balancers.pools)
 
@@ -1608,6 +1628,10 @@ class AsyncLoadBalancersResourceWithRawResponse:
     @cached_property
     def monitors(self) -> AsyncMonitorsResourceWithRawResponse:
         return AsyncMonitorsResourceWithRawResponse(self._load_balancers.monitors)
+
+    @cached_property
+    def monitor_groups(self) -> AsyncMonitorGroupsResourceWithRawResponse:
+        return AsyncMonitorGroupsResourceWithRawResponse(self._load_balancers.monitor_groups)
 
     @cached_property
     def pools(self) -> AsyncPoolsResourceWithRawResponse:
@@ -1654,6 +1678,10 @@ class LoadBalancersResourceWithStreamingResponse:
         return MonitorsResourceWithStreamingResponse(self._load_balancers.monitors)
 
     @cached_property
+    def monitor_groups(self) -> MonitorGroupsResourceWithStreamingResponse:
+        return MonitorGroupsResourceWithStreamingResponse(self._load_balancers.monitor_groups)
+
+    @cached_property
     def pools(self) -> PoolsResourceWithStreamingResponse:
         return PoolsResourceWithStreamingResponse(self._load_balancers.pools)
 
@@ -1696,6 +1724,10 @@ class AsyncLoadBalancersResourceWithStreamingResponse:
     @cached_property
     def monitors(self) -> AsyncMonitorsResourceWithStreamingResponse:
         return AsyncMonitorsResourceWithStreamingResponse(self._load_balancers.monitors)
+
+    @cached_property
+    def monitor_groups(self) -> AsyncMonitorGroupsResourceWithStreamingResponse:
+        return AsyncMonitorGroupsResourceWithStreamingResponse(self._load_balancers.monitor_groups)
 
     @cached_property
     def pools(self) -> AsyncPoolsResourceWithStreamingResponse:
