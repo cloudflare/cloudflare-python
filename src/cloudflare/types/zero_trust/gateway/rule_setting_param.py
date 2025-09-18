@@ -209,161 +209,122 @@ class RuleSettingParam(TypedDict, total=False):
     add_headers: Optional[Dict[str, SequenceNotStr[str]]]
     """Add custom headers to allowed requests as key-value pairs.
 
-    Use header names as keys that map to arrays of header values. Settable only for
-    `http` rules with the action set to `allow`.
+    Use header names as keys that map to arrays of header values.
     """
 
     allow_child_bypass: Optional[bool]
     """Set to enable MSP children to bypass this rule.
 
-    Only parent MSP accounts can set this. this rule. Settable for all types of
-    rules.
+    Only parent MSP accounts can set this. this rule.
     """
 
     audit_ssh: Optional[AuditSSH]
-    """Define the settings for the Audit SSH action.
-
-    Settable only for `l4` rules with `audit_ssh` action.
-    """
+    """Define the settings for the Audit SSH action."""
 
     biso_admin_controls: BISOAdminControls
-    """Configure browser isolation behavior.
-
-    Settable only for `http` rules with the action set to `isolate`.
-    """
+    """Configure browser isolation behavior."""
 
     block_page: Optional[BlockPage]
     """Configure custom block page settings.
 
-    If missing or null, use the account settings. Settable only for `http` rules
-    with the action set to `block`.
+    If missing or null, use the account settings.
     """
 
     block_page_enabled: bool
-    """Enable the custom block page.
-
-    Settable only for `dns` rules with action `block`.
-    """
+    """Enable the custom block page."""
 
     block_reason: Optional[str]
     """Explain why the rule blocks the request.
 
-    The custom block page shows this text (if enabled). Settable only for `dns`,
-    `l4`, and `http` rules when the action set to `block`.
+    The custom block page shows this text (if enabled).
     """
 
     bypass_parent_rule: Optional[bool]
     """Set to enable MSP accounts to bypass their parent's rules.
 
-    Only MSP child accounts can set this. Settable for all types of rules.
+    Only MSP child accounts can set this.
     """
 
     check_session: Optional[CheckSession]
-    """Configure session check behavior.
-
-    Settable only for `l4` and `http` rules with the action set to `allow`.
-    """
+    """Configure session check behavior."""
 
     dns_resolvers: Optional[DNSResolvers]
     """Configure custom resolvers to route queries that match the resolver policy.
 
     Unused with 'resolve_dns_through_cloudflare' or 'resolve_dns_internally'
     settings. DNS queries get routed to the address closest to their origin. Only
-    valid when a rule's action set to 'resolve'. Settable only for `dns_resolver`
-    rules.
+    valid when a rule's action is set to 'resolve'.
     """
 
     egress: Optional[Egress]
     """Configure how Gateway Proxy traffic egresses.
 
     You can enable this setting for rules with Egress actions and filters, or omit
-    it to indicate local egress via WARP IPs. Settable only for `egress` rules.
+    it to indicate local egress via WARP IPs.
     """
 
     ignore_cname_category_matches: bool
     """Ignore category matches at CNAME domains in a response.
 
     When off, evaluate categories in this rule against all CNAME domain categories
-    in the response. Settable only for `dns` and `dns_resolver` rules.
+    in the response.
     """
 
     insecure_disable_dnssec_validation: bool
-    """Specify whether to disable DNSSEC validation (for Allow actions) [INSECURE].
-
-    Settable only for `dns` rules.
-    """
+    """Specify whether to disable DNSSEC validation (for Allow actions) [INSECURE]."""
 
     ip_categories: bool
     """Enable IPs in DNS resolver category blocks.
 
     The system blocks only domain name categories unless you enable this setting.
-    Settable only for `dns` and `dns_resolver` rules.
     """
 
     ip_indicator_feeds: bool
     """Indicates whether to include IPs in DNS resolver indicator feed blocks.
 
-    Default, indicator feeds block only domain names. Settable only for `dns` and
-    `dns_resolver` rules.
+    Default, indicator feeds block only domain names.
     """
 
     l4override: Optional[L4override]
-    """Send matching traffic to the supplied destination IP address and port.
-
-    Settable only for `l4` rules with the action set to `l4_override`.
-    """
+    """Send matching traffic to the supplied destination IP address. and port."""
 
     notification_settings: Optional[NotificationSettings]
-    """Configure a notification to display on the user's device when this rule matched.
-
-    Settable for all types of rules with the action set to `block`.
+    """
+    Configure a notification to display on the user's device when this rule matched.
     """
 
     override_host: str
-    """Defines a hostname for override, for the matching DNS queries.
-
-    Settable only for `dns` rules with the action set to `override`.
-    """
+    """Defines a hostname for override, for the matching DNS queries."""
 
     override_ips: Optional[SequenceNotStr[str]]
-    """Defines a an IP or set of IPs for overriding matched DNS queries.
-
-    Settable only for `dns` rules with the action set to `override`.
-    """
+    """Defines a an IP or set of IPs for overriding matched DNS queries."""
 
     payload_log: Optional[PayloadLog]
-    """Configure DLP payload logging. Settable only for `http` rules."""
+    """Configure DLP payload logging."""
 
     quarantine: Optional[Quarantine]
-    """Configure settings that apply to quarantine rules.
-
-    Settable only for `http` rules.
-    """
+    """Configure settings that apply to quarantine rules."""
 
     redirect: Optional[Redirect]
-    """Apply settings to redirect rules.
-
-    Settable only for `http` rules with the action set to `redirect`.
-    """
+    """Apply settings to redirect rules."""
 
     resolve_dns_internally: Optional[ResolveDNSInternally]
     """
     Configure to forward the query to the internal DNS service, passing the
     specified 'view_id' as input. Not used when 'dns_resolvers' is specified or
-    'resolve_dns_through_cloudflare' is set. Only valid when a rule's action set to
-    'resolve'. Settable only for `dns_resolver` rules.
+    'resolve_dns_through_cloudflare' is set. Only valid when a rule's action is set
+    to 'resolve'.
     """
 
     resolve_dns_through_cloudflare: Optional[bool]
     """
     Enable to send queries that match the policy to Cloudflare's default 1.1.1.1 DNS
     resolver. Cannot set when 'dns_resolvers' specified or 'resolve_dns_internally'
-    is set. Only valid when a rule's action set to 'resolve'. Settable only for
-    `dns_resolver` rules.
+    is set. Only valid when a rule's action set to 'resolve'.
     """
 
     untrusted_cert: Optional[UntrustedCERT]
     """
     Configure behavior when an upstream certificate is invalid or an SSL error
-    occurs. Settable only for `http` rules with the action set to `allow`.
+    occurs.
     """

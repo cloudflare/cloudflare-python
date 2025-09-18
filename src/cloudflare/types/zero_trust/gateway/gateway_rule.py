@@ -108,7 +108,7 @@ class GatewayRule(BaseModel):
     """Defines the expiration time stamp and default duration of a DNS policy.
 
     Takes precedence over the policy's `schedule` configuration, if any. This does
-    not apply to HTTP or network policies. Settable only for `dns` rules.
+    not apply to HTTP or network policies.
     """
 
     identity: Optional[str] = None
@@ -123,20 +123,12 @@ class GatewayRule(BaseModel):
     """Indicate that this rule is shared via the Orgs API and read only."""
 
     rule_settings: Optional[RuleSetting] = None
-    """Set settings related to this rule.
-
-    Each setting is only valid for specific rule types and can only be used with the
-    appropriate selectors. If Terraform drift is observed in these setting values,
-    verify that the setting is supported for the given rule type and that the API
-    response reflects the requested value. If the API response returns sanitized or
-    modified values that differ from the request, use the API-provided values in
-    Terraform to ensure consistency.
-    """
+    """Set settings related to this rule."""
 
     schedule: Optional[Schedule] = None
     """Defines the schedule for activating DNS policies.
 
-    Settable only for `dns` and `dns_resolver` rules.
+    (HTTP/Egress or L4 unsupported).
     """
 
     sharable: Optional[bool] = None
