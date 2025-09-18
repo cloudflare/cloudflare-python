@@ -53,11 +53,8 @@ class StatsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Stat:
-        """Fetch image statistics details for Cloudflare Images.
-
-        The returned statistics
-        detail storage usage, including the current image count vs this account's
-        allowance.
+        """
+        Fetch usage statistics details for Cloudflare Images.
 
         Args:
           account_id: Account identifier tag.
@@ -116,11 +113,8 @@ class AsyncStatsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Stat:
-        """Fetch image statistics details for Cloudflare Images.
-
-        The returned statistics
-        detail storage usage, including the current image count vs this account's
-        allowance.
+        """
+        Fetch usage statistics details for Cloudflare Images.
 
         Args:
           account_id: Account identifier tag.
