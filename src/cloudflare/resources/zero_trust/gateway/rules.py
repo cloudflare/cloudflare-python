@@ -109,7 +109,7 @@ class RulesResource(SyncAPIResource):
 
           expiration: Defines the expiration time stamp and default duration of a DNS policy. Takes
               precedence over the policy's `schedule` configuration, if any. This does not
-              apply to HTTP or network policies.
+              apply to HTTP or network policies. Settable only for `dns` rules.
 
           filters: Specify the protocol or layer to evaluate the traffic, identity, and device
               posture expressions.
@@ -125,10 +125,15 @@ class RulesResource(SyncAPIResource):
               [Order of enforcement](http://developers.cloudflare.com/learning-paths/secure-internet-traffic/understand-policies/order-of-enforcement/#manage-precedence-with-terraform)
               to manage precedence via Terraform.
 
-          rule_settings: Set settings related to this rule.
+          rule_settings: Set settings related to this rule. Each setting is only valid for specific rule
+              types and can only be used with the appropriate selectors. If Terraform drift is
+              observed in these setting values, verify that the setting is supported for the
+              given rule type and that the API response reflects the requested value. If the
+              API response returns sanitized or modified values that differ from the request,
+              use the API-provided values in Terraform to ensure consistency.
 
-          schedule: Defines the schedule for activating DNS policies. (HTTP/Egress or L4
-              unsupported).
+          schedule: Defines the schedule for activating DNS policies. Settable only for `dns` and
+              `dns_resolver` rules.
 
           traffic: Specify the wirefilter expression used for traffic matching. The API
               automatically formats and sanitizes expressions before storing them. To prevent
@@ -237,7 +242,7 @@ class RulesResource(SyncAPIResource):
 
           expiration: Defines the expiration time stamp and default duration of a DNS policy. Takes
               precedence over the policy's `schedule` configuration, if any. This does not
-              apply to HTTP or network policies.
+              apply to HTTP or network policies. Settable only for `dns` rules.
 
           filters: Specify the protocol or layer to evaluate the traffic, identity, and device
               posture expressions.
@@ -253,10 +258,15 @@ class RulesResource(SyncAPIResource):
               [Order of enforcement](http://developers.cloudflare.com/learning-paths/secure-internet-traffic/understand-policies/order-of-enforcement/#manage-precedence-with-terraform)
               to manage precedence via Terraform.
 
-          rule_settings: Set settings related to this rule.
+          rule_settings: Set settings related to this rule. Each setting is only valid for specific rule
+              types and can only be used with the appropriate selectors. If Terraform drift is
+              observed in these setting values, verify that the setting is supported for the
+              given rule type and that the API response reflects the requested value. If the
+              API response returns sanitized or modified values that differ from the request,
+              use the API-provided values in Terraform to ensure consistency.
 
-          schedule: Defines the schedule for activating DNS policies. (HTTP/Egress or L4
-              unsupported).
+          schedule: Defines the schedule for activating DNS policies. Settable only for `dns` and
+              `dns_resolver` rules.
 
           traffic: Specify the wirefilter expression used for traffic matching. The API
               automatically formats and sanitizes expressions before storing them. To prevent
@@ -547,7 +557,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           expiration: Defines the expiration time stamp and default duration of a DNS policy. Takes
               precedence over the policy's `schedule` configuration, if any. This does not
-              apply to HTTP or network policies.
+              apply to HTTP or network policies. Settable only for `dns` rules.
 
           filters: Specify the protocol or layer to evaluate the traffic, identity, and device
               posture expressions.
@@ -563,10 +573,15 @@ class AsyncRulesResource(AsyncAPIResource):
               [Order of enforcement](http://developers.cloudflare.com/learning-paths/secure-internet-traffic/understand-policies/order-of-enforcement/#manage-precedence-with-terraform)
               to manage precedence via Terraform.
 
-          rule_settings: Set settings related to this rule.
+          rule_settings: Set settings related to this rule. Each setting is only valid for specific rule
+              types and can only be used with the appropriate selectors. If Terraform drift is
+              observed in these setting values, verify that the setting is supported for the
+              given rule type and that the API response reflects the requested value. If the
+              API response returns sanitized or modified values that differ from the request,
+              use the API-provided values in Terraform to ensure consistency.
 
-          schedule: Defines the schedule for activating DNS policies. (HTTP/Egress or L4
-              unsupported).
+          schedule: Defines the schedule for activating DNS policies. Settable only for `dns` and
+              `dns_resolver` rules.
 
           traffic: Specify the wirefilter expression used for traffic matching. The API
               automatically formats and sanitizes expressions before storing them. To prevent
@@ -675,7 +690,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           expiration: Defines the expiration time stamp and default duration of a DNS policy. Takes
               precedence over the policy's `schedule` configuration, if any. This does not
-              apply to HTTP or network policies.
+              apply to HTTP or network policies. Settable only for `dns` rules.
 
           filters: Specify the protocol or layer to evaluate the traffic, identity, and device
               posture expressions.
@@ -691,10 +706,15 @@ class AsyncRulesResource(AsyncAPIResource):
               [Order of enforcement](http://developers.cloudflare.com/learning-paths/secure-internet-traffic/understand-policies/order-of-enforcement/#manage-precedence-with-terraform)
               to manage precedence via Terraform.
 
-          rule_settings: Set settings related to this rule.
+          rule_settings: Set settings related to this rule. Each setting is only valid for specific rule
+              types and can only be used with the appropriate selectors. If Terraform drift is
+              observed in these setting values, verify that the setting is supported for the
+              given rule type and that the API response reflects the requested value. If the
+              API response returns sanitized or modified values that differ from the request,
+              use the API-provided values in Terraform to ensure consistency.
 
-          schedule: Defines the schedule for activating DNS policies. (HTTP/Egress or L4
-              unsupported).
+          schedule: Defines the schedule for activating DNS policies. Settable only for `dns` and
+              `dns_resolver` rules.
 
           traffic: Specify the wirefilter expression used for traffic matching. The API
               automatically formats and sanitizes expressions before storing them. To prevent
