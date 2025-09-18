@@ -6,7 +6,7 @@ from typing import Any, Type, Optional, cast
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -54,13 +54,13 @@ class IntegrationResource(SyncAPIResource):
         account_id: str,
         enabled: bool,
         entry_id: str,
-        profile_id: Optional[str] | NotGiven = NOT_GIVEN,
+        profile_id: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IntegrationCreateResponse]:
         """
         Integration entries can't be created, this will update an existing integration
@@ -111,7 +111,7 @@ class IntegrationResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IntegrationUpdateResponse]:
         """
         Updates a DLP entry.
@@ -151,7 +151,7 @@ class IntegrationResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[IntegrationListResponse]:
         """
         Lists all DLP entries in an account.
@@ -186,7 +186,7 @@ class IntegrationResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         This is a no-op as integration entires can't be deleted but is needed for our
@@ -227,7 +227,7 @@ class IntegrationResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IntegrationGetResponse]:
         """
         Fetches a DLP entry by ID.
@@ -289,13 +289,13 @@ class AsyncIntegrationResource(AsyncAPIResource):
         account_id: str,
         enabled: bool,
         entry_id: str,
-        profile_id: Optional[str] | NotGiven = NOT_GIVEN,
+        profile_id: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IntegrationCreateResponse]:
         """
         Integration entries can't be created, this will update an existing integration
@@ -346,7 +346,7 @@ class AsyncIntegrationResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IntegrationUpdateResponse]:
         """
         Updates a DLP entry.
@@ -386,7 +386,7 @@ class AsyncIntegrationResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[IntegrationListResponse, AsyncSinglePage[IntegrationListResponse]]:
         """
         Lists all DLP entries in an account.
@@ -421,7 +421,7 @@ class AsyncIntegrationResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         This is a no-op as integration entires can't be deleted but is needed for our
@@ -462,7 +462,7 @@ class AsyncIntegrationResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IntegrationGetResponse]:
         """
         Fetches a DLP entry by ID.

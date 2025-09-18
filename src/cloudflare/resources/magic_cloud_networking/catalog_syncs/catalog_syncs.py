@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, strip_not_given, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -76,15 +76,15 @@ class CatalogSyncsResource(SyncAPIResource):
         destination_type: Literal["NONE", "ZERO_TRUST_LIST"],
         name: str,
         update_mode: Literal["AUTO", "MANUAL"],
-        description: str | NotGiven = NOT_GIVEN,
-        policy: str | NotGiven = NOT_GIVEN,
-        forwarded: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        policy: str | Omit = omit,
+        forwarded: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CatalogSyncCreateResponse:
         """
         Create a new Catalog Sync (Closed Beta).
@@ -128,16 +128,16 @@ class CatalogSyncsResource(SyncAPIResource):
         sync_id: str,
         *,
         account_id: str,
-        description: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        policy: str | NotGiven = NOT_GIVEN,
-        update_mode: Literal["AUTO", "MANUAL"] | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        name: str | Omit = omit,
+        policy: str | Omit = omit,
+        update_mode: Literal["AUTO", "MANUAL"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CatalogSyncUpdateResponse:
         """
         Update a Catalog Sync (Closed Beta).
@@ -185,7 +185,7 @@ class CatalogSyncsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[CatalogSyncListResponse]:
         """
         List Catalog Syncs (Closed Beta).
@@ -215,13 +215,13 @@ class CatalogSyncsResource(SyncAPIResource):
         sync_id: str,
         *,
         account_id: str,
-        delete_destination: bool | NotGiven = NOT_GIVEN,
+        delete_destination: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CatalogSyncDeleteResponse:
         """
         Delete a Catalog Sync (Closed Beta).
@@ -259,16 +259,16 @@ class CatalogSyncsResource(SyncAPIResource):
         sync_id: str,
         *,
         account_id: str,
-        description: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        policy: str | NotGiven = NOT_GIVEN,
-        update_mode: Literal["AUTO", "MANUAL"] | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        name: str | Omit = omit,
+        policy: str | Omit = omit,
+        update_mode: Literal["AUTO", "MANUAL"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CatalogSyncEditResponse:
         """
         Update a Catalog Sync (Closed Beta).
@@ -317,7 +317,7 @@ class CatalogSyncsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CatalogSyncGetResponse:
         """
         Read a Catalog Sync (Closed Beta).
@@ -357,7 +357,7 @@ class CatalogSyncsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Refresh a Catalog Sync's destination by running the sync policy against latest
@@ -420,15 +420,15 @@ class AsyncCatalogSyncsResource(AsyncAPIResource):
         destination_type: Literal["NONE", "ZERO_TRUST_LIST"],
         name: str,
         update_mode: Literal["AUTO", "MANUAL"],
-        description: str | NotGiven = NOT_GIVEN,
-        policy: str | NotGiven = NOT_GIVEN,
-        forwarded: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        policy: str | Omit = omit,
+        forwarded: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CatalogSyncCreateResponse:
         """
         Create a new Catalog Sync (Closed Beta).
@@ -472,16 +472,16 @@ class AsyncCatalogSyncsResource(AsyncAPIResource):
         sync_id: str,
         *,
         account_id: str,
-        description: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        policy: str | NotGiven = NOT_GIVEN,
-        update_mode: Literal["AUTO", "MANUAL"] | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        name: str | Omit = omit,
+        policy: str | Omit = omit,
+        update_mode: Literal["AUTO", "MANUAL"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CatalogSyncUpdateResponse:
         """
         Update a Catalog Sync (Closed Beta).
@@ -529,7 +529,7 @@ class AsyncCatalogSyncsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[CatalogSyncListResponse, AsyncSinglePage[CatalogSyncListResponse]]:
         """
         List Catalog Syncs (Closed Beta).
@@ -559,13 +559,13 @@ class AsyncCatalogSyncsResource(AsyncAPIResource):
         sync_id: str,
         *,
         account_id: str,
-        delete_destination: bool | NotGiven = NOT_GIVEN,
+        delete_destination: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CatalogSyncDeleteResponse:
         """
         Delete a Catalog Sync (Closed Beta).
@@ -603,16 +603,16 @@ class AsyncCatalogSyncsResource(AsyncAPIResource):
         sync_id: str,
         *,
         account_id: str,
-        description: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        policy: str | NotGiven = NOT_GIVEN,
-        update_mode: Literal["AUTO", "MANUAL"] | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        name: str | Omit = omit,
+        policy: str | Omit = omit,
+        update_mode: Literal["AUTO", "MANUAL"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CatalogSyncEditResponse:
         """
         Update a Catalog Sync (Closed Beta).
@@ -661,7 +661,7 @@ class AsyncCatalogSyncsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CatalogSyncGetResponse:
         """
         Read a Catalog Sync (Closed Beta).
@@ -701,7 +701,7 @@ class AsyncCatalogSyncsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Refresh a Catalog Sync's destination by running the sync policy against latest

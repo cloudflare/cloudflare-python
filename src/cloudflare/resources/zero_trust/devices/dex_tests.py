@@ -6,7 +6,7 @@ from typing import Type, Iterable, Optional, cast
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -57,15 +57,15 @@ class DEXTestsResource(SyncAPIResource):
         enabled: bool,
         interval: str,
         name: str,
-        description: str | NotGiven = NOT_GIVEN,
-        target_policies: Iterable[dex_test_create_params.TargetPolicy] | NotGiven = NOT_GIVEN,
-        targeted: bool | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        target_policies: Iterable[dex_test_create_params.TargetPolicy] | Omit = omit,
+        targeted: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DEXTestCreateResponse]:
         """
         Create a DEX test.
@@ -127,15 +127,15 @@ class DEXTestsResource(SyncAPIResource):
         enabled: bool,
         interval: str,
         name: str,
-        description: str | NotGiven = NOT_GIVEN,
-        target_policies: Iterable[dex_test_update_params.TargetPolicy] | NotGiven = NOT_GIVEN,
-        targeted: bool | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        target_policies: Iterable[dex_test_update_params.TargetPolicy] | Omit = omit,
+        targeted: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DEXTestUpdateResponse]:
         """
         Update a DEX test.
@@ -201,7 +201,7 @@ class DEXTestsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[DEXTestListResponse]:
         """
         Fetch all DEX tests
@@ -236,7 +236,7 @@ class DEXTestsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DEXTestDeleteResponse]:
         """Delete a Device DEX test.
 
@@ -280,7 +280,7 @@ class DEXTestsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DEXTestGetResponse]:
         """
         Fetch a single DEX test.
@@ -341,15 +341,15 @@ class AsyncDEXTestsResource(AsyncAPIResource):
         enabled: bool,
         interval: str,
         name: str,
-        description: str | NotGiven = NOT_GIVEN,
-        target_policies: Iterable[dex_test_create_params.TargetPolicy] | NotGiven = NOT_GIVEN,
-        targeted: bool | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        target_policies: Iterable[dex_test_create_params.TargetPolicy] | Omit = omit,
+        targeted: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DEXTestCreateResponse]:
         """
         Create a DEX test.
@@ -411,15 +411,15 @@ class AsyncDEXTestsResource(AsyncAPIResource):
         enabled: bool,
         interval: str,
         name: str,
-        description: str | NotGiven = NOT_GIVEN,
-        target_policies: Iterable[dex_test_update_params.TargetPolicy] | NotGiven = NOT_GIVEN,
-        targeted: bool | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        target_policies: Iterable[dex_test_update_params.TargetPolicy] | Omit = omit,
+        targeted: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DEXTestUpdateResponse]:
         """
         Update a DEX test.
@@ -485,7 +485,7 @@ class AsyncDEXTestsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[DEXTestListResponse, AsyncSinglePage[DEXTestListResponse]]:
         """
         Fetch all DEX tests
@@ -520,7 +520,7 @@ class AsyncDEXTestsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DEXTestDeleteResponse]:
         """Delete a Device DEX test.
 
@@ -564,7 +564,7 @@ class AsyncDEXTestsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DEXTestGetResponse]:
         """
         Fetch a single DEX test.

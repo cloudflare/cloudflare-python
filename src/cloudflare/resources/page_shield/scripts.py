@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -51,25 +51,25 @@ class ScriptsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        exclude_cdn_cgi: bool | NotGiven = NOT_GIVEN,
-        exclude_duplicates: bool | NotGiven = NOT_GIVEN,
-        exclude_urls: str | NotGiven = NOT_GIVEN,
-        export: Literal["csv"] | NotGiven = NOT_GIVEN,
-        hosts: str | NotGiven = NOT_GIVEN,
-        order_by: Literal["first_seen_at", "last_seen_at"] | NotGiven = NOT_GIVEN,
-        page: str | NotGiven = NOT_GIVEN,
-        page_url: str | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        prioritize_malicious: bool | NotGiven = NOT_GIVEN,
-        status: str | NotGiven = NOT_GIVEN,
-        urls: str | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        exclude_cdn_cgi: bool | Omit = omit,
+        exclude_duplicates: bool | Omit = omit,
+        exclude_urls: str | Omit = omit,
+        export: Literal["csv"] | Omit = omit,
+        hosts: str | Omit = omit,
+        order_by: Literal["first_seen_at", "last_seen_at"] | Omit = omit,
+        page: str | Omit = omit,
+        page_url: str | Omit = omit,
+        per_page: float | Omit = omit,
+        prioritize_malicious: bool | Omit = omit,
+        status: str | Omit = omit,
+        urls: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[Script]:
         """
         Lists all scripts detected by Page Shield.
@@ -175,7 +175,7 @@ class ScriptsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ScriptGetResponse]:
         """
         Fetches a script detected by Page Shield by script ID.
@@ -234,25 +234,25 @@ class AsyncScriptsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        exclude_cdn_cgi: bool | NotGiven = NOT_GIVEN,
-        exclude_duplicates: bool | NotGiven = NOT_GIVEN,
-        exclude_urls: str | NotGiven = NOT_GIVEN,
-        export: Literal["csv"] | NotGiven = NOT_GIVEN,
-        hosts: str | NotGiven = NOT_GIVEN,
-        order_by: Literal["first_seen_at", "last_seen_at"] | NotGiven = NOT_GIVEN,
-        page: str | NotGiven = NOT_GIVEN,
-        page_url: str | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        prioritize_malicious: bool | NotGiven = NOT_GIVEN,
-        status: str | NotGiven = NOT_GIVEN,
-        urls: str | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        exclude_cdn_cgi: bool | Omit = omit,
+        exclude_duplicates: bool | Omit = omit,
+        exclude_urls: str | Omit = omit,
+        export: Literal["csv"] | Omit = omit,
+        hosts: str | Omit = omit,
+        order_by: Literal["first_seen_at", "last_seen_at"] | Omit = omit,
+        page: str | Omit = omit,
+        page_url: str | Omit = omit,
+        per_page: float | Omit = omit,
+        prioritize_malicious: bool | Omit = omit,
+        status: str | Omit = omit,
+        urls: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Script, AsyncSinglePage[Script]]:
         """
         Lists all scripts detected by Page Shield.
@@ -358,7 +358,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ScriptGetResponse]:
         """
         Fetches a script detected by Page Shield by script ID.

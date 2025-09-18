@@ -6,7 +6,7 @@ from typing import Type, Iterable, cast
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -58,15 +58,15 @@ class RoutesResource(SyncAPIResource):
         nexthop: str,
         prefix: str,
         priority: int,
-        description: str | NotGiven = NOT_GIVEN,
-        scope: ScopeParam | NotGiven = NOT_GIVEN,
-        weight: int | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        scope: ScopeParam | Omit = omit,
+        weight: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RouteCreateResponse:
         """Creates a new Magic static route.
 
@@ -129,15 +129,15 @@ class RoutesResource(SyncAPIResource):
         nexthop: str,
         prefix: str,
         priority: int,
-        description: str | NotGiven = NOT_GIVEN,
-        scope: ScopeParam | NotGiven = NOT_GIVEN,
-        weight: int | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        scope: ScopeParam | Omit = omit,
+        weight: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RouteUpdateResponse:
         """Update a specific Magic static route.
 
@@ -205,7 +205,7 @@ class RoutesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RouteListResponse:
         """
         List all Magic static routes.
@@ -245,7 +245,7 @@ class RoutesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RouteDeleteResponse:
         """
         Disable and remove a specific Magic static route.
@@ -289,7 +289,7 @@ class RoutesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RouteBulkUpdateResponse:
         """Update multiple Magic static routes.
 
@@ -332,7 +332,7 @@ class RoutesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RouteEmptyResponse:
         """
         Delete multiple Magic static routes.
@@ -372,7 +372,7 @@ class RoutesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RouteGetResponse:
         """
         Get a specific Magic static route.
@@ -434,15 +434,15 @@ class AsyncRoutesResource(AsyncAPIResource):
         nexthop: str,
         prefix: str,
         priority: int,
-        description: str | NotGiven = NOT_GIVEN,
-        scope: ScopeParam | NotGiven = NOT_GIVEN,
-        weight: int | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        scope: ScopeParam | Omit = omit,
+        weight: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RouteCreateResponse:
         """Creates a new Magic static route.
 
@@ -505,15 +505,15 @@ class AsyncRoutesResource(AsyncAPIResource):
         nexthop: str,
         prefix: str,
         priority: int,
-        description: str | NotGiven = NOT_GIVEN,
-        scope: ScopeParam | NotGiven = NOT_GIVEN,
-        weight: int | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        scope: ScopeParam | Omit = omit,
+        weight: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RouteUpdateResponse:
         """Update a specific Magic static route.
 
@@ -581,7 +581,7 @@ class AsyncRoutesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RouteListResponse:
         """
         List all Magic static routes.
@@ -621,7 +621,7 @@ class AsyncRoutesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RouteDeleteResponse:
         """
         Disable and remove a specific Magic static route.
@@ -665,7 +665,7 @@ class AsyncRoutesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RouteBulkUpdateResponse:
         """Update multiple Magic static routes.
 
@@ -708,7 +708,7 @@ class AsyncRoutesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RouteEmptyResponse:
         """
         Delete multiple Magic static routes.
@@ -748,7 +748,7 @@ class AsyncRoutesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RouteGetResponse:
         """
         Get a specific Magic static route.

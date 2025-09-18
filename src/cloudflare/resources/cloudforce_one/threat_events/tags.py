@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -46,27 +46,27 @@ class TagsResource(SyncAPIResource):
         *,
         account_id: str,
         value: str,
-        active_duration: str | NotGiven = NOT_GIVEN,
-        actor_category: str | NotGiven = NOT_GIVEN,
-        alias_group_names: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        alias_group_names_internal: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        analytic_priority: float | NotGiven = NOT_GIVEN,
-        attribution_confidence: str | NotGiven = NOT_GIVEN,
-        attribution_organization: str | NotGiven = NOT_GIVEN,
-        category_uuid: str | NotGiven = NOT_GIVEN,
-        external_reference_links: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        internal_description: str | NotGiven = NOT_GIVEN,
-        motive: str | NotGiven = NOT_GIVEN,
-        opsec_level: str | NotGiven = NOT_GIVEN,
-        origin_country_iso: str | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
-        sophistication_level: str | NotGiven = NOT_GIVEN,
+        active_duration: str | Omit = omit,
+        actor_category: str | Omit = omit,
+        alias_group_names: SequenceNotStr[str] | Omit = omit,
+        alias_group_names_internal: SequenceNotStr[str] | Omit = omit,
+        analytic_priority: float | Omit = omit,
+        attribution_confidence: str | Omit = omit,
+        attribution_organization: str | Omit = omit,
+        category_uuid: str | Omit = omit,
+        external_reference_links: SequenceNotStr[str] | Omit = omit,
+        internal_description: str | Omit = omit,
+        motive: str | Omit = omit,
+        opsec_level: str | Omit = omit,
+        origin_country_iso: str | Omit = omit,
+        priority: float | Omit = omit,
+        sophistication_level: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TagCreateResponse:
         """
         Creates a new tag to be used accross threat events.
@@ -139,27 +139,27 @@ class AsyncTagsResource(AsyncAPIResource):
         *,
         account_id: str,
         value: str,
-        active_duration: str | NotGiven = NOT_GIVEN,
-        actor_category: str | NotGiven = NOT_GIVEN,
-        alias_group_names: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        alias_group_names_internal: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        analytic_priority: float | NotGiven = NOT_GIVEN,
-        attribution_confidence: str | NotGiven = NOT_GIVEN,
-        attribution_organization: str | NotGiven = NOT_GIVEN,
-        category_uuid: str | NotGiven = NOT_GIVEN,
-        external_reference_links: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        internal_description: str | NotGiven = NOT_GIVEN,
-        motive: str | NotGiven = NOT_GIVEN,
-        opsec_level: str | NotGiven = NOT_GIVEN,
-        origin_country_iso: str | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
-        sophistication_level: str | NotGiven = NOT_GIVEN,
+        active_duration: str | Omit = omit,
+        actor_category: str | Omit = omit,
+        alias_group_names: SequenceNotStr[str] | Omit = omit,
+        alias_group_names_internal: SequenceNotStr[str] | Omit = omit,
+        analytic_priority: float | Omit = omit,
+        attribution_confidence: str | Omit = omit,
+        attribution_organization: str | Omit = omit,
+        category_uuid: str | Omit = omit,
+        external_reference_links: SequenceNotStr[str] | Omit = omit,
+        internal_description: str | Omit = omit,
+        motive: str | Omit = omit,
+        opsec_level: str | Omit = omit,
+        origin_country_iso: str | Omit = omit,
+        priority: float | Omit = omit,
+        sophistication_level: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TagCreateResponse:
         """
         Creates a new tag to be used accross threat events.

@@ -15,7 +15,7 @@ from .items import (
     ItemsResourceWithStreamingResponse,
     AsyncItemsResourceWithStreamingResponse,
 )
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -65,14 +65,14 @@ class ListsResource(SyncAPIResource):
         account_id: str,
         name: str,
         type: Literal["SERIAL", "URL", "DOMAIN", "EMAIL", "IP"],
-        description: str | NotGiven = NOT_GIVEN,
-        items: Iterable[list_create_params.Item] | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        items: Iterable[list_create_params.Item] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ListCreateResponse]:
         """
         Creates a new Zero Trust list.
@@ -123,14 +123,14 @@ class ListsResource(SyncAPIResource):
         *,
         account_id: str,
         name: str,
-        description: str | NotGiven = NOT_GIVEN,
-        items: Iterable[list_update_params.Item] | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        items: Iterable[list_update_params.Item] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[GatewayList]:
         """Updates a configured Zero Trust list.
 
@@ -182,13 +182,13 @@ class ListsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        type: Literal["SERIAL", "URL", "DOMAIN", "EMAIL", "IP"] | NotGiven = NOT_GIVEN,
+        type: Literal["SERIAL", "URL", "DOMAIN", "EMAIL", "IP"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[GatewayList]:
         """
         Fetch all Zero Trust lists for an account.
@@ -229,7 +229,7 @@ class ListsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Deletes a Zero Trust list.
@@ -266,14 +266,14 @@ class ListsResource(SyncAPIResource):
         list_id: str,
         *,
         account_id: str,
-        append: Iterable[list_edit_params.Append] | NotGiven = NOT_GIVEN,
-        remove: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        append: Iterable[list_edit_params.Append] | Omit = omit,
+        remove: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[GatewayList]:
         """
         Appends or removes an item from a configured Zero Trust list.
@@ -326,7 +326,7 @@ class ListsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[GatewayList]:
         """
         Fetch a single Zero Trust list.
@@ -389,14 +389,14 @@ class AsyncListsResource(AsyncAPIResource):
         account_id: str,
         name: str,
         type: Literal["SERIAL", "URL", "DOMAIN", "EMAIL", "IP"],
-        description: str | NotGiven = NOT_GIVEN,
-        items: Iterable[list_create_params.Item] | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        items: Iterable[list_create_params.Item] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ListCreateResponse]:
         """
         Creates a new Zero Trust list.
@@ -447,14 +447,14 @@ class AsyncListsResource(AsyncAPIResource):
         *,
         account_id: str,
         name: str,
-        description: str | NotGiven = NOT_GIVEN,
-        items: Iterable[list_update_params.Item] | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        items: Iterable[list_update_params.Item] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[GatewayList]:
         """Updates a configured Zero Trust list.
 
@@ -506,13 +506,13 @@ class AsyncListsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        type: Literal["SERIAL", "URL", "DOMAIN", "EMAIL", "IP"] | NotGiven = NOT_GIVEN,
+        type: Literal["SERIAL", "URL", "DOMAIN", "EMAIL", "IP"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[GatewayList, AsyncSinglePage[GatewayList]]:
         """
         Fetch all Zero Trust lists for an account.
@@ -553,7 +553,7 @@ class AsyncListsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Deletes a Zero Trust list.
@@ -590,14 +590,14 @@ class AsyncListsResource(AsyncAPIResource):
         list_id: str,
         *,
         account_id: str,
-        append: Iterable[list_edit_params.Append] | NotGiven = NOT_GIVEN,
-        remove: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        append: Iterable[list_edit_params.Append] | Omit = omit,
+        remove: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[GatewayList]:
         """
         Appends or removes an item from a configured Zero Trust list.
@@ -650,7 +650,7 @@ class AsyncListsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[GatewayList]:
         """
         Fetch a single Zero Trust list.

@@ -15,7 +15,7 @@ from .quota import (
     QuotaResourceWithStreamingResponse,
     AsyncQuotaResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -70,13 +70,13 @@ class CertificatePacksResource(SyncAPIResource):
         type: Literal["advanced"],
         validation_method: Literal["txt", "http", "email"],
         validity_days: Literal[14, 30, 90, 365],
-        cloudflare_branding: bool | NotGiven = NOT_GIVEN,
+        cloudflare_branding: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CertificatePackCreateResponse]:
         """
         For a given zone, order an advanced certificate pack.
@@ -137,13 +137,13 @@ class CertificatePacksResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        status: Literal["all"] | NotGiven = NOT_GIVEN,
+        status: Literal["all"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[object]:
         """
         For a given zone, list all active certificate packs.
@@ -186,7 +186,7 @@ class CertificatePacksResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CertificatePackDeleteResponse]:
         """
         For a given zone, delete an advanced certificate pack.
@@ -227,13 +227,13 @@ class CertificatePacksResource(SyncAPIResource):
         certificate_pack_id: str,
         *,
         zone_id: str,
-        cloudflare_branding: bool | NotGiven = NOT_GIVEN,
+        cloudflare_branding: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CertificatePackEditResponse]:
         """
         For a given zone, restart validation or add cloudflare branding for an advanced
@@ -287,7 +287,7 @@ class CertificatePacksResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         For a given zone, get a certificate pack.
@@ -357,13 +357,13 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
         type: Literal["advanced"],
         validation_method: Literal["txt", "http", "email"],
         validity_days: Literal[14, 30, 90, 365],
-        cloudflare_branding: bool | NotGiven = NOT_GIVEN,
+        cloudflare_branding: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CertificatePackCreateResponse]:
         """
         For a given zone, order an advanced certificate pack.
@@ -424,13 +424,13 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        status: Literal["all"] | NotGiven = NOT_GIVEN,
+        status: Literal["all"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[object, AsyncSinglePage[object]]:
         """
         For a given zone, list all active certificate packs.
@@ -473,7 +473,7 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CertificatePackDeleteResponse]:
         """
         For a given zone, delete an advanced certificate pack.
@@ -514,13 +514,13 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
         certificate_pack_id: str,
         *,
         zone_id: str,
-        cloudflare_branding: bool | NotGiven = NOT_GIVEN,
+        cloudflare_branding: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CertificatePackEditResponse]:
         """
         For a given zone, restart validation or add cloudflare branding for an advanced
@@ -574,7 +574,7 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         For a given zone, get a certificate pack.

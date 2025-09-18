@@ -14,7 +14,7 @@ from .regions import (
     RegionsResourceWithStreamingResponse,
     AsyncRegionsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -67,13 +67,13 @@ class RegionalHostnamesResource(SyncAPIResource):
         zone_id: str,
         hostname: str,
         region_key: str,
-        routing: str | NotGiven = NOT_GIVEN,
+        routing: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RegionalHostnameCreateResponse]:
         """Create a new Regional Hostname entry.
 
@@ -131,7 +131,7 @@ class RegionalHostnamesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[RegionalHostnameListResponse]:
         """
         List all Regional Hostnames within a zone.
@@ -168,7 +168,7 @@ class RegionalHostnamesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RegionalHostnameDeleteResponse:
         """
         Delete the region configuration for a specific Regional Hostname.
@@ -210,7 +210,7 @@ class RegionalHostnamesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RegionalHostnameEditResponse]:
         """Update the configuration for a specific Regional Hostname.
 
@@ -260,7 +260,7 @@ class RegionalHostnamesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RegionalHostnameGetResponse]:
         """
         Fetch the configuration for a specific Regional Hostname, within a zone.
@@ -326,13 +326,13 @@ class AsyncRegionalHostnamesResource(AsyncAPIResource):
         zone_id: str,
         hostname: str,
         region_key: str,
-        routing: str | NotGiven = NOT_GIVEN,
+        routing: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RegionalHostnameCreateResponse]:
         """Create a new Regional Hostname entry.
 
@@ -390,7 +390,7 @@ class AsyncRegionalHostnamesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[RegionalHostnameListResponse, AsyncSinglePage[RegionalHostnameListResponse]]:
         """
         List all Regional Hostnames within a zone.
@@ -427,7 +427,7 @@ class AsyncRegionalHostnamesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RegionalHostnameDeleteResponse:
         """
         Delete the region configuration for a specific Regional Hostname.
@@ -469,7 +469,7 @@ class AsyncRegionalHostnamesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RegionalHostnameEditResponse]:
         """Update the configuration for a specific Regional Hostname.
 
@@ -521,7 +521,7 @@ class AsyncRegionalHostnamesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RegionalHostnameGetResponse]:
         """
         Fetch the configuration for a specific Regional Hostname, within a zone.

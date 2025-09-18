@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -51,21 +51,21 @@ class WebCrawlersResource(SyncAPIResource):
         self,
         dimension: Literal["USER_AGENT", "REFERER", "CRAWL_REFER_RATIO", "VERTICAL", "INDUSTRY"],
         *,
-        bot_operator: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        industry: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        limit_per_group: int | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        vertical: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        bot_operator: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        industry: SequenceNotStr[str] | Omit = omit,
+        limit_per_group: int | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        vertical: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WebCrawlerSummaryResponse:
         """
         Retrieves an aggregated summary of HTTP requests from crawlers, grouped by the
@@ -136,22 +136,22 @@ class WebCrawlersResource(SyncAPIResource):
         self,
         dimension: Literal["USER_AGENT", "REFERER", "CRAWL_REFER_RATIO", "VERTICAL", "INDUSTRY"],
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        bot_operator: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        industry: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        limit_per_group: int | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        vertical: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        bot_operator: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        industry: SequenceNotStr[str] | Omit = omit,
+        limit_per_group: int | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        vertical: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WebCrawlerTimeseriesGroupsResponse:
         """
         Retrieves the distribution of HTTP requests from crawlers, grouped by chosen the
@@ -248,21 +248,21 @@ class AsyncWebCrawlersResource(AsyncAPIResource):
         self,
         dimension: Literal["USER_AGENT", "REFERER", "CRAWL_REFER_RATIO", "VERTICAL", "INDUSTRY"],
         *,
-        bot_operator: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        industry: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        limit_per_group: int | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        vertical: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        bot_operator: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        industry: SequenceNotStr[str] | Omit = omit,
+        limit_per_group: int | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        vertical: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WebCrawlerSummaryResponse:
         """
         Retrieves an aggregated summary of HTTP requests from crawlers, grouped by the
@@ -333,22 +333,22 @@ class AsyncWebCrawlersResource(AsyncAPIResource):
         self,
         dimension: Literal["USER_AGENT", "REFERER", "CRAWL_REFER_RATIO", "VERTICAL", "INDUSTRY"],
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        bot_operator: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        industry: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        limit_per_group: int | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        vertical: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        bot_operator: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        industry: SequenceNotStr[str] | Omit = omit,
+        limit_per_group: int | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        vertical: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WebCrawlerTimeseriesGroupsResponse:
         """
         Retrieves the distribution of HTTP requests from crawlers, grouped by chosen the

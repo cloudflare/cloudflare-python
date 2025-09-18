@@ -7,7 +7,7 @@ from typing_extensions import overload
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import required_args, maybe_transform, async_maybe_transform
 from .variants import (
     VariantsResource,
@@ -98,13 +98,13 @@ class CacheResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeResponse]:
         """### Purge All Cached Content
 
@@ -200,13 +200,13 @@ class CacheResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        hosts: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        hosts: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeResponse]:
         """### Purge All Cached Content
 
@@ -302,13 +302,13 @@ class CacheResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        prefixes: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        prefixes: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeResponse]:
         """### Purge All Cached Content
 
@@ -404,13 +404,13 @@ class CacheResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        purge_everything: bool | NotGiven = NOT_GIVEN,
+        purge_everything: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeResponse]:
         """### Purge All Cached Content
 
@@ -506,13 +506,13 @@ class CacheResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        files: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        files: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeResponse]:
         """### Purge All Cached Content
 
@@ -608,13 +608,13 @@ class CacheResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        files: Iterable[cache_purge_params.CachePurgeSingleFileWithURLAndHeadersFile] | NotGiven = NOT_GIVEN,
+        files: Iterable[cache_purge_params.CachePurgeSingleFileWithURLAndHeadersFile] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeResponse]:
         """### Purge All Cached Content
 
@@ -710,19 +710,19 @@ class CacheResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        hosts: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        prefixes: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        purge_everything: bool | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | Omit = omit,
+        hosts: SequenceNotStr[str] | Omit = omit,
+        prefixes: SequenceNotStr[str] | Omit = omit,
+        purge_everything: bool | Omit = omit,
         files: SequenceNotStr[str]
         | Iterable[cache_purge_params.CachePurgeSingleFileWithURLAndHeadersFile]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeResponse]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
@@ -790,13 +790,13 @@ class AsyncCacheResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeResponse]:
         """### Purge All Cached Content
 
@@ -892,13 +892,13 @@ class AsyncCacheResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        hosts: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        hosts: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeResponse]:
         """### Purge All Cached Content
 
@@ -994,13 +994,13 @@ class AsyncCacheResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        prefixes: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        prefixes: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeResponse]:
         """### Purge All Cached Content
 
@@ -1096,13 +1096,13 @@ class AsyncCacheResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        purge_everything: bool | NotGiven = NOT_GIVEN,
+        purge_everything: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeResponse]:
         """### Purge All Cached Content
 
@@ -1198,13 +1198,13 @@ class AsyncCacheResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        files: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        files: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeResponse]:
         """### Purge All Cached Content
 
@@ -1300,13 +1300,13 @@ class AsyncCacheResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        files: Iterable[cache_purge_params.CachePurgeSingleFileWithURLAndHeadersFile] | NotGiven = NOT_GIVEN,
+        files: Iterable[cache_purge_params.CachePurgeSingleFileWithURLAndHeadersFile] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeResponse]:
         """### Purge All Cached Content
 
@@ -1402,19 +1402,19 @@ class AsyncCacheResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        hosts: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        prefixes: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        purge_everything: bool | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | Omit = omit,
+        hosts: SequenceNotStr[str] | Omit = omit,
+        prefixes: SequenceNotStr[str] | Omit = omit,
+        purge_everything: bool | Omit = omit,
         files: SequenceNotStr[str]
         | Iterable[cache_purge_params.CachePurgeSingleFileWithURLAndHeadersFile]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CachePurgeResponse]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")

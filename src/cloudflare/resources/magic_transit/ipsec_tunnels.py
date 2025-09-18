@@ -6,7 +6,7 @@ from typing import Type, cast
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import is_given, maybe_transform, strip_not_given, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -62,21 +62,21 @@ class IPSECTunnelsResource(SyncAPIResource):
         cloudflare_endpoint: str,
         interface_address: str,
         name: str,
-        automatic_return_routing: bool | NotGiven = NOT_GIVEN,
-        bgp: ipsec_tunnel_create_params.BGP | NotGiven = NOT_GIVEN,
-        customer_endpoint: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        health_check: ipsec_tunnel_create_params.HealthCheck | NotGiven = NOT_GIVEN,
-        interface_address6: str | NotGiven = NOT_GIVEN,
-        psk: str | NotGiven = NOT_GIVEN,
-        replay_protection: bool | NotGiven = NOT_GIVEN,
-        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
+        automatic_return_routing: bool | Omit = omit,
+        bgp: ipsec_tunnel_create_params.BGP | Omit = omit,
+        customer_endpoint: str | Omit = omit,
+        description: str | Omit = omit,
+        health_check: ipsec_tunnel_create_params.HealthCheck | Omit = omit,
+        interface_address6: str | Omit = omit,
+        psk: str | Omit = omit,
+        replay_protection: bool | Omit = omit,
+        x_magic_new_hc_target: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPSECTunnelCreateResponse:
         """Creates a new IPsec tunnel associated with an account.
 
@@ -128,7 +128,7 @@ class IPSECTunnelsResource(SyncAPIResource):
                 {
                     "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
                     if is_given(x_magic_new_hc_target)
-                    else NOT_GIVEN
+                    else omit
                 }
             ),
             **(extra_headers or {}),
@@ -169,21 +169,21 @@ class IPSECTunnelsResource(SyncAPIResource):
         cloudflare_endpoint: str,
         interface_address: str,
         name: str,
-        automatic_return_routing: bool | NotGiven = NOT_GIVEN,
-        bgp: ipsec_tunnel_update_params.BGP | NotGiven = NOT_GIVEN,
-        customer_endpoint: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        health_check: ipsec_tunnel_update_params.HealthCheck | NotGiven = NOT_GIVEN,
-        interface_address6: str | NotGiven = NOT_GIVEN,
-        psk: str | NotGiven = NOT_GIVEN,
-        replay_protection: bool | NotGiven = NOT_GIVEN,
-        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
+        automatic_return_routing: bool | Omit = omit,
+        bgp: ipsec_tunnel_update_params.BGP | Omit = omit,
+        customer_endpoint: str | Omit = omit,
+        description: str | Omit = omit,
+        health_check: ipsec_tunnel_update_params.HealthCheck | Omit = omit,
+        interface_address6: str | Omit = omit,
+        psk: str | Omit = omit,
+        replay_protection: bool | Omit = omit,
+        x_magic_new_hc_target: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPSECTunnelUpdateResponse:
         """Updates a specific IPsec tunnel associated with an account.
 
@@ -239,7 +239,7 @@ class IPSECTunnelsResource(SyncAPIResource):
                 {
                     "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
                     if is_given(x_magic_new_hc_target)
-                    else NOT_GIVEN
+                    else omit
                 }
             ),
             **(extra_headers or {}),
@@ -276,13 +276,13 @@ class IPSECTunnelsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
+        x_magic_new_hc_target: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPSECTunnelListResponse:
         """
         Lists IPsec tunnels associated with an account.
@@ -305,7 +305,7 @@ class IPSECTunnelsResource(SyncAPIResource):
                 {
                     "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
                     if is_given(x_magic_new_hc_target)
-                    else NOT_GIVEN
+                    else omit
                 }
             ),
             **(extra_headers or {}),
@@ -327,13 +327,13 @@ class IPSECTunnelsResource(SyncAPIResource):
         ipsec_tunnel_id: str,
         *,
         account_id: str,
-        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
+        x_magic_new_hc_target: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPSECTunnelDeleteResponse:
         """
         Disables and removes a specific static IPsec Tunnel associated with an account.
@@ -362,7 +362,7 @@ class IPSECTunnelsResource(SyncAPIResource):
                 {
                     "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
                     if is_given(x_magic_new_hc_target)
-                    else NOT_GIVEN
+                    else omit
                 }
             ),
             **(extra_headers or {}),
@@ -384,13 +384,13 @@ class IPSECTunnelsResource(SyncAPIResource):
         *,
         account_id: str,
         body: object,
-        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
+        x_magic_new_hc_target: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPSECTunnelBulkUpdateResponse:
         """Update multiple IPsec tunnels associated with an account.
 
@@ -416,7 +416,7 @@ class IPSECTunnelsResource(SyncAPIResource):
                 {
                     "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
                     if is_given(x_magic_new_hc_target)
-                    else NOT_GIVEN
+                    else omit
                 }
             ),
             **(extra_headers or {}),
@@ -439,13 +439,13 @@ class IPSECTunnelsResource(SyncAPIResource):
         ipsec_tunnel_id: str,
         *,
         account_id: str,
-        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
+        x_magic_new_hc_target: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPSECTunnelGetResponse:
         """
         Lists details for a specific IPsec tunnel.
@@ -472,7 +472,7 @@ class IPSECTunnelsResource(SyncAPIResource):
                 {
                     "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
                     if is_given(x_magic_new_hc_target)
-                    else NOT_GIVEN
+                    else omit
                 }
             ),
             **(extra_headers or {}),
@@ -500,7 +500,7 @@ class IPSECTunnelsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPSECTunnelPSKGenerateResponse:
         """
         Generates a Pre Shared Key for a specific IPsec tunnel used in the IKE session.
@@ -567,21 +567,21 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
         cloudflare_endpoint: str,
         interface_address: str,
         name: str,
-        automatic_return_routing: bool | NotGiven = NOT_GIVEN,
-        bgp: ipsec_tunnel_create_params.BGP | NotGiven = NOT_GIVEN,
-        customer_endpoint: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        health_check: ipsec_tunnel_create_params.HealthCheck | NotGiven = NOT_GIVEN,
-        interface_address6: str | NotGiven = NOT_GIVEN,
-        psk: str | NotGiven = NOT_GIVEN,
-        replay_protection: bool | NotGiven = NOT_GIVEN,
-        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
+        automatic_return_routing: bool | Omit = omit,
+        bgp: ipsec_tunnel_create_params.BGP | Omit = omit,
+        customer_endpoint: str | Omit = omit,
+        description: str | Omit = omit,
+        health_check: ipsec_tunnel_create_params.HealthCheck | Omit = omit,
+        interface_address6: str | Omit = omit,
+        psk: str | Omit = omit,
+        replay_protection: bool | Omit = omit,
+        x_magic_new_hc_target: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPSECTunnelCreateResponse:
         """Creates a new IPsec tunnel associated with an account.
 
@@ -633,7 +633,7 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
                 {
                     "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
                     if is_given(x_magic_new_hc_target)
-                    else NOT_GIVEN
+                    else omit
                 }
             ),
             **(extra_headers or {}),
@@ -674,21 +674,21 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
         cloudflare_endpoint: str,
         interface_address: str,
         name: str,
-        automatic_return_routing: bool | NotGiven = NOT_GIVEN,
-        bgp: ipsec_tunnel_update_params.BGP | NotGiven = NOT_GIVEN,
-        customer_endpoint: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        health_check: ipsec_tunnel_update_params.HealthCheck | NotGiven = NOT_GIVEN,
-        interface_address6: str | NotGiven = NOT_GIVEN,
-        psk: str | NotGiven = NOT_GIVEN,
-        replay_protection: bool | NotGiven = NOT_GIVEN,
-        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
+        automatic_return_routing: bool | Omit = omit,
+        bgp: ipsec_tunnel_update_params.BGP | Omit = omit,
+        customer_endpoint: str | Omit = omit,
+        description: str | Omit = omit,
+        health_check: ipsec_tunnel_update_params.HealthCheck | Omit = omit,
+        interface_address6: str | Omit = omit,
+        psk: str | Omit = omit,
+        replay_protection: bool | Omit = omit,
+        x_magic_new_hc_target: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPSECTunnelUpdateResponse:
         """Updates a specific IPsec tunnel associated with an account.
 
@@ -744,7 +744,7 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
                 {
                     "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
                     if is_given(x_magic_new_hc_target)
-                    else NOT_GIVEN
+                    else omit
                 }
             ),
             **(extra_headers or {}),
@@ -781,13 +781,13 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
+        x_magic_new_hc_target: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPSECTunnelListResponse:
         """
         Lists IPsec tunnels associated with an account.
@@ -810,7 +810,7 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
                 {
                     "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
                     if is_given(x_magic_new_hc_target)
-                    else NOT_GIVEN
+                    else omit
                 }
             ),
             **(extra_headers or {}),
@@ -832,13 +832,13 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
         ipsec_tunnel_id: str,
         *,
         account_id: str,
-        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
+        x_magic_new_hc_target: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPSECTunnelDeleteResponse:
         """
         Disables and removes a specific static IPsec Tunnel associated with an account.
@@ -867,7 +867,7 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
                 {
                     "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
                     if is_given(x_magic_new_hc_target)
-                    else NOT_GIVEN
+                    else omit
                 }
             ),
             **(extra_headers or {}),
@@ -889,13 +889,13 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
         *,
         account_id: str,
         body: object,
-        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
+        x_magic_new_hc_target: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPSECTunnelBulkUpdateResponse:
         """Update multiple IPsec tunnels associated with an account.
 
@@ -921,7 +921,7 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
                 {
                     "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
                     if is_given(x_magic_new_hc_target)
-                    else NOT_GIVEN
+                    else omit
                 }
             ),
             **(extra_headers or {}),
@@ -944,13 +944,13 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
         ipsec_tunnel_id: str,
         *,
         account_id: str,
-        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
+        x_magic_new_hc_target: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPSECTunnelGetResponse:
         """
         Lists details for a specific IPsec tunnel.
@@ -977,7 +977,7 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
                 {
                     "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
                     if is_given(x_magic_new_hc_target)
-                    else NOT_GIVEN
+                    else omit
                 }
             ),
             **(extra_headers or {}),
@@ -1005,7 +1005,7 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IPSECTunnelPSKGenerateResponse:
         """
         Generates a Pre Shared Key for a specific IPsec tunnel used in the IKE session.

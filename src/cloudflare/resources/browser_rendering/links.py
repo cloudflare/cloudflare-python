@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -49,11 +49,11 @@ class LinksResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        cache_ttl: float | NotGiven = NOT_GIVEN,
-        action_timeout: float | NotGiven = NOT_GIVEN,
-        add_script_tag: Iterable[link_create_params.AddScriptTag] | NotGiven = NOT_GIVEN,
-        add_style_tag: Iterable[link_create_params.AddStyleTag] | NotGiven = NOT_GIVEN,
-        allow_request_pattern: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        cache_ttl: float | Omit = omit,
+        action_timeout: float | Omit = omit,
+        add_script_tag: Iterable[link_create_params.AddScriptTag] | Omit = omit,
+        add_style_tag: Iterable[link_create_params.AddStyleTag] | Omit = omit,
+        allow_request_pattern: SequenceNotStr[str] | Omit = omit,
         allow_resource_types: List[
             Literal[
                 "document",
@@ -76,15 +76,15 @@ class LinksResource(SyncAPIResource):
                 "other",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        authenticate: link_create_params.Authenticate | NotGiven = NOT_GIVEN,
-        best_attempt: bool | NotGiven = NOT_GIVEN,
-        cookies: Iterable[link_create_params.Cookie] | NotGiven = NOT_GIVEN,
-        emulate_media_type: str | NotGiven = NOT_GIVEN,
-        exclude_external_links: bool | NotGiven = NOT_GIVEN,
-        goto_options: link_create_params.GotoOptions | NotGiven = NOT_GIVEN,
-        html: str | NotGiven = NOT_GIVEN,
-        reject_request_pattern: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        authenticate: link_create_params.Authenticate | Omit = omit,
+        best_attempt: bool | Omit = omit,
+        cookies: Iterable[link_create_params.Cookie] | Omit = omit,
+        emulate_media_type: str | Omit = omit,
+        exclude_external_links: bool | Omit = omit,
+        goto_options: link_create_params.GotoOptions | Omit = omit,
+        html: str | Omit = omit,
+        reject_request_pattern: SequenceNotStr[str] | Omit = omit,
         reject_resource_types: List[
             Literal[
                 "document",
@@ -107,21 +107,21 @@ class LinksResource(SyncAPIResource):
                 "other",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        set_extra_http_headers: Dict[str, str] | NotGiven = NOT_GIVEN,
-        set_java_script_enabled: bool | NotGiven = NOT_GIVEN,
-        url: str | NotGiven = NOT_GIVEN,
-        user_agent: str | NotGiven = NOT_GIVEN,
-        viewport: link_create_params.Viewport | NotGiven = NOT_GIVEN,
-        visible_links_only: bool | NotGiven = NOT_GIVEN,
-        wait_for_selector: link_create_params.WaitForSelector | NotGiven = NOT_GIVEN,
-        wait_for_timeout: float | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        set_extra_http_headers: Dict[str, str] | Omit = omit,
+        set_java_script_enabled: bool | Omit = omit,
+        url: str | Omit = omit,
+        user_agent: str | Omit = omit,
+        viewport: link_create_params.Viewport | Omit = omit,
+        visible_links_only: bool | Omit = omit,
+        wait_for_selector: link_create_params.WaitForSelector | Omit = omit,
+        wait_for_timeout: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LinkCreateResponse:
         """
         Get links from a web page.
@@ -246,11 +246,11 @@ class AsyncLinksResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        cache_ttl: float | NotGiven = NOT_GIVEN,
-        action_timeout: float | NotGiven = NOT_GIVEN,
-        add_script_tag: Iterable[link_create_params.AddScriptTag] | NotGiven = NOT_GIVEN,
-        add_style_tag: Iterable[link_create_params.AddStyleTag] | NotGiven = NOT_GIVEN,
-        allow_request_pattern: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        cache_ttl: float | Omit = omit,
+        action_timeout: float | Omit = omit,
+        add_script_tag: Iterable[link_create_params.AddScriptTag] | Omit = omit,
+        add_style_tag: Iterable[link_create_params.AddStyleTag] | Omit = omit,
+        allow_request_pattern: SequenceNotStr[str] | Omit = omit,
         allow_resource_types: List[
             Literal[
                 "document",
@@ -273,15 +273,15 @@ class AsyncLinksResource(AsyncAPIResource):
                 "other",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        authenticate: link_create_params.Authenticate | NotGiven = NOT_GIVEN,
-        best_attempt: bool | NotGiven = NOT_GIVEN,
-        cookies: Iterable[link_create_params.Cookie] | NotGiven = NOT_GIVEN,
-        emulate_media_type: str | NotGiven = NOT_GIVEN,
-        exclude_external_links: bool | NotGiven = NOT_GIVEN,
-        goto_options: link_create_params.GotoOptions | NotGiven = NOT_GIVEN,
-        html: str | NotGiven = NOT_GIVEN,
-        reject_request_pattern: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        authenticate: link_create_params.Authenticate | Omit = omit,
+        best_attempt: bool | Omit = omit,
+        cookies: Iterable[link_create_params.Cookie] | Omit = omit,
+        emulate_media_type: str | Omit = omit,
+        exclude_external_links: bool | Omit = omit,
+        goto_options: link_create_params.GotoOptions | Omit = omit,
+        html: str | Omit = omit,
+        reject_request_pattern: SequenceNotStr[str] | Omit = omit,
         reject_resource_types: List[
             Literal[
                 "document",
@@ -304,21 +304,21 @@ class AsyncLinksResource(AsyncAPIResource):
                 "other",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        set_extra_http_headers: Dict[str, str] | NotGiven = NOT_GIVEN,
-        set_java_script_enabled: bool | NotGiven = NOT_GIVEN,
-        url: str | NotGiven = NOT_GIVEN,
-        user_agent: str | NotGiven = NOT_GIVEN,
-        viewport: link_create_params.Viewport | NotGiven = NOT_GIVEN,
-        visible_links_only: bool | NotGiven = NOT_GIVEN,
-        wait_for_selector: link_create_params.WaitForSelector | NotGiven = NOT_GIVEN,
-        wait_for_timeout: float | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        set_extra_http_headers: Dict[str, str] | Omit = omit,
+        set_java_script_enabled: bool | Omit = omit,
+        url: str | Omit = omit,
+        user_agent: str | Omit = omit,
+        viewport: link_create_params.Viewport | Omit = omit,
+        visible_links_only: bool | Omit = omit,
+        wait_for_selector: link_create_params.WaitForSelector | Omit = omit,
+        wait_for_timeout: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LinkCreateResponse:
         """
         Get links from a web page.

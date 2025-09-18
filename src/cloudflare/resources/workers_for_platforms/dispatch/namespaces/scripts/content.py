@@ -6,7 +6,17 @@ from typing import Type, Mapping, cast
 
 import httpx
 
-from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes, SequenceNotStr
+from ......_types import (
+    Body,
+    Omit,
+    Query,
+    Headers,
+    NotGiven,
+    FileTypes,
+    SequenceNotStr,
+    omit,
+    not_given,
+)
 from ......_utils import (
     extract_files,
     maybe_transform,
@@ -66,15 +76,15 @@ class ContentResource(SyncAPIResource):
         account_id: str,
         dispatch_namespace: str,
         metadata: WorkerMetadataParam,
-        files: SequenceNotStr[FileTypes] | NotGiven = NOT_GIVEN,
-        cf_worker_body_part: str | NotGiven = NOT_GIVEN,
-        cf_worker_main_module_part: str | NotGiven = NOT_GIVEN,
+        files: SequenceNotStr[FileTypes] | Omit = omit,
+        cf_worker_body_part: str | Omit = omit,
+        cf_worker_main_module_part: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Script:
         """
         Put script content for a script uploaded to a Workers for Platforms namespace.
@@ -155,7 +165,7 @@ class ContentResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BinaryAPIResponse:
         """
         Fetch script content from a script uploaded to a Workers for Platforms
@@ -219,15 +229,15 @@ class AsyncContentResource(AsyncAPIResource):
         account_id: str,
         dispatch_namespace: str,
         metadata: WorkerMetadataParam,
-        files: SequenceNotStr[FileTypes] | NotGiven = NOT_GIVEN,
-        cf_worker_body_part: str | NotGiven = NOT_GIVEN,
-        cf_worker_main_module_part: str | NotGiven = NOT_GIVEN,
+        files: SequenceNotStr[FileTypes] | Omit = omit,
+        cf_worker_body_part: str | Omit = omit,
+        cf_worker_main_module_part: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Script:
         """
         Put script content for a script uploaded to a Workers for Platforms namespace.
@@ -308,7 +318,7 @@ class AsyncContentResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncBinaryAPIResponse:
         """
         Fetch script content from a script uploaded to a Workers for Platforms

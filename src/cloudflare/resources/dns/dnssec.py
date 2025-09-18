@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -55,7 +55,7 @@ class DNSSECResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Delete DNSSEC.
@@ -89,16 +89,16 @@ class DNSSECResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        dnssec_multi_signer: bool | NotGiven = NOT_GIVEN,
-        dnssec_presigned: bool | NotGiven = NOT_GIVEN,
-        dnssec_use_nsec3: bool | NotGiven = NOT_GIVEN,
-        status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
+        dnssec_multi_signer: bool | Omit = omit,
+        dnssec_presigned: bool | Omit = omit,
+        dnssec_use_nsec3: bool | Omit = omit,
+        status: Literal["active", "disabled"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DNSSEC]:
         """
         Enable or disable DNSSEC.
@@ -175,7 +175,7 @@ class DNSSECResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DNSSEC]:
         """
         Details about DNSSEC status and configuration.
@@ -235,7 +235,7 @@ class AsyncDNSSECResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Delete DNSSEC.
@@ -269,16 +269,16 @@ class AsyncDNSSECResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        dnssec_multi_signer: bool | NotGiven = NOT_GIVEN,
-        dnssec_presigned: bool | NotGiven = NOT_GIVEN,
-        dnssec_use_nsec3: bool | NotGiven = NOT_GIVEN,
-        status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
+        dnssec_multi_signer: bool | Omit = omit,
+        dnssec_presigned: bool | Omit = omit,
+        dnssec_use_nsec3: bool | Omit = omit,
+        status: Literal["active", "disabled"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DNSSEC]:
         """
         Enable or disable DNSSEC.
@@ -355,7 +355,7 @@ class AsyncDNSSECResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DNSSEC]:
         """
         Details about DNSSEC status and configuration.

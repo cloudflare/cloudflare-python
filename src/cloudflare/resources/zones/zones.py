@@ -23,7 +23,7 @@ from .plans import (
     PlansResourceWithStreamingResponse,
     AsyncPlansResourceWithStreamingResponse,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from .settings import (
     SettingsResource,
@@ -137,13 +137,13 @@ class ZonesResource(SyncAPIResource):
         *,
         account: zone_create_params.Account,
         name: str,
-        type: ZonesType | NotGiven = NOT_GIVEN,
+        type: ZonesType | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Zone]:
         """
         Create Zone
@@ -185,20 +185,20 @@ class ZonesResource(SyncAPIResource):
     def list(
         self,
         *,
-        account: zone_list_params.Account | NotGiven = NOT_GIVEN,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        order: Literal["name", "status", "account.id", "account.name", "plan.id"] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        status: Literal["initializing", "pending", "active", "moved"] | NotGiven = NOT_GIVEN,
+        account: zone_list_params.Account | Omit = omit,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        match: Literal["any", "all"] | Omit = omit,
+        name: str | Omit = omit,
+        order: Literal["name", "status", "account.id", "account.name", "plan.id"] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
+        status: Literal["initializing", "pending", "active", "moved"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[Zone]:
         """Lists, searches, sorts, and filters your zones.
 
@@ -272,7 +272,7 @@ class ZonesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ZoneDeleteResponse]:
         """
         Deletes an existing zone.
@@ -306,15 +306,15 @@ class ZonesResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        paused: bool | NotGiven = NOT_GIVEN,
-        type: Literal["full", "partial", "secondary", "internal"] | NotGiven = NOT_GIVEN,
-        vanity_name_servers: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        paused: bool | Omit = omit,
+        type: Literal["full", "partial", "secondary", "internal"] | Omit = omit,
+        vanity_name_servers: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Zone]:
         """Edits a zone.
 
@@ -373,7 +373,7 @@ class ZonesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Zone]:
         """
         Zone Details
@@ -457,13 +457,13 @@ class AsyncZonesResource(AsyncAPIResource):
         *,
         account: zone_create_params.Account,
         name: str,
-        type: ZonesType | NotGiven = NOT_GIVEN,
+        type: ZonesType | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Zone]:
         """
         Create Zone
@@ -505,20 +505,20 @@ class AsyncZonesResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account: zone_list_params.Account | NotGiven = NOT_GIVEN,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        order: Literal["name", "status", "account.id", "account.name", "plan.id"] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        status: Literal["initializing", "pending", "active", "moved"] | NotGiven = NOT_GIVEN,
+        account: zone_list_params.Account | Omit = omit,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        match: Literal["any", "all"] | Omit = omit,
+        name: str | Omit = omit,
+        order: Literal["name", "status", "account.id", "account.name", "plan.id"] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
+        status: Literal["initializing", "pending", "active", "moved"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Zone, AsyncV4PagePaginationArray[Zone]]:
         """Lists, searches, sorts, and filters your zones.
 
@@ -592,7 +592,7 @@ class AsyncZonesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ZoneDeleteResponse]:
         """
         Deletes an existing zone.
@@ -626,15 +626,15 @@ class AsyncZonesResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        paused: bool | NotGiven = NOT_GIVEN,
-        type: Literal["full", "partial", "secondary", "internal"] | NotGiven = NOT_GIVEN,
-        vanity_name_servers: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        paused: bool | Omit = omit,
+        type: Literal["full", "partial", "secondary", "internal"] | Omit = omit,
+        vanity_name_servers: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Zone]:
         """Edits a zone.
 
@@ -693,7 +693,7 @@ class AsyncZonesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Zone]:
         """
         Zone Details

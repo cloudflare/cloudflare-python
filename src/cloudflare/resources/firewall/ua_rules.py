@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -56,14 +56,14 @@ class UARulesResource(SyncAPIResource):
         zone_id: str,
         configuration: ua_rule_create_params.Configuration,
         mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"],
-        description: str | NotGiven = NOT_GIVEN,
-        paused: bool | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        paused: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UARuleCreateResponse:
         """
         Creates a new User Agent Blocking rule in a zone.
@@ -116,14 +116,14 @@ class UARulesResource(SyncAPIResource):
         zone_id: str,
         configuration: ua_rule_update_params.Configuration,
         mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"],
-        description: str | NotGiven = NOT_GIVEN,
-        paused: bool | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        paused: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UARuleUpdateResponse:
         """
         Updates an existing User Agent Blocking rule.
@@ -179,17 +179,17 @@ class UARulesResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        description: str | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        paused: bool | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        user_agent: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        page: float | Omit = omit,
+        paused: bool | Omit = omit,
+        per_page: float | Omit = omit,
+        user_agent: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[UARuleListResponse]:
         """Fetches User Agent Blocking rules in a zone.
 
@@ -252,7 +252,7 @@ class UARulesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UARuleDeleteResponse:
         """
         Deletes an existing User Agent Blocking rule.
@@ -296,7 +296,7 @@ class UARulesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UARuleGetResponse:
         """
         Fetches the details of a User Agent Blocking rule.
@@ -357,14 +357,14 @@ class AsyncUARulesResource(AsyncAPIResource):
         zone_id: str,
         configuration: ua_rule_create_params.Configuration,
         mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"],
-        description: str | NotGiven = NOT_GIVEN,
-        paused: bool | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        paused: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UARuleCreateResponse:
         """
         Creates a new User Agent Blocking rule in a zone.
@@ -417,14 +417,14 @@ class AsyncUARulesResource(AsyncAPIResource):
         zone_id: str,
         configuration: ua_rule_update_params.Configuration,
         mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"],
-        description: str | NotGiven = NOT_GIVEN,
-        paused: bool | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        paused: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UARuleUpdateResponse:
         """
         Updates an existing User Agent Blocking rule.
@@ -480,17 +480,17 @@ class AsyncUARulesResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        description: str | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        paused: bool | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        user_agent: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        page: float | Omit = omit,
+        paused: bool | Omit = omit,
+        per_page: float | Omit = omit,
+        user_agent: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[UARuleListResponse, AsyncV4PagePaginationArray[UARuleListResponse]]:
         """Fetches User Agent Blocking rules in a zone.
 
@@ -553,7 +553,7 @@ class AsyncUARulesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UARuleDeleteResponse:
         """
         Deletes an existing User Agent Blocking rule.
@@ -597,7 +597,7 @@ class AsyncUARulesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UARuleGetResponse:
         """
         Fetches the details of a User Agent Blocking rule.

@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -61,7 +61,7 @@ class ViewsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ViewCreateResponse]:
         """
         Create Internal DNS View for an account
@@ -106,20 +106,20 @@ class ViewsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
-        name: view_list_params.Name | NotGiven = NOT_GIVEN,
-        order: Literal["name", "created_on", "modified_on"] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        zone_name: str | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        match: Literal["any", "all"] | Omit = omit,
+        name: view_list_params.Name | Omit = omit,
+        order: Literal["name", "created_on", "modified_on"] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
+        zone_id: str | Omit = omit,
+        zone_name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[ViewListResponse]:
         """
         List DNS Internal Views for an Account
@@ -188,7 +188,7 @@ class ViewsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ViewDeleteResponse]:
         """
         Delete an existing Internal DNS View
@@ -227,14 +227,14 @@ class ViewsResource(SyncAPIResource):
         view_id: str,
         *,
         account_id: str,
-        name: str | NotGiven = NOT_GIVEN,
-        zones: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        zones: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ViewEditResponse]:
         """
         Update an existing Internal DNS View
@@ -289,7 +289,7 @@ class ViewsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ViewGetResponse]:
         """
         Get DNS Internal View
@@ -355,7 +355,7 @@ class AsyncViewsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ViewCreateResponse]:
         """
         Create Internal DNS View for an account
@@ -400,20 +400,20 @@ class AsyncViewsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
-        name: view_list_params.Name | NotGiven = NOT_GIVEN,
-        order: Literal["name", "created_on", "modified_on"] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        zone_name: str | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        match: Literal["any", "all"] | Omit = omit,
+        name: view_list_params.Name | Omit = omit,
+        order: Literal["name", "created_on", "modified_on"] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
+        zone_id: str | Omit = omit,
+        zone_name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ViewListResponse, AsyncV4PagePaginationArray[ViewListResponse]]:
         """
         List DNS Internal Views for an Account
@@ -482,7 +482,7 @@ class AsyncViewsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ViewDeleteResponse]:
         """
         Delete an existing Internal DNS View
@@ -521,14 +521,14 @@ class AsyncViewsResource(AsyncAPIResource):
         view_id: str,
         *,
         account_id: str,
-        name: str | NotGiven = NOT_GIVEN,
-        zones: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        zones: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ViewEditResponse]:
         """
         Update an existing Internal DNS View
@@ -583,7 +583,7 @@ class AsyncViewsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ViewGetResponse]:
         """
         Get DNS Internal View

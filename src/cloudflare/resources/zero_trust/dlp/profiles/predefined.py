@@ -6,7 +6,7 @@ from typing import Any, Type, Iterable, Optional, cast
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -50,18 +50,18 @@ class PredefinedResource(SyncAPIResource):
         *,
         account_id: str,
         profile_id: str,
-        ai_context_enabled: bool | NotGiven = NOT_GIVEN,
-        allowed_match_count: Optional[int] | NotGiven = NOT_GIVEN,
-        confidence_threshold: Optional[str] | NotGiven = NOT_GIVEN,
-        context_awareness: ContextAwarenessParam | NotGiven = NOT_GIVEN,
-        entries: Iterable[predefined_create_params.Entry] | NotGiven = NOT_GIVEN,
-        ocr_enabled: bool | NotGiven = NOT_GIVEN,
+        ai_context_enabled: bool | Omit = omit,
+        allowed_match_count: Optional[int] | Omit = omit,
+        confidence_threshold: Optional[str] | Omit = omit,
+        context_awareness: ContextAwarenessParam | Omit = omit,
+        entries: Iterable[predefined_create_params.Entry] | Omit = omit,
+        ocr_enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Profile]:
         """Creates a DLP predefined profile.
 
@@ -115,18 +115,18 @@ class PredefinedResource(SyncAPIResource):
         profile_id: str,
         *,
         account_id: str,
-        ai_context_enabled: bool | NotGiven = NOT_GIVEN,
-        allowed_match_count: Optional[int] | NotGiven = NOT_GIVEN,
-        confidence_threshold: Optional[str] | NotGiven = NOT_GIVEN,
-        context_awareness: ContextAwarenessParam | NotGiven = NOT_GIVEN,
-        entries: Iterable[predefined_update_params.Entry] | NotGiven = NOT_GIVEN,
-        ocr_enabled: bool | NotGiven = NOT_GIVEN,
+        ai_context_enabled: bool | Omit = omit,
+        allowed_match_count: Optional[int] | Omit = omit,
+        confidence_threshold: Optional[str] | Omit = omit,
+        context_awareness: ContextAwarenessParam | Omit = omit,
+        entries: Iterable[predefined_update_params.Entry] | Omit = omit,
+        ocr_enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Profile]:
         """Updates a DLP predefined profile.
 
@@ -186,7 +186,7 @@ class PredefinedResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         This is a no-op as predefined profiles can't be deleted but is needed for our
@@ -227,7 +227,7 @@ class PredefinedResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Profile]:
         """
         Fetches a predefined DLP profile by id.
@@ -288,18 +288,18 @@ class AsyncPredefinedResource(AsyncAPIResource):
         *,
         account_id: str,
         profile_id: str,
-        ai_context_enabled: bool | NotGiven = NOT_GIVEN,
-        allowed_match_count: Optional[int] | NotGiven = NOT_GIVEN,
-        confidence_threshold: Optional[str] | NotGiven = NOT_GIVEN,
-        context_awareness: ContextAwarenessParam | NotGiven = NOT_GIVEN,
-        entries: Iterable[predefined_create_params.Entry] | NotGiven = NOT_GIVEN,
-        ocr_enabled: bool | NotGiven = NOT_GIVEN,
+        ai_context_enabled: bool | Omit = omit,
+        allowed_match_count: Optional[int] | Omit = omit,
+        confidence_threshold: Optional[str] | Omit = omit,
+        context_awareness: ContextAwarenessParam | Omit = omit,
+        entries: Iterable[predefined_create_params.Entry] | Omit = omit,
+        ocr_enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Profile]:
         """Creates a DLP predefined profile.
 
@@ -353,18 +353,18 @@ class AsyncPredefinedResource(AsyncAPIResource):
         profile_id: str,
         *,
         account_id: str,
-        ai_context_enabled: bool | NotGiven = NOT_GIVEN,
-        allowed_match_count: Optional[int] | NotGiven = NOT_GIVEN,
-        confidence_threshold: Optional[str] | NotGiven = NOT_GIVEN,
-        context_awareness: ContextAwarenessParam | NotGiven = NOT_GIVEN,
-        entries: Iterable[predefined_update_params.Entry] | NotGiven = NOT_GIVEN,
-        ocr_enabled: bool | NotGiven = NOT_GIVEN,
+        ai_context_enabled: bool | Omit = omit,
+        allowed_match_count: Optional[int] | Omit = omit,
+        confidence_threshold: Optional[str] | Omit = omit,
+        context_awareness: ContextAwarenessParam | Omit = omit,
+        entries: Iterable[predefined_update_params.Entry] | Omit = omit,
+        ocr_enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Profile]:
         """Updates a DLP predefined profile.
 
@@ -424,7 +424,7 @@ class AsyncPredefinedResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         This is a no-op as predefined profiles can't be deleted but is needed for our
@@ -465,7 +465,7 @@ class AsyncPredefinedResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Profile]:
         """
         Fetches a predefined DLP profile by id.

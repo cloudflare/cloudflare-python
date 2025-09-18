@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -46,15 +46,15 @@ class LogoMatchesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        limit: str | NotGiven = NOT_GIVEN,
-        logo_id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        offset: str | NotGiven = NOT_GIVEN,
+        limit: str | Omit = omit,
+        logo_id: SequenceNotStr[str] | Omit = omit,
+        offset: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LogoMatchDownloadResponse:
         """
         Return matches as CSV for logo queries based on ID
@@ -93,15 +93,15 @@ class LogoMatchesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        limit: str | NotGiven = NOT_GIVEN,
-        logo_id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        offset: str | NotGiven = NOT_GIVEN,
+        limit: str | Omit = omit,
+        logo_id: SequenceNotStr[str] | Omit = omit,
+        offset: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LogoMatchGetResponse:
         """
         Return matches for logo queries based on ID
@@ -161,15 +161,15 @@ class AsyncLogoMatchesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        limit: str | NotGiven = NOT_GIVEN,
-        logo_id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        offset: str | NotGiven = NOT_GIVEN,
+        limit: str | Omit = omit,
+        logo_id: SequenceNotStr[str] | Omit = omit,
+        offset: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LogoMatchDownloadResponse:
         """
         Return matches as CSV for logo queries based on ID
@@ -208,15 +208,15 @@ class AsyncLogoMatchesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        limit: str | NotGiven = NOT_GIVEN,
-        logo_id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        offset: str | NotGiven = NOT_GIVEN,
+        limit: str | Omit = omit,
+        logo_id: SequenceNotStr[str] | Omit = omit,
+        offset: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LogoMatchGetResponse:
         """
         Return matches for logo queries based on ID

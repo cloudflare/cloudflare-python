@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -64,16 +64,16 @@ class RulesResource(SyncAPIResource):
         account_id: str,
         duration: Literal["1m", "5m", "10m", "15m", "20m", "30m", "45m", "60m"],
         name: str,
-        automatic_advertisement: Optional[bool] | NotGiven = NOT_GIVEN,
-        bandwidth: float | NotGiven = NOT_GIVEN,
-        packet_threshold: float | NotGiven = NOT_GIVEN,
-        prefixes: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        automatic_advertisement: Optional[bool] | Omit = omit,
+        bandwidth: float | Omit = omit,
+        packet_threshold: float | Omit = omit,
+        prefixes: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[MagicNetworkMonitoringRule]:
         """Create network monitoring rules for account.
 
@@ -138,17 +138,17 @@ class RulesResource(SyncAPIResource):
         account_id: str,
         duration: Literal["1m", "5m", "10m", "15m", "20m", "30m", "45m", "60m"],
         name: str,
-        id: str | NotGiven = NOT_GIVEN,
-        automatic_advertisement: Optional[bool] | NotGiven = NOT_GIVEN,
-        bandwidth: float | NotGiven = NOT_GIVEN,
-        packet_threshold: float | NotGiven = NOT_GIVEN,
-        prefixes: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        automatic_advertisement: Optional[bool] | Omit = omit,
+        bandwidth: float | Omit = omit,
+        packet_threshold: float | Omit = omit,
+        prefixes: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[MagicNetworkMonitoringRule]:
         """
         Update network monitoring rules for account.
@@ -217,7 +217,7 @@ class RulesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[Optional[MagicNetworkMonitoringRule]]:
         """
         Lists network monitoring rules for account.
@@ -252,7 +252,7 @@ class RulesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[MagicNetworkMonitoringRule]:
         """
         Delete a network monitoring rule for account.
@@ -289,18 +289,18 @@ class RulesResource(SyncAPIResource):
         rule_id: str,
         *,
         account_id: str,
-        automatic_advertisement: Optional[bool] | NotGiven = NOT_GIVEN,
-        bandwidth: float | NotGiven = NOT_GIVEN,
-        duration: Literal["1m", "5m", "10m", "15m", "20m", "30m", "45m", "60m"] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        packet_threshold: float | NotGiven = NOT_GIVEN,
-        prefixes: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        automatic_advertisement: Optional[bool] | Omit = omit,
+        bandwidth: float | Omit = omit,
+        duration: Literal["1m", "5m", "10m", "15m", "20m", "30m", "45m", "60m"] | Omit = omit,
+        name: str | Omit = omit,
+        packet_threshold: float | Omit = omit,
+        prefixes: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[MagicNetworkMonitoringRule]:
         """
         Update a network monitoring rule for account.
@@ -371,7 +371,7 @@ class RulesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[MagicNetworkMonitoringRule]:
         """
         List a single network monitoring rule for account.
@@ -434,16 +434,16 @@ class AsyncRulesResource(AsyncAPIResource):
         account_id: str,
         duration: Literal["1m", "5m", "10m", "15m", "20m", "30m", "45m", "60m"],
         name: str,
-        automatic_advertisement: Optional[bool] | NotGiven = NOT_GIVEN,
-        bandwidth: float | NotGiven = NOT_GIVEN,
-        packet_threshold: float | NotGiven = NOT_GIVEN,
-        prefixes: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        automatic_advertisement: Optional[bool] | Omit = omit,
+        bandwidth: float | Omit = omit,
+        packet_threshold: float | Omit = omit,
+        prefixes: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[MagicNetworkMonitoringRule]:
         """Create network monitoring rules for account.
 
@@ -508,17 +508,17 @@ class AsyncRulesResource(AsyncAPIResource):
         account_id: str,
         duration: Literal["1m", "5m", "10m", "15m", "20m", "30m", "45m", "60m"],
         name: str,
-        id: str | NotGiven = NOT_GIVEN,
-        automatic_advertisement: Optional[bool] | NotGiven = NOT_GIVEN,
-        bandwidth: float | NotGiven = NOT_GIVEN,
-        packet_threshold: float | NotGiven = NOT_GIVEN,
-        prefixes: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        automatic_advertisement: Optional[bool] | Omit = omit,
+        bandwidth: float | Omit = omit,
+        packet_threshold: float | Omit = omit,
+        prefixes: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[MagicNetworkMonitoringRule]:
         """
         Update network monitoring rules for account.
@@ -587,7 +587,7 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Optional[MagicNetworkMonitoringRule], AsyncSinglePage[Optional[MagicNetworkMonitoringRule]]]:
         """
         Lists network monitoring rules for account.
@@ -622,7 +622,7 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[MagicNetworkMonitoringRule]:
         """
         Delete a network monitoring rule for account.
@@ -659,18 +659,18 @@ class AsyncRulesResource(AsyncAPIResource):
         rule_id: str,
         *,
         account_id: str,
-        automatic_advertisement: Optional[bool] | NotGiven = NOT_GIVEN,
-        bandwidth: float | NotGiven = NOT_GIVEN,
-        duration: Literal["1m", "5m", "10m", "15m", "20m", "30m", "45m", "60m"] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        packet_threshold: float | NotGiven = NOT_GIVEN,
-        prefixes: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        automatic_advertisement: Optional[bool] | Omit = omit,
+        bandwidth: float | Omit = omit,
+        duration: Literal["1m", "5m", "10m", "15m", "20m", "30m", "45m", "60m"] | Omit = omit,
+        name: str | Omit = omit,
+        packet_threshold: float | Omit = omit,
+        prefixes: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[MagicNetworkMonitoringRule]:
         """
         Update a network monitoring rule for account.
@@ -741,7 +741,7 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[MagicNetworkMonitoringRule]:
         """
         List a single network monitoring rule for account.

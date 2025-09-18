@@ -16,7 +16,7 @@ from .download import (
     DownloadResourceWithStreamingResponse,
     AsyncDownloadResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ...._utils import required_args, maybe_transform, async_maybe_transform
 from .ownership import (
     OwnershipResource,
@@ -83,14 +83,14 @@ class PCAPsResource(SyncAPIResource):
         system: Literal["magic-transit"],
         time_limit: float,
         type: Literal["simple", "full"],
-        filter_v1: PCAPFilterParam | NotGiven = NOT_GIVEN,
-        offset_time: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        filter_v1: PCAPFilterParam | Omit = omit,
+        offset_time: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PCAPCreateResponse:
         """
         Create new PCAP request for account.
@@ -132,15 +132,15 @@ class PCAPsResource(SyncAPIResource):
         system: Literal["magic-transit"],
         time_limit: float,
         type: Literal["simple", "full"],
-        byte_limit: float | NotGiven = NOT_GIVEN,
-        filter_v1: PCAPFilterParam | NotGiven = NOT_GIVEN,
-        packet_limit: float | NotGiven = NOT_GIVEN,
+        byte_limit: float | Omit = omit,
+        filter_v1: PCAPFilterParam | Omit = omit,
+        packet_limit: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PCAPCreateResponse:
         """
         Create new PCAP request for account.
@@ -186,21 +186,21 @@ class PCAPsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        packet_limit: float | NotGiven = NOT_GIVEN,
+        packet_limit: float | Omit = omit,
         system: Literal["magic-transit"],
         time_limit: float,
         type: Literal["simple", "full"],
-        filter_v1: PCAPFilterParam | NotGiven = NOT_GIVEN,
-        offset_time: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        colo_name: str | NotGiven = NOT_GIVEN,
-        destination_conf: str | NotGiven = NOT_GIVEN,
-        byte_limit: float | NotGiven = NOT_GIVEN,
+        filter_v1: PCAPFilterParam | Omit = omit,
+        offset_time: Union[str, datetime] | Omit = omit,
+        colo_name: str | Omit = omit,
+        destination_conf: str | Omit = omit,
+        byte_limit: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PCAPCreateResponse:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
@@ -244,7 +244,7 @@ class PCAPsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[PCAPListResponse]:
         """
         Lists all packet capture requests for an account.
@@ -281,7 +281,7 @@ class PCAPsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PCAPGetResponse:
         """
         Get information for a PCAP request by id.
@@ -330,7 +330,7 @@ class PCAPsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Stop full PCAP.
@@ -399,14 +399,14 @@ class AsyncPCAPsResource(AsyncAPIResource):
         system: Literal["magic-transit"],
         time_limit: float,
         type: Literal["simple", "full"],
-        filter_v1: PCAPFilterParam | NotGiven = NOT_GIVEN,
-        offset_time: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        filter_v1: PCAPFilterParam | Omit = omit,
+        offset_time: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PCAPCreateResponse:
         """
         Create new PCAP request for account.
@@ -448,15 +448,15 @@ class AsyncPCAPsResource(AsyncAPIResource):
         system: Literal["magic-transit"],
         time_limit: float,
         type: Literal["simple", "full"],
-        byte_limit: float | NotGiven = NOT_GIVEN,
-        filter_v1: PCAPFilterParam | NotGiven = NOT_GIVEN,
-        packet_limit: float | NotGiven = NOT_GIVEN,
+        byte_limit: float | Omit = omit,
+        filter_v1: PCAPFilterParam | Omit = omit,
+        packet_limit: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PCAPCreateResponse:
         """
         Create new PCAP request for account.
@@ -502,21 +502,21 @@ class AsyncPCAPsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        packet_limit: float | NotGiven = NOT_GIVEN,
+        packet_limit: float | Omit = omit,
         system: Literal["magic-transit"],
         time_limit: float,
         type: Literal["simple", "full"],
-        filter_v1: PCAPFilterParam | NotGiven = NOT_GIVEN,
-        offset_time: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        colo_name: str | NotGiven = NOT_GIVEN,
-        destination_conf: str | NotGiven = NOT_GIVEN,
-        byte_limit: float | NotGiven = NOT_GIVEN,
+        filter_v1: PCAPFilterParam | Omit = omit,
+        offset_time: Union[str, datetime] | Omit = omit,
+        colo_name: str | Omit = omit,
+        destination_conf: str | Omit = omit,
+        byte_limit: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PCAPCreateResponse:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
@@ -560,7 +560,7 @@ class AsyncPCAPsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[PCAPListResponse, AsyncSinglePage[PCAPListResponse]]:
         """
         Lists all packet capture requests for an account.
@@ -597,7 +597,7 @@ class AsyncPCAPsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PCAPGetResponse:
         """
         Get information for a PCAP request by id.
@@ -646,7 +646,7 @@ class AsyncPCAPsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Stop full PCAP.

@@ -6,7 +6,7 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from .downloads import (
     DownloadsResource,
@@ -88,14 +88,14 @@ class IndicatorFeedsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        description: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IndicatorFeedCreateResponse]:
         """
         Create new indicator feed
@@ -141,17 +141,17 @@ class IndicatorFeedsResource(SyncAPIResource):
         feed_id: int,
         *,
         account_id: str,
-        description: str | NotGiven = NOT_GIVEN,
-        is_attributable: bool | NotGiven = NOT_GIVEN,
-        is_downloadable: bool | NotGiven = NOT_GIVEN,
-        is_public: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        is_attributable: bool | Omit = omit,
+        is_downloadable: bool | Omit = omit,
+        is_public: bool | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IndicatorFeedUpdateResponse]:
         """
         Update indicator feed metadata
@@ -212,7 +212,7 @@ class IndicatorFeedsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[IndicatorFeedListResponse]:
         """
         Get indicator feeds owned by this account
@@ -249,7 +249,7 @@ class IndicatorFeedsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Get indicator feed data
@@ -288,7 +288,7 @@ class IndicatorFeedsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IndicatorFeedGetResponse]:
         """
         Get indicator feed metadata
@@ -357,14 +357,14 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        description: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IndicatorFeedCreateResponse]:
         """
         Create new indicator feed
@@ -410,17 +410,17 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
         feed_id: int,
         *,
         account_id: str,
-        description: str | NotGiven = NOT_GIVEN,
-        is_attributable: bool | NotGiven = NOT_GIVEN,
-        is_downloadable: bool | NotGiven = NOT_GIVEN,
-        is_public: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        is_attributable: bool | Omit = omit,
+        is_downloadable: bool | Omit = omit,
+        is_public: bool | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IndicatorFeedUpdateResponse]:
         """
         Update indicator feed metadata
@@ -481,7 +481,7 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[IndicatorFeedListResponse, AsyncSinglePage[IndicatorFeedListResponse]]:
         """
         Get indicator feeds owned by this account
@@ -518,7 +518,7 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Get indicator feed data
@@ -557,7 +557,7 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IndicatorFeedGetResponse]:
         """
         Get indicator feed metadata

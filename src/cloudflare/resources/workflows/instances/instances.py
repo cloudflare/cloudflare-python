@@ -24,7 +24,7 @@ from .status import (
     StatusResourceWithStreamingResponse,
     AsyncStatusResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -79,15 +79,15 @@ class InstancesResource(SyncAPIResource):
         workflow_name: str,
         *,
         account_id: str,
-        instance_id: str | NotGiven = NOT_GIVEN,
-        instance_retention: object | NotGiven = NOT_GIVEN,
-        params: object | NotGiven = NOT_GIVEN,
+        instance_id: str | Omit = omit,
+        instance_retention: object | Omit = omit,
+        params: object | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceCreateResponse:
         """
         Create a new workflow instance
@@ -130,22 +130,22 @@ class InstancesResource(SyncAPIResource):
         workflow_name: str,
         *,
         account_id: str,
-        cursor: str | NotGiven = NOT_GIVEN,
-        date_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        date_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
+        cursor: str | Omit = omit,
+        date_end: Union[str, datetime] | Omit = omit,
+        date_start: Union[str, datetime] | Omit = omit,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
         status: Literal[
             "queued", "running", "paused", "errored", "terminated", "complete", "waitingForPause", "waiting"
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[InstanceListResponse]:
         """
         List of workflow instances
@@ -203,13 +203,13 @@ class InstancesResource(SyncAPIResource):
         workflow_name: str,
         *,
         account_id: str,
-        body: Iterable[instance_bulk_params.Body] | NotGiven = NOT_GIVEN,
+        body: Iterable[instance_bulk_params.Body] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[InstanceBulkResponse]:
         """
         Batch create new Workflow instances
@@ -249,7 +249,7 @@ class InstancesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceGetResponse:
         """
         Get logs and status from instance
@@ -315,15 +315,15 @@ class AsyncInstancesResource(AsyncAPIResource):
         workflow_name: str,
         *,
         account_id: str,
-        instance_id: str | NotGiven = NOT_GIVEN,
-        instance_retention: object | NotGiven = NOT_GIVEN,
-        params: object | NotGiven = NOT_GIVEN,
+        instance_id: str | Omit = omit,
+        instance_retention: object | Omit = omit,
+        params: object | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceCreateResponse:
         """
         Create a new workflow instance
@@ -366,22 +366,22 @@ class AsyncInstancesResource(AsyncAPIResource):
         workflow_name: str,
         *,
         account_id: str,
-        cursor: str | NotGiven = NOT_GIVEN,
-        date_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        date_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
+        cursor: str | Omit = omit,
+        date_end: Union[str, datetime] | Omit = omit,
+        date_start: Union[str, datetime] | Omit = omit,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
         status: Literal[
             "queued", "running", "paused", "errored", "terminated", "complete", "waitingForPause", "waiting"
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[InstanceListResponse, AsyncV4PagePaginationArray[InstanceListResponse]]:
         """
         List of workflow instances
@@ -439,13 +439,13 @@ class AsyncInstancesResource(AsyncAPIResource):
         workflow_name: str,
         *,
         account_id: str,
-        body: Iterable[instance_bulk_params.Body] | NotGiven = NOT_GIVEN,
+        body: Iterable[instance_bulk_params.Body] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[InstanceBulkResponse, AsyncSinglePage[InstanceBulkResponse]]:
         """
         Batch create new Workflow instances
@@ -485,7 +485,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstanceGetResponse:
         """
         Get logs and status from instance

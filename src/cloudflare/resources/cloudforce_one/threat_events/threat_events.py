@@ -32,7 +32,7 @@ from .relate import (
     RelateResourceWithStreamingResponse,
     AsyncRelateResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from .attackers import (
     AttackersResource,
@@ -185,21 +185,21 @@ class ThreatEventsResource(SyncAPIResource):
         indicator_type: str,
         raw: threat_event_create_params.Raw,
         tlp: str,
-        body_account_id: float | NotGiven = NOT_GIVEN,
-        attacker: Optional[str] | NotGiven = NOT_GIVEN,
-        attacker_country: str | NotGiven = NOT_GIVEN,
-        dataset_id: str | NotGiven = NOT_GIVEN,
-        indicator: str | NotGiven = NOT_GIVEN,
-        insight: str | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        target_country: str | NotGiven = NOT_GIVEN,
-        target_industry: str | NotGiven = NOT_GIVEN,
+        body_account_id: float | Omit = omit,
+        attacker: Optional[str] | Omit = omit,
+        attacker_country: str | Omit = omit,
+        dataset_id: str | Omit = omit,
+        indicator: str | Omit = omit,
+        insight: str | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        target_country: str | Omit = omit,
+        target_industry: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventCreateResponse:
         """
         To create a dataset, see the
@@ -252,19 +252,19 @@ class ThreatEventsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        dataset_id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        force_refresh: bool | NotGiven = NOT_GIVEN,
-        order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        order_by: str | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        page_size: float | NotGiven = NOT_GIVEN,
-        search: Iterable[threat_event_list_params.Search] | NotGiven = NOT_GIVEN,
+        dataset_id: SequenceNotStr[str] | Omit = omit,
+        force_refresh: bool | Omit = omit,
+        order: Literal["asc", "desc"] | Omit = omit,
+        order_by: str | Omit = omit,
+        page: float | Omit = omit,
+        page_size: float | Omit = omit,
+        search: Iterable[threat_event_list_params.Search] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventListResponse:
         """
         When `datasetId` is unspecified, events will be listed from the
@@ -319,7 +319,7 @@ class ThreatEventsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventDeleteResponse:
         """The `datasetId` parameter must be defined.
 
@@ -364,7 +364,7 @@ class ThreatEventsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventBulkCreateResponse:
         """The `datasetId` parameter must be defined.
 
@@ -406,24 +406,24 @@ class ThreatEventsResource(SyncAPIResource):
         event_id: str,
         *,
         account_id: str,
-        attacker: Optional[str] | NotGiven = NOT_GIVEN,
-        attacker_country: str | NotGiven = NOT_GIVEN,
-        category: str | NotGiven = NOT_GIVEN,
-        date: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        event: str | NotGiven = NOT_GIVEN,
-        indicator: str | NotGiven = NOT_GIVEN,
-        indicator_type: str | NotGiven = NOT_GIVEN,
-        insight: str | NotGiven = NOT_GIVEN,
-        raw: threat_event_edit_params.Raw | NotGiven = NOT_GIVEN,
-        target_country: str | NotGiven = NOT_GIVEN,
-        target_industry: str | NotGiven = NOT_GIVEN,
-        tlp: str | NotGiven = NOT_GIVEN,
+        attacker: Optional[str] | Omit = omit,
+        attacker_country: str | Omit = omit,
+        category: str | Omit = omit,
+        date: Union[str, datetime] | Omit = omit,
+        event: str | Omit = omit,
+        indicator: str | Omit = omit,
+        indicator_type: str | Omit = omit,
+        insight: str | Omit = omit,
+        raw: threat_event_edit_params.Raw | Omit = omit,
+        target_country: str | Omit = omit,
+        target_industry: str | Omit = omit,
+        tlp: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventEditResponse:
         """
         Updates an event
@@ -480,7 +480,7 @@ class ThreatEventsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventGetResponse:
         """
         Reads an event
@@ -581,21 +581,21 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         indicator_type: str,
         raw: threat_event_create_params.Raw,
         tlp: str,
-        body_account_id: float | NotGiven = NOT_GIVEN,
-        attacker: Optional[str] | NotGiven = NOT_GIVEN,
-        attacker_country: str | NotGiven = NOT_GIVEN,
-        dataset_id: str | NotGiven = NOT_GIVEN,
-        indicator: str | NotGiven = NOT_GIVEN,
-        insight: str | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        target_country: str | NotGiven = NOT_GIVEN,
-        target_industry: str | NotGiven = NOT_GIVEN,
+        body_account_id: float | Omit = omit,
+        attacker: Optional[str] | Omit = omit,
+        attacker_country: str | Omit = omit,
+        dataset_id: str | Omit = omit,
+        indicator: str | Omit = omit,
+        insight: str | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        target_country: str | Omit = omit,
+        target_industry: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventCreateResponse:
         """
         To create a dataset, see the
@@ -648,19 +648,19 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        dataset_id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        force_refresh: bool | NotGiven = NOT_GIVEN,
-        order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        order_by: str | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        page_size: float | NotGiven = NOT_GIVEN,
-        search: Iterable[threat_event_list_params.Search] | NotGiven = NOT_GIVEN,
+        dataset_id: SequenceNotStr[str] | Omit = omit,
+        force_refresh: bool | Omit = omit,
+        order: Literal["asc", "desc"] | Omit = omit,
+        order_by: str | Omit = omit,
+        page: float | Omit = omit,
+        page_size: float | Omit = omit,
+        search: Iterable[threat_event_list_params.Search] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventListResponse:
         """
         When `datasetId` is unspecified, events will be listed from the
@@ -715,7 +715,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventDeleteResponse:
         """The `datasetId` parameter must be defined.
 
@@ -760,7 +760,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventBulkCreateResponse:
         """The `datasetId` parameter must be defined.
 
@@ -802,24 +802,24 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         event_id: str,
         *,
         account_id: str,
-        attacker: Optional[str] | NotGiven = NOT_GIVEN,
-        attacker_country: str | NotGiven = NOT_GIVEN,
-        category: str | NotGiven = NOT_GIVEN,
-        date: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        event: str | NotGiven = NOT_GIVEN,
-        indicator: str | NotGiven = NOT_GIVEN,
-        indicator_type: str | NotGiven = NOT_GIVEN,
-        insight: str | NotGiven = NOT_GIVEN,
-        raw: threat_event_edit_params.Raw | NotGiven = NOT_GIVEN,
-        target_country: str | NotGiven = NOT_GIVEN,
-        target_industry: str | NotGiven = NOT_GIVEN,
-        tlp: str | NotGiven = NOT_GIVEN,
+        attacker: Optional[str] | Omit = omit,
+        attacker_country: str | Omit = omit,
+        category: str | Omit = omit,
+        date: Union[str, datetime] | Omit = omit,
+        event: str | Omit = omit,
+        indicator: str | Omit = omit,
+        indicator_type: str | Omit = omit,
+        insight: str | Omit = omit,
+        raw: threat_event_edit_params.Raw | Omit = omit,
+        target_country: str | Omit = omit,
+        target_industry: str | Omit = omit,
+        tlp: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventEditResponse:
         """
         Updates an event
@@ -876,7 +876,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventGetResponse:
         """
         Reads an event

@@ -6,7 +6,7 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -58,7 +58,7 @@ class DomainsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Domain]:
         """
         Attaches a Worker to a zone and hostname.
@@ -109,17 +109,17 @@ class DomainsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        environment: str | NotGiven = NOT_GIVEN,
-        hostname: str | NotGiven = NOT_GIVEN,
-        service: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        zone_name: str | NotGiven = NOT_GIVEN,
+        environment: str | Omit = omit,
+        hostname: str | Omit = omit,
+        service: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        zone_name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[Domain]:
         """
         Lists all Worker Domains for an account.
@@ -179,7 +179,7 @@ class DomainsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Detaches a Worker from a zone and hostname.
@@ -220,7 +220,7 @@ class DomainsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Domain]:
         """
         Gets a Worker domain.
@@ -288,7 +288,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Domain]:
         """
         Attaches a Worker to a zone and hostname.
@@ -339,17 +339,17 @@ class AsyncDomainsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        environment: str | NotGiven = NOT_GIVEN,
-        hostname: str | NotGiven = NOT_GIVEN,
-        service: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        zone_name: str | NotGiven = NOT_GIVEN,
+        environment: str | Omit = omit,
+        hostname: str | Omit = omit,
+        service: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        zone_name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Domain, AsyncSinglePage[Domain]]:
         """
         Lists all Worker Domains for an account.
@@ -409,7 +409,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Detaches a Worker from a zone and hostname.
@@ -450,7 +450,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Domain]:
         """
         Gets a Worker domain.

@@ -6,7 +6,7 @@ from typing import Type, cast
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -61,7 +61,7 @@ class EvaluationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EvaluationCreateResponse:
         """
         Create a new Evaluation
@@ -106,17 +106,17 @@ class EvaluationsResource(SyncAPIResource):
         gateway_id: str,
         *,
         account_id: str,
-        name: str | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        processed: bool | NotGiven = NOT_GIVEN,
-        search: str | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        processed: bool | Omit = omit,
+        search: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[EvaluationListResponse]:
         """
         List Evaluations
@@ -171,7 +171,7 @@ class EvaluationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EvaluationDeleteResponse:
         """
         Delete a Evaluation
@@ -216,7 +216,7 @@ class EvaluationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EvaluationGetResponse:
         """
         Fetch a Evaluation
@@ -284,7 +284,7 @@ class AsyncEvaluationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EvaluationCreateResponse:
         """
         Create a new Evaluation
@@ -329,17 +329,17 @@ class AsyncEvaluationsResource(AsyncAPIResource):
         gateway_id: str,
         *,
         account_id: str,
-        name: str | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        processed: bool | NotGiven = NOT_GIVEN,
-        search: str | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        processed: bool | Omit = omit,
+        search: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[EvaluationListResponse, AsyncV4PagePaginationArray[EvaluationListResponse]]:
         """
         List Evaluations
@@ -394,7 +394,7 @@ class AsyncEvaluationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EvaluationDeleteResponse:
         """
         Delete a Evaluation
@@ -439,7 +439,7 @@ class AsyncEvaluationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EvaluationGetResponse:
         """
         Fetch a Evaluation

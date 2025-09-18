@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -52,24 +52,24 @@ class VersionsResource(SyncAPIResource):
         worker_id: str,
         *,
         account_id: str,
-        deploy: bool | NotGiven = NOT_GIVEN,
-        annotations: version_create_params.Annotations | NotGiven = NOT_GIVEN,
-        assets: version_create_params.Assets | NotGiven = NOT_GIVEN,
-        bindings: Iterable[version_create_params.Binding] | NotGiven = NOT_GIVEN,
-        compatibility_date: str | NotGiven = NOT_GIVEN,
-        compatibility_flags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        limits: version_create_params.Limits | NotGiven = NOT_GIVEN,
-        main_module: str | NotGiven = NOT_GIVEN,
-        migrations: version_create_params.Migrations | NotGiven = NOT_GIVEN,
-        modules: Iterable[version_create_params.Module] | NotGiven = NOT_GIVEN,
-        placement: version_create_params.Placement | NotGiven = NOT_GIVEN,
-        usage_model: Literal["standard", "bundled", "unbound"] | NotGiven = NOT_GIVEN,
+        deploy: bool | Omit = omit,
+        annotations: version_create_params.Annotations | Omit = omit,
+        assets: version_create_params.Assets | Omit = omit,
+        bindings: Iterable[version_create_params.Binding] | Omit = omit,
+        compatibility_date: str | Omit = omit,
+        compatibility_flags: SequenceNotStr[str] | Omit = omit,
+        limits: version_create_params.Limits | Omit = omit,
+        main_module: str | Omit = omit,
+        migrations: version_create_params.Migrations | Omit = omit,
+        modules: Iterable[version_create_params.Module] | Omit = omit,
+        placement: version_create_params.Placement | Omit = omit,
+        usage_model: Literal["standard", "bundled", "unbound"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Version:
         """
         Create a new version.
@@ -172,14 +172,14 @@ class VersionsResource(SyncAPIResource):
         worker_id: str,
         *,
         account_id: str,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[Version]:
         """
         List all versions for a Worker.
@@ -235,7 +235,7 @@ class VersionsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VersionDeleteResponse:
         """
         Delete a version.
@@ -276,13 +276,13 @@ class VersionsResource(SyncAPIResource):
         *,
         account_id: str,
         worker_id: str,
-        include: Literal["modules"] | NotGiven = NOT_GIVEN,
+        include: Literal["modules"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Version:
         """
         Get details about a specific version.
@@ -352,24 +352,24 @@ class AsyncVersionsResource(AsyncAPIResource):
         worker_id: str,
         *,
         account_id: str,
-        deploy: bool | NotGiven = NOT_GIVEN,
-        annotations: version_create_params.Annotations | NotGiven = NOT_GIVEN,
-        assets: version_create_params.Assets | NotGiven = NOT_GIVEN,
-        bindings: Iterable[version_create_params.Binding] | NotGiven = NOT_GIVEN,
-        compatibility_date: str | NotGiven = NOT_GIVEN,
-        compatibility_flags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        limits: version_create_params.Limits | NotGiven = NOT_GIVEN,
-        main_module: str | NotGiven = NOT_GIVEN,
-        migrations: version_create_params.Migrations | NotGiven = NOT_GIVEN,
-        modules: Iterable[version_create_params.Module] | NotGiven = NOT_GIVEN,
-        placement: version_create_params.Placement | NotGiven = NOT_GIVEN,
-        usage_model: Literal["standard", "bundled", "unbound"] | NotGiven = NOT_GIVEN,
+        deploy: bool | Omit = omit,
+        annotations: version_create_params.Annotations | Omit = omit,
+        assets: version_create_params.Assets | Omit = omit,
+        bindings: Iterable[version_create_params.Binding] | Omit = omit,
+        compatibility_date: str | Omit = omit,
+        compatibility_flags: SequenceNotStr[str] | Omit = omit,
+        limits: version_create_params.Limits | Omit = omit,
+        main_module: str | Omit = omit,
+        migrations: version_create_params.Migrations | Omit = omit,
+        modules: Iterable[version_create_params.Module] | Omit = omit,
+        placement: version_create_params.Placement | Omit = omit,
+        usage_model: Literal["standard", "bundled", "unbound"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Version:
         """
         Create a new version.
@@ -472,14 +472,14 @@ class AsyncVersionsResource(AsyncAPIResource):
         worker_id: str,
         *,
         account_id: str,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Version, AsyncV4PagePaginationArray[Version]]:
         """
         List all versions for a Worker.
@@ -535,7 +535,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VersionDeleteResponse:
         """
         Delete a version.
@@ -576,13 +576,13 @@ class AsyncVersionsResource(AsyncAPIResource):
         *,
         account_id: str,
         worker_id: str,
-        include: Literal["modules"] | NotGiven = NOT_GIVEN,
+        include: Literal["modules"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Version:
         """
         Get details about a specific version.

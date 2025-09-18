@@ -6,7 +6,7 @@ from typing import Dict, Type, Optional, cast
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -50,18 +50,18 @@ class TracesResource(SyncAPIResource):
         account_id: str,
         method: str,
         url: str,
-        body: trace_create_params.Body | NotGiven = NOT_GIVEN,
-        context: trace_create_params.Context | NotGiven = NOT_GIVEN,
-        cookies: Dict[str, str] | NotGiven = NOT_GIVEN,
-        headers: Dict[str, str] | NotGiven = NOT_GIVEN,
-        protocol: str | NotGiven = NOT_GIVEN,
-        skip_response: bool | NotGiven = NOT_GIVEN,
+        body: trace_create_params.Body | Omit = omit,
+        context: trace_create_params.Context | Omit = omit,
+        cookies: Dict[str, str] | Omit = omit,
+        headers: Dict[str, str] | Omit = omit,
+        protocol: str | Omit = omit,
+        skip_response: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TraceCreateResponse]:
         """
         Request Trace
@@ -145,18 +145,18 @@ class AsyncTracesResource(AsyncAPIResource):
         account_id: str,
         method: str,
         url: str,
-        body: trace_create_params.Body | NotGiven = NOT_GIVEN,
-        context: trace_create_params.Context | NotGiven = NOT_GIVEN,
-        cookies: Dict[str, str] | NotGiven = NOT_GIVEN,
-        headers: Dict[str, str] | NotGiven = NOT_GIVEN,
-        protocol: str | NotGiven = NOT_GIVEN,
-        skip_response: bool | NotGiven = NOT_GIVEN,
+        body: trace_create_params.Body | Omit = omit,
+        context: trace_create_params.Context | Omit = omit,
+        cookies: Dict[str, str] | Omit = omit,
+        headers: Dict[str, str] | Omit = omit,
+        protocol: str | Omit = omit,
+        skip_response: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TraceCreateResponse]:
         """
         Request Trace

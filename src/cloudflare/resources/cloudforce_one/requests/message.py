@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -53,13 +53,13 @@ class MessageResource(SyncAPIResource):
         request_id: str,
         *,
         account_id: str,
-        content: str | NotGiven = NOT_GIVEN,
+        content: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Message]:
         """
         Create a New Request Message
@@ -102,13 +102,13 @@ class MessageResource(SyncAPIResource):
         *,
         account_id: str,
         request_id: str,
-        content: str | NotGiven = NOT_GIVEN,
+        content: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Message]:
         """
         Update a Request Message
@@ -156,7 +156,7 @@ class MessageResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageDeleteResponse:
         """
         Delete a Request Message
@@ -193,16 +193,16 @@ class MessageResource(SyncAPIResource):
         account_id: str,
         page: int,
         per_page: int,
-        after: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        before: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        sort_by: str | NotGiven = NOT_GIVEN,
-        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        after: Union[str, datetime] | Omit = omit,
+        before: Union[str, datetime] | Omit = omit,
+        sort_by: str | Omit = omit,
+        sort_order: Literal["asc", "desc"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[Message]:
         """
         List Request Messages
@@ -283,13 +283,13 @@ class AsyncMessageResource(AsyncAPIResource):
         request_id: str,
         *,
         account_id: str,
-        content: str | NotGiven = NOT_GIVEN,
+        content: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Message]:
         """
         Create a New Request Message
@@ -332,13 +332,13 @@ class AsyncMessageResource(AsyncAPIResource):
         *,
         account_id: str,
         request_id: str,
-        content: str | NotGiven = NOT_GIVEN,
+        content: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Message]:
         """
         Update a Request Message
@@ -386,7 +386,7 @@ class AsyncMessageResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageDeleteResponse:
         """
         Delete a Request Message
@@ -423,16 +423,16 @@ class AsyncMessageResource(AsyncAPIResource):
         account_id: str,
         page: int,
         per_page: int,
-        after: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        before: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        sort_by: str | NotGiven = NOT_GIVEN,
-        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        after: Union[str, datetime] | Omit = omit,
+        before: Union[str, datetime] | Omit = omit,
+        sort_by: str | Omit = omit,
+        sort_order: Literal["asc", "desc"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Message, AsyncSinglePage[Message]]:
         """
         List Request Messages

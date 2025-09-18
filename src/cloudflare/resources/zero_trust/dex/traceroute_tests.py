@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -59,14 +59,14 @@ class TracerouteTestsResource(SyncAPIResource):
         from_: str,
         interval: Literal["minute", "hour"],
         to: str,
-        colo: str | NotGiven = NOT_GIVEN,
-        device_id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        colo: str | Omit = omit,
+        device_id: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Traceroute]:
         """
         Get test details and aggregate performance metrics for an traceroute test for a
@@ -135,7 +135,7 @@ class TracerouteTestsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[NetworkPathResponse]:
         """
         Get a breakdown of metrics by hop for individual traceroute test runs
@@ -191,14 +191,14 @@ class TracerouteTestsResource(SyncAPIResource):
         account_id: str,
         from_: str,
         to: str,
-        colo: str | NotGiven = NOT_GIVEN,
-        device_id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        colo: str | Omit = omit,
+        device_id: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TracerouteTestPercentilesResponse]:
         """
         Get percentiles for a traceroute test for a given time period between 1 hour and
@@ -281,14 +281,14 @@ class AsyncTracerouteTestsResource(AsyncAPIResource):
         from_: str,
         interval: Literal["minute", "hour"],
         to: str,
-        colo: str | NotGiven = NOT_GIVEN,
-        device_id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        colo: str | Omit = omit,
+        device_id: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Traceroute]:
         """
         Get test details and aggregate performance metrics for an traceroute test for a
@@ -357,7 +357,7 @@ class AsyncTracerouteTestsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[NetworkPathResponse]:
         """
         Get a breakdown of metrics by hop for individual traceroute test runs
@@ -413,14 +413,14 @@ class AsyncTracerouteTestsResource(AsyncAPIResource):
         account_id: str,
         from_: str,
         to: str,
-        colo: str | NotGiven = NOT_GIVEN,
-        device_id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        colo: str | Omit = omit,
+        device_id: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TracerouteTestPercentilesResponse]:
         """
         Get percentiles for a traceroute test for a given time period between 1 hour and

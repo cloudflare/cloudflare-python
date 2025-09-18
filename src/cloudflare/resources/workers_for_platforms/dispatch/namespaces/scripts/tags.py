@@ -6,7 +6,7 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ......_types import Body, Query, Headers, NotGiven, SequenceNotStr, not_given
 from ......_utils import maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
@@ -57,7 +57,7 @@ class TagsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[TagUpdateResponse]:
         """
         Put script tags for a script uploaded to a Workers for Platforms namespace.
@@ -107,7 +107,7 @@ class TagsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[TagListResponse]:
         """
         Fetch tags from a script uploaded to a Workers for Platforms namespace.
@@ -154,7 +154,7 @@ class TagsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Delete script tag for a script uploaded to a Workers for Platforms namespace.
@@ -227,7 +227,7 @@ class AsyncTagsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[TagUpdateResponse, AsyncSinglePage[TagUpdateResponse]]:
         """
         Put script tags for a script uploaded to a Workers for Platforms namespace.
@@ -277,7 +277,7 @@ class AsyncTagsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[TagListResponse, AsyncSinglePage[TagListResponse]]:
         """
         Fetch tags from a script uploaded to a Workers for Platforms namespace.
@@ -324,7 +324,7 @@ class AsyncTagsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Delete script tag for a script uploaded to a Workers for Platforms namespace.

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, FileTypes
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, FileTypes, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -45,16 +45,16 @@ class LogosResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        match_type: str | NotGiven = NOT_GIVEN,
-        tag: str | NotGiven = NOT_GIVEN,
-        threshold: float | NotGiven = NOT_GIVEN,
-        image: FileTypes | NotGiven = NOT_GIVEN,
+        match_type: str | Omit = omit,
+        tag: str | Omit = omit,
+        threshold: float | Omit = omit,
+        image: FileTypes | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LogoCreateResponse:
         """
         Return new saved logo queries created from image files
@@ -100,7 +100,7 @@ class LogosResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Return a success message after deleting saved logo queries by ID
@@ -152,16 +152,16 @@ class AsyncLogosResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        match_type: str | NotGiven = NOT_GIVEN,
-        tag: str | NotGiven = NOT_GIVEN,
-        threshold: float | NotGiven = NOT_GIVEN,
-        image: FileTypes | NotGiven = NOT_GIVEN,
+        match_type: str | Omit = omit,
+        tag: str | Omit = omit,
+        threshold: float | Omit = omit,
+        image: FileTypes | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LogoCreateResponse:
         """
         Return new saved logo queries created from image files
@@ -207,7 +207,7 @@ class AsyncLogosResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Return a success message after deleting saved logo queries by ID

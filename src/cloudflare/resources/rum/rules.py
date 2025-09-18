@@ -6,7 +6,7 @@ from typing import Type, Iterable, Optional, cast
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -52,16 +52,16 @@ class RulesResource(SyncAPIResource):
         ruleset_id: str,
         *,
         account_id: str,
-        host: str | NotGiven = NOT_GIVEN,
-        inclusive: bool | NotGiven = NOT_GIVEN,
-        is_paused: bool | NotGiven = NOT_GIVEN,
-        paths: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        host: str | Omit = omit,
+        inclusive: bool | Omit = omit,
+        is_paused: bool | Omit = omit,
+        paths: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RUMRule]:
         """
         Creates a new rule in a Web Analytics ruleset.
@@ -114,16 +114,16 @@ class RulesResource(SyncAPIResource):
         *,
         account_id: str,
         ruleset_id: str,
-        host: str | NotGiven = NOT_GIVEN,
-        inclusive: bool | NotGiven = NOT_GIVEN,
-        is_paused: bool | NotGiven = NOT_GIVEN,
-        paths: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        host: str | Omit = omit,
+        inclusive: bool | Omit = omit,
+        is_paused: bool | Omit = omit,
+        paths: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RUMRule]:
         """
         Updates a rule in a Web Analytics ruleset.
@@ -184,7 +184,7 @@ class RulesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RuleListResponse]:
         """
         Lists all the rules in a Web Analytics ruleset.
@@ -229,7 +229,7 @@ class RulesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RuleDeleteResponse]:
         """
         Deletes an existing rule from a Web Analytics ruleset.
@@ -272,14 +272,14 @@ class RulesResource(SyncAPIResource):
         ruleset_id: str,
         *,
         account_id: str,
-        delete_rules: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        rules: Iterable[rule_bulk_create_params.Rule] | NotGiven = NOT_GIVEN,
+        delete_rules: SequenceNotStr[str] | Omit = omit,
+        rules: Iterable[rule_bulk_create_params.Rule] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RuleBulkCreateResponse]:
         """
         Modifies one or more rules in a Web Analytics ruleset with a single request.
@@ -350,16 +350,16 @@ class AsyncRulesResource(AsyncAPIResource):
         ruleset_id: str,
         *,
         account_id: str,
-        host: str | NotGiven = NOT_GIVEN,
-        inclusive: bool | NotGiven = NOT_GIVEN,
-        is_paused: bool | NotGiven = NOT_GIVEN,
-        paths: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        host: str | Omit = omit,
+        inclusive: bool | Omit = omit,
+        is_paused: bool | Omit = omit,
+        paths: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RUMRule]:
         """
         Creates a new rule in a Web Analytics ruleset.
@@ -412,16 +412,16 @@ class AsyncRulesResource(AsyncAPIResource):
         *,
         account_id: str,
         ruleset_id: str,
-        host: str | NotGiven = NOT_GIVEN,
-        inclusive: bool | NotGiven = NOT_GIVEN,
-        is_paused: bool | NotGiven = NOT_GIVEN,
-        paths: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        host: str | Omit = omit,
+        inclusive: bool | Omit = omit,
+        is_paused: bool | Omit = omit,
+        paths: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RUMRule]:
         """
         Updates a rule in a Web Analytics ruleset.
@@ -482,7 +482,7 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RuleListResponse]:
         """
         Lists all the rules in a Web Analytics ruleset.
@@ -527,7 +527,7 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RuleDeleteResponse]:
         """
         Deletes an existing rule from a Web Analytics ruleset.
@@ -570,14 +570,14 @@ class AsyncRulesResource(AsyncAPIResource):
         ruleset_id: str,
         *,
         account_id: str,
-        delete_rules: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        rules: Iterable[rule_bulk_create_params.Rule] | NotGiven = NOT_GIVEN,
+        delete_rules: SequenceNotStr[str] | Omit = omit,
+        rules: Iterable[rule_bulk_create_params.Rule] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RuleBulkCreateResponse]:
         """
         Modifies one or more rules in a Web Analytics ruleset with a single request.

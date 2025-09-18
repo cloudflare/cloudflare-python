@@ -30,7 +30,7 @@ from .accounts import (
     AccountsResourceWithStreamingResponse,
     AsyncAccountsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -88,16 +88,16 @@ class AddressMapsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        enabled: Optional[bool] | NotGiven = NOT_GIVEN,
-        ips: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        memberships: Iterable[address_map_create_params.Membership] | NotGiven = NOT_GIVEN,
+        description: Optional[str] | Omit = omit,
+        enabled: Optional[bool] | Omit = omit,
+        ips: SequenceNotStr[str] | Omit = omit,
+        memberships: Iterable[address_map_create_params.Membership] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AddressMapCreateResponse]:
         """
         Create a new address map under the account.
@@ -154,7 +154,7 @@ class AddressMapsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[AddressMap]:
         """
         List all address maps owned by the account.
@@ -191,7 +191,7 @@ class AddressMapsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AddressMapDeleteResponse:
         """Delete a particular address map owned by the account.
 
@@ -228,15 +228,15 @@ class AddressMapsResource(SyncAPIResource):
         address_map_id: str,
         *,
         account_id: str,
-        default_sni: Optional[str] | NotGiven = NOT_GIVEN,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        enabled: Optional[bool] | NotGiven = NOT_GIVEN,
+        default_sni: Optional[str] | Omit = omit,
+        description: Optional[str] | Omit = omit,
+        enabled: Optional[bool] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AddressMap]:
         """
         Modify properties of an address map owned by the account.
@@ -300,7 +300,7 @@ class AddressMapsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AddressMapGetResponse]:
         """
         Show a particular address map owned by the account.
@@ -371,16 +371,16 @@ class AsyncAddressMapsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        enabled: Optional[bool] | NotGiven = NOT_GIVEN,
-        ips: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        memberships: Iterable[address_map_create_params.Membership] | NotGiven = NOT_GIVEN,
+        description: Optional[str] | Omit = omit,
+        enabled: Optional[bool] | Omit = omit,
+        ips: SequenceNotStr[str] | Omit = omit,
+        memberships: Iterable[address_map_create_params.Membership] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AddressMapCreateResponse]:
         """
         Create a new address map under the account.
@@ -437,7 +437,7 @@ class AsyncAddressMapsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[AddressMap, AsyncSinglePage[AddressMap]]:
         """
         List all address maps owned by the account.
@@ -474,7 +474,7 @@ class AsyncAddressMapsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AddressMapDeleteResponse:
         """Delete a particular address map owned by the account.
 
@@ -511,15 +511,15 @@ class AsyncAddressMapsResource(AsyncAPIResource):
         address_map_id: str,
         *,
         account_id: str,
-        default_sni: Optional[str] | NotGiven = NOT_GIVEN,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        enabled: Optional[bool] | NotGiven = NOT_GIVEN,
+        default_sni: Optional[str] | Omit = omit,
+        description: Optional[str] | Omit = omit,
+        enabled: Optional[bool] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AddressMap]:
         """
         Modify properties of an address map owned by the account.
@@ -583,7 +583,7 @@ class AsyncAddressMapsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AddressMapGetResponse]:
         """
         Show a particular address map owned by the account.

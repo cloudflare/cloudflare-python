@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -65,16 +65,16 @@ class AllowPoliciesResource(SyncAPIResource):
         pattern: str,
         pattern_type: Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"],
         verify_sender: bool,
-        comments: Optional[str] | NotGiven = NOT_GIVEN,
-        is_recipient: bool | NotGiven = NOT_GIVEN,
-        is_sender: bool | NotGiven = NOT_GIVEN,
-        is_spoof: bool | NotGiven = NOT_GIVEN,
+        comments: Optional[str] | Omit = omit,
+        is_recipient: bool | Omit = omit,
+        is_sender: bool | Omit = omit,
+        is_spoof: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AllowPolicyCreateResponse:
         """
         Create an email allow policy
@@ -135,26 +135,26 @@ class AllowPoliciesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        is_acceptable_sender: bool | NotGiven = NOT_GIVEN,
-        is_exempt_recipient: bool | NotGiven = NOT_GIVEN,
-        is_recipient: bool | NotGiven = NOT_GIVEN,
-        is_sender: bool | NotGiven = NOT_GIVEN,
-        is_spoof: bool | NotGiven = NOT_GIVEN,
-        is_trusted_sender: bool | NotGiven = NOT_GIVEN,
-        order: Literal["pattern", "created_at"] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        pattern: str | NotGiven = NOT_GIVEN,
-        pattern_type: Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        search: str | NotGiven = NOT_GIVEN,
-        verify_sender: bool | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        is_acceptable_sender: bool | Omit = omit,
+        is_exempt_recipient: bool | Omit = omit,
+        is_recipient: bool | Omit = omit,
+        is_sender: bool | Omit = omit,
+        is_spoof: bool | Omit = omit,
+        is_trusted_sender: bool | Omit = omit,
+        order: Literal["pattern", "created_at"] | Omit = omit,
+        page: int | Omit = omit,
+        pattern: str | Omit = omit,
+        pattern_type: Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"] | Omit = omit,
+        per_page: int | Omit = omit,
+        search: str | Omit = omit,
+        verify_sender: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[AllowPolicyListResponse]:
         """
         Lists, searches, and sorts an account’s email allow policies.
@@ -225,7 +225,7 @@ class AllowPoliciesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AllowPolicyDeleteResponse:
         """
         Delete an email allow policy
@@ -262,20 +262,20 @@ class AllowPoliciesResource(SyncAPIResource):
         policy_id: int,
         *,
         account_id: str,
-        comments: Optional[str] | NotGiven = NOT_GIVEN,
-        is_acceptable_sender: Optional[bool] | NotGiven = NOT_GIVEN,
-        is_exempt_recipient: Optional[bool] | NotGiven = NOT_GIVEN,
-        is_regex: Optional[bool] | NotGiven = NOT_GIVEN,
-        is_trusted_sender: Optional[bool] | NotGiven = NOT_GIVEN,
-        pattern: Optional[str] | NotGiven = NOT_GIVEN,
-        pattern_type: Optional[Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"]] | NotGiven = NOT_GIVEN,
-        verify_sender: Optional[bool] | NotGiven = NOT_GIVEN,
+        comments: Optional[str] | Omit = omit,
+        is_acceptable_sender: Optional[bool] | Omit = omit,
+        is_exempt_recipient: Optional[bool] | Omit = omit,
+        is_regex: Optional[bool] | Omit = omit,
+        is_trusted_sender: Optional[bool] | Omit = omit,
+        pattern: Optional[str] | Omit = omit,
+        pattern_type: Optional[Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"]] | Omit = omit,
+        verify_sender: Optional[bool] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AllowPolicyEditResponse:
         """
         Update an email allow policy
@@ -341,7 +341,7 @@ class AllowPoliciesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AllowPolicyGetResponse:
         """
         Get an email allow policy
@@ -405,16 +405,16 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
         pattern: str,
         pattern_type: Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"],
         verify_sender: bool,
-        comments: Optional[str] | NotGiven = NOT_GIVEN,
-        is_recipient: bool | NotGiven = NOT_GIVEN,
-        is_sender: bool | NotGiven = NOT_GIVEN,
-        is_spoof: bool | NotGiven = NOT_GIVEN,
+        comments: Optional[str] | Omit = omit,
+        is_recipient: bool | Omit = omit,
+        is_sender: bool | Omit = omit,
+        is_spoof: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AllowPolicyCreateResponse:
         """
         Create an email allow policy
@@ -475,26 +475,26 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        is_acceptable_sender: bool | NotGiven = NOT_GIVEN,
-        is_exempt_recipient: bool | NotGiven = NOT_GIVEN,
-        is_recipient: bool | NotGiven = NOT_GIVEN,
-        is_sender: bool | NotGiven = NOT_GIVEN,
-        is_spoof: bool | NotGiven = NOT_GIVEN,
-        is_trusted_sender: bool | NotGiven = NOT_GIVEN,
-        order: Literal["pattern", "created_at"] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        pattern: str | NotGiven = NOT_GIVEN,
-        pattern_type: Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        search: str | NotGiven = NOT_GIVEN,
-        verify_sender: bool | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        is_acceptable_sender: bool | Omit = omit,
+        is_exempt_recipient: bool | Omit = omit,
+        is_recipient: bool | Omit = omit,
+        is_sender: bool | Omit = omit,
+        is_spoof: bool | Omit = omit,
+        is_trusted_sender: bool | Omit = omit,
+        order: Literal["pattern", "created_at"] | Omit = omit,
+        page: int | Omit = omit,
+        pattern: str | Omit = omit,
+        pattern_type: Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"] | Omit = omit,
+        per_page: int | Omit = omit,
+        search: str | Omit = omit,
+        verify_sender: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[AllowPolicyListResponse, AsyncV4PagePaginationArray[AllowPolicyListResponse]]:
         """
         Lists, searches, and sorts an account’s email allow policies.
@@ -565,7 +565,7 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AllowPolicyDeleteResponse:
         """
         Delete an email allow policy
@@ -602,20 +602,20 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
         policy_id: int,
         *,
         account_id: str,
-        comments: Optional[str] | NotGiven = NOT_GIVEN,
-        is_acceptable_sender: Optional[bool] | NotGiven = NOT_GIVEN,
-        is_exempt_recipient: Optional[bool] | NotGiven = NOT_GIVEN,
-        is_regex: Optional[bool] | NotGiven = NOT_GIVEN,
-        is_trusted_sender: Optional[bool] | NotGiven = NOT_GIVEN,
-        pattern: Optional[str] | NotGiven = NOT_GIVEN,
-        pattern_type: Optional[Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"]] | NotGiven = NOT_GIVEN,
-        verify_sender: Optional[bool] | NotGiven = NOT_GIVEN,
+        comments: Optional[str] | Omit = omit,
+        is_acceptable_sender: Optional[bool] | Omit = omit,
+        is_exempt_recipient: Optional[bool] | Omit = omit,
+        is_regex: Optional[bool] | Omit = omit,
+        is_trusted_sender: Optional[bool] | Omit = omit,
+        pattern: Optional[str] | Omit = omit,
+        pattern_type: Optional[Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"]] | Omit = omit,
+        verify_sender: Optional[bool] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AllowPolicyEditResponse:
         """
         Update an email allow policy
@@ -681,7 +681,7 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AllowPolicyGetResponse:
         """
         Get an email allow policy

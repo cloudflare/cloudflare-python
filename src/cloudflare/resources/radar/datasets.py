@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -50,17 +50,17 @@ class DatasetsResource(SyncAPIResource):
     def list(
         self,
         *,
-        dataset_type: Literal["RANKING_BUCKET", "REPORT"] | NotGiven = NOT_GIVEN,
-        date: Union[str, date] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        dataset_type: Literal["RANKING_BUCKET", "REPORT"] | Omit = omit,
+        date: Union[str, date] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetListResponse:
         """
         Retrieves a list of datasets.
@@ -110,13 +110,13 @@ class DatasetsResource(SyncAPIResource):
         self,
         *,
         dataset_id: int,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetDownloadResponse:
         """
         Retrieves an URL to download a single dataset.
@@ -155,7 +155,7 @@ class DatasetsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """Retrieves the CSV content of a given dataset by alias or ID.
 
@@ -209,17 +209,17 @@ class AsyncDatasetsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        dataset_type: Literal["RANKING_BUCKET", "REPORT"] | NotGiven = NOT_GIVEN,
-        date: Union[str, date] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        dataset_type: Literal["RANKING_BUCKET", "REPORT"] | Omit = omit,
+        date: Union[str, date] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetListResponse:
         """
         Retrieves a list of datasets.
@@ -269,13 +269,13 @@ class AsyncDatasetsResource(AsyncAPIResource):
         self,
         *,
         dataset_id: int,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasetDownloadResponse:
         """
         Retrieves an URL to download a single dataset.
@@ -314,7 +314,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """Retrieves the CSV content of a given dataset by alias or ID.
 

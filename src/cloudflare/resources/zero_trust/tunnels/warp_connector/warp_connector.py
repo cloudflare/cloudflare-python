@@ -16,7 +16,7 @@ from .token import (
     TokenResourceWithStreamingResponse,
     AsyncTokenResourceWithStreamingResponse,
 )
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -77,7 +77,7 @@ class WARPConnectorResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WARPConnectorCreateResponse:
         """
         Creates a new Warp Connector Tunnel in an account.
@@ -119,23 +119,23 @@ class WARPConnectorResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        exclude_prefix: str | NotGiven = NOT_GIVEN,
-        existed_at: str | NotGiven = NOT_GIVEN,
-        include_prefix: str | NotGiven = NOT_GIVEN,
-        is_deleted: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        status: Literal["inactive", "degraded", "healthy", "down"] | NotGiven = NOT_GIVEN,
-        uuid: str | NotGiven = NOT_GIVEN,
-        was_active_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        was_inactive_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        exclude_prefix: str | Omit = omit,
+        existed_at: str | Omit = omit,
+        include_prefix: str | Omit = omit,
+        is_deleted: bool | Omit = omit,
+        name: str | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
+        status: Literal["inactive", "degraded", "healthy", "down"] | Omit = omit,
+        uuid: str | Omit = omit,
+        was_active_at: Union[str, datetime] | Omit = omit,
+        was_inactive_at: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[WARPConnectorListResponse]:
         """
         Lists and filters Warp Connector Tunnels in an account.
@@ -212,7 +212,7 @@ class WARPConnectorResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WARPConnectorDeleteResponse:
         """
         Deletes a Warp Connector Tunnel from an account.
@@ -256,14 +256,14 @@ class WARPConnectorResource(SyncAPIResource):
         tunnel_id: str,
         *,
         account_id: str,
-        name: str | NotGiven = NOT_GIVEN,
-        tunnel_secret: str | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        tunnel_secret: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WARPConnectorEditResponse:
         """
         Updates an existing Warp Connector Tunnel.
@@ -324,7 +324,7 @@ class WARPConnectorResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WARPConnectorGetResponse:
         """
         Fetches a single Warp Connector Tunnel.
@@ -398,7 +398,7 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WARPConnectorCreateResponse:
         """
         Creates a new Warp Connector Tunnel in an account.
@@ -442,23 +442,23 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        exclude_prefix: str | NotGiven = NOT_GIVEN,
-        existed_at: str | NotGiven = NOT_GIVEN,
-        include_prefix: str | NotGiven = NOT_GIVEN,
-        is_deleted: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        status: Literal["inactive", "degraded", "healthy", "down"] | NotGiven = NOT_GIVEN,
-        uuid: str | NotGiven = NOT_GIVEN,
-        was_active_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        was_inactive_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        exclude_prefix: str | Omit = omit,
+        existed_at: str | Omit = omit,
+        include_prefix: str | Omit = omit,
+        is_deleted: bool | Omit = omit,
+        name: str | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
+        status: Literal["inactive", "degraded", "healthy", "down"] | Omit = omit,
+        uuid: str | Omit = omit,
+        was_active_at: Union[str, datetime] | Omit = omit,
+        was_inactive_at: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[WARPConnectorListResponse, AsyncV4PagePaginationArray[WARPConnectorListResponse]]:
         """
         Lists and filters Warp Connector Tunnels in an account.
@@ -535,7 +535,7 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WARPConnectorDeleteResponse:
         """
         Deletes a Warp Connector Tunnel from an account.
@@ -579,14 +579,14 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
         tunnel_id: str,
         *,
         account_id: str,
-        name: str | NotGiven = NOT_GIVEN,
-        tunnel_secret: str | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        tunnel_secret: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WARPConnectorEditResponse:
         """
         Updates an existing Warp Connector Tunnel.
@@ -647,7 +647,7 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WARPConnectorGetResponse:
         """
         Fetches a single Warp Connector Tunnel.

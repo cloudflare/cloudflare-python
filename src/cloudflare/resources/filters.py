@@ -7,7 +7,7 @@ from typing import Type, Iterable, Optional, cast
 
 import httpx
 
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -67,7 +67,7 @@ class FiltersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[FirewallFilter]:
         """
         Creates one or more filters.
@@ -104,16 +104,16 @@ class FiltersResource(SyncAPIResource):
         filter_id: str,
         *,
         zone_id: str,
-        description: str | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        paused: bool | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        expression: str | Omit = omit,
+        paused: bool | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FirewallFilter:
         """
         Updates an existing filter.
@@ -172,19 +172,19 @@ class FiltersResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        id: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        paused: bool | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        description: str | Omit = omit,
+        expression: str | Omit = omit,
+        page: float | Omit = omit,
+        paused: bool | Omit = omit,
+        per_page: float | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[FirewallFilter]:
         """Fetches filters in a zone.
 
@@ -255,7 +255,7 @@ class FiltersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FilterDeleteResponse:
         """
         Deletes an existing filter.
@@ -302,7 +302,7 @@ class FiltersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[FilterBulkDeleteResponse]:
         """
         Deletes one or more existing filters.
@@ -346,7 +346,7 @@ class FiltersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[FirewallFilter]:
         """
         Updates one or more existing filters.
@@ -388,7 +388,7 @@ class FiltersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FirewallFilter:
         """
         Fetches the details of a filter.
@@ -456,7 +456,7 @@ class AsyncFiltersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[FirewallFilter, AsyncSinglePage[FirewallFilter]]:
         """
         Creates one or more filters.
@@ -493,16 +493,16 @@ class AsyncFiltersResource(AsyncAPIResource):
         filter_id: str,
         *,
         zone_id: str,
-        description: str | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        paused: bool | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        expression: str | Omit = omit,
+        paused: bool | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FirewallFilter:
         """
         Updates an existing filter.
@@ -561,19 +561,19 @@ class AsyncFiltersResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        id: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        paused: bool | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        ref: str | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        description: str | Omit = omit,
+        expression: str | Omit = omit,
+        page: float | Omit = omit,
+        paused: bool | Omit = omit,
+        per_page: float | Omit = omit,
+        ref: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[FirewallFilter, AsyncV4PagePaginationArray[FirewallFilter]]:
         """Fetches filters in a zone.
 
@@ -644,7 +644,7 @@ class AsyncFiltersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FilterDeleteResponse:
         """
         Deletes an existing filter.
@@ -691,7 +691,7 @@ class AsyncFiltersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[FilterBulkDeleteResponse]:
         """
         Deletes one or more existing filters.
@@ -735,7 +735,7 @@ class AsyncFiltersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[FirewallFilter, AsyncSinglePage[FirewallFilter]]:
         """
         Updates one or more existing filters.
@@ -777,7 +777,7 @@ class AsyncFiltersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FirewallFilter:
         """
         Fetches the details of a filter.

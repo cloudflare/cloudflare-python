@@ -7,7 +7,7 @@ from datetime import datetime
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, strip_not_given, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -51,21 +51,21 @@ class DirectUploadResource(SyncAPIResource):
         *,
         account_id: str,
         max_duration_seconds: int,
-        allowed_origins: SequenceNotStr[AllowedOrigins] | NotGiven = NOT_GIVEN,
-        creator: str | NotGiven = NOT_GIVEN,
-        expiry: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        meta: object | NotGiven = NOT_GIVEN,
-        require_signed_urls: bool | NotGiven = NOT_GIVEN,
-        scheduled_deletion: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        thumbnail_timestamp_pct: float | NotGiven = NOT_GIVEN,
-        watermark: direct_upload_create_params.Watermark | NotGiven = NOT_GIVEN,
-        upload_creator: str | NotGiven = NOT_GIVEN,
+        allowed_origins: SequenceNotStr[AllowedOrigins] | Omit = omit,
+        creator: str | Omit = omit,
+        expiry: Union[str, datetime] | Omit = omit,
+        meta: object | Omit = omit,
+        require_signed_urls: bool | Omit = omit,
+        scheduled_deletion: Union[str, datetime] | Omit = omit,
+        thumbnail_timestamp_pct: float | Omit = omit,
+        watermark: direct_upload_create_params.Watermark | Omit = omit,
+        upload_creator: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DirectUploadCreateResponse]:
         """
         Creates a direct upload that allows video uploads without an API key.
@@ -166,21 +166,21 @@ class AsyncDirectUploadResource(AsyncAPIResource):
         *,
         account_id: str,
         max_duration_seconds: int,
-        allowed_origins: SequenceNotStr[AllowedOrigins] | NotGiven = NOT_GIVEN,
-        creator: str | NotGiven = NOT_GIVEN,
-        expiry: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        meta: object | NotGiven = NOT_GIVEN,
-        require_signed_urls: bool | NotGiven = NOT_GIVEN,
-        scheduled_deletion: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        thumbnail_timestamp_pct: float | NotGiven = NOT_GIVEN,
-        watermark: direct_upload_create_params.Watermark | NotGiven = NOT_GIVEN,
-        upload_creator: str | NotGiven = NOT_GIVEN,
+        allowed_origins: SequenceNotStr[AllowedOrigins] | Omit = omit,
+        creator: str | Omit = omit,
+        expiry: Union[str, datetime] | Omit = omit,
+        meta: object | Omit = omit,
+        require_signed_urls: bool | Omit = omit,
+        scheduled_deletion: Union[str, datetime] | Omit = omit,
+        thumbnail_timestamp_pct: float | Omit = omit,
+        watermark: direct_upload_create_params.Watermark | Omit = omit,
+        upload_creator: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DirectUploadCreateResponse]:
         """
         Creates a direct upload that allows video uploads without an API key.

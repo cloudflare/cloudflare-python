@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ....._utils import maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -49,24 +49,24 @@ class EventsResource(SyncAPIResource):
     def list(
         self,
         *,
-        date_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        date_range: str | NotGiven = NOT_GIVEN,
-        date_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        event_id: int | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        involved_asn: int | NotGiven = NOT_GIVEN,
-        involved_country: str | NotGiven = NOT_GIVEN,
-        leak_asn: int | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        sort_by: Literal["ID", "LEAKS", "PEERS", "PREFIXES", "ORIGINS", "TIME"] | NotGiven = NOT_GIVEN,
-        sort_order: Literal["ASC", "DESC"] | NotGiven = NOT_GIVEN,
+        date_end: Union[str, datetime] | Omit = omit,
+        date_range: str | Omit = omit,
+        date_start: Union[str, datetime] | Omit = omit,
+        event_id: int | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        involved_asn: int | Omit = omit,
+        involved_country: str | Omit = omit,
+        leak_asn: int | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        sort_by: Literal["ID", "LEAKS", "PEERS", "PREFIXES", "ORIGINS", "TIME"] | Omit = omit,
+        sort_order: Literal["ASC", "DESC"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePagination[EventListResponse]:
         """
         Retrieves the BGP route leak events.
@@ -157,24 +157,24 @@ class AsyncEventsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        date_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        date_range: str | NotGiven = NOT_GIVEN,
-        date_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        event_id: int | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        involved_asn: int | NotGiven = NOT_GIVEN,
-        involved_country: str | NotGiven = NOT_GIVEN,
-        leak_asn: int | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        sort_by: Literal["ID", "LEAKS", "PEERS", "PREFIXES", "ORIGINS", "TIME"] | NotGiven = NOT_GIVEN,
-        sort_order: Literal["ASC", "DESC"] | NotGiven = NOT_GIVEN,
+        date_end: Union[str, datetime] | Omit = omit,
+        date_range: str | Omit = omit,
+        date_start: Union[str, datetime] | Omit = omit,
+        event_id: int | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        involved_asn: int | Omit = omit,
+        involved_country: str | Omit = omit,
+        leak_asn: int | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        sort_by: Literal["ID", "LEAKS", "PEERS", "PREFIXES", "ORIGINS", "TIME"] | Omit = omit,
+        sort_order: Literal["ASC", "DESC"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[EventListResponse, AsyncV4PagePagination[EventListResponse]]:
         """
         Retrieves the BGP route leak events.

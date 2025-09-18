@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -89,19 +89,19 @@ class BotsResource(SyncAPIResource):
             "AI_SEARCH",
             "ARCHIVER",
         ]
-        | NotGiven = NOT_GIVEN,
-        bot_operator: str | NotGiven = NOT_GIVEN,
-        bot_verification_status: Literal["VERIFIED"] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        kind: Literal["AGENT", "BOT"] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        bot_operator: str | Omit = omit,
+        bot_verification_status: Literal["VERIFIED"] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        kind: Literal["AGENT", "BOT"] | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BotListResponse:
         """
         Retrieves a list of bots.
@@ -157,13 +157,13 @@ class BotsResource(SyncAPIResource):
         self,
         bot_slug: str,
         *,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BotGetResponse:
         """
         Retrieves the requested bot information.
@@ -200,8 +200,8 @@ class BotsResource(SyncAPIResource):
         self,
         dimension: Literal["BOT", "BOT_KIND", "BOT_OPERATOR", "BOT_CATEGORY"],
         *,
-        asn: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        bot: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        asn: SequenceNotStr[str] | Omit = omit,
+        bot: SequenceNotStr[str] | Omit = omit,
         bot_category: List[
             Literal[
                 "SEARCH_ENGINE_CRAWLER",
@@ -222,24 +222,24 @@ class BotsResource(SyncAPIResource):
                 "ARCHIVER",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        bot_kind: List[Literal["AGENT", "BOT"]] | NotGiven = NOT_GIVEN,
-        bot_operator: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        bot_verification_status: List[Literal["VERIFIED"]] | NotGiven = NOT_GIVEN,
-        continent: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        limit_per_group: int | NotGiven = NOT_GIVEN,
-        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        bot_kind: List[Literal["AGENT", "BOT"]] | Omit = omit,
+        bot_operator: SequenceNotStr[str] | Omit = omit,
+        bot_verification_status: List[Literal["VERIFIED"]] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        limit_per_group: int | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BotSummaryResponse:
         """
         Retrieves an aggregated summary of bots HTTP requests grouped by the specified
@@ -331,9 +331,9 @@ class BotsResource(SyncAPIResource):
     def timeseries(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        bot: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        asn: SequenceNotStr[str] | Omit = omit,
+        bot: SequenceNotStr[str] | Omit = omit,
         bot_category: List[
             Literal[
                 "SEARCH_ENGINE_CRAWLER",
@@ -354,23 +354,23 @@ class BotsResource(SyncAPIResource):
                 "ARCHIVER",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        bot_kind: List[Literal["AGENT", "BOT"]] | NotGiven = NOT_GIVEN,
-        bot_operator: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        bot_verification_status: List[Literal["VERIFIED"]] | NotGiven = NOT_GIVEN,
-        continent: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        bot_kind: List[Literal["AGENT", "BOT"]] | Omit = omit,
+        bot_operator: SequenceNotStr[str] | Omit = omit,
+        bot_verification_status: List[Literal["VERIFIED"]] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BotTimeseriesResponse:
         """
         Retrieves bots HTTP request volume over time.
@@ -458,9 +458,9 @@ class BotsResource(SyncAPIResource):
         self,
         dimension: Literal["BOT", "BOT_KIND", "BOT_OPERATOR", "BOT_CATEGORY"],
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        bot: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        asn: SequenceNotStr[str] | Omit = omit,
+        bot: SequenceNotStr[str] | Omit = omit,
         bot_category: List[
             Literal[
                 "SEARCH_ENGINE_CRAWLER",
@@ -481,24 +481,24 @@ class BotsResource(SyncAPIResource):
                 "ARCHIVER",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        bot_kind: List[Literal["AGENT", "BOT"]] | NotGiven = NOT_GIVEN,
-        bot_operator: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        bot_verification_status: List[Literal["VERIFIED"]] | NotGiven = NOT_GIVEN,
-        continent: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        limit_per_group: int | NotGiven = NOT_GIVEN,
-        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        bot_kind: List[Literal["AGENT", "BOT"]] | Omit = omit,
+        bot_operator: SequenceNotStr[str] | Omit = omit,
+        bot_verification_status: List[Literal["VERIFIED"]] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        limit_per_group: int | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BotTimeseriesGroupsResponse:
         """
         Retrieves the distribution of HTTP requests from bots, grouped by chosen the
@@ -638,19 +638,19 @@ class AsyncBotsResource(AsyncAPIResource):
             "AI_SEARCH",
             "ARCHIVER",
         ]
-        | NotGiven = NOT_GIVEN,
-        bot_operator: str | NotGiven = NOT_GIVEN,
-        bot_verification_status: Literal["VERIFIED"] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        kind: Literal["AGENT", "BOT"] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        bot_operator: str | Omit = omit,
+        bot_verification_status: Literal["VERIFIED"] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        kind: Literal["AGENT", "BOT"] | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BotListResponse:
         """
         Retrieves a list of bots.
@@ -706,13 +706,13 @@ class AsyncBotsResource(AsyncAPIResource):
         self,
         bot_slug: str,
         *,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BotGetResponse:
         """
         Retrieves the requested bot information.
@@ -749,8 +749,8 @@ class AsyncBotsResource(AsyncAPIResource):
         self,
         dimension: Literal["BOT", "BOT_KIND", "BOT_OPERATOR", "BOT_CATEGORY"],
         *,
-        asn: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        bot: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        asn: SequenceNotStr[str] | Omit = omit,
+        bot: SequenceNotStr[str] | Omit = omit,
         bot_category: List[
             Literal[
                 "SEARCH_ENGINE_CRAWLER",
@@ -771,24 +771,24 @@ class AsyncBotsResource(AsyncAPIResource):
                 "ARCHIVER",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        bot_kind: List[Literal["AGENT", "BOT"]] | NotGiven = NOT_GIVEN,
-        bot_operator: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        bot_verification_status: List[Literal["VERIFIED"]] | NotGiven = NOT_GIVEN,
-        continent: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        limit_per_group: int | NotGiven = NOT_GIVEN,
-        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        bot_kind: List[Literal["AGENT", "BOT"]] | Omit = omit,
+        bot_operator: SequenceNotStr[str] | Omit = omit,
+        bot_verification_status: List[Literal["VERIFIED"]] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        limit_per_group: int | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BotSummaryResponse:
         """
         Retrieves an aggregated summary of bots HTTP requests grouped by the specified
@@ -880,9 +880,9 @@ class AsyncBotsResource(AsyncAPIResource):
     async def timeseries(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        bot: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        asn: SequenceNotStr[str] | Omit = omit,
+        bot: SequenceNotStr[str] | Omit = omit,
         bot_category: List[
             Literal[
                 "SEARCH_ENGINE_CRAWLER",
@@ -903,23 +903,23 @@ class AsyncBotsResource(AsyncAPIResource):
                 "ARCHIVER",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        bot_kind: List[Literal["AGENT", "BOT"]] | NotGiven = NOT_GIVEN,
-        bot_operator: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        bot_verification_status: List[Literal["VERIFIED"]] | NotGiven = NOT_GIVEN,
-        continent: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        bot_kind: List[Literal["AGENT", "BOT"]] | Omit = omit,
+        bot_operator: SequenceNotStr[str] | Omit = omit,
+        bot_verification_status: List[Literal["VERIFIED"]] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BotTimeseriesResponse:
         """
         Retrieves bots HTTP request volume over time.
@@ -1007,9 +1007,9 @@ class AsyncBotsResource(AsyncAPIResource):
         self,
         dimension: Literal["BOT", "BOT_KIND", "BOT_OPERATOR", "BOT_CATEGORY"],
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        bot: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        asn: SequenceNotStr[str] | Omit = omit,
+        bot: SequenceNotStr[str] | Omit = omit,
         bot_category: List[
             Literal[
                 "SEARCH_ENGINE_CRAWLER",
@@ -1030,24 +1030,24 @@ class AsyncBotsResource(AsyncAPIResource):
                 "ARCHIVER",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        bot_kind: List[Literal["AGENT", "BOT"]] | NotGiven = NOT_GIVEN,
-        bot_operator: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        bot_verification_status: List[Literal["VERIFIED"]] | NotGiven = NOT_GIVEN,
-        continent: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        limit_per_group: int | NotGiven = NOT_GIVEN,
-        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        bot_kind: List[Literal["AGENT", "BOT"]] | Omit = omit,
+        bot_operator: SequenceNotStr[str] | Omit = omit,
+        bot_verification_status: List[Literal["VERIFIED"]] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        limit_per_group: int | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BotTimeseriesGroupsResponse:
         """
         Retrieves the distribution of HTTP requests from bots, grouped by chosen the

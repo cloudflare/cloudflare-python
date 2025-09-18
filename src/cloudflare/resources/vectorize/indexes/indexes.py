@@ -7,7 +7,17 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes, SequenceNotStr
+from ...._types import (
+    Body,
+    Omit,
+    Query,
+    Headers,
+    NotGiven,
+    FileTypes,
+    SequenceNotStr,
+    omit,
+    not_given,
+)
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -79,13 +89,13 @@ class IndexesResource(SyncAPIResource):
         account_id: str,
         config: index_create_params.Config,
         name: str,
-        description: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CreateIndex]:
         """
         Creates and returns a new Vectorize Index.
@@ -136,7 +146,7 @@ class IndexesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[CreateIndex]:
         """
         Returns a list of Vectorize Indexes
@@ -173,7 +183,7 @@ class IndexesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IndexDeleteResponse]:
         """
         Deletes the specified Vectorize Index.
@@ -215,13 +225,13 @@ class IndexesResource(SyncAPIResource):
         index_name: str,
         *,
         account_id: str,
-        ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IndexDeleteByIDsResponse]:
         """
         Delete a set of vectors from an index by their vector identifiers.
@@ -266,7 +276,7 @@ class IndexesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CreateIndex]:
         """
         Returns the specified Vectorize Index.
@@ -303,13 +313,13 @@ class IndexesResource(SyncAPIResource):
         index_name: str,
         *,
         account_id: str,
-        ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Get a set of vectors from an index by their vector identifiers.
@@ -354,7 +364,7 @@ class IndexesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IndexInfoResponse]:
         """
         Get information about a vectorize index.
@@ -392,13 +402,13 @@ class IndexesResource(SyncAPIResource):
         *,
         account_id: str,
         body: FileTypes,
-        unparsable_behavior: Literal["error", "discard"] | NotGiven = NOT_GIVEN,
+        unparsable_behavior: Literal["error", "discard"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IndexInsertResponse]:
         """
         Inserts vectors into the specified index and returns a mutation id corresponding
@@ -444,14 +454,14 @@ class IndexesResource(SyncAPIResource):
         index_name: str,
         *,
         account_id: str,
-        count: int | NotGiven = NOT_GIVEN,
-        cursor: str | NotGiven = NOT_GIVEN,
+        count: int | Omit = omit,
+        cursor: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IndexListVectorsResponse]:
         """
         Returns a paginated list of vector identifiers from the specified index.
@@ -500,16 +510,16 @@ class IndexesResource(SyncAPIResource):
         *,
         account_id: str,
         vector: Iterable[float],
-        filter: object | NotGiven = NOT_GIVEN,
-        return_metadata: Literal["none", "indexed", "all"] | NotGiven = NOT_GIVEN,
-        return_values: bool | NotGiven = NOT_GIVEN,
-        top_k: float | NotGiven = NOT_GIVEN,
+        filter: object | Omit = omit,
+        return_metadata: Literal["none", "indexed", "all"] | Omit = omit,
+        return_values: bool | Omit = omit,
+        top_k: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IndexQueryResponse]:
         """
         Finds vectors closest to a given vector in an index.
@@ -568,13 +578,13 @@ class IndexesResource(SyncAPIResource):
         *,
         account_id: str,
         body: FileTypes,
-        unparsable_behavior: Literal["error", "discard"] | NotGiven = NOT_GIVEN,
+        unparsable_behavior: Literal["error", "discard"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IndexUpsertResponse]:
         """
         Upserts vectors into the specified index, creating them if they do not exist and
@@ -646,13 +656,13 @@ class AsyncIndexesResource(AsyncAPIResource):
         account_id: str,
         config: index_create_params.Config,
         name: str,
-        description: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CreateIndex]:
         """
         Creates and returns a new Vectorize Index.
@@ -703,7 +713,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[CreateIndex, AsyncSinglePage[CreateIndex]]:
         """
         Returns a list of Vectorize Indexes
@@ -740,7 +750,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IndexDeleteResponse]:
         """
         Deletes the specified Vectorize Index.
@@ -782,13 +792,13 @@ class AsyncIndexesResource(AsyncAPIResource):
         index_name: str,
         *,
         account_id: str,
-        ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IndexDeleteByIDsResponse]:
         """
         Delete a set of vectors from an index by their vector identifiers.
@@ -833,7 +843,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CreateIndex]:
         """
         Returns the specified Vectorize Index.
@@ -870,13 +880,13 @@ class AsyncIndexesResource(AsyncAPIResource):
         index_name: str,
         *,
         account_id: str,
-        ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Get a set of vectors from an index by their vector identifiers.
@@ -921,7 +931,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IndexInfoResponse]:
         """
         Get information about a vectorize index.
@@ -959,13 +969,13 @@ class AsyncIndexesResource(AsyncAPIResource):
         *,
         account_id: str,
         body: FileTypes,
-        unparsable_behavior: Literal["error", "discard"] | NotGiven = NOT_GIVEN,
+        unparsable_behavior: Literal["error", "discard"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IndexInsertResponse]:
         """
         Inserts vectors into the specified index and returns a mutation id corresponding
@@ -1011,14 +1021,14 @@ class AsyncIndexesResource(AsyncAPIResource):
         index_name: str,
         *,
         account_id: str,
-        count: int | NotGiven = NOT_GIVEN,
-        cursor: str | NotGiven = NOT_GIVEN,
+        count: int | Omit = omit,
+        cursor: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IndexListVectorsResponse]:
         """
         Returns a paginated list of vector identifiers from the specified index.
@@ -1067,16 +1077,16 @@ class AsyncIndexesResource(AsyncAPIResource):
         *,
         account_id: str,
         vector: Iterable[float],
-        filter: object | NotGiven = NOT_GIVEN,
-        return_metadata: Literal["none", "indexed", "all"] | NotGiven = NOT_GIVEN,
-        return_values: bool | NotGiven = NOT_GIVEN,
-        top_k: float | NotGiven = NOT_GIVEN,
+        filter: object | Omit = omit,
+        return_metadata: Literal["none", "indexed", "all"] | Omit = omit,
+        return_values: bool | Omit = omit,
+        top_k: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IndexQueryResponse]:
         """
         Finds vectors closest to a given vector in an index.
@@ -1135,13 +1145,13 @@ class AsyncIndexesResource(AsyncAPIResource):
         *,
         account_id: str,
         body: FileTypes,
-        unparsable_behavior: Literal["error", "discard"] | NotGiven = NOT_GIVEN,
+        unparsable_behavior: Literal["error", "discard"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IndexUpsertResponse]:
         """
         Upserts vectors into the specified index, creating them if they do not exist and

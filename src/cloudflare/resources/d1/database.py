@@ -7,7 +7,7 @@ from typing_extensions import Literal, overload
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import required_args, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ...types.d1 import (
@@ -65,13 +65,13 @@ class DatabaseResource(SyncAPIResource):
         *,
         account_id: str,
         name: str,
-        primary_location_hint: Literal["wnam", "enam", "weur", "eeur", "apac", "oc"] | NotGiven = NOT_GIVEN,
+        primary_location_hint: Literal["wnam", "enam", "weur", "eeur", "apac", "oc"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> D1:
         """
         Returns the created D1 database.
@@ -124,7 +124,7 @@ class DatabaseResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> D1:
         """
         Updates the specified D1 database.
@@ -165,15 +165,15 @@ class DatabaseResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        name: str | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[DatabaseListResponse]:
         """
         Returns a list of D1 databases.
@@ -227,7 +227,7 @@ class DatabaseResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Deletes the specified D1 database.
@@ -266,13 +266,13 @@ class DatabaseResource(SyncAPIResource):
         database_id: str,
         *,
         account_id: str,
-        read_replication: database_edit_params.ReadReplication | NotGiven = NOT_GIVEN,
+        read_replication: database_edit_params.ReadReplication | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> D1:
         """
         Updates partially the specified D1 database.
@@ -315,14 +315,14 @@ class DatabaseResource(SyncAPIResource):
         *,
         account_id: str,
         output_format: Literal["polling"],
-        current_bookmark: str | NotGiven = NOT_GIVEN,
-        dump_options: database_export_params.DumpOptions | NotGiven = NOT_GIVEN,
+        current_bookmark: str | Omit = omit,
+        dump_options: database_export_params.DumpOptions | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatabaseExportResponse:
         """Returns a URL where the SQL contents of your D1 can be downloaded.
 
@@ -383,7 +383,7 @@ class DatabaseResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> D1:
         """
         Returns the specified D1 database.
@@ -430,7 +430,7 @@ class DatabaseResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatabaseImportResponse:
         """
         Generates a temporary URL for uploading an SQL file to, then instructing the D1
@@ -472,7 +472,7 @@ class DatabaseResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatabaseImportResponse:
         """
         Generates a temporary URL for uploading an SQL file to, then instructing the D1
@@ -514,7 +514,7 @@ class DatabaseResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatabaseImportResponse:
         """
         Generates a temporary URL for uploading an SQL file to, then instructing the D1
@@ -551,15 +551,15 @@ class DatabaseResource(SyncAPIResource):
         *,
         account_id: str,
         action: Literal["init"] | Literal["ingest"] | Literal["poll"],
-        etag: str | NotGiven = NOT_GIVEN,
-        filename: str | NotGiven = NOT_GIVEN,
-        current_bookmark: str | NotGiven = NOT_GIVEN,
+        etag: str | Omit = omit,
+        filename: str | Omit = omit,
+        current_bookmark: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatabaseImportResponse:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
@@ -592,13 +592,13 @@ class DatabaseResource(SyncAPIResource):
         *,
         account_id: str,
         sql: str,
-        params: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        params: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[QueryResult]:
         """
         Returns the query result as an object.
@@ -646,13 +646,13 @@ class DatabaseResource(SyncAPIResource):
         *,
         account_id: str,
         sql: str,
-        params: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        params: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[DatabaseRawResponse]:
         """Returns the query result rows as arrays rather than objects.
 
@@ -722,13 +722,13 @@ class AsyncDatabaseResource(AsyncAPIResource):
         *,
         account_id: str,
         name: str,
-        primary_location_hint: Literal["wnam", "enam", "weur", "eeur", "apac", "oc"] | NotGiven = NOT_GIVEN,
+        primary_location_hint: Literal["wnam", "enam", "weur", "eeur", "apac", "oc"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> D1:
         """
         Returns the created D1 database.
@@ -781,7 +781,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> D1:
         """
         Updates the specified D1 database.
@@ -824,15 +824,15 @@ class AsyncDatabaseResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        name: str | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[DatabaseListResponse, AsyncV4PagePaginationArray[DatabaseListResponse]]:
         """
         Returns a list of D1 databases.
@@ -886,7 +886,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Deletes the specified D1 database.
@@ -925,13 +925,13 @@ class AsyncDatabaseResource(AsyncAPIResource):
         database_id: str,
         *,
         account_id: str,
-        read_replication: database_edit_params.ReadReplication | NotGiven = NOT_GIVEN,
+        read_replication: database_edit_params.ReadReplication | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> D1:
         """
         Updates partially the specified D1 database.
@@ -976,14 +976,14 @@ class AsyncDatabaseResource(AsyncAPIResource):
         *,
         account_id: str,
         output_format: Literal["polling"],
-        current_bookmark: str | NotGiven = NOT_GIVEN,
-        dump_options: database_export_params.DumpOptions | NotGiven = NOT_GIVEN,
+        current_bookmark: str | Omit = omit,
+        dump_options: database_export_params.DumpOptions | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatabaseExportResponse:
         """Returns a URL where the SQL contents of your D1 can be downloaded.
 
@@ -1044,7 +1044,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> D1:
         """
         Returns the specified D1 database.
@@ -1091,7 +1091,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatabaseImportResponse:
         """
         Generates a temporary URL for uploading an SQL file to, then instructing the D1
@@ -1133,7 +1133,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatabaseImportResponse:
         """
         Generates a temporary URL for uploading an SQL file to, then instructing the D1
@@ -1175,7 +1175,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatabaseImportResponse:
         """
         Generates a temporary URL for uploading an SQL file to, then instructing the D1
@@ -1212,15 +1212,15 @@ class AsyncDatabaseResource(AsyncAPIResource):
         *,
         account_id: str,
         action: Literal["init"] | Literal["ingest"] | Literal["poll"],
-        etag: str | NotGiven = NOT_GIVEN,
-        filename: str | NotGiven = NOT_GIVEN,
-        current_bookmark: str | NotGiven = NOT_GIVEN,
+        etag: str | Omit = omit,
+        filename: str | Omit = omit,
+        current_bookmark: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatabaseImportResponse:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
@@ -1253,13 +1253,13 @@ class AsyncDatabaseResource(AsyncAPIResource):
         *,
         account_id: str,
         sql: str,
-        params: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        params: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[QueryResult, AsyncSinglePage[QueryResult]]:
         """
         Returns the query result as an object.
@@ -1307,13 +1307,13 @@ class AsyncDatabaseResource(AsyncAPIResource):
         *,
         account_id: str,
         sql: str,
-        params: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        params: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[DatabaseRawResponse, AsyncSinglePage[DatabaseRawResponse]]:
         """Returns the query result rows as arrays rather than objects.
 

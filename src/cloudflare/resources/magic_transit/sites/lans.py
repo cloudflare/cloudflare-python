@@ -6,7 +6,7 @@ from typing import Type, Iterable, cast
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -58,18 +58,18 @@ class LANsResource(SyncAPIResource):
         *,
         account_id: str,
         physport: int,
-        ha_link: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        nat: NatParam | NotGiven = NOT_GIVEN,
-        routed_subnets: Iterable[RoutedSubnetParam] | NotGiven = NOT_GIVEN,
-        static_addressing: LANStaticAddressingParam | NotGiven = NOT_GIVEN,
-        vlan_tag: int | NotGiven = NOT_GIVEN,
+        ha_link: bool | Omit = omit,
+        name: str | Omit = omit,
+        nat: NatParam | Omit = omit,
+        routed_subnets: Iterable[RoutedSubnetParam] | Omit = omit,
+        static_addressing: LANStaticAddressingParam | Omit = omit,
+        vlan_tag: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[LAN]:
         """Creates a new Site LAN.
 
@@ -130,18 +130,18 @@ class LANsResource(SyncAPIResource):
         *,
         account_id: str,
         site_id: str,
-        name: str | NotGiven = NOT_GIVEN,
-        nat: NatParam | NotGiven = NOT_GIVEN,
-        physport: int | NotGiven = NOT_GIVEN,
-        routed_subnets: Iterable[RoutedSubnetParam] | NotGiven = NOT_GIVEN,
-        static_addressing: LANStaticAddressingParam | NotGiven = NOT_GIVEN,
-        vlan_tag: int | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        nat: NatParam | Omit = omit,
+        physport: int | Omit = omit,
+        routed_subnets: Iterable[RoutedSubnetParam] | Omit = omit,
+        static_addressing: LANStaticAddressingParam | Omit = omit,
+        vlan_tag: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LAN:
         """
         Update a specific Site LAN.
@@ -206,7 +206,7 @@ class LANsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[LAN]:
         """
         Lists Site LANs associated with an account.
@@ -248,7 +248,7 @@ class LANsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LAN:
         """
         Remove a specific Site LAN.
@@ -292,18 +292,18 @@ class LANsResource(SyncAPIResource):
         *,
         account_id: str,
         site_id: str,
-        name: str | NotGiven = NOT_GIVEN,
-        nat: NatParam | NotGiven = NOT_GIVEN,
-        physport: int | NotGiven = NOT_GIVEN,
-        routed_subnets: Iterable[RoutedSubnetParam] | NotGiven = NOT_GIVEN,
-        static_addressing: LANStaticAddressingParam | NotGiven = NOT_GIVEN,
-        vlan_tag: int | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        nat: NatParam | Omit = omit,
+        physport: int | Omit = omit,
+        routed_subnets: Iterable[RoutedSubnetParam] | Omit = omit,
+        static_addressing: LANStaticAddressingParam | Omit = omit,
+        vlan_tag: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LAN:
         """
         Patch a specific Site LAN.
@@ -369,7 +369,7 @@ class LANsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LAN:
         """
         Get a specific Site LAN.
@@ -434,18 +434,18 @@ class AsyncLANsResource(AsyncAPIResource):
         *,
         account_id: str,
         physport: int,
-        ha_link: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        nat: NatParam | NotGiven = NOT_GIVEN,
-        routed_subnets: Iterable[RoutedSubnetParam] | NotGiven = NOT_GIVEN,
-        static_addressing: LANStaticAddressingParam | NotGiven = NOT_GIVEN,
-        vlan_tag: int | NotGiven = NOT_GIVEN,
+        ha_link: bool | Omit = omit,
+        name: str | Omit = omit,
+        nat: NatParam | Omit = omit,
+        routed_subnets: Iterable[RoutedSubnetParam] | Omit = omit,
+        static_addressing: LANStaticAddressingParam | Omit = omit,
+        vlan_tag: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[LAN, AsyncSinglePage[LAN]]:
         """Creates a new Site LAN.
 
@@ -506,18 +506,18 @@ class AsyncLANsResource(AsyncAPIResource):
         *,
         account_id: str,
         site_id: str,
-        name: str | NotGiven = NOT_GIVEN,
-        nat: NatParam | NotGiven = NOT_GIVEN,
-        physport: int | NotGiven = NOT_GIVEN,
-        routed_subnets: Iterable[RoutedSubnetParam] | NotGiven = NOT_GIVEN,
-        static_addressing: LANStaticAddressingParam | NotGiven = NOT_GIVEN,
-        vlan_tag: int | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        nat: NatParam | Omit = omit,
+        physport: int | Omit = omit,
+        routed_subnets: Iterable[RoutedSubnetParam] | Omit = omit,
+        static_addressing: LANStaticAddressingParam | Omit = omit,
+        vlan_tag: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LAN:
         """
         Update a specific Site LAN.
@@ -582,7 +582,7 @@ class AsyncLANsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[LAN, AsyncSinglePage[LAN]]:
         """
         Lists Site LANs associated with an account.
@@ -624,7 +624,7 @@ class AsyncLANsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LAN:
         """
         Remove a specific Site LAN.
@@ -668,18 +668,18 @@ class AsyncLANsResource(AsyncAPIResource):
         *,
         account_id: str,
         site_id: str,
-        name: str | NotGiven = NOT_GIVEN,
-        nat: NatParam | NotGiven = NOT_GIVEN,
-        physport: int | NotGiven = NOT_GIVEN,
-        routed_subnets: Iterable[RoutedSubnetParam] | NotGiven = NOT_GIVEN,
-        static_addressing: LANStaticAddressingParam | NotGiven = NOT_GIVEN,
-        vlan_tag: int | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        nat: NatParam | Omit = omit,
+        physport: int | Omit = omit,
+        routed_subnets: Iterable[RoutedSubnetParam] | Omit = omit,
+        static_addressing: LANStaticAddressingParam | Omit = omit,
+        vlan_tag: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LAN:
         """
         Patch a specific Site LAN.
@@ -745,7 +745,7 @@ class AsyncLANsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LAN:
         """
         Get a specific Site LAN.

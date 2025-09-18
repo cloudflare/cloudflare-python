@@ -6,7 +6,7 @@ from typing import Type, cast
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -54,15 +54,15 @@ class VirtualNetworksResource(SyncAPIResource):
         *,
         account_id: str,
         name: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        is_default: bool | NotGiven = NOT_GIVEN,
-        is_default_network: bool | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        is_default: bool | Omit = omit,
+        is_default_network: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VirtualNetwork:
         """
         Adds a new virtual network to an account.
@@ -113,17 +113,17 @@ class VirtualNetworksResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        id: str | NotGiven = NOT_GIVEN,
-        is_default: bool | NotGiven = NOT_GIVEN,
-        is_default_network: bool | NotGiven = NOT_GIVEN,
-        is_deleted: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        is_default: bool | Omit = omit,
+        is_default_network: bool | Omit = omit,
+        is_deleted: bool | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[VirtualNetwork]:
         """
         Lists and filters virtual networks in an account.
@@ -186,7 +186,7 @@ class VirtualNetworksResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VirtualNetwork:
         """
         Deletes an existing virtual network.
@@ -225,15 +225,15 @@ class VirtualNetworksResource(SyncAPIResource):
         virtual_network_id: str,
         *,
         account_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        is_default_network: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        is_default_network: bool | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VirtualNetwork:
         """
         Updates an existing virtual network.
@@ -291,7 +291,7 @@ class VirtualNetworksResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VirtualNetwork:
         """
         Get a virtual network.
@@ -351,15 +351,15 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
         *,
         account_id: str,
         name: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        is_default: bool | NotGiven = NOT_GIVEN,
-        is_default_network: bool | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        is_default: bool | Omit = omit,
+        is_default_network: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VirtualNetwork:
         """
         Adds a new virtual network to an account.
@@ -410,17 +410,17 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        id: str | NotGiven = NOT_GIVEN,
-        is_default: bool | NotGiven = NOT_GIVEN,
-        is_default_network: bool | NotGiven = NOT_GIVEN,
-        is_deleted: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        is_default: bool | Omit = omit,
+        is_default_network: bool | Omit = omit,
+        is_deleted: bool | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[VirtualNetwork, AsyncSinglePage[VirtualNetwork]]:
         """
         Lists and filters virtual networks in an account.
@@ -483,7 +483,7 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VirtualNetwork:
         """
         Deletes an existing virtual network.
@@ -522,15 +522,15 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
         virtual_network_id: str,
         *,
         account_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        is_default_network: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        is_default_network: bool | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VirtualNetwork:
         """
         Updates an existing virtual network.
@@ -588,7 +588,7 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VirtualNetwork:
         """
         Get a virtual network.

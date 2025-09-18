@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -80,7 +80,7 @@ class OperationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OperationCreateResponse:
         """Add one operation to a zone.
 
@@ -136,20 +136,20 @@ class OperationsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        endpoint: str | NotGiven = NOT_GIVEN,
-        feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | NotGiven = NOT_GIVEN,
-        host: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        method: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        order: Literal["method", "host", "endpoint", "thresholds.$key"] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        endpoint: str | Omit = omit,
+        feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | Omit = omit,
+        host: SequenceNotStr[str] | Omit = omit,
+        method: SequenceNotStr[str] | Omit = omit,
+        order: Literal["method", "host", "endpoint", "thresholds.$key"] | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[OperationListResponse]:
         """
         Retrieve information about all operations on a zone
@@ -221,7 +221,7 @@ class OperationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OperationDeleteResponse:
         """
         Delete an operation
@@ -261,7 +261,7 @@ class OperationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[OperationBulkCreateResponse]:
         """Add one or more operations to a zone.
 
@@ -304,7 +304,7 @@ class OperationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OperationBulkDeleteResponse:
         """
         Delete multiple operations
@@ -335,13 +335,13 @@ class OperationsResource(SyncAPIResource):
         operation_id: str,
         *,
         zone_id: str,
-        feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | NotGiven = NOT_GIVEN,
+        feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OperationGetResponse:
         """
         Retrieve information about an operation
@@ -417,7 +417,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OperationCreateResponse:
         """Add one operation to a zone.
 
@@ -473,20 +473,20 @@ class AsyncOperationsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        endpoint: str | NotGiven = NOT_GIVEN,
-        feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | NotGiven = NOT_GIVEN,
-        host: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        method: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        order: Literal["method", "host", "endpoint", "thresholds.$key"] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        endpoint: str | Omit = omit,
+        feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | Omit = omit,
+        host: SequenceNotStr[str] | Omit = omit,
+        method: SequenceNotStr[str] | Omit = omit,
+        order: Literal["method", "host", "endpoint", "thresholds.$key"] | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[OperationListResponse, AsyncV4PagePaginationArray[OperationListResponse]]:
         """
         Retrieve information about all operations on a zone
@@ -558,7 +558,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OperationDeleteResponse:
         """
         Delete an operation
@@ -598,7 +598,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[OperationBulkCreateResponse, AsyncSinglePage[OperationBulkCreateResponse]]:
         """Add one or more operations to a zone.
 
@@ -641,7 +641,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OperationBulkDeleteResponse:
         """
         Delete multiple operations
@@ -672,13 +672,13 @@ class AsyncOperationsResource(AsyncAPIResource):
         operation_id: str,
         *,
         zone_id: str,
-        feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | NotGiven = NOT_GIVEN,
+        feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OperationGetResponse:
         """
         Retrieve information about an operation

@@ -14,7 +14,7 @@ from .full import (
     FullResourceWithStreamingResponse,
     AsyncFullResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -62,14 +62,14 @@ class ConfigsResource(SyncAPIResource):
         account_id: str,
         default_sampling: float,
         name: str,
-        router_ips: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        warp_devices: Iterable[config_create_params.WARPDevice] | NotGiven = NOT_GIVEN,
+        router_ips: SequenceNotStr[str] | Omit = omit,
+        warp_devices: Iterable[config_create_params.WARPDevice] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Configuration:
         """
         Create a new network monitoring configuration.
@@ -117,14 +117,14 @@ class ConfigsResource(SyncAPIResource):
         account_id: str,
         default_sampling: float,
         name: str,
-        router_ips: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        warp_devices: Iterable[config_update_params.WARPDevice] | NotGiven = NOT_GIVEN,
+        router_ips: SequenceNotStr[str] | Omit = omit,
+        warp_devices: Iterable[config_update_params.WARPDevice] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Configuration:
         """
         Update an existing network monitoring configuration, requires the entire
@@ -176,7 +176,7 @@ class ConfigsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Configuration:
         """
         Delete an existing network monitoring configuration.
@@ -208,16 +208,16 @@ class ConfigsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        default_sampling: float | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        router_ips: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        warp_devices: Iterable[config_edit_params.WARPDevice] | NotGiven = NOT_GIVEN,
+        default_sampling: float | Omit = omit,
+        name: str | Omit = omit,
+        router_ips: SequenceNotStr[str] | Omit = omit,
+        warp_devices: Iterable[config_edit_params.WARPDevice] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Configuration:
         """
         Update fields in an existing network monitoring configuration.
@@ -268,7 +268,7 @@ class ConfigsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Configuration:
         """
         Lists default sampling, router IPs and warp devices for account.
@@ -327,14 +327,14 @@ class AsyncConfigsResource(AsyncAPIResource):
         account_id: str,
         default_sampling: float,
         name: str,
-        router_ips: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        warp_devices: Iterable[config_create_params.WARPDevice] | NotGiven = NOT_GIVEN,
+        router_ips: SequenceNotStr[str] | Omit = omit,
+        warp_devices: Iterable[config_create_params.WARPDevice] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Configuration:
         """
         Create a new network monitoring configuration.
@@ -382,14 +382,14 @@ class AsyncConfigsResource(AsyncAPIResource):
         account_id: str,
         default_sampling: float,
         name: str,
-        router_ips: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        warp_devices: Iterable[config_update_params.WARPDevice] | NotGiven = NOT_GIVEN,
+        router_ips: SequenceNotStr[str] | Omit = omit,
+        warp_devices: Iterable[config_update_params.WARPDevice] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Configuration:
         """
         Update an existing network monitoring configuration, requires the entire
@@ -441,7 +441,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Configuration:
         """
         Delete an existing network monitoring configuration.
@@ -473,16 +473,16 @@ class AsyncConfigsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        default_sampling: float | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        router_ips: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        warp_devices: Iterable[config_edit_params.WARPDevice] | NotGiven = NOT_GIVEN,
+        default_sampling: float | Omit = omit,
+        name: str | Omit = omit,
+        router_ips: SequenceNotStr[str] | Omit = omit,
+        warp_devices: Iterable[config_edit_params.WARPDevice] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Configuration:
         """
         Update fields in an existing network monitoring configuration.
@@ -533,7 +533,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Configuration:
         """
         Lists default sampling, router IPs and warp devices for account.

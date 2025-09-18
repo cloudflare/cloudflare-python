@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -65,31 +65,31 @@ class TimeseriesGroupsResource(SyncAPIResource):
     def http_method(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        continent: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        limit_per_group: int | NotGiven = NOT_GIVEN,
-        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        asn: SequenceNotStr[str] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        limit_per_group: int | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
         mitigation_product: List[
             Literal[
                 "DDOS", "WAF", "BOT_MANAGEMENT", "ACCESS_RULES", "IP_REPUTATION", "API_SHIELD", "DATA_LOSS_PREVENTION"
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupHTTPMethodResponse:
         """
         Retrieves the distribution of layer 7 attacks by HTTP method over time.
@@ -179,13 +179,13 @@ class TimeseriesGroupsResource(SyncAPIResource):
     def http_version(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        continent: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        asn: SequenceNotStr[str] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
         http_method: List[
             Literal[
                 "GET",
@@ -236,23 +236,23 @@ class TimeseriesGroupsResource(SyncAPIResource):
                 "TRACK",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
         mitigation_product: List[
             Literal[
                 "DDOS", "WAF", "BOT_MANAGEMENT", "ACCESS_RULES", "IP_REPUTATION", "API_SHIELD", "DATA_LOSS_PREVENTION"
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupHTTPVersionResponse:
         """
         Retrieves the distribution of layer 7 attacks by HTTP version over time.
@@ -337,13 +337,13 @@ class TimeseriesGroupsResource(SyncAPIResource):
     def industry(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        continent: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        asn: SequenceNotStr[str] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
         http_method: List[
             Literal[
                 "GET",
@@ -394,25 +394,25 @@ class TimeseriesGroupsResource(SyncAPIResource):
                 "TRACK",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        limit_per_group: int | NotGiven = NOT_GIVEN,
-        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        limit_per_group: int | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
         mitigation_product: List[
             Literal[
                 "DDOS", "WAF", "BOT_MANAGEMENT", "ACCESS_RULES", "IP_REPUTATION", "API_SHIELD", "DATA_LOSS_PREVENTION"
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupIndustryResponse:
         """
         Retrieves the distribution of layer 7 attacks by targeted industry over time.
@@ -505,13 +505,13 @@ class TimeseriesGroupsResource(SyncAPIResource):
     def ip_version(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        continent: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        asn: SequenceNotStr[str] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
         http_method: List[
             Literal[
                 "GET",
@@ -562,23 +562,23 @@ class TimeseriesGroupsResource(SyncAPIResource):
                 "TRACK",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
         mitigation_product: List[
             Literal[
                 "DDOS", "WAF", "BOT_MANAGEMENT", "ACCESS_RULES", "IP_REPUTATION", "API_SHIELD", "DATA_LOSS_PREVENTION"
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupIPVersionResponse:
         """
         Retrieves the distribution of layer 7 attacks by IP version used over time.
@@ -663,13 +663,13 @@ class TimeseriesGroupsResource(SyncAPIResource):
     def managed_rules(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        continent: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        asn: SequenceNotStr[str] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
         http_method: List[
             Literal[
                 "GET",
@@ -720,25 +720,25 @@ class TimeseriesGroupsResource(SyncAPIResource):
                 "TRACK",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        limit_per_group: int | NotGiven = NOT_GIVEN,
-        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        limit_per_group: int | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
         mitigation_product: List[
             Literal[
                 "DDOS", "WAF", "BOT_MANAGEMENT", "ACCESS_RULES", "IP_REPUTATION", "API_SHIELD", "DATA_LOSS_PREVENTION"
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupManagedRulesResponse:
         """
         Retrieves the distribution of layer 7 attacks by managed rules over time.
@@ -831,13 +831,13 @@ class TimeseriesGroupsResource(SyncAPIResource):
     def mitigation_product(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        continent: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        asn: SequenceNotStr[str] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
         http_method: List[
             Literal[
                 "GET",
@@ -888,19 +888,19 @@ class TimeseriesGroupsResource(SyncAPIResource):
                 "TRACK",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        limit_per_group: int | NotGiven = NOT_GIVEN,
-        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        limit_per_group: int | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupMitigationProductResponse:
         """
         Retrieves the distribution of layer 7 attacks by mitigation product over time.
@@ -992,13 +992,13 @@ class TimeseriesGroupsResource(SyncAPIResource):
     def vertical(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        continent: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        asn: SequenceNotStr[str] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
         http_method: List[
             Literal[
                 "GET",
@@ -1049,25 +1049,25 @@ class TimeseriesGroupsResource(SyncAPIResource):
                 "TRACK",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        limit_per_group: int | NotGiven = NOT_GIVEN,
-        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        limit_per_group: int | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
         mitigation_product: List[
             Literal[
                 "DDOS", "WAF", "BOT_MANAGEMENT", "ACCESS_RULES", "IP_REPUTATION", "API_SHIELD", "DATA_LOSS_PREVENTION"
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupVerticalResponse:
         """
         Retrieves the distribution of layer 7 attacks by targeted vertical over time.
@@ -1181,31 +1181,31 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
     async def http_method(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        continent: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        limit_per_group: int | NotGiven = NOT_GIVEN,
-        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        asn: SequenceNotStr[str] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        limit_per_group: int | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
         mitigation_product: List[
             Literal[
                 "DDOS", "WAF", "BOT_MANAGEMENT", "ACCESS_RULES", "IP_REPUTATION", "API_SHIELD", "DATA_LOSS_PREVENTION"
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupHTTPMethodResponse:
         """
         Retrieves the distribution of layer 7 attacks by HTTP method over time.
@@ -1295,13 +1295,13 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
     async def http_version(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        continent: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        asn: SequenceNotStr[str] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
         http_method: List[
             Literal[
                 "GET",
@@ -1352,23 +1352,23 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                 "TRACK",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
         mitigation_product: List[
             Literal[
                 "DDOS", "WAF", "BOT_MANAGEMENT", "ACCESS_RULES", "IP_REPUTATION", "API_SHIELD", "DATA_LOSS_PREVENTION"
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupHTTPVersionResponse:
         """
         Retrieves the distribution of layer 7 attacks by HTTP version over time.
@@ -1453,13 +1453,13 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
     async def industry(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        continent: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        asn: SequenceNotStr[str] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
         http_method: List[
             Literal[
                 "GET",
@@ -1510,25 +1510,25 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                 "TRACK",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        limit_per_group: int | NotGiven = NOT_GIVEN,
-        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        limit_per_group: int | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
         mitigation_product: List[
             Literal[
                 "DDOS", "WAF", "BOT_MANAGEMENT", "ACCESS_RULES", "IP_REPUTATION", "API_SHIELD", "DATA_LOSS_PREVENTION"
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupIndustryResponse:
         """
         Retrieves the distribution of layer 7 attacks by targeted industry over time.
@@ -1621,13 +1621,13 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
     async def ip_version(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        continent: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        asn: SequenceNotStr[str] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
         http_method: List[
             Literal[
                 "GET",
@@ -1678,23 +1678,23 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                 "TRACK",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
         mitigation_product: List[
             Literal[
                 "DDOS", "WAF", "BOT_MANAGEMENT", "ACCESS_RULES", "IP_REPUTATION", "API_SHIELD", "DATA_LOSS_PREVENTION"
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupIPVersionResponse:
         """
         Retrieves the distribution of layer 7 attacks by IP version used over time.
@@ -1779,13 +1779,13 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
     async def managed_rules(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        continent: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        asn: SequenceNotStr[str] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
         http_method: List[
             Literal[
                 "GET",
@@ -1836,25 +1836,25 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                 "TRACK",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        limit_per_group: int | NotGiven = NOT_GIVEN,
-        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        limit_per_group: int | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
         mitigation_product: List[
             Literal[
                 "DDOS", "WAF", "BOT_MANAGEMENT", "ACCESS_RULES", "IP_REPUTATION", "API_SHIELD", "DATA_LOSS_PREVENTION"
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupManagedRulesResponse:
         """
         Retrieves the distribution of layer 7 attacks by managed rules over time.
@@ -1947,13 +1947,13 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
     async def mitigation_product(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        continent: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        asn: SequenceNotStr[str] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
         http_method: List[
             Literal[
                 "GET",
@@ -2004,19 +2004,19 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                 "TRACK",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        limit_per_group: int | NotGiven = NOT_GIVEN,
-        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        limit_per_group: int | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupMitigationProductResponse:
         """
         Retrieves the distribution of layer 7 attacks by mitigation product over time.
@@ -2108,13 +2108,13 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
     async def vertical(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        continent: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        asn: SequenceNotStr[str] | Omit = omit,
+        continent: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
         http_method: List[
             Literal[
                 "GET",
@@ -2165,25 +2165,25 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                 "TRACK",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        limit_per_group: int | NotGiven = NOT_GIVEN,
-        location: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
+        limit_per_group: int | Omit = omit,
+        location: SequenceNotStr[str] | Omit = omit,
         mitigation_product: List[
             Literal[
                 "DDOS", "WAF", "BOT_MANAGEMENT", "ACCESS_RULES", "IP_REPUTATION", "API_SHIELD", "DATA_LOSS_PREVENTION"
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        normalization: Literal["PERCENTAGE", "MIN0_MAX"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TimeseriesGroupVerticalResponse:
         """
         Retrieves the distribution of layer 7 attacks by targeted vertical over time.

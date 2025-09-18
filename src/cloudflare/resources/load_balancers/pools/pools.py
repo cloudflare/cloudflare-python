@@ -15,7 +15,7 @@ from .health import (
     HealthResourceWithStreamingResponse,
     AsyncHealthResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from .references import (
@@ -88,23 +88,23 @@ class PoolsResource(SyncAPIResource):
         account_id: str,
         name: str,
         origins: Iterable[OriginParam],
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        latitude: float | NotGiven = NOT_GIVEN,
-        load_shedding: LoadSheddingParam | NotGiven = NOT_GIVEN,
-        longitude: float | NotGiven = NOT_GIVEN,
-        minimum_origins: int | NotGiven = NOT_GIVEN,
-        monitor: str | NotGiven = NOT_GIVEN,
-        monitor_group: str | NotGiven = NOT_GIVEN,
-        notification_email: str | NotGiven = NOT_GIVEN,
-        notification_filter: Optional[NotificationFilterParam] | NotGiven = NOT_GIVEN,
-        origin_steering: OriginSteeringParam | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        latitude: float | Omit = omit,
+        load_shedding: LoadSheddingParam | Omit = omit,
+        longitude: float | Omit = omit,
+        minimum_origins: int | Omit = omit,
+        monitor: str | Omit = omit,
+        monitor_group: str | Omit = omit,
+        notification_email: str | Omit = omit,
+        notification_filter: Optional[NotificationFilterParam] | Omit = omit,
+        origin_steering: OriginSteeringParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Pool:
         """
         Create a new pool.
@@ -201,24 +201,24 @@ class PoolsResource(SyncAPIResource):
         account_id: str,
         name: str,
         origins: Iterable[OriginParam],
-        check_regions: Optional[List[CheckRegion]] | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        latitude: float | NotGiven = NOT_GIVEN,
-        load_shedding: LoadSheddingParam | NotGiven = NOT_GIVEN,
-        longitude: float | NotGiven = NOT_GIVEN,
-        minimum_origins: int | NotGiven = NOT_GIVEN,
-        monitor: str | NotGiven = NOT_GIVEN,
-        monitor_group: str | NotGiven = NOT_GIVEN,
-        notification_email: str | NotGiven = NOT_GIVEN,
-        notification_filter: Optional[NotificationFilterParam] | NotGiven = NOT_GIVEN,
-        origin_steering: OriginSteeringParam | NotGiven = NOT_GIVEN,
+        check_regions: Optional[List[CheckRegion]] | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        latitude: float | Omit = omit,
+        load_shedding: LoadSheddingParam | Omit = omit,
+        longitude: float | Omit = omit,
+        minimum_origins: int | Omit = omit,
+        monitor: str | Omit = omit,
+        monitor_group: str | Omit = omit,
+        notification_email: str | Omit = omit,
+        notification_filter: Optional[NotificationFilterParam] | Omit = omit,
+        origin_steering: OriginSteeringParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Pool:
         """
         Modify a configured pool.
@@ -318,13 +318,13 @@ class PoolsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        monitor: str | NotGiven = NOT_GIVEN,
+        monitor: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[Pool]:
         """
         List configured pools.
@@ -368,7 +368,7 @@ class PoolsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PoolDeleteResponse:
         """
         Delete a configured pool.
@@ -404,13 +404,13 @@ class PoolsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        notification_email: Literal[""] | NotGiven = NOT_GIVEN,
+        notification_email: Literal[""] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[Pool]:
         """Apply changes to a number of existing pools, overwriting the supplied
         properties.
@@ -452,26 +452,26 @@ class PoolsResource(SyncAPIResource):
         pool_id: str,
         *,
         account_id: str,
-        check_regions: Optional[List[CheckRegion]] | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        latitude: float | NotGiven = NOT_GIVEN,
-        load_shedding: LoadSheddingParam | NotGiven = NOT_GIVEN,
-        longitude: float | NotGiven = NOT_GIVEN,
-        minimum_origins: int | NotGiven = NOT_GIVEN,
-        monitor: str | NotGiven = NOT_GIVEN,
-        monitor_group: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        notification_email: str | NotGiven = NOT_GIVEN,
-        notification_filter: Optional[NotificationFilterParam] | NotGiven = NOT_GIVEN,
-        origin_steering: OriginSteeringParam | NotGiven = NOT_GIVEN,
-        origins: Iterable[OriginParam] | NotGiven = NOT_GIVEN,
+        check_regions: Optional[List[CheckRegion]] | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        latitude: float | Omit = omit,
+        load_shedding: LoadSheddingParam | Omit = omit,
+        longitude: float | Omit = omit,
+        minimum_origins: int | Omit = omit,
+        monitor: str | Omit = omit,
+        monitor_group: str | Omit = omit,
+        name: str | Omit = omit,
+        notification_email: str | Omit = omit,
+        notification_filter: Optional[NotificationFilterParam] | Omit = omit,
+        origin_steering: OriginSteeringParam | Omit = omit,
+        origins: Iterable[OriginParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Pool:
         """
         Apply changes to an existing pool, overwriting the supplied properties.
@@ -577,7 +577,7 @@ class PoolsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Pool:
         """
         Fetch a single configured pool.
@@ -644,23 +644,23 @@ class AsyncPoolsResource(AsyncAPIResource):
         account_id: str,
         name: str,
         origins: Iterable[OriginParam],
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        latitude: float | NotGiven = NOT_GIVEN,
-        load_shedding: LoadSheddingParam | NotGiven = NOT_GIVEN,
-        longitude: float | NotGiven = NOT_GIVEN,
-        minimum_origins: int | NotGiven = NOT_GIVEN,
-        monitor: str | NotGiven = NOT_GIVEN,
-        monitor_group: str | NotGiven = NOT_GIVEN,
-        notification_email: str | NotGiven = NOT_GIVEN,
-        notification_filter: Optional[NotificationFilterParam] | NotGiven = NOT_GIVEN,
-        origin_steering: OriginSteeringParam | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        latitude: float | Omit = omit,
+        load_shedding: LoadSheddingParam | Omit = omit,
+        longitude: float | Omit = omit,
+        minimum_origins: int | Omit = omit,
+        monitor: str | Omit = omit,
+        monitor_group: str | Omit = omit,
+        notification_email: str | Omit = omit,
+        notification_filter: Optional[NotificationFilterParam] | Omit = omit,
+        origin_steering: OriginSteeringParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Pool:
         """
         Create a new pool.
@@ -757,24 +757,24 @@ class AsyncPoolsResource(AsyncAPIResource):
         account_id: str,
         name: str,
         origins: Iterable[OriginParam],
-        check_regions: Optional[List[CheckRegion]] | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        latitude: float | NotGiven = NOT_GIVEN,
-        load_shedding: LoadSheddingParam | NotGiven = NOT_GIVEN,
-        longitude: float | NotGiven = NOT_GIVEN,
-        minimum_origins: int | NotGiven = NOT_GIVEN,
-        monitor: str | NotGiven = NOT_GIVEN,
-        monitor_group: str | NotGiven = NOT_GIVEN,
-        notification_email: str | NotGiven = NOT_GIVEN,
-        notification_filter: Optional[NotificationFilterParam] | NotGiven = NOT_GIVEN,
-        origin_steering: OriginSteeringParam | NotGiven = NOT_GIVEN,
+        check_regions: Optional[List[CheckRegion]] | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        latitude: float | Omit = omit,
+        load_shedding: LoadSheddingParam | Omit = omit,
+        longitude: float | Omit = omit,
+        minimum_origins: int | Omit = omit,
+        monitor: str | Omit = omit,
+        monitor_group: str | Omit = omit,
+        notification_email: str | Omit = omit,
+        notification_filter: Optional[NotificationFilterParam] | Omit = omit,
+        origin_steering: OriginSteeringParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Pool:
         """
         Modify a configured pool.
@@ -874,13 +874,13 @@ class AsyncPoolsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        monitor: str | NotGiven = NOT_GIVEN,
+        monitor: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Pool, AsyncSinglePage[Pool]]:
         """
         List configured pools.
@@ -924,7 +924,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PoolDeleteResponse:
         """
         Delete a configured pool.
@@ -960,13 +960,13 @@ class AsyncPoolsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        notification_email: Literal[""] | NotGiven = NOT_GIVEN,
+        notification_email: Literal[""] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Pool, AsyncSinglePage[Pool]]:
         """Apply changes to a number of existing pools, overwriting the supplied
         properties.
@@ -1008,26 +1008,26 @@ class AsyncPoolsResource(AsyncAPIResource):
         pool_id: str,
         *,
         account_id: str,
-        check_regions: Optional[List[CheckRegion]] | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        latitude: float | NotGiven = NOT_GIVEN,
-        load_shedding: LoadSheddingParam | NotGiven = NOT_GIVEN,
-        longitude: float | NotGiven = NOT_GIVEN,
-        minimum_origins: int | NotGiven = NOT_GIVEN,
-        monitor: str | NotGiven = NOT_GIVEN,
-        monitor_group: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        notification_email: str | NotGiven = NOT_GIVEN,
-        notification_filter: Optional[NotificationFilterParam] | NotGiven = NOT_GIVEN,
-        origin_steering: OriginSteeringParam | NotGiven = NOT_GIVEN,
-        origins: Iterable[OriginParam] | NotGiven = NOT_GIVEN,
+        check_regions: Optional[List[CheckRegion]] | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        latitude: float | Omit = omit,
+        load_shedding: LoadSheddingParam | Omit = omit,
+        longitude: float | Omit = omit,
+        minimum_origins: int | Omit = omit,
+        monitor: str | Omit = omit,
+        monitor_group: str | Omit = omit,
+        name: str | Omit = omit,
+        notification_email: str | Omit = omit,
+        notification_filter: Optional[NotificationFilterParam] | Omit = omit,
+        origin_steering: OriginSteeringParam | Omit = omit,
+        origins: Iterable[OriginParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Pool:
         """
         Apply changes to an existing pool, overwriting the supplied properties.
@@ -1133,7 +1133,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Pool:
         """
         Fetch a single configured pool.

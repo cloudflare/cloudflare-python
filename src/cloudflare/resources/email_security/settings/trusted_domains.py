@@ -7,7 +7,7 @@ from typing_extensions import Literal, overload
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import required_args, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -63,13 +63,13 @@ class TrustedDomainsResource(SyncAPIResource):
         is_regex: bool,
         is_similarity: bool,
         pattern: str,
-        comments: Optional[str] | NotGiven = NOT_GIVEN,
+        comments: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TrustedDomainCreateResponse:
         """
         Create a trusted email domain
@@ -104,7 +104,7 @@ class TrustedDomainsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TrustedDomainCreateResponse:
         """
         Create a trusted email domain
@@ -127,18 +127,18 @@ class TrustedDomainsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        is_recent: bool | NotGiven = NOT_GIVEN,
-        is_regex: bool | NotGiven = NOT_GIVEN,
-        is_similarity: bool | NotGiven = NOT_GIVEN,
-        pattern: str | NotGiven = NOT_GIVEN,
-        comments: Optional[str] | NotGiven = NOT_GIVEN,
-        body: Iterable[trusted_domain_create_params.Variant1Body] | NotGiven = NOT_GIVEN,
+        is_recent: bool | Omit = omit,
+        is_regex: bool | Omit = omit,
+        is_similarity: bool | Omit = omit,
+        pattern: str | Omit = omit,
+        comments: Optional[str] | Omit = omit,
+        body: Iterable[trusted_domain_create_params.Variant1Body] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TrustedDomainCreateResponse:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
@@ -174,20 +174,20 @@ class TrustedDomainsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        is_recent: bool | NotGiven = NOT_GIVEN,
-        is_similarity: bool | NotGiven = NOT_GIVEN,
-        order: Literal["pattern", "created_at"] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        pattern: str | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        search: str | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        is_recent: bool | Omit = omit,
+        is_similarity: bool | Omit = omit,
+        order: Literal["pattern", "created_at"] | Omit = omit,
+        page: int | Omit = omit,
+        pattern: str | Omit = omit,
+        per_page: int | Omit = omit,
+        search: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[TrustedDomainListResponse]:
         """
         Lists, searches, and sorts an account’s trusted email domains.
@@ -252,7 +252,7 @@ class TrustedDomainsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TrustedDomainDeleteResponse:
         """
         Delete a trusted email domain
@@ -289,17 +289,17 @@ class TrustedDomainsResource(SyncAPIResource):
         trusted_domain_id: int,
         *,
         account_id: str,
-        comments: str | NotGiven = NOT_GIVEN,
-        is_recent: bool | NotGiven = NOT_GIVEN,
-        is_regex: bool | NotGiven = NOT_GIVEN,
-        is_similarity: bool | NotGiven = NOT_GIVEN,
-        pattern: str | NotGiven = NOT_GIVEN,
+        comments: str | Omit = omit,
+        is_recent: bool | Omit = omit,
+        is_regex: bool | Omit = omit,
+        is_similarity: bool | Omit = omit,
+        pattern: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TrustedDomainEditResponse:
         """
         Update a trusted email domain
@@ -357,7 +357,7 @@ class TrustedDomainsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TrustedDomainGetResponse:
         """
         Get a trusted email domain
@@ -419,13 +419,13 @@ class AsyncTrustedDomainsResource(AsyncAPIResource):
         is_regex: bool,
         is_similarity: bool,
         pattern: str,
-        comments: Optional[str] | NotGiven = NOT_GIVEN,
+        comments: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TrustedDomainCreateResponse:
         """
         Create a trusted email domain
@@ -460,7 +460,7 @@ class AsyncTrustedDomainsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TrustedDomainCreateResponse:
         """
         Create a trusted email domain
@@ -483,18 +483,18 @@ class AsyncTrustedDomainsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        is_recent: bool | NotGiven = NOT_GIVEN,
-        is_regex: bool | NotGiven = NOT_GIVEN,
-        is_similarity: bool | NotGiven = NOT_GIVEN,
-        pattern: str | NotGiven = NOT_GIVEN,
-        comments: Optional[str] | NotGiven = NOT_GIVEN,
-        body: Iterable[trusted_domain_create_params.Variant1Body] | NotGiven = NOT_GIVEN,
+        is_recent: bool | Omit = omit,
+        is_regex: bool | Omit = omit,
+        is_similarity: bool | Omit = omit,
+        pattern: str | Omit = omit,
+        comments: Optional[str] | Omit = omit,
+        body: Iterable[trusted_domain_create_params.Variant1Body] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TrustedDomainCreateResponse:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
@@ -530,20 +530,20 @@ class AsyncTrustedDomainsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        is_recent: bool | NotGiven = NOT_GIVEN,
-        is_similarity: bool | NotGiven = NOT_GIVEN,
-        order: Literal["pattern", "created_at"] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        pattern: str | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        search: str | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        is_recent: bool | Omit = omit,
+        is_similarity: bool | Omit = omit,
+        order: Literal["pattern", "created_at"] | Omit = omit,
+        page: int | Omit = omit,
+        pattern: str | Omit = omit,
+        per_page: int | Omit = omit,
+        search: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[TrustedDomainListResponse, AsyncV4PagePaginationArray[TrustedDomainListResponse]]:
         """
         Lists, searches, and sorts an account’s trusted email domains.
@@ -608,7 +608,7 @@ class AsyncTrustedDomainsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TrustedDomainDeleteResponse:
         """
         Delete a trusted email domain
@@ -645,17 +645,17 @@ class AsyncTrustedDomainsResource(AsyncAPIResource):
         trusted_domain_id: int,
         *,
         account_id: str,
-        comments: str | NotGiven = NOT_GIVEN,
-        is_recent: bool | NotGiven = NOT_GIVEN,
-        is_regex: bool | NotGiven = NOT_GIVEN,
-        is_similarity: bool | NotGiven = NOT_GIVEN,
-        pattern: str | NotGiven = NOT_GIVEN,
+        comments: str | Omit = omit,
+        is_recent: bool | Omit = omit,
+        is_regex: bool | Omit = omit,
+        is_similarity: bool | Omit = omit,
+        pattern: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TrustedDomainEditResponse:
         """
         Update a trusted email domain
@@ -713,7 +713,7 @@ class AsyncTrustedDomainsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TrustedDomainGetResponse:
         """
         Get a trusted email domain

@@ -6,7 +6,7 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -52,16 +52,16 @@ class OriginCACertificatesResource(SyncAPIResource):
     def create(
         self,
         *,
-        csr: str | NotGiven = NOT_GIVEN,
-        hostnames: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        request_type: CertificateRequestType | NotGiven = NOT_GIVEN,
-        requested_validity: RequestValidity | NotGiven = NOT_GIVEN,
+        csr: str | Omit = omit,
+        hostnames: SequenceNotStr[str] | Omit = omit,
+        request_type: CertificateRequestType | Omit = omit,
+        requested_validity: RequestValidity | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[OriginCACertificate]:
         """Create an Origin CA certificate.
 
@@ -112,16 +112,16 @@ class OriginCACertificatesResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[OriginCACertificate]:
         """List all existing Origin CA certificates for a given zone.
 
@@ -179,7 +179,7 @@ class OriginCACertificatesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[OriginCACertificateDeleteResponse]:
         """Revoke an existing Origin CA certificate by its serial number.
 
@@ -223,7 +223,7 @@ class OriginCACertificatesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[OriginCACertificate]:
         """Get an existing Origin CA certificate by its serial number.
 
@@ -280,16 +280,16 @@ class AsyncOriginCACertificatesResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        csr: str | NotGiven = NOT_GIVEN,
-        hostnames: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        request_type: CertificateRequestType | NotGiven = NOT_GIVEN,
-        requested_validity: RequestValidity | NotGiven = NOT_GIVEN,
+        csr: str | Omit = omit,
+        hostnames: SequenceNotStr[str] | Omit = omit,
+        request_type: CertificateRequestType | Omit = omit,
+        requested_validity: RequestValidity | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[OriginCACertificate]:
         """Create an Origin CA certificate.
 
@@ -340,16 +340,16 @@ class AsyncOriginCACertificatesResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[OriginCACertificate, AsyncV4PagePaginationArray[OriginCACertificate]]:
         """List all existing Origin CA certificates for a given zone.
 
@@ -407,7 +407,7 @@ class AsyncOriginCACertificatesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[OriginCACertificateDeleteResponse]:
         """Revoke an existing Origin CA certificate by its serial number.
 
@@ -451,7 +451,7 @@ class AsyncOriginCACertificatesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[OriginCACertificate]:
         """Get an existing Origin CA certificate by its serial number.
 

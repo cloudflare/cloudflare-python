@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -52,18 +52,18 @@ class TelemetryResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        datasets: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        filters: Iterable[telemetry_keys_params.Filter] | NotGiven = NOT_GIVEN,
-        key_needle: telemetry_keys_params.KeyNeedle | NotGiven = NOT_GIVEN,
-        limit: float | NotGiven = NOT_GIVEN,
-        needle: telemetry_keys_params.Needle | NotGiven = NOT_GIVEN,
-        timeframe: telemetry_keys_params.Timeframe | NotGiven = NOT_GIVEN,
+        datasets: SequenceNotStr[str] | Omit = omit,
+        filters: Iterable[telemetry_keys_params.Filter] | Omit = omit,
+        key_needle: telemetry_keys_params.KeyNeedle | Omit = omit,
+        limit: float | Omit = omit,
+        needle: telemetry_keys_params.Needle | Omit = omit,
+        timeframe: telemetry_keys_params.Timeframe | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[TelemetryKeysResponse]:
         """
         List all the keys in your telemetry events.
@@ -110,24 +110,24 @@ class TelemetryResource(SyncAPIResource):
         account_id: str,
         query_id: str,
         timeframe: telemetry_query_params.Timeframe,
-        chart: bool | NotGiven = NOT_GIVEN,
-        compare: bool | NotGiven = NOT_GIVEN,
-        dry: bool | NotGiven = NOT_GIVEN,
-        granularity: float | NotGiven = NOT_GIVEN,
-        ignore_series: bool | NotGiven = NOT_GIVEN,
-        limit: float | NotGiven = NOT_GIVEN,
-        offset: str | NotGiven = NOT_GIVEN,
-        offset_by: float | NotGiven = NOT_GIVEN,
-        offset_direction: str | NotGiven = NOT_GIVEN,
-        parameters: telemetry_query_params.Parameters | NotGiven = NOT_GIVEN,
-        pattern_type: Literal["message", "error"] | NotGiven = NOT_GIVEN,
-        view: Literal["traces", "events", "calculations", "invocations", "requests", "patterns"] | NotGiven = NOT_GIVEN,
+        chart: bool | Omit = omit,
+        compare: bool | Omit = omit,
+        dry: bool | Omit = omit,
+        granularity: float | Omit = omit,
+        ignore_series: bool | Omit = omit,
+        limit: float | Omit = omit,
+        offset: str | Omit = omit,
+        offset_by: float | Omit = omit,
+        offset_direction: str | Omit = omit,
+        parameters: telemetry_query_params.Parameters | Omit = omit,
+        pattern_type: Literal["message", "error"] | Omit = omit,
+        view: Literal["traces", "events", "calculations", "invocations", "requests", "patterns"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TelemetryQueryResponse:
         """
         Runs a temporary or saved query
@@ -182,15 +182,15 @@ class TelemetryResource(SyncAPIResource):
         key: str,
         timeframe: telemetry_values_params.Timeframe,
         type: Literal["string", "boolean", "number"],
-        filters: Iterable[telemetry_values_params.Filter] | NotGiven = NOT_GIVEN,
-        limit: float | NotGiven = NOT_GIVEN,
-        needle: telemetry_values_params.Needle | NotGiven = NOT_GIVEN,
+        filters: Iterable[telemetry_values_params.Filter] | Omit = omit,
+        limit: float | Omit = omit,
+        needle: telemetry_values_params.Needle | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[TelemetryValuesResponse]:
         """
         List unique values found in your events
@@ -255,18 +255,18 @@ class AsyncTelemetryResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        datasets: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        filters: Iterable[telemetry_keys_params.Filter] | NotGiven = NOT_GIVEN,
-        key_needle: telemetry_keys_params.KeyNeedle | NotGiven = NOT_GIVEN,
-        limit: float | NotGiven = NOT_GIVEN,
-        needle: telemetry_keys_params.Needle | NotGiven = NOT_GIVEN,
-        timeframe: telemetry_keys_params.Timeframe | NotGiven = NOT_GIVEN,
+        datasets: SequenceNotStr[str] | Omit = omit,
+        filters: Iterable[telemetry_keys_params.Filter] | Omit = omit,
+        key_needle: telemetry_keys_params.KeyNeedle | Omit = omit,
+        limit: float | Omit = omit,
+        needle: telemetry_keys_params.Needle | Omit = omit,
+        timeframe: telemetry_keys_params.Timeframe | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[TelemetryKeysResponse, AsyncSinglePage[TelemetryKeysResponse]]:
         """
         List all the keys in your telemetry events.
@@ -313,24 +313,24 @@ class AsyncTelemetryResource(AsyncAPIResource):
         account_id: str,
         query_id: str,
         timeframe: telemetry_query_params.Timeframe,
-        chart: bool | NotGiven = NOT_GIVEN,
-        compare: bool | NotGiven = NOT_GIVEN,
-        dry: bool | NotGiven = NOT_GIVEN,
-        granularity: float | NotGiven = NOT_GIVEN,
-        ignore_series: bool | NotGiven = NOT_GIVEN,
-        limit: float | NotGiven = NOT_GIVEN,
-        offset: str | NotGiven = NOT_GIVEN,
-        offset_by: float | NotGiven = NOT_GIVEN,
-        offset_direction: str | NotGiven = NOT_GIVEN,
-        parameters: telemetry_query_params.Parameters | NotGiven = NOT_GIVEN,
-        pattern_type: Literal["message", "error"] | NotGiven = NOT_GIVEN,
-        view: Literal["traces", "events", "calculations", "invocations", "requests", "patterns"] | NotGiven = NOT_GIVEN,
+        chart: bool | Omit = omit,
+        compare: bool | Omit = omit,
+        dry: bool | Omit = omit,
+        granularity: float | Omit = omit,
+        ignore_series: bool | Omit = omit,
+        limit: float | Omit = omit,
+        offset: str | Omit = omit,
+        offset_by: float | Omit = omit,
+        offset_direction: str | Omit = omit,
+        parameters: telemetry_query_params.Parameters | Omit = omit,
+        pattern_type: Literal["message", "error"] | Omit = omit,
+        view: Literal["traces", "events", "calculations", "invocations", "requests", "patterns"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TelemetryQueryResponse:
         """
         Runs a temporary or saved query
@@ -385,15 +385,15 @@ class AsyncTelemetryResource(AsyncAPIResource):
         key: str,
         timeframe: telemetry_values_params.Timeframe,
         type: Literal["string", "boolean", "number"],
-        filters: Iterable[telemetry_values_params.Filter] | NotGiven = NOT_GIVEN,
-        limit: float | NotGiven = NOT_GIVEN,
-        needle: telemetry_values_params.Needle | NotGiven = NOT_GIVEN,
+        filters: Iterable[telemetry_values_params.Filter] | Omit = omit,
+        limit: float | Omit = omit,
+        needle: telemetry_values_params.Needle | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[TelemetryValuesResponse, AsyncSinglePage[TelemetryValuesResponse]]:
         """
         List unique values found in your events

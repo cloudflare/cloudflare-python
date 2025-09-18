@@ -8,7 +8,7 @@ from typing_extensions import Literal, overload
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import required_args, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -72,17 +72,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["A"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.ARecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.ARecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -135,17 +135,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["AAAA"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.AAAARecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.AAAARecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -198,17 +198,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["CNAME"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.CNAMERecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -261,18 +261,18 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["MX"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.MXRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        priority: float | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.MXRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -328,17 +328,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["NS"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.NSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.NSRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -391,17 +391,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["OPENPGPKEY"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.DNSRecordsOpenpgpkeyRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.DNSRecordsOpenpgpkeyRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -454,17 +454,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["PTR"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.PTRRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.PTRRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -517,17 +517,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["TXT"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.TXTRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.TXTRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -585,17 +585,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["CAA"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_create_params.CAARecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.CAARecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_create_params.CAARecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.CAARecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -648,17 +648,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["CERT"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_create_params.CERTRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.CERTRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_create_params.CERTRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.CERTRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -711,17 +711,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["DNSKEY"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_create_params.DNSKEYRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.DNSKEYRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_create_params.DNSKEYRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.DNSKEYRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -774,17 +774,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["DS"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_create_params.DSRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.DSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_create_params.DSRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.DSRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -837,17 +837,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["HTTPS"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_create_params.HTTPSRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.HTTPSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_create_params.HTTPSRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.HTTPSRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -900,17 +900,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["LOC"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_create_params.LOCRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.LOCRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_create_params.LOCRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.LOCRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -963,17 +963,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["NAPTR"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_create_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.NAPTRRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_create_params.NAPTRRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.NAPTRRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -1026,17 +1026,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SMIMEA"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_create_params.SMIMEARecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.SMIMEARecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_create_params.SMIMEARecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.SMIMEARecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -1089,17 +1089,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SRV"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_create_params.SRVRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.SRVRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_create_params.SRVRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.SRVRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -1152,17 +1152,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SSHFP"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_create_params.SSHFPRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.SSHFPRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_create_params.SSHFPRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.SSHFPRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -1215,17 +1215,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SVCB"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_create_params.SVCBRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.SVCBRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_create_params.SVCBRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.SVCBRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -1278,17 +1278,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["TLSA"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_create_params.TLSARecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.TLSARecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_create_params.TLSARecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.TLSARecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -1341,18 +1341,18 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["URI"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_create_params.URIRecordData | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.URIRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_create_params.URIRecordData | Omit = omit,
+        priority: float | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.URIRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -1428,9 +1428,9 @@ class RecordsResource(SyncAPIResource):
         | Literal["SVCB"]
         | Literal["TLSA"]
         | Literal["URI"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
         settings: record_create_params.ARecordSettings
         | record_create_params.AAAARecordSettings
         | record_create_params.CNAMERecordSettings
@@ -1452,9 +1452,9 @@ class RecordsResource(SyncAPIResource):
         | record_create_params.SVCBRecordSettings
         | record_create_params.TLSARecordSettings
         | record_create_params.URIRecordSettings
-        | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
+        priority: float | Omit = omit,
         data: record_create_params.CAARecordData
         | record_create_params.CERTRecordData
         | record_create_params.DNSKEYRecordData
@@ -1468,13 +1468,13 @@ class RecordsResource(SyncAPIResource):
         | record_create_params.SVCBRecordData
         | record_create_params.TLSARecordData
         | record_create_params.URIRecordData
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
@@ -1519,17 +1519,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["A"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.ARecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.ARecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -1585,17 +1585,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["AAAA"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.AAAARecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.AAAARecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -1651,17 +1651,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["CNAME"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.CNAMERecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -1717,18 +1717,18 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["MX"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.MXRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        priority: float | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.MXRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -1787,17 +1787,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["NS"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.NSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.NSRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -1853,17 +1853,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["OPENPGPKEY"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.DNSRecordsOpenpgpkeyRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.DNSRecordsOpenpgpkeyRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -1919,17 +1919,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["PTR"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.PTRRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.PTRRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -1985,17 +1985,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["TXT"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.TXTRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.TXTRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -2056,17 +2056,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["CAA"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_update_params.CAARecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.CAARecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_update_params.CAARecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.CAARecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -2122,17 +2122,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["CERT"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_update_params.CERTRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.CERTRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_update_params.CERTRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.CERTRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -2188,17 +2188,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["DNSKEY"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_update_params.DNSKEYRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.DNSKEYRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_update_params.DNSKEYRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.DNSKEYRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -2254,17 +2254,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["DS"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_update_params.DSRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.DSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_update_params.DSRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.DSRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -2320,17 +2320,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["HTTPS"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_update_params.HTTPSRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.HTTPSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_update_params.HTTPSRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.HTTPSRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -2386,17 +2386,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["LOC"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_update_params.LOCRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.LOCRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_update_params.LOCRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.LOCRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -2452,17 +2452,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["NAPTR"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_update_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.NAPTRRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_update_params.NAPTRRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.NAPTRRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -2518,17 +2518,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SMIMEA"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_update_params.SMIMEARecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.SMIMEARecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_update_params.SMIMEARecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.SMIMEARecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -2584,17 +2584,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SRV"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_update_params.SRVRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.SRVRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_update_params.SRVRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.SRVRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -2650,17 +2650,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SSHFP"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_update_params.SSHFPRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.SSHFPRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_update_params.SSHFPRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.SSHFPRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -2716,17 +2716,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SVCB"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_update_params.SVCBRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.SVCBRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_update_params.SVCBRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.SVCBRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -2782,17 +2782,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["TLSA"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_update_params.TLSARecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.TLSARecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_update_params.TLSARecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.TLSARecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -2848,18 +2848,18 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["URI"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_update_params.URIRecordData | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.URIRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_update_params.URIRecordData | Omit = omit,
+        priority: float | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.URIRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -2938,9 +2938,9 @@ class RecordsResource(SyncAPIResource):
         | Literal["SVCB"]
         | Literal["TLSA"]
         | Literal["URI"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
         settings: record_update_params.ARecordSettings
         | record_update_params.AAAARecordSettings
         | record_update_params.CNAMERecordSettings
@@ -2962,9 +2962,9 @@ class RecordsResource(SyncAPIResource):
         | record_update_params.SVCBRecordSettings
         | record_update_params.TLSARecordSettings
         | record_update_params.URIRecordSettings
-        | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
+        priority: float | Omit = omit,
         data: record_update_params.CAARecordData
         | record_update_params.CERTRecordData
         | record_update_params.DNSKEYRecordData
@@ -2978,13 +2978,13 @@ class RecordsResource(SyncAPIResource):
         | record_update_params.SVCBRecordData
         | record_update_params.TLSARecordData
         | record_update_params.URIRecordData
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
@@ -3026,18 +3026,18 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        comment: record_list_params.Comment | NotGiven = NOT_GIVEN,
-        content: record_list_params.Content | NotGiven = NOT_GIVEN,
-        direction: SortDirection | NotGiven = NOT_GIVEN,
-        match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
-        name: record_list_params.Name | NotGiven = NOT_GIVEN,
-        order: Literal["type", "name", "content", "ttl", "proxied"] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        search: str | NotGiven = NOT_GIVEN,
-        tag: record_list_params.Tag | NotGiven = NOT_GIVEN,
-        tag_match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
+        comment: record_list_params.Comment | Omit = omit,
+        content: record_list_params.Content | Omit = omit,
+        direction: SortDirection | Omit = omit,
+        match: Literal["any", "all"] | Omit = omit,
+        name: record_list_params.Name | Omit = omit,
+        order: Literal["type", "name", "content", "ttl", "proxied"] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
+        proxied: bool | Omit = omit,
+        search: str | Omit = omit,
+        tag: record_list_params.Tag | Omit = omit,
+        tag_match: Literal["any", "all"] | Omit = omit,
         type: Literal[
             "A",
             "AAAA",
@@ -3061,13 +3061,13 @@ class RecordsResource(SyncAPIResource):
             "TXT",
             "URI",
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[RecordResponse]:
         """
         List, search, sort, and filter a zones' DNS records.
@@ -3154,7 +3154,7 @@ class RecordsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordDeleteResponse]:
         """
         Delete DNS Record
@@ -3192,16 +3192,16 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        deletes: Iterable[record_batch_params.Delete] | NotGiven = NOT_GIVEN,
-        patches: Iterable[BatchPatchParam] | NotGiven = NOT_GIVEN,
-        posts: Iterable[record_batch_params.Post] | NotGiven = NOT_GIVEN,
-        puts: Iterable[BatchPutParam] | NotGiven = NOT_GIVEN,
+        deletes: Iterable[record_batch_params.Delete] | Omit = omit,
+        patches: Iterable[BatchPatchParam] | Omit = omit,
+        posts: Iterable[record_batch_params.Post] | Omit = omit,
+        puts: Iterable[BatchPutParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordBatchResponse]:
         """
         Send a Batch of DNS Record API calls to be executed together.
@@ -3265,17 +3265,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["A"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.ARecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.ARecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -3331,17 +3331,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["AAAA"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.AAAARecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.AAAARecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -3397,17 +3397,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["CNAME"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.CNAMERecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -3463,18 +3463,18 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["MX"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.MXRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        priority: float | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.MXRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -3533,17 +3533,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["NS"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.NSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.NSRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -3599,17 +3599,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["OPENPGPKEY"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.DNSRecordsOpenpgpkeyRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.DNSRecordsOpenpgpkeyRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -3665,17 +3665,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["PTR"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.PTRRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.PTRRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -3731,17 +3731,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["TXT"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.TXTRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.TXTRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -3802,17 +3802,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["CAA"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_edit_params.CAARecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.CAARecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_edit_params.CAARecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.CAARecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -3868,17 +3868,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["CERT"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_edit_params.CERTRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.CERTRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_edit_params.CERTRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.CERTRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -3934,17 +3934,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["DNSKEY"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_edit_params.DNSKEYRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.DNSKEYRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_edit_params.DNSKEYRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.DNSKEYRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -4000,17 +4000,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["DS"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_edit_params.DSRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.DSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_edit_params.DSRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.DSRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -4066,17 +4066,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["HTTPS"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_edit_params.HTTPSRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.HTTPSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_edit_params.HTTPSRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.HTTPSRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -4132,17 +4132,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["LOC"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_edit_params.LOCRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.LOCRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_edit_params.LOCRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.LOCRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -4198,17 +4198,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["NAPTR"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_edit_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.NAPTRRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_edit_params.NAPTRRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.NAPTRRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -4264,17 +4264,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SMIMEA"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_edit_params.SMIMEARecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.SMIMEARecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_edit_params.SMIMEARecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.SMIMEARecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -4330,17 +4330,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SRV"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_edit_params.SRVRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.SRVRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_edit_params.SRVRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.SRVRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -4396,17 +4396,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SSHFP"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_edit_params.SSHFPRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.SSHFPRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_edit_params.SSHFPRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.SSHFPRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -4462,17 +4462,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SVCB"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_edit_params.SVCBRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.SVCBRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_edit_params.SVCBRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.SVCBRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -4528,17 +4528,17 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["TLSA"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_edit_params.TLSARecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.TLSARecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_edit_params.TLSARecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.TLSARecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -4594,18 +4594,18 @@ class RecordsResource(SyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["URI"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_edit_params.URIRecordData | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.URIRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_edit_params.URIRecordData | Omit = omit,
+        priority: float | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.URIRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -4684,9 +4684,9 @@ class RecordsResource(SyncAPIResource):
         | Literal["SVCB"]
         | Literal["TLSA"]
         | Literal["URI"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
         settings: record_edit_params.ARecordSettings
         | record_edit_params.AAAARecordSettings
         | record_edit_params.CNAMERecordSettings
@@ -4708,9 +4708,9 @@ class RecordsResource(SyncAPIResource):
         | record_edit_params.SVCBRecordSettings
         | record_edit_params.TLSARecordSettings
         | record_edit_params.URIRecordSettings
-        | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
+        priority: float | Omit = omit,
         data: record_edit_params.CAARecordData
         | record_edit_params.CERTRecordData
         | record_edit_params.DNSKEYRecordData
@@ -4724,13 +4724,13 @@ class RecordsResource(SyncAPIResource):
         | record_edit_params.SVCBRecordData
         | record_edit_params.TLSARecordData
         | record_edit_params.URIRecordData
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
@@ -4777,7 +4777,7 @@ class RecordsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         You can export your
@@ -4820,7 +4820,7 @@ class RecordsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         DNS Record Details
@@ -4864,13 +4864,13 @@ class RecordsResource(SyncAPIResource):
         *,
         zone_id: str,
         file: str,
-        proxied: str | NotGiven = NOT_GIVEN,
+        proxied: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordImportResponse]:
         """
         You can upload your
@@ -4941,7 +4941,7 @@ class RecordsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordScanResponse]:
         """
         Scan for common DNS records on your domain and automatically add them to your
@@ -5002,17 +5002,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["A"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.ARecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.ARecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -5065,17 +5065,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["AAAA"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.AAAARecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.AAAARecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -5128,17 +5128,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["CNAME"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.CNAMERecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -5191,18 +5191,18 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["MX"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.MXRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        priority: float | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.MXRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -5258,17 +5258,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["NS"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.NSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.NSRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -5321,17 +5321,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["OPENPGPKEY"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.DNSRecordsOpenpgpkeyRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.DNSRecordsOpenpgpkeyRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -5384,17 +5384,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["PTR"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.PTRRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.PTRRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -5447,17 +5447,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["TXT"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.TXTRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.TXTRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -5515,17 +5515,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["CAA"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_create_params.CAARecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.CAARecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_create_params.CAARecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.CAARecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -5578,17 +5578,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["CERT"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_create_params.CERTRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.CERTRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_create_params.CERTRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.CERTRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -5641,17 +5641,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["DNSKEY"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_create_params.DNSKEYRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.DNSKEYRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_create_params.DNSKEYRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.DNSKEYRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -5704,17 +5704,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["DS"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_create_params.DSRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.DSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_create_params.DSRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.DSRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -5767,17 +5767,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["HTTPS"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_create_params.HTTPSRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.HTTPSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_create_params.HTTPSRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.HTTPSRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -5830,17 +5830,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["LOC"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_create_params.LOCRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.LOCRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_create_params.LOCRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.LOCRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -5893,17 +5893,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["NAPTR"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_create_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.NAPTRRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_create_params.NAPTRRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.NAPTRRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -5956,17 +5956,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SMIMEA"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_create_params.SMIMEARecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.SMIMEARecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_create_params.SMIMEARecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.SMIMEARecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -6019,17 +6019,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SRV"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_create_params.SRVRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.SRVRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_create_params.SRVRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.SRVRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -6082,17 +6082,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SSHFP"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_create_params.SSHFPRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.SSHFPRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_create_params.SSHFPRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.SSHFPRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -6145,17 +6145,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SVCB"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_create_params.SVCBRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.SVCBRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_create_params.SVCBRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.SVCBRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -6208,17 +6208,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["TLSA"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_create_params.TLSARecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.TLSARecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_create_params.TLSARecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.TLSARecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -6271,18 +6271,18 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["URI"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_create_params.URIRecordData | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.URIRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_create_params.URIRecordData | Omit = omit,
+        priority: float | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_create_params.URIRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Create a new DNS record for a zone.
@@ -6358,9 +6358,9 @@ class AsyncRecordsResource(AsyncAPIResource):
         | Literal["SVCB"]
         | Literal["TLSA"]
         | Literal["URI"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
         settings: record_create_params.ARecordSettings
         | record_create_params.AAAARecordSettings
         | record_create_params.CNAMERecordSettings
@@ -6382,9 +6382,9 @@ class AsyncRecordsResource(AsyncAPIResource):
         | record_create_params.SVCBRecordSettings
         | record_create_params.TLSARecordSettings
         | record_create_params.URIRecordSettings
-        | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
+        priority: float | Omit = omit,
         data: record_create_params.CAARecordData
         | record_create_params.CERTRecordData
         | record_create_params.DNSKEYRecordData
@@ -6398,13 +6398,13 @@ class AsyncRecordsResource(AsyncAPIResource):
         | record_create_params.SVCBRecordData
         | record_create_params.TLSARecordData
         | record_create_params.URIRecordData
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
@@ -6449,17 +6449,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["A"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.ARecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.ARecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -6515,17 +6515,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["AAAA"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.AAAARecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.AAAARecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -6581,17 +6581,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["CNAME"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.CNAMERecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -6647,18 +6647,18 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["MX"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.MXRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        priority: float | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.MXRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -6717,17 +6717,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["NS"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.NSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.NSRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -6783,17 +6783,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["OPENPGPKEY"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.DNSRecordsOpenpgpkeyRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.DNSRecordsOpenpgpkeyRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -6849,17 +6849,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["PTR"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.PTRRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.PTRRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -6915,17 +6915,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["TXT"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.TXTRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.TXTRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -6986,17 +6986,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["CAA"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_update_params.CAARecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.CAARecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_update_params.CAARecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.CAARecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -7052,17 +7052,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["CERT"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_update_params.CERTRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.CERTRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_update_params.CERTRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.CERTRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -7118,17 +7118,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["DNSKEY"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_update_params.DNSKEYRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.DNSKEYRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_update_params.DNSKEYRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.DNSKEYRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -7184,17 +7184,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["DS"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_update_params.DSRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.DSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_update_params.DSRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.DSRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -7250,17 +7250,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["HTTPS"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_update_params.HTTPSRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.HTTPSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_update_params.HTTPSRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.HTTPSRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -7316,17 +7316,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["LOC"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_update_params.LOCRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.LOCRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_update_params.LOCRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.LOCRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -7382,17 +7382,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["NAPTR"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_update_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.NAPTRRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_update_params.NAPTRRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.NAPTRRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -7448,17 +7448,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SMIMEA"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_update_params.SMIMEARecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.SMIMEARecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_update_params.SMIMEARecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.SMIMEARecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -7514,17 +7514,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SRV"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_update_params.SRVRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.SRVRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_update_params.SRVRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.SRVRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -7580,17 +7580,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SSHFP"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_update_params.SSHFPRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.SSHFPRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_update_params.SSHFPRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.SSHFPRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -7646,17 +7646,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SVCB"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_update_params.SVCBRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.SVCBRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_update_params.SVCBRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.SVCBRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -7712,17 +7712,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["TLSA"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_update_params.TLSARecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.TLSARecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_update_params.TLSARecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.TLSARecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -7778,18 +7778,18 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["URI"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_update_params.URIRecordData | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.URIRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_update_params.URIRecordData | Omit = omit,
+        priority: float | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_update_params.URIRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Overwrite an existing DNS record.
@@ -7868,9 +7868,9 @@ class AsyncRecordsResource(AsyncAPIResource):
         | Literal["SVCB"]
         | Literal["TLSA"]
         | Literal["URI"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
         settings: record_update_params.ARecordSettings
         | record_update_params.AAAARecordSettings
         | record_update_params.CNAMERecordSettings
@@ -7892,9 +7892,9 @@ class AsyncRecordsResource(AsyncAPIResource):
         | record_update_params.SVCBRecordSettings
         | record_update_params.TLSARecordSettings
         | record_update_params.URIRecordSettings
-        | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
+        priority: float | Omit = omit,
         data: record_update_params.CAARecordData
         | record_update_params.CERTRecordData
         | record_update_params.DNSKEYRecordData
@@ -7908,13 +7908,13 @@ class AsyncRecordsResource(AsyncAPIResource):
         | record_update_params.SVCBRecordData
         | record_update_params.TLSARecordData
         | record_update_params.URIRecordData
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
@@ -7956,18 +7956,18 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        comment: record_list_params.Comment | NotGiven = NOT_GIVEN,
-        content: record_list_params.Content | NotGiven = NOT_GIVEN,
-        direction: SortDirection | NotGiven = NOT_GIVEN,
-        match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
-        name: record_list_params.Name | NotGiven = NOT_GIVEN,
-        order: Literal["type", "name", "content", "ttl", "proxied"] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        search: str | NotGiven = NOT_GIVEN,
-        tag: record_list_params.Tag | NotGiven = NOT_GIVEN,
-        tag_match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
+        comment: record_list_params.Comment | Omit = omit,
+        content: record_list_params.Content | Omit = omit,
+        direction: SortDirection | Omit = omit,
+        match: Literal["any", "all"] | Omit = omit,
+        name: record_list_params.Name | Omit = omit,
+        order: Literal["type", "name", "content", "ttl", "proxied"] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
+        proxied: bool | Omit = omit,
+        search: str | Omit = omit,
+        tag: record_list_params.Tag | Omit = omit,
+        tag_match: Literal["any", "all"] | Omit = omit,
         type: Literal[
             "A",
             "AAAA",
@@ -7991,13 +7991,13 @@ class AsyncRecordsResource(AsyncAPIResource):
             "TXT",
             "URI",
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[RecordResponse, AsyncV4PagePaginationArray[RecordResponse]]:
         """
         List, search, sort, and filter a zones' DNS records.
@@ -8084,7 +8084,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordDeleteResponse]:
         """
         Delete DNS Record
@@ -8122,16 +8122,16 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        deletes: Iterable[record_batch_params.Delete] | NotGiven = NOT_GIVEN,
-        patches: Iterable[BatchPatchParam] | NotGiven = NOT_GIVEN,
-        posts: Iterable[record_batch_params.Post] | NotGiven = NOT_GIVEN,
-        puts: Iterable[BatchPutParam] | NotGiven = NOT_GIVEN,
+        deletes: Iterable[record_batch_params.Delete] | Omit = omit,
+        patches: Iterable[BatchPatchParam] | Omit = omit,
+        posts: Iterable[record_batch_params.Post] | Omit = omit,
+        puts: Iterable[BatchPutParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordBatchResponse]:
         """
         Send a Batch of DNS Record API calls to be executed together.
@@ -8195,17 +8195,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["A"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.ARecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.ARecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -8261,17 +8261,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["AAAA"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.AAAARecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.AAAARecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -8327,17 +8327,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["CNAME"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.CNAMERecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -8393,18 +8393,18 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["MX"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.MXRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        priority: float | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.MXRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -8463,17 +8463,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["NS"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.NSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.NSRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -8529,17 +8529,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["OPENPGPKEY"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.DNSRecordsOpenpgpkeyRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.DNSRecordsOpenpgpkeyRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -8595,17 +8595,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["PTR"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.PTRRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.PTRRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -8661,17 +8661,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["TXT"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.TXTRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.TXTRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -8732,17 +8732,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["CAA"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_edit_params.CAARecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.CAARecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_edit_params.CAARecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.CAARecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -8798,17 +8798,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["CERT"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_edit_params.CERTRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.CERTRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_edit_params.CERTRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.CERTRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -8864,17 +8864,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["DNSKEY"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_edit_params.DNSKEYRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.DNSKEYRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_edit_params.DNSKEYRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.DNSKEYRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -8930,17 +8930,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["DS"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_edit_params.DSRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.DSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_edit_params.DSRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.DSRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -8996,17 +8996,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["HTTPS"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_edit_params.HTTPSRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.HTTPSRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_edit_params.HTTPSRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.HTTPSRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -9062,17 +9062,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["LOC"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_edit_params.LOCRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.LOCRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_edit_params.LOCRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.LOCRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -9128,17 +9128,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["NAPTR"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_edit_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.NAPTRRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_edit_params.NAPTRRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.NAPTRRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -9194,17 +9194,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SMIMEA"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_edit_params.SMIMEARecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.SMIMEARecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_edit_params.SMIMEARecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.SMIMEARecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -9260,17 +9260,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SRV"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_edit_params.SRVRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.SRVRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_edit_params.SRVRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.SRVRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -9326,17 +9326,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SSHFP"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_edit_params.SSHFPRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.SSHFPRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_edit_params.SSHFPRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.SSHFPRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -9392,17 +9392,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["SVCB"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_edit_params.SVCBRecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.SVCBRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_edit_params.SVCBRecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.SVCBRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -9458,17 +9458,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["TLSA"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_edit_params.TLSARecordData | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.TLSARecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_edit_params.TLSARecordData | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.TLSARecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -9524,18 +9524,18 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         ttl: TTLParam,
         type: Literal["URI"],
-        comment: str | NotGiven = NOT_GIVEN,
-        data: record_edit_params.URIRecordData | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.URIRecordSettings | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        data: record_edit_params.URIRecordData | Omit = omit,
+        priority: float | Omit = omit,
+        proxied: bool | Omit = omit,
+        settings: record_edit_params.URIRecordSettings | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         Update an existing DNS record.
@@ -9614,9 +9614,9 @@ class AsyncRecordsResource(AsyncAPIResource):
         | Literal["SVCB"]
         | Literal["TLSA"]
         | Literal["URI"],
-        comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        content: str | Omit = omit,
+        proxied: bool | Omit = omit,
         settings: record_edit_params.ARecordSettings
         | record_edit_params.AAAARecordSettings
         | record_edit_params.CNAMERecordSettings
@@ -9638,9 +9638,9 @@ class AsyncRecordsResource(AsyncAPIResource):
         | record_edit_params.SVCBRecordSettings
         | record_edit_params.TLSARecordSettings
         | record_edit_params.URIRecordSettings
-        | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[RecordTags] | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        tags: SequenceNotStr[RecordTags] | Omit = omit,
+        priority: float | Omit = omit,
         data: record_edit_params.CAARecordData
         | record_edit_params.CERTRecordData
         | record_edit_params.DNSKEYRecordData
@@ -9654,13 +9654,13 @@ class AsyncRecordsResource(AsyncAPIResource):
         | record_edit_params.SVCBRecordData
         | record_edit_params.TLSARecordData
         | record_edit_params.URIRecordData
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
@@ -9707,7 +9707,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         You can export your
@@ -9750,7 +9750,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordResponse]:
         """
         DNS Record Details
@@ -9794,13 +9794,13 @@ class AsyncRecordsResource(AsyncAPIResource):
         *,
         zone_id: str,
         file: str,
-        proxied: str | NotGiven = NOT_GIVEN,
+        proxied: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordImportResponse]:
         """
         You can upload your
@@ -9871,7 +9871,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecordScanResponse]:
         """
         Scan for common DNS records on your domain and automatically add them to your

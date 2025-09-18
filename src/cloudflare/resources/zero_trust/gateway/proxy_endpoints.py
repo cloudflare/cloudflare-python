@@ -6,7 +6,7 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -57,7 +57,7 @@ class ProxyEndpointsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ProxyEndpoint]:
         """
         Create a new Zero Trust Gateway proxy endpoint.
@@ -105,7 +105,7 @@ class ProxyEndpointsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ProxyEndpoint]:
         """
         List all Zero Trust Gateway proxy endpoints for an account.
@@ -143,7 +143,7 @@ class ProxyEndpointsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Delete a configured Zero Trust Gateway proxy endpoint.
@@ -178,14 +178,14 @@ class ProxyEndpointsResource(SyncAPIResource):
         proxy_endpoint_id: str,
         *,
         account_id: str,
-        ips: SequenceNotStr[GatewayIPs] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        ips: SequenceNotStr[GatewayIPs] | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ProxyEndpoint]:
         """
         Update a configured Zero Trust Gateway proxy endpoint.
@@ -236,7 +236,7 @@ class ProxyEndpointsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[ProxyEndpoint]:
         """
         Get a single Zero Trust Gateway proxy endpoint.
@@ -295,7 +295,7 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ProxyEndpoint]:
         """
         Create a new Zero Trust Gateway proxy endpoint.
@@ -343,7 +343,7 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ProxyEndpoint]:
         """
         List all Zero Trust Gateway proxy endpoints for an account.
@@ -381,7 +381,7 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Delete a configured Zero Trust Gateway proxy endpoint.
@@ -416,14 +416,14 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
         proxy_endpoint_id: str,
         *,
         account_id: str,
-        ips: SequenceNotStr[GatewayIPs] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        ips: SequenceNotStr[GatewayIPs] | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ProxyEndpoint]:
         """
         Update a configured Zero Trust Gateway proxy endpoint.
@@ -474,7 +474,7 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ProxyEndpoint, AsyncSinglePage[ProxyEndpoint]]:
         """
         Get a single Zero Trust Gateway proxy endpoint.

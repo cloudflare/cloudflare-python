@@ -6,7 +6,7 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -48,14 +48,14 @@ class LoggingResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        redact_pii: bool | NotGiven = NOT_GIVEN,
-        settings_by_rule_type: logging_update_params.SettingsByRuleType | NotGiven = NOT_GIVEN,
+        redact_pii: bool | Omit = omit,
+        settings_by_rule_type: logging_update_params.SettingsByRuleType | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[LoggingSetting]:
         """
         Update logging settings for the current Zero Trust account.
@@ -105,7 +105,7 @@ class LoggingResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[LoggingSetting]:
         """
         Retrieve the current logging settings for the Zero Trust account.
@@ -158,14 +158,14 @@ class AsyncLoggingResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        redact_pii: bool | NotGiven = NOT_GIVEN,
-        settings_by_rule_type: logging_update_params.SettingsByRuleType | NotGiven = NOT_GIVEN,
+        redact_pii: bool | Omit = omit,
+        settings_by_rule_type: logging_update_params.SettingsByRuleType | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[LoggingSetting]:
         """
         Update logging settings for the current Zero Trust account.
@@ -215,7 +215,7 @@ class AsyncLoggingResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[LoggingSetting]:
         """
         Retrieve the current logging settings for the Zero Trust account.

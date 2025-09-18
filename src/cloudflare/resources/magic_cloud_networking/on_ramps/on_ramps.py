@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, strip_not_given, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -89,22 +89,22 @@ class OnRampsResource(SyncAPIResource):
         install_routes_in_magic_wan: bool,
         name: str,
         type: Literal["OnrampTypeSingle", "OnrampTypeHub"],
-        adopted_hub_id: str | NotGiven = NOT_GIVEN,
-        attached_hubs: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        attached_vpcs: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        hub_provider_id: str | NotGiven = NOT_GIVEN,
-        manage_hub_to_hub_attachments: bool | NotGiven = NOT_GIVEN,
-        manage_vpc_to_hub_attachments: bool | NotGiven = NOT_GIVEN,
-        region: str | NotGiven = NOT_GIVEN,
-        vpc: str | NotGiven = NOT_GIVEN,
-        forwarded: str | NotGiven = NOT_GIVEN,
+        adopted_hub_id: str | Omit = omit,
+        attached_hubs: SequenceNotStr[str] | Omit = omit,
+        attached_vpcs: SequenceNotStr[str] | Omit = omit,
+        description: str | Omit = omit,
+        hub_provider_id: str | Omit = omit,
+        manage_hub_to_hub_attachments: bool | Omit = omit,
+        manage_vpc_to_hub_attachments: bool | Omit = omit,
+        region: str | Omit = omit,
+        vpc: str | Omit = omit,
+        forwarded: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OnRampCreateResponse:
         """
         Create a new On-ramp (Closed Beta).
@@ -157,21 +157,21 @@ class OnRampsResource(SyncAPIResource):
         onramp_id: str,
         *,
         account_id: str,
-        attached_hubs: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        attached_vpcs: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        install_routes_in_cloud: bool | NotGiven = NOT_GIVEN,
-        install_routes_in_magic_wan: bool | NotGiven = NOT_GIVEN,
-        manage_hub_to_hub_attachments: bool | NotGiven = NOT_GIVEN,
-        manage_vpc_to_hub_attachments: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        vpc: str | NotGiven = NOT_GIVEN,
+        attached_hubs: SequenceNotStr[str] | Omit = omit,
+        attached_vpcs: SequenceNotStr[str] | Omit = omit,
+        description: str | Omit = omit,
+        install_routes_in_cloud: bool | Omit = omit,
+        install_routes_in_magic_wan: bool | Omit = omit,
+        manage_hub_to_hub_attachments: bool | Omit = omit,
+        manage_vpc_to_hub_attachments: bool | Omit = omit,
+        name: str | Omit = omit,
+        vpc: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OnRampUpdateResponse:
         """
         Update an On-ramp (Closed Beta).
@@ -219,16 +219,16 @@ class OnRampsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        desc: bool | NotGiven = NOT_GIVEN,
-        order_by: str | NotGiven = NOT_GIVEN,
-        status: bool | NotGiven = NOT_GIVEN,
-        vpcs: bool | NotGiven = NOT_GIVEN,
+        desc: bool | Omit = omit,
+        order_by: str | Omit = omit,
+        status: bool | Omit = omit,
+        vpcs: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[OnRampListResponse]:
         """
         List On-ramps (Closed Beta).
@@ -272,14 +272,14 @@ class OnRampsResource(SyncAPIResource):
         onramp_id: str,
         *,
         account_id: str,
-        destroy: bool | NotGiven = NOT_GIVEN,
-        force: bool | NotGiven = NOT_GIVEN,
+        destroy: bool | Omit = omit,
+        force: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OnRampDeleteResponse:
         """
         Delete an On-ramp (Closed Beta).
@@ -326,7 +326,7 @@ class OnRampsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OnRampApplyResponse:
         """
         Apply an On-ramp (Closed Beta).
@@ -357,21 +357,21 @@ class OnRampsResource(SyncAPIResource):
         onramp_id: str,
         *,
         account_id: str,
-        attached_hubs: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        attached_vpcs: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        install_routes_in_cloud: bool | NotGiven = NOT_GIVEN,
-        install_routes_in_magic_wan: bool | NotGiven = NOT_GIVEN,
-        manage_hub_to_hub_attachments: bool | NotGiven = NOT_GIVEN,
-        manage_vpc_to_hub_attachments: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        vpc: str | NotGiven = NOT_GIVEN,
+        attached_hubs: SequenceNotStr[str] | Omit = omit,
+        attached_vpcs: SequenceNotStr[str] | Omit = omit,
+        description: str | Omit = omit,
+        install_routes_in_cloud: bool | Omit = omit,
+        install_routes_in_magic_wan: bool | Omit = omit,
+        manage_hub_to_hub_attachments: bool | Omit = omit,
+        manage_vpc_to_hub_attachments: bool | Omit = omit,
+        name: str | Omit = omit,
+        vpc: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OnRampEditResponse:
         """
         Update an On-ramp (Closed Beta).
@@ -425,7 +425,7 @@ class OnRampsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BinaryAPIResponse:
         """
         Export an On-ramp to terraform ready file(s) (Closed Beta).
@@ -457,16 +457,16 @@ class OnRampsResource(SyncAPIResource):
         onramp_id: str,
         *,
         account_id: str,
-        planned_resources: bool | NotGiven = NOT_GIVEN,
-        post_apply_resources: bool | NotGiven = NOT_GIVEN,
-        status: bool | NotGiven = NOT_GIVEN,
-        vpcs: bool | NotGiven = NOT_GIVEN,
+        planned_resources: bool | Omit = omit,
+        post_apply_resources: bool | Omit = omit,
+        status: bool | Omit = omit,
+        vpcs: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OnRampGetResponse:
         """
         Read an On-ramp (Closed Beta).
@@ -515,7 +515,7 @@ class OnRampsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OnRampPlanResponse:
         """
         Plan an On-ramp (Closed Beta).
@@ -575,22 +575,22 @@ class AsyncOnRampsResource(AsyncAPIResource):
         install_routes_in_magic_wan: bool,
         name: str,
         type: Literal["OnrampTypeSingle", "OnrampTypeHub"],
-        adopted_hub_id: str | NotGiven = NOT_GIVEN,
-        attached_hubs: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        attached_vpcs: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        hub_provider_id: str | NotGiven = NOT_GIVEN,
-        manage_hub_to_hub_attachments: bool | NotGiven = NOT_GIVEN,
-        manage_vpc_to_hub_attachments: bool | NotGiven = NOT_GIVEN,
-        region: str | NotGiven = NOT_GIVEN,
-        vpc: str | NotGiven = NOT_GIVEN,
-        forwarded: str | NotGiven = NOT_GIVEN,
+        adopted_hub_id: str | Omit = omit,
+        attached_hubs: SequenceNotStr[str] | Omit = omit,
+        attached_vpcs: SequenceNotStr[str] | Omit = omit,
+        description: str | Omit = omit,
+        hub_provider_id: str | Omit = omit,
+        manage_hub_to_hub_attachments: bool | Omit = omit,
+        manage_vpc_to_hub_attachments: bool | Omit = omit,
+        region: str | Omit = omit,
+        vpc: str | Omit = omit,
+        forwarded: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OnRampCreateResponse:
         """
         Create a new On-ramp (Closed Beta).
@@ -643,21 +643,21 @@ class AsyncOnRampsResource(AsyncAPIResource):
         onramp_id: str,
         *,
         account_id: str,
-        attached_hubs: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        attached_vpcs: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        install_routes_in_cloud: bool | NotGiven = NOT_GIVEN,
-        install_routes_in_magic_wan: bool | NotGiven = NOT_GIVEN,
-        manage_hub_to_hub_attachments: bool | NotGiven = NOT_GIVEN,
-        manage_vpc_to_hub_attachments: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        vpc: str | NotGiven = NOT_GIVEN,
+        attached_hubs: SequenceNotStr[str] | Omit = omit,
+        attached_vpcs: SequenceNotStr[str] | Omit = omit,
+        description: str | Omit = omit,
+        install_routes_in_cloud: bool | Omit = omit,
+        install_routes_in_magic_wan: bool | Omit = omit,
+        manage_hub_to_hub_attachments: bool | Omit = omit,
+        manage_vpc_to_hub_attachments: bool | Omit = omit,
+        name: str | Omit = omit,
+        vpc: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OnRampUpdateResponse:
         """
         Update an On-ramp (Closed Beta).
@@ -705,16 +705,16 @@ class AsyncOnRampsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        desc: bool | NotGiven = NOT_GIVEN,
-        order_by: str | NotGiven = NOT_GIVEN,
-        status: bool | NotGiven = NOT_GIVEN,
-        vpcs: bool | NotGiven = NOT_GIVEN,
+        desc: bool | Omit = omit,
+        order_by: str | Omit = omit,
+        status: bool | Omit = omit,
+        vpcs: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[OnRampListResponse, AsyncSinglePage[OnRampListResponse]]:
         """
         List On-ramps (Closed Beta).
@@ -758,14 +758,14 @@ class AsyncOnRampsResource(AsyncAPIResource):
         onramp_id: str,
         *,
         account_id: str,
-        destroy: bool | NotGiven = NOT_GIVEN,
-        force: bool | NotGiven = NOT_GIVEN,
+        destroy: bool | Omit = omit,
+        force: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OnRampDeleteResponse:
         """
         Delete an On-ramp (Closed Beta).
@@ -812,7 +812,7 @@ class AsyncOnRampsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OnRampApplyResponse:
         """
         Apply an On-ramp (Closed Beta).
@@ -843,21 +843,21 @@ class AsyncOnRampsResource(AsyncAPIResource):
         onramp_id: str,
         *,
         account_id: str,
-        attached_hubs: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        attached_vpcs: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        install_routes_in_cloud: bool | NotGiven = NOT_GIVEN,
-        install_routes_in_magic_wan: bool | NotGiven = NOT_GIVEN,
-        manage_hub_to_hub_attachments: bool | NotGiven = NOT_GIVEN,
-        manage_vpc_to_hub_attachments: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        vpc: str | NotGiven = NOT_GIVEN,
+        attached_hubs: SequenceNotStr[str] | Omit = omit,
+        attached_vpcs: SequenceNotStr[str] | Omit = omit,
+        description: str | Omit = omit,
+        install_routes_in_cloud: bool | Omit = omit,
+        install_routes_in_magic_wan: bool | Omit = omit,
+        manage_hub_to_hub_attachments: bool | Omit = omit,
+        manage_vpc_to_hub_attachments: bool | Omit = omit,
+        name: str | Omit = omit,
+        vpc: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OnRampEditResponse:
         """
         Update an On-ramp (Closed Beta).
@@ -911,7 +911,7 @@ class AsyncOnRampsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncBinaryAPIResponse:
         """
         Export an On-ramp to terraform ready file(s) (Closed Beta).
@@ -943,16 +943,16 @@ class AsyncOnRampsResource(AsyncAPIResource):
         onramp_id: str,
         *,
         account_id: str,
-        planned_resources: bool | NotGiven = NOT_GIVEN,
-        post_apply_resources: bool | NotGiven = NOT_GIVEN,
-        status: bool | NotGiven = NOT_GIVEN,
-        vpcs: bool | NotGiven = NOT_GIVEN,
+        planned_resources: bool | Omit = omit,
+        post_apply_resources: bool | Omit = omit,
+        status: bool | Omit = omit,
+        vpcs: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OnRampGetResponse:
         """
         Read an On-ramp (Closed Beta).
@@ -1001,7 +1001,7 @@ class AsyncOnRampsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> OnRampPlanResponse:
         """
         Plan an On-ramp (Closed Beta).

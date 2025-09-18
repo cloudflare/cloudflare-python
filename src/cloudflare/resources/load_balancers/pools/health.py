@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -51,28 +51,28 @@ class HealthResource(SyncAPIResource):
         pool_id: str,
         *,
         account_id: str,
-        allow_insecure: bool | NotGiven = NOT_GIVEN,
-        consecutive_down: int | NotGiven = NOT_GIVEN,
-        consecutive_up: int | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        expected_body: str | NotGiven = NOT_GIVEN,
-        expected_codes: str | NotGiven = NOT_GIVEN,
-        follow_redirects: bool | NotGiven = NOT_GIVEN,
-        header: Dict[str, SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        interval: int | NotGiven = NOT_GIVEN,
-        method: str | NotGiven = NOT_GIVEN,
-        path: str | NotGiven = NOT_GIVEN,
-        port: int | NotGiven = NOT_GIVEN,
-        probe_zone: str | NotGiven = NOT_GIVEN,
-        retries: int | NotGiven = NOT_GIVEN,
-        load_balancer_monitor_timeout: int | NotGiven = NOT_GIVEN,
-        type: Literal["http", "https", "tcp", "udp_icmp", "icmp_ping", "smtp"] | NotGiven = NOT_GIVEN,
+        allow_insecure: bool | Omit = omit,
+        consecutive_down: int | Omit = omit,
+        consecutive_up: int | Omit = omit,
+        description: str | Omit = omit,
+        expected_body: str | Omit = omit,
+        expected_codes: str | Omit = omit,
+        follow_redirects: bool | Omit = omit,
+        header: Dict[str, SequenceNotStr[str]] | Omit = omit,
+        interval: int | Omit = omit,
+        method: str | Omit = omit,
+        path: str | Omit = omit,
+        port: int | Omit = omit,
+        probe_zone: str | Omit = omit,
+        retries: int | Omit = omit,
+        load_balancer_monitor_timeout: int | Omit = omit,
+        type: Literal["http", "https", "tcp", "udp_icmp", "icmp_ping", "smtp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> HealthCreateResponse:
         """Preview pool health using provided monitor details.
 
@@ -186,7 +186,7 @@ class HealthResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> HealthGetResponse:
         """
         Fetch the latest pool health status for a single pool.
@@ -244,28 +244,28 @@ class AsyncHealthResource(AsyncAPIResource):
         pool_id: str,
         *,
         account_id: str,
-        allow_insecure: bool | NotGiven = NOT_GIVEN,
-        consecutive_down: int | NotGiven = NOT_GIVEN,
-        consecutive_up: int | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        expected_body: str | NotGiven = NOT_GIVEN,
-        expected_codes: str | NotGiven = NOT_GIVEN,
-        follow_redirects: bool | NotGiven = NOT_GIVEN,
-        header: Dict[str, SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        interval: int | NotGiven = NOT_GIVEN,
-        method: str | NotGiven = NOT_GIVEN,
-        path: str | NotGiven = NOT_GIVEN,
-        port: int | NotGiven = NOT_GIVEN,
-        probe_zone: str | NotGiven = NOT_GIVEN,
-        retries: int | NotGiven = NOT_GIVEN,
-        load_balancer_monitor_timeout: int | NotGiven = NOT_GIVEN,
-        type: Literal["http", "https", "tcp", "udp_icmp", "icmp_ping", "smtp"] | NotGiven = NOT_GIVEN,
+        allow_insecure: bool | Omit = omit,
+        consecutive_down: int | Omit = omit,
+        consecutive_up: int | Omit = omit,
+        description: str | Omit = omit,
+        expected_body: str | Omit = omit,
+        expected_codes: str | Omit = omit,
+        follow_redirects: bool | Omit = omit,
+        header: Dict[str, SequenceNotStr[str]] | Omit = omit,
+        interval: int | Omit = omit,
+        method: str | Omit = omit,
+        path: str | Omit = omit,
+        port: int | Omit = omit,
+        probe_zone: str | Omit = omit,
+        retries: int | Omit = omit,
+        load_balancer_monitor_timeout: int | Omit = omit,
+        type: Literal["http", "https", "tcp", "udp_icmp", "icmp_ping", "smtp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> HealthCreateResponse:
         """Preview pool health using provided monitor details.
 
@@ -379,7 +379,7 @@ class AsyncHealthResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> HealthGetResponse:
         """
         Fetch the latest pool health status for a single pool.

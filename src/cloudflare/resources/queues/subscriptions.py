@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -53,17 +53,17 @@ class SubscriptionsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        destination: subscription_create_params.Destination | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        events: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        source: subscription_create_params.Source | NotGiven = NOT_GIVEN,
+        destination: subscription_create_params.Destination | Omit = omit,
+        enabled: bool | Omit = omit,
+        events: SequenceNotStr[str] | Omit = omit,
+        name: str | Omit = omit,
+        source: subscription_create_params.Source | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SubscriptionCreateResponse]:
         """
         Create a new event subscription for a queue
@@ -118,16 +118,16 @@ class SubscriptionsResource(SyncAPIResource):
         subscription_id: str,
         *,
         account_id: str,
-        destination: subscription_update_params.Destination | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        events: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        destination: subscription_update_params.Destination | Omit = omit,
+        enabled: bool | Omit = omit,
+        events: SequenceNotStr[str] | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SubscriptionUpdateResponse]:
         """
         Update an existing event subscription
@@ -182,16 +182,16 @@ class SubscriptionsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        order: Literal["created_at", "name", "enabled", "source"] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        order: Literal["created_at", "name", "enabled", "source"] | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[SubscriptionListResponse]:
         """
         Get a paginated list of event subscriptions with optional sorting and filtering
@@ -248,7 +248,7 @@ class SubscriptionsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SubscriptionDeleteResponse]:
         """
         Delete an existing event subscription
@@ -307,17 +307,17 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        destination: subscription_create_params.Destination | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        events: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        source: subscription_create_params.Source | NotGiven = NOT_GIVEN,
+        destination: subscription_create_params.Destination | Omit = omit,
+        enabled: bool | Omit = omit,
+        events: SequenceNotStr[str] | Omit = omit,
+        name: str | Omit = omit,
+        source: subscription_create_params.Source | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SubscriptionCreateResponse]:
         """
         Create a new event subscription for a queue
@@ -372,16 +372,16 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         subscription_id: str,
         *,
         account_id: str,
-        destination: subscription_update_params.Destination | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        events: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        destination: subscription_update_params.Destination | Omit = omit,
+        enabled: bool | Omit = omit,
+        events: SequenceNotStr[str] | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SubscriptionUpdateResponse]:
         """
         Update an existing event subscription
@@ -436,16 +436,16 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        order: Literal["created_at", "name", "enabled", "source"] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        order: Literal["created_at", "name", "enabled", "source"] | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[SubscriptionListResponse, AsyncV4PagePaginationArray[SubscriptionListResponse]]:
         """
         Get a paginated list of event subscriptions with optional sorting and filtering
@@ -502,7 +502,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SubscriptionDeleteResponse]:
         """
         Delete an existing event subscription

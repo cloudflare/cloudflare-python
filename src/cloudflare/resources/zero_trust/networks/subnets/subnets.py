@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ....._utils import maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -60,23 +60,23 @@ class SubnetsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        address_family: Literal["v4", "v6"] | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        existed_at: str | NotGiven = NOT_GIVEN,
-        is_default_network: bool | NotGiven = NOT_GIVEN,
-        is_deleted: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        network: str | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        subnet_types: Literal["cloudflare_source", "warp"] | NotGiven = NOT_GIVEN,
+        address_family: Literal["v4", "v6"] | Omit = omit,
+        comment: str | Omit = omit,
+        existed_at: str | Omit = omit,
+        is_default_network: bool | Omit = omit,
+        is_deleted: bool | Omit = omit,
+        name: str | Omit = omit,
+        network: str | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
+        sort_order: Literal["asc", "desc"] | Omit = omit,
+        subnet_types: Literal["cloudflare_source", "warp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[SubnetListResponse]:
         """
         Lists and filters subnets in an account.
@@ -177,23 +177,23 @@ class AsyncSubnetsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        address_family: Literal["v4", "v6"] | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        existed_at: str | NotGiven = NOT_GIVEN,
-        is_default_network: bool | NotGiven = NOT_GIVEN,
-        is_deleted: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        network: str | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        subnet_types: Literal["cloudflare_source", "warp"] | NotGiven = NOT_GIVEN,
+        address_family: Literal["v4", "v6"] | Omit = omit,
+        comment: str | Omit = omit,
+        existed_at: str | Omit = omit,
+        is_default_network: bool | Omit = omit,
+        is_deleted: bool | Omit = omit,
+        name: str | Omit = omit,
+        network: str | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
+        sort_order: Literal["asc", "desc"] | Omit = omit,
+        subnet_types: Literal["cloudflare_source", "warp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[SubnetListResponse, AsyncV4PagePaginationArray[SubnetListResponse]]:
         """
         Lists and filters subnets in an account.

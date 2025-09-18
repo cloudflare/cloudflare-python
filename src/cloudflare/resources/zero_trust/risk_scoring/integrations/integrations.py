@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from .references import (
     ReferencesResource,
@@ -67,13 +67,13 @@ class IntegrationsResource(SyncAPIResource):
         account_id: str,
         integration_type: Literal["Okta"],
         tenant_url: str,
-        reference_id: Optional[str] | NotGiven = NOT_GIVEN,
+        reference_id: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IntegrationCreateResponse]:
         """
         Create new risk score integration.
@@ -122,13 +122,13 @@ class IntegrationsResource(SyncAPIResource):
         account_id: str,
         active: bool,
         tenant_url: str,
-        reference_id: Optional[str] | NotGiven = NOT_GIVEN,
+        reference_id: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IntegrationUpdateResponse]:
         """
         Overwrite the reference_id, tenant_url, and active values with the ones
@@ -185,7 +185,7 @@ class IntegrationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[IntegrationListResponse]:
         """
         List all risk score integrations for the account.
@@ -220,7 +220,7 @@ class IntegrationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Delete a risk score integration.
@@ -260,7 +260,7 @@ class IntegrationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IntegrationGetResponse]:
         """
         Get risk score integration by id.
@@ -321,13 +321,13 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         account_id: str,
         integration_type: Literal["Okta"],
         tenant_url: str,
-        reference_id: Optional[str] | NotGiven = NOT_GIVEN,
+        reference_id: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IntegrationCreateResponse]:
         """
         Create new risk score integration.
@@ -376,13 +376,13 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         account_id: str,
         active: bool,
         tenant_url: str,
-        reference_id: Optional[str] | NotGiven = NOT_GIVEN,
+        reference_id: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IntegrationUpdateResponse]:
         """
         Overwrite the reference_id, tenant_url, and active values with the ones
@@ -439,7 +439,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[IntegrationListResponse, AsyncSinglePage[IntegrationListResponse]]:
         """
         List all risk score integrations for the account.
@@ -474,7 +474,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Delete a risk score integration.
@@ -514,7 +514,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[IntegrationGetResponse]:
         """
         Get risk score integration by id.

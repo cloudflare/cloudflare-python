@@ -32,7 +32,7 @@ from .priority import (
     PriorityResourceWithStreamingResponse,
     AsyncPriorityResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -92,17 +92,17 @@ class RequestsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        content: str | NotGiven = NOT_GIVEN,
-        priority: str | NotGiven = NOT_GIVEN,
-        request_type: str | NotGiven = NOT_GIVEN,
-        summary: str | NotGiven = NOT_GIVEN,
-        tlp: Literal["clear", "amber", "amber-strict", "green", "red"] | NotGiven = NOT_GIVEN,
+        content: str | Omit = omit,
+        priority: str | Omit = omit,
+        request_type: str | Omit = omit,
+        summary: str | Omit = omit,
+        tlp: Literal["clear", "amber", "amber-strict", "green", "red"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Item]:
         """
         Creating a request adds the request into the Cloudforce One queue for analysis.
@@ -159,17 +159,17 @@ class RequestsResource(SyncAPIResource):
         request_id: str,
         *,
         account_id: str,
-        content: str | NotGiven = NOT_GIVEN,
-        priority: str | NotGiven = NOT_GIVEN,
-        request_type: str | NotGiven = NOT_GIVEN,
-        summary: str | NotGiven = NOT_GIVEN,
-        tlp: Literal["clear", "amber", "amber-strict", "green", "red"] | NotGiven = NOT_GIVEN,
+        content: str | Omit = omit,
+        priority: str | Omit = omit,
+        request_type: str | Omit = omit,
+        summary: str | Omit = omit,
+        tlp: Literal["clear", "amber", "amber-strict", "green", "red"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Item]:
         """Updating a request alters the request in the Cloudforce One queue.
 
@@ -232,20 +232,20 @@ class RequestsResource(SyncAPIResource):
         account_id: str,
         page: int,
         per_page: int,
-        completed_after: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        completed_before: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        created_after: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        created_before: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        request_type: str | NotGiven = NOT_GIVEN,
-        sort_by: str | NotGiven = NOT_GIVEN,
-        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        status: Literal["open", "accepted", "reported", "approved", "completed", "declined"] | NotGiven = NOT_GIVEN,
+        completed_after: Union[str, datetime] | Omit = omit,
+        completed_before: Union[str, datetime] | Omit = omit,
+        created_after: Union[str, datetime] | Omit = omit,
+        created_before: Union[str, datetime] | Omit = omit,
+        request_type: str | Omit = omit,
+        sort_by: str | Omit = omit,
+        sort_order: Literal["asc", "desc"] | Omit = omit,
+        status: Literal["open", "accepted", "reported", "approved", "completed", "declined"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[ListItem]:
         """
         List Requests
@@ -318,7 +318,7 @@ class RequestsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RequestDeleteResponse:
         """
         Delete a Request
@@ -357,7 +357,7 @@ class RequestsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RequestConstants]:
         """
         Get Request Priority, Status, and TLP constants
@@ -397,7 +397,7 @@ class RequestsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Item]:
         """
         Get a Request
@@ -440,7 +440,7 @@ class RequestsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Quota]:
         """
         Get Request Quota
@@ -479,7 +479,7 @@ class RequestsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[RequestTypesResponse]:
         """
         Get Request Types
@@ -543,17 +543,17 @@ class AsyncRequestsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        content: str | NotGiven = NOT_GIVEN,
-        priority: str | NotGiven = NOT_GIVEN,
-        request_type: str | NotGiven = NOT_GIVEN,
-        summary: str | NotGiven = NOT_GIVEN,
-        tlp: Literal["clear", "amber", "amber-strict", "green", "red"] | NotGiven = NOT_GIVEN,
+        content: str | Omit = omit,
+        priority: str | Omit = omit,
+        request_type: str | Omit = omit,
+        summary: str | Omit = omit,
+        tlp: Literal["clear", "amber", "amber-strict", "green", "red"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Item]:
         """
         Creating a request adds the request into the Cloudforce One queue for analysis.
@@ -610,17 +610,17 @@ class AsyncRequestsResource(AsyncAPIResource):
         request_id: str,
         *,
         account_id: str,
-        content: str | NotGiven = NOT_GIVEN,
-        priority: str | NotGiven = NOT_GIVEN,
-        request_type: str | NotGiven = NOT_GIVEN,
-        summary: str | NotGiven = NOT_GIVEN,
-        tlp: Literal["clear", "amber", "amber-strict", "green", "red"] | NotGiven = NOT_GIVEN,
+        content: str | Omit = omit,
+        priority: str | Omit = omit,
+        request_type: str | Omit = omit,
+        summary: str | Omit = omit,
+        tlp: Literal["clear", "amber", "amber-strict", "green", "red"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Item]:
         """Updating a request alters the request in the Cloudforce One queue.
 
@@ -683,20 +683,20 @@ class AsyncRequestsResource(AsyncAPIResource):
         account_id: str,
         page: int,
         per_page: int,
-        completed_after: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        completed_before: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        created_after: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        created_before: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        request_type: str | NotGiven = NOT_GIVEN,
-        sort_by: str | NotGiven = NOT_GIVEN,
-        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        status: Literal["open", "accepted", "reported", "approved", "completed", "declined"] | NotGiven = NOT_GIVEN,
+        completed_after: Union[str, datetime] | Omit = omit,
+        completed_before: Union[str, datetime] | Omit = omit,
+        created_after: Union[str, datetime] | Omit = omit,
+        created_before: Union[str, datetime] | Omit = omit,
+        request_type: str | Omit = omit,
+        sort_by: str | Omit = omit,
+        sort_order: Literal["asc", "desc"] | Omit = omit,
+        status: Literal["open", "accepted", "reported", "approved", "completed", "declined"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ListItem, AsyncSinglePage[ListItem]]:
         """
         List Requests
@@ -769,7 +769,7 @@ class AsyncRequestsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RequestDeleteResponse:
         """
         Delete a Request
@@ -808,7 +808,7 @@ class AsyncRequestsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RequestConstants]:
         """
         Get Request Priority, Status, and TLP constants
@@ -848,7 +848,7 @@ class AsyncRequestsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Item]:
         """
         Get a Request
@@ -891,7 +891,7 @@ class AsyncRequestsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Quota]:
         """
         Get Request Quota
@@ -930,7 +930,7 @@ class AsyncRequestsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[RequestTypesResponse, AsyncSinglePage[RequestTypesResponse]]:
         """
         Get Request Types

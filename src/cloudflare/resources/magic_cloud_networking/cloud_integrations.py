@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, strip_not_given, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -69,14 +69,14 @@ class CloudIntegrationsResource(SyncAPIResource):
         account_id: str,
         cloud_type: Literal["AWS", "AZURE", "GOOGLE", "CLOUDFLARE"],
         friendly_name: str,
-        description: str | NotGiven = NOT_GIVEN,
-        forwarded: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        forwarded: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CloudIntegrationCreateResponse:
         """
         Create a new Cloud Integration (Closed Beta).
@@ -118,19 +118,19 @@ class CloudIntegrationsResource(SyncAPIResource):
         provider_id: str,
         *,
         account_id: str,
-        aws_arn: str | NotGiven = NOT_GIVEN,
-        azure_subscription_id: str | NotGiven = NOT_GIVEN,
-        azure_tenant_id: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        friendly_name: str | NotGiven = NOT_GIVEN,
-        gcp_project_id: str | NotGiven = NOT_GIVEN,
-        gcp_service_account_email: str | NotGiven = NOT_GIVEN,
+        aws_arn: str | Omit = omit,
+        azure_subscription_id: str | Omit = omit,
+        azure_tenant_id: str | Omit = omit,
+        description: str | Omit = omit,
+        friendly_name: str | Omit = omit,
+        gcp_project_id: str | Omit = omit,
+        gcp_service_account_email: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CloudIntegrationUpdateResponse:
         """
         Update a Cloud Integration (Closed Beta).
@@ -176,16 +176,16 @@ class CloudIntegrationsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        cloudflare: bool | NotGiven = NOT_GIVEN,
-        desc: bool | NotGiven = NOT_GIVEN,
-        order_by: str | NotGiven = NOT_GIVEN,
-        status: bool | NotGiven = NOT_GIVEN,
+        cloudflare: bool | Omit = omit,
+        desc: bool | Omit = omit,
+        order_by: str | Omit = omit,
+        status: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[CloudIntegrationListResponse]:
         """
         List Cloud Integrations (Closed Beta).
@@ -234,7 +234,7 @@ class CloudIntegrationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CloudIntegrationDeleteResponse:
         """
         Delete a Cloud Integration (Closed Beta).
@@ -269,13 +269,13 @@ class CloudIntegrationsResource(SyncAPIResource):
         provider_id: str,
         *,
         account_id: str,
-        v2: bool | NotGiven = NOT_GIVEN,
+        v2: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CloudIntegrationDiscoverResponse:
         """
         Run discovery for a Cloud Integration (Closed Beta).
@@ -314,7 +314,7 @@ class CloudIntegrationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CloudIntegrationDiscoverAllResponse:
         """
         Run discovery for all Cloud Integrations in an account (Closed Beta).
@@ -343,19 +343,19 @@ class CloudIntegrationsResource(SyncAPIResource):
         provider_id: str,
         *,
         account_id: str,
-        aws_arn: str | NotGiven = NOT_GIVEN,
-        azure_subscription_id: str | NotGiven = NOT_GIVEN,
-        azure_tenant_id: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        friendly_name: str | NotGiven = NOT_GIVEN,
-        gcp_project_id: str | NotGiven = NOT_GIVEN,
-        gcp_service_account_email: str | NotGiven = NOT_GIVEN,
+        aws_arn: str | Omit = omit,
+        azure_subscription_id: str | Omit = omit,
+        azure_tenant_id: str | Omit = omit,
+        description: str | Omit = omit,
+        friendly_name: str | Omit = omit,
+        gcp_project_id: str | Omit = omit,
+        gcp_service_account_email: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CloudIntegrationEditResponse:
         """
         Update a Cloud Integration (Closed Beta).
@@ -402,13 +402,13 @@ class CloudIntegrationsResource(SyncAPIResource):
         provider_id: str,
         *,
         account_id: str,
-        status: bool | NotGiven = NOT_GIVEN,
+        status: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CloudIntegrationGetResponse:
         """
         Read a Cloud Integration (Closed Beta).
@@ -449,7 +449,7 @@ class CloudIntegrationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CloudIntegrationInitialSetupResponse:
         """
         Get initial configuration to complete Cloud Integration setup (Closed Beta).
@@ -511,14 +511,14 @@ class AsyncCloudIntegrationsResource(AsyncAPIResource):
         account_id: str,
         cloud_type: Literal["AWS", "AZURE", "GOOGLE", "CLOUDFLARE"],
         friendly_name: str,
-        description: str | NotGiven = NOT_GIVEN,
-        forwarded: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        forwarded: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CloudIntegrationCreateResponse:
         """
         Create a new Cloud Integration (Closed Beta).
@@ -560,19 +560,19 @@ class AsyncCloudIntegrationsResource(AsyncAPIResource):
         provider_id: str,
         *,
         account_id: str,
-        aws_arn: str | NotGiven = NOT_GIVEN,
-        azure_subscription_id: str | NotGiven = NOT_GIVEN,
-        azure_tenant_id: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        friendly_name: str | NotGiven = NOT_GIVEN,
-        gcp_project_id: str | NotGiven = NOT_GIVEN,
-        gcp_service_account_email: str | NotGiven = NOT_GIVEN,
+        aws_arn: str | Omit = omit,
+        azure_subscription_id: str | Omit = omit,
+        azure_tenant_id: str | Omit = omit,
+        description: str | Omit = omit,
+        friendly_name: str | Omit = omit,
+        gcp_project_id: str | Omit = omit,
+        gcp_service_account_email: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CloudIntegrationUpdateResponse:
         """
         Update a Cloud Integration (Closed Beta).
@@ -618,16 +618,16 @@ class AsyncCloudIntegrationsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        cloudflare: bool | NotGiven = NOT_GIVEN,
-        desc: bool | NotGiven = NOT_GIVEN,
-        order_by: str | NotGiven = NOT_GIVEN,
-        status: bool | NotGiven = NOT_GIVEN,
+        cloudflare: bool | Omit = omit,
+        desc: bool | Omit = omit,
+        order_by: str | Omit = omit,
+        status: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[CloudIntegrationListResponse, AsyncSinglePage[CloudIntegrationListResponse]]:
         """
         List Cloud Integrations (Closed Beta).
@@ -676,7 +676,7 @@ class AsyncCloudIntegrationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CloudIntegrationDeleteResponse:
         """
         Delete a Cloud Integration (Closed Beta).
@@ -711,13 +711,13 @@ class AsyncCloudIntegrationsResource(AsyncAPIResource):
         provider_id: str,
         *,
         account_id: str,
-        v2: bool | NotGiven = NOT_GIVEN,
+        v2: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CloudIntegrationDiscoverResponse:
         """
         Run discovery for a Cloud Integration (Closed Beta).
@@ -758,7 +758,7 @@ class AsyncCloudIntegrationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CloudIntegrationDiscoverAllResponse:
         """
         Run discovery for all Cloud Integrations in an account (Closed Beta).
@@ -787,19 +787,19 @@ class AsyncCloudIntegrationsResource(AsyncAPIResource):
         provider_id: str,
         *,
         account_id: str,
-        aws_arn: str | NotGiven = NOT_GIVEN,
-        azure_subscription_id: str | NotGiven = NOT_GIVEN,
-        azure_tenant_id: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        friendly_name: str | NotGiven = NOT_GIVEN,
-        gcp_project_id: str | NotGiven = NOT_GIVEN,
-        gcp_service_account_email: str | NotGiven = NOT_GIVEN,
+        aws_arn: str | Omit = omit,
+        azure_subscription_id: str | Omit = omit,
+        azure_tenant_id: str | Omit = omit,
+        description: str | Omit = omit,
+        friendly_name: str | Omit = omit,
+        gcp_project_id: str | Omit = omit,
+        gcp_service_account_email: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CloudIntegrationEditResponse:
         """
         Update a Cloud Integration (Closed Beta).
@@ -846,13 +846,13 @@ class AsyncCloudIntegrationsResource(AsyncAPIResource):
         provider_id: str,
         *,
         account_id: str,
-        status: bool | NotGiven = NOT_GIVEN,
+        status: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CloudIntegrationGetResponse:
         """
         Read a Cloud Integration (Closed Beta).
@@ -895,7 +895,7 @@ class AsyncCloudIntegrationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CloudIntegrationInitialSetupResponse:
         """
         Get initial configuration to complete Cloud Integration setup (Closed Beta).

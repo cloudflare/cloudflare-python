@@ -6,7 +6,7 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -51,17 +51,17 @@ class WatermarksResource(SyncAPIResource):
         *,
         account_id: str,
         file: str,
-        name: str | NotGiven = NOT_GIVEN,
-        opacity: float | NotGiven = NOT_GIVEN,
-        padding: float | NotGiven = NOT_GIVEN,
-        position: str | NotGiven = NOT_GIVEN,
-        scale: float | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        opacity: float | Omit = omit,
+        padding: float | Omit = omit,
+        position: str | Omit = omit,
+        scale: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Watermark]:
         """
         Creates watermark profiles using a single `HTTP POST multipart/form-data`
@@ -137,7 +137,7 @@ class WatermarksResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[Watermark]:
         """
         Lists all watermark profiles for an account.
@@ -174,7 +174,7 @@ class WatermarksResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Deletes a watermark profile.
@@ -218,7 +218,7 @@ class WatermarksResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Watermark]:
         """
         Retrieves details for a single watermark profile.
@@ -278,17 +278,17 @@ class AsyncWatermarksResource(AsyncAPIResource):
         *,
         account_id: str,
         file: str,
-        name: str | NotGiven = NOT_GIVEN,
-        opacity: float | NotGiven = NOT_GIVEN,
-        padding: float | NotGiven = NOT_GIVEN,
-        position: str | NotGiven = NOT_GIVEN,
-        scale: float | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        opacity: float | Omit = omit,
+        padding: float | Omit = omit,
+        position: str | Omit = omit,
+        scale: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Watermark]:
         """
         Creates watermark profiles using a single `HTTP POST multipart/form-data`
@@ -364,7 +364,7 @@ class AsyncWatermarksResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Watermark, AsyncSinglePage[Watermark]]:
         """
         Lists all watermark profiles for an account.
@@ -401,7 +401,7 @@ class AsyncWatermarksResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Deletes a watermark profile.
@@ -445,7 +445,7 @@ class AsyncWatermarksResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Watermark]:
         """
         Retrieves details for a single watermark profile.

@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -67,21 +67,21 @@ class SummaryResource(SyncAPIResource):
     def arc(
         self,
         *,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryARCResponse:
         """
         Retrieves the distribution of emails by ARC (Authenticated Received Chain)
@@ -146,21 +146,21 @@ class SummaryResource(SyncAPIResource):
     def dkim(
         self,
         *,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryDKIMResponse:
         """
         Retrieves the distribution of emails by DKIM (DomainKeys Identified Mail)
@@ -225,21 +225,21 @@ class SummaryResource(SyncAPIResource):
     def dmarc(
         self,
         *,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryDMARCResponse:
         """
         Retrieves the distribution of emails by DMARC (Domain-based Message
@@ -303,22 +303,22 @@ class SummaryResource(SyncAPIResource):
     def malicious(
         self,
         *,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryMaliciousResponse:
         """
         Retrieves the distribution of emails by malicious classification.
@@ -385,22 +385,22 @@ class SummaryResource(SyncAPIResource):
     def spam(
         self,
         *,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummarySpamResponse:
         """Retrieves the proportion of emails by spam classification (spam vs.
 
@@ -468,21 +468,21 @@ class SummaryResource(SyncAPIResource):
     def spf(
         self,
         *,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummarySPFResponse:
         """
         Retrieves the distribution of emails by SPF (Sender Policy Framework)
@@ -547,22 +547,22 @@ class SummaryResource(SyncAPIResource):
     def spoof(
         self,
         *,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummarySpoofResponse:
         """
         Retrieves the proportion of emails by spoof classification (spoof vs.
@@ -630,22 +630,22 @@ class SummaryResource(SyncAPIResource):
     def threat_category(
         self,
         *,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryThreatCategoryResponse:
         """
         Retrieves the distribution of emails by threat categories.
@@ -712,21 +712,21 @@ class SummaryResource(SyncAPIResource):
     def tls_version(
         self,
         *,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryTLSVersionResponse:
         """
         Retrieves the distribution of emails by TLS version.
@@ -811,21 +811,21 @@ class AsyncSummaryResource(AsyncAPIResource):
     async def arc(
         self,
         *,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryARCResponse:
         """
         Retrieves the distribution of emails by ARC (Authenticated Received Chain)
@@ -890,21 +890,21 @@ class AsyncSummaryResource(AsyncAPIResource):
     async def dkim(
         self,
         *,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryDKIMResponse:
         """
         Retrieves the distribution of emails by DKIM (DomainKeys Identified Mail)
@@ -969,21 +969,21 @@ class AsyncSummaryResource(AsyncAPIResource):
     async def dmarc(
         self,
         *,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryDMARCResponse:
         """
         Retrieves the distribution of emails by DMARC (Domain-based Message
@@ -1047,22 +1047,22 @@ class AsyncSummaryResource(AsyncAPIResource):
     async def malicious(
         self,
         *,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryMaliciousResponse:
         """
         Retrieves the distribution of emails by malicious classification.
@@ -1129,22 +1129,22 @@ class AsyncSummaryResource(AsyncAPIResource):
     async def spam(
         self,
         *,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummarySpamResponse:
         """Retrieves the proportion of emails by spam classification (spam vs.
 
@@ -1212,21 +1212,21 @@ class AsyncSummaryResource(AsyncAPIResource):
     async def spf(
         self,
         *,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummarySPFResponse:
         """
         Retrieves the distribution of emails by SPF (Sender Policy Framework)
@@ -1291,22 +1291,22 @@ class AsyncSummaryResource(AsyncAPIResource):
     async def spoof(
         self,
         *,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummarySpoofResponse:
         """
         Retrieves the proportion of emails by spoof classification (spoof vs.
@@ -1374,22 +1374,22 @@ class AsyncSummaryResource(AsyncAPIResource):
     async def threat_category(
         self,
         *,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryThreatCategoryResponse:
         """
         Retrieves the distribution of emails by threat categories.
@@ -1456,21 +1456,21 @@ class AsyncSummaryResource(AsyncAPIResource):
     async def tls_version(
         self,
         *,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SummaryTLSVersionResponse:
         """
         Retrieves the distribution of emails by TLS version.

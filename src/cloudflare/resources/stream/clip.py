@@ -6,7 +6,7 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -52,18 +52,18 @@ class ClipResource(SyncAPIResource):
         clipped_from_video_uid: str,
         end_time_seconds: int,
         start_time_seconds: int,
-        allowed_origins: SequenceNotStr[AllowedOrigins] | NotGiven = NOT_GIVEN,
-        creator: str | NotGiven = NOT_GIVEN,
-        max_duration_seconds: int | NotGiven = NOT_GIVEN,
-        require_signed_urls: bool | NotGiven = NOT_GIVEN,
-        thumbnail_timestamp_pct: float | NotGiven = NOT_GIVEN,
-        watermark: clip_create_params.Watermark | NotGiven = NOT_GIVEN,
+        allowed_origins: SequenceNotStr[AllowedOrigins] | Omit = omit,
+        creator: str | Omit = omit,
+        max_duration_seconds: int | Omit = omit,
+        require_signed_urls: bool | Omit = omit,
+        thumbnail_timestamp_pct: float | Omit = omit,
+        watermark: clip_create_params.Watermark | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Clip]:
         """
         Clips a video based on the specified start and end times provided in seconds.
@@ -160,18 +160,18 @@ class AsyncClipResource(AsyncAPIResource):
         clipped_from_video_uid: str,
         end_time_seconds: int,
         start_time_seconds: int,
-        allowed_origins: SequenceNotStr[AllowedOrigins] | NotGiven = NOT_GIVEN,
-        creator: str | NotGiven = NOT_GIVEN,
-        max_duration_seconds: int | NotGiven = NOT_GIVEN,
-        require_signed_urls: bool | NotGiven = NOT_GIVEN,
-        thumbnail_timestamp_pct: float | NotGiven = NOT_GIVEN,
-        watermark: clip_create_params.Watermark | NotGiven = NOT_GIVEN,
+        allowed_origins: SequenceNotStr[AllowedOrigins] | Omit = omit,
+        creator: str | Omit = omit,
+        max_duration_seconds: int | Omit = omit,
+        require_signed_urls: bool | Omit = omit,
+        thumbnail_timestamp_pct: float | Omit = omit,
+        watermark: clip_create_params.Watermark | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Clip]:
         """
         Clips a video based on the specified start and end times provided in seconds.

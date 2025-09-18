@@ -7,7 +7,7 @@ from datetime import datetime
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -47,20 +47,20 @@ class QueriesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        id: str | NotGiven = NOT_GIVEN,
-        query_scan: bool | NotGiven = NOT_GIVEN,
-        query_tag: str | NotGiven = NOT_GIVEN,
-        max_time: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        min_time: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        body_scan: bool | NotGiven = NOT_GIVEN,
-        string_matches: object | NotGiven = NOT_GIVEN,
-        body_tag: str | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        query_scan: bool | Omit = omit,
+        query_tag: str | Omit = omit,
+        max_time: Union[str, datetime, None] | Omit = omit,
+        min_time: Union[str, datetime, None] | Omit = omit,
+        body_scan: bool | Omit = omit,
+        string_matches: object | Omit = omit,
+        body_tag: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Return a success message after creating new saved string queries
@@ -110,15 +110,15 @@ class QueriesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        id: str | NotGiven = NOT_GIVEN,
-        scan: bool | NotGiven = NOT_GIVEN,
-        tag: str | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        scan: bool | Omit = omit,
+        tag: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Return a success message after deleting saved string queries by ID
@@ -158,13 +158,13 @@ class QueriesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        queries: Iterable[Dict[str, object]] | NotGiven = NOT_GIVEN,
+        queries: Iterable[Dict[str, object]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Return a success message after creating new saved string queries in bulk
@@ -215,20 +215,20 @@ class AsyncQueriesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        id: str | NotGiven = NOT_GIVEN,
-        query_scan: bool | NotGiven = NOT_GIVEN,
-        query_tag: str | NotGiven = NOT_GIVEN,
-        max_time: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        min_time: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        body_scan: bool | NotGiven = NOT_GIVEN,
-        string_matches: object | NotGiven = NOT_GIVEN,
-        body_tag: str | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        query_scan: bool | Omit = omit,
+        query_tag: str | Omit = omit,
+        max_time: Union[str, datetime, None] | Omit = omit,
+        min_time: Union[str, datetime, None] | Omit = omit,
+        body_scan: bool | Omit = omit,
+        string_matches: object | Omit = omit,
+        body_tag: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Return a success message after creating new saved string queries
@@ -278,15 +278,15 @@ class AsyncQueriesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        id: str | NotGiven = NOT_GIVEN,
-        scan: bool | NotGiven = NOT_GIVEN,
-        tag: str | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        scan: bool | Omit = omit,
+        tag: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Return a success message after deleting saved string queries by ID
@@ -326,13 +326,13 @@ class AsyncQueriesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        queries: Iterable[Dict[str, object]] | NotGiven = NOT_GIVEN,
+        queries: Iterable[Dict[str, object]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Return a success message after creating new saved string queries in bulk

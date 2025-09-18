@@ -6,7 +6,7 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -60,7 +60,7 @@ class ResourceGroupsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ResourceGroupCreateResponse:
         """
         Create a new Resource Group under the specified account.
@@ -102,14 +102,14 @@ class ResourceGroupsResource(SyncAPIResource):
         resource_group_id: str,
         *,
         account_id: str,
-        name: str | NotGiven = NOT_GIVEN,
-        scope: resource_group_update_params.Scope | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        scope: resource_group_update_params.Scope | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ResourceGroupUpdateResponse:
         """
         Modify an existing resource group.
@@ -154,14 +154,14 @@ class ResourceGroupsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        id: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[ResourceGroupListResponse]:
         """
         List all the resource groups for an account.
@@ -212,7 +212,7 @@ class ResourceGroupsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ResourceGroupDeleteResponse]:
         """
         Remove a resource group from an account.
@@ -256,7 +256,7 @@ class ResourceGroupsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ResourceGroupGetResponse:
         """
         Get information about a specific resource group in an account.
@@ -318,7 +318,7 @@ class AsyncResourceGroupsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ResourceGroupCreateResponse:
         """
         Create a new Resource Group under the specified account.
@@ -360,14 +360,14 @@ class AsyncResourceGroupsResource(AsyncAPIResource):
         resource_group_id: str,
         *,
         account_id: str,
-        name: str | NotGiven = NOT_GIVEN,
-        scope: resource_group_update_params.Scope | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        scope: resource_group_update_params.Scope | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ResourceGroupUpdateResponse:
         """
         Modify an existing resource group.
@@ -412,14 +412,14 @@ class AsyncResourceGroupsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        id: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ResourceGroupListResponse, AsyncSinglePage[ResourceGroupListResponse]]:
         """
         List all the resource groups for an account.
@@ -470,7 +470,7 @@ class AsyncResourceGroupsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[ResourceGroupDeleteResponse]:
         """
         Remove a resource group from an account.
@@ -514,7 +514,7 @@ class AsyncResourceGroupsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ResourceGroupGetResponse:
         """
         Get information about a specific resource group in an account.

@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -51,23 +51,23 @@ class SummariesResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        dimensions: List[Dimension] | NotGiven = NOT_GIVEN,
-        filters: str | NotGiven = NOT_GIVEN,
+        dimensions: List[Dimension] | Omit = omit,
+        filters: str | Omit = omit,
         metrics: List[
             Literal[
                 "count", "bytesIngress", "bytesEgress", "durationAvg", "durationMedian", "duration90th", "duration99th"
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        since: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        sort: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        until: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        since: Union[str, datetime] | Omit = omit,
+        sort: SequenceNotStr[str] | Omit = omit,
+        until: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SummaryGetResponse]:
         """
         Retrieves a list of summarised aggregate metrics over a given time period.
@@ -181,23 +181,23 @@ class AsyncSummariesResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        dimensions: List[Dimension] | NotGiven = NOT_GIVEN,
-        filters: str | NotGiven = NOT_GIVEN,
+        dimensions: List[Dimension] | Omit = omit,
+        filters: str | Omit = omit,
         metrics: List[
             Literal[
                 "count", "bytesIngress", "bytesEgress", "durationAvg", "durationMedian", "duration90th", "duration99th"
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        since: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        sort: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        until: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        since: Union[str, datetime] | Omit = omit,
+        sort: SequenceNotStr[str] | Omit = omit,
+        until: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SummaryGetResponse]:
         """
         Retrieves a list of summarised aggregate metrics over a given time period.

@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -60,21 +60,21 @@ class WidgetsResource(SyncAPIResource):
         domains: SequenceNotStr[WidgetDomain],
         mode: Literal["non-interactive", "invisible", "managed"],
         name: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        order: Literal["id", "sitekey", "name", "created_on", "modified_on"] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        bot_fight_mode: bool | NotGiven = NOT_GIVEN,
-        clearance_level: Literal["no_clearance", "jschallenge", "managed", "interactive"] | NotGiven = NOT_GIVEN,
-        ephemeral_id: bool | NotGiven = NOT_GIVEN,
-        offlabel: bool | NotGiven = NOT_GIVEN,
-        region: Literal["world", "china"] | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        order: Literal["id", "sitekey", "name", "created_on", "modified_on"] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
+        bot_fight_mode: bool | Omit = omit,
+        clearance_level: Literal["no_clearance", "jschallenge", "managed", "interactive"] | Omit = omit,
+        ephemeral_id: bool | Omit = omit,
+        offlabel: bool | Omit = omit,
+        region: Literal["world", "china"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Widget]:
         """
         Lists challenge widgets.
@@ -160,17 +160,17 @@ class WidgetsResource(SyncAPIResource):
         domains: SequenceNotStr[WidgetDomain],
         mode: Literal["non-interactive", "invisible", "managed"],
         name: str,
-        bot_fight_mode: bool | NotGiven = NOT_GIVEN,
-        clearance_level: Literal["no_clearance", "jschallenge", "managed", "interactive"] | NotGiven = NOT_GIVEN,
-        ephemeral_id: bool | NotGiven = NOT_GIVEN,
-        offlabel: bool | NotGiven = NOT_GIVEN,
-        region: Literal["world", "china"] | NotGiven = NOT_GIVEN,
+        bot_fight_mode: bool | Omit = omit,
+        clearance_level: Literal["no_clearance", "jschallenge", "managed", "interactive"] | Omit = omit,
+        ephemeral_id: bool | Omit = omit,
+        offlabel: bool | Omit = omit,
+        region: Literal["world", "china"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Widget]:
         """
         Update the configuration of a widget.
@@ -239,16 +239,16 @@ class WidgetsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        order: Literal["id", "sitekey", "name", "created_on", "modified_on"] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        order: Literal["id", "sitekey", "name", "created_on", "modified_on"] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[WidgetListResponse]:
         """
         Lists all turnstile widgets of an account.
@@ -305,7 +305,7 @@ class WidgetsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Widget]:
         """
         Destroy a Turnstile Widget.
@@ -349,7 +349,7 @@ class WidgetsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Widget]:
         """
         Show a single challenge widget configuration.
@@ -388,13 +388,13 @@ class WidgetsResource(SyncAPIResource):
         sitekey: str,
         *,
         account_id: str,
-        invalidate_immediately: bool | NotGiven = NOT_GIVEN,
+        invalidate_immediately: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Widget]:
         """Generate a new secret key for this widget.
 
@@ -467,21 +467,21 @@ class AsyncWidgetsResource(AsyncAPIResource):
         domains: SequenceNotStr[WidgetDomain],
         mode: Literal["non-interactive", "invisible", "managed"],
         name: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        order: Literal["id", "sitekey", "name", "created_on", "modified_on"] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        bot_fight_mode: bool | NotGiven = NOT_GIVEN,
-        clearance_level: Literal["no_clearance", "jschallenge", "managed", "interactive"] | NotGiven = NOT_GIVEN,
-        ephemeral_id: bool | NotGiven = NOT_GIVEN,
-        offlabel: bool | NotGiven = NOT_GIVEN,
-        region: Literal["world", "china"] | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        order: Literal["id", "sitekey", "name", "created_on", "modified_on"] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
+        bot_fight_mode: bool | Omit = omit,
+        clearance_level: Literal["no_clearance", "jschallenge", "managed", "interactive"] | Omit = omit,
+        ephemeral_id: bool | Omit = omit,
+        offlabel: bool | Omit = omit,
+        region: Literal["world", "china"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Widget]:
         """
         Lists challenge widgets.
@@ -567,17 +567,17 @@ class AsyncWidgetsResource(AsyncAPIResource):
         domains: SequenceNotStr[WidgetDomain],
         mode: Literal["non-interactive", "invisible", "managed"],
         name: str,
-        bot_fight_mode: bool | NotGiven = NOT_GIVEN,
-        clearance_level: Literal["no_clearance", "jschallenge", "managed", "interactive"] | NotGiven = NOT_GIVEN,
-        ephemeral_id: bool | NotGiven = NOT_GIVEN,
-        offlabel: bool | NotGiven = NOT_GIVEN,
-        region: Literal["world", "china"] | NotGiven = NOT_GIVEN,
+        bot_fight_mode: bool | Omit = omit,
+        clearance_level: Literal["no_clearance", "jschallenge", "managed", "interactive"] | Omit = omit,
+        ephemeral_id: bool | Omit = omit,
+        offlabel: bool | Omit = omit,
+        region: Literal["world", "china"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Widget]:
         """
         Update the configuration of a widget.
@@ -646,16 +646,16 @@ class AsyncWidgetsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        order: Literal["id", "sitekey", "name", "created_on", "modified_on"] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        order: Literal["id", "sitekey", "name", "created_on", "modified_on"] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[WidgetListResponse, AsyncV4PagePaginationArray[WidgetListResponse]]:
         """
         Lists all turnstile widgets of an account.
@@ -712,7 +712,7 @@ class AsyncWidgetsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Widget]:
         """
         Destroy a Turnstile Widget.
@@ -756,7 +756,7 @@ class AsyncWidgetsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Widget]:
         """
         Show a single challenge widget configuration.
@@ -795,13 +795,13 @@ class AsyncWidgetsResource(AsyncAPIResource):
         sitekey: str,
         *,
         account_id: str,
-        invalidate_immediately: bool | NotGiven = NOT_GIVEN,
+        invalidate_immediately: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Widget]:
         """Generate a new secret key for this widget.
 

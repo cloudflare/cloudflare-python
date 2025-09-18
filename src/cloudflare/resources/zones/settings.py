@@ -7,7 +7,7 @@ from typing_extensions import overload
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import required_args, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -52,13 +52,13 @@ class SettingsResource(SyncAPIResource):
         setting_id: str,
         *,
         zone_id: str,
-        enabled: bool | NotGiven = NOT_GIVEN,
+        enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SettingEditResponse]:
         """
         Updates a single zone setting by the identifier
@@ -86,13 +86,13 @@ class SettingsResource(SyncAPIResource):
         setting_id: str,
         *,
         zone_id: str,
-        value: setting_edit_params.Variant1Value | NotGiven = NOT_GIVEN,
+        value: setting_edit_params.Variant1Value | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SettingEditResponse]:
         """
         Updates a single zone setting by the identifier
@@ -120,14 +120,14 @@ class SettingsResource(SyncAPIResource):
         setting_id: str,
         *,
         zone_id: str,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        value: setting_edit_params.Variant1Value | NotGiven = NOT_GIVEN,
+        enabled: bool | Omit = omit,
+        value: setting_edit_params.Variant1Value | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SettingEditResponse]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
@@ -167,7 +167,7 @@ class SettingsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SettingGetResponse]:
         """
         Fetch a single zone setting by name
@@ -233,13 +233,13 @@ class AsyncSettingsResource(AsyncAPIResource):
         setting_id: str,
         *,
         zone_id: str,
-        enabled: bool | NotGiven = NOT_GIVEN,
+        enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SettingEditResponse]:
         """
         Updates a single zone setting by the identifier
@@ -267,13 +267,13 @@ class AsyncSettingsResource(AsyncAPIResource):
         setting_id: str,
         *,
         zone_id: str,
-        value: setting_edit_params.Variant1Value | NotGiven = NOT_GIVEN,
+        value: setting_edit_params.Variant1Value | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SettingEditResponse]:
         """
         Updates a single zone setting by the identifier
@@ -301,14 +301,14 @@ class AsyncSettingsResource(AsyncAPIResource):
         setting_id: str,
         *,
         zone_id: str,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        value: setting_edit_params.Variant1Value | NotGiven = NOT_GIVEN,
+        enabled: bool | Omit = omit,
+        value: setting_edit_params.Variant1Value | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SettingEditResponse]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
@@ -348,7 +348,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[SettingGetResponse]:
         """
         Fetch a single zone setting by name

@@ -14,7 +14,7 @@ from .versions import (
     VersionsResourceWithStreamingResponse,
     AsyncVersionsResourceWithStreamingResponse,
 )
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -63,17 +63,17 @@ class WorkersResource(SyncAPIResource):
         *,
         account_id: str,
         name: str,
-        logpush: bool | NotGiven = NOT_GIVEN,
-        observability: worker_create_params.Observability | NotGiven = NOT_GIVEN,
-        subdomain: worker_create_params.Subdomain | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        tail_consumers: Iterable[worker_create_params.TailConsumer] | NotGiven = NOT_GIVEN,
+        logpush: bool | Omit = omit,
+        observability: worker_create_params.Observability | Omit = omit,
+        subdomain: worker_create_params.Subdomain | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        tail_consumers: Iterable[worker_create_params.TailConsumer] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Worker:
         """
         Create a new Worker.
@@ -132,17 +132,17 @@ class WorkersResource(SyncAPIResource):
         *,
         account_id: str,
         name: str,
-        logpush: bool | NotGiven = NOT_GIVEN,
-        observability: worker_update_params.Observability | NotGiven = NOT_GIVEN,
-        subdomain: worker_update_params.Subdomain | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        tail_consumers: Iterable[worker_update_params.TailConsumer] | NotGiven = NOT_GIVEN,
+        logpush: bool | Omit = omit,
+        observability: worker_update_params.Observability | Omit = omit,
+        subdomain: worker_update_params.Subdomain | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        tail_consumers: Iterable[worker_update_params.TailConsumer] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Worker:
         """
         Perform a complete replacement of a Worker, where omitted properties are set to
@@ -206,14 +206,14 @@ class WorkersResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[Worker]:
         """
         List all Workers for an account.
@@ -264,7 +264,7 @@ class WorkersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WorkerDeleteResponse:
         """
         Delete a Worker and all its associated resources (versions, deployments, etc.).
@@ -310,7 +310,7 @@ class WorkersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Worker:
         """
         Perform a partial update on a Worker, where omitted properties are left
@@ -378,7 +378,7 @@ class WorkersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Worker:
         """
         Get details about a specific Worker.
@@ -442,17 +442,17 @@ class AsyncWorkersResource(AsyncAPIResource):
         *,
         account_id: str,
         name: str,
-        logpush: bool | NotGiven = NOT_GIVEN,
-        observability: worker_create_params.Observability | NotGiven = NOT_GIVEN,
-        subdomain: worker_create_params.Subdomain | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        tail_consumers: Iterable[worker_create_params.TailConsumer] | NotGiven = NOT_GIVEN,
+        logpush: bool | Omit = omit,
+        observability: worker_create_params.Observability | Omit = omit,
+        subdomain: worker_create_params.Subdomain | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        tail_consumers: Iterable[worker_create_params.TailConsumer] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Worker:
         """
         Create a new Worker.
@@ -511,17 +511,17 @@ class AsyncWorkersResource(AsyncAPIResource):
         *,
         account_id: str,
         name: str,
-        logpush: bool | NotGiven = NOT_GIVEN,
-        observability: worker_update_params.Observability | NotGiven = NOT_GIVEN,
-        subdomain: worker_update_params.Subdomain | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        tail_consumers: Iterable[worker_update_params.TailConsumer] | NotGiven = NOT_GIVEN,
+        logpush: bool | Omit = omit,
+        observability: worker_update_params.Observability | Omit = omit,
+        subdomain: worker_update_params.Subdomain | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        tail_consumers: Iterable[worker_update_params.TailConsumer] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Worker:
         """
         Perform a complete replacement of a Worker, where omitted properties are set to
@@ -585,14 +585,14 @@ class AsyncWorkersResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Worker, AsyncV4PagePaginationArray[Worker]]:
         """
         List all Workers for an account.
@@ -643,7 +643,7 @@ class AsyncWorkersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WorkerDeleteResponse:
         """
         Delete a Worker and all its associated resources (versions, deployments, etc.).
@@ -689,7 +689,7 @@ class AsyncWorkersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Worker:
         """
         Perform a partial update on a Worker, where omitted properties are left
@@ -757,7 +757,7 @@ class AsyncWorkersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Worker:
         """
         Get details about a specific Worker.

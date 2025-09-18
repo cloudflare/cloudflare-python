@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -58,18 +58,17 @@ class RoutesResource(SyncAPIResource):
     def ases(
         self,
         *,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        location: str | NotGiven = NOT_GIVEN,
-        sort_by: Literal["cone", "pfxs", "ipv4", "ipv6", "rpki_valid", "rpki_invalid", "rpki_unknown"]
-        | NotGiven = NOT_GIVEN,
-        sort_order: Literal["ASC", "DESC"] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        limit: int | Omit = omit,
+        location: str | Omit = omit,
+        sort_by: Literal["cone", "pfxs", "ipv4", "ipv6", "rpki_valid", "rpki_invalid", "rpki_unknown"] | Omit = omit,
+        sort_order: Literal["ASC", "DESC"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RouteAsesResponse:
         """
         Retrieves all ASes in the current global routing tables with routing statistics.
@@ -118,16 +117,16 @@ class RoutesResource(SyncAPIResource):
     def moas(
         self,
         *,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        invalid_only: bool | NotGiven = NOT_GIVEN,
-        origin: int | NotGiven = NOT_GIVEN,
-        prefix: str | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        invalid_only: bool | Omit = omit,
+        origin: int | Omit = omit,
+        prefix: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RouteMoasResponse:
         """
         Retrieves all Multi-Origin AS (MOAS) prefixes in the global routing tables.
@@ -173,17 +172,17 @@ class RoutesResource(SyncAPIResource):
     def pfx2as(
         self,
         *,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        longest_prefix_match: bool | NotGiven = NOT_GIVEN,
-        origin: int | NotGiven = NOT_GIVEN,
-        prefix: str | NotGiven = NOT_GIVEN,
-        rpki_status: Literal["VALID", "INVALID", "UNKNOWN"] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        longest_prefix_match: bool | Omit = omit,
+        origin: int | Omit = omit,
+        prefix: str | Omit = omit,
+        rpki_status: Literal["VALID", "INVALID", "UNKNOWN"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RoutePfx2asResponse:
         """
         Retrieves the prefix-to-ASN mapping from global routing tables.
@@ -233,14 +232,14 @@ class RoutesResource(SyncAPIResource):
     def realtime(
         self,
         *,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        prefix: str | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        prefix: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RouteRealtimeResponse:
         """
         Retrieves real-time BGP routes for a prefix, using public real-time data
@@ -281,15 +280,15 @@ class RoutesResource(SyncAPIResource):
     def stats(
         self,
         *,
-        asn: int | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: str | NotGiven = NOT_GIVEN,
+        asn: int | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        location: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RouteStatsResponse:
         """
         Retrieves the BGP routing table stats.
@@ -354,18 +353,17 @@ class AsyncRoutesResource(AsyncAPIResource):
     async def ases(
         self,
         *,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        location: str | NotGiven = NOT_GIVEN,
-        sort_by: Literal["cone", "pfxs", "ipv4", "ipv6", "rpki_valid", "rpki_invalid", "rpki_unknown"]
-        | NotGiven = NOT_GIVEN,
-        sort_order: Literal["ASC", "DESC"] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        limit: int | Omit = omit,
+        location: str | Omit = omit,
+        sort_by: Literal["cone", "pfxs", "ipv4", "ipv6", "rpki_valid", "rpki_invalid", "rpki_unknown"] | Omit = omit,
+        sort_order: Literal["ASC", "DESC"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RouteAsesResponse:
         """
         Retrieves all ASes in the current global routing tables with routing statistics.
@@ -414,16 +412,16 @@ class AsyncRoutesResource(AsyncAPIResource):
     async def moas(
         self,
         *,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        invalid_only: bool | NotGiven = NOT_GIVEN,
-        origin: int | NotGiven = NOT_GIVEN,
-        prefix: str | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        invalid_only: bool | Omit = omit,
+        origin: int | Omit = omit,
+        prefix: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RouteMoasResponse:
         """
         Retrieves all Multi-Origin AS (MOAS) prefixes in the global routing tables.
@@ -469,17 +467,17 @@ class AsyncRoutesResource(AsyncAPIResource):
     async def pfx2as(
         self,
         *,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        longest_prefix_match: bool | NotGiven = NOT_GIVEN,
-        origin: int | NotGiven = NOT_GIVEN,
-        prefix: str | NotGiven = NOT_GIVEN,
-        rpki_status: Literal["VALID", "INVALID", "UNKNOWN"] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        longest_prefix_match: bool | Omit = omit,
+        origin: int | Omit = omit,
+        prefix: str | Omit = omit,
+        rpki_status: Literal["VALID", "INVALID", "UNKNOWN"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RoutePfx2asResponse:
         """
         Retrieves the prefix-to-ASN mapping from global routing tables.
@@ -529,14 +527,14 @@ class AsyncRoutesResource(AsyncAPIResource):
     async def realtime(
         self,
         *,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        prefix: str | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        prefix: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RouteRealtimeResponse:
         """
         Retrieves real-time BGP routes for a prefix, using public real-time data
@@ -577,15 +575,15 @@ class AsyncRoutesResource(AsyncAPIResource):
     async def stats(
         self,
         *,
-        asn: int | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: str | NotGiven = NOT_GIVEN,
+        asn: int | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        location: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RouteStatsResponse:
         """
         Retrieves the BGP routing table stats.

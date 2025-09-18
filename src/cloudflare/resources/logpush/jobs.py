@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -52,8 +52,8 @@ class JobsResource(SyncAPIResource):
         self,
         *,
         destination_conf: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         dataset: Optional[
             Literal[
                 "access_requests",
@@ -83,24 +83,24 @@ class JobsResource(SyncAPIResource):
                 "zero_trust_network_sessions",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        filter: Optional[str] | NotGiven = NOT_GIVEN,
-        frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
-        kind: Literal["", "edge"] | NotGiven = NOT_GIVEN,
-        logpull_options: Optional[str] | NotGiven = NOT_GIVEN,
-        max_upload_bytes: Union[Literal[0], int, None] | NotGiven = NOT_GIVEN,
-        max_upload_interval_seconds: Union[Literal[0], int, None] | NotGiven = NOT_GIVEN,
-        max_upload_records: Union[Literal[0], int, None] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        output_options: Optional[OutputOptionsParam] | NotGiven = NOT_GIVEN,
-        ownership_challenge: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        enabled: bool | Omit = omit,
+        filter: Optional[str] | Omit = omit,
+        frequency: Optional[Literal["high", "low"]] | Omit = omit,
+        kind: Literal["", "edge"] | Omit = omit,
+        logpull_options: Optional[str] | Omit = omit,
+        max_upload_bytes: Union[Literal[0], int, None] | Omit = omit,
+        max_upload_interval_seconds: Union[Literal[0], int, None] | Omit = omit,
+        max_upload_records: Union[Literal[0], int, None] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        output_options: Optional[OutputOptionsParam] | Omit = omit,
+        ownership_challenge: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[LogpushJob]:
         """
         Creates a new Logpush job for an account or zone.
@@ -215,26 +215,26 @@ class JobsResource(SyncAPIResource):
         self,
         job_id: int,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        destination_conf: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        filter: Optional[str] | NotGiven = NOT_GIVEN,
-        frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
-        kind: Literal["", "edge"] | NotGiven = NOT_GIVEN,
-        logpull_options: Optional[str] | NotGiven = NOT_GIVEN,
-        max_upload_bytes: Union[Literal[0], int, None] | NotGiven = NOT_GIVEN,
-        max_upload_interval_seconds: Union[Literal[0], int, None] | NotGiven = NOT_GIVEN,
-        max_upload_records: Union[Literal[0], int, None] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        output_options: Optional[OutputOptionsParam] | NotGiven = NOT_GIVEN,
-        ownership_challenge: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        destination_conf: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        filter: Optional[str] | Omit = omit,
+        frequency: Optional[Literal["high", "low"]] | Omit = omit,
+        kind: Literal["", "edge"] | Omit = omit,
+        logpull_options: Optional[str] | Omit = omit,
+        max_upload_bytes: Union[Literal[0], int, None] | Omit = omit,
+        max_upload_interval_seconds: Union[Literal[0], int, None] | Omit = omit,
+        max_upload_records: Union[Literal[0], int, None] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        output_options: Optional[OutputOptionsParam] | Omit = omit,
+        ownership_challenge: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[LogpushJob]:
         """
         Updates a Logpush job.
@@ -346,14 +346,14 @@ class JobsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[Optional[LogpushJob]]:
         """
         Lists Logpush jobs for an account or zone.
@@ -396,14 +396,14 @@ class JobsResource(SyncAPIResource):
         self,
         job_id: int,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[JobDeleteResponse]:
         """
         Deletes a Logpush job.
@@ -451,14 +451,14 @@ class JobsResource(SyncAPIResource):
         self,
         job_id: int,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[LogpushJob]:
         """
         Gets the details of a Logpush job.
@@ -527,8 +527,8 @@ class AsyncJobsResource(AsyncAPIResource):
         self,
         *,
         destination_conf: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         dataset: Optional[
             Literal[
                 "access_requests",
@@ -558,24 +558,24 @@ class AsyncJobsResource(AsyncAPIResource):
                 "zero_trust_network_sessions",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        filter: Optional[str] | NotGiven = NOT_GIVEN,
-        frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
-        kind: Literal["", "edge"] | NotGiven = NOT_GIVEN,
-        logpull_options: Optional[str] | NotGiven = NOT_GIVEN,
-        max_upload_bytes: Union[Literal[0], int, None] | NotGiven = NOT_GIVEN,
-        max_upload_interval_seconds: Union[Literal[0], int, None] | NotGiven = NOT_GIVEN,
-        max_upload_records: Union[Literal[0], int, None] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        output_options: Optional[OutputOptionsParam] | NotGiven = NOT_GIVEN,
-        ownership_challenge: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        enabled: bool | Omit = omit,
+        filter: Optional[str] | Omit = omit,
+        frequency: Optional[Literal["high", "low"]] | Omit = omit,
+        kind: Literal["", "edge"] | Omit = omit,
+        logpull_options: Optional[str] | Omit = omit,
+        max_upload_bytes: Union[Literal[0], int, None] | Omit = omit,
+        max_upload_interval_seconds: Union[Literal[0], int, None] | Omit = omit,
+        max_upload_records: Union[Literal[0], int, None] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        output_options: Optional[OutputOptionsParam] | Omit = omit,
+        ownership_challenge: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[LogpushJob]:
         """
         Creates a new Logpush job for an account or zone.
@@ -690,26 +690,26 @@ class AsyncJobsResource(AsyncAPIResource):
         self,
         job_id: int,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        destination_conf: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        filter: Optional[str] | NotGiven = NOT_GIVEN,
-        frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
-        kind: Literal["", "edge"] | NotGiven = NOT_GIVEN,
-        logpull_options: Optional[str] | NotGiven = NOT_GIVEN,
-        max_upload_bytes: Union[Literal[0], int, None] | NotGiven = NOT_GIVEN,
-        max_upload_interval_seconds: Union[Literal[0], int, None] | NotGiven = NOT_GIVEN,
-        max_upload_records: Union[Literal[0], int, None] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        output_options: Optional[OutputOptionsParam] | NotGiven = NOT_GIVEN,
-        ownership_challenge: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
+        destination_conf: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        filter: Optional[str] | Omit = omit,
+        frequency: Optional[Literal["high", "low"]] | Omit = omit,
+        kind: Literal["", "edge"] | Omit = omit,
+        logpull_options: Optional[str] | Omit = omit,
+        max_upload_bytes: Union[Literal[0], int, None] | Omit = omit,
+        max_upload_interval_seconds: Union[Literal[0], int, None] | Omit = omit,
+        max_upload_records: Union[Literal[0], int, None] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        output_options: Optional[OutputOptionsParam] | Omit = omit,
+        ownership_challenge: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[LogpushJob]:
         """
         Updates a Logpush job.
@@ -821,14 +821,14 @@ class AsyncJobsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Optional[LogpushJob], AsyncSinglePage[Optional[LogpushJob]]]:
         """
         Lists Logpush jobs for an account or zone.
@@ -871,14 +871,14 @@ class AsyncJobsResource(AsyncAPIResource):
         self,
         job_id: int,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[JobDeleteResponse]:
         """
         Deletes a Logpush job.
@@ -926,14 +926,14 @@ class AsyncJobsResource(AsyncAPIResource):
         self,
         job_id: int,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        zone_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[LogpushJob]:
         """
         Gets the details of a Logpush job.

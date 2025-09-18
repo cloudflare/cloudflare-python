@@ -7,7 +7,7 @@ from typing_extensions import Literal, overload
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import required_args, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -62,20 +62,20 @@ class AppsResource(SyncAPIResource):
         dns: DNSParam,
         protocol: str,
         traffic_type: Literal["direct", "http", "https"],
-        argo_smart_routing: bool | NotGiven = NOT_GIVEN,
-        edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
-        ip_firewall: bool | NotGiven = NOT_GIVEN,
-        origin_direct: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
-        origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
-        proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
-        tls: Literal["off", "flexible", "full", "strict"] | NotGiven = NOT_GIVEN,
+        argo_smart_routing: bool | Omit = omit,
+        edge_ips: EdgeIPsParam | Omit = omit,
+        ip_firewall: bool | Omit = omit,
+        origin_direct: SequenceNotStr[str] | Omit = omit,
+        origin_dns: OriginDNSParam | Omit = omit,
+        origin_port: OriginPortParam | Omit = omit,
+        proxy_protocol: Literal["off", "v1", "v2", "simple"] | Omit = omit,
+        tls: Literal["off", "flexible", "full", "strict"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AppCreateResponse]:
         """
         Creates a new Spectrum application from a configuration using a name for the
@@ -138,13 +138,13 @@ class AppsResource(SyncAPIResource):
         zone_id: str,
         dns: DNSParam,
         protocol: str,
-        origin_direct: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        origin_direct: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AppCreateResponse]:
         """
         Creates a new Spectrum application from a configuration using a name for the
@@ -178,21 +178,21 @@ class AppsResource(SyncAPIResource):
         zone_id: str,
         dns: DNSParam,
         protocol: str,
-        traffic_type: Literal["direct", "http", "https"] | NotGiven = NOT_GIVEN,
-        argo_smart_routing: bool | NotGiven = NOT_GIVEN,
-        edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
-        ip_firewall: bool | NotGiven = NOT_GIVEN,
-        origin_direct: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
-        origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
-        proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
-        tls: Literal["off", "flexible", "full", "strict"] | NotGiven = NOT_GIVEN,
+        traffic_type: Literal["direct", "http", "https"] | Omit = omit,
+        argo_smart_routing: bool | Omit = omit,
+        edge_ips: EdgeIPsParam | Omit = omit,
+        ip_firewall: bool | Omit = omit,
+        origin_direct: SequenceNotStr[str] | Omit = omit,
+        origin_dns: OriginDNSParam | Omit = omit,
+        origin_port: OriginPortParam | Omit = omit,
+        proxy_protocol: Literal["off", "v1", "v2", "simple"] | Omit = omit,
+        tls: Literal["off", "flexible", "full", "strict"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AppCreateResponse]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
@@ -238,20 +238,20 @@ class AppsResource(SyncAPIResource):
         dns: DNSParam,
         protocol: str,
         traffic_type: Literal["direct", "http", "https"],
-        argo_smart_routing: bool | NotGiven = NOT_GIVEN,
-        edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
-        ip_firewall: bool | NotGiven = NOT_GIVEN,
-        origin_direct: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
-        origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
-        proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
-        tls: Literal["off", "flexible", "full", "strict"] | NotGiven = NOT_GIVEN,
+        argo_smart_routing: bool | Omit = omit,
+        edge_ips: EdgeIPsParam | Omit = omit,
+        ip_firewall: bool | Omit = omit,
+        origin_direct: SequenceNotStr[str] | Omit = omit,
+        origin_dns: OriginDNSParam | Omit = omit,
+        origin_port: OriginPortParam | Omit = omit,
+        proxy_protocol: Literal["off", "v1", "v2", "simple"] | Omit = omit,
+        tls: Literal["off", "flexible", "full", "strict"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AppUpdateResponse]:
         """
         Updates a previously existing application's configuration that uses a name for
@@ -317,13 +317,13 @@ class AppsResource(SyncAPIResource):
         zone_id: str,
         dns: DNSParam,
         protocol: str,
-        origin_direct: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        origin_direct: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AppUpdateResponse]:
         """
         Updates a previously existing application's configuration that uses a name for
@@ -360,21 +360,21 @@ class AppsResource(SyncAPIResource):
         zone_id: str,
         dns: DNSParam,
         protocol: str,
-        traffic_type: Literal["direct", "http", "https"] | NotGiven = NOT_GIVEN,
-        argo_smart_routing: bool | NotGiven = NOT_GIVEN,
-        edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
-        ip_firewall: bool | NotGiven = NOT_GIVEN,
-        origin_direct: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
-        origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
-        proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
-        tls: Literal["off", "flexible", "full", "strict"] | NotGiven = NOT_GIVEN,
+        traffic_type: Literal["direct", "http", "https"] | Omit = omit,
+        argo_smart_routing: bool | Omit = omit,
+        edge_ips: EdgeIPsParam | Omit = omit,
+        ip_firewall: bool | Omit = omit,
+        origin_direct: SequenceNotStr[str] | Omit = omit,
+        origin_dns: OriginDNSParam | Omit = omit,
+        origin_port: OriginPortParam | Omit = omit,
+        proxy_protocol: Literal["off", "v1", "v2", "simple"] | Omit = omit,
+        tls: Literal["off", "flexible", "full", "strict"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AppUpdateResponse]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
@@ -417,16 +417,16 @@ class AppsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        order: Literal["protocol", "app_id", "created_on", "modified_on", "dns"] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        order: Literal["protocol", "app_id", "created_on", "modified_on", "dns"] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[Optional[AppListResponse]]:
         """
         Retrieves a list of currently existing Spectrum applications inside a zone.
@@ -485,7 +485,7 @@ class AppsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AppDeleteResponse]:
         """
         Deletes a previously existing application.
@@ -529,7 +529,7 @@ class AppsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AppGetResponse]:
         """
         Gets the application configuration of a specific application inside a zone.
@@ -597,20 +597,20 @@ class AsyncAppsResource(AsyncAPIResource):
         dns: DNSParam,
         protocol: str,
         traffic_type: Literal["direct", "http", "https"],
-        argo_smart_routing: bool | NotGiven = NOT_GIVEN,
-        edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
-        ip_firewall: bool | NotGiven = NOT_GIVEN,
-        origin_direct: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
-        origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
-        proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
-        tls: Literal["off", "flexible", "full", "strict"] | NotGiven = NOT_GIVEN,
+        argo_smart_routing: bool | Omit = omit,
+        edge_ips: EdgeIPsParam | Omit = omit,
+        ip_firewall: bool | Omit = omit,
+        origin_direct: SequenceNotStr[str] | Omit = omit,
+        origin_dns: OriginDNSParam | Omit = omit,
+        origin_port: OriginPortParam | Omit = omit,
+        proxy_protocol: Literal["off", "v1", "v2", "simple"] | Omit = omit,
+        tls: Literal["off", "flexible", "full", "strict"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AppCreateResponse]:
         """
         Creates a new Spectrum application from a configuration using a name for the
@@ -673,13 +673,13 @@ class AsyncAppsResource(AsyncAPIResource):
         zone_id: str,
         dns: DNSParam,
         protocol: str,
-        origin_direct: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        origin_direct: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AppCreateResponse]:
         """
         Creates a new Spectrum application from a configuration using a name for the
@@ -713,21 +713,21 @@ class AsyncAppsResource(AsyncAPIResource):
         zone_id: str,
         dns: DNSParam,
         protocol: str,
-        traffic_type: Literal["direct", "http", "https"] | NotGiven = NOT_GIVEN,
-        argo_smart_routing: bool | NotGiven = NOT_GIVEN,
-        edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
-        ip_firewall: bool | NotGiven = NOT_GIVEN,
-        origin_direct: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
-        origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
-        proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
-        tls: Literal["off", "flexible", "full", "strict"] | NotGiven = NOT_GIVEN,
+        traffic_type: Literal["direct", "http", "https"] | Omit = omit,
+        argo_smart_routing: bool | Omit = omit,
+        edge_ips: EdgeIPsParam | Omit = omit,
+        ip_firewall: bool | Omit = omit,
+        origin_direct: SequenceNotStr[str] | Omit = omit,
+        origin_dns: OriginDNSParam | Omit = omit,
+        origin_port: OriginPortParam | Omit = omit,
+        proxy_protocol: Literal["off", "v1", "v2", "simple"] | Omit = omit,
+        tls: Literal["off", "flexible", "full", "strict"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AppCreateResponse]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
@@ -773,20 +773,20 @@ class AsyncAppsResource(AsyncAPIResource):
         dns: DNSParam,
         protocol: str,
         traffic_type: Literal["direct", "http", "https"],
-        argo_smart_routing: bool | NotGiven = NOT_GIVEN,
-        edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
-        ip_firewall: bool | NotGiven = NOT_GIVEN,
-        origin_direct: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
-        origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
-        proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
-        tls: Literal["off", "flexible", "full", "strict"] | NotGiven = NOT_GIVEN,
+        argo_smart_routing: bool | Omit = omit,
+        edge_ips: EdgeIPsParam | Omit = omit,
+        ip_firewall: bool | Omit = omit,
+        origin_direct: SequenceNotStr[str] | Omit = omit,
+        origin_dns: OriginDNSParam | Omit = omit,
+        origin_port: OriginPortParam | Omit = omit,
+        proxy_protocol: Literal["off", "v1", "v2", "simple"] | Omit = omit,
+        tls: Literal["off", "flexible", "full", "strict"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AppUpdateResponse]:
         """
         Updates a previously existing application's configuration that uses a name for
@@ -852,13 +852,13 @@ class AsyncAppsResource(AsyncAPIResource):
         zone_id: str,
         dns: DNSParam,
         protocol: str,
-        origin_direct: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        origin_direct: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AppUpdateResponse]:
         """
         Updates a previously existing application's configuration that uses a name for
@@ -895,21 +895,21 @@ class AsyncAppsResource(AsyncAPIResource):
         zone_id: str,
         dns: DNSParam,
         protocol: str,
-        traffic_type: Literal["direct", "http", "https"] | NotGiven = NOT_GIVEN,
-        argo_smart_routing: bool | NotGiven = NOT_GIVEN,
-        edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
-        ip_firewall: bool | NotGiven = NOT_GIVEN,
-        origin_direct: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
-        origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
-        proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
-        tls: Literal["off", "flexible", "full", "strict"] | NotGiven = NOT_GIVEN,
+        traffic_type: Literal["direct", "http", "https"] | Omit = omit,
+        argo_smart_routing: bool | Omit = omit,
+        edge_ips: EdgeIPsParam | Omit = omit,
+        ip_firewall: bool | Omit = omit,
+        origin_direct: SequenceNotStr[str] | Omit = omit,
+        origin_dns: OriginDNSParam | Omit = omit,
+        origin_port: OriginPortParam | Omit = omit,
+        proxy_protocol: Literal["off", "v1", "v2", "simple"] | Omit = omit,
+        tls: Literal["off", "flexible", "full", "strict"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AppUpdateResponse]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
@@ -952,16 +952,16 @@ class AsyncAppsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        order: Literal["protocol", "app_id", "created_on", "modified_on", "dns"] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        order: Literal["protocol", "app_id", "created_on", "modified_on", "dns"] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Optional[AppListResponse], AsyncV4PagePaginationArray[Optional[AppListResponse]]]:
         """
         Retrieves a list of currently existing Spectrum applications inside a zone.
@@ -1020,7 +1020,7 @@ class AsyncAppsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AppDeleteResponse]:
         """
         Deletes a previously existing application.
@@ -1064,7 +1064,7 @@ class AsyncAppsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[AppGetResponse]:
         """
         Gets the application configuration of a specific application inside a zone.

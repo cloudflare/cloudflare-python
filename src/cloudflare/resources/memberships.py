@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -59,7 +59,7 @@ class MembershipsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[MembershipUpdateResponse]:
         """
         Accept or reject this account invitation.
@@ -95,19 +95,19 @@ class MembershipsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account: membership_list_params.Account | NotGiven = NOT_GIVEN,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        order: Literal["id", "account.name", "status"] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        status: Literal["accepted", "pending", "rejected"] | NotGiven = NOT_GIVEN,
+        account: membership_list_params.Account | Omit = omit,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        name: str | Omit = omit,
+        order: Literal["id", "account.name", "status"] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
+        status: Literal["accepted", "pending", "rejected"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[Membership]:
         """
         List memberships of accounts the user can access.
@@ -166,7 +166,7 @@ class MembershipsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[MembershipDeleteResponse]:
         """
         Remove the associated member from an account.
@@ -205,7 +205,7 @@ class MembershipsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[MembershipGetResponse]:
         """
         Get a specific membership.
@@ -266,7 +266,7 @@ class AsyncMembershipsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[MembershipUpdateResponse]:
         """
         Accept or reject this account invitation.
@@ -302,19 +302,19 @@ class AsyncMembershipsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account: membership_list_params.Account | NotGiven = NOT_GIVEN,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        order: Literal["id", "account.name", "status"] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        status: Literal["accepted", "pending", "rejected"] | NotGiven = NOT_GIVEN,
+        account: membership_list_params.Account | Omit = omit,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        name: str | Omit = omit,
+        order: Literal["id", "account.name", "status"] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
+        status: Literal["accepted", "pending", "rejected"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Membership, AsyncV4PagePaginationArray[Membership]]:
         """
         List memberships of accounts the user can access.
@@ -373,7 +373,7 @@ class AsyncMembershipsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[MembershipDeleteResponse]:
         """
         Remove the associated member from an account.
@@ -412,7 +412,7 @@ class AsyncMembershipsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[MembershipGetResponse]:
         """
         Get a specific membership.

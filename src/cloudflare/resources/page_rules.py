@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -59,14 +59,14 @@ class PageRulesResource(SyncAPIResource):
         zone_id: str,
         actions: Iterable[page_rule_create_params.Action],
         targets: Iterable[TargetParam],
-        priority: int | NotGiven = NOT_GIVEN,
-        status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
+        priority: int | Omit = omit,
+        status: Literal["active", "disabled"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PageRule]:
         """
         Creates a new Page Rule.
@@ -125,14 +125,14 @@ class PageRulesResource(SyncAPIResource):
         zone_id: str,
         actions: Iterable[page_rule_update_params.Action],
         targets: Iterable[TargetParam],
-        priority: int | NotGiven = NOT_GIVEN,
-        status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
+        priority: int | Omit = omit,
+        status: Literal["active", "disabled"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PageRule]:
         """Replaces the configuration of an existing Page Rule.
 
@@ -194,16 +194,16 @@ class PageRulesResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
-        order: Literal["status", "priority"] | NotGiven = NOT_GIVEN,
-        status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        match: Literal["any", "all"] | Omit = omit,
+        order: Literal["status", "priority"] | Omit = omit,
+        status: Literal["active", "disabled"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PageRuleListResponse]:
         """
         Fetches Page Rules in a zone.
@@ -261,7 +261,7 @@ class PageRulesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PageRuleDeleteResponse]:
         """
         Deletes an existing Page Rule.
@@ -300,16 +300,16 @@ class PageRulesResource(SyncAPIResource):
         pagerule_id: str,
         *,
         zone_id: str,
-        actions: Iterable[page_rule_edit_params.Action] | NotGiven = NOT_GIVEN,
-        priority: int | NotGiven = NOT_GIVEN,
-        status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
-        targets: Iterable[TargetParam] | NotGiven = NOT_GIVEN,
+        actions: Iterable[page_rule_edit_params.Action] | Omit = omit,
+        priority: int | Omit = omit,
+        status: Literal["active", "disabled"] | Omit = omit,
+        targets: Iterable[TargetParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PageRule]:
         """
         Updates one or more fields of an existing Page Rule.
@@ -375,7 +375,7 @@ class PageRulesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PageRule]:
         """
         Fetches the details of a Page Rule.
@@ -436,14 +436,14 @@ class AsyncPageRulesResource(AsyncAPIResource):
         zone_id: str,
         actions: Iterable[page_rule_create_params.Action],
         targets: Iterable[TargetParam],
-        priority: int | NotGiven = NOT_GIVEN,
-        status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
+        priority: int | Omit = omit,
+        status: Literal["active", "disabled"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PageRule]:
         """
         Creates a new Page Rule.
@@ -502,14 +502,14 @@ class AsyncPageRulesResource(AsyncAPIResource):
         zone_id: str,
         actions: Iterable[page_rule_update_params.Action],
         targets: Iterable[TargetParam],
-        priority: int | NotGiven = NOT_GIVEN,
-        status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
+        priority: int | Omit = omit,
+        status: Literal["active", "disabled"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PageRule]:
         """Replaces the configuration of an existing Page Rule.
 
@@ -571,16 +571,16 @@ class AsyncPageRulesResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
-        order: Literal["status", "priority"] | NotGiven = NOT_GIVEN,
-        status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        match: Literal["any", "all"] | Omit = omit,
+        order: Literal["status", "priority"] | Omit = omit,
+        status: Literal["active", "disabled"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PageRuleListResponse]:
         """
         Fetches Page Rules in a zone.
@@ -638,7 +638,7 @@ class AsyncPageRulesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PageRuleDeleteResponse]:
         """
         Deletes an existing Page Rule.
@@ -677,16 +677,16 @@ class AsyncPageRulesResource(AsyncAPIResource):
         pagerule_id: str,
         *,
         zone_id: str,
-        actions: Iterable[page_rule_edit_params.Action] | NotGiven = NOT_GIVEN,
-        priority: int | NotGiven = NOT_GIVEN,
-        status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
-        targets: Iterable[TargetParam] | NotGiven = NOT_GIVEN,
+        actions: Iterable[page_rule_edit_params.Action] | Omit = omit,
+        priority: int | Omit = omit,
+        status: Literal["active", "disabled"] | Omit = omit,
+        targets: Iterable[TargetParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PageRule]:
         """
         Updates one or more fields of an existing Page Rule.
@@ -752,7 +752,7 @@ class AsyncPageRulesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PageRule]:
         """
         Fetches the details of a Page Rule.

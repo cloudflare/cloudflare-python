@@ -6,7 +6,7 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Query, Headers, NotGiven, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from .settings import (
     SettingsResource,
@@ -83,7 +83,7 @@ class OriginTLSClientAuthResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[OriginTLSClientAuthCreateResponse]:
         """
         Upload your own certificate you want Cloudflare to use for edge-to-origin
@@ -139,7 +139,7 @@ class OriginTLSClientAuthResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[OriginTLSClientAuthListResponse]:
         """
         List Certificates
@@ -176,7 +176,7 @@ class OriginTLSClientAuthResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[OriginTLSClientAuthDeleteResponse]:
         """
         Delete Certificate
@@ -222,7 +222,7 @@ class OriginTLSClientAuthResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[OriginTLSClientAuthGetResponse]:
         """
         Get Certificate Details
@@ -296,7 +296,7 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[OriginTLSClientAuthCreateResponse]:
         """
         Upload your own certificate you want Cloudflare to use for edge-to-origin
@@ -352,7 +352,7 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[OriginTLSClientAuthListResponse, AsyncSinglePage[OriginTLSClientAuthListResponse]]:
         """
         List Certificates
@@ -389,7 +389,7 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[OriginTLSClientAuthDeleteResponse]:
         """
         Delete Certificate
@@ -435,7 +435,7 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[OriginTLSClientAuthGetResponse]:
         """
         Get Certificate Details

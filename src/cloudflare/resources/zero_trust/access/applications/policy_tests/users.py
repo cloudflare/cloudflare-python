@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ......_types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ......_utils import maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
@@ -49,15 +49,15 @@ class UsersResource(SyncAPIResource):
         policy_test_id: str,
         *,
         account_id: str,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        status: Literal["success", "fail", "error"] | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        status: Literal["success", "fail", "error"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[UserListResponse]:
         """
         Fetches a single page of user results from an Access policy test.
@@ -129,15 +129,15 @@ class AsyncUsersResource(AsyncAPIResource):
         policy_test_id: str,
         *,
         account_id: str,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        status: Literal["success", "fail", "error"] | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        status: Literal["success", "fail", "error"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[UserListResponse, AsyncV4PagePaginationArray[UserListResponse]]:
         """
         Fetches a single page of user results from an Access policy test.

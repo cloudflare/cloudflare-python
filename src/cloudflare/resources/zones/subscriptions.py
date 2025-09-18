@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -50,14 +50,14 @@ class SubscriptionsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        frequency: Literal["weekly", "monthly", "quarterly", "yearly"] | NotGiven = NOT_GIVEN,
-        rate_plan: RatePlan | NotGiven = NOT_GIVEN,
+        frequency: Literal["weekly", "monthly", "quarterly", "yearly"] | Omit = omit,
+        rate_plan: RatePlan | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Subscription:
         """
         Create a zone subscription, either plan or add-ons.
@@ -102,14 +102,14 @@ class SubscriptionsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        frequency: Literal["weekly", "monthly", "quarterly", "yearly"] | NotGiven = NOT_GIVEN,
-        rate_plan: RatePlan | NotGiven = NOT_GIVEN,
+        frequency: Literal["weekly", "monthly", "quarterly", "yearly"] | Omit = omit,
+        rate_plan: RatePlan | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Subscription:
         """
         Updates zone subscriptions, either plan or add-ons.
@@ -159,7 +159,7 @@ class SubscriptionsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Subscription:
         """
         Lists zone subscription details.
@@ -214,14 +214,14 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        frequency: Literal["weekly", "monthly", "quarterly", "yearly"] | NotGiven = NOT_GIVEN,
-        rate_plan: RatePlan | NotGiven = NOT_GIVEN,
+        frequency: Literal["weekly", "monthly", "quarterly", "yearly"] | Omit = omit,
+        rate_plan: RatePlan | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Subscription:
         """
         Create a zone subscription, either plan or add-ons.
@@ -266,14 +266,14 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        frequency: Literal["weekly", "monthly", "quarterly", "yearly"] | NotGiven = NOT_GIVEN,
-        rate_plan: RatePlan | NotGiven = NOT_GIVEN,
+        frequency: Literal["weekly", "monthly", "quarterly", "yearly"] | Omit = omit,
+        rate_plan: RatePlan | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Subscription:
         """
         Updates zone subscriptions, either plan or add-ons.
@@ -323,7 +323,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Subscription:
         """
         Lists zone subscription details.

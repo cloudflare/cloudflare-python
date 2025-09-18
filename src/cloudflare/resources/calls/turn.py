@@ -6,7 +6,7 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -53,13 +53,13 @@ class TURNResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        name: str | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TURNCreateResponse]:
         """
         Creates a new Cloudflare Calls TURN key.
@@ -97,13 +97,13 @@ class TURNResource(SyncAPIResource):
         key_id: str,
         *,
         account_id: str,
-        name: str | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TURNUpdateResponse]:
         """
         Edit details for a single TURN key.
@@ -149,7 +149,7 @@ class TURNResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[TURNListResponse]:
         """
         Lists all TURN keys in the Cloudflare account
@@ -186,7 +186,7 @@ class TURNResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TURNDeleteResponse]:
         """
         Deletes a TURN key from Cloudflare Calls
@@ -230,7 +230,7 @@ class TURNResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TURNGetResponse]:
         """
         Fetches details for a single TURN key.
@@ -289,13 +289,13 @@ class AsyncTURNResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        name: str | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TURNCreateResponse]:
         """
         Creates a new Cloudflare Calls TURN key.
@@ -333,13 +333,13 @@ class AsyncTURNResource(AsyncAPIResource):
         key_id: str,
         *,
         account_id: str,
-        name: str | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TURNUpdateResponse]:
         """
         Edit details for a single TURN key.
@@ -385,7 +385,7 @@ class AsyncTURNResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[TURNListResponse, AsyncSinglePage[TURNListResponse]]:
         """
         Lists all TURN keys in the Cloudflare account
@@ -422,7 +422,7 @@ class AsyncTURNResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TURNDeleteResponse]:
         """
         Deletes a TURN key from Cloudflare Calls
@@ -466,7 +466,7 @@ class AsyncTURNResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TURNGetResponse]:
         """
         Fetches details for a single TURN key.

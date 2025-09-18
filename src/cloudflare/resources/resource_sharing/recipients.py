@@ -6,7 +6,7 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -53,14 +53,14 @@ class RecipientsResource(SyncAPIResource):
         share_id: str,
         *,
         path_account_id: str,
-        body_account_id: str | NotGiven = NOT_GIVEN,
-        organization_id: str | NotGiven = NOT_GIVEN,
+        body_account_id: str | Omit = omit,
+        organization_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecipientCreateResponse]:
         """
         Create a new share recipient
@@ -110,15 +110,15 @@ class RecipientsResource(SyncAPIResource):
         share_id: str,
         *,
         account_id: str,
-        include_resources: bool | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        include_resources: bool | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[RecipientListResponse]:
         """
         List share recipients by share ID.
@@ -177,7 +177,7 @@ class RecipientsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecipientDeleteResponse]:
         """
         Deletion is not immediate, an updated share recipient object with a new status
@@ -222,13 +222,13 @@ class RecipientsResource(SyncAPIResource):
         *,
         account_id: str,
         share_id: str,
-        include_resources: bool | NotGiven = NOT_GIVEN,
+        include_resources: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecipientGetResponse]:
         """
         Get share recipient by ID.
@@ -297,14 +297,14 @@ class AsyncRecipientsResource(AsyncAPIResource):
         share_id: str,
         *,
         path_account_id: str,
-        body_account_id: str | NotGiven = NOT_GIVEN,
-        organization_id: str | NotGiven = NOT_GIVEN,
+        body_account_id: str | Omit = omit,
+        organization_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecipientCreateResponse]:
         """
         Create a new share recipient
@@ -354,15 +354,15 @@ class AsyncRecipientsResource(AsyncAPIResource):
         share_id: str,
         *,
         account_id: str,
-        include_resources: bool | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        include_resources: bool | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[RecipientListResponse, AsyncV4PagePaginationArray[RecipientListResponse]]:
         """
         List share recipients by share ID.
@@ -421,7 +421,7 @@ class AsyncRecipientsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecipientDeleteResponse]:
         """
         Deletion is not immediate, an updated share recipient object with a new status
@@ -466,13 +466,13 @@ class AsyncRecipientsResource(AsyncAPIResource):
         *,
         account_id: str,
         share_id: str,
-        include_resources: bool | NotGiven = NOT_GIVEN,
+        include_resources: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[RecipientGetResponse]:
         """
         Get share recipient by ID.

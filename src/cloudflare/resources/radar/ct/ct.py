@@ -16,7 +16,7 @@ from .logs import (
     LogsResourceWithStreamingResponse,
     AsyncLogsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from .authorities import (
@@ -91,11 +91,11 @@ class CtResource(SyncAPIResource):
             "VALIDATION_LEVEL",
         ],
         *,
-        ca: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        ca_owner: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        ca: SequenceNotStr[str] | Omit = omit,
+        ca_owner: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         duration: List[
             Literal[
                 "LTE_3D",
@@ -107,19 +107,19 @@ class CtResource(SyncAPIResource):
                 "GT_200D",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        entry_type: List[Literal["PRECERTIFICATE", "CERTIFICATE"]] | NotGiven = NOT_GIVEN,
-        expiration_status: List[Literal["EXPIRED", "VALID"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        has_ips: Iterable[bool] | NotGiven = NOT_GIVEN,
-        has_wildcards: Iterable[bool] | NotGiven = NOT_GIVEN,
-        limit_per_group: int | NotGiven = NOT_GIVEN,
-        log: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        log_api: List[Literal["RFC6962", "STATIC"]] | NotGiven = NOT_GIVEN,
-        log_operator: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        normalization: Literal["RAW_VALUES", "PERCENTAGE"] | NotGiven = NOT_GIVEN,
-        public_key_algorithm: List[Literal["DSA", "ECDSA", "RSA"]] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        entry_type: List[Literal["PRECERTIFICATE", "CERTIFICATE"]] | Omit = omit,
+        expiration_status: List[Literal["EXPIRED", "VALID"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        has_ips: Iterable[bool] | Omit = omit,
+        has_wildcards: Iterable[bool] | Omit = omit,
+        limit_per_group: int | Omit = omit,
+        log: SequenceNotStr[str] | Omit = omit,
+        log_api: List[Literal["RFC6962", "STATIC"]] | Omit = omit,
+        log_operator: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        normalization: Literal["RAW_VALUES", "PERCENTAGE"] | Omit = omit,
+        public_key_algorithm: List[Literal["DSA", "ECDSA", "RSA"]] | Omit = omit,
         signature_algorithm: List[
             Literal[
                 "DSA_SHA_1",
@@ -139,16 +139,16 @@ class CtResource(SyncAPIResource):
                 "RSA_SHA_512",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        tld: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        unique_entries: List[Literal["true", "false"]] | NotGiven = NOT_GIVEN,
-        validation_level: List[Literal["DOMAIN", "ORGANIZATION", "EXTENDED"]] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        tld: SequenceNotStr[str] | Omit = omit,
+        unique_entries: List[Literal["true", "false"]] | Omit = omit,
+        validation_level: List[Literal["DOMAIN", "ORGANIZATION", "EXTENDED"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CtSummaryResponse:
         """
         Retrieves an aggregated summary of certificates grouped by the specified
@@ -260,12 +260,12 @@ class CtResource(SyncAPIResource):
     def timeseries(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        ca: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        ca_owner: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        ca: SequenceNotStr[str] | Omit = omit,
+        ca_owner: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         duration: List[
             Literal[
                 "LTE_3D",
@@ -277,17 +277,17 @@ class CtResource(SyncAPIResource):
                 "GT_200D",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        entry_type: List[Literal["PRECERTIFICATE", "CERTIFICATE"]] | NotGiven = NOT_GIVEN,
-        expiration_status: List[Literal["EXPIRED", "VALID"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        has_ips: Iterable[bool] | NotGiven = NOT_GIVEN,
-        has_wildcards: Iterable[bool] | NotGiven = NOT_GIVEN,
-        log: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        log_api: List[Literal["RFC6962", "STATIC"]] | NotGiven = NOT_GIVEN,
-        log_operator: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        public_key_algorithm: List[Literal["DSA", "ECDSA", "RSA"]] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        entry_type: List[Literal["PRECERTIFICATE", "CERTIFICATE"]] | Omit = omit,
+        expiration_status: List[Literal["EXPIRED", "VALID"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        has_ips: Iterable[bool] | Omit = omit,
+        has_wildcards: Iterable[bool] | Omit = omit,
+        log: SequenceNotStr[str] | Omit = omit,
+        log_api: List[Literal["RFC6962", "STATIC"]] | Omit = omit,
+        log_operator: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        public_key_algorithm: List[Literal["DSA", "ECDSA", "RSA"]] | Omit = omit,
         signature_algorithm: List[
             Literal[
                 "DSA_SHA_1",
@@ -307,16 +307,16 @@ class CtResource(SyncAPIResource):
                 "RSA_SHA_512",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        tld: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        unique_entries: List[Literal["true", "false"]] | NotGiven = NOT_GIVEN,
-        validation_level: List[Literal["DOMAIN", "ORGANIZATION", "EXTENDED"]] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        tld: SequenceNotStr[str] | Omit = omit,
+        unique_entries: List[Literal["true", "false"]] | Omit = omit,
+        validation_level: List[Literal["DOMAIN", "ORGANIZATION", "EXTENDED"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CtTimeseriesResponse:
         """
         Retrieves certificate volume over time.
@@ -435,12 +435,12 @@ class CtResource(SyncAPIResource):
             "VALIDATION_LEVEL",
         ],
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        ca: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        ca_owner: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        ca: SequenceNotStr[str] | Omit = omit,
+        ca_owner: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         duration: List[
             Literal[
                 "LTE_3D",
@@ -452,19 +452,19 @@ class CtResource(SyncAPIResource):
                 "GT_200D",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        entry_type: List[Literal["PRECERTIFICATE", "CERTIFICATE"]] | NotGiven = NOT_GIVEN,
-        expiration_status: List[Literal["EXPIRED", "VALID"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        has_ips: Iterable[bool] | NotGiven = NOT_GIVEN,
-        has_wildcards: Iterable[bool] | NotGiven = NOT_GIVEN,
-        limit_per_group: int | NotGiven = NOT_GIVEN,
-        log: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        log_api: List[Literal["RFC6962", "STATIC"]] | NotGiven = NOT_GIVEN,
-        log_operator: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        normalization: Literal["RAW_VALUES", "PERCENTAGE"] | NotGiven = NOT_GIVEN,
-        public_key_algorithm: List[Literal["DSA", "ECDSA", "RSA"]] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        entry_type: List[Literal["PRECERTIFICATE", "CERTIFICATE"]] | Omit = omit,
+        expiration_status: List[Literal["EXPIRED", "VALID"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        has_ips: Iterable[bool] | Omit = omit,
+        has_wildcards: Iterable[bool] | Omit = omit,
+        limit_per_group: int | Omit = omit,
+        log: SequenceNotStr[str] | Omit = omit,
+        log_api: List[Literal["RFC6962", "STATIC"]] | Omit = omit,
+        log_operator: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        normalization: Literal["RAW_VALUES", "PERCENTAGE"] | Omit = omit,
+        public_key_algorithm: List[Literal["DSA", "ECDSA", "RSA"]] | Omit = omit,
         signature_algorithm: List[
             Literal[
                 "DSA_SHA_1",
@@ -484,16 +484,16 @@ class CtResource(SyncAPIResource):
                 "RSA_SHA_512",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        tld: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        unique_entries: List[Literal["true", "false"]] | NotGiven = NOT_GIVEN,
-        validation_level: List[Literal["DOMAIN", "ORGANIZATION", "EXTENDED"]] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        tld: SequenceNotStr[str] | Omit = omit,
+        unique_entries: List[Literal["true", "false"]] | Omit = omit,
+        validation_level: List[Literal["DOMAIN", "ORGANIZATION", "EXTENDED"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CtTimeseriesGroupsResponse:
         """
         Retrieves the distribution of certificates grouped by chosen the specified
@@ -655,11 +655,11 @@ class AsyncCtResource(AsyncAPIResource):
             "VALIDATION_LEVEL",
         ],
         *,
-        ca: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        ca_owner: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        ca: SequenceNotStr[str] | Omit = omit,
+        ca_owner: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         duration: List[
             Literal[
                 "LTE_3D",
@@ -671,19 +671,19 @@ class AsyncCtResource(AsyncAPIResource):
                 "GT_200D",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        entry_type: List[Literal["PRECERTIFICATE", "CERTIFICATE"]] | NotGiven = NOT_GIVEN,
-        expiration_status: List[Literal["EXPIRED", "VALID"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        has_ips: Iterable[bool] | NotGiven = NOT_GIVEN,
-        has_wildcards: Iterable[bool] | NotGiven = NOT_GIVEN,
-        limit_per_group: int | NotGiven = NOT_GIVEN,
-        log: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        log_api: List[Literal["RFC6962", "STATIC"]] | NotGiven = NOT_GIVEN,
-        log_operator: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        normalization: Literal["RAW_VALUES", "PERCENTAGE"] | NotGiven = NOT_GIVEN,
-        public_key_algorithm: List[Literal["DSA", "ECDSA", "RSA"]] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        entry_type: List[Literal["PRECERTIFICATE", "CERTIFICATE"]] | Omit = omit,
+        expiration_status: List[Literal["EXPIRED", "VALID"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        has_ips: Iterable[bool] | Omit = omit,
+        has_wildcards: Iterable[bool] | Omit = omit,
+        limit_per_group: int | Omit = omit,
+        log: SequenceNotStr[str] | Omit = omit,
+        log_api: List[Literal["RFC6962", "STATIC"]] | Omit = omit,
+        log_operator: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        normalization: Literal["RAW_VALUES", "PERCENTAGE"] | Omit = omit,
+        public_key_algorithm: List[Literal["DSA", "ECDSA", "RSA"]] | Omit = omit,
         signature_algorithm: List[
             Literal[
                 "DSA_SHA_1",
@@ -703,16 +703,16 @@ class AsyncCtResource(AsyncAPIResource):
                 "RSA_SHA_512",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        tld: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        unique_entries: List[Literal["true", "false"]] | NotGiven = NOT_GIVEN,
-        validation_level: List[Literal["DOMAIN", "ORGANIZATION", "EXTENDED"]] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        tld: SequenceNotStr[str] | Omit = omit,
+        unique_entries: List[Literal["true", "false"]] | Omit = omit,
+        validation_level: List[Literal["DOMAIN", "ORGANIZATION", "EXTENDED"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CtSummaryResponse:
         """
         Retrieves an aggregated summary of certificates grouped by the specified
@@ -824,12 +824,12 @@ class AsyncCtResource(AsyncAPIResource):
     async def timeseries(
         self,
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        ca: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        ca_owner: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        ca: SequenceNotStr[str] | Omit = omit,
+        ca_owner: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         duration: List[
             Literal[
                 "LTE_3D",
@@ -841,17 +841,17 @@ class AsyncCtResource(AsyncAPIResource):
                 "GT_200D",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        entry_type: List[Literal["PRECERTIFICATE", "CERTIFICATE"]] | NotGiven = NOT_GIVEN,
-        expiration_status: List[Literal["EXPIRED", "VALID"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        has_ips: Iterable[bool] | NotGiven = NOT_GIVEN,
-        has_wildcards: Iterable[bool] | NotGiven = NOT_GIVEN,
-        log: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        log_api: List[Literal["RFC6962", "STATIC"]] | NotGiven = NOT_GIVEN,
-        log_operator: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        public_key_algorithm: List[Literal["DSA", "ECDSA", "RSA"]] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        entry_type: List[Literal["PRECERTIFICATE", "CERTIFICATE"]] | Omit = omit,
+        expiration_status: List[Literal["EXPIRED", "VALID"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        has_ips: Iterable[bool] | Omit = omit,
+        has_wildcards: Iterable[bool] | Omit = omit,
+        log: SequenceNotStr[str] | Omit = omit,
+        log_api: List[Literal["RFC6962", "STATIC"]] | Omit = omit,
+        log_operator: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        public_key_algorithm: List[Literal["DSA", "ECDSA", "RSA"]] | Omit = omit,
         signature_algorithm: List[
             Literal[
                 "DSA_SHA_1",
@@ -871,16 +871,16 @@ class AsyncCtResource(AsyncAPIResource):
                 "RSA_SHA_512",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        tld: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        unique_entries: List[Literal["true", "false"]] | NotGiven = NOT_GIVEN,
-        validation_level: List[Literal["DOMAIN", "ORGANIZATION", "EXTENDED"]] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        tld: SequenceNotStr[str] | Omit = omit,
+        unique_entries: List[Literal["true", "false"]] | Omit = omit,
+        validation_level: List[Literal["DOMAIN", "ORGANIZATION", "EXTENDED"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CtTimeseriesResponse:
         """
         Retrieves certificate volume over time.
@@ -999,12 +999,12 @@ class AsyncCtResource(AsyncAPIResource):
             "VALIDATION_LEVEL",
         ],
         *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        ca: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        ca_owner: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_end: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        date_start: SequenceNotStr[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
+        ca: SequenceNotStr[str] | Omit = omit,
+        ca_owner: SequenceNotStr[str] | Omit = omit,
+        date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        date_range: SequenceNotStr[str] | Omit = omit,
+        date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         duration: List[
             Literal[
                 "LTE_3D",
@@ -1016,19 +1016,19 @@ class AsyncCtResource(AsyncAPIResource):
                 "GT_200D",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        entry_type: List[Literal["PRECERTIFICATE", "CERTIFICATE"]] | NotGiven = NOT_GIVEN,
-        expiration_status: List[Literal["EXPIRED", "VALID"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        has_ips: Iterable[bool] | NotGiven = NOT_GIVEN,
-        has_wildcards: Iterable[bool] | NotGiven = NOT_GIVEN,
-        limit_per_group: int | NotGiven = NOT_GIVEN,
-        log: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        log_api: List[Literal["RFC6962", "STATIC"]] | NotGiven = NOT_GIVEN,
-        log_operator: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        normalization: Literal["RAW_VALUES", "PERCENTAGE"] | NotGiven = NOT_GIVEN,
-        public_key_algorithm: List[Literal["DSA", "ECDSA", "RSA"]] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        entry_type: List[Literal["PRECERTIFICATE", "CERTIFICATE"]] | Omit = omit,
+        expiration_status: List[Literal["EXPIRED", "VALID"]] | Omit = omit,
+        format: Literal["JSON", "CSV"] | Omit = omit,
+        has_ips: Iterable[bool] | Omit = omit,
+        has_wildcards: Iterable[bool] | Omit = omit,
+        limit_per_group: int | Omit = omit,
+        log: SequenceNotStr[str] | Omit = omit,
+        log_api: List[Literal["RFC6962", "STATIC"]] | Omit = omit,
+        log_operator: SequenceNotStr[str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        normalization: Literal["RAW_VALUES", "PERCENTAGE"] | Omit = omit,
+        public_key_algorithm: List[Literal["DSA", "ECDSA", "RSA"]] | Omit = omit,
         signature_algorithm: List[
             Literal[
                 "DSA_SHA_1",
@@ -1048,16 +1048,16 @@ class AsyncCtResource(AsyncAPIResource):
                 "RSA_SHA_512",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        tld: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        unique_entries: List[Literal["true", "false"]] | NotGiven = NOT_GIVEN,
-        validation_level: List[Literal["DOMAIN", "ORGANIZATION", "EXTENDED"]] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        tld: SequenceNotStr[str] | Omit = omit,
+        unique_entries: List[Literal["true", "false"]] | Omit = omit,
+        validation_level: List[Literal["DOMAIN", "ORGANIZATION", "EXTENDED"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CtTimeseriesGroupsResponse:
         """
         Retrieves the distribution of certificates grouped by chosen the specified

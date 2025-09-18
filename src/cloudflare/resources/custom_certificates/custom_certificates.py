@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from .prioritize import (
@@ -72,16 +72,16 @@ class CustomCertificatesResource(SyncAPIResource):
         zone_id: str,
         certificate: str,
         private_key: str,
-        bundle_method: BundleMethod | NotGiven = NOT_GIVEN,
-        geo_restrictions: GeoRestrictionsParam | NotGiven = NOT_GIVEN,
-        policy: str | NotGiven = NOT_GIVEN,
-        type: Literal["legacy_custom", "sni_custom"] | NotGiven = NOT_GIVEN,
+        bundle_method: BundleMethod | Omit = omit,
+        geo_restrictions: GeoRestrictionsParam | Omit = omit,
+        policy: str | Omit = omit,
+        type: Literal["legacy_custom", "sni_custom"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CustomCertificate]:
         """
         Upload a new SSL certificate for a zone.
@@ -156,16 +156,16 @@ class CustomCertificatesResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        status: Literal["active", "expired", "deleted", "pending", "initializing"] | NotGiven = NOT_GIVEN,
+        match: Literal["any", "all"] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
+        status: Literal["active", "expired", "deleted", "pending", "initializing"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[CustomCertificate]:
         """List, search, and filter all of your custom SSL certificates.
 
@@ -225,7 +225,7 @@ class CustomCertificatesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CustomCertificateDeleteResponse]:
         """
         Remove a SSL certificate from a zone.
@@ -268,17 +268,17 @@ class CustomCertificatesResource(SyncAPIResource):
         custom_certificate_id: str,
         *,
         zone_id: str,
-        bundle_method: BundleMethod | NotGiven = NOT_GIVEN,
-        certificate: str | NotGiven = NOT_GIVEN,
-        geo_restrictions: GeoRestrictionsParam | NotGiven = NOT_GIVEN,
-        policy: str | NotGiven = NOT_GIVEN,
-        private_key: str | NotGiven = NOT_GIVEN,
+        bundle_method: BundleMethod | Omit = omit,
+        certificate: str | Omit = omit,
+        geo_restrictions: GeoRestrictionsParam | Omit = omit,
+        policy: str | Omit = omit,
+        private_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CustomCertificate]:
         """Upload a new private key and/or PEM/CRT for the SSL certificate.
 
@@ -364,7 +364,7 @@ class CustomCertificatesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CustomCertificate]:
         """
         SSL Configuration Details
@@ -431,16 +431,16 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
         zone_id: str,
         certificate: str,
         private_key: str,
-        bundle_method: BundleMethod | NotGiven = NOT_GIVEN,
-        geo_restrictions: GeoRestrictionsParam | NotGiven = NOT_GIVEN,
-        policy: str | NotGiven = NOT_GIVEN,
-        type: Literal["legacy_custom", "sni_custom"] | NotGiven = NOT_GIVEN,
+        bundle_method: BundleMethod | Omit = omit,
+        geo_restrictions: GeoRestrictionsParam | Omit = omit,
+        policy: str | Omit = omit,
+        type: Literal["legacy_custom", "sni_custom"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CustomCertificate]:
         """
         Upload a new SSL certificate for a zone.
@@ -515,16 +515,16 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        status: Literal["active", "expired", "deleted", "pending", "initializing"] | NotGiven = NOT_GIVEN,
+        match: Literal["any", "all"] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
+        status: Literal["active", "expired", "deleted", "pending", "initializing"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[CustomCertificate, AsyncV4PagePaginationArray[CustomCertificate]]:
         """List, search, and filter all of your custom SSL certificates.
 
@@ -584,7 +584,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CustomCertificateDeleteResponse]:
         """
         Remove a SSL certificate from a zone.
@@ -627,17 +627,17 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
         custom_certificate_id: str,
         *,
         zone_id: str,
-        bundle_method: BundleMethod | NotGiven = NOT_GIVEN,
-        certificate: str | NotGiven = NOT_GIVEN,
-        geo_restrictions: GeoRestrictionsParam | NotGiven = NOT_GIVEN,
-        policy: str | NotGiven = NOT_GIVEN,
-        private_key: str | NotGiven = NOT_GIVEN,
+        bundle_method: BundleMethod | Omit = omit,
+        certificate: str | Omit = omit,
+        geo_restrictions: GeoRestrictionsParam | Omit = omit,
+        policy: str | Omit = omit,
+        private_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CustomCertificate]:
         """Upload a new private key and/or PEM/CRT for the SSL certificate.
 
@@ -723,7 +723,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CustomCertificate]:
         """
         SSL Configuration Details

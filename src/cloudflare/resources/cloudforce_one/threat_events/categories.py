@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -51,14 +51,14 @@ class CategoriesResource(SyncAPIResource):
         account_id: str,
         kill_chain: float,
         name: str,
-        mitre_attack: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        shortname: str | NotGiven = NOT_GIVEN,
+        mitre_attack: SequenceNotStr[str] | Omit = omit,
+        shortname: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryCreateResponse:
         """
         Creates a new category
@@ -102,7 +102,7 @@ class CategoriesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryListResponse:
         """
         Lists categories
@@ -138,7 +138,7 @@ class CategoriesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryDeleteResponse:
         """
         Deletes a category
@@ -173,16 +173,16 @@ class CategoriesResource(SyncAPIResource):
         category_id: str,
         *,
         account_id: str,
-        kill_chain: float | NotGiven = NOT_GIVEN,
-        mitre_attack: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        shortname: str | NotGiven = NOT_GIVEN,
+        kill_chain: float | Omit = omit,
+        mitre_attack: SequenceNotStr[str] | Omit = omit,
+        name: str | Omit = omit,
+        shortname: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryEditResponse:
         """
         Updates a category
@@ -231,7 +231,7 @@ class CategoriesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryGetResponse:
         """
         Reads a category
@@ -288,14 +288,14 @@ class AsyncCategoriesResource(AsyncAPIResource):
         account_id: str,
         kill_chain: float,
         name: str,
-        mitre_attack: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        shortname: str | NotGiven = NOT_GIVEN,
+        mitre_attack: SequenceNotStr[str] | Omit = omit,
+        shortname: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryCreateResponse:
         """
         Creates a new category
@@ -339,7 +339,7 @@ class AsyncCategoriesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryListResponse:
         """
         Lists categories
@@ -375,7 +375,7 @@ class AsyncCategoriesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryDeleteResponse:
         """
         Deletes a category
@@ -410,16 +410,16 @@ class AsyncCategoriesResource(AsyncAPIResource):
         category_id: str,
         *,
         account_id: str,
-        kill_chain: float | NotGiven = NOT_GIVEN,
-        mitre_attack: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        shortname: str | NotGiven = NOT_GIVEN,
+        kill_chain: float | Omit = omit,
+        mitre_attack: SequenceNotStr[str] | Omit = omit,
+        name: str | Omit = omit,
+        shortname: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryEditResponse:
         """
         Updates a category
@@ -468,7 +468,7 @@ class AsyncCategoriesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryGetResponse:
         """
         Reads a category

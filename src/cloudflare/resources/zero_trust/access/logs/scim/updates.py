@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ......_types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ......_utils import maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
@@ -51,25 +51,25 @@ class UpdatesResource(SyncAPIResource):
         *,
         account_id: str,
         idp_id: SequenceNotStr[str],
-        cf_resource_id: str | NotGiven = NOT_GIVEN,
-        direction: Literal["desc", "asc"] | NotGiven = NOT_GIVEN,
-        idp_resource_id: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        request_method: List[Literal["DELETE", "PATCH", "POST", "PUT"]] | NotGiven = NOT_GIVEN,
-        resource_group_name: str | NotGiven = NOT_GIVEN,
-        resource_type: List[Literal["USER", "GROUP"]] | NotGiven = NOT_GIVEN,
-        resource_user_email: str | NotGiven = NOT_GIVEN,
-        since: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        status: List[Literal["FAILURE", "SUCCESS"]] | NotGiven = NOT_GIVEN,
-        until: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        cf_resource_id: str | Omit = omit,
+        direction: Literal["desc", "asc"] | Omit = omit,
+        idp_resource_id: str | Omit = omit,
+        limit: int | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        request_method: List[Literal["DELETE", "PATCH", "POST", "PUT"]] | Omit = omit,
+        resource_group_name: str | Omit = omit,
+        resource_type: List[Literal["USER", "GROUP"]] | Omit = omit,
+        resource_user_email: str | Omit = omit,
+        since: Union[str, datetime] | Omit = omit,
+        status: List[Literal["FAILURE", "SUCCESS"]] | Omit = omit,
+        until: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[UpdateListResponse]:
         """
         Lists Access SCIM update logs that maintain a record of updates made to User and
@@ -174,25 +174,25 @@ class AsyncUpdatesResource(AsyncAPIResource):
         *,
         account_id: str,
         idp_id: SequenceNotStr[str],
-        cf_resource_id: str | NotGiven = NOT_GIVEN,
-        direction: Literal["desc", "asc"] | NotGiven = NOT_GIVEN,
-        idp_resource_id: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        request_method: List[Literal["DELETE", "PATCH", "POST", "PUT"]] | NotGiven = NOT_GIVEN,
-        resource_group_name: str | NotGiven = NOT_GIVEN,
-        resource_type: List[Literal["USER", "GROUP"]] | NotGiven = NOT_GIVEN,
-        resource_user_email: str | NotGiven = NOT_GIVEN,
-        since: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        status: List[Literal["FAILURE", "SUCCESS"]] | NotGiven = NOT_GIVEN,
-        until: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        cf_resource_id: str | Omit = omit,
+        direction: Literal["desc", "asc"] | Omit = omit,
+        idp_resource_id: str | Omit = omit,
+        limit: int | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        request_method: List[Literal["DELETE", "PATCH", "POST", "PUT"]] | Omit = omit,
+        resource_group_name: str | Omit = omit,
+        resource_type: List[Literal["USER", "GROUP"]] | Omit = omit,
+        resource_user_email: str | Omit = omit,
+        since: Union[str, datetime] | Omit = omit,
+        status: List[Literal["FAILURE", "SUCCESS"]] | Omit = omit,
+        until: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[UpdateListResponse, AsyncV4PagePaginationArray[UpdateListResponse]]:
         """
         Lists Access SCIM update logs that maintain a record of updates made to User and

@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -55,15 +55,15 @@ class KeysResource(SyncAPIResource):
         namespace_id: str,
         *,
         account_id: str,
-        cursor: str | NotGiven = NOT_GIVEN,
-        limit: float | NotGiven = NOT_GIVEN,
-        prefix: str | NotGiven = NOT_GIVEN,
+        cursor: str | Omit = omit,
+        limit: float | Omit = omit,
+        prefix: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncCursorPaginationAfter[Key]:
         """
         Lists a namespace's keys.
@@ -128,7 +128,7 @@ class KeysResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[KeyBulkDeleteResponse]:
         """Remove multiple KV pairs from the namespace.
 
@@ -172,14 +172,14 @@ class KeysResource(SyncAPIResource):
         *,
         account_id: str,
         keys: SequenceNotStr[str],
-        type: Literal["text", "json"] | NotGiven = NOT_GIVEN,
-        with_metadata: bool | NotGiven = NOT_GIVEN,
+        type: Literal["text", "json"] | Omit = omit,
+        with_metadata: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[KeyBulkGetResponse]:
         """Retrieve up to 100 KV pairs from the namespace.
 
@@ -247,7 +247,7 @@ class KeysResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[KeyBulkUpdateResponse]:
         """Write multiple keys and values at once.
 
@@ -314,15 +314,15 @@ class AsyncKeysResource(AsyncAPIResource):
         namespace_id: str,
         *,
         account_id: str,
-        cursor: str | NotGiven = NOT_GIVEN,
-        limit: float | NotGiven = NOT_GIVEN,
-        prefix: str | NotGiven = NOT_GIVEN,
+        cursor: str | Omit = omit,
+        limit: float | Omit = omit,
+        prefix: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Key, AsyncCursorPaginationAfter[Key]]:
         """
         Lists a namespace's keys.
@@ -387,7 +387,7 @@ class AsyncKeysResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[KeyBulkDeleteResponse]:
         """Remove multiple KV pairs from the namespace.
 
@@ -431,14 +431,14 @@ class AsyncKeysResource(AsyncAPIResource):
         *,
         account_id: str,
         keys: SequenceNotStr[str],
-        type: Literal["text", "json"] | NotGiven = NOT_GIVEN,
-        with_metadata: bool | NotGiven = NOT_GIVEN,
+        type: Literal["text", "json"] | Omit = omit,
+        with_metadata: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[KeyBulkGetResponse]:
         """Retrieve up to 100 KV pairs from the namespace.
 
@@ -506,7 +506,7 @@ class AsyncKeysResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[KeyBulkUpdateResponse]:
         """Write multiple keys and values at once.
 

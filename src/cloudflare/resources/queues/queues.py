@@ -14,7 +14,7 @@ from .purge import (
     PurgeResourceWithStreamingResponse,
     AsyncPurgeResourceWithStreamingResponse,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from .messages import (
     MessagesResource,
@@ -104,7 +104,7 @@ class QueuesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Queue]:
         """
         Create a new queue
@@ -140,14 +140,14 @@ class QueuesResource(SyncAPIResource):
         queue_id: str,
         *,
         account_id: str,
-        queue_name: str | NotGiven = NOT_GIVEN,
-        settings: queue_update_params.Settings | NotGiven = NOT_GIVEN,
+        queue_name: str | Omit = omit,
+        settings: queue_update_params.Settings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Queue]:
         """Updates a Queue.
 
@@ -200,7 +200,7 @@ class QueuesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[Queue]:
         """
         Returns the queues owned by an account.
@@ -237,7 +237,7 @@ class QueuesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> QueueDeleteResponse:
         """
         Deletes a queue
@@ -272,14 +272,14 @@ class QueuesResource(SyncAPIResource):
         queue_id: str,
         *,
         account_id: str,
-        queue_name: str | NotGiven = NOT_GIVEN,
-        settings: queue_edit_params.Settings | NotGiven = NOT_GIVEN,
+        queue_name: str | Omit = omit,
+        settings: queue_edit_params.Settings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Queue]:
         """
         Updates a Queue.
@@ -330,7 +330,7 @@ class QueuesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Queue]:
         """
         Get details about a specific queue.
@@ -411,7 +411,7 @@ class AsyncQueuesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Queue]:
         """
         Create a new queue
@@ -447,14 +447,14 @@ class AsyncQueuesResource(AsyncAPIResource):
         queue_id: str,
         *,
         account_id: str,
-        queue_name: str | NotGiven = NOT_GIVEN,
-        settings: queue_update_params.Settings | NotGiven = NOT_GIVEN,
+        queue_name: str | Omit = omit,
+        settings: queue_update_params.Settings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Queue]:
         """Updates a Queue.
 
@@ -507,7 +507,7 @@ class AsyncQueuesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Queue, AsyncSinglePage[Queue]]:
         """
         Returns the queues owned by an account.
@@ -544,7 +544,7 @@ class AsyncQueuesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> QueueDeleteResponse:
         """
         Deletes a queue
@@ -579,14 +579,14 @@ class AsyncQueuesResource(AsyncAPIResource):
         queue_id: str,
         *,
         account_id: str,
-        queue_name: str | NotGiven = NOT_GIVEN,
-        settings: queue_edit_params.Settings | NotGiven = NOT_GIVEN,
+        queue_name: str | Omit = omit,
+        settings: queue_edit_params.Settings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Queue]:
         """
         Updates a Queue.
@@ -637,7 +637,7 @@ class AsyncQueuesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Queue]:
         """
         Get details about a specific queue.

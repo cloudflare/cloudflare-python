@@ -6,7 +6,7 @@ from typing import Type, cast
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -48,13 +48,13 @@ class HoldsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        include_subdomains: bool | NotGiven = NOT_GIVEN,
+        include_subdomains: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ZoneHold:
         """
         Enforce a zone hold on the zone, blocking the creation and activation of zones
@@ -95,13 +95,13 @@ class HoldsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        hold_after: str | NotGiven = NOT_GIVEN,
+        hold_after: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ZoneHold:
         """
         Stop enforcement of a zone hold on the zone, permanently or temporarily,
@@ -141,14 +141,14 @@ class HoldsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        hold_after: str | NotGiven = NOT_GIVEN,
-        include_subdomains: bool | NotGiven = NOT_GIVEN,
+        hold_after: str | Omit = omit,
+        include_subdomains: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ZoneHold:
         """
         Update the `hold_after` and/or `include_subdomains` values on an existing zone
@@ -206,7 +206,7 @@ class HoldsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ZoneHold:
         """
         Retrieve whether the zone is subject to a zone hold, and metadata about the
@@ -262,13 +262,13 @@ class AsyncHoldsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        include_subdomains: bool | NotGiven = NOT_GIVEN,
+        include_subdomains: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ZoneHold:
         """
         Enforce a zone hold on the zone, blocking the creation and activation of zones
@@ -311,13 +311,13 @@ class AsyncHoldsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        hold_after: str | NotGiven = NOT_GIVEN,
+        hold_after: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ZoneHold:
         """
         Stop enforcement of a zone hold on the zone, permanently or temporarily,
@@ -357,14 +357,14 @@ class AsyncHoldsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        hold_after: str | NotGiven = NOT_GIVEN,
-        include_subdomains: bool | NotGiven = NOT_GIVEN,
+        hold_after: str | Omit = omit,
+        include_subdomains: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ZoneHold:
         """
         Update the `hold_after` and/or `include_subdomains` values on an existing zone
@@ -422,7 +422,7 @@ class AsyncHoldsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ZoneHold:
         """
         Retrieve whether the zone is subject to a zone hold, and metadata about the

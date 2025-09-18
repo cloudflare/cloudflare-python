@@ -6,7 +6,7 @@ import typing_extensions
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -52,14 +52,14 @@ class CustomNameserversResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        ns_set: float | NotGiven = NOT_GIVEN,
+        enabled: bool | Omit = omit,
+        ns_set: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[CustomNameserverUpdateResponse]:
         """
         Set metadata for account-level custom nameservers on a zone.
@@ -117,7 +117,7 @@ class CustomNameserversResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomNameserverGetResponse:
         """
         Get metadata for account-level custom nameservers on a zone.
@@ -174,14 +174,14 @@ class AsyncCustomNameserversResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        ns_set: float | NotGiven = NOT_GIVEN,
+        enabled: bool | Omit = omit,
+        ns_set: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[CustomNameserverUpdateResponse, AsyncSinglePage[CustomNameserverUpdateResponse]]:
         """
         Set metadata for account-level custom nameservers on a zone.
@@ -239,7 +239,7 @@ class AsyncCustomNameserversResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomNameserverGetResponse:
         """
         Get metadata for account-level custom nameservers on a zone.

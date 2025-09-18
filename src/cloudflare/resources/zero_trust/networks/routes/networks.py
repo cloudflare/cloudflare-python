@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -55,14 +55,14 @@ class NetworksResource(SyncAPIResource):
         *,
         account_id: str,
         tunnel_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        virtual_network_id: str | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        virtual_network_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Route:
         """Routes a private network through a Cloudflare Tunnel.
 
@@ -120,16 +120,15 @@ class NetworksResource(SyncAPIResource):
         ip_network_encoded: str,
         *,
         account_id: str,
-        tun_type: Literal["cfd_tunnel", "warp_connector", "warp", "magic", "ip_sec", "gre", "cni"]
-        | NotGiven = NOT_GIVEN,
-        tunnel_id: str | NotGiven = NOT_GIVEN,
-        virtual_network_id: str | NotGiven = NOT_GIVEN,
+        tun_type: Literal["cfd_tunnel", "warp_connector", "warp", "magic", "ip_sec", "gre", "cni"] | Omit = omit,
+        tunnel_id: str | Omit = omit,
+        virtual_network_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Route:
         """Deletes a private network route from an account.
 
@@ -197,7 +196,7 @@ class NetworksResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Route:
         """Updates an existing private network route in an account.
 
@@ -263,14 +262,14 @@ class AsyncNetworksResource(AsyncAPIResource):
         *,
         account_id: str,
         tunnel_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        virtual_network_id: str | NotGiven = NOT_GIVEN,
+        comment: str | Omit = omit,
+        virtual_network_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Route:
         """Routes a private network through a Cloudflare Tunnel.
 
@@ -328,16 +327,15 @@ class AsyncNetworksResource(AsyncAPIResource):
         ip_network_encoded: str,
         *,
         account_id: str,
-        tun_type: Literal["cfd_tunnel", "warp_connector", "warp", "magic", "ip_sec", "gre", "cni"]
-        | NotGiven = NOT_GIVEN,
-        tunnel_id: str | NotGiven = NOT_GIVEN,
-        virtual_network_id: str | NotGiven = NOT_GIVEN,
+        tun_type: Literal["cfd_tunnel", "warp_connector", "warp", "magic", "ip_sec", "gre", "cni"] | Omit = omit,
+        tunnel_id: str | Omit = omit,
+        virtual_network_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Route:
         """Deletes a private network route from an account.
 
@@ -405,7 +403,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Route:
         """Updates an existing private network route in an account.
 

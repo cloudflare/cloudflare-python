@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -51,26 +51,26 @@ class DevicesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        active_registrations: Literal["include", "only", "exclude"] | NotGiven = NOT_GIVEN,
-        cursor: str | NotGiven = NOT_GIVEN,
-        include: str | NotGiven = NOT_GIVEN,
-        last_seen_user: device_list_params.LastSeenUser | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        search: str | NotGiven = NOT_GIVEN,
-        seen_after: str | NotGiven = NOT_GIVEN,
-        seen_before: str | NotGiven = NOT_GIVEN,
+        id: SequenceNotStr[str] | Omit = omit,
+        active_registrations: Literal["include", "only", "exclude"] | Omit = omit,
+        cursor: str | Omit = omit,
+        include: str | Omit = omit,
+        last_seen_user: device_list_params.LastSeenUser | Omit = omit,
+        per_page: int | Omit = omit,
+        search: str | Omit = omit,
+        seen_after: str | Omit = omit,
+        seen_before: str | Omit = omit,
         sort_by: Literal[
             "name", "id", "client_version", "last_seen_user.email", "last_seen_at", "active_registrations", "created_at"
         ]
-        | NotGiven = NOT_GIVEN,
-        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        sort_order: Literal["asc", "desc"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncCursorPagination[DeviceListResponse]:
         """
         Lists WARP devices.
@@ -150,7 +150,7 @@ class DevicesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Deletes a WARP device.
@@ -185,13 +185,13 @@ class DevicesResource(SyncAPIResource):
         device_id: str,
         *,
         account_id: str,
-        include: str | NotGiven = NOT_GIVEN,
+        include: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DeviceGetResponse:
         """
         Fetches a single WARP device.
@@ -235,7 +235,7 @@ class DevicesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Revokes all WARP registrations associated with the specified device.
@@ -290,26 +290,26 @@ class AsyncDevicesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        active_registrations: Literal["include", "only", "exclude"] | NotGiven = NOT_GIVEN,
-        cursor: str | NotGiven = NOT_GIVEN,
-        include: str | NotGiven = NOT_GIVEN,
-        last_seen_user: device_list_params.LastSeenUser | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        search: str | NotGiven = NOT_GIVEN,
-        seen_after: str | NotGiven = NOT_GIVEN,
-        seen_before: str | NotGiven = NOT_GIVEN,
+        id: SequenceNotStr[str] | Omit = omit,
+        active_registrations: Literal["include", "only", "exclude"] | Omit = omit,
+        cursor: str | Omit = omit,
+        include: str | Omit = omit,
+        last_seen_user: device_list_params.LastSeenUser | Omit = omit,
+        per_page: int | Omit = omit,
+        search: str | Omit = omit,
+        seen_after: str | Omit = omit,
+        seen_before: str | Omit = omit,
         sort_by: Literal[
             "name", "id", "client_version", "last_seen_user.email", "last_seen_at", "active_registrations", "created_at"
         ]
-        | NotGiven = NOT_GIVEN,
-        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        sort_order: Literal["asc", "desc"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[DeviceListResponse, AsyncCursorPagination[DeviceListResponse]]:
         """
         Lists WARP devices.
@@ -389,7 +389,7 @@ class AsyncDevicesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Deletes a WARP device.
@@ -424,13 +424,13 @@ class AsyncDevicesResource(AsyncAPIResource):
         device_id: str,
         *,
         account_id: str,
-        include: str | NotGiven = NOT_GIVEN,
+        include: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DeviceGetResponse:
         """
         Fetches a single WARP device.
@@ -474,7 +474,7 @@ class AsyncDevicesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Revokes all WARP registrations associated with the specified device.

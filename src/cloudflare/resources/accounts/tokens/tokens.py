@@ -16,7 +16,7 @@ from .value import (
     ValueResourceWithStreamingResponse,
     AsyncValueResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -81,15 +81,15 @@ class TokensResource(SyncAPIResource):
         account_id: str,
         name: str,
         policies: Iterable[TokenPolicy],
-        condition: token_create_params.Condition | NotGiven = NOT_GIVEN,
-        expires_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        not_before: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        condition: token_create_params.Condition | Omit = omit,
+        expires_on: Union[str, datetime] | Omit = omit,
+        not_before: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TokenCreateResponse]:
         """
         Create a new Account Owned API token.
@@ -145,16 +145,16 @@ class TokensResource(SyncAPIResource):
         account_id: str,
         name: str,
         policies: Iterable[TokenPolicy],
-        condition: token_update_params.Condition | NotGiven = NOT_GIVEN,
-        expires_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        not_before: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        status: Literal["active", "disabled", "expired"] | NotGiven = NOT_GIVEN,
+        condition: token_update_params.Condition | Omit = omit,
+        expires_on: Union[str, datetime] | Omit = omit,
+        not_before: Union[str, datetime] | Omit = omit,
+        status: Literal["active", "disabled", "expired"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Token]:
         """
         Update an existing token.
@@ -214,15 +214,15 @@ class TokensResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[Token]:
         """
         List all Account Owned API tokens created for this account.
@@ -276,7 +276,7 @@ class TokensResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TokenDeleteResponse]:
         """
         Destroy an Account Owned API token.
@@ -320,7 +320,7 @@ class TokensResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Token]:
         """
         Get information about a specific Account Owned API token.
@@ -363,7 +363,7 @@ class TokensResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TokenVerifyResponse]:
         """
         Test whether a token works.
@@ -428,15 +428,15 @@ class AsyncTokensResource(AsyncAPIResource):
         account_id: str,
         name: str,
         policies: Iterable[TokenPolicy],
-        condition: token_create_params.Condition | NotGiven = NOT_GIVEN,
-        expires_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        not_before: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        condition: token_create_params.Condition | Omit = omit,
+        expires_on: Union[str, datetime] | Omit = omit,
+        not_before: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TokenCreateResponse]:
         """
         Create a new Account Owned API token.
@@ -492,16 +492,16 @@ class AsyncTokensResource(AsyncAPIResource):
         account_id: str,
         name: str,
         policies: Iterable[TokenPolicy],
-        condition: token_update_params.Condition | NotGiven = NOT_GIVEN,
-        expires_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        not_before: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        status: Literal["active", "disabled", "expired"] | NotGiven = NOT_GIVEN,
+        condition: token_update_params.Condition | Omit = omit,
+        expires_on: Union[str, datetime] | Omit = omit,
+        not_before: Union[str, datetime] | Omit = omit,
+        status: Literal["active", "disabled", "expired"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Token]:
         """
         Update an existing token.
@@ -561,15 +561,15 @@ class AsyncTokensResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Token, AsyncV4PagePaginationArray[Token]]:
         """
         List all Account Owned API tokens created for this account.
@@ -623,7 +623,7 @@ class AsyncTokensResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TokenDeleteResponse]:
         """
         Destroy an Account Owned API token.
@@ -667,7 +667,7 @@ class AsyncTokensResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Token]:
         """
         Get information about a specific Account Owned API token.
@@ -710,7 +710,7 @@ class AsyncTokensResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[TokenVerifyResponse]:
         """
         Test whether a token works.

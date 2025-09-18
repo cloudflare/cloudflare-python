@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -127,15 +127,15 @@ class PoliciesResource(SyncAPIResource):
         enabled: bool,
         mechanisms: MechanismParam,
         name: str,
-        alert_interval: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        filters: PolicyFilterParam | NotGiven = NOT_GIVEN,
+        alert_interval: str | Omit = omit,
+        description: str | Omit = omit,
+        filters: PolicyFilterParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PolicyCreateResponse]:
         """
         Creates a new Notification policy.
@@ -202,7 +202,7 @@ class PoliciesResource(SyncAPIResource):
         policy_id: str,
         *,
         account_id: str,
-        alert_interval: str | NotGiven = NOT_GIVEN,
+        alert_interval: str | Omit = omit,
         alert_type: Literal[
             "access_custom_certificate_expiration_type",
             "advanced_ddos_attack_l4_alert",
@@ -272,18 +272,18 @@ class PoliciesResource(SyncAPIResource):
             "web_analytics_metrics_update",
             "zone_aop_custom_certificate_expiration_type",
         ]
-        | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        filters: PolicyFilterParam | NotGiven = NOT_GIVEN,
-        mechanisms: MechanismParam | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        filters: PolicyFilterParam | Omit = omit,
+        mechanisms: MechanismParam | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PolicyUpdateResponse]:
         """
         Update a Notification policy.
@@ -358,7 +358,7 @@ class PoliciesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[Policy]:
         """
         Get a list of all Notification policies.
@@ -395,7 +395,7 @@ class PoliciesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PolicyDeleteResponse:
         """
         Delete a Notification policy.
@@ -435,7 +435,7 @@ class PoliciesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Policy]:
         """
         Get details for a single policy.
@@ -566,15 +566,15 @@ class AsyncPoliciesResource(AsyncAPIResource):
         enabled: bool,
         mechanisms: MechanismParam,
         name: str,
-        alert_interval: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        filters: PolicyFilterParam | NotGiven = NOT_GIVEN,
+        alert_interval: str | Omit = omit,
+        description: str | Omit = omit,
+        filters: PolicyFilterParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PolicyCreateResponse]:
         """
         Creates a new Notification policy.
@@ -641,7 +641,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         policy_id: str,
         *,
         account_id: str,
-        alert_interval: str | NotGiven = NOT_GIVEN,
+        alert_interval: str | Omit = omit,
         alert_type: Literal[
             "access_custom_certificate_expiration_type",
             "advanced_ddos_attack_l4_alert",
@@ -711,18 +711,18 @@ class AsyncPoliciesResource(AsyncAPIResource):
             "web_analytics_metrics_update",
             "zone_aop_custom_certificate_expiration_type",
         ]
-        | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        filters: PolicyFilterParam | NotGiven = NOT_GIVEN,
-        mechanisms: MechanismParam | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        description: str | Omit = omit,
+        enabled: bool | Omit = omit,
+        filters: PolicyFilterParam | Omit = omit,
+        mechanisms: MechanismParam | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PolicyUpdateResponse]:
         """
         Update a Notification policy.
@@ -797,7 +797,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Policy, AsyncSinglePage[Policy]]:
         """
         Get a list of all Notification policies.
@@ -834,7 +834,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PolicyDeleteResponse:
         """
         Delete a Notification policy.
@@ -874,7 +874,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Policy]:
         """
         Get details for a single policy.

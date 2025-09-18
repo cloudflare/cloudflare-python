@@ -7,7 +7,7 @@ from typing_extensions import Literal, overload
 
 import httpx
 
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import required_args, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -66,18 +66,18 @@ class AbuseReportsResource(SyncAPIResource):
         signature: str,
         state: str,
         urls: str,
-        comments: str | NotGiven = NOT_GIVEN,
-        company: str | NotGiven = NOT_GIVEN,
-        reported_country: str | NotGiven = NOT_GIVEN,
-        reported_user_agent: str | NotGiven = NOT_GIVEN,
-        tele: str | NotGiven = NOT_GIVEN,
-        title: str | NotGiven = NOT_GIVEN,
+        comments: str | Omit = omit,
+        company: str | Omit = omit,
+        reported_country: str | Omit = omit,
+        reported_user_agent: str | Omit = omit,
+        tele: str | Omit = omit,
+        title: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Submit the Abuse Report of a particular type
@@ -172,18 +172,18 @@ class AbuseReportsResource(SyncAPIResource):
         trademark_office: str,
         trademark_symbol: str,
         urls: str,
-        comments: str | NotGiven = NOT_GIVEN,
-        company: str | NotGiven = NOT_GIVEN,
-        reported_country: str | NotGiven = NOT_GIVEN,
-        reported_user_agent: str | NotGiven = NOT_GIVEN,
-        tele: str | NotGiven = NOT_GIVEN,
-        title: str | NotGiven = NOT_GIVEN,
+        comments: str | Omit = omit,
+        company: str | Omit = omit,
+        reported_country: str | Omit = omit,
+        reported_user_agent: str | Omit = omit,
+        tele: str | Omit = omit,
+        title: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Submit the Abuse Report of a particular type
@@ -260,21 +260,21 @@ class AbuseReportsResource(SyncAPIResource):
         name: str,
         owner_notification: Literal["send", "send-anon", "none"],
         urls: str,
-        comments: str | NotGiven = NOT_GIVEN,
-        company: str | NotGiven = NOT_GIVEN,
-        destination_ips: str | NotGiven = NOT_GIVEN,
-        ports_protocols: str | NotGiven = NOT_GIVEN,
-        reported_country: str | NotGiven = NOT_GIVEN,
-        reported_user_agent: str | NotGiven = NOT_GIVEN,
-        source_ips: str | NotGiven = NOT_GIVEN,
-        tele: str | NotGiven = NOT_GIVEN,
-        title: str | NotGiven = NOT_GIVEN,
+        comments: str | Omit = omit,
+        company: str | Omit = omit,
+        destination_ips: str | Omit = omit,
+        ports_protocols: str | Omit = omit,
+        reported_country: str | Omit = omit,
+        reported_user_agent: str | Omit = omit,
+        source_ips: str | Omit = omit,
+        tele: str | Omit = omit,
+        title: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Submit the Abuse Report of a particular type
@@ -358,19 +358,19 @@ class AbuseReportsResource(SyncAPIResource):
         name: str,
         owner_notification: Literal["send", "send-anon"],
         urls: str,
-        comments: str | NotGiven = NOT_GIVEN,
-        company: str | NotGiven = NOT_GIVEN,
-        original_work: str | NotGiven = NOT_GIVEN,
-        reported_country: str | NotGiven = NOT_GIVEN,
-        reported_user_agent: str | NotGiven = NOT_GIVEN,
-        tele: str | NotGiven = NOT_GIVEN,
-        title: str | NotGiven = NOT_GIVEN,
+        comments: str | Omit = omit,
+        company: str | Omit = omit,
+        original_work: str | Omit = omit,
+        reported_country: str | Omit = omit,
+        reported_user_agent: str | Omit = omit,
+        tele: str | Omit = omit,
+        title: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Submit the Abuse Report of a particular type
@@ -445,19 +445,19 @@ class AbuseReportsResource(SyncAPIResource):
         ncmec_notification: Literal["send", "send-anon"],
         owner_notification: Literal["send", "send-anon", "none"],
         urls: str,
-        comments: str | NotGiven = NOT_GIVEN,
-        company: str | NotGiven = NOT_GIVEN,
-        country: str | NotGiven = NOT_GIVEN,
-        reported_country: str | NotGiven = NOT_GIVEN,
-        reported_user_agent: str | NotGiven = NOT_GIVEN,
-        tele: str | NotGiven = NOT_GIVEN,
-        title: str | NotGiven = NOT_GIVEN,
+        comments: str | Omit = omit,
+        company: str | Omit = omit,
+        country: str | Omit = omit,
+        reported_country: str | Omit = omit,
+        reported_user_agent: str | Omit = omit,
+        tele: str | Omit = omit,
+        title: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Submit the Abuse Report of a particular type
@@ -534,18 +534,18 @@ class AbuseReportsResource(SyncAPIResource):
         name: str,
         owner_notification: Literal["send", "send-anon"],
         urls: str,
-        comments: str | NotGiven = NOT_GIVEN,
-        company: str | NotGiven = NOT_GIVEN,
-        reported_country: str | NotGiven = NOT_GIVEN,
-        reported_user_agent: str | NotGiven = NOT_GIVEN,
-        tele: str | NotGiven = NOT_GIVEN,
-        title: str | NotGiven = NOT_GIVEN,
+        comments: str | Omit = omit,
+        company: str | Omit = omit,
+        reported_country: str | Omit = omit,
+        reported_user_agent: str | Omit = omit,
+        tele: str | Omit = omit,
+        title: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Submit the Abuse Report of a particular type
@@ -614,18 +614,18 @@ class AbuseReportsResource(SyncAPIResource):
         name: str,
         owner_notification: Literal["send", "send-anon", "none"],
         urls: str,
-        comments: str | NotGiven = NOT_GIVEN,
-        company: str | NotGiven = NOT_GIVEN,
-        reported_country: str | NotGiven = NOT_GIVEN,
-        reported_user_agent: str | NotGiven = NOT_GIVEN,
-        tele: str | NotGiven = NOT_GIVEN,
-        title: str | NotGiven = NOT_GIVEN,
+        comments: str | Omit = omit,
+        company: str | Omit = omit,
+        reported_country: str | Omit = omit,
+        reported_user_agent: str | Omit = omit,
+        tele: str | Omit = omit,
+        title: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Submit the Abuse Report of a particular type
@@ -689,19 +689,19 @@ class AbuseReportsResource(SyncAPIResource):
         ncsei_subject_representation: bool,
         owner_notification: Literal["send", "send-anon", "none"],
         urls: str,
-        comments: str | NotGiven = NOT_GIVEN,
-        company: str | NotGiven = NOT_GIVEN,
-        country: str | NotGiven = NOT_GIVEN,
-        reported_country: str | NotGiven = NOT_GIVEN,
-        reported_user_agent: str | NotGiven = NOT_GIVEN,
-        tele: str | NotGiven = NOT_GIVEN,
-        title: str | NotGiven = NOT_GIVEN,
+        comments: str | Omit = omit,
+        company: str | Omit = omit,
+        country: str | Omit = omit,
+        reported_country: str | Omit = omit,
+        reported_user_agent: str | Omit = omit,
+        tele: str | Omit = omit,
+        title: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Submit the Abuse Report of a particular type
@@ -841,41 +841,41 @@ class AbuseReportsResource(SyncAPIResource):
         | Literal["abuse_threat"]
         | Literal["abuse_registrar_whois"]
         | Literal["abuse_ncsei"],
-        address1: str | NotGiven = NOT_GIVEN,
-        agent_name: str | NotGiven = NOT_GIVEN,
-        agree: Literal[1] | NotGiven = NOT_GIVEN,
-        city: str | NotGiven = NOT_GIVEN,
-        country: str | NotGiven = NOT_GIVEN,
+        address1: str | Omit = omit,
+        agent_name: str | Omit = omit,
+        agree: Literal[1] | Omit = omit,
+        city: str | Omit = omit,
+        country: str | Omit = omit,
         email: str,
         email2: str,
-        host_notification: Literal["send"] | Literal["send", "send-anon"] | NotGiven = NOT_GIVEN,
+        host_notification: Literal["send"] | Literal["send", "send-anon"] | Omit = omit,
         name: str,
-        original_work: str | NotGiven = NOT_GIVEN,
+        original_work: str | Omit = omit,
         owner_notification: Literal["send"] | Literal["send", "send-anon", "none"] | Literal["send", "send-anon"],
-        signature: str | NotGiven = NOT_GIVEN,
-        state: str | NotGiven = NOT_GIVEN,
+        signature: str | Omit = omit,
+        state: str | Omit = omit,
         urls: str,
-        comments: str | NotGiven = NOT_GIVEN,
-        company: str | NotGiven = NOT_GIVEN,
-        reported_country: str | NotGiven = NOT_GIVEN,
-        reported_user_agent: str | NotGiven = NOT_GIVEN,
-        tele: str | NotGiven = NOT_GIVEN,
-        title: str | NotGiven = NOT_GIVEN,
-        justification: str | NotGiven = NOT_GIVEN,
-        trademark_number: str | NotGiven = NOT_GIVEN,
-        trademark_office: str | NotGiven = NOT_GIVEN,
-        trademark_symbol: str | NotGiven = NOT_GIVEN,
-        destination_ips: str | NotGiven = NOT_GIVEN,
-        ports_protocols: str | NotGiven = NOT_GIVEN,
-        source_ips: str | NotGiven = NOT_GIVEN,
-        ncmec_notification: Literal["send", "send-anon"] | NotGiven = NOT_GIVEN,
-        ncsei_subject_representation: bool | NotGiven = NOT_GIVEN,
+        comments: str | Omit = omit,
+        company: str | Omit = omit,
+        reported_country: str | Omit = omit,
+        reported_user_agent: str | Omit = omit,
+        tele: str | Omit = omit,
+        title: str | Omit = omit,
+        justification: str | Omit = omit,
+        trademark_number: str | Omit = omit,
+        trademark_office: str | Omit = omit,
+        trademark_symbol: str | Omit = omit,
+        destination_ips: str | Omit = omit,
+        ports_protocols: str | Omit = omit,
+        source_ips: str | Omit = omit,
+        ncmec_notification: Literal["send", "send-anon"] | Omit = omit,
+        ncsei_subject_representation: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
@@ -970,18 +970,18 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
         signature: str,
         state: str,
         urls: str,
-        comments: str | NotGiven = NOT_GIVEN,
-        company: str | NotGiven = NOT_GIVEN,
-        reported_country: str | NotGiven = NOT_GIVEN,
-        reported_user_agent: str | NotGiven = NOT_GIVEN,
-        tele: str | NotGiven = NOT_GIVEN,
-        title: str | NotGiven = NOT_GIVEN,
+        comments: str | Omit = omit,
+        company: str | Omit = omit,
+        reported_country: str | Omit = omit,
+        reported_user_agent: str | Omit = omit,
+        tele: str | Omit = omit,
+        title: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Submit the Abuse Report of a particular type
@@ -1076,18 +1076,18 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
         trademark_office: str,
         trademark_symbol: str,
         urls: str,
-        comments: str | NotGiven = NOT_GIVEN,
-        company: str | NotGiven = NOT_GIVEN,
-        reported_country: str | NotGiven = NOT_GIVEN,
-        reported_user_agent: str | NotGiven = NOT_GIVEN,
-        tele: str | NotGiven = NOT_GIVEN,
-        title: str | NotGiven = NOT_GIVEN,
+        comments: str | Omit = omit,
+        company: str | Omit = omit,
+        reported_country: str | Omit = omit,
+        reported_user_agent: str | Omit = omit,
+        tele: str | Omit = omit,
+        title: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Submit the Abuse Report of a particular type
@@ -1164,21 +1164,21 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
         name: str,
         owner_notification: Literal["send", "send-anon", "none"],
         urls: str,
-        comments: str | NotGiven = NOT_GIVEN,
-        company: str | NotGiven = NOT_GIVEN,
-        destination_ips: str | NotGiven = NOT_GIVEN,
-        ports_protocols: str | NotGiven = NOT_GIVEN,
-        reported_country: str | NotGiven = NOT_GIVEN,
-        reported_user_agent: str | NotGiven = NOT_GIVEN,
-        source_ips: str | NotGiven = NOT_GIVEN,
-        tele: str | NotGiven = NOT_GIVEN,
-        title: str | NotGiven = NOT_GIVEN,
+        comments: str | Omit = omit,
+        company: str | Omit = omit,
+        destination_ips: str | Omit = omit,
+        ports_protocols: str | Omit = omit,
+        reported_country: str | Omit = omit,
+        reported_user_agent: str | Omit = omit,
+        source_ips: str | Omit = omit,
+        tele: str | Omit = omit,
+        title: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Submit the Abuse Report of a particular type
@@ -1262,19 +1262,19 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
         name: str,
         owner_notification: Literal["send", "send-anon"],
         urls: str,
-        comments: str | NotGiven = NOT_GIVEN,
-        company: str | NotGiven = NOT_GIVEN,
-        original_work: str | NotGiven = NOT_GIVEN,
-        reported_country: str | NotGiven = NOT_GIVEN,
-        reported_user_agent: str | NotGiven = NOT_GIVEN,
-        tele: str | NotGiven = NOT_GIVEN,
-        title: str | NotGiven = NOT_GIVEN,
+        comments: str | Omit = omit,
+        company: str | Omit = omit,
+        original_work: str | Omit = omit,
+        reported_country: str | Omit = omit,
+        reported_user_agent: str | Omit = omit,
+        tele: str | Omit = omit,
+        title: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Submit the Abuse Report of a particular type
@@ -1349,19 +1349,19 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
         ncmec_notification: Literal["send", "send-anon"],
         owner_notification: Literal["send", "send-anon", "none"],
         urls: str,
-        comments: str | NotGiven = NOT_GIVEN,
-        company: str | NotGiven = NOT_GIVEN,
-        country: str | NotGiven = NOT_GIVEN,
-        reported_country: str | NotGiven = NOT_GIVEN,
-        reported_user_agent: str | NotGiven = NOT_GIVEN,
-        tele: str | NotGiven = NOT_GIVEN,
-        title: str | NotGiven = NOT_GIVEN,
+        comments: str | Omit = omit,
+        company: str | Omit = omit,
+        country: str | Omit = omit,
+        reported_country: str | Omit = omit,
+        reported_user_agent: str | Omit = omit,
+        tele: str | Omit = omit,
+        title: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Submit the Abuse Report of a particular type
@@ -1438,18 +1438,18 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
         name: str,
         owner_notification: Literal["send", "send-anon"],
         urls: str,
-        comments: str | NotGiven = NOT_GIVEN,
-        company: str | NotGiven = NOT_GIVEN,
-        reported_country: str | NotGiven = NOT_GIVEN,
-        reported_user_agent: str | NotGiven = NOT_GIVEN,
-        tele: str | NotGiven = NOT_GIVEN,
-        title: str | NotGiven = NOT_GIVEN,
+        comments: str | Omit = omit,
+        company: str | Omit = omit,
+        reported_country: str | Omit = omit,
+        reported_user_agent: str | Omit = omit,
+        tele: str | Omit = omit,
+        title: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Submit the Abuse Report of a particular type
@@ -1518,18 +1518,18 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
         name: str,
         owner_notification: Literal["send", "send-anon", "none"],
         urls: str,
-        comments: str | NotGiven = NOT_GIVEN,
-        company: str | NotGiven = NOT_GIVEN,
-        reported_country: str | NotGiven = NOT_GIVEN,
-        reported_user_agent: str | NotGiven = NOT_GIVEN,
-        tele: str | NotGiven = NOT_GIVEN,
-        title: str | NotGiven = NOT_GIVEN,
+        comments: str | Omit = omit,
+        company: str | Omit = omit,
+        reported_country: str | Omit = omit,
+        reported_user_agent: str | Omit = omit,
+        tele: str | Omit = omit,
+        title: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Submit the Abuse Report of a particular type
@@ -1593,19 +1593,19 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
         ncsei_subject_representation: bool,
         owner_notification: Literal["send", "send-anon", "none"],
         urls: str,
-        comments: str | NotGiven = NOT_GIVEN,
-        company: str | NotGiven = NOT_GIVEN,
-        country: str | NotGiven = NOT_GIVEN,
-        reported_country: str | NotGiven = NOT_GIVEN,
-        reported_user_agent: str | NotGiven = NOT_GIVEN,
-        tele: str | NotGiven = NOT_GIVEN,
-        title: str | NotGiven = NOT_GIVEN,
+        comments: str | Omit = omit,
+        company: str | Omit = omit,
+        country: str | Omit = omit,
+        reported_country: str | Omit = omit,
+        reported_user_agent: str | Omit = omit,
+        tele: str | Omit = omit,
+        title: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Submit the Abuse Report of a particular type
@@ -1745,41 +1745,41 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
         | Literal["abuse_threat"]
         | Literal["abuse_registrar_whois"]
         | Literal["abuse_ncsei"],
-        address1: str | NotGiven = NOT_GIVEN,
-        agent_name: str | NotGiven = NOT_GIVEN,
-        agree: Literal[1] | NotGiven = NOT_GIVEN,
-        city: str | NotGiven = NOT_GIVEN,
-        country: str | NotGiven = NOT_GIVEN,
+        address1: str | Omit = omit,
+        agent_name: str | Omit = omit,
+        agree: Literal[1] | Omit = omit,
+        city: str | Omit = omit,
+        country: str | Omit = omit,
         email: str,
         email2: str,
-        host_notification: Literal["send"] | Literal["send", "send-anon"] | NotGiven = NOT_GIVEN,
+        host_notification: Literal["send"] | Literal["send", "send-anon"] | Omit = omit,
         name: str,
-        original_work: str | NotGiven = NOT_GIVEN,
+        original_work: str | Omit = omit,
         owner_notification: Literal["send"] | Literal["send", "send-anon", "none"] | Literal["send", "send-anon"],
-        signature: str | NotGiven = NOT_GIVEN,
-        state: str | NotGiven = NOT_GIVEN,
+        signature: str | Omit = omit,
+        state: str | Omit = omit,
         urls: str,
-        comments: str | NotGiven = NOT_GIVEN,
-        company: str | NotGiven = NOT_GIVEN,
-        reported_country: str | NotGiven = NOT_GIVEN,
-        reported_user_agent: str | NotGiven = NOT_GIVEN,
-        tele: str | NotGiven = NOT_GIVEN,
-        title: str | NotGiven = NOT_GIVEN,
-        justification: str | NotGiven = NOT_GIVEN,
-        trademark_number: str | NotGiven = NOT_GIVEN,
-        trademark_office: str | NotGiven = NOT_GIVEN,
-        trademark_symbol: str | NotGiven = NOT_GIVEN,
-        destination_ips: str | NotGiven = NOT_GIVEN,
-        ports_protocols: str | NotGiven = NOT_GIVEN,
-        source_ips: str | NotGiven = NOT_GIVEN,
-        ncmec_notification: Literal["send", "send-anon"] | NotGiven = NOT_GIVEN,
-        ncsei_subject_representation: bool | NotGiven = NOT_GIVEN,
+        comments: str | Omit = omit,
+        company: str | Omit = omit,
+        reported_country: str | Omit = omit,
+        reported_user_agent: str | Omit = omit,
+        tele: str | Omit = omit,
+        title: str | Omit = omit,
+        justification: str | Omit = omit,
+        trademark_number: str | Omit = omit,
+        trademark_office: str | Omit = omit,
+        trademark_symbol: str | Omit = omit,
+        destination_ips: str | Omit = omit,
+        ports_protocols: str | Omit = omit,
+        source_ips: str | Omit = omit,
+        ncmec_notification: Literal["send", "send-anon"] | Omit = omit,
+        ncsei_subject_representation: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")

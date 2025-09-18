@@ -7,7 +7,7 @@ from typing_extensions import Literal, overload
 
 import httpx
 
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import required_args, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -51,17 +51,17 @@ class BotManagementResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | NotGiven = NOT_GIVEN,
-        crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
-        enable_js: bool | NotGiven = NOT_GIVEN,
-        fight_mode: bool | NotGiven = NOT_GIVEN,
-        is_robots_txt_managed: bool | NotGiven = NOT_GIVEN,
+        ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
+        crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
+        enable_js: bool | Omit = omit,
+        fight_mode: bool | Omit = omit,
+        is_robots_txt_managed: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[BotManagementUpdateResponse]:
         """
         Updates the Bot Management configuration for a zone.
@@ -157,20 +157,20 @@ class BotManagementResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | NotGiven = NOT_GIVEN,
-        crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
-        enable_js: bool | NotGiven = NOT_GIVEN,
-        is_robots_txt_managed: bool | NotGiven = NOT_GIVEN,
-        optimize_wordpress: bool | NotGiven = NOT_GIVEN,
-        sbfm_definitely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
-        sbfm_static_resource_protection: bool | NotGiven = NOT_GIVEN,
-        sbfm_verified_bots: Literal["allow", "block"] | NotGiven = NOT_GIVEN,
+        ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
+        crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
+        enable_js: bool | Omit = omit,
+        is_robots_txt_managed: bool | Omit = omit,
+        optimize_wordpress: bool | Omit = omit,
+        sbfm_definitely_automated: Literal["allow", "block", "managed_challenge"] | Omit = omit,
+        sbfm_static_resource_protection: bool | Omit = omit,
+        sbfm_verified_bots: Literal["allow", "block"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[BotManagementUpdateResponse]:
         """
         Updates the Bot Management configuration for a zone.
@@ -274,21 +274,21 @@ class BotManagementResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | NotGiven = NOT_GIVEN,
-        crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
-        enable_js: bool | NotGiven = NOT_GIVEN,
-        is_robots_txt_managed: bool | NotGiven = NOT_GIVEN,
-        optimize_wordpress: bool | NotGiven = NOT_GIVEN,
-        sbfm_definitely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
-        sbfm_likely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
-        sbfm_static_resource_protection: bool | NotGiven = NOT_GIVEN,
-        sbfm_verified_bots: Literal["allow", "block"] | NotGiven = NOT_GIVEN,
+        ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
+        crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
+        enable_js: bool | Omit = omit,
+        is_robots_txt_managed: bool | Omit = omit,
+        optimize_wordpress: bool | Omit = omit,
+        sbfm_definitely_automated: Literal["allow", "block", "managed_challenge"] | Omit = omit,
+        sbfm_likely_automated: Literal["allow", "block", "managed_challenge"] | Omit = omit,
+        sbfm_static_resource_protection: bool | Omit = omit,
+        sbfm_verified_bots: Literal["allow", "block"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[BotManagementUpdateResponse]:
         """
         Updates the Bot Management configuration for a zone.
@@ -394,19 +394,19 @@ class BotManagementResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | NotGiven = NOT_GIVEN,
-        auto_update_model: bool | NotGiven = NOT_GIVEN,
-        bm_cookie_enabled: bool | NotGiven = NOT_GIVEN,
-        crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
-        enable_js: bool | NotGiven = NOT_GIVEN,
-        is_robots_txt_managed: bool | NotGiven = NOT_GIVEN,
-        suppress_session_score: bool | NotGiven = NOT_GIVEN,
+        ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
+        auto_update_model: bool | Omit = omit,
+        bm_cookie_enabled: bool | Omit = omit,
+        crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
+        enable_js: bool | Omit = omit,
+        is_robots_txt_managed: bool | Omit = omit,
+        suppress_session_score: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[BotManagementUpdateResponse]:
         """
         Updates the Bot Management configuration for a zone.
@@ -510,25 +510,25 @@ class BotManagementResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | NotGiven = NOT_GIVEN,
-        crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
-        enable_js: bool | NotGiven = NOT_GIVEN,
-        fight_mode: bool | NotGiven = NOT_GIVEN,
-        is_robots_txt_managed: bool | NotGiven = NOT_GIVEN,
-        optimize_wordpress: bool | NotGiven = NOT_GIVEN,
-        sbfm_definitely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
-        sbfm_static_resource_protection: bool | NotGiven = NOT_GIVEN,
-        sbfm_verified_bots: Literal["allow", "block"] | NotGiven = NOT_GIVEN,
-        sbfm_likely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
-        auto_update_model: bool | NotGiven = NOT_GIVEN,
-        bm_cookie_enabled: bool | NotGiven = NOT_GIVEN,
-        suppress_session_score: bool | NotGiven = NOT_GIVEN,
+        ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
+        crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
+        enable_js: bool | Omit = omit,
+        fight_mode: bool | Omit = omit,
+        is_robots_txt_managed: bool | Omit = omit,
+        optimize_wordpress: bool | Omit = omit,
+        sbfm_definitely_automated: Literal["allow", "block", "managed_challenge"] | Omit = omit,
+        sbfm_static_resource_protection: bool | Omit = omit,
+        sbfm_verified_bots: Literal["allow", "block"] | Omit = omit,
+        sbfm_likely_automated: Literal["allow", "block", "managed_challenge"] | Omit = omit,
+        auto_update_model: bool | Omit = omit,
+        bm_cookie_enabled: bool | Omit = omit,
+        suppress_session_score: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[BotManagementUpdateResponse]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
@@ -576,7 +576,7 @@ class BotManagementResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[BotManagementGetResponse]:
         """
         Retrieve a zone's Bot Management Config
@@ -637,17 +637,17 @@ class AsyncBotManagementResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | NotGiven = NOT_GIVEN,
-        crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
-        enable_js: bool | NotGiven = NOT_GIVEN,
-        fight_mode: bool | NotGiven = NOT_GIVEN,
-        is_robots_txt_managed: bool | NotGiven = NOT_GIVEN,
+        ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
+        crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
+        enable_js: bool | Omit = omit,
+        fight_mode: bool | Omit = omit,
+        is_robots_txt_managed: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[BotManagementUpdateResponse]:
         """
         Updates the Bot Management configuration for a zone.
@@ -743,20 +743,20 @@ class AsyncBotManagementResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | NotGiven = NOT_GIVEN,
-        crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
-        enable_js: bool | NotGiven = NOT_GIVEN,
-        is_robots_txt_managed: bool | NotGiven = NOT_GIVEN,
-        optimize_wordpress: bool | NotGiven = NOT_GIVEN,
-        sbfm_definitely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
-        sbfm_static_resource_protection: bool | NotGiven = NOT_GIVEN,
-        sbfm_verified_bots: Literal["allow", "block"] | NotGiven = NOT_GIVEN,
+        ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
+        crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
+        enable_js: bool | Omit = omit,
+        is_robots_txt_managed: bool | Omit = omit,
+        optimize_wordpress: bool | Omit = omit,
+        sbfm_definitely_automated: Literal["allow", "block", "managed_challenge"] | Omit = omit,
+        sbfm_static_resource_protection: bool | Omit = omit,
+        sbfm_verified_bots: Literal["allow", "block"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[BotManagementUpdateResponse]:
         """
         Updates the Bot Management configuration for a zone.
@@ -860,21 +860,21 @@ class AsyncBotManagementResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | NotGiven = NOT_GIVEN,
-        crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
-        enable_js: bool | NotGiven = NOT_GIVEN,
-        is_robots_txt_managed: bool | NotGiven = NOT_GIVEN,
-        optimize_wordpress: bool | NotGiven = NOT_GIVEN,
-        sbfm_definitely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
-        sbfm_likely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
-        sbfm_static_resource_protection: bool | NotGiven = NOT_GIVEN,
-        sbfm_verified_bots: Literal["allow", "block"] | NotGiven = NOT_GIVEN,
+        ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
+        crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
+        enable_js: bool | Omit = omit,
+        is_robots_txt_managed: bool | Omit = omit,
+        optimize_wordpress: bool | Omit = omit,
+        sbfm_definitely_automated: Literal["allow", "block", "managed_challenge"] | Omit = omit,
+        sbfm_likely_automated: Literal["allow", "block", "managed_challenge"] | Omit = omit,
+        sbfm_static_resource_protection: bool | Omit = omit,
+        sbfm_verified_bots: Literal["allow", "block"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[BotManagementUpdateResponse]:
         """
         Updates the Bot Management configuration for a zone.
@@ -980,19 +980,19 @@ class AsyncBotManagementResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | NotGiven = NOT_GIVEN,
-        auto_update_model: bool | NotGiven = NOT_GIVEN,
-        bm_cookie_enabled: bool | NotGiven = NOT_GIVEN,
-        crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
-        enable_js: bool | NotGiven = NOT_GIVEN,
-        is_robots_txt_managed: bool | NotGiven = NOT_GIVEN,
-        suppress_session_score: bool | NotGiven = NOT_GIVEN,
+        ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
+        auto_update_model: bool | Omit = omit,
+        bm_cookie_enabled: bool | Omit = omit,
+        crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
+        enable_js: bool | Omit = omit,
+        is_robots_txt_managed: bool | Omit = omit,
+        suppress_session_score: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[BotManagementUpdateResponse]:
         """
         Updates the Bot Management configuration for a zone.
@@ -1096,25 +1096,25 @@ class AsyncBotManagementResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | NotGiven = NOT_GIVEN,
-        crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
-        enable_js: bool | NotGiven = NOT_GIVEN,
-        fight_mode: bool | NotGiven = NOT_GIVEN,
-        is_robots_txt_managed: bool | NotGiven = NOT_GIVEN,
-        optimize_wordpress: bool | NotGiven = NOT_GIVEN,
-        sbfm_definitely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
-        sbfm_static_resource_protection: bool | NotGiven = NOT_GIVEN,
-        sbfm_verified_bots: Literal["allow", "block"] | NotGiven = NOT_GIVEN,
-        sbfm_likely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
-        auto_update_model: bool | NotGiven = NOT_GIVEN,
-        bm_cookie_enabled: bool | NotGiven = NOT_GIVEN,
-        suppress_session_score: bool | NotGiven = NOT_GIVEN,
+        ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
+        crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
+        enable_js: bool | Omit = omit,
+        fight_mode: bool | Omit = omit,
+        is_robots_txt_managed: bool | Omit = omit,
+        optimize_wordpress: bool | Omit = omit,
+        sbfm_definitely_automated: Literal["allow", "block", "managed_challenge"] | Omit = omit,
+        sbfm_static_resource_protection: bool | Omit = omit,
+        sbfm_verified_bots: Literal["allow", "block"] | Omit = omit,
+        sbfm_likely_automated: Literal["allow", "block", "managed_challenge"] | Omit = omit,
+        auto_update_model: bool | Omit = omit,
+        bm_cookie_enabled: bool | Omit = omit,
+        suppress_session_score: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[BotManagementUpdateResponse]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
@@ -1162,7 +1162,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[BotManagementGetResponse]:
         """
         Retrieve a zone's Bot Management Config

@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -65,16 +65,16 @@ class ResourcesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        cloudflare: bool | NotGiven = NOT_GIVEN,
-        desc: bool | NotGiven = NOT_GIVEN,
-        managed: bool | NotGiven = NOT_GIVEN,
-        order_by: str | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        provider_id: str | NotGiven = NOT_GIVEN,
-        region: str | NotGiven = NOT_GIVEN,
-        resource_group: str | NotGiven = NOT_GIVEN,
-        resource_id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        cloudflare: bool | Omit = omit,
+        desc: bool | Omit = omit,
+        managed: bool | Omit = omit,
+        order_by: str | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        provider_id: str | Omit = omit,
+        region: str | Omit = omit,
+        resource_group: str | Omit = omit,
+        resource_id: SequenceNotStr[str] | Omit = omit,
         resource_type: List[
             Literal[
                 "aws_customer_gateway",
@@ -136,15 +136,15 @@ class ResourcesResource(SyncAPIResource):
                 "cloudflare_ipsec_tunnel",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        search: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        v2: bool | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        search: SequenceNotStr[str] | Omit = omit,
+        v2: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[ResourceListResponse]:
         """
         List resources in the Resource Catalog (Closed Beta).
@@ -196,12 +196,12 @@ class ResourcesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        desc: bool | NotGiven = NOT_GIVEN,
-        order_by: str | NotGiven = NOT_GIVEN,
-        provider_id: str | NotGiven = NOT_GIVEN,
-        region: str | NotGiven = NOT_GIVEN,
-        resource_group: str | NotGiven = NOT_GIVEN,
-        resource_id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        desc: bool | Omit = omit,
+        order_by: str | Omit = omit,
+        provider_id: str | Omit = omit,
+        region: str | Omit = omit,
+        resource_group: str | Omit = omit,
+        resource_id: SequenceNotStr[str] | Omit = omit,
         resource_type: List[
             Literal[
                 "aws_customer_gateway",
@@ -263,15 +263,15 @@ class ResourcesResource(SyncAPIResource):
                 "cloudflare_ipsec_tunnel",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        search: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        v2: bool | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        search: SequenceNotStr[str] | Omit = omit,
+        v2: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BinaryAPIResponse:
         """
         Export resources in the Resource Catalog as a JSON file (Closed Beta).
@@ -320,13 +320,13 @@ class ResourcesResource(SyncAPIResource):
         resource_id: str,
         *,
         account_id: str,
-        v2: bool | NotGiven = NOT_GIVEN,
+        v2: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ResourceGetResponse:
         """
         Read an resource from the Resource Catalog (Closed Beta).
@@ -367,7 +367,7 @@ class ResourcesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Preview Rego query result against the latest resource catalog (Closed Beta).
@@ -421,16 +421,16 @@ class AsyncResourcesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        cloudflare: bool | NotGiven = NOT_GIVEN,
-        desc: bool | NotGiven = NOT_GIVEN,
-        managed: bool | NotGiven = NOT_GIVEN,
-        order_by: str | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        provider_id: str | NotGiven = NOT_GIVEN,
-        region: str | NotGiven = NOT_GIVEN,
-        resource_group: str | NotGiven = NOT_GIVEN,
-        resource_id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        cloudflare: bool | Omit = omit,
+        desc: bool | Omit = omit,
+        managed: bool | Omit = omit,
+        order_by: str | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        provider_id: str | Omit = omit,
+        region: str | Omit = omit,
+        resource_group: str | Omit = omit,
+        resource_id: SequenceNotStr[str] | Omit = omit,
         resource_type: List[
             Literal[
                 "aws_customer_gateway",
@@ -492,15 +492,15 @@ class AsyncResourcesResource(AsyncAPIResource):
                 "cloudflare_ipsec_tunnel",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        search: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        v2: bool | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        search: SequenceNotStr[str] | Omit = omit,
+        v2: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ResourceListResponse, AsyncV4PagePaginationArray[ResourceListResponse]]:
         """
         List resources in the Resource Catalog (Closed Beta).
@@ -552,12 +552,12 @@ class AsyncResourcesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        desc: bool | NotGiven = NOT_GIVEN,
-        order_by: str | NotGiven = NOT_GIVEN,
-        provider_id: str | NotGiven = NOT_GIVEN,
-        region: str | NotGiven = NOT_GIVEN,
-        resource_group: str | NotGiven = NOT_GIVEN,
-        resource_id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        desc: bool | Omit = omit,
+        order_by: str | Omit = omit,
+        provider_id: str | Omit = omit,
+        region: str | Omit = omit,
+        resource_group: str | Omit = omit,
+        resource_id: SequenceNotStr[str] | Omit = omit,
         resource_type: List[
             Literal[
                 "aws_customer_gateway",
@@ -619,15 +619,15 @@ class AsyncResourcesResource(AsyncAPIResource):
                 "cloudflare_ipsec_tunnel",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        search: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        v2: bool | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        search: SequenceNotStr[str] | Omit = omit,
+        v2: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncBinaryAPIResponse:
         """
         Export resources in the Resource Catalog as a JSON file (Closed Beta).
@@ -676,13 +676,13 @@ class AsyncResourcesResource(AsyncAPIResource):
         resource_id: str,
         *,
         account_id: str,
-        v2: bool | NotGiven = NOT_GIVEN,
+        v2: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ResourceGetResponse:
         """
         Read an resource from the Resource Catalog (Closed Beta).
@@ -723,7 +723,7 @@ class AsyncResourcesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Preview Rego query result against the latest resource catalog (Closed Beta).

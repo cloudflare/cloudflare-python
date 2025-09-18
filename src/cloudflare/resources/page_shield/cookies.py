@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -51,26 +51,26 @@ class CookiesResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        domain: str | NotGiven = NOT_GIVEN,
-        export: Literal["csv"] | NotGiven = NOT_GIVEN,
-        hosts: str | NotGiven = NOT_GIVEN,
-        http_only: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        order_by: Literal["first_seen_at", "last_seen_at"] | NotGiven = NOT_GIVEN,
-        page: str | NotGiven = NOT_GIVEN,
-        page_url: str | NotGiven = NOT_GIVEN,
-        path: str | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        same_site: Literal["lax", "strict", "none"] | NotGiven = NOT_GIVEN,
-        secure: bool | NotGiven = NOT_GIVEN,
-        type: Literal["first_party", "unknown"] | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        domain: str | Omit = omit,
+        export: Literal["csv"] | Omit = omit,
+        hosts: str | Omit = omit,
+        http_only: bool | Omit = omit,
+        name: str | Omit = omit,
+        order_by: Literal["first_seen_at", "last_seen_at"] | Omit = omit,
+        page: str | Omit = omit,
+        page_url: str | Omit = omit,
+        path: str | Omit = omit,
+        per_page: float | Omit = omit,
+        same_site: Literal["lax", "strict", "none"] | Omit = omit,
+        secure: bool | Omit = omit,
+        type: Literal["first_party", "unknown"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[CookieListResponse]:
         """
         Lists all cookies collected by Page Shield.
@@ -173,7 +173,7 @@ class CookiesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CookieGetResponse]:
         """
         Fetches a cookie collected by Page Shield by cookie ID.
@@ -232,26 +232,26 @@ class AsyncCookiesResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        domain: str | NotGiven = NOT_GIVEN,
-        export: Literal["csv"] | NotGiven = NOT_GIVEN,
-        hosts: str | NotGiven = NOT_GIVEN,
-        http_only: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        order_by: Literal["first_seen_at", "last_seen_at"] | NotGiven = NOT_GIVEN,
-        page: str | NotGiven = NOT_GIVEN,
-        page_url: str | NotGiven = NOT_GIVEN,
-        path: str | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        same_site: Literal["lax", "strict", "none"] | NotGiven = NOT_GIVEN,
-        secure: bool | NotGiven = NOT_GIVEN,
-        type: Literal["first_party", "unknown"] | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | Omit = omit,
+        domain: str | Omit = omit,
+        export: Literal["csv"] | Omit = omit,
+        hosts: str | Omit = omit,
+        http_only: bool | Omit = omit,
+        name: str | Omit = omit,
+        order_by: Literal["first_seen_at", "last_seen_at"] | Omit = omit,
+        page: str | Omit = omit,
+        page_url: str | Omit = omit,
+        path: str | Omit = omit,
+        per_page: float | Omit = omit,
+        same_site: Literal["lax", "strict", "none"] | Omit = omit,
+        secure: bool | Omit = omit,
+        type: Literal["first_party", "unknown"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[CookieListResponse, AsyncSinglePage[CookieListResponse]]:
         """
         Lists all cookies collected by Page Shield.
@@ -354,7 +354,7 @@ class AsyncCookiesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[CookieGetResponse]:
         """
         Fetches a cookie collected by Page Shield by cookie ID.

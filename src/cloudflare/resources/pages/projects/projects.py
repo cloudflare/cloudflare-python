@@ -14,7 +14,7 @@ from .domains import (
     DomainsResourceWithStreamingResponse,
     AsyncDomainsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -74,17 +74,17 @@ class ProjectsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        build_config: project_create_params.BuildConfig | NotGiven = NOT_GIVEN,
-        deployment_configs: project_create_params.DeploymentConfigs | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        production_branch: str | NotGiven = NOT_GIVEN,
-        source: project_create_params.Source | NotGiven = NOT_GIVEN,
+        build_config: project_create_params.BuildConfig | Omit = omit,
+        deployment_configs: project_create_params.DeploymentConfigs | Omit = omit,
+        name: str | Omit = omit,
+        production_branch: str | Omit = omit,
+        source: project_create_params.Source | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Project:
         """
         Create a new project.
@@ -141,7 +141,7 @@ class ProjectsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[Deployment]:
         """
         Fetch a list of all user projects.
@@ -178,7 +178,7 @@ class ProjectsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Delete a project by name.
@@ -217,17 +217,17 @@ class ProjectsResource(SyncAPIResource):
         project_name: str,
         *,
         account_id: str,
-        build_config: project_edit_params.BuildConfig | NotGiven = NOT_GIVEN,
-        deployment_configs: project_edit_params.DeploymentConfigs | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        production_branch: str | NotGiven = NOT_GIVEN,
-        source: project_edit_params.Source | NotGiven = NOT_GIVEN,
+        build_config: project_edit_params.BuildConfig | Omit = omit,
+        deployment_configs: project_edit_params.DeploymentConfigs | Omit = omit,
+        name: str | Omit = omit,
+        production_branch: str | Omit = omit,
+        source: project_edit_params.Source | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Project:
         """Set new attributes for an existing project.
 
@@ -291,7 +291,7 @@ class ProjectsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Project:
         """
         Fetch a project by name.
@@ -335,7 +335,7 @@ class ProjectsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Purge all cached build artifacts for a Pages project
@@ -402,17 +402,17 @@ class AsyncProjectsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        build_config: project_create_params.BuildConfig | NotGiven = NOT_GIVEN,
-        deployment_configs: project_create_params.DeploymentConfigs | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        production_branch: str | NotGiven = NOT_GIVEN,
-        source: project_create_params.Source | NotGiven = NOT_GIVEN,
+        build_config: project_create_params.BuildConfig | Omit = omit,
+        deployment_configs: project_create_params.DeploymentConfigs | Omit = omit,
+        name: str | Omit = omit,
+        production_branch: str | Omit = omit,
+        source: project_create_params.Source | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Project:
         """
         Create a new project.
@@ -469,7 +469,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Deployment, AsyncSinglePage[Deployment]]:
         """
         Fetch a list of all user projects.
@@ -506,7 +506,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Delete a project by name.
@@ -545,17 +545,17 @@ class AsyncProjectsResource(AsyncAPIResource):
         project_name: str,
         *,
         account_id: str,
-        build_config: project_edit_params.BuildConfig | NotGiven = NOT_GIVEN,
-        deployment_configs: project_edit_params.DeploymentConfigs | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        production_branch: str | NotGiven = NOT_GIVEN,
-        source: project_edit_params.Source | NotGiven = NOT_GIVEN,
+        build_config: project_edit_params.BuildConfig | Omit = omit,
+        deployment_configs: project_edit_params.DeploymentConfigs | Omit = omit,
+        name: str | Omit = omit,
+        production_branch: str | Omit = omit,
+        source: project_edit_params.Source | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Project:
         """Set new attributes for an existing project.
 
@@ -619,7 +619,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Project:
         """
         Fetch a project by name.
@@ -663,7 +663,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Purge all cached build artifacts for a Pages project

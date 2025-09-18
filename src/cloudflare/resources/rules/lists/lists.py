@@ -15,7 +15,7 @@ from .items import (
     ItemsResourceWithStreamingResponse,
     AsyncItemsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -80,13 +80,13 @@ class ListsResource(SyncAPIResource):
         account_id: str,
         kind: Literal["ip", "redirect", "hostname", "asn"],
         name: str,
-        description: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ListCreateResponse:
         """
         Creates a new list of the specified kind.
@@ -136,13 +136,13 @@ class ListsResource(SyncAPIResource):
         list_id: str,
         *,
         account_id: str,
-        description: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ListUpdateResponse:
         """
         Updates the description of a list.
@@ -188,7 +188,7 @@ class ListsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[ListsList]:
         """
         Fetches all lists in the account.
@@ -225,7 +225,7 @@ class ListsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ListDeleteResponse:
         """
         Deletes a specific list and all its items.
@@ -269,7 +269,7 @@ class ListsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ListGetResponse:
         """
         Fetches the details of a list.
@@ -338,13 +338,13 @@ class AsyncListsResource(AsyncAPIResource):
         account_id: str,
         kind: Literal["ip", "redirect", "hostname", "asn"],
         name: str,
-        description: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ListCreateResponse:
         """
         Creates a new list of the specified kind.
@@ -394,13 +394,13 @@ class AsyncListsResource(AsyncAPIResource):
         list_id: str,
         *,
         account_id: str,
-        description: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ListUpdateResponse:
         """
         Updates the description of a list.
@@ -446,7 +446,7 @@ class AsyncListsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ListsList, AsyncSinglePage[ListsList]]:
         """
         Fetches all lists in the account.
@@ -483,7 +483,7 @@ class AsyncListsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ListDeleteResponse:
         """
         Deletes a specific list and all its items.
@@ -527,7 +527,7 @@ class AsyncListsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ListGetResponse:
         """
         Fetches the details of a list.

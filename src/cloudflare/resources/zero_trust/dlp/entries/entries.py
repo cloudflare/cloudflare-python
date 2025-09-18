@@ -15,7 +15,7 @@ from .custom import (
     CustomResourceWithStreamingResponse,
     AsyncCustomResourceWithStreamingResponse,
 )
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ....._utils import required_args, maybe_transform, async_maybe_transform
 from .predefined import (
     PredefinedResource,
@@ -99,7 +99,7 @@ class EntriesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[EntryCreateResponse]:
         """
         Creates a DLP custom entry.
@@ -145,13 +145,13 @@ class EntriesResource(SyncAPIResource):
         name: str,
         pattern: PatternParam,
         type: Literal["custom"],
-        enabled: bool | NotGiven = NOT_GIVEN,
+        enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[EntryUpdateResponse]:
         """
         Updates a DLP entry.
@@ -174,13 +174,13 @@ class EntriesResource(SyncAPIResource):
         *,
         account_id: str,
         type: Literal["predefined"],
-        enabled: bool | NotGiven = NOT_GIVEN,
+        enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[EntryUpdateResponse]:
         """
         Updates a DLP entry.
@@ -203,13 +203,13 @@ class EntriesResource(SyncAPIResource):
         *,
         account_id: str,
         type: Literal["integration"],
-        enabled: bool | NotGiven = NOT_GIVEN,
+        enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[EntryUpdateResponse]:
         """
         Updates a DLP entry.
@@ -231,16 +231,16 @@ class EntriesResource(SyncAPIResource):
         entry_id: str,
         *,
         account_id: str,
-        name: str | NotGiven = NOT_GIVEN,
-        pattern: PatternParam | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        pattern: PatternParam | Omit = omit,
         type: Literal["custom"] | Literal["predefined"] | Literal["integration"],
-        enabled: bool | NotGiven = NOT_GIVEN,
+        enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[EntryUpdateResponse]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
@@ -281,7 +281,7 @@ class EntriesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[EntryListResponse]:
         """
         Lists all DLP entries in an account.
@@ -316,7 +316,7 @@ class EntriesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Deletes a DLP custom entry.
@@ -356,7 +356,7 @@ class EntriesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[EntryGetResponse]:
         """
         Fetches a DLP entry by ID.
@@ -437,7 +437,7 @@ class AsyncEntriesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[EntryCreateResponse]:
         """
         Creates a DLP custom entry.
@@ -483,13 +483,13 @@ class AsyncEntriesResource(AsyncAPIResource):
         name: str,
         pattern: PatternParam,
         type: Literal["custom"],
-        enabled: bool | NotGiven = NOT_GIVEN,
+        enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[EntryUpdateResponse]:
         """
         Updates a DLP entry.
@@ -512,13 +512,13 @@ class AsyncEntriesResource(AsyncAPIResource):
         *,
         account_id: str,
         type: Literal["predefined"],
-        enabled: bool | NotGiven = NOT_GIVEN,
+        enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[EntryUpdateResponse]:
         """
         Updates a DLP entry.
@@ -541,13 +541,13 @@ class AsyncEntriesResource(AsyncAPIResource):
         *,
         account_id: str,
         type: Literal["integration"],
-        enabled: bool | NotGiven = NOT_GIVEN,
+        enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[EntryUpdateResponse]:
         """
         Updates a DLP entry.
@@ -569,16 +569,16 @@ class AsyncEntriesResource(AsyncAPIResource):
         entry_id: str,
         *,
         account_id: str,
-        name: str | NotGiven = NOT_GIVEN,
-        pattern: PatternParam | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        pattern: PatternParam | Omit = omit,
         type: Literal["custom"] | Literal["predefined"] | Literal["integration"],
-        enabled: bool | NotGiven = NOT_GIVEN,
+        enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[EntryUpdateResponse]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
@@ -619,7 +619,7 @@ class AsyncEntriesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[EntryListResponse, AsyncSinglePage[EntryListResponse]]:
         """
         Lists all DLP entries in an account.
@@ -654,7 +654,7 @@ class AsyncEntriesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Deletes a DLP custom entry.
@@ -694,7 +694,7 @@ class AsyncEntriesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[EntryGetResponse]:
         """
         Fetches a DLP entry by ID.

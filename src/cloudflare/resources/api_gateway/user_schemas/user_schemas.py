@@ -16,7 +16,7 @@ from .hosts import (
     HostsResourceWithStreamingResponse,
     AsyncHostsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
+from ...._types import Body, Omit, Query, Headers, NotGiven, FileTypes, omit, not_given
 from ...._utils import extract_files, maybe_transform, deepcopy_minimal, async_maybe_transform
 from ...._compat import cached_property
 from .operations import (
@@ -87,14 +87,14 @@ class UserSchemasResource(SyncAPIResource):
         zone_id: str,
         file: FileTypes,
         kind: Literal["openapi_v3"],
-        name: str | NotGiven = NOT_GIVEN,
-        validation_enabled: Literal["true", "false"] | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        validation_enabled: Literal["true", "false"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SchemaUpload:
         """
         Upload a schema to a zone
@@ -154,16 +154,16 @@ class UserSchemasResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        omit_source: bool | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        validation_enabled: bool | NotGiven = NOT_GIVEN,
+        omit_source: bool | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        validation_enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[PublicSchema]:
         """
         Retrieve information about all schemas on a zone
@@ -223,7 +223,7 @@ class UserSchemasResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserSchemaDeleteResponse:
         """
         Delete a schema
@@ -259,13 +259,13 @@ class UserSchemasResource(SyncAPIResource):
         schema_id: str,
         *,
         zone_id: str,
-        validation_enabled: Literal[True] | NotGiven = NOT_GIVEN,
+        validation_enabled: Literal[True] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicSchema:
         """
         Enable validation for a schema
@@ -310,13 +310,13 @@ class UserSchemasResource(SyncAPIResource):
         schema_id: str,
         *,
         zone_id: str,
-        omit_source: bool | NotGiven = NOT_GIVEN,
+        omit_source: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicSchema:
         """
         Retrieve information about a specific schema on a zone
@@ -389,14 +389,14 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         zone_id: str,
         file: FileTypes,
         kind: Literal["openapi_v3"],
-        name: str | NotGiven = NOT_GIVEN,
-        validation_enabled: Literal["true", "false"] | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        validation_enabled: Literal["true", "false"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SchemaUpload:
         """
         Upload a schema to a zone
@@ -456,16 +456,16 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        omit_source: bool | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        validation_enabled: bool | NotGiven = NOT_GIVEN,
+        omit_source: bool | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        validation_enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[PublicSchema, AsyncV4PagePaginationArray[PublicSchema]]:
         """
         Retrieve information about all schemas on a zone
@@ -525,7 +525,7 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UserSchemaDeleteResponse:
         """
         Delete a schema
@@ -561,13 +561,13 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         schema_id: str,
         *,
         zone_id: str,
-        validation_enabled: Literal[True] | NotGiven = NOT_GIVEN,
+        validation_enabled: Literal[True] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicSchema:
         """
         Enable validation for a schema
@@ -612,13 +612,13 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         schema_id: str,
         *,
         zone_id: str,
-        omit_source: bool | NotGiven = NOT_GIVEN,
+        omit_source: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicSchema:
         """
         Retrieve information about a specific schema on a zone

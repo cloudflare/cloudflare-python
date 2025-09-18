@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from .integrations import (
@@ -90,17 +90,17 @@ class PostureResource(SyncAPIResource):
             "sentinelone_s2s",
             "custom_s2s",
         ],
-        description: str | NotGiven = NOT_GIVEN,
-        expiration: str | NotGiven = NOT_GIVEN,
-        input: DeviceInputParam | NotGiven = NOT_GIVEN,
-        match: Iterable[DeviceMatchParam] | NotGiven = NOT_GIVEN,
-        schedule: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        expiration: str | Omit = omit,
+        input: DeviceInputParam | Omit = omit,
+        match: Iterable[DeviceMatchParam] | Omit = omit,
+        schedule: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DevicePostureRule]:
         """
         Creates a new device posture rule.
@@ -186,17 +186,17 @@ class PostureResource(SyncAPIResource):
             "sentinelone_s2s",
             "custom_s2s",
         ],
-        description: str | NotGiven = NOT_GIVEN,
-        expiration: str | NotGiven = NOT_GIVEN,
-        input: DeviceInputParam | NotGiven = NOT_GIVEN,
-        match: Iterable[DeviceMatchParam] | NotGiven = NOT_GIVEN,
-        schedule: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        expiration: str | Omit = omit,
+        input: DeviceInputParam | Omit = omit,
+        match: Iterable[DeviceMatchParam] | Omit = omit,
+        schedule: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DevicePostureRule]:
         """
         Updates a device posture rule.
@@ -265,7 +265,7 @@ class PostureResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[DevicePostureRule]:
         """
         Fetches device posture rules for a Zero Trust account.
@@ -300,7 +300,7 @@ class PostureResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PostureDeleteResponse]:
         """
         Deletes a device posture rule.
@@ -342,7 +342,7 @@ class PostureResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DevicePostureRule]:
         """
         Fetches a single device posture rule.
@@ -428,17 +428,17 @@ class AsyncPostureResource(AsyncAPIResource):
             "sentinelone_s2s",
             "custom_s2s",
         ],
-        description: str | NotGiven = NOT_GIVEN,
-        expiration: str | NotGiven = NOT_GIVEN,
-        input: DeviceInputParam | NotGiven = NOT_GIVEN,
-        match: Iterable[DeviceMatchParam] | NotGiven = NOT_GIVEN,
-        schedule: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        expiration: str | Omit = omit,
+        input: DeviceInputParam | Omit = omit,
+        match: Iterable[DeviceMatchParam] | Omit = omit,
+        schedule: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DevicePostureRule]:
         """
         Creates a new device posture rule.
@@ -524,17 +524,17 @@ class AsyncPostureResource(AsyncAPIResource):
             "sentinelone_s2s",
             "custom_s2s",
         ],
-        description: str | NotGiven = NOT_GIVEN,
-        expiration: str | NotGiven = NOT_GIVEN,
-        input: DeviceInputParam | NotGiven = NOT_GIVEN,
-        match: Iterable[DeviceMatchParam] | NotGiven = NOT_GIVEN,
-        schedule: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        expiration: str | Omit = omit,
+        input: DeviceInputParam | Omit = omit,
+        match: Iterable[DeviceMatchParam] | Omit = omit,
+        schedule: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DevicePostureRule]:
         """
         Updates a device posture rule.
@@ -603,7 +603,7 @@ class AsyncPostureResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[DevicePostureRule, AsyncSinglePage[DevicePostureRule]]:
         """
         Fetches device posture rules for a Zero Trust account.
@@ -638,7 +638,7 @@ class AsyncPostureResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[PostureDeleteResponse]:
         """
         Deletes a device posture rule.
@@ -680,7 +680,7 @@ class AsyncPostureResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DevicePostureRule]:
         """
         Fetches a single device posture rule.

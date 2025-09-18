@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -52,14 +52,14 @@ class SubscriptionsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        frequency: Literal["weekly", "monthly", "quarterly", "yearly"] | NotGiven = NOT_GIVEN,
-        rate_plan: RatePlan | NotGiven = NOT_GIVEN,
+        frequency: Literal["weekly", "monthly", "quarterly", "yearly"] | Omit = omit,
+        rate_plan: RatePlan | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Subscription:
         """
         Creates an account subscription.
@@ -105,14 +105,14 @@ class SubscriptionsResource(SyncAPIResource):
         subscription_identifier: str,
         *,
         account_id: str,
-        frequency: Literal["weekly", "monthly", "quarterly", "yearly"] | NotGiven = NOT_GIVEN,
-        rate_plan: RatePlan | NotGiven = NOT_GIVEN,
+        frequency: Literal["weekly", "monthly", "quarterly", "yearly"] | Omit = omit,
+        rate_plan: RatePlan | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Subscription:
         """
         Updates an account subscription.
@@ -169,7 +169,7 @@ class SubscriptionsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubscriptionDeleteResponse:
         """
         Deletes an account's subscription.
@@ -214,7 +214,7 @@ class SubscriptionsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[Subscription]:
         """
         Lists all of an account's subscriptions.
@@ -266,14 +266,14 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        frequency: Literal["weekly", "monthly", "quarterly", "yearly"] | NotGiven = NOT_GIVEN,
-        rate_plan: RatePlan | NotGiven = NOT_GIVEN,
+        frequency: Literal["weekly", "monthly", "quarterly", "yearly"] | Omit = omit,
+        rate_plan: RatePlan | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Subscription:
         """
         Creates an account subscription.
@@ -319,14 +319,14 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         subscription_identifier: str,
         *,
         account_id: str,
-        frequency: Literal["weekly", "monthly", "quarterly", "yearly"] | NotGiven = NOT_GIVEN,
-        rate_plan: RatePlan | NotGiven = NOT_GIVEN,
+        frequency: Literal["weekly", "monthly", "quarterly", "yearly"] | Omit = omit,
+        rate_plan: RatePlan | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Subscription:
         """
         Updates an account subscription.
@@ -383,7 +383,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubscriptionDeleteResponse:
         """
         Deletes an account's subscription.
@@ -428,7 +428,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Subscription, AsyncSinglePage[Subscription]]:
         """
         Lists all of an account's subscriptions.

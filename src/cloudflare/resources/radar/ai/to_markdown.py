@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ...._files import read_file_content
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileContent
+from ...._types import Body, Query, Headers, NotGiven, FileContent, not_given
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -51,7 +51,7 @@ class ToMarkdownResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[ToMarkdownCreateResponse]:
         """
         Convert Files into Markdown
@@ -110,7 +110,7 @@ class AsyncToMarkdownResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ToMarkdownCreateResponse, AsyncSinglePage[ToMarkdownCreateResponse]]:
         """
         Convert Files into Markdown

@@ -39,7 +39,7 @@ from .variants import (
     VariantsResourceWithStreamingResponse,
     AsyncVariantsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
+from ...._types import Body, Omit, Query, Headers, NotGiven, FileTypes, omit, not_given
 from ...._utils import extract_files, maybe_transform, deepcopy_minimal, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -100,18 +100,18 @@ class V1Resource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        id: str | NotGiven = NOT_GIVEN,
-        creator: str | NotGiven = NOT_GIVEN,
-        file: FileTypes | NotGiven = NOT_GIVEN,
-        metadata: object | NotGiven = NOT_GIVEN,
-        require_signed_urls: bool | NotGiven = NOT_GIVEN,
-        url: str | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        creator: str | Omit = omit,
+        file: FileTypes | Omit = omit,
+        metadata: object | Omit = omit,
+        require_signed_urls: bool | Omit = omit,
+        url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Image:
         """
         Upload an image with up to 10 Megabytes using a single HTTP POST
@@ -179,15 +179,15 @@ class V1Resource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        creator: Optional[str] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
+        creator: Optional[str] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePagination[V1ListResponse]:
         """List up to 100 images with one request.
 
@@ -244,7 +244,7 @@ class V1Resource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> V1DeleteResponse:
         """Delete an image on Cloudflare Images.
 
@@ -290,15 +290,15 @@ class V1Resource(SyncAPIResource):
         image_id: str,
         *,
         account_id: str,
-        creator: str | NotGiven = NOT_GIVEN,
-        metadata: object | NotGiven = NOT_GIVEN,
-        require_signed_urls: bool | NotGiven = NOT_GIVEN,
+        creator: str | Omit = omit,
+        metadata: object | Omit = omit,
+        require_signed_urls: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Image:
         """Update image access control.
 
@@ -361,7 +361,7 @@ class V1Resource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Image:
         """
         Fetch details for a single image.
@@ -436,18 +436,18 @@ class AsyncV1Resource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        id: str | NotGiven = NOT_GIVEN,
-        creator: str | NotGiven = NOT_GIVEN,
-        file: FileTypes | NotGiven = NOT_GIVEN,
-        metadata: object | NotGiven = NOT_GIVEN,
-        require_signed_urls: bool | NotGiven = NOT_GIVEN,
-        url: str | NotGiven = NOT_GIVEN,
+        id: str | Omit = omit,
+        creator: str | Omit = omit,
+        file: FileTypes | Omit = omit,
+        metadata: object | Omit = omit,
+        require_signed_urls: bool | Omit = omit,
+        url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Image:
         """
         Upload an image with up to 10 Megabytes using a single HTTP POST
@@ -515,15 +515,15 @@ class AsyncV1Resource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        creator: Optional[str] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
+        creator: Optional[str] | Omit = omit,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[V1ListResponse, AsyncV4PagePagination[V1ListResponse]]:
         """List up to 100 images with one request.
 
@@ -580,7 +580,7 @@ class AsyncV1Resource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> V1DeleteResponse:
         """Delete an image on Cloudflare Images.
 
@@ -626,15 +626,15 @@ class AsyncV1Resource(AsyncAPIResource):
         image_id: str,
         *,
         account_id: str,
-        creator: str | NotGiven = NOT_GIVEN,
-        metadata: object | NotGiven = NOT_GIVEN,
-        require_signed_urls: bool | NotGiven = NOT_GIVEN,
+        creator: str | Omit = omit,
+        metadata: object | Omit = omit,
+        require_signed_urls: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Image:
         """Update image access control.
 
@@ -697,7 +697,7 @@ class AsyncV1Resource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Image:
         """
         Fetch details for a single image.

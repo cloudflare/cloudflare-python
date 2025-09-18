@@ -30,7 +30,7 @@ from .wans import (
     WANsResourceWithStreamingResponse,
     AsyncWANsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import is_given, maybe_transform, strip_not_given, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -92,17 +92,17 @@ class SitesResource(SyncAPIResource):
         *,
         account_id: str,
         name: str,
-        connector_id: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        ha_mode: bool | NotGiven = NOT_GIVEN,
-        location: SiteLocationParam | NotGiven = NOT_GIVEN,
-        secondary_connector_id: str | NotGiven = NOT_GIVEN,
+        connector_id: str | Omit = omit,
+        description: str | Omit = omit,
+        ha_mode: bool | Omit = omit,
+        location: SiteLocationParam | Omit = omit,
+        secondary_connector_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Site:
         """
         Creates a new Site
@@ -159,17 +159,17 @@ class SitesResource(SyncAPIResource):
         site_id: str,
         *,
         account_id: str,
-        connector_id: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        location: SiteLocationParam | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        secondary_connector_id: str | NotGiven = NOT_GIVEN,
+        connector_id: str | Omit = omit,
+        description: str | Omit = omit,
+        location: SiteLocationParam | Omit = omit,
+        name: str | Omit = omit,
+        secondary_connector_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Site:
         """
         Update a specific Site.
@@ -225,13 +225,13 @@ class SitesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        connectorid: str | NotGiven = NOT_GIVEN,
+        connectorid: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[Site]:
         """Lists Sites associated with an account.
 
@@ -277,7 +277,7 @@ class SitesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Site:
         """
         Remove a specific Site.
@@ -316,17 +316,17 @@ class SitesResource(SyncAPIResource):
         site_id: str,
         *,
         account_id: str,
-        connector_id: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        location: SiteLocationParam | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        secondary_connector_id: str | NotGiven = NOT_GIVEN,
+        connector_id: str | Omit = omit,
+        description: str | Omit = omit,
+        location: SiteLocationParam | Omit = omit,
+        name: str | Omit = omit,
+        secondary_connector_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Site:
         """
         Patch a specific Site.
@@ -383,13 +383,13 @@ class SitesResource(SyncAPIResource):
         site_id: str,
         *,
         account_id: str,
-        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
+        x_magic_new_hc_target: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Site:
         """
         Get a specific Site.
@@ -416,7 +416,7 @@ class SitesResource(SyncAPIResource):
                 {
                     "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
                     if is_given(x_magic_new_hc_target)
-                    else NOT_GIVEN
+                    else omit
                 }
             ),
             **(extra_headers or {}),
@@ -471,17 +471,17 @@ class AsyncSitesResource(AsyncAPIResource):
         *,
         account_id: str,
         name: str,
-        connector_id: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        ha_mode: bool | NotGiven = NOT_GIVEN,
-        location: SiteLocationParam | NotGiven = NOT_GIVEN,
-        secondary_connector_id: str | NotGiven = NOT_GIVEN,
+        connector_id: str | Omit = omit,
+        description: str | Omit = omit,
+        ha_mode: bool | Omit = omit,
+        location: SiteLocationParam | Omit = omit,
+        secondary_connector_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Site:
         """
         Creates a new Site
@@ -538,17 +538,17 @@ class AsyncSitesResource(AsyncAPIResource):
         site_id: str,
         *,
         account_id: str,
-        connector_id: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        location: SiteLocationParam | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        secondary_connector_id: str | NotGiven = NOT_GIVEN,
+        connector_id: str | Omit = omit,
+        description: str | Omit = omit,
+        location: SiteLocationParam | Omit = omit,
+        name: str | Omit = omit,
+        secondary_connector_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Site:
         """
         Update a specific Site.
@@ -604,13 +604,13 @@ class AsyncSitesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        connectorid: str | NotGiven = NOT_GIVEN,
+        connectorid: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Site, AsyncSinglePage[Site]]:
         """Lists Sites associated with an account.
 
@@ -656,7 +656,7 @@ class AsyncSitesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Site:
         """
         Remove a specific Site.
@@ -695,17 +695,17 @@ class AsyncSitesResource(AsyncAPIResource):
         site_id: str,
         *,
         account_id: str,
-        connector_id: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        location: SiteLocationParam | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        secondary_connector_id: str | NotGiven = NOT_GIVEN,
+        connector_id: str | Omit = omit,
+        description: str | Omit = omit,
+        location: SiteLocationParam | Omit = omit,
+        name: str | Omit = omit,
+        secondary_connector_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Site:
         """
         Patch a specific Site.
@@ -762,13 +762,13 @@ class AsyncSitesResource(AsyncAPIResource):
         site_id: str,
         *,
         account_id: str,
-        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
+        x_magic_new_hc_target: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Site:
         """
         Get a specific Site.
@@ -795,7 +795,7 @@ class AsyncSitesResource(AsyncAPIResource):
                 {
                     "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
                     if is_given(x_magic_new_hc_target)
-                    else NOT_GIVEN
+                    else omit
                 }
             ),
             **(extra_headers or {}),

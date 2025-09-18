@@ -6,7 +6,7 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -85,20 +85,20 @@ class DNSFirewallResource(SyncAPIResource):
         account_id: str,
         name: str,
         upstream_ips: SequenceNotStr[UpstreamIPs],
-        attack_mitigation: Optional[AttackMitigationParam] | NotGiven = NOT_GIVEN,
-        deprecate_any_requests: bool | NotGiven = NOT_GIVEN,
-        ecs_fallback: bool | NotGiven = NOT_GIVEN,
-        maximum_cache_ttl: float | NotGiven = NOT_GIVEN,
-        minimum_cache_ttl: float | NotGiven = NOT_GIVEN,
-        negative_cache_ttl: Optional[float] | NotGiven = NOT_GIVEN,
-        ratelimit: Optional[float] | NotGiven = NOT_GIVEN,
-        retries: float | NotGiven = NOT_GIVEN,
+        attack_mitigation: Optional[AttackMitigationParam] | Omit = omit,
+        deprecate_any_requests: bool | Omit = omit,
+        ecs_fallback: bool | Omit = omit,
+        maximum_cache_ttl: float | Omit = omit,
+        minimum_cache_ttl: float | Omit = omit,
+        negative_cache_ttl: Optional[float] | Omit = omit,
+        ratelimit: Optional[float] | Omit = omit,
+        retries: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DNSFirewallCreateResponse]:
         """
         Create a DNS Firewall cluster
@@ -172,14 +172,14 @@ class DNSFirewallResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[DNSFirewallListResponse]:
         """
         List DNS Firewall clusters for an account
@@ -230,7 +230,7 @@ class DNSFirewallResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DNSFirewallDeleteResponse]:
         """
         Delete a DNS Firewall cluster
@@ -269,22 +269,22 @@ class DNSFirewallResource(SyncAPIResource):
         dns_firewall_id: str,
         *,
         account_id: str,
-        attack_mitigation: Optional[AttackMitigationParam] | NotGiven = NOT_GIVEN,
-        deprecate_any_requests: bool | NotGiven = NOT_GIVEN,
-        ecs_fallback: bool | NotGiven = NOT_GIVEN,
-        maximum_cache_ttl: float | NotGiven = NOT_GIVEN,
-        minimum_cache_ttl: float | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        negative_cache_ttl: Optional[float] | NotGiven = NOT_GIVEN,
-        ratelimit: Optional[float] | NotGiven = NOT_GIVEN,
-        retries: float | NotGiven = NOT_GIVEN,
-        upstream_ips: SequenceNotStr[UpstreamIPs] | NotGiven = NOT_GIVEN,
+        attack_mitigation: Optional[AttackMitigationParam] | Omit = omit,
+        deprecate_any_requests: bool | Omit = omit,
+        ecs_fallback: bool | Omit = omit,
+        maximum_cache_ttl: float | Omit = omit,
+        minimum_cache_ttl: float | Omit = omit,
+        name: str | Omit = omit,
+        negative_cache_ttl: Optional[float] | Omit = omit,
+        ratelimit: Optional[float] | Omit = omit,
+        retries: float | Omit = omit,
+        upstream_ips: SequenceNotStr[UpstreamIPs] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DNSFirewallEditResponse]:
         """
         Modify the configuration of a DNS Firewall cluster
@@ -368,7 +368,7 @@ class DNSFirewallResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DNSFirewallGetResponse]:
         """
         Show a single DNS Firewall cluster for an account
@@ -437,20 +437,20 @@ class AsyncDNSFirewallResource(AsyncAPIResource):
         account_id: str,
         name: str,
         upstream_ips: SequenceNotStr[UpstreamIPs],
-        attack_mitigation: Optional[AttackMitigationParam] | NotGiven = NOT_GIVEN,
-        deprecate_any_requests: bool | NotGiven = NOT_GIVEN,
-        ecs_fallback: bool | NotGiven = NOT_GIVEN,
-        maximum_cache_ttl: float | NotGiven = NOT_GIVEN,
-        minimum_cache_ttl: float | NotGiven = NOT_GIVEN,
-        negative_cache_ttl: Optional[float] | NotGiven = NOT_GIVEN,
-        ratelimit: Optional[float] | NotGiven = NOT_GIVEN,
-        retries: float | NotGiven = NOT_GIVEN,
+        attack_mitigation: Optional[AttackMitigationParam] | Omit = omit,
+        deprecate_any_requests: bool | Omit = omit,
+        ecs_fallback: bool | Omit = omit,
+        maximum_cache_ttl: float | Omit = omit,
+        minimum_cache_ttl: float | Omit = omit,
+        negative_cache_ttl: Optional[float] | Omit = omit,
+        ratelimit: Optional[float] | Omit = omit,
+        retries: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DNSFirewallCreateResponse]:
         """
         Create a DNS Firewall cluster
@@ -524,14 +524,14 @@ class AsyncDNSFirewallResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
+        page: float | Omit = omit,
+        per_page: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[DNSFirewallListResponse, AsyncV4PagePaginationArray[DNSFirewallListResponse]]:
         """
         List DNS Firewall clusters for an account
@@ -582,7 +582,7 @@ class AsyncDNSFirewallResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DNSFirewallDeleteResponse]:
         """
         Delete a DNS Firewall cluster
@@ -621,22 +621,22 @@ class AsyncDNSFirewallResource(AsyncAPIResource):
         dns_firewall_id: str,
         *,
         account_id: str,
-        attack_mitigation: Optional[AttackMitigationParam] | NotGiven = NOT_GIVEN,
-        deprecate_any_requests: bool | NotGiven = NOT_GIVEN,
-        ecs_fallback: bool | NotGiven = NOT_GIVEN,
-        maximum_cache_ttl: float | NotGiven = NOT_GIVEN,
-        minimum_cache_ttl: float | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        negative_cache_ttl: Optional[float] | NotGiven = NOT_GIVEN,
-        ratelimit: Optional[float] | NotGiven = NOT_GIVEN,
-        retries: float | NotGiven = NOT_GIVEN,
-        upstream_ips: SequenceNotStr[UpstreamIPs] | NotGiven = NOT_GIVEN,
+        attack_mitigation: Optional[AttackMitigationParam] | Omit = omit,
+        deprecate_any_requests: bool | Omit = omit,
+        ecs_fallback: bool | Omit = omit,
+        maximum_cache_ttl: float | Omit = omit,
+        minimum_cache_ttl: float | Omit = omit,
+        name: str | Omit = omit,
+        negative_cache_ttl: Optional[float] | Omit = omit,
+        ratelimit: Optional[float] | Omit = omit,
+        retries: float | Omit = omit,
+        upstream_ips: SequenceNotStr[UpstreamIPs] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DNSFirewallEditResponse]:
         """
         Modify the configuration of a DNS Firewall cluster
@@ -720,7 +720,7 @@ class AsyncDNSFirewallResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[DNSFirewallGetResponse]:
         """
         Show a single DNS Firewall cluster for an account

@@ -7,7 +7,7 @@ from typing_extensions import Literal, overload
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import required_args, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -53,16 +53,16 @@ class ConsumersResource(SyncAPIResource):
         queue_id: str,
         *,
         account_id: str,
-        dead_letter_queue: str | NotGiven = NOT_GIVEN,
-        script_name: str | NotGiven = NOT_GIVEN,
-        settings: consumer_create_params.MqWorkerConsumerSettings | NotGiven = NOT_GIVEN,
-        type: Literal["worker"] | NotGiven = NOT_GIVEN,
+        dead_letter_queue: str | Omit = omit,
+        script_name: str | Omit = omit,
+        settings: consumer_create_params.MqWorkerConsumerSettings | Omit = omit,
+        type: Literal["worker"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Consumer]:
         """
         Creates a new consumer for a Queue
@@ -90,15 +90,15 @@ class ConsumersResource(SyncAPIResource):
         queue_id: str,
         *,
         account_id: str,
-        dead_letter_queue: str | NotGiven = NOT_GIVEN,
-        settings: consumer_create_params.MqHTTPConsumerSettings | NotGiven = NOT_GIVEN,
-        type: Literal["http_pull"] | NotGiven = NOT_GIVEN,
+        dead_letter_queue: str | Omit = omit,
+        settings: consumer_create_params.MqHTTPConsumerSettings | Omit = omit,
+        type: Literal["http_pull"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Consumer]:
         """
         Creates a new consumer for a Queue
@@ -124,18 +124,18 @@ class ConsumersResource(SyncAPIResource):
         queue_id: str,
         *,
         account_id: str,
-        dead_letter_queue: str | NotGiven = NOT_GIVEN,
-        script_name: str | NotGiven = NOT_GIVEN,
+        dead_letter_queue: str | Omit = omit,
+        script_name: str | Omit = omit,
         settings: consumer_create_params.MqWorkerConsumerSettings
         | consumer_create_params.MqHTTPConsumerSettings
-        | NotGiven = NOT_GIVEN,
-        type: Literal["worker"] | Literal["http_pull"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        type: Literal["worker"] | Literal["http_pull"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Consumer]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
@@ -174,16 +174,16 @@ class ConsumersResource(SyncAPIResource):
         *,
         account_id: str,
         queue_id: str,
-        dead_letter_queue: str | NotGiven = NOT_GIVEN,
-        script_name: str | NotGiven = NOT_GIVEN,
-        settings: consumer_update_params.MqWorkerConsumerSettings | NotGiven = NOT_GIVEN,
-        type: Literal["worker"] | NotGiven = NOT_GIVEN,
+        dead_letter_queue: str | Omit = omit,
+        script_name: str | Omit = omit,
+        settings: consumer_update_params.MqWorkerConsumerSettings | Omit = omit,
+        type: Literal["worker"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Consumer]:
         """
         Updates the consumer for a queue, or creates one if it does not exist.
@@ -214,15 +214,15 @@ class ConsumersResource(SyncAPIResource):
         *,
         account_id: str,
         queue_id: str,
-        dead_letter_queue: str | NotGiven = NOT_GIVEN,
-        settings: consumer_update_params.MqHTTPConsumerSettings | NotGiven = NOT_GIVEN,
-        type: Literal["http_pull"] | NotGiven = NOT_GIVEN,
+        dead_letter_queue: str | Omit = omit,
+        settings: consumer_update_params.MqHTTPConsumerSettings | Omit = omit,
+        type: Literal["http_pull"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Consumer]:
         """
         Updates the consumer for a queue, or creates one if it does not exist.
@@ -251,18 +251,18 @@ class ConsumersResource(SyncAPIResource):
         *,
         account_id: str,
         queue_id: str,
-        dead_letter_queue: str | NotGiven = NOT_GIVEN,
-        script_name: str | NotGiven = NOT_GIVEN,
+        dead_letter_queue: str | Omit = omit,
+        script_name: str | Omit = omit,
         settings: consumer_update_params.MqWorkerConsumerSettings
         | consumer_update_params.MqHTTPConsumerSettings
-        | NotGiven = NOT_GIVEN,
-        type: Literal["worker"] | Literal["http_pull"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        type: Literal["worker"] | Literal["http_pull"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Consumer]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
@@ -306,7 +306,7 @@ class ConsumersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[Consumer]:
         """
         Returns the consumers for a Queue
@@ -348,7 +348,7 @@ class ConsumersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConsumerDeleteResponse:
         """
         Deletes the consumer for a queue.
@@ -393,7 +393,7 @@ class ConsumersResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Consumer]:
         """
         Fetches the consumer for a queue by consumer id
@@ -463,16 +463,16 @@ class AsyncConsumersResource(AsyncAPIResource):
         queue_id: str,
         *,
         account_id: str,
-        dead_letter_queue: str | NotGiven = NOT_GIVEN,
-        script_name: str | NotGiven = NOT_GIVEN,
-        settings: consumer_create_params.MqWorkerConsumerSettings | NotGiven = NOT_GIVEN,
-        type: Literal["worker"] | NotGiven = NOT_GIVEN,
+        dead_letter_queue: str | Omit = omit,
+        script_name: str | Omit = omit,
+        settings: consumer_create_params.MqWorkerConsumerSettings | Omit = omit,
+        type: Literal["worker"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Consumer]:
         """
         Creates a new consumer for a Queue
@@ -500,15 +500,15 @@ class AsyncConsumersResource(AsyncAPIResource):
         queue_id: str,
         *,
         account_id: str,
-        dead_letter_queue: str | NotGiven = NOT_GIVEN,
-        settings: consumer_create_params.MqHTTPConsumerSettings | NotGiven = NOT_GIVEN,
-        type: Literal["http_pull"] | NotGiven = NOT_GIVEN,
+        dead_letter_queue: str | Omit = omit,
+        settings: consumer_create_params.MqHTTPConsumerSettings | Omit = omit,
+        type: Literal["http_pull"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Consumer]:
         """
         Creates a new consumer for a Queue
@@ -534,18 +534,18 @@ class AsyncConsumersResource(AsyncAPIResource):
         queue_id: str,
         *,
         account_id: str,
-        dead_letter_queue: str | NotGiven = NOT_GIVEN,
-        script_name: str | NotGiven = NOT_GIVEN,
+        dead_letter_queue: str | Omit = omit,
+        script_name: str | Omit = omit,
         settings: consumer_create_params.MqWorkerConsumerSettings
         | consumer_create_params.MqHTTPConsumerSettings
-        | NotGiven = NOT_GIVEN,
-        type: Literal["worker"] | Literal["http_pull"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        type: Literal["worker"] | Literal["http_pull"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Consumer]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
@@ -584,16 +584,16 @@ class AsyncConsumersResource(AsyncAPIResource):
         *,
         account_id: str,
         queue_id: str,
-        dead_letter_queue: str | NotGiven = NOT_GIVEN,
-        script_name: str | NotGiven = NOT_GIVEN,
-        settings: consumer_update_params.MqWorkerConsumerSettings | NotGiven = NOT_GIVEN,
-        type: Literal["worker"] | NotGiven = NOT_GIVEN,
+        dead_letter_queue: str | Omit = omit,
+        script_name: str | Omit = omit,
+        settings: consumer_update_params.MqWorkerConsumerSettings | Omit = omit,
+        type: Literal["worker"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Consumer]:
         """
         Updates the consumer for a queue, or creates one if it does not exist.
@@ -624,15 +624,15 @@ class AsyncConsumersResource(AsyncAPIResource):
         *,
         account_id: str,
         queue_id: str,
-        dead_letter_queue: str | NotGiven = NOT_GIVEN,
-        settings: consumer_update_params.MqHTTPConsumerSettings | NotGiven = NOT_GIVEN,
-        type: Literal["http_pull"] | NotGiven = NOT_GIVEN,
+        dead_letter_queue: str | Omit = omit,
+        settings: consumer_update_params.MqHTTPConsumerSettings | Omit = omit,
+        type: Literal["http_pull"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Consumer]:
         """
         Updates the consumer for a queue, or creates one if it does not exist.
@@ -661,18 +661,18 @@ class AsyncConsumersResource(AsyncAPIResource):
         *,
         account_id: str,
         queue_id: str,
-        dead_letter_queue: str | NotGiven = NOT_GIVEN,
-        script_name: str | NotGiven = NOT_GIVEN,
+        dead_letter_queue: str | Omit = omit,
+        script_name: str | Omit = omit,
         settings: consumer_update_params.MqWorkerConsumerSettings
         | consumer_update_params.MqHTTPConsumerSettings
-        | NotGiven = NOT_GIVEN,
-        type: Literal["worker"] | Literal["http_pull"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        type: Literal["worker"] | Literal["http_pull"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Consumer]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
@@ -716,7 +716,7 @@ class AsyncConsumersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Consumer, AsyncSinglePage[Consumer]]:
         """
         Returns the consumers for a Queue
@@ -758,7 +758,7 @@ class AsyncConsumersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConsumerDeleteResponse:
         """
         Deletes the consumer for a queue.
@@ -803,7 +803,7 @@ class AsyncConsumersResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Consumer]:
         """
         Fetches the consumer for a queue by consumer id

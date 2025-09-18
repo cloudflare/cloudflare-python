@@ -6,7 +6,7 @@ from typing import Type, Iterable, Optional, cast
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -51,17 +51,17 @@ class LocationsResource(SyncAPIResource):
         *,
         account_id: str,
         name: str,
-        client_default: bool | NotGiven = NOT_GIVEN,
-        dns_destination_ips_id: str | NotGiven = NOT_GIVEN,
-        ecs_support: bool | NotGiven = NOT_GIVEN,
-        endpoints: Optional[EndpointParam] | NotGiven = NOT_GIVEN,
-        networks: Optional[Iterable[location_create_params.Network]] | NotGiven = NOT_GIVEN,
+        client_default: bool | Omit = omit,
+        dns_destination_ips_id: str | Omit = omit,
+        ecs_support: bool | Omit = omit,
+        endpoints: Optional[EndpointParam] | Omit = omit,
+        networks: Optional[Iterable[location_create_params.Network]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Location]:
         """
         Create a new Zero Trust Gateway location.
@@ -124,17 +124,17 @@ class LocationsResource(SyncAPIResource):
         *,
         account_id: str,
         name: str,
-        client_default: bool | NotGiven = NOT_GIVEN,
-        dns_destination_ips_id: str | NotGiven = NOT_GIVEN,
-        ecs_support: bool | NotGiven = NOT_GIVEN,
-        endpoints: Optional[EndpointParam] | NotGiven = NOT_GIVEN,
-        networks: Optional[Iterable[location_update_params.Network]] | NotGiven = NOT_GIVEN,
+        client_default: bool | Omit = omit,
+        dns_destination_ips_id: str | Omit = omit,
+        ecs_support: bool | Omit = omit,
+        endpoints: Optional[EndpointParam] | Omit = omit,
+        networks: Optional[Iterable[location_update_params.Network]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Location]:
         """
         Update a configured Zero Trust Gateway location.
@@ -202,7 +202,7 @@ class LocationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[Location]:
         """
         List Zero Trust Gateway locations for an account.
@@ -237,7 +237,7 @@ class LocationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Delete a configured Zero Trust Gateway location.
@@ -277,7 +277,7 @@ class LocationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Location]:
         """
         Get a single Zero Trust Gateway location.
@@ -333,17 +333,17 @@ class AsyncLocationsResource(AsyncAPIResource):
         *,
         account_id: str,
         name: str,
-        client_default: bool | NotGiven = NOT_GIVEN,
-        dns_destination_ips_id: str | NotGiven = NOT_GIVEN,
-        ecs_support: bool | NotGiven = NOT_GIVEN,
-        endpoints: Optional[EndpointParam] | NotGiven = NOT_GIVEN,
-        networks: Optional[Iterable[location_create_params.Network]] | NotGiven = NOT_GIVEN,
+        client_default: bool | Omit = omit,
+        dns_destination_ips_id: str | Omit = omit,
+        ecs_support: bool | Omit = omit,
+        endpoints: Optional[EndpointParam] | Omit = omit,
+        networks: Optional[Iterable[location_create_params.Network]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Location]:
         """
         Create a new Zero Trust Gateway location.
@@ -406,17 +406,17 @@ class AsyncLocationsResource(AsyncAPIResource):
         *,
         account_id: str,
         name: str,
-        client_default: bool | NotGiven = NOT_GIVEN,
-        dns_destination_ips_id: str | NotGiven = NOT_GIVEN,
-        ecs_support: bool | NotGiven = NOT_GIVEN,
-        endpoints: Optional[EndpointParam] | NotGiven = NOT_GIVEN,
-        networks: Optional[Iterable[location_update_params.Network]] | NotGiven = NOT_GIVEN,
+        client_default: bool | Omit = omit,
+        dns_destination_ips_id: str | Omit = omit,
+        ecs_support: bool | Omit = omit,
+        endpoints: Optional[EndpointParam] | Omit = omit,
+        networks: Optional[Iterable[location_update_params.Network]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Location]:
         """
         Update a configured Zero Trust Gateway location.
@@ -484,7 +484,7 @@ class AsyncLocationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Location, AsyncSinglePage[Location]]:
         """
         List Zero Trust Gateway locations for an account.
@@ -519,7 +519,7 @@ class AsyncLocationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Delete a configured Zero Trust Gateway location.
@@ -559,7 +559,7 @@ class AsyncLocationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Optional[Location]:
         """
         Get a single Zero Trust Gateway location.
