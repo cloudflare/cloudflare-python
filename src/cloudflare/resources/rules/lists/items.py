@@ -69,6 +69,9 @@ class ItemsResource(SyncAPIResource):
         To get current the operation status, invoke the
         `Get bulk operation status` endpoint with the returned `operation_id`.
 
+        There is a limit of 1 pending bulk operation per account. If an outstanding bulk
+        operation is in progress, the request will be rejected.
+
         Args:
           account_id: The Account ID for this resource.
 
@@ -118,6 +121,9 @@ class ItemsResource(SyncAPIResource):
 
         This operation is asynchronous. To get current the operation status, invoke the
         `Get bulk operation status` endpoint with the returned `operation_id`.
+
+        There is a limit of 1 pending bulk operation per account. If an outstanding bulk
+        operation is in progress, the request will be rejected.
 
         Args:
           account_id: The Account ID for this resource.
@@ -236,6 +242,9 @@ class ItemsResource(SyncAPIResource):
 
         To get current the operation status, invoke the
         `Get bulk operation status` endpoint with the returned `operation_id`.
+
+        There is a limit of 1 pending bulk operation per account. If an outstanding bulk
+        operation is in progress, the request will be rejected.
 
         Args:
           account_id: The Account ID for this resource.
@@ -362,6 +371,9 @@ class AsyncItemsResource(AsyncAPIResource):
         To get current the operation status, invoke the
         `Get bulk operation status` endpoint with the returned `operation_id`.
 
+        There is a limit of 1 pending bulk operation per account. If an outstanding bulk
+        operation is in progress, the request will be rejected.
+
         Args:
           account_id: The Account ID for this resource.
 
@@ -411,6 +423,9 @@ class AsyncItemsResource(AsyncAPIResource):
 
         This operation is asynchronous. To get current the operation status, invoke the
         `Get bulk operation status` endpoint with the returned `operation_id`.
+
+        There is a limit of 1 pending bulk operation per account. If an outstanding bulk
+        operation is in progress, the request will be rejected.
 
         Args:
           account_id: The Account ID for this resource.
@@ -529,6 +544,9 @@ class AsyncItemsResource(AsyncAPIResource):
 
         To get current the operation status, invoke the
         `Get bulk operation status` endpoint with the returned `operation_id`.
+
+        There is a limit of 1 pending bulk operation per account. If an outstanding bulk
+        operation is in progress, the request will be rejected.
 
         Args:
           account_id: The Account ID for this resource.
