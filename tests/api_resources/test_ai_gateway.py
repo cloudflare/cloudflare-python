@@ -145,6 +145,10 @@ class TestAIGateway:
             logpush=True,
             logpush_public_key="xxxxxxxxxxxxxxxx",
             store_id="store_id",
+            stripe={
+                "authorization": "authorization",
+                "usage_events": [{"payload": "payload"}],
+            },
         )
         assert_matches_type(AIGatewayUpdateResponse, ai_gateway, path=["response"])
 
@@ -483,6 +487,10 @@ class TestAsyncAIGateway:
             logpush=True,
             logpush_public_key="xxxxxxxxxxxxxxxx",
             store_id="store_id",
+            stripe={
+                "authorization": "authorization",
+                "usage_events": [{"payload": "payload"}],
+            },
         )
         assert_matches_type(AIGatewayUpdateResponse, ai_gateway, path=["response"])
 

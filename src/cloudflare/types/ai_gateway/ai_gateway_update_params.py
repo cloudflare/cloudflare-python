@@ -7,7 +7,15 @@ from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from ..._types import SequenceNotStr
 
-__all__ = ["AIGatewayUpdateParams", "DLP", "DLPUnionMember0", "DLPUnionMember1", "DLPUnionMember1Policy"]
+__all__ = [
+    "AIGatewayUpdateParams",
+    "DLP",
+    "DLPUnionMember0",
+    "DLPUnionMember1",
+    "DLPUnionMember1Policy",
+    "Stripe",
+    "StripeUsageEvent",
+]
 
 
 class AIGatewayUpdateParams(TypedDict, total=False):
@@ -39,6 +47,8 @@ class AIGatewayUpdateParams(TypedDict, total=False):
 
     store_id: Optional[str]
 
+    stripe: Optional[Stripe]
+
 
 class DLPUnionMember0(TypedDict, total=False):
     action: Required[Literal["BLOCK", "FLAG"]]
@@ -67,3 +77,13 @@ class DLPUnionMember1(TypedDict, total=False):
 
 
 DLP: TypeAlias = Union[DLPUnionMember0, DLPUnionMember1]
+
+
+class StripeUsageEvent(TypedDict, total=False):
+    payload: Required[str]
+
+
+class Stripe(TypedDict, total=False):
+    authorization: Required[str]
+
+    usage_events: Required[Iterable[StripeUsageEvent]]

@@ -6,7 +6,15 @@ from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
 
-__all__ = ["AIGatewayCreateResponse", "DLP", "DLPUnionMember0", "DLPUnionMember1", "DLPUnionMember1Policy"]
+__all__ = [
+    "AIGatewayCreateResponse",
+    "DLP",
+    "DLPUnionMember0",
+    "DLPUnionMember1",
+    "DLPUnionMember1Policy",
+    "Stripe",
+    "StripeUsageEvent",
+]
 
 
 class DLPUnionMember0(BaseModel):
@@ -36,6 +44,16 @@ class DLPUnionMember1(BaseModel):
 
 
 DLP: TypeAlias = Union[DLPUnionMember0, DLPUnionMember1]
+
+
+class StripeUsageEvent(BaseModel):
+    payload: str
+
+
+class Stripe(BaseModel):
+    authorization: str
+
+    usage_events: List[StripeUsageEvent]
 
 
 class AIGatewayCreateResponse(BaseModel):
@@ -77,3 +95,5 @@ class AIGatewayCreateResponse(BaseModel):
     logpush_public_key: Optional[str] = None
 
     store_id: Optional[str] = None
+
+    stripe: Optional[Stripe] = None

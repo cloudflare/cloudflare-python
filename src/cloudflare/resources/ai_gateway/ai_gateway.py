@@ -196,6 +196,7 @@ class AIGatewayResource(SyncAPIResource):
         logpush: bool | Omit = omit,
         logpush_public_key: Optional[str] | Omit = omit,
         store_id: Optional[str] | Omit = omit,
+        stripe: Optional[ai_gateway_update_params.Stripe] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -238,6 +239,7 @@ class AIGatewayResource(SyncAPIResource):
                     "logpush": logpush,
                     "logpush_public_key": logpush_public_key,
                     "store_id": store_id,
+                    "stripe": stripe,
                 },
                 ai_gateway_update_params.AIGatewayUpdateParams,
             ),
@@ -512,6 +514,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         logpush: bool | Omit = omit,
         logpush_public_key: Optional[str] | Omit = omit,
         store_id: Optional[str] | Omit = omit,
+        stripe: Optional[ai_gateway_update_params.Stripe] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -554,6 +557,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
                     "logpush": logpush,
                     "logpush_public_key": logpush_public_key,
                     "store_id": store_id,
+                    "stripe": stripe,
                 },
                 ai_gateway_update_params.AIGatewayUpdateParams,
             ),
