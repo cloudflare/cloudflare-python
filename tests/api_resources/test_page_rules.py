@@ -26,8 +26,16 @@ class TestPageRules:
     def test_method_create(self, client: Cloudflare) -> None:
         page_rule = client.page_rules.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{}],
-            targets=[{}],
+            actions=[{"id": "browser_check"}],
+            targets=[
+                {
+                    "constraint": {
+                        "operator": "matches",
+                        "value": "*example.com/images/*",
+                    },
+                    "target": "url",
+                }
+            ],
         )
         assert_matches_type(Optional[PageRule], page_rule, path=["response"])
 
@@ -61,8 +69,16 @@ class TestPageRules:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.page_rules.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{}],
-            targets=[{}],
+            actions=[{"id": "browser_check"}],
+            targets=[
+                {
+                    "constraint": {
+                        "operator": "matches",
+                        "value": "*example.com/images/*",
+                    },
+                    "target": "url",
+                }
+            ],
         )
 
         assert response.is_closed is True
@@ -75,8 +91,16 @@ class TestPageRules:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.page_rules.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{}],
-            targets=[{}],
+            actions=[{"id": "browser_check"}],
+            targets=[
+                {
+                    "constraint": {
+                        "operator": "matches",
+                        "value": "*example.com/images/*",
+                    },
+                    "target": "url",
+                }
+            ],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -92,8 +116,16 @@ class TestPageRules:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.page_rules.with_raw_response.create(
                 zone_id="",
-                actions=[{}],
-                targets=[{}],
+                actions=[{"id": "browser_check"}],
+                targets=[
+                    {
+                        "constraint": {
+                            "operator": "matches",
+                            "value": "*example.com/images/*",
+                        },
+                        "target": "url",
+                    }
+                ],
             )
 
     @pytest.mark.skip(reason="generated params are incorrect")
@@ -102,8 +134,16 @@ class TestPageRules:
         page_rule = client.page_rules.update(
             pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{}],
-            targets=[{}],
+            actions=[{"id": "browser_check"}],
+            targets=[
+                {
+                    "constraint": {
+                        "operator": "matches",
+                        "value": "*example.com/images/*",
+                    },
+                    "target": "url",
+                }
+            ],
         )
         assert_matches_type(Optional[PageRule], page_rule, path=["response"])
 
@@ -139,8 +179,16 @@ class TestPageRules:
         response = client.page_rules.with_raw_response.update(
             pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{}],
-            targets=[{}],
+            actions=[{"id": "browser_check"}],
+            targets=[
+                {
+                    "constraint": {
+                        "operator": "matches",
+                        "value": "*example.com/images/*",
+                    },
+                    "target": "url",
+                }
+            ],
         )
 
         assert response.is_closed is True
@@ -154,8 +202,16 @@ class TestPageRules:
         with client.page_rules.with_streaming_response.update(
             pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{}],
-            targets=[{}],
+            actions=[{"id": "browser_check"}],
+            targets=[
+                {
+                    "constraint": {
+                        "operator": "matches",
+                        "value": "*example.com/images/*",
+                    },
+                    "target": "url",
+                }
+            ],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -172,16 +228,32 @@ class TestPageRules:
             client.page_rules.with_raw_response.update(
                 pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
-                actions=[{}],
-                targets=[{}],
+                actions=[{"id": "browser_check"}],
+                targets=[
+                    {
+                        "constraint": {
+                            "operator": "matches",
+                            "value": "*example.com/images/*",
+                        },
+                        "target": "url",
+                    }
+                ],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pagerule_id` but received ''"):
             client.page_rules.with_raw_response.update(
                 pagerule_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                actions=[{}],
-                targets=[{}],
+                actions=[{"id": "browser_check"}],
+                targets=[
+                    {
+                        "constraint": {
+                            "operator": "matches",
+                            "value": "*example.com/images/*",
+                        },
+                        "target": "url",
+                    }
+                ],
             )
 
     @parametrize
@@ -413,8 +485,16 @@ class TestAsyncPageRules:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         page_rule = await async_client.page_rules.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{}],
-            targets=[{}],
+            actions=[{"id": "browser_check"}],
+            targets=[
+                {
+                    "constraint": {
+                        "operator": "matches",
+                        "value": "*example.com/images/*",
+                    },
+                    "target": "url",
+                }
+            ],
         )
         assert_matches_type(Optional[PageRule], page_rule, path=["response"])
 
@@ -448,8 +528,16 @@ class TestAsyncPageRules:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.page_rules.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{}],
-            targets=[{}],
+            actions=[{"id": "browser_check"}],
+            targets=[
+                {
+                    "constraint": {
+                        "operator": "matches",
+                        "value": "*example.com/images/*",
+                    },
+                    "target": "url",
+                }
+            ],
         )
 
         assert response.is_closed is True
@@ -462,8 +550,16 @@ class TestAsyncPageRules:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.page_rules.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{}],
-            targets=[{}],
+            actions=[{"id": "browser_check"}],
+            targets=[
+                {
+                    "constraint": {
+                        "operator": "matches",
+                        "value": "*example.com/images/*",
+                    },
+                    "target": "url",
+                }
+            ],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -479,8 +575,16 @@ class TestAsyncPageRules:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.page_rules.with_raw_response.create(
                 zone_id="",
-                actions=[{}],
-                targets=[{}],
+                actions=[{"id": "browser_check"}],
+                targets=[
+                    {
+                        "constraint": {
+                            "operator": "matches",
+                            "value": "*example.com/images/*",
+                        },
+                        "target": "url",
+                    }
+                ],
             )
 
     @pytest.mark.skip(reason="generated params are incorrect")
@@ -489,8 +593,16 @@ class TestAsyncPageRules:
         page_rule = await async_client.page_rules.update(
             pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{}],
-            targets=[{}],
+            actions=[{"id": "browser_check"}],
+            targets=[
+                {
+                    "constraint": {
+                        "operator": "matches",
+                        "value": "*example.com/images/*",
+                    },
+                    "target": "url",
+                }
+            ],
         )
         assert_matches_type(Optional[PageRule], page_rule, path=["response"])
 
@@ -526,8 +638,16 @@ class TestAsyncPageRules:
         response = await async_client.page_rules.with_raw_response.update(
             pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{}],
-            targets=[{}],
+            actions=[{"id": "browser_check"}],
+            targets=[
+                {
+                    "constraint": {
+                        "operator": "matches",
+                        "value": "*example.com/images/*",
+                    },
+                    "target": "url",
+                }
+            ],
         )
 
         assert response.is_closed is True
@@ -541,8 +661,16 @@ class TestAsyncPageRules:
         async with async_client.page_rules.with_streaming_response.update(
             pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{}],
-            targets=[{}],
+            actions=[{"id": "browser_check"}],
+            targets=[
+                {
+                    "constraint": {
+                        "operator": "matches",
+                        "value": "*example.com/images/*",
+                    },
+                    "target": "url",
+                }
+            ],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -559,16 +687,32 @@ class TestAsyncPageRules:
             await async_client.page_rules.with_raw_response.update(
                 pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
-                actions=[{}],
-                targets=[{}],
+                actions=[{"id": "browser_check"}],
+                targets=[
+                    {
+                        "constraint": {
+                            "operator": "matches",
+                            "value": "*example.com/images/*",
+                        },
+                        "target": "url",
+                    }
+                ],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pagerule_id` but received ''"):
             await async_client.page_rules.with_raw_response.update(
                 pagerule_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                actions=[{}],
-                targets=[{}],
+                actions=[{"id": "browser_check"}],
+                targets=[
+                    {
+                        "constraint": {
+                            "operator": "matches",
+                            "value": "*example.com/images/*",
+                        },
+                        "target": "url",
+                    }
+                ],
             )
 
     @parametrize
