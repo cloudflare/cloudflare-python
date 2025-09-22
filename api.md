@@ -8205,6 +8205,7 @@ Types:
 ```python
 from cloudflare.types.radar.entities import (
     ASNListResponse,
+    ASNAsSetResponse,
     ASNGetResponse,
     ASNIPResponse,
     ASNRelResponse,
@@ -8214,6 +8215,7 @@ from cloudflare.types.radar.entities import (
 Methods:
 
 - <code title="get /radar/entities/asns">client.radar.entities.asns.<a href="./src/cloudflare/resources/radar/entities/asns.py">list</a>(\*\*<a href="src/cloudflare/types/radar/entities/asn_list_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/entities/asn_list_response.py">ASNListResponse</a></code>
+- <code title="get /radar/entities/asns/{asn}/as_set">client.radar.entities.asns.<a href="./src/cloudflare/resources/radar/entities/asns.py">as_set</a>(asn, \*\*<a href="src/cloudflare/types/radar/entities/asn_as_set_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/entities/asn_as_set_response.py">ASNAsSetResponse</a></code>
 - <code title="get /radar/entities/asns/{asn}">client.radar.entities.asns.<a href="./src/cloudflare/resources/radar/entities/asns.py">get</a>(asn, \*\*<a href="src/cloudflare/types/radar/entities/asn_get_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/entities/asn_get_response.py">ASNGetResponse</a></code>
 - <code title="get /radar/entities/asns/ip">client.radar.entities.asns.<a href="./src/cloudflare/resources/radar/entities/asns.py">ip</a>(\*\*<a href="src/cloudflare/types/radar/entities/asn_ip_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/entities/asn_ip_response.py">ASNIPResponse</a></code>
 - <code title="get /radar/entities/asns/{asn}/rel">client.radar.entities.asns.<a href="./src/cloudflare/resources/radar/entities/asns.py">rel</a>(asn, \*\*<a href="src/cloudflare/types/radar/entities/asn_rel_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/entities/asn_rel_response.py">ASNRelResponse</a></code>
