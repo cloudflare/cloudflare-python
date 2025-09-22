@@ -107,7 +107,6 @@ if TYPE_CHECKING:
         request_tracers,
         security_center,
         brand_protection,
-        content_scanning,
         custom_hostnames,
         resource_sharing,
         browser_rendering,
@@ -125,6 +124,7 @@ if TYPE_CHECKING:
         origin_ca_certificates,
         origin_tls_client_auth,
         certificate_authorities,
+        leaked_credential_checks,
         magic_network_monitoring,
         origin_post_quantum_encryption,
     )
@@ -212,7 +212,6 @@ if TYPE_CHECKING:
     from .resources.request_tracers.request_tracers import RequestTracersResource, AsyncRequestTracersResource
     from .resources.security_center.security_center import SecurityCenterResource, AsyncSecurityCenterResource
     from .resources.brand_protection.brand_protection import BrandProtectionResource, AsyncBrandProtectionResource
-    from .resources.content_scanning.content_scanning import ContentScanningResource, AsyncContentScanningResource
     from .resources.custom_hostnames.custom_hostnames import CustomHostnamesResource, AsyncCustomHostnamesResource
     from .resources.resource_sharing.resource_sharing import ResourceSharingResource, AsyncResourceSharingResource
     from .resources.browser_rendering.browser_rendering import BrowserRenderingResource, AsyncBrowserRenderingResource
@@ -241,6 +240,10 @@ if TYPE_CHECKING:
     from .resources.certificate_authorities.certificate_authorities import (
         CertificateAuthoritiesResource,
         AsyncCertificateAuthoritiesResource,
+    )
+    from .resources.leaked_credential_checks.leaked_credential_checks import (
+        LeakedCredentialChecksResource,
+        AsyncLeakedCredentialChecksResource,
     )
     from .resources.magic_network_monitoring.magic_network_monitoring import (
         MagicNetworkMonitoringResource,
@@ -843,10 +846,10 @@ class Cloudflare(SyncAPIClient):
         return ResourceSharingResource(self)
 
     @cached_property
-    def content_scanning(self) -> ContentScanningResource:
-        from .resources.content_scanning import ContentScanningResource
+    def leaked_credential_checks(self) -> LeakedCredentialChecksResource:
+        from .resources.leaked_credential_checks import LeakedCredentialChecksResource
 
-        return ContentScanningResource(self)
+        return LeakedCredentialChecksResource(self)
 
     @cached_property
     def abuse_reports(self) -> AbuseReportsResource:
@@ -1654,10 +1657,10 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncResourceSharingResource(self)
 
     @cached_property
-    def content_scanning(self) -> AsyncContentScanningResource:
-        from .resources.content_scanning import AsyncContentScanningResource
+    def leaked_credential_checks(self) -> AsyncLeakedCredentialChecksResource:
+        from .resources.leaked_credential_checks import AsyncLeakedCredentialChecksResource
 
-        return AsyncContentScanningResource(self)
+        return AsyncLeakedCredentialChecksResource(self)
 
     @cached_property
     def abuse_reports(self) -> AsyncAbuseReportsResource:
@@ -2400,10 +2403,10 @@ class CloudflareWithRawResponse:
         return ResourceSharingResourceWithRawResponse(self._client.resource_sharing)
 
     @cached_property
-    def content_scanning(self) -> content_scanning.ContentScanningResourceWithRawResponse:
-        from .resources.content_scanning import ContentScanningResourceWithRawResponse
+    def leaked_credential_checks(self) -> leaked_credential_checks.LeakedCredentialChecksResourceWithRawResponse:
+        from .resources.leaked_credential_checks import LeakedCredentialChecksResourceWithRawResponse
 
-        return ContentScanningResourceWithRawResponse(self._client.content_scanning)
+        return LeakedCredentialChecksResourceWithRawResponse(self._client.leaked_credential_checks)
 
     @cached_property
     def abuse_reports(self) -> abuse_reports.AbuseReportsResourceWithRawResponse:
@@ -2973,10 +2976,10 @@ class AsyncCloudflareWithRawResponse:
         return AsyncResourceSharingResourceWithRawResponse(self._client.resource_sharing)
 
     @cached_property
-    def content_scanning(self) -> content_scanning.AsyncContentScanningResourceWithRawResponse:
-        from .resources.content_scanning import AsyncContentScanningResourceWithRawResponse
+    def leaked_credential_checks(self) -> leaked_credential_checks.AsyncLeakedCredentialChecksResourceWithRawResponse:
+        from .resources.leaked_credential_checks import AsyncLeakedCredentialChecksResourceWithRawResponse
 
-        return AsyncContentScanningResourceWithRawResponse(self._client.content_scanning)
+        return AsyncLeakedCredentialChecksResourceWithRawResponse(self._client.leaked_credential_checks)
 
     @cached_property
     def abuse_reports(self) -> abuse_reports.AsyncAbuseReportsResourceWithRawResponse:
@@ -3546,10 +3549,10 @@ class CloudflareWithStreamedResponse:
         return ResourceSharingResourceWithStreamingResponse(self._client.resource_sharing)
 
     @cached_property
-    def content_scanning(self) -> content_scanning.ContentScanningResourceWithStreamingResponse:
-        from .resources.content_scanning import ContentScanningResourceWithStreamingResponse
+    def leaked_credential_checks(self) -> leaked_credential_checks.LeakedCredentialChecksResourceWithStreamingResponse:
+        from .resources.leaked_credential_checks import LeakedCredentialChecksResourceWithStreamingResponse
 
-        return ContentScanningResourceWithStreamingResponse(self._client.content_scanning)
+        return LeakedCredentialChecksResourceWithStreamingResponse(self._client.leaked_credential_checks)
 
     @cached_property
     def abuse_reports(self) -> abuse_reports.AbuseReportsResourceWithStreamingResponse:
@@ -4127,10 +4130,12 @@ class AsyncCloudflareWithStreamedResponse:
         return AsyncResourceSharingResourceWithStreamingResponse(self._client.resource_sharing)
 
     @cached_property
-    def content_scanning(self) -> content_scanning.AsyncContentScanningResourceWithStreamingResponse:
-        from .resources.content_scanning import AsyncContentScanningResourceWithStreamingResponse
+    def leaked_credential_checks(
+        self,
+    ) -> leaked_credential_checks.AsyncLeakedCredentialChecksResourceWithStreamingResponse:
+        from .resources.leaked_credential_checks import AsyncLeakedCredentialChecksResourceWithStreamingResponse
 
-        return AsyncContentScanningResourceWithStreamingResponse(self._client.content_scanning)
+        return AsyncLeakedCredentialChecksResourceWithStreamingResponse(self._client.leaked_credential_checks)
 
     @cached_property
     def abuse_reports(self) -> abuse_reports.AsyncAbuseReportsResourceWithStreamingResponse:

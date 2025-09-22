@@ -6,24 +6,17 @@ from typing import Type, cast
 
 import httpx
 
-from ..._types import Body, Query, Headers, NotGiven, not_given
-from .payloads import (
-    PayloadsResource,
-    AsyncPayloadsResource,
-    PayloadsResourceWithRawResponse,
-    AsyncPayloadsResourceWithRawResponse,
-    PayloadsResourceWithStreamingResponse,
-    AsyncPayloadsResourceWithStreamingResponse,
-)
-from .settings import (
-    SettingsResource,
-    AsyncSettingsResource,
-    SettingsResourceWithRawResponse,
-    AsyncSettingsResourceWithRawResponse,
-    SettingsResourceWithStreamingResponse,
-    AsyncSettingsResourceWithStreamingResponse,
-)
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
+from .detections import (
+    DetectionsResource,
+    AsyncDetectionsResource,
+    DetectionsResourceWithRawResponse,
+    AsyncDetectionsResourceWithRawResponse,
+    DetectionsResourceWithStreamingResponse,
+    AsyncDetectionsResourceWithStreamingResponse,
+)
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
@@ -33,54 +26,58 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ..._base_client import make_request_options
+from ...types.leaked_credential_checks import leaked_credential_check_create_params
+from ...types.leaked_credential_checks.leaked_credential_check_get_response import LeakedCredentialCheckGetResponse
+from ...types.leaked_credential_checks.leaked_credential_check_create_response import (
+    LeakedCredentialCheckCreateResponse,
+)
 
-__all__ = ["ContentScanningResource", "AsyncContentScanningResource"]
+__all__ = ["LeakedCredentialChecksResource", "AsyncLeakedCredentialChecksResource"]
 
 
-class ContentScanningResource(SyncAPIResource):
+class LeakedCredentialChecksResource(SyncAPIResource):
     @cached_property
-    def payloads(self) -> PayloadsResource:
-        return PayloadsResource(self._client)
+    def detections(self) -> DetectionsResource:
+        return DetectionsResource(self._client)
 
     @cached_property
-    def settings(self) -> SettingsResource:
-        return SettingsResource(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> ContentScanningResourceWithRawResponse:
+    def with_raw_response(self) -> LeakedCredentialChecksResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return ContentScanningResourceWithRawResponse(self)
+        return LeakedCredentialChecksResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ContentScanningResourceWithStreamingResponse:
+    def with_streaming_response(self) -> LeakedCredentialChecksResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return ContentScanningResourceWithStreamingResponse(self)
+        return LeakedCredentialChecksResourceWithStreamingResponse(self)
 
-    def disable(
+    def create(
         self,
         *,
         zone_id: str,
+        enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> LeakedCredentialCheckCreateResponse:
         """
-        Disable Content Scanning.
+        Updates the current status of Leaked Credential Checks.
 
         Args:
           zone_id: Defines an identifier.
+
+          enabled: Determines whether or not Leaked Credential Checks are enabled.
 
           extra_headers: Send extra headers
 
@@ -93,18 +90,21 @@ class ContentScanningResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
-            f"/zones/{zone_id}/content-upload-scan/disable",
+            f"/zones/{zone_id}/leaked-credential-checks",
+            body=maybe_transform(
+                {"enabled": enabled}, leaked_credential_check_create_params.LeakedCredentialCheckCreateParams
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[object]._unwrapper,
+                post_parser=ResultWrapper[LeakedCredentialCheckCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[LeakedCredentialCheckCreateResponse], ResultWrapper[LeakedCredentialCheckCreateResponse]),
         )
 
-    def enable(
+    def get(
         self,
         *,
         zone_id: str,
@@ -114,9 +114,9 @@ class ContentScanningResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> LeakedCredentialCheckGetResponse:
         """
-        Enable Content Scanning.
+        Retrieves the current status of Leaked Credential Checks.
 
         Args:
           zone_id: Defines an identifier.
@@ -131,48 +131,89 @@ class ContentScanningResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._post(
-            f"/zones/{zone_id}/content-upload-scan/enable",
+        return self._get(
+            f"/zones/{zone_id}/leaked-credential-checks",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[object]._unwrapper,
+                post_parser=ResultWrapper[LeakedCredentialCheckGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[LeakedCredentialCheckGetResponse], ResultWrapper[LeakedCredentialCheckGetResponse]),
         )
 
 
-class AsyncContentScanningResource(AsyncAPIResource):
+class AsyncLeakedCredentialChecksResource(AsyncAPIResource):
     @cached_property
-    def payloads(self) -> AsyncPayloadsResource:
-        return AsyncPayloadsResource(self._client)
+    def detections(self) -> AsyncDetectionsResource:
+        return AsyncDetectionsResource(self._client)
 
     @cached_property
-    def settings(self) -> AsyncSettingsResource:
-        return AsyncSettingsResource(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> AsyncContentScanningResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncLeakedCredentialChecksResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncContentScanningResourceWithRawResponse(self)
+        return AsyncLeakedCredentialChecksResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncContentScanningResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncLeakedCredentialChecksResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return AsyncContentScanningResourceWithStreamingResponse(self)
+        return AsyncLeakedCredentialChecksResourceWithStreamingResponse(self)
 
-    async def disable(
+    async def create(
+        self,
+        *,
+        zone_id: str,
+        enabled: bool | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> LeakedCredentialCheckCreateResponse:
+        """
+        Updates the current status of Leaked Credential Checks.
+
+        Args:
+          zone_id: Defines an identifier.
+
+          enabled: Determines whether or not Leaked Credential Checks are enabled.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._post(
+            f"/zones/{zone_id}/leaked-credential-checks",
+            body=await async_maybe_transform(
+                {"enabled": enabled}, leaked_credential_check_create_params.LeakedCredentialCheckCreateParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[LeakedCredentialCheckCreateResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[LeakedCredentialCheckCreateResponse], ResultWrapper[LeakedCredentialCheckCreateResponse]),
+        )
+
+    async def get(
         self,
         *,
         zone_id: str,
@@ -182,9 +223,9 @@ class AsyncContentScanningResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> LeakedCredentialCheckGetResponse:
         """
-        Disable Content Scanning.
+        Retrieves the current status of Leaked Credential Checks.
 
         Args:
           zone_id: Defines an identifier.
@@ -199,133 +240,78 @@ class AsyncContentScanningResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._post(
-            f"/zones/{zone_id}/content-upload-scan/disable",
+        return await self._get(
+            f"/zones/{zone_id}/leaked-credential-checks",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[object]._unwrapper,
+                post_parser=ResultWrapper[LeakedCredentialCheckGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
-        )
-
-    async def enable(
-        self,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
-        """
-        Enable Content Scanning.
-
-        Args:
-          zone_id: Defines an identifier.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._post(
-            f"/zones/{zone_id}/content-upload-scan/enable",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[object]._unwrapper,
-            ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[LeakedCredentialCheckGetResponse], ResultWrapper[LeakedCredentialCheckGetResponse]),
         )
 
 
-class ContentScanningResourceWithRawResponse:
-    def __init__(self, content_scanning: ContentScanningResource) -> None:
-        self._content_scanning = content_scanning
+class LeakedCredentialChecksResourceWithRawResponse:
+    def __init__(self, leaked_credential_checks: LeakedCredentialChecksResource) -> None:
+        self._leaked_credential_checks = leaked_credential_checks
 
-        self.disable = to_raw_response_wrapper(
-            content_scanning.disable,
+        self.create = to_raw_response_wrapper(
+            leaked_credential_checks.create,
         )
-        self.enable = to_raw_response_wrapper(
-            content_scanning.enable,
+        self.get = to_raw_response_wrapper(
+            leaked_credential_checks.get,
         )
 
     @cached_property
-    def payloads(self) -> PayloadsResourceWithRawResponse:
-        return PayloadsResourceWithRawResponse(self._content_scanning.payloads)
-
-    @cached_property
-    def settings(self) -> SettingsResourceWithRawResponse:
-        return SettingsResourceWithRawResponse(self._content_scanning.settings)
+    def detections(self) -> DetectionsResourceWithRawResponse:
+        return DetectionsResourceWithRawResponse(self._leaked_credential_checks.detections)
 
 
-class AsyncContentScanningResourceWithRawResponse:
-    def __init__(self, content_scanning: AsyncContentScanningResource) -> None:
-        self._content_scanning = content_scanning
+class AsyncLeakedCredentialChecksResourceWithRawResponse:
+    def __init__(self, leaked_credential_checks: AsyncLeakedCredentialChecksResource) -> None:
+        self._leaked_credential_checks = leaked_credential_checks
 
-        self.disable = async_to_raw_response_wrapper(
-            content_scanning.disable,
+        self.create = async_to_raw_response_wrapper(
+            leaked_credential_checks.create,
         )
-        self.enable = async_to_raw_response_wrapper(
-            content_scanning.enable,
+        self.get = async_to_raw_response_wrapper(
+            leaked_credential_checks.get,
         )
 
     @cached_property
-    def payloads(self) -> AsyncPayloadsResourceWithRawResponse:
-        return AsyncPayloadsResourceWithRawResponse(self._content_scanning.payloads)
-
-    @cached_property
-    def settings(self) -> AsyncSettingsResourceWithRawResponse:
-        return AsyncSettingsResourceWithRawResponse(self._content_scanning.settings)
+    def detections(self) -> AsyncDetectionsResourceWithRawResponse:
+        return AsyncDetectionsResourceWithRawResponse(self._leaked_credential_checks.detections)
 
 
-class ContentScanningResourceWithStreamingResponse:
-    def __init__(self, content_scanning: ContentScanningResource) -> None:
-        self._content_scanning = content_scanning
+class LeakedCredentialChecksResourceWithStreamingResponse:
+    def __init__(self, leaked_credential_checks: LeakedCredentialChecksResource) -> None:
+        self._leaked_credential_checks = leaked_credential_checks
 
-        self.disable = to_streamed_response_wrapper(
-            content_scanning.disable,
+        self.create = to_streamed_response_wrapper(
+            leaked_credential_checks.create,
         )
-        self.enable = to_streamed_response_wrapper(
-            content_scanning.enable,
+        self.get = to_streamed_response_wrapper(
+            leaked_credential_checks.get,
         )
 
     @cached_property
-    def payloads(self) -> PayloadsResourceWithStreamingResponse:
-        return PayloadsResourceWithStreamingResponse(self._content_scanning.payloads)
-
-    @cached_property
-    def settings(self) -> SettingsResourceWithStreamingResponse:
-        return SettingsResourceWithStreamingResponse(self._content_scanning.settings)
+    def detections(self) -> DetectionsResourceWithStreamingResponse:
+        return DetectionsResourceWithStreamingResponse(self._leaked_credential_checks.detections)
 
 
-class AsyncContentScanningResourceWithStreamingResponse:
-    def __init__(self, content_scanning: AsyncContentScanningResource) -> None:
-        self._content_scanning = content_scanning
+class AsyncLeakedCredentialChecksResourceWithStreamingResponse:
+    def __init__(self, leaked_credential_checks: AsyncLeakedCredentialChecksResource) -> None:
+        self._leaked_credential_checks = leaked_credential_checks
 
-        self.disable = async_to_streamed_response_wrapper(
-            content_scanning.disable,
+        self.create = async_to_streamed_response_wrapper(
+            leaked_credential_checks.create,
         )
-        self.enable = async_to_streamed_response_wrapper(
-            content_scanning.enable,
+        self.get = async_to_streamed_response_wrapper(
+            leaked_credential_checks.get,
         )
 
     @cached_property
-    def payloads(self) -> AsyncPayloadsResourceWithStreamingResponse:
-        return AsyncPayloadsResourceWithStreamingResponse(self._content_scanning.payloads)
-
-    @cached_property
-    def settings(self) -> AsyncSettingsResourceWithStreamingResponse:
-        return AsyncSettingsResourceWithStreamingResponse(self._content_scanning.settings)
+    def detections(self) -> AsyncDetectionsResourceWithStreamingResponse:
+        return AsyncDetectionsResourceWithStreamingResponse(self._leaked_credential_checks.detections)
