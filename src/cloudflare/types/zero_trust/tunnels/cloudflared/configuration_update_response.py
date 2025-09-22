@@ -16,7 +16,6 @@ __all__ = [
     "ConfigIngressOriginRequestAccess",
     "ConfigOriginRequest",
     "ConfigOriginRequestAccess",
-    "ConfigWARPRouting",
 ]
 
 
@@ -218,10 +217,6 @@ class ConfigOriginRequest(BaseModel):
     """
 
 
-class ConfigWARPRouting(BaseModel):
-    enabled: Optional[bool] = None
-
-
 class Config(BaseModel):
     ingress: Optional[List[ConfigIngress]] = None
     """List of public hostname definitions.
@@ -233,12 +228,6 @@ class Config(BaseModel):
     """
     Configuration parameters for the public hostname specific connection settings
     between cloudflared and origin server.
-    """
-
-    warp_routing: Optional[ConfigWARPRouting] = FieldInfo(alias="warp-routing", default=None)
-    """Enable private network access from WARP users to private network routes.
-
-    This is enabled if the tunnel has an assigned route.
     """
 
 
