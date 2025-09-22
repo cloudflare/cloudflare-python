@@ -15,8 +15,10 @@ from cloudflare.types.dns import (
     RecordBatchResponse,
     RecordDeleteResponse,
     RecordImportResponse,
+    RecordScanReviewResponse,
+    RecordScanTriggerResponse,
 )
-from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage, SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 
 # pyright: reportDeprecated=false
 
@@ -5855,6 +5857,143 @@ class TestRecords:
                     body={},
                 )
 
+    @parametrize
+    def test_method_scan_list(self, client: Cloudflare) -> None:
+        record = client.dns.records.scan_list(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(SyncSinglePage[RecordResponse], record, path=["response"])
+
+    @parametrize
+    def test_raw_response_scan_list(self, client: Cloudflare) -> None:
+        response = client.dns.records.with_raw_response.scan_list(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        record = response.parse()
+        assert_matches_type(SyncSinglePage[RecordResponse], record, path=["response"])
+
+    @parametrize
+    def test_streaming_response_scan_list(self, client: Cloudflare) -> None:
+        with client.dns.records.with_streaming_response.scan_list(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            record = response.parse()
+            assert_matches_type(SyncSinglePage[RecordResponse], record, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_scan_list(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            client.dns.records.with_raw_response.scan_list(
+                zone_id="",
+            )
+
+    @parametrize
+    def test_method_scan_review(self, client: Cloudflare) -> None:
+        record = client.dns.records.scan_review(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Optional[RecordScanReviewResponse], record, path=["response"])
+
+    @parametrize
+    def test_method_scan_review_with_all_params(self, client: Cloudflare) -> None:
+        record = client.dns.records.scan_review(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            accepts=[
+                {
+                    "name": "example.com",
+                    "ttl": 3600,
+                    "type": "A",
+                    "comment": "Domain verification record",
+                    "content": "198.51.100.4",
+                    "proxied": True,
+                    "settings": {
+                        "ipv4_only": True,
+                        "ipv6_only": True,
+                    },
+                    "tags": ["owner:dns-team"],
+                }
+            ],
+            rejects=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
+        )
+        assert_matches_type(Optional[RecordScanReviewResponse], record, path=["response"])
+
+    @parametrize
+    def test_raw_response_scan_review(self, client: Cloudflare) -> None:
+        response = client.dns.records.with_raw_response.scan_review(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        record = response.parse()
+        assert_matches_type(Optional[RecordScanReviewResponse], record, path=["response"])
+
+    @parametrize
+    def test_streaming_response_scan_review(self, client: Cloudflare) -> None:
+        with client.dns.records.with_streaming_response.scan_review(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            record = response.parse()
+            assert_matches_type(Optional[RecordScanReviewResponse], record, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_scan_review(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            client.dns.records.with_raw_response.scan_review(
+                zone_id="",
+            )
+
+    @parametrize
+    def test_method_scan_trigger(self, client: Cloudflare) -> None:
+        record = client.dns.records.scan_trigger(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(RecordScanTriggerResponse, record, path=["response"])
+
+    @parametrize
+    def test_raw_response_scan_trigger(self, client: Cloudflare) -> None:
+        response = client.dns.records.with_raw_response.scan_trigger(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        record = response.parse()
+        assert_matches_type(RecordScanTriggerResponse, record, path=["response"])
+
+    @parametrize
+    def test_streaming_response_scan_trigger(self, client: Cloudflare) -> None:
+        with client.dns.records.with_streaming_response.scan_trigger(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            record = response.parse()
+            assert_matches_type(RecordScanTriggerResponse, record, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_scan_trigger(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            client.dns.records.with_raw_response.scan_trigger(
+                zone_id="",
+            )
+
 
 class TestAsyncRecords:
     parametrize = pytest.mark.parametrize(
@@ -11689,3 +11828,140 @@ class TestAsyncRecords:
                     zone_id="",
                     body={},
                 )
+
+    @parametrize
+    async def test_method_scan_list(self, async_client: AsyncCloudflare) -> None:
+        record = await async_client.dns.records.scan_list(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(AsyncSinglePage[RecordResponse], record, path=["response"])
+
+    @parametrize
+    async def test_raw_response_scan_list(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.dns.records.with_raw_response.scan_list(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        record = await response.parse()
+        assert_matches_type(AsyncSinglePage[RecordResponse], record, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_scan_list(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.dns.records.with_streaming_response.scan_list(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            record = await response.parse()
+            assert_matches_type(AsyncSinglePage[RecordResponse], record, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_scan_list(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            await async_client.dns.records.with_raw_response.scan_list(
+                zone_id="",
+            )
+
+    @parametrize
+    async def test_method_scan_review(self, async_client: AsyncCloudflare) -> None:
+        record = await async_client.dns.records.scan_review(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Optional[RecordScanReviewResponse], record, path=["response"])
+
+    @parametrize
+    async def test_method_scan_review_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        record = await async_client.dns.records.scan_review(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            accepts=[
+                {
+                    "name": "example.com",
+                    "ttl": 3600,
+                    "type": "A",
+                    "comment": "Domain verification record",
+                    "content": "198.51.100.4",
+                    "proxied": True,
+                    "settings": {
+                        "ipv4_only": True,
+                        "ipv6_only": True,
+                    },
+                    "tags": ["owner:dns-team"],
+                }
+            ],
+            rejects=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
+        )
+        assert_matches_type(Optional[RecordScanReviewResponse], record, path=["response"])
+
+    @parametrize
+    async def test_raw_response_scan_review(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.dns.records.with_raw_response.scan_review(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        record = await response.parse()
+        assert_matches_type(Optional[RecordScanReviewResponse], record, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_scan_review(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.dns.records.with_streaming_response.scan_review(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            record = await response.parse()
+            assert_matches_type(Optional[RecordScanReviewResponse], record, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_scan_review(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            await async_client.dns.records.with_raw_response.scan_review(
+                zone_id="",
+            )
+
+    @parametrize
+    async def test_method_scan_trigger(self, async_client: AsyncCloudflare) -> None:
+        record = await async_client.dns.records.scan_trigger(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(RecordScanTriggerResponse, record, path=["response"])
+
+    @parametrize
+    async def test_raw_response_scan_trigger(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.dns.records.with_raw_response.scan_trigger(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        record = await response.parse()
+        assert_matches_type(RecordScanTriggerResponse, record, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_scan_trigger(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.dns.records.with_streaming_response.scan_trigger(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            record = await response.parse()
+            assert_matches_type(RecordScanTriggerResponse, record, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_scan_trigger(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            await async_client.dns.records.with_raw_response.scan_trigger(
+                zone_id="",
+            )

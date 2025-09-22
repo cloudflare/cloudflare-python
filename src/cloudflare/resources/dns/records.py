@@ -27,8 +27,9 @@ from ...types.dns import (
     record_create_params,
     record_import_params,
     record_update_params,
+    record_scan_review_params,
 )
-from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ...pagination import SyncSinglePage, AsyncSinglePage, SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.dns.ttl_param import TTLParam
 from ...types.dns.record_tags import RecordTags
@@ -40,6 +41,8 @@ from ...types.dns.record_scan_response import RecordScanResponse
 from ...types.dns.record_batch_response import RecordBatchResponse
 from ...types.dns.record_delete_response import RecordDeleteResponse
 from ...types.dns.record_import_response import RecordImportResponse
+from ...types.dns.record_scan_review_response import RecordScanReviewResponse
+from ...types.dns.record_scan_trigger_response import RecordScanTriggerResponse
 
 __all__ = ["RecordsResource", "AsyncRecordsResource"]
 
@@ -4973,6 +4976,135 @@ class RecordsResource(SyncAPIResource):
             cast_to=cast(Type[Optional[RecordScanResponse]], ResultWrapper[RecordScanResponse]),
         )
 
+    def scan_list(
+        self,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncSinglePage[RecordResponse]:
+        """
+        Retrieves the list of DNS records discovered up to this point by the
+        asynchronous scan. These records are temporary until explicitly accepted or
+        rejected via `POST /scan/review`. Additional records may be discovered by the
+        scan later.
+
+        Args:
+          zone_id: Identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._get_api_list(
+            f"/zones/{zone_id}/dns_records/scan/review",
+            page=SyncSinglePage[RecordResponse],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            model=cast(Any, RecordResponse),  # Union types cannot be passed in as arguments in the type system
+        )
+
+    def scan_review(
+        self,
+        *,
+        zone_id: str,
+        accepts: Iterable[record_scan_review_params.Accept] | Omit = omit,
+        rejects: Iterable[record_scan_review_params.Reject] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[RecordScanReviewResponse]:
+        """Accept or reject DNS records found by the DNS records scan.
+
+        Accepted records
+        will be permanently added to the zone, while rejected records will be
+        permanently deleted.
+
+        Args:
+          zone_id: Identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._post(
+            f"/zones/{zone_id}/dns_records/scan/review",
+            body=maybe_transform(
+                {
+                    "accepts": accepts,
+                    "rejects": rejects,
+                },
+                record_scan_review_params.RecordScanReviewParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[RecordScanReviewResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[RecordScanReviewResponse]], ResultWrapper[RecordScanReviewResponse]),
+        )
+
+    def scan_trigger(
+        self,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> RecordScanTriggerResponse:
+        """Initiates an asynchronous scan for common DNS records on your domain.
+
+        Note that
+        this **does not** automatically add records to your zone. The scan runs in the
+        background, and results can be reviewed later using the `/scan/review`
+        endpoints. Useful if you haven't updated your nameservers yet.
+
+        Args:
+          zone_id: Identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._post(
+            f"/zones/{zone_id}/dns_records/scan/trigger",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=RecordScanTriggerResponse,
+        )
+
 
 class AsyncRecordsResource(AsyncAPIResource):
     @cached_property
@@ -9903,6 +10035,135 @@ class AsyncRecordsResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[RecordScanResponse]], ResultWrapper[RecordScanResponse]),
         )
 
+    def scan_list(
+        self,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[RecordResponse, AsyncSinglePage[RecordResponse]]:
+        """
+        Retrieves the list of DNS records discovered up to this point by the
+        asynchronous scan. These records are temporary until explicitly accepted or
+        rejected via `POST /scan/review`. Additional records may be discovered by the
+        scan later.
+
+        Args:
+          zone_id: Identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._get_api_list(
+            f"/zones/{zone_id}/dns_records/scan/review",
+            page=AsyncSinglePage[RecordResponse],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            model=cast(Any, RecordResponse),  # Union types cannot be passed in as arguments in the type system
+        )
+
+    async def scan_review(
+        self,
+        *,
+        zone_id: str,
+        accepts: Iterable[record_scan_review_params.Accept] | Omit = omit,
+        rejects: Iterable[record_scan_review_params.Reject] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[RecordScanReviewResponse]:
+        """Accept or reject DNS records found by the DNS records scan.
+
+        Accepted records
+        will be permanently added to the zone, while rejected records will be
+        permanently deleted.
+
+        Args:
+          zone_id: Identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._post(
+            f"/zones/{zone_id}/dns_records/scan/review",
+            body=await async_maybe_transform(
+                {
+                    "accepts": accepts,
+                    "rejects": rejects,
+                },
+                record_scan_review_params.RecordScanReviewParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[RecordScanReviewResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[RecordScanReviewResponse]], ResultWrapper[RecordScanReviewResponse]),
+        )
+
+    async def scan_trigger(
+        self,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> RecordScanTriggerResponse:
+        """Initiates an asynchronous scan for common DNS records on your domain.
+
+        Note that
+        this **does not** automatically add records to your zone. The scan runs in the
+        background, and results can be reviewed later using the `/scan/review`
+        endpoints. Useful if you haven't updated your nameservers yet.
+
+        Args:
+          zone_id: Identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._post(
+            f"/zones/{zone_id}/dns_records/scan/trigger",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=RecordScanTriggerResponse,
+        )
+
 
 class RecordsResourceWithRawResponse:
     def __init__(self, records: RecordsResource) -> None:
@@ -9939,6 +10200,15 @@ class RecordsResourceWithRawResponse:
             to_raw_response_wrapper(
                 records.scan,  # pyright: ignore[reportDeprecated],
             )
+        )
+        self.scan_list = to_raw_response_wrapper(
+            records.scan_list,
+        )
+        self.scan_review = to_raw_response_wrapper(
+            records.scan_review,
+        )
+        self.scan_trigger = to_raw_response_wrapper(
+            records.scan_trigger,
         )
 
 
@@ -9978,6 +10248,15 @@ class AsyncRecordsResourceWithRawResponse:
                 records.scan,  # pyright: ignore[reportDeprecated],
             )
         )
+        self.scan_list = async_to_raw_response_wrapper(
+            records.scan_list,
+        )
+        self.scan_review = async_to_raw_response_wrapper(
+            records.scan_review,
+        )
+        self.scan_trigger = async_to_raw_response_wrapper(
+            records.scan_trigger,
+        )
 
 
 class RecordsResourceWithStreamingResponse:
@@ -10016,6 +10295,15 @@ class RecordsResourceWithStreamingResponse:
                 records.scan,  # pyright: ignore[reportDeprecated],
             )
         )
+        self.scan_list = to_streamed_response_wrapper(
+            records.scan_list,
+        )
+        self.scan_review = to_streamed_response_wrapper(
+            records.scan_review,
+        )
+        self.scan_trigger = to_streamed_response_wrapper(
+            records.scan_trigger,
+        )
 
 
 class AsyncRecordsResourceWithStreamingResponse:
@@ -10053,4 +10341,13 @@ class AsyncRecordsResourceWithStreamingResponse:
             async_to_streamed_response_wrapper(
                 records.scan,  # pyright: ignore[reportDeprecated],
             )
+        )
+        self.scan_list = async_to_streamed_response_wrapper(
+            records.scan_list,
+        )
+        self.scan_review = async_to_streamed_response_wrapper(
+            records.scan_review,
+        )
+        self.scan_trigger = async_to_streamed_response_wrapper(
+            records.scan_trigger,
         )

@@ -1094,6 +1094,8 @@ from cloudflare.types.dns import (
     RecordExportResponse,
     RecordImportResponse,
     RecordScanResponse,
+    RecordScanReviewResponse,
+    RecordScanTriggerResponse,
 )
 ```
 
@@ -1109,6 +1111,9 @@ Methods:
 - <code title="get /zones/{zone_id}/dns_records/{dns_record_id}">client.dns.records.<a href="./src/cloudflare/resources/dns/records.py">get</a>(dns_record_id, \*, zone_id) -> <a href="./src/cloudflare/types/dns/record_response.py">Optional[RecordResponse]</a></code>
 - <code title="post /zones/{zone_id}/dns_records/import">client.dns.records.<a href="./src/cloudflare/resources/dns/records.py">import\_</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/dns/record_import_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/record_import_response.py">Optional[RecordImportResponse]</a></code>
 - <code title="post /zones/{zone_id}/dns_records/scan">client.dns.records.<a href="./src/cloudflare/resources/dns/records.py">scan</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/dns/record_scan_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/record_scan_response.py">Optional[RecordScanResponse]</a></code>
+- <code title="get /zones/{zone_id}/dns_records/scan/review">client.dns.records.<a href="./src/cloudflare/resources/dns/records.py">scan_list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/dns/record_response.py">SyncSinglePage[RecordResponse]</a></code>
+- <code title="post /zones/{zone_id}/dns_records/scan/review">client.dns.records.<a href="./src/cloudflare/resources/dns/records.py">scan_review</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/dns/record_scan_review_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/record_scan_review_response.py">Optional[RecordScanReviewResponse]</a></code>
+- <code title="post /zones/{zone_id}/dns_records/scan/trigger">client.dns.records.<a href="./src/cloudflare/resources/dns/records.py">scan_trigger</a>(\*, zone_id) -> <a href="./src/cloudflare/types/dns/record_scan_trigger_response.py">RecordScanTriggerResponse</a></code>
 
 ## Settings
 
