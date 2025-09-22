@@ -12,14 +12,6 @@ from .smart_routing import (
     SmartRoutingResourceWithStreamingResponse,
     AsyncSmartRoutingResourceWithStreamingResponse,
 )
-from .tiered_caching import (
-    TieredCachingResource,
-    AsyncTieredCachingResource,
-    TieredCachingResourceWithRawResponse,
-    AsyncTieredCachingResourceWithRawResponse,
-    TieredCachingResourceWithStreamingResponse,
-    AsyncTieredCachingResourceWithStreamingResponse,
-)
 
 __all__ = ["ArgoResource", "AsyncArgoResource"]
 
@@ -28,10 +20,6 @@ class ArgoResource(SyncAPIResource):
     @cached_property
     def smart_routing(self) -> SmartRoutingResource:
         return SmartRoutingResource(self._client)
-
-    @cached_property
-    def tiered_caching(self) -> TieredCachingResource:
-        return TieredCachingResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> ArgoResourceWithRawResponse:
@@ -57,10 +45,6 @@ class AsyncArgoResource(AsyncAPIResource):
     @cached_property
     def smart_routing(self) -> AsyncSmartRoutingResource:
         return AsyncSmartRoutingResource(self._client)
-
-    @cached_property
-    def tiered_caching(self) -> AsyncTieredCachingResource:
-        return AsyncTieredCachingResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncArgoResourceWithRawResponse:
@@ -90,10 +74,6 @@ class ArgoResourceWithRawResponse:
     def smart_routing(self) -> SmartRoutingResourceWithRawResponse:
         return SmartRoutingResourceWithRawResponse(self._argo.smart_routing)
 
-    @cached_property
-    def tiered_caching(self) -> TieredCachingResourceWithRawResponse:
-        return TieredCachingResourceWithRawResponse(self._argo.tiered_caching)
-
 
 class AsyncArgoResourceWithRawResponse:
     def __init__(self, argo: AsyncArgoResource) -> None:
@@ -102,10 +82,6 @@ class AsyncArgoResourceWithRawResponse:
     @cached_property
     def smart_routing(self) -> AsyncSmartRoutingResourceWithRawResponse:
         return AsyncSmartRoutingResourceWithRawResponse(self._argo.smart_routing)
-
-    @cached_property
-    def tiered_caching(self) -> AsyncTieredCachingResourceWithRawResponse:
-        return AsyncTieredCachingResourceWithRawResponse(self._argo.tiered_caching)
 
 
 class ArgoResourceWithStreamingResponse:
@@ -116,10 +92,6 @@ class ArgoResourceWithStreamingResponse:
     def smart_routing(self) -> SmartRoutingResourceWithStreamingResponse:
         return SmartRoutingResourceWithStreamingResponse(self._argo.smart_routing)
 
-    @cached_property
-    def tiered_caching(self) -> TieredCachingResourceWithStreamingResponse:
-        return TieredCachingResourceWithStreamingResponse(self._argo.tiered_caching)
-
 
 class AsyncArgoResourceWithStreamingResponse:
     def __init__(self, argo: AsyncArgoResource) -> None:
@@ -128,7 +100,3 @@ class AsyncArgoResourceWithStreamingResponse:
     @cached_property
     def smart_routing(self) -> AsyncSmartRoutingResourceWithStreamingResponse:
         return AsyncSmartRoutingResourceWithStreamingResponse(self._argo.smart_routing)
-
-    @cached_property
-    def tiered_caching(self) -> AsyncTieredCachingResourceWithStreamingResponse:
-        return AsyncTieredCachingResourceWithStreamingResponse(self._argo.tiered_caching)

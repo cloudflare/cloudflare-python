@@ -126,7 +126,6 @@ if TYPE_CHECKING:
         certificate_authorities,
         leaked_credential_checks,
         magic_network_monitoring,
-        origin_post_quantum_encryption,
     )
     from .resources.ips import IPsResource, AsyncIPsResource
     from .resources.ai.ai import AIResource, AsyncAIResource
@@ -203,10 +202,6 @@ if TYPE_CHECKING:
     from .resources.cloudforce_one.cloudforce_one import CloudforceOneResource, AsyncCloudforceOneResource
     from .resources.email_security.email_security import EmailSecurityResource, AsyncEmailSecurityResource
     from .resources.load_balancers.load_balancers import LoadBalancersResource, AsyncLoadBalancersResource
-    from .resources.origin_post_quantum_encryption import (
-        OriginPostQuantumEncryptionResource,
-        AsyncOriginPostQuantumEncryptionResource,
-    )
     from .resources.cloud_connector.cloud_connector import CloudConnectorResource, AsyncCloudConnectorResource
     from .resources.durable_objects.durable_objects import DurableObjectsResource, AsyncDurableObjectsResource
     from .resources.request_tracers.request_tracers import RequestTracersResource, AsyncRequestTracersResource
@@ -754,12 +749,6 @@ class Cloudflare(SyncAPIClient):
         from .resources.bot_management import BotManagementResource
 
         return BotManagementResource(self)
-
-    @cached_property
-    def origin_post_quantum_encryption(self) -> OriginPostQuantumEncryptionResource:
-        from .resources.origin_post_quantum_encryption import OriginPostQuantumEncryptionResource
-
-        return OriginPostQuantumEncryptionResource(self)
 
     @cached_property
     def zaraz(self) -> ZarazResource:
@@ -1567,12 +1556,6 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncBotManagementResource(self)
 
     @cached_property
-    def origin_post_quantum_encryption(self) -> AsyncOriginPostQuantumEncryptionResource:
-        from .resources.origin_post_quantum_encryption import AsyncOriginPostQuantumEncryptionResource
-
-        return AsyncOriginPostQuantumEncryptionResource(self)
-
-    @cached_property
     def zaraz(self) -> AsyncZarazResource:
         from .resources.zaraz import AsyncZarazResource
 
@@ -2311,14 +2294,6 @@ class CloudflareWithRawResponse:
         return BotManagementResourceWithRawResponse(self._client.bot_management)
 
     @cached_property
-    def origin_post_quantum_encryption(
-        self,
-    ) -> origin_post_quantum_encryption.OriginPostQuantumEncryptionResourceWithRawResponse:
-        from .resources.origin_post_quantum_encryption import OriginPostQuantumEncryptionResourceWithRawResponse
-
-        return OriginPostQuantumEncryptionResourceWithRawResponse(self._client.origin_post_quantum_encryption)
-
-    @cached_property
     def zaraz(self) -> zaraz.ZarazResourceWithRawResponse:
         from .resources.zaraz import ZarazResourceWithRawResponse
 
@@ -2884,14 +2859,6 @@ class AsyncCloudflareWithRawResponse:
         return AsyncBotManagementResourceWithRawResponse(self._client.bot_management)
 
     @cached_property
-    def origin_post_quantum_encryption(
-        self,
-    ) -> origin_post_quantum_encryption.AsyncOriginPostQuantumEncryptionResourceWithRawResponse:
-        from .resources.origin_post_quantum_encryption import AsyncOriginPostQuantumEncryptionResourceWithRawResponse
-
-        return AsyncOriginPostQuantumEncryptionResourceWithRawResponse(self._client.origin_post_quantum_encryption)
-
-    @cached_property
     def zaraz(self) -> zaraz.AsyncZarazResourceWithRawResponse:
         from .resources.zaraz import AsyncZarazResourceWithRawResponse
 
@@ -3455,14 +3422,6 @@ class CloudflareWithStreamedResponse:
         from .resources.bot_management import BotManagementResourceWithStreamingResponse
 
         return BotManagementResourceWithStreamingResponse(self._client.bot_management)
-
-    @cached_property
-    def origin_post_quantum_encryption(
-        self,
-    ) -> origin_post_quantum_encryption.OriginPostQuantumEncryptionResourceWithStreamingResponse:
-        from .resources.origin_post_quantum_encryption import OriginPostQuantumEncryptionResourceWithStreamingResponse
-
-        return OriginPostQuantumEncryptionResourceWithStreamingResponse(self._client.origin_post_quantum_encryption)
 
     @cached_property
     def zaraz(self) -> zaraz.ZarazResourceWithStreamingResponse:
@@ -4032,18 +3991,6 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.bot_management import AsyncBotManagementResourceWithStreamingResponse
 
         return AsyncBotManagementResourceWithStreamingResponse(self._client.bot_management)
-
-    @cached_property
-    def origin_post_quantum_encryption(
-        self,
-    ) -> origin_post_quantum_encryption.AsyncOriginPostQuantumEncryptionResourceWithStreamingResponse:
-        from .resources.origin_post_quantum_encryption import (
-            AsyncOriginPostQuantumEncryptionResourceWithStreamingResponse,
-        )
-
-        return AsyncOriginPostQuantumEncryptionResourceWithStreamingResponse(
-            self._client.origin_post_quantum_encryption
-        )
 
     @cached_property
     def zaraz(self) -> zaraz.AsyncZarazResourceWithStreamingResponse:
