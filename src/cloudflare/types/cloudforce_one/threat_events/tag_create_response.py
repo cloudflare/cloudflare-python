@@ -28,7 +28,7 @@ class TagCreateResponse(BaseModel):
 
     attribution_organization: Optional[str] = FieldInfo(alias="attributionOrganization", default=None)
 
-    category_name: Optional[str] = FieldInfo(alias="categoryName", default=None)
+    category_uuid: Optional[str] = FieldInfo(alias="categoryUuid", default=None)
 
     external_reference_links: Optional[List[str]] = FieldInfo(alias="externalReferenceLinks", default=None)
 
