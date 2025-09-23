@@ -16,6 +16,14 @@ from .smart_routing import (
     SmartRoutingResourceWithStreamingResponse,
     AsyncSmartRoutingResourceWithStreamingResponse,
 )
+from .tiered_caching import (
+    TieredCachingResource,
+    AsyncTieredCachingResource,
+    TieredCachingResourceWithRawResponse,
+    AsyncTieredCachingResourceWithRawResponse,
+    TieredCachingResourceWithStreamingResponse,
+    AsyncTieredCachingResourceWithStreamingResponse,
+)
 
 __all__ = [
     "SmartRoutingResource",
@@ -24,6 +32,12 @@ __all__ = [
     "AsyncSmartRoutingResourceWithRawResponse",
     "SmartRoutingResourceWithStreamingResponse",
     "AsyncSmartRoutingResourceWithStreamingResponse",
+    "TieredCachingResource",
+    "AsyncTieredCachingResource",
+    "TieredCachingResourceWithRawResponse",
+    "AsyncTieredCachingResourceWithRawResponse",
+    "TieredCachingResourceWithStreamingResponse",
+    "AsyncTieredCachingResourceWithStreamingResponse",
     "ArgoResource",
     "AsyncArgoResource",
     "ArgoResourceWithRawResponse",
