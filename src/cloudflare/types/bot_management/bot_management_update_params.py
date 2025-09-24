@@ -25,6 +25,9 @@ class BotFightModeConfiguration(TypedDict, total=False):
     Enterprise customers.
     """
 
+    cf_robots_variant: Literal["off", "policy_only"]
+    """Specifies the Robots Access Control License variant to use."""
+
     crawler_protection: Literal["enabled", "disabled"]
     """Enable rule to punish AI Scrapers and Crawlers via a link maze."""
 
@@ -55,6 +58,9 @@ class SuperBotFightModeDefinitelyConfiguration(TypedDict, total=False):
     Please note the value `only_on_ad_pages` is currently not available for
     Enterprise customers.
     """
+
+    cf_robots_variant: Literal["off", "policy_only"]
+    """Specifies the Robots Access Control License variant to use."""
 
     crawler_protection: Literal["enabled", "disabled"]
     """Enable rule to punish AI Scrapers and Crawlers via a link maze."""
@@ -99,6 +105,9 @@ class SuperBotFightModeLikelyConfiguration(TypedDict, total=False):
     Please note the value `only_on_ad_pages` is currently not available for
     Enterprise customers.
     """
+
+    cf_robots_variant: Literal["off", "policy_only"]
+    """Specifies the Robots Access Control License variant to use."""
 
     crawler_protection: Literal["enabled", "disabled"]
     """Enable rule to punish AI Scrapers and Crawlers via a link maze."""
@@ -159,6 +168,9 @@ class SubscriptionConfiguration(TypedDict, total=False):
     Indicates that the bot management cookie can be placed on end user devices
     accessing the site. Defaults to true
     """
+
+    cf_robots_variant: Literal["off", "policy_only"]
+    """Specifies the Robots Access Control License variant to use."""
 
     crawler_protection: Literal["enabled", "disabled"]
     """Enable rule to punish AI Scrapers and Crawlers via a link maze."""

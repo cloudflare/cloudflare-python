@@ -15,6 +15,9 @@ class SuperBotFightModeLikelyConfigurationParam(TypedDict, total=False):
     Enterprise customers.
     """
 
+    cf_robots_variant: Literal["off", "policy_only"]
+    """Specifies the Robots Access Control License variant to use."""
+
     crawler_protection: Literal["enabled", "disabled"]
     """Enable rule to punish AI Scrapers and Crawlers via a link maze."""
 

@@ -21,6 +21,9 @@ class SuperBotFightModeLikelyConfiguration(BaseModel):
     Enterprise customers.
     """
 
+    cf_robots_variant: Optional[Literal["off", "policy_only"]] = None
+    """Specifies the Robots Access Control License variant to use."""
+
     crawler_protection: Optional[Literal["enabled", "disabled"]] = None
     """Enable rule to punish AI Scrapers and Crawlers via a link maze."""
 

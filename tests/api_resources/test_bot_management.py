@@ -32,10 +32,11 @@ class TestBotManagement:
         bot_management = client.bot_management.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ai_bots_protection="block",
+            cf_robots_variant="policy_only",
             crawler_protection="enabled",
             enable_js=True,
             fight_mode=True,
-            is_robots_txt_managed=True,
+            is_robots_txt_managed=False,
         )
         assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
 
@@ -82,9 +83,10 @@ class TestBotManagement:
         bot_management = client.bot_management.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ai_bots_protection="block",
+            cf_robots_variant="policy_only",
             crawler_protection="enabled",
             enable_js=True,
-            is_robots_txt_managed=True,
+            is_robots_txt_managed=False,
             optimize_wordpress=True,
             sbfm_definitely_automated="allow",
             sbfm_static_resource_protection=True,
@@ -135,9 +137,10 @@ class TestBotManagement:
         bot_management = client.bot_management.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ai_bots_protection="block",
+            cf_robots_variant="policy_only",
             crawler_protection="enabled",
             enable_js=True,
-            is_robots_txt_managed=True,
+            is_robots_txt_managed=False,
             optimize_wordpress=True,
             sbfm_definitely_automated="allow",
             sbfm_likely_automated="allow",
@@ -191,9 +194,10 @@ class TestBotManagement:
             ai_bots_protection="block",
             auto_update_model=True,
             bm_cookie_enabled=True,
+            cf_robots_variant="policy_only",
             crawler_protection="enabled",
             enable_js=True,
-            is_robots_txt_managed=True,
+            is_robots_txt_managed=False,
             suppress_session_score=False,
         )
         assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
@@ -285,10 +289,11 @@ class TestAsyncBotManagement:
         bot_management = await async_client.bot_management.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ai_bots_protection="block",
+            cf_robots_variant="policy_only",
             crawler_protection="enabled",
             enable_js=True,
             fight_mode=True,
-            is_robots_txt_managed=True,
+            is_robots_txt_managed=False,
         )
         assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
 
@@ -335,9 +340,10 @@ class TestAsyncBotManagement:
         bot_management = await async_client.bot_management.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ai_bots_protection="block",
+            cf_robots_variant="policy_only",
             crawler_protection="enabled",
             enable_js=True,
-            is_robots_txt_managed=True,
+            is_robots_txt_managed=False,
             optimize_wordpress=True,
             sbfm_definitely_automated="allow",
             sbfm_static_resource_protection=True,
@@ -388,9 +394,10 @@ class TestAsyncBotManagement:
         bot_management = await async_client.bot_management.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ai_bots_protection="block",
+            cf_robots_variant="policy_only",
             crawler_protection="enabled",
             enable_js=True,
-            is_robots_txt_managed=True,
+            is_robots_txt_managed=False,
             optimize_wordpress=True,
             sbfm_definitely_automated="allow",
             sbfm_likely_automated="allow",
@@ -444,9 +451,10 @@ class TestAsyncBotManagement:
             ai_bots_protection="block",
             auto_update_model=True,
             bm_cookie_enabled=True,
+            cf_robots_variant="policy_only",
             crawler_protection="enabled",
             enable_js=True,
-            is_robots_txt_managed=True,
+            is_robots_txt_managed=False,
             suppress_session_score=False,
         )
         assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])

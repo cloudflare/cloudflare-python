@@ -52,6 +52,7 @@ class BotManagementResource(SyncAPIResource):
         *,
         zone_id: str,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
+        cf_robots_variant: Literal["off", "policy_only"] | Omit = omit,
         crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
         enable_js: bool | Omit = omit,
         fight_mode: bool | Omit = omit,
@@ -132,6 +133,8 @@ class BotManagementResource(SyncAPIResource):
           ai_bots_protection: Enable rule to block AI Scrapers and Crawlers. Please note the value
               `only_on_ad_pages` is currently not available for Enterprise customers.
 
+          cf_robots_variant: Specifies the Robots Access Control License variant to use.
+
           crawler_protection: Enable rule to punish AI Scrapers and Crawlers via a link maze.
 
           enable_js: Use lightweight, invisible JavaScript detections to improve Bot Management.
@@ -158,6 +161,7 @@ class BotManagementResource(SyncAPIResource):
         *,
         zone_id: str,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
+        cf_robots_variant: Literal["off", "policy_only"] | Omit = omit,
         crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
         enable_js: bool | Omit = omit,
         is_robots_txt_managed: bool | Omit = omit,
@@ -241,6 +245,8 @@ class BotManagementResource(SyncAPIResource):
           ai_bots_protection: Enable rule to block AI Scrapers and Crawlers. Please note the value
               `only_on_ad_pages` is currently not available for Enterprise customers.
 
+          cf_robots_variant: Specifies the Robots Access Control License variant to use.
+
           crawler_protection: Enable rule to punish AI Scrapers and Crawlers via a link maze.
 
           enable_js: Use lightweight, invisible JavaScript detections to improve Bot Management.
@@ -275,6 +281,7 @@ class BotManagementResource(SyncAPIResource):
         *,
         zone_id: str,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
+        cf_robots_variant: Literal["off", "policy_only"] | Omit = omit,
         crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
         enable_js: bool | Omit = omit,
         is_robots_txt_managed: bool | Omit = omit,
@@ -359,6 +366,8 @@ class BotManagementResource(SyncAPIResource):
           ai_bots_protection: Enable rule to block AI Scrapers and Crawlers. Please note the value
               `only_on_ad_pages` is currently not available for Enterprise customers.
 
+          cf_robots_variant: Specifies the Robots Access Control License variant to use.
+
           crawler_protection: Enable rule to punish AI Scrapers and Crawlers via a link maze.
 
           enable_js: Use lightweight, invisible JavaScript detections to improve Bot Management.
@@ -397,6 +406,7 @@ class BotManagementResource(SyncAPIResource):
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
         auto_update_model: bool | Omit = omit,
         bm_cookie_enabled: bool | Omit = omit,
+        cf_robots_variant: Literal["off", "policy_only"] | Omit = omit,
         crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
         enable_js: bool | Omit = omit,
         is_robots_txt_managed: bool | Omit = omit,
@@ -484,6 +494,8 @@ class BotManagementResource(SyncAPIResource):
           bm_cookie_enabled: Indicates that the bot management cookie can be placed on end user devices
               accessing the site. Defaults to true
 
+          cf_robots_variant: Specifies the Robots Access Control License variant to use.
+
           crawler_protection: Enable rule to punish AI Scrapers and Crawlers via a link maze.
 
           enable_js: Use lightweight, invisible JavaScript detections to improve Bot Management.
@@ -511,6 +523,7 @@ class BotManagementResource(SyncAPIResource):
         *,
         zone_id: str,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
+        cf_robots_variant: Literal["off", "policy_only"] | Omit = omit,
         crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
         enable_js: bool | Omit = omit,
         fight_mode: bool | Omit = omit,
@@ -539,6 +552,7 @@ class BotManagementResource(SyncAPIResource):
                 body=maybe_transform(
                     {
                         "ai_bots_protection": ai_bots_protection,
+                        "cf_robots_variant": cf_robots_variant,
                         "crawler_protection": crawler_protection,
                         "enable_js": enable_js,
                         "fight_mode": fight_mode,
@@ -638,6 +652,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         *,
         zone_id: str,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
+        cf_robots_variant: Literal["off", "policy_only"] | Omit = omit,
         crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
         enable_js: bool | Omit = omit,
         fight_mode: bool | Omit = omit,
@@ -718,6 +733,8 @@ class AsyncBotManagementResource(AsyncAPIResource):
           ai_bots_protection: Enable rule to block AI Scrapers and Crawlers. Please note the value
               `only_on_ad_pages` is currently not available for Enterprise customers.
 
+          cf_robots_variant: Specifies the Robots Access Control License variant to use.
+
           crawler_protection: Enable rule to punish AI Scrapers and Crawlers via a link maze.
 
           enable_js: Use lightweight, invisible JavaScript detections to improve Bot Management.
@@ -744,6 +761,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         *,
         zone_id: str,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
+        cf_robots_variant: Literal["off", "policy_only"] | Omit = omit,
         crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
         enable_js: bool | Omit = omit,
         is_robots_txt_managed: bool | Omit = omit,
@@ -827,6 +845,8 @@ class AsyncBotManagementResource(AsyncAPIResource):
           ai_bots_protection: Enable rule to block AI Scrapers and Crawlers. Please note the value
               `only_on_ad_pages` is currently not available for Enterprise customers.
 
+          cf_robots_variant: Specifies the Robots Access Control License variant to use.
+
           crawler_protection: Enable rule to punish AI Scrapers and Crawlers via a link maze.
 
           enable_js: Use lightweight, invisible JavaScript detections to improve Bot Management.
@@ -861,6 +881,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         *,
         zone_id: str,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
+        cf_robots_variant: Literal["off", "policy_only"] | Omit = omit,
         crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
         enable_js: bool | Omit = omit,
         is_robots_txt_managed: bool | Omit = omit,
@@ -945,6 +966,8 @@ class AsyncBotManagementResource(AsyncAPIResource):
           ai_bots_protection: Enable rule to block AI Scrapers and Crawlers. Please note the value
               `only_on_ad_pages` is currently not available for Enterprise customers.
 
+          cf_robots_variant: Specifies the Robots Access Control License variant to use.
+
           crawler_protection: Enable rule to punish AI Scrapers and Crawlers via a link maze.
 
           enable_js: Use lightweight, invisible JavaScript detections to improve Bot Management.
@@ -983,6 +1006,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
         auto_update_model: bool | Omit = omit,
         bm_cookie_enabled: bool | Omit = omit,
+        cf_robots_variant: Literal["off", "policy_only"] | Omit = omit,
         crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
         enable_js: bool | Omit = omit,
         is_robots_txt_managed: bool | Omit = omit,
@@ -1070,6 +1094,8 @@ class AsyncBotManagementResource(AsyncAPIResource):
           bm_cookie_enabled: Indicates that the bot management cookie can be placed on end user devices
               accessing the site. Defaults to true
 
+          cf_robots_variant: Specifies the Robots Access Control License variant to use.
+
           crawler_protection: Enable rule to punish AI Scrapers and Crawlers via a link maze.
 
           enable_js: Use lightweight, invisible JavaScript detections to improve Bot Management.
@@ -1097,6 +1123,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         *,
         zone_id: str,
         ai_bots_protection: Literal["block", "disabled", "only_on_ad_pages"] | Omit = omit,
+        cf_robots_variant: Literal["off", "policy_only"] | Omit = omit,
         crawler_protection: Literal["enabled", "disabled"] | Omit = omit,
         enable_js: bool | Omit = omit,
         fight_mode: bool | Omit = omit,
@@ -1125,6 +1152,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
                 body=await async_maybe_transform(
                     {
                         "ai_bots_protection": ai_bots_protection,
+                        "cf_robots_variant": cf_robots_variant,
                         "crawler_protection": crawler_protection,
                         "enable_js": enable_js,
                         "fight_mode": fight_mode,
