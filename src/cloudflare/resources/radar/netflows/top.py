@@ -56,6 +56,7 @@ class TopResource(SyncAPIResource):
         date_range: SequenceNotStr[str] | Omit = omit,
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
         limit: int | Omit = omit,
         location: SequenceNotStr[str] | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
@@ -89,6 +90,11 @@ class TopResource(SyncAPIResource):
 
           format: Format in which results will be returned.
 
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
+
           limit: Limits the number of objects returned in the response.
 
           location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
@@ -120,6 +126,7 @@ class TopResource(SyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "geo_id": geo_id,
                         "limit": limit,
                         "location": location,
                         "name": name,
@@ -140,6 +147,7 @@ class TopResource(SyncAPIResource):
         date_range: SequenceNotStr[str] | Omit = omit,
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
         limit: int | Omit = omit,
         location: SequenceNotStr[str] | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
@@ -173,6 +181,11 @@ class TopResource(SyncAPIResource):
 
           format: Format in which results will be returned.
 
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
+
           limit: Limits the number of objects returned in the response.
 
           location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
@@ -204,6 +217,7 @@ class TopResource(SyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "geo_id": geo_id,
                         "limit": limit,
                         "location": location,
                         "name": name,
@@ -245,6 +259,7 @@ class AsyncTopResource(AsyncAPIResource):
         date_range: SequenceNotStr[str] | Omit = omit,
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
         limit: int | Omit = omit,
         location: SequenceNotStr[str] | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
@@ -278,6 +293,11 @@ class AsyncTopResource(AsyncAPIResource):
 
           format: Format in which results will be returned.
 
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
+
           limit: Limits the number of objects returned in the response.
 
           location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
@@ -309,6 +329,7 @@ class AsyncTopResource(AsyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "geo_id": geo_id,
                         "limit": limit,
                         "location": location,
                         "name": name,
@@ -329,6 +350,7 @@ class AsyncTopResource(AsyncAPIResource):
         date_range: SequenceNotStr[str] | Omit = omit,
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
         limit: int | Omit = omit,
         location: SequenceNotStr[str] | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
@@ -362,6 +384,11 @@ class AsyncTopResource(AsyncAPIResource):
 
           format: Format in which results will be returned.
 
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
+
           limit: Limits the number of objects returned in the response.
 
           location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
@@ -393,6 +420,7 @@ class AsyncTopResource(AsyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "geo_id": geo_id,
                         "limit": limit,
                         "location": location,
                         "name": name,

@@ -51,6 +51,7 @@ class SearchResource(SyncAPIResource):
         query: str,
         exclude: List[
             Literal[
+                "ADM1S",
                 "ASNS",
                 "BOTS",
                 "CERTIFICATE_AUTHORITIES",
@@ -66,6 +67,7 @@ class SearchResource(SyncAPIResource):
         format: Literal["JSON", "CSV"] | Omit = omit,
         include: List[
             Literal[
+                "ADM1S",
                 "ASNS",
                 "BOTS",
                 "CERTIFICATE_AUTHORITIES",
@@ -162,6 +164,7 @@ class AsyncSearchResource(AsyncAPIResource):
         query: str,
         exclude: List[
             Literal[
+                "ADM1S",
                 "ASNS",
                 "BOTS",
                 "CERTIFICATE_AUTHORITIES",
@@ -177,6 +180,7 @@ class AsyncSearchResource(AsyncAPIResource):
         format: Literal["JSON", "CSV"] | Omit = omit,
         include: List[
             Literal[
+                "ADM1S",
                 "ASNS",
                 "BOTS",
                 "CERTIFICATE_AUTHORITIES",

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import List, Type, Union, cast
 from datetime import datetime
 from typing_extensions import Literal
@@ -66,6 +67,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         """
         return TimeseriesGroupsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def bot_class(
         self,
         *,
@@ -78,6 +80,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
         http_protocol: List[Literal["HTTP", "HTTPS"]] | Omit = omit,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
         ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
@@ -125,6 +128,11 @@ class TimeseriesGroupsResource(SyncAPIResource):
 
           format: Format in which results will be returned.
 
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
+
           http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
           http_version: Filters results by HTTP version.
@@ -167,6 +175,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
                         "date_start": date_start,
                         "device_type": device_type,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_protocol": http_protocol,
                         "http_version": http_version,
                         "ip_version": ip_version,
@@ -182,6 +191,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupBotClassResponse], ResultWrapper[TimeseriesGroupBotClassResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     def browser(
         self,
         *,
@@ -195,6 +205,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
         http_protocol: List[Literal["HTTP", "HTTPS"]] | Omit = omit,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
         ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
@@ -244,6 +255,11 @@ class TimeseriesGroupsResource(SyncAPIResource):
 
           format: Format in which results will be returned.
 
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
+
           http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
           http_version: Filters results by HTTP version.
@@ -291,6 +307,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
                         "date_start": date_start,
                         "device_type": device_type,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_protocol": http_protocol,
                         "http_version": http_version,
                         "ip_version": ip_version,
@@ -307,6 +324,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupBrowserResponse], ResultWrapper[TimeseriesGroupBrowserResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     def browser_family(
         self,
         *,
@@ -319,6 +337,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
         http_protocol: List[Literal["HTTP", "HTTPS"]] | Omit = omit,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
         ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
@@ -366,6 +385,11 @@ class TimeseriesGroupsResource(SyncAPIResource):
 
           format: Format in which results will be returned.
 
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
+
           http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
           http_version: Filters results by HTTP version.
@@ -412,6 +436,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
                         "date_start": date_start,
                         "device_type": device_type,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_protocol": http_protocol,
                         "http_version": http_version,
                         "ip_version": ip_version,
@@ -430,6 +455,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
             ),
         )
 
+    @typing_extensions.deprecated("deprecated")
     def device_type(
         self,
         *,
@@ -442,6 +468,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         date_range: SequenceNotStr[str] | Omit = omit,
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
         http_protocol: List[Literal["HTTP", "HTTPS"]] | Omit = omit,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
         ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
@@ -488,6 +515,11 @@ class TimeseriesGroupsResource(SyncAPIResource):
 
           format: Format in which results will be returned.
 
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
+
           http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
           http_version: Filters results by HTTP version.
@@ -530,6 +562,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_protocol": http_protocol,
                         "http_version": http_version,
                         "ip_version": ip_version,
@@ -545,6 +578,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupDeviceTypeResponse], ResultWrapper[TimeseriesGroupDeviceTypeResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     def http_protocol(
         self,
         *,
@@ -558,6 +592,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
         ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
         location: SequenceNotStr[str] | Omit = omit,
@@ -607,6 +642,11 @@ class TimeseriesGroupsResource(SyncAPIResource):
 
           format: Format in which results will be returned.
 
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
+
           http_version: Filters results by HTTP version.
 
           ip_version: Filters results by IP version (Ipv4 vs. IPv6).
@@ -648,6 +688,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
                         "date_start": date_start,
                         "device_type": device_type,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_version": http_version,
                         "ip_version": ip_version,
                         "location": location,
@@ -662,6 +703,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupHTTPProtocolResponse], ResultWrapper[TimeseriesGroupHTTPProtocolResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     def http_version(
         self,
         *,
@@ -675,6 +717,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
         http_protocol: List[Literal["HTTP", "HTTPS"]] | Omit = omit,
         ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
         location: SequenceNotStr[str] | Omit = omit,
@@ -722,6 +765,11 @@ class TimeseriesGroupsResource(SyncAPIResource):
 
           format: Format in which results will be returned.
 
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
+
           http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
           ip_version: Filters results by IP version (Ipv4 vs. IPv6).
@@ -763,6 +811,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
                         "date_start": date_start,
                         "device_type": device_type,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_protocol": http_protocol,
                         "ip_version": ip_version,
                         "location": location,
@@ -777,6 +826,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupHTTPVersionResponse], ResultWrapper[TimeseriesGroupHTTPVersionResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     def ip_version(
         self,
         *,
@@ -790,6 +840,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
         http_protocol: List[Literal["HTTP", "HTTPS"]] | Omit = omit,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
         location: SequenceNotStr[str] | Omit = omit,
@@ -837,6 +888,11 @@ class TimeseriesGroupsResource(SyncAPIResource):
 
           format: Format in which results will be returned.
 
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
+
           http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
           http_version: Filters results by HTTP version.
@@ -878,6 +934,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
                         "date_start": date_start,
                         "device_type": device_type,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_protocol": http_protocol,
                         "http_version": http_version,
                         "location": location,
@@ -892,6 +949,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupIPVersionResponse], ResultWrapper[TimeseriesGroupIPVersionResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     def os(
         self,
         *,
@@ -905,6 +963,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
         http_protocol: List[Literal["HTTP", "HTTPS"]] | Omit = omit,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
         ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
@@ -952,6 +1011,11 @@ class TimeseriesGroupsResource(SyncAPIResource):
 
           format: Format in which results will be returned.
 
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
+
           http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
           http_version: Filters results by HTTP version.
@@ -993,6 +1057,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
                         "date_start": date_start,
                         "device_type": device_type,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_protocol": http_protocol,
                         "http_version": http_version,
                         "ip_version": ip_version,
@@ -1007,6 +1072,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupOSResponse], ResultWrapper[TimeseriesGroupOSResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     def post_quantum(
         self,
         *,
@@ -1020,6 +1086,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
         http_protocol: List[Literal["HTTP", "HTTPS"]] | Omit = omit,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
         ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
@@ -1068,6 +1135,11 @@ class TimeseriesGroupsResource(SyncAPIResource):
 
           format: Format in which results will be returned.
 
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
+
           http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
           http_version: Filters results by HTTP version.
@@ -1111,6 +1183,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
                         "date_start": date_start,
                         "device_type": device_type,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_protocol": http_protocol,
                         "http_version": http_version,
                         "ip_version": ip_version,
@@ -1126,6 +1199,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupPostQuantumResponse], ResultWrapper[TimeseriesGroupPostQuantumResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     def tls_version(
         self,
         *,
@@ -1139,6 +1213,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
         http_protocol: List[Literal["HTTP", "HTTPS"]] | Omit = omit,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
         ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
@@ -1186,6 +1261,11 @@ class TimeseriesGroupsResource(SyncAPIResource):
 
           format: Format in which results will be returned.
 
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
+
           http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
           http_version: Filters results by HTTP version.
@@ -1227,6 +1307,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
                         "date_start": date_start,
                         "device_type": device_type,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_protocol": http_protocol,
                         "http_version": http_version,
                         "ip_version": ip_version,
@@ -1262,6 +1343,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         """
         return AsyncTimeseriesGroupsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def bot_class(
         self,
         *,
@@ -1274,6 +1356,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
         http_protocol: List[Literal["HTTP", "HTTPS"]] | Omit = omit,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
         ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
@@ -1321,6 +1404,11 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
 
           format: Format in which results will be returned.
 
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
+
           http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
           http_version: Filters results by HTTP version.
@@ -1363,6 +1451,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                         "date_start": date_start,
                         "device_type": device_type,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_protocol": http_protocol,
                         "http_version": http_version,
                         "ip_version": ip_version,
@@ -1378,6 +1467,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupBotClassResponse], ResultWrapper[TimeseriesGroupBotClassResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def browser(
         self,
         *,
@@ -1391,6 +1481,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
         http_protocol: List[Literal["HTTP", "HTTPS"]] | Omit = omit,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
         ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
@@ -1440,6 +1531,11 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
 
           format: Format in which results will be returned.
 
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
+
           http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
           http_version: Filters results by HTTP version.
@@ -1487,6 +1583,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                         "date_start": date_start,
                         "device_type": device_type,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_protocol": http_protocol,
                         "http_version": http_version,
                         "ip_version": ip_version,
@@ -1503,6 +1600,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupBrowserResponse], ResultWrapper[TimeseriesGroupBrowserResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def browser_family(
         self,
         *,
@@ -1515,6 +1613,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
         http_protocol: List[Literal["HTTP", "HTTPS"]] | Omit = omit,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
         ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
@@ -1562,6 +1661,11 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
 
           format: Format in which results will be returned.
 
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
+
           http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
           http_version: Filters results by HTTP version.
@@ -1608,6 +1712,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                         "date_start": date_start,
                         "device_type": device_type,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_protocol": http_protocol,
                         "http_version": http_version,
                         "ip_version": ip_version,
@@ -1626,6 +1731,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             ),
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def device_type(
         self,
         *,
@@ -1638,6 +1744,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         date_range: SequenceNotStr[str] | Omit = omit,
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
         http_protocol: List[Literal["HTTP", "HTTPS"]] | Omit = omit,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
         ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
@@ -1684,6 +1791,11 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
 
           format: Format in which results will be returned.
 
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
+
           http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
           http_version: Filters results by HTTP version.
@@ -1726,6 +1838,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_protocol": http_protocol,
                         "http_version": http_version,
                         "ip_version": ip_version,
@@ -1741,6 +1854,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupDeviceTypeResponse], ResultWrapper[TimeseriesGroupDeviceTypeResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def http_protocol(
         self,
         *,
@@ -1754,6 +1868,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
         ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
         location: SequenceNotStr[str] | Omit = omit,
@@ -1803,6 +1918,11 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
 
           format: Format in which results will be returned.
 
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
+
           http_version: Filters results by HTTP version.
 
           ip_version: Filters results by IP version (Ipv4 vs. IPv6).
@@ -1844,6 +1964,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                         "date_start": date_start,
                         "device_type": device_type,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_version": http_version,
                         "ip_version": ip_version,
                         "location": location,
@@ -1858,6 +1979,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupHTTPProtocolResponse], ResultWrapper[TimeseriesGroupHTTPProtocolResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def http_version(
         self,
         *,
@@ -1871,6 +1993,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
         http_protocol: List[Literal["HTTP", "HTTPS"]] | Omit = omit,
         ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
         location: SequenceNotStr[str] | Omit = omit,
@@ -1918,6 +2041,11 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
 
           format: Format in which results will be returned.
 
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
+
           http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
           ip_version: Filters results by IP version (Ipv4 vs. IPv6).
@@ -1959,6 +2087,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                         "date_start": date_start,
                         "device_type": device_type,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_protocol": http_protocol,
                         "ip_version": ip_version,
                         "location": location,
@@ -1973,6 +2102,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupHTTPVersionResponse], ResultWrapper[TimeseriesGroupHTTPVersionResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def ip_version(
         self,
         *,
@@ -1986,6 +2116,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
         http_protocol: List[Literal["HTTP", "HTTPS"]] | Omit = omit,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
         location: SequenceNotStr[str] | Omit = omit,
@@ -2033,6 +2164,11 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
 
           format: Format in which results will be returned.
 
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
+
           http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
           http_version: Filters results by HTTP version.
@@ -2074,6 +2210,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                         "date_start": date_start,
                         "device_type": device_type,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_protocol": http_protocol,
                         "http_version": http_version,
                         "location": location,
@@ -2088,6 +2225,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupIPVersionResponse], ResultWrapper[TimeseriesGroupIPVersionResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def os(
         self,
         *,
@@ -2101,6 +2239,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
         http_protocol: List[Literal["HTTP", "HTTPS"]] | Omit = omit,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
         ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
@@ -2148,6 +2287,11 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
 
           format: Format in which results will be returned.
 
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
+
           http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
           http_version: Filters results by HTTP version.
@@ -2189,6 +2333,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                         "date_start": date_start,
                         "device_type": device_type,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_protocol": http_protocol,
                         "http_version": http_version,
                         "ip_version": ip_version,
@@ -2203,6 +2348,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupOSResponse], ResultWrapper[TimeseriesGroupOSResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def post_quantum(
         self,
         *,
@@ -2216,6 +2362,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
         http_protocol: List[Literal["HTTP", "HTTPS"]] | Omit = omit,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
         ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
@@ -2264,6 +2411,11 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
 
           format: Format in which results will be returned.
 
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
+
           http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
           http_version: Filters results by HTTP version.
@@ -2307,6 +2459,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                         "date_start": date_start,
                         "device_type": device_type,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_protocol": http_protocol,
                         "http_version": http_version,
                         "ip_version": ip_version,
@@ -2322,6 +2475,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupPostQuantumResponse], ResultWrapper[TimeseriesGroupPostQuantumResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def tls_version(
         self,
         *,
@@ -2335,6 +2489,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
         http_protocol: List[Literal["HTTP", "HTTPS"]] | Omit = omit,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
         ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
@@ -2382,6 +2537,11 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
 
           format: Format in which results will be returned.
 
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
+
           http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
           http_version: Filters results by HTTP version.
@@ -2423,6 +2583,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                         "date_start": date_start,
                         "device_type": device_type,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_protocol": http_protocol,
                         "http_version": http_version,
                         "ip_version": ip_version,
@@ -2442,35 +2603,55 @@ class TimeseriesGroupsResourceWithRawResponse:
     def __init__(self, timeseries_groups: TimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.bot_class = to_raw_response_wrapper(
-            timeseries_groups.bot_class,
+        self.bot_class = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.bot_class,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.browser = to_raw_response_wrapper(
-            timeseries_groups.browser,
+        self.browser = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.browser,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.browser_family = to_raw_response_wrapper(
-            timeseries_groups.browser_family,
+        self.browser_family = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.browser_family,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.device_type = to_raw_response_wrapper(
-            timeseries_groups.device_type,
+        self.device_type = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.device_type,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.http_protocol = to_raw_response_wrapper(
-            timeseries_groups.http_protocol,
+        self.http_protocol = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.http_protocol,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.http_version = to_raw_response_wrapper(
-            timeseries_groups.http_version,
+        self.http_version = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.http_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.ip_version = to_raw_response_wrapper(
-            timeseries_groups.ip_version,
+        self.ip_version = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.ip_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.os = to_raw_response_wrapper(
-            timeseries_groups.os,
+        self.os = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.os,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.post_quantum = to_raw_response_wrapper(
-            timeseries_groups.post_quantum,
+        self.post_quantum = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.post_quantum,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.tls_version = to_raw_response_wrapper(
-            timeseries_groups.tls_version,
+        self.tls_version = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.tls_version,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -2478,35 +2659,55 @@ class AsyncTimeseriesGroupsResourceWithRawResponse:
     def __init__(self, timeseries_groups: AsyncTimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.bot_class = async_to_raw_response_wrapper(
-            timeseries_groups.bot_class,
+        self.bot_class = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.bot_class,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.browser = async_to_raw_response_wrapper(
-            timeseries_groups.browser,
+        self.browser = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.browser,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.browser_family = async_to_raw_response_wrapper(
-            timeseries_groups.browser_family,
+        self.browser_family = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.browser_family,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.device_type = async_to_raw_response_wrapper(
-            timeseries_groups.device_type,
+        self.device_type = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.device_type,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.http_protocol = async_to_raw_response_wrapper(
-            timeseries_groups.http_protocol,
+        self.http_protocol = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.http_protocol,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.http_version = async_to_raw_response_wrapper(
-            timeseries_groups.http_version,
+        self.http_version = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.http_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.ip_version = async_to_raw_response_wrapper(
-            timeseries_groups.ip_version,
+        self.ip_version = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.ip_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.os = async_to_raw_response_wrapper(
-            timeseries_groups.os,
+        self.os = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.os,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.post_quantum = async_to_raw_response_wrapper(
-            timeseries_groups.post_quantum,
+        self.post_quantum = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.post_quantum,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.tls_version = async_to_raw_response_wrapper(
-            timeseries_groups.tls_version,
+        self.tls_version = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.tls_version,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -2514,35 +2715,55 @@ class TimeseriesGroupsResourceWithStreamingResponse:
     def __init__(self, timeseries_groups: TimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.bot_class = to_streamed_response_wrapper(
-            timeseries_groups.bot_class,
+        self.bot_class = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.bot_class,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.browser = to_streamed_response_wrapper(
-            timeseries_groups.browser,
+        self.browser = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.browser,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.browser_family = to_streamed_response_wrapper(
-            timeseries_groups.browser_family,
+        self.browser_family = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.browser_family,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.device_type = to_streamed_response_wrapper(
-            timeseries_groups.device_type,
+        self.device_type = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.device_type,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.http_protocol = to_streamed_response_wrapper(
-            timeseries_groups.http_protocol,
+        self.http_protocol = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.http_protocol,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.http_version = to_streamed_response_wrapper(
-            timeseries_groups.http_version,
+        self.http_version = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.http_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.ip_version = to_streamed_response_wrapper(
-            timeseries_groups.ip_version,
+        self.ip_version = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.ip_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.os = to_streamed_response_wrapper(
-            timeseries_groups.os,
+        self.os = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.os,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.post_quantum = to_streamed_response_wrapper(
-            timeseries_groups.post_quantum,
+        self.post_quantum = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.post_quantum,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.tls_version = to_streamed_response_wrapper(
-            timeseries_groups.tls_version,
+        self.tls_version = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.tls_version,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -2550,33 +2771,53 @@ class AsyncTimeseriesGroupsResourceWithStreamingResponse:
     def __init__(self, timeseries_groups: AsyncTimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.bot_class = async_to_streamed_response_wrapper(
-            timeseries_groups.bot_class,
+        self.bot_class = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.bot_class,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.browser = async_to_streamed_response_wrapper(
-            timeseries_groups.browser,
+        self.browser = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.browser,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.browser_family = async_to_streamed_response_wrapper(
-            timeseries_groups.browser_family,
+        self.browser_family = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.browser_family,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.device_type = async_to_streamed_response_wrapper(
-            timeseries_groups.device_type,
+        self.device_type = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.device_type,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.http_protocol = async_to_streamed_response_wrapper(
-            timeseries_groups.http_protocol,
+        self.http_protocol = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.http_protocol,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.http_version = async_to_streamed_response_wrapper(
-            timeseries_groups.http_version,
+        self.http_version = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.http_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.ip_version = async_to_streamed_response_wrapper(
-            timeseries_groups.ip_version,
+        self.ip_version = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.ip_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.os = async_to_streamed_response_wrapper(
-            timeseries_groups.os,
+        self.os = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.os,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.post_quantum = async_to_streamed_response_wrapper(
-            timeseries_groups.post_quantum,
+        self.post_quantum = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.post_quantum,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.tls_version = async_to_streamed_response_wrapper(
-            timeseries_groups.tls_version,
+        self.tls_version = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.tls_version,  # pyright: ignore[reportDeprecated],
+            )
         )

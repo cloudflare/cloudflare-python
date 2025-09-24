@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import List, Type, Union, cast
 from datetime import datetime
 from typing_extensions import Literal
@@ -59,6 +60,7 @@ class NetflowsResource(SyncAPIResource):
         """
         return NetflowsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def summary(
         self,
         *,
@@ -68,6 +70,7 @@ class NetflowsResource(SyncAPIResource):
         date_range: SequenceNotStr[str] | Omit = omit,
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
         location: SequenceNotStr[str] | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -101,6 +104,11 @@ class NetflowsResource(SyncAPIResource):
 
           format: Format in which results will be returned.
 
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
+
           location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
               Prefix with `-` to exclude locations from results. For example, `-US,PT`
               excludes results from the US, but includes results from PT.
@@ -130,6 +138,7 @@ class NetflowsResource(SyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "geo_id": geo_id,
                         "location": location,
                         "name": name,
                     },
@@ -150,6 +159,7 @@ class NetflowsResource(SyncAPIResource):
         date_range: SequenceNotStr[str] | Omit = omit,
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
         location: SequenceNotStr[str] | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
         normalization: Literal["PERCENTAGE_CHANGE", "MIN0_MAX"] | Omit = omit,
@@ -188,6 +198,11 @@ class NetflowsResource(SyncAPIResource):
 
           format: Format in which results will be returned.
 
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
+
           location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
               Prefix with `-` to exclude locations from results. For example, `-US,PT`
               excludes results from the US, but includes results from PT.
@@ -223,6 +238,7 @@ class NetflowsResource(SyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "geo_id": geo_id,
                         "location": location,
                         "name": name,
                         "normalization": normalization,
@@ -260,6 +276,7 @@ class AsyncNetflowsResource(AsyncAPIResource):
         """
         return AsyncNetflowsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def summary(
         self,
         *,
@@ -269,6 +286,7 @@ class AsyncNetflowsResource(AsyncAPIResource):
         date_range: SequenceNotStr[str] | Omit = omit,
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
         location: SequenceNotStr[str] | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -302,6 +320,11 @@ class AsyncNetflowsResource(AsyncAPIResource):
 
           format: Format in which results will be returned.
 
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
+
           location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
               Prefix with `-` to exclude locations from results. For example, `-US,PT`
               excludes results from the US, but includes results from PT.
@@ -331,6 +354,7 @@ class AsyncNetflowsResource(AsyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "geo_id": geo_id,
                         "location": location,
                         "name": name,
                     },
@@ -351,6 +375,7 @@ class AsyncNetflowsResource(AsyncAPIResource):
         date_range: SequenceNotStr[str] | Omit = omit,
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
         location: SequenceNotStr[str] | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
         normalization: Literal["PERCENTAGE_CHANGE", "MIN0_MAX"] | Omit = omit,
@@ -389,6 +414,11 @@ class AsyncNetflowsResource(AsyncAPIResource):
 
           format: Format in which results will be returned.
 
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
+
           location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
               Prefix with `-` to exclude locations from results. For example, `-US,PT`
               excludes results from the US, but includes results from PT.
@@ -424,6 +454,7 @@ class AsyncNetflowsResource(AsyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "geo_id": geo_id,
                         "location": location,
                         "name": name,
                         "normalization": normalization,
@@ -441,8 +472,10 @@ class NetflowsResourceWithRawResponse:
     def __init__(self, netflows: NetflowsResource) -> None:
         self._netflows = netflows
 
-        self.summary = to_raw_response_wrapper(
-            netflows.summary,
+        self.summary = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                netflows.summary,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.timeseries = to_raw_response_wrapper(
             netflows.timeseries,
@@ -457,8 +490,10 @@ class AsyncNetflowsResourceWithRawResponse:
     def __init__(self, netflows: AsyncNetflowsResource) -> None:
         self._netflows = netflows
 
-        self.summary = async_to_raw_response_wrapper(
-            netflows.summary,
+        self.summary = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                netflows.summary,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.timeseries = async_to_raw_response_wrapper(
             netflows.timeseries,
@@ -473,8 +508,10 @@ class NetflowsResourceWithStreamingResponse:
     def __init__(self, netflows: NetflowsResource) -> None:
         self._netflows = netflows
 
-        self.summary = to_streamed_response_wrapper(
-            netflows.summary,
+        self.summary = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                netflows.summary,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.timeseries = to_streamed_response_wrapper(
             netflows.timeseries,
@@ -489,8 +526,10 @@ class AsyncNetflowsResourceWithStreamingResponse:
     def __init__(self, netflows: AsyncNetflowsResource) -> None:
         self._netflows = netflows
 
-        self.summary = async_to_streamed_response_wrapper(
-            netflows.summary,
+        self.summary = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                netflows.summary,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.timeseries = async_to_streamed_response_wrapper(
             netflows.timeseries,

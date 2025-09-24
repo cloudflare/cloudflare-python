@@ -58,6 +58,7 @@ class DeviceTypeResource(SyncAPIResource):
         date_range: SequenceNotStr[str] | Omit = omit,
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
         http_protocol: List[Literal["HTTP", "HTTPS"]] | Omit = omit,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
         ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
@@ -102,6 +103,11 @@ class DeviceTypeResource(SyncAPIResource):
           date_start: Start of the date range.
 
           format: Format in which results will be returned.
+
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
 
           http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
@@ -148,6 +154,7 @@ class DeviceTypeResource(SyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_protocol": http_protocol,
                         "http_version": http_version,
                         "ip_version": ip_version,
@@ -197,6 +204,7 @@ class AsyncDeviceTypeResource(AsyncAPIResource):
         date_range: SequenceNotStr[str] | Omit = omit,
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
         http_protocol: List[Literal["HTTP", "HTTPS"]] | Omit = omit,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
         ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
@@ -241,6 +249,11 @@ class AsyncDeviceTypeResource(AsyncAPIResource):
           date_start: Start of the date range.
 
           format: Format in which results will be returned.
+
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
 
           http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
@@ -287,6 +300,7 @@ class AsyncDeviceTypeResource(AsyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_protocol": http_protocol,
                         "http_version": http_version,
                         "ip_version": ip_version,

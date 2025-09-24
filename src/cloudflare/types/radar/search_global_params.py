@@ -16,6 +16,7 @@ class SearchGlobalParams(TypedDict, total=False):
 
     exclude: List[
         Literal[
+            "ADM1S",
             "ASNS",
             "BOTS",
             "CERTIFICATE_AUTHORITIES",
@@ -34,6 +35,7 @@ class SearchGlobalParams(TypedDict, total=False):
 
     include: List[
         Literal[
+            "ADM1S",
             "ASNS",
             "BOTS",
             "CERTIFICATE_AUTHORITIES",

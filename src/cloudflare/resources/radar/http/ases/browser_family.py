@@ -58,6 +58,7 @@ class BrowserFamilyResource(SyncAPIResource):
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
         http_protocol: List[Literal["HTTP", "HTTPS"]] | Omit = omit,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
         ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
@@ -104,6 +105,11 @@ class BrowserFamilyResource(SyncAPIResource):
 
           format: Format in which results will be returned.
 
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
+
           http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
           http_version: Filters results by HTTP version.
@@ -149,6 +155,7 @@ class BrowserFamilyResource(SyncAPIResource):
                         "date_start": date_start,
                         "device_type": device_type,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_protocol": http_protocol,
                         "http_version": http_version,
                         "ip_version": ip_version,
@@ -198,6 +205,7 @@ class AsyncBrowserFamilyResource(AsyncAPIResource):
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        geo_id: SequenceNotStr[str] | Omit = omit,
         http_protocol: List[Literal["HTTP", "HTTPS"]] | Omit = omit,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | Omit = omit,
         ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
@@ -244,6 +252,11 @@ class AsyncBrowserFamilyResource(AsyncAPIResource):
 
           format: Format in which results will be returned.
 
+          geo_id: Filters results by Geolocation. Specify a comma-separated list of GeoNames IDs.
+              Prefix with `-` to exclude geoIds from results. For example, `-2267056,360689`
+              excludes results from the 2267056 (Lisbon), but includes results from 5128638
+              (New York).
+
           http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
           http_version: Filters results by HTTP version.
@@ -289,6 +302,7 @@ class AsyncBrowserFamilyResource(AsyncAPIResource):
                         "date_start": date_start,
                         "device_type": device_type,
                         "format": format,
+                        "geo_id": geo_id,
                         "http_protocol": http_protocol,
                         "http_version": http_version,
                         "ip_version": ip_version,
