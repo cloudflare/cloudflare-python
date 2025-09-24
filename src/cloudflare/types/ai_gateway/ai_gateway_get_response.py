@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
+from typing import Dict, List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
@@ -12,6 +12,7 @@ __all__ = [
     "DLPUnionMember0",
     "DLPUnionMember1",
     "DLPUnionMember1Policy",
+    "Otel",
     "Stripe",
     "StripeUsageEvent",
 ]
@@ -44,6 +45,14 @@ class DLPUnionMember1(BaseModel):
 
 
 DLP: TypeAlias = Union[DLPUnionMember0, DLPUnionMember1]
+
+
+class Otel(BaseModel):
+    authorization: str
+
+    headers: Dict[str, str]
+
+    url: str
 
 
 class StripeUsageEvent(BaseModel):
@@ -93,6 +102,8 @@ class AIGatewayGetResponse(BaseModel):
     logpush: Optional[bool] = None
 
     logpush_public_key: Optional[str] = None
+
+    otel: Optional[List[Otel]] = None
 
     store_id: Optional[str] = None
 

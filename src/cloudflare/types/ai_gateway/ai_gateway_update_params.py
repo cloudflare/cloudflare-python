@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable, Optional
+from typing import Dict, List, Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from ..._types import SequenceNotStr
@@ -13,6 +13,7 @@ __all__ = [
     "DLPUnionMember0",
     "DLPUnionMember1",
     "DLPUnionMember1Policy",
+    "Otel",
     "Stripe",
     "StripeUsageEvent",
 ]
@@ -44,6 +45,8 @@ class AIGatewayUpdateParams(TypedDict, total=False):
     logpush: bool
 
     logpush_public_key: Optional[str]
+
+    otel: Optional[Iterable[Otel]]
 
     store_id: Optional[str]
 
@@ -77,6 +80,14 @@ class DLPUnionMember1(TypedDict, total=False):
 
 
 DLP: TypeAlias = Union[DLPUnionMember0, DLPUnionMember1]
+
+
+class Otel(TypedDict, total=False):
+    authorization: Required[str]
+
+    headers: Required[Dict[str, str]]
+
+    url: Required[str]
 
 
 class StripeUsageEvent(TypedDict, total=False):

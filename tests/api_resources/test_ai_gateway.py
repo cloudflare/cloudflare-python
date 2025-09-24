@@ -144,6 +144,13 @@ class TestAIGateway:
             log_management_strategy="STOP_INSERTING",
             logpush=True,
             logpush_public_key="xxxxxxxxxxxxxxxx",
+            otel=[
+                {
+                    "authorization": "authorization",
+                    "headers": {"foo": "string"},
+                    "url": "url",
+                }
+            ],
             store_id="store_id",
             stripe={
                 "authorization": "authorization",
@@ -486,6 +493,13 @@ class TestAsyncAIGateway:
             log_management_strategy="STOP_INSERTING",
             logpush=True,
             logpush_public_key="xxxxxxxxxxxxxxxx",
+            otel=[
+                {
+                    "authorization": "authorization",
+                    "headers": {"foo": "string"},
+                    "url": "url",
+                }
+            ],
             store_id="store_id",
             stripe={
                 "authorization": "authorization",

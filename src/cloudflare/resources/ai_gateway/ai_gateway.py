@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, Iterable, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -195,6 +195,7 @@ class AIGatewayResource(SyncAPIResource):
         log_management_strategy: Optional[Literal["STOP_INSERTING", "DELETE_OLDEST"]] | Omit = omit,
         logpush: bool | Omit = omit,
         logpush_public_key: Optional[str] | Omit = omit,
+        otel: Optional[Iterable[ai_gateway_update_params.Otel]] | Omit = omit,
         store_id: Optional[str] | Omit = omit,
         stripe: Optional[ai_gateway_update_params.Stripe] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -238,6 +239,7 @@ class AIGatewayResource(SyncAPIResource):
                     "log_management_strategy": log_management_strategy,
                     "logpush": logpush,
                     "logpush_public_key": logpush_public_key,
+                    "otel": otel,
                     "store_id": store_id,
                     "stripe": stripe,
                 },
@@ -513,6 +515,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         log_management_strategy: Optional[Literal["STOP_INSERTING", "DELETE_OLDEST"]] | Omit = omit,
         logpush: bool | Omit = omit,
         logpush_public_key: Optional[str] | Omit = omit,
+        otel: Optional[Iterable[ai_gateway_update_params.Otel]] | Omit = omit,
         store_id: Optional[str] | Omit = omit,
         stripe: Optional[ai_gateway_update_params.Stripe] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -556,6 +559,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
                     "log_management_strategy": log_management_strategy,
                     "logpush": logpush,
                     "logpush_public_key": logpush_public_key,
+                    "otel": otel,
                     "store_id": store_id,
                     "stripe": stripe,
                 },
