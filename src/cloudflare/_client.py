@@ -50,7 +50,6 @@ if TYPE_CHECKING:
         cache,
         calls,
         intel,
-        pages,
         radar,
         rules,
         speed,
@@ -152,7 +151,6 @@ if TYPE_CHECKING:
     from .resources.calls.calls import CallsResource, AsyncCallsResource
     from .resources.intel.intel import IntelResource, AsyncIntelResource
     from .resources.memberships import MembershipsResource, AsyncMembershipsResource
-    from .resources.pages.pages import PagesResource, AsyncPagesResource
     from .resources.radar.radar import RadarResource, AsyncRadarResource
     from .resources.rate_limits import RateLimitsResource, AsyncRateLimitsResource
     from .resources.rules.rules import RulesResource, AsyncRulesResource
@@ -662,12 +660,6 @@ class Cloudflare(SyncAPIClient):
         from .resources.mtls_certificates import MTLSCertificatesResource
 
         return MTLSCertificatesResource(self)
-
-    @cached_property
-    def pages(self) -> PagesResource:
-        from .resources.pages import PagesResource
-
-        return PagesResource(self)
 
     @cached_property
     def registrar(self) -> RegistrarResource:
@@ -1487,12 +1479,6 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncMTLSCertificatesResource(self)
 
     @cached_property
-    def pages(self) -> AsyncPagesResource:
-        from .resources.pages import AsyncPagesResource
-
-        return AsyncPagesResource(self)
-
-    @cached_property
     def registrar(self) -> AsyncRegistrarResource:
         from .resources.registrar import AsyncRegistrarResource
 
@@ -2243,12 +2229,6 @@ class CloudflareWithRawResponse:
         return MTLSCertificatesResourceWithRawResponse(self._client.mtls_certificates)
 
     @cached_property
-    def pages(self) -> pages.PagesResourceWithRawResponse:
-        from .resources.pages import PagesResourceWithRawResponse
-
-        return PagesResourceWithRawResponse(self._client.pages)
-
-    @cached_property
     def registrar(self) -> registrar.RegistrarResourceWithRawResponse:
         from .resources.registrar import RegistrarResourceWithRawResponse
 
@@ -2828,12 +2808,6 @@ class AsyncCloudflareWithRawResponse:
         return AsyncMTLSCertificatesResourceWithRawResponse(self._client.mtls_certificates)
 
     @cached_property
-    def pages(self) -> pages.AsyncPagesResourceWithRawResponse:
-        from .resources.pages import AsyncPagesResourceWithRawResponse
-
-        return AsyncPagesResourceWithRawResponse(self._client.pages)
-
-    @cached_property
     def registrar(self) -> registrar.AsyncRegistrarResourceWithRawResponse:
         from .resources.registrar import AsyncRegistrarResourceWithRawResponse
 
@@ -3411,12 +3385,6 @@ class CloudflareWithStreamedResponse:
         from .resources.mtls_certificates import MTLSCertificatesResourceWithStreamingResponse
 
         return MTLSCertificatesResourceWithStreamingResponse(self._client.mtls_certificates)
-
-    @cached_property
-    def pages(self) -> pages.PagesResourceWithStreamingResponse:
-        from .resources.pages import PagesResourceWithStreamingResponse
-
-        return PagesResourceWithStreamingResponse(self._client.pages)
 
     @cached_property
     def registrar(self) -> registrar.RegistrarResourceWithStreamingResponse:
@@ -4000,12 +3968,6 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.mtls_certificates import AsyncMTLSCertificatesResourceWithStreamingResponse
 
         return AsyncMTLSCertificatesResourceWithStreamingResponse(self._client.mtls_certificates)
-
-    @cached_property
-    def pages(self) -> pages.AsyncPagesResourceWithStreamingResponse:
-        from .resources.pages import AsyncPagesResourceWithStreamingResponse
-
-        return AsyncPagesResourceWithStreamingResponse(self._client.pages)
 
     @cached_property
     def registrar(self) -> registrar.AsyncRegistrarResourceWithStreamingResponse:
