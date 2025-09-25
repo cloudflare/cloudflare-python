@@ -7001,6 +7001,22 @@ Methods:
 
 - <code title="patch /accounts/{account_id}/zerotrust/subnets/cloudflare_source/{address_family}">client.zero_trust.networks.subnets.cloudflare_source.<a href="./src/cloudflare/resources/zero_trust/networks/subnets/cloudflare_source.py">update</a>(address_family, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/networks/subnets/cloudflare_source_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/networks/subnets/cloudflare_source_update_response.py">CloudflareSourceUpdateResponse</a></code>
 
+### HostnameRoutes
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.networks import HostnameRoute
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/zerotrust/routes/hostname">client.zero_trust.networks.hostname_routes.<a href="./src/cloudflare/resources/zero_trust/networks/hostname_routes.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/networks/hostname_route_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/networks/hostname_route.py">HostnameRoute</a></code>
+- <code title="get /accounts/{account_id}/zerotrust/routes/hostname">client.zero_trust.networks.hostname_routes.<a href="./src/cloudflare/resources/zero_trust/networks/hostname_routes.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/networks/hostname_route_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/networks/hostname_route.py">SyncV4PagePaginationArray[HostnameRoute]</a></code>
+- <code title="delete /accounts/{account_id}/zerotrust/routes/hostname/{hostname_route_id}">client.zero_trust.networks.hostname_routes.<a href="./src/cloudflare/resources/zero_trust/networks/hostname_routes.py">delete</a>(hostname_route_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/networks/hostname_route.py">HostnameRoute</a></code>
+- <code title="patch /accounts/{account_id}/zerotrust/routes/hostname/{hostname_route_id}">client.zero_trust.networks.hostname_routes.<a href="./src/cloudflare/resources/zero_trust/networks/hostname_routes.py">edit</a>(hostname_route_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/networks/hostname_route_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/networks/hostname_route.py">HostnameRoute</a></code>
+- <code title="get /accounts/{account_id}/zerotrust/routes/hostname/{hostname_route_id}">client.zero_trust.networks.hostname_routes.<a href="./src/cloudflare/resources/zero_trust/networks/hostname_routes.py">get</a>(hostname_route_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/networks/hostname_route.py">HostnameRoute</a></code>
+
 ## RiskScoring
 
 Types:
