@@ -2097,34 +2097,6 @@ Methods:
 - <code title="put /zones/{zone_id}/rate_limits/{rate_limit_id}">client.rate_limits.<a href="./src/cloudflare/resources/rate_limits.py">edit</a>(rate_limit_id, \*, zone_id, \*\*<a href="src/cloudflare/types/rate_limits/rate_limit_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/rate_limits/rate_limit.py">RateLimit</a></code>
 - <code title="get /zones/{zone_id}/rate_limits/{rate_limit_id}">client.rate_limits.<a href="./src/cloudflare/resources/rate_limits.py">get</a>(rate_limit_id, \*, zone_id) -> <a href="./src/cloudflare/types/rate_limits/rate_limit.py">RateLimit</a></code>
 
-# SmartShield
-
-Types:
-
-```python
-from cloudflare.types.smart_shield import (
-    SmartShieldUpdateResponse,
-    SmartShieldCreateHealthcheckResponse,
-    SmartShieldDeleteHealthcheckResponse,
-    SmartShieldEditHealthcheckResponse,
-    SmartShieldGetResponse,
-    SmartShieldGetHealthcheckResponse,
-    SmartShieldListHealthchecksResponse,
-    SmartShieldUpdateHealthcheckResponse,
-)
-```
-
-Methods:
-
-- <code title="patch /zones/{zone_id}/smart_shield">client.smart_shield.<a href="./src/cloudflare/resources/smart_shield.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/smart_shield/smart_shield_update_params.py">params</a>) -> <a href="./src/cloudflare/types/smart_shield/smart_shield_update_response.py">SmartShieldUpdateResponse</a></code>
-- <code title="post /zones/{zone_id}/smart_shield/healthchecks">client.smart_shield.<a href="./src/cloudflare/resources/smart_shield.py">create_healthcheck</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/smart_shield/smart_shield_create_healthcheck_params.py">params</a>) -> <a href="./src/cloudflare/types/smart_shield/smart_shield_create_healthcheck_response.py">SmartShieldCreateHealthcheckResponse</a></code>
-- <code title="delete /zones/{zone_id}/smart_shield/healthchecks/{healthcheck_id}">client.smart_shield.<a href="./src/cloudflare/resources/smart_shield.py">delete_healthcheck</a>(healthcheck_id, \*, zone_id) -> <a href="./src/cloudflare/types/smart_shield/smart_shield_delete_healthcheck_response.py">SmartShieldDeleteHealthcheckResponse</a></code>
-- <code title="patch /zones/{zone_id}/smart_shield/healthchecks/{healthcheck_id}">client.smart_shield.<a href="./src/cloudflare/resources/smart_shield.py">edit_healthcheck</a>(healthcheck_id, \*, zone_id, \*\*<a href="src/cloudflare/types/smart_shield/smart_shield_edit_healthcheck_params.py">params</a>) -> <a href="./src/cloudflare/types/smart_shield/smart_shield_edit_healthcheck_response.py">SmartShieldEditHealthcheckResponse</a></code>
-- <code title="get /zones/{zone_id}/smart_shield">client.smart_shield.<a href="./src/cloudflare/resources/smart_shield.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/smart_shield/smart_shield_get_response.py">SmartShieldGetResponse</a></code>
-- <code title="get /zones/{zone_id}/smart_shield/healthchecks/{healthcheck_id}">client.smart_shield.<a href="./src/cloudflare/resources/smart_shield.py">get_healthcheck</a>(healthcheck_id, \*, zone_id) -> <a href="./src/cloudflare/types/smart_shield/smart_shield_get_healthcheck_response.py">SmartShieldGetHealthcheckResponse</a></code>
-- <code title="get /zones/{zone_id}/smart_shield/healthchecks">client.smart_shield.<a href="./src/cloudflare/resources/smart_shield.py">list_healthchecks</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/smart_shield/smart_shield_list_healthchecks_params.py">params</a>) -> <a href="./src/cloudflare/types/smart_shield/smart_shield_list_healthchecks_response.py">SyncV4PagePaginationArray[SmartShieldListHealthchecksResponse]</a></code>
-- <code title="put /zones/{zone_id}/smart_shield/healthchecks/{healthcheck_id}">client.smart_shield.<a href="./src/cloudflare/resources/smart_shield.py">update_healthcheck</a>(healthcheck_id, \*, zone_id, \*\*<a href="src/cloudflare/types/smart_shield/smart_shield_update_healthcheck_params.py">params</a>) -> <a href="./src/cloudflare/types/smart_shield/smart_shield_update_healthcheck_response.py">SmartShieldUpdateHealthcheckResponse</a></code>
-
 # WaitingRooms
 
 Types:
