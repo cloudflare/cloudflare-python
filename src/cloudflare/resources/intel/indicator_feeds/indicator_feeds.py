@@ -8,14 +8,6 @@ import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
-from .downloads import (
-    DownloadsResource,
-    AsyncDownloadsResource,
-    DownloadsResourceWithRawResponse,
-    AsyncDownloadsResourceWithRawResponse,
-    DownloadsResourceWithStreamingResponse,
-    AsyncDownloadsResourceWithStreamingResponse,
-)
 from .snapshots import (
     SnapshotsResource,
     AsyncSnapshotsResource,
@@ -60,10 +52,6 @@ class IndicatorFeedsResource(SyncAPIResource):
     @cached_property
     def permissions(self) -> PermissionsResource:
         return PermissionsResource(self._client)
-
-    @cached_property
-    def downloads(self) -> DownloadsResource:
-        return DownloadsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> IndicatorFeedsResourceWithRawResponse:
@@ -329,10 +317,6 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
     @cached_property
     def permissions(self) -> AsyncPermissionsResource:
         return AsyncPermissionsResource(self._client)
-
-    @cached_property
-    def downloads(self) -> AsyncDownloadsResource:
-        return AsyncDownloadsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncIndicatorFeedsResourceWithRawResponse:
@@ -618,10 +602,6 @@ class IndicatorFeedsResourceWithRawResponse:
     def permissions(self) -> PermissionsResourceWithRawResponse:
         return PermissionsResourceWithRawResponse(self._indicator_feeds.permissions)
 
-    @cached_property
-    def downloads(self) -> DownloadsResourceWithRawResponse:
-        return DownloadsResourceWithRawResponse(self._indicator_feeds.downloads)
-
 
 class AsyncIndicatorFeedsResourceWithRawResponse:
     def __init__(self, indicator_feeds: AsyncIndicatorFeedsResource) -> None:
@@ -650,10 +630,6 @@ class AsyncIndicatorFeedsResourceWithRawResponse:
     @cached_property
     def permissions(self) -> AsyncPermissionsResourceWithRawResponse:
         return AsyncPermissionsResourceWithRawResponse(self._indicator_feeds.permissions)
-
-    @cached_property
-    def downloads(self) -> AsyncDownloadsResourceWithRawResponse:
-        return AsyncDownloadsResourceWithRawResponse(self._indicator_feeds.downloads)
 
 
 class IndicatorFeedsResourceWithStreamingResponse:
@@ -684,10 +660,6 @@ class IndicatorFeedsResourceWithStreamingResponse:
     def permissions(self) -> PermissionsResourceWithStreamingResponse:
         return PermissionsResourceWithStreamingResponse(self._indicator_feeds.permissions)
 
-    @cached_property
-    def downloads(self) -> DownloadsResourceWithStreamingResponse:
-        return DownloadsResourceWithStreamingResponse(self._indicator_feeds.downloads)
-
 
 class AsyncIndicatorFeedsResourceWithStreamingResponse:
     def __init__(self, indicator_feeds: AsyncIndicatorFeedsResource) -> None:
@@ -716,7 +688,3 @@ class AsyncIndicatorFeedsResourceWithStreamingResponse:
     @cached_property
     def permissions(self) -> AsyncPermissionsResourceWithStreamingResponse:
         return AsyncPermissionsResourceWithStreamingResponse(self._indicator_feeds.permissions)
-
-    @cached_property
-    def downloads(self) -> AsyncDownloadsResourceWithStreamingResponse:
-        return AsyncDownloadsResourceWithStreamingResponse(self._indicator_feeds.downloads)

@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from .download_get_response import DownloadGetResponse as DownloadGetResponse
 from .snapshot_update_params import SnapshotUpdateParams as SnapshotUpdateParams
 from .permission_create_params import PermissionCreateParams as PermissionCreateParams
 from .permission_delete_params import PermissionDeleteParams as PermissionDeleteParams

@@ -1,13 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .downloads import (
-    DownloadsResource,
-    AsyncDownloadsResource,
-    DownloadsResourceWithRawResponse,
-    AsyncDownloadsResourceWithRawResponse,
-    DownloadsResourceWithStreamingResponse,
-    AsyncDownloadsResourceWithStreamingResponse,
-)
 from .snapshots import (
     SnapshotsResource,
     AsyncSnapshotsResource,
@@ -46,12 +38,6 @@ __all__ = [
     "AsyncPermissionsResourceWithRawResponse",
     "PermissionsResourceWithStreamingResponse",
     "AsyncPermissionsResourceWithStreamingResponse",
-    "DownloadsResource",
-    "AsyncDownloadsResource",
-    "DownloadsResourceWithRawResponse",
-    "AsyncDownloadsResourceWithRawResponse",
-    "DownloadsResourceWithStreamingResponse",
-    "AsyncDownloadsResourceWithStreamingResponse",
     "IndicatorFeedsResource",
     "AsyncIndicatorFeedsResource",
     "IndicatorFeedsResourceWithRawResponse",
