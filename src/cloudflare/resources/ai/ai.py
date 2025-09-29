@@ -35,6 +35,14 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
+from .to_markdown import (
+    ToMarkdownResource,
+    AsyncToMarkdownResource,
+    ToMarkdownResourceWithRawResponse,
+    AsyncToMarkdownResourceWithRawResponse,
+    ToMarkdownResourceWithStreamingResponse,
+    AsyncToMarkdownResourceWithStreamingResponse,
+)
 from .models.models import (
     ModelsResource,
     AsyncModelsResource,
@@ -73,6 +81,10 @@ class AIResource(SyncAPIResource):
     @cached_property
     def models(self) -> ModelsResource:
         return ModelsResource(self._client)
+
+    @cached_property
+    def to_markdown(self) -> ToMarkdownResource:
+        return ToMarkdownResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AIResourceWithRawResponse:
@@ -1047,6 +1059,10 @@ class AsyncAIResource(AsyncAPIResource):
     @cached_property
     def models(self) -> AsyncModelsResource:
         return AsyncModelsResource(self._client)
+
+    @cached_property
+    def to_markdown(self) -> AsyncToMarkdownResource:
+        return AsyncToMarkdownResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncAIResourceWithRawResponse:
@@ -2029,6 +2045,10 @@ class AIResourceWithRawResponse:
     def models(self) -> ModelsResourceWithRawResponse:
         return ModelsResourceWithRawResponse(self._ai.models)
 
+    @cached_property
+    def to_markdown(self) -> ToMarkdownResourceWithRawResponse:
+        return ToMarkdownResourceWithRawResponse(self._ai.to_markdown)
+
 
 class AsyncAIResourceWithRawResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
@@ -2053,6 +2073,10 @@ class AsyncAIResourceWithRawResponse:
     @cached_property
     def models(self) -> AsyncModelsResourceWithRawResponse:
         return AsyncModelsResourceWithRawResponse(self._ai.models)
+
+    @cached_property
+    def to_markdown(self) -> AsyncToMarkdownResourceWithRawResponse:
+        return AsyncToMarkdownResourceWithRawResponse(self._ai.to_markdown)
 
 
 class AIResourceWithStreamingResponse:
@@ -2079,6 +2103,10 @@ class AIResourceWithStreamingResponse:
     def models(self) -> ModelsResourceWithStreamingResponse:
         return ModelsResourceWithStreamingResponse(self._ai.models)
 
+    @cached_property
+    def to_markdown(self) -> ToMarkdownResourceWithStreamingResponse:
+        return ToMarkdownResourceWithStreamingResponse(self._ai.to_markdown)
+
 
 class AsyncAIResourceWithStreamingResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
@@ -2103,3 +2131,7 @@ class AsyncAIResourceWithStreamingResponse:
     @cached_property
     def models(self) -> AsyncModelsResourceWithStreamingResponse:
         return AsyncModelsResourceWithStreamingResponse(self._ai.models)
+
+    @cached_property
+    def to_markdown(self) -> AsyncToMarkdownResourceWithStreamingResponse:
+        return AsyncToMarkdownResourceWithStreamingResponse(self._ai.to_markdown)

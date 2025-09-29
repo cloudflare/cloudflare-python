@@ -40,6 +40,14 @@ from .finetunes import (
     FinetunesResourceWithStreamingResponse,
     AsyncFinetunesResourceWithStreamingResponse,
 )
+from .to_markdown import (
+    ToMarkdownResource,
+    AsyncToMarkdownResource,
+    ToMarkdownResourceWithRawResponse,
+    AsyncToMarkdownResourceWithRawResponse,
+    ToMarkdownResourceWithStreamingResponse,
+    AsyncToMarkdownResourceWithStreamingResponse,
+)
 
 __all__ = [
     "FinetunesResource",
@@ -66,6 +74,12 @@ __all__ = [
     "AsyncModelsResourceWithRawResponse",
     "ModelsResourceWithStreamingResponse",
     "AsyncModelsResourceWithStreamingResponse",
+    "ToMarkdownResource",
+    "AsyncToMarkdownResource",
+    "ToMarkdownResourceWithRawResponse",
+    "AsyncToMarkdownResourceWithRawResponse",
+    "ToMarkdownResourceWithStreamingResponse",
+    "AsyncToMarkdownResourceWithStreamingResponse",
     "AIResource",
     "AsyncAIResource",
     "AIResourceWithRawResponse",
