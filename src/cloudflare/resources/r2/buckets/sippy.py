@@ -149,7 +149,7 @@ class SippyResource(SyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else omit}),
+            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else not_given}),
             **(extra_headers or {}),
         }
         return self._put(
@@ -207,7 +207,7 @@ class SippyResource(SyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else omit}),
+            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else not_given}),
             **(extra_headers or {}),
         }
         return self._delete(
@@ -258,7 +258,7 @@ class SippyResource(SyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else omit}),
+            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else not_given}),
             **(extra_headers or {}),
         }
         return self._get(
@@ -397,7 +397,7 @@ class AsyncSippyResource(AsyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else omit}),
+            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else not_given}),
             **(extra_headers or {}),
         }
         return await self._put(
@@ -455,7 +455,7 @@ class AsyncSippyResource(AsyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else omit}),
+            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else not_given}),
             **(extra_headers or {}),
         }
         return await self._delete(
@@ -506,7 +506,7 @@ class AsyncSippyResource(AsyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else omit}),
+            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else not_given}),
             **(extra_headers or {}),
         }
         return await self._get(

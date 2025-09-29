@@ -103,7 +103,7 @@ class CustomResource(SyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else omit}),
+            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else not_given}),
             **(extra_headers or {}),
         }
         return self._post(
@@ -180,7 +180,7 @@ class CustomResource(SyncAPIResource):
         if not domain:
             raise ValueError(f"Expected a non-empty value for `domain` but received {domain!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else omit}),
+            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else not_given}),
             **(extra_headers or {}),
         }
         return self._put(
@@ -239,7 +239,7 @@ class CustomResource(SyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else omit}),
+            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else not_given}),
             **(extra_headers or {}),
         }
         return self._get(
@@ -295,7 +295,7 @@ class CustomResource(SyncAPIResource):
         if not domain:
             raise ValueError(f"Expected a non-empty value for `domain` but received {domain!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else omit}),
+            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else not_given}),
             **(extra_headers or {}),
         }
         return self._delete(
@@ -351,7 +351,7 @@ class CustomResource(SyncAPIResource):
         if not domain:
             raise ValueError(f"Expected a non-empty value for `domain` but received {domain!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else omit}),
+            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else not_given}),
             **(extra_headers or {}),
         }
         return self._get(
@@ -441,7 +441,7 @@ class AsyncCustomResource(AsyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else omit}),
+            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else not_given}),
             **(extra_headers or {}),
         }
         return await self._post(
@@ -518,7 +518,7 @@ class AsyncCustomResource(AsyncAPIResource):
         if not domain:
             raise ValueError(f"Expected a non-empty value for `domain` but received {domain!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else omit}),
+            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else not_given}),
             **(extra_headers or {}),
         }
         return await self._put(
@@ -577,7 +577,7 @@ class AsyncCustomResource(AsyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else omit}),
+            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else not_given}),
             **(extra_headers or {}),
         }
         return await self._get(
@@ -633,7 +633,7 @@ class AsyncCustomResource(AsyncAPIResource):
         if not domain:
             raise ValueError(f"Expected a non-empty value for `domain` but received {domain!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else omit}),
+            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else not_given}),
             **(extra_headers or {}),
         }
         return await self._delete(
@@ -689,7 +689,7 @@ class AsyncCustomResource(AsyncAPIResource):
         if not domain:
             raise ValueError(f"Expected a non-empty value for `domain` but received {domain!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else omit}),
+            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else not_given}),
             **(extra_headers or {}),
         }
         return await self._get(

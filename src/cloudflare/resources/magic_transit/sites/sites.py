@@ -416,7 +416,7 @@ class SitesResource(SyncAPIResource):
                 {
                     "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
                     if is_given(x_magic_new_hc_target)
-                    else omit
+                    else not_given
                 }
             ),
             **(extra_headers or {}),
@@ -795,7 +795,7 @@ class AsyncSitesResource(AsyncAPIResource):
                 {
                     "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
                     if is_given(x_magic_new_hc_target)
-                    else omit
+                    else not_given
                 }
             ),
             **(extra_headers or {}),

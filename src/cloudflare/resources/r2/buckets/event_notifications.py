@@ -90,7 +90,7 @@ class EventNotificationsResource(SyncAPIResource):
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else omit}),
+            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else not_given}),
             **(extra_headers or {}),
         }
         return self._put(
@@ -142,7 +142,7 @@ class EventNotificationsResource(SyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else omit}),
+            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else not_given}),
             **(extra_headers or {}),
         }
         return self._get(
@@ -200,7 +200,7 @@ class EventNotificationsResource(SyncAPIResource):
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else omit}),
+            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else not_given}),
             **(extra_headers or {}),
         }
         return self._delete(
@@ -256,7 +256,7 @@ class EventNotificationsResource(SyncAPIResource):
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else omit}),
+            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else not_given}),
             **(extra_headers or {}),
         }
         return self._get(
@@ -336,7 +336,7 @@ class AsyncEventNotificationsResource(AsyncAPIResource):
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else omit}),
+            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else not_given}),
             **(extra_headers or {}),
         }
         return await self._put(
@@ -390,7 +390,7 @@ class AsyncEventNotificationsResource(AsyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else omit}),
+            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else not_given}),
             **(extra_headers or {}),
         }
         return await self._get(
@@ -448,7 +448,7 @@ class AsyncEventNotificationsResource(AsyncAPIResource):
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else omit}),
+            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else not_given}),
             **(extra_headers or {}),
         }
         return await self._delete(
@@ -504,7 +504,7 @@ class AsyncEventNotificationsResource(AsyncAPIResource):
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else omit}),
+            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else not_given}),
             **(extra_headers or {}),
         }
         return await self._get(
