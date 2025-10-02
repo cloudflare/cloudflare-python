@@ -47,9 +47,9 @@ class TestPolicies:
             alert_type="universal_ssl_event_type",
             enabled=True,
             mechanisms={
-                "email": [{"id": "test@example.com"}],
-                "pagerduty": [{"id": "e8133a15-00a4-4d69-aec1-32f70c51f6e5"}],
-                "webhooks": [{"id": "14cc1190-5d2b-4b98-a696-c424cb2ad05f"}],
+                "email": [{"id": "id"}],
+                "pagerduty": [{"id": "f174e90afafe4643bbbc4a0ed4fc8415"}],
+                "webhooks": [{"id": "f174e90afafe4643bbbc4a0ed4fc8415"}],
             },
             name="SSL Notification Event Policy",
             alert_interval="30m",
@@ -159,7 +159,7 @@ class TestPolicies:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         policy = client.alerting.policies.update(
-            policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
+            policy_id="0da2b59ef118439d8097bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
@@ -170,7 +170,7 @@ class TestPolicies:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         policy = client.alerting.policies.update(
-            policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
+            policy_id="0da2b59ef118439d8097bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             alert_interval="30m",
             alert_type="universal_ssl_event_type",
@@ -221,9 +221,9 @@ class TestPolicies:
                 "zones": ["string"],
             },
             mechanisms={
-                "email": [{"id": "test@example.com"}],
-                "pagerduty": [{"id": "e8133a15-00a4-4d69-aec1-32f70c51f6e5"}],
-                "webhooks": [{"id": "14cc1190-5d2b-4b98-a696-c424cb2ad05f"}],
+                "email": [{"id": "id"}],
+                "pagerduty": [{"id": "f174e90afafe4643bbbc4a0ed4fc8415"}],
+                "webhooks": [{"id": "f174e90afafe4643bbbc4a0ed4fc8415"}],
             },
             name="SSL Notification Event Policy",
         )
@@ -235,7 +235,7 @@ class TestPolicies:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.alerting.policies.with_raw_response.update(
-            policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
+            policy_id="0da2b59ef118439d8097bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -250,7 +250,7 @@ class TestPolicies:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.alerting.policies.with_streaming_response.update(
-            policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
+            policy_id="0da2b59ef118439d8097bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -268,7 +268,7 @@ class TestPolicies:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.alerting.policies.with_raw_response.update(
-                policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
+                policy_id="0da2b59ef118439d8097bdfb215203c9",
                 account_id="",
             )
 
@@ -319,7 +319,7 @@ class TestPolicies:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         policy = client.alerting.policies.delete(
-            policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
+            policy_id="0da2b59ef118439d8097bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(PolicyDeleteResponse, policy, path=["response"])
@@ -327,7 +327,7 @@ class TestPolicies:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.alerting.policies.with_raw_response.delete(
-            policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
+            policy_id="0da2b59ef118439d8097bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -339,7 +339,7 @@ class TestPolicies:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.alerting.policies.with_streaming_response.delete(
-            policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
+            policy_id="0da2b59ef118439d8097bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -354,7 +354,7 @@ class TestPolicies:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.alerting.policies.with_raw_response.delete(
-                policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
+                policy_id="0da2b59ef118439d8097bdfb215203c9",
                 account_id="",
             )
 
@@ -370,7 +370,7 @@ class TestPolicies:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         policy = client.alerting.policies.get(
-            policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
+            policy_id="0da2b59ef118439d8097bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Policy], policy, path=["response"])
@@ -381,7 +381,7 @@ class TestPolicies:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.alerting.policies.with_raw_response.get(
-            policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
+            policy_id="0da2b59ef118439d8097bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -396,7 +396,7 @@ class TestPolicies:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.alerting.policies.with_streaming_response.get(
-            policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
+            policy_id="0da2b59ef118439d8097bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -414,7 +414,7 @@ class TestPolicies:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.alerting.policies.with_raw_response.get(
-                policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
+                policy_id="0da2b59ef118439d8097bdfb215203c9",
                 account_id="",
             )
 
@@ -454,9 +454,9 @@ class TestAsyncPolicies:
             alert_type="universal_ssl_event_type",
             enabled=True,
             mechanisms={
-                "email": [{"id": "test@example.com"}],
-                "pagerduty": [{"id": "e8133a15-00a4-4d69-aec1-32f70c51f6e5"}],
-                "webhooks": [{"id": "14cc1190-5d2b-4b98-a696-c424cb2ad05f"}],
+                "email": [{"id": "id"}],
+                "pagerduty": [{"id": "f174e90afafe4643bbbc4a0ed4fc8415"}],
+                "webhooks": [{"id": "f174e90afafe4643bbbc4a0ed4fc8415"}],
             },
             name="SSL Notification Event Policy",
             alert_interval="30m",
@@ -566,7 +566,7 @@ class TestAsyncPolicies:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         policy = await async_client.alerting.policies.update(
-            policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
+            policy_id="0da2b59ef118439d8097bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
@@ -577,7 +577,7 @@ class TestAsyncPolicies:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         policy = await async_client.alerting.policies.update(
-            policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
+            policy_id="0da2b59ef118439d8097bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             alert_interval="30m",
             alert_type="universal_ssl_event_type",
@@ -628,9 +628,9 @@ class TestAsyncPolicies:
                 "zones": ["string"],
             },
             mechanisms={
-                "email": [{"id": "test@example.com"}],
-                "pagerduty": [{"id": "e8133a15-00a4-4d69-aec1-32f70c51f6e5"}],
-                "webhooks": [{"id": "14cc1190-5d2b-4b98-a696-c424cb2ad05f"}],
+                "email": [{"id": "id"}],
+                "pagerduty": [{"id": "f174e90afafe4643bbbc4a0ed4fc8415"}],
+                "webhooks": [{"id": "f174e90afafe4643bbbc4a0ed4fc8415"}],
             },
             name="SSL Notification Event Policy",
         )
@@ -642,7 +642,7 @@ class TestAsyncPolicies:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.alerting.policies.with_raw_response.update(
-            policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
+            policy_id="0da2b59ef118439d8097bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -657,7 +657,7 @@ class TestAsyncPolicies:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.alerting.policies.with_streaming_response.update(
-            policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
+            policy_id="0da2b59ef118439d8097bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -675,7 +675,7 @@ class TestAsyncPolicies:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.alerting.policies.with_raw_response.update(
-                policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
+                policy_id="0da2b59ef118439d8097bdfb215203c9",
                 account_id="",
             )
 
@@ -726,7 +726,7 @@ class TestAsyncPolicies:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         policy = await async_client.alerting.policies.delete(
-            policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
+            policy_id="0da2b59ef118439d8097bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(PolicyDeleteResponse, policy, path=["response"])
@@ -734,7 +734,7 @@ class TestAsyncPolicies:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.alerting.policies.with_raw_response.delete(
-            policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
+            policy_id="0da2b59ef118439d8097bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -746,7 +746,7 @@ class TestAsyncPolicies:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.alerting.policies.with_streaming_response.delete(
-            policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
+            policy_id="0da2b59ef118439d8097bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -761,7 +761,7 @@ class TestAsyncPolicies:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.alerting.policies.with_raw_response.delete(
-                policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
+                policy_id="0da2b59ef118439d8097bdfb215203c9",
                 account_id="",
             )
 
@@ -777,7 +777,7 @@ class TestAsyncPolicies:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         policy = await async_client.alerting.policies.get(
-            policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
+            policy_id="0da2b59ef118439d8097bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Policy], policy, path=["response"])
@@ -788,7 +788,7 @@ class TestAsyncPolicies:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.alerting.policies.with_raw_response.get(
-            policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
+            policy_id="0da2b59ef118439d8097bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -803,7 +803,7 @@ class TestAsyncPolicies:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.alerting.policies.with_streaming_response.get(
-            policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
+            policy_id="0da2b59ef118439d8097bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -821,7 +821,7 @@ class TestAsyncPolicies:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.alerting.policies.with_raw_response.get(
-                policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
+                policy_id="0da2b59ef118439d8097bdfb215203c9",
                 account_id="",
             )
 
