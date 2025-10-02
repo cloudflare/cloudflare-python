@@ -9,7 +9,7 @@ __all__ = ["NamespaceUpdateParams"]
 
 class NamespaceUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier."""
+    """Identifier"""
 
     title: Required[str]
     """A human-readable string name for a Namespace."""

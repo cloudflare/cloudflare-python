@@ -74,10 +74,10 @@ class ProjectsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        build_config: project_create_params.BuildConfig | Omit = omit,
-        deployment_configs: project_create_params.DeploymentConfigs | Omit = omit,
-        name: str | Omit = omit,
-        production_branch: str | Omit = omit,
+        name: str,
+        production_branch: str,
+        build_config: Optional[project_create_params.BuildConfig] | Omit = omit,
+        deployment_configs: Optional[project_create_params.DeploymentConfigs] | Omit = omit,
         source: project_create_params.Source | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -92,13 +92,13 @@ class ProjectsResource(SyncAPIResource):
         Args:
           account_id: Identifier
 
-          build_config: Configs for the project build process.
-
-          deployment_configs: Configs for deployments in a project.
-
           name: Name of the project.
 
           production_branch: Production branch of the project. Used to identify production deployments.
+
+          build_config: Configs for the project build process.
+
+          deployment_configs: Configs for deployments in a project.
 
           extra_headers: Send extra headers
 
@@ -114,10 +114,10 @@ class ProjectsResource(SyncAPIResource):
             f"/accounts/{account_id}/pages/projects",
             body=maybe_transform(
                 {
-                    "build_config": build_config,
-                    "deployment_configs": deployment_configs,
                     "name": name,
                     "production_branch": production_branch,
+                    "build_config": build_config,
+                    "deployment_configs": deployment_configs,
                     "source": source,
                 },
                 project_create_params.ProjectCreateParams,
@@ -233,10 +233,10 @@ class ProjectsResource(SyncAPIResource):
         project_name: str,
         *,
         account_id: str,
-        build_config: project_edit_params.BuildConfig | Omit = omit,
-        deployment_configs: project_edit_params.DeploymentConfigs | Omit = omit,
-        name: str | Omit = omit,
-        production_branch: str | Omit = omit,
+        name: str,
+        production_branch: str,
+        build_config: Optional[project_edit_params.BuildConfig] | Omit = omit,
+        deployment_configs: Optional[project_edit_params.DeploymentConfigs] | Omit = omit,
         source: project_edit_params.Source | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -255,13 +255,13 @@ class ProjectsResource(SyncAPIResource):
 
           project_name: Name of the project.
 
-          build_config: Configs for the project build process.
-
-          deployment_configs: Configs for deployments in a project.
-
           name: Name of the project.
 
           production_branch: Production branch of the project. Used to identify production deployments.
+
+          build_config: Configs for the project build process.
+
+          deployment_configs: Configs for deployments in a project.
 
           extra_headers: Send extra headers
 
@@ -279,10 +279,10 @@ class ProjectsResource(SyncAPIResource):
             f"/accounts/{account_id}/pages/projects/{project_name}",
             body=maybe_transform(
                 {
-                    "build_config": build_config,
-                    "deployment_configs": deployment_configs,
                     "name": name,
                     "production_branch": production_branch,
+                    "build_config": build_config,
+                    "deployment_configs": deployment_configs,
                     "source": source,
                 },
                 project_edit_params.ProjectEditParams,
@@ -418,10 +418,10 @@ class AsyncProjectsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        build_config: project_create_params.BuildConfig | Omit = omit,
-        deployment_configs: project_create_params.DeploymentConfigs | Omit = omit,
-        name: str | Omit = omit,
-        production_branch: str | Omit = omit,
+        name: str,
+        production_branch: str,
+        build_config: Optional[project_create_params.BuildConfig] | Omit = omit,
+        deployment_configs: Optional[project_create_params.DeploymentConfigs] | Omit = omit,
         source: project_create_params.Source | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -436,13 +436,13 @@ class AsyncProjectsResource(AsyncAPIResource):
         Args:
           account_id: Identifier
 
-          build_config: Configs for the project build process.
-
-          deployment_configs: Configs for deployments in a project.
-
           name: Name of the project.
 
           production_branch: Production branch of the project. Used to identify production deployments.
+
+          build_config: Configs for the project build process.
+
+          deployment_configs: Configs for deployments in a project.
 
           extra_headers: Send extra headers
 
@@ -458,10 +458,10 @@ class AsyncProjectsResource(AsyncAPIResource):
             f"/accounts/{account_id}/pages/projects",
             body=await async_maybe_transform(
                 {
-                    "build_config": build_config,
-                    "deployment_configs": deployment_configs,
                     "name": name,
                     "production_branch": production_branch,
+                    "build_config": build_config,
+                    "deployment_configs": deployment_configs,
                     "source": source,
                 },
                 project_create_params.ProjectCreateParams,
@@ -577,10 +577,10 @@ class AsyncProjectsResource(AsyncAPIResource):
         project_name: str,
         *,
         account_id: str,
-        build_config: project_edit_params.BuildConfig | Omit = omit,
-        deployment_configs: project_edit_params.DeploymentConfigs | Omit = omit,
-        name: str | Omit = omit,
-        production_branch: str | Omit = omit,
+        name: str,
+        production_branch: str,
+        build_config: Optional[project_edit_params.BuildConfig] | Omit = omit,
+        deployment_configs: Optional[project_edit_params.DeploymentConfigs] | Omit = omit,
         source: project_edit_params.Source | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -599,13 +599,13 @@ class AsyncProjectsResource(AsyncAPIResource):
 
           project_name: Name of the project.
 
-          build_config: Configs for the project build process.
-
-          deployment_configs: Configs for deployments in a project.
-
           name: Name of the project.
 
           production_branch: Production branch of the project. Used to identify production deployments.
+
+          build_config: Configs for the project build process.
+
+          deployment_configs: Configs for deployments in a project.
 
           extra_headers: Send extra headers
 
@@ -623,10 +623,10 @@ class AsyncProjectsResource(AsyncAPIResource):
             f"/accounts/{account_id}/pages/projects/{project_name}",
             body=await async_maybe_transform(
                 {
-                    "build_config": build_config,
-                    "deployment_configs": deployment_configs,
                     "name": name,
                     "production_branch": production_branch,
+                    "build_config": build_config,
+                    "deployment_configs": deployment_configs,
                     "source": source,
                 },
                 project_edit_params.ProjectEditParams,

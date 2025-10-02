@@ -9,12 +9,8 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.queues import (
-    MessageAckResponse,
-    MessagePullResponse,
-    MessagePushResponse,
-    MessageBulkPushResponse,
-)
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.types.queues import MessageAckResponse, MessagePullResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -90,76 +86,12 @@ class TestMessages:
             )
 
     @parametrize
-    def test_method_bulk_push(self, client: Cloudflare) -> None:
-        message = client.queues.messages.bulk_push(
-            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(MessageBulkPushResponse, message, path=["response"])
-
-    @parametrize
-    def test_method_bulk_push_with_all_params(self, client: Cloudflare) -> None:
-        message = client.queues.messages.bulk_push(
-            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            delay_seconds=0,
-            messages=[
-                {
-                    "body": "body",
-                    "content_type": "text",
-                    "delay_seconds": 0,
-                }
-            ],
-        )
-        assert_matches_type(MessageBulkPushResponse, message, path=["response"])
-
-    @parametrize
-    def test_raw_response_bulk_push(self, client: Cloudflare) -> None:
-        response = client.queues.messages.with_raw_response.bulk_push(
-            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        message = response.parse()
-        assert_matches_type(MessageBulkPushResponse, message, path=["response"])
-
-    @parametrize
-    def test_streaming_response_bulk_push(self, client: Cloudflare) -> None:
-        with client.queues.messages.with_streaming_response.bulk_push(
-            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            message = response.parse()
-            assert_matches_type(MessageBulkPushResponse, message, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_path_params_bulk_push(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.queues.messages.with_raw_response.bulk_push(
-                queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_id` but received ''"):
-            client.queues.messages.with_raw_response.bulk_push(
-                queue_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
-
-    @parametrize
     def test_method_pull(self, client: Cloudflare) -> None:
         message = client.queues.messages.pull(
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[MessagePullResponse], message, path=["response"])
+        assert_matches_type(SyncSinglePage[MessagePullResponse], message, path=["response"])
 
     @parametrize
     def test_method_pull_with_all_params(self, client: Cloudflare) -> None:
@@ -169,7 +101,7 @@ class TestMessages:
             batch_size=50,
             visibility_timeout_ms=6000,
         )
-        assert_matches_type(Optional[MessagePullResponse], message, path=["response"])
+        assert_matches_type(SyncSinglePage[MessagePullResponse], message, path=["response"])
 
     @parametrize
     def test_raw_response_pull(self, client: Cloudflare) -> None:
@@ -181,7 +113,7 @@ class TestMessages:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         message = response.parse()
-        assert_matches_type(Optional[MessagePullResponse], message, path=["response"])
+        assert_matches_type(SyncSinglePage[MessagePullResponse], message, path=["response"])
 
     @parametrize
     def test_streaming_response_pull(self, client: Cloudflare) -> None:
@@ -193,7 +125,7 @@ class TestMessages:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             message = response.parse()
-            assert_matches_type(Optional[MessagePullResponse], message, path=["response"])
+            assert_matches_type(SyncSinglePage[MessagePullResponse], message, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -207,124 +139,6 @@ class TestMessages:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_id` but received ''"):
             client.queues.messages.with_raw_response.pull(
-                queue_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
-
-    @parametrize
-    def test_method_push_overload_1(self, client: Cloudflare) -> None:
-        message = client.queues.messages.push(
-            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(MessagePushResponse, message, path=["response"])
-
-    @parametrize
-    def test_method_push_with_all_params_overload_1(self, client: Cloudflare) -> None:
-        message = client.queues.messages.push(
-            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body="body",
-            content_type="text",
-            delay_seconds=0,
-        )
-        assert_matches_type(MessagePushResponse, message, path=["response"])
-
-    @parametrize
-    def test_raw_response_push_overload_1(self, client: Cloudflare) -> None:
-        response = client.queues.messages.with_raw_response.push(
-            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        message = response.parse()
-        assert_matches_type(MessagePushResponse, message, path=["response"])
-
-    @parametrize
-    def test_streaming_response_push_overload_1(self, client: Cloudflare) -> None:
-        with client.queues.messages.with_streaming_response.push(
-            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            message = response.parse()
-            assert_matches_type(MessagePushResponse, message, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_path_params_push_overload_1(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.queues.messages.with_raw_response.push(
-                queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_id` but received ''"):
-            client.queues.messages.with_raw_response.push(
-                queue_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
-
-    @parametrize
-    def test_method_push_overload_2(self, client: Cloudflare) -> None:
-        message = client.queues.messages.push(
-            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(MessagePushResponse, message, path=["response"])
-
-    @parametrize
-    def test_method_push_with_all_params_overload_2(self, client: Cloudflare) -> None:
-        message = client.queues.messages.push(
-            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-            content_type="json",
-            delay_seconds=0,
-        )
-        assert_matches_type(MessagePushResponse, message, path=["response"])
-
-    @parametrize
-    def test_raw_response_push_overload_2(self, client: Cloudflare) -> None:
-        response = client.queues.messages.with_raw_response.push(
-            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        message = response.parse()
-        assert_matches_type(MessagePushResponse, message, path=["response"])
-
-    @parametrize
-    def test_streaming_response_push_overload_2(self, client: Cloudflare) -> None:
-        with client.queues.messages.with_streaming_response.push(
-            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            message = response.parse()
-            assert_matches_type(MessagePushResponse, message, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_path_params_push_overload_2(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.queues.messages.with_raw_response.push(
-                queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_id` but received ''"):
-            client.queues.messages.with_raw_response.push(
                 queue_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -403,76 +217,12 @@ class TestAsyncMessages:
             )
 
     @parametrize
-    async def test_method_bulk_push(self, async_client: AsyncCloudflare) -> None:
-        message = await async_client.queues.messages.bulk_push(
-            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(MessageBulkPushResponse, message, path=["response"])
-
-    @parametrize
-    async def test_method_bulk_push_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        message = await async_client.queues.messages.bulk_push(
-            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            delay_seconds=0,
-            messages=[
-                {
-                    "body": "body",
-                    "content_type": "text",
-                    "delay_seconds": 0,
-                }
-            ],
-        )
-        assert_matches_type(MessageBulkPushResponse, message, path=["response"])
-
-    @parametrize
-    async def test_raw_response_bulk_push(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.queues.messages.with_raw_response.bulk_push(
-            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        message = await response.parse()
-        assert_matches_type(MessageBulkPushResponse, message, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_bulk_push(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.queues.messages.with_streaming_response.bulk_push(
-            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            message = await response.parse()
-            assert_matches_type(MessageBulkPushResponse, message, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_path_params_bulk_push(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.queues.messages.with_raw_response.bulk_push(
-                queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_id` but received ''"):
-            await async_client.queues.messages.with_raw_response.bulk_push(
-                queue_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
-
-    @parametrize
     async def test_method_pull(self, async_client: AsyncCloudflare) -> None:
         message = await async_client.queues.messages.pull(
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[MessagePullResponse], message, path=["response"])
+        assert_matches_type(AsyncSinglePage[MessagePullResponse], message, path=["response"])
 
     @parametrize
     async def test_method_pull_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -482,7 +232,7 @@ class TestAsyncMessages:
             batch_size=50,
             visibility_timeout_ms=6000,
         )
-        assert_matches_type(Optional[MessagePullResponse], message, path=["response"])
+        assert_matches_type(AsyncSinglePage[MessagePullResponse], message, path=["response"])
 
     @parametrize
     async def test_raw_response_pull(self, async_client: AsyncCloudflare) -> None:
@@ -494,7 +244,7 @@ class TestAsyncMessages:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         message = await response.parse()
-        assert_matches_type(Optional[MessagePullResponse], message, path=["response"])
+        assert_matches_type(AsyncSinglePage[MessagePullResponse], message, path=["response"])
 
     @parametrize
     async def test_streaming_response_pull(self, async_client: AsyncCloudflare) -> None:
@@ -506,7 +256,7 @@ class TestAsyncMessages:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             message = await response.parse()
-            assert_matches_type(Optional[MessagePullResponse], message, path=["response"])
+            assert_matches_type(AsyncSinglePage[MessagePullResponse], message, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -520,124 +270,6 @@ class TestAsyncMessages:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_id` but received ''"):
             await async_client.queues.messages.with_raw_response.pull(
-                queue_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
-
-    @parametrize
-    async def test_method_push_overload_1(self, async_client: AsyncCloudflare) -> None:
-        message = await async_client.queues.messages.push(
-            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(MessagePushResponse, message, path=["response"])
-
-    @parametrize
-    async def test_method_push_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
-        message = await async_client.queues.messages.push(
-            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body="body",
-            content_type="text",
-            delay_seconds=0,
-        )
-        assert_matches_type(MessagePushResponse, message, path=["response"])
-
-    @parametrize
-    async def test_raw_response_push_overload_1(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.queues.messages.with_raw_response.push(
-            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        message = await response.parse()
-        assert_matches_type(MessagePushResponse, message, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_push_overload_1(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.queues.messages.with_streaming_response.push(
-            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            message = await response.parse()
-            assert_matches_type(MessagePushResponse, message, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_path_params_push_overload_1(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.queues.messages.with_raw_response.push(
-                queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_id` but received ''"):
-            await async_client.queues.messages.with_raw_response.push(
-                queue_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
-
-    @parametrize
-    async def test_method_push_overload_2(self, async_client: AsyncCloudflare) -> None:
-        message = await async_client.queues.messages.push(
-            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(MessagePushResponse, message, path=["response"])
-
-    @parametrize
-    async def test_method_push_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
-        message = await async_client.queues.messages.push(
-            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-            content_type="json",
-            delay_seconds=0,
-        )
-        assert_matches_type(MessagePushResponse, message, path=["response"])
-
-    @parametrize
-    async def test_raw_response_push_overload_2(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.queues.messages.with_raw_response.push(
-            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        message = await response.parse()
-        assert_matches_type(MessagePushResponse, message, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_push_overload_2(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.queues.messages.with_streaming_response.push(
-            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            message = await response.parse()
-            assert_matches_type(MessagePushResponse, message, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_path_params_push_overload_2(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.queues.messages.with_raw_response.push(
-                queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_id` but received ''"):
-            await async_client.queues.messages.with_raw_response.push(
                 queue_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
