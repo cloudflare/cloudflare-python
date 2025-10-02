@@ -72,6 +72,14 @@ from .threat_events import (
     ThreatEventsResourceWithStreamingResponse,
     AsyncThreatEventsResourceWithStreamingResponse,
 )
+from .indicator_types import (
+    IndicatorTypesResource,
+    AsyncIndicatorTypesResource,
+    IndicatorTypesResourceWithRawResponse,
+    AsyncIndicatorTypesResourceWithRawResponse,
+    IndicatorTypesResourceWithStreamingResponse,
+    AsyncIndicatorTypesResourceWithStreamingResponse,
+)
 from .target_industries import (
     TargetIndustriesResource,
     AsyncTargetIndustriesResource,
@@ -106,6 +114,12 @@ __all__ = [
     "AsyncDatasetsResourceWithRawResponse",
     "DatasetsResourceWithStreamingResponse",
     "AsyncDatasetsResourceWithStreamingResponse",
+    "IndicatorTypesResource",
+    "AsyncIndicatorTypesResource",
+    "IndicatorTypesResourceWithRawResponse",
+    "AsyncIndicatorTypesResourceWithRawResponse",
+    "IndicatorTypesResourceWithStreamingResponse",
+    "AsyncIndicatorTypesResourceWithStreamingResponse",
     "RawResource",
     "AsyncRawResource",
     "RawResourceWithRawResponse",

@@ -9,7 +9,7 @@ __all__ = ["NamespaceListParams"]
 
 class NamespaceListParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     direction: Literal["asc", "desc"]
     """Direction to order namespaces."""
