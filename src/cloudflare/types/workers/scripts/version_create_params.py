@@ -161,7 +161,7 @@ class MetadataBindingWorkersBindingKindDispatchNamespace(TypedDict, total=False)
     """A JavaScript variable name for the binding."""
 
     namespace: Required[str]
-    """Namespace to bind to."""
+    """The name of the dispatch namespace."""
 
     type: Required[Literal["dispatch_namespace"]]
     """The kind of resource that the binding provides."""

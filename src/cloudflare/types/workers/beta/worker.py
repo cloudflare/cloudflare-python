@@ -5,7 +5,19 @@ from datetime import datetime
 
 from ...._models import BaseModel
 
-__all__ = ["Worker", "Observability", "ObservabilityLogs", "Subdomain", "TailConsumer"]
+__all__ = [
+    "Worker",
+    "Observability",
+    "ObservabilityLogs",
+    "References",
+    "ReferencesDispatchNamespaceOutbound",
+    "ReferencesDomain",
+    "ReferencesDurableObject",
+    "ReferencesQueue",
+    "ReferencesWorker",
+    "Subdomain",
+    "TailConsumer",
+]
 
 
 class ObservabilityLogs(BaseModel):
@@ -32,6 +44,92 @@ class Observability(BaseModel):
 
     logs: Optional[ObservabilityLogs] = None
     """Log settings for the Worker."""
+
+
+class ReferencesDispatchNamespaceOutbound(BaseModel):
+    namespace_id: str
+    """ID of the dispatch namespace."""
+
+    namespace_name: str
+    """Name of the dispatch namespace."""
+
+    worker_id: str
+    """ID of the Worker using the dispatch namespace."""
+
+    worker_name: str
+    """Name of the Worker using the dispatch namespace."""
+
+
+class ReferencesDomain(BaseModel):
+    id: str
+    """ID of the custom domain."""
+
+    certificate_id: str
+    """ID of the TLS certificate issued for the custom domain."""
+
+    hostname: str
+    """Full hostname of the custom domain, including the zone name."""
+
+    zone_id: str
+    """ID of the zone."""
+
+    zone_name: str
+    """Name of the zone."""
+
+
+class ReferencesDurableObject(BaseModel):
+    namespace_id: str
+    """ID of the Durable Object namespace being used."""
+
+    namespace_name: str
+    """Name of the Durable Object namespace being used."""
+
+    worker_id: str
+    """ID of the Worker using the Durable Object implementation."""
+
+    worker_name: str
+    """Name of the Worker using the Durable Object implementation."""
+
+
+class ReferencesQueue(BaseModel):
+    queue_consumer_id: str
+    """ID of the queue consumer configuration."""
+
+    queue_id: str
+    """ID of the queue."""
+
+    queue_name: str
+    """Name of the queue."""
+
+
+class ReferencesWorker(BaseModel):
+    id: str
+    """ID of the referencing Worker."""
+
+    name: str
+    """Name of the referencing Worker."""
+
+
+class References(BaseModel):
+    dispatch_namespace_outbounds: List[ReferencesDispatchNamespaceOutbound]
+    """
+    Other Workers that reference the Worker as an outbound for a dispatch namespace.
+    """
+
+    domains: List[ReferencesDomain]
+    """Custom domains connected to the Worker."""
+
+    durable_objects: List[ReferencesDurableObject]
+    """Other Workers that reference Durable Object classes implemented by the Worker."""
+
+    queues: List[ReferencesQueue]
+    """Queues that send messages to the Worker."""
+
+    workers: List[ReferencesWorker]
+    """
+    Other Workers that reference the Worker using
+    [service bindings](https://developers.cloudflare.com/workers/runtime-apis/bindings/service-bindings/).
+    """
 
 
 class Subdomain(BaseModel):
@@ -66,6 +164,9 @@ class Worker(BaseModel):
 
     observability: Observability
     """Observability settings for the Worker."""
+
+    references: References
+    """Other resources that reference the Worker and depend on it existing."""
 
     subdomain: Subdomain
     """Subdomain settings for the Worker."""
