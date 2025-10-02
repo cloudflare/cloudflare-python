@@ -67,6 +67,9 @@ class VersionCreateParams(TypedDict, total=False):
 
 
 class MetadataAnnotations(TypedDict, total=False):
+    workers_alias: Annotated[str, PropertyInfo(alias="workers/alias")]
+    """Associated alias for a version."""
+
     workers_message: Annotated[str, PropertyInfo(alias="workers/message")]
     """Human-readable message about the version. Truncated to 100 bytes."""
 

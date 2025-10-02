@@ -22,53 +22,61 @@ __all__ = [
 class R2SlurperS3SourceSchema(TypedDict, total=False):
     account_id: Required[str]
 
-    bucket: str
+    bucket: Required[str]
+
+    secret: Required[R2SlurperS3SourceSchemaSecret]
+
+    vendor: Required[Literal["s3"]]
 
     endpoint: Optional[str]
 
-    secret: R2SlurperS3SourceSchemaSecret
+    path_prefix: Annotated[Optional[str], PropertyInfo(alias="pathPrefix")]
 
-    vendor: Literal["s3"]
+    region: Optional[str]
 
 
 class R2SlurperS3SourceSchemaSecret(TypedDict, total=False):
-    access_key_id: Annotated[str, PropertyInfo(alias="accessKeyId")]
+    access_key_id: Required[Annotated[str, PropertyInfo(alias="accessKeyId")]]
 
-    secret_access_key: Annotated[str, PropertyInfo(alias="secretAccessKey")]
+    secret_access_key: Required[Annotated[str, PropertyInfo(alias="secretAccessKey")]]
 
 
 class R2SlurperGcsSourceSchema(TypedDict, total=False):
     account_id: Required[str]
 
-    bucket: str
+    bucket: Required[str]
 
-    secret: R2SlurperGcsSourceSchemaSecret
+    secret: Required[R2SlurperGcsSourceSchemaSecret]
 
-    vendor: Literal["gcs"]
+    vendor: Required[Literal["gcs"]]
+
+    path_prefix: Annotated[Optional[str], PropertyInfo(alias="pathPrefix")]
 
 
 class R2SlurperGcsSourceSchemaSecret(TypedDict, total=False):
-    client_email: Annotated[str, PropertyInfo(alias="clientEmail")]
+    client_email: Required[Annotated[str, PropertyInfo(alias="clientEmail")]]
 
-    private_key: Annotated[str, PropertyInfo(alias="privateKey")]
+    private_key: Required[Annotated[str, PropertyInfo(alias="privateKey")]]
 
 
 class R2SlurperR2SourceSchema(TypedDict, total=False):
     account_id: Required[str]
 
-    bucket: str
+    bucket: Required[str]
+
+    secret: Required[R2SlurperR2SourceSchemaSecret]
+
+    vendor: Required[Provider]
 
     jurisdiction: Literal["default", "eu", "fedramp"]
 
-    secret: R2SlurperR2SourceSchemaSecret
-
-    vendor: Provider
+    path_prefix: Annotated[Optional[str], PropertyInfo(alias="pathPrefix")]
 
 
 class R2SlurperR2SourceSchemaSecret(TypedDict, total=False):
-    access_key_id: Annotated[str, PropertyInfo(alias="accessKeyId")]
+    access_key_id: Required[Annotated[str, PropertyInfo(alias="accessKeyId")]]
 
-    secret_access_key: Annotated[str, PropertyInfo(alias="secretAccessKey")]
+    secret_access_key: Required[Annotated[str, PropertyInfo(alias="secretAccessKey")]]
 
 
 ConnectivityPrecheckSourceParams: TypeAlias = Union[
