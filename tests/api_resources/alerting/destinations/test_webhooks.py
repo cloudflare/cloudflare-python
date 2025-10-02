@@ -100,7 +100,7 @@ class TestWebhooks:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         webhook = client.alerting.destinations.webhooks.update(
-            webhook_id="b115d5ec15c641ee8b7692c449b5227b",
+            webhook_id="b115d5ec-15c6-41ee-8b76-92c449b5227b",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="Slack Webhook",
             url="https://hooks.slack.com/services/Ds3fdBFbV/456464Gdd",
@@ -113,7 +113,7 @@ class TestWebhooks:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         webhook = client.alerting.destinations.webhooks.update(
-            webhook_id="b115d5ec15c641ee8b7692c449b5227b",
+            webhook_id="b115d5ec-15c6-41ee-8b76-92c449b5227b",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="Slack Webhook",
             url="https://hooks.slack.com/services/Ds3fdBFbV/456464Gdd",
@@ -127,7 +127,7 @@ class TestWebhooks:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.alerting.destinations.webhooks.with_raw_response.update(
-            webhook_id="b115d5ec15c641ee8b7692c449b5227b",
+            webhook_id="b115d5ec-15c6-41ee-8b76-92c449b5227b",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="Slack Webhook",
             url="https://hooks.slack.com/services/Ds3fdBFbV/456464Gdd",
@@ -144,7 +144,7 @@ class TestWebhooks:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.alerting.destinations.webhooks.with_streaming_response.update(
-            webhook_id="b115d5ec15c641ee8b7692c449b5227b",
+            webhook_id="b115d5ec-15c6-41ee-8b76-92c449b5227b",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="Slack Webhook",
             url="https://hooks.slack.com/services/Ds3fdBFbV/456464Gdd",
@@ -164,7 +164,7 @@ class TestWebhooks:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.alerting.destinations.webhooks.with_raw_response.update(
-                webhook_id="b115d5ec15c641ee8b7692c449b5227b",
+                webhook_id="b115d5ec-15c6-41ee-8b76-92c449b5227b",
                 account_id="",
                 name="Slack Webhook",
                 url="https://hooks.slack.com/services/Ds3fdBFbV/456464Gdd",
@@ -219,7 +219,7 @@ class TestWebhooks:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         webhook = client.alerting.destinations.webhooks.delete(
-            webhook_id="b115d5ec15c641ee8b7692c449b5227b",
+            webhook_id="b115d5ec-15c6-41ee-8b76-92c449b5227b",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(WebhookDeleteResponse, webhook, path=["response"])
@@ -227,7 +227,7 @@ class TestWebhooks:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.alerting.destinations.webhooks.with_raw_response.delete(
-            webhook_id="b115d5ec15c641ee8b7692c449b5227b",
+            webhook_id="b115d5ec-15c6-41ee-8b76-92c449b5227b",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -239,7 +239,7 @@ class TestWebhooks:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.alerting.destinations.webhooks.with_streaming_response.delete(
-            webhook_id="b115d5ec15c641ee8b7692c449b5227b",
+            webhook_id="b115d5ec-15c6-41ee-8b76-92c449b5227b",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -254,7 +254,7 @@ class TestWebhooks:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.alerting.destinations.webhooks.with_raw_response.delete(
-                webhook_id="b115d5ec15c641ee8b7692c449b5227b",
+                webhook_id="b115d5ec-15c6-41ee-8b76-92c449b5227b",
                 account_id="",
             )
 
@@ -270,7 +270,7 @@ class TestWebhooks:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         webhook = client.alerting.destinations.webhooks.get(
-            webhook_id="b115d5ec15c641ee8b7692c449b5227b",
+            webhook_id="b115d5ec-15c6-41ee-8b76-92c449b5227b",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Webhooks], webhook, path=["response"])
@@ -281,7 +281,7 @@ class TestWebhooks:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.alerting.destinations.webhooks.with_raw_response.get(
-            webhook_id="b115d5ec15c641ee8b7692c449b5227b",
+            webhook_id="b115d5ec-15c6-41ee-8b76-92c449b5227b",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -296,7 +296,7 @@ class TestWebhooks:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.alerting.destinations.webhooks.with_streaming_response.get(
-            webhook_id="b115d5ec15c641ee8b7692c449b5227b",
+            webhook_id="b115d5ec-15c6-41ee-8b76-92c449b5227b",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -314,7 +314,7 @@ class TestWebhooks:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.alerting.destinations.webhooks.with_raw_response.get(
-                webhook_id="b115d5ec15c641ee8b7692c449b5227b",
+                webhook_id="b115d5ec-15c6-41ee-8b76-92c449b5227b",
                 account_id="",
             )
 
@@ -407,7 +407,7 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         webhook = await async_client.alerting.destinations.webhooks.update(
-            webhook_id="b115d5ec15c641ee8b7692c449b5227b",
+            webhook_id="b115d5ec-15c6-41ee-8b76-92c449b5227b",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="Slack Webhook",
             url="https://hooks.slack.com/services/Ds3fdBFbV/456464Gdd",
@@ -420,7 +420,7 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         webhook = await async_client.alerting.destinations.webhooks.update(
-            webhook_id="b115d5ec15c641ee8b7692c449b5227b",
+            webhook_id="b115d5ec-15c6-41ee-8b76-92c449b5227b",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="Slack Webhook",
             url="https://hooks.slack.com/services/Ds3fdBFbV/456464Gdd",
@@ -434,7 +434,7 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.alerting.destinations.webhooks.with_raw_response.update(
-            webhook_id="b115d5ec15c641ee8b7692c449b5227b",
+            webhook_id="b115d5ec-15c6-41ee-8b76-92c449b5227b",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="Slack Webhook",
             url="https://hooks.slack.com/services/Ds3fdBFbV/456464Gdd",
@@ -451,7 +451,7 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.alerting.destinations.webhooks.with_streaming_response.update(
-            webhook_id="b115d5ec15c641ee8b7692c449b5227b",
+            webhook_id="b115d5ec-15c6-41ee-8b76-92c449b5227b",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="Slack Webhook",
             url="https://hooks.slack.com/services/Ds3fdBFbV/456464Gdd",
@@ -471,7 +471,7 @@ class TestAsyncWebhooks:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.alerting.destinations.webhooks.with_raw_response.update(
-                webhook_id="b115d5ec15c641ee8b7692c449b5227b",
+                webhook_id="b115d5ec-15c6-41ee-8b76-92c449b5227b",
                 account_id="",
                 name="Slack Webhook",
                 url="https://hooks.slack.com/services/Ds3fdBFbV/456464Gdd",
@@ -526,7 +526,7 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         webhook = await async_client.alerting.destinations.webhooks.delete(
-            webhook_id="b115d5ec15c641ee8b7692c449b5227b",
+            webhook_id="b115d5ec-15c6-41ee-8b76-92c449b5227b",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(WebhookDeleteResponse, webhook, path=["response"])
@@ -534,7 +534,7 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.alerting.destinations.webhooks.with_raw_response.delete(
-            webhook_id="b115d5ec15c641ee8b7692c449b5227b",
+            webhook_id="b115d5ec-15c6-41ee-8b76-92c449b5227b",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -546,7 +546,7 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.alerting.destinations.webhooks.with_streaming_response.delete(
-            webhook_id="b115d5ec15c641ee8b7692c449b5227b",
+            webhook_id="b115d5ec-15c6-41ee-8b76-92c449b5227b",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -561,7 +561,7 @@ class TestAsyncWebhooks:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.alerting.destinations.webhooks.with_raw_response.delete(
-                webhook_id="b115d5ec15c641ee8b7692c449b5227b",
+                webhook_id="b115d5ec-15c6-41ee-8b76-92c449b5227b",
                 account_id="",
             )
 
@@ -577,7 +577,7 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         webhook = await async_client.alerting.destinations.webhooks.get(
-            webhook_id="b115d5ec15c641ee8b7692c449b5227b",
+            webhook_id="b115d5ec-15c6-41ee-8b76-92c449b5227b",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Webhooks], webhook, path=["response"])
@@ -588,7 +588,7 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.alerting.destinations.webhooks.with_raw_response.get(
-            webhook_id="b115d5ec15c641ee8b7692c449b5227b",
+            webhook_id="b115d5ec-15c6-41ee-8b76-92c449b5227b",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -603,7 +603,7 @@ class TestAsyncWebhooks:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.alerting.destinations.webhooks.with_streaming_response.get(
-            webhook_id="b115d5ec15c641ee8b7692c449b5227b",
+            webhook_id="b115d5ec-15c6-41ee-8b76-92c449b5227b",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -621,7 +621,7 @@ class TestAsyncWebhooks:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.alerting.destinations.webhooks.with_raw_response.get(
-                webhook_id="b115d5ec15c641ee8b7692c449b5227b",
+                webhook_id="b115d5ec-15c6-41ee-8b76-92c449b5227b",
                 account_id="",
             )
 

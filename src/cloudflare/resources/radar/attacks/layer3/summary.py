@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import typing_extensions
 from typing import List, Type, Union, cast
 from datetime import datetime
 from typing_extensions import Literal
@@ -61,7 +60,6 @@ class SummaryResource(SyncAPIResource):
         """
         return SummaryResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
     def bitrate(
         self,
         *,
@@ -148,7 +146,6 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryBitrateResponse], ResultWrapper[SummaryBitrateResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def duration(
         self,
         *,
@@ -235,7 +232,6 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryDurationResponse], ResultWrapper[SummaryDurationResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def industry(
         self,
         *,
@@ -328,7 +324,6 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryIndustryResponse], ResultWrapper[SummaryIndustryResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def ip_version(
         self,
         *,
@@ -411,7 +406,6 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryIPVersionResponse], ResultWrapper[SummaryIPVersionResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def protocol(
         self,
         *,
@@ -494,7 +488,6 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryProtocolResponse], ResultWrapper[SummaryProtocolResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def vector(
         self,
         *,
@@ -587,7 +580,6 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryVectorResponse], ResultWrapper[SummaryVectorResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def vertical(
         self,
         *,
@@ -701,7 +693,6 @@ class AsyncSummaryResource(AsyncAPIResource):
         """
         return AsyncSummaryResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
     async def bitrate(
         self,
         *,
@@ -788,7 +779,6 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryBitrateResponse], ResultWrapper[SummaryBitrateResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def duration(
         self,
         *,
@@ -875,7 +865,6 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryDurationResponse], ResultWrapper[SummaryDurationResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def industry(
         self,
         *,
@@ -968,7 +957,6 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryIndustryResponse], ResultWrapper[SummaryIndustryResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def ip_version(
         self,
         *,
@@ -1051,7 +1039,6 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryIPVersionResponse], ResultWrapper[SummaryIPVersionResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def protocol(
         self,
         *,
@@ -1134,7 +1121,6 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryProtocolResponse], ResultWrapper[SummaryProtocolResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def vector(
         self,
         *,
@@ -1227,7 +1213,6 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryVectorResponse], ResultWrapper[SummaryVectorResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def vertical(
         self,
         *,
@@ -1325,40 +1310,26 @@ class SummaryResourceWithRawResponse:
     def __init__(self, summary: SummaryResource) -> None:
         self._summary = summary
 
-        self.bitrate = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                summary.bitrate,  # pyright: ignore[reportDeprecated],
-            )
+        self.bitrate = to_raw_response_wrapper(
+            summary.bitrate,
         )
-        self.duration = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                summary.duration,  # pyright: ignore[reportDeprecated],
-            )
+        self.duration = to_raw_response_wrapper(
+            summary.duration,
         )
-        self.industry = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                summary.industry,  # pyright: ignore[reportDeprecated],
-            )
+        self.industry = to_raw_response_wrapper(
+            summary.industry,
         )
-        self.ip_version = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                summary.ip_version,  # pyright: ignore[reportDeprecated],
-            )
+        self.ip_version = to_raw_response_wrapper(
+            summary.ip_version,
         )
-        self.protocol = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                summary.protocol,  # pyright: ignore[reportDeprecated],
-            )
+        self.protocol = to_raw_response_wrapper(
+            summary.protocol,
         )
-        self.vector = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                summary.vector,  # pyright: ignore[reportDeprecated],
-            )
+        self.vector = to_raw_response_wrapper(
+            summary.vector,
         )
-        self.vertical = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                summary.vertical,  # pyright: ignore[reportDeprecated],
-            )
+        self.vertical = to_raw_response_wrapper(
+            summary.vertical,
         )
 
 
@@ -1366,40 +1337,26 @@ class AsyncSummaryResourceWithRawResponse:
     def __init__(self, summary: AsyncSummaryResource) -> None:
         self._summary = summary
 
-        self.bitrate = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                summary.bitrate,  # pyright: ignore[reportDeprecated],
-            )
+        self.bitrate = async_to_raw_response_wrapper(
+            summary.bitrate,
         )
-        self.duration = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                summary.duration,  # pyright: ignore[reportDeprecated],
-            )
+        self.duration = async_to_raw_response_wrapper(
+            summary.duration,
         )
-        self.industry = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                summary.industry,  # pyright: ignore[reportDeprecated],
-            )
+        self.industry = async_to_raw_response_wrapper(
+            summary.industry,
         )
-        self.ip_version = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                summary.ip_version,  # pyright: ignore[reportDeprecated],
-            )
+        self.ip_version = async_to_raw_response_wrapper(
+            summary.ip_version,
         )
-        self.protocol = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                summary.protocol,  # pyright: ignore[reportDeprecated],
-            )
+        self.protocol = async_to_raw_response_wrapper(
+            summary.protocol,
         )
-        self.vector = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                summary.vector,  # pyright: ignore[reportDeprecated],
-            )
+        self.vector = async_to_raw_response_wrapper(
+            summary.vector,
         )
-        self.vertical = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                summary.vertical,  # pyright: ignore[reportDeprecated],
-            )
+        self.vertical = async_to_raw_response_wrapper(
+            summary.vertical,
         )
 
 
@@ -1407,40 +1364,26 @@ class SummaryResourceWithStreamingResponse:
     def __init__(self, summary: SummaryResource) -> None:
         self._summary = summary
 
-        self.bitrate = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                summary.bitrate,  # pyright: ignore[reportDeprecated],
-            )
+        self.bitrate = to_streamed_response_wrapper(
+            summary.bitrate,
         )
-        self.duration = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                summary.duration,  # pyright: ignore[reportDeprecated],
-            )
+        self.duration = to_streamed_response_wrapper(
+            summary.duration,
         )
-        self.industry = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                summary.industry,  # pyright: ignore[reportDeprecated],
-            )
+        self.industry = to_streamed_response_wrapper(
+            summary.industry,
         )
-        self.ip_version = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                summary.ip_version,  # pyright: ignore[reportDeprecated],
-            )
+        self.ip_version = to_streamed_response_wrapper(
+            summary.ip_version,
         )
-        self.protocol = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                summary.protocol,  # pyright: ignore[reportDeprecated],
-            )
+        self.protocol = to_streamed_response_wrapper(
+            summary.protocol,
         )
-        self.vector = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                summary.vector,  # pyright: ignore[reportDeprecated],
-            )
+        self.vector = to_streamed_response_wrapper(
+            summary.vector,
         )
-        self.vertical = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                summary.vertical,  # pyright: ignore[reportDeprecated],
-            )
+        self.vertical = to_streamed_response_wrapper(
+            summary.vertical,
         )
 
 
@@ -1448,38 +1391,24 @@ class AsyncSummaryResourceWithStreamingResponse:
     def __init__(self, summary: AsyncSummaryResource) -> None:
         self._summary = summary
 
-        self.bitrate = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                summary.bitrate,  # pyright: ignore[reportDeprecated],
-            )
+        self.bitrate = async_to_streamed_response_wrapper(
+            summary.bitrate,
         )
-        self.duration = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                summary.duration,  # pyright: ignore[reportDeprecated],
-            )
+        self.duration = async_to_streamed_response_wrapper(
+            summary.duration,
         )
-        self.industry = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                summary.industry,  # pyright: ignore[reportDeprecated],
-            )
+        self.industry = async_to_streamed_response_wrapper(
+            summary.industry,
         )
-        self.ip_version = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                summary.ip_version,  # pyright: ignore[reportDeprecated],
-            )
+        self.ip_version = async_to_streamed_response_wrapper(
+            summary.ip_version,
         )
-        self.protocol = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                summary.protocol,  # pyright: ignore[reportDeprecated],
-            )
+        self.protocol = async_to_streamed_response_wrapper(
+            summary.protocol,
         )
-        self.vector = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                summary.vector,  # pyright: ignore[reportDeprecated],
-            )
+        self.vector = async_to_streamed_response_wrapper(
+            summary.vector,
         )
-        self.vertical = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                summary.vertical,  # pyright: ignore[reportDeprecated],
-            )
+        self.vertical = async_to_streamed_response_wrapper(
+            summary.vertical,
         )

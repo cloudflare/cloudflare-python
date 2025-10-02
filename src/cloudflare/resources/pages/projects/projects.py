@@ -25,8 +25,8 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ....types.pages import project_edit_params, project_list_params, project_create_params
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from ....types.pages import project_edit_params, project_create_params
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.pages.project import Project
 from .deployments.deployments import (
@@ -136,24 +136,18 @@ class ProjectsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        page: int | Omit = omit,
-        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncV4PagePaginationArray[Deployment]:
+    ) -> SyncSinglePage[Deployment]:
         """
         Fetch a list of all user projects.
 
         Args:
           account_id: Identifier
-
-          page: Which page of projects to fetch.
-
-          per_page: How many project to return per page.
 
           extra_headers: Send extra headers
 
@@ -167,19 +161,9 @@ class ProjectsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/pages/projects",
-            page=SyncV4PagePaginationArray[Deployment],
+            page=SyncSinglePage[Deployment],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "page": page,
-                        "per_page": per_page,
-                    },
-                    project_list_params.ProjectListParams,
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             model=Deployment,
         )
@@ -480,24 +464,18 @@ class AsyncProjectsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        page: int | Omit = omit,
-        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[Deployment, AsyncV4PagePaginationArray[Deployment]]:
+    ) -> AsyncPaginator[Deployment, AsyncSinglePage[Deployment]]:
         """
         Fetch a list of all user projects.
 
         Args:
           account_id: Identifier
-
-          page: Which page of projects to fetch.
-
-          per_page: How many project to return per page.
 
           extra_headers: Send extra headers
 
@@ -511,19 +489,9 @@ class AsyncProjectsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/pages/projects",
-            page=AsyncV4PagePaginationArray[Deployment],
+            page=AsyncSinglePage[Deployment],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "page": page,
-                        "per_page": per_page,
-                    },
-                    project_list_params.ProjectListParams,
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             model=Deployment,
         )

@@ -26,14 +26,8 @@ class AsSet(BaseModel):
     name: str
     """The name of the AS-SET"""
 
-    hierarchical_asn: Optional[int] = None
-    """The AS number following hierarchical AS-SET name"""
-
-    inferred_asn: Optional[int] = None
+    asn: Optional[int] = None
     """The inferred AS number of the AS-SET"""
-
-    peeringdb_asn: Optional[int] = None
-    """The AS number matching PeeringDB record"""
 
 
 class ASNAsSetResponse(BaseModel):
