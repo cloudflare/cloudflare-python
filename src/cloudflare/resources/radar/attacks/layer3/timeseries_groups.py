@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import typing_extensions
 from typing import List, Type, Union, cast
 from datetime import datetime
 from typing_extensions import Literal
@@ -61,7 +60,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
         """
         return TimeseriesGroupsResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
     def bitrate(
         self,
         *,
@@ -159,7 +157,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupBitrateResponse], ResultWrapper[TimeseriesGroupBitrateResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def duration(
         self,
         *,
@@ -257,7 +254,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupDurationResponse], ResultWrapper[TimeseriesGroupDurationResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def industry(
         self,
         *,
@@ -361,7 +357,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupIndustryResponse], ResultWrapper[TimeseriesGroupIndustryResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def ip_version(
         self,
         *,
@@ -455,7 +450,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupIPVersionResponse], ResultWrapper[TimeseriesGroupIPVersionResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def protocol(
         self,
         *,
@@ -549,7 +543,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupProtocolResponse], ResultWrapper[TimeseriesGroupProtocolResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def vector(
         self,
         *,
@@ -653,7 +646,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupVectorResponse], ResultWrapper[TimeseriesGroupVectorResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def vertical(
         self,
         *,
@@ -778,7 +770,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         """
         return AsyncTimeseriesGroupsResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
     async def bitrate(
         self,
         *,
@@ -876,7 +867,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupBitrateResponse], ResultWrapper[TimeseriesGroupBitrateResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def duration(
         self,
         *,
@@ -974,7 +964,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupDurationResponse], ResultWrapper[TimeseriesGroupDurationResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def industry(
         self,
         *,
@@ -1078,7 +1067,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupIndustryResponse], ResultWrapper[TimeseriesGroupIndustryResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def ip_version(
         self,
         *,
@@ -1172,7 +1160,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupIPVersionResponse], ResultWrapper[TimeseriesGroupIPVersionResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def protocol(
         self,
         *,
@@ -1266,7 +1253,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupProtocolResponse], ResultWrapper[TimeseriesGroupProtocolResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def vector(
         self,
         *,
@@ -1370,7 +1356,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupVectorResponse], ResultWrapper[TimeseriesGroupVectorResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def vertical(
         self,
         *,
@@ -1479,40 +1464,26 @@ class TimeseriesGroupsResourceWithRawResponse:
     def __init__(self, timeseries_groups: TimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.bitrate = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                timeseries_groups.bitrate,  # pyright: ignore[reportDeprecated],
-            )
+        self.bitrate = to_raw_response_wrapper(
+            timeseries_groups.bitrate,
         )
-        self.duration = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                timeseries_groups.duration,  # pyright: ignore[reportDeprecated],
-            )
+        self.duration = to_raw_response_wrapper(
+            timeseries_groups.duration,
         )
-        self.industry = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                timeseries_groups.industry,  # pyright: ignore[reportDeprecated],
-            )
+        self.industry = to_raw_response_wrapper(
+            timeseries_groups.industry,
         )
-        self.ip_version = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                timeseries_groups.ip_version,  # pyright: ignore[reportDeprecated],
-            )
+        self.ip_version = to_raw_response_wrapper(
+            timeseries_groups.ip_version,
         )
-        self.protocol = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                timeseries_groups.protocol,  # pyright: ignore[reportDeprecated],
-            )
+        self.protocol = to_raw_response_wrapper(
+            timeseries_groups.protocol,
         )
-        self.vector = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                timeseries_groups.vector,  # pyright: ignore[reportDeprecated],
-            )
+        self.vector = to_raw_response_wrapper(
+            timeseries_groups.vector,
         )
-        self.vertical = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                timeseries_groups.vertical,  # pyright: ignore[reportDeprecated],
-            )
+        self.vertical = to_raw_response_wrapper(
+            timeseries_groups.vertical,
         )
 
 
@@ -1520,40 +1491,26 @@ class AsyncTimeseriesGroupsResourceWithRawResponse:
     def __init__(self, timeseries_groups: AsyncTimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.bitrate = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                timeseries_groups.bitrate,  # pyright: ignore[reportDeprecated],
-            )
+        self.bitrate = async_to_raw_response_wrapper(
+            timeseries_groups.bitrate,
         )
-        self.duration = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                timeseries_groups.duration,  # pyright: ignore[reportDeprecated],
-            )
+        self.duration = async_to_raw_response_wrapper(
+            timeseries_groups.duration,
         )
-        self.industry = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                timeseries_groups.industry,  # pyright: ignore[reportDeprecated],
-            )
+        self.industry = async_to_raw_response_wrapper(
+            timeseries_groups.industry,
         )
-        self.ip_version = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                timeseries_groups.ip_version,  # pyright: ignore[reportDeprecated],
-            )
+        self.ip_version = async_to_raw_response_wrapper(
+            timeseries_groups.ip_version,
         )
-        self.protocol = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                timeseries_groups.protocol,  # pyright: ignore[reportDeprecated],
-            )
+        self.protocol = async_to_raw_response_wrapper(
+            timeseries_groups.protocol,
         )
-        self.vector = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                timeseries_groups.vector,  # pyright: ignore[reportDeprecated],
-            )
+        self.vector = async_to_raw_response_wrapper(
+            timeseries_groups.vector,
         )
-        self.vertical = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                timeseries_groups.vertical,  # pyright: ignore[reportDeprecated],
-            )
+        self.vertical = async_to_raw_response_wrapper(
+            timeseries_groups.vertical,
         )
 
 
@@ -1561,40 +1518,26 @@ class TimeseriesGroupsResourceWithStreamingResponse:
     def __init__(self, timeseries_groups: TimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.bitrate = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                timeseries_groups.bitrate,  # pyright: ignore[reportDeprecated],
-            )
+        self.bitrate = to_streamed_response_wrapper(
+            timeseries_groups.bitrate,
         )
-        self.duration = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                timeseries_groups.duration,  # pyright: ignore[reportDeprecated],
-            )
+        self.duration = to_streamed_response_wrapper(
+            timeseries_groups.duration,
         )
-        self.industry = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                timeseries_groups.industry,  # pyright: ignore[reportDeprecated],
-            )
+        self.industry = to_streamed_response_wrapper(
+            timeseries_groups.industry,
         )
-        self.ip_version = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                timeseries_groups.ip_version,  # pyright: ignore[reportDeprecated],
-            )
+        self.ip_version = to_streamed_response_wrapper(
+            timeseries_groups.ip_version,
         )
-        self.protocol = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                timeseries_groups.protocol,  # pyright: ignore[reportDeprecated],
-            )
+        self.protocol = to_streamed_response_wrapper(
+            timeseries_groups.protocol,
         )
-        self.vector = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                timeseries_groups.vector,  # pyright: ignore[reportDeprecated],
-            )
+        self.vector = to_streamed_response_wrapper(
+            timeseries_groups.vector,
         )
-        self.vertical = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                timeseries_groups.vertical,  # pyright: ignore[reportDeprecated],
-            )
+        self.vertical = to_streamed_response_wrapper(
+            timeseries_groups.vertical,
         )
 
 
@@ -1602,38 +1545,24 @@ class AsyncTimeseriesGroupsResourceWithStreamingResponse:
     def __init__(self, timeseries_groups: AsyncTimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.bitrate = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                timeseries_groups.bitrate,  # pyright: ignore[reportDeprecated],
-            )
+        self.bitrate = async_to_streamed_response_wrapper(
+            timeseries_groups.bitrate,
         )
-        self.duration = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                timeseries_groups.duration,  # pyright: ignore[reportDeprecated],
-            )
+        self.duration = async_to_streamed_response_wrapper(
+            timeseries_groups.duration,
         )
-        self.industry = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                timeseries_groups.industry,  # pyright: ignore[reportDeprecated],
-            )
+        self.industry = async_to_streamed_response_wrapper(
+            timeseries_groups.industry,
         )
-        self.ip_version = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                timeseries_groups.ip_version,  # pyright: ignore[reportDeprecated],
-            )
+        self.ip_version = async_to_streamed_response_wrapper(
+            timeseries_groups.ip_version,
         )
-        self.protocol = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                timeseries_groups.protocol,  # pyright: ignore[reportDeprecated],
-            )
+        self.protocol = async_to_streamed_response_wrapper(
+            timeseries_groups.protocol,
         )
-        self.vector = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                timeseries_groups.vector,  # pyright: ignore[reportDeprecated],
-            )
+        self.vector = async_to_streamed_response_wrapper(
+            timeseries_groups.vector,
         )
-        self.vertical = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                timeseries_groups.vertical,  # pyright: ignore[reportDeprecated],
-            )
+        self.vertical = async_to_streamed_response_wrapper(
+            timeseries_groups.vertical,
         )

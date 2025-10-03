@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import typing_extensions
 from typing import Type, Union, Optional, cast
 from datetime import datetime
 from typing_extensions import Literal
@@ -67,7 +66,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
         """
         return TimeseriesGroupsResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
     def cache_hit(
         self,
         *,
@@ -287,7 +285,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupCacheHitResponse], ResultWrapper[TimeseriesGroupCacheHitResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def dnssec(
         self,
         *,
@@ -508,7 +505,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupDNSSECResponse], ResultWrapper[TimeseriesGroupDNSSECResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def dnssec_aware(
         self,
         *,
@@ -729,7 +725,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupDNSSECAwareResponse], ResultWrapper[TimeseriesGroupDNSSECAwareResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def dnssec_e2e(
         self,
         *,
@@ -950,7 +945,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupDNSSECE2EResponse], ResultWrapper[TimeseriesGroupDNSSECE2EResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def ip_version(
         self,
         *,
@@ -1170,7 +1164,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupIPVersionResponse], ResultWrapper[TimeseriesGroupIPVersionResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def matching_answer(
         self,
         *,
@@ -1392,7 +1385,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
             ),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def protocol(
         self,
         *,
@@ -1608,7 +1600,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupProtocolResponse], ResultWrapper[TimeseriesGroupProtocolResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def query_type(
         self,
         *,
@@ -1738,7 +1729,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupQueryTypeResponse], ResultWrapper[TimeseriesGroupQueryTypeResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def response_code(
         self,
         *,
@@ -1939,7 +1929,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupResponseCodeResponse], ResultWrapper[TimeseriesGroupResponseCodeResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def response_ttl(
         self,
         *,
@@ -2180,7 +2169,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         """
         return AsyncTimeseriesGroupsResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
     async def cache_hit(
         self,
         *,
@@ -2400,7 +2388,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupCacheHitResponse], ResultWrapper[TimeseriesGroupCacheHitResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def dnssec(
         self,
         *,
@@ -2621,7 +2608,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupDNSSECResponse], ResultWrapper[TimeseriesGroupDNSSECResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def dnssec_aware(
         self,
         *,
@@ -2842,7 +2828,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupDNSSECAwareResponse], ResultWrapper[TimeseriesGroupDNSSECAwareResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def dnssec_e2e(
         self,
         *,
@@ -3063,7 +3048,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupDNSSECE2EResponse], ResultWrapper[TimeseriesGroupDNSSECE2EResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def ip_version(
         self,
         *,
@@ -3283,7 +3267,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupIPVersionResponse], ResultWrapper[TimeseriesGroupIPVersionResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def matching_answer(
         self,
         *,
@@ -3505,7 +3488,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             ),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def protocol(
         self,
         *,
@@ -3721,7 +3703,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupProtocolResponse], ResultWrapper[TimeseriesGroupProtocolResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def query_type(
         self,
         *,
@@ -3851,7 +3832,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupQueryTypeResponse], ResultWrapper[TimeseriesGroupQueryTypeResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def response_code(
         self,
         *,
@@ -4052,7 +4032,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupResponseCodeResponse], ResultWrapper[TimeseriesGroupResponseCodeResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def response_ttl(
         self,
         *,
@@ -4277,55 +4256,35 @@ class TimeseriesGroupsResourceWithRawResponse:
     def __init__(self, timeseries_groups: TimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.cache_hit = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                timeseries_groups.cache_hit,  # pyright: ignore[reportDeprecated],
-            )
+        self.cache_hit = to_raw_response_wrapper(
+            timeseries_groups.cache_hit,
         )
-        self.dnssec = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                timeseries_groups.dnssec,  # pyright: ignore[reportDeprecated],
-            )
+        self.dnssec = to_raw_response_wrapper(
+            timeseries_groups.dnssec,
         )
-        self.dnssec_aware = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                timeseries_groups.dnssec_aware,  # pyright: ignore[reportDeprecated],
-            )
+        self.dnssec_aware = to_raw_response_wrapper(
+            timeseries_groups.dnssec_aware,
         )
-        self.dnssec_e2e = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                timeseries_groups.dnssec_e2e,  # pyright: ignore[reportDeprecated],
-            )
+        self.dnssec_e2e = to_raw_response_wrapper(
+            timeseries_groups.dnssec_e2e,
         )
-        self.ip_version = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                timeseries_groups.ip_version,  # pyright: ignore[reportDeprecated],
-            )
+        self.ip_version = to_raw_response_wrapper(
+            timeseries_groups.ip_version,
         )
-        self.matching_answer = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                timeseries_groups.matching_answer,  # pyright: ignore[reportDeprecated],
-            )
+        self.matching_answer = to_raw_response_wrapper(
+            timeseries_groups.matching_answer,
         )
-        self.protocol = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                timeseries_groups.protocol,  # pyright: ignore[reportDeprecated],
-            )
+        self.protocol = to_raw_response_wrapper(
+            timeseries_groups.protocol,
         )
-        self.query_type = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                timeseries_groups.query_type,  # pyright: ignore[reportDeprecated],
-            )
+        self.query_type = to_raw_response_wrapper(
+            timeseries_groups.query_type,
         )
-        self.response_code = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                timeseries_groups.response_code,  # pyright: ignore[reportDeprecated],
-            )
+        self.response_code = to_raw_response_wrapper(
+            timeseries_groups.response_code,
         )
-        self.response_ttl = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                timeseries_groups.response_ttl,  # pyright: ignore[reportDeprecated],
-            )
+        self.response_ttl = to_raw_response_wrapper(
+            timeseries_groups.response_ttl,
         )
 
 
@@ -4333,55 +4292,35 @@ class AsyncTimeseriesGroupsResourceWithRawResponse:
     def __init__(self, timeseries_groups: AsyncTimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.cache_hit = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                timeseries_groups.cache_hit,  # pyright: ignore[reportDeprecated],
-            )
+        self.cache_hit = async_to_raw_response_wrapper(
+            timeseries_groups.cache_hit,
         )
-        self.dnssec = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                timeseries_groups.dnssec,  # pyright: ignore[reportDeprecated],
-            )
+        self.dnssec = async_to_raw_response_wrapper(
+            timeseries_groups.dnssec,
         )
-        self.dnssec_aware = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                timeseries_groups.dnssec_aware,  # pyright: ignore[reportDeprecated],
-            )
+        self.dnssec_aware = async_to_raw_response_wrapper(
+            timeseries_groups.dnssec_aware,
         )
-        self.dnssec_e2e = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                timeseries_groups.dnssec_e2e,  # pyright: ignore[reportDeprecated],
-            )
+        self.dnssec_e2e = async_to_raw_response_wrapper(
+            timeseries_groups.dnssec_e2e,
         )
-        self.ip_version = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                timeseries_groups.ip_version,  # pyright: ignore[reportDeprecated],
-            )
+        self.ip_version = async_to_raw_response_wrapper(
+            timeseries_groups.ip_version,
         )
-        self.matching_answer = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                timeseries_groups.matching_answer,  # pyright: ignore[reportDeprecated],
-            )
+        self.matching_answer = async_to_raw_response_wrapper(
+            timeseries_groups.matching_answer,
         )
-        self.protocol = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                timeseries_groups.protocol,  # pyright: ignore[reportDeprecated],
-            )
+        self.protocol = async_to_raw_response_wrapper(
+            timeseries_groups.protocol,
         )
-        self.query_type = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                timeseries_groups.query_type,  # pyright: ignore[reportDeprecated],
-            )
+        self.query_type = async_to_raw_response_wrapper(
+            timeseries_groups.query_type,
         )
-        self.response_code = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                timeseries_groups.response_code,  # pyright: ignore[reportDeprecated],
-            )
+        self.response_code = async_to_raw_response_wrapper(
+            timeseries_groups.response_code,
         )
-        self.response_ttl = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                timeseries_groups.response_ttl,  # pyright: ignore[reportDeprecated],
-            )
+        self.response_ttl = async_to_raw_response_wrapper(
+            timeseries_groups.response_ttl,
         )
 
 
@@ -4389,55 +4328,35 @@ class TimeseriesGroupsResourceWithStreamingResponse:
     def __init__(self, timeseries_groups: TimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.cache_hit = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                timeseries_groups.cache_hit,  # pyright: ignore[reportDeprecated],
-            )
+        self.cache_hit = to_streamed_response_wrapper(
+            timeseries_groups.cache_hit,
         )
-        self.dnssec = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                timeseries_groups.dnssec,  # pyright: ignore[reportDeprecated],
-            )
+        self.dnssec = to_streamed_response_wrapper(
+            timeseries_groups.dnssec,
         )
-        self.dnssec_aware = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                timeseries_groups.dnssec_aware,  # pyright: ignore[reportDeprecated],
-            )
+        self.dnssec_aware = to_streamed_response_wrapper(
+            timeseries_groups.dnssec_aware,
         )
-        self.dnssec_e2e = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                timeseries_groups.dnssec_e2e,  # pyright: ignore[reportDeprecated],
-            )
+        self.dnssec_e2e = to_streamed_response_wrapper(
+            timeseries_groups.dnssec_e2e,
         )
-        self.ip_version = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                timeseries_groups.ip_version,  # pyright: ignore[reportDeprecated],
-            )
+        self.ip_version = to_streamed_response_wrapper(
+            timeseries_groups.ip_version,
         )
-        self.matching_answer = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                timeseries_groups.matching_answer,  # pyright: ignore[reportDeprecated],
-            )
+        self.matching_answer = to_streamed_response_wrapper(
+            timeseries_groups.matching_answer,
         )
-        self.protocol = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                timeseries_groups.protocol,  # pyright: ignore[reportDeprecated],
-            )
+        self.protocol = to_streamed_response_wrapper(
+            timeseries_groups.protocol,
         )
-        self.query_type = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                timeseries_groups.query_type,  # pyright: ignore[reportDeprecated],
-            )
+        self.query_type = to_streamed_response_wrapper(
+            timeseries_groups.query_type,
         )
-        self.response_code = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                timeseries_groups.response_code,  # pyright: ignore[reportDeprecated],
-            )
+        self.response_code = to_streamed_response_wrapper(
+            timeseries_groups.response_code,
         )
-        self.response_ttl = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                timeseries_groups.response_ttl,  # pyright: ignore[reportDeprecated],
-            )
+        self.response_ttl = to_streamed_response_wrapper(
+            timeseries_groups.response_ttl,
         )
 
 
@@ -4445,53 +4364,33 @@ class AsyncTimeseriesGroupsResourceWithStreamingResponse:
     def __init__(self, timeseries_groups: AsyncTimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.cache_hit = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                timeseries_groups.cache_hit,  # pyright: ignore[reportDeprecated],
-            )
+        self.cache_hit = async_to_streamed_response_wrapper(
+            timeseries_groups.cache_hit,
         )
-        self.dnssec = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                timeseries_groups.dnssec,  # pyright: ignore[reportDeprecated],
-            )
+        self.dnssec = async_to_streamed_response_wrapper(
+            timeseries_groups.dnssec,
         )
-        self.dnssec_aware = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                timeseries_groups.dnssec_aware,  # pyright: ignore[reportDeprecated],
-            )
+        self.dnssec_aware = async_to_streamed_response_wrapper(
+            timeseries_groups.dnssec_aware,
         )
-        self.dnssec_e2e = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                timeseries_groups.dnssec_e2e,  # pyright: ignore[reportDeprecated],
-            )
+        self.dnssec_e2e = async_to_streamed_response_wrapper(
+            timeseries_groups.dnssec_e2e,
         )
-        self.ip_version = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                timeseries_groups.ip_version,  # pyright: ignore[reportDeprecated],
-            )
+        self.ip_version = async_to_streamed_response_wrapper(
+            timeseries_groups.ip_version,
         )
-        self.matching_answer = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                timeseries_groups.matching_answer,  # pyright: ignore[reportDeprecated],
-            )
+        self.matching_answer = async_to_streamed_response_wrapper(
+            timeseries_groups.matching_answer,
         )
-        self.protocol = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                timeseries_groups.protocol,  # pyright: ignore[reportDeprecated],
-            )
+        self.protocol = async_to_streamed_response_wrapper(
+            timeseries_groups.protocol,
         )
-        self.query_type = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                timeseries_groups.query_type,  # pyright: ignore[reportDeprecated],
-            )
+        self.query_type = async_to_streamed_response_wrapper(
+            timeseries_groups.query_type,
         )
-        self.response_code = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                timeseries_groups.response_code,  # pyright: ignore[reportDeprecated],
-            )
+        self.response_code = async_to_streamed_response_wrapper(
+            timeseries_groups.response_code,
         )
-        self.response_ttl = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                timeseries_groups.response_ttl,  # pyright: ignore[reportDeprecated],
-            )
+        self.response_ttl = async_to_streamed_response_wrapper(
+            timeseries_groups.response_ttl,
         )

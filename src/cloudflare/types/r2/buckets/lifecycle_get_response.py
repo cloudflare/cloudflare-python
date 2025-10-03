@@ -1,7 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+import datetime
 from typing import List, Union, Optional
-from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
 from pydantic import Field as FieldInfo
@@ -55,7 +55,7 @@ class RuleDeleteObjectsTransitionConditionR2LifecycleAgeCondition(BaseModel):
 
 
 class RuleDeleteObjectsTransitionConditionR2LifecycleDateCondition(BaseModel):
-    date: datetime
+    date: datetime.date
 
     type: Literal["Date"]
 
@@ -81,7 +81,7 @@ class RuleStorageClassTransitionConditionR2LifecycleAgeCondition(BaseModel):
 
 
 class RuleStorageClassTransitionConditionR2LifecycleDateCondition(BaseModel):
-    date: datetime
+    date: datetime.date
 
     type: Literal["Date"]
 

@@ -23,7 +23,6 @@ class Policy(BaseModel):
 
     alert_type: Optional[
         Literal[
-            "abuse_report_alert",
             "access_custom_certificate_expiration_type",
             "advanced_ddos_attack_l4_alert",
             "advanced_ddos_attack_l7_alert",

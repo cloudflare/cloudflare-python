@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import typing_extensions
 from typing import Type, Union, Optional, cast
 from datetime import datetime
 from typing_extensions import Literal
@@ -67,7 +66,6 @@ class SummaryResource(SyncAPIResource):
         """
         return SummaryResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
     def cache_hit(
         self,
         *,
@@ -281,7 +279,6 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryCacheHitResponse], ResultWrapper[SummaryCacheHitResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def dnssec(
         self,
         *,
@@ -496,7 +493,6 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryDNSSECResponse], ResultWrapper[SummaryDNSSECResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def dnssec_aware(
         self,
         *,
@@ -711,7 +707,6 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryDNSSECAwareResponse], ResultWrapper[SummaryDNSSECAwareResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def dnssec_e2e(
         self,
         *,
@@ -926,7 +921,6 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryDNSSECE2EResponse], ResultWrapper[SummaryDNSSECE2EResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def ip_version(
         self,
         *,
@@ -1140,7 +1134,6 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryIPVersionResponse], ResultWrapper[SummaryIPVersionResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def matching_answer(
         self,
         *,
@@ -1354,7 +1347,6 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryMatchingAnswerResponse], ResultWrapper[SummaryMatchingAnswerResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def protocol(
         self,
         *,
@@ -1564,7 +1556,6 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryProtocolResponse], ResultWrapper[SummaryProtocolResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def query_type(
         self,
         *,
@@ -1688,7 +1679,6 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryQueryTypeResponse], ResultWrapper[SummaryQueryTypeResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def response_code(
         self,
         *,
@@ -1883,7 +1873,6 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryResponseCodeResponse], ResultWrapper[SummaryResponseCodeResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def response_ttl(
         self,
         *,
@@ -2118,7 +2107,6 @@ class AsyncSummaryResource(AsyncAPIResource):
         """
         return AsyncSummaryResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
     async def cache_hit(
         self,
         *,
@@ -2332,7 +2320,6 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryCacheHitResponse], ResultWrapper[SummaryCacheHitResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def dnssec(
         self,
         *,
@@ -2547,7 +2534,6 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryDNSSECResponse], ResultWrapper[SummaryDNSSECResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def dnssec_aware(
         self,
         *,
@@ -2762,7 +2748,6 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryDNSSECAwareResponse], ResultWrapper[SummaryDNSSECAwareResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def dnssec_e2e(
         self,
         *,
@@ -2977,7 +2962,6 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryDNSSECE2EResponse], ResultWrapper[SummaryDNSSECE2EResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def ip_version(
         self,
         *,
@@ -3191,7 +3175,6 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryIPVersionResponse], ResultWrapper[SummaryIPVersionResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def matching_answer(
         self,
         *,
@@ -3405,7 +3388,6 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryMatchingAnswerResponse], ResultWrapper[SummaryMatchingAnswerResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def protocol(
         self,
         *,
@@ -3615,7 +3597,6 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryProtocolResponse], ResultWrapper[SummaryProtocolResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def query_type(
         self,
         *,
@@ -3739,7 +3720,6 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryQueryTypeResponse], ResultWrapper[SummaryQueryTypeResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def response_code(
         self,
         *,
@@ -3934,7 +3914,6 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryResponseCodeResponse], ResultWrapper[SummaryResponseCodeResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def response_ttl(
         self,
         *,
@@ -4153,55 +4132,35 @@ class SummaryResourceWithRawResponse:
     def __init__(self, summary: SummaryResource) -> None:
         self._summary = summary
 
-        self.cache_hit = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                summary.cache_hit,  # pyright: ignore[reportDeprecated],
-            )
+        self.cache_hit = to_raw_response_wrapper(
+            summary.cache_hit,
         )
-        self.dnssec = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                summary.dnssec,  # pyright: ignore[reportDeprecated],
-            )
+        self.dnssec = to_raw_response_wrapper(
+            summary.dnssec,
         )
-        self.dnssec_aware = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                summary.dnssec_aware,  # pyright: ignore[reportDeprecated],
-            )
+        self.dnssec_aware = to_raw_response_wrapper(
+            summary.dnssec_aware,
         )
-        self.dnssec_e2e = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                summary.dnssec_e2e,  # pyright: ignore[reportDeprecated],
-            )
+        self.dnssec_e2e = to_raw_response_wrapper(
+            summary.dnssec_e2e,
         )
-        self.ip_version = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                summary.ip_version,  # pyright: ignore[reportDeprecated],
-            )
+        self.ip_version = to_raw_response_wrapper(
+            summary.ip_version,
         )
-        self.matching_answer = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                summary.matching_answer,  # pyright: ignore[reportDeprecated],
-            )
+        self.matching_answer = to_raw_response_wrapper(
+            summary.matching_answer,
         )
-        self.protocol = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                summary.protocol,  # pyright: ignore[reportDeprecated],
-            )
+        self.protocol = to_raw_response_wrapper(
+            summary.protocol,
         )
-        self.query_type = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                summary.query_type,  # pyright: ignore[reportDeprecated],
-            )
+        self.query_type = to_raw_response_wrapper(
+            summary.query_type,
         )
-        self.response_code = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                summary.response_code,  # pyright: ignore[reportDeprecated],
-            )
+        self.response_code = to_raw_response_wrapper(
+            summary.response_code,
         )
-        self.response_ttl = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                summary.response_ttl,  # pyright: ignore[reportDeprecated],
-            )
+        self.response_ttl = to_raw_response_wrapper(
+            summary.response_ttl,
         )
 
 
@@ -4209,55 +4168,35 @@ class AsyncSummaryResourceWithRawResponse:
     def __init__(self, summary: AsyncSummaryResource) -> None:
         self._summary = summary
 
-        self.cache_hit = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                summary.cache_hit,  # pyright: ignore[reportDeprecated],
-            )
+        self.cache_hit = async_to_raw_response_wrapper(
+            summary.cache_hit,
         )
-        self.dnssec = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                summary.dnssec,  # pyright: ignore[reportDeprecated],
-            )
+        self.dnssec = async_to_raw_response_wrapper(
+            summary.dnssec,
         )
-        self.dnssec_aware = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                summary.dnssec_aware,  # pyright: ignore[reportDeprecated],
-            )
+        self.dnssec_aware = async_to_raw_response_wrapper(
+            summary.dnssec_aware,
         )
-        self.dnssec_e2e = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                summary.dnssec_e2e,  # pyright: ignore[reportDeprecated],
-            )
+        self.dnssec_e2e = async_to_raw_response_wrapper(
+            summary.dnssec_e2e,
         )
-        self.ip_version = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                summary.ip_version,  # pyright: ignore[reportDeprecated],
-            )
+        self.ip_version = async_to_raw_response_wrapper(
+            summary.ip_version,
         )
-        self.matching_answer = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                summary.matching_answer,  # pyright: ignore[reportDeprecated],
-            )
+        self.matching_answer = async_to_raw_response_wrapper(
+            summary.matching_answer,
         )
-        self.protocol = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                summary.protocol,  # pyright: ignore[reportDeprecated],
-            )
+        self.protocol = async_to_raw_response_wrapper(
+            summary.protocol,
         )
-        self.query_type = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                summary.query_type,  # pyright: ignore[reportDeprecated],
-            )
+        self.query_type = async_to_raw_response_wrapper(
+            summary.query_type,
         )
-        self.response_code = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                summary.response_code,  # pyright: ignore[reportDeprecated],
-            )
+        self.response_code = async_to_raw_response_wrapper(
+            summary.response_code,
         )
-        self.response_ttl = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                summary.response_ttl,  # pyright: ignore[reportDeprecated],
-            )
+        self.response_ttl = async_to_raw_response_wrapper(
+            summary.response_ttl,
         )
 
 
@@ -4265,55 +4204,35 @@ class SummaryResourceWithStreamingResponse:
     def __init__(self, summary: SummaryResource) -> None:
         self._summary = summary
 
-        self.cache_hit = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                summary.cache_hit,  # pyright: ignore[reportDeprecated],
-            )
+        self.cache_hit = to_streamed_response_wrapper(
+            summary.cache_hit,
         )
-        self.dnssec = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                summary.dnssec,  # pyright: ignore[reportDeprecated],
-            )
+        self.dnssec = to_streamed_response_wrapper(
+            summary.dnssec,
         )
-        self.dnssec_aware = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                summary.dnssec_aware,  # pyright: ignore[reportDeprecated],
-            )
+        self.dnssec_aware = to_streamed_response_wrapper(
+            summary.dnssec_aware,
         )
-        self.dnssec_e2e = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                summary.dnssec_e2e,  # pyright: ignore[reportDeprecated],
-            )
+        self.dnssec_e2e = to_streamed_response_wrapper(
+            summary.dnssec_e2e,
         )
-        self.ip_version = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                summary.ip_version,  # pyright: ignore[reportDeprecated],
-            )
+        self.ip_version = to_streamed_response_wrapper(
+            summary.ip_version,
         )
-        self.matching_answer = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                summary.matching_answer,  # pyright: ignore[reportDeprecated],
-            )
+        self.matching_answer = to_streamed_response_wrapper(
+            summary.matching_answer,
         )
-        self.protocol = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                summary.protocol,  # pyright: ignore[reportDeprecated],
-            )
+        self.protocol = to_streamed_response_wrapper(
+            summary.protocol,
         )
-        self.query_type = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                summary.query_type,  # pyright: ignore[reportDeprecated],
-            )
+        self.query_type = to_streamed_response_wrapper(
+            summary.query_type,
         )
-        self.response_code = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                summary.response_code,  # pyright: ignore[reportDeprecated],
-            )
+        self.response_code = to_streamed_response_wrapper(
+            summary.response_code,
         )
-        self.response_ttl = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                summary.response_ttl,  # pyright: ignore[reportDeprecated],
-            )
+        self.response_ttl = to_streamed_response_wrapper(
+            summary.response_ttl,
         )
 
 
@@ -4321,53 +4240,33 @@ class AsyncSummaryResourceWithStreamingResponse:
     def __init__(self, summary: AsyncSummaryResource) -> None:
         self._summary = summary
 
-        self.cache_hit = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                summary.cache_hit,  # pyright: ignore[reportDeprecated],
-            )
+        self.cache_hit = async_to_streamed_response_wrapper(
+            summary.cache_hit,
         )
-        self.dnssec = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                summary.dnssec,  # pyright: ignore[reportDeprecated],
-            )
+        self.dnssec = async_to_streamed_response_wrapper(
+            summary.dnssec,
         )
-        self.dnssec_aware = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                summary.dnssec_aware,  # pyright: ignore[reportDeprecated],
-            )
+        self.dnssec_aware = async_to_streamed_response_wrapper(
+            summary.dnssec_aware,
         )
-        self.dnssec_e2e = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                summary.dnssec_e2e,  # pyright: ignore[reportDeprecated],
-            )
+        self.dnssec_e2e = async_to_streamed_response_wrapper(
+            summary.dnssec_e2e,
         )
-        self.ip_version = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                summary.ip_version,  # pyright: ignore[reportDeprecated],
-            )
+        self.ip_version = async_to_streamed_response_wrapper(
+            summary.ip_version,
         )
-        self.matching_answer = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                summary.matching_answer,  # pyright: ignore[reportDeprecated],
-            )
+        self.matching_answer = async_to_streamed_response_wrapper(
+            summary.matching_answer,
         )
-        self.protocol = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                summary.protocol,  # pyright: ignore[reportDeprecated],
-            )
+        self.protocol = async_to_streamed_response_wrapper(
+            summary.protocol,
         )
-        self.query_type = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                summary.query_type,  # pyright: ignore[reportDeprecated],
-            )
+        self.query_type = async_to_streamed_response_wrapper(
+            summary.query_type,
         )
-        self.response_code = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                summary.response_code,  # pyright: ignore[reportDeprecated],
-            )
+        self.response_code = async_to_streamed_response_wrapper(
+            summary.response_code,
         )
-        self.response_ttl = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                summary.response_ttl,  # pyright: ignore[reportDeprecated],
-            )
+        self.response_ttl = async_to_streamed_response_wrapper(
+            summary.response_ttl,
         )

@@ -33,73 +33,65 @@ class JobCreateParams(TypedDict, total=False):
 
 
 class SourceR2SlurperS3SourceSchemaSecret(TypedDict, total=False):
-    access_key_id: Required[Annotated[str, PropertyInfo(alias="accessKeyId")]]
+    access_key_id: Annotated[str, PropertyInfo(alias="accessKeyId")]
 
-    secret_access_key: Required[Annotated[str, PropertyInfo(alias="secretAccessKey")]]
+    secret_access_key: Annotated[str, PropertyInfo(alias="secretAccessKey")]
 
 
 class SourceR2SlurperS3SourceSchema(TypedDict, total=False):
-    bucket: Required[str]
-
-    secret: Required[SourceR2SlurperS3SourceSchemaSecret]
-
-    vendor: Required[Literal["s3"]]
+    bucket: str
 
     endpoint: Optional[str]
 
-    path_prefix: Annotated[Optional[str], PropertyInfo(alias="pathPrefix")]
+    secret: SourceR2SlurperS3SourceSchemaSecret
 
-    region: Optional[str]
+    vendor: Literal["s3"]
 
 
 class SourceR2SlurperGcsSourceSchemaSecret(TypedDict, total=False):
-    client_email: Required[Annotated[str, PropertyInfo(alias="clientEmail")]]
+    client_email: Annotated[str, PropertyInfo(alias="clientEmail")]
 
-    private_key: Required[Annotated[str, PropertyInfo(alias="privateKey")]]
+    private_key: Annotated[str, PropertyInfo(alias="privateKey")]
 
 
 class SourceR2SlurperGcsSourceSchema(TypedDict, total=False):
-    bucket: Required[str]
+    bucket: str
 
-    secret: Required[SourceR2SlurperGcsSourceSchemaSecret]
+    secret: SourceR2SlurperGcsSourceSchemaSecret
 
-    vendor: Required[Literal["gcs"]]
-
-    path_prefix: Annotated[Optional[str], PropertyInfo(alias="pathPrefix")]
+    vendor: Literal["gcs"]
 
 
 class SourceR2SlurperR2SourceSchemaSecret(TypedDict, total=False):
-    access_key_id: Required[Annotated[str, PropertyInfo(alias="accessKeyId")]]
+    access_key_id: Annotated[str, PropertyInfo(alias="accessKeyId")]
 
-    secret_access_key: Required[Annotated[str, PropertyInfo(alias="secretAccessKey")]]
+    secret_access_key: Annotated[str, PropertyInfo(alias="secretAccessKey")]
 
 
 class SourceR2SlurperR2SourceSchema(TypedDict, total=False):
-    bucket: Required[str]
-
-    secret: Required[SourceR2SlurperR2SourceSchemaSecret]
-
-    vendor: Required[Provider]
+    bucket: str
 
     jurisdiction: Literal["default", "eu", "fedramp"]
 
-    path_prefix: Annotated[Optional[str], PropertyInfo(alias="pathPrefix")]
+    secret: SourceR2SlurperR2SourceSchemaSecret
+
+    vendor: Provider
 
 
 Source: TypeAlias = Union[SourceR2SlurperS3SourceSchema, SourceR2SlurperGcsSourceSchema, SourceR2SlurperR2SourceSchema]
 
 
 class TargetSecret(TypedDict, total=False):
-    access_key_id: Required[Annotated[str, PropertyInfo(alias="accessKeyId")]]
+    access_key_id: Annotated[str, PropertyInfo(alias="accessKeyId")]
 
-    secret_access_key: Required[Annotated[str, PropertyInfo(alias="secretAccessKey")]]
+    secret_access_key: Annotated[str, PropertyInfo(alias="secretAccessKey")]
 
 
 class Target(TypedDict, total=False):
-    bucket: Required[str]
-
-    secret: Required[TargetSecret]
-
-    vendor: Required[Provider]
+    bucket: str
 
     jurisdiction: Literal["default", "eu", "fedramp"]
+
+    secret: TargetSecret
+
+    vendor: Provider
