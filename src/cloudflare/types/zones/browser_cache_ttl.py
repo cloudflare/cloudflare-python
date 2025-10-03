@@ -13,11 +13,7 @@ class BrowserCacheTTL(BaseModel):
     """Control how long resources cached by client browsers remain valid."""
 
     value: Optional[int] = None
-    """The number of seconds to cache resources for. Minimum values by plan:
-
-    - Free: 7200 seconds (2 hours)
-    - Pro: 3600 seconds (1 hour)
-    - Business: 1 second
-    - Enterprise: 1 second Setting this to 0 enables "Respect Existing Headers" and
-      is allowed for all plans.
+    """
+    The number of seconds to cache resources for. Setting this to 0 enables "Respect
+    Existing Headers".
     """

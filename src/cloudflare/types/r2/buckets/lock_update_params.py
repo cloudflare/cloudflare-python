@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-import datetime
 from typing import Union, Iterable
+from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from ...._utils import PropertyInfo
@@ -35,7 +35,7 @@ class RuleConditionR2LockRuleAgeCondition(TypedDict, total=False):
 
 
 class RuleConditionR2LockRuleDateCondition(TypedDict, total=False):
-    date: Required[Annotated[Union[str, datetime.date], PropertyInfo(format="iso8601")]]
+    date: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
 
     type: Required[Literal["Date"]]
 
