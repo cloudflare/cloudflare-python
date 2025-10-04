@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Type, Iterable, cast
 
 import httpx
@@ -47,6 +48,7 @@ class PipelinesResource(SyncAPIResource):
         """
         return PipelinesResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def create(
         self,
         *,
@@ -61,8 +63,10 @@ class PipelinesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PipelineCreateResponse:
-        """
-        Create a new pipeline.
+        """[DEPRECATED] Create a new pipeline.
+
+        Use the new /pipelines/v1/pipelines endpoint
+        instead.
 
         Args:
           account_id: Specifies the public ID of the account.
@@ -99,6 +103,7 @@ class PipelinesResource(SyncAPIResource):
             cast_to=cast(Type[PipelineCreateResponse], ResultWrapper[PipelineCreateResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     def update(
         self,
         pipeline_name: str,
@@ -114,8 +119,10 @@ class PipelinesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PipelineUpdateResponse:
-        """
-        Update an existing pipeline.
+        """[DEPRECATED] Update an existing pipeline.
+
+        Use the new /pipelines/v1/pipelines
+        endpoint instead.
 
         Args:
           account_id: Specifies the public ID of the account.
@@ -156,6 +163,7 @@ class PipelinesResource(SyncAPIResource):
             cast_to=cast(Type[PipelineUpdateResponse], ResultWrapper[PipelineUpdateResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
@@ -170,8 +178,10 @@ class PipelinesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PipelineListResponse:
-        """
-        List, filter, and paginate pipelines in an account.
+        """[DEPRECATED] List, filter, and paginate pipelines in an account.
+
+        Use the new
+        /pipelines/v1/pipelines endpoint instead.
 
         Args:
           account_id: Specifies the public ID of the account.
@@ -211,6 +221,7 @@ class PipelinesResource(SyncAPIResource):
             cast_to=PipelineListResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def delete(
         self,
         pipeline_name: str,
@@ -223,8 +234,10 @@ class PipelinesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Delete a pipeline.
+        """[DEPRECATED] Delete a pipeline.
+
+        Use the new /pipelines/v1/pipelines endpoint
+        instead.
 
         Args:
           account_id: Specifies the public ID of the account.
@@ -252,6 +265,7 @@ class PipelinesResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def get(
         self,
         pipeline_name: str,
@@ -264,8 +278,10 @@ class PipelinesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PipelineGetResponse:
-        """
-        Get configuration of a pipeline.
+        """[DEPRECATED] Get configuration of a pipeline.
+
+        Use the new
+        /pipelines/v1/pipelines endpoint instead.
 
         Args:
           account_id: Specifies the public ID of the account.
@@ -317,6 +333,7 @@ class AsyncPipelinesResource(AsyncAPIResource):
         """
         return AsyncPipelinesResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def create(
         self,
         *,
@@ -331,8 +348,10 @@ class AsyncPipelinesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PipelineCreateResponse:
-        """
-        Create a new pipeline.
+        """[DEPRECATED] Create a new pipeline.
+
+        Use the new /pipelines/v1/pipelines endpoint
+        instead.
 
         Args:
           account_id: Specifies the public ID of the account.
@@ -369,6 +388,7 @@ class AsyncPipelinesResource(AsyncAPIResource):
             cast_to=cast(Type[PipelineCreateResponse], ResultWrapper[PipelineCreateResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def update(
         self,
         pipeline_name: str,
@@ -384,8 +404,10 @@ class AsyncPipelinesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PipelineUpdateResponse:
-        """
-        Update an existing pipeline.
+        """[DEPRECATED] Update an existing pipeline.
+
+        Use the new /pipelines/v1/pipelines
+        endpoint instead.
 
         Args:
           account_id: Specifies the public ID of the account.
@@ -426,6 +448,7 @@ class AsyncPipelinesResource(AsyncAPIResource):
             cast_to=cast(Type[PipelineUpdateResponse], ResultWrapper[PipelineUpdateResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def list(
         self,
         *,
@@ -440,8 +463,10 @@ class AsyncPipelinesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PipelineListResponse:
-        """
-        List, filter, and paginate pipelines in an account.
+        """[DEPRECATED] List, filter, and paginate pipelines in an account.
+
+        Use the new
+        /pipelines/v1/pipelines endpoint instead.
 
         Args:
           account_id: Specifies the public ID of the account.
@@ -481,6 +506,7 @@ class AsyncPipelinesResource(AsyncAPIResource):
             cast_to=PipelineListResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def delete(
         self,
         pipeline_name: str,
@@ -493,8 +519,10 @@ class AsyncPipelinesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Delete a pipeline.
+        """[DEPRECATED] Delete a pipeline.
+
+        Use the new /pipelines/v1/pipelines endpoint
+        instead.
 
         Args:
           account_id: Specifies the public ID of the account.
@@ -522,6 +550,7 @@ class AsyncPipelinesResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def get(
         self,
         pipeline_name: str,
@@ -534,8 +563,10 @@ class AsyncPipelinesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PipelineGetResponse:
-        """
-        Get configuration of a pipeline.
+        """[DEPRECATED] Get configuration of a pipeline.
+
+        Use the new
+        /pipelines/v1/pipelines endpoint instead.
 
         Args:
           account_id: Specifies the public ID of the account.
@@ -571,20 +602,30 @@ class PipelinesResourceWithRawResponse:
     def __init__(self, pipelines: PipelinesResource) -> None:
         self._pipelines = pipelines
 
-        self.create = to_raw_response_wrapper(
-            pipelines.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                pipelines.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.update = to_raw_response_wrapper(
-            pipelines.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                pipelines.update,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = to_raw_response_wrapper(
-            pipelines.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                pipelines.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = to_raw_response_wrapper(
-            pipelines.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                pipelines.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_raw_response_wrapper(
-            pipelines.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                pipelines.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -592,20 +633,30 @@ class AsyncPipelinesResourceWithRawResponse:
     def __init__(self, pipelines: AsyncPipelinesResource) -> None:
         self._pipelines = pipelines
 
-        self.create = async_to_raw_response_wrapper(
-            pipelines.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                pipelines.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.update = async_to_raw_response_wrapper(
-            pipelines.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                pipelines.update,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = async_to_raw_response_wrapper(
-            pipelines.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                pipelines.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = async_to_raw_response_wrapper(
-            pipelines.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                pipelines.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_raw_response_wrapper(
-            pipelines.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                pipelines.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -613,20 +664,30 @@ class PipelinesResourceWithStreamingResponse:
     def __init__(self, pipelines: PipelinesResource) -> None:
         self._pipelines = pipelines
 
-        self.create = to_streamed_response_wrapper(
-            pipelines.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                pipelines.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.update = to_streamed_response_wrapper(
-            pipelines.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                pipelines.update,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = to_streamed_response_wrapper(
-            pipelines.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                pipelines.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = to_streamed_response_wrapper(
-            pipelines.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                pipelines.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_streamed_response_wrapper(
-            pipelines.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                pipelines.get,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -634,18 +695,28 @@ class AsyncPipelinesResourceWithStreamingResponse:
     def __init__(self, pipelines: AsyncPipelinesResource) -> None:
         self._pipelines = pipelines
 
-        self.create = async_to_streamed_response_wrapper(
-            pipelines.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                pipelines.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.update = async_to_streamed_response_wrapper(
-            pipelines.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                pipelines.update,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = async_to_streamed_response_wrapper(
-            pipelines.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                pipelines.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = async_to_streamed_response_wrapper(
-            pipelines.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                pipelines.delete,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_streamed_response_wrapper(
-            pipelines.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                pipelines.get,  # pyright: ignore[reportDeprecated],
+            )
         )
