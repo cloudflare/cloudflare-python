@@ -3,10 +3,12 @@
 from __future__ import annotations
 
 from typing import Type, cast
+from typing_extensions import Literal
 
 import httpx
 
 from ..._types import Body, Query, Headers, NotGiven, not_given
+from ..._utils import maybe_transform, async_maybe_transform
 from .payloads import (
     PayloadsResource,
     AsyncPayloadsResource,
@@ -33,6 +35,10 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ..._base_client import make_request_options
+from ...types.content_scanning import content_scanning_create_params, content_scanning_update_params
+from ...types.content_scanning.content_scanning_get_response import ContentScanningGetResponse
+from ...types.content_scanning.content_scanning_create_response import ContentScanningCreateResponse
+from ...types.content_scanning.content_scanning_update_response import ContentScanningUpdateResponse
 
 __all__ = ["ContentScanningResource", "AsyncContentScanningResource"]
 
@@ -64,6 +70,92 @@ class ContentScanningResource(SyncAPIResource):
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
         return ContentScanningResourceWithStreamingResponse(self)
+
+    def create(
+        self,
+        *,
+        zone_id: str,
+        value: Literal["enabled", "disabled"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ContentScanningCreateResponse:
+        """
+        Update the Content Scanning status.
+
+        Args:
+          zone_id: Defines an identifier.
+
+          value: The status value for Content Scanning.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._put(
+            f"/zones/{zone_id}/content-upload-scan/settings",
+            body=maybe_transform({"value": value}, content_scanning_create_params.ContentScanningCreateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ContentScanningCreateResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[ContentScanningCreateResponse], ResultWrapper[ContentScanningCreateResponse]),
+        )
+
+    def update(
+        self,
+        *,
+        zone_id: str,
+        value: Literal["enabled", "disabled"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ContentScanningUpdateResponse:
+        """
+        Update the Content Scanning status.
+
+        Args:
+          zone_id: Defines an identifier.
+
+          value: The status value for Content Scanning.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._put(
+            f"/zones/{zone_id}/content-upload-scan/settings",
+            body=maybe_transform({"value": value}, content_scanning_update_params.ContentScanningUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ContentScanningUpdateResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[ContentScanningUpdateResponse], ResultWrapper[ContentScanningUpdateResponse]),
+        )
 
     def disable(
         self,
@@ -143,6 +235,45 @@ class ContentScanningResource(SyncAPIResource):
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
+    def get(
+        self,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ContentScanningGetResponse:
+        """
+        Retrieve the current status of Content Scanning.
+
+        Args:
+          zone_id: Defines an identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._get(
+            f"/zones/{zone_id}/content-upload-scan/settings",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ContentScanningGetResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[ContentScanningGetResponse], ResultWrapper[ContentScanningGetResponse]),
+        )
+
 
 class AsyncContentScanningResource(AsyncAPIResource):
     @cached_property
@@ -171,6 +302,96 @@ class AsyncContentScanningResource(AsyncAPIResource):
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
         return AsyncContentScanningResourceWithStreamingResponse(self)
+
+    async def create(
+        self,
+        *,
+        zone_id: str,
+        value: Literal["enabled", "disabled"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ContentScanningCreateResponse:
+        """
+        Update the Content Scanning status.
+
+        Args:
+          zone_id: Defines an identifier.
+
+          value: The status value for Content Scanning.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._put(
+            f"/zones/{zone_id}/content-upload-scan/settings",
+            body=await async_maybe_transform(
+                {"value": value}, content_scanning_create_params.ContentScanningCreateParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ContentScanningCreateResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[ContentScanningCreateResponse], ResultWrapper[ContentScanningCreateResponse]),
+        )
+
+    async def update(
+        self,
+        *,
+        zone_id: str,
+        value: Literal["enabled", "disabled"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ContentScanningUpdateResponse:
+        """
+        Update the Content Scanning status.
+
+        Args:
+          zone_id: Defines an identifier.
+
+          value: The status value for Content Scanning.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._put(
+            f"/zones/{zone_id}/content-upload-scan/settings",
+            body=await async_maybe_transform(
+                {"value": value}, content_scanning_update_params.ContentScanningUpdateParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ContentScanningUpdateResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[ContentScanningUpdateResponse], ResultWrapper[ContentScanningUpdateResponse]),
+        )
 
     async def disable(
         self,
@@ -250,16 +471,64 @@ class AsyncContentScanningResource(AsyncAPIResource):
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
+    async def get(
+        self,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ContentScanningGetResponse:
+        """
+        Retrieve the current status of Content Scanning.
+
+        Args:
+          zone_id: Defines an identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._get(
+            f"/zones/{zone_id}/content-upload-scan/settings",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ContentScanningGetResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[ContentScanningGetResponse], ResultWrapper[ContentScanningGetResponse]),
+        )
+
 
 class ContentScanningResourceWithRawResponse:
     def __init__(self, content_scanning: ContentScanningResource) -> None:
         self._content_scanning = content_scanning
 
+        self.create = to_raw_response_wrapper(
+            content_scanning.create,
+        )
+        self.update = to_raw_response_wrapper(
+            content_scanning.update,
+        )
         self.disable = to_raw_response_wrapper(
             content_scanning.disable,
         )
         self.enable = to_raw_response_wrapper(
             content_scanning.enable,
+        )
+        self.get = to_raw_response_wrapper(
+            content_scanning.get,
         )
 
     @cached_property
@@ -275,11 +544,20 @@ class AsyncContentScanningResourceWithRawResponse:
     def __init__(self, content_scanning: AsyncContentScanningResource) -> None:
         self._content_scanning = content_scanning
 
+        self.create = async_to_raw_response_wrapper(
+            content_scanning.create,
+        )
+        self.update = async_to_raw_response_wrapper(
+            content_scanning.update,
+        )
         self.disable = async_to_raw_response_wrapper(
             content_scanning.disable,
         )
         self.enable = async_to_raw_response_wrapper(
             content_scanning.enable,
+        )
+        self.get = async_to_raw_response_wrapper(
+            content_scanning.get,
         )
 
     @cached_property
@@ -295,11 +573,20 @@ class ContentScanningResourceWithStreamingResponse:
     def __init__(self, content_scanning: ContentScanningResource) -> None:
         self._content_scanning = content_scanning
 
+        self.create = to_streamed_response_wrapper(
+            content_scanning.create,
+        )
+        self.update = to_streamed_response_wrapper(
+            content_scanning.update,
+        )
         self.disable = to_streamed_response_wrapper(
             content_scanning.disable,
         )
         self.enable = to_streamed_response_wrapper(
             content_scanning.enable,
+        )
+        self.get = to_streamed_response_wrapper(
+            content_scanning.get,
         )
 
     @cached_property
@@ -315,11 +602,20 @@ class AsyncContentScanningResourceWithStreamingResponse:
     def __init__(self, content_scanning: AsyncContentScanningResource) -> None:
         self._content_scanning = content_scanning
 
+        self.create = async_to_streamed_response_wrapper(
+            content_scanning.create,
+        )
+        self.update = async_to_streamed_response_wrapper(
+            content_scanning.update,
+        )
         self.disable = async_to_streamed_response_wrapper(
             content_scanning.disable,
         )
         self.enable = async_to_streamed_response_wrapper(
             content_scanning.enable,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            content_scanning.get,
         )
 
     @cached_property

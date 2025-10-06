@@ -9734,10 +9734,23 @@ Methods:
 
 # ContentScanning
 
+Types:
+
+```python
+from cloudflare.types.content_scanning import (
+    ContentScanningCreateResponse,
+    ContentScanningUpdateResponse,
+    ContentScanningGetResponse,
+)
+```
+
 Methods:
 
+- <code title="put /zones/{zone_id}/content-upload-scan/settings">client.content_scanning.<a href="./src/cloudflare/resources/content_scanning/content_scanning.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/content_scanning/content_scanning_create_params.py">params</a>) -> <a href="./src/cloudflare/types/content_scanning/content_scanning_create_response.py">ContentScanningCreateResponse</a></code>
+- <code title="put /zones/{zone_id}/content-upload-scan/settings">client.content_scanning.<a href="./src/cloudflare/resources/content_scanning/content_scanning.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/content_scanning/content_scanning_update_params.py">params</a>) -> <a href="./src/cloudflare/types/content_scanning/content_scanning_update_response.py">ContentScanningUpdateResponse</a></code>
 - <code title="post /zones/{zone_id}/content-upload-scan/disable">client.content_scanning.<a href="./src/cloudflare/resources/content_scanning/content_scanning.py">disable</a>(\*, zone_id) -> object</code>
 - <code title="post /zones/{zone_id}/content-upload-scan/enable">client.content_scanning.<a href="./src/cloudflare/resources/content_scanning/content_scanning.py">enable</a>(\*, zone_id) -> object</code>
+- <code title="get /zones/{zone_id}/content-upload-scan/settings">client.content_scanning.<a href="./src/cloudflare/resources/content_scanning/content_scanning.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/content_scanning/content_scanning_get_response.py">ContentScanningGetResponse</a></code>
 
 ## Payloads
 
