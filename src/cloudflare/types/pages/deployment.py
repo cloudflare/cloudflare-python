@@ -75,39 +75,69 @@ class EnvVarsPagesSecretTextEnvVar(BaseModel):
 
 
 EnvVars: TypeAlias = Annotated[
-    Union[Optional[EnvVarsPagesPlainTextEnvVar], Optional[EnvVarsPagesSecretTextEnvVar]],
+    Union[Optional[EnvVarsPagesPlainTextEnvVar], Optional[EnvVarsPagesSecretTextEnvVar], None],
     PropertyInfo(discriminator="type"),
 ]
 
 
 class SourceConfig(BaseModel):
     deployments_enabled: Optional[bool] = None
+    """
+    Whether to enable automatic deployments when pushing to the source repository.
+    When disabled, no deployments (production or preview) will be triggered
+    automatically.
+    """
 
     owner: Optional[str] = None
+    """The owner of the repository."""
 
     path_excludes: Optional[List[str]] = None
+    """A list of paths that should be excluded from triggering a preview deployment.
+
+    Wildcard syntax (`*`) is supported.
+    """
 
     path_includes: Optional[List[str]] = None
+    """A list of paths that should be watched to trigger a preview deployment.
+
+    Wildcard syntax (`*`) is supported.
+    """
 
     pr_comments_enabled: Optional[bool] = None
+    """Whether to enable PR comments."""
 
     preview_branch_excludes: Optional[List[str]] = None
+    """A list of branches that should not trigger a preview deployment.
+
+    Wildcard syntax (`*`) is supported. Must be used with
+    `preview_deployment_setting` set to `custom`.
+    """
 
     preview_branch_includes: Optional[List[str]] = None
+    """A list of branches that should trigger a preview deployment.
+
+    Wildcard syntax (`*`) is supported. Must be used with
+    `preview_deployment_setting` set to `custom`.
+    """
 
     preview_deployment_setting: Optional[Literal["all", "none", "custom"]] = None
+    """Controls whether commits to preview branches trigger a preview deployment."""
 
     production_branch: Optional[str] = None
+    """The production branch of the repository."""
 
     production_deployments_enabled: Optional[bool] = None
+    """Whether to trigger a production deployment on commits to the production branch."""
 
     repo_name: Optional[str] = None
+    """The name of the repository."""
 
 
 class Source(BaseModel):
     config: Optional[SourceConfig] = None
 
-    type: Optional[str] = None
+    type: Optional[Literal["github", "gitlab"]] = None
+    """The source control management provider."""
 
 
 class Deployment(BaseModel):
@@ -126,7 +156,7 @@ class Deployment(BaseModel):
     deployment_trigger: Optional[DeploymentTrigger] = None
     """Info about what caused the deployment."""
 
-    env_vars: Optional[Dict[str, EnvVars]] = None
+    env_vars: Optional[Dict[str, Optional[EnvVars]]] = None
     """Environment variables used for builds and Pages Functions."""
 
     environment: Optional[Literal["preview", "production"]] = None
