@@ -26,6 +26,7 @@ __all__ = [
     "SelfHostedApplicationDestination",
     "SelfHostedApplicationDestinationPublicDestination",
     "SelfHostedApplicationDestinationPrivateDestination",
+    "SelfHostedApplicationDestinationViaMcpServerPortalDestination",
     "SelfHostedApplicationPolicy",
     "SelfHostedApplicationPolicyAccessAppPolicyLink",
     "SelfHostedApplicationPolicyUnionMember2",
@@ -48,6 +49,7 @@ __all__ = [
     "BrowserSSHApplicationDestination",
     "BrowserSSHApplicationDestinationPublicDestination",
     "BrowserSSHApplicationDestinationPrivateDestination",
+    "BrowserSSHApplicationDestinationViaMcpServerPortalDestination",
     "BrowserSSHApplicationPolicy",
     "BrowserSSHApplicationPolicyAccessAppPolicyLink",
     "BrowserSSHApplicationPolicyUnionMember2",
@@ -60,6 +62,7 @@ __all__ = [
     "BrowserVNCApplicationDestination",
     "BrowserVNCApplicationDestinationPublicDestination",
     "BrowserVNCApplicationDestinationPrivateDestination",
+    "BrowserVNCApplicationDestinationViaMcpServerPortalDestination",
     "BrowserVNCApplicationPolicy",
     "BrowserVNCApplicationPolicyAccessAppPolicyLink",
     "BrowserVNCApplicationPolicyUnionMember2",
@@ -93,6 +96,7 @@ __all__ = [
     "BrowserRdpApplicationDestination",
     "BrowserRdpApplicationDestinationPublicDestination",
     "BrowserRdpApplicationDestinationPrivateDestination",
+    "BrowserRdpApplicationDestinationViaMcpServerPortalDestination",
     "BrowserRdpApplicationPolicy",
     "BrowserRdpApplicationPolicyAccessAppPolicyLink",
     "BrowserRdpApplicationPolicyUnionMember2",
@@ -303,8 +307,17 @@ class SelfHostedApplicationDestinationPrivateDestination(TypedDict, total=False)
     """The VNET ID to match the destination. When omitted, all VNETs will match."""
 
 
+class SelfHostedApplicationDestinationViaMcpServerPortalDestination(TypedDict, total=False):
+    mcp_server_id: str
+    """The MCP server id configured in ai-controls."""
+
+    type: Literal["via_mcp_server_portal"]
+
+
 SelfHostedApplicationDestination: TypeAlias = Union[
-    SelfHostedApplicationDestinationPublicDestination, SelfHostedApplicationDestinationPrivateDestination
+    SelfHostedApplicationDestinationPublicDestination,
+    SelfHostedApplicationDestinationPrivateDestination,
+    SelfHostedApplicationDestinationViaMcpServerPortalDestination,
 ]
 
 
@@ -672,6 +685,8 @@ class BrowserSSHApplication(TypedDict, total=False):
             "dash_sso",
             "infrastructure",
             "rdp",
+            "mcp",
+            "mcp_portal",
         ]
     ]
     """The application type."""
@@ -865,8 +880,17 @@ class BrowserSSHApplicationDestinationPrivateDestination(TypedDict, total=False)
     """The VNET ID to match the destination. When omitted, all VNETs will match."""
 
 
+class BrowserSSHApplicationDestinationViaMcpServerPortalDestination(TypedDict, total=False):
+    mcp_server_id: str
+    """The MCP server id configured in ai-controls."""
+
+    type: Literal["via_mcp_server_portal"]
+
+
 BrowserSSHApplicationDestination: TypeAlias = Union[
-    BrowserSSHApplicationDestinationPublicDestination, BrowserSSHApplicationDestinationPrivateDestination
+    BrowserSSHApplicationDestinationPublicDestination,
+    BrowserSSHApplicationDestinationPrivateDestination,
+    BrowserSSHApplicationDestinationViaMcpServerPortalDestination,
 ]
 
 
@@ -1033,6 +1057,8 @@ class BrowserVNCApplication(TypedDict, total=False):
             "dash_sso",
             "infrastructure",
             "rdp",
+            "mcp",
+            "mcp_portal",
         ]
     ]
     """The application type."""
@@ -1226,8 +1252,17 @@ class BrowserVNCApplicationDestinationPrivateDestination(TypedDict, total=False)
     """The VNET ID to match the destination. When omitted, all VNETs will match."""
 
 
+class BrowserVNCApplicationDestinationViaMcpServerPortalDestination(TypedDict, total=False):
+    mcp_server_id: str
+    """The MCP server id configured in ai-controls."""
+
+    type: Literal["via_mcp_server_portal"]
+
+
 BrowserVNCApplicationDestination: TypeAlias = Union[
-    BrowserVNCApplicationDestinationPublicDestination, BrowserVNCApplicationDestinationPrivateDestination
+    BrowserVNCApplicationDestinationPublicDestination,
+    BrowserVNCApplicationDestinationPrivateDestination,
+    BrowserVNCApplicationDestinationViaMcpServerPortalDestination,
 ]
 
 
@@ -1388,6 +1423,8 @@ class AppLauncherApplication(TypedDict, total=False):
             "dash_sso",
             "infrastructure",
             "rdp",
+            "mcp",
+            "mcp_portal",
         ]
     ]
     """The application type."""
@@ -2093,8 +2130,17 @@ class BrowserRdpApplicationDestinationPrivateDestination(TypedDict, total=False)
     """The VNET ID to match the destination. When omitted, all VNETs will match."""
 
 
+class BrowserRdpApplicationDestinationViaMcpServerPortalDestination(TypedDict, total=False):
+    mcp_server_id: str
+    """The MCP server id configured in ai-controls."""
+
+    type: Literal["via_mcp_server_portal"]
+
+
 BrowserRdpApplicationDestination: TypeAlias = Union[
-    BrowserRdpApplicationDestinationPublicDestination, BrowserRdpApplicationDestinationPrivateDestination
+    BrowserRdpApplicationDestinationPublicDestination,
+    BrowserRdpApplicationDestinationPrivateDestination,
+    BrowserRdpApplicationDestinationViaMcpServerPortalDestination,
 ]
 
 
