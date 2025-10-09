@@ -95,6 +95,7 @@ if TYPE_CHECKING:
         abuse_reports,
         email_routing,
         magic_transit,
+        organizations,
         secrets_store,
         waiting_rooms,
         bot_management,
@@ -199,6 +200,7 @@ if TYPE_CHECKING:
     from .resources.healthchecks.healthchecks import HealthchecksResource, AsyncHealthchecksResource
     from .resources.email_routing.email_routing import EmailRoutingResource, AsyncEmailRoutingResource
     from .resources.magic_transit.magic_transit import MagicTransitResource, AsyncMagicTransitResource
+    from .resources.organizations.organizations import OrganizationsResource, AsyncOrganizationsResource
     from .resources.secrets_store.secrets_store import SecretsStoreResource, AsyncSecretsStoreResource
     from .resources.waiting_rooms.waiting_rooms import WaitingRoomsResource, AsyncWaitingRoomsResource
     from .resources.cloudforce_one.cloudforce_one import CloudforceOneResource, AsyncCloudforceOneResource
@@ -342,6 +344,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.accounts import AccountsResource
 
         return AccountsResource(self)
+
+    @cached_property
+    def organizations(self) -> OrganizationsResource:
+        from .resources.organizations import OrganizationsResource
+
+        return OrganizationsResource(self)
 
     @cached_property
     def origin_ca_certificates(self) -> OriginCACertificatesResource:
@@ -1161,6 +1169,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncAccountsResource(self)
 
     @cached_property
+    def organizations(self) -> AsyncOrganizationsResource:
+        from .resources.organizations import AsyncOrganizationsResource
+
+        return AsyncOrganizationsResource(self)
+
+    @cached_property
     def origin_ca_certificates(self) -> AsyncOriginCACertificatesResource:
         from .resources.origin_ca_certificates import AsyncOriginCACertificatesResource
 
@@ -1911,6 +1925,12 @@ class CloudflareWithRawResponse:
         return AccountsResourceWithRawResponse(self._client.accounts)
 
     @cached_property
+    def organizations(self) -> organizations.OrganizationsResourceWithRawResponse:
+        from .resources.organizations import OrganizationsResourceWithRawResponse
+
+        return OrganizationsResourceWithRawResponse(self._client.organizations)
+
+    @cached_property
     def origin_ca_certificates(self) -> origin_ca_certificates.OriginCACertificatesResourceWithRawResponse:
         from .resources.origin_ca_certificates import OriginCACertificatesResourceWithRawResponse
 
@@ -2488,6 +2508,12 @@ class AsyncCloudflareWithRawResponse:
         from .resources.accounts import AsyncAccountsResourceWithRawResponse
 
         return AsyncAccountsResourceWithRawResponse(self._client.accounts)
+
+    @cached_property
+    def organizations(self) -> organizations.AsyncOrganizationsResourceWithRawResponse:
+        from .resources.organizations import AsyncOrganizationsResourceWithRawResponse
+
+        return AsyncOrganizationsResourceWithRawResponse(self._client.organizations)
 
     @cached_property
     def origin_ca_certificates(self) -> origin_ca_certificates.AsyncOriginCACertificatesResourceWithRawResponse:
@@ -3069,6 +3095,12 @@ class CloudflareWithStreamedResponse:
         return AccountsResourceWithStreamingResponse(self._client.accounts)
 
     @cached_property
+    def organizations(self) -> organizations.OrganizationsResourceWithStreamingResponse:
+        from .resources.organizations import OrganizationsResourceWithStreamingResponse
+
+        return OrganizationsResourceWithStreamingResponse(self._client.organizations)
+
+    @cached_property
     def origin_ca_certificates(self) -> origin_ca_certificates.OriginCACertificatesResourceWithStreamingResponse:
         from .resources.origin_ca_certificates import OriginCACertificatesResourceWithStreamingResponse
 
@@ -3646,6 +3678,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.accounts import AsyncAccountsResourceWithStreamingResponse
 
         return AsyncAccountsResourceWithStreamingResponse(self._client.accounts)
+
+    @cached_property
+    def organizations(self) -> organizations.AsyncOrganizationsResourceWithStreamingResponse:
+        from .resources.organizations import AsyncOrganizationsResourceWithStreamingResponse
+
+        return AsyncOrganizationsResourceWithStreamingResponse(self._client.organizations)
 
     @cached_property
     def origin_ca_certificates(self) -> origin_ca_certificates.AsyncOriginCACertificatesResourceWithStreamingResponse:
