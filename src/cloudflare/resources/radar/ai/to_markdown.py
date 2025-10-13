@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import typing_extensions
+
 import httpx
 
 from ...._files import read_file_content
@@ -41,6 +43,9 @@ class ToMarkdownResource(SyncAPIResource):
         """
         return ToMarkdownResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [AI > To Markdown](https://developers.cloudflare.com/api/resources/ai/subresources/to_markdown/) instead."
+    )
     def create(
         self,
         body: FileContent,
@@ -100,6 +105,9 @@ class AsyncToMarkdownResource(AsyncAPIResource):
         """
         return AsyncToMarkdownResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [AI > To Markdown](https://developers.cloudflare.com/api/resources/ai/subresources/to_markdown/) instead."
+    )
     def create(
         self,
         body: FileContent,
@@ -143,8 +151,10 @@ class ToMarkdownResourceWithRawResponse:
     def __init__(self, to_markdown: ToMarkdownResource) -> None:
         self._to_markdown = to_markdown
 
-        self.create = to_raw_response_wrapper(
-            to_markdown.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                to_markdown.create,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -152,8 +162,10 @@ class AsyncToMarkdownResourceWithRawResponse:
     def __init__(self, to_markdown: AsyncToMarkdownResource) -> None:
         self._to_markdown = to_markdown
 
-        self.create = async_to_raw_response_wrapper(
-            to_markdown.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                to_markdown.create,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -161,8 +173,10 @@ class ToMarkdownResourceWithStreamingResponse:
     def __init__(self, to_markdown: ToMarkdownResource) -> None:
         self._to_markdown = to_markdown
 
-        self.create = to_streamed_response_wrapper(
-            to_markdown.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                to_markdown.create,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -170,6 +184,8 @@ class AsyncToMarkdownResourceWithStreamingResponse:
     def __init__(self, to_markdown: AsyncToMarkdownResource) -> None:
         self._to_markdown = to_markdown
 
-        self.create = async_to_streamed_response_wrapper(
-            to_markdown.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                to_markdown.create,  # pyright: ignore[reportDeprecated],
+            )
         )

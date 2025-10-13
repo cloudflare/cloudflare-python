@@ -84,6 +84,14 @@ from .email.email import (
     EmailResourceWithStreamingResponse,
     AsyncEmailResourceWithStreamingResponse,
 )
+from .geolocations import (
+    GeolocationsResource,
+    AsyncGeolocationsResource,
+    GeolocationsResourceWithRawResponse,
+    AsyncGeolocationsResourceWithRawResponse,
+    GeolocationsResourceWithStreamingResponse,
+    AsyncGeolocationsResourceWithStreamingResponse,
+)
 from .attacks.attacks import (
     AttacksResource,
     AsyncAttacksResource,
@@ -234,6 +242,10 @@ class RadarResource(SyncAPIResource):
         return EntitiesResource(self._client)
 
     @cached_property
+    def geolocations(self) -> GeolocationsResource:
+        return GeolocationsResource(self._client)
+
+    @cached_property
     def http(self) -> HTTPResource:
         return HTTPResource(self._client)
 
@@ -337,6 +349,10 @@ class AsyncRadarResource(AsyncAPIResource):
     @cached_property
     def entities(self) -> AsyncEntitiesResource:
         return AsyncEntitiesResource(self._client)
+
+    @cached_property
+    def geolocations(self) -> AsyncGeolocationsResource:
+        return AsyncGeolocationsResource(self._client)
 
     @cached_property
     def http(self) -> AsyncHTTPResource:
@@ -447,6 +463,10 @@ class RadarResourceWithRawResponse:
         return EntitiesResourceWithRawResponse(self._radar.entities)
 
     @cached_property
+    def geolocations(self) -> GeolocationsResourceWithRawResponse:
+        return GeolocationsResourceWithRawResponse(self._radar.geolocations)
+
+    @cached_property
     def http(self) -> HTTPResourceWithRawResponse:
         return HTTPResourceWithRawResponse(self._radar.http)
 
@@ -534,6 +554,10 @@ class AsyncRadarResourceWithRawResponse:
     @cached_property
     def entities(self) -> AsyncEntitiesResourceWithRawResponse:
         return AsyncEntitiesResourceWithRawResponse(self._radar.entities)
+
+    @cached_property
+    def geolocations(self) -> AsyncGeolocationsResourceWithRawResponse:
+        return AsyncGeolocationsResourceWithRawResponse(self._radar.geolocations)
 
     @cached_property
     def http(self) -> AsyncHTTPResourceWithRawResponse:
@@ -625,6 +649,10 @@ class RadarResourceWithStreamingResponse:
         return EntitiesResourceWithStreamingResponse(self._radar.entities)
 
     @cached_property
+    def geolocations(self) -> GeolocationsResourceWithStreamingResponse:
+        return GeolocationsResourceWithStreamingResponse(self._radar.geolocations)
+
+    @cached_property
     def http(self) -> HTTPResourceWithStreamingResponse:
         return HTTPResourceWithStreamingResponse(self._radar.http)
 
@@ -712,6 +740,10 @@ class AsyncRadarResourceWithStreamingResponse:
     @cached_property
     def entities(self) -> AsyncEntitiesResourceWithStreamingResponse:
         return AsyncEntitiesResourceWithStreamingResponse(self._radar.entities)
+
+    @cached_property
+    def geolocations(self) -> AsyncGeolocationsResourceWithStreamingResponse:
+        return AsyncGeolocationsResourceWithStreamingResponse(self._radar.geolocations)
 
     @cached_property
     def http(self) -> AsyncHTTPResourceWithStreamingResponse:

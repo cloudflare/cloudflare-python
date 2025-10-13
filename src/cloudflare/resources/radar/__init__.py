@@ -144,6 +144,14 @@ from .annotations import (
     AnnotationsResourceWithStreamingResponse,
     AsyncAnnotationsResourceWithStreamingResponse,
 )
+from .geolocations import (
+    GeolocationsResource,
+    AsyncGeolocationsResource,
+    GeolocationsResourceWithRawResponse,
+    AsyncGeolocationsResourceWithRawResponse,
+    GeolocationsResourceWithStreamingResponse,
+    AsyncGeolocationsResourceWithStreamingResponse,
+)
 from .verified_bots import (
     VerifiedBotsResource,
     AsyncVerifiedBotsResource,
@@ -262,6 +270,12 @@ __all__ = [
     "AsyncEntitiesResourceWithRawResponse",
     "EntitiesResourceWithStreamingResponse",
     "AsyncEntitiesResourceWithStreamingResponse",
+    "GeolocationsResource",
+    "AsyncGeolocationsResource",
+    "GeolocationsResourceWithRawResponse",
+    "AsyncGeolocationsResourceWithRawResponse",
+    "GeolocationsResourceWithStreamingResponse",
+    "AsyncGeolocationsResourceWithStreamingResponse",
     "HTTPResource",
     "AsyncHTTPResource",
     "HTTPResourceWithRawResponse",

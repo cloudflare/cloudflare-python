@@ -55,6 +55,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
         """
         return TimeseriesGroupsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [Radar > AI > Bots > Summary](https://developers.cloudflare.com/api/resources/radar/subresources/ai/subresources/bots/methods/summary_v2/) instead."
+    )
     def summary(
         self,
         dimension: Literal["USER_AGENT", "CRAWL_PURPOSE", "INDUSTRY", "VERTICAL"],
@@ -159,6 +162,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupSummaryResponse], ResultWrapper[TimeseriesGroupSummaryResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar > AI > Bots > Timeseries](https://developers.cloudflare.com/api/resources/radar/subresources/ai/subresources/bots/methods/timeseries/) instead."
+    )
     def timeseries(
         self,
         *,
@@ -267,6 +273,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupTimeseriesResponse], ResultWrapper[TimeseriesGroupTimeseriesResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar > AI > Bots > Timeseries Groups](https://developers.cloudflare.com/api/resources/radar/subresources/ai/subresources/bots/methods/timeseries_groups/) instead."
+    )
     def timeseries_groups(
         self,
         dimension: Literal["USER_AGENT", "CRAWL_PURPOSE", "INDUSTRY", "VERTICAL"],
@@ -498,6 +507,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         """
         return AsyncTimeseriesGroupsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [Radar > AI > Bots > Summary](https://developers.cloudflare.com/api/resources/radar/subresources/ai/subresources/bots/methods/summary_v2/) instead."
+    )
     async def summary(
         self,
         dimension: Literal["USER_AGENT", "CRAWL_PURPOSE", "INDUSTRY", "VERTICAL"],
@@ -602,6 +614,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupSummaryResponse], ResultWrapper[TimeseriesGroupSummaryResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar > AI > Bots > Timeseries](https://developers.cloudflare.com/api/resources/radar/subresources/ai/subresources/bots/methods/timeseries/) instead."
+    )
     async def timeseries(
         self,
         *,
@@ -710,6 +725,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupTimeseriesResponse], ResultWrapper[TimeseriesGroupTimeseriesResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar > AI > Bots > Timeseries Groups](https://developers.cloudflare.com/api/resources/radar/subresources/ai/subresources/bots/methods/timeseries_groups/) instead."
+    )
     async def timeseries_groups(
         self,
         dimension: Literal["USER_AGENT", "CRAWL_PURPOSE", "INDUSTRY", "VERTICAL"],
@@ -925,14 +943,20 @@ class TimeseriesGroupsResourceWithRawResponse:
     def __init__(self, timeseries_groups: TimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.summary = to_raw_response_wrapper(
-            timeseries_groups.summary,
+        self.summary = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.summary,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.timeseries = to_raw_response_wrapper(
-            timeseries_groups.timeseries,
+        self.timeseries = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.timeseries,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.timeseries_groups = to_raw_response_wrapper(
-            timeseries_groups.timeseries_groups,
+        self.timeseries_groups = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.timeseries_groups,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.user_agent = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
@@ -945,14 +969,20 @@ class AsyncTimeseriesGroupsResourceWithRawResponse:
     def __init__(self, timeseries_groups: AsyncTimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.summary = async_to_raw_response_wrapper(
-            timeseries_groups.summary,
+        self.summary = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.summary,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.timeseries = async_to_raw_response_wrapper(
-            timeseries_groups.timeseries,
+        self.timeseries = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.timeseries,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.timeseries_groups = async_to_raw_response_wrapper(
-            timeseries_groups.timeseries_groups,
+        self.timeseries_groups = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.timeseries_groups,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.user_agent = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
@@ -965,14 +995,20 @@ class TimeseriesGroupsResourceWithStreamingResponse:
     def __init__(self, timeseries_groups: TimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.summary = to_streamed_response_wrapper(
-            timeseries_groups.summary,
+        self.summary = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.summary,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.timeseries = to_streamed_response_wrapper(
-            timeseries_groups.timeseries,
+        self.timeseries = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.timeseries,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.timeseries_groups = to_streamed_response_wrapper(
-            timeseries_groups.timeseries_groups,
+        self.timeseries_groups = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.timeseries_groups,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.user_agent = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
@@ -985,14 +1021,20 @@ class AsyncTimeseriesGroupsResourceWithStreamingResponse:
     def __init__(self, timeseries_groups: AsyncTimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.summary = async_to_streamed_response_wrapper(
-            timeseries_groups.summary,
+        self.summary = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.summary,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.timeseries = async_to_streamed_response_wrapper(
-            timeseries_groups.timeseries,
+        self.timeseries = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.timeseries,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.timeseries_groups = async_to_streamed_response_wrapper(
-            timeseries_groups.timeseries_groups,
+        self.timeseries_groups = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.timeseries_groups,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.user_agent = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
