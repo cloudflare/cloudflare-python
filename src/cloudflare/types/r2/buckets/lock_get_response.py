@@ -1,7 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import datetime
 from typing import List, Union, Optional
+from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
 from pydantic import Field as FieldInfo
@@ -25,7 +25,7 @@ class RuleConditionR2LockRuleAgeCondition(BaseModel):
 
 
 class RuleConditionR2LockRuleDateCondition(BaseModel):
-    date: datetime.date
+    date: datetime
 
     type: Literal["Date"]
 

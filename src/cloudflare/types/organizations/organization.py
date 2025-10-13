@@ -24,7 +24,7 @@ class MetaFlags(BaseModel):
 
 class Meta(BaseModel):
     flags: Optional[MetaFlags] = None
-    """Organization flags for feature enablement"""
+    """Enable features for Organizations."""
 
     managed_by: Optional[str] = None
 

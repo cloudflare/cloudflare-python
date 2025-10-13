@@ -24,15 +24,7 @@ class TestConnectivityPrecheck:
     def test_method_source_overload_1(self, client: Cloudflare) -> None:
         connectivity_precheck = client.r2.super_slurper.connectivity_precheck.source(
             account_id="account_id",
-        )
-        assert_matches_type(Optional[ConnectivityPrecheckSourceResponse], connectivity_precheck, path=["response"])
-
-    @parametrize
-    def test_method_source_with_all_params_overload_1(self, client: Cloudflare) -> None:
-        connectivity_precheck = client.r2.super_slurper.connectivity_precheck.source(
-            account_id="account_id",
             bucket="bucket",
-            endpoint="endpoint",
             secret={
                 "access_key_id": "accessKeyId",
                 "secret_access_key": "secretAccessKey",
@@ -42,9 +34,31 @@ class TestConnectivityPrecheck:
         assert_matches_type(Optional[ConnectivityPrecheckSourceResponse], connectivity_precheck, path=["response"])
 
     @parametrize
+    def test_method_source_with_all_params_overload_1(self, client: Cloudflare) -> None:
+        connectivity_precheck = client.r2.super_slurper.connectivity_precheck.source(
+            account_id="account_id",
+            bucket="bucket",
+            secret={
+                "access_key_id": "accessKeyId",
+                "secret_access_key": "secretAccessKey",
+            },
+            vendor="s3",
+            endpoint="endpoint",
+            path_prefix="pathPrefix",
+            region="region",
+        )
+        assert_matches_type(Optional[ConnectivityPrecheckSourceResponse], connectivity_precheck, path=["response"])
+
+    @parametrize
     def test_raw_response_source_overload_1(self, client: Cloudflare) -> None:
         response = client.r2.super_slurper.connectivity_precheck.with_raw_response.source(
             account_id="account_id",
+            bucket="bucket",
+            secret={
+                "access_key_id": "accessKeyId",
+                "secret_access_key": "secretAccessKey",
+            },
+            vendor="s3",
         )
 
         assert response.is_closed is True
@@ -56,6 +70,12 @@ class TestConnectivityPrecheck:
     def test_streaming_response_source_overload_1(self, client: Cloudflare) -> None:
         with client.r2.super_slurper.connectivity_precheck.with_streaming_response.source(
             account_id="account_id",
+            bucket="bucket",
+            secret={
+                "access_key_id": "accessKeyId",
+                "secret_access_key": "secretAccessKey",
+            },
+            vendor="s3",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -70,12 +90,24 @@ class TestConnectivityPrecheck:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.r2.super_slurper.connectivity_precheck.with_raw_response.source(
                 account_id="",
+                bucket="bucket",
+                secret={
+                    "access_key_id": "accessKeyId",
+                    "secret_access_key": "secretAccessKey",
+                },
+                vendor="s3",
             )
 
     @parametrize
     def test_method_source_overload_2(self, client: Cloudflare) -> None:
         connectivity_precheck = client.r2.super_slurper.connectivity_precheck.source(
             account_id="account_id",
+            bucket="bucket",
+            secret={
+                "client_email": "clientEmail",
+                "private_key": "privateKey",
+            },
+            vendor="gcs",
         )
         assert_matches_type(Optional[ConnectivityPrecheckSourceResponse], connectivity_precheck, path=["response"])
 
@@ -89,6 +121,7 @@ class TestConnectivityPrecheck:
                 "private_key": "privateKey",
             },
             vendor="gcs",
+            path_prefix="pathPrefix",
         )
         assert_matches_type(Optional[ConnectivityPrecheckSourceResponse], connectivity_precheck, path=["response"])
 
@@ -96,6 +129,12 @@ class TestConnectivityPrecheck:
     def test_raw_response_source_overload_2(self, client: Cloudflare) -> None:
         response = client.r2.super_slurper.connectivity_precheck.with_raw_response.source(
             account_id="account_id",
+            bucket="bucket",
+            secret={
+                "client_email": "clientEmail",
+                "private_key": "privateKey",
+            },
+            vendor="gcs",
         )
 
         assert response.is_closed is True
@@ -107,6 +146,12 @@ class TestConnectivityPrecheck:
     def test_streaming_response_source_overload_2(self, client: Cloudflare) -> None:
         with client.r2.super_slurper.connectivity_precheck.with_streaming_response.source(
             account_id="account_id",
+            bucket="bucket",
+            secret={
+                "client_email": "clientEmail",
+                "private_key": "privateKey",
+            },
+            vendor="gcs",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -121,21 +166,19 @@ class TestConnectivityPrecheck:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.r2.super_slurper.connectivity_precheck.with_raw_response.source(
                 account_id="",
+                bucket="bucket",
+                secret={
+                    "client_email": "clientEmail",
+                    "private_key": "privateKey",
+                },
+                vendor="gcs",
             )
 
     @parametrize
     def test_method_source_overload_3(self, client: Cloudflare) -> None:
         connectivity_precheck = client.r2.super_slurper.connectivity_precheck.source(
             account_id="account_id",
-        )
-        assert_matches_type(Optional[ConnectivityPrecheckSourceResponse], connectivity_precheck, path=["response"])
-
-    @parametrize
-    def test_method_source_with_all_params_overload_3(self, client: Cloudflare) -> None:
-        connectivity_precheck = client.r2.super_slurper.connectivity_precheck.source(
-            account_id="account_id",
             bucket="bucket",
-            jurisdiction="default",
             secret={
                 "access_key_id": "accessKeyId",
                 "secret_access_key": "secretAccessKey",
@@ -145,9 +188,30 @@ class TestConnectivityPrecheck:
         assert_matches_type(Optional[ConnectivityPrecheckSourceResponse], connectivity_precheck, path=["response"])
 
     @parametrize
+    def test_method_source_with_all_params_overload_3(self, client: Cloudflare) -> None:
+        connectivity_precheck = client.r2.super_slurper.connectivity_precheck.source(
+            account_id="account_id",
+            bucket="bucket",
+            secret={
+                "access_key_id": "accessKeyId",
+                "secret_access_key": "secretAccessKey",
+            },
+            vendor="r2",
+            jurisdiction="default",
+            path_prefix="pathPrefix",
+        )
+        assert_matches_type(Optional[ConnectivityPrecheckSourceResponse], connectivity_precheck, path=["response"])
+
+    @parametrize
     def test_raw_response_source_overload_3(self, client: Cloudflare) -> None:
         response = client.r2.super_slurper.connectivity_precheck.with_raw_response.source(
             account_id="account_id",
+            bucket="bucket",
+            secret={
+                "access_key_id": "accessKeyId",
+                "secret_access_key": "secretAccessKey",
+            },
+            vendor="r2",
         )
 
         assert response.is_closed is True
@@ -159,6 +223,12 @@ class TestConnectivityPrecheck:
     def test_streaming_response_source_overload_3(self, client: Cloudflare) -> None:
         with client.r2.super_slurper.connectivity_precheck.with_streaming_response.source(
             account_id="account_id",
+            bucket="bucket",
+            secret={
+                "access_key_id": "accessKeyId",
+                "secret_access_key": "secretAccessKey",
+            },
+            vendor="r2",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -173,21 +243,19 @@ class TestConnectivityPrecheck:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.r2.super_slurper.connectivity_precheck.with_raw_response.source(
                 account_id="",
+                bucket="bucket",
+                secret={
+                    "access_key_id": "accessKeyId",
+                    "secret_access_key": "secretAccessKey",
+                },
+                vendor="r2",
             )
 
     @parametrize
     def test_method_target(self, client: Cloudflare) -> None:
         connectivity_precheck = client.r2.super_slurper.connectivity_precheck.target(
             account_id="account_id",
-        )
-        assert_matches_type(Optional[ConnectivityPrecheckTargetResponse], connectivity_precheck, path=["response"])
-
-    @parametrize
-    def test_method_target_with_all_params(self, client: Cloudflare) -> None:
-        connectivity_precheck = client.r2.super_slurper.connectivity_precheck.target(
-            account_id="account_id",
             bucket="bucket",
-            jurisdiction="default",
             secret={
                 "access_key_id": "accessKeyId",
                 "secret_access_key": "secretAccessKey",
@@ -197,9 +265,29 @@ class TestConnectivityPrecheck:
         assert_matches_type(Optional[ConnectivityPrecheckTargetResponse], connectivity_precheck, path=["response"])
 
     @parametrize
+    def test_method_target_with_all_params(self, client: Cloudflare) -> None:
+        connectivity_precheck = client.r2.super_slurper.connectivity_precheck.target(
+            account_id="account_id",
+            bucket="bucket",
+            secret={
+                "access_key_id": "accessKeyId",
+                "secret_access_key": "secretAccessKey",
+            },
+            vendor="r2",
+            jurisdiction="default",
+        )
+        assert_matches_type(Optional[ConnectivityPrecheckTargetResponse], connectivity_precheck, path=["response"])
+
+    @parametrize
     def test_raw_response_target(self, client: Cloudflare) -> None:
         response = client.r2.super_slurper.connectivity_precheck.with_raw_response.target(
             account_id="account_id",
+            bucket="bucket",
+            secret={
+                "access_key_id": "accessKeyId",
+                "secret_access_key": "secretAccessKey",
+            },
+            vendor="r2",
         )
 
         assert response.is_closed is True
@@ -211,6 +299,12 @@ class TestConnectivityPrecheck:
     def test_streaming_response_target(self, client: Cloudflare) -> None:
         with client.r2.super_slurper.connectivity_precheck.with_streaming_response.target(
             account_id="account_id",
+            bucket="bucket",
+            secret={
+                "access_key_id": "accessKeyId",
+                "secret_access_key": "secretAccessKey",
+            },
+            vendor="r2",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -225,6 +319,12 @@ class TestConnectivityPrecheck:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.r2.super_slurper.connectivity_precheck.with_raw_response.target(
                 account_id="",
+                bucket="bucket",
+                secret={
+                    "access_key_id": "accessKeyId",
+                    "secret_access_key": "secretAccessKey",
+                },
+                vendor="r2",
             )
 
 
@@ -237,15 +337,7 @@ class TestAsyncConnectivityPrecheck:
     async def test_method_source_overload_1(self, async_client: AsyncCloudflare) -> None:
         connectivity_precheck = await async_client.r2.super_slurper.connectivity_precheck.source(
             account_id="account_id",
-        )
-        assert_matches_type(Optional[ConnectivityPrecheckSourceResponse], connectivity_precheck, path=["response"])
-
-    @parametrize
-    async def test_method_source_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
-        connectivity_precheck = await async_client.r2.super_slurper.connectivity_precheck.source(
-            account_id="account_id",
             bucket="bucket",
-            endpoint="endpoint",
             secret={
                 "access_key_id": "accessKeyId",
                 "secret_access_key": "secretAccessKey",
@@ -255,9 +347,31 @@ class TestAsyncConnectivityPrecheck:
         assert_matches_type(Optional[ConnectivityPrecheckSourceResponse], connectivity_precheck, path=["response"])
 
     @parametrize
+    async def test_method_source_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
+        connectivity_precheck = await async_client.r2.super_slurper.connectivity_precheck.source(
+            account_id="account_id",
+            bucket="bucket",
+            secret={
+                "access_key_id": "accessKeyId",
+                "secret_access_key": "secretAccessKey",
+            },
+            vendor="s3",
+            endpoint="endpoint",
+            path_prefix="pathPrefix",
+            region="region",
+        )
+        assert_matches_type(Optional[ConnectivityPrecheckSourceResponse], connectivity_precheck, path=["response"])
+
+    @parametrize
     async def test_raw_response_source_overload_1(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.r2.super_slurper.connectivity_precheck.with_raw_response.source(
             account_id="account_id",
+            bucket="bucket",
+            secret={
+                "access_key_id": "accessKeyId",
+                "secret_access_key": "secretAccessKey",
+            },
+            vendor="s3",
         )
 
         assert response.is_closed is True
@@ -269,6 +383,12 @@ class TestAsyncConnectivityPrecheck:
     async def test_streaming_response_source_overload_1(self, async_client: AsyncCloudflare) -> None:
         async with async_client.r2.super_slurper.connectivity_precheck.with_streaming_response.source(
             account_id="account_id",
+            bucket="bucket",
+            secret={
+                "access_key_id": "accessKeyId",
+                "secret_access_key": "secretAccessKey",
+            },
+            vendor="s3",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -283,12 +403,24 @@ class TestAsyncConnectivityPrecheck:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.r2.super_slurper.connectivity_precheck.with_raw_response.source(
                 account_id="",
+                bucket="bucket",
+                secret={
+                    "access_key_id": "accessKeyId",
+                    "secret_access_key": "secretAccessKey",
+                },
+                vendor="s3",
             )
 
     @parametrize
     async def test_method_source_overload_2(self, async_client: AsyncCloudflare) -> None:
         connectivity_precheck = await async_client.r2.super_slurper.connectivity_precheck.source(
             account_id="account_id",
+            bucket="bucket",
+            secret={
+                "client_email": "clientEmail",
+                "private_key": "privateKey",
+            },
+            vendor="gcs",
         )
         assert_matches_type(Optional[ConnectivityPrecheckSourceResponse], connectivity_precheck, path=["response"])
 
@@ -302,6 +434,7 @@ class TestAsyncConnectivityPrecheck:
                 "private_key": "privateKey",
             },
             vendor="gcs",
+            path_prefix="pathPrefix",
         )
         assert_matches_type(Optional[ConnectivityPrecheckSourceResponse], connectivity_precheck, path=["response"])
 
@@ -309,6 +442,12 @@ class TestAsyncConnectivityPrecheck:
     async def test_raw_response_source_overload_2(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.r2.super_slurper.connectivity_precheck.with_raw_response.source(
             account_id="account_id",
+            bucket="bucket",
+            secret={
+                "client_email": "clientEmail",
+                "private_key": "privateKey",
+            },
+            vendor="gcs",
         )
 
         assert response.is_closed is True
@@ -320,6 +459,12 @@ class TestAsyncConnectivityPrecheck:
     async def test_streaming_response_source_overload_2(self, async_client: AsyncCloudflare) -> None:
         async with async_client.r2.super_slurper.connectivity_precheck.with_streaming_response.source(
             account_id="account_id",
+            bucket="bucket",
+            secret={
+                "client_email": "clientEmail",
+                "private_key": "privateKey",
+            },
+            vendor="gcs",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -334,21 +479,19 @@ class TestAsyncConnectivityPrecheck:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.r2.super_slurper.connectivity_precheck.with_raw_response.source(
                 account_id="",
+                bucket="bucket",
+                secret={
+                    "client_email": "clientEmail",
+                    "private_key": "privateKey",
+                },
+                vendor="gcs",
             )
 
     @parametrize
     async def test_method_source_overload_3(self, async_client: AsyncCloudflare) -> None:
         connectivity_precheck = await async_client.r2.super_slurper.connectivity_precheck.source(
             account_id="account_id",
-        )
-        assert_matches_type(Optional[ConnectivityPrecheckSourceResponse], connectivity_precheck, path=["response"])
-
-    @parametrize
-    async def test_method_source_with_all_params_overload_3(self, async_client: AsyncCloudflare) -> None:
-        connectivity_precheck = await async_client.r2.super_slurper.connectivity_precheck.source(
-            account_id="account_id",
             bucket="bucket",
-            jurisdiction="default",
             secret={
                 "access_key_id": "accessKeyId",
                 "secret_access_key": "secretAccessKey",
@@ -358,9 +501,30 @@ class TestAsyncConnectivityPrecheck:
         assert_matches_type(Optional[ConnectivityPrecheckSourceResponse], connectivity_precheck, path=["response"])
 
     @parametrize
+    async def test_method_source_with_all_params_overload_3(self, async_client: AsyncCloudflare) -> None:
+        connectivity_precheck = await async_client.r2.super_slurper.connectivity_precheck.source(
+            account_id="account_id",
+            bucket="bucket",
+            secret={
+                "access_key_id": "accessKeyId",
+                "secret_access_key": "secretAccessKey",
+            },
+            vendor="r2",
+            jurisdiction="default",
+            path_prefix="pathPrefix",
+        )
+        assert_matches_type(Optional[ConnectivityPrecheckSourceResponse], connectivity_precheck, path=["response"])
+
+    @parametrize
     async def test_raw_response_source_overload_3(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.r2.super_slurper.connectivity_precheck.with_raw_response.source(
             account_id="account_id",
+            bucket="bucket",
+            secret={
+                "access_key_id": "accessKeyId",
+                "secret_access_key": "secretAccessKey",
+            },
+            vendor="r2",
         )
 
         assert response.is_closed is True
@@ -372,6 +536,12 @@ class TestAsyncConnectivityPrecheck:
     async def test_streaming_response_source_overload_3(self, async_client: AsyncCloudflare) -> None:
         async with async_client.r2.super_slurper.connectivity_precheck.with_streaming_response.source(
             account_id="account_id",
+            bucket="bucket",
+            secret={
+                "access_key_id": "accessKeyId",
+                "secret_access_key": "secretAccessKey",
+            },
+            vendor="r2",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -386,21 +556,19 @@ class TestAsyncConnectivityPrecheck:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.r2.super_slurper.connectivity_precheck.with_raw_response.source(
                 account_id="",
+                bucket="bucket",
+                secret={
+                    "access_key_id": "accessKeyId",
+                    "secret_access_key": "secretAccessKey",
+                },
+                vendor="r2",
             )
 
     @parametrize
     async def test_method_target(self, async_client: AsyncCloudflare) -> None:
         connectivity_precheck = await async_client.r2.super_slurper.connectivity_precheck.target(
             account_id="account_id",
-        )
-        assert_matches_type(Optional[ConnectivityPrecheckTargetResponse], connectivity_precheck, path=["response"])
-
-    @parametrize
-    async def test_method_target_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        connectivity_precheck = await async_client.r2.super_slurper.connectivity_precheck.target(
-            account_id="account_id",
             bucket="bucket",
-            jurisdiction="default",
             secret={
                 "access_key_id": "accessKeyId",
                 "secret_access_key": "secretAccessKey",
@@ -410,9 +578,29 @@ class TestAsyncConnectivityPrecheck:
         assert_matches_type(Optional[ConnectivityPrecheckTargetResponse], connectivity_precheck, path=["response"])
 
     @parametrize
+    async def test_method_target_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        connectivity_precheck = await async_client.r2.super_slurper.connectivity_precheck.target(
+            account_id="account_id",
+            bucket="bucket",
+            secret={
+                "access_key_id": "accessKeyId",
+                "secret_access_key": "secretAccessKey",
+            },
+            vendor="r2",
+            jurisdiction="default",
+        )
+        assert_matches_type(Optional[ConnectivityPrecheckTargetResponse], connectivity_precheck, path=["response"])
+
+    @parametrize
     async def test_raw_response_target(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.r2.super_slurper.connectivity_precheck.with_raw_response.target(
             account_id="account_id",
+            bucket="bucket",
+            secret={
+                "access_key_id": "accessKeyId",
+                "secret_access_key": "secretAccessKey",
+            },
+            vendor="r2",
         )
 
         assert response.is_closed is True
@@ -424,6 +612,12 @@ class TestAsyncConnectivityPrecheck:
     async def test_streaming_response_target(self, async_client: AsyncCloudflare) -> None:
         async with async_client.r2.super_slurper.connectivity_precheck.with_streaming_response.target(
             account_id="account_id",
+            bucket="bucket",
+            secret={
+                "access_key_id": "accessKeyId",
+                "secret_access_key": "secretAccessKey",
+            },
+            vendor="r2",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -438,4 +632,10 @@ class TestAsyncConnectivityPrecheck:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.r2.super_slurper.connectivity_precheck.with_raw_response.target(
                 account_id="",
+                bucket="bucket",
+                secret={
+                    "access_key_id": "accessKeyId",
+                    "secret_access_key": "secretAccessKey",
+                },
+                vendor="r2",
             )

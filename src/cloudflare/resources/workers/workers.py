@@ -60,14 +60,6 @@ from .account_settings import (
     AccountSettingsResourceWithStreamingResponse,
     AsyncAccountSettingsResourceWithStreamingResponse,
 )
-from .observability.observability import (
-    ObservabilityResource,
-    AsyncObservabilityResource,
-    ObservabilityResourceWithRawResponse,
-    AsyncObservabilityResourceWithRawResponse,
-    ObservabilityResourceWithStreamingResponse,
-    AsyncObservabilityResourceWithStreamingResponse,
-)
 
 __all__ = ["WorkersResource", "AsyncWorkersResource"]
 
@@ -100,10 +92,6 @@ class WorkersResource(SyncAPIResource):
     @cached_property
     def subdomains(self) -> SubdomainsResource:
         return SubdomainsResource(self._client)
-
-    @cached_property
-    def observability(self) -> ObservabilityResource:
-        return ObservabilityResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> WorkersResourceWithRawResponse:
@@ -153,10 +141,6 @@ class AsyncWorkersResource(AsyncAPIResource):
     @cached_property
     def subdomains(self) -> AsyncSubdomainsResource:
         return AsyncSubdomainsResource(self._client)
-
-    @cached_property
-    def observability(self) -> AsyncObservabilityResource:
-        return AsyncObservabilityResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncWorkersResourceWithRawResponse:
@@ -210,10 +194,6 @@ class WorkersResourceWithRawResponse:
     def subdomains(self) -> SubdomainsResourceWithRawResponse:
         return SubdomainsResourceWithRawResponse(self._workers.subdomains)
 
-    @cached_property
-    def observability(self) -> ObservabilityResourceWithRawResponse:
-        return ObservabilityResourceWithRawResponse(self._workers.observability)
-
 
 class AsyncWorkersResourceWithRawResponse:
     def __init__(self, workers: AsyncWorkersResource) -> None:
@@ -246,10 +226,6 @@ class AsyncWorkersResourceWithRawResponse:
     @cached_property
     def subdomains(self) -> AsyncSubdomainsResourceWithRawResponse:
         return AsyncSubdomainsResourceWithRawResponse(self._workers.subdomains)
-
-    @cached_property
-    def observability(self) -> AsyncObservabilityResourceWithRawResponse:
-        return AsyncObservabilityResourceWithRawResponse(self._workers.observability)
 
 
 class WorkersResourceWithStreamingResponse:
@@ -284,10 +260,6 @@ class WorkersResourceWithStreamingResponse:
     def subdomains(self) -> SubdomainsResourceWithStreamingResponse:
         return SubdomainsResourceWithStreamingResponse(self._workers.subdomains)
 
-    @cached_property
-    def observability(self) -> ObservabilityResourceWithStreamingResponse:
-        return ObservabilityResourceWithStreamingResponse(self._workers.observability)
-
 
 class AsyncWorkersResourceWithStreamingResponse:
     def __init__(self, workers: AsyncWorkersResource) -> None:
@@ -320,7 +292,3 @@ class AsyncWorkersResourceWithStreamingResponse:
     @cached_property
     def subdomains(self) -> AsyncSubdomainsResourceWithStreamingResponse:
         return AsyncSubdomainsResourceWithStreamingResponse(self._workers.subdomains)
-
-    @cached_property
-    def observability(self) -> AsyncObservabilityResourceWithStreamingResponse:
-        return AsyncObservabilityResourceWithStreamingResponse(self._workers.observability)

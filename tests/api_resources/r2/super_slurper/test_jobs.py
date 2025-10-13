@@ -37,21 +37,23 @@ class TestJobs:
             overwrite=True,
             source={
                 "bucket": "bucket",
-                "endpoint": "endpoint",
                 "secret": {
                     "access_key_id": "accessKeyId",
                     "secret_access_key": "secretAccessKey",
                 },
                 "vendor": "s3",
+                "endpoint": "endpoint",
+                "path_prefix": "pathPrefix",
+                "region": "region",
             },
             target={
                 "bucket": "bucket",
-                "jurisdiction": "default",
                 "secret": {
                     "access_key_id": "accessKeyId",
                     "secret_access_key": "secretAccessKey",
                 },
                 "vendor": "r2",
+                "jurisdiction": "default",
             },
         )
         assert_matches_type(Optional[JobCreateResponse], job, path=["response"])
@@ -432,21 +434,23 @@ class TestAsyncJobs:
             overwrite=True,
             source={
                 "bucket": "bucket",
-                "endpoint": "endpoint",
                 "secret": {
                     "access_key_id": "accessKeyId",
                     "secret_access_key": "secretAccessKey",
                 },
                 "vendor": "s3",
+                "endpoint": "endpoint",
+                "path_prefix": "pathPrefix",
+                "region": "region",
             },
             target={
                 "bucket": "bucket",
-                "jurisdiction": "default",
                 "secret": {
                     "access_key_id": "accessKeyId",
                     "secret_access_key": "secretAccessKey",
                 },
                 "vendor": "r2",
+                "jurisdiction": "default",
             },
         )
         assert_matches_type(Optional[JobCreateResponse], job, path=["response"])

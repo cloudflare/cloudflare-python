@@ -41,6 +41,7 @@ class TestVersions:
             metadata={
                 "main_module": "worker.js",
                 "annotations": {
+                    "workers_alias": "staging",
                     "workers_message": "Fixed worker code.",
                     "workers_tag": "workers/tag",
                 },
@@ -251,6 +252,7 @@ class TestAsyncVersions:
             metadata={
                 "main_module": "worker.js",
                 "annotations": {
+                    "workers_alias": "staging",
                     "workers_message": "Fixed worker code.",
                     "workers_tag": "workers/tag",
                 },

@@ -8,6 +8,7 @@ from .traceroute import Traceroute as Traceroute
 from .http_details import HTTPDetails as HTTPDetails
 from .colo_list_params import ColoListParams as ColoListParams
 from .test_list_params import TestListParams as TestListParams
+from .colo_list_response import ColoListResponse as ColoListResponse
 from .command_list_params import CommandListParams as CommandListParams
 from .http_test_get_params import HTTPTestGetParams as HTTPTestGetParams
 from .aggregate_time_period import AggregateTimePeriod as AggregateTimePeriod
@@ -20,6 +21,7 @@ from .traceroute_test_get_params import TracerouteTestGetParams as TracerouteTes
 from .warp_change_event_get_params import WARPChangeEventGetParams as WARPChangeEventGetParams
 from .fleet_status_over_time_params import FleetStatusOverTimeParams as FleetStatusOverTimeParams
 from .warp_change_event_get_response import WARPChangeEventGetResponse as WARPChangeEventGetResponse
+from .fleet_status_over_time_response import FleetStatusOverTimeResponse as FleetStatusOverTimeResponse
 from .traceroute_test_percentiles_params import TracerouteTestPercentilesParams as TracerouteTestPercentilesParams
 from .traceroute_test_network_path_params import TracerouteTestNetworkPathParams as TracerouteTestNetworkPathParams
 from .traceroute_test_percentiles_response import TracerouteTestPercentilesResponse as TracerouteTestPercentilesResponse

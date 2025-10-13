@@ -133,6 +133,9 @@ class PolicyFilterParam(TypedDict, total=False):
     tunnel_name: SequenceNotStr[str]
     """Usage depends on specific alert type"""
 
+    type: SequenceNotStr[str]
+    """Usage depends on specific alert type"""
+
     where: SequenceNotStr[str]
     """Usage depends on specific alert type"""
 

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import List, Type, Union, cast
 from datetime import datetime
 from typing_extensions import Literal
@@ -66,6 +67,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         """
         return TimeseriesGroupsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def arc(
         self,
         *,
@@ -151,6 +153,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupARCResponse], ResultWrapper[TimeseriesGroupARCResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     def dkim(
         self,
         *,
@@ -236,6 +239,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupDKIMResponse], ResultWrapper[TimeseriesGroupDKIMResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     def dmarc(
         self,
         *,
@@ -320,6 +324,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupDMARCResponse], ResultWrapper[TimeseriesGroupDMARCResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     def malicious(
         self,
         *,
@@ -408,6 +413,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupMaliciousResponse], ResultWrapper[TimeseriesGroupMaliciousResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     def spam(
         self,
         *,
@@ -498,6 +504,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupSpamResponse], ResultWrapper[TimeseriesGroupSpamResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     def spf(
         self,
         *,
@@ -583,6 +590,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupSPFResponse], ResultWrapper[TimeseriesGroupSPFResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     def spoof(
         self,
         *,
@@ -672,6 +680,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupSpoofResponse], ResultWrapper[TimeseriesGroupSpoofResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     def threat_category(
         self,
         *,
@@ -762,6 +771,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
             ),
         )
 
+    @typing_extensions.deprecated("deprecated")
     def tls_version(
         self,
         *,
@@ -867,6 +877,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         """
         return AsyncTimeseriesGroupsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def arc(
         self,
         *,
@@ -952,6 +963,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupARCResponse], ResultWrapper[TimeseriesGroupARCResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def dkim(
         self,
         *,
@@ -1037,6 +1049,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupDKIMResponse], ResultWrapper[TimeseriesGroupDKIMResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def dmarc(
         self,
         *,
@@ -1121,6 +1134,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupDMARCResponse], ResultWrapper[TimeseriesGroupDMARCResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def malicious(
         self,
         *,
@@ -1209,6 +1223,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupMaliciousResponse], ResultWrapper[TimeseriesGroupMaliciousResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def spam(
         self,
         *,
@@ -1299,6 +1314,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupSpamResponse], ResultWrapper[TimeseriesGroupSpamResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def spf(
         self,
         *,
@@ -1384,6 +1400,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupSPFResponse], ResultWrapper[TimeseriesGroupSPFResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def spoof(
         self,
         *,
@@ -1473,6 +1490,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupSpoofResponse], ResultWrapper[TimeseriesGroupSpoofResponse]),
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def threat_category(
         self,
         *,
@@ -1563,6 +1581,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             ),
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def tls_version(
         self,
         *,
@@ -1652,32 +1671,50 @@ class TimeseriesGroupsResourceWithRawResponse:
     def __init__(self, timeseries_groups: TimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.arc = to_raw_response_wrapper(
-            timeseries_groups.arc,
+        self.arc = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.arc,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.dkim = to_raw_response_wrapper(
-            timeseries_groups.dkim,
+        self.dkim = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.dkim,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.dmarc = to_raw_response_wrapper(
-            timeseries_groups.dmarc,
+        self.dmarc = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.dmarc,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.malicious = to_raw_response_wrapper(
-            timeseries_groups.malicious,
+        self.malicious = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.malicious,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.spam = to_raw_response_wrapper(
-            timeseries_groups.spam,
+        self.spam = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.spam,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.spf = to_raw_response_wrapper(
-            timeseries_groups.spf,
+        self.spf = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.spf,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.spoof = to_raw_response_wrapper(
-            timeseries_groups.spoof,
+        self.spoof = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.spoof,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.threat_category = to_raw_response_wrapper(
-            timeseries_groups.threat_category,
+        self.threat_category = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.threat_category,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.tls_version = to_raw_response_wrapper(
-            timeseries_groups.tls_version,
+        self.tls_version = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.tls_version,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -1685,32 +1722,50 @@ class AsyncTimeseriesGroupsResourceWithRawResponse:
     def __init__(self, timeseries_groups: AsyncTimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.arc = async_to_raw_response_wrapper(
-            timeseries_groups.arc,
+        self.arc = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.arc,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.dkim = async_to_raw_response_wrapper(
-            timeseries_groups.dkim,
+        self.dkim = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.dkim,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.dmarc = async_to_raw_response_wrapper(
-            timeseries_groups.dmarc,
+        self.dmarc = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.dmarc,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.malicious = async_to_raw_response_wrapper(
-            timeseries_groups.malicious,
+        self.malicious = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.malicious,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.spam = async_to_raw_response_wrapper(
-            timeseries_groups.spam,
+        self.spam = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.spam,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.spf = async_to_raw_response_wrapper(
-            timeseries_groups.spf,
+        self.spf = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.spf,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.spoof = async_to_raw_response_wrapper(
-            timeseries_groups.spoof,
+        self.spoof = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.spoof,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.threat_category = async_to_raw_response_wrapper(
-            timeseries_groups.threat_category,
+        self.threat_category = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.threat_category,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.tls_version = async_to_raw_response_wrapper(
-            timeseries_groups.tls_version,
+        self.tls_version = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.tls_version,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -1718,32 +1773,50 @@ class TimeseriesGroupsResourceWithStreamingResponse:
     def __init__(self, timeseries_groups: TimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.arc = to_streamed_response_wrapper(
-            timeseries_groups.arc,
+        self.arc = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.arc,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.dkim = to_streamed_response_wrapper(
-            timeseries_groups.dkim,
+        self.dkim = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.dkim,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.dmarc = to_streamed_response_wrapper(
-            timeseries_groups.dmarc,
+        self.dmarc = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.dmarc,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.malicious = to_streamed_response_wrapper(
-            timeseries_groups.malicious,
+        self.malicious = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.malicious,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.spam = to_streamed_response_wrapper(
-            timeseries_groups.spam,
+        self.spam = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.spam,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.spf = to_streamed_response_wrapper(
-            timeseries_groups.spf,
+        self.spf = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.spf,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.spoof = to_streamed_response_wrapper(
-            timeseries_groups.spoof,
+        self.spoof = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.spoof,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.threat_category = to_streamed_response_wrapper(
-            timeseries_groups.threat_category,
+        self.threat_category = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.threat_category,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.tls_version = to_streamed_response_wrapper(
-            timeseries_groups.tls_version,
+        self.tls_version = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.tls_version,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -1751,30 +1824,48 @@ class AsyncTimeseriesGroupsResourceWithStreamingResponse:
     def __init__(self, timeseries_groups: AsyncTimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.arc = async_to_streamed_response_wrapper(
-            timeseries_groups.arc,
+        self.arc = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.arc,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.dkim = async_to_streamed_response_wrapper(
-            timeseries_groups.dkim,
+        self.dkim = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.dkim,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.dmarc = async_to_streamed_response_wrapper(
-            timeseries_groups.dmarc,
+        self.dmarc = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.dmarc,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.malicious = async_to_streamed_response_wrapper(
-            timeseries_groups.malicious,
+        self.malicious = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.malicious,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.spam = async_to_streamed_response_wrapper(
-            timeseries_groups.spam,
+        self.spam = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.spam,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.spf = async_to_streamed_response_wrapper(
-            timeseries_groups.spf,
+        self.spf = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.spf,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.spoof = async_to_streamed_response_wrapper(
-            timeseries_groups.spoof,
+        self.spoof = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.spoof,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.threat_category = async_to_streamed_response_wrapper(
-            timeseries_groups.threat_category,
+        self.threat_category = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.threat_category,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.tls_version = async_to_streamed_response_wrapper(
-            timeseries_groups.tls_version,
+        self.tls_version = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.tls_version,  # pyright: ignore[reportDeprecated],
+            )
         )
