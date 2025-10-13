@@ -62,7 +62,7 @@ class GatewayRule(BaseModel):
     filters: List[GatewayFilter]
     """
     Specify the protocol or layer to evaluate the traffic, identity, and device
-    posture expressions. Can only contain a single value.
+    posture expressions.
     """
 
     name: str

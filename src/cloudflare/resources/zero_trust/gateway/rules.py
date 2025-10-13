@@ -112,7 +112,7 @@ class RulesResource(SyncAPIResource):
               apply to HTTP or network policies. Settable only for `dns` rules.
 
           filters: Specify the protocol or layer to evaluate the traffic, identity, and device
-              posture expressions. Can only contain a single value.
+              posture expressions.
 
           identity: Specify the wirefilter expression used for identity matching. The API
               automatically formats and sanitizes expressions before storing them. To prevent
@@ -245,7 +245,7 @@ class RulesResource(SyncAPIResource):
               apply to HTTP or network policies. Settable only for `dns` rules.
 
           filters: Specify the protocol or layer to evaluate the traffic, identity, and device
-              posture expressions. Can only contain a single value.
+              posture expressions.
 
           identity: Specify the wirefilter expression used for identity matching. The API
               automatically formats and sanitizes expressions before storing them. To prevent
@@ -560,7 +560,7 @@ class AsyncRulesResource(AsyncAPIResource):
               apply to HTTP or network policies. Settable only for `dns` rules.
 
           filters: Specify the protocol or layer to evaluate the traffic, identity, and device
-              posture expressions. Can only contain a single value.
+              posture expressions.
 
           identity: Specify the wirefilter expression used for identity matching. The API
               automatically formats and sanitizes expressions before storing them. To prevent
@@ -693,7 +693,7 @@ class AsyncRulesResource(AsyncAPIResource):
               apply to HTTP or network policies. Settable only for `dns` rules.
 
           filters: Specify the protocol or layer to evaluate the traffic, identity, and device
-              posture expressions. Can only contain a single value.
+              posture expressions.
 
           identity: Specify the wirefilter expression used for identity matching. The API
               automatically formats and sanitizes expressions before storing them. To prevent

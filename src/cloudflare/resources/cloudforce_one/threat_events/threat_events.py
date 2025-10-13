@@ -97,6 +97,7 @@ from ....types.cloudforce_one import (
     threat_event_create_params,
     threat_event_bulk_create_params,
 )
+from ....types.cloudforce_one.threat_event_get_response import ThreatEventGetResponse
 from ....types.cloudforce_one.threat_event_edit_response import ThreatEventEditResponse
 from ....types.cloudforce_one.threat_event_list_response import ThreatEventListResponse
 from ....types.cloudforce_one.threat_event_create_response import ThreatEventCreateResponse
@@ -457,6 +458,46 @@ class ThreatEventsResource(SyncAPIResource):
             cast_to=ThreatEventEditResponse,
         )
 
+    def get(
+        self,
+        event_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ThreatEventGetResponse:
+        """
+        Reads an event
+
+        Args:
+          account_id: Account ID.
+
+          event_id: Event UUID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not event_id:
+            raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
+        return self._get(
+            f"/accounts/{account_id}/cloudforce-one/events/{event_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ThreatEventGetResponse,
+        )
+
 
 class AsyncThreatEventsResource(AsyncAPIResource):
     @cached_property
@@ -809,6 +850,46 @@ class AsyncThreatEventsResource(AsyncAPIResource):
             cast_to=ThreatEventEditResponse,
         )
 
+    async def get(
+        self,
+        event_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ThreatEventGetResponse:
+        """
+        Reads an event
+
+        Args:
+          account_id: Account ID.
+
+          event_id: Event UUID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not event_id:
+            raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
+        return await self._get(
+            f"/accounts/{account_id}/cloudforce-one/events/{event_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ThreatEventGetResponse,
+        )
+
 
 class ThreatEventsResourceWithRawResponse:
     def __init__(self, threat_events: ThreatEventsResource) -> None:
@@ -828,6 +909,9 @@ class ThreatEventsResourceWithRawResponse:
         )
         self.edit = to_raw_response_wrapper(
             threat_events.edit,
+        )
+        self.get = to_raw_response_wrapper(
+            threat_events.get,
         )
 
     @cached_property
@@ -886,6 +970,9 @@ class AsyncThreatEventsResourceWithRawResponse:
         self.edit = async_to_raw_response_wrapper(
             threat_events.edit,
         )
+        self.get = async_to_raw_response_wrapper(
+            threat_events.get,
+        )
 
     @cached_property
     def attackers(self) -> AsyncAttackersResourceWithRawResponse:
@@ -943,6 +1030,9 @@ class ThreatEventsResourceWithStreamingResponse:
         self.edit = to_streamed_response_wrapper(
             threat_events.edit,
         )
+        self.get = to_streamed_response_wrapper(
+            threat_events.get,
+        )
 
     @cached_property
     def attackers(self) -> AttackersResourceWithStreamingResponse:
@@ -999,6 +1089,9 @@ class AsyncThreatEventsResourceWithStreamingResponse:
         )
         self.edit = async_to_streamed_response_wrapper(
             threat_events.edit,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            threat_events.get,
         )
 
     @cached_property

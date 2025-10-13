@@ -6,7 +6,7 @@ from typing import Type, cast
 
 import httpx
 
-from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -29,7 +29,6 @@ from .organization_profile import (
 )
 from ...types.organizations import organization_list_params, organization_create_params, organization_update_params
 from ...types.organizations.organization import Organization
-from ...types.organizations.organization_delete_response import OrganizationDeleteResponse
 
 __all__ = ["OrganizationsResource", "AsyncOrganizationsResource"]
 
@@ -223,7 +222,7 @@ class OrganizationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> OrganizationDeleteResponse:
+    ) -> None:
         """Delete an organization.
 
         The organization MUST be empty before deleting. It must
@@ -240,16 +239,13 @@ class OrganizationsResource(SyncAPIResource):
         """
         if not organization_id:
             raise ValueError(f"Expected a non-empty value for `organization_id` but received {organization_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/organizations/{organization_id}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[OrganizationDeleteResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[OrganizationDeleteResponse], ResultWrapper[OrganizationDeleteResponse]),
+            cast_to=NoneType,
         )
 
     def get(
@@ -479,7 +475,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> OrganizationDeleteResponse:
+    ) -> None:
         """Delete an organization.
 
         The organization MUST be empty before deleting. It must
@@ -496,16 +492,13 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         """
         if not organization_id:
             raise ValueError(f"Expected a non-empty value for `organization_id` but received {organization_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/organizations/{organization_id}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[OrganizationDeleteResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[OrganizationDeleteResponse], ResultWrapper[OrganizationDeleteResponse]),
+            cast_to=NoneType,
         )
 
     async def get(
