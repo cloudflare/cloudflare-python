@@ -6,7 +6,7 @@ from typing import Type, cast
 
 import httpx
 
-from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -17,8 +17,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...pagination import SyncSinglePage, AsyncSinglePage
-from ..._base_client import AsyncPaginator, make_request_options
+from ..._base_client import make_request_options
 from .organization_profile import (
     OrganizationProfileResource,
     AsyncOrganizationProfileResource,
@@ -27,7 +26,7 @@ from .organization_profile import (
     OrganizationProfileResourceWithStreamingResponse,
     AsyncOrganizationProfileResourceWithStreamingResponse,
 )
-from ...types.organizations import organization_list_params, organization_create_params, organization_update_params
+from ...types.organizations import organization_create_params, organization_update_params
 from ...types.organizations.organization import Organization
 
 __all__ = ["OrganizationsResource", "AsyncOrganizationsResource"]
@@ -148,68 +147,6 @@ class OrganizationsResource(SyncAPIResource):
                 post_parser=ResultWrapper[Organization]._unwrapper,
             ),
             cast_to=cast(Type[Organization], ResultWrapper[Organization]),
-        )
-
-    def list(
-        self,
-        *,
-        id: SequenceNotStr[str] | Omit = omit,
-        containing: organization_list_params.Containing | Omit = omit,
-        name: organization_list_params.Name | Omit = omit,
-        page_size: int | Omit = omit,
-        page_token: str | Omit = omit,
-        parent: organization_list_params.Parent | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncSinglePage[Organization]:
-        """
-        Retrieve a list of organizations a particular user has access to.
-
-        Args:
-          id: Only return organizations with the specified IDs (ex. id=foo&id=bar). Send
-              multiple elements by repeating the query value.
-
-          page_size: The amount of items to return. Defaults to 10.
-
-          page_token: An opaque token returned from the last list response that when provided will
-              retrieve the next page.
-
-              Parameters used to filter the retrieved list must remain in subsequent requests
-              with a page token.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._get_api_list(
-            "/organizations",
-            page=SyncSinglePage[Organization],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "id": id,
-                        "containing": containing,
-                        "name": name,
-                        "page_size": page_size,
-                        "page_token": page_token,
-                        "parent": parent,
-                    },
-                    organization_list_params.OrganizationListParams,
-                ),
-            ),
-            model=Organization,
         )
 
     def delete(
@@ -403,68 +340,6 @@ class AsyncOrganizationsResource(AsyncAPIResource):
             cast_to=cast(Type[Organization], ResultWrapper[Organization]),
         )
 
-    def list(
-        self,
-        *,
-        id: SequenceNotStr[str] | Omit = omit,
-        containing: organization_list_params.Containing | Omit = omit,
-        name: organization_list_params.Name | Omit = omit,
-        page_size: int | Omit = omit,
-        page_token: str | Omit = omit,
-        parent: organization_list_params.Parent | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[Organization, AsyncSinglePage[Organization]]:
-        """
-        Retrieve a list of organizations a particular user has access to.
-
-        Args:
-          id: Only return organizations with the specified IDs (ex. id=foo&id=bar). Send
-              multiple elements by repeating the query value.
-
-          page_size: The amount of items to return. Defaults to 10.
-
-          page_token: An opaque token returned from the last list response that when provided will
-              retrieve the next page.
-
-              Parameters used to filter the retrieved list must remain in subsequent requests
-              with a page token.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._get_api_list(
-            "/organizations",
-            page=AsyncSinglePage[Organization],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "id": id,
-                        "containing": containing,
-                        "name": name,
-                        "page_size": page_size,
-                        "page_token": page_token,
-                        "parent": parent,
-                    },
-                    organization_list_params.OrganizationListParams,
-                ),
-            ),
-            model=Organization,
-        )
-
     async def delete(
         self,
         organization_id: str,
@@ -549,9 +424,6 @@ class OrganizationsResourceWithRawResponse:
         self.update = to_raw_response_wrapper(
             organizations.update,
         )
-        self.list = to_raw_response_wrapper(
-            organizations.list,
-        )
         self.delete = to_raw_response_wrapper(
             organizations.delete,
         )
@@ -573,9 +445,6 @@ class AsyncOrganizationsResourceWithRawResponse:
         )
         self.update = async_to_raw_response_wrapper(
             organizations.update,
-        )
-        self.list = async_to_raw_response_wrapper(
-            organizations.list,
         )
         self.delete = async_to_raw_response_wrapper(
             organizations.delete,
@@ -599,9 +468,6 @@ class OrganizationsResourceWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             organizations.update,
         )
-        self.list = to_streamed_response_wrapper(
-            organizations.list,
-        )
         self.delete = to_streamed_response_wrapper(
             organizations.delete,
         )
@@ -623,9 +489,6 @@ class AsyncOrganizationsResourceWithStreamingResponse:
         )
         self.update = async_to_streamed_response_wrapper(
             organizations.update,
-        )
-        self.list = async_to_streamed_response_wrapper(
-            organizations.list,
         )
         self.delete = async_to_streamed_response_wrapper(
             organizations.delete,

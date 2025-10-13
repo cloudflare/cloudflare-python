@@ -179,7 +179,7 @@ class BindingWorkersBindingKindDispatchNamespace(BaseModel):
     """A JavaScript variable name for the binding."""
 
     namespace: str
-    """The name of the dispatch namespace."""
+    """Namespace to bind to."""
 
     type: Literal["dispatch_namespace"]
     """The kind of resource that the binding provides."""

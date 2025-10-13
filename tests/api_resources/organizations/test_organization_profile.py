@@ -20,7 +20,7 @@ class TestOrganizationProfile:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         organization_profile = client.organizations.organization_profile.update(
-            organization_id="a7b9c3d2e8f4g1h5i6j0k9l2m3n7o4p8",
+            organization_id="organization_id",
             business_address="business_address",
             business_email="business_email",
             business_name="business_name",
@@ -32,7 +32,7 @@ class TestOrganizationProfile:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.organizations.organization_profile.with_raw_response.update(
-            organization_id="a7b9c3d2e8f4g1h5i6j0k9l2m3n7o4p8",
+            organization_id="organization_id",
             business_address="business_address",
             business_email="business_email",
             business_name="business_name",
@@ -48,7 +48,7 @@ class TestOrganizationProfile:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.organizations.organization_profile.with_streaming_response.update(
-            organization_id="a7b9c3d2e8f4g1h5i6j0k9l2m3n7o4p8",
+            organization_id="organization_id",
             business_address="business_address",
             business_email="business_email",
             business_name="business_name",
@@ -78,14 +78,14 @@ class TestOrganizationProfile:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         organization_profile = client.organizations.organization_profile.get(
-            "a7b9c3d2e8f4g1h5i6j0k9l2m3n7o4p8",
+            "organization_id",
         )
         assert_matches_type(Result, organization_profile, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.organizations.organization_profile.with_raw_response.get(
-            "a7b9c3d2e8f4g1h5i6j0k9l2m3n7o4p8",
+            "organization_id",
         )
 
         assert response.is_closed is True
@@ -96,7 +96,7 @@ class TestOrganizationProfile:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.organizations.organization_profile.with_streaming_response.get(
-            "a7b9c3d2e8f4g1h5i6j0k9l2m3n7o4p8",
+            "organization_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -122,7 +122,7 @@ class TestAsyncOrganizationProfile:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         organization_profile = await async_client.organizations.organization_profile.update(
-            organization_id="a7b9c3d2e8f4g1h5i6j0k9l2m3n7o4p8",
+            organization_id="organization_id",
             business_address="business_address",
             business_email="business_email",
             business_name="business_name",
@@ -134,7 +134,7 @@ class TestAsyncOrganizationProfile:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.organizations.organization_profile.with_raw_response.update(
-            organization_id="a7b9c3d2e8f4g1h5i6j0k9l2m3n7o4p8",
+            organization_id="organization_id",
             business_address="business_address",
             business_email="business_email",
             business_name="business_name",
@@ -150,7 +150,7 @@ class TestAsyncOrganizationProfile:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.organizations.organization_profile.with_streaming_response.update(
-            organization_id="a7b9c3d2e8f4g1h5i6j0k9l2m3n7o4p8",
+            organization_id="organization_id",
             business_address="business_address",
             business_email="business_email",
             business_name="business_name",
@@ -180,14 +180,14 @@ class TestAsyncOrganizationProfile:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         organization_profile = await async_client.organizations.organization_profile.get(
-            "a7b9c3d2e8f4g1h5i6j0k9l2m3n7o4p8",
+            "organization_id",
         )
         assert_matches_type(Result, organization_profile, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.organizations.organization_profile.with_raw_response.get(
-            "a7b9c3d2e8f4g1h5i6j0k9l2m3n7o4p8",
+            "organization_id",
         )
 
         assert response.is_closed is True
@@ -198,7 +198,7 @@ class TestAsyncOrganizationProfile:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.organizations.organization_profile.with_streaming_response.get(
-            "a7b9c3d2e8f4g1h5i6j0k9l2m3n7o4p8",
+            "organization_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import typing_extensions
 from typing import List, Type, Union, cast
 from datetime import datetime
 from typing_extensions import Literal
@@ -59,7 +58,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
         """
         return TimeseriesGroupsResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
     def arc(
         self,
         *,
@@ -149,7 +147,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupARCResponse], ResultWrapper[TimeseriesGroupARCResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def dkim(
         self,
         *,
@@ -239,7 +236,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupDKIMResponse], ResultWrapper[TimeseriesGroupDKIMResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def dmarc(
         self,
         *,
@@ -328,7 +324,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupDMARCResponse], ResultWrapper[TimeseriesGroupDMARCResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def encrypted(
         self,
         *,
@@ -418,7 +413,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupEncryptedResponse], ResultWrapper[TimeseriesGroupEncryptedResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def ip_version(
         self,
         *,
@@ -507,7 +501,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupIPVersionResponse], ResultWrapper[TimeseriesGroupIPVersionResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def spf(
         self,
         *,
@@ -618,7 +611,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         """
         return AsyncTimeseriesGroupsResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
     async def arc(
         self,
         *,
@@ -708,7 +700,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupARCResponse], ResultWrapper[TimeseriesGroupARCResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def dkim(
         self,
         *,
@@ -798,7 +789,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupDKIMResponse], ResultWrapper[TimeseriesGroupDKIMResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def dmarc(
         self,
         *,
@@ -887,7 +877,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupDMARCResponse], ResultWrapper[TimeseriesGroupDMARCResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def encrypted(
         self,
         *,
@@ -977,7 +966,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupEncryptedResponse], ResultWrapper[TimeseriesGroupEncryptedResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def ip_version(
         self,
         *,
@@ -1066,7 +1054,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupIPVersionResponse], ResultWrapper[TimeseriesGroupIPVersionResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def spf(
         self,
         *,
@@ -1161,35 +1148,23 @@ class TimeseriesGroupsResourceWithRawResponse:
     def __init__(self, timeseries_groups: TimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.arc = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                timeseries_groups.arc,  # pyright: ignore[reportDeprecated],
-            )
+        self.arc = to_raw_response_wrapper(
+            timeseries_groups.arc,
         )
-        self.dkim = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                timeseries_groups.dkim,  # pyright: ignore[reportDeprecated],
-            )
+        self.dkim = to_raw_response_wrapper(
+            timeseries_groups.dkim,
         )
-        self.dmarc = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                timeseries_groups.dmarc,  # pyright: ignore[reportDeprecated],
-            )
+        self.dmarc = to_raw_response_wrapper(
+            timeseries_groups.dmarc,
         )
-        self.encrypted = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                timeseries_groups.encrypted,  # pyright: ignore[reportDeprecated],
-            )
+        self.encrypted = to_raw_response_wrapper(
+            timeseries_groups.encrypted,
         )
-        self.ip_version = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                timeseries_groups.ip_version,  # pyright: ignore[reportDeprecated],
-            )
+        self.ip_version = to_raw_response_wrapper(
+            timeseries_groups.ip_version,
         )
-        self.spf = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                timeseries_groups.spf,  # pyright: ignore[reportDeprecated],
-            )
+        self.spf = to_raw_response_wrapper(
+            timeseries_groups.spf,
         )
 
 
@@ -1197,35 +1172,23 @@ class AsyncTimeseriesGroupsResourceWithRawResponse:
     def __init__(self, timeseries_groups: AsyncTimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.arc = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                timeseries_groups.arc,  # pyright: ignore[reportDeprecated],
-            )
+        self.arc = async_to_raw_response_wrapper(
+            timeseries_groups.arc,
         )
-        self.dkim = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                timeseries_groups.dkim,  # pyright: ignore[reportDeprecated],
-            )
+        self.dkim = async_to_raw_response_wrapper(
+            timeseries_groups.dkim,
         )
-        self.dmarc = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                timeseries_groups.dmarc,  # pyright: ignore[reportDeprecated],
-            )
+        self.dmarc = async_to_raw_response_wrapper(
+            timeseries_groups.dmarc,
         )
-        self.encrypted = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                timeseries_groups.encrypted,  # pyright: ignore[reportDeprecated],
-            )
+        self.encrypted = async_to_raw_response_wrapper(
+            timeseries_groups.encrypted,
         )
-        self.ip_version = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                timeseries_groups.ip_version,  # pyright: ignore[reportDeprecated],
-            )
+        self.ip_version = async_to_raw_response_wrapper(
+            timeseries_groups.ip_version,
         )
-        self.spf = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                timeseries_groups.spf,  # pyright: ignore[reportDeprecated],
-            )
+        self.spf = async_to_raw_response_wrapper(
+            timeseries_groups.spf,
         )
 
 
@@ -1233,35 +1196,23 @@ class TimeseriesGroupsResourceWithStreamingResponse:
     def __init__(self, timeseries_groups: TimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.arc = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                timeseries_groups.arc,  # pyright: ignore[reportDeprecated],
-            )
+        self.arc = to_streamed_response_wrapper(
+            timeseries_groups.arc,
         )
-        self.dkim = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                timeseries_groups.dkim,  # pyright: ignore[reportDeprecated],
-            )
+        self.dkim = to_streamed_response_wrapper(
+            timeseries_groups.dkim,
         )
-        self.dmarc = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                timeseries_groups.dmarc,  # pyright: ignore[reportDeprecated],
-            )
+        self.dmarc = to_streamed_response_wrapper(
+            timeseries_groups.dmarc,
         )
-        self.encrypted = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                timeseries_groups.encrypted,  # pyright: ignore[reportDeprecated],
-            )
+        self.encrypted = to_streamed_response_wrapper(
+            timeseries_groups.encrypted,
         )
-        self.ip_version = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                timeseries_groups.ip_version,  # pyright: ignore[reportDeprecated],
-            )
+        self.ip_version = to_streamed_response_wrapper(
+            timeseries_groups.ip_version,
         )
-        self.spf = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                timeseries_groups.spf,  # pyright: ignore[reportDeprecated],
-            )
+        self.spf = to_streamed_response_wrapper(
+            timeseries_groups.spf,
         )
 
 
@@ -1269,33 +1220,21 @@ class AsyncTimeseriesGroupsResourceWithStreamingResponse:
     def __init__(self, timeseries_groups: AsyncTimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.arc = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                timeseries_groups.arc,  # pyright: ignore[reportDeprecated],
-            )
+        self.arc = async_to_streamed_response_wrapper(
+            timeseries_groups.arc,
         )
-        self.dkim = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                timeseries_groups.dkim,  # pyright: ignore[reportDeprecated],
-            )
+        self.dkim = async_to_streamed_response_wrapper(
+            timeseries_groups.dkim,
         )
-        self.dmarc = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                timeseries_groups.dmarc,  # pyright: ignore[reportDeprecated],
-            )
+        self.dmarc = async_to_streamed_response_wrapper(
+            timeseries_groups.dmarc,
         )
-        self.encrypted = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                timeseries_groups.encrypted,  # pyright: ignore[reportDeprecated],
-            )
+        self.encrypted = async_to_streamed_response_wrapper(
+            timeseries_groups.encrypted,
         )
-        self.ip_version = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                timeseries_groups.ip_version,  # pyright: ignore[reportDeprecated],
-            )
+        self.ip_version = async_to_streamed_response_wrapper(
+            timeseries_groups.ip_version,
         )
-        self.spf = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                timeseries_groups.spf,  # pyright: ignore[reportDeprecated],
-            )
+        self.spf = async_to_streamed_response_wrapper(
+            timeseries_groups.spf,
         )
