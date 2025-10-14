@@ -59,7 +59,9 @@ class SummaryResource(SyncAPIResource):
         """
         return SummaryResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar Email Routing Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/summary_v2/) instead."
+    )
     def arc(
         self,
         *,
@@ -143,7 +145,9 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryARCResponse], ResultWrapper[SummaryARCResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar Email Routing Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/summary_v2/) instead."
+    )
     def dkim(
         self,
         *,
@@ -227,7 +231,9 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryDKIMResponse], ResultWrapper[SummaryDKIMResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar Email Routing Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/summary_v2/) instead."
+    )
     def dmarc(
         self,
         *,
@@ -310,7 +316,9 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryDMARCResponse], ResultWrapper[SummaryDMARCResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar Email Routing Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/summary_v2/) instead."
+    )
     def encrypted(
         self,
         *,
@@ -394,7 +402,9 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryEncryptedResponse], ResultWrapper[SummaryEncryptedResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar Email Routing Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/summary_v2/) instead."
+    )
     def ip_version(
         self,
         *,
@@ -477,7 +487,9 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryIPVersionResponse], ResultWrapper[SummaryIPVersionResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar Email Routing Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/summary_v2/) instead."
+    )
     def spf(
         self,
         *,
@@ -582,7 +594,9 @@ class AsyncSummaryResource(AsyncAPIResource):
         """
         return AsyncSummaryResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar Email Routing Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/summary_v2/) instead."
+    )
     async def arc(
         self,
         *,
@@ -666,7 +680,9 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryARCResponse], ResultWrapper[SummaryARCResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar Email Routing Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/summary_v2/) instead."
+    )
     async def dkim(
         self,
         *,
@@ -750,7 +766,9 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryDKIMResponse], ResultWrapper[SummaryDKIMResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar Email Routing Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/summary_v2/) instead."
+    )
     async def dmarc(
         self,
         *,
@@ -833,7 +851,9 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryDMARCResponse], ResultWrapper[SummaryDMARCResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar Email Routing Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/summary_v2/) instead."
+    )
     async def encrypted(
         self,
         *,
@@ -917,7 +937,9 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryEncryptedResponse], ResultWrapper[SummaryEncryptedResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar Email Routing Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/summary_v2/) instead."
+    )
     async def ip_version(
         self,
         *,
@@ -1000,7 +1022,9 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryIPVersionResponse], ResultWrapper[SummaryIPVersionResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar Email Routing Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/summary_v2/) instead."
+    )
     async def spf(
         self,
         *,

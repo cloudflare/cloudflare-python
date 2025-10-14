@@ -123,14 +123,12 @@ class GatewayRule(BaseModel):
     """Indicate that this rule is shared via the Orgs API and read only."""
 
     rule_settings: Optional[RuleSetting] = None
-    """Set settings related to this rule.
+    """Defines settings for this rule.
 
-    Each setting is only valid for specific rule types and can only be used with the
-    appropriate selectors. If Terraform drift is observed in these setting values,
-    verify that the setting is supported for the given rule type and that the API
-    response reflects the requested value. If the API response returns sanitized or
-    modified values that differ from the request, use the API-provided values in
-    Terraform to ensure consistency.
+    Settings apply only to specific rule types and must use compatible selectors. If
+    Terraform detects drift, confirm the setting supports your rule type and check
+    whether the API modifies the value. Use API-returned values in your
+    configuration to prevent drift.
     """
 
     schedule: Optional[Schedule] = None
