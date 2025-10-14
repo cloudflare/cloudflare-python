@@ -37,7 +37,6 @@ __all__ = [
     "SettingsBindingWorkersBindingKindSecretText",
     "SettingsBindingWorkersBindingKindSendEmail",
     "SettingsBindingWorkersBindingKindService",
-    "SettingsBindingWorkersBindingKindTailConsumer",
     "SettingsBindingWorkersBindingKindTextBlob",
     "SettingsBindingWorkersBindingKindVectorize",
     "SettingsBindingWorkersBindingKindVersionMetadata",
@@ -344,17 +343,6 @@ class SettingsBindingWorkersBindingKindService(TypedDict, total=False):
     """Optional environment if the Worker utilizes one."""
 
 
-class SettingsBindingWorkersBindingKindTailConsumer(TypedDict, total=False):
-    name: Required[str]
-    """A JavaScript variable name for the binding."""
-
-    service: Required[str]
-    """Name of Tail Worker to bind to."""
-
-    type: Required[Literal["tail_consumer"]]
-    """The kind of resource that the binding provides."""
-
-
 class SettingsBindingWorkersBindingKindTextBlob(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
@@ -499,7 +487,6 @@ SettingsBinding: TypeAlias = Union[
     SettingsBindingWorkersBindingKindSecretText,
     SettingsBindingWorkersBindingKindSendEmail,
     SettingsBindingWorkersBindingKindService,
-    SettingsBindingWorkersBindingKindTailConsumer,
     SettingsBindingWorkersBindingKindTextBlob,
     SettingsBindingWorkersBindingKindVectorize,
     SettingsBindingWorkersBindingKindVersionMetadata,
