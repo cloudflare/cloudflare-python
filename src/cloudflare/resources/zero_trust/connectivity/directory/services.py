@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Optional
 from typing_extensions import Literal
 
 import httpx
@@ -17,18 +17,12 @@ from ....._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....._wrappers import ResultWrapper
-from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ....._base_client import AsyncPaginator, make_request_options
+from ....._base_client import make_request_options
 from .....types.zero_trust.connectivity.directory import (
     service_list_params,
     service_create_params,
     service_update_params,
 )
-from .....types.zero_trust.connectivity.directory.service_get_response import ServiceGetResponse
-from .....types.zero_trust.connectivity.directory.service_list_response import ServiceListResponse
-from .....types.zero_trust.connectivity.directory.service_create_response import ServiceCreateResponse
-from .....types.zero_trust.connectivity.directory.service_update_response import ServiceUpdateResponse
 
 __all__ = ["ServicesResource", "AsyncServicesResource"]
 
@@ -68,7 +62,7 @@ class ServicesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[ServiceCreateResponse]:
+    ) -> None:
         """
         Create connectivity service
 
@@ -85,6 +79,7 @@ class ServicesResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
             f"/accounts/{account_id}/connectivity/directory/services",
             body=maybe_transform(
@@ -98,13 +93,9 @@ class ServicesResource(SyncAPIResource):
                 service_create_params.ServiceCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ServiceCreateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ServiceCreateResponse]], ResultWrapper[ServiceCreateResponse]),
+            cast_to=NoneType,
         )
 
     def update(
@@ -123,7 +114,7 @@ class ServicesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[ServiceUpdateResponse]:
+    ) -> None:
         """
         Update connectivity service
 
@@ -140,6 +131,7 @@ class ServicesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not service_id:
             raise ValueError(f"Expected a non-empty value for `service_id` but received {service_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._put(
             f"/accounts/{account_id}/connectivity/directory/services/{service_id}",
             body=maybe_transform(
@@ -153,13 +145,9 @@ class ServicesResource(SyncAPIResource):
                 service_update_params.ServiceUpdateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ServiceUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ServiceUpdateResponse]], ResultWrapper[ServiceUpdateResponse]),
+            cast_to=NoneType,
         )
 
     def list(
@@ -175,7 +163,7 @@ class ServicesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncV4PagePaginationArray[ServiceListResponse]:
+    ) -> None:
         """
         List connectivity services
 
@@ -196,9 +184,9 @@ class ServicesResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get_api_list(
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return self._get(
             f"/accounts/{account_id}/connectivity/directory/services",
-            page=SyncV4PagePaginationArray[ServiceListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -213,7 +201,7 @@ class ServicesResource(SyncAPIResource):
                     service_list_params.ServiceListParams,
                 ),
             ),
-            model=ServiceListResponse,
+            cast_to=NoneType,
         )
 
     def delete(
@@ -264,7 +252,7 @@ class ServicesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[ServiceGetResponse]:
+    ) -> None:
         """
         Get connectivity service
 
@@ -281,16 +269,13 @@ class ServicesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not service_id:
             raise ValueError(f"Expected a non-empty value for `service_id` but received {service_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._get(
             f"/accounts/{account_id}/connectivity/directory/services/{service_id}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ServiceGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ServiceGetResponse]], ResultWrapper[ServiceGetResponse]),
+            cast_to=NoneType,
         )
 
 
@@ -329,7 +314,7 @@ class AsyncServicesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[ServiceCreateResponse]:
+    ) -> None:
         """
         Create connectivity service
 
@@ -346,6 +331,7 @@ class AsyncServicesResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
             f"/accounts/{account_id}/connectivity/directory/services",
             body=await async_maybe_transform(
@@ -359,13 +345,9 @@ class AsyncServicesResource(AsyncAPIResource):
                 service_create_params.ServiceCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ServiceCreateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ServiceCreateResponse]], ResultWrapper[ServiceCreateResponse]),
+            cast_to=NoneType,
         )
 
     async def update(
@@ -384,7 +366,7 @@ class AsyncServicesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[ServiceUpdateResponse]:
+    ) -> None:
         """
         Update connectivity service
 
@@ -401,6 +383,7 @@ class AsyncServicesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not service_id:
             raise ValueError(f"Expected a non-empty value for `service_id` but received {service_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._put(
             f"/accounts/{account_id}/connectivity/directory/services/{service_id}",
             body=await async_maybe_transform(
@@ -414,16 +397,12 @@ class AsyncServicesResource(AsyncAPIResource):
                 service_update_params.ServiceUpdateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ServiceUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ServiceUpdateResponse]], ResultWrapper[ServiceUpdateResponse]),
+            cast_to=NoneType,
         )
 
-    def list(
+    async def list(
         self,
         *,
         account_id: str,
@@ -436,7 +415,7 @@ class AsyncServicesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[ServiceListResponse, AsyncV4PagePaginationArray[ServiceListResponse]]:
+    ) -> None:
         """
         List connectivity services
 
@@ -457,15 +436,15 @@ class AsyncServicesResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get_api_list(
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return await self._get(
             f"/accounts/{account_id}/connectivity/directory/services",
-            page=AsyncV4PagePaginationArray[ServiceListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "page": page,
                         "per_page": per_page,
@@ -474,7 +453,7 @@ class AsyncServicesResource(AsyncAPIResource):
                     service_list_params.ServiceListParams,
                 ),
             ),
-            model=ServiceListResponse,
+            cast_to=NoneType,
         )
 
     async def delete(
@@ -525,7 +504,7 @@ class AsyncServicesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[ServiceGetResponse]:
+    ) -> None:
         """
         Get connectivity service
 
@@ -542,16 +521,13 @@ class AsyncServicesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not service_id:
             raise ValueError(f"Expected a non-empty value for `service_id` but received {service_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._get(
             f"/accounts/{account_id}/connectivity/directory/services/{service_id}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ServiceGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ServiceGetResponse]], ResultWrapper[ServiceGetResponse]),
+            cast_to=NoneType,
         )
 
 
