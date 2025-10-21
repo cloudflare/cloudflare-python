@@ -21,6 +21,7 @@ from .consumer_update_params import ConsumerUpdateParams as ConsumerUpdateParams
 from .consumer_delete_response import ConsumerDeleteResponse as ConsumerDeleteResponse
 from .message_bulk_push_params import MessageBulkPushParams as MessageBulkPushParams
 from .subscription_list_params import SubscriptionListParams as SubscriptionListParams
+from .subscription_get_response import SubscriptionGetResponse as SubscriptionGetResponse
 from .message_bulk_push_response import MessageBulkPushResponse as MessageBulkPushResponse
 from .subscription_create_params import SubscriptionCreateParams as SubscriptionCreateParams
 from .subscription_list_response import SubscriptionListResponse as SubscriptionListResponse

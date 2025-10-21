@@ -2696,6 +2696,7 @@ class TestApplications:
             page=0,
             per_page=0,
             search="search",
+            target_attributes="target_attributes",
         )
         assert_matches_type(SyncV4PagePaginationArray[ApplicationListResponse], application, path=["response"])
 
@@ -5617,6 +5618,7 @@ class TestAsyncApplications:
             page=0,
             per_page=0,
             search="search",
+            target_attributes="target_attributes",
         )
         assert_matches_type(AsyncV4PagePaginationArray[ApplicationListResponse], application, path=["response"])
 
