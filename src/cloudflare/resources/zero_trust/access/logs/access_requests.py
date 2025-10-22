@@ -51,14 +51,11 @@ class AccessRequestsResource(SyncAPIResource):
         *,
         account_id: str,
         direction: Literal["desc", "asc"] | Omit = omit,
-        email: str | Omit = omit,
-        email_exact: bool | Omit = omit,
         limit: int | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         since: Union[str, datetime] | Omit = omit,
         until: Union[str, datetime] | Omit = omit,
-        user_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -74,13 +71,6 @@ class AccessRequestsResource(SyncAPIResource):
 
           direction: The chronological sorting order for the logs.
 
-          email: Filter by user email. Defaults to substring matching. To force exact matching,
-              set `email_exact=true`. Example (default): `email=@example.com` returns all
-              events with that domain. Example (exact):
-              `email=user@example.com&email_exact=true` returns only that user.
-
-          email_exact: When true, `email` is matched exactly instead of substring matching.
-
           limit: The maximum number of log entries to retrieve.
 
           page: Page number of results.
@@ -90,8 +80,6 @@ class AccessRequestsResource(SyncAPIResource):
           since: The earliest event timestamp to query.
 
           until: The latest event timestamp to query.
-
-          user_id: Filter by user UUID.
 
           extra_headers: Send extra headers
 
@@ -113,14 +101,11 @@ class AccessRequestsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "direction": direction,
-                        "email": email,
-                        "email_exact": email_exact,
                         "limit": limit,
                         "page": page,
                         "per_page": per_page,
                         "since": since,
                         "until": until,
-                        "user_id": user_id,
                     },
                     access_request_list_params.AccessRequestListParams,
                 ),
@@ -155,14 +140,11 @@ class AsyncAccessRequestsResource(AsyncAPIResource):
         *,
         account_id: str,
         direction: Literal["desc", "asc"] | Omit = omit,
-        email: str | Omit = omit,
-        email_exact: bool | Omit = omit,
         limit: int | Omit = omit,
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         since: Union[str, datetime] | Omit = omit,
         until: Union[str, datetime] | Omit = omit,
-        user_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -178,13 +160,6 @@ class AsyncAccessRequestsResource(AsyncAPIResource):
 
           direction: The chronological sorting order for the logs.
 
-          email: Filter by user email. Defaults to substring matching. To force exact matching,
-              set `email_exact=true`. Example (default): `email=@example.com` returns all
-              events with that domain. Example (exact):
-              `email=user@example.com&email_exact=true` returns only that user.
-
-          email_exact: When true, `email` is matched exactly instead of substring matching.
-
           limit: The maximum number of log entries to retrieve.
 
           page: Page number of results.
@@ -194,8 +169,6 @@ class AsyncAccessRequestsResource(AsyncAPIResource):
           since: The earliest event timestamp to query.
 
           until: The latest event timestamp to query.
-
-          user_id: Filter by user UUID.
 
           extra_headers: Send extra headers
 
@@ -217,14 +190,11 @@ class AsyncAccessRequestsResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "direction": direction,
-                        "email": email,
-                        "email_exact": email_exact,
                         "limit": limit,
                         "page": page,
                         "per_page": per_page,
                         "since": since,
                         "until": until,
-                        "user_id": user_id,
                     },
                     access_request_list_params.AccessRequestListParams,
                 ),

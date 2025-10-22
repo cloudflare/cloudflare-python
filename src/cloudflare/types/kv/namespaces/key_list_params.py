@@ -9,7 +9,7 @@ __all__ = ["KeyListParams"]
 
 class KeyListParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier."""
+    """Identifier"""
 
     cursor: str
     """
@@ -20,14 +20,14 @@ class KeyListParams(TypedDict, total=False):
     """
 
     limit: float
-    """Limits the number of keys returned in the response.
+    """The number of keys to return.
 
     The cursor attribute may be used to iterate over the next batch of keys if there
     are more than the limit.
     """
 
     prefix: str
-    """Filters returned keys by a name prefix.
+    """A string prefix used to filter down which keys will be returned.
 
     Exact matches and any key names that begin with the prefix will be returned.
     """

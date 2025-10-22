@@ -14,7 +14,7 @@ from .devices import (
     DevicesResourceWithStreamingResponse,
     AsyncDevicesResourceWithStreamingResponse,
 )
-from ....._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
+from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -28,6 +28,7 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import make_request_options
 from .....types.zero_trust.dex import fleet_status_live_params, fleet_status_over_time_params
 from .....types.zero_trust.dex.fleet_status_live_response import FleetStatusLiveResponse
+from .....types.zero_trust.dex.fleet_status_over_time_response import FleetStatusOverTimeResponse
 
 __all__ = ["FleetStatusResource", "AsyncFleetStatusResource"]
 
@@ -111,7 +112,7 @@ class FleetStatusResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> Optional[FleetStatusOverTimeResponse]:
         """
         List details for devices using WARP, up to 7 days
 
@@ -134,7 +135,6 @@ class FleetStatusResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._get(
             f"/accounts/{account_id}/dex/fleet-status/over-time",
             options=make_request_options(
@@ -151,8 +151,9 @@ class FleetStatusResource(SyncAPIResource):
                     },
                     fleet_status_over_time_params.FleetStatusOverTimeParams,
                 ),
+                post_parser=ResultWrapper[Optional[FleetStatusOverTimeResponse]]._unwrapper,
             ),
-            cast_to=NoneType,
+            cast_to=cast(Type[Optional[FleetStatusOverTimeResponse]], ResultWrapper[FleetStatusOverTimeResponse]),
         )
 
 
@@ -237,7 +238,7 @@ class AsyncFleetStatusResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> Optional[FleetStatusOverTimeResponse]:
         """
         List details for devices using WARP, up to 7 days
 
@@ -260,7 +261,6 @@ class AsyncFleetStatusResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._get(
             f"/accounts/{account_id}/dex/fleet-status/over-time",
             options=make_request_options(
@@ -277,8 +277,9 @@ class AsyncFleetStatusResource(AsyncAPIResource):
                     },
                     fleet_status_over_time_params.FleetStatusOverTimeParams,
                 ),
+                post_parser=ResultWrapper[Optional[FleetStatusOverTimeResponse]]._unwrapper,
             ),
-            cast_to=NoneType,
+            cast_to=cast(Type[Optional[FleetStatusOverTimeResponse]], ResultWrapper[FleetStatusOverTimeResponse]),
         )
 
 

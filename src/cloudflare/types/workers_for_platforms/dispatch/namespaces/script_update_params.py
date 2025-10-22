@@ -39,6 +39,7 @@ __all__ = [
     "MetadataBindingWorkersBindingKindSecretText",
     "MetadataBindingWorkersBindingKindSendEmail",
     "MetadataBindingWorkersBindingKindService",
+    "MetadataBindingWorkersBindingKindTailConsumer",
     "MetadataBindingWorkersBindingKindTextBlob",
     "MetadataBindingWorkersBindingKindVectorize",
     "MetadataBindingWorkersBindingKindVersionMetadata",
@@ -406,6 +407,17 @@ class MetadataBindingWorkersBindingKindService(TypedDict, total=False):
     """Optional environment if the Worker utilizes one."""
 
 
+class MetadataBindingWorkersBindingKindTailConsumer(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    service: Required[str]
+    """Name of Tail Worker to bind to."""
+
+    type: Required[Literal["tail_consumer"]]
+    """The kind of resource that the binding provides."""
+
+
 class MetadataBindingWorkersBindingKindTextBlob(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
@@ -550,6 +562,7 @@ MetadataBinding: TypeAlias = Union[
     MetadataBindingWorkersBindingKindSecretText,
     MetadataBindingWorkersBindingKindSendEmail,
     MetadataBindingWorkersBindingKindService,
+    MetadataBindingWorkersBindingKindTailConsumer,
     MetadataBindingWorkersBindingKindTextBlob,
     MetadataBindingWorkersBindingKindVectorize,
     MetadataBindingWorkersBindingKindVersionMetadata,

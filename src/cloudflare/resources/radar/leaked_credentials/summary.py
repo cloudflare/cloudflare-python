@@ -48,9 +48,7 @@ class SummaryResource(SyncAPIResource):
         """
         return SummaryResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated(
-        "Use [Radar Leaked Credentials Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/leaked_credentials/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     def bot_class(
         self,
         *,
@@ -116,9 +114,7 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryBotClassResponse], ResultWrapper[SummaryBotClassResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar Leaked Credentials Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/leaked_credentials/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     def compromised(
         self,
         *,
@@ -207,9 +203,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         """
         return AsyncSummaryResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated(
-        "Use [Radar Leaked Credentials Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/leaked_credentials/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     async def bot_class(
         self,
         *,
@@ -275,9 +269,7 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryBotClassResponse], ResultWrapper[SummaryBotClassResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar Leaked Credentials Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/leaked_credentials/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     async def compromised(
         self,
         *,

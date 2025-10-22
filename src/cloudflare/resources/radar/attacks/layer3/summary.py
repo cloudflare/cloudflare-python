@@ -61,9 +61,7 @@ class SummaryResource(SyncAPIResource):
         """
         return SummaryResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated(
-        "Use [Radar Attacks Layer 3 Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer3/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     def bitrate(
         self,
         *,
@@ -150,9 +148,7 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryBitrateResponse], ResultWrapper[SummaryBitrateResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar Attacks Layer 3 Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer3/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     def duration(
         self,
         *,
@@ -239,9 +235,7 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryDurationResponse], ResultWrapper[SummaryDurationResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar Attacks Layer 3 Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer3/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     def industry(
         self,
         *,
@@ -334,9 +328,7 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryIndustryResponse], ResultWrapper[SummaryIndustryResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar Attacks Layer 3 Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer3/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     def ip_version(
         self,
         *,
@@ -419,9 +411,7 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryIPVersionResponse], ResultWrapper[SummaryIPVersionResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar Attacks Layer 3 Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer3/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     def protocol(
         self,
         *,
@@ -504,9 +494,7 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryProtocolResponse], ResultWrapper[SummaryProtocolResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar Attacks Layer 3 Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer3/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     def vector(
         self,
         *,
@@ -599,9 +587,7 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryVectorResponse], ResultWrapper[SummaryVectorResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar Attacks Layer 3 Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer3/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     def vertical(
         self,
         *,
@@ -715,9 +701,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         """
         return AsyncSummaryResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated(
-        "Use [Radar Attacks Layer 3 Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer3/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     async def bitrate(
         self,
         *,
@@ -804,9 +788,7 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryBitrateResponse], ResultWrapper[SummaryBitrateResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar Attacks Layer 3 Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer3/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     async def duration(
         self,
         *,
@@ -893,9 +875,7 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryDurationResponse], ResultWrapper[SummaryDurationResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar Attacks Layer 3 Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer3/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     async def industry(
         self,
         *,
@@ -988,9 +968,7 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryIndustryResponse], ResultWrapper[SummaryIndustryResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar Attacks Layer 3 Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer3/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     async def ip_version(
         self,
         *,
@@ -1073,9 +1051,7 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryIPVersionResponse], ResultWrapper[SummaryIPVersionResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar Attacks Layer 3 Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer3/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     async def protocol(
         self,
         *,
@@ -1158,9 +1134,7 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryProtocolResponse], ResultWrapper[SummaryProtocolResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar Attacks Layer 3 Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer3/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     async def vector(
         self,
         *,
@@ -1253,9 +1227,7 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryVectorResponse], ResultWrapper[SummaryVectorResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar Attacks Layer 3 Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer3/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     async def vertical(
         self,
         *,
