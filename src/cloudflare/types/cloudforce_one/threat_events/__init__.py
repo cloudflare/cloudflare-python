@@ -27,4 +27,5 @@ from .category_create_response import CategoryCreateResponse as CategoryCreateRe
 from .category_delete_response import CategoryDeleteResponse as CategoryDeleteResponse
 from .event_tag_create_response import EventTagCreateResponse as EventTagCreateResponse
 from .event_tag_delete_response import EventTagDeleteResponse as EventTagDeleteResponse
+from .indicator_type_list_response import IndicatorTypeListResponse as IndicatorTypeListResponse
 from .target_industry_list_response import TargetIndustryListResponse as TargetIndustryListResponse

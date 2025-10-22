@@ -9345,6 +9345,7 @@ from cloudflare.types.cloudforce_one import (
     ThreatEventDeleteResponse,
     ThreatEventBulkCreateResponse,
     ThreatEventEditResponse,
+    ThreatEventGetResponse,
 )
 ```
 
@@ -9355,6 +9356,7 @@ Methods:
 - <code title="delete /accounts/{account_id}/cloudforce-one/events/{event_id}">client.cloudforce_one.threat_events.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/threat_events.py">delete</a>(event_id, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_event_delete_response.py">ThreatEventDeleteResponse</a></code>
 - <code title="post /accounts/{account_id}/cloudforce-one/events/create/bulk">client.cloudforce_one.threat_events.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/threat_events.py">bulk_create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_event_bulk_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_event_bulk_create_response.py">ThreatEventBulkCreateResponse</a></code>
 - <code title="patch /accounts/{account_id}/cloudforce-one/events/{event_id}">client.cloudforce_one.threat_events.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/threat_events.py">edit</a>(event_id, \*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_event_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_event_edit_response.py">ThreatEventEditResponse</a></code>
+- <code title="get /accounts/{account_id}/cloudforce-one/events/{event_id}">client.cloudforce_one.threat_events.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/threat_events.py">get</a>(event_id, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_event_get_response.py">ThreatEventGetResponse</a></code>
 
 ### Attackers
 
@@ -9423,6 +9425,18 @@ Methods:
 - <code title="patch /accounts/{account_id}/cloudforce-one/events/dataset/{dataset_id}">client.cloudforce_one.threat_events.datasets.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/datasets/datasets.py">edit</a>(dataset_id, \*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/dataset_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/dataset_edit_response.py">DatasetEditResponse</a></code>
 - <code title="get /accounts/{account_id}/cloudforce-one/events/dataset/{dataset_id}">client.cloudforce_one.threat_events.datasets.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/datasets/datasets.py">get</a>(dataset_id, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/dataset_get_response.py">DatasetGetResponse</a></code>
 - <code title="get /accounts/{account_id}/cloudforce-one/events/raw/{dataset_id}/{event_id}">client.cloudforce_one.threat_events.datasets.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/datasets/datasets.py">raw</a>(event_id, \*, account_id, dataset_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/dataset_raw_response.py">DatasetRawResponse</a></code>
+
+### IndicatorTypes
+
+Types:
+
+```python
+from cloudflare.types.cloudforce_one.threat_events import IndicatorTypeListResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/cloudforce-one/events/indicatorTypes">client.cloudforce_one.threat_events.indicator_types.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/indicator_types.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/indicator_type_list_response.py">IndicatorTypeListResponse</a></code>
 
 ### Raw
 

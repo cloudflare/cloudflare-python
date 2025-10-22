@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Literal
@@ -75,6 +76,14 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
+from .indicator_types import (
+    IndicatorTypesResource,
+    AsyncIndicatorTypesResource,
+    IndicatorTypesResourceWithRawResponse,
+    AsyncIndicatorTypesResourceWithRawResponse,
+    IndicatorTypesResourceWithStreamingResponse,
+    AsyncIndicatorTypesResourceWithStreamingResponse,
+)
 from .datasets.datasets import (
     DatasetsResource,
     AsyncDatasetsResource,
@@ -97,6 +106,7 @@ from ....types.cloudforce_one import (
     threat_event_create_params,
     threat_event_bulk_create_params,
 )
+from ....types.cloudforce_one.threat_event_get_response import ThreatEventGetResponse
 from ....types.cloudforce_one.threat_event_edit_response import ThreatEventEditResponse
 from ....types.cloudforce_one.threat_event_list_response import ThreatEventListResponse
 from ....types.cloudforce_one.threat_event_create_response import ThreatEventCreateResponse
@@ -122,6 +132,10 @@ class ThreatEventsResource(SyncAPIResource):
     @cached_property
     def datasets(self) -> DatasetsResource:
         return DatasetsResource(self._client)
+
+    @cached_property
+    def indicator_types(self) -> IndicatorTypesResource:
+        return IndicatorTypesResource(self._client)
 
     @cached_property
     def raw(self) -> RawResource:
@@ -457,6 +471,49 @@ class ThreatEventsResource(SyncAPIResource):
             cast_to=ThreatEventEditResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
+    def get(
+        self,
+        event_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ThreatEventGetResponse:
+        """This Method is deprecated.
+
+        Please use
+        /events/dataset/:dataset_id/events/:event_id instead.
+
+        Args:
+          account_id: Account ID.
+
+          event_id: Event UUID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not event_id:
+            raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
+        return self._get(
+            f"/accounts/{account_id}/cloudforce-one/events/{event_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ThreatEventGetResponse,
+        )
+
 
 class AsyncThreatEventsResource(AsyncAPIResource):
     @cached_property
@@ -474,6 +531,10 @@ class AsyncThreatEventsResource(AsyncAPIResource):
     @cached_property
     def datasets(self) -> AsyncDatasetsResource:
         return AsyncDatasetsResource(self._client)
+
+    @cached_property
+    def indicator_types(self) -> AsyncIndicatorTypesResource:
+        return AsyncIndicatorTypesResource(self._client)
 
     @cached_property
     def raw(self) -> AsyncRawResource:
@@ -809,6 +870,49 @@ class AsyncThreatEventsResource(AsyncAPIResource):
             cast_to=ThreatEventEditResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
+    async def get(
+        self,
+        event_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ThreatEventGetResponse:
+        """This Method is deprecated.
+
+        Please use
+        /events/dataset/:dataset_id/events/:event_id instead.
+
+        Args:
+          account_id: Account ID.
+
+          event_id: Event UUID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not event_id:
+            raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
+        return await self._get(
+            f"/accounts/{account_id}/cloudforce-one/events/{event_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ThreatEventGetResponse,
+        )
+
 
 class ThreatEventsResourceWithRawResponse:
     def __init__(self, threat_events: ThreatEventsResource) -> None:
@@ -829,6 +933,11 @@ class ThreatEventsResourceWithRawResponse:
         self.edit = to_raw_response_wrapper(
             threat_events.edit,
         )
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                threat_events.get,  # pyright: ignore[reportDeprecated],
+            )
+        )
 
     @cached_property
     def attackers(self) -> AttackersResourceWithRawResponse:
@@ -845,6 +954,10 @@ class ThreatEventsResourceWithRawResponse:
     @cached_property
     def datasets(self) -> DatasetsResourceWithRawResponse:
         return DatasetsResourceWithRawResponse(self._threat_events.datasets)
+
+    @cached_property
+    def indicator_types(self) -> IndicatorTypesResourceWithRawResponse:
+        return IndicatorTypesResourceWithRawResponse(self._threat_events.indicator_types)
 
     @cached_property
     def raw(self) -> RawResourceWithRawResponse:
@@ -886,6 +999,11 @@ class AsyncThreatEventsResourceWithRawResponse:
         self.edit = async_to_raw_response_wrapper(
             threat_events.edit,
         )
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                threat_events.get,  # pyright: ignore[reportDeprecated],
+            )
+        )
 
     @cached_property
     def attackers(self) -> AsyncAttackersResourceWithRawResponse:
@@ -902,6 +1020,10 @@ class AsyncThreatEventsResourceWithRawResponse:
     @cached_property
     def datasets(self) -> AsyncDatasetsResourceWithRawResponse:
         return AsyncDatasetsResourceWithRawResponse(self._threat_events.datasets)
+
+    @cached_property
+    def indicator_types(self) -> AsyncIndicatorTypesResourceWithRawResponse:
+        return AsyncIndicatorTypesResourceWithRawResponse(self._threat_events.indicator_types)
 
     @cached_property
     def raw(self) -> AsyncRawResourceWithRawResponse:
@@ -943,6 +1065,11 @@ class ThreatEventsResourceWithStreamingResponse:
         self.edit = to_streamed_response_wrapper(
             threat_events.edit,
         )
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                threat_events.get,  # pyright: ignore[reportDeprecated],
+            )
+        )
 
     @cached_property
     def attackers(self) -> AttackersResourceWithStreamingResponse:
@@ -959,6 +1086,10 @@ class ThreatEventsResourceWithStreamingResponse:
     @cached_property
     def datasets(self) -> DatasetsResourceWithStreamingResponse:
         return DatasetsResourceWithStreamingResponse(self._threat_events.datasets)
+
+    @cached_property
+    def indicator_types(self) -> IndicatorTypesResourceWithStreamingResponse:
+        return IndicatorTypesResourceWithStreamingResponse(self._threat_events.indicator_types)
 
     @cached_property
     def raw(self) -> RawResourceWithStreamingResponse:
@@ -1000,6 +1131,11 @@ class AsyncThreatEventsResourceWithStreamingResponse:
         self.edit = async_to_streamed_response_wrapper(
             threat_events.edit,
         )
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                threat_events.get,  # pyright: ignore[reportDeprecated],
+            )
+        )
 
     @cached_property
     def attackers(self) -> AsyncAttackersResourceWithStreamingResponse:
@@ -1016,6 +1152,10 @@ class AsyncThreatEventsResourceWithStreamingResponse:
     @cached_property
     def datasets(self) -> AsyncDatasetsResourceWithStreamingResponse:
         return AsyncDatasetsResourceWithStreamingResponse(self._threat_events.datasets)
+
+    @cached_property
+    def indicator_types(self) -> AsyncIndicatorTypesResourceWithStreamingResponse:
+        return AsyncIndicatorTypesResourceWithStreamingResponse(self._threat_events.indicator_types)
 
     @cached_property
     def raw(self) -> AsyncRawResourceWithStreamingResponse:
