@@ -2,8 +2,8 @@
 
 from ..._models import BaseModel
 
-__all__ = ["NamespaceUpdateResponse"]
+__all__ = ["OrganizationDeleteResponse"]
 
 
-class NamespaceUpdateResponse(BaseModel):
-    pass
+class OrganizationDeleteResponse(BaseModel):
+    id: str

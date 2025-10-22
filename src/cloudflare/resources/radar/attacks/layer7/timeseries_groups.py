@@ -63,7 +63,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
         """
         return TimeseriesGroupsResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/timeseries_groups_v2/) instead."
+    )
     def http_method(
         self,
         *,
@@ -178,7 +180,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupHTTPMethodResponse], ResultWrapper[TimeseriesGroupHTTPMethodResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/timeseries_groups_v2/) instead."
+    )
     def http_version(
         self,
         *,
@@ -337,7 +341,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupHTTPVersionResponse], ResultWrapper[TimeseriesGroupHTTPVersionResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/timeseries_groups_v2/) instead."
+    )
     def industry(
         self,
         *,
@@ -506,7 +512,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupIndustryResponse], ResultWrapper[TimeseriesGroupIndustryResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/timeseries_groups_v2/) instead."
+    )
     def ip_version(
         self,
         *,
@@ -665,7 +673,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupIPVersionResponse], ResultWrapper[TimeseriesGroupIPVersionResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/timeseries_groups_v2/) instead."
+    )
     def managed_rules(
         self,
         *,
@@ -834,7 +844,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupManagedRulesResponse], ResultWrapper[TimeseriesGroupManagedRulesResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/timeseries_groups_v2/) instead."
+    )
     def mitigation_product(
         self,
         *,
@@ -996,7 +1008,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
             ),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/timeseries_groups_v2/) instead."
+    )
     def vertical(
         self,
         *,
@@ -1186,7 +1200,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         """
         return AsyncTimeseriesGroupsResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/timeseries_groups_v2/) instead."
+    )
     async def http_method(
         self,
         *,
@@ -1301,7 +1317,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupHTTPMethodResponse], ResultWrapper[TimeseriesGroupHTTPMethodResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/timeseries_groups_v2/) instead."
+    )
     async def http_version(
         self,
         *,
@@ -1460,7 +1478,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupHTTPVersionResponse], ResultWrapper[TimeseriesGroupHTTPVersionResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/timeseries_groups_v2/) instead."
+    )
     async def industry(
         self,
         *,
@@ -1629,7 +1649,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupIndustryResponse], ResultWrapper[TimeseriesGroupIndustryResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/timeseries_groups_v2/) instead."
+    )
     async def ip_version(
         self,
         *,
@@ -1788,7 +1810,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupIPVersionResponse], ResultWrapper[TimeseriesGroupIPVersionResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/timeseries_groups_v2/) instead."
+    )
     async def managed_rules(
         self,
         *,
@@ -1957,7 +1981,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupManagedRulesResponse], ResultWrapper[TimeseriesGroupManagedRulesResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/timeseries_groups_v2/) instead."
+    )
     async def mitigation_product(
         self,
         *,
@@ -2119,7 +2145,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             ),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/timeseries_groups_v2/) instead."
+    )
     async def vertical(
         self,
         *,

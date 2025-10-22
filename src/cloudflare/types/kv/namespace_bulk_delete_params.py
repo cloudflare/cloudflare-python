@@ -11,6 +11,6 @@ __all__ = ["NamespaceBulkDeleteParams"]
 
 class NamespaceBulkDeleteParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     body: Required[SequenceNotStr[str]]

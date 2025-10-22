@@ -6,6 +6,7 @@ from ...._models import BaseModel
 
 __all__ = [
     "SnapshotGetResponse",
+    "Bond",
     "DHCPLease",
     "Disk",
     "Interface",
@@ -15,6 +16,14 @@ __all__ = [
     "Thermal",
     "Tunnel",
 ]
+
+
+class Bond(BaseModel):
+    name: str
+    """Name of the network interface"""
+
+    status: str
+    """Current status of the network interface"""
 
 
 class DHCPLease(BaseModel):
@@ -253,6 +262,9 @@ class Tunnel(BaseModel):
     connector_id: Optional[str] = None
     """Connector identifier"""
 
+    probed_mtu: Optional[float] = None
+    """MTU as measured between the two ends of the tunnel"""
+
 
 class SnapshotGetResponse(BaseModel):
     count_reclaim_failures: float
@@ -272,6 +284,8 @@ class SnapshotGetResponse(BaseModel):
 
     v: str
     """Version"""
+
+    bonds: Optional[List[Bond]] = None
 
     cpu_count: Optional[float] = None
     """Count of processors/cores"""

@@ -40,7 +40,6 @@ __all__ = [
     "BindingWorkersBindingKindSecretText",
     "BindingWorkersBindingKindSendEmail",
     "BindingWorkersBindingKindService",
-    "BindingWorkersBindingKindTailConsumer",
     "BindingWorkersBindingKindTextBlob",
     "BindingWorkersBindingKindVectorize",
     "BindingWorkersBindingKindVersionMetadata",
@@ -453,17 +452,6 @@ class BindingWorkersBindingKindService(TypedDict, total=False):
     """Optional environment if the Worker utilizes one."""
 
 
-class BindingWorkersBindingKindTailConsumer(TypedDict, total=False):
-    name: Required[str]
-    """A JavaScript variable name for the binding."""
-
-    service: Required[str]
-    """Name of Tail Worker to bind to."""
-
-    type: Required[Literal["tail_consumer"]]
-    """The kind of resource that the binding provides."""
-
-
 class BindingWorkersBindingKindTextBlob(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
@@ -608,7 +596,6 @@ Binding: TypeAlias = Union[
     BindingWorkersBindingKindSecretText,
     BindingWorkersBindingKindSendEmail,
     BindingWorkersBindingKindService,
-    BindingWorkersBindingKindTailConsumer,
     BindingWorkersBindingKindTextBlob,
     BindingWorkersBindingKindVectorize,
     BindingWorkersBindingKindVersionMetadata,

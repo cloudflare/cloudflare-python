@@ -67,7 +67,9 @@ class SummaryResource(SyncAPIResource):
         """
         return SummaryResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar DNS Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/dns/methods/summary_v2/) instead."
+    )
     def cache_hit(
         self,
         *,
@@ -281,7 +283,9 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryCacheHitResponse], ResultWrapper[SummaryCacheHitResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar DNS Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/dns/methods/summary_v2/) instead."
+    )
     def dnssec(
         self,
         *,
@@ -496,7 +500,9 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryDNSSECResponse], ResultWrapper[SummaryDNSSECResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar DNS Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/dns/methods/summary_v2/) instead."
+    )
     def dnssec_aware(
         self,
         *,
@@ -711,7 +717,9 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryDNSSECAwareResponse], ResultWrapper[SummaryDNSSECAwareResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar DNS Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/dns/methods/summary_v2/) instead."
+    )
     def dnssec_e2e(
         self,
         *,
@@ -926,7 +934,9 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryDNSSECE2EResponse], ResultWrapper[SummaryDNSSECE2EResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar DNS Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/dns/methods/summary_v2/) instead."
+    )
     def ip_version(
         self,
         *,
@@ -1140,7 +1150,9 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryIPVersionResponse], ResultWrapper[SummaryIPVersionResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar DNS Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/dns/methods/summary_v2/) instead."
+    )
     def matching_answer(
         self,
         *,
@@ -1354,7 +1366,9 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryMatchingAnswerResponse], ResultWrapper[SummaryMatchingAnswerResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar DNS Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/dns/methods/summary_v2/) instead."
+    )
     def protocol(
         self,
         *,
@@ -1564,7 +1578,9 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryProtocolResponse], ResultWrapper[SummaryProtocolResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar DNS Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/dns/methods/summary_v2/) instead."
+    )
     def query_type(
         self,
         *,
@@ -1688,7 +1704,9 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryQueryTypeResponse], ResultWrapper[SummaryQueryTypeResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar DNS Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/dns/methods/summary_v2/) instead."
+    )
     def response_code(
         self,
         *,
@@ -1883,7 +1901,9 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryResponseCodeResponse], ResultWrapper[SummaryResponseCodeResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar DNS Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/dns/methods/summary_v2/) instead."
+    )
     def response_ttl(
         self,
         *,
@@ -2118,7 +2138,9 @@ class AsyncSummaryResource(AsyncAPIResource):
         """
         return AsyncSummaryResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar DNS Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/dns/methods/summary_v2/) instead."
+    )
     async def cache_hit(
         self,
         *,
@@ -2332,7 +2354,9 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryCacheHitResponse], ResultWrapper[SummaryCacheHitResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar DNS Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/dns/methods/summary_v2/) instead."
+    )
     async def dnssec(
         self,
         *,
@@ -2547,7 +2571,9 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryDNSSECResponse], ResultWrapper[SummaryDNSSECResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar DNS Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/dns/methods/summary_v2/) instead."
+    )
     async def dnssec_aware(
         self,
         *,
@@ -2762,7 +2788,9 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryDNSSECAwareResponse], ResultWrapper[SummaryDNSSECAwareResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar DNS Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/dns/methods/summary_v2/) instead."
+    )
     async def dnssec_e2e(
         self,
         *,
@@ -2977,7 +3005,9 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryDNSSECE2EResponse], ResultWrapper[SummaryDNSSECE2EResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar DNS Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/dns/methods/summary_v2/) instead."
+    )
     async def ip_version(
         self,
         *,
@@ -3191,7 +3221,9 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryIPVersionResponse], ResultWrapper[SummaryIPVersionResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar DNS Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/dns/methods/summary_v2/) instead."
+    )
     async def matching_answer(
         self,
         *,
@@ -3405,7 +3437,9 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryMatchingAnswerResponse], ResultWrapper[SummaryMatchingAnswerResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar DNS Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/dns/methods/summary_v2/) instead."
+    )
     async def protocol(
         self,
         *,
@@ -3615,7 +3649,9 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryProtocolResponse], ResultWrapper[SummaryProtocolResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar DNS Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/dns/methods/summary_v2/) instead."
+    )
     async def query_type(
         self,
         *,
@@ -3739,7 +3775,9 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryQueryTypeResponse], ResultWrapper[SummaryQueryTypeResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar DNS Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/dns/methods/summary_v2/) instead."
+    )
     async def response_code(
         self,
         *,
@@ -3934,7 +3972,9 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryResponseCodeResponse], ResultWrapper[SummaryResponseCodeResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar DNS Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/dns/methods/summary_v2/) instead."
+    )
     async def response_ttl(
         self,
         *,
