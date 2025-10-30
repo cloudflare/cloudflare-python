@@ -26,6 +26,6 @@ class OSVersionInputParam(TypedDict, total=False):
     os_version_extra: str
     """Additional version data.
 
-    For Mac or iOS, the Product Version Extra. For Linux, the kernel release
+    For Mac or iOS, the Product Version Extra. For Linux, the distribution name and
     version. (Mac, iOS, and Linux only).
     """

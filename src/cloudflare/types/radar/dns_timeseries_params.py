@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union, Optional
+from typing import List, Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
@@ -28,6 +28,9 @@ class DNSTimeseriesParams(TypedDict, total=False):
     results from AS174, but includes results from AS3356.
     """
 
+    cache_hit: Annotated[Iterable[bool], PropertyInfo(alias="cacheHit")]
+    """Filters results based on cache status."""
+
     continent: SequenceNotStr[str]
     """Filters results by continent.
 
@@ -50,8 +53,22 @@ class DNSTimeseriesParams(TypedDict, total=False):
     date_start: Annotated[SequenceNotStr[Union[str, datetime]], PropertyInfo(alias="dateStart", format="iso8601")]
     """Start of the date range."""
 
+    dnssec: List[Literal["INVALID", "INSECURE", "SECURE", "OTHER"]]
+    """Filters results based on DNSSEC (DNS Security Extensions) support."""
+
+    dnssec_aware: Annotated[List[Literal["SUPPORTED", "NOT_SUPPORTED"]], PropertyInfo(alias="dnssecAware")]
+    """Filters results based on DNSSEC (DNS Security Extensions) client awareness."""
+
+    dnssec_e2e: Annotated[Iterable[bool], PropertyInfo(alias="dnssecE2e")]
+    """
+    Filters results based on DNSSEC-validated answers by end-to-end security status.
+    """
+
     format: Literal["JSON", "CSV"]
     """Format in which results will be returned."""
+
+    ip_version: Annotated[List[Literal["IPv4", "IPv6"]], PropertyInfo(alias="ipVersion")]
+    """Filters results by IP version (Ipv4 vs. IPv6)."""
 
     location: SequenceNotStr[str]
     """Filters results by location.
@@ -61,106 +78,111 @@ class DNSTimeseriesParams(TypedDict, total=False):
     includes results from PT.
     """
 
+    matching_answer: Annotated[Iterable[bool], PropertyInfo(alias="matchingAnswer")]
+    """Filters results based on whether the queries have a matching answer."""
+
     name: SequenceNotStr[str]
     """Array of names used to label the series in the response."""
 
-    nodata: bool
+    nodata: Iterable[bool]
     """Specifies whether the response includes empty DNS responses (NODATA)."""
 
-    protocol: Literal["UDP", "TCP", "HTTPS", "TLS"]
+    protocol: List[Literal["UDP", "TCP", "HTTPS", "TLS"]]
     """Filters results by DNS transport protocol."""
 
     query_type: Annotated[
-        Optional[
-            Literal[
-                "A",
-                "AAAA",
-                "A6",
-                "AFSDB",
-                "ANY",
-                "APL",
-                "ATMA",
-                "AXFR",
-                "CAA",
-                "CDNSKEY",
-                "CDS",
-                "CERT",
-                "CNAME",
-                "CSYNC",
-                "DHCID",
-                "DLV",
-                "DNAME",
-                "DNSKEY",
-                "DOA",
-                "DS",
-                "EID",
-                "EUI48",
-                "EUI64",
-                "GPOS",
-                "GID",
-                "HINFO",
-                "HIP",
-                "HTTPS",
-                "IPSECKEY",
-                "ISDN",
-                "IXFR",
-                "KEY",
-                "KX",
-                "L32",
-                "L64",
-                "LOC",
-                "LP",
-                "MAILA",
-                "MAILB",
-                "MB",
-                "MD",
-                "MF",
-                "MG",
-                "MINFO",
-                "MR",
-                "MX",
-                "NAPTR",
-                "NB",
-                "NBSTAT",
-                "NID",
-                "NIMLOC",
-                "NINFO",
-                "NS",
-                "NSAP",
-                "NSEC",
-                "NSEC3",
-                "NSEC3PARAM",
-                "NULL",
-                "NXT",
-                "OPENPGPKEY",
-                "OPT",
-                "PTR",
-                "PX",
-                "RKEY",
-                "RP",
-                "RRSIG",
-                "RT",
-                "SIG",
-                "SINK",
-                "SMIMEA",
-                "SOA",
-                "SPF",
-                "SRV",
-                "SSHFP",
-                "SVCB",
-                "TA",
-                "TALINK",
-                "TKEY",
-                "TLSA",
-                "TSIG",
-                "TXT",
-                "UINFO",
-                "UID",
-                "UNSPEC",
-                "URI",
-                "WKS",
-                "X25",
-                "ZONEMD",
+        List[
+            Optional[
+                Literal[
+                    "A",
+                    "AAAA",
+                    "A6",
+                    "AFSDB",
+                    "ANY",
+                    "APL",
+                    "ATMA",
+                    "AXFR",
+                    "CAA",
+                    "CDNSKEY",
+                    "CDS",
+                    "CERT",
+                    "CNAME",
+                    "CSYNC",
+                    "DHCID",
+                    "DLV",
+                    "DNAME",
+                    "DNSKEY",
+                    "DOA",
+                    "DS",
+                    "EID",
+                    "EUI48",
+                    "EUI64",
+                    "GPOS",
+                    "GID",
+                    "HINFO",
+                    "HIP",
+                    "HTTPS",
+                    "IPSECKEY",
+                    "ISDN",
+                    "IXFR",
+                    "KEY",
+                    "KX",
+                    "L32",
+                    "L64",
+                    "LOC",
+                    "LP",
+                    "MAILA",
+                    "MAILB",
+                    "MB",
+                    "MD",
+                    "MF",
+                    "MG",
+                    "MINFO",
+                    "MR",
+                    "MX",
+                    "NAPTR",
+                    "NB",
+                    "NBSTAT",
+                    "NID",
+                    "NIMLOC",
+                    "NINFO",
+                    "NS",
+                    "NSAP",
+                    "NSEC",
+                    "NSEC3",
+                    "NSEC3PARAM",
+                    "NULL",
+                    "NXT",
+                    "OPENPGPKEY",
+                    "OPT",
+                    "PTR",
+                    "PX",
+                    "RKEY",
+                    "RP",
+                    "RRSIG",
+                    "RT",
+                    "SIG",
+                    "SINK",
+                    "SMIMEA",
+                    "SOA",
+                    "SPF",
+                    "SRV",
+                    "SSHFP",
+                    "SVCB",
+                    "TA",
+                    "TALINK",
+                    "TKEY",
+                    "TLSA",
+                    "TSIG",
+                    "TXT",
+                    "UINFO",
+                    "UID",
+                    "UNSPEC",
+                    "URI",
+                    "WKS",
+                    "X25",
+                    "ZONEMD",
+                ]
             ]
         ],
         PropertyInfo(alias="queryType"),
@@ -168,30 +190,40 @@ class DNSTimeseriesParams(TypedDict, total=False):
     """Filters results by DNS query type."""
 
     response_code: Annotated[
-        Literal[
-            "NOERROR",
-            "FORMERR",
-            "SERVFAIL",
-            "NXDOMAIN",
-            "NOTIMP",
-            "REFUSED",
-            "YXDOMAIN",
-            "YXRRSET",
-            "NXRRSET",
-            "NOTAUTH",
-            "NOTZONE",
-            "BADSIG",
-            "BADKEY",
-            "BADTIME",
-            "BADMODE",
-            "BADNAME",
-            "BADALG",
-            "BADTRUNC",
-            "BADCOOKIE",
+        List[
+            Literal[
+                "NOERROR",
+                "FORMERR",
+                "SERVFAIL",
+                "NXDOMAIN",
+                "NOTIMP",
+                "REFUSED",
+                "YXDOMAIN",
+                "YXRRSET",
+                "NXRRSET",
+                "NOTAUTH",
+                "NOTZONE",
+                "BADSIG",
+                "BADKEY",
+                "BADTIME",
+                "BADMODE",
+                "BADNAME",
+                "BADALG",
+                "BADTRUNC",
+                "BADCOOKIE",
+            ]
         ],
         PropertyInfo(alias="responseCode"),
     ]
     """Filters results by DNS response code."""
 
+    response_ttl: Annotated[
+        List[
+            Literal["LTE_1M", "GT_1M_LTE_5M", "GT_5M_LTE_15M", "GT_15M_LTE_1H", "GT_1H_LTE_1D", "GT_1D_LTE_1W", "GT_1W"]
+        ],
+        PropertyInfo(alias="responseTtl"),
+    ]
+    """Filters results by DNS response TTL."""
+
     tld: SequenceNotStr[str]
-    """Filters results by country code top-level domain (ccTLD)."""
+    """Filters results by top-level domain."""

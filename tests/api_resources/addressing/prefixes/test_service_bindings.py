@@ -26,14 +26,6 @@ class TestServiceBindings:
         service_binding = client.addressing.prefixes.service_bindings.create(
             prefix_id="2af39739cc4e3b5910c918468bb89828",
             account_id="258def64c72dae45f3e4c8516e2111f2",
-        )
-        assert_matches_type(Optional[ServiceBinding], service_binding, path=["response"])
-
-    @parametrize
-    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
-        service_binding = client.addressing.prefixes.service_bindings.create(
-            prefix_id="2af39739cc4e3b5910c918468bb89828",
-            account_id="258def64c72dae45f3e4c8516e2111f2",
             cidr="192.0.2.0/24",
             service_id="2db684ee7ca04e159946fd05b99e1bcd",
         )
@@ -44,6 +36,8 @@ class TestServiceBindings:
         response = client.addressing.prefixes.service_bindings.with_raw_response.create(
             prefix_id="2af39739cc4e3b5910c918468bb89828",
             account_id="258def64c72dae45f3e4c8516e2111f2",
+            cidr="192.0.2.0/24",
+            service_id="2db684ee7ca04e159946fd05b99e1bcd",
         )
 
         assert response.is_closed is True
@@ -56,6 +50,8 @@ class TestServiceBindings:
         with client.addressing.prefixes.service_bindings.with_streaming_response.create(
             prefix_id="2af39739cc4e3b5910c918468bb89828",
             account_id="258def64c72dae45f3e4c8516e2111f2",
+            cidr="192.0.2.0/24",
+            service_id="2db684ee7ca04e159946fd05b99e1bcd",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -71,12 +67,16 @@ class TestServiceBindings:
             client.addressing.prefixes.service_bindings.with_raw_response.create(
                 prefix_id="2af39739cc4e3b5910c918468bb89828",
                 account_id="",
+                cidr="192.0.2.0/24",
+                service_id="2db684ee7ca04e159946fd05b99e1bcd",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `prefix_id` but received ''"):
             client.addressing.prefixes.service_bindings.with_raw_response.create(
                 prefix_id="",
                 account_id="258def64c72dae45f3e4c8516e2111f2",
+                cidr="192.0.2.0/24",
+                service_id="2db684ee7ca04e159946fd05b99e1bcd",
             )
 
     @parametrize
@@ -258,14 +258,6 @@ class TestAsyncServiceBindings:
         service_binding = await async_client.addressing.prefixes.service_bindings.create(
             prefix_id="2af39739cc4e3b5910c918468bb89828",
             account_id="258def64c72dae45f3e4c8516e2111f2",
-        )
-        assert_matches_type(Optional[ServiceBinding], service_binding, path=["response"])
-
-    @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        service_binding = await async_client.addressing.prefixes.service_bindings.create(
-            prefix_id="2af39739cc4e3b5910c918468bb89828",
-            account_id="258def64c72dae45f3e4c8516e2111f2",
             cidr="192.0.2.0/24",
             service_id="2db684ee7ca04e159946fd05b99e1bcd",
         )
@@ -276,6 +268,8 @@ class TestAsyncServiceBindings:
         response = await async_client.addressing.prefixes.service_bindings.with_raw_response.create(
             prefix_id="2af39739cc4e3b5910c918468bb89828",
             account_id="258def64c72dae45f3e4c8516e2111f2",
+            cidr="192.0.2.0/24",
+            service_id="2db684ee7ca04e159946fd05b99e1bcd",
         )
 
         assert response.is_closed is True
@@ -288,6 +282,8 @@ class TestAsyncServiceBindings:
         async with async_client.addressing.prefixes.service_bindings.with_streaming_response.create(
             prefix_id="2af39739cc4e3b5910c918468bb89828",
             account_id="258def64c72dae45f3e4c8516e2111f2",
+            cidr="192.0.2.0/24",
+            service_id="2db684ee7ca04e159946fd05b99e1bcd",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -303,12 +299,16 @@ class TestAsyncServiceBindings:
             await async_client.addressing.prefixes.service_bindings.with_raw_response.create(
                 prefix_id="2af39739cc4e3b5910c918468bb89828",
                 account_id="",
+                cidr="192.0.2.0/24",
+                service_id="2db684ee7ca04e159946fd05b99e1bcd",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `prefix_id` but received ''"):
             await async_client.addressing.prefixes.service_bindings.with_raw_response.create(
                 prefix_id="",
                 account_id="258def64c72dae45f3e4c8516e2111f2",
+                cidr="192.0.2.0/24",
+                service_id="2db684ee7ca04e159946fd05b99e1bcd",
             )
 
     @parametrize

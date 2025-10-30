@@ -79,6 +79,9 @@ class ConfigIngressOriginRequest(TypedDict, total=False):
     keep_alive_timeout: Annotated[int, PropertyInfo(alias="keepAliveTimeout")]
     """Timeout after which an idle keepalive connection can be discarded."""
 
+    match_sn_ito_host: Annotated[bool, PropertyInfo(alias="matchSNItoHost")]
+    """Auto configure the Hostname on the origin server certificate."""
+
     no_happy_eyeballs: Annotated[bool, PropertyInfo(alias="noHappyEyeballs")]
     """
     Disable the “happy eyeballs” algorithm for IPv4/IPv6 fallback if your local
@@ -188,6 +191,9 @@ class ConfigOriginRequest(TypedDict, total=False):
 
     keep_alive_timeout: Annotated[int, PropertyInfo(alias="keepAliveTimeout")]
     """Timeout after which an idle keepalive connection can be discarded."""
+
+    match_sn_ito_host: Annotated[bool, PropertyInfo(alias="matchSNItoHost")]
+    """Auto configure the Hostname on the origin server certificate."""
 
     no_happy_eyeballs: Annotated[bool, PropertyInfo(alias="noHappyEyeballs")]
     """

@@ -578,7 +578,7 @@ class TestDatabase:
             )
 
     @parametrize
-    def test_method_query(self, client: Cloudflare) -> None:
+    def test_method_query_overload_1(self, client: Cloudflare) -> None:
         database = client.d1.database.query(
             database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -587,7 +587,7 @@ class TestDatabase:
         assert_matches_type(SyncSinglePage[QueryResult], database, path=["response"])
 
     @parametrize
-    def test_method_query_with_all_params(self, client: Cloudflare) -> None:
+    def test_method_query_with_all_params_overload_1(self, client: Cloudflare) -> None:
         database = client.d1.database.query(
             database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -597,7 +597,7 @@ class TestDatabase:
         assert_matches_type(SyncSinglePage[QueryResult], database, path=["response"])
 
     @parametrize
-    def test_raw_response_query(self, client: Cloudflare) -> None:
+    def test_raw_response_query_overload_1(self, client: Cloudflare) -> None:
         response = client.d1.database.with_raw_response.query(
             database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -610,7 +610,7 @@ class TestDatabase:
         assert_matches_type(SyncSinglePage[QueryResult], database, path=["response"])
 
     @parametrize
-    def test_streaming_response_query(self, client: Cloudflare) -> None:
+    def test_streaming_response_query_overload_1(self, client: Cloudflare) -> None:
         with client.d1.database.with_streaming_response.query(
             database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -625,7 +625,7 @@ class TestDatabase:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_path_params_query(self, client: Cloudflare) -> None:
+    def test_path_params_query_overload_1(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.d1.database.with_raw_response.query(
                 database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
@@ -641,7 +641,60 @@ class TestDatabase:
             )
 
     @parametrize
-    def test_method_raw(self, client: Cloudflare) -> None:
+    def test_method_query_overload_2(self, client: Cloudflare) -> None:
+        database = client.d1.database.query(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
+        )
+        assert_matches_type(SyncSinglePage[QueryResult], database, path=["response"])
+
+    @parametrize
+    def test_raw_response_query_overload_2(self, client: Cloudflare) -> None:
+        response = client.d1.database.with_raw_response.query(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        database = response.parse()
+        assert_matches_type(SyncSinglePage[QueryResult], database, path=["response"])
+
+    @parametrize
+    def test_streaming_response_query_overload_2(self, client: Cloudflare) -> None:
+        with client.d1.database.with_streaming_response.query(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            database = response.parse()
+            assert_matches_type(SyncSinglePage[QueryResult], database, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_query_overload_2(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.d1.database.with_raw_response.query(
+                database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                account_id="",
+                body=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_id` but received ''"):
+            client.d1.database.with_raw_response.query(
+                database_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
+            )
+
+    @parametrize
+    def test_method_raw_overload_1(self, client: Cloudflare) -> None:
         database = client.d1.database.raw(
             database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -650,7 +703,7 @@ class TestDatabase:
         assert_matches_type(SyncSinglePage[DatabaseRawResponse], database, path=["response"])
 
     @parametrize
-    def test_method_raw_with_all_params(self, client: Cloudflare) -> None:
+    def test_method_raw_with_all_params_overload_1(self, client: Cloudflare) -> None:
         database = client.d1.database.raw(
             database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -660,7 +713,7 @@ class TestDatabase:
         assert_matches_type(SyncSinglePage[DatabaseRawResponse], database, path=["response"])
 
     @parametrize
-    def test_raw_response_raw(self, client: Cloudflare) -> None:
+    def test_raw_response_raw_overload_1(self, client: Cloudflare) -> None:
         response = client.d1.database.with_raw_response.raw(
             database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -673,7 +726,7 @@ class TestDatabase:
         assert_matches_type(SyncSinglePage[DatabaseRawResponse], database, path=["response"])
 
     @parametrize
-    def test_streaming_response_raw(self, client: Cloudflare) -> None:
+    def test_streaming_response_raw_overload_1(self, client: Cloudflare) -> None:
         with client.d1.database.with_streaming_response.raw(
             database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -688,7 +741,7 @@ class TestDatabase:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_path_params_raw(self, client: Cloudflare) -> None:
+    def test_path_params_raw_overload_1(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.d1.database.with_raw_response.raw(
                 database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
@@ -701,6 +754,59 @@ class TestDatabase:
                 database_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 sql="SELECT * FROM myTable WHERE field = ? OR field = ?;",
+            )
+
+    @parametrize
+    def test_method_raw_overload_2(self, client: Cloudflare) -> None:
+        database = client.d1.database.raw(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
+        )
+        assert_matches_type(SyncSinglePage[DatabaseRawResponse], database, path=["response"])
+
+    @parametrize
+    def test_raw_response_raw_overload_2(self, client: Cloudflare) -> None:
+        response = client.d1.database.with_raw_response.raw(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        database = response.parse()
+        assert_matches_type(SyncSinglePage[DatabaseRawResponse], database, path=["response"])
+
+    @parametrize
+    def test_streaming_response_raw_overload_2(self, client: Cloudflare) -> None:
+        with client.d1.database.with_streaming_response.raw(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            database = response.parse()
+            assert_matches_type(SyncSinglePage[DatabaseRawResponse], database, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_raw_overload_2(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.d1.database.with_raw_response.raw(
+                database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                account_id="",
+                body=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_id` but received ''"):
+            client.d1.database.with_raw_response.raw(
+                database_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
             )
 
 
@@ -1262,7 +1368,7 @@ class TestAsyncDatabase:
             )
 
     @parametrize
-    async def test_method_query(self, async_client: AsyncCloudflare) -> None:
+    async def test_method_query_overload_1(self, async_client: AsyncCloudflare) -> None:
         database = await async_client.d1.database.query(
             database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1271,7 +1377,7 @@ class TestAsyncDatabase:
         assert_matches_type(AsyncSinglePage[QueryResult], database, path=["response"])
 
     @parametrize
-    async def test_method_query_with_all_params(self, async_client: AsyncCloudflare) -> None:
+    async def test_method_query_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
         database = await async_client.d1.database.query(
             database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1281,7 +1387,7 @@ class TestAsyncDatabase:
         assert_matches_type(AsyncSinglePage[QueryResult], database, path=["response"])
 
     @parametrize
-    async def test_raw_response_query(self, async_client: AsyncCloudflare) -> None:
+    async def test_raw_response_query_overload_1(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.d1.database.with_raw_response.query(
             database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1294,7 +1400,7 @@ class TestAsyncDatabase:
         assert_matches_type(AsyncSinglePage[QueryResult], database, path=["response"])
 
     @parametrize
-    async def test_streaming_response_query(self, async_client: AsyncCloudflare) -> None:
+    async def test_streaming_response_query_overload_1(self, async_client: AsyncCloudflare) -> None:
         async with async_client.d1.database.with_streaming_response.query(
             database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1309,7 +1415,7 @@ class TestAsyncDatabase:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_path_params_query(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_query_overload_1(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.d1.database.with_raw_response.query(
                 database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
@@ -1325,7 +1431,60 @@ class TestAsyncDatabase:
             )
 
     @parametrize
-    async def test_method_raw(self, async_client: AsyncCloudflare) -> None:
+    async def test_method_query_overload_2(self, async_client: AsyncCloudflare) -> None:
+        database = await async_client.d1.database.query(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
+        )
+        assert_matches_type(AsyncSinglePage[QueryResult], database, path=["response"])
+
+    @parametrize
+    async def test_raw_response_query_overload_2(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.d1.database.with_raw_response.query(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        database = await response.parse()
+        assert_matches_type(AsyncSinglePage[QueryResult], database, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_query_overload_2(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.d1.database.with_streaming_response.query(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            database = await response.parse()
+            assert_matches_type(AsyncSinglePage[QueryResult], database, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_query_overload_2(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.d1.database.with_raw_response.query(
+                database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                account_id="",
+                body=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_id` but received ''"):
+            await async_client.d1.database.with_raw_response.query(
+                database_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
+            )
+
+    @parametrize
+    async def test_method_raw_overload_1(self, async_client: AsyncCloudflare) -> None:
         database = await async_client.d1.database.raw(
             database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1334,7 +1493,7 @@ class TestAsyncDatabase:
         assert_matches_type(AsyncSinglePage[DatabaseRawResponse], database, path=["response"])
 
     @parametrize
-    async def test_method_raw_with_all_params(self, async_client: AsyncCloudflare) -> None:
+    async def test_method_raw_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
         database = await async_client.d1.database.raw(
             database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1344,7 +1503,7 @@ class TestAsyncDatabase:
         assert_matches_type(AsyncSinglePage[DatabaseRawResponse], database, path=["response"])
 
     @parametrize
-    async def test_raw_response_raw(self, async_client: AsyncCloudflare) -> None:
+    async def test_raw_response_raw_overload_1(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.d1.database.with_raw_response.raw(
             database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1357,7 +1516,7 @@ class TestAsyncDatabase:
         assert_matches_type(AsyncSinglePage[DatabaseRawResponse], database, path=["response"])
 
     @parametrize
-    async def test_streaming_response_raw(self, async_client: AsyncCloudflare) -> None:
+    async def test_streaming_response_raw_overload_1(self, async_client: AsyncCloudflare) -> None:
         async with async_client.d1.database.with_streaming_response.raw(
             database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1372,7 +1531,7 @@ class TestAsyncDatabase:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_path_params_raw(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_raw_overload_1(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.d1.database.with_raw_response.raw(
                 database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
@@ -1385,4 +1544,57 @@ class TestAsyncDatabase:
                 database_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 sql="SELECT * FROM myTable WHERE field = ? OR field = ?;",
+            )
+
+    @parametrize
+    async def test_method_raw_overload_2(self, async_client: AsyncCloudflare) -> None:
+        database = await async_client.d1.database.raw(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
+        )
+        assert_matches_type(AsyncSinglePage[DatabaseRawResponse], database, path=["response"])
+
+    @parametrize
+    async def test_raw_response_raw_overload_2(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.d1.database.with_raw_response.raw(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        database = await response.parse()
+        assert_matches_type(AsyncSinglePage[DatabaseRawResponse], database, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_raw_overload_2(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.d1.database.with_streaming_response.raw(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            database = await response.parse()
+            assert_matches_type(AsyncSinglePage[DatabaseRawResponse], database, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_raw_overload_2(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.d1.database.with_raw_response.raw(
+                database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                account_id="",
+                body=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_id` but received ''"):
+            await async_client.d1.database.with_raw_response.raw(
+                database_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
             )

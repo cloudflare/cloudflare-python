@@ -100,8 +100,6 @@ class EventsResource(SyncAPIResource):
 
           per_page: Number of entries per page.
 
-          prefix: Network prefix, IPv4 or IPv6.
-
           sort_by: Sorts results by the specified field.
 
           sort_order: Sort order.
@@ -223,8 +221,6 @@ class AsyncEventsResource(AsyncAPIResource):
           page: Current page number, starting from 1.
 
           per_page: Number of entries per page.
-
-          prefix: Network prefix, IPv4 or IPv6.
 
           sort_by: Sorts results by the specified field.
 

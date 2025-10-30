@@ -31,7 +31,7 @@ class TestSearch:
             exclude=["ADM1S"],
             format="JSON",
             include=["ADM1S"],
-            limit=5,
+            limit=1,
             limit_per_group=0,
         )
         assert_matches_type(SearchGlobalResponse, search, path=["response"])
@@ -80,7 +80,7 @@ class TestAsyncSearch:
             exclude=["ADM1S"],
             format="JSON",
             include=["ADM1S"],
-            limit=5,
+            limit=1,
             limit_per_group=0,
         )
         assert_matches_type(SearchGlobalResponse, search, path=["response"])

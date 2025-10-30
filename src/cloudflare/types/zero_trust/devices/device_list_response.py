@@ -103,7 +103,10 @@ class DeviceListResponse(BaseModel):
     """
 
     public_ip: Optional[str] = None
-    """The public IP address of the WARP client."""
+    """
+    **Deprecated**: IP information is provided by DEX - see
+    https://developers.cloudflare.com/api/resources/zero_trust/subresources/dex/subresources/fleet_status/subresources/devices/methods/list/
+    """
 
     serial_number: Optional[str] = None
     """The device serial number."""

@@ -27,15 +27,26 @@ class TestTop:
     def test_method_ases_with_all_params(self, client: Cloudflare) -> None:
         top = client.radar.dns.top.ases(
             asn=["string"],
+            cache_hit=[True],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
-            domain=["string"],
+            dnssec=["INVALID"],
+            dnssec_aware=["SUPPORTED"],
+            dnssec_e2e=[True],
+            domain=["google.com"],
             format="JSON",
-            limit=5,
+            ip_version=["IPv4"],
+            limit=1,
             location=["string"],
+            matching_answer=[True],
             name=["main_series"],
+            nodata=[True],
+            protocol=["UDP"],
+            query_type=["A"],
+            response_code=["NOERROR"],
+            response_ttl=["LTE_1M"],
         )
         assert_matches_type(TopAsesResponse, top, path=["response"])
 
@@ -68,15 +79,27 @@ class TestTop:
     def test_method_locations_with_all_params(self, client: Cloudflare) -> None:
         top = client.radar.dns.top.locations(
             asn=["string"],
+            cache_hit=[True],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
-            domain=["string"],
+            dnssec=["INVALID"],
+            dnssec_aware=["SUPPORTED"],
+            dnssec_e2e=[True],
+            domain=["google.com"],
             format="JSON",
-            limit=5,
+            ip_version=["IPv4"],
+            limit=1,
             location=["string"],
+            matching_answer=[True],
             name=["main_series"],
+            nodata=[True],
+            protocol=["UDP"],
+            query_type=["A"],
+            response_code=["NOERROR"],
+            response_ttl=["LTE_1M"],
+            tld=["com"],
         )
         assert_matches_type(TopLocationsResponse, top, path=["response"])
 
@@ -115,15 +138,26 @@ class TestAsyncTop:
     async def test_method_ases_with_all_params(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.dns.top.ases(
             asn=["string"],
+            cache_hit=[True],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
-            domain=["string"],
+            dnssec=["INVALID"],
+            dnssec_aware=["SUPPORTED"],
+            dnssec_e2e=[True],
+            domain=["google.com"],
             format="JSON",
-            limit=5,
+            ip_version=["IPv4"],
+            limit=1,
             location=["string"],
+            matching_answer=[True],
             name=["main_series"],
+            nodata=[True],
+            protocol=["UDP"],
+            query_type=["A"],
+            response_code=["NOERROR"],
+            response_ttl=["LTE_1M"],
         )
         assert_matches_type(TopAsesResponse, top, path=["response"])
 
@@ -156,15 +190,27 @@ class TestAsyncTop:
     async def test_method_locations_with_all_params(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.dns.top.locations(
             asn=["string"],
+            cache_hit=[True],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
-            domain=["string"],
+            dnssec=["INVALID"],
+            dnssec_aware=["SUPPORTED"],
+            dnssec_e2e=[True],
+            domain=["google.com"],
             format="JSON",
-            limit=5,
+            ip_version=["IPv4"],
+            limit=1,
             location=["string"],
+            matching_answer=[True],
             name=["main_series"],
+            nodata=[True],
+            protocol=["UDP"],
+            query_type=["A"],
+            response_code=["NOERROR"],
+            response_ttl=["LTE_1M"],
+            tld=["com"],
         )
         assert_matches_type(TopLocationsResponse, top, path=["response"])
 

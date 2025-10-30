@@ -21,7 +21,7 @@ class SettingEditParams(TypedDict, total=False):
     observability: Optional[Observability]
     """Observability settings for the Worker."""
 
-    tags: SequenceNotStr[str]
+    tags: Optional[SequenceNotStr[str]]
     """Tags associated with the Worker."""
 
     tail_consumers: Optional[Iterable[ConsumerScriptParam]]

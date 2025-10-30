@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Required, TypedDict
 
 __all__ = ["DEXTestUpdateParams", "Data", "TargetPolicy"]
 
@@ -36,19 +36,19 @@ class DEXTestUpdateParams(TypedDict, total=False):
 
 
 class Data(TypedDict, total=False):
-    host: Required[str]
+    host: str
     """The desired endpoint to test."""
 
-    kind: Required[Literal["http", "traceroute"]]
+    kind: str
     """The type of test."""
 
-    method: Literal["GET"]
+    method: str
     """The HTTP request method type."""
 
 
 class TargetPolicy(TypedDict, total=False):
-    id: Required[str]
-    """API Resource UUID tag."""
+    id: str
+    """The id of the DEX rule"""
 
     default: bool
     """Whether the DEX rule is the account default"""

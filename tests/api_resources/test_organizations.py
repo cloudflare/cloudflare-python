@@ -12,6 +12,7 @@ from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.organizations import (
     Organization,
+    OrganizationDeleteResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -174,7 +175,7 @@ class TestOrganizations:
         organization = client.organizations.delete(
             "a7b9c3d2e8f4g1h5i6j0k9l2m3n7o4p8",
         )
-        assert organization is None
+        assert_matches_type(OrganizationDeleteResponse, organization, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -185,7 +186,7 @@ class TestOrganizations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         organization = response.parse()
-        assert organization is None
+        assert_matches_type(OrganizationDeleteResponse, organization, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -196,7 +197,7 @@ class TestOrganizations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             organization = response.parse()
-            assert organization is None
+            assert_matches_type(OrganizationDeleteResponse, organization, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -405,7 +406,7 @@ class TestAsyncOrganizations:
         organization = await async_client.organizations.delete(
             "a7b9c3d2e8f4g1h5i6j0k9l2m3n7o4p8",
         )
-        assert organization is None
+        assert_matches_type(OrganizationDeleteResponse, organization, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -416,7 +417,7 @@ class TestAsyncOrganizations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         organization = await response.parse()
-        assert organization is None
+        assert_matches_type(OrganizationDeleteResponse, organization, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -427,7 +428,7 @@ class TestAsyncOrganizations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             organization = await response.parse()
-            assert organization is None
+            assert_matches_type(OrganizationDeleteResponse, organization, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
