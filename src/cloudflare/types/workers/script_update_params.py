@@ -690,7 +690,7 @@ class Metadata(TypedDict, total=False):
     tags: SequenceNotStr[str]
     """List of strings to use as tags for this Worker."""
 
-    tail_consumers: Iterable[ConsumerScriptParam]
+    tail_consumers: Optional[Iterable[ConsumerScriptParam]]
     """List of Workers that will consume logs from the attached Worker."""
 
     usage_model: Literal["standard", "bundled", "unbound"]

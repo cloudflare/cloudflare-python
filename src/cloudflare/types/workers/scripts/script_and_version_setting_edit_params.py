@@ -602,10 +602,10 @@ class Settings(TypedDict, total=False):
     [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
     """
 
-    tags: SequenceNotStr[str]
+    tags: Optional[SequenceNotStr[str]]
     """Tags associated with the Worker."""
 
-    tail_consumers: Iterable[ConsumerScriptParam]
+    tail_consumers: Optional[Iterable[ConsumerScriptParam]]
     """List of Workers that will consume logs from the attached Worker."""
 
     usage_model: Literal["standard", "bundled", "unbound"]

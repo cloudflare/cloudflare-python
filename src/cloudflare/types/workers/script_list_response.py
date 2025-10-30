@@ -7,7 +7,7 @@ from typing_extensions import Literal
 from ..._models import BaseModel
 from .scripts.consumer_script import ConsumerScript
 
-__all__ = ["ScriptUpdateResponse", "NamedHandler", "Observability", "ObservabilityLogs", "Placement"]
+__all__ = ["ScriptListResponse", "NamedHandler", "Observability", "ObservabilityLogs", "Placement", "Route"]
 
 
 class NamedHandler(BaseModel):
@@ -73,9 +73,21 @@ class Placement(BaseModel):
     """
 
 
-class ScriptUpdateResponse(BaseModel):
-    startup_time_ms: int
+class Route(BaseModel):
+    id: str
+    """Identifier."""
 
+    pattern: str
+    """Pattern to match incoming requests against.
+
+    [Learn more](https://developers.cloudflare.com/workers/configuration/routing/routes/#matching-behavior).
+    """
+
+    script: Optional[str] = None
+    """Name of the script to run if the route matches."""
+
+
+class ScriptListResponse(BaseModel):
     id: Optional[str] = None
     """The name used to identify the script."""
 
@@ -95,9 +107,6 @@ class ScriptUpdateResponse(BaseModel):
 
     created_on: Optional[datetime] = None
     """When the script was created."""
-
-    entry_point: Optional[str] = None
-    """The entry point for the script."""
 
     etag: Optional[str] = None
     """Hashed script content, can be used in a If-None-Match header when updating."""
@@ -144,6 +153,9 @@ class ScriptUpdateResponse(BaseModel):
     placement_mode: Optional[Literal["smart"]] = None
 
     placement_status: Optional[Literal["SUCCESS", "UNSUPPORTED_APPLICATION", "INSUFFICIENT_INVOCATIONS"]] = None
+
+    routes: Optional[List[Route]] = None
+    """Routes associated with the Worker."""
 
     tag: Optional[str] = None
     """The immutable ID of the script."""

@@ -7,7 +7,7 @@ from typing_extensions import Literal
 from ..._models import BaseModel
 from .scripts.consumer_script import ConsumerScript
 
-__all__ = ["Script", "NamedHandler", "Placement"]
+__all__ = ["Script", "NamedHandler", "Observability", "ObservabilityLogs", "Placement"]
 
 
 class NamedHandler(BaseModel):
@@ -16,6 +16,41 @@ class NamedHandler(BaseModel):
 
     name: Optional[str] = None
     """The name of the export."""
+
+
+class ObservabilityLogs(BaseModel):
+    enabled: bool
+    """Whether logs are enabled for the Worker."""
+
+    invocation_logs: bool
+    """
+    Whether
+    [invocation logs](https://developers.cloudflare.com/workers/observability/logs/workers-logs/#invocation-logs)
+    are enabled for the Worker.
+    """
+
+    destinations: Optional[List[str]] = None
+    """A list of destinations where logs will be exported to."""
+
+    head_sampling_rate: Optional[float] = None
+    """The sampling rate for logs. From 0 to 1 (1 = 100%, 0.1 = 10%). Default is 1."""
+
+    persist: Optional[bool] = None
+    """Whether log persistence is enabled for the Worker."""
+
+
+class Observability(BaseModel):
+    enabled: bool
+    """Whether observability is enabled for the Worker."""
+
+    head_sampling_rate: Optional[float] = None
+    """The sampling rate for incoming requests.
+
+    From 0 to 1 (1 = 100%, 0.1 = 10%). Default is 1.
+    """
+
+    logs: Optional[ObservabilityLogs] = None
+    """Log settings for the Worker."""
 
 
 class Placement(BaseModel):
@@ -40,7 +75,7 @@ class Placement(BaseModel):
 
 class Script(BaseModel):
     id: Optional[str] = None
-    """The id of the script in the Workers system. Usually the script name."""
+    """The name used to identify the script."""
 
     compatibility_date: Optional[str] = None
     """Date indicating targeted support in the Workers runtime.
@@ -92,6 +127,9 @@ class Script(BaseModel):
     entrypoints.
     """
 
+    observability: Optional[Observability] = None
+    """Observability settings for the Worker."""
+
     placement: Optional[Placement] = None
     """
     Configuration for
@@ -109,6 +147,12 @@ class Script(BaseModel):
     Status of
     [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
     """
+
+    tag: Optional[str] = None
+    """The immutable ID of the script."""
+
+    tags: Optional[List[str]] = None
+    """Tags associated with the Worker."""
 
     tail_consumers: Optional[List[ConsumerScript]] = None
     """List of Workers that will consume logs from the attached Worker."""

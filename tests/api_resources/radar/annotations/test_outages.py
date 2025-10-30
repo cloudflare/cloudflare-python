@@ -34,7 +34,7 @@ class TestOutages:
             date_range="7d",
             date_start=parse_datetime("2023-09-01T11:41:33.782Z"),
             format="JSON",
-            limit=5,
+            limit=1,
             location="US",
             offset=0,
         )
@@ -72,7 +72,7 @@ class TestOutages:
             date_range="7d",
             date_start=parse_datetime("2023-09-01T11:41:33.782Z"),
             format="JSON",
-            limit=5,
+            limit=1,
         )
         assert_matches_type(OutageLocationsResponse, outage, path=["response"])
 
@@ -115,7 +115,7 @@ class TestAsyncOutages:
             date_range="7d",
             date_start=parse_datetime("2023-09-01T11:41:33.782Z"),
             format="JSON",
-            limit=5,
+            limit=1,
             location="US",
             offset=0,
         )
@@ -153,7 +153,7 @@ class TestAsyncOutages:
             date_range="7d",
             date_start=parse_datetime("2023-09-01T11:41:33.782Z"),
             format="JSON",
-            limit=5,
+            limit=1,
         )
         assert_matches_type(OutageLocationsResponse, outage, path=["response"])
 

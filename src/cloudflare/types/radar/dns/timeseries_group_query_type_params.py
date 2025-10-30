@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import List, Union, Iterable
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
@@ -71,37 +71,39 @@ class TimeseriesGroupQueryTypeParams(TypedDict, total=False):
     name: SequenceNotStr[str]
     """Array of names used to label the series in the response."""
 
-    nodata: bool
+    nodata: Iterable[bool]
     """Specifies whether the response includes empty DNS responses (NODATA)."""
 
-    protocol: Literal["UDP", "TCP", "HTTPS", "TLS"]
+    protocol: List[Literal["UDP", "TCP", "HTTPS", "TLS"]]
     """Filters results by DNS transport protocol."""
 
     response_code: Annotated[
-        Literal[
-            "NOERROR",
-            "FORMERR",
-            "SERVFAIL",
-            "NXDOMAIN",
-            "NOTIMP",
-            "REFUSED",
-            "YXDOMAIN",
-            "YXRRSET",
-            "NXRRSET",
-            "NOTAUTH",
-            "NOTZONE",
-            "BADSIG",
-            "BADKEY",
-            "BADTIME",
-            "BADMODE",
-            "BADNAME",
-            "BADALG",
-            "BADTRUNC",
-            "BADCOOKIE",
+        List[
+            Literal[
+                "NOERROR",
+                "FORMERR",
+                "SERVFAIL",
+                "NXDOMAIN",
+                "NOTIMP",
+                "REFUSED",
+                "YXDOMAIN",
+                "YXRRSET",
+                "NXRRSET",
+                "NOTAUTH",
+                "NOTZONE",
+                "BADSIG",
+                "BADKEY",
+                "BADTIME",
+                "BADMODE",
+                "BADNAME",
+                "BADALG",
+                "BADTRUNC",
+                "BADCOOKIE",
+            ]
         ],
         PropertyInfo(alias="responseCode"),
     ]
     """Filters results by DNS response code."""
 
     tld: SequenceNotStr[str]
-    """Filters results by country code top-level domain (ccTLD)."""
+    """Filters results by top-level domain."""
