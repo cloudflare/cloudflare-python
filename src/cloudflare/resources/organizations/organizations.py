@@ -71,8 +71,10 @@ class OrganizationsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Organization:
-        """
-        Create a new organization for a user.
+        """Create a new organization for a user.
+
+        (Currently in Closed Beta - see
+        https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
           extra_headers: Send extra headers
@@ -117,8 +119,10 @@ class OrganizationsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Organization:
-        """
-        Modify organization
+        """Modify organization.
+
+        (Currently in Closed Beta - see
+        https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
           extra_headers: Send extra headers
@@ -167,8 +171,10 @@ class OrganizationsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[Organization]:
-        """
-        Retrieve a list of organizations a particular user has access to.
+        """Retrieve a list of organizations a particular user has access to.
+
+        (Currently in
+        Closed Beta - see https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
           id: Only return organizations with the specified IDs (ex. id=foo&id=bar). Send
@@ -227,7 +233,8 @@ class OrganizationsResource(SyncAPIResource):
         """Delete an organization.
 
         The organization MUST be empty before deleting. It must
-        not contain any sub-organizations, accounts, members or users.
+        not contain any sub-organizations, accounts, members or users. (Currently in
+        Closed Beta - see https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
           extra_headers: Send extra headers
@@ -263,8 +270,10 @@ class OrganizationsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Organization:
-        """
-        Retrieve the details of a certain organization.
+        """Retrieve the details of a certain organization.
+
+        (Currently in Closed Beta - see
+        https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
           extra_headers: Send extra headers
@@ -327,8 +336,10 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Organization:
-        """
-        Create a new organization for a user.
+        """Create a new organization for a user.
+
+        (Currently in Closed Beta - see
+        https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
           extra_headers: Send extra headers
@@ -373,8 +384,10 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Organization:
-        """
-        Modify organization
+        """Modify organization.
+
+        (Currently in Closed Beta - see
+        https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
           extra_headers: Send extra headers
@@ -423,8 +436,10 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Organization, AsyncSinglePage[Organization]]:
-        """
-        Retrieve a list of organizations a particular user has access to.
+        """Retrieve a list of organizations a particular user has access to.
+
+        (Currently in
+        Closed Beta - see https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
           id: Only return organizations with the specified IDs (ex. id=foo&id=bar). Send
@@ -483,7 +498,8 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         """Delete an organization.
 
         The organization MUST be empty before deleting. It must
-        not contain any sub-organizations, accounts, members or users.
+        not contain any sub-organizations, accounts, members or users. (Currently in
+        Closed Beta - see https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
           extra_headers: Send extra headers
@@ -519,8 +535,10 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Organization:
-        """
-        Retrieve the details of a certain organization.
+        """Retrieve the details of a certain organization.
+
+        (Currently in Closed Beta - see
+        https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
           extra_headers: Send extra headers
