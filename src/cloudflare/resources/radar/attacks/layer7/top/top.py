@@ -186,9 +186,7 @@ class TopResource(SyncAPIResource):
             cast_to=cast(Type[TopAttacksResponse], ResultWrapper[TopAttacksResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar Attacks Layer 7 Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     def industry(
         self,
         *,
@@ -346,9 +344,7 @@ class TopResource(SyncAPIResource):
             cast_to=cast(Type[TopIndustryResponse], ResultWrapper[TopIndustryResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar Attacks Layer 7 Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     def vertical(
         self,
         *,
@@ -648,9 +644,7 @@ class AsyncTopResource(AsyncAPIResource):
             cast_to=cast(Type[TopAttacksResponse], ResultWrapper[TopAttacksResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar Attacks Layer 7 Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     async def industry(
         self,
         *,
@@ -808,9 +802,7 @@ class AsyncTopResource(AsyncAPIResource):
             cast_to=cast(Type[TopIndustryResponse], ResultWrapper[TopIndustryResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar Attacks Layer 7 Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     async def vertical(
         self,
         *,

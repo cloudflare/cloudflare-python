@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
+from typing_extensions import Literal
 
 from ...._models import BaseModel
 
@@ -8,19 +9,19 @@ __all__ = ["DEXTestListResponse", "Data", "TargetPolicy"]
 
 
 class Data(BaseModel):
-    host: Optional[str] = None
+    host: str
     """The desired endpoint to test."""
 
-    kind: Optional[str] = None
+    kind: Literal["http", "traceroute"]
     """The type of test."""
 
-    method: Optional[str] = None
+    method: Optional[Literal["GET"]] = None
     """The HTTP request method type."""
 
 
 class TargetPolicy(BaseModel):
-    id: Optional[str] = None
-    """The id of the DEX rule"""
+    id: str
+    """API Resource UUID tag."""
 
     default: Optional[bool] = None
     """Whether the DEX rule is the account default"""

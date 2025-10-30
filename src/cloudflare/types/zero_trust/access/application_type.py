@@ -5,17 +5,5 @@ from typing_extensions import Literal, TypeAlias
 __all__ = ["ApplicationType"]
 
 ApplicationType: TypeAlias = Literal[
-    "self_hosted",
-    "saas",
-    "ssh",
-    "vnc",
-    "app_launcher",
-    "warp",
-    "biso",
-    "bookmark",
-    "dash_sso",
-    "infrastructure",
-    "rdp",
-    "mcp",
-    "mcp_portal",
+    "self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso", "infrastructure", "rdp"
 ]

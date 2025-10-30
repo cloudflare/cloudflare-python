@@ -59,9 +59,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         """
         return TimeseriesGroupsResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated(
-        "Use [Radar Email Routing Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/timeseries_groups_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     def arc(
         self,
         *,
@@ -151,9 +149,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupARCResponse], ResultWrapper[TimeseriesGroupARCResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar Email Routing Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/timeseries_groups_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     def dkim(
         self,
         *,
@@ -243,9 +239,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupDKIMResponse], ResultWrapper[TimeseriesGroupDKIMResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar Email Routing Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/timeseries_groups_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     def dmarc(
         self,
         *,
@@ -334,9 +328,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupDMARCResponse], ResultWrapper[TimeseriesGroupDMARCResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar Email Routing Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/timeseries_groups_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     def encrypted(
         self,
         *,
@@ -426,9 +418,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupEncryptedResponse], ResultWrapper[TimeseriesGroupEncryptedResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar Email Routing Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/timeseries_groups_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     def ip_version(
         self,
         *,
@@ -517,9 +507,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupIPVersionResponse], ResultWrapper[TimeseriesGroupIPVersionResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar Email Routing Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/timeseries_groups_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     def spf(
         self,
         *,
@@ -630,9 +618,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         """
         return AsyncTimeseriesGroupsResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated(
-        "Use [Radar Email Routing Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/timeseries_groups_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     async def arc(
         self,
         *,
@@ -722,9 +708,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupARCResponse], ResultWrapper[TimeseriesGroupARCResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar Email Routing Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/timeseries_groups_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     async def dkim(
         self,
         *,
@@ -814,9 +798,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupDKIMResponse], ResultWrapper[TimeseriesGroupDKIMResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar Email Routing Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/timeseries_groups_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     async def dmarc(
         self,
         *,
@@ -905,9 +887,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupDMARCResponse], ResultWrapper[TimeseriesGroupDMARCResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar Email Routing Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/timeseries_groups_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     async def encrypted(
         self,
         *,
@@ -997,9 +977,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupEncryptedResponse], ResultWrapper[TimeseriesGroupEncryptedResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar Email Routing Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/timeseries_groups_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     async def ip_version(
         self,
         *,
@@ -1088,9 +1066,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupIPVersionResponse], ResultWrapper[TimeseriesGroupIPVersionResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar Email Routing Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/email/subresources/routing/methods/timeseries_groups_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     async def spf(
         self,
         *,

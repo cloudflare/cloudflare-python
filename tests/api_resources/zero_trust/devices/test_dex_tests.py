@@ -28,7 +28,10 @@ class TestDEXTests:
     def test_method_create(self, client: Cloudflare) -> None:
         dex_test = client.zero_trust.devices.dex_tests.create(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            data={},
+            data={
+                "host": "https://dash.cloudflare.com",
+                "kind": "http",
+            },
             enabled=True,
             interval="30m",
             name="HTTP dash health check",
@@ -50,7 +53,7 @@ class TestDEXTests:
             description="Checks the dash endpoint every 30 minutes",
             target_policies=[
                 {
-                    "id": "id",
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "default": True,
                     "name": "name",
                 }
@@ -63,7 +66,10 @@ class TestDEXTests:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.zero_trust.devices.dex_tests.with_raw_response.create(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            data={},
+            data={
+                "host": "https://dash.cloudflare.com",
+                "kind": "http",
+            },
             enabled=True,
             interval="30m",
             name="HTTP dash health check",
@@ -78,7 +84,10 @@ class TestDEXTests:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.zero_trust.devices.dex_tests.with_streaming_response.create(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            data={},
+            data={
+                "host": "https://dash.cloudflare.com",
+                "kind": "http",
+            },
             enabled=True,
             interval="30m",
             name="HTTP dash health check",
@@ -96,7 +105,10 @@ class TestDEXTests:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.devices.dex_tests.with_raw_response.create(
                 account_id="",
-                data={},
+                data={
+                    "host": "https://dash.cloudflare.com",
+                    "kind": "http",
+                },
                 enabled=True,
                 interval="30m",
                 name="HTTP dash health check",
@@ -107,7 +119,10 @@ class TestDEXTests:
         dex_test = client.zero_trust.devices.dex_tests.update(
             dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            data={},
+            data={
+                "host": "https://dash.cloudflare.com",
+                "kind": "http",
+            },
             enabled=True,
             interval="30m",
             name="HTTP dash health check",
@@ -130,7 +145,7 @@ class TestDEXTests:
             description="Checks the dash endpoint every 30 minutes",
             target_policies=[
                 {
-                    "id": "id",
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "default": True,
                     "name": "name",
                 }
@@ -144,7 +159,10 @@ class TestDEXTests:
         response = client.zero_trust.devices.dex_tests.with_raw_response.update(
             dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            data={},
+            data={
+                "host": "https://dash.cloudflare.com",
+                "kind": "http",
+            },
             enabled=True,
             interval="30m",
             name="HTTP dash health check",
@@ -160,7 +178,10 @@ class TestDEXTests:
         with client.zero_trust.devices.dex_tests.with_streaming_response.update(
             dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            data={},
+            data={
+                "host": "https://dash.cloudflare.com",
+                "kind": "http",
+            },
             enabled=True,
             interval="30m",
             name="HTTP dash health check",
@@ -179,7 +200,10 @@ class TestDEXTests:
             client.zero_trust.devices.dex_tests.with_raw_response.update(
                 dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                data={},
+                data={
+                    "host": "https://dash.cloudflare.com",
+                    "kind": "http",
+                },
                 enabled=True,
                 interval="30m",
                 name="HTTP dash health check",
@@ -189,7 +213,10 @@ class TestDEXTests:
             client.zero_trust.devices.dex_tests.with_raw_response.update(
                 dex_test_id="",
                 account_id="01a7362d577a6c3019a474fd6f485823",
-                data={},
+                data={
+                    "host": "https://dash.cloudflare.com",
+                    "kind": "http",
+                },
                 enabled=True,
                 interval="30m",
                 name="HTTP dash health check",
@@ -339,7 +366,10 @@ class TestAsyncDEXTests:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         dex_test = await async_client.zero_trust.devices.dex_tests.create(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            data={},
+            data={
+                "host": "https://dash.cloudflare.com",
+                "kind": "http",
+            },
             enabled=True,
             interval="30m",
             name="HTTP dash health check",
@@ -361,7 +391,7 @@ class TestAsyncDEXTests:
             description="Checks the dash endpoint every 30 minutes",
             target_policies=[
                 {
-                    "id": "id",
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "default": True,
                     "name": "name",
                 }
@@ -374,7 +404,10 @@ class TestAsyncDEXTests:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.devices.dex_tests.with_raw_response.create(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            data={},
+            data={
+                "host": "https://dash.cloudflare.com",
+                "kind": "http",
+            },
             enabled=True,
             interval="30m",
             name="HTTP dash health check",
@@ -389,7 +422,10 @@ class TestAsyncDEXTests:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.devices.dex_tests.with_streaming_response.create(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            data={},
+            data={
+                "host": "https://dash.cloudflare.com",
+                "kind": "http",
+            },
             enabled=True,
             interval="30m",
             name="HTTP dash health check",
@@ -407,7 +443,10 @@ class TestAsyncDEXTests:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.devices.dex_tests.with_raw_response.create(
                 account_id="",
-                data={},
+                data={
+                    "host": "https://dash.cloudflare.com",
+                    "kind": "http",
+                },
                 enabled=True,
                 interval="30m",
                 name="HTTP dash health check",
@@ -418,7 +457,10 @@ class TestAsyncDEXTests:
         dex_test = await async_client.zero_trust.devices.dex_tests.update(
             dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            data={},
+            data={
+                "host": "https://dash.cloudflare.com",
+                "kind": "http",
+            },
             enabled=True,
             interval="30m",
             name="HTTP dash health check",
@@ -441,7 +483,7 @@ class TestAsyncDEXTests:
             description="Checks the dash endpoint every 30 minutes",
             target_policies=[
                 {
-                    "id": "id",
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "default": True,
                     "name": "name",
                 }
@@ -455,7 +497,10 @@ class TestAsyncDEXTests:
         response = await async_client.zero_trust.devices.dex_tests.with_raw_response.update(
             dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            data={},
+            data={
+                "host": "https://dash.cloudflare.com",
+                "kind": "http",
+            },
             enabled=True,
             interval="30m",
             name="HTTP dash health check",
@@ -471,7 +516,10 @@ class TestAsyncDEXTests:
         async with async_client.zero_trust.devices.dex_tests.with_streaming_response.update(
             dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            data={},
+            data={
+                "host": "https://dash.cloudflare.com",
+                "kind": "http",
+            },
             enabled=True,
             interval="30m",
             name="HTTP dash health check",
@@ -490,7 +538,10 @@ class TestAsyncDEXTests:
             await async_client.zero_trust.devices.dex_tests.with_raw_response.update(
                 dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                data={},
+                data={
+                    "host": "https://dash.cloudflare.com",
+                    "kind": "http",
+                },
                 enabled=True,
                 interval="30m",
                 name="HTTP dash health check",
@@ -500,7 +551,10 @@ class TestAsyncDEXTests:
             await async_client.zero_trust.devices.dex_tests.with_raw_response.update(
                 dex_test_id="",
                 account_id="01a7362d577a6c3019a474fd6f485823",
-                data={},
+                data={
+                    "host": "https://dash.cloudflare.com",
+                    "kind": "http",
+                },
                 enabled=True,
                 interval="30m",
                 name="HTTP dash health check",

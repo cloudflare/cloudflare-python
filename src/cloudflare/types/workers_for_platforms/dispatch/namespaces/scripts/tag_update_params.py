@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Optional
 from typing_extensions import Required, TypedDict
 
 from ......_types import SequenceNotStr
@@ -17,5 +16,5 @@ class TagUpdateParams(TypedDict, total=False):
     dispatch_namespace: Required[str]
     """Name of the Workers for Platforms dispatch namespace."""
 
-    body: Required[Optional[SequenceNotStr[str]]]
+    body: Required[SequenceNotStr[str]]
     """Tags associated with the Worker."""

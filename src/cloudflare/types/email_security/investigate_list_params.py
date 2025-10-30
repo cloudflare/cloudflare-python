@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union, Optional
+from typing import Union
 from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
@@ -19,8 +19,6 @@ class InvestigateListParams(TypedDict, total=False):
     """Determines if the message action log is included in the response."""
 
     alert_id: str
-
-    cursor: str
 
     detections_only: bool
     """Determines if the search results will include detections or not."""
@@ -41,8 +39,8 @@ class InvestigateListParams(TypedDict, total=False):
 
     metric: str
 
-    page: Optional[int]
-    """Deprecated: Use cursor pagination instead."""
+    page: int
+    """The page number of paginated results."""
 
     per_page: int
     """The number of results per page."""

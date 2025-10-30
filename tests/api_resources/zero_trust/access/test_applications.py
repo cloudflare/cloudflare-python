@@ -93,10 +93,6 @@ class TestApplications:
                     "type": "private",
                     "vnet_id": "vnet_id",
                 },
-                {
-                    "mcp_server_id": "mcp-server-1",
-                    "type": "via_mcp_server_portal",
-                },
             ],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
@@ -384,10 +380,6 @@ class TestApplications:
                     "type": "private",
                     "vnet_id": "vnet_id",
                 },
-                {
-                    "mcp_server_id": "mcp-server-1",
-                    "type": "via_mcp_server_portal",
-                },
             ],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
@@ -551,10 +543,6 @@ class TestApplications:
                     "port_range": "port_range",
                     "type": "private",
                     "vnet_id": "vnet_id",
-                },
-                {
-                    "mcp_server_id": "mcp-server-1",
-                    "type": "via_mcp_server_portal",
                 },
             ],
             enable_binding_cookie=True,
@@ -1150,10 +1138,6 @@ class TestApplications:
                     "type": "private",
                     "vnet_id": "vnet_id",
                 },
-                {
-                    "mcp_server_id": "mcp-server-1",
-                    "type": "via_mcp_server_portal",
-                },
             ],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
@@ -1347,10 +1331,6 @@ class TestApplications:
                     "port_range": "port_range",
                     "type": "private",
                     "vnet_id": "vnet_id",
-                },
-                {
-                    "mcp_server_id": "mcp-server-1",
-                    "type": "via_mcp_server_portal",
                 },
             ],
             enable_binding_cookie=True,
@@ -1665,10 +1645,6 @@ class TestApplications:
                     "type": "private",
                     "vnet_id": "vnet_id",
                 },
-                {
-                    "mcp_server_id": "mcp-server-1",
-                    "type": "via_mcp_server_portal",
-                },
             ],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
@@ -1846,10 +1822,6 @@ class TestApplications:
                     "port_range": "port_range",
                     "type": "private",
                     "vnet_id": "vnet_id",
-                },
-                {
-                    "mcp_server_id": "mcp-server-1",
-                    "type": "via_mcp_server_portal",
                 },
             ],
             enable_binding_cookie=True,
@@ -2530,10 +2502,6 @@ class TestApplications:
                     "type": "private",
                     "vnet_id": "vnet_id",
                 },
-                {
-                    "mcp_server_id": "mcp-server-1",
-                    "type": "via_mcp_server_portal",
-                },
             ],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
@@ -2696,7 +2664,6 @@ class TestApplications:
             page=0,
             per_page=0,
             search="search",
-            target_attributes="target_attributes",
         )
         assert_matches_type(SyncV4PagePaginationArray[ApplicationListResponse], application, path=["response"])
 
@@ -3015,10 +2982,6 @@ class TestAsyncApplications:
                     "type": "private",
                     "vnet_id": "vnet_id",
                 },
-                {
-                    "mcp_server_id": "mcp-server-1",
-                    "type": "via_mcp_server_portal",
-                },
             ],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
@@ -3306,10 +3269,6 @@ class TestAsyncApplications:
                     "type": "private",
                     "vnet_id": "vnet_id",
                 },
-                {
-                    "mcp_server_id": "mcp-server-1",
-                    "type": "via_mcp_server_portal",
-                },
             ],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
@@ -3473,10 +3432,6 @@ class TestAsyncApplications:
                     "port_range": "port_range",
                     "type": "private",
                     "vnet_id": "vnet_id",
-                },
-                {
-                    "mcp_server_id": "mcp-server-1",
-                    "type": "via_mcp_server_portal",
                 },
             ],
             enable_binding_cookie=True,
@@ -4072,10 +4027,6 @@ class TestAsyncApplications:
                     "type": "private",
                     "vnet_id": "vnet_id",
                 },
-                {
-                    "mcp_server_id": "mcp-server-1",
-                    "type": "via_mcp_server_portal",
-                },
             ],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
@@ -4269,10 +4220,6 @@ class TestAsyncApplications:
                     "port_range": "port_range",
                     "type": "private",
                     "vnet_id": "vnet_id",
-                },
-                {
-                    "mcp_server_id": "mcp-server-1",
-                    "type": "via_mcp_server_portal",
                 },
             ],
             enable_binding_cookie=True,
@@ -4587,10 +4534,6 @@ class TestAsyncApplications:
                     "type": "private",
                     "vnet_id": "vnet_id",
                 },
-                {
-                    "mcp_server_id": "mcp-server-1",
-                    "type": "via_mcp_server_portal",
-                },
             ],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
@@ -4768,10 +4711,6 @@ class TestAsyncApplications:
                     "port_range": "port_range",
                     "type": "private",
                     "vnet_id": "vnet_id",
-                },
-                {
-                    "mcp_server_id": "mcp-server-1",
-                    "type": "via_mcp_server_portal",
                 },
             ],
             enable_binding_cookie=True,
@@ -5452,10 +5391,6 @@ class TestAsyncApplications:
                     "type": "private",
                     "vnet_id": "vnet_id",
                 },
-                {
-                    "mcp_server_id": "mcp-server-1",
-                    "type": "via_mcp_server_portal",
-                },
             ],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
@@ -5618,7 +5553,6 @@ class TestAsyncApplications:
             page=0,
             per_page=0,
             search="search",
-            target_attributes="target_attributes",
         )
         assert_matches_type(AsyncV4PagePaginationArray[ApplicationListResponse], application, path=["response"])
 

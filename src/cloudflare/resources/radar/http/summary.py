@@ -63,9 +63,7 @@ class SummaryResource(SyncAPIResource):
         """
         return SummaryResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated(
-        "Use [Radar HTTP Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     def bot_class(
         self,
         *,
@@ -184,9 +182,7 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryBotClassResponse], ResultWrapper[SummaryBotClassResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar HTTP Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     def device_type(
         self,
         *,
@@ -304,9 +300,7 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryDeviceTypeResponse], ResultWrapper[SummaryDeviceTypeResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar HTTP Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     def http_protocol(
         self,
         *,
@@ -424,9 +418,7 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryHTTPProtocolResponse], ResultWrapper[SummaryHTTPProtocolResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar HTTP Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     def http_version(
         self,
         *,
@@ -543,9 +535,7 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryHTTPVersionResponse], ResultWrapper[SummaryHTTPVersionResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar HTTP Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     def ip_version(
         self,
         *,
@@ -662,9 +652,7 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryIPVersionResponse], ResultWrapper[SummaryIPVersionResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar HTTP Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     def os(
         self,
         *,
@@ -782,9 +770,7 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryOSResponse], ResultWrapper[SummaryOSResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar HTTP Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     def post_quantum(
         self,
         *,
@@ -905,9 +891,7 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryPostQuantumResponse], ResultWrapper[SummaryPostQuantumResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar HTTP Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     def tls_version(
         self,
         *,
@@ -1045,9 +1029,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         """
         return AsyncSummaryResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated(
-        "Use [Radar HTTP Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     async def bot_class(
         self,
         *,
@@ -1166,9 +1148,7 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryBotClassResponse], ResultWrapper[SummaryBotClassResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar HTTP Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     async def device_type(
         self,
         *,
@@ -1286,9 +1266,7 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryDeviceTypeResponse], ResultWrapper[SummaryDeviceTypeResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar HTTP Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     async def http_protocol(
         self,
         *,
@@ -1406,9 +1384,7 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryHTTPProtocolResponse], ResultWrapper[SummaryHTTPProtocolResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar HTTP Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     async def http_version(
         self,
         *,
@@ -1525,9 +1501,7 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryHTTPVersionResponse], ResultWrapper[SummaryHTTPVersionResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar HTTP Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     async def ip_version(
         self,
         *,
@@ -1644,9 +1618,7 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryIPVersionResponse], ResultWrapper[SummaryIPVersionResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar HTTP Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     async def os(
         self,
         *,
@@ -1764,9 +1736,7 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryOSResponse], ResultWrapper[SummaryOSResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar HTTP Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     async def post_quantum(
         self,
         *,
@@ -1887,9 +1857,7 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryPostQuantumResponse], ResultWrapper[SummaryPostQuantumResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar HTTP Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     async def tls_version(
         self,
         *,

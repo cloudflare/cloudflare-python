@@ -30,7 +30,7 @@ class TestLocations:
             date_range="7d",
             date_start=parse_datetime("2023-09-01T11:41:33.782Z"),
             format="JSON",
-            limit=1,
+            limit=5,
             status="VERIFIED",
         )
         assert_matches_type(LocationGetResponse, location, path=["response"])
@@ -73,7 +73,7 @@ class TestAsyncLocations:
             date_range="7d",
             date_start=parse_datetime("2023-09-01T11:41:33.782Z"),
             format="JSON",
-            limit=1,
+            limit=5,
             status="VERIFIED",
         )
         assert_matches_type(LocationGetResponse, location, path=["response"])

@@ -15,8 +15,6 @@ from cloudflare.types.radar.http import (
     TopBrowserFamilyResponse,
 )
 
-# pyright: reportDeprecated=false
-
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
@@ -25,41 +23,36 @@ class TestTop:
 
     @parametrize
     def test_method_browser(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            top = client.radar.http.top.browser()
-
+        top = client.radar.http.top.browser()
         assert_matches_type(TopBrowserResponse, top, path=["response"])
 
     @parametrize
     def test_method_browser_with_all_params(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            top = client.radar.http.top.browser(
-                asn=["string"],
-                bot_class=["LIKELY_AUTOMATED"],
-                browser_family=["CHROME"],
-                continent=["string"],
-                date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
-                date_range=["7d"],
-                date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
-                device_type=["DESKTOP"],
-                format="JSON",
-                geo_id=["string"],
-                http_protocol=["HTTP"],
-                http_version=["HTTPv1"],
-                ip_version=["IPv4"],
-                limit=1,
-                location=["string"],
-                name=["main_series"],
-                os=["WINDOWS"],
-                tls_version=["TLSv1_0"],
-            )
-
+        top = client.radar.http.top.browser(
+            asn=["string"],
+            bot_class=["LIKELY_AUTOMATED"],
+            browser_family=["CHROME"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            device_type=["DESKTOP"],
+            format="JSON",
+            geo_id=["string"],
+            http_protocol=["HTTP"],
+            http_version=["HTTPv1"],
+            ip_version=["IPv4"],
+            limit=5,
+            location=["string"],
+            name=["main_series"],
+            os=["WINDOWS"],
+            tls_version=["TLSv1_0"],
+        )
         assert_matches_type(TopBrowserResponse, top, path=["response"])
 
     @parametrize
     def test_raw_response_browser(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = client.radar.http.top.with_raw_response.browser()
+        response = client.radar.http.top.with_raw_response.browser()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -68,52 +61,46 @@ class TestTop:
 
     @parametrize
     def test_streaming_response_browser(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            with client.radar.http.top.with_streaming_response.browser() as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with client.radar.http.top.with_streaming_response.browser() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-                top = response.parse()
-                assert_matches_type(TopBrowserResponse, top, path=["response"])
+            top = response.parse()
+            assert_matches_type(TopBrowserResponse, top, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_browser_family(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            top = client.radar.http.top.browser_family()
-
+        top = client.radar.http.top.browser_family()
         assert_matches_type(TopBrowserFamilyResponse, top, path=["response"])
 
     @parametrize
     def test_method_browser_family_with_all_params(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            top = client.radar.http.top.browser_family(
-                asn=["string"],
-                bot_class=["LIKELY_AUTOMATED"],
-                continent=["string"],
-                date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
-                date_range=["7d"],
-                date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
-                device_type=["DESKTOP"],
-                format="JSON",
-                geo_id=["string"],
-                http_protocol=["HTTP"],
-                http_version=["HTTPv1"],
-                ip_version=["IPv4"],
-                limit=1,
-                location=["string"],
-                name=["main_series"],
-                os=["WINDOWS"],
-                tls_version=["TLSv1_0"],
-            )
-
+        top = client.radar.http.top.browser_family(
+            asn=["string"],
+            bot_class=["LIKELY_AUTOMATED"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            device_type=["DESKTOP"],
+            format="JSON",
+            geo_id=["string"],
+            http_protocol=["HTTP"],
+            http_version=["HTTPv1"],
+            ip_version=["IPv4"],
+            limit=5,
+            location=["string"],
+            name=["main_series"],
+            os=["WINDOWS"],
+            tls_version=["TLSv1_0"],
+        )
         assert_matches_type(TopBrowserFamilyResponse, top, path=["response"])
 
     @parametrize
     def test_raw_response_browser_family(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = client.radar.http.top.with_raw_response.browser_family()
+        response = client.radar.http.top.with_raw_response.browser_family()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -122,13 +109,12 @@ class TestTop:
 
     @parametrize
     def test_streaming_response_browser_family(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            with client.radar.http.top.with_streaming_response.browser_family() as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with client.radar.http.top.with_streaming_response.browser_family() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-                top = response.parse()
-                assert_matches_type(TopBrowserFamilyResponse, top, path=["response"])
+            top = response.parse()
+            assert_matches_type(TopBrowserFamilyResponse, top, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -140,41 +126,36 @@ class TestAsyncTop:
 
     @parametrize
     async def test_method_browser(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            top = await async_client.radar.http.top.browser()
-
+        top = await async_client.radar.http.top.browser()
         assert_matches_type(TopBrowserResponse, top, path=["response"])
 
     @parametrize
     async def test_method_browser_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            top = await async_client.radar.http.top.browser(
-                asn=["string"],
-                bot_class=["LIKELY_AUTOMATED"],
-                browser_family=["CHROME"],
-                continent=["string"],
-                date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
-                date_range=["7d"],
-                date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
-                device_type=["DESKTOP"],
-                format="JSON",
-                geo_id=["string"],
-                http_protocol=["HTTP"],
-                http_version=["HTTPv1"],
-                ip_version=["IPv4"],
-                limit=1,
-                location=["string"],
-                name=["main_series"],
-                os=["WINDOWS"],
-                tls_version=["TLSv1_0"],
-            )
-
+        top = await async_client.radar.http.top.browser(
+            asn=["string"],
+            bot_class=["LIKELY_AUTOMATED"],
+            browser_family=["CHROME"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            device_type=["DESKTOP"],
+            format="JSON",
+            geo_id=["string"],
+            http_protocol=["HTTP"],
+            http_version=["HTTPv1"],
+            ip_version=["IPv4"],
+            limit=5,
+            location=["string"],
+            name=["main_series"],
+            os=["WINDOWS"],
+            tls_version=["TLSv1_0"],
+        )
         assert_matches_type(TopBrowserResponse, top, path=["response"])
 
     @parametrize
     async def test_raw_response_browser(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = await async_client.radar.http.top.with_raw_response.browser()
+        response = await async_client.radar.http.top.with_raw_response.browser()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -183,52 +164,46 @@ class TestAsyncTop:
 
     @parametrize
     async def test_streaming_response_browser(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            async with async_client.radar.http.top.with_streaming_response.browser() as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        async with async_client.radar.http.top.with_streaming_response.browser() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-                top = await response.parse()
-                assert_matches_type(TopBrowserResponse, top, path=["response"])
+            top = await response.parse()
+            assert_matches_type(TopBrowserResponse, top, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_browser_family(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            top = await async_client.radar.http.top.browser_family()
-
+        top = await async_client.radar.http.top.browser_family()
         assert_matches_type(TopBrowserFamilyResponse, top, path=["response"])
 
     @parametrize
     async def test_method_browser_family_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            top = await async_client.radar.http.top.browser_family(
-                asn=["string"],
-                bot_class=["LIKELY_AUTOMATED"],
-                continent=["string"],
-                date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
-                date_range=["7d"],
-                date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
-                device_type=["DESKTOP"],
-                format="JSON",
-                geo_id=["string"],
-                http_protocol=["HTTP"],
-                http_version=["HTTPv1"],
-                ip_version=["IPv4"],
-                limit=1,
-                location=["string"],
-                name=["main_series"],
-                os=["WINDOWS"],
-                tls_version=["TLSv1_0"],
-            )
-
+        top = await async_client.radar.http.top.browser_family(
+            asn=["string"],
+            bot_class=["LIKELY_AUTOMATED"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            device_type=["DESKTOP"],
+            format="JSON",
+            geo_id=["string"],
+            http_protocol=["HTTP"],
+            http_version=["HTTPv1"],
+            ip_version=["IPv4"],
+            limit=5,
+            location=["string"],
+            name=["main_series"],
+            os=["WINDOWS"],
+            tls_version=["TLSv1_0"],
+        )
         assert_matches_type(TopBrowserFamilyResponse, top, path=["response"])
 
     @parametrize
     async def test_raw_response_browser_family(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = await async_client.radar.http.top.with_raw_response.browser_family()
+        response = await async_client.radar.http.top.with_raw_response.browser_family()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -237,12 +212,11 @@ class TestAsyncTop:
 
     @parametrize
     async def test_streaming_response_browser_family(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            async with async_client.radar.http.top.with_streaming_response.browser_family() as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        async with async_client.radar.http.top.with_streaming_response.browser_family() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-                top = await response.parse()
-                assert_matches_type(TopBrowserFamilyResponse, top, path=["response"])
+            top = await response.parse()
+            assert_matches_type(TopBrowserFamilyResponse, top, path=["response"])
 
         assert cast(Any, response.is_closed) is True

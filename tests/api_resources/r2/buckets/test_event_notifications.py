@@ -27,7 +27,6 @@ class TestEventNotifications:
             queue_id="queue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
-            rules=[{"actions": ["PutObject", "CopyObject"]}],
         )
         assert_matches_type(object, event_notification, path=["response"])
 
@@ -57,7 +56,6 @@ class TestEventNotifications:
             queue_id="queue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
-            rules=[{"actions": ["PutObject", "CopyObject"]}],
         )
 
         assert response.is_closed is True
@@ -72,7 +70,6 @@ class TestEventNotifications:
             queue_id="queue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
-            rules=[{"actions": ["PutObject", "CopyObject"]}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -90,7 +87,6 @@ class TestEventNotifications:
                 queue_id="queue_id",
                 account_id="",
                 bucket_name="example-bucket",
-                rules=[{"actions": ["PutObject", "CopyObject"]}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
@@ -98,7 +94,6 @@ class TestEventNotifications:
                 queue_id="queue_id",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 bucket_name="",
-                rules=[{"actions": ["PutObject", "CopyObject"]}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_id` but received ''"):
@@ -106,7 +101,6 @@ class TestEventNotifications:
                 queue_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 bucket_name="example-bucket",
-                rules=[{"actions": ["PutObject", "CopyObject"]}],
             )
 
     @pytest.mark.skip(reason="TODO: investigate auth errors on test suite")
@@ -334,7 +328,6 @@ class TestAsyncEventNotifications:
             queue_id="queue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
-            rules=[{"actions": ["PutObject", "CopyObject"]}],
         )
         assert_matches_type(object, event_notification, path=["response"])
 
@@ -364,7 +357,6 @@ class TestAsyncEventNotifications:
             queue_id="queue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
-            rules=[{"actions": ["PutObject", "CopyObject"]}],
         )
 
         assert response.is_closed is True
@@ -379,7 +371,6 @@ class TestAsyncEventNotifications:
             queue_id="queue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
-            rules=[{"actions": ["PutObject", "CopyObject"]}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -397,7 +388,6 @@ class TestAsyncEventNotifications:
                 queue_id="queue_id",
                 account_id="",
                 bucket_name="example-bucket",
-                rules=[{"actions": ["PutObject", "CopyObject"]}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
@@ -405,7 +395,6 @@ class TestAsyncEventNotifications:
                 queue_id="queue_id",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 bucket_name="",
-                rules=[{"actions": ["PutObject", "CopyObject"]}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_id` but received ''"):
@@ -413,7 +402,6 @@ class TestAsyncEventNotifications:
                 queue_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 bucket_name="example-bucket",
-                rules=[{"actions": ["PutObject", "CopyObject"]}],
             )
 
     @pytest.mark.skip(reason="TODO: investigate auth errors on test suite")

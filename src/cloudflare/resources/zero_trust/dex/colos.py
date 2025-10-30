@@ -19,6 +19,7 @@ from ...._response import (
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.zero_trust.dex import colo_list_params
+from ....types.zero_trust.dex.colo_list_response import ColoListResponse
 
 __all__ = ["ColosResource", "AsyncColosResource"]
 
@@ -56,7 +57,7 @@ class ColosResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncSinglePage[object]:
+    ) -> SyncSinglePage[ColoListResponse]:
         """
         List Cloudflare colos that account's devices were connected to during a time
         period, sorted by usage starting from the most used colo. Colos without traffic
@@ -82,7 +83,7 @@ class ColosResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/dex/colos",
-            page=SyncSinglePage[object],
+            page=SyncSinglePage[ColoListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -97,7 +98,7 @@ class ColosResource(SyncAPIResource):
                     colo_list_params.ColoListParams,
                 ),
             ),
-            model=object,
+            model=ColoListResponse,
         )
 
 
@@ -134,7 +135,7 @@ class AsyncColosResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[object, AsyncSinglePage[object]]:
+    ) -> AsyncPaginator[ColoListResponse, AsyncSinglePage[ColoListResponse]]:
         """
         List Cloudflare colos that account's devices were connected to during a time
         period, sorted by usage starting from the most used colo. Colos without traffic
@@ -160,7 +161,7 @@ class AsyncColosResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/dex/colos",
-            page=AsyncSinglePage[object],
+            page=AsyncSinglePage[ColoListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -175,7 +176,7 @@ class AsyncColosResource(AsyncAPIResource):
                     colo_list_params.ColoListParams,
                 ),
             ),
-            model=object,
+            model=ColoListResponse,
         )
 
 

@@ -35,8 +35,8 @@ class TestEvents:
             involved_asn=0,
             involved_country="involvedCountry",
             leak_asn=0,
-            page=1,
-            per_page=1,
+            page=0,
+            per_page=0,
             sort_by="TIME",
             sort_order="ASC",
         )
@@ -84,8 +84,8 @@ class TestAsyncEvents:
             involved_asn=0,
             involved_country="involvedCountry",
             leak_asn=0,
-            page=1,
-            per_page=1,
+            page=0,
+            per_page=0,
             sort_by="TIME",
             sort_order="ASC",
         )

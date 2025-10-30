@@ -26,7 +26,7 @@ class TestLogs:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         log = client.radar.ct.logs.list(
             format="JSON",
-            limit=1,
+            limit=5,
             offset=0,
         )
         assert_matches_type(LogListResponse, log, path=["response"])
@@ -112,7 +112,7 @@ class TestAsyncLogs:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         log = await async_client.radar.ct.logs.list(
             format="JSON",
-            limit=1,
+            limit=5,
             offset=0,
         )
         assert_matches_type(LogListResponse, log, path=["response"])

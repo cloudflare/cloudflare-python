@@ -12,7 +12,6 @@ class ConnectorCreateParams(TypedDict, total=False):
     """Account identifier"""
 
     device: Required[Device]
-    """Exactly one of id, serial_number, or provision_license must be provided."""
 
     activated: bool
 
@@ -27,8 +26,5 @@ class ConnectorCreateParams(TypedDict, total=False):
 
 class Device(TypedDict, total=False):
     id: str
-
-    provision_license: bool
-    """When true, create and provision a new licence key for the connector."""
 
     serial_number: str

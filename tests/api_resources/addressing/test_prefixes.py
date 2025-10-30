@@ -22,19 +22,9 @@ class TestPrefixes:
     def test_method_create(self, client: Cloudflare) -> None:
         prefix = client.addressing.prefixes.create(
             account_id="258def64c72dae45f3e4c8516e2111f2",
-            asn=13335,
+            asn=209242,
             cidr="192.0.2.0/24",
-        )
-        assert_matches_type(Optional[Prefix], prefix, path=["response"])
-
-    @parametrize
-    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
-        prefix = client.addressing.prefixes.create(
-            account_id="258def64c72dae45f3e4c8516e2111f2",
-            asn=13335,
-            cidr="192.0.2.0/24",
-            delegate_loa_creation=True,
-            description="Internal test prefix",
+            loa_document_id="d933b1530bc56c9953cf8ce166da8004",
         )
         assert_matches_type(Optional[Prefix], prefix, path=["response"])
 
@@ -42,8 +32,9 @@ class TestPrefixes:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.addressing.prefixes.with_raw_response.create(
             account_id="258def64c72dae45f3e4c8516e2111f2",
-            asn=13335,
+            asn=209242,
             cidr="192.0.2.0/24",
+            loa_document_id="d933b1530bc56c9953cf8ce166da8004",
         )
 
         assert response.is_closed is True
@@ -55,8 +46,9 @@ class TestPrefixes:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.addressing.prefixes.with_streaming_response.create(
             account_id="258def64c72dae45f3e4c8516e2111f2",
-            asn=13335,
+            asn=209242,
             cidr="192.0.2.0/24",
+            loa_document_id="d933b1530bc56c9953cf8ce166da8004",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -71,8 +63,9 @@ class TestPrefixes:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.addressing.prefixes.with_raw_response.create(
                 account_id="",
-                asn=13335,
+                asn=209242,
                 cidr="192.0.2.0/24",
+                loa_document_id="d933b1530bc56c9953cf8ce166da8004",
             )
 
     @parametrize
@@ -272,19 +265,9 @@ class TestAsyncPrefixes:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         prefix = await async_client.addressing.prefixes.create(
             account_id="258def64c72dae45f3e4c8516e2111f2",
-            asn=13335,
+            asn=209242,
             cidr="192.0.2.0/24",
-        )
-        assert_matches_type(Optional[Prefix], prefix, path=["response"])
-
-    @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        prefix = await async_client.addressing.prefixes.create(
-            account_id="258def64c72dae45f3e4c8516e2111f2",
-            asn=13335,
-            cidr="192.0.2.0/24",
-            delegate_loa_creation=True,
-            description="Internal test prefix",
+            loa_document_id="d933b1530bc56c9953cf8ce166da8004",
         )
         assert_matches_type(Optional[Prefix], prefix, path=["response"])
 
@@ -292,8 +275,9 @@ class TestAsyncPrefixes:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.addressing.prefixes.with_raw_response.create(
             account_id="258def64c72dae45f3e4c8516e2111f2",
-            asn=13335,
+            asn=209242,
             cidr="192.0.2.0/24",
+            loa_document_id="d933b1530bc56c9953cf8ce166da8004",
         )
 
         assert response.is_closed is True
@@ -305,8 +289,9 @@ class TestAsyncPrefixes:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.addressing.prefixes.with_streaming_response.create(
             account_id="258def64c72dae45f3e4c8516e2111f2",
-            asn=13335,
+            asn=209242,
             cidr="192.0.2.0/24",
+            loa_document_id="d933b1530bc56c9953cf8ce166da8004",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -321,8 +306,9 @@ class TestAsyncPrefixes:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.addressing.prefixes.with_raw_response.create(
                 account_id="",
-                asn=13335,
+                asn=209242,
                 cidr="192.0.2.0/24",
+                loa_document_id="d933b1530bc56c9953cf8ce166da8004",
             )
 
     @parametrize

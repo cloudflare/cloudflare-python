@@ -32,7 +32,7 @@ class TestRoutes:
     def test_method_ases_with_all_params(self, client: Cloudflare) -> None:
         route = client.radar.bgp.routes.ases(
             format="JSON",
-            limit=1,
+            limit=5,
             location="US",
             sort_by="ipv4",
             sort_order="ASC",
@@ -212,7 +212,7 @@ class TestAsyncRoutes:
     async def test_method_ases_with_all_params(self, async_client: AsyncCloudflare) -> None:
         route = await async_client.radar.bgp.routes.ases(
             format="JSON",
-            limit=1,
+            limit=5,
             location="US",
             sort_by="ipv4",
             sort_order="ASC",

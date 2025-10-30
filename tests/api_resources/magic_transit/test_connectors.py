@@ -45,7 +45,6 @@ class TestConnectors:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             device={
                 "id": "id",
-                "provision_license": True,
                 "serial_number": "serial_number",
             },
             activated=True,
@@ -116,7 +115,6 @@ class TestConnectors:
             interrupt_window_duration_hours=0,
             interrupt_window_hour_of_day=0,
             notes="notes",
-            provision_license=True,
             timezone="timezone",
         )
         assert_matches_type(ConnectorUpdateResponse, connector, path=["response"])
@@ -264,7 +262,6 @@ class TestConnectors:
             interrupt_window_duration_hours=0,
             interrupt_window_hour_of_day=0,
             notes="notes",
-            provision_license=True,
             timezone="timezone",
         )
         assert_matches_type(ConnectorEditResponse, connector, path=["response"])
@@ -383,7 +380,6 @@ class TestAsyncConnectors:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             device={
                 "id": "id",
-                "provision_license": True,
                 "serial_number": "serial_number",
             },
             activated=True,
@@ -454,7 +450,6 @@ class TestAsyncConnectors:
             interrupt_window_duration_hours=0,
             interrupt_window_hour_of_day=0,
             notes="notes",
-            provision_license=True,
             timezone="timezone",
         )
         assert_matches_type(ConnectorUpdateResponse, connector, path=["response"])
@@ -602,7 +597,6 @@ class TestAsyncConnectors:
             interrupt_window_duration_hours=0,
             interrupt_window_hour_of_day=0,
             notes="notes",
-            provision_license=True,
             timezone="timezone",
         )
         assert_matches_type(ConnectorEditResponse, connector, path=["response"])

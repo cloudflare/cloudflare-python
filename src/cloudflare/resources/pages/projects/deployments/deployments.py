@@ -18,7 +18,7 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._wrappers import ResultWrapper
-from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from .....pagination import SyncSinglePage, AsyncSinglePage
 from .history.history import (
     HistoryResource,
     AsyncHistoryResource,
@@ -193,15 +193,13 @@ class DeploymentsResource(SyncAPIResource):
         *,
         account_id: str,
         env: Literal["production", "preview"] | Omit = omit,
-        page: int | Omit = omit,
-        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncV4PagePaginationArray[Deployment]:
+    ) -> SyncSinglePage[Deployment]:
         """
         Fetch a list of project deployments.
 
@@ -211,10 +209,6 @@ class DeploymentsResource(SyncAPIResource):
           project_name: Name of the project.
 
           env: What type of deployments to fetch.
-
-          page: Which page of deployments to fetch.
-
-          per_page: How many deployments to return per page.
 
           extra_headers: Send extra headers
 
@@ -230,20 +224,13 @@ class DeploymentsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments",
-            page=SyncV4PagePaginationArray[Deployment],
+            page=SyncSinglePage[Deployment],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "env": env,
-                        "page": page,
-                        "per_page": per_page,
-                    },
-                    deployment_list_params.DeploymentListParams,
-                ),
+                query=maybe_transform({"env": env}, deployment_list_params.DeploymentListParams),
             ),
             model=Deployment,
         )
@@ -605,15 +592,13 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         *,
         account_id: str,
         env: Literal["production", "preview"] | Omit = omit,
-        page: int | Omit = omit,
-        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[Deployment, AsyncV4PagePaginationArray[Deployment]]:
+    ) -> AsyncPaginator[Deployment, AsyncSinglePage[Deployment]]:
         """
         Fetch a list of project deployments.
 
@@ -623,10 +608,6 @@ class AsyncDeploymentsResource(AsyncAPIResource):
           project_name: Name of the project.
 
           env: What type of deployments to fetch.
-
-          page: Which page of deployments to fetch.
-
-          per_page: How many deployments to return per page.
 
           extra_headers: Send extra headers
 
@@ -642,20 +623,13 @@ class AsyncDeploymentsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments",
-            page=AsyncV4PagePaginationArray[Deployment],
+            page=AsyncSinglePage[Deployment],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "env": env,
-                        "page": page,
-                        "per_page": per_page,
-                    },
-                    deployment_list_params.DeploymentListParams,
-                ),
+                query=maybe_transform({"env": env}, deployment_list_params.DeploymentListParams),
             ),
             model=Deployment,
         )

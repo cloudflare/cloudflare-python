@@ -23,6 +23,14 @@ class TestBGPPrefixes:
         bgp_prefix = client.addressing.prefixes.bgp_prefixes.create(
             prefix_id="2af39739cc4e3b5910c918468bb89828",
             account_id="258def64c72dae45f3e4c8516e2111f2",
+        )
+        assert_matches_type(Optional[BGPPrefix], bgp_prefix, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        bgp_prefix = client.addressing.prefixes.bgp_prefixes.create(
+            prefix_id="2af39739cc4e3b5910c918468bb89828",
+            account_id="258def64c72dae45f3e4c8516e2111f2",
             cidr="192.0.2.0/24",
         )
         assert_matches_type(Optional[BGPPrefix], bgp_prefix, path=["response"])
@@ -32,7 +40,6 @@ class TestBGPPrefixes:
         response = client.addressing.prefixes.bgp_prefixes.with_raw_response.create(
             prefix_id="2af39739cc4e3b5910c918468bb89828",
             account_id="258def64c72dae45f3e4c8516e2111f2",
-            cidr="192.0.2.0/24",
         )
 
         assert response.is_closed is True
@@ -45,7 +52,6 @@ class TestBGPPrefixes:
         with client.addressing.prefixes.bgp_prefixes.with_streaming_response.create(
             prefix_id="2af39739cc4e3b5910c918468bb89828",
             account_id="258def64c72dae45f3e4c8516e2111f2",
-            cidr="192.0.2.0/24",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -61,14 +67,12 @@ class TestBGPPrefixes:
             client.addressing.prefixes.bgp_prefixes.with_raw_response.create(
                 prefix_id="2af39739cc4e3b5910c918468bb89828",
                 account_id="",
-                cidr="192.0.2.0/24",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `prefix_id` but received ''"):
             client.addressing.prefixes.bgp_prefixes.with_raw_response.create(
                 prefix_id="",
                 account_id="258def64c72dae45f3e4c8516e2111f2",
-                cidr="192.0.2.0/24",
             )
 
     @parametrize
@@ -262,6 +266,14 @@ class TestAsyncBGPPrefixes:
         bgp_prefix = await async_client.addressing.prefixes.bgp_prefixes.create(
             prefix_id="2af39739cc4e3b5910c918468bb89828",
             account_id="258def64c72dae45f3e4c8516e2111f2",
+        )
+        assert_matches_type(Optional[BGPPrefix], bgp_prefix, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        bgp_prefix = await async_client.addressing.prefixes.bgp_prefixes.create(
+            prefix_id="2af39739cc4e3b5910c918468bb89828",
+            account_id="258def64c72dae45f3e4c8516e2111f2",
             cidr="192.0.2.0/24",
         )
         assert_matches_type(Optional[BGPPrefix], bgp_prefix, path=["response"])
@@ -271,7 +283,6 @@ class TestAsyncBGPPrefixes:
         response = await async_client.addressing.prefixes.bgp_prefixes.with_raw_response.create(
             prefix_id="2af39739cc4e3b5910c918468bb89828",
             account_id="258def64c72dae45f3e4c8516e2111f2",
-            cidr="192.0.2.0/24",
         )
 
         assert response.is_closed is True
@@ -284,7 +295,6 @@ class TestAsyncBGPPrefixes:
         async with async_client.addressing.prefixes.bgp_prefixes.with_streaming_response.create(
             prefix_id="2af39739cc4e3b5910c918468bb89828",
             account_id="258def64c72dae45f3e4c8516e2111f2",
-            cidr="192.0.2.0/24",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -300,14 +310,12 @@ class TestAsyncBGPPrefixes:
             await async_client.addressing.prefixes.bgp_prefixes.with_raw_response.create(
                 prefix_id="2af39739cc4e3b5910c918468bb89828",
                 account_id="",
-                cidr="192.0.2.0/24",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `prefix_id` but received ''"):
             await async_client.addressing.prefixes.bgp_prefixes.with_raw_response.create(
                 prefix_id="",
                 account_id="258def64c72dae45f3e4c8516e2111f2",
-                cidr="192.0.2.0/24",
             )
 
     @parametrize

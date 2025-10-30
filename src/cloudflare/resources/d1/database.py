@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, Optional, cast
+from typing import Type, Optional, cast
 from typing_extensions import Literal, overload
 
 import httpx
@@ -586,7 +586,6 @@ class DatabaseResource(SyncAPIResource):
             cast_to=cast(Type[DatabaseImportResponse], ResultWrapper[DatabaseImportResponse]),
         )
 
-    @overload
     def query(
         self,
         database_id: str,
@@ -620,56 +619,6 @@ class DatabaseResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        ...
-
-    @overload
-    def query(
-        self,
-        database_id: str,
-        *,
-        account_id: str,
-        body: Iterable[database_query_params.MultipleQueriesBody],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncSinglePage[QueryResult]:
-        """
-        Returns the query result as an object.
-
-        Args:
-          account_id: Account identifier tag.
-
-          database_id: D1 database identifier (UUID).
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @required_args(["account_id", "sql"], ["account_id", "body"])
-    def query(
-        self,
-        database_id: str,
-        *,
-        account_id: str,
-        sql: str | Omit = omit,
-        params: SequenceNotStr[str] | Omit = omit,
-        body: Iterable[database_query_params.MultipleQueriesBody] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncSinglePage[QueryResult]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
@@ -681,7 +630,6 @@ class DatabaseResource(SyncAPIResource):
                 {
                     "sql": sql,
                     "params": params,
-                    "body": body,
                 },
                 database_query_params.DatabaseQueryParams,
             ),
@@ -692,7 +640,6 @@ class DatabaseResource(SyncAPIResource):
             method="post",
         )
 
-    @overload
     def raw(
         self,
         database_id: str,
@@ -728,58 +675,6 @@ class DatabaseResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        ...
-
-    @overload
-    def raw(
-        self,
-        database_id: str,
-        *,
-        account_id: str,
-        body: Iterable[database_raw_params.MultipleQueriesBody],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncSinglePage[DatabaseRawResponse]:
-        """Returns the query result rows as arrays rather than objects.
-
-        This is a
-        performance-optimized version of the /query endpoint.
-
-        Args:
-          account_id: Account identifier tag.
-
-          database_id: D1 database identifier (UUID).
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @required_args(["account_id", "sql"], ["account_id", "body"])
-    def raw(
-        self,
-        database_id: str,
-        *,
-        account_id: str,
-        sql: str | Omit = omit,
-        params: SequenceNotStr[str] | Omit = omit,
-        body: Iterable[database_raw_params.MultipleQueriesBody] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncSinglePage[DatabaseRawResponse]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
@@ -791,7 +686,6 @@ class DatabaseResource(SyncAPIResource):
                 {
                     "sql": sql,
                     "params": params,
-                    "body": body,
                 },
                 database_raw_params.DatabaseRawParams,
             ),
@@ -1353,7 +1247,6 @@ class AsyncDatabaseResource(AsyncAPIResource):
             cast_to=cast(Type[DatabaseImportResponse], ResultWrapper[DatabaseImportResponse]),
         )
 
-    @overload
     def query(
         self,
         database_id: str,
@@ -1387,56 +1280,6 @@ class AsyncDatabaseResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        ...
-
-    @overload
-    def query(
-        self,
-        database_id: str,
-        *,
-        account_id: str,
-        body: Iterable[database_query_params.MultipleQueriesBody],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[QueryResult, AsyncSinglePage[QueryResult]]:
-        """
-        Returns the query result as an object.
-
-        Args:
-          account_id: Account identifier tag.
-
-          database_id: D1 database identifier (UUID).
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @required_args(["account_id", "sql"], ["account_id", "body"])
-    def query(
-        self,
-        database_id: str,
-        *,
-        account_id: str,
-        sql: str | Omit = omit,
-        params: SequenceNotStr[str] | Omit = omit,
-        body: Iterable[database_query_params.MultipleQueriesBody] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[QueryResult, AsyncSinglePage[QueryResult]]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
@@ -1448,7 +1291,6 @@ class AsyncDatabaseResource(AsyncAPIResource):
                 {
                     "sql": sql,
                     "params": params,
-                    "body": body,
                 },
                 database_query_params.DatabaseQueryParams,
             ),
@@ -1459,7 +1301,6 @@ class AsyncDatabaseResource(AsyncAPIResource):
             method="post",
         )
 
-    @overload
     def raw(
         self,
         database_id: str,
@@ -1495,58 +1336,6 @@ class AsyncDatabaseResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        ...
-
-    @overload
-    def raw(
-        self,
-        database_id: str,
-        *,
-        account_id: str,
-        body: Iterable[database_raw_params.MultipleQueriesBody],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[DatabaseRawResponse, AsyncSinglePage[DatabaseRawResponse]]:
-        """Returns the query result rows as arrays rather than objects.
-
-        This is a
-        performance-optimized version of the /query endpoint.
-
-        Args:
-          account_id: Account identifier tag.
-
-          database_id: D1 database identifier (UUID).
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @required_args(["account_id", "sql"], ["account_id", "body"])
-    def raw(
-        self,
-        database_id: str,
-        *,
-        account_id: str,
-        sql: str | Omit = omit,
-        params: SequenceNotStr[str] | Omit = omit,
-        body: Iterable[database_raw_params.MultipleQueriesBody] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[DatabaseRawResponse, AsyncSinglePage[DatabaseRawResponse]]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
@@ -1558,7 +1347,6 @@ class AsyncDatabaseResource(AsyncAPIResource):
                 {
                     "sql": sql,
                     "params": params,
-                    "body": body,
                 },
                 database_raw_params.DatabaseRawParams,
             ),
