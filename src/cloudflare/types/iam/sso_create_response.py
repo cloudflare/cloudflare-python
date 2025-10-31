@@ -35,7 +35,4 @@ class SSOCreateResponse(BaseModel):
     updated_on: Optional[datetime] = None
     """Timestamp for the last update of the SSO connector"""
 
-    use_fedramp_language: Optional[bool] = None
-    """Controls the display of FedRAMP language to the user during SSO login"""
-
     verification: Optional[Verification] = None

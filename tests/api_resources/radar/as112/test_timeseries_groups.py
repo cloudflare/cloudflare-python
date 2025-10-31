@@ -19,8 +19,6 @@ from cloudflare.types.radar.as112 import (
     TimeseriesGroupResponseCodesResponse,
 )
 
-# pyright: reportDeprecated=false
-
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
@@ -29,34 +27,29 @@ class TestTimeseriesGroups:
 
     @parametrize
     def test_method_dnssec(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            timeseries_group = client.radar.as112.timeseries_groups.dnssec()
-
+        timeseries_group = client.radar.as112.timeseries_groups.dnssec()
         assert_matches_type(TimeseriesGroupDNSSECResponse, timeseries_group, path=["response"])
 
     @parametrize
     def test_method_dnssec_with_all_params(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            timeseries_group = client.radar.as112.timeseries_groups.dnssec(
-                agg_interval="1h",
-                continent=["string"],
-                date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
-                date_range=["7d"],
-                date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
-                format="JSON",
-                location=["string"],
-                name=["main_series"],
-                protocol="UDP",
-                query_type="A",
-                response_code="NOERROR",
-            )
-
+        timeseries_group = client.radar.as112.timeseries_groups.dnssec(
+            agg_interval="1h",
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            format="JSON",
+            location=["string"],
+            name=["main_series"],
+            protocol="UDP",
+            query_type="A",
+            response_code="NOERROR",
+        )
         assert_matches_type(TimeseriesGroupDNSSECResponse, timeseries_group, path=["response"])
 
     @parametrize
     def test_raw_response_dnssec(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = client.radar.as112.timeseries_groups.with_raw_response.dnssec()
+        response = client.radar.as112.timeseries_groups.with_raw_response.dnssec()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -65,46 +58,40 @@ class TestTimeseriesGroups:
 
     @parametrize
     def test_streaming_response_dnssec(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            with client.radar.as112.timeseries_groups.with_streaming_response.dnssec() as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with client.radar.as112.timeseries_groups.with_streaming_response.dnssec() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-                timeseries_group = response.parse()
-                assert_matches_type(TimeseriesGroupDNSSECResponse, timeseries_group, path=["response"])
+            timeseries_group = response.parse()
+            assert_matches_type(TimeseriesGroupDNSSECResponse, timeseries_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_edns(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            timeseries_group = client.radar.as112.timeseries_groups.edns()
-
+        timeseries_group = client.radar.as112.timeseries_groups.edns()
         assert_matches_type(TimeseriesGroupEdnsResponse, timeseries_group, path=["response"])
 
     @parametrize
     def test_method_edns_with_all_params(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            timeseries_group = client.radar.as112.timeseries_groups.edns(
-                agg_interval="1h",
-                continent=["string"],
-                date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
-                date_range=["7d"],
-                date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
-                format="JSON",
-                location=["string"],
-                name=["main_series"],
-                protocol="UDP",
-                query_type="A",
-                response_code="NOERROR",
-            )
-
+        timeseries_group = client.radar.as112.timeseries_groups.edns(
+            agg_interval="1h",
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            format="JSON",
+            location=["string"],
+            name=["main_series"],
+            protocol="UDP",
+            query_type="A",
+            response_code="NOERROR",
+        )
         assert_matches_type(TimeseriesGroupEdnsResponse, timeseries_group, path=["response"])
 
     @parametrize
     def test_raw_response_edns(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = client.radar.as112.timeseries_groups.with_raw_response.edns()
+        response = client.radar.as112.timeseries_groups.with_raw_response.edns()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -113,46 +100,40 @@ class TestTimeseriesGroups:
 
     @parametrize
     def test_streaming_response_edns(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            with client.radar.as112.timeseries_groups.with_streaming_response.edns() as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with client.radar.as112.timeseries_groups.with_streaming_response.edns() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-                timeseries_group = response.parse()
-                assert_matches_type(TimeseriesGroupEdnsResponse, timeseries_group, path=["response"])
+            timeseries_group = response.parse()
+            assert_matches_type(TimeseriesGroupEdnsResponse, timeseries_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_ip_version(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            timeseries_group = client.radar.as112.timeseries_groups.ip_version()
-
+        timeseries_group = client.radar.as112.timeseries_groups.ip_version()
         assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
 
     @parametrize
     def test_method_ip_version_with_all_params(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            timeseries_group = client.radar.as112.timeseries_groups.ip_version(
-                agg_interval="1h",
-                continent=["string"],
-                date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
-                date_range=["7d"],
-                date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
-                format="JSON",
-                location=["string"],
-                name=["main_series"],
-                protocol="UDP",
-                query_type="A",
-                response_code="NOERROR",
-            )
-
+        timeseries_group = client.radar.as112.timeseries_groups.ip_version(
+            agg_interval="1h",
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            format="JSON",
+            location=["string"],
+            name=["main_series"],
+            protocol="UDP",
+            query_type="A",
+            response_code="NOERROR",
+        )
         assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
 
     @parametrize
     def test_raw_response_ip_version(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = client.radar.as112.timeseries_groups.with_raw_response.ip_version()
+        response = client.radar.as112.timeseries_groups.with_raw_response.ip_version()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -161,45 +142,39 @@ class TestTimeseriesGroups:
 
     @parametrize
     def test_streaming_response_ip_version(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            with client.radar.as112.timeseries_groups.with_streaming_response.ip_version() as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with client.radar.as112.timeseries_groups.with_streaming_response.ip_version() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-                timeseries_group = response.parse()
-                assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
+            timeseries_group = response.parse()
+            assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_protocol(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            timeseries_group = client.radar.as112.timeseries_groups.protocol()
-
+        timeseries_group = client.radar.as112.timeseries_groups.protocol()
         assert_matches_type(TimeseriesGroupProtocolResponse, timeseries_group, path=["response"])
 
     @parametrize
     def test_method_protocol_with_all_params(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            timeseries_group = client.radar.as112.timeseries_groups.protocol(
-                agg_interval="1h",
-                continent=["string"],
-                date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
-                date_range=["7d"],
-                date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
-                format="JSON",
-                location=["string"],
-                name=["main_series"],
-                query_type="A",
-                response_code="NOERROR",
-            )
-
+        timeseries_group = client.radar.as112.timeseries_groups.protocol(
+            agg_interval="1h",
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            format="JSON",
+            location=["string"],
+            name=["main_series"],
+            query_type="A",
+            response_code="NOERROR",
+        )
         assert_matches_type(TimeseriesGroupProtocolResponse, timeseries_group, path=["response"])
 
     @parametrize
     def test_raw_response_protocol(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = client.radar.as112.timeseries_groups.with_raw_response.protocol()
+        response = client.radar.as112.timeseries_groups.with_raw_response.protocol()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -208,46 +183,40 @@ class TestTimeseriesGroups:
 
     @parametrize
     def test_streaming_response_protocol(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            with client.radar.as112.timeseries_groups.with_streaming_response.protocol() as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with client.radar.as112.timeseries_groups.with_streaming_response.protocol() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-                timeseries_group = response.parse()
-                assert_matches_type(TimeseriesGroupProtocolResponse, timeseries_group, path=["response"])
+            timeseries_group = response.parse()
+            assert_matches_type(TimeseriesGroupProtocolResponse, timeseries_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_query_type(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            timeseries_group = client.radar.as112.timeseries_groups.query_type()
-
+        timeseries_group = client.radar.as112.timeseries_groups.query_type()
         assert_matches_type(TimeseriesGroupQueryTypeResponse, timeseries_group, path=["response"])
 
     @parametrize
     def test_method_query_type_with_all_params(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            timeseries_group = client.radar.as112.timeseries_groups.query_type(
-                agg_interval="1h",
-                continent=["string"],
-                date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
-                date_range=["7d"],
-                date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
-                format="JSON",
-                limit_per_group=10,
-                location=["string"],
-                name=["main_series"],
-                protocol="UDP",
-                response_code="NOERROR",
-            )
-
+        timeseries_group = client.radar.as112.timeseries_groups.query_type(
+            agg_interval="1h",
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            format="JSON",
+            limit_per_group=10,
+            location=["string"],
+            name=["main_series"],
+            protocol="UDP",
+            response_code="NOERROR",
+        )
         assert_matches_type(TimeseriesGroupQueryTypeResponse, timeseries_group, path=["response"])
 
     @parametrize
     def test_raw_response_query_type(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = client.radar.as112.timeseries_groups.with_raw_response.query_type()
+        response = client.radar.as112.timeseries_groups.with_raw_response.query_type()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -256,46 +225,40 @@ class TestTimeseriesGroups:
 
     @parametrize
     def test_streaming_response_query_type(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            with client.radar.as112.timeseries_groups.with_streaming_response.query_type() as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with client.radar.as112.timeseries_groups.with_streaming_response.query_type() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-                timeseries_group = response.parse()
-                assert_matches_type(TimeseriesGroupQueryTypeResponse, timeseries_group, path=["response"])
+            timeseries_group = response.parse()
+            assert_matches_type(TimeseriesGroupQueryTypeResponse, timeseries_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_response_codes(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            timeseries_group = client.radar.as112.timeseries_groups.response_codes()
-
+        timeseries_group = client.radar.as112.timeseries_groups.response_codes()
         assert_matches_type(TimeseriesGroupResponseCodesResponse, timeseries_group, path=["response"])
 
     @parametrize
     def test_method_response_codes_with_all_params(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            timeseries_group = client.radar.as112.timeseries_groups.response_codes(
-                agg_interval="1h",
-                continent=["string"],
-                date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
-                date_range=["7d"],
-                date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
-                format="JSON",
-                limit_per_group=10,
-                location=["string"],
-                name=["main_series"],
-                protocol="UDP",
-                query_type="A",
-            )
-
+        timeseries_group = client.radar.as112.timeseries_groups.response_codes(
+            agg_interval="1h",
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            format="JSON",
+            limit_per_group=10,
+            location=["string"],
+            name=["main_series"],
+            protocol="UDP",
+            query_type="A",
+        )
         assert_matches_type(TimeseriesGroupResponseCodesResponse, timeseries_group, path=["response"])
 
     @parametrize
     def test_raw_response_response_codes(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = client.radar.as112.timeseries_groups.with_raw_response.response_codes()
+        response = client.radar.as112.timeseries_groups.with_raw_response.response_codes()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -304,13 +267,12 @@ class TestTimeseriesGroups:
 
     @parametrize
     def test_streaming_response_response_codes(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            with client.radar.as112.timeseries_groups.with_streaming_response.response_codes() as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with client.radar.as112.timeseries_groups.with_streaming_response.response_codes() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-                timeseries_group = response.parse()
-                assert_matches_type(TimeseriesGroupResponseCodesResponse, timeseries_group, path=["response"])
+            timeseries_group = response.parse()
+            assert_matches_type(TimeseriesGroupResponseCodesResponse, timeseries_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -322,34 +284,29 @@ class TestAsyncTimeseriesGroups:
 
     @parametrize
     async def test_method_dnssec(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            timeseries_group = await async_client.radar.as112.timeseries_groups.dnssec()
-
+        timeseries_group = await async_client.radar.as112.timeseries_groups.dnssec()
         assert_matches_type(TimeseriesGroupDNSSECResponse, timeseries_group, path=["response"])
 
     @parametrize
     async def test_method_dnssec_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            timeseries_group = await async_client.radar.as112.timeseries_groups.dnssec(
-                agg_interval="1h",
-                continent=["string"],
-                date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
-                date_range=["7d"],
-                date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
-                format="JSON",
-                location=["string"],
-                name=["main_series"],
-                protocol="UDP",
-                query_type="A",
-                response_code="NOERROR",
-            )
-
+        timeseries_group = await async_client.radar.as112.timeseries_groups.dnssec(
+            agg_interval="1h",
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            format="JSON",
+            location=["string"],
+            name=["main_series"],
+            protocol="UDP",
+            query_type="A",
+            response_code="NOERROR",
+        )
         assert_matches_type(TimeseriesGroupDNSSECResponse, timeseries_group, path=["response"])
 
     @parametrize
     async def test_raw_response_dnssec(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = await async_client.radar.as112.timeseries_groups.with_raw_response.dnssec()
+        response = await async_client.radar.as112.timeseries_groups.with_raw_response.dnssec()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -358,46 +315,40 @@ class TestAsyncTimeseriesGroups:
 
     @parametrize
     async def test_streaming_response_dnssec(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            async with async_client.radar.as112.timeseries_groups.with_streaming_response.dnssec() as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        async with async_client.radar.as112.timeseries_groups.with_streaming_response.dnssec() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-                timeseries_group = await response.parse()
-                assert_matches_type(TimeseriesGroupDNSSECResponse, timeseries_group, path=["response"])
+            timeseries_group = await response.parse()
+            assert_matches_type(TimeseriesGroupDNSSECResponse, timeseries_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_edns(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            timeseries_group = await async_client.radar.as112.timeseries_groups.edns()
-
+        timeseries_group = await async_client.radar.as112.timeseries_groups.edns()
         assert_matches_type(TimeseriesGroupEdnsResponse, timeseries_group, path=["response"])
 
     @parametrize
     async def test_method_edns_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            timeseries_group = await async_client.radar.as112.timeseries_groups.edns(
-                agg_interval="1h",
-                continent=["string"],
-                date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
-                date_range=["7d"],
-                date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
-                format="JSON",
-                location=["string"],
-                name=["main_series"],
-                protocol="UDP",
-                query_type="A",
-                response_code="NOERROR",
-            )
-
+        timeseries_group = await async_client.radar.as112.timeseries_groups.edns(
+            agg_interval="1h",
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            format="JSON",
+            location=["string"],
+            name=["main_series"],
+            protocol="UDP",
+            query_type="A",
+            response_code="NOERROR",
+        )
         assert_matches_type(TimeseriesGroupEdnsResponse, timeseries_group, path=["response"])
 
     @parametrize
     async def test_raw_response_edns(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = await async_client.radar.as112.timeseries_groups.with_raw_response.edns()
+        response = await async_client.radar.as112.timeseries_groups.with_raw_response.edns()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -406,46 +357,40 @@ class TestAsyncTimeseriesGroups:
 
     @parametrize
     async def test_streaming_response_edns(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            async with async_client.radar.as112.timeseries_groups.with_streaming_response.edns() as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        async with async_client.radar.as112.timeseries_groups.with_streaming_response.edns() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-                timeseries_group = await response.parse()
-                assert_matches_type(TimeseriesGroupEdnsResponse, timeseries_group, path=["response"])
+            timeseries_group = await response.parse()
+            assert_matches_type(TimeseriesGroupEdnsResponse, timeseries_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_ip_version(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            timeseries_group = await async_client.radar.as112.timeseries_groups.ip_version()
-
+        timeseries_group = await async_client.radar.as112.timeseries_groups.ip_version()
         assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
 
     @parametrize
     async def test_method_ip_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            timeseries_group = await async_client.radar.as112.timeseries_groups.ip_version(
-                agg_interval="1h",
-                continent=["string"],
-                date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
-                date_range=["7d"],
-                date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
-                format="JSON",
-                location=["string"],
-                name=["main_series"],
-                protocol="UDP",
-                query_type="A",
-                response_code="NOERROR",
-            )
-
+        timeseries_group = await async_client.radar.as112.timeseries_groups.ip_version(
+            agg_interval="1h",
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            format="JSON",
+            location=["string"],
+            name=["main_series"],
+            protocol="UDP",
+            query_type="A",
+            response_code="NOERROR",
+        )
         assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
 
     @parametrize
     async def test_raw_response_ip_version(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = await async_client.radar.as112.timeseries_groups.with_raw_response.ip_version()
+        response = await async_client.radar.as112.timeseries_groups.with_raw_response.ip_version()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -454,45 +399,39 @@ class TestAsyncTimeseriesGroups:
 
     @parametrize
     async def test_streaming_response_ip_version(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            async with async_client.radar.as112.timeseries_groups.with_streaming_response.ip_version() as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        async with async_client.radar.as112.timeseries_groups.with_streaming_response.ip_version() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-                timeseries_group = await response.parse()
-                assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
+            timeseries_group = await response.parse()
+            assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_protocol(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            timeseries_group = await async_client.radar.as112.timeseries_groups.protocol()
-
+        timeseries_group = await async_client.radar.as112.timeseries_groups.protocol()
         assert_matches_type(TimeseriesGroupProtocolResponse, timeseries_group, path=["response"])
 
     @parametrize
     async def test_method_protocol_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            timeseries_group = await async_client.radar.as112.timeseries_groups.protocol(
-                agg_interval="1h",
-                continent=["string"],
-                date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
-                date_range=["7d"],
-                date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
-                format="JSON",
-                location=["string"],
-                name=["main_series"],
-                query_type="A",
-                response_code="NOERROR",
-            )
-
+        timeseries_group = await async_client.radar.as112.timeseries_groups.protocol(
+            agg_interval="1h",
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            format="JSON",
+            location=["string"],
+            name=["main_series"],
+            query_type="A",
+            response_code="NOERROR",
+        )
         assert_matches_type(TimeseriesGroupProtocolResponse, timeseries_group, path=["response"])
 
     @parametrize
     async def test_raw_response_protocol(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = await async_client.radar.as112.timeseries_groups.with_raw_response.protocol()
+        response = await async_client.radar.as112.timeseries_groups.with_raw_response.protocol()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -501,46 +440,40 @@ class TestAsyncTimeseriesGroups:
 
     @parametrize
     async def test_streaming_response_protocol(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            async with async_client.radar.as112.timeseries_groups.with_streaming_response.protocol() as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        async with async_client.radar.as112.timeseries_groups.with_streaming_response.protocol() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-                timeseries_group = await response.parse()
-                assert_matches_type(TimeseriesGroupProtocolResponse, timeseries_group, path=["response"])
+            timeseries_group = await response.parse()
+            assert_matches_type(TimeseriesGroupProtocolResponse, timeseries_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_query_type(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            timeseries_group = await async_client.radar.as112.timeseries_groups.query_type()
-
+        timeseries_group = await async_client.radar.as112.timeseries_groups.query_type()
         assert_matches_type(TimeseriesGroupQueryTypeResponse, timeseries_group, path=["response"])
 
     @parametrize
     async def test_method_query_type_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            timeseries_group = await async_client.radar.as112.timeseries_groups.query_type(
-                agg_interval="1h",
-                continent=["string"],
-                date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
-                date_range=["7d"],
-                date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
-                format="JSON",
-                limit_per_group=10,
-                location=["string"],
-                name=["main_series"],
-                protocol="UDP",
-                response_code="NOERROR",
-            )
-
+        timeseries_group = await async_client.radar.as112.timeseries_groups.query_type(
+            agg_interval="1h",
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            format="JSON",
+            limit_per_group=10,
+            location=["string"],
+            name=["main_series"],
+            protocol="UDP",
+            response_code="NOERROR",
+        )
         assert_matches_type(TimeseriesGroupQueryTypeResponse, timeseries_group, path=["response"])
 
     @parametrize
     async def test_raw_response_query_type(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = await async_client.radar.as112.timeseries_groups.with_raw_response.query_type()
+        response = await async_client.radar.as112.timeseries_groups.with_raw_response.query_type()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -549,46 +482,40 @@ class TestAsyncTimeseriesGroups:
 
     @parametrize
     async def test_streaming_response_query_type(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            async with async_client.radar.as112.timeseries_groups.with_streaming_response.query_type() as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        async with async_client.radar.as112.timeseries_groups.with_streaming_response.query_type() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-                timeseries_group = await response.parse()
-                assert_matches_type(TimeseriesGroupQueryTypeResponse, timeseries_group, path=["response"])
+            timeseries_group = await response.parse()
+            assert_matches_type(TimeseriesGroupQueryTypeResponse, timeseries_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_response_codes(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            timeseries_group = await async_client.radar.as112.timeseries_groups.response_codes()
-
+        timeseries_group = await async_client.radar.as112.timeseries_groups.response_codes()
         assert_matches_type(TimeseriesGroupResponseCodesResponse, timeseries_group, path=["response"])
 
     @parametrize
     async def test_method_response_codes_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            timeseries_group = await async_client.radar.as112.timeseries_groups.response_codes(
-                agg_interval="1h",
-                continent=["string"],
-                date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
-                date_range=["7d"],
-                date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
-                format="JSON",
-                limit_per_group=10,
-                location=["string"],
-                name=["main_series"],
-                protocol="UDP",
-                query_type="A",
-            )
-
+        timeseries_group = await async_client.radar.as112.timeseries_groups.response_codes(
+            agg_interval="1h",
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            format="JSON",
+            limit_per_group=10,
+            location=["string"],
+            name=["main_series"],
+            protocol="UDP",
+            query_type="A",
+        )
         assert_matches_type(TimeseriesGroupResponseCodesResponse, timeseries_group, path=["response"])
 
     @parametrize
     async def test_raw_response_response_codes(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            response = await async_client.radar.as112.timeseries_groups.with_raw_response.response_codes()
+        response = await async_client.radar.as112.timeseries_groups.with_raw_response.response_codes()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -597,12 +524,11 @@ class TestAsyncTimeseriesGroups:
 
     @parametrize
     async def test_streaming_response_response_codes(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            async with async_client.radar.as112.timeseries_groups.with_streaming_response.response_codes() as response:
-                assert not response.is_closed
-                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        async with async_client.radar.as112.timeseries_groups.with_streaming_response.response_codes() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-                timeseries_group = await response.parse()
-                assert_matches_type(TimeseriesGroupResponseCodesResponse, timeseries_group, path=["response"])
+            timeseries_group = await response.parse()
+            assert_matches_type(TimeseriesGroupResponseCodesResponse, timeseries_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True

@@ -67,9 +67,6 @@ class VersionCreateParams(TypedDict, total=False):
 
 
 class MetadataAnnotations(TypedDict, total=False):
-    workers_alias: Annotated[str, PropertyInfo(alias="workers/alias")]
-    """Associated alias for a version."""
-
     workers_message: Annotated[str, PropertyInfo(alias="workers/message")]
     """Human-readable message about the version. Truncated to 100 bytes."""
 
@@ -161,7 +158,7 @@ class MetadataBindingWorkersBindingKindDispatchNamespace(TypedDict, total=False)
     """A JavaScript variable name for the binding."""
 
     namespace: Required[str]
-    """The name of the dispatch namespace."""
+    """Namespace to bind to."""
 
     type: Required[Literal["dispatch_namespace"]]
     """The kind of resource that the binding provides."""

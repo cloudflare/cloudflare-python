@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import typing_extensions
 from typing import List, Type, Union, cast
 from datetime import datetime
 from typing_extensions import Literal
@@ -65,7 +64,6 @@ class SummaryResource(SyncAPIResource):
         """
         return SummaryResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
     def arc(
         self,
         *,
@@ -145,7 +143,6 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryARCResponse], ResultWrapper[SummaryARCResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def dkim(
         self,
         *,
@@ -225,7 +222,6 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryDKIMResponse], ResultWrapper[SummaryDKIMResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def dmarc(
         self,
         *,
@@ -304,7 +300,6 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryDMARCResponse], ResultWrapper[SummaryDMARCResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def malicious(
         self,
         *,
@@ -387,7 +382,6 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryMaliciousResponse], ResultWrapper[SummaryMaliciousResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def spam(
         self,
         *,
@@ -471,7 +465,6 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummarySpamResponse], ResultWrapper[SummarySpamResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def spf(
         self,
         *,
@@ -551,7 +544,6 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummarySPFResponse], ResultWrapper[SummarySPFResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def spoof(
         self,
         *,
@@ -635,7 +627,6 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummarySpoofResponse], ResultWrapper[SummarySpoofResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def threat_category(
         self,
         *,
@@ -718,7 +709,6 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryThreatCategoryResponse], ResultWrapper[SummaryThreatCategoryResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     def tls_version(
         self,
         *,
@@ -818,7 +808,6 @@ class AsyncSummaryResource(AsyncAPIResource):
         """
         return AsyncSummaryResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
     async def arc(
         self,
         *,
@@ -898,7 +887,6 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryARCResponse], ResultWrapper[SummaryARCResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def dkim(
         self,
         *,
@@ -978,7 +966,6 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryDKIMResponse], ResultWrapper[SummaryDKIMResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def dmarc(
         self,
         *,
@@ -1057,7 +1044,6 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryDMARCResponse], ResultWrapper[SummaryDMARCResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def malicious(
         self,
         *,
@@ -1140,7 +1126,6 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryMaliciousResponse], ResultWrapper[SummaryMaliciousResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def spam(
         self,
         *,
@@ -1224,7 +1209,6 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummarySpamResponse], ResultWrapper[SummarySpamResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def spf(
         self,
         *,
@@ -1304,7 +1288,6 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummarySPFResponse], ResultWrapper[SummarySPFResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def spoof(
         self,
         *,
@@ -1388,7 +1371,6 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummarySpoofResponse], ResultWrapper[SummarySpoofResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def threat_category(
         self,
         *,
@@ -1471,7 +1453,6 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryThreatCategoryResponse], ResultWrapper[SummaryThreatCategoryResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def tls_version(
         self,
         *,
@@ -1555,50 +1536,32 @@ class SummaryResourceWithRawResponse:
     def __init__(self, summary: SummaryResource) -> None:
         self._summary = summary
 
-        self.arc = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                summary.arc,  # pyright: ignore[reportDeprecated],
-            )
+        self.arc = to_raw_response_wrapper(
+            summary.arc,
         )
-        self.dkim = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                summary.dkim,  # pyright: ignore[reportDeprecated],
-            )
+        self.dkim = to_raw_response_wrapper(
+            summary.dkim,
         )
-        self.dmarc = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                summary.dmarc,  # pyright: ignore[reportDeprecated],
-            )
+        self.dmarc = to_raw_response_wrapper(
+            summary.dmarc,
         )
-        self.malicious = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                summary.malicious,  # pyright: ignore[reportDeprecated],
-            )
+        self.malicious = to_raw_response_wrapper(
+            summary.malicious,
         )
-        self.spam = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                summary.spam,  # pyright: ignore[reportDeprecated],
-            )
+        self.spam = to_raw_response_wrapper(
+            summary.spam,
         )
-        self.spf = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                summary.spf,  # pyright: ignore[reportDeprecated],
-            )
+        self.spf = to_raw_response_wrapper(
+            summary.spf,
         )
-        self.spoof = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                summary.spoof,  # pyright: ignore[reportDeprecated],
-            )
+        self.spoof = to_raw_response_wrapper(
+            summary.spoof,
         )
-        self.threat_category = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                summary.threat_category,  # pyright: ignore[reportDeprecated],
-            )
+        self.threat_category = to_raw_response_wrapper(
+            summary.threat_category,
         )
-        self.tls_version = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                summary.tls_version,  # pyright: ignore[reportDeprecated],
-            )
+        self.tls_version = to_raw_response_wrapper(
+            summary.tls_version,
         )
 
 
@@ -1606,50 +1569,32 @@ class AsyncSummaryResourceWithRawResponse:
     def __init__(self, summary: AsyncSummaryResource) -> None:
         self._summary = summary
 
-        self.arc = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                summary.arc,  # pyright: ignore[reportDeprecated],
-            )
+        self.arc = async_to_raw_response_wrapper(
+            summary.arc,
         )
-        self.dkim = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                summary.dkim,  # pyright: ignore[reportDeprecated],
-            )
+        self.dkim = async_to_raw_response_wrapper(
+            summary.dkim,
         )
-        self.dmarc = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                summary.dmarc,  # pyright: ignore[reportDeprecated],
-            )
+        self.dmarc = async_to_raw_response_wrapper(
+            summary.dmarc,
         )
-        self.malicious = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                summary.malicious,  # pyright: ignore[reportDeprecated],
-            )
+        self.malicious = async_to_raw_response_wrapper(
+            summary.malicious,
         )
-        self.spam = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                summary.spam,  # pyright: ignore[reportDeprecated],
-            )
+        self.spam = async_to_raw_response_wrapper(
+            summary.spam,
         )
-        self.spf = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                summary.spf,  # pyright: ignore[reportDeprecated],
-            )
+        self.spf = async_to_raw_response_wrapper(
+            summary.spf,
         )
-        self.spoof = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                summary.spoof,  # pyright: ignore[reportDeprecated],
-            )
+        self.spoof = async_to_raw_response_wrapper(
+            summary.spoof,
         )
-        self.threat_category = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                summary.threat_category,  # pyright: ignore[reportDeprecated],
-            )
+        self.threat_category = async_to_raw_response_wrapper(
+            summary.threat_category,
         )
-        self.tls_version = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                summary.tls_version,  # pyright: ignore[reportDeprecated],
-            )
+        self.tls_version = async_to_raw_response_wrapper(
+            summary.tls_version,
         )
 
 
@@ -1657,50 +1602,32 @@ class SummaryResourceWithStreamingResponse:
     def __init__(self, summary: SummaryResource) -> None:
         self._summary = summary
 
-        self.arc = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                summary.arc,  # pyright: ignore[reportDeprecated],
-            )
+        self.arc = to_streamed_response_wrapper(
+            summary.arc,
         )
-        self.dkim = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                summary.dkim,  # pyright: ignore[reportDeprecated],
-            )
+        self.dkim = to_streamed_response_wrapper(
+            summary.dkim,
         )
-        self.dmarc = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                summary.dmarc,  # pyright: ignore[reportDeprecated],
-            )
+        self.dmarc = to_streamed_response_wrapper(
+            summary.dmarc,
         )
-        self.malicious = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                summary.malicious,  # pyright: ignore[reportDeprecated],
-            )
+        self.malicious = to_streamed_response_wrapper(
+            summary.malicious,
         )
-        self.spam = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                summary.spam,  # pyright: ignore[reportDeprecated],
-            )
+        self.spam = to_streamed_response_wrapper(
+            summary.spam,
         )
-        self.spf = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                summary.spf,  # pyright: ignore[reportDeprecated],
-            )
+        self.spf = to_streamed_response_wrapper(
+            summary.spf,
         )
-        self.spoof = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                summary.spoof,  # pyright: ignore[reportDeprecated],
-            )
+        self.spoof = to_streamed_response_wrapper(
+            summary.spoof,
         )
-        self.threat_category = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                summary.threat_category,  # pyright: ignore[reportDeprecated],
-            )
+        self.threat_category = to_streamed_response_wrapper(
+            summary.threat_category,
         )
-        self.tls_version = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                summary.tls_version,  # pyright: ignore[reportDeprecated],
-            )
+        self.tls_version = to_streamed_response_wrapper(
+            summary.tls_version,
         )
 
 
@@ -1708,48 +1635,30 @@ class AsyncSummaryResourceWithStreamingResponse:
     def __init__(self, summary: AsyncSummaryResource) -> None:
         self._summary = summary
 
-        self.arc = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                summary.arc,  # pyright: ignore[reportDeprecated],
-            )
+        self.arc = async_to_streamed_response_wrapper(
+            summary.arc,
         )
-        self.dkim = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                summary.dkim,  # pyright: ignore[reportDeprecated],
-            )
+        self.dkim = async_to_streamed_response_wrapper(
+            summary.dkim,
         )
-        self.dmarc = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                summary.dmarc,  # pyright: ignore[reportDeprecated],
-            )
+        self.dmarc = async_to_streamed_response_wrapper(
+            summary.dmarc,
         )
-        self.malicious = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                summary.malicious,  # pyright: ignore[reportDeprecated],
-            )
+        self.malicious = async_to_streamed_response_wrapper(
+            summary.malicious,
         )
-        self.spam = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                summary.spam,  # pyright: ignore[reportDeprecated],
-            )
+        self.spam = async_to_streamed_response_wrapper(
+            summary.spam,
         )
-        self.spf = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                summary.spf,  # pyright: ignore[reportDeprecated],
-            )
+        self.spf = async_to_streamed_response_wrapper(
+            summary.spf,
         )
-        self.spoof = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                summary.spoof,  # pyright: ignore[reportDeprecated],
-            )
+        self.spoof = async_to_streamed_response_wrapper(
+            summary.spoof,
         )
-        self.threat_category = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                summary.threat_category,  # pyright: ignore[reportDeprecated],
-            )
+        self.threat_category = async_to_streamed_response_wrapper(
+            summary.threat_category,
         )
-        self.tls_version = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                summary.tls_version,  # pyright: ignore[reportDeprecated],
-            )
+        self.tls_version = async_to_streamed_response_wrapper(
+            summary.tls_version,
         )

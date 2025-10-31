@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Type, Mapping, Optional, cast
+from typing import Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
 
-from ....._types import Body, Omit, Query, Headers, NotGiven, FileTypes, omit, not_given
-from ....._utils import extract_files, maybe_transform, deepcopy_minimal, async_maybe_transform
+from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -68,19 +68,7 @@ class DeploymentsResource(SyncAPIResource):
         project_name: str,
         *,
         account_id: str,
-        _headers: FileTypes | Omit = omit,
-        _redirects: FileTypes | Omit = omit,
-        _routes_json: FileTypes | Omit = omit,
-        _worker_bundle: FileTypes | Omit = omit,
-        _worker_js: FileTypes | Omit = omit,
         branch: str | Omit = omit,
-        commit_dirty: Literal["true", "false"] | Omit = omit,
-        commit_hash: str | Omit = omit,
-        commit_message: str | Omit = omit,
-        functions_filepath_routing_config_json: FileTypes | Omit = omit,
-        manifest: str | Omit = omit,
-        pages_build_output_dir: str | Omit = omit,
-        wrangler_config_hash: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -98,36 +86,8 @@ class DeploymentsResource(SyncAPIResource):
 
           project_name: Name of the project.
 
-          _headers: Headers configuration file for the deployment.
-
-          _redirects: Redirects configuration file for the deployment.
-
-          _routes_json: Routes configuration file defining routing rules.
-
-          _worker_bundle: Worker bundle file in multipart/form-data format. Mutually exclusive with
-              `_worker.js`. Cannot specify both `_worker.js` and `_worker.bundle` in the same
-              request. Maximum size: 25 MiB.
-
-          _worker_js: Worker JavaScript file. Mutually exclusive with `_worker.bundle`. Cannot specify
-              both `_worker.js` and `_worker.bundle` in the same request.
-
           branch: The branch to build the new deployment from. The `HEAD` of the branch will be
               used. If omitted, the production branch will be used by default.
-
-          commit_dirty: Boolean string indicating if the working directory has uncommitted changes.
-
-          commit_hash: Git commit SHA associated with this deployment.
-
-          commit_message: Git commit message associated with this deployment.
-
-          functions_filepath_routing_config_json: Functions routing configuration file.
-
-          manifest: JSON string containing a manifest of files to deploy. Maps file paths to their
-              content hashes. Required for direct upload deployments. Maximum 20,000 entries.
-
-          pages_build_output_dir: The build output directory path.
-
-          wrangler_config_hash: Hash of the Wrangler configuration file used for this deployment.
 
           extra_headers: Send extra headers
 
@@ -141,42 +101,13 @@ class DeploymentsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
             raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
-        body = deepcopy_minimal(
-            {
-                "_headers": _headers,
-                "_redirects": _redirects,
-                "_routes_json": _routes_json,
-                "_worker_bundle": _worker_bundle,
-                "_worker_js": _worker_js,
-                "branch": branch,
-                "commit_dirty": commit_dirty,
-                "commit_hash": commit_hash,
-                "commit_message": commit_message,
-                "functions_filepath_routing_config_json": functions_filepath_routing_config_json,
-                "manifest": manifest,
-                "pages_build_output_dir": pages_build_output_dir,
-                "wrangler_config_hash": wrangler_config_hash,
-            }
-        )
-        files = extract_files(
-            cast(Mapping[str, object], body),
-            paths=[
-                ["_headers"],
-                ["_redirects"],
-                ["_routes.json"],
-                ["_worker.bundle"],
-                ["_worker.js"],
-                ["functions-filepath-routing-config.json"],
-            ],
-        )
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments",
-            body=maybe_transform(body, deployment_create_params.DeploymentCreateParams),
-            files=files,
+            body=maybe_transform({"branch": branch}, deployment_create_params.DeploymentCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -467,19 +398,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         project_name: str,
         *,
         account_id: str,
-        _headers: FileTypes | Omit = omit,
-        _redirects: FileTypes | Omit = omit,
-        _routes_json: FileTypes | Omit = omit,
-        _worker_bundle: FileTypes | Omit = omit,
-        _worker_js: FileTypes | Omit = omit,
         branch: str | Omit = omit,
-        commit_dirty: Literal["true", "false"] | Omit = omit,
-        commit_hash: str | Omit = omit,
-        commit_message: str | Omit = omit,
-        functions_filepath_routing_config_json: FileTypes | Omit = omit,
-        manifest: str | Omit = omit,
-        pages_build_output_dir: str | Omit = omit,
-        wrangler_config_hash: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -497,36 +416,8 @@ class AsyncDeploymentsResource(AsyncAPIResource):
 
           project_name: Name of the project.
 
-          _headers: Headers configuration file for the deployment.
-
-          _redirects: Redirects configuration file for the deployment.
-
-          _routes_json: Routes configuration file defining routing rules.
-
-          _worker_bundle: Worker bundle file in multipart/form-data format. Mutually exclusive with
-              `_worker.js`. Cannot specify both `_worker.js` and `_worker.bundle` in the same
-              request. Maximum size: 25 MiB.
-
-          _worker_js: Worker JavaScript file. Mutually exclusive with `_worker.bundle`. Cannot specify
-              both `_worker.js` and `_worker.bundle` in the same request.
-
           branch: The branch to build the new deployment from. The `HEAD` of the branch will be
               used. If omitted, the production branch will be used by default.
-
-          commit_dirty: Boolean string indicating if the working directory has uncommitted changes.
-
-          commit_hash: Git commit SHA associated with this deployment.
-
-          commit_message: Git commit message associated with this deployment.
-
-          functions_filepath_routing_config_json: Functions routing configuration file.
-
-          manifest: JSON string containing a manifest of files to deploy. Maps file paths to their
-              content hashes. Required for direct upload deployments. Maximum 20,000 entries.
-
-          pages_build_output_dir: The build output directory path.
-
-          wrangler_config_hash: Hash of the Wrangler configuration file used for this deployment.
 
           extra_headers: Send extra headers
 
@@ -540,42 +431,13 @@ class AsyncDeploymentsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
             raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
-        body = deepcopy_minimal(
-            {
-                "_headers": _headers,
-                "_redirects": _redirects,
-                "_routes_json": _routes_json,
-                "_worker_bundle": _worker_bundle,
-                "_worker_js": _worker_js,
-                "branch": branch,
-                "commit_dirty": commit_dirty,
-                "commit_hash": commit_hash,
-                "commit_message": commit_message,
-                "functions_filepath_routing_config_json": functions_filepath_routing_config_json,
-                "manifest": manifest,
-                "pages_build_output_dir": pages_build_output_dir,
-                "wrangler_config_hash": wrangler_config_hash,
-            }
-        )
-        files = extract_files(
-            cast(Mapping[str, object], body),
-            paths=[
-                ["_headers"],
-                ["_redirects"],
-                ["_routes.json"],
-                ["_worker.bundle"],
-                ["_worker.js"],
-                ["functions-filepath-routing-config.json"],
-            ],
-        )
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments",
-            body=await async_maybe_transform(body, deployment_create_params.DeploymentCreateParams),
-            files=files,
+            body=await async_maybe_transform({"branch": branch}, deployment_create_params.DeploymentCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

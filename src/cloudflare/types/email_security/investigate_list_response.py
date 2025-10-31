@@ -43,34 +43,9 @@ class Properties(BaseModel):
 
 
 class Finding(BaseModel):
-    attachment: Optional[str] = None
-
     detail: Optional[str] = None
 
-    detection: Optional[
-        Literal[
-            "MALICIOUS",
-            "MALICIOUS-BEC",
-            "SUSPICIOUS",
-            "SPOOF",
-            "SPAM",
-            "BULK",
-            "ENCRYPTED",
-            "EXTERNAL",
-            "UNKNOWN",
-            "NONE",
-        ]
-    ] = None
-
-    field: Optional[str] = None
-
     name: Optional[str] = None
-
-    portion: Optional[str] = None
-
-    reason: Optional[str] = None
-
-    score: Optional[float] = None
 
     value: Optional[str] = None
 

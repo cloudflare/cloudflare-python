@@ -16,6 +16,3 @@ class SSOCreateParams(TypedDict, total=False):
 
     begin_verification: bool
     """Begin the verification process after creation"""
-
-    use_fedramp_language: bool
-    """Controls the display of FedRAMP language to the user during SSO login"""

@@ -9,25 +9,22 @@ __all__ = ["ValueUpdateParams"]
 
 class ValueUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     namespace_id: Required[str]
     """Namespace identifier tag."""
-
-    metadata: Required[str]
-    """Arbitrary JSON to be associated with a key/value pair."""
 
     value: Required[str]
     """A byte sequence to be stored, up to 25 MiB in length."""
 
     expiration: float
     """
-    The time, measured in number of seconds since the UNIX epoch, at which the key
-    should expire.
+    Expires the key at a certain time, measured in number of seconds since the UNIX
+    epoch.
     """
 
     expiration_ttl: float
-    """The number of seconds for which the key should be visible before it expires.
+    """Expires the key after a number of seconds. Must be at least 60."""
 
-    At least 60.
-    """
+    metadata: object
+    """Associates arbitrary JSON data with a key/value pair."""

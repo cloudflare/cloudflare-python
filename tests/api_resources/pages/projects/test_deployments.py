@@ -33,19 +33,7 @@ class TestDeployments:
         deployment = client.pages.projects.deployments.create(
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            _headers=b"raw file contents",
-            _redirects=b"raw file contents",
-            _routes_json=b"raw file contents",
-            _worker_bundle=b"raw file contents",
-            _worker_js=b"raw file contents",
             branch="staging",
-            commit_dirty="false",
-            commit_hash="a1b2c3d4e5f6",
-            commit_message="Update homepage",
-            functions_filepath_routing_config_json=b"raw file contents",
-            manifest='{"index.html": "abc123", "style.css": "def456"}',
-            pages_build_output_dir="dist",
-            wrangler_config_hash="wrangler_config_hash",
         )
         assert_matches_type(Deployment, deployment, path=["response"])
 
@@ -422,19 +410,7 @@ class TestAsyncDeployments:
         deployment = await async_client.pages.projects.deployments.create(
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            _headers=b"raw file contents",
-            _redirects=b"raw file contents",
-            _routes_json=b"raw file contents",
-            _worker_bundle=b"raw file contents",
-            _worker_js=b"raw file contents",
             branch="staging",
-            commit_dirty="false",
-            commit_hash="a1b2c3d4e5f6",
-            commit_message="Update homepage",
-            functions_filepath_routing_config_json=b"raw file contents",
-            manifest='{"index.html": "abc123", "style.css": "def456"}',
-            pages_build_output_dir="dist",
-            wrangler_config_hash="wrangler_config_hash",
         )
         assert_matches_type(Deployment, deployment, path=["response"])
 

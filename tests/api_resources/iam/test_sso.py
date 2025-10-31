@@ -39,7 +39,6 @@ class TestSSO:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             email_domain="example.com",
             begin_verification=True,
-            use_fedramp_language=False,
         )
         assert_matches_type(Optional[SSOCreateResponse], sso, path=["response"])
 
@@ -82,16 +81,7 @@ class TestSSO:
         sso = client.iam.sso.update(
             sso_connector_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(Optional[SSOUpdateResponse], sso, path=["response"])
-
-    @parametrize
-    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
-        sso = client.iam.sso.update(
-            sso_connector_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             enabled=True,
-            use_fedramp_language=False,
         )
         assert_matches_type(Optional[SSOUpdateResponse], sso, path=["response"])
 
@@ -100,6 +90,7 @@ class TestSSO:
         response = client.iam.sso.with_raw_response.update(
             sso_connector_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            enabled=True,
         )
 
         assert response.is_closed is True
@@ -112,6 +103,7 @@ class TestSSO:
         with client.iam.sso.with_streaming_response.update(
             sso_connector_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            enabled=True,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -127,12 +119,14 @@ class TestSSO:
             client.iam.sso.with_raw_response.update(
                 sso_connector_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
+                enabled=True,
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `sso_connector_id` but received ''"):
             client.iam.sso.with_raw_response.update(
                 sso_connector_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                enabled=True,
             )
 
     @parametrize
@@ -337,7 +331,6 @@ class TestAsyncSSO:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             email_domain="example.com",
             begin_verification=True,
-            use_fedramp_language=False,
         )
         assert_matches_type(Optional[SSOCreateResponse], sso, path=["response"])
 
@@ -380,16 +373,7 @@ class TestAsyncSSO:
         sso = await async_client.iam.sso.update(
             sso_connector_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(Optional[SSOUpdateResponse], sso, path=["response"])
-
-    @parametrize
-    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        sso = await async_client.iam.sso.update(
-            sso_connector_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             enabled=True,
-            use_fedramp_language=False,
         )
         assert_matches_type(Optional[SSOUpdateResponse], sso, path=["response"])
 
@@ -398,6 +382,7 @@ class TestAsyncSSO:
         response = await async_client.iam.sso.with_raw_response.update(
             sso_connector_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            enabled=True,
         )
 
         assert response.is_closed is True
@@ -410,6 +395,7 @@ class TestAsyncSSO:
         async with async_client.iam.sso.with_streaming_response.update(
             sso_connector_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            enabled=True,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -425,12 +411,14 @@ class TestAsyncSSO:
             await async_client.iam.sso.with_raw_response.update(
                 sso_connector_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
+                enabled=True,
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `sso_connector_id` but received ''"):
             await async_client.iam.sso.with_raw_response.update(
                 sso_connector_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                enabled=True,
             )
 
     @parametrize
