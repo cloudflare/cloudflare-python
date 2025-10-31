@@ -138,6 +138,8 @@ class RoutesResource(SyncAPIResource):
 
           origin: Lookup MOASes originated by the given ASN.
 
+          prefix: Network prefix, IPv4 or IPv6.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -193,6 +195,8 @@ class RoutesResource(SyncAPIResource):
 
           origin: Lookup prefixes originated by the given ASN.
 
+          prefix: Network prefix, IPv4 or IPv6.
+
           rpki_status: Return only results with matching rpki status: valid, invalid or unknown.
 
           extra_headers: Send extra headers
@@ -243,6 +247,8 @@ class RoutesResource(SyncAPIResource):
 
         Args:
           format: Format in which results will be returned.
+
+          prefix: Network prefix, IPv4 or IPv6.
 
           extra_headers: Send extra headers
 
@@ -427,6 +433,8 @@ class AsyncRoutesResource(AsyncAPIResource):
 
           origin: Lookup MOASes originated by the given ASN.
 
+          prefix: Network prefix, IPv4 or IPv6.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -482,6 +490,8 @@ class AsyncRoutesResource(AsyncAPIResource):
 
           origin: Lookup prefixes originated by the given ASN.
 
+          prefix: Network prefix, IPv4 or IPv6.
+
           rpki_status: Return only results with matching rpki status: valid, invalid or unknown.
 
           extra_headers: Send extra headers
@@ -532,6 +542,8 @@ class AsyncRoutesResource(AsyncAPIResource):
 
         Args:
           format: Format in which results will be returned.
+
+          prefix: Network prefix, IPv4 or IPv6.
 
           extra_headers: Send extra headers
 

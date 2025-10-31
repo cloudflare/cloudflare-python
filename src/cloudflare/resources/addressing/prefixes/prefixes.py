@@ -6,7 +6,7 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ...._types import Body, Query, Headers, NotGiven, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from .delegations import (
@@ -98,10 +98,9 @@ class PrefixesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        asn: int,
+        asn: Optional[int],
         cidr: str,
-        delegate_loa_creation: bool | Omit = omit,
-        description: str | Omit = omit,
+        loa_document_id: Optional[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -119,10 +118,7 @@ class PrefixesResource(SyncAPIResource):
 
           cidr: IP Prefix in Classless Inter-Domain Routing format.
 
-          delegate_loa_creation: Whether Cloudflare is allowed to generate the LOA document on behalf of the
-              prefix owner.
-
-          description: Description of the prefix.
+          loa_document_id: Identifier for the uploaded LOA document.
 
           extra_headers: Send extra headers
 
@@ -140,8 +136,7 @@ class PrefixesResource(SyncAPIResource):
                 {
                     "asn": asn,
                     "cidr": cidr,
-                    "delegate_loa_creation": delegate_loa_creation,
-                    "description": description,
+                    "loa_document_id": loa_document_id,
                 },
                 prefix_create_params.PrefixCreateParams,
             ),
@@ -364,10 +359,9 @@ class AsyncPrefixesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        asn: int,
+        asn: Optional[int],
         cidr: str,
-        delegate_loa_creation: bool | Omit = omit,
-        description: str | Omit = omit,
+        loa_document_id: Optional[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -385,10 +379,7 @@ class AsyncPrefixesResource(AsyncAPIResource):
 
           cidr: IP Prefix in Classless Inter-Domain Routing format.
 
-          delegate_loa_creation: Whether Cloudflare is allowed to generate the LOA document on behalf of the
-              prefix owner.
-
-          description: Description of the prefix.
+          loa_document_id: Identifier for the uploaded LOA document.
 
           extra_headers: Send extra headers
 
@@ -406,8 +397,7 @@ class AsyncPrefixesResource(AsyncAPIResource):
                 {
                     "asn": asn,
                     "cidr": cidr,
-                    "delegate_loa_creation": delegate_loa_creation,
-                    "description": description,
+                    "loa_document_id": loa_document_id,
                 },
                 prefix_create_params.PrefixCreateParams,
             ),

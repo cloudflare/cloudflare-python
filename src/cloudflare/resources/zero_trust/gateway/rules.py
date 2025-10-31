@@ -112,7 +112,7 @@ class RulesResource(SyncAPIResource):
               apply to HTTP or network policies. Settable only for `dns` rules.
 
           filters: Specify the protocol or layer to evaluate the traffic, identity, and device
-              posture expressions. Can only contain a single value.
+              posture expressions.
 
           identity: Specify the wirefilter expression used for identity matching. The API
               automatically formats and sanitizes expressions before storing them. To prevent
@@ -125,10 +125,12 @@ class RulesResource(SyncAPIResource):
               [Order of enforcement](http://developers.cloudflare.com/learning-paths/secure-internet-traffic/understand-policies/order-of-enforcement/#manage-precedence-with-terraform)
               to manage precedence via Terraform.
 
-          rule_settings: Defines settings for this rule. Settings apply only to specific rule types and
-              must use compatible selectors. If Terraform detects drift, confirm the setting
-              supports your rule type and check whether the API modifies the value. Use
-              API-returned values in your configuration to prevent drift.
+          rule_settings: Set settings related to this rule. Each setting is only valid for specific rule
+              types and can only be used with the appropriate selectors. If Terraform drift is
+              observed in these setting values, verify that the setting is supported for the
+              given rule type and that the API response reflects the requested value. If the
+              API response returns sanitized or modified values that differ from the request,
+              use the API-provided values in Terraform to ensure consistency.
 
           schedule: Defines the schedule for activating DNS policies. Settable only for `dns` and
               `dns_resolver` rules.
@@ -243,7 +245,7 @@ class RulesResource(SyncAPIResource):
               apply to HTTP or network policies. Settable only for `dns` rules.
 
           filters: Specify the protocol or layer to evaluate the traffic, identity, and device
-              posture expressions. Can only contain a single value.
+              posture expressions.
 
           identity: Specify the wirefilter expression used for identity matching. The API
               automatically formats and sanitizes expressions before storing them. To prevent
@@ -256,10 +258,12 @@ class RulesResource(SyncAPIResource):
               [Order of enforcement](http://developers.cloudflare.com/learning-paths/secure-internet-traffic/understand-policies/order-of-enforcement/#manage-precedence-with-terraform)
               to manage precedence via Terraform.
 
-          rule_settings: Defines settings for this rule. Settings apply only to specific rule types and
-              must use compatible selectors. If Terraform detects drift, confirm the setting
-              supports your rule type and check whether the API modifies the value. Use
-              API-returned values in your configuration to prevent drift.
+          rule_settings: Set settings related to this rule. Each setting is only valid for specific rule
+              types and can only be used with the appropriate selectors. If Terraform drift is
+              observed in these setting values, verify that the setting is supported for the
+              given rule type and that the API response reflects the requested value. If the
+              API response returns sanitized or modified values that differ from the request,
+              use the API-provided values in Terraform to ensure consistency.
 
           schedule: Defines the schedule for activating DNS policies. Settable only for `dns` and
               `dns_resolver` rules.
@@ -591,7 +595,7 @@ class AsyncRulesResource(AsyncAPIResource):
               apply to HTTP or network policies. Settable only for `dns` rules.
 
           filters: Specify the protocol or layer to evaluate the traffic, identity, and device
-              posture expressions. Can only contain a single value.
+              posture expressions.
 
           identity: Specify the wirefilter expression used for identity matching. The API
               automatically formats and sanitizes expressions before storing them. To prevent
@@ -604,10 +608,12 @@ class AsyncRulesResource(AsyncAPIResource):
               [Order of enforcement](http://developers.cloudflare.com/learning-paths/secure-internet-traffic/understand-policies/order-of-enforcement/#manage-precedence-with-terraform)
               to manage precedence via Terraform.
 
-          rule_settings: Defines settings for this rule. Settings apply only to specific rule types and
-              must use compatible selectors. If Terraform detects drift, confirm the setting
-              supports your rule type and check whether the API modifies the value. Use
-              API-returned values in your configuration to prevent drift.
+          rule_settings: Set settings related to this rule. Each setting is only valid for specific rule
+              types and can only be used with the appropriate selectors. If Terraform drift is
+              observed in these setting values, verify that the setting is supported for the
+              given rule type and that the API response reflects the requested value. If the
+              API response returns sanitized or modified values that differ from the request,
+              use the API-provided values in Terraform to ensure consistency.
 
           schedule: Defines the schedule for activating DNS policies. Settable only for `dns` and
               `dns_resolver` rules.
@@ -722,7 +728,7 @@ class AsyncRulesResource(AsyncAPIResource):
               apply to HTTP or network policies. Settable only for `dns` rules.
 
           filters: Specify the protocol or layer to evaluate the traffic, identity, and device
-              posture expressions. Can only contain a single value.
+              posture expressions.
 
           identity: Specify the wirefilter expression used for identity matching. The API
               automatically formats and sanitizes expressions before storing them. To prevent
@@ -735,10 +741,12 @@ class AsyncRulesResource(AsyncAPIResource):
               [Order of enforcement](http://developers.cloudflare.com/learning-paths/secure-internet-traffic/understand-policies/order-of-enforcement/#manage-precedence-with-terraform)
               to manage precedence via Terraform.
 
-          rule_settings: Defines settings for this rule. Settings apply only to specific rule types and
-              must use compatible selectors. If Terraform detects drift, confirm the setting
-              supports your rule type and check whether the API modifies the value. Use
-              API-returned values in your configuration to prevent drift.
+          rule_settings: Set settings related to this rule. Each setting is only valid for specific rule
+              types and can only be used with the appropriate selectors. If Terraform drift is
+              observed in these setting values, verify that the setting is supported for the
+              given rule type and that the API response reflects the requested value. If the
+              API response returns sanitized or modified values that differ from the request,
+              use the API-provided values in Terraform to ensure consistency.
 
           schedule: Defines the schedule for activating DNS policies. Settable only for `dns` and
               `dns_resolver` rules.

@@ -103,6 +103,7 @@ from .assets.assets import (
 )
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.workers import script_list_params, script_delete_params, script_search_params, script_update_params
+from ....types.workers.script import Script
 from .script_and_version_settings import (
     ScriptAndVersionSettingsResource,
     AsyncScriptAndVersionSettingsResource,
@@ -111,7 +112,6 @@ from .script_and_version_settings import (
     ScriptAndVersionSettingsResourceWithStreamingResponse,
     AsyncScriptAndVersionSettingsResourceWithStreamingResponse,
 )
-from ....types.workers.script_list_response import ScriptListResponse
 from ....types.workers.script_search_response import ScriptSearchResponse
 from ....types.workers.script_update_response import ScriptUpdateResponse
 
@@ -262,7 +262,7 @@ class ScriptsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncSinglePage[ScriptListResponse]:
+    ) -> SyncSinglePage[Script]:
         """
         Fetch a list of uploaded workers.
 
@@ -284,7 +284,7 @@ class ScriptsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/workers/scripts",
-            page=SyncSinglePage[ScriptListResponse],
+            page=SyncSinglePage[Script],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -292,7 +292,7 @@ class ScriptsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"tags": tags}, script_list_params.ScriptListParams),
             ),
-            model=ScriptListResponse,
+            model=Script,
         )
 
     def delete(
@@ -598,7 +598,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[ScriptListResponse, AsyncSinglePage[ScriptListResponse]]:
+    ) -> AsyncPaginator[Script, AsyncSinglePage[Script]]:
         """
         Fetch a list of uploaded workers.
 
@@ -620,7 +620,7 @@ class AsyncScriptsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/workers/scripts",
-            page=AsyncSinglePage[ScriptListResponse],
+            page=AsyncSinglePage[Script],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -628,7 +628,7 @@ class AsyncScriptsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"tags": tags}, script_list_params.ScriptListParams),
             ),
-            model=ScriptListResponse,
+            model=Script,
         )
 
     async def delete(

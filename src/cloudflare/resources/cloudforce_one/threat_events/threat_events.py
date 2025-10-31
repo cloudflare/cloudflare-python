@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import typing_extensions
 from typing import Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Literal
@@ -76,14 +75,6 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from .indicator_types import (
-    IndicatorTypesResource,
-    AsyncIndicatorTypesResource,
-    IndicatorTypesResourceWithRawResponse,
-    AsyncIndicatorTypesResourceWithRawResponse,
-    IndicatorTypesResourceWithStreamingResponse,
-    AsyncIndicatorTypesResourceWithStreamingResponse,
-)
 from .datasets.datasets import (
     DatasetsResource,
     AsyncDatasetsResource,
@@ -132,10 +123,6 @@ class ThreatEventsResource(SyncAPIResource):
     @cached_property
     def datasets(self) -> DatasetsResource:
         return DatasetsResource(self._client)
-
-    @cached_property
-    def indicator_types(self) -> IndicatorTypesResource:
-        return IndicatorTypesResource(self._client)
 
     @cached_property
     def raw(self) -> RawResource:
@@ -471,7 +458,6 @@ class ThreatEventsResource(SyncAPIResource):
             cast_to=ThreatEventEditResponse,
         )
 
-    @typing_extensions.deprecated("deprecated")
     def get(
         self,
         event_id: str,
@@ -484,10 +470,8 @@ class ThreatEventsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventGetResponse:
-        """This Method is deprecated.
-
-        Please use
-        /events/dataset/:dataset_id/events/:event_id instead.
+        """
+        Reads an event
 
         Args:
           account_id: Account ID.
@@ -531,10 +515,6 @@ class AsyncThreatEventsResource(AsyncAPIResource):
     @cached_property
     def datasets(self) -> AsyncDatasetsResource:
         return AsyncDatasetsResource(self._client)
-
-    @cached_property
-    def indicator_types(self) -> AsyncIndicatorTypesResource:
-        return AsyncIndicatorTypesResource(self._client)
 
     @cached_property
     def raw(self) -> AsyncRawResource:
@@ -870,7 +850,6 @@ class AsyncThreatEventsResource(AsyncAPIResource):
             cast_to=ThreatEventEditResponse,
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def get(
         self,
         event_id: str,
@@ -883,10 +862,8 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventGetResponse:
-        """This Method is deprecated.
-
-        Please use
-        /events/dataset/:dataset_id/events/:event_id instead.
+        """
+        Reads an event
 
         Args:
           account_id: Account ID.
@@ -933,10 +910,8 @@ class ThreatEventsResourceWithRawResponse:
         self.edit = to_raw_response_wrapper(
             threat_events.edit,
         )
-        self.get = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                threat_events.get,  # pyright: ignore[reportDeprecated],
-            )
+        self.get = to_raw_response_wrapper(
+            threat_events.get,
         )
 
     @cached_property
@@ -954,10 +929,6 @@ class ThreatEventsResourceWithRawResponse:
     @cached_property
     def datasets(self) -> DatasetsResourceWithRawResponse:
         return DatasetsResourceWithRawResponse(self._threat_events.datasets)
-
-    @cached_property
-    def indicator_types(self) -> IndicatorTypesResourceWithRawResponse:
-        return IndicatorTypesResourceWithRawResponse(self._threat_events.indicator_types)
 
     @cached_property
     def raw(self) -> RawResourceWithRawResponse:
@@ -999,10 +970,8 @@ class AsyncThreatEventsResourceWithRawResponse:
         self.edit = async_to_raw_response_wrapper(
             threat_events.edit,
         )
-        self.get = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                threat_events.get,  # pyright: ignore[reportDeprecated],
-            )
+        self.get = async_to_raw_response_wrapper(
+            threat_events.get,
         )
 
     @cached_property
@@ -1020,10 +989,6 @@ class AsyncThreatEventsResourceWithRawResponse:
     @cached_property
     def datasets(self) -> AsyncDatasetsResourceWithRawResponse:
         return AsyncDatasetsResourceWithRawResponse(self._threat_events.datasets)
-
-    @cached_property
-    def indicator_types(self) -> AsyncIndicatorTypesResourceWithRawResponse:
-        return AsyncIndicatorTypesResourceWithRawResponse(self._threat_events.indicator_types)
 
     @cached_property
     def raw(self) -> AsyncRawResourceWithRawResponse:
@@ -1065,10 +1030,8 @@ class ThreatEventsResourceWithStreamingResponse:
         self.edit = to_streamed_response_wrapper(
             threat_events.edit,
         )
-        self.get = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                threat_events.get,  # pyright: ignore[reportDeprecated],
-            )
+        self.get = to_streamed_response_wrapper(
+            threat_events.get,
         )
 
     @cached_property
@@ -1086,10 +1049,6 @@ class ThreatEventsResourceWithStreamingResponse:
     @cached_property
     def datasets(self) -> DatasetsResourceWithStreamingResponse:
         return DatasetsResourceWithStreamingResponse(self._threat_events.datasets)
-
-    @cached_property
-    def indicator_types(self) -> IndicatorTypesResourceWithStreamingResponse:
-        return IndicatorTypesResourceWithStreamingResponse(self._threat_events.indicator_types)
 
     @cached_property
     def raw(self) -> RawResourceWithStreamingResponse:
@@ -1131,10 +1090,8 @@ class AsyncThreatEventsResourceWithStreamingResponse:
         self.edit = async_to_streamed_response_wrapper(
             threat_events.edit,
         )
-        self.get = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                threat_events.get,  # pyright: ignore[reportDeprecated],
-            )
+        self.get = async_to_streamed_response_wrapper(
+            threat_events.get,
         )
 
     @cached_property
@@ -1152,10 +1109,6 @@ class AsyncThreatEventsResourceWithStreamingResponse:
     @cached_property
     def datasets(self) -> AsyncDatasetsResourceWithStreamingResponse:
         return AsyncDatasetsResourceWithStreamingResponse(self._threat_events.datasets)
-
-    @cached_property
-    def indicator_types(self) -> AsyncIndicatorTypesResourceWithStreamingResponse:
-        return AsyncIndicatorTypesResourceWithStreamingResponse(self._threat_events.indicator_types)
 
     @cached_property
     def raw(self) -> AsyncRawResourceWithStreamingResponse:
