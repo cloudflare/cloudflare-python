@@ -21,6 +21,7 @@ from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.queues import subscription_list_params, subscription_create_params, subscription_update_params
+from ...types.queues.subscription_get_response import SubscriptionGetResponse
 from ...types.queues.subscription_list_response import SubscriptionListResponse
 from ...types.queues.subscription_create_response import SubscriptionCreateResponse
 from ...types.queues.subscription_delete_response import SubscriptionDeleteResponse
@@ -282,6 +283,50 @@ class SubscriptionsResource(SyncAPIResource):
             cast_to=cast(Type[Optional[SubscriptionDeleteResponse]], ResultWrapper[SubscriptionDeleteResponse]),
         )
 
+    def get(
+        self,
+        subscription_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[SubscriptionGetResponse]:
+        """
+        Get details about an existing event subscription
+
+        Args:
+          account_id: A Resource identifier.
+
+          subscription_id: A Resource identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not subscription_id:
+            raise ValueError(f"Expected a non-empty value for `subscription_id` but received {subscription_id!r}")
+        return self._get(
+            f"/accounts/{account_id}/event_subscriptions/subscriptions/{subscription_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[SubscriptionGetResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[SubscriptionGetResponse]], ResultWrapper[SubscriptionGetResponse]),
+        )
+
 
 class AsyncSubscriptionsResource(AsyncAPIResource):
     @cached_property
@@ -536,6 +581,50 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[SubscriptionDeleteResponse]], ResultWrapper[SubscriptionDeleteResponse]),
         )
 
+    async def get(
+        self,
+        subscription_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[SubscriptionGetResponse]:
+        """
+        Get details about an existing event subscription
+
+        Args:
+          account_id: A Resource identifier.
+
+          subscription_id: A Resource identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not subscription_id:
+            raise ValueError(f"Expected a non-empty value for `subscription_id` but received {subscription_id!r}")
+        return await self._get(
+            f"/accounts/{account_id}/event_subscriptions/subscriptions/{subscription_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[SubscriptionGetResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[SubscriptionGetResponse]], ResultWrapper[SubscriptionGetResponse]),
+        )
+
 
 class SubscriptionsResourceWithRawResponse:
     def __init__(self, subscriptions: SubscriptionsResource) -> None:
@@ -552,6 +641,9 @@ class SubscriptionsResourceWithRawResponse:
         )
         self.delete = to_raw_response_wrapper(
             subscriptions.delete,
+        )
+        self.get = to_raw_response_wrapper(
+            subscriptions.get,
         )
 
 
@@ -571,6 +663,9 @@ class AsyncSubscriptionsResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             subscriptions.delete,
         )
+        self.get = async_to_raw_response_wrapper(
+            subscriptions.get,
+        )
 
 
 class SubscriptionsResourceWithStreamingResponse:
@@ -589,6 +684,9 @@ class SubscriptionsResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             subscriptions.delete,
         )
+        self.get = to_streamed_response_wrapper(
+            subscriptions.get,
+        )
 
 
 class AsyncSubscriptionsResourceWithStreamingResponse:
@@ -606,4 +704,7 @@ class AsyncSubscriptionsResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             subscriptions.delete,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            subscriptions.get,
         )

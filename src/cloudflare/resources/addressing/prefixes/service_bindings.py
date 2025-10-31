@@ -6,7 +6,7 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ...._types import Body, Query, Headers, NotGiven, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -51,8 +51,8 @@ class ServiceBindingsResource(SyncAPIResource):
         prefix_id: str,
         *,
         account_id: str,
-        cidr: str | Omit = omit,
-        service_id: str | Omit = omit,
+        cidr: str,
+        service_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -62,10 +62,11 @@ class ServiceBindingsResource(SyncAPIResource):
     ) -> Optional[ServiceBinding]:
         """
         Creates a new Service Binding, routing traffic to IPs within the given CIDR to a
-        service running on Cloudflare's network. **Note:** This API may only be used on
-        prefixes currently configured with a Magic Transit/Cloudflare CDN/Cloudflare
-        Spectrum service binding, and only allows creating upgrade service bindings for
-        the Cloudflare CDN or Cloudflare Spectrum.
+        service running on Cloudflare's network. **NOTE:** The first Service Binding
+        created for an IP Prefix must exactly match the IP Prefix's CIDR. Subsequent
+        Service Bindings may be created with a more-specific CIDR. Refer to the
+        [Service Bindings Documentation](https://developers.cloudflare.com/byoip/service-bindings/)
+        for compatibility details.
 
         Args:
           account_id: Identifier of a Cloudflare account.
@@ -275,8 +276,8 @@ class AsyncServiceBindingsResource(AsyncAPIResource):
         prefix_id: str,
         *,
         account_id: str,
-        cidr: str | Omit = omit,
-        service_id: str | Omit = omit,
+        cidr: str,
+        service_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -286,10 +287,11 @@ class AsyncServiceBindingsResource(AsyncAPIResource):
     ) -> Optional[ServiceBinding]:
         """
         Creates a new Service Binding, routing traffic to IPs within the given CIDR to a
-        service running on Cloudflare's network. **Note:** This API may only be used on
-        prefixes currently configured with a Magic Transit/Cloudflare CDN/Cloudflare
-        Spectrum service binding, and only allows creating upgrade service bindings for
-        the Cloudflare CDN or Cloudflare Spectrum.
+        service running on Cloudflare's network. **NOTE:** The first Service Binding
+        created for an IP Prefix must exactly match the IP Prefix's CIDR. Subsequent
+        Service Bindings may be created with a more-specific CIDR. Refer to the
+        [Service Bindings Documentation](https://developers.cloudflare.com/byoip/service-bindings/)
+        for compatibility details.
 
         Args:
           account_id: Identifier of a Cloudflare account.

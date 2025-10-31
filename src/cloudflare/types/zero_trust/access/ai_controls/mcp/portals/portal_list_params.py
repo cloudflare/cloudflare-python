@@ -4,12 +4,15 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["LOADocumentCreateParams"]
+__all__ = ["PortalListParams"]
 
 
-class LOADocumentCreateParams(TypedDict, total=False):
+class PortalListParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier of a Cloudflare account."""
 
-    loa_document: Required[str]
-    """LOA document to upload."""
+    page: int
+
+    per_page: int
+
+    search: str
+    """Search by id, name"""

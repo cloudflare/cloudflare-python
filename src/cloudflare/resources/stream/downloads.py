@@ -60,7 +60,8 @@ class DownloadsResource(SyncAPIResource):
         """Creates a download for a video when a video is ready to view.
 
         Use
-        `/downloads/{download_type}` instead for type-specific downloads.
+        `/downloads/{download_type}` instead for type-specific downloads. Available
+        types are `default` and `audio`.
 
         Args:
           account_id: Identifier.
@@ -107,7 +108,7 @@ class DownloadsResource(SyncAPIResource):
         """Delete the downloads for a video.
 
         Use `/downloads/{download_type}` instead for
-        type-specific downloads.
+        type-specific downloads. Available types are `default` and `audio`.
 
         Args:
           account_id: Identifier.
@@ -219,7 +220,8 @@ class AsyncDownloadsResource(AsyncAPIResource):
         """Creates a download for a video when a video is ready to view.
 
         Use
-        `/downloads/{download_type}` instead for type-specific downloads.
+        `/downloads/{download_type}` instead for type-specific downloads. Available
+        types are `default` and `audio`.
 
         Args:
           account_id: Identifier.
@@ -266,7 +268,7 @@ class AsyncDownloadsResource(AsyncAPIResource):
         """Delete the downloads for a video.
 
         Use `/downloads/{download_type}` instead for
-        type-specific downloads.
+        type-specific downloads. Available types are `default` and `audio`.
 
         Args:
           account_id: Identifier.

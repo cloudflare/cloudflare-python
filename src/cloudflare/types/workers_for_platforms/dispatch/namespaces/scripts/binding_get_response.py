@@ -33,7 +33,6 @@ __all__ = [
     "WorkersBindingKindSecretText",
     "WorkersBindingKindSendEmail",
     "WorkersBindingKindService",
-    "WorkersBindingKindTailConsumer",
     "WorkersBindingKindTextBlob",
     "WorkersBindingKindVectorize",
     "WorkersBindingKindVersionMetadata",
@@ -128,7 +127,7 @@ class WorkersBindingKindDispatchNamespace(BaseModel):
     """A JavaScript variable name for the binding."""
 
     namespace: str
-    """Namespace to bind to."""
+    """The name of the dispatch namespace."""
 
     type: Literal["dispatch_namespace"]
     """The kind of resource that the binding provides."""
@@ -324,17 +323,6 @@ class WorkersBindingKindService(BaseModel):
     """Optional environment if the Worker utilizes one."""
 
 
-class WorkersBindingKindTailConsumer(BaseModel):
-    name: str
-    """A JavaScript variable name for the binding."""
-
-    service: str
-    """Name of Tail Worker to bind to."""
-
-    type: Literal["tail_consumer"]
-    """The kind of resource that the binding provides."""
-
-
 class WorkersBindingKindTextBlob(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
@@ -468,7 +456,6 @@ BindingGetResponse: TypeAlias = Annotated[
         WorkersBindingKindSecretText,
         WorkersBindingKindSendEmail,
         WorkersBindingKindService,
-        WorkersBindingKindTailConsumer,
         WorkersBindingKindTextBlob,
         WorkersBindingKindVectorize,
         WorkersBindingKindVersionMetadata,

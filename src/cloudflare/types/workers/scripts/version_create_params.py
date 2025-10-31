@@ -36,7 +36,6 @@ __all__ = [
     "MetadataBindingWorkersBindingKindSecretText",
     "MetadataBindingWorkersBindingKindSendEmail",
     "MetadataBindingWorkersBindingKindService",
-    "MetadataBindingWorkersBindingKindTailConsumer",
     "MetadataBindingWorkersBindingKindTextBlob",
     "MetadataBindingWorkersBindingKindVectorize",
     "MetadataBindingWorkersBindingKindVersionMetadata",
@@ -67,6 +66,9 @@ class VersionCreateParams(TypedDict, total=False):
 
 
 class MetadataAnnotations(TypedDict, total=False):
+    workers_alias: Annotated[str, PropertyInfo(alias="workers/alias")]
+    """Associated alias for a version."""
+
     workers_message: Annotated[str, PropertyInfo(alias="workers/message")]
     """Human-readable message about the version. Truncated to 100 bytes."""
 
@@ -158,7 +160,7 @@ class MetadataBindingWorkersBindingKindDispatchNamespace(TypedDict, total=False)
     """A JavaScript variable name for the binding."""
 
     namespace: Required[str]
-    """Namespace to bind to."""
+    """The name of the dispatch namespace."""
 
     type: Required[Literal["dispatch_namespace"]]
     """The kind of resource that the binding provides."""
@@ -357,17 +359,6 @@ class MetadataBindingWorkersBindingKindService(TypedDict, total=False):
     """Optional environment if the Worker utilizes one."""
 
 
-class MetadataBindingWorkersBindingKindTailConsumer(TypedDict, total=False):
-    name: Required[str]
-    """A JavaScript variable name for the binding."""
-
-    service: Required[str]
-    """Name of Tail Worker to bind to."""
-
-    type: Required[Literal["tail_consumer"]]
-    """The kind of resource that the binding provides."""
-
-
 class MetadataBindingWorkersBindingKindTextBlob(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
@@ -512,7 +503,6 @@ MetadataBinding: TypeAlias = Union[
     MetadataBindingWorkersBindingKindSecretText,
     MetadataBindingWorkersBindingKindSendEmail,
     MetadataBindingWorkersBindingKindService,
-    MetadataBindingWorkersBindingKindTailConsumer,
     MetadataBindingWorkersBindingKindTextBlob,
     MetadataBindingWorkersBindingKindVectorize,
     MetadataBindingWorkersBindingKindVersionMetadata,

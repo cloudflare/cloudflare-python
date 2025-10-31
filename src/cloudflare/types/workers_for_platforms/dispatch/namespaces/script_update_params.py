@@ -39,7 +39,6 @@ __all__ = [
     "MetadataBindingWorkersBindingKindSecretText",
     "MetadataBindingWorkersBindingKindSendEmail",
     "MetadataBindingWorkersBindingKindService",
-    "MetadataBindingWorkersBindingKindTailConsumer",
     "MetadataBindingWorkersBindingKindTextBlob",
     "MetadataBindingWorkersBindingKindVectorize",
     "MetadataBindingWorkersBindingKindVersionMetadata",
@@ -208,7 +207,7 @@ class MetadataBindingWorkersBindingKindDispatchNamespace(TypedDict, total=False)
     """A JavaScript variable name for the binding."""
 
     namespace: Required[str]
-    """Namespace to bind to."""
+    """The name of the dispatch namespace."""
 
     type: Required[Literal["dispatch_namespace"]]
     """The kind of resource that the binding provides."""
@@ -407,17 +406,6 @@ class MetadataBindingWorkersBindingKindService(TypedDict, total=False):
     """Optional environment if the Worker utilizes one."""
 
 
-class MetadataBindingWorkersBindingKindTailConsumer(TypedDict, total=False):
-    name: Required[str]
-    """A JavaScript variable name for the binding."""
-
-    service: Required[str]
-    """Name of Tail Worker to bind to."""
-
-    type: Required[Literal["tail_consumer"]]
-    """The kind of resource that the binding provides."""
-
-
 class MetadataBindingWorkersBindingKindTextBlob(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
@@ -562,7 +550,6 @@ MetadataBinding: TypeAlias = Union[
     MetadataBindingWorkersBindingKindSecretText,
     MetadataBindingWorkersBindingKindSendEmail,
     MetadataBindingWorkersBindingKindService,
-    MetadataBindingWorkersBindingKindTailConsumer,
     MetadataBindingWorkersBindingKindTextBlob,
     MetadataBindingWorkersBindingKindVectorize,
     MetadataBindingWorkersBindingKindVersionMetadata,
@@ -706,7 +693,7 @@ class Metadata(TypedDict, total=False):
     tags: SequenceNotStr[str]
     """List of strings to use as tags for this Worker."""
 
-    tail_consumers: Iterable[ConsumerScriptParam]
+    tail_consumers: Optional[Iterable[ConsumerScriptParam]]
     """List of Workers that will consume logs from the attached Worker."""
 
     usage_model: Literal["standard", "bundled", "unbound"]

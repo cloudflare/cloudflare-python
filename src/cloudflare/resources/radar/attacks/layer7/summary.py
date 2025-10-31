@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import List, Type, Union, cast
 from datetime import datetime
 from typing_extensions import Literal
@@ -60,6 +61,9 @@ class SummaryResource(SyncAPIResource):
         """
         return SummaryResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/summary_v2/) instead."
+    )
     def http_method(
         self,
         *,
@@ -163,6 +167,9 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryHTTPMethodResponse], ResultWrapper[SummaryHTTPMethodResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/summary_v2/) instead."
+    )
     def http_version(
         self,
         *,
@@ -310,6 +317,9 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryHTTPVersionResponse], ResultWrapper[SummaryHTTPVersionResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/summary_v2/) instead."
+    )
     def industry(
         self,
         *,
@@ -467,6 +477,9 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryIndustryResponse], ResultWrapper[SummaryIndustryResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/summary_v2/) instead."
+    )
     def ip_version(
         self,
         *,
@@ -614,6 +627,9 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryIPVersionResponse], ResultWrapper[SummaryIPVersionResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/summary_v2/) instead."
+    )
     def managed_rules(
         self,
         *,
@@ -771,6 +787,9 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryManagedRulesResponse], ResultWrapper[SummaryManagedRulesResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/summary_v2/) instead."
+    )
     def mitigation_product(
         self,
         *,
@@ -919,6 +938,9 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryMitigationProductResponse], ResultWrapper[SummaryMitigationProductResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/summary_v2/) instead."
+    )
     def vertical(
         self,
         *,
@@ -1097,6 +1119,9 @@ class AsyncSummaryResource(AsyncAPIResource):
         """
         return AsyncSummaryResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/summary_v2/) instead."
+    )
     async def http_method(
         self,
         *,
@@ -1200,6 +1225,9 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryHTTPMethodResponse], ResultWrapper[SummaryHTTPMethodResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/summary_v2/) instead."
+    )
     async def http_version(
         self,
         *,
@@ -1347,6 +1375,9 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryHTTPVersionResponse], ResultWrapper[SummaryHTTPVersionResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/summary_v2/) instead."
+    )
     async def industry(
         self,
         *,
@@ -1504,6 +1535,9 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryIndustryResponse], ResultWrapper[SummaryIndustryResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/summary_v2/) instead."
+    )
     async def ip_version(
         self,
         *,
@@ -1651,6 +1685,9 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryIPVersionResponse], ResultWrapper[SummaryIPVersionResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/summary_v2/) instead."
+    )
     async def managed_rules(
         self,
         *,
@@ -1808,6 +1845,9 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryManagedRulesResponse], ResultWrapper[SummaryManagedRulesResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/summary_v2/) instead."
+    )
     async def mitigation_product(
         self,
         *,
@@ -1956,6 +1996,9 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryMitigationProductResponse], ResultWrapper[SummaryMitigationProductResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/summary_v2/) instead."
+    )
     async def vertical(
         self,
         *,
@@ -2118,26 +2161,40 @@ class SummaryResourceWithRawResponse:
     def __init__(self, summary: SummaryResource) -> None:
         self._summary = summary
 
-        self.http_method = to_raw_response_wrapper(
-            summary.http_method,
+        self.http_method = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                summary.http_method,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.http_version = to_raw_response_wrapper(
-            summary.http_version,
+        self.http_version = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                summary.http_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.industry = to_raw_response_wrapper(
-            summary.industry,
+        self.industry = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                summary.industry,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.ip_version = to_raw_response_wrapper(
-            summary.ip_version,
+        self.ip_version = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                summary.ip_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.managed_rules = to_raw_response_wrapper(
-            summary.managed_rules,
+        self.managed_rules = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                summary.managed_rules,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.mitigation_product = to_raw_response_wrapper(
-            summary.mitigation_product,
+        self.mitigation_product = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                summary.mitigation_product,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.vertical = to_raw_response_wrapper(
-            summary.vertical,
+        self.vertical = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                summary.vertical,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -2145,26 +2202,40 @@ class AsyncSummaryResourceWithRawResponse:
     def __init__(self, summary: AsyncSummaryResource) -> None:
         self._summary = summary
 
-        self.http_method = async_to_raw_response_wrapper(
-            summary.http_method,
+        self.http_method = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                summary.http_method,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.http_version = async_to_raw_response_wrapper(
-            summary.http_version,
+        self.http_version = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                summary.http_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.industry = async_to_raw_response_wrapper(
-            summary.industry,
+        self.industry = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                summary.industry,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.ip_version = async_to_raw_response_wrapper(
-            summary.ip_version,
+        self.ip_version = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                summary.ip_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.managed_rules = async_to_raw_response_wrapper(
-            summary.managed_rules,
+        self.managed_rules = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                summary.managed_rules,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.mitigation_product = async_to_raw_response_wrapper(
-            summary.mitigation_product,
+        self.mitigation_product = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                summary.mitigation_product,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.vertical = async_to_raw_response_wrapper(
-            summary.vertical,
+        self.vertical = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                summary.vertical,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -2172,26 +2243,40 @@ class SummaryResourceWithStreamingResponse:
     def __init__(self, summary: SummaryResource) -> None:
         self._summary = summary
 
-        self.http_method = to_streamed_response_wrapper(
-            summary.http_method,
+        self.http_method = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                summary.http_method,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.http_version = to_streamed_response_wrapper(
-            summary.http_version,
+        self.http_version = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                summary.http_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.industry = to_streamed_response_wrapper(
-            summary.industry,
+        self.industry = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                summary.industry,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.ip_version = to_streamed_response_wrapper(
-            summary.ip_version,
+        self.ip_version = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                summary.ip_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.managed_rules = to_streamed_response_wrapper(
-            summary.managed_rules,
+        self.managed_rules = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                summary.managed_rules,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.mitigation_product = to_streamed_response_wrapper(
-            summary.mitigation_product,
+        self.mitigation_product = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                summary.mitigation_product,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.vertical = to_streamed_response_wrapper(
-            summary.vertical,
+        self.vertical = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                summary.vertical,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -2199,24 +2284,38 @@ class AsyncSummaryResourceWithStreamingResponse:
     def __init__(self, summary: AsyncSummaryResource) -> None:
         self._summary = summary
 
-        self.http_method = async_to_streamed_response_wrapper(
-            summary.http_method,
+        self.http_method = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                summary.http_method,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.http_version = async_to_streamed_response_wrapper(
-            summary.http_version,
+        self.http_version = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                summary.http_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.industry = async_to_streamed_response_wrapper(
-            summary.industry,
+        self.industry = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                summary.industry,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.ip_version = async_to_streamed_response_wrapper(
-            summary.ip_version,
+        self.ip_version = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                summary.ip_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.managed_rules = async_to_streamed_response_wrapper(
-            summary.managed_rules,
+        self.managed_rules = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                summary.managed_rules,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.mitigation_product = async_to_streamed_response_wrapper(
-            summary.mitigation_product,
+        self.mitigation_product = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                summary.mitigation_product,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.vertical = async_to_streamed_response_wrapper(
-            summary.vertical,
+        self.vertical = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                summary.vertical,  # pyright: ignore[reportDeprecated],
+            )
         )

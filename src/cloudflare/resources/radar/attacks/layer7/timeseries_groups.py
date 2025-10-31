@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import List, Type, Union, cast
 from datetime import datetime
 from typing_extensions import Literal
@@ -62,6 +63,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
         """
         return TimeseriesGroupsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/timeseries_groups_v2/) instead."
+    )
     def http_method(
         self,
         *,
@@ -176,6 +180,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupHTTPMethodResponse], ResultWrapper[TimeseriesGroupHTTPMethodResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/timeseries_groups_v2/) instead."
+    )
     def http_version(
         self,
         *,
@@ -334,6 +341,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupHTTPVersionResponse], ResultWrapper[TimeseriesGroupHTTPVersionResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/timeseries_groups_v2/) instead."
+    )
     def industry(
         self,
         *,
@@ -502,6 +512,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupIndustryResponse], ResultWrapper[TimeseriesGroupIndustryResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/timeseries_groups_v2/) instead."
+    )
     def ip_version(
         self,
         *,
@@ -660,6 +673,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupIPVersionResponse], ResultWrapper[TimeseriesGroupIPVersionResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/timeseries_groups_v2/) instead."
+    )
     def managed_rules(
         self,
         *,
@@ -828,6 +844,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupManagedRulesResponse], ResultWrapper[TimeseriesGroupManagedRulesResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/timeseries_groups_v2/) instead."
+    )
     def mitigation_product(
         self,
         *,
@@ -989,6 +1008,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
             ),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/timeseries_groups_v2/) instead."
+    )
     def vertical(
         self,
         *,
@@ -1178,6 +1200,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         """
         return AsyncTimeseriesGroupsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/timeseries_groups_v2/) instead."
+    )
     async def http_method(
         self,
         *,
@@ -1292,6 +1317,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupHTTPMethodResponse], ResultWrapper[TimeseriesGroupHTTPMethodResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/timeseries_groups_v2/) instead."
+    )
     async def http_version(
         self,
         *,
@@ -1450,6 +1478,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupHTTPVersionResponse], ResultWrapper[TimeseriesGroupHTTPVersionResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/timeseries_groups_v2/) instead."
+    )
     async def industry(
         self,
         *,
@@ -1618,6 +1649,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupIndustryResponse], ResultWrapper[TimeseriesGroupIndustryResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/timeseries_groups_v2/) instead."
+    )
     async def ip_version(
         self,
         *,
@@ -1776,6 +1810,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupIPVersionResponse], ResultWrapper[TimeseriesGroupIPVersionResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/timeseries_groups_v2/) instead."
+    )
     async def managed_rules(
         self,
         *,
@@ -1944,6 +1981,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupManagedRulesResponse], ResultWrapper[TimeseriesGroupManagedRulesResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/timeseries_groups_v2/) instead."
+    )
     async def mitigation_product(
         self,
         *,
@@ -2105,6 +2145,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             ),
         )
 
+    @typing_extensions.deprecated(
+        "Use [Radar Attacks Layer 7 Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/attacks/subresources/layer7/methods/timeseries_groups_v2/) instead."
+    )
     async def vertical(
         self,
         *,
@@ -2278,26 +2321,40 @@ class TimeseriesGroupsResourceWithRawResponse:
     def __init__(self, timeseries_groups: TimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.http_method = to_raw_response_wrapper(
-            timeseries_groups.http_method,
+        self.http_method = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.http_method,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.http_version = to_raw_response_wrapper(
-            timeseries_groups.http_version,
+        self.http_version = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.http_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.industry = to_raw_response_wrapper(
-            timeseries_groups.industry,
+        self.industry = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.industry,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.ip_version = to_raw_response_wrapper(
-            timeseries_groups.ip_version,
+        self.ip_version = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.ip_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.managed_rules = to_raw_response_wrapper(
-            timeseries_groups.managed_rules,
+        self.managed_rules = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.managed_rules,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.mitigation_product = to_raw_response_wrapper(
-            timeseries_groups.mitigation_product,
+        self.mitigation_product = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.mitigation_product,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.vertical = to_raw_response_wrapper(
-            timeseries_groups.vertical,
+        self.vertical = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                timeseries_groups.vertical,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -2305,26 +2362,40 @@ class AsyncTimeseriesGroupsResourceWithRawResponse:
     def __init__(self, timeseries_groups: AsyncTimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.http_method = async_to_raw_response_wrapper(
-            timeseries_groups.http_method,
+        self.http_method = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.http_method,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.http_version = async_to_raw_response_wrapper(
-            timeseries_groups.http_version,
+        self.http_version = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.http_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.industry = async_to_raw_response_wrapper(
-            timeseries_groups.industry,
+        self.industry = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.industry,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.ip_version = async_to_raw_response_wrapper(
-            timeseries_groups.ip_version,
+        self.ip_version = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.ip_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.managed_rules = async_to_raw_response_wrapper(
-            timeseries_groups.managed_rules,
+        self.managed_rules = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.managed_rules,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.mitigation_product = async_to_raw_response_wrapper(
-            timeseries_groups.mitigation_product,
+        self.mitigation_product = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.mitigation_product,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.vertical = async_to_raw_response_wrapper(
-            timeseries_groups.vertical,
+        self.vertical = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                timeseries_groups.vertical,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -2332,26 +2403,40 @@ class TimeseriesGroupsResourceWithStreamingResponse:
     def __init__(self, timeseries_groups: TimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.http_method = to_streamed_response_wrapper(
-            timeseries_groups.http_method,
+        self.http_method = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.http_method,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.http_version = to_streamed_response_wrapper(
-            timeseries_groups.http_version,
+        self.http_version = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.http_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.industry = to_streamed_response_wrapper(
-            timeseries_groups.industry,
+        self.industry = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.industry,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.ip_version = to_streamed_response_wrapper(
-            timeseries_groups.ip_version,
+        self.ip_version = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.ip_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.managed_rules = to_streamed_response_wrapper(
-            timeseries_groups.managed_rules,
+        self.managed_rules = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.managed_rules,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.mitigation_product = to_streamed_response_wrapper(
-            timeseries_groups.mitigation_product,
+        self.mitigation_product = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.mitigation_product,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.vertical = to_streamed_response_wrapper(
-            timeseries_groups.vertical,
+        self.vertical = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                timeseries_groups.vertical,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -2359,24 +2444,38 @@ class AsyncTimeseriesGroupsResourceWithStreamingResponse:
     def __init__(self, timeseries_groups: AsyncTimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.http_method = async_to_streamed_response_wrapper(
-            timeseries_groups.http_method,
+        self.http_method = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.http_method,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.http_version = async_to_streamed_response_wrapper(
-            timeseries_groups.http_version,
+        self.http_version = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.http_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.industry = async_to_streamed_response_wrapper(
-            timeseries_groups.industry,
+        self.industry = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.industry,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.ip_version = async_to_streamed_response_wrapper(
-            timeseries_groups.ip_version,
+        self.ip_version = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.ip_version,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.managed_rules = async_to_streamed_response_wrapper(
-            timeseries_groups.managed_rules,
+        self.managed_rules = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.managed_rules,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.mitigation_product = async_to_streamed_response_wrapper(
-            timeseries_groups.mitigation_product,
+        self.mitigation_product = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.mitigation_product,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.vertical = async_to_streamed_response_wrapper(
-            timeseries_groups.vertical,
+        self.vertical = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                timeseries_groups.vertical,  # pyright: ignore[reportDeprecated],
+            )
         )

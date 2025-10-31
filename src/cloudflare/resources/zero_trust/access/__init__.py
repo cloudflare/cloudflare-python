@@ -72,6 +72,14 @@ from .gateway_ca import (
     GatewayCAResourceWithStreamingResponse,
     AsyncGatewayCAResourceWithStreamingResponse,
 )
+from .ai_controls import (
+    AIControlsResource,
+    AsyncAIControlsResource,
+    AIControlsResourceWithRawResponse,
+    AsyncAIControlsResourceWithRawResponse,
+    AIControlsResourceWithStreamingResponse,
+    AsyncAIControlsResourceWithStreamingResponse,
+)
 from .applications import (
     ApplicationsResource,
     AsyncApplicationsResource,
@@ -114,6 +122,12 @@ from .service_tokens import (
 )
 
 __all__ = [
+    "AIControlsResource",
+    "AsyncAIControlsResource",
+    "AIControlsResourceWithRawResponse",
+    "AsyncAIControlsResourceWithRawResponse",
+    "AIControlsResourceWithStreamingResponse",
+    "AsyncAIControlsResourceWithStreamingResponse",
     "GatewayCAResource",
     "AsyncGatewayCAResource",
     "GatewayCAResourceWithRawResponse",

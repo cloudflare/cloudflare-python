@@ -28,7 +28,7 @@ class TestTop:
         top = client.radar.robots_txt.top.domain_categories(
             date=[parse_date("2019-12-27")],
             format="JSON",
-            limit=5,
+            limit=1,
             name=["main_series"],
             user_agent_category="AI",
         )
@@ -70,7 +70,7 @@ class TestAsyncTop:
         top = await async_client.radar.robots_txt.top.domain_categories(
             date=[parse_date("2019-12-27")],
             format="JSON",
-            limit=5,
+            limit=1,
             name=["main_series"],
             user_agent_category="AI",
         )

@@ -33,7 +33,7 @@ class TestASNs:
         asn = client.radar.entities.asns.list(
             asn="174,7922",
             format="JSON",
-            limit=5,
+            limit=1,
             location="US",
             offset=0,
             order_by="ASN",
@@ -233,7 +233,7 @@ class TestAsyncASNs:
         asn = await async_client.radar.entities.asns.list(
             asn="174,7922",
             format="JSON",
-            limit=5,
+            limit=1,
             location="US",
             offset=0,
             order_by="ASN",

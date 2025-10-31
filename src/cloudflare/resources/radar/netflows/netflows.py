@@ -67,7 +67,9 @@ class NetflowsResource(SyncAPIResource):
         """
         return NetflowsResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Get Network Traffic Distribution By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/netflows/methods/summary_v2/) instead."
+    )
     def summary(
         self,
         *,
@@ -500,7 +502,9 @@ class AsyncNetflowsResource(AsyncAPIResource):
         """
         return AsyncNetflowsResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Get Network Traffic Distribution By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/netflows/methods/summary_v2/) instead."
+    )
     async def summary(
         self,
         *,

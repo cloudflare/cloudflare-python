@@ -56,6 +56,7 @@ class SSOResource(SyncAPIResource):
         account_id: str,
         email_domain: str,
         begin_verification: bool | Omit = omit,
+        use_fedramp_language: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -73,6 +74,8 @@ class SSOResource(SyncAPIResource):
 
           begin_verification: Begin the verification process after creation
 
+          use_fedramp_language: Controls the display of FedRAMP language to the user during SSO login
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -89,6 +92,7 @@ class SSOResource(SyncAPIResource):
                 {
                     "email_domain": email_domain,
                     "begin_verification": begin_verification,
+                    "use_fedramp_language": use_fedramp_language,
                 },
                 sso_create_params.SSOCreateParams,
             ),
@@ -107,7 +111,8 @@ class SSOResource(SyncAPIResource):
         sso_connector_id: str,
         *,
         account_id: str,
-        enabled: bool,
+        enabled: bool | Omit = omit,
+        use_fedramp_language: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -125,6 +130,8 @@ class SSOResource(SyncAPIResource):
 
           enabled: SSO Connector enabled state
 
+          use_fedramp_language: Controls the display of FedRAMP language to the user during SSO login
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -139,7 +146,13 @@ class SSOResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `sso_connector_id` but received {sso_connector_id!r}")
         return self._patch(
             f"/accounts/{account_id}/sso_connectors/{sso_connector_id}",
-            body=maybe_transform({"enabled": enabled}, sso_update_params.SSOUpdateParams),
+            body=maybe_transform(
+                {
+                    "enabled": enabled,
+                    "use_fedramp_language": use_fedramp_language,
+                },
+                sso_update_params.SSOUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -341,6 +354,7 @@ class AsyncSSOResource(AsyncAPIResource):
         account_id: str,
         email_domain: str,
         begin_verification: bool | Omit = omit,
+        use_fedramp_language: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -358,6 +372,8 @@ class AsyncSSOResource(AsyncAPIResource):
 
           begin_verification: Begin the verification process after creation
 
+          use_fedramp_language: Controls the display of FedRAMP language to the user during SSO login
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -374,6 +390,7 @@ class AsyncSSOResource(AsyncAPIResource):
                 {
                     "email_domain": email_domain,
                     "begin_verification": begin_verification,
+                    "use_fedramp_language": use_fedramp_language,
                 },
                 sso_create_params.SSOCreateParams,
             ),
@@ -392,7 +409,8 @@ class AsyncSSOResource(AsyncAPIResource):
         sso_connector_id: str,
         *,
         account_id: str,
-        enabled: bool,
+        enabled: bool | Omit = omit,
+        use_fedramp_language: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -410,6 +428,8 @@ class AsyncSSOResource(AsyncAPIResource):
 
           enabled: SSO Connector enabled state
 
+          use_fedramp_language: Controls the display of FedRAMP language to the user during SSO login
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -424,7 +444,13 @@ class AsyncSSOResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `sso_connector_id` but received {sso_connector_id!r}")
         return await self._patch(
             f"/accounts/{account_id}/sso_connectors/{sso_connector_id}",
-            body=await async_maybe_transform({"enabled": enabled}, sso_update_params.SSOUpdateParams),
+            body=await async_maybe_transform(
+                {
+                    "enabled": enabled,
+                    "use_fedramp_language": use_fedramp_language,
+                },
+                sso_update_params.SSOUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

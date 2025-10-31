@@ -16,6 +16,7 @@ from .script_get_response import ScriptGetResponse as ScriptGetResponse
 from .domain_update_params import DomainUpdateParams as DomainUpdateParams
 from .migration_step_param import MigrationStepParam as MigrationStepParam
 from .script_delete_params import ScriptDeleteParams as ScriptDeleteParams
+from .script_list_response import ScriptListResponse as ScriptListResponse
 from .script_search_params import ScriptSearchParams as ScriptSearchParams
 from .script_update_params import ScriptUpdateParams as ScriptUpdateParams
 from .route_create_response import RouteCreateResponse as RouteCreateResponse

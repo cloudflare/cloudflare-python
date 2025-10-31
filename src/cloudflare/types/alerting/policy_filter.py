@@ -135,6 +135,9 @@ class PolicyFilter(BaseModel):
     tunnel_name: Optional[List[str]] = None
     """Usage depends on specific alert type"""
 
+    type: Optional[List[str]] = None
+    """Usage depends on specific alert type"""
+
     where: Optional[List[str]] = None
     """Usage depends on specific alert type"""
 
