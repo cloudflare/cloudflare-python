@@ -9718,6 +9718,30 @@ Methods:
 - <code title="get /accounts/{account_id}/iam/user_groups/{user_group_id}/members">client.iam.user_groups.members.<a href="./src/cloudflare/resources/iam/user_groups/members.py">list</a>(user_group_id, \*, account_id, \*\*<a href="src/cloudflare/types/iam/user_groups/member_list_params.py">params</a>) -> <a href="./src/cloudflare/types/iam/user_groups/member_list_response.py">SyncV4PagePaginationArray[MemberListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/iam/user_groups/{user_group_id}/members/{member_id}">client.iam.user_groups.members.<a href="./src/cloudflare/resources/iam/user_groups/members.py">delete</a>(member_id, \*, account_id, user_group_id) -> <a href="./src/cloudflare/types/iam/user_groups/member_delete_response.py">Optional[MemberDeleteResponse]</a></code>
 
+## SSO
+
+Types:
+
+```python
+from cloudflare.types.iam import (
+    SSOCreateResponse,
+    SSOUpdateResponse,
+    SSOListResponse,
+    SSODeleteResponse,
+    SSOBeginVerificationResponse,
+    SSOGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/sso_connectors">client.iam.sso.<a href="./src/cloudflare/resources/iam/sso.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/iam/sso_create_params.py">params</a>) -> <a href="./src/cloudflare/types/iam/sso_create_response.py">Optional[SSOCreateResponse]</a></code>
+- <code title="patch /accounts/{account_id}/sso_connectors/{sso_connector_id}">client.iam.sso.<a href="./src/cloudflare/resources/iam/sso.py">update</a>(sso_connector_id, \*, account_id, \*\*<a href="src/cloudflare/types/iam/sso_update_params.py">params</a>) -> <a href="./src/cloudflare/types/iam/sso_update_response.py">Optional[SSOUpdateResponse]</a></code>
+- <code title="get /accounts/{account_id}/sso_connectors">client.iam.sso.<a href="./src/cloudflare/resources/iam/sso.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/iam/sso_list_response.py">SyncSinglePage[SSOListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/sso_connectors/{sso_connector_id}">client.iam.sso.<a href="./src/cloudflare/resources/iam/sso.py">delete</a>(sso_connector_id, \*, account_id) -> <a href="./src/cloudflare/types/iam/sso_delete_response.py">Optional[SSODeleteResponse]</a></code>
+- <code title="post /accounts/{account_id}/sso_connectors/{sso_connector_id}/begin_verification">client.iam.sso.<a href="./src/cloudflare/resources/iam/sso.py">begin_verification</a>(sso_connector_id, \*, account_id) -> <a href="./src/cloudflare/types/iam/sso_begin_verification_response.py">SSOBeginVerificationResponse</a></code>
+- <code title="get /accounts/{account_id}/sso_connectors/{sso_connector_id}">client.iam.sso.<a href="./src/cloudflare/resources/iam/sso.py">get</a>(sso_connector_id, \*, account_id) -> <a href="./src/cloudflare/types/iam/sso_get_response.py">Optional[SSOGetResponse]</a></code>
+
 # CloudConnector
 
 ## Rules
