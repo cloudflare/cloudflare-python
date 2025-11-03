@@ -4,12 +4,12 @@ from typing import Dict, List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from ......._models import BaseModel
+from ......_models import BaseModel
 
-__all__ = ["ServerListResponse"]
+__all__ = ["PortalReadResponse", "Server"]
 
 
-class ServerListResponse(BaseModel):
+class Server(BaseModel):
     id: str
     """server id"""
 
@@ -23,9 +23,15 @@ class ServerListResponse(BaseModel):
 
     tools: List[Dict[str, Union[float, str]]]
 
+    updated_prompts: List[Dict[str, Union[float, str]]]
+
+    updated_tools: List[Dict[str, Union[float, str]]]
+
     created_at: Optional[datetime] = None
 
     created_by: Optional[str] = None
+
+    default_disabled: Optional[bool] = None
 
     description: Optional[str] = None
 
@@ -37,4 +43,27 @@ class ServerListResponse(BaseModel):
 
     modified_by: Optional[str] = None
 
+    on_behalf: Optional[bool] = None
+
     status: Optional[str] = None
+
+
+class PortalReadResponse(BaseModel):
+    id: str
+    """portal id"""
+
+    hostname: str
+
+    name: str
+
+    servers: List[Server]
+
+    created_at: Optional[datetime] = None
+
+    created_by: Optional[str] = None
+
+    description: Optional[str] = None
+
+    modified_at: Optional[datetime] = None
+
+    modified_by: Optional[str] = None

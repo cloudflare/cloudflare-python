@@ -19,16 +19,12 @@ from ......_response import (
 from ......_wrappers import ResultWrapper
 from ......pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ......_base_client import AsyncPaginator, make_request_options
-from ......types.zero_trust.access.ai_controls.mcp.portals import (
-    portal_list_params,
-    portal_create_params,
-    portal_update_params,
-)
-from ......types.zero_trust.access.ai_controls.mcp.portals.portal_list_response import PortalListResponse
-from ......types.zero_trust.access.ai_controls.mcp.portals.portal_read_response import PortalReadResponse
-from ......types.zero_trust.access.ai_controls.mcp.portals.portal_create_response import PortalCreateResponse
-from ......types.zero_trust.access.ai_controls.mcp.portals.portal_delete_response import PortalDeleteResponse
-from ......types.zero_trust.access.ai_controls.mcp.portals.portal_update_response import PortalUpdateResponse
+from ......types.zero_trust.access.ai_controls.mcp import portal_list_params, portal_create_params, portal_update_params
+from ......types.zero_trust.access.ai_controls.mcp.portal_list_response import PortalListResponse
+from ......types.zero_trust.access.ai_controls.mcp.portal_read_response import PortalReadResponse
+from ......types.zero_trust.access.ai_controls.mcp.portal_create_response import PortalCreateResponse
+from ......types.zero_trust.access.ai_controls.mcp.portal_delete_response import PortalDeleteResponse
+from ......types.zero_trust.access.ai_controls.mcp.portal_update_response import PortalUpdateResponse
 
 __all__ = ["PortalsResource", "AsyncPortalsResource"]
 

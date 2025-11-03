@@ -4,7 +4,7 @@ from typing import Dict, List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from ......._models import BaseModel
+from ......_models import BaseModel
 
 __all__ = ["ServerReadResponse"]
 

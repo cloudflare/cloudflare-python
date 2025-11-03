@@ -4,12 +4,12 @@ from typing import Dict, List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from ......._models import BaseModel
+from ......_models import BaseModel
 
-__all__ = ["ServerDeleteResponse"]
+__all__ = ["ServerListResponse"]
 
 
-class ServerDeleteResponse(BaseModel):
+class ServerListResponse(BaseModel):
     id: str
     """server id"""
 

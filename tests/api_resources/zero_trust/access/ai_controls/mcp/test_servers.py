@@ -10,7 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.zero_trust.access.ai_controls.mcp.servers import (
+from cloudflare.types.zero_trust.access.ai_controls.mcp import (
     ServerListResponse,
     ServerReadResponse,
     ServerCreateResponse,

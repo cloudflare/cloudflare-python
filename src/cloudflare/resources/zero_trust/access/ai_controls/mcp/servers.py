@@ -20,16 +20,12 @@ from ......_response import (
 from ......_wrappers import ResultWrapper
 from ......pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ......_base_client import AsyncPaginator, make_request_options
-from ......types.zero_trust.access.ai_controls.mcp.servers import (
-    server_list_params,
-    server_create_params,
-    server_update_params,
-)
-from ......types.zero_trust.access.ai_controls.mcp.servers.server_list_response import ServerListResponse
-from ......types.zero_trust.access.ai_controls.mcp.servers.server_read_response import ServerReadResponse
-from ......types.zero_trust.access.ai_controls.mcp.servers.server_create_response import ServerCreateResponse
-from ......types.zero_trust.access.ai_controls.mcp.servers.server_delete_response import ServerDeleteResponse
-from ......types.zero_trust.access.ai_controls.mcp.servers.server_update_response import ServerUpdateResponse
+from ......types.zero_trust.access.ai_controls.mcp import server_list_params, server_create_params, server_update_params
+from ......types.zero_trust.access.ai_controls.mcp.server_list_response import ServerListResponse
+from ......types.zero_trust.access.ai_controls.mcp.server_read_response import ServerReadResponse
+from ......types.zero_trust.access.ai_controls.mcp.server_create_response import ServerCreateResponse
+from ......types.zero_trust.access.ai_controls.mcp.server_delete_response import ServerDeleteResponse
+from ......types.zero_trust.access.ai_controls.mcp.server_update_response import ServerUpdateResponse
 
 __all__ = ["ServersResource", "AsyncServersResource"]
 

@@ -8,8 +8,36 @@ from .mcp import (
     McpResourceWithStreamingResponse,
     AsyncMcpResourceWithStreamingResponse,
 )
+from .portals import (
+    PortalsResource,
+    AsyncPortalsResource,
+    PortalsResourceWithRawResponse,
+    AsyncPortalsResourceWithRawResponse,
+    PortalsResourceWithStreamingResponse,
+    AsyncPortalsResourceWithStreamingResponse,
+)
+from .servers import (
+    ServersResource,
+    AsyncServersResource,
+    ServersResourceWithRawResponse,
+    AsyncServersResourceWithRawResponse,
+    ServersResourceWithStreamingResponse,
+    AsyncServersResourceWithStreamingResponse,
+)
 
 __all__ = [
+    "PortalsResource",
+    "AsyncPortalsResource",
+    "PortalsResourceWithRawResponse",
+    "AsyncPortalsResourceWithRawResponse",
+    "PortalsResourceWithStreamingResponse",
+    "AsyncPortalsResourceWithStreamingResponse",
+    "ServersResource",
+    "AsyncServersResource",
+    "ServersResourceWithRawResponse",
+    "AsyncServersResourceWithRawResponse",
+    "ServersResourceWithStreamingResponse",
+    "AsyncServersResourceWithStreamingResponse",
     "McpResource",
     "AsyncMcpResource",
     "McpResourceWithRawResponse",
