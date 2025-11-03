@@ -65,5 +65,3 @@ class TokenValidationRule(BaseModel):
     created_at: Optional[datetime] = None
 
     last_updated: Optional[datetime] = None
-
-    modified_by: Optional[str] = None

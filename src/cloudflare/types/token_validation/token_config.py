@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
+from typing import List, Union
 from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
@@ -10,26 +10,10 @@ __all__ = [
     "TokenConfig",
     "Credentials",
     "CredentialsKey",
-    "CredentialsKeyAPIShieldCredentialsJWTKeyEc",
     "CredentialsKeyAPIShieldCredentialsJWTKeyRSA",
+    "CredentialsKeyAPIShieldCredentialsJWTKeyEcEs256",
+    "CredentialsKeyAPIShieldCredentialsJWTKeyEcEs384",
 ]
-
-
-class CredentialsKeyAPIShieldCredentialsJWTKeyEc(BaseModel):
-    alg: Literal["ES256", "ES384"]
-    """Algorithm"""
-
-    kid: str
-    """Key ID"""
-
-    kty: Literal["EC"]
-    """Key Type"""
-
-    x: str
-    """X EC coordinate"""
-
-    y: str
-    """Y EC coordinate"""
 
 
 class CredentialsKeyAPIShieldCredentialsJWTKeyRSA(BaseModel):
@@ -49,29 +33,71 @@ class CredentialsKeyAPIShieldCredentialsJWTKeyRSA(BaseModel):
     """RSA modulus"""
 
 
+class CredentialsKeyAPIShieldCredentialsJWTKeyEcEs256(BaseModel):
+    alg: Literal["ES256"]
+    """Algorithm"""
+
+    crv: Literal["P-256"]
+    """Curve"""
+
+    kid: str
+    """Key ID"""
+
+    kty: Literal["EC"]
+    """Key Type"""
+
+    x: str
+    """X EC coordinate"""
+
+    y: str
+    """Y EC coordinate"""
+
+
+class CredentialsKeyAPIShieldCredentialsJWTKeyEcEs384(BaseModel):
+    alg: Literal["ES384"]
+    """Algorithm"""
+
+    crv: Literal["P-384"]
+    """Curve"""
+
+    kid: str
+    """Key ID"""
+
+    kty: Literal["EC"]
+    """Key Type"""
+
+    x: str
+    """X EC coordinate"""
+
+    y: str
+    """Y EC coordinate"""
+
+
 CredentialsKey: TypeAlias = Union[
-    CredentialsKeyAPIShieldCredentialsJWTKeyEc, CredentialsKeyAPIShieldCredentialsJWTKeyRSA
+    CredentialsKeyAPIShieldCredentialsJWTKeyRSA,
+    CredentialsKeyAPIShieldCredentialsJWTKeyEcEs256,
+    CredentialsKeyAPIShieldCredentialsJWTKeyEcEs384,
 ]
 
 
 class Credentials(BaseModel):
-    keys: Optional[List[CredentialsKey]] = None
+    keys: List[CredentialsKey]
 
 
 class TokenConfig(BaseModel):
-    id: Optional[str] = None
+    id: str
     """UUID."""
 
-    created_at: Optional[datetime] = None
+    created_at: datetime
 
-    credentials: Optional[Credentials] = None
+    credentials: Credentials
 
-    description: Optional[str] = None
+    description: str
 
-    last_updated: Optional[datetime] = None
+    last_updated: datetime
 
-    title: Optional[str] = None
+    title: str
 
-    token_sources: Optional[List[str]] = None
+    token_sources: List[str]
 
-    token_type: Optional[Literal["JWT"]] = None
+    token_type: Literal["JWT"]

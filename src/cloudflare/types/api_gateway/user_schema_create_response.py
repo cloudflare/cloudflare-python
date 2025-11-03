@@ -5,9 +5,9 @@ from typing import List, Optional
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
-from ..schema_validation.public_schema import PublicSchema
+from .old_public_schema import OldPublicSchema
 
-__all__ = ["SchemaUpload", "UploadDetails", "UploadDetailsWarning"]
+__all__ = ["UserSchemaCreateResponse", "UploadDetails", "UploadDetailsWarning"]
 
 
 class UploadDetailsWarning(BaseModel):
@@ -34,7 +34,7 @@ class UploadDetails(BaseModel):
     """
 
 
-class SchemaUpload(BaseModel):
-    schema_: PublicSchema = FieldInfo(alias="schema")
+class UserSchemaCreateResponse(BaseModel):
+    schema_: OldPublicSchema = FieldInfo(alias="schema")
 
     upload_details: Optional[UploadDetails] = None

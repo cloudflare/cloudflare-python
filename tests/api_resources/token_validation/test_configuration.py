@@ -26,22 +26,11 @@ class TestConfiguration:
     def test_method_create(self, client: Cloudflare) -> None:
         configuration = client.token_validation.configuration.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            credentials={},
-            description="Long description for Token Validation Configuration",
-            title="Example Token Validation Configuration",
-            token_sources=['http.request.headers["x-auth"][0]', 'http.request.cookies["Authorization"][0]'],
-            token_type="JWT",
-        )
-        assert_matches_type(TokenConfig, configuration, path=["response"])
-
-    @parametrize
-    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
-        configuration = client.token_validation.configuration.create(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             credentials={
                 "keys": [
                     {
                         "alg": "ES256",
+                        "crv": "P-256",
                         "kid": "38013f13-c266-4eec-a72a-92ec92779f21",
                         "kty": "EC",
                         "x": "KN53JRwN3wCjm2o39bvZUX2VdrsHzS8pxOAGjm8m7EQ",
@@ -60,7 +49,18 @@ class TestConfiguration:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.token_validation.configuration.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            credentials={},
+            credentials={
+                "keys": [
+                    {
+                        "alg": "ES256",
+                        "crv": "P-256",
+                        "kid": "38013f13-c266-4eec-a72a-92ec92779f21",
+                        "kty": "EC",
+                        "x": "KN53JRwN3wCjm2o39bvZUX2VdrsHzS8pxOAGjm8m7EQ",
+                        "y": "lnkkzIxaveggz-HFhcMWW15nxvOj0Z_uQsXbpK0GFcY",
+                    }
+                ]
+            },
             description="Long description for Token Validation Configuration",
             title="Example Token Validation Configuration",
             token_sources=['http.request.headers["x-auth"][0]', 'http.request.cookies["Authorization"][0]'],
@@ -76,7 +76,18 @@ class TestConfiguration:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.token_validation.configuration.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            credentials={},
+            credentials={
+                "keys": [
+                    {
+                        "alg": "ES256",
+                        "crv": "P-256",
+                        "kid": "38013f13-c266-4eec-a72a-92ec92779f21",
+                        "kty": "EC",
+                        "x": "KN53JRwN3wCjm2o39bvZUX2VdrsHzS8pxOAGjm8m7EQ",
+                        "y": "lnkkzIxaveggz-HFhcMWW15nxvOj0Z_uQsXbpK0GFcY",
+                    }
+                ]
+            },
             description="Long description for Token Validation Configuration",
             title="Example Token Validation Configuration",
             token_sources=['http.request.headers["x-auth"][0]', 'http.request.cookies["Authorization"][0]'],
@@ -95,7 +106,18 @@ class TestConfiguration:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.token_validation.configuration.with_raw_response.create(
                 zone_id="",
-                credentials={},
+                credentials={
+                    "keys": [
+                        {
+                            "alg": "ES256",
+                            "crv": "P-256",
+                            "kid": "38013f13-c266-4eec-a72a-92ec92779f21",
+                            "kty": "EC",
+                            "x": "KN53JRwN3wCjm2o39bvZUX2VdrsHzS8pxOAGjm8m7EQ",
+                            "y": "lnkkzIxaveggz-HFhcMWW15nxvOj0Z_uQsXbpK0GFcY",
+                        }
+                    ]
+                },
                 description="Long description for Token Validation Configuration",
                 title="Example Token Validation Configuration",
                 token_sources=['http.request.headers["x-auth"][0]', 'http.request.cookies["Authorization"][0]'],
@@ -314,22 +336,11 @@ class TestAsyncConfiguration:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         configuration = await async_client.token_validation.configuration.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            credentials={},
-            description="Long description for Token Validation Configuration",
-            title="Example Token Validation Configuration",
-            token_sources=['http.request.headers["x-auth"][0]', 'http.request.cookies["Authorization"][0]'],
-            token_type="JWT",
-        )
-        assert_matches_type(TokenConfig, configuration, path=["response"])
-
-    @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        configuration = await async_client.token_validation.configuration.create(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             credentials={
                 "keys": [
                     {
                         "alg": "ES256",
+                        "crv": "P-256",
                         "kid": "38013f13-c266-4eec-a72a-92ec92779f21",
                         "kty": "EC",
                         "x": "KN53JRwN3wCjm2o39bvZUX2VdrsHzS8pxOAGjm8m7EQ",
@@ -348,7 +359,18 @@ class TestAsyncConfiguration:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.token_validation.configuration.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            credentials={},
+            credentials={
+                "keys": [
+                    {
+                        "alg": "ES256",
+                        "crv": "P-256",
+                        "kid": "38013f13-c266-4eec-a72a-92ec92779f21",
+                        "kty": "EC",
+                        "x": "KN53JRwN3wCjm2o39bvZUX2VdrsHzS8pxOAGjm8m7EQ",
+                        "y": "lnkkzIxaveggz-HFhcMWW15nxvOj0Z_uQsXbpK0GFcY",
+                    }
+                ]
+            },
             description="Long description for Token Validation Configuration",
             title="Example Token Validation Configuration",
             token_sources=['http.request.headers["x-auth"][0]', 'http.request.cookies["Authorization"][0]'],
@@ -364,7 +386,18 @@ class TestAsyncConfiguration:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.token_validation.configuration.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            credentials={},
+            credentials={
+                "keys": [
+                    {
+                        "alg": "ES256",
+                        "crv": "P-256",
+                        "kid": "38013f13-c266-4eec-a72a-92ec92779f21",
+                        "kty": "EC",
+                        "x": "KN53JRwN3wCjm2o39bvZUX2VdrsHzS8pxOAGjm8m7EQ",
+                        "y": "lnkkzIxaveggz-HFhcMWW15nxvOj0Z_uQsXbpK0GFcY",
+                    }
+                ]
+            },
             description="Long description for Token Validation Configuration",
             title="Example Token Validation Configuration",
             token_sources=['http.request.headers["x-auth"][0]', 'http.request.cookies["Authorization"][0]'],
@@ -383,7 +416,18 @@ class TestAsyncConfiguration:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.token_validation.configuration.with_raw_response.create(
                 zone_id="",
-                credentials={},
+                credentials={
+                    "keys": [
+                        {
+                            "alg": "ES256",
+                            "crv": "P-256",
+                            "kid": "38013f13-c266-4eec-a72a-92ec92779f21",
+                            "kty": "EC",
+                            "x": "KN53JRwN3wCjm2o39bvZUX2VdrsHzS8pxOAGjm8m7EQ",
+                            "y": "lnkkzIxaveggz-HFhcMWW15nxvOj0Z_uQsXbpK0GFcY",
+                        }
+                    ]
+                },
                 description="Long description for Token Validation Configuration",
                 title="Example Token Validation Configuration",
                 token_sources=['http.request.headers["x-auth"][0]', 'http.request.cookies["Authorization"][0]'],

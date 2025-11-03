@@ -1,29 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
+from typing import List, Union
 from typing_extensions import Literal, TypeAlias
 
 from ...._models import BaseModel
 from ...api_gateway.message import Message
 
-__all__ = ["CredentialUpdateResponse", "Key", "KeyAPIShieldCredentialsJWTKeyEc", "KeyAPIShieldCredentialsJWTKeyRSA"]
-
-
-class KeyAPIShieldCredentialsJWTKeyEc(BaseModel):
-    alg: Literal["ES256", "ES384"]
-    """Algorithm"""
-
-    kid: str
-    """Key ID"""
-
-    kty: Literal["EC"]
-    """Key Type"""
-
-    x: str
-    """X EC coordinate"""
-
-    y: str
-    """Y EC coordinate"""
+__all__ = [
+    "CredentialUpdateResponse",
+    "Key",
+    "KeyAPIShieldCredentialsJWTKeyRSA",
+    "KeyAPIShieldCredentialsJWTKeyEcEs256",
+    "KeyAPIShieldCredentialsJWTKeyEcEs384",
+]
 
 
 class KeyAPIShieldCredentialsJWTKeyRSA(BaseModel):
@@ -43,15 +32,57 @@ class KeyAPIShieldCredentialsJWTKeyRSA(BaseModel):
     """RSA modulus"""
 
 
-Key: TypeAlias = Union[KeyAPIShieldCredentialsJWTKeyEc, KeyAPIShieldCredentialsJWTKeyRSA]
+class KeyAPIShieldCredentialsJWTKeyEcEs256(BaseModel):
+    alg: Literal["ES256"]
+    """Algorithm"""
+
+    crv: Literal["P-256"]
+    """Curve"""
+
+    kid: str
+    """Key ID"""
+
+    kty: Literal["EC"]
+    """Key Type"""
+
+    x: str
+    """X EC coordinate"""
+
+    y: str
+    """Y EC coordinate"""
+
+
+class KeyAPIShieldCredentialsJWTKeyEcEs384(BaseModel):
+    alg: Literal["ES384"]
+    """Algorithm"""
+
+    crv: Literal["P-384"]
+    """Curve"""
+
+    kid: str
+    """Key ID"""
+
+    kty: Literal["EC"]
+    """Key Type"""
+
+    x: str
+    """X EC coordinate"""
+
+    y: str
+    """Y EC coordinate"""
+
+
+Key: TypeAlias = Union[
+    KeyAPIShieldCredentialsJWTKeyRSA, KeyAPIShieldCredentialsJWTKeyEcEs256, KeyAPIShieldCredentialsJWTKeyEcEs384
+]
 
 
 class CredentialUpdateResponse(BaseModel):
     errors: Message
 
+    keys: List[Key]
+
     messages: Message
 
     success: Literal[True]
     """Whether the API call was successful."""
-
-    keys: Optional[List[Key]] = None

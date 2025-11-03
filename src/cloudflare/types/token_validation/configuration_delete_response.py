@@ -8,5 +8,5 @@ __all__ = ["ConfigurationDeleteResponse"]
 
 
 class ConfigurationDeleteResponse(BaseModel):
-    config_id: Optional[str] = None
+    id: Optional[str] = None
     """UUID."""

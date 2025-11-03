@@ -5,10 +5,10 @@ from typing_extensions import Literal
 
 from ...._models import BaseModel
 
-__all__ = ["Settings"]
+__all__ = ["SchemaValidationEditResponse"]
 
 
-class Settings(BaseModel):
+class SchemaValidationEditResponse(BaseModel):
     validation_default_mitigation_action: Optional[Literal["none", "log", "block"]] = None
     """
     The default mitigation action used when there is no mitigation action defined on

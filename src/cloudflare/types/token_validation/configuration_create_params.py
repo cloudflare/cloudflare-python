@@ -11,8 +11,9 @@ __all__ = [
     "ConfigurationCreateParams",
     "Credentials",
     "CredentialsKey",
-    "CredentialsKeyAPIShieldCredentialsJWTKeyEc",
     "CredentialsKeyAPIShieldCredentialsJWTKeyRSA",
+    "CredentialsKeyAPIShieldCredentialsJWTKeyEcEs256",
+    "CredentialsKeyAPIShieldCredentialsJWTKeyEcEs384",
 ]
 
 
@@ -29,23 +30,6 @@ class ConfigurationCreateParams(TypedDict, total=False):
     token_sources: Required[SequenceNotStr[str]]
 
     token_type: Required[Literal["JWT"]]
-
-
-class CredentialsKeyAPIShieldCredentialsJWTKeyEc(TypedDict, total=False):
-    alg: Required[Literal["ES256", "ES384"]]
-    """Algorithm"""
-
-    kid: Required[str]
-    """Key ID"""
-
-    kty: Required[Literal["EC"]]
-    """Key Type"""
-
-    x: Required[str]
-    """X EC coordinate"""
-
-    y: Required[str]
-    """Y EC coordinate"""
 
 
 class CredentialsKeyAPIShieldCredentialsJWTKeyRSA(TypedDict, total=False):
@@ -65,10 +49,52 @@ class CredentialsKeyAPIShieldCredentialsJWTKeyRSA(TypedDict, total=False):
     """RSA modulus"""
 
 
+class CredentialsKeyAPIShieldCredentialsJWTKeyEcEs256(TypedDict, total=False):
+    alg: Required[Literal["ES256"]]
+    """Algorithm"""
+
+    crv: Required[Literal["P-256"]]
+    """Curve"""
+
+    kid: Required[str]
+    """Key ID"""
+
+    kty: Required[Literal["EC"]]
+    """Key Type"""
+
+    x: Required[str]
+    """X EC coordinate"""
+
+    y: Required[str]
+    """Y EC coordinate"""
+
+
+class CredentialsKeyAPIShieldCredentialsJWTKeyEcEs384(TypedDict, total=False):
+    alg: Required[Literal["ES384"]]
+    """Algorithm"""
+
+    crv: Required[Literal["P-384"]]
+    """Curve"""
+
+    kid: Required[str]
+    """Key ID"""
+
+    kty: Required[Literal["EC"]]
+    """Key Type"""
+
+    x: Required[str]
+    """X EC coordinate"""
+
+    y: Required[str]
+    """Y EC coordinate"""
+
+
 CredentialsKey: TypeAlias = Union[
-    CredentialsKeyAPIShieldCredentialsJWTKeyEc, CredentialsKeyAPIShieldCredentialsJWTKeyRSA
+    CredentialsKeyAPIShieldCredentialsJWTKeyRSA,
+    CredentialsKeyAPIShieldCredentialsJWTKeyEcEs256,
+    CredentialsKeyAPIShieldCredentialsJWTKeyEcEs384,
 ]
 
 
 class Credentials(TypedDict, total=False):
-    keys: Iterable[CredentialsKey]
+    keys: Required[Iterable[CredentialsKey]]

@@ -6,23 +6,23 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["SchemaEditResponse"]
+__all__ = ["OldPublicSchema"]
 
 
-class SchemaEditResponse(BaseModel):
+class OldPublicSchema(BaseModel):
     created_at: datetime
 
     kind: Literal["openapi_v3"]
-    """The kind of the schema"""
+    """Kind of schema"""
 
     name: str
-    """A human-readable name for the schema"""
+    """Name of the schema"""
 
     schema_id: str
-    """A unique identifier of this schema"""
+    """UUID."""
 
-    source: str
-    """The raw schema, e.g., the OpenAPI schema, either as JSON or YAML"""
+    source: Optional[str] = None
+    """Source of the schema"""
 
     validation_enabled: Optional[bool] = None
-    """An indicator if this schema is enabled"""
+    """Flag whether schema is enabled for validation."""
