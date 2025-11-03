@@ -5,7 +5,7 @@ from typing import List, Optional
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
-from .public_schema import PublicSchema
+from ..schema_validation.public_schema import PublicSchema
 
 __all__ = ["SchemaUpload", "UploadDetails", "UploadDetailsWarning"]
 

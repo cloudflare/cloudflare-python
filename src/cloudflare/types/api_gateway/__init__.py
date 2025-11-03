@@ -5,7 +5,6 @@ from __future__ import annotations
 from .message import Message as Message
 from .settings import Settings as Settings
 from .configuration import Configuration as Configuration
-from .public_schema import PublicSchema as PublicSchema
 from .schema_upload import SchemaUpload as SchemaUpload
 from .schema_list_params import SchemaListParams as SchemaListParams
 from .discovery_operation import DiscoveryOperation as DiscoveryOperation

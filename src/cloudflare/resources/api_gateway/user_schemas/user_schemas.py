@@ -43,8 +43,8 @@ from ....types.api_gateway import (
     user_schema_list_params,
     user_schema_create_params,
 )
-from ....types.api_gateway.public_schema import PublicSchema
 from ....types.api_gateway.schema_upload import SchemaUpload
+from ....types.schema_validation.public_schema import PublicSchema
 from ....types.api_gateway.user_schema_delete_response import UserSchemaDeleteResponse
 
 __all__ = ["UserSchemasResource", "AsyncUserSchemasResource"]
