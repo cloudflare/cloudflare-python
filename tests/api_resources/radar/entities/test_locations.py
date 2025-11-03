@@ -29,7 +29,7 @@ class TestLocations:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         location = client.radar.entities.locations.list(
             format="JSON",
-            limit=1,
+            limit=5,
             location="US,CA",
             offset=0,
         )
@@ -116,7 +116,7 @@ class TestAsyncLocations:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         location = await async_client.radar.entities.locations.list(
             format="JSON",
-            limit=1,
+            limit=5,
             location="US,CA",
             offset=0,
         )

@@ -165,7 +165,6 @@ class AccountsResource(SyncAPIResource):
         id: str,
         name: str,
         type: Literal["standard", "enterprise"],
-        managed_by: account_update_params.ManagedBy | Omit = omit,
         settings: account_update_params.Settings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -183,8 +182,6 @@ class AccountsResource(SyncAPIResource):
           id: Identifier
 
           name: Account name
-
-          managed_by: Parent container details
 
           settings: Account settings
 
@@ -205,7 +202,6 @@ class AccountsResource(SyncAPIResource):
                     "id": id,
                     "name": name,
                     "type": type,
-                    "managed_by": managed_by,
                     "settings": settings,
                 },
                 account_update_params.AccountUpdateParams,
@@ -455,7 +451,6 @@ class AsyncAccountsResource(AsyncAPIResource):
         id: str,
         name: str,
         type: Literal["standard", "enterprise"],
-        managed_by: account_update_params.ManagedBy | Omit = omit,
         settings: account_update_params.Settings | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -473,8 +468,6 @@ class AsyncAccountsResource(AsyncAPIResource):
           id: Identifier
 
           name: Account name
-
-          managed_by: Parent container details
 
           settings: Account settings
 
@@ -495,7 +488,6 @@ class AsyncAccountsResource(AsyncAPIResource):
                     "id": id,
                     "name": name,
                     "type": type,
-                    "managed_by": managed_by,
                     "settings": settings,
                 },
                 account_update_params.AccountUpdateParams,

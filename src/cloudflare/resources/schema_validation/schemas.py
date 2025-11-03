@@ -21,7 +21,10 @@ from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.schema_validation import schema_get_params, schema_edit_params, schema_list_params, schema_create_params
-from ...types.schema_validation.public_schema import PublicSchema
+from ...types.schema_validation.schema_get_response import SchemaGetResponse
+from ...types.schema_validation.schema_edit_response import SchemaEditResponse
+from ...types.schema_validation.schema_list_response import SchemaListResponse
+from ...types.schema_validation.schema_create_response import SchemaCreateResponse
 from ...types.schema_validation.schema_delete_response import SchemaDeleteResponse
 
 __all__ = ["SchemasResource", "AsyncSchemasResource"]
@@ -61,7 +64,7 @@ class SchemasResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PublicSchema:
+    ) -> SchemaCreateResponse:
         """
         Upload a schema
 
@@ -102,9 +105,9 @@ class SchemasResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[PublicSchema]._unwrapper,
+                post_parser=ResultWrapper[SchemaCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[PublicSchema], ResultWrapper[PublicSchema]),
+            cast_to=cast(Type[SchemaCreateResponse], ResultWrapper[SchemaCreateResponse]),
         )
 
     def list(
@@ -121,7 +124,7 @@ class SchemasResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncV4PagePaginationArray[PublicSchema]:
+    ) -> SyncV4PagePaginationArray[SchemaListResponse]:
         """
         List all uploaded schemas
 
@@ -148,7 +151,7 @@ class SchemasResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/schema_validation/schemas",
-            page=SyncV4PagePaginationArray[PublicSchema],
+            page=SyncV4PagePaginationArray[SchemaListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -164,7 +167,7 @@ class SchemasResource(SyncAPIResource):
                     schema_list_params.SchemaListParams,
                 ),
             ),
-            model=PublicSchema,
+            model=SchemaListResponse,
         )
 
     def delete(
@@ -223,7 +226,7 @@ class SchemasResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PublicSchema:
+    ) -> SchemaEditResponse:
         """
         Edit details of a schema to enable validation
 
@@ -254,9 +257,9 @@ class SchemasResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[PublicSchema]._unwrapper,
+                post_parser=ResultWrapper[SchemaEditResponse]._unwrapper,
             ),
-            cast_to=cast(Type[PublicSchema], ResultWrapper[PublicSchema]),
+            cast_to=cast(Type[SchemaEditResponse], ResultWrapper[SchemaEditResponse]),
         )
 
     def get(
@@ -271,7 +274,7 @@ class SchemasResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PublicSchema:
+    ) -> SchemaGetResponse:
         """
         Get details of a schema
 
@@ -302,9 +305,9 @@ class SchemasResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"omit_source": omit_source}, schema_get_params.SchemaGetParams),
-                post_parser=ResultWrapper[PublicSchema]._unwrapper,
+                post_parser=ResultWrapper[SchemaGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[PublicSchema], ResultWrapper[PublicSchema]),
+            cast_to=cast(Type[SchemaGetResponse], ResultWrapper[SchemaGetResponse]),
         )
 
 
@@ -342,7 +345,7 @@ class AsyncSchemasResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PublicSchema:
+    ) -> SchemaCreateResponse:
         """
         Upload a schema
 
@@ -383,9 +386,9 @@ class AsyncSchemasResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[PublicSchema]._unwrapper,
+                post_parser=ResultWrapper[SchemaCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[PublicSchema], ResultWrapper[PublicSchema]),
+            cast_to=cast(Type[SchemaCreateResponse], ResultWrapper[SchemaCreateResponse]),
         )
 
     def list(
@@ -402,7 +405,7 @@ class AsyncSchemasResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[PublicSchema, AsyncV4PagePaginationArray[PublicSchema]]:
+    ) -> AsyncPaginator[SchemaListResponse, AsyncV4PagePaginationArray[SchemaListResponse]]:
         """
         List all uploaded schemas
 
@@ -429,7 +432,7 @@ class AsyncSchemasResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/schema_validation/schemas",
-            page=AsyncV4PagePaginationArray[PublicSchema],
+            page=AsyncV4PagePaginationArray[SchemaListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -445,7 +448,7 @@ class AsyncSchemasResource(AsyncAPIResource):
                     schema_list_params.SchemaListParams,
                 ),
             ),
-            model=PublicSchema,
+            model=SchemaListResponse,
         )
 
     async def delete(
@@ -504,7 +507,7 @@ class AsyncSchemasResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PublicSchema:
+    ) -> SchemaEditResponse:
         """
         Edit details of a schema to enable validation
 
@@ -537,9 +540,9 @@ class AsyncSchemasResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[PublicSchema]._unwrapper,
+                post_parser=ResultWrapper[SchemaEditResponse]._unwrapper,
             ),
-            cast_to=cast(Type[PublicSchema], ResultWrapper[PublicSchema]),
+            cast_to=cast(Type[SchemaEditResponse], ResultWrapper[SchemaEditResponse]),
         )
 
     async def get(
@@ -554,7 +557,7 @@ class AsyncSchemasResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PublicSchema:
+    ) -> SchemaGetResponse:
         """
         Get details of a schema
 
@@ -585,9 +588,9 @@ class AsyncSchemasResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform({"omit_source": omit_source}, schema_get_params.SchemaGetParams),
-                post_parser=ResultWrapper[PublicSchema]._unwrapper,
+                post_parser=ResultWrapper[SchemaGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[PublicSchema], ResultWrapper[PublicSchema]),
+            cast_to=cast(Type[SchemaGetResponse], ResultWrapper[SchemaGetResponse]),
         )
 
 

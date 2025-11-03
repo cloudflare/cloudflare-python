@@ -43,8 +43,8 @@ from ....types.api_gateway import (
     user_schema_list_params,
     user_schema_create_params,
 )
-from ....types.api_gateway.old_public_schema import OldPublicSchema
-from ....types.api_gateway.user_schema_create_response import UserSchemaCreateResponse
+from ....types.api_gateway.schema_upload import SchemaUpload
+from ....types.schema_validation.public_schema import PublicSchema
 from ....types.api_gateway.user_schema_delete_response import UserSchemaDeleteResponse
 
 __all__ = ["UserSchemasResource", "AsyncUserSchemasResource"]
@@ -95,7 +95,7 @@ class UserSchemasResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UserSchemaCreateResponse:
+    ) -> SchemaUpload:
         """
         Upload a schema to a zone
 
@@ -142,9 +142,9 @@ class UserSchemasResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[UserSchemaCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[SchemaUpload]._unwrapper,
             ),
-            cast_to=cast(Type[UserSchemaCreateResponse], ResultWrapper[UserSchemaCreateResponse]),
+            cast_to=cast(Type[SchemaUpload], ResultWrapper[SchemaUpload]),
         )
 
     @typing_extensions.deprecated(
@@ -164,7 +164,7 @@ class UserSchemasResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncV4PagePaginationArray[OldPublicSchema]:
+    ) -> SyncV4PagePaginationArray[PublicSchema]:
         """
         Retrieve information about all schemas on a zone
 
@@ -191,7 +191,7 @@ class UserSchemasResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/api_gateway/user_schemas",
-            page=SyncV4PagePaginationArray[OldPublicSchema],
+            page=SyncV4PagePaginationArray[PublicSchema],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -207,7 +207,7 @@ class UserSchemasResource(SyncAPIResource):
                     user_schema_list_params.UserSchemaListParams,
                 ),
             ),
-            model=OldPublicSchema,
+            model=PublicSchema,
         )
 
     @typing_extensions.deprecated(
@@ -266,7 +266,7 @@ class UserSchemasResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> OldPublicSchema:
+    ) -> PublicSchema:
         """
         Enable validation for a schema
 
@@ -297,9 +297,9 @@ class UserSchemasResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[OldPublicSchema]._unwrapper,
+                post_parser=ResultWrapper[PublicSchema]._unwrapper,
             ),
-            cast_to=cast(Type[OldPublicSchema], ResultWrapper[OldPublicSchema]),
+            cast_to=cast(Type[PublicSchema], ResultWrapper[PublicSchema]),
         )
 
     @typing_extensions.deprecated(
@@ -317,7 +317,7 @@ class UserSchemasResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> OldPublicSchema:
+    ) -> PublicSchema:
         """
         Retrieve information about a specific schema on a zone
 
@@ -346,9 +346,9 @@ class UserSchemasResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"omit_source": omit_source}, user_schema_get_params.UserSchemaGetParams),
-                post_parser=ResultWrapper[OldPublicSchema]._unwrapper,
+                post_parser=ResultWrapper[PublicSchema]._unwrapper,
             ),
-            cast_to=cast(Type[OldPublicSchema], ResultWrapper[OldPublicSchema]),
+            cast_to=cast(Type[PublicSchema], ResultWrapper[PublicSchema]),
         )
 
 
@@ -397,7 +397,7 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UserSchemaCreateResponse:
+    ) -> SchemaUpload:
         """
         Upload a schema to a zone
 
@@ -444,9 +444,9 @@ class AsyncUserSchemasResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[UserSchemaCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[SchemaUpload]._unwrapper,
             ),
-            cast_to=cast(Type[UserSchemaCreateResponse], ResultWrapper[UserSchemaCreateResponse]),
+            cast_to=cast(Type[SchemaUpload], ResultWrapper[SchemaUpload]),
         )
 
     @typing_extensions.deprecated(
@@ -466,7 +466,7 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[OldPublicSchema, AsyncV4PagePaginationArray[OldPublicSchema]]:
+    ) -> AsyncPaginator[PublicSchema, AsyncV4PagePaginationArray[PublicSchema]]:
         """
         Retrieve information about all schemas on a zone
 
@@ -493,7 +493,7 @@ class AsyncUserSchemasResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/api_gateway/user_schemas",
-            page=AsyncV4PagePaginationArray[OldPublicSchema],
+            page=AsyncV4PagePaginationArray[PublicSchema],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -509,7 +509,7 @@ class AsyncUserSchemasResource(AsyncAPIResource):
                     user_schema_list_params.UserSchemaListParams,
                 ),
             ),
-            model=OldPublicSchema,
+            model=PublicSchema,
         )
 
     @typing_extensions.deprecated(
@@ -568,7 +568,7 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> OldPublicSchema:
+    ) -> PublicSchema:
         """
         Enable validation for a schema
 
@@ -599,9 +599,9 @@ class AsyncUserSchemasResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[OldPublicSchema]._unwrapper,
+                post_parser=ResultWrapper[PublicSchema]._unwrapper,
             ),
-            cast_to=cast(Type[OldPublicSchema], ResultWrapper[OldPublicSchema]),
+            cast_to=cast(Type[PublicSchema], ResultWrapper[PublicSchema]),
         )
 
     @typing_extensions.deprecated(
@@ -619,7 +619,7 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> OldPublicSchema:
+    ) -> PublicSchema:
         """
         Retrieve information about a specific schema on a zone
 
@@ -650,9 +650,9 @@ class AsyncUserSchemasResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {"omit_source": omit_source}, user_schema_get_params.UserSchemaGetParams
                 ),
-                post_parser=ResultWrapper[OldPublicSchema]._unwrapper,
+                post_parser=ResultWrapper[PublicSchema]._unwrapper,
             ),
-            cast_to=cast(Type[OldPublicSchema], ResultWrapper[OldPublicSchema]),
+            cast_to=cast(Type[PublicSchema], ResultWrapper[PublicSchema]),
         )
 
 

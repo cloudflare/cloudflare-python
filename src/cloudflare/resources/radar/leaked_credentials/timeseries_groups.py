@@ -48,9 +48,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         """
         return TimeseriesGroupsResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated(
-        "Use [Radar Leaked Credentials Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/leaked_credentials/methods/timeseries_groups_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     def bot_class(
         self,
         *,
@@ -123,9 +121,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupBotClassResponse], ResultWrapper[TimeseriesGroupBotClassResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar Leaked Credentials Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/leaked_credentials/methods/timeseries_groups_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     def compromised(
         self,
         *,
@@ -220,9 +216,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         """
         return AsyncTimeseriesGroupsResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated(
-        "Use [Radar Leaked Credentials Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/leaked_credentials/methods/timeseries_groups_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     async def bot_class(
         self,
         *,
@@ -295,9 +289,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupBotClassResponse], ResultWrapper[TimeseriesGroupBotClassResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar Leaked Credentials Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/leaked_credentials/methods/timeseries_groups_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     async def compromised(
         self,
         *,

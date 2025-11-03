@@ -173,15 +173,6 @@ class TestClientCertificates:
         assert_matches_type(Optional[ClientCertificate], client_certificate, path=["response"])
 
     @parametrize
-    def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
-        client_certificate = client.client_certificates.edit(
-            client_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            reactivate=True,
-        )
-        assert_matches_type(Optional[ClientCertificate], client_certificate, path=["response"])
-
-    @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.client_certificates.with_raw_response.edit(
             client_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -424,15 +415,6 @@ class TestAsyncClientCertificates:
         client_certificate = await async_client.client_certificates.edit(
             client_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(Optional[ClientCertificate], client_certificate, path=["response"])
-
-    @parametrize
-    async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        client_certificate = await async_client.client_certificates.edit(
-            client_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            reactivate=True,
         )
         assert_matches_type(Optional[ClientCertificate], client_certificate, path=["response"])
 

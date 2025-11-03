@@ -29,7 +29,7 @@ class TestAuthorities:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         authority = client.radar.ct.authorities.list(
             format="JSON",
-            limit=1,
+            limit=5,
             offset=0,
         )
         assert_matches_type(AuthorityListResponse, authority, path=["response"])
@@ -115,7 +115,7 @@ class TestAsyncAuthorities:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         authority = await async_client.radar.ct.authorities.list(
             format="JSON",
-            limit=1,
+            limit=5,
             offset=0,
         )
         assert_matches_type(AuthorityListResponse, authority, path=["response"])

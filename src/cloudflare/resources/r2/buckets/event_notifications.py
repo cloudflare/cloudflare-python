@@ -52,7 +52,7 @@ class EventNotificationsResource(SyncAPIResource):
         *,
         account_id: str,
         bucket_name: str,
-        rules: Iterable[event_notification_update_params.Rule],
+        rules: Iterable[event_notification_update_params.Rule] | Omit = omit,
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -298,7 +298,7 @@ class AsyncEventNotificationsResource(AsyncAPIResource):
         *,
         account_id: str,
         bucket_name: str,
-        rules: Iterable[event_notification_update_params.Rule],
+        rules: Iterable[event_notification_update_params.Rule] | Omit = omit,
         jurisdiction: Literal["default", "eu", "fedramp"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

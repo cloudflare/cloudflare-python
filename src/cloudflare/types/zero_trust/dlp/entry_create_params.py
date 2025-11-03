@@ -18,4 +18,4 @@ class EntryCreateParams(TypedDict, total=False):
 
     pattern: Required[PatternParam]
 
-    profile_id: str
+    profile_id: Required[str]

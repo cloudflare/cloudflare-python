@@ -349,8 +349,6 @@ class ApplicationsResource(SyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
-            "mcp",
-            "mcp_portal",
         ],
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
@@ -506,8 +504,6 @@ class ApplicationsResource(SyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
-            "mcp",
-            "mcp_portal",
         ],
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
@@ -662,8 +658,6 @@ class ApplicationsResource(SyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
-            "mcp",
-            "mcp_portal",
         ],
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
@@ -1119,8 +1113,6 @@ class ApplicationsResource(SyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
-            "mcp",
-            "mcp_portal",
         ]
         | Omit = omit,
         account_id: str | Omit = omit,
@@ -1491,8 +1483,6 @@ class ApplicationsResource(SyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
-            "mcp",
-            "mcp_portal",
         ],
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
@@ -1651,8 +1641,6 @@ class ApplicationsResource(SyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
-            "mcp",
-            "mcp_portal",
         ],
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
@@ -1810,8 +1798,6 @@ class ApplicationsResource(SyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
-            "mcp",
-            "mcp_portal",
         ],
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
@@ -2285,8 +2271,6 @@ class ApplicationsResource(SyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
-            "mcp",
-            "mcp_portal",
         ]
         | Omit = omit,
         account_id: str | Omit = omit,
@@ -2436,7 +2420,6 @@ class ApplicationsResource(SyncAPIResource):
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         search: str | Omit = omit,
-        target_attributes: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2465,8 +2448,6 @@ class ApplicationsResource(SyncAPIResource):
           per_page: Number of results per page.
 
           search: Search for apps by other listed query parameters.
-
-          target_attributes: Target Criteria attributes in key=value format.
 
           extra_headers: Send extra headers
 
@@ -2505,7 +2486,6 @@ class ApplicationsResource(SyncAPIResource):
                         "page": page,
                         "per_page": per_page,
                         "search": search,
-                        "target_attributes": target_attributes,
                     },
                     application_list_params.ApplicationListParams,
                 ),
@@ -2958,8 +2938,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
-            "mcp",
-            "mcp_portal",
         ],
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
@@ -3115,8 +3093,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
-            "mcp",
-            "mcp_portal",
         ],
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
@@ -3271,8 +3247,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
-            "mcp",
-            "mcp_portal",
         ],
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
@@ -3728,8 +3702,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
-            "mcp",
-            "mcp_portal",
         ]
         | Omit = omit,
         account_id: str | Omit = omit,
@@ -4100,8 +4072,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
-            "mcp",
-            "mcp_portal",
         ],
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
@@ -4260,8 +4230,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
-            "mcp",
-            "mcp_portal",
         ],
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
@@ -4419,8 +4387,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
-            "mcp",
-            "mcp_portal",
         ],
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
@@ -4894,8 +4860,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
-            "mcp",
-            "mcp_portal",
         ]
         | Omit = omit,
         account_id: str | Omit = omit,
@@ -5045,7 +5009,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         search: str | Omit = omit,
-        target_attributes: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5074,8 +5037,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
           per_page: Number of results per page.
 
           search: Search for apps by other listed query parameters.
-
-          target_attributes: Target Criteria attributes in key=value format.
 
           extra_headers: Send extra headers
 
@@ -5114,7 +5075,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
                         "page": page,
                         "per_page": per_page,
                         "search": search,
-                        "target_attributes": target_attributes,
                     },
                     application_list_params.ApplicationListParams,
                 ),

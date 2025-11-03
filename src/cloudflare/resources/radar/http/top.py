@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import typing_extensions
 from typing import List, Type, Union, cast
 from datetime import datetime
 from typing_extensions import Literal
@@ -48,9 +47,6 @@ class TopResource(SyncAPIResource):
         """
         return TopResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated(
-        "Use [Radar HTTP Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/summary_v2/) instead."
-    )
     def browser(
         self,
         *,
@@ -175,9 +171,6 @@ class TopResource(SyncAPIResource):
             cast_to=cast(Type[TopBrowserResponse], ResultWrapper[TopBrowserResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar HTTP Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/summary_v2/) instead."
-    )
     def browser_family(
         self,
         *,
@@ -319,9 +312,6 @@ class AsyncTopResource(AsyncAPIResource):
         """
         return AsyncTopResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated(
-        "Use [Radar HTTP Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/summary_v2/) instead."
-    )
     async def browser(
         self,
         *,
@@ -446,9 +436,6 @@ class AsyncTopResource(AsyncAPIResource):
             cast_to=cast(Type[TopBrowserResponse], ResultWrapper[TopBrowserResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar HTTP Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/summary_v2/) instead."
-    )
     async def browser_family(
         self,
         *,
@@ -574,15 +561,11 @@ class TopResourceWithRawResponse:
     def __init__(self, top: TopResource) -> None:
         self._top = top
 
-        self.browser = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                top.browser,  # pyright: ignore[reportDeprecated],
-            )
+        self.browser = to_raw_response_wrapper(
+            top.browser,
         )
-        self.browser_family = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                top.browser_family,  # pyright: ignore[reportDeprecated],
-            )
+        self.browser_family = to_raw_response_wrapper(
+            top.browser_family,
         )
 
 
@@ -590,15 +573,11 @@ class AsyncTopResourceWithRawResponse:
     def __init__(self, top: AsyncTopResource) -> None:
         self._top = top
 
-        self.browser = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                top.browser,  # pyright: ignore[reportDeprecated],
-            )
+        self.browser = async_to_raw_response_wrapper(
+            top.browser,
         )
-        self.browser_family = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                top.browser_family,  # pyright: ignore[reportDeprecated],
-            )
+        self.browser_family = async_to_raw_response_wrapper(
+            top.browser_family,
         )
 
 
@@ -606,15 +585,11 @@ class TopResourceWithStreamingResponse:
     def __init__(self, top: TopResource) -> None:
         self._top = top
 
-        self.browser = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                top.browser,  # pyright: ignore[reportDeprecated],
-            )
+        self.browser = to_streamed_response_wrapper(
+            top.browser,
         )
-        self.browser_family = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                top.browser_family,  # pyright: ignore[reportDeprecated],
-            )
+        self.browser_family = to_streamed_response_wrapper(
+            top.browser_family,
         )
 
 
@@ -622,13 +597,9 @@ class AsyncTopResourceWithStreamingResponse:
     def __init__(self, top: AsyncTopResource) -> None:
         self._top = top
 
-        self.browser = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                top.browser,  # pyright: ignore[reportDeprecated],
-            )
+        self.browser = async_to_streamed_response_wrapper(
+            top.browser,
         )
-        self.browser_family = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                top.browser_family,  # pyright: ignore[reportDeprecated],
-            )
+        self.browser_family = async_to_streamed_response_wrapper(
+            top.browser_family,
         )

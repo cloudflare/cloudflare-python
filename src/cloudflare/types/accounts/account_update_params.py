@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["AccountUpdateParams", "ManagedBy", "Settings"]
+__all__ = ["AccountUpdateParams", "Settings"]
 
 
 class AccountUpdateParams(TypedDict, total=False):
@@ -19,15 +19,8 @@ class AccountUpdateParams(TypedDict, total=False):
 
     type: Required[Literal["standard", "enterprise"]]
 
-    managed_by: ManagedBy
-    """Parent container details"""
-
     settings: Settings
     """Account settings"""
-
-
-class ManagedBy(TypedDict, total=False):
-    pass
 
 
 class Settings(TypedDict, total=False):

@@ -38,17 +38,8 @@ class Prefix(BaseModel):
 
     created_at: Optional[datetime] = None
 
-    delegate_loa_creation: Optional[bool] = None
-    """
-    Whether Cloudflare is allowed to generate the LOA document on behalf of the
-    prefix owner.
-    """
-
     description: Optional[str] = None
     """Description of the prefix."""
-
-    irr_validation_state: Optional[str] = None
-    """State of one kind of validation for an IP prefix."""
 
     loa_document_id: Optional[str] = None
     """Identifier for the uploaded LOA document."""
@@ -66,12 +57,3 @@ class Prefix(BaseModel):
     Whether advertisement status of the prefix is locked, meaning it cannot be
     changed.
     """
-
-    ownership_validation_state: Optional[str] = None
-    """State of one kind of validation for an IP prefix."""
-
-    ownership_validation_token: Optional[str] = None
-    """Token provided to demonstrate ownership of the prefix."""
-
-    rpki_validation_state: Optional[str] = None
-    """State of one kind of validation for an IP prefix."""

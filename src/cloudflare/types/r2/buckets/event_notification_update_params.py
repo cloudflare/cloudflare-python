@@ -17,7 +17,7 @@ class EventNotificationUpdateParams(TypedDict, total=False):
     bucket_name: Required[str]
     """Name of the bucket."""
 
-    rules: Required[Iterable[Rule]]
+    rules: Iterable[Rule]
     """Array of rules to drive notifications."""
 
     jurisdiction: Annotated[Literal["default", "eu", "fedramp"], PropertyInfo(alias="cf-r2-jurisdiction")]

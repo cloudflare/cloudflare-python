@@ -33,7 +33,7 @@ class TestTop:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             geo_id=["string"],
-            limit=1,
+            limit=5,
             location=["string"],
             name=["main_series"],
         )
@@ -74,7 +74,7 @@ class TestTop:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             geo_id=["string"],
-            limit=1,
+            limit=5,
             location=["string"],
             name=["main_series"],
         )
@@ -121,7 +121,7 @@ class TestAsyncTop:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             geo_id=["string"],
-            limit=1,
+            limit=5,
             location=["string"],
             name=["main_series"],
         )
@@ -162,7 +162,7 @@ class TestAsyncTop:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             geo_id=["string"],
-            limit=1,
+            limit=5,
             location=["string"],
             name=["main_series"],
         )

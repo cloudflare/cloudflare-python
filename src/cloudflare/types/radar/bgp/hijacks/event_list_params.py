@@ -49,6 +49,7 @@ class EventListParams(TypedDict, total=False):
     """Number of entries per page."""
 
     prefix: str
+    """Network prefix, IPv4 or IPv6."""
 
     sort_by: Annotated[Literal["ID", "TIME", "CONFIDENCE"], PropertyInfo(alias="sortBy")]
     """Sorts results by the specified field."""

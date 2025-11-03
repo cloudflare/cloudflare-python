@@ -50,11 +50,11 @@ class TestSummary:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                nodata=[True],
-                protocol=["UDP"],
-                query_type=["A"],
-                response_code=["NOERROR"],
-                tld=["com"],
+                nodata=True,
+                protocol="UDP",
+                query_type="A",
+                response_code="NOERROR",
+                tld=["string"],
             )
 
         assert_matches_type(SummaryCacheHitResponse, summary, path=["response"])
@@ -100,11 +100,11 @@ class TestSummary:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                nodata=[True],
-                protocol=["UDP"],
-                query_type=["A"],
-                response_code=["NOERROR"],
-                tld=["com"],
+                nodata=True,
+                protocol="UDP",
+                query_type="A",
+                response_code="NOERROR",
+                tld=["string"],
             )
 
         assert_matches_type(SummaryDNSSECResponse, summary, path=["response"])
@@ -150,11 +150,11 @@ class TestSummary:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                nodata=[True],
-                protocol=["UDP"],
-                query_type=["A"],
-                response_code=["NOERROR"],
-                tld=["com"],
+                nodata=True,
+                protocol="UDP",
+                query_type="A",
+                response_code="NOERROR",
+                tld=["string"],
             )
 
         assert_matches_type(SummaryDNSSECAwareResponse, summary, path=["response"])
@@ -200,11 +200,11 @@ class TestSummary:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                nodata=[True],
-                protocol=["UDP"],
-                query_type=["A"],
-                response_code=["NOERROR"],
-                tld=["com"],
+                nodata=True,
+                protocol="UDP",
+                query_type="A",
+                response_code="NOERROR",
+                tld=["string"],
             )
 
         assert_matches_type(SummaryDNSSECE2EResponse, summary, path=["response"])
@@ -250,11 +250,11 @@ class TestSummary:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                nodata=[True],
-                protocol=["UDP"],
-                query_type=["A"],
-                response_code=["NOERROR"],
-                tld=["com"],
+                nodata=True,
+                protocol="UDP",
+                query_type="A",
+                response_code="NOERROR",
+                tld=["string"],
             )
 
         assert_matches_type(SummaryIPVersionResponse, summary, path=["response"])
@@ -300,11 +300,11 @@ class TestSummary:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                nodata=[True],
-                protocol=["UDP"],
-                query_type=["A"],
-                response_code=["NOERROR"],
-                tld=["com"],
+                nodata=True,
+                protocol="UDP",
+                query_type="A",
+                response_code="NOERROR",
+                tld=["string"],
             )
 
         assert_matches_type(SummaryMatchingAnswerResponse, summary, path=["response"])
@@ -350,10 +350,10 @@ class TestSummary:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                nodata=[True],
-                query_type=["A"],
-                response_code=["NOERROR"],
-                tld=["com"],
+                nodata=True,
+                query_type="A",
+                response_code="NOERROR",
+                tld=["string"],
             )
 
         assert_matches_type(SummaryProtocolResponse, summary, path=["response"])
@@ -400,10 +400,10 @@ class TestSummary:
                 limit_per_group=10,
                 location=["string"],
                 name=["main_series"],
-                nodata=[True],
-                protocol=["UDP"],
-                response_code=["NOERROR"],
-                tld=["com"],
+                nodata=True,
+                protocol="UDP",
+                response_code="NOERROR",
+                tld=["string"],
             )
 
         assert_matches_type(SummaryQueryTypeResponse, summary, path=["response"])
@@ -450,10 +450,10 @@ class TestSummary:
                 limit_per_group=10,
                 location=["string"],
                 name=["main_series"],
-                nodata=[True],
-                protocol=["UDP"],
-                query_type=["A"],
-                tld=["com"],
+                nodata=True,
+                protocol="UDP",
+                query_type="A",
+                tld=["string"],
             )
 
         assert_matches_type(SummaryResponseCodeResponse, summary, path=["response"])
@@ -499,11 +499,11 @@ class TestSummary:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                nodata=[True],
-                protocol=["UDP"],
-                query_type=["A"],
-                response_code=["NOERROR"],
-                tld=["com"],
+                nodata=True,
+                protocol="UDP",
+                query_type="A",
+                response_code="NOERROR",
+                tld=["string"],
             )
 
         assert_matches_type(SummaryResponseTTLResponse, summary, path=["response"])
@@ -555,11 +555,11 @@ class TestAsyncSummary:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                nodata=[True],
-                protocol=["UDP"],
-                query_type=["A"],
-                response_code=["NOERROR"],
-                tld=["com"],
+                nodata=True,
+                protocol="UDP",
+                query_type="A",
+                response_code="NOERROR",
+                tld=["string"],
             )
 
         assert_matches_type(SummaryCacheHitResponse, summary, path=["response"])
@@ -605,11 +605,11 @@ class TestAsyncSummary:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                nodata=[True],
-                protocol=["UDP"],
-                query_type=["A"],
-                response_code=["NOERROR"],
-                tld=["com"],
+                nodata=True,
+                protocol="UDP",
+                query_type="A",
+                response_code="NOERROR",
+                tld=["string"],
             )
 
         assert_matches_type(SummaryDNSSECResponse, summary, path=["response"])
@@ -655,11 +655,11 @@ class TestAsyncSummary:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                nodata=[True],
-                protocol=["UDP"],
-                query_type=["A"],
-                response_code=["NOERROR"],
-                tld=["com"],
+                nodata=True,
+                protocol="UDP",
+                query_type="A",
+                response_code="NOERROR",
+                tld=["string"],
             )
 
         assert_matches_type(SummaryDNSSECAwareResponse, summary, path=["response"])
@@ -705,11 +705,11 @@ class TestAsyncSummary:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                nodata=[True],
-                protocol=["UDP"],
-                query_type=["A"],
-                response_code=["NOERROR"],
-                tld=["com"],
+                nodata=True,
+                protocol="UDP",
+                query_type="A",
+                response_code="NOERROR",
+                tld=["string"],
             )
 
         assert_matches_type(SummaryDNSSECE2EResponse, summary, path=["response"])
@@ -755,11 +755,11 @@ class TestAsyncSummary:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                nodata=[True],
-                protocol=["UDP"],
-                query_type=["A"],
-                response_code=["NOERROR"],
-                tld=["com"],
+                nodata=True,
+                protocol="UDP",
+                query_type="A",
+                response_code="NOERROR",
+                tld=["string"],
             )
 
         assert_matches_type(SummaryIPVersionResponse, summary, path=["response"])
@@ -805,11 +805,11 @@ class TestAsyncSummary:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                nodata=[True],
-                protocol=["UDP"],
-                query_type=["A"],
-                response_code=["NOERROR"],
-                tld=["com"],
+                nodata=True,
+                protocol="UDP",
+                query_type="A",
+                response_code="NOERROR",
+                tld=["string"],
             )
 
         assert_matches_type(SummaryMatchingAnswerResponse, summary, path=["response"])
@@ -855,10 +855,10 @@ class TestAsyncSummary:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                nodata=[True],
-                query_type=["A"],
-                response_code=["NOERROR"],
-                tld=["com"],
+                nodata=True,
+                query_type="A",
+                response_code="NOERROR",
+                tld=["string"],
             )
 
         assert_matches_type(SummaryProtocolResponse, summary, path=["response"])
@@ -905,10 +905,10 @@ class TestAsyncSummary:
                 limit_per_group=10,
                 location=["string"],
                 name=["main_series"],
-                nodata=[True],
-                protocol=["UDP"],
-                response_code=["NOERROR"],
-                tld=["com"],
+                nodata=True,
+                protocol="UDP",
+                response_code="NOERROR",
+                tld=["string"],
             )
 
         assert_matches_type(SummaryQueryTypeResponse, summary, path=["response"])
@@ -955,10 +955,10 @@ class TestAsyncSummary:
                 limit_per_group=10,
                 location=["string"],
                 name=["main_series"],
-                nodata=[True],
-                protocol=["UDP"],
-                query_type=["A"],
-                tld=["com"],
+                nodata=True,
+                protocol="UDP",
+                query_type="A",
+                tld=["string"],
             )
 
         assert_matches_type(SummaryResponseCodeResponse, summary, path=["response"])
@@ -1004,11 +1004,11 @@ class TestAsyncSummary:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                nodata=[True],
-                protocol=["UDP"],
-                query_type=["A"],
-                response_code=["NOERROR"],
-                tld=["com"],
+                nodata=True,
+                protocol="UDP",
+                query_type="A",
+                response_code="NOERROR",
+                tld=["string"],
             )
 
         assert_matches_type(SummaryResponseTTLResponse, summary, path=["response"])
