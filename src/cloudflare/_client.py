@@ -111,6 +111,7 @@ if TYPE_CHECKING:
         content_scanning,
         custom_hostnames,
         resource_sharing,
+        token_validation,
         browser_rendering,
         mtls_certificates,
         schema_validation,
@@ -218,6 +219,7 @@ if TYPE_CHECKING:
     from .resources.content_scanning.content_scanning import ContentScanningResource, AsyncContentScanningResource
     from .resources.custom_hostnames.custom_hostnames import CustomHostnamesResource, AsyncCustomHostnamesResource
     from .resources.resource_sharing.resource_sharing import ResourceSharingResource, AsyncResourceSharingResource
+    from .resources.token_validation.token_validation import TokenValidationResource, AsyncTokenValidationResource
     from .resources.browser_rendering.browser_rendering import BrowserRenderingResource, AsyncBrowserRenderingResource
     from .resources.mtls_certificates.mtls_certificates import MTLSCertificatesResource, AsyncMTLSCertificatesResource
     from .resources.schema_validation.schema_validation import SchemaValidationResource, AsyncSchemaValidationResource
@@ -914,6 +916,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.schema_validation import SchemaValidationResource
 
         return SchemaValidationResource(self)
+
+    @cached_property
+    def token_validation(self) -> TokenValidationResource:
+        from .resources.token_validation import TokenValidationResource
+
+        return TokenValidationResource(self)
 
     @cached_property
     def with_raw_response(self) -> CloudflareWithRawResponse:
@@ -1739,6 +1747,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncSchemaValidationResource(self)
 
     @cached_property
+    def token_validation(self) -> AsyncTokenValidationResource:
+        from .resources.token_validation import AsyncTokenValidationResource
+
+        return AsyncTokenValidationResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncCloudflareWithRawResponse:
         return AsyncCloudflareWithRawResponse(self)
 
@@ -2496,6 +2510,12 @@ class CloudflareWithRawResponse:
 
         return SchemaValidationResourceWithRawResponse(self._client.schema_validation)
 
+    @cached_property
+    def token_validation(self) -> token_validation.TokenValidationResourceWithRawResponse:
+        from .resources.token_validation import TokenValidationResourceWithRawResponse
+
+        return TokenValidationResourceWithRawResponse(self._client.token_validation)
+
 
 class AsyncCloudflareWithRawResponse:
     _client: AsyncCloudflare
@@ -3081,6 +3101,12 @@ class AsyncCloudflareWithRawResponse:
 
         return AsyncSchemaValidationResourceWithRawResponse(self._client.schema_validation)
 
+    @cached_property
+    def token_validation(self) -> token_validation.AsyncTokenValidationResourceWithRawResponse:
+        from .resources.token_validation import AsyncTokenValidationResourceWithRawResponse
+
+        return AsyncTokenValidationResourceWithRawResponse(self._client.token_validation)
+
 
 class CloudflareWithStreamedResponse:
     _client: Cloudflare
@@ -3665,6 +3691,12 @@ class CloudflareWithStreamedResponse:
         from .resources.schema_validation import SchemaValidationResourceWithStreamingResponse
 
         return SchemaValidationResourceWithStreamingResponse(self._client.schema_validation)
+
+    @cached_property
+    def token_validation(self) -> token_validation.TokenValidationResourceWithStreamingResponse:
+        from .resources.token_validation import TokenValidationResourceWithStreamingResponse
+
+        return TokenValidationResourceWithStreamingResponse(self._client.token_validation)
 
 
 class AsyncCloudflareWithStreamedResponse:
@@ -4260,6 +4292,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.schema_validation import AsyncSchemaValidationResourceWithStreamingResponse
 
         return AsyncSchemaValidationResourceWithStreamingResponse(self._client.schema_validation)
+
+    @cached_property
+    def token_validation(self) -> token_validation.AsyncTokenValidationResourceWithStreamingResponse:
+        from .resources.token_validation import AsyncTokenValidationResourceWithStreamingResponse
+
+        return AsyncTokenValidationResourceWithStreamingResponse(self._client.token_validation)
 
 
 Client = Cloudflare
