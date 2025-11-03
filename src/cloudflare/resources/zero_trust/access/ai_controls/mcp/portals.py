@@ -180,7 +180,7 @@ class PortalsResource(SyncAPIResource):
         List MCP Portals
 
         Args:
-          search: Search by id, name
+          search: Search by id, name, hostname
 
           extra_headers: Send extra headers
 
@@ -444,7 +444,7 @@ class AsyncPortalsResource(AsyncAPIResource):
         List MCP Portals
 
         Args:
-          search: Search by id, name
+          search: Search by id, name, hostname
 
           extra_headers: Send extra headers
 

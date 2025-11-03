@@ -15,4 +15,4 @@ class PortalListParams(TypedDict, total=False):
     per_page: int
 
     search: str
-    """Search by id, name"""
+    """Search by id, name, hostname"""
