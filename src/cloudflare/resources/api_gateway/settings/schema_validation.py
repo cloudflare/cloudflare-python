@@ -20,7 +20,9 @@ from ...._response import (
 )
 from ...._base_client import make_request_options
 from ....types.api_gateway.settings import schema_validation_edit_params, schema_validation_update_params
-from ....types.api_gateway.settings.settings import Settings
+from ....types.api_gateway.settings.schema_validation_get_response import SchemaValidationGetResponse
+from ....types.api_gateway.settings.schema_validation_edit_response import SchemaValidationEditResponse
+from ....types.api_gateway.settings.schema_validation_update_response import SchemaValidationUpdateResponse
 
 __all__ = ["SchemaValidationResource", "AsyncSchemaValidationResource"]
 
@@ -60,7 +62,7 @@ class SchemaValidationResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Settings:
+    ) -> SchemaValidationUpdateResponse:
         """
         Updates zone level schema validation settings on the zone
 
@@ -107,7 +109,7 @@ class SchemaValidationResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Settings,
+            cast_to=SchemaValidationUpdateResponse,
         )
 
     @typing_extensions.deprecated(
@@ -125,7 +127,7 @@ class SchemaValidationResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Settings:
+    ) -> SchemaValidationEditResponse:
         """
         Updates zone level schema validation settings on the zone
 
@@ -173,7 +175,7 @@ class SchemaValidationResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Settings,
+            cast_to=SchemaValidationEditResponse,
         )
 
     @typing_extensions.deprecated(
@@ -189,7 +191,7 @@ class SchemaValidationResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Settings:
+    ) -> SchemaValidationGetResponse:
         """
         Retrieves zone level schema validation settings currently set on the zone
 
@@ -211,7 +213,7 @@ class SchemaValidationResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Settings,
+            cast_to=SchemaValidationGetResponse,
         )
 
 
@@ -250,7 +252,7 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Settings:
+    ) -> SchemaValidationUpdateResponse:
         """
         Updates zone level schema validation settings on the zone
 
@@ -297,7 +299,7 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Settings,
+            cast_to=SchemaValidationUpdateResponse,
         )
 
     @typing_extensions.deprecated(
@@ -315,7 +317,7 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Settings:
+    ) -> SchemaValidationEditResponse:
         """
         Updates zone level schema validation settings on the zone
 
@@ -363,7 +365,7 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Settings,
+            cast_to=SchemaValidationEditResponse,
         )
 
     @typing_extensions.deprecated(
@@ -379,7 +381,7 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Settings:
+    ) -> SchemaValidationGetResponse:
         """
         Retrieves zone level schema validation settings currently set on the zone
 
@@ -401,7 +403,7 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Settings,
+            cast_to=SchemaValidationGetResponse,
         )
 
 

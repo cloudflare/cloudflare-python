@@ -30,7 +30,7 @@ class TestUserAgents:
             directive="ALLOW",
             domain_category=["string"],
             format="JSON",
-            limit=5,
+            limit=1,
             name=["main_series"],
             user_agent_category="AI",
         )
@@ -74,7 +74,7 @@ class TestAsyncUserAgents:
             directive="ALLOW",
             domain_category=["string"],
             format="JSON",
-            limit=5,
+            limit=1,
             name=["main_series"],
             user_agent_category="AI",
         )

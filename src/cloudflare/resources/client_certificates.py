@@ -20,7 +20,11 @@ from .._response import (
 from .._wrappers import ResultWrapper
 from ..pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.client_certificates import client_certificate_list_params, client_certificate_create_params
+from ..types.client_certificates import (
+    client_certificate_edit_params,
+    client_certificate_list_params,
+    client_certificate_create_params,
+)
 from ..types.client_certificates.client_certificate import ClientCertificate
 
 __all__ = ["ClientCertificatesResource", "AsyncClientCertificatesResource"]
@@ -215,6 +219,7 @@ class ClientCertificatesResource(SyncAPIResource):
         client_certificate_id: str,
         *,
         zone_id: str,
+        reactivate: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -247,6 +252,9 @@ class ClientCertificatesResource(SyncAPIResource):
             )
         return self._patch(
             f"/zones/{zone_id}/client_certificates/{client_certificate_id}",
+            body=maybe_transform(
+                {"reactivate": reactivate}, client_certificate_edit_params.ClientCertificateEditParams
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -493,6 +501,7 @@ class AsyncClientCertificatesResource(AsyncAPIResource):
         client_certificate_id: str,
         *,
         zone_id: str,
+        reactivate: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -525,6 +534,9 @@ class AsyncClientCertificatesResource(AsyncAPIResource):
             )
         return await self._patch(
             f"/zones/{zone_id}/client_certificates/{client_certificate_id}",
+            body=await async_maybe_transform(
+                {"reactivate": reactivate}, client_certificate_edit_params.ClientCertificateEditParams
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

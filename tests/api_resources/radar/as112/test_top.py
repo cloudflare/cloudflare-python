@@ -39,7 +39,7 @@ class TestTop:
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            limit=5,
+            limit=1,
             location=["string"],
             name=["main_series"],
         )
@@ -85,7 +85,7 @@ class TestTop:
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            limit=5,
+            limit=1,
             location=["string"],
             name=["main_series"],
         )
@@ -131,7 +131,7 @@ class TestTop:
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            limit=5,
+            limit=1,
             location=["string"],
             name=["main_series"],
         )
@@ -174,7 +174,7 @@ class TestTop:
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            limit=5,
+            limit=1,
             location=["string"],
             name=["main_series"],
         )
@@ -222,7 +222,7 @@ class TestAsyncTop:
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            limit=5,
+            limit=1,
             location=["string"],
             name=["main_series"],
         )
@@ -268,7 +268,7 @@ class TestAsyncTop:
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            limit=5,
+            limit=1,
             location=["string"],
             name=["main_series"],
         )
@@ -314,7 +314,7 @@ class TestAsyncTop:
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            limit=5,
+            limit=1,
             location=["string"],
             name=["main_series"],
         )
@@ -357,7 +357,7 @@ class TestAsyncTop:
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            limit=5,
+            limit=1,
             location=["string"],
             name=["main_series"],
         )

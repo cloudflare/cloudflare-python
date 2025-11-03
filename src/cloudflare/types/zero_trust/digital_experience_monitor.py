@@ -7,7 +7,6 @@ __all__ = ["DigitalExperienceMonitor"]
 
 class DigitalExperienceMonitor(BaseModel):
     id: str
-    """API Resource UUID tag."""
 
     default: bool
     """Whether the policy is the default for the account"""

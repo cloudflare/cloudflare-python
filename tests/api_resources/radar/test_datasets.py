@@ -32,7 +32,7 @@ class TestDatasets:
             dataset_type="RANKING_BUCKET",
             date=parse_date("2024-09-19"),
             format="JSON",
-            limit=5,
+            limit=1,
             offset=0,
         )
         assert_matches_type(DatasetListResponse, dataset, path=["response"])
@@ -151,7 +151,7 @@ class TestAsyncDatasets:
             dataset_type="RANKING_BUCKET",
             date=parse_date("2024-09-19"),
             format="JSON",
-            limit=5,
+            limit=1,
             offset=0,
         )
         assert_matches_type(DatasetListResponse, dataset, path=["response"])

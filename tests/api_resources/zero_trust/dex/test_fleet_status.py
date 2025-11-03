@@ -11,7 +11,6 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.zero_trust.dex import (
     FleetStatusLiveResponse,
-    FleetStatusOverTimeResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -69,7 +68,7 @@ class TestFleetStatus:
             from_="2023-10-11T00:00:00Z",
             to="2023-10-11T00:00:00Z",
         )
-        assert_matches_type(Optional[FleetStatusOverTimeResponse], fleet_status, path=["response"])
+        assert fleet_status is None
 
     @parametrize
     def test_method_over_time_with_all_params(self, client: Cloudflare) -> None:
@@ -80,7 +79,7 @@ class TestFleetStatus:
             colo="SJC",
             device_id="cb49c27f-7f97-49c5-b6f3-f7c01ead0fd7",
         )
-        assert_matches_type(Optional[FleetStatusOverTimeResponse], fleet_status, path=["response"])
+        assert fleet_status is None
 
     @parametrize
     def test_raw_response_over_time(self, client: Cloudflare) -> None:
@@ -93,7 +92,7 @@ class TestFleetStatus:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         fleet_status = response.parse()
-        assert_matches_type(Optional[FleetStatusOverTimeResponse], fleet_status, path=["response"])
+        assert fleet_status is None
 
     @parametrize
     def test_streaming_response_over_time(self, client: Cloudflare) -> None:
@@ -106,7 +105,7 @@ class TestFleetStatus:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             fleet_status = response.parse()
-            assert_matches_type(Optional[FleetStatusOverTimeResponse], fleet_status, path=["response"])
+            assert fleet_status is None
 
         assert cast(Any, response.is_closed) is True
 
@@ -174,7 +173,7 @@ class TestAsyncFleetStatus:
             from_="2023-10-11T00:00:00Z",
             to="2023-10-11T00:00:00Z",
         )
-        assert_matches_type(Optional[FleetStatusOverTimeResponse], fleet_status, path=["response"])
+        assert fleet_status is None
 
     @parametrize
     async def test_method_over_time_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -185,7 +184,7 @@ class TestAsyncFleetStatus:
             colo="SJC",
             device_id="cb49c27f-7f97-49c5-b6f3-f7c01ead0fd7",
         )
-        assert_matches_type(Optional[FleetStatusOverTimeResponse], fleet_status, path=["response"])
+        assert fleet_status is None
 
     @parametrize
     async def test_raw_response_over_time(self, async_client: AsyncCloudflare) -> None:
@@ -198,7 +197,7 @@ class TestAsyncFleetStatus:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         fleet_status = await response.parse()
-        assert_matches_type(Optional[FleetStatusOverTimeResponse], fleet_status, path=["response"])
+        assert fleet_status is None
 
     @parametrize
     async def test_streaming_response_over_time(self, async_client: AsyncCloudflare) -> None:
@@ -211,7 +210,7 @@ class TestAsyncFleetStatus:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             fleet_status = await response.parse()
-            assert_matches_type(Optional[FleetStatusOverTimeResponse], fleet_status, path=["response"])
+            assert fleet_status is None
 
         assert cast(Any, response.is_closed) is True
 

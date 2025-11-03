@@ -25,6 +25,7 @@ __all__ = [
     "SelfHostedApplicationDestination",
     "SelfHostedApplicationDestinationPublicDestination",
     "SelfHostedApplicationDestinationPrivateDestination",
+    "SelfHostedApplicationDestinationViaMcpServerPortalDestination",
     "SelfHostedApplicationPolicy",
     "SelfHostedApplicationSCIMConfig",
     "SelfHostedApplicationSCIMConfigAuthentication",
@@ -43,6 +44,7 @@ __all__ = [
     "BrowserSSHApplicationDestination",
     "BrowserSSHApplicationDestinationPublicDestination",
     "BrowserSSHApplicationDestinationPrivateDestination",
+    "BrowserSSHApplicationDestinationViaMcpServerPortalDestination",
     "BrowserSSHApplicationPolicy",
     "BrowserSSHApplicationSCIMConfig",
     "BrowserSSHApplicationSCIMConfigAuthentication",
@@ -53,6 +55,7 @@ __all__ = [
     "BrowserVNCApplicationDestination",
     "BrowserVNCApplicationDestinationPublicDestination",
     "BrowserVNCApplicationDestinationPrivateDestination",
+    "BrowserVNCApplicationDestinationViaMcpServerPortalDestination",
     "BrowserVNCApplicationPolicy",
     "BrowserVNCApplicationSCIMConfig",
     "BrowserVNCApplicationSCIMConfigAuthentication",
@@ -78,6 +81,7 @@ __all__ = [
     "BrowserRdpApplicationDestination",
     "BrowserRdpApplicationDestinationPublicDestination",
     "BrowserRdpApplicationDestinationPrivateDestination",
+    "BrowserRdpApplicationDestinationViaMcpServerPortalDestination",
     "BrowserRdpApplicationPolicy",
     "BrowserRdpApplicationSCIMConfig",
     "BrowserRdpApplicationSCIMConfigAuthentication",
@@ -123,8 +127,17 @@ class SelfHostedApplicationDestinationPrivateDestination(BaseModel):
     """The VNET ID to match the destination. When omitted, all VNETs will match."""
 
 
+class SelfHostedApplicationDestinationViaMcpServerPortalDestination(BaseModel):
+    mcp_server_id: Optional[str] = None
+    """The MCP server id configured in ai-controls."""
+
+    type: Optional[Literal["via_mcp_server_portal"]] = None
+
+
 SelfHostedApplicationDestination: TypeAlias = Union[
-    SelfHostedApplicationDestinationPublicDestination, SelfHostedApplicationDestinationPrivateDestination
+    SelfHostedApplicationDestinationPublicDestination,
+    SelfHostedApplicationDestinationPrivateDestination,
+    SelfHostedApplicationDestinationViaMcpServerPortalDestination,
 ]
 
 
@@ -690,8 +703,17 @@ class BrowserSSHApplicationDestinationPrivateDestination(BaseModel):
     """The VNET ID to match the destination. When omitted, all VNETs will match."""
 
 
+class BrowserSSHApplicationDestinationViaMcpServerPortalDestination(BaseModel):
+    mcp_server_id: Optional[str] = None
+    """The MCP server id configured in ai-controls."""
+
+    type: Optional[Literal["via_mcp_server_portal"]] = None
+
+
 BrowserSSHApplicationDestination: TypeAlias = Union[
-    BrowserSSHApplicationDestinationPublicDestination, BrowserSSHApplicationDestinationPrivateDestination
+    BrowserSSHApplicationDestinationPublicDestination,
+    BrowserSSHApplicationDestinationPrivateDestination,
+    BrowserSSHApplicationDestinationViaMcpServerPortalDestination,
 ]
 
 
@@ -870,6 +892,8 @@ class BrowserSSHApplication(BaseModel):
         "dash_sso",
         "infrastructure",
         "rdp",
+        "mcp",
+        "mcp_portal",
     ]
     """The application type."""
 
@@ -1057,8 +1081,17 @@ class BrowserVNCApplicationDestinationPrivateDestination(BaseModel):
     """The VNET ID to match the destination. When omitted, all VNETs will match."""
 
 
+class BrowserVNCApplicationDestinationViaMcpServerPortalDestination(BaseModel):
+    mcp_server_id: Optional[str] = None
+    """The MCP server id configured in ai-controls."""
+
+    type: Optional[Literal["via_mcp_server_portal"]] = None
+
+
 BrowserVNCApplicationDestination: TypeAlias = Union[
-    BrowserVNCApplicationDestinationPublicDestination, BrowserVNCApplicationDestinationPrivateDestination
+    BrowserVNCApplicationDestinationPublicDestination,
+    BrowserVNCApplicationDestinationPrivateDestination,
+    BrowserVNCApplicationDestinationViaMcpServerPortalDestination,
 ]
 
 
@@ -1237,6 +1270,8 @@ class BrowserVNCApplication(BaseModel):
         "dash_sso",
         "infrastructure",
         "rdp",
+        "mcp",
+        "mcp_portal",
     ]
     """The application type."""
 
@@ -1497,6 +1532,8 @@ class AppLauncherApplication(BaseModel):
         "dash_sso",
         "infrastructure",
         "rdp",
+        "mcp",
+        "mcp_portal",
     ]
     """The application type."""
 
@@ -1999,8 +2036,17 @@ class BrowserRdpApplicationDestinationPrivateDestination(BaseModel):
     """The VNET ID to match the destination. When omitted, all VNETs will match."""
 
 
+class BrowserRdpApplicationDestinationViaMcpServerPortalDestination(BaseModel):
+    mcp_server_id: Optional[str] = None
+    """The MCP server id configured in ai-controls."""
+
+    type: Optional[Literal["via_mcp_server_portal"]] = None
+
+
 BrowserRdpApplicationDestination: TypeAlias = Union[
-    BrowserRdpApplicationDestinationPublicDestination, BrowserRdpApplicationDestinationPrivateDestination
+    BrowserRdpApplicationDestinationPublicDestination,
+    BrowserRdpApplicationDestinationPrivateDestination,
+    BrowserRdpApplicationDestinationViaMcpServerPortalDestination,
 ]
 
 

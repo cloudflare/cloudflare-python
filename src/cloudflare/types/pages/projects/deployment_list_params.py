@@ -13,3 +13,9 @@ class DeploymentListParams(TypedDict, total=False):
 
     env: Literal["production", "preview"]
     """What type of deployments to fetch."""
+
+    page: int
+    """Which page of deployments to fetch."""
+
+    per_page: int
+    """How many deployments to return per page."""

@@ -11,13 +11,7 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.zero_trust.tunnels import (
-    CloudflaredGetResponse,
-    CloudflaredEditResponse,
-    CloudflaredListResponse,
-    CloudflaredCreateResponse,
-    CloudflaredDeleteResponse,
-)
+from cloudflare.types.shared import CloudflareTunnel
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -31,7 +25,7 @@ class TestCloudflared:
             account_id="699d98642c564d2e855e9661899b7252",
             name="blog",
         )
-        assert_matches_type(CloudflaredCreateResponse, cloudflared, path=["response"])
+        assert_matches_type(CloudflareTunnel, cloudflared, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
@@ -41,7 +35,7 @@ class TestCloudflared:
             config_src="cloudflare",
             tunnel_secret="AQIDBAUGBwgBAgMEBQYHCAECAwQFBgcIAQIDBAUGBwg=",
         )
-        assert_matches_type(CloudflaredCreateResponse, cloudflared, path=["response"])
+        assert_matches_type(CloudflareTunnel, cloudflared, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -53,7 +47,7 @@ class TestCloudflared:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cloudflared = response.parse()
-        assert_matches_type(CloudflaredCreateResponse, cloudflared, path=["response"])
+        assert_matches_type(CloudflareTunnel, cloudflared, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -65,7 +59,7 @@ class TestCloudflared:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cloudflared = response.parse()
-            assert_matches_type(CloudflaredCreateResponse, cloudflared, path=["response"])
+            assert_matches_type(CloudflareTunnel, cloudflared, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -82,7 +76,7 @@ class TestCloudflared:
         cloudflared = client.zero_trust.tunnels.cloudflared.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(SyncV4PagePaginationArray[CloudflaredListResponse], cloudflared, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[CloudflareTunnel], cloudflared, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
@@ -100,7 +94,7 @@ class TestCloudflared:
             was_active_at=parse_datetime("2009-11-10T23:00:00Z"),
             was_inactive_at=parse_datetime("2009-11-10T23:00:00Z"),
         )
-        assert_matches_type(SyncV4PagePaginationArray[CloudflaredListResponse], cloudflared, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[CloudflareTunnel], cloudflared, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -111,7 +105,7 @@ class TestCloudflared:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cloudflared = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[CloudflaredListResponse], cloudflared, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[CloudflareTunnel], cloudflared, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -122,7 +116,7 @@ class TestCloudflared:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cloudflared = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[CloudflaredListResponse], cloudflared, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[CloudflareTunnel], cloudflared, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -139,7 +133,7 @@ class TestCloudflared:
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(CloudflaredDeleteResponse, cloudflared, path=["response"])
+        assert_matches_type(CloudflareTunnel, cloudflared, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -151,7 +145,7 @@ class TestCloudflared:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cloudflared = response.parse()
-        assert_matches_type(CloudflaredDeleteResponse, cloudflared, path=["response"])
+        assert_matches_type(CloudflareTunnel, cloudflared, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -163,7 +157,7 @@ class TestCloudflared:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cloudflared = response.parse()
-            assert_matches_type(CloudflaredDeleteResponse, cloudflared, path=["response"])
+            assert_matches_type(CloudflareTunnel, cloudflared, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -187,7 +181,7 @@ class TestCloudflared:
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(CloudflaredEditResponse, cloudflared, path=["response"])
+        assert_matches_type(CloudflareTunnel, cloudflared, path=["response"])
 
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
@@ -197,7 +191,7 @@ class TestCloudflared:
             name="blog",
             tunnel_secret="AQIDBAUGBwgBAgMEBQYHCAECAwQFBgcIAQIDBAUGBwg=",
         )
-        assert_matches_type(CloudflaredEditResponse, cloudflared, path=["response"])
+        assert_matches_type(CloudflareTunnel, cloudflared, path=["response"])
 
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
@@ -209,7 +203,7 @@ class TestCloudflared:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cloudflared = response.parse()
-        assert_matches_type(CloudflaredEditResponse, cloudflared, path=["response"])
+        assert_matches_type(CloudflareTunnel, cloudflared, path=["response"])
 
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
@@ -221,7 +215,7 @@ class TestCloudflared:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cloudflared = response.parse()
-            assert_matches_type(CloudflaredEditResponse, cloudflared, path=["response"])
+            assert_matches_type(CloudflareTunnel, cloudflared, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -245,7 +239,7 @@ class TestCloudflared:
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(CloudflaredGetResponse, cloudflared, path=["response"])
+        assert_matches_type(CloudflareTunnel, cloudflared, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -257,7 +251,7 @@ class TestCloudflared:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cloudflared = response.parse()
-        assert_matches_type(CloudflaredGetResponse, cloudflared, path=["response"])
+        assert_matches_type(CloudflareTunnel, cloudflared, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -269,7 +263,7 @@ class TestCloudflared:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cloudflared = response.parse()
-            assert_matches_type(CloudflaredGetResponse, cloudflared, path=["response"])
+            assert_matches_type(CloudflareTunnel, cloudflared, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -299,7 +293,7 @@ class TestAsyncCloudflared:
             account_id="699d98642c564d2e855e9661899b7252",
             name="blog",
         )
-        assert_matches_type(CloudflaredCreateResponse, cloudflared, path=["response"])
+        assert_matches_type(CloudflareTunnel, cloudflared, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -309,7 +303,7 @@ class TestAsyncCloudflared:
             config_src="cloudflare",
             tunnel_secret="AQIDBAUGBwgBAgMEBQYHCAECAwQFBgcIAQIDBAUGBwg=",
         )
-        assert_matches_type(CloudflaredCreateResponse, cloudflared, path=["response"])
+        assert_matches_type(CloudflareTunnel, cloudflared, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -321,7 +315,7 @@ class TestAsyncCloudflared:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cloudflared = await response.parse()
-        assert_matches_type(CloudflaredCreateResponse, cloudflared, path=["response"])
+        assert_matches_type(CloudflareTunnel, cloudflared, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -333,7 +327,7 @@ class TestAsyncCloudflared:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cloudflared = await response.parse()
-            assert_matches_type(CloudflaredCreateResponse, cloudflared, path=["response"])
+            assert_matches_type(CloudflareTunnel, cloudflared, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -350,7 +344,7 @@ class TestAsyncCloudflared:
         cloudflared = await async_client.zero_trust.tunnels.cloudflared.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[CloudflaredListResponse], cloudflared, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[CloudflareTunnel], cloudflared, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -368,7 +362,7 @@ class TestAsyncCloudflared:
             was_active_at=parse_datetime("2009-11-10T23:00:00Z"),
             was_inactive_at=parse_datetime("2009-11-10T23:00:00Z"),
         )
-        assert_matches_type(AsyncV4PagePaginationArray[CloudflaredListResponse], cloudflared, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[CloudflareTunnel], cloudflared, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -379,7 +373,7 @@ class TestAsyncCloudflared:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cloudflared = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[CloudflaredListResponse], cloudflared, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[CloudflareTunnel], cloudflared, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -390,7 +384,7 @@ class TestAsyncCloudflared:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cloudflared = await response.parse()
-            assert_matches_type(AsyncV4PagePaginationArray[CloudflaredListResponse], cloudflared, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[CloudflareTunnel], cloudflared, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -407,7 +401,7 @@ class TestAsyncCloudflared:
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(CloudflaredDeleteResponse, cloudflared, path=["response"])
+        assert_matches_type(CloudflareTunnel, cloudflared, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -419,7 +413,7 @@ class TestAsyncCloudflared:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cloudflared = await response.parse()
-        assert_matches_type(CloudflaredDeleteResponse, cloudflared, path=["response"])
+        assert_matches_type(CloudflareTunnel, cloudflared, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -431,7 +425,7 @@ class TestAsyncCloudflared:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cloudflared = await response.parse()
-            assert_matches_type(CloudflaredDeleteResponse, cloudflared, path=["response"])
+            assert_matches_type(CloudflareTunnel, cloudflared, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -455,7 +449,7 @@ class TestAsyncCloudflared:
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(CloudflaredEditResponse, cloudflared, path=["response"])
+        assert_matches_type(CloudflareTunnel, cloudflared, path=["response"])
 
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -465,7 +459,7 @@ class TestAsyncCloudflared:
             name="blog",
             tunnel_secret="AQIDBAUGBwgBAgMEBQYHCAECAwQFBgcIAQIDBAUGBwg=",
         )
-        assert_matches_type(CloudflaredEditResponse, cloudflared, path=["response"])
+        assert_matches_type(CloudflareTunnel, cloudflared, path=["response"])
 
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -477,7 +471,7 @@ class TestAsyncCloudflared:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cloudflared = await response.parse()
-        assert_matches_type(CloudflaredEditResponse, cloudflared, path=["response"])
+        assert_matches_type(CloudflareTunnel, cloudflared, path=["response"])
 
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -489,7 +483,7 @@ class TestAsyncCloudflared:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cloudflared = await response.parse()
-            assert_matches_type(CloudflaredEditResponse, cloudflared, path=["response"])
+            assert_matches_type(CloudflareTunnel, cloudflared, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -513,7 +507,7 @@ class TestAsyncCloudflared:
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(CloudflaredGetResponse, cloudflared, path=["response"])
+        assert_matches_type(CloudflareTunnel, cloudflared, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -525,7 +519,7 @@ class TestAsyncCloudflared:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cloudflared = await response.parse()
-        assert_matches_type(CloudflaredGetResponse, cloudflared, path=["response"])
+        assert_matches_type(CloudflareTunnel, cloudflared, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -537,7 +531,7 @@ class TestAsyncCloudflared:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cloudflared = await response.parse()
-            assert_matches_type(CloudflaredGetResponse, cloudflared, path=["response"])
+            assert_matches_type(CloudflareTunnel, cloudflared, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -23,7 +23,6 @@ class RoutePfx2asParams(TypedDict, total=False):
     """Lookup prefixes originated by the given ASN."""
 
     prefix: str
-    """Network prefix, IPv4 or IPv6."""
 
     rpki_status: Annotated[Literal["VALID", "INVALID", "UNKNOWN"], PropertyInfo(alias="rpkiStatus")]
     """Return only results with matching rpki status: valid, invalid or unknown."""

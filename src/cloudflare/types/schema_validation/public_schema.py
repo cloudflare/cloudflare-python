@@ -13,16 +13,16 @@ class PublicSchema(BaseModel):
     created_at: datetime
 
     kind: Literal["openapi_v3"]
-    """Kind of schema"""
+    """The kind of the schema"""
 
     name: str
-    """Name of the schema"""
+    """A human-readable name for the schema"""
 
     schema_id: str
-    """UUID."""
+    """A unique identifier of this schema"""
 
-    source: Optional[str] = None
-    """Source of the schema"""
+    source: str
+    """The raw schema, e.g., the OpenAPI schema, either as JSON or YAML"""
 
     validation_enabled: Optional[bool] = None
-    """Flag whether schema is enabled for validation."""
+    """An indicator if this schema is enabled"""
