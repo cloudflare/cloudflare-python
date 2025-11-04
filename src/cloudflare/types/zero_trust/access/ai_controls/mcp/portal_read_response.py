@@ -19,9 +19,9 @@ class Server(BaseModel):
 
     name: str
 
-    prompts: List[Dict[str, Union[float, str]]]
+    prompts: List[object]
 
-    tools: List[Dict[str, Union[float, str]]]
+    tools: List[object]
 
     updated_prompts: List[Dict[str, Union[float, str]]]
 

@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Union, Optional
+from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -19,9 +19,9 @@ class ServerDeleteResponse(BaseModel):
 
     name: str
 
-    prompts: List[Dict[str, Union[float, str]]]
+    prompts: List[object]
 
-    tools: List[Dict[str, Union[float, str]]]
+    tools: List[object]
 
     created_at: Optional[datetime] = None
 

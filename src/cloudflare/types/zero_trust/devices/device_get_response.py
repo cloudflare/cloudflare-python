@@ -96,10 +96,10 @@ class DeviceGetResponse(BaseModel):
     """The device operating system version number."""
 
     os_version_extra: Optional[str] = None
-    """Additional operating system version data.
+    """Additional operating system version details.
 
-    For macOS or iOS, the Product Version Extra. For Linux, the kernel release
-    version.
+    For Windows, the UBR (Update Build Revision). For Mac or iOS, the Product
+    Version Extra. For Linux, the distribution name and version.
     """
 
     public_ip: Optional[str] = None
