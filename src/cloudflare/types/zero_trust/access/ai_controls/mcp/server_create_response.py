@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -19,9 +19,9 @@ class ServerCreateResponse(BaseModel):
 
     name: str
 
-    prompts: List[object]
+    prompts: List[Dict[str, object]]
 
-    tools: List[object]
+    tools: List[Dict[str, object]]
 
     created_at: Optional[datetime] = None
 
