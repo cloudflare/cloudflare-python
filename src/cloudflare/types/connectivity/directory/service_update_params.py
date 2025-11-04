@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Union, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-from ....._types import SequenceNotStr
+from ...._types import SequenceNotStr
 
 __all__ = [
     "ServiceUpdateParams",

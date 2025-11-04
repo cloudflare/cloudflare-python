@@ -72,14 +72,6 @@ from .zero_trust import (
     ZeroTrustResourceWithStreamingResponse,
     AsyncZeroTrustResourceWithStreamingResponse,
 )
-from .connectivity import (
-    ConnectivityResource,
-    AsyncConnectivityResource,
-    ConnectivityResourceWithRawResponse,
-    AsyncConnectivityResourceWithRawResponse,
-    ConnectivityResourceWithStreamingResponse,
-    AsyncConnectivityResourceWithStreamingResponse,
-)
 from .risk_scoring import (
     RiskScoringResource,
     AsyncRiskScoringResource,
@@ -162,12 +154,6 @@ __all__ = [
     "AsyncConnectivitySettingsResourceWithRawResponse",
     "ConnectivitySettingsResourceWithStreamingResponse",
     "AsyncConnectivitySettingsResourceWithStreamingResponse",
-    "ConnectivityResource",
-    "AsyncConnectivityResource",
-    "ConnectivityResourceWithRawResponse",
-    "AsyncConnectivityResourceWithRawResponse",
-    "ConnectivityResourceWithStreamingResponse",
-    "AsyncConnectivityResourceWithStreamingResponse",
     "DLPResource",
     "AsyncDLPResource",
     "DLPResourceWithRawResponse",

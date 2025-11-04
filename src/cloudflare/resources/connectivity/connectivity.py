@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from .directory.directory import (
     DirectoryResource,
     AsyncDirectoryResource,

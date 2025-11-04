@@ -7,28 +7,24 @@ from typing_extensions import Literal
 
 import httpx
 
-from ....._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
-from ....._compat import cached_property
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from ....._response import (
+from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
+from ...._utils import maybe_transform, async_maybe_transform
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....._wrappers import ResultWrapper
-from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ....._base_client import AsyncPaginator, make_request_options
-from .....types.zero_trust.connectivity.directory import (
-    service_list_params,
-    service_create_params,
-    service_update_params,
-)
-from .....types.zero_trust.connectivity.directory.service_get_response import ServiceGetResponse
-from .....types.zero_trust.connectivity.directory.service_list_response import ServiceListResponse
-from .....types.zero_trust.connectivity.directory.service_create_response import ServiceCreateResponse
-from .....types.zero_trust.connectivity.directory.service_update_response import ServiceUpdateResponse
+from ...._wrappers import ResultWrapper
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.connectivity.directory import service_list_params, service_create_params, service_update_params
+from ....types.connectivity.directory.service_get_response import ServiceGetResponse
+from ....types.connectivity.directory.service_list_response import ServiceListResponse
+from ....types.connectivity.directory.service_create_response import ServiceCreateResponse
+from ....types.connectivity.directory.service_update_response import ServiceUpdateResponse
 
 __all__ = ["ServicesResource", "AsyncServicesResource"]
 

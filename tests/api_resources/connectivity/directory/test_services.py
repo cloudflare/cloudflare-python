@@ -10,7 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.zero_trust.connectivity.directory import (
+from cloudflare.types.connectivity.directory import (
     ServiceGetResponse,
     ServiceListResponse,
     ServiceCreateResponse,
@@ -25,7 +25,7 @@ class TestServices:
 
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
-        service = client.zero_trust.connectivity.directory.services.create(
+        service = client.connectivity.directory.services.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host={
                 "hostname": "api.example.com",
@@ -38,7 +38,7 @@ class TestServices:
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
-        service = client.zero_trust.connectivity.directory.services.create(
+        service = client.connectivity.directory.services.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host={
                 "hostname": "api.example.com",
@@ -56,7 +56,7 @@ class TestServices:
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
-        response = client.zero_trust.connectivity.directory.services.with_raw_response.create(
+        response = client.connectivity.directory.services.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host={
                 "hostname": "api.example.com",
@@ -73,7 +73,7 @@ class TestServices:
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
-        with client.zero_trust.connectivity.directory.services.with_streaming_response.create(
+        with client.connectivity.directory.services.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host={
                 "hostname": "api.example.com",
@@ -93,7 +93,7 @@ class TestServices:
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.zero_trust.connectivity.directory.services.with_raw_response.create(
+            client.connectivity.directory.services.with_raw_response.create(
                 account_id="",
                 host={
                     "hostname": "api.example.com",
@@ -105,7 +105,7 @@ class TestServices:
 
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
-        service = client.zero_trust.connectivity.directory.services.update(
+        service = client.connectivity.directory.services.update(
             service_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
             host={
@@ -119,7 +119,7 @@ class TestServices:
 
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
-        service = client.zero_trust.connectivity.directory.services.update(
+        service = client.connectivity.directory.services.update(
             service_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
             host={
@@ -135,7 +135,7 @@ class TestServices:
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
-        response = client.zero_trust.connectivity.directory.services.with_raw_response.update(
+        response = client.connectivity.directory.services.with_raw_response.update(
             service_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
             host={
@@ -153,7 +153,7 @@ class TestServices:
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
-        with client.zero_trust.connectivity.directory.services.with_streaming_response.update(
+        with client.connectivity.directory.services.with_streaming_response.update(
             service_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
             host={
@@ -174,7 +174,7 @@ class TestServices:
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.zero_trust.connectivity.directory.services.with_raw_response.update(
+            client.connectivity.directory.services.with_raw_response.update(
                 service_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="",
                 host={
@@ -186,7 +186,7 @@ class TestServices:
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `service_id` but received ''"):
-            client.zero_trust.connectivity.directory.services.with_raw_response.update(
+            client.connectivity.directory.services.with_raw_response.update(
                 service_id="",
                 account_id="account_id",
                 host={
@@ -199,14 +199,14 @@ class TestServices:
 
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
-        service = client.zero_trust.connectivity.directory.services.list(
+        service = client.connectivity.directory.services.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(SyncV4PagePaginationArray[ServiceListResponse], service, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
-        service = client.zero_trust.connectivity.directory.services.list(
+        service = client.connectivity.directory.services.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             page=1,
             per_page=1,
@@ -216,7 +216,7 @@ class TestServices:
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
-        response = client.zero_trust.connectivity.directory.services.with_raw_response.list(
+        response = client.connectivity.directory.services.with_raw_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -227,7 +227,7 @@ class TestServices:
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
-        with client.zero_trust.connectivity.directory.services.with_streaming_response.list(
+        with client.connectivity.directory.services.with_streaming_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -241,13 +241,13 @@ class TestServices:
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.zero_trust.connectivity.directory.services.with_raw_response.list(
+            client.connectivity.directory.services.with_raw_response.list(
                 account_id="",
             )
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
-        service = client.zero_trust.connectivity.directory.services.delete(
+        service = client.connectivity.directory.services.delete(
             service_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
         )
@@ -255,7 +255,7 @@ class TestServices:
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
-        response = client.zero_trust.connectivity.directory.services.with_raw_response.delete(
+        response = client.connectivity.directory.services.with_raw_response.delete(
             service_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
         )
@@ -267,7 +267,7 @@ class TestServices:
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
-        with client.zero_trust.connectivity.directory.services.with_streaming_response.delete(
+        with client.connectivity.directory.services.with_streaming_response.delete(
             service_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
         ) as response:
@@ -282,20 +282,20 @@ class TestServices:
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.zero_trust.connectivity.directory.services.with_raw_response.delete(
+            client.connectivity.directory.services.with_raw_response.delete(
                 service_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `service_id` but received ''"):
-            client.zero_trust.connectivity.directory.services.with_raw_response.delete(
+            client.connectivity.directory.services.with_raw_response.delete(
                 service_id="",
                 account_id="account_id",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
-        service = client.zero_trust.connectivity.directory.services.get(
+        service = client.connectivity.directory.services.get(
             service_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
         )
@@ -303,7 +303,7 @@ class TestServices:
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
-        response = client.zero_trust.connectivity.directory.services.with_raw_response.get(
+        response = client.connectivity.directory.services.with_raw_response.get(
             service_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
         )
@@ -315,7 +315,7 @@ class TestServices:
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
-        with client.zero_trust.connectivity.directory.services.with_streaming_response.get(
+        with client.connectivity.directory.services.with_streaming_response.get(
             service_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
         ) as response:
@@ -330,13 +330,13 @@ class TestServices:
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.zero_trust.connectivity.directory.services.with_raw_response.get(
+            client.connectivity.directory.services.with_raw_response.get(
                 service_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `service_id` but received ''"):
-            client.zero_trust.connectivity.directory.services.with_raw_response.get(
+            client.connectivity.directory.services.with_raw_response.get(
                 service_id="",
                 account_id="account_id",
             )
@@ -349,7 +349,7 @@ class TestAsyncServices:
 
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
-        service = await async_client.zero_trust.connectivity.directory.services.create(
+        service = await async_client.connectivity.directory.services.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host={
                 "hostname": "api.example.com",
@@ -362,7 +362,7 @@ class TestAsyncServices:
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        service = await async_client.zero_trust.connectivity.directory.services.create(
+        service = await async_client.connectivity.directory.services.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host={
                 "hostname": "api.example.com",
@@ -380,7 +380,7 @@ class TestAsyncServices:
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.zero_trust.connectivity.directory.services.with_raw_response.create(
+        response = await async_client.connectivity.directory.services.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host={
                 "hostname": "api.example.com",
@@ -397,7 +397,7 @@ class TestAsyncServices:
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.zero_trust.connectivity.directory.services.with_streaming_response.create(
+        async with async_client.connectivity.directory.services.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host={
                 "hostname": "api.example.com",
@@ -417,7 +417,7 @@ class TestAsyncServices:
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.zero_trust.connectivity.directory.services.with_raw_response.create(
+            await async_client.connectivity.directory.services.with_raw_response.create(
                 account_id="",
                 host={
                     "hostname": "api.example.com",
@@ -429,7 +429,7 @@ class TestAsyncServices:
 
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
-        service = await async_client.zero_trust.connectivity.directory.services.update(
+        service = await async_client.connectivity.directory.services.update(
             service_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
             host={
@@ -443,7 +443,7 @@ class TestAsyncServices:
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        service = await async_client.zero_trust.connectivity.directory.services.update(
+        service = await async_client.connectivity.directory.services.update(
             service_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
             host={
@@ -459,7 +459,7 @@ class TestAsyncServices:
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.zero_trust.connectivity.directory.services.with_raw_response.update(
+        response = await async_client.connectivity.directory.services.with_raw_response.update(
             service_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
             host={
@@ -477,7 +477,7 @@ class TestAsyncServices:
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.zero_trust.connectivity.directory.services.with_streaming_response.update(
+        async with async_client.connectivity.directory.services.with_streaming_response.update(
             service_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
             host={
@@ -498,7 +498,7 @@ class TestAsyncServices:
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.zero_trust.connectivity.directory.services.with_raw_response.update(
+            await async_client.connectivity.directory.services.with_raw_response.update(
                 service_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="",
                 host={
@@ -510,7 +510,7 @@ class TestAsyncServices:
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `service_id` but received ''"):
-            await async_client.zero_trust.connectivity.directory.services.with_raw_response.update(
+            await async_client.connectivity.directory.services.with_raw_response.update(
                 service_id="",
                 account_id="account_id",
                 host={
@@ -523,14 +523,14 @@ class TestAsyncServices:
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
-        service = await async_client.zero_trust.connectivity.directory.services.list(
+        service = await async_client.connectivity.directory.services.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(AsyncV4PagePaginationArray[ServiceListResponse], service, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        service = await async_client.zero_trust.connectivity.directory.services.list(
+        service = await async_client.connectivity.directory.services.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             page=1,
             per_page=1,
@@ -540,7 +540,7 @@ class TestAsyncServices:
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.zero_trust.connectivity.directory.services.with_raw_response.list(
+        response = await async_client.connectivity.directory.services.with_raw_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -551,7 +551,7 @@ class TestAsyncServices:
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.zero_trust.connectivity.directory.services.with_streaming_response.list(
+        async with async_client.connectivity.directory.services.with_streaming_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -565,13 +565,13 @@ class TestAsyncServices:
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.zero_trust.connectivity.directory.services.with_raw_response.list(
+            await async_client.connectivity.directory.services.with_raw_response.list(
                 account_id="",
             )
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
-        service = await async_client.zero_trust.connectivity.directory.services.delete(
+        service = await async_client.connectivity.directory.services.delete(
             service_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
         )
@@ -579,7 +579,7 @@ class TestAsyncServices:
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.zero_trust.connectivity.directory.services.with_raw_response.delete(
+        response = await async_client.connectivity.directory.services.with_raw_response.delete(
             service_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
         )
@@ -591,7 +591,7 @@ class TestAsyncServices:
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.zero_trust.connectivity.directory.services.with_streaming_response.delete(
+        async with async_client.connectivity.directory.services.with_streaming_response.delete(
             service_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
         ) as response:
@@ -606,20 +606,20 @@ class TestAsyncServices:
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.zero_trust.connectivity.directory.services.with_raw_response.delete(
+            await async_client.connectivity.directory.services.with_raw_response.delete(
                 service_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `service_id` but received ''"):
-            await async_client.zero_trust.connectivity.directory.services.with_raw_response.delete(
+            await async_client.connectivity.directory.services.with_raw_response.delete(
                 service_id="",
                 account_id="account_id",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
-        service = await async_client.zero_trust.connectivity.directory.services.get(
+        service = await async_client.connectivity.directory.services.get(
             service_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
         )
@@ -627,7 +627,7 @@ class TestAsyncServices:
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.zero_trust.connectivity.directory.services.with_raw_response.get(
+        response = await async_client.connectivity.directory.services.with_raw_response.get(
             service_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
         )
@@ -639,7 +639,7 @@ class TestAsyncServices:
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.zero_trust.connectivity.directory.services.with_streaming_response.get(
+        async with async_client.connectivity.directory.services.with_streaming_response.get(
             service_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
         ) as response:
@@ -654,13 +654,13 @@ class TestAsyncServices:
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.zero_trust.connectivity.directory.services.with_raw_response.get(
+            await async_client.connectivity.directory.services.with_raw_response.get(
                 service_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `service_id` but received ''"):
-            await async_client.zero_trust.connectivity.directory.services.with_raw_response.get(
+            await async_client.connectivity.directory.services.with_raw_response.get(
                 service_id="",
                 account_id="account_id",
             )

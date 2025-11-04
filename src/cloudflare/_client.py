@@ -88,6 +88,7 @@ if TYPE_CHECKING:
         page_shield,
         rate_limits,
         url_scanner,
+        connectivity,
         custom_pages,
         dns_firewall,
         healthchecks,
@@ -197,6 +198,7 @@ if TYPE_CHECKING:
     from .resources.diagnostics.diagnostics import DiagnosticsResource, AsyncDiagnosticsResource
     from .resources.page_shield.page_shield import PageShieldResource, AsyncPageShieldResource
     from .resources.url_scanner.url_scanner import URLScannerResource, AsyncURLScannerResource
+    from .resources.connectivity.connectivity import ConnectivityResource, AsyncConnectivityResource
     from .resources.dns_firewall.dns_firewall import DNSFirewallResource, AsyncDNSFirewallResource
     from .resources.healthchecks.healthchecks import HealthchecksResource, AsyncHealthchecksResource
     from .resources.email_routing.email_routing import EmailRoutingResource, AsyncEmailRoutingResource
@@ -730,6 +732,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.turnstile import TurnstileResource
 
         return TurnstileResource(self)
+
+    @cached_property
+    def connectivity(self) -> ConnectivityResource:
+        from .resources.connectivity import ConnectivityResource
+
+        return ConnectivityResource(self)
 
     @cached_property
     def hyperdrive(self) -> HyperdriveResource:
@@ -1561,6 +1569,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncTurnstileResource(self)
 
     @cached_property
+    def connectivity(self) -> AsyncConnectivityResource:
+        from .resources.connectivity import AsyncConnectivityResource
+
+        return AsyncConnectivityResource(self)
+
+    @cached_property
     def hyperdrive(self) -> AsyncHyperdriveResource:
         from .resources.hyperdrive import AsyncHyperdriveResource
 
@@ -2323,6 +2337,12 @@ class CloudflareWithRawResponse:
         return TurnstileResourceWithRawResponse(self._client.turnstile)
 
     @cached_property
+    def connectivity(self) -> connectivity.ConnectivityResourceWithRawResponse:
+        from .resources.connectivity import ConnectivityResourceWithRawResponse
+
+        return ConnectivityResourceWithRawResponse(self._client.connectivity)
+
+    @cached_property
     def hyperdrive(self) -> hyperdrive.HyperdriveResourceWithRawResponse:
         from .resources.hyperdrive import HyperdriveResourceWithRawResponse
 
@@ -2914,6 +2934,12 @@ class AsyncCloudflareWithRawResponse:
         return AsyncTurnstileResourceWithRawResponse(self._client.turnstile)
 
     @cached_property
+    def connectivity(self) -> connectivity.AsyncConnectivityResourceWithRawResponse:
+        from .resources.connectivity import AsyncConnectivityResourceWithRawResponse
+
+        return AsyncConnectivityResourceWithRawResponse(self._client.connectivity)
+
+    @cached_property
     def hyperdrive(self) -> hyperdrive.AsyncHyperdriveResourceWithRawResponse:
         from .resources.hyperdrive import AsyncHyperdriveResourceWithRawResponse
 
@@ -3503,6 +3529,12 @@ class CloudflareWithStreamedResponse:
         from .resources.turnstile import TurnstileResourceWithStreamingResponse
 
         return TurnstileResourceWithStreamingResponse(self._client.turnstile)
+
+    @cached_property
+    def connectivity(self) -> connectivity.ConnectivityResourceWithStreamingResponse:
+        from .resources.connectivity import ConnectivityResourceWithStreamingResponse
+
+        return ConnectivityResourceWithStreamingResponse(self._client.connectivity)
 
     @cached_property
     def hyperdrive(self) -> hyperdrive.HyperdriveResourceWithStreamingResponse:
@@ -4098,6 +4130,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.turnstile import AsyncTurnstileResourceWithStreamingResponse
 
         return AsyncTurnstileResourceWithStreamingResponse(self._client.turnstile)
+
+    @cached_property
+    def connectivity(self) -> connectivity.AsyncConnectivityResourceWithStreamingResponse:
+        from .resources.connectivity import AsyncConnectivityResourceWithStreamingResponse
+
+        return AsyncConnectivityResourceWithStreamingResponse(self._client.connectivity)
 
     @cached_property
     def hyperdrive(self) -> hyperdrive.AsyncHyperdriveResourceWithStreamingResponse:

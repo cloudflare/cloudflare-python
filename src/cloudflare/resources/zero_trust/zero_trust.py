@@ -76,14 +76,6 @@ from .connectivity_settings import (
     ConnectivitySettingsResourceWithStreamingResponse,
     AsyncConnectivitySettingsResourceWithStreamingResponse,
 )
-from .connectivity.connectivity import (
-    ConnectivityResource,
-    AsyncConnectivityResource,
-    ConnectivityResourceWithRawResponse,
-    AsyncConnectivityResourceWithRawResponse,
-    ConnectivityResourceWithStreamingResponse,
-    AsyncConnectivityResourceWithStreamingResponse,
-)
 from .risk_scoring.risk_scoring import (
     RiskScoringResource,
     AsyncRiskScoringResource,
@@ -144,10 +136,6 @@ class ZeroTrustResource(SyncAPIResource):
     @cached_property
     def connectivity_settings(self) -> ConnectivitySettingsResource:
         return ConnectivitySettingsResource(self._client)
-
-    @cached_property
-    def connectivity(self) -> ConnectivityResource:
-        return ConnectivityResource(self._client)
 
     @cached_property
     def dlp(self) -> DLPResource:
@@ -217,10 +205,6 @@ class AsyncZeroTrustResource(AsyncAPIResource):
     @cached_property
     def connectivity_settings(self) -> AsyncConnectivitySettingsResource:
         return AsyncConnectivitySettingsResource(self._client)
-
-    @cached_property
-    def connectivity(self) -> AsyncConnectivityResource:
-        return AsyncConnectivityResource(self._client)
 
     @cached_property
     def dlp(self) -> AsyncDLPResource:
@@ -295,10 +279,6 @@ class ZeroTrustResourceWithRawResponse:
         return ConnectivitySettingsResourceWithRawResponse(self._zero_trust.connectivity_settings)
 
     @cached_property
-    def connectivity(self) -> ConnectivityResourceWithRawResponse:
-        return ConnectivityResourceWithRawResponse(self._zero_trust.connectivity)
-
-    @cached_property
     def dlp(self) -> DLPResourceWithRawResponse:
         return DLPResourceWithRawResponse(self._zero_trust.dlp)
 
@@ -350,10 +330,6 @@ class AsyncZeroTrustResourceWithRawResponse:
     @cached_property
     def connectivity_settings(self) -> AsyncConnectivitySettingsResourceWithRawResponse:
         return AsyncConnectivitySettingsResourceWithRawResponse(self._zero_trust.connectivity_settings)
-
-    @cached_property
-    def connectivity(self) -> AsyncConnectivityResourceWithRawResponse:
-        return AsyncConnectivityResourceWithRawResponse(self._zero_trust.connectivity)
 
     @cached_property
     def dlp(self) -> AsyncDLPResourceWithRawResponse:
@@ -409,10 +385,6 @@ class ZeroTrustResourceWithStreamingResponse:
         return ConnectivitySettingsResourceWithStreamingResponse(self._zero_trust.connectivity_settings)
 
     @cached_property
-    def connectivity(self) -> ConnectivityResourceWithStreamingResponse:
-        return ConnectivityResourceWithStreamingResponse(self._zero_trust.connectivity)
-
-    @cached_property
     def dlp(self) -> DLPResourceWithStreamingResponse:
         return DLPResourceWithStreamingResponse(self._zero_trust.dlp)
 
@@ -464,10 +436,6 @@ class AsyncZeroTrustResourceWithStreamingResponse:
     @cached_property
     def connectivity_settings(self) -> AsyncConnectivitySettingsResourceWithStreamingResponse:
         return AsyncConnectivitySettingsResourceWithStreamingResponse(self._zero_trust.connectivity_settings)
-
-    @cached_property
-    def connectivity(self) -> AsyncConnectivityResourceWithStreamingResponse:
-        return AsyncConnectivityResourceWithStreamingResponse(self._zero_trust.connectivity)
 
     @cached_property
     def dlp(self) -> AsyncDLPResourceWithStreamingResponse:

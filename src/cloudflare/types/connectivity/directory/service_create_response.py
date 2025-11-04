@@ -4,10 +4,10 @@ from typing import List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
-from ....._models import BaseModel
+from ...._models import BaseModel
 
 __all__ = [
-    "ServiceUpdateResponse",
+    "ServiceCreateResponse",
     "Host",
     "HostInfraIPv4Host",
     "HostInfraIPv4HostNetwork",
@@ -67,7 +67,7 @@ class HostInfraHostnameHost(BaseModel):
 Host: TypeAlias = Union[HostInfraIPv4Host, HostInfraIPv6Host, HostInfraDualStackHost, HostInfraHostnameHost]
 
 
-class ServiceUpdateResponse(BaseModel):
+class ServiceCreateResponse(BaseModel):
     host: Host
 
     name: str
