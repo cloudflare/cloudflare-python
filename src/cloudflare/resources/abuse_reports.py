@@ -952,7 +952,7 @@ class AbuseReportsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePagination[Optional[AbuseReportListResponse]]:
         """
-        List the abuse reports for a given account.
+        List the abuse reports for a given account
 
         Args:
           created_after: Returns reports created after the specified date
@@ -1022,7 +1022,7 @@ class AbuseReportsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AbuseReportGetResponse:
         """
-        Retrieve an abuse report.
+        Retrieve the details of an abuse report.
 
         Args:
           extra_headers: Send extra headers
@@ -1974,7 +1974,7 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Optional[AbuseReportListResponse], AsyncV4PagePagination[Optional[AbuseReportListResponse]]]:
         """
-        List the abuse reports for a given account.
+        List the abuse reports for a given account
 
         Args:
           created_after: Returns reports created after the specified date
@@ -2044,7 +2044,7 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AbuseReportGetResponse:
         """
-        Retrieve an abuse report.
+        Retrieve the details of an abuse report.
 
         Args:
           extra_headers: Send extra headers
