@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 from typing_extensions import Literal, overload
 
 import httpx
@@ -18,8 +18,11 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._wrappers import ResultWrapper
-from .._base_client import make_request_options
-from ..types.abuse_reports import abuse_report_create_params
+from ..pagination import SyncV4PagePagination, AsyncV4PagePagination
+from .._base_client import AsyncPaginator, make_request_options
+from ..types.abuse_reports import abuse_report_list_params, abuse_report_create_params
+from ..types.abuse_reports.abuse_report_get_response import AbuseReportGetResponse
+from ..types.abuse_reports.abuse_report_list_response import AbuseReportListResponse
 from ..types.abuse_reports.abuse_report_create_response import AbuseReportCreateResponse
 
 __all__ = ["AbuseReportsResource", "AsyncAbuseReportsResource"]
@@ -928,6 +931,124 @@ class AbuseReportsResource(SyncAPIResource):
             cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
+    def list(
+        self,
+        *,
+        account_id: str,
+        created_after: str | Omit = omit,
+        created_before: str | Omit = omit,
+        domain: str | Omit = omit,
+        mitigation_status: Literal["pending", "active", "in_review", "cancelled", "removed"] | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        sort: str | Omit = omit,
+        status: Literal["accepted", "in_review"] | Omit = omit,
+        type: Literal["PHISH", "GEN", "THREAT", "DMCA", "EMER", "TM", "REG_WHO", "NCSEI", "NETWORK"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncV4PagePagination[Optional[AbuseReportListResponse]]:
+        """
+        List the abuse reports for a given account.
+
+        Args:
+          created_after: Returns reports created after the specified date
+
+          created_before: Returns reports created before the specified date
+
+          domain: Filter by domain name related to the abuse report
+
+          mitigation_status: Filter reports that have any mitigations in the given status.
+
+          page: Where in pagination to start listing abuse reports
+
+          per_page: How many abuse reports per page to list
+
+          sort: A property to sort by, followed by the order (id, cdate, domain, type, status)
+
+          status: Filter by the status of the report.
+
+          type: Filter by the type of the report.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._get_api_list(
+            f"/accounts/{account_id}/abuse-reports",
+            page=SyncV4PagePagination[Optional[AbuseReportListResponse]],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "created_after": created_after,
+                        "created_before": created_before,
+                        "domain": domain,
+                        "mitigation_status": mitigation_status,
+                        "page": page,
+                        "per_page": per_page,
+                        "sort": sort,
+                        "status": status,
+                        "type": type,
+                    },
+                    abuse_report_list_params.AbuseReportListParams,
+                ),
+            ),
+            model=AbuseReportListResponse,
+        )
+
+    def get(
+        self,
+        report_param: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AbuseReportGetResponse:
+        """
+        Retrieve an abuse report.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not report_param:
+            raise ValueError(f"Expected a non-empty value for `report_param` but received {report_param!r}")
+        return self._get(
+            f"/accounts/{account_id}/abuse-reports/{report_param}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[AbuseReportGetResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[AbuseReportGetResponse], ResultWrapper[AbuseReportGetResponse]),
+        )
+
 
 class AsyncAbuseReportsResource(AsyncAPIResource):
     @cached_property
@@ -1832,6 +1953,124 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
             cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
+    def list(
+        self,
+        *,
+        account_id: str,
+        created_after: str | Omit = omit,
+        created_before: str | Omit = omit,
+        domain: str | Omit = omit,
+        mitigation_status: Literal["pending", "active", "in_review", "cancelled", "removed"] | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        sort: str | Omit = omit,
+        status: Literal["accepted", "in_review"] | Omit = omit,
+        type: Literal["PHISH", "GEN", "THREAT", "DMCA", "EMER", "TM", "REG_WHO", "NCSEI", "NETWORK"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[Optional[AbuseReportListResponse], AsyncV4PagePagination[Optional[AbuseReportListResponse]]]:
+        """
+        List the abuse reports for a given account.
+
+        Args:
+          created_after: Returns reports created after the specified date
+
+          created_before: Returns reports created before the specified date
+
+          domain: Filter by domain name related to the abuse report
+
+          mitigation_status: Filter reports that have any mitigations in the given status.
+
+          page: Where in pagination to start listing abuse reports
+
+          per_page: How many abuse reports per page to list
+
+          sort: A property to sort by, followed by the order (id, cdate, domain, type, status)
+
+          status: Filter by the status of the report.
+
+          type: Filter by the type of the report.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._get_api_list(
+            f"/accounts/{account_id}/abuse-reports",
+            page=AsyncV4PagePagination[Optional[AbuseReportListResponse]],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "created_after": created_after,
+                        "created_before": created_before,
+                        "domain": domain,
+                        "mitigation_status": mitigation_status,
+                        "page": page,
+                        "per_page": per_page,
+                        "sort": sort,
+                        "status": status,
+                        "type": type,
+                    },
+                    abuse_report_list_params.AbuseReportListParams,
+                ),
+            ),
+            model=AbuseReportListResponse,
+        )
+
+    async def get(
+        self,
+        report_param: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AbuseReportGetResponse:
+        """
+        Retrieve an abuse report.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not report_param:
+            raise ValueError(f"Expected a non-empty value for `report_param` but received {report_param!r}")
+        return await self._get(
+            f"/accounts/{account_id}/abuse-reports/{report_param}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[AbuseReportGetResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[AbuseReportGetResponse], ResultWrapper[AbuseReportGetResponse]),
+        )
+
 
 class AbuseReportsResourceWithRawResponse:
     def __init__(self, abuse_reports: AbuseReportsResource) -> None:
@@ -1839,6 +2078,12 @@ class AbuseReportsResourceWithRawResponse:
 
         self.create = to_raw_response_wrapper(
             abuse_reports.create,
+        )
+        self.list = to_raw_response_wrapper(
+            abuse_reports.list,
+        )
+        self.get = to_raw_response_wrapper(
+            abuse_reports.get,
         )
 
 
@@ -1849,6 +2094,12 @@ class AsyncAbuseReportsResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             abuse_reports.create,
         )
+        self.list = async_to_raw_response_wrapper(
+            abuse_reports.list,
+        )
+        self.get = async_to_raw_response_wrapper(
+            abuse_reports.get,
+        )
 
 
 class AbuseReportsResourceWithStreamingResponse:
@@ -1858,6 +2109,12 @@ class AbuseReportsResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             abuse_reports.create,
         )
+        self.list = to_streamed_response_wrapper(
+            abuse_reports.list,
+        )
+        self.get = to_streamed_response_wrapper(
+            abuse_reports.get,
+        )
 
 
 class AsyncAbuseReportsResourceWithStreamingResponse:
@@ -1866,4 +2123,10 @@ class AsyncAbuseReportsResourceWithStreamingResponse:
 
         self.create = async_to_streamed_response_wrapper(
             abuse_reports.create,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            abuse_reports.list,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            abuse_reports.get,
         )

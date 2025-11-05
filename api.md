@@ -10035,12 +10035,18 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.abuse_reports import AbuseReportCreateResponse
+from cloudflare.types.abuse_reports import (
+    AbuseReportCreateResponse,
+    AbuseReportListResponse,
+    AbuseReportGetResponse,
+)
 ```
 
 Methods:
 
 - <code title="post /accounts/{account_id}/abuse-reports/{report_param}">client.abuse_reports.<a href="./src/cloudflare/resources/abuse_reports.py">create</a>(report_param, \*, account_id, \*\*<a href="src/cloudflare/types/abuse_reports/abuse_report_create_params.py">params</a>) -> <a href="./src/cloudflare/types/abuse_reports/abuse_report_create_response.py">str</a></code>
+- <code title="get /accounts/{account_id}/abuse-reports">client.abuse_reports.<a href="./src/cloudflare/resources/abuse_reports.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/abuse_reports/abuse_report_list_params.py">params</a>) -> <a href="./src/cloudflare/types/abuse_reports/abuse_report_list_response.py">SyncV4PagePagination[Optional[AbuseReportListResponse]]</a></code>
+- <code title="get /accounts/{account_id}/abuse-reports/{report_param}">client.abuse_reports.<a href="./src/cloudflare/resources/abuse_reports.py">get</a>(report_param, \*, account_id) -> <a href="./src/cloudflare/types/abuse_reports/abuse_report_get_response.py">AbuseReportGetResponse</a></code>
 
 # AI
 
