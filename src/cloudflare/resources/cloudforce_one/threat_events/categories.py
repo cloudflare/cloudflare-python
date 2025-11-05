@@ -15,7 +15,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.cloudforce_one.threat_events import category_edit_params, category_create_params
+from ....types.cloudforce_one.threat_events import category_edit_params, category_list_params, category_create_params
 from ....types.cloudforce_one.threat_events.category_get_response import CategoryGetResponse
 from ....types.cloudforce_one.threat_events.category_edit_response import CategoryEditResponse
 from ....types.cloudforce_one.threat_events.category_list_response import CategoryListResponse
@@ -97,6 +97,7 @@ class CategoriesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        dataset_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -105,10 +106,13 @@ class CategoriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryListResponse:
         """
-        Lists categories
+        Lists categories across multiple datasets
 
         Args:
           account_id: Account ID.
+
+          dataset_ids: Array of dataset IDs to query categories from. If not provided, returns all
+              categories from D1 database.
 
           extra_headers: Send extra headers
 
@@ -123,7 +127,11 @@ class CategoriesResource(SyncAPIResource):
         return self._get(
             f"/accounts/{account_id}/cloudforce-one/events/categories",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"dataset_ids": dataset_ids}, category_list_params.CategoryListParams),
             ),
             cast_to=CategoryListResponse,
         )
@@ -334,6 +342,7 @@ class AsyncCategoriesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        dataset_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -342,10 +351,13 @@ class AsyncCategoriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CategoryListResponse:
         """
-        Lists categories
+        Lists categories across multiple datasets
 
         Args:
           account_id: Account ID.
+
+          dataset_ids: Array of dataset IDs to query categories from. If not provided, returns all
+              categories from D1 database.
 
           extra_headers: Send extra headers
 
@@ -360,7 +372,13 @@ class AsyncCategoriesResource(AsyncAPIResource):
         return await self._get(
             f"/accounts/{account_id}/cloudforce-one/events/categories",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"dataset_ids": dataset_ids}, category_list_params.CategoryListParams
+                ),
             ),
             cast_to=CategoryListResponse,
         )
