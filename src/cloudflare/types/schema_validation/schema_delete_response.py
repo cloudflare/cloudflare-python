@@ -6,5 +6,5 @@ __all__ = ["SchemaDeleteResponse"]
 
 
 class SchemaDeleteResponse(BaseModel):
-    schema_id: str
+    id: str
     """The ID of the schema that was just deleted"""

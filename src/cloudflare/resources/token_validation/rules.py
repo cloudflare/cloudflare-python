@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, Iterable, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -18,9 +18,15 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ...pagination import SyncSinglePage, AsyncSinglePage, SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.token_validation import rule_edit_params, rule_list_params, rule_create_params
+from ...types.token_validation import (
+    rule_edit_params,
+    rule_list_params,
+    rule_create_params,
+    rule_bulk_edit_params,
+    rule_bulk_create_params,
+)
 from ...types.token_validation.token_validation_rule import TokenValidationRule
 
 __all__ = ["RulesResource", "AsyncRulesResource"]
@@ -245,6 +251,92 @@ class RulesResource(SyncAPIResource):
                 post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
             cast_to=cast(Type[object], ResultWrapper[object]),
+        )
+
+    def bulk_create(
+        self,
+        *,
+        zone_id: str,
+        body: Iterable[rule_bulk_create_params.Body],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncSinglePage[TokenValidationRule]:
+        """
+        Create zone token validation rules.
+
+        A request can create multiple Token Validation Rules.
+
+        Args:
+          zone_id: Identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._get_api_list(
+            f"/zones/{zone_id}/token_validation/rules/bulk",
+            page=SyncSinglePage[TokenValidationRule],
+            body=maybe_transform(body, Iterable[rule_bulk_create_params.Body]),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            model=TokenValidationRule,
+            method="post",
+        )
+
+    def bulk_edit(
+        self,
+        *,
+        zone_id: str,
+        body: Iterable[rule_bulk_edit_params.Body],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncSinglePage[TokenValidationRule]:
+        """
+        Edit token validation rules.
+
+        A request can update multiple Token Validation Rules.
+
+        Rules can be re-ordered using the `position` field.
+
+        Returns all updated rules.
+
+        Args:
+          zone_id: Identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._get_api_list(
+            f"/zones/{zone_id}/token_validation/rules/bulk",
+            page=SyncSinglePage[TokenValidationRule],
+            body=maybe_transform(body, Iterable[rule_bulk_edit_params.Body]),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            model=TokenValidationRule,
+            method="patch",
         )
 
     def edit(
@@ -598,6 +690,92 @@ class AsyncRulesResource(AsyncAPIResource):
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
+    def bulk_create(
+        self,
+        *,
+        zone_id: str,
+        body: Iterable[rule_bulk_create_params.Body],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[TokenValidationRule, AsyncSinglePage[TokenValidationRule]]:
+        """
+        Create zone token validation rules.
+
+        A request can create multiple Token Validation Rules.
+
+        Args:
+          zone_id: Identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._get_api_list(
+            f"/zones/{zone_id}/token_validation/rules/bulk",
+            page=AsyncSinglePage[TokenValidationRule],
+            body=maybe_transform(body, Iterable[rule_bulk_create_params.Body]),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            model=TokenValidationRule,
+            method="post",
+        )
+
+    def bulk_edit(
+        self,
+        *,
+        zone_id: str,
+        body: Iterable[rule_bulk_edit_params.Body],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[TokenValidationRule, AsyncSinglePage[TokenValidationRule]]:
+        """
+        Edit token validation rules.
+
+        A request can update multiple Token Validation Rules.
+
+        Rules can be re-ordered using the `position` field.
+
+        Returns all updated rules.
+
+        Args:
+          zone_id: Identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._get_api_list(
+            f"/zones/{zone_id}/token_validation/rules/bulk",
+            page=AsyncSinglePage[TokenValidationRule],
+            body=maybe_transform(body, Iterable[rule_bulk_edit_params.Body]),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            model=TokenValidationRule,
+            method="patch",
+        )
+
     async def edit(
         self,
         rule_id: str,
@@ -741,6 +919,12 @@ class RulesResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             rules.delete,
         )
+        self.bulk_create = to_raw_response_wrapper(
+            rules.bulk_create,
+        )
+        self.bulk_edit = to_raw_response_wrapper(
+            rules.bulk_edit,
+        )
         self.edit = to_raw_response_wrapper(
             rules.edit,
         )
@@ -761,6 +945,12 @@ class AsyncRulesResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             rules.delete,
+        )
+        self.bulk_create = async_to_raw_response_wrapper(
+            rules.bulk_create,
+        )
+        self.bulk_edit = async_to_raw_response_wrapper(
+            rules.bulk_edit,
         )
         self.edit = async_to_raw_response_wrapper(
             rules.edit,
@@ -783,6 +973,12 @@ class RulesResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             rules.delete,
         )
+        self.bulk_create = to_streamed_response_wrapper(
+            rules.bulk_create,
+        )
+        self.bulk_edit = to_streamed_response_wrapper(
+            rules.bulk_edit,
+        )
         self.edit = to_streamed_response_wrapper(
             rules.edit,
         )
@@ -803,6 +999,12 @@ class AsyncRulesResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             rules.delete,
+        )
+        self.bulk_create = async_to_streamed_response_wrapper(
+            rules.bulk_create,
+        )
+        self.bulk_edit = async_to_streamed_response_wrapper(
+            rules.bulk_edit,
         )
         self.edit = async_to_streamed_response_wrapper(
             rules.edit,
