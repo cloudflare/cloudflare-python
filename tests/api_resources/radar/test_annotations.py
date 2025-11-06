@@ -31,7 +31,7 @@ class TestAnnotations:
             date_range="7d",
             date_start=parse_datetime("2023-09-01T11:41:33.782Z"),
             format="JSON",
-            limit=1,
+            limit=5,
             location="US",
             offset=0,
         )
@@ -76,7 +76,7 @@ class TestAsyncAnnotations:
             date_range="7d",
             date_start=parse_datetime("2023-09-01T11:41:33.782Z"),
             format="JSON",
-            limit=1,
+            limit=5,
             location="US",
             offset=0,
         )

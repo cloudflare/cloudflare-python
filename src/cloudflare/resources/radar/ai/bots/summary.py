@@ -47,9 +47,7 @@ class SummaryResource(SyncAPIResource):
         """
         return SummaryResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated(
-        "Use [Radar AI Bots Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/ai/subresources/bots/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     def user_agent(
         self,
         *,
@@ -157,9 +155,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         """
         return AsyncSummaryResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated(
-        "Use [Radar AI Bots Summary By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/ai/subresources/bots/methods/summary_v2/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     async def user_agent(
         self,
         *,

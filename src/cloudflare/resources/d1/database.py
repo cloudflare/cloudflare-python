@@ -65,7 +65,6 @@ class DatabaseResource(SyncAPIResource):
         *,
         account_id: str,
         name: str,
-        jurisdiction: Literal["eu", "fedramp"] | Omit = omit,
         primary_location_hint: Literal["wnam", "enam", "weur", "eeur", "apac", "oc"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -81,9 +80,6 @@ class DatabaseResource(SyncAPIResource):
           account_id: Account identifier tag.
 
           name: D1 database name.
-
-          jurisdiction: Specify the location to restrict the D1 database to run and store data. If this
-              option is present, the location hint is ignored.
 
           primary_location_hint: Specify the region to create the D1 primary, if available. If this option is
               omitted, the D1 will be created as close as possible to the current user.
@@ -103,7 +99,6 @@ class DatabaseResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "name": name,
-                    "jurisdiction": jurisdiction,
                     "primary_location_hint": primary_location_hint,
                 },
                 database_create_params.DatabaseCreateParams,
@@ -727,7 +722,6 @@ class AsyncDatabaseResource(AsyncAPIResource):
         *,
         account_id: str,
         name: str,
-        jurisdiction: Literal["eu", "fedramp"] | Omit = omit,
         primary_location_hint: Literal["wnam", "enam", "weur", "eeur", "apac", "oc"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -743,9 +737,6 @@ class AsyncDatabaseResource(AsyncAPIResource):
           account_id: Account identifier tag.
 
           name: D1 database name.
-
-          jurisdiction: Specify the location to restrict the D1 database to run and store data. If this
-              option is present, the location hint is ignored.
 
           primary_location_hint: Specify the region to create the D1 primary, if available. If this option is
               omitted, the D1 will be created as close as possible to the current user.
@@ -765,7 +756,6 @@ class AsyncDatabaseResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "name": name,
-                    "jurisdiction": jurisdiction,
                     "primary_location_hint": primary_location_hint,
                 },
                 database_create_params.DatabaseCreateParams,

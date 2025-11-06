@@ -43,7 +43,7 @@ class OnDemand(BaseModel):
 
     on_demand_locked: Optional[bool] = None
     """
-    Whether the advertisement status of the prefix is locked, meaning it cannot be
+    Whether advertisement status of the prefix is locked, meaning it cannot be
     changed.
     """
 

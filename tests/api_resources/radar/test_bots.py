@@ -37,7 +37,7 @@ class TestBots:
             bot_verification_status="VERIFIED",
             format="JSON",
             kind="AGENT",
-            limit=1,
+            limit=5,
             offset=0,
         )
         assert_matches_type(BotListResponse, bot, path=["response"])
@@ -277,7 +277,7 @@ class TestAsyncBots:
             bot_verification_status="VERIFIED",
             format="JSON",
             kind="AGENT",
-            limit=1,
+            limit=5,
             offset=0,
         )
         assert_matches_type(BotListResponse, bot, path=["response"])

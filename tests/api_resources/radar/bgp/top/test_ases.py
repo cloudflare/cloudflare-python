@@ -31,9 +31,9 @@ class TestAses:
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            limit=1,
+            limit=5,
             name=["main_series"],
-            prefix=["string"],
+            prefix=["1.1.1.0/24"],
             update_type=["ANNOUNCEMENT"],
         )
         assert_matches_type(AseGetResponse, ase, path=["response"])
@@ -111,9 +111,9 @@ class TestAsyncAses:
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            limit=1,
+            limit=5,
             name=["main_series"],
-            prefix=["string"],
+            prefix=["1.1.1.0/24"],
             update_type=["ANNOUNCEMENT"],
         )
         assert_matches_type(AseGetResponse, ase, path=["response"])

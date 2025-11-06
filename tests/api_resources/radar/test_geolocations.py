@@ -30,7 +30,7 @@ class TestGeolocations:
         geolocation = client.radar.geolocations.list(
             format="JSON",
             geo_id="3190509,360689",
-            limit=1,
+            limit=5,
             location="US,CA",
             offset=0,
         )
@@ -118,7 +118,7 @@ class TestAsyncGeolocations:
         geolocation = await async_client.radar.geolocations.list(
             format="JSON",
             geo_id="3190509,360689",
-            limit=1,
+            limit=5,
             location="US,CA",
             offset=0,
         )

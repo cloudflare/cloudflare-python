@@ -38,7 +38,6 @@ class TestDatabase:
         database = client.d1.database.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="my-database",
-            jurisdiction="eu",
             primary_location_hint="wnam",
         )
         assert_matches_type(D1, database, path=["response"])
@@ -723,7 +722,6 @@ class TestAsyncDatabase:
         database = await async_client.d1.database.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="my-database",
-            jurisdiction="eu",
             primary_location_hint="wnam",
         )
         assert_matches_type(D1, database, path=["response"])

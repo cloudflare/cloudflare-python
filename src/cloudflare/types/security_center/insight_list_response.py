@@ -7,14 +7,7 @@ from typing_extensions import Literal
 from ..._models import BaseModel
 from ..intel.attack_surface_report.issue_type import IssueType
 
-__all__ = ["InsightListResponse", "Issue", "IssuePayload"]
-
-
-class IssuePayload(BaseModel):
-    detection_method: Optional[str] = None
-    """Method used to detect insight"""
-
-    zone_tag: Optional[str] = None
+__all__ = ["InsightListResponse", "Issue"]
 
 
 class Issue(BaseModel):
@@ -26,7 +19,7 @@ class Issue(BaseModel):
 
     issue_type: Optional[IssueType] = None
 
-    payload: Optional[IssuePayload] = None
+    payload: Optional[object] = None
 
     resolve_link: Optional[str] = None
 

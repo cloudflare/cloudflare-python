@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import typing_extensions
 from typing import Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Literal
@@ -471,7 +470,6 @@ class ThreatEventsResource(SyncAPIResource):
             cast_to=ThreatEventEditResponse,
         )
 
-    @typing_extensions.deprecated("deprecated")
     def get(
         self,
         event_id: str,
@@ -484,10 +482,8 @@ class ThreatEventsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventGetResponse:
-        """This Method is deprecated.
-
-        Please use
-        /events/dataset/:dataset_id/events/:event_id instead.
+        """
+        Reads an event
 
         Args:
           account_id: Account ID.
@@ -870,7 +866,6 @@ class AsyncThreatEventsResource(AsyncAPIResource):
             cast_to=ThreatEventEditResponse,
         )
 
-    @typing_extensions.deprecated("deprecated")
     async def get(
         self,
         event_id: str,
@@ -883,10 +878,8 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ThreatEventGetResponse:
-        """This Method is deprecated.
-
-        Please use
-        /events/dataset/:dataset_id/events/:event_id instead.
+        """
+        Reads an event
 
         Args:
           account_id: Account ID.
@@ -933,10 +926,8 @@ class ThreatEventsResourceWithRawResponse:
         self.edit = to_raw_response_wrapper(
             threat_events.edit,
         )
-        self.get = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                threat_events.get,  # pyright: ignore[reportDeprecated],
-            )
+        self.get = to_raw_response_wrapper(
+            threat_events.get,
         )
 
     @cached_property
@@ -999,10 +990,8 @@ class AsyncThreatEventsResourceWithRawResponse:
         self.edit = async_to_raw_response_wrapper(
             threat_events.edit,
         )
-        self.get = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                threat_events.get,  # pyright: ignore[reportDeprecated],
-            )
+        self.get = async_to_raw_response_wrapper(
+            threat_events.get,
         )
 
     @cached_property
@@ -1065,10 +1054,8 @@ class ThreatEventsResourceWithStreamingResponse:
         self.edit = to_streamed_response_wrapper(
             threat_events.edit,
         )
-        self.get = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                threat_events.get,  # pyright: ignore[reportDeprecated],
-            )
+        self.get = to_streamed_response_wrapper(
+            threat_events.get,
         )
 
     @cached_property
@@ -1131,10 +1118,8 @@ class AsyncThreatEventsResourceWithStreamingResponse:
         self.edit = async_to_streamed_response_wrapper(
             threat_events.edit,
         )
-        self.get = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                threat_events.get,  # pyright: ignore[reportDeprecated],
-            )
+        self.get = async_to_streamed_response_wrapper(
+            threat_events.get,
         )
 
     @cached_property

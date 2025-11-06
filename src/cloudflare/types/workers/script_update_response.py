@@ -7,7 +7,7 @@ from typing_extensions import Literal
 from ..._models import BaseModel
 from .scripts.consumer_script import ConsumerScript
 
-__all__ = ["ScriptUpdateResponse", "NamedHandler", "Observability", "ObservabilityLogs", "Placement"]
+__all__ = ["ScriptUpdateResponse", "NamedHandler", "Placement"]
 
 
 class NamedHandler(BaseModel):
@@ -16,41 +16,6 @@ class NamedHandler(BaseModel):
 
     name: Optional[str] = None
     """The name of the export."""
-
-
-class ObservabilityLogs(BaseModel):
-    enabled: bool
-    """Whether logs are enabled for the Worker."""
-
-    invocation_logs: bool
-    """
-    Whether
-    [invocation logs](https://developers.cloudflare.com/workers/observability/logs/workers-logs/#invocation-logs)
-    are enabled for the Worker.
-    """
-
-    destinations: Optional[List[str]] = None
-    """A list of destinations where logs will be exported to."""
-
-    head_sampling_rate: Optional[float] = None
-    """The sampling rate for logs. From 0 to 1 (1 = 100%, 0.1 = 10%). Default is 1."""
-
-    persist: Optional[bool] = None
-    """Whether log persistence is enabled for the Worker."""
-
-
-class Observability(BaseModel):
-    enabled: bool
-    """Whether observability is enabled for the Worker."""
-
-    head_sampling_rate: Optional[float] = None
-    """The sampling rate for incoming requests.
-
-    From 0 to 1 (1 = 100%, 0.1 = 10%). Default is 1.
-    """
-
-    logs: Optional[ObservabilityLogs] = None
-    """Log settings for the Worker."""
 
 
 class Placement(BaseModel):
@@ -77,7 +42,7 @@ class ScriptUpdateResponse(BaseModel):
     startup_time_ms: int
 
     id: Optional[str] = None
-    """The name used to identify the script."""
+    """The id of the script in the Workers system. Usually the script name."""
 
     compatibility_date: Optional[str] = None
     """Date indicating targeted support in the Workers runtime.
@@ -95,9 +60,6 @@ class ScriptUpdateResponse(BaseModel):
 
     created_on: Optional[datetime] = None
     """When the script was created."""
-
-    entry_point: Optional[str] = None
-    """The entry point for the script."""
 
     etag: Optional[str] = None
     """Hashed script content, can be used in a If-None-Match header when updating."""
@@ -132,9 +94,6 @@ class ScriptUpdateResponse(BaseModel):
     entrypoints.
     """
 
-    observability: Optional[Observability] = None
-    """Observability settings for the Worker."""
-
     placement: Optional[Placement] = None
     """
     Configuration for
@@ -144,12 +103,6 @@ class ScriptUpdateResponse(BaseModel):
     placement_mode: Optional[Literal["smart"]] = None
 
     placement_status: Optional[Literal["SUCCESS", "UNSUPPORTED_APPLICATION", "INSUFFICIENT_INVOCATIONS"]] = None
-
-    tag: Optional[str] = None
-    """The immutable ID of the script."""
-
-    tags: Optional[List[str]] = None
-    """Tags associated with the Worker."""
 
     tail_consumers: Optional[List[ConsumerScript]] = None
     """List of Workers that will consume logs from the attached Worker."""

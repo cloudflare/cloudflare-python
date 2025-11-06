@@ -31,7 +31,7 @@ class TestTop:
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            limit=1,
+            limit=5,
             name=["main_series"],
             update_type=["ANNOUNCEMENT"],
         )
@@ -76,7 +76,7 @@ class TestAsyncTop:
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            limit=1,
+            limit=5,
             name=["main_series"],
             update_type=["ANNOUNCEMENT"],
         )

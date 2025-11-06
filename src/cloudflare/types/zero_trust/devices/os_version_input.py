@@ -25,8 +25,8 @@ class OSVersionInput(BaseModel):
     """Version of OS Distribution (linux only)."""
 
     os_version_extra: Optional[str] = None
-    """Additional operating system version details.
+    """Additional version data.
 
-    For Windows, the UBR (Update Build Revision). For Mac or iOS, the Product
-    Version Extra. For Linux, the distribution name and version.
+    For Mac or iOS, the Product Version Extra. For Linux, the kernel release
+    version. (Mac, iOS, and Linux only).
     """

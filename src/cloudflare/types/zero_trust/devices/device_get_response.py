@@ -96,17 +96,14 @@ class DeviceGetResponse(BaseModel):
     """The device operating system version number."""
 
     os_version_extra: Optional[str] = None
-    """Additional operating system version details.
+    """Additional operating system version data.
 
-    For Windows, the UBR (Update Build Revision). For Mac or iOS, the Product
-    Version Extra. For Linux, the distribution name and version.
+    For macOS or iOS, the Product Version Extra. For Linux, the kernel release
+    version.
     """
 
     public_ip: Optional[str] = None
-    """
-    **Deprecated**: IP information is provided by DEX - see
-    https://developers.cloudflare.com/api/resources/zero_trust/subresources/dex/subresources/fleet_status/subresources/devices/methods/list/
-    """
+    """The public IP address of the WARP client."""
 
     serial_number: Optional[str] = None
     """The device serial number."""

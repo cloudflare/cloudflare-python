@@ -5,7 +5,7 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["PrefixDeleteResponse", "Error", "ErrorSource", "Message", "MessageSource"]
+__all__ = ["PrefixDeleteResponse", "Error", "ErrorSource", "Message", "MessageSource", "ResultInfo"]
 
 
 class ErrorSource(BaseModel):
@@ -36,6 +36,20 @@ class Message(BaseModel):
     source: Optional[MessageSource] = None
 
 
+class ResultInfo(BaseModel):
+    count: Optional[float] = None
+    """Total number of results for the requested service."""
+
+    page: Optional[float] = None
+    """Current page within paginated list of results."""
+
+    per_page: Optional[float] = None
+    """Number of results per page of results."""
+
+    total_count: Optional[float] = None
+    """Total results available without any search parameters."""
+
+
 class PrefixDeleteResponse(BaseModel):
     errors: List[Error]
 
@@ -43,3 +57,5 @@ class PrefixDeleteResponse(BaseModel):
 
     success: Literal[True]
     """Whether the API call was successful."""
+
+    result_info: Optional[ResultInfo] = None
