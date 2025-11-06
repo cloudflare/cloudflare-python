@@ -22,6 +22,7 @@ __all__ = [
     "DeploymentConfigsPreviewEnvVarsPagesSecretTextEnvVar",
     "DeploymentConfigsPreviewHyperdriveBindings",
     "DeploymentConfigsPreviewKVNamespaces",
+    "DeploymentConfigsPreviewLimits",
     "DeploymentConfigsPreviewMTLSCertificates",
     "DeploymentConfigsPreviewPlacement",
     "DeploymentConfigsPreviewQueueProducers",
@@ -39,6 +40,7 @@ __all__ = [
     "DeploymentConfigsProductionEnvVarsPagesSecretTextEnvVar",
     "DeploymentConfigsProductionHyperdriveBindings",
     "DeploymentConfigsProductionKVNamespaces",
+    "DeploymentConfigsProductionLimits",
     "DeploymentConfigsProductionMTLSCertificates",
     "DeploymentConfigsProductionPlacement",
     "DeploymentConfigsProductionQueueProducers",
@@ -54,17 +56,17 @@ class ProjectCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
-    build_config: BuildConfig
-    """Configs for the project build process."""
-
-    deployment_configs: DeploymentConfigs
-    """Configs for deployments in a project."""
-
-    name: str
+    name: Required[str]
     """Name of the project."""
 
-    production_branch: str
+    production_branch: Required[str]
     """Production branch of the project. Used to identify production deployments."""
+
+    build_config: Optional[BuildConfig]
+    """Configs for the project build process."""
+
+    deployment_configs: Optional[DeploymentConfigs]
+    """Configs for deployments in a project."""
 
     source: Source
 
@@ -141,6 +143,11 @@ class DeploymentConfigsPreviewKVNamespaces(TypedDict, total=False):
     """ID of the KV namespace."""
 
 
+class DeploymentConfigsPreviewLimits(TypedDict, total=False):
+    cpu_ms: int
+    """CPU time limit in milliseconds."""
+
+
 class DeploymentConfigsPreviewMTLSCertificates(TypedDict, total=False):
     certificate_id: str
 
@@ -182,16 +189,22 @@ class DeploymentConfigsPreview(TypedDict, total=False):
     ai_bindings: Optional[Dict[str, Optional[DeploymentConfigsPreviewAIBindings]]]
     """Constellation bindings used for Pages Functions."""
 
+    always_use_latest_compatibility_date: bool
+    """Whether to always use the latest compatibility date for Pages Functions."""
+
     analytics_engine_datasets: Optional[Dict[str, Optional[DeploymentConfigsPreviewAnalyticsEngineDatasets]]]
     """Analytics Engine bindings used for Pages Functions."""
 
     browsers: Optional[Dict[str, Optional[DeploymentConfigsPreviewBrowsers]]]
     """Browser bindings used for Pages Functions."""
 
+    build_image_major_version: int
+    """The major version of the build image to use for Pages Functions."""
+
     compatibility_date: str
     """Compatibility date used for Pages Functions."""
 
-    compatibility_flags: SequenceNotStr[str]
+    compatibility_flags: Optional[SequenceNotStr[str]]
     """Compatibility flags used for Pages Functions."""
 
     d1_databases: Optional[Dict[str, Optional[DeploymentConfigsPreviewD1Databases]]]
@@ -200,14 +213,20 @@ class DeploymentConfigsPreview(TypedDict, total=False):
     durable_object_namespaces: Optional[Dict[str, Optional[DeploymentConfigsPreviewDurableObjectNamespaces]]]
     """Durable Object namespaces used for Pages Functions."""
 
-    env_vars: Dict[str, DeploymentConfigsPreviewEnvVars]
+    env_vars: Optional[Dict[str, Optional[DeploymentConfigsPreviewEnvVars]]]
     """Environment variables used for builds and Pages Functions."""
+
+    fail_open: bool
+    """Whether to fail open when the deployment config cannot be applied."""
 
     hyperdrive_bindings: Optional[Dict[str, Optional[DeploymentConfigsPreviewHyperdriveBindings]]]
     """Hyperdrive bindings used for Pages Functions."""
 
     kv_namespaces: Optional[Dict[str, Optional[DeploymentConfigsPreviewKVNamespaces]]]
     """KV namespaces used for Pages Functions."""
+
+    limits: Optional[DeploymentConfigsPreviewLimits]
+    """Limits for Pages Functions."""
 
     mtls_certificates: Optional[Dict[str, Optional[DeploymentConfigsPreviewMTLSCertificates]]]
     """mTLS bindings used for Pages Functions."""
@@ -224,8 +243,14 @@ class DeploymentConfigsPreview(TypedDict, total=False):
     services: Optional[Dict[str, Optional[DeploymentConfigsPreviewServices]]]
     """Services used for Pages Functions."""
 
+    usage_model: Literal["standard", "bundled", "unbound"]
+    """The usage model for Pages Functions."""
+
     vectorize_bindings: Optional[Dict[str, Optional[DeploymentConfigsPreviewVectorizeBindings]]]
     """Vectorize bindings used for Pages Functions."""
+
+    wrangler_config_hash: str
+    """Hash of the Wrangler configuration used for the deployment."""
 
 
 class DeploymentConfigsProductionAIBindings(TypedDict, total=False):
@@ -280,6 +305,11 @@ class DeploymentConfigsProductionKVNamespaces(TypedDict, total=False):
     """ID of the KV namespace."""
 
 
+class DeploymentConfigsProductionLimits(TypedDict, total=False):
+    cpu_ms: int
+    """CPU time limit in milliseconds."""
+
+
 class DeploymentConfigsProductionMTLSCertificates(TypedDict, total=False):
     certificate_id: str
 
@@ -321,16 +351,22 @@ class DeploymentConfigsProduction(TypedDict, total=False):
     ai_bindings: Optional[Dict[str, Optional[DeploymentConfigsProductionAIBindings]]]
     """Constellation bindings used for Pages Functions."""
 
+    always_use_latest_compatibility_date: bool
+    """Whether to always use the latest compatibility date for Pages Functions."""
+
     analytics_engine_datasets: Optional[Dict[str, Optional[DeploymentConfigsProductionAnalyticsEngineDatasets]]]
     """Analytics Engine bindings used for Pages Functions."""
 
     browsers: Optional[Dict[str, Optional[DeploymentConfigsProductionBrowsers]]]
     """Browser bindings used for Pages Functions."""
 
+    build_image_major_version: int
+    """The major version of the build image to use for Pages Functions."""
+
     compatibility_date: str
     """Compatibility date used for Pages Functions."""
 
-    compatibility_flags: SequenceNotStr[str]
+    compatibility_flags: Optional[SequenceNotStr[str]]
     """Compatibility flags used for Pages Functions."""
 
     d1_databases: Optional[Dict[str, Optional[DeploymentConfigsProductionD1Databases]]]
@@ -339,14 +375,20 @@ class DeploymentConfigsProduction(TypedDict, total=False):
     durable_object_namespaces: Optional[Dict[str, Optional[DeploymentConfigsProductionDurableObjectNamespaces]]]
     """Durable Object namespaces used for Pages Functions."""
 
-    env_vars: Dict[str, DeploymentConfigsProductionEnvVars]
+    env_vars: Optional[Dict[str, Optional[DeploymentConfigsProductionEnvVars]]]
     """Environment variables used for builds and Pages Functions."""
+
+    fail_open: bool
+    """Whether to fail open when the deployment config cannot be applied."""
 
     hyperdrive_bindings: Optional[Dict[str, Optional[DeploymentConfigsProductionHyperdriveBindings]]]
     """Hyperdrive bindings used for Pages Functions."""
 
     kv_namespaces: Optional[Dict[str, Optional[DeploymentConfigsProductionKVNamespaces]]]
     """KV namespaces used for Pages Functions."""
+
+    limits: Optional[DeploymentConfigsProductionLimits]
+    """Limits for Pages Functions."""
 
     mtls_certificates: Optional[Dict[str, Optional[DeploymentConfigsProductionMTLSCertificates]]]
     """mTLS bindings used for Pages Functions."""
@@ -363,43 +405,79 @@ class DeploymentConfigsProduction(TypedDict, total=False):
     services: Optional[Dict[str, Optional[DeploymentConfigsProductionServices]]]
     """Services used for Pages Functions."""
 
+    usage_model: Literal["standard", "bundled", "unbound"]
+    """The usage model for Pages Functions."""
+
     vectorize_bindings: Optional[Dict[str, Optional[DeploymentConfigsProductionVectorizeBindings]]]
     """Vectorize bindings used for Pages Functions."""
 
+    wrangler_config_hash: str
+    """Hash of the Wrangler configuration used for the deployment."""
+
 
 class DeploymentConfigs(TypedDict, total=False):
-    preview: DeploymentConfigsPreview
+    preview: Optional[DeploymentConfigsPreview]
     """Configs for preview deploys."""
 
-    production: DeploymentConfigsProduction
+    production: Optional[DeploymentConfigsProduction]
     """Configs for production deploys."""
 
 
 class SourceConfig(TypedDict, total=False):
     deployments_enabled: bool
+    """
+    Whether to enable automatic deployments when pushing to the source repository.
+    When disabled, no deployments (production or preview) will be triggered
+    automatically.
+    """
 
     owner: str
+    """The owner of the repository."""
 
     path_excludes: SequenceNotStr[str]
+    """A list of paths that should be excluded from triggering a preview deployment.
+
+    Wildcard syntax (`*`) is supported.
+    """
 
     path_includes: SequenceNotStr[str]
+    """A list of paths that should be watched to trigger a preview deployment.
+
+    Wildcard syntax (`*`) is supported.
+    """
 
     pr_comments_enabled: bool
+    """Whether to enable PR comments."""
 
     preview_branch_excludes: SequenceNotStr[str]
+    """A list of branches that should not trigger a preview deployment.
+
+    Wildcard syntax (`*`) is supported. Must be used with
+    `preview_deployment_setting` set to `custom`.
+    """
 
     preview_branch_includes: SequenceNotStr[str]
+    """A list of branches that should trigger a preview deployment.
+
+    Wildcard syntax (`*`) is supported. Must be used with
+    `preview_deployment_setting` set to `custom`.
+    """
 
     preview_deployment_setting: Literal["all", "none", "custom"]
+    """Controls whether commits to preview branches trigger a preview deployment."""
 
     production_branch: str
+    """The production branch of the repository."""
 
     production_deployments_enabled: bool
+    """Whether to trigger a production deployment on commits to the production branch."""
 
     repo_name: str
+    """The name of the repository."""
 
 
 class Source(TypedDict, total=False):
     config: SourceConfig
 
-    type: str
+    type: Literal["github", "gitlab"]
+    """The source control management provider."""
