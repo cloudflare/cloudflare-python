@@ -32,7 +32,7 @@ class TestDomain:
             date=[parse_date("2019-12-27")],
             format="JSON",
             include_top_locations=True,
-            limit=5,
+            limit=1,
             name=["main_series"],
             ranking_type="POPULAR",
         )
@@ -89,7 +89,7 @@ class TestAsyncDomain:
             date=[parse_date("2019-12-27")],
             format="JSON",
             include_top_locations=True,
-            limit=5,
+            limit=1,
             name=["main_series"],
             ranking_type="POPULAR",
         )

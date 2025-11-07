@@ -4,7 +4,8 @@ from __future__ import annotations
 
 import httpx
 
-from ...._types import Body, Query, Headers, NotGiven, not_given
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -14,6 +15,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
+from ....types.cloudforce_one.threat_events import target_industry_list_params
 from ....types.cloudforce_one.threat_events.target_industry_list_response import TargetIndustryListResponse
 
 __all__ = ["TargetIndustriesResource", "AsyncTargetIndustriesResource"]
@@ -43,6 +45,7 @@ class TargetIndustriesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        dataset_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -51,10 +54,13 @@ class TargetIndustriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TargetIndustryListResponse:
         """
-        Lists all target industries
+        Lists target industries across multiple datasets
 
         Args:
           account_id: Account ID.
+
+          dataset_ids: Array of dataset IDs to query target industries from. If not provided, returns
+              all target industries from Event tables across all datasets.
 
           extra_headers: Send extra headers
 
@@ -69,7 +75,13 @@ class TargetIndustriesResource(SyncAPIResource):
         return self._get(
             f"/accounts/{account_id}/cloudforce-one/events/targetIndustries",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {"dataset_ids": dataset_ids}, target_industry_list_params.TargetIndustryListParams
+                ),
             ),
             cast_to=TargetIndustryListResponse,
         )
@@ -99,6 +111,7 @@ class AsyncTargetIndustriesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        dataset_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -107,10 +120,13 @@ class AsyncTargetIndustriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TargetIndustryListResponse:
         """
-        Lists all target industries
+        Lists target industries across multiple datasets
 
         Args:
           account_id: Account ID.
+
+          dataset_ids: Array of dataset IDs to query target industries from. If not provided, returns
+              all target industries from Event tables across all datasets.
 
           extra_headers: Send extra headers
 
@@ -125,7 +141,13 @@ class AsyncTargetIndustriesResource(AsyncAPIResource):
         return await self._get(
             f"/accounts/{account_id}/cloudforce-one/events/targetIndustries",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"dataset_ids": dataset_ids}, target_industry_list_params.TargetIndustryListParams
+                ),
             ),
             cast_to=TargetIndustryListResponse,
         )

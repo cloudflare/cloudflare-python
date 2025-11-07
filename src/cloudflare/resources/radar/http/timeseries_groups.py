@@ -67,7 +67,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
         """
         return TimeseriesGroupsResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar HTTP Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/timeseries_groups_v2/) instead."
+    )
     def bot_class(
         self,
         *,
@@ -191,7 +193,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupBotClassResponse], ResultWrapper[TimeseriesGroupBotClassResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar HTTP Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/timeseries_groups_v2/) instead."
+    )
     def browser(
         self,
         *,
@@ -324,7 +328,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupBrowserResponse], ResultWrapper[TimeseriesGroupBrowserResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar HTTP Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/timeseries_groups_v2/) instead."
+    )
     def browser_family(
         self,
         *,
@@ -455,7 +461,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
             ),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar HTTP Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/timeseries_groups_v2/) instead."
+    )
     def device_type(
         self,
         *,
@@ -578,7 +586,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupDeviceTypeResponse], ResultWrapper[TimeseriesGroupDeviceTypeResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar HTTP Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/timeseries_groups_v2/) instead."
+    )
     def http_protocol(
         self,
         *,
@@ -703,7 +713,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupHTTPProtocolResponse], ResultWrapper[TimeseriesGroupHTTPProtocolResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar HTTP Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/timeseries_groups_v2/) instead."
+    )
     def http_version(
         self,
         *,
@@ -826,7 +838,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupHTTPVersionResponse], ResultWrapper[TimeseriesGroupHTTPVersionResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar HTTP Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/timeseries_groups_v2/) instead."
+    )
     def ip_version(
         self,
         *,
@@ -949,7 +963,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupIPVersionResponse], ResultWrapper[TimeseriesGroupIPVersionResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar HTTP Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/timeseries_groups_v2/) instead."
+    )
     def os(
         self,
         *,
@@ -1072,7 +1088,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupOSResponse], ResultWrapper[TimeseriesGroupOSResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar HTTP Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/timeseries_groups_v2/) instead."
+    )
     def post_quantum(
         self,
         *,
@@ -1199,7 +1217,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupPostQuantumResponse], ResultWrapper[TimeseriesGroupPostQuantumResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar HTTP Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/timeseries_groups_v2/) instead."
+    )
     def tls_version(
         self,
         *,
@@ -1343,7 +1363,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         """
         return AsyncTimeseriesGroupsResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar HTTP Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/timeseries_groups_v2/) instead."
+    )
     async def bot_class(
         self,
         *,
@@ -1467,7 +1489,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupBotClassResponse], ResultWrapper[TimeseriesGroupBotClassResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar HTTP Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/timeseries_groups_v2/) instead."
+    )
     async def browser(
         self,
         *,
@@ -1600,7 +1624,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupBrowserResponse], ResultWrapper[TimeseriesGroupBrowserResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar HTTP Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/timeseries_groups_v2/) instead."
+    )
     async def browser_family(
         self,
         *,
@@ -1731,7 +1757,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             ),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar HTTP Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/timeseries_groups_v2/) instead."
+    )
     async def device_type(
         self,
         *,
@@ -1854,7 +1882,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupDeviceTypeResponse], ResultWrapper[TimeseriesGroupDeviceTypeResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar HTTP Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/timeseries_groups_v2/) instead."
+    )
     async def http_protocol(
         self,
         *,
@@ -1979,7 +2009,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupHTTPProtocolResponse], ResultWrapper[TimeseriesGroupHTTPProtocolResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar HTTP Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/timeseries_groups_v2/) instead."
+    )
     async def http_version(
         self,
         *,
@@ -2102,7 +2134,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupHTTPVersionResponse], ResultWrapper[TimeseriesGroupHTTPVersionResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar HTTP Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/timeseries_groups_v2/) instead."
+    )
     async def ip_version(
         self,
         *,
@@ -2225,7 +2259,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupIPVersionResponse], ResultWrapper[TimeseriesGroupIPVersionResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar HTTP Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/timeseries_groups_v2/) instead."
+    )
     async def os(
         self,
         *,
@@ -2348,7 +2384,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupOSResponse], ResultWrapper[TimeseriesGroupOSResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar HTTP Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/timeseries_groups_v2/) instead."
+    )
     async def post_quantum(
         self,
         *,
@@ -2475,7 +2513,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupPostQuantumResponse], ResultWrapper[TimeseriesGroupPostQuantumResponse]),
         )
 
-    @typing_extensions.deprecated("deprecated")
+    @typing_extensions.deprecated(
+        "Use [Radar HTTP Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/http/methods/timeseries_groups_v2/) instead."
+    )
     async def tls_version(
         self,
         *,

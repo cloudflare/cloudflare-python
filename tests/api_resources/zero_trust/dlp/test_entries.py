@@ -30,7 +30,6 @@ class TestEntries:
             enabled=True,
             name="name",
             pattern={"regex": "regex"},
-            profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(Optional[EntryCreateResponse], entry, path=["response"])
 
@@ -55,7 +54,6 @@ class TestEntries:
             enabled=True,
             name="name",
             pattern={"regex": "regex"},
-            profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
         assert response.is_closed is True
@@ -70,7 +68,6 @@ class TestEntries:
             enabled=True,
             name="name",
             pattern={"regex": "regex"},
-            profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -88,7 +85,6 @@ class TestEntries:
                 enabled=True,
                 name="name",
                 pattern={"regex": "regex"},
-                profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -457,7 +453,6 @@ class TestAsyncEntries:
             enabled=True,
             name="name",
             pattern={"regex": "regex"},
-            profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(Optional[EntryCreateResponse], entry, path=["response"])
 
@@ -482,7 +477,6 @@ class TestAsyncEntries:
             enabled=True,
             name="name",
             pattern={"regex": "regex"},
-            profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
         assert response.is_closed is True
@@ -497,7 +491,6 @@ class TestAsyncEntries:
             enabled=True,
             name="name",
             pattern={"regex": "regex"},
-            profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -515,7 +508,6 @@ class TestAsyncEntries:
                 enabled=True,
                 name="name",
                 pattern={"regex": "regex"},
-                profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")

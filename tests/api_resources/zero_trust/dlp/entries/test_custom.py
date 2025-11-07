@@ -30,7 +30,6 @@ class TestCustom:
             enabled=True,
             name="name",
             pattern={"regex": "regex"},
-            profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(Optional[CustomCreateResponse], custom, path=["response"])
 
@@ -55,7 +54,6 @@ class TestCustom:
             enabled=True,
             name="name",
             pattern={"regex": "regex"},
-            profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
         assert response.is_closed is True
@@ -70,7 +68,6 @@ class TestCustom:
             enabled=True,
             name="name",
             pattern={"regex": "regex"},
-            profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -88,7 +85,6 @@ class TestCustom:
                 enabled=True,
                 name="name",
                 pattern={"regex": "regex"},
-                profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
     @pytest.mark.skip(reason="TODO: investigate 422 error in prism test")
@@ -320,7 +316,6 @@ class TestAsyncCustom:
             enabled=True,
             name="name",
             pattern={"regex": "regex"},
-            profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(Optional[CustomCreateResponse], custom, path=["response"])
 
@@ -345,7 +340,6 @@ class TestAsyncCustom:
             enabled=True,
             name="name",
             pattern={"regex": "regex"},
-            profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
         assert response.is_closed is True
@@ -360,7 +354,6 @@ class TestAsyncCustom:
             enabled=True,
             name="name",
             pattern={"regex": "regex"},
-            profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -378,7 +371,6 @@ class TestAsyncCustom:
                 enabled=True,
                 name="name",
                 pattern={"regex": "regex"},
-                profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
     @pytest.mark.skip(reason="TODO: investigate 422 error in prism test")

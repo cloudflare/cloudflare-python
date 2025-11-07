@@ -51,11 +51,11 @@ class TestTimeseriesGroups:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                nodata=True,
-                protocol="UDP",
-                query_type="A",
-                response_code="NOERROR",
-                tld=["string"],
+                nodata=[True],
+                protocol=["UDP"],
+                query_type=["A"],
+                response_code=["NOERROR"],
+                tld=["com"],
             )
 
         assert_matches_type(TimeseriesGroupCacheHitResponse, timeseries_group, path=["response"])
@@ -102,11 +102,11 @@ class TestTimeseriesGroups:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                nodata=True,
-                protocol="UDP",
-                query_type="A",
-                response_code="NOERROR",
-                tld=["string"],
+                nodata=[True],
+                protocol=["UDP"],
+                query_type=["A"],
+                response_code=["NOERROR"],
+                tld=["com"],
             )
 
         assert_matches_type(TimeseriesGroupDNSSECResponse, timeseries_group, path=["response"])
@@ -153,11 +153,11 @@ class TestTimeseriesGroups:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                nodata=True,
-                protocol="UDP",
-                query_type="A",
-                response_code="NOERROR",
-                tld=["string"],
+                nodata=[True],
+                protocol=["UDP"],
+                query_type=["A"],
+                response_code=["NOERROR"],
+                tld=["com"],
             )
 
         assert_matches_type(TimeseriesGroupDNSSECAwareResponse, timeseries_group, path=["response"])
@@ -204,11 +204,11 @@ class TestTimeseriesGroups:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                nodata=True,
-                protocol="UDP",
-                query_type="A",
-                response_code="NOERROR",
-                tld=["string"],
+                nodata=[True],
+                protocol=["UDP"],
+                query_type=["A"],
+                response_code=["NOERROR"],
+                tld=["com"],
             )
 
         assert_matches_type(TimeseriesGroupDNSSECE2EResponse, timeseries_group, path=["response"])
@@ -255,11 +255,11 @@ class TestTimeseriesGroups:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                nodata=True,
-                protocol="UDP",
-                query_type="A",
-                response_code="NOERROR",
-                tld=["string"],
+                nodata=[True],
+                protocol=["UDP"],
+                query_type=["A"],
+                response_code=["NOERROR"],
+                tld=["com"],
             )
 
         assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
@@ -306,11 +306,11 @@ class TestTimeseriesGroups:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                nodata=True,
-                protocol="UDP",
-                query_type="A",
-                response_code="NOERROR",
-                tld=["string"],
+                nodata=[True],
+                protocol=["UDP"],
+                query_type=["A"],
+                response_code=["NOERROR"],
+                tld=["com"],
             )
 
         assert_matches_type(TimeseriesGroupMatchingAnswerResponse, timeseries_group, path=["response"])
@@ -357,10 +357,10 @@ class TestTimeseriesGroups:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                nodata=True,
-                query_type="A",
-                response_code="NOERROR",
-                tld=["string"],
+                nodata=[True],
+                query_type=["A"],
+                response_code=["NOERROR"],
+                tld=["com"],
             )
 
         assert_matches_type(TimeseriesGroupProtocolResponse, timeseries_group, path=["response"])
@@ -408,10 +408,10 @@ class TestTimeseriesGroups:
                 limit_per_group=10,
                 location=["string"],
                 name=["main_series"],
-                nodata=True,
-                protocol="UDP",
-                response_code="NOERROR",
-                tld=["string"],
+                nodata=[True],
+                protocol=["UDP"],
+                response_code=["NOERROR"],
+                tld=["com"],
             )
 
         assert_matches_type(TimeseriesGroupQueryTypeResponse, timeseries_group, path=["response"])
@@ -459,10 +459,10 @@ class TestTimeseriesGroups:
                 limit_per_group=10,
                 location=["string"],
                 name=["main_series"],
-                nodata=True,
-                protocol="UDP",
-                query_type="A",
-                tld=["string"],
+                nodata=[True],
+                protocol=["UDP"],
+                query_type=["A"],
+                tld=["com"],
             )
 
         assert_matches_type(TimeseriesGroupResponseCodeResponse, timeseries_group, path=["response"])
@@ -509,11 +509,11 @@ class TestTimeseriesGroups:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                nodata=True,
-                protocol="UDP",
-                query_type="A",
-                response_code="NOERROR",
-                tld=["string"],
+                nodata=[True],
+                protocol=["UDP"],
+                query_type=["A"],
+                response_code=["NOERROR"],
+                tld=["com"],
             )
 
         assert_matches_type(TimeseriesGroupResponseTTLResponse, timeseries_group, path=["response"])
@@ -566,11 +566,11 @@ class TestAsyncTimeseriesGroups:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                nodata=True,
-                protocol="UDP",
-                query_type="A",
-                response_code="NOERROR",
-                tld=["string"],
+                nodata=[True],
+                protocol=["UDP"],
+                query_type=["A"],
+                response_code=["NOERROR"],
+                tld=["com"],
             )
 
         assert_matches_type(TimeseriesGroupCacheHitResponse, timeseries_group, path=["response"])
@@ -617,11 +617,11 @@ class TestAsyncTimeseriesGroups:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                nodata=True,
-                protocol="UDP",
-                query_type="A",
-                response_code="NOERROR",
-                tld=["string"],
+                nodata=[True],
+                protocol=["UDP"],
+                query_type=["A"],
+                response_code=["NOERROR"],
+                tld=["com"],
             )
 
         assert_matches_type(TimeseriesGroupDNSSECResponse, timeseries_group, path=["response"])
@@ -668,11 +668,11 @@ class TestAsyncTimeseriesGroups:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                nodata=True,
-                protocol="UDP",
-                query_type="A",
-                response_code="NOERROR",
-                tld=["string"],
+                nodata=[True],
+                protocol=["UDP"],
+                query_type=["A"],
+                response_code=["NOERROR"],
+                tld=["com"],
             )
 
         assert_matches_type(TimeseriesGroupDNSSECAwareResponse, timeseries_group, path=["response"])
@@ -719,11 +719,11 @@ class TestAsyncTimeseriesGroups:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                nodata=True,
-                protocol="UDP",
-                query_type="A",
-                response_code="NOERROR",
-                tld=["string"],
+                nodata=[True],
+                protocol=["UDP"],
+                query_type=["A"],
+                response_code=["NOERROR"],
+                tld=["com"],
             )
 
         assert_matches_type(TimeseriesGroupDNSSECE2EResponse, timeseries_group, path=["response"])
@@ -770,11 +770,11 @@ class TestAsyncTimeseriesGroups:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                nodata=True,
-                protocol="UDP",
-                query_type="A",
-                response_code="NOERROR",
-                tld=["string"],
+                nodata=[True],
+                protocol=["UDP"],
+                query_type=["A"],
+                response_code=["NOERROR"],
+                tld=["com"],
             )
 
         assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
@@ -821,11 +821,11 @@ class TestAsyncTimeseriesGroups:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                nodata=True,
-                protocol="UDP",
-                query_type="A",
-                response_code="NOERROR",
-                tld=["string"],
+                nodata=[True],
+                protocol=["UDP"],
+                query_type=["A"],
+                response_code=["NOERROR"],
+                tld=["com"],
             )
 
         assert_matches_type(TimeseriesGroupMatchingAnswerResponse, timeseries_group, path=["response"])
@@ -872,10 +872,10 @@ class TestAsyncTimeseriesGroups:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                nodata=True,
-                query_type="A",
-                response_code="NOERROR",
-                tld=["string"],
+                nodata=[True],
+                query_type=["A"],
+                response_code=["NOERROR"],
+                tld=["com"],
             )
 
         assert_matches_type(TimeseriesGroupProtocolResponse, timeseries_group, path=["response"])
@@ -923,10 +923,10 @@ class TestAsyncTimeseriesGroups:
                 limit_per_group=10,
                 location=["string"],
                 name=["main_series"],
-                nodata=True,
-                protocol="UDP",
-                response_code="NOERROR",
-                tld=["string"],
+                nodata=[True],
+                protocol=["UDP"],
+                response_code=["NOERROR"],
+                tld=["com"],
             )
 
         assert_matches_type(TimeseriesGroupQueryTypeResponse, timeseries_group, path=["response"])
@@ -974,10 +974,10 @@ class TestAsyncTimeseriesGroups:
                 limit_per_group=10,
                 location=["string"],
                 name=["main_series"],
-                nodata=True,
-                protocol="UDP",
-                query_type="A",
-                tld=["string"],
+                nodata=[True],
+                protocol=["UDP"],
+                query_type=["A"],
+                tld=["com"],
             )
 
         assert_matches_type(TimeseriesGroupResponseCodeResponse, timeseries_group, path=["response"])
@@ -1024,11 +1024,11 @@ class TestAsyncTimeseriesGroups:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                nodata=True,
-                protocol="UDP",
-                query_type="A",
-                response_code="NOERROR",
-                tld=["string"],
+                nodata=[True],
+                protocol=["UDP"],
+                query_type=["A"],
+                response_code=["NOERROR"],
+                tld=["com"],
             )
 
         assert_matches_type(TimeseriesGroupResponseTTLResponse, timeseries_group, path=["response"])

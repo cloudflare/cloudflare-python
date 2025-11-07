@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Union, cast
+from typing import List, Type, Union, Iterable, Optional, cast
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -51,15 +51,146 @@ class TopResource(SyncAPIResource):
         self,
         *,
         asn: SequenceNotStr[str] | Omit = omit,
+        cache_hit: Iterable[bool] | Omit = omit,
         continent: SequenceNotStr[str] | Omit = omit,
         date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         date_range: SequenceNotStr[str] | Omit = omit,
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dnssec: List[Literal["INVALID", "INSECURE", "SECURE", "OTHER"]] | Omit = omit,
+        dnssec_aware: List[Literal["SUPPORTED", "NOT_SUPPORTED"]] | Omit = omit,
+        dnssec_e2e: Iterable[bool] | Omit = omit,
         domain: SequenceNotStr[str] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
         limit: int | Omit = omit,
         location: SequenceNotStr[str] | Omit = omit,
+        matching_answer: Iterable[bool] | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
+        nodata: Iterable[bool] | Omit = omit,
+        protocol: List[Literal["UDP", "TCP", "HTTPS", "TLS"]] | Omit = omit,
+        query_type: List[
+            Optional[
+                Literal[
+                    "A",
+                    "AAAA",
+                    "A6",
+                    "AFSDB",
+                    "ANY",
+                    "APL",
+                    "ATMA",
+                    "AXFR",
+                    "CAA",
+                    "CDNSKEY",
+                    "CDS",
+                    "CERT",
+                    "CNAME",
+                    "CSYNC",
+                    "DHCID",
+                    "DLV",
+                    "DNAME",
+                    "DNSKEY",
+                    "DOA",
+                    "DS",
+                    "EID",
+                    "EUI48",
+                    "EUI64",
+                    "GPOS",
+                    "GID",
+                    "HINFO",
+                    "HIP",
+                    "HTTPS",
+                    "IPSECKEY",
+                    "ISDN",
+                    "IXFR",
+                    "KEY",
+                    "KX",
+                    "L32",
+                    "L64",
+                    "LOC",
+                    "LP",
+                    "MAILA",
+                    "MAILB",
+                    "MB",
+                    "MD",
+                    "MF",
+                    "MG",
+                    "MINFO",
+                    "MR",
+                    "MX",
+                    "NAPTR",
+                    "NB",
+                    "NBSTAT",
+                    "NID",
+                    "NIMLOC",
+                    "NINFO",
+                    "NS",
+                    "NSAP",
+                    "NSEC",
+                    "NSEC3",
+                    "NSEC3PARAM",
+                    "NULL",
+                    "NXT",
+                    "OPENPGPKEY",
+                    "OPT",
+                    "PTR",
+                    "PX",
+                    "RKEY",
+                    "RP",
+                    "RRSIG",
+                    "RT",
+                    "SIG",
+                    "SINK",
+                    "SMIMEA",
+                    "SOA",
+                    "SPF",
+                    "SRV",
+                    "SSHFP",
+                    "SVCB",
+                    "TA",
+                    "TALINK",
+                    "TKEY",
+                    "TLSA",
+                    "TSIG",
+                    "TXT",
+                    "UINFO",
+                    "UID",
+                    "UNSPEC",
+                    "URI",
+                    "WKS",
+                    "X25",
+                    "ZONEMD",
+                ]
+            ]
+        ]
+        | Omit = omit,
+        response_code: List[
+            Literal[
+                "NOERROR",
+                "FORMERR",
+                "SERVFAIL",
+                "NXDOMAIN",
+                "NOTIMP",
+                "REFUSED",
+                "YXDOMAIN",
+                "YXRRSET",
+                "NXRRSET",
+                "NOTAUTH",
+                "NOTZONE",
+                "BADSIG",
+                "BADKEY",
+                "BADTIME",
+                "BADMODE",
+                "BADNAME",
+                "BADALG",
+                "BADTRUNC",
+                "BADCOOKIE",
+            ]
+        ]
+        | Omit = omit,
+        response_ttl: List[
+            Literal["LTE_1M", "GT_1M_LTE_5M", "GT_5M_LTE_15M", "GT_15M_LTE_1H", "GT_1H_LTE_1D", "GT_1D_LTE_1W", "GT_1W"]
+        ]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -77,6 +208,8 @@ class TopResource(SyncAPIResource):
               results. For example, `-174, 3356` excludes results from AS174, but includes
               results from AS3356.
 
+          cache_hit: Filters results based on cache status.
+
           continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
               Prefix with `-` to exclude continents from results. For example, `-EU,NA`
               excludes results from EU, but includes results from NA.
@@ -89,9 +222,17 @@ class TopResource(SyncAPIResource):
 
           date_start: Start of the date range.
 
+          dnssec: Filters results based on DNSSEC (DNS Security Extensions) support.
+
+          dnssec_aware: Filters results based on DNSSEC (DNS Security Extensions) client awareness.
+
+          dnssec_e2e: Filters results based on DNSSEC-validated answers by end-to-end security status.
+
           domain: Filters results by domain name.
 
           format: Format in which results will be returned.
+
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
           limit: Limits the number of objects returned in the response.
 
@@ -99,7 +240,19 @@ class TopResource(SyncAPIResource):
               Prefix with `-` to exclude locations from results. For example, `-US,PT`
               excludes results from the US, but includes results from PT.
 
+          matching_answer: Filters results based on whether the queries have a matching answer.
+
           name: Array of names used to label the series in the response.
+
+          nodata: Specifies whether the response includes empty DNS responses (NODATA).
+
+          protocol: Filters results by DNS transport protocol.
+
+          query_type: Filters results by DNS query type.
+
+          response_code: Filters results by DNS response code.
+
+          response_ttl: Filters results by DNS response TTL.
 
           extra_headers: Send extra headers
 
@@ -119,15 +272,26 @@ class TopResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "asn": asn,
+                        "cache_hit": cache_hit,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
+                        "dnssec": dnssec,
+                        "dnssec_aware": dnssec_aware,
+                        "dnssec_e2e": dnssec_e2e,
                         "domain": domain,
                         "format": format,
+                        "ip_version": ip_version,
                         "limit": limit,
                         "location": location,
+                        "matching_answer": matching_answer,
                         "name": name,
+                        "nodata": nodata,
+                        "protocol": protocol,
+                        "query_type": query_type,
+                        "response_code": response_code,
+                        "response_ttl": response_ttl,
                     },
                     top_ases_params.TopAsesParams,
                 ),
@@ -140,15 +304,147 @@ class TopResource(SyncAPIResource):
         self,
         *,
         asn: SequenceNotStr[str] | Omit = omit,
+        cache_hit: Iterable[bool] | Omit = omit,
         continent: SequenceNotStr[str] | Omit = omit,
         date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         date_range: SequenceNotStr[str] | Omit = omit,
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dnssec: List[Literal["INVALID", "INSECURE", "SECURE", "OTHER"]] | Omit = omit,
+        dnssec_aware: List[Literal["SUPPORTED", "NOT_SUPPORTED"]] | Omit = omit,
+        dnssec_e2e: Iterable[bool] | Omit = omit,
         domain: SequenceNotStr[str] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
         limit: int | Omit = omit,
         location: SequenceNotStr[str] | Omit = omit,
+        matching_answer: Iterable[bool] | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
+        nodata: Iterable[bool] | Omit = omit,
+        protocol: List[Literal["UDP", "TCP", "HTTPS", "TLS"]] | Omit = omit,
+        query_type: List[
+            Optional[
+                Literal[
+                    "A",
+                    "AAAA",
+                    "A6",
+                    "AFSDB",
+                    "ANY",
+                    "APL",
+                    "ATMA",
+                    "AXFR",
+                    "CAA",
+                    "CDNSKEY",
+                    "CDS",
+                    "CERT",
+                    "CNAME",
+                    "CSYNC",
+                    "DHCID",
+                    "DLV",
+                    "DNAME",
+                    "DNSKEY",
+                    "DOA",
+                    "DS",
+                    "EID",
+                    "EUI48",
+                    "EUI64",
+                    "GPOS",
+                    "GID",
+                    "HINFO",
+                    "HIP",
+                    "HTTPS",
+                    "IPSECKEY",
+                    "ISDN",
+                    "IXFR",
+                    "KEY",
+                    "KX",
+                    "L32",
+                    "L64",
+                    "LOC",
+                    "LP",
+                    "MAILA",
+                    "MAILB",
+                    "MB",
+                    "MD",
+                    "MF",
+                    "MG",
+                    "MINFO",
+                    "MR",
+                    "MX",
+                    "NAPTR",
+                    "NB",
+                    "NBSTAT",
+                    "NID",
+                    "NIMLOC",
+                    "NINFO",
+                    "NS",
+                    "NSAP",
+                    "NSEC",
+                    "NSEC3",
+                    "NSEC3PARAM",
+                    "NULL",
+                    "NXT",
+                    "OPENPGPKEY",
+                    "OPT",
+                    "PTR",
+                    "PX",
+                    "RKEY",
+                    "RP",
+                    "RRSIG",
+                    "RT",
+                    "SIG",
+                    "SINK",
+                    "SMIMEA",
+                    "SOA",
+                    "SPF",
+                    "SRV",
+                    "SSHFP",
+                    "SVCB",
+                    "TA",
+                    "TALINK",
+                    "TKEY",
+                    "TLSA",
+                    "TSIG",
+                    "TXT",
+                    "UINFO",
+                    "UID",
+                    "UNSPEC",
+                    "URI",
+                    "WKS",
+                    "X25",
+                    "ZONEMD",
+                ]
+            ]
+        ]
+        | Omit = omit,
+        response_code: List[
+            Literal[
+                "NOERROR",
+                "FORMERR",
+                "SERVFAIL",
+                "NXDOMAIN",
+                "NOTIMP",
+                "REFUSED",
+                "YXDOMAIN",
+                "YXRRSET",
+                "NXRRSET",
+                "NOTAUTH",
+                "NOTZONE",
+                "BADSIG",
+                "BADKEY",
+                "BADTIME",
+                "BADMODE",
+                "BADNAME",
+                "BADALG",
+                "BADTRUNC",
+                "BADCOOKIE",
+            ]
+        ]
+        | Omit = omit,
+        response_ttl: List[
+            Literal["LTE_1M", "GT_1M_LTE_5M", "GT_5M_LTE_15M", "GT_15M_LTE_1H", "GT_1H_LTE_1D", "GT_1D_LTE_1W", "GT_1W"]
+        ]
+        | Omit = omit,
+        tld: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -165,6 +461,8 @@ class TopResource(SyncAPIResource):
               results. For example, `-174, 3356` excludes results from AS174, but includes
               results from AS3356.
 
+          cache_hit: Filters results based on cache status.
+
           continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
               Prefix with `-` to exclude continents from results. For example, `-EU,NA`
               excludes results from EU, but includes results from NA.
@@ -177,9 +475,17 @@ class TopResource(SyncAPIResource):
 
           date_start: Start of the date range.
 
+          dnssec: Filters results based on DNSSEC (DNS Security Extensions) support.
+
+          dnssec_aware: Filters results based on DNSSEC (DNS Security Extensions) client awareness.
+
+          dnssec_e2e: Filters results based on DNSSEC-validated answers by end-to-end security status.
+
           domain: Filters results by domain name.
 
           format: Format in which results will be returned.
+
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
           limit: Limits the number of objects returned in the response.
 
@@ -187,7 +493,21 @@ class TopResource(SyncAPIResource):
               Prefix with `-` to exclude locations from results. For example, `-US,PT`
               excludes results from the US, but includes results from PT.
 
+          matching_answer: Filters results based on whether the queries have a matching answer.
+
           name: Array of names used to label the series in the response.
+
+          nodata: Specifies whether the response includes empty DNS responses (NODATA).
+
+          protocol: Filters results by DNS transport protocol.
+
+          query_type: Filters results by DNS query type.
+
+          response_code: Filters results by DNS response code.
+
+          response_ttl: Filters results by DNS response TTL.
+
+          tld: Filters results by top-level domain.
 
           extra_headers: Send extra headers
 
@@ -207,15 +527,27 @@ class TopResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "asn": asn,
+                        "cache_hit": cache_hit,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
+                        "dnssec": dnssec,
+                        "dnssec_aware": dnssec_aware,
+                        "dnssec_e2e": dnssec_e2e,
                         "domain": domain,
                         "format": format,
+                        "ip_version": ip_version,
                         "limit": limit,
                         "location": location,
+                        "matching_answer": matching_answer,
                         "name": name,
+                        "nodata": nodata,
+                        "protocol": protocol,
+                        "query_type": query_type,
+                        "response_code": response_code,
+                        "response_ttl": response_ttl,
+                        "tld": tld,
                     },
                     top_locations_params.TopLocationsParams,
                 ),
@@ -249,15 +581,146 @@ class AsyncTopResource(AsyncAPIResource):
         self,
         *,
         asn: SequenceNotStr[str] | Omit = omit,
+        cache_hit: Iterable[bool] | Omit = omit,
         continent: SequenceNotStr[str] | Omit = omit,
         date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         date_range: SequenceNotStr[str] | Omit = omit,
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dnssec: List[Literal["INVALID", "INSECURE", "SECURE", "OTHER"]] | Omit = omit,
+        dnssec_aware: List[Literal["SUPPORTED", "NOT_SUPPORTED"]] | Omit = omit,
+        dnssec_e2e: Iterable[bool] | Omit = omit,
         domain: SequenceNotStr[str] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
         limit: int | Omit = omit,
         location: SequenceNotStr[str] | Omit = omit,
+        matching_answer: Iterable[bool] | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
+        nodata: Iterable[bool] | Omit = omit,
+        protocol: List[Literal["UDP", "TCP", "HTTPS", "TLS"]] | Omit = omit,
+        query_type: List[
+            Optional[
+                Literal[
+                    "A",
+                    "AAAA",
+                    "A6",
+                    "AFSDB",
+                    "ANY",
+                    "APL",
+                    "ATMA",
+                    "AXFR",
+                    "CAA",
+                    "CDNSKEY",
+                    "CDS",
+                    "CERT",
+                    "CNAME",
+                    "CSYNC",
+                    "DHCID",
+                    "DLV",
+                    "DNAME",
+                    "DNSKEY",
+                    "DOA",
+                    "DS",
+                    "EID",
+                    "EUI48",
+                    "EUI64",
+                    "GPOS",
+                    "GID",
+                    "HINFO",
+                    "HIP",
+                    "HTTPS",
+                    "IPSECKEY",
+                    "ISDN",
+                    "IXFR",
+                    "KEY",
+                    "KX",
+                    "L32",
+                    "L64",
+                    "LOC",
+                    "LP",
+                    "MAILA",
+                    "MAILB",
+                    "MB",
+                    "MD",
+                    "MF",
+                    "MG",
+                    "MINFO",
+                    "MR",
+                    "MX",
+                    "NAPTR",
+                    "NB",
+                    "NBSTAT",
+                    "NID",
+                    "NIMLOC",
+                    "NINFO",
+                    "NS",
+                    "NSAP",
+                    "NSEC",
+                    "NSEC3",
+                    "NSEC3PARAM",
+                    "NULL",
+                    "NXT",
+                    "OPENPGPKEY",
+                    "OPT",
+                    "PTR",
+                    "PX",
+                    "RKEY",
+                    "RP",
+                    "RRSIG",
+                    "RT",
+                    "SIG",
+                    "SINK",
+                    "SMIMEA",
+                    "SOA",
+                    "SPF",
+                    "SRV",
+                    "SSHFP",
+                    "SVCB",
+                    "TA",
+                    "TALINK",
+                    "TKEY",
+                    "TLSA",
+                    "TSIG",
+                    "TXT",
+                    "UINFO",
+                    "UID",
+                    "UNSPEC",
+                    "URI",
+                    "WKS",
+                    "X25",
+                    "ZONEMD",
+                ]
+            ]
+        ]
+        | Omit = omit,
+        response_code: List[
+            Literal[
+                "NOERROR",
+                "FORMERR",
+                "SERVFAIL",
+                "NXDOMAIN",
+                "NOTIMP",
+                "REFUSED",
+                "YXDOMAIN",
+                "YXRRSET",
+                "NXRRSET",
+                "NOTAUTH",
+                "NOTZONE",
+                "BADSIG",
+                "BADKEY",
+                "BADTIME",
+                "BADMODE",
+                "BADNAME",
+                "BADALG",
+                "BADTRUNC",
+                "BADCOOKIE",
+            ]
+        ]
+        | Omit = omit,
+        response_ttl: List[
+            Literal["LTE_1M", "GT_1M_LTE_5M", "GT_5M_LTE_15M", "GT_15M_LTE_1H", "GT_1H_LTE_1D", "GT_1D_LTE_1W", "GT_1W"]
+        ]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -275,6 +738,8 @@ class AsyncTopResource(AsyncAPIResource):
               results. For example, `-174, 3356` excludes results from AS174, but includes
               results from AS3356.
 
+          cache_hit: Filters results based on cache status.
+
           continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
               Prefix with `-` to exclude continents from results. For example, `-EU,NA`
               excludes results from EU, but includes results from NA.
@@ -287,9 +752,17 @@ class AsyncTopResource(AsyncAPIResource):
 
           date_start: Start of the date range.
 
+          dnssec: Filters results based on DNSSEC (DNS Security Extensions) support.
+
+          dnssec_aware: Filters results based on DNSSEC (DNS Security Extensions) client awareness.
+
+          dnssec_e2e: Filters results based on DNSSEC-validated answers by end-to-end security status.
+
           domain: Filters results by domain name.
 
           format: Format in which results will be returned.
+
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
           limit: Limits the number of objects returned in the response.
 
@@ -297,7 +770,19 @@ class AsyncTopResource(AsyncAPIResource):
               Prefix with `-` to exclude locations from results. For example, `-US,PT`
               excludes results from the US, but includes results from PT.
 
+          matching_answer: Filters results based on whether the queries have a matching answer.
+
           name: Array of names used to label the series in the response.
+
+          nodata: Specifies whether the response includes empty DNS responses (NODATA).
+
+          protocol: Filters results by DNS transport protocol.
+
+          query_type: Filters results by DNS query type.
+
+          response_code: Filters results by DNS response code.
+
+          response_ttl: Filters results by DNS response TTL.
 
           extra_headers: Send extra headers
 
@@ -317,15 +802,26 @@ class AsyncTopResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "asn": asn,
+                        "cache_hit": cache_hit,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
+                        "dnssec": dnssec,
+                        "dnssec_aware": dnssec_aware,
+                        "dnssec_e2e": dnssec_e2e,
                         "domain": domain,
                         "format": format,
+                        "ip_version": ip_version,
                         "limit": limit,
                         "location": location,
+                        "matching_answer": matching_answer,
                         "name": name,
+                        "nodata": nodata,
+                        "protocol": protocol,
+                        "query_type": query_type,
+                        "response_code": response_code,
+                        "response_ttl": response_ttl,
                     },
                     top_ases_params.TopAsesParams,
                 ),
@@ -338,15 +834,147 @@ class AsyncTopResource(AsyncAPIResource):
         self,
         *,
         asn: SequenceNotStr[str] | Omit = omit,
+        cache_hit: Iterable[bool] | Omit = omit,
         continent: SequenceNotStr[str] | Omit = omit,
         date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         date_range: SequenceNotStr[str] | Omit = omit,
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
+        dnssec: List[Literal["INVALID", "INSECURE", "SECURE", "OTHER"]] | Omit = omit,
+        dnssec_aware: List[Literal["SUPPORTED", "NOT_SUPPORTED"]] | Omit = omit,
+        dnssec_e2e: Iterable[bool] | Omit = omit,
         domain: SequenceNotStr[str] | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
+        ip_version: List[Literal["IPv4", "IPv6"]] | Omit = omit,
         limit: int | Omit = omit,
         location: SequenceNotStr[str] | Omit = omit,
+        matching_answer: Iterable[bool] | Omit = omit,
         name: SequenceNotStr[str] | Omit = omit,
+        nodata: Iterable[bool] | Omit = omit,
+        protocol: List[Literal["UDP", "TCP", "HTTPS", "TLS"]] | Omit = omit,
+        query_type: List[
+            Optional[
+                Literal[
+                    "A",
+                    "AAAA",
+                    "A6",
+                    "AFSDB",
+                    "ANY",
+                    "APL",
+                    "ATMA",
+                    "AXFR",
+                    "CAA",
+                    "CDNSKEY",
+                    "CDS",
+                    "CERT",
+                    "CNAME",
+                    "CSYNC",
+                    "DHCID",
+                    "DLV",
+                    "DNAME",
+                    "DNSKEY",
+                    "DOA",
+                    "DS",
+                    "EID",
+                    "EUI48",
+                    "EUI64",
+                    "GPOS",
+                    "GID",
+                    "HINFO",
+                    "HIP",
+                    "HTTPS",
+                    "IPSECKEY",
+                    "ISDN",
+                    "IXFR",
+                    "KEY",
+                    "KX",
+                    "L32",
+                    "L64",
+                    "LOC",
+                    "LP",
+                    "MAILA",
+                    "MAILB",
+                    "MB",
+                    "MD",
+                    "MF",
+                    "MG",
+                    "MINFO",
+                    "MR",
+                    "MX",
+                    "NAPTR",
+                    "NB",
+                    "NBSTAT",
+                    "NID",
+                    "NIMLOC",
+                    "NINFO",
+                    "NS",
+                    "NSAP",
+                    "NSEC",
+                    "NSEC3",
+                    "NSEC3PARAM",
+                    "NULL",
+                    "NXT",
+                    "OPENPGPKEY",
+                    "OPT",
+                    "PTR",
+                    "PX",
+                    "RKEY",
+                    "RP",
+                    "RRSIG",
+                    "RT",
+                    "SIG",
+                    "SINK",
+                    "SMIMEA",
+                    "SOA",
+                    "SPF",
+                    "SRV",
+                    "SSHFP",
+                    "SVCB",
+                    "TA",
+                    "TALINK",
+                    "TKEY",
+                    "TLSA",
+                    "TSIG",
+                    "TXT",
+                    "UINFO",
+                    "UID",
+                    "UNSPEC",
+                    "URI",
+                    "WKS",
+                    "X25",
+                    "ZONEMD",
+                ]
+            ]
+        ]
+        | Omit = omit,
+        response_code: List[
+            Literal[
+                "NOERROR",
+                "FORMERR",
+                "SERVFAIL",
+                "NXDOMAIN",
+                "NOTIMP",
+                "REFUSED",
+                "YXDOMAIN",
+                "YXRRSET",
+                "NXRRSET",
+                "NOTAUTH",
+                "NOTZONE",
+                "BADSIG",
+                "BADKEY",
+                "BADTIME",
+                "BADMODE",
+                "BADNAME",
+                "BADALG",
+                "BADTRUNC",
+                "BADCOOKIE",
+            ]
+        ]
+        | Omit = omit,
+        response_ttl: List[
+            Literal["LTE_1M", "GT_1M_LTE_5M", "GT_5M_LTE_15M", "GT_15M_LTE_1H", "GT_1H_LTE_1D", "GT_1D_LTE_1W", "GT_1W"]
+        ]
+        | Omit = omit,
+        tld: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -363,6 +991,8 @@ class AsyncTopResource(AsyncAPIResource):
               results. For example, `-174, 3356` excludes results from AS174, but includes
               results from AS3356.
 
+          cache_hit: Filters results based on cache status.
+
           continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
               Prefix with `-` to exclude continents from results. For example, `-EU,NA`
               excludes results from EU, but includes results from NA.
@@ -375,9 +1005,17 @@ class AsyncTopResource(AsyncAPIResource):
 
           date_start: Start of the date range.
 
+          dnssec: Filters results based on DNSSEC (DNS Security Extensions) support.
+
+          dnssec_aware: Filters results based on DNSSEC (DNS Security Extensions) client awareness.
+
+          dnssec_e2e: Filters results based on DNSSEC-validated answers by end-to-end security status.
+
           domain: Filters results by domain name.
 
           format: Format in which results will be returned.
+
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
           limit: Limits the number of objects returned in the response.
 
@@ -385,7 +1023,21 @@ class AsyncTopResource(AsyncAPIResource):
               Prefix with `-` to exclude locations from results. For example, `-US,PT`
               excludes results from the US, but includes results from PT.
 
+          matching_answer: Filters results based on whether the queries have a matching answer.
+
           name: Array of names used to label the series in the response.
+
+          nodata: Specifies whether the response includes empty DNS responses (NODATA).
+
+          protocol: Filters results by DNS transport protocol.
+
+          query_type: Filters results by DNS query type.
+
+          response_code: Filters results by DNS response code.
+
+          response_ttl: Filters results by DNS response TTL.
+
+          tld: Filters results by top-level domain.
 
           extra_headers: Send extra headers
 
@@ -405,15 +1057,27 @@ class AsyncTopResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "asn": asn,
+                        "cache_hit": cache_hit,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
+                        "dnssec": dnssec,
+                        "dnssec_aware": dnssec_aware,
+                        "dnssec_e2e": dnssec_e2e,
                         "domain": domain,
                         "format": format,
+                        "ip_version": ip_version,
                         "limit": limit,
                         "location": location,
+                        "matching_answer": matching_answer,
                         "name": name,
+                        "nodata": nodata,
+                        "protocol": protocol,
+                        "query_type": query_type,
+                        "response_code": response_code,
+                        "response_ttl": response_ttl,
+                        "tld": tld,
                     },
                     top_locations_params.TopLocationsParams,
                 ),
