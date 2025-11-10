@@ -70,6 +70,8 @@ __all__ = [
     "DeviceEnrollmentPermissionsApplicationPolicy",
     "BrowserIsolationPermissionsApplication",
     "BrowserIsolationPermissionsApplicationPolicy",
+    "GatewayIdentityProxyEndpointApplication",
+    "GatewayIdentityProxyEndpointApplicationPolicy",
     "BookmarkApplication",
     "InfrastructureApplication",
     "InfrastructureApplicationTargetCriterion",
@@ -894,6 +896,7 @@ class BrowserSSHApplication(BaseModel):
         "rdp",
         "mcp",
         "mcp_portal",
+        "proxy_endpoint",
     ]
     """The application type."""
 
@@ -1272,6 +1275,7 @@ class BrowserVNCApplication(BaseModel):
         "rdp",
         "mcp",
         "mcp_portal",
+        "proxy_endpoint",
     ]
     """The application type."""
 
@@ -1534,6 +1538,7 @@ class AppLauncherApplication(BaseModel):
         "rdp",
         "mcp",
         "mcp_portal",
+        "proxy_endpoint",
     ]
     """The application type."""
 
@@ -1858,6 +1863,135 @@ class BrowserIsolationPermissionsApplication(BaseModel):
     """The name of the application."""
 
     policies: Optional[List[BrowserIsolationPermissionsApplicationPolicy]] = None
+
+    session_duration: Optional[str] = None
+    """The amount of time that tokens issued for this application will be valid.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
+    ms, s, m, h. Note: unsupported for infrastructure type applications.
+    """
+
+
+class GatewayIdentityProxyEndpointApplicationPolicy(BaseModel):
+    id: Optional[str] = None
+    """The UUID of the policy"""
+
+    approval_groups: Optional[List[ApprovalGroup]] = None
+    """Administrators who can approve a temporary authentication request."""
+
+    approval_required: Optional[bool] = None
+    """
+    Requires the user to request access from an administrator at the start of each
+    session.
+    """
+
+    created_at: Optional[datetime] = None
+
+    decision: Optional[Decision] = None
+    """The action Access will take if a user matches this policy.
+
+    Infrastructure application policies can only use the Allow action.
+    """
+
+    exclude: Optional[List[AccessRule]] = None
+    """Rules evaluated with a NOT logical operator.
+
+    To match the policy, a user cannot meet any of the Exclude rules.
+    """
+
+    include: Optional[List[AccessRule]] = None
+    """Rules evaluated with an OR logical operator.
+
+    A user needs to meet only one of the Include rules.
+    """
+
+    isolation_required: Optional[bool] = None
+    """
+    Require this application to be served in an isolated browser for users matching
+    this policy. 'Client Web Isolation' must be on for the account in order to use
+    this feature.
+    """
+
+    name: Optional[str] = None
+    """The name of the Access policy."""
+
+    precedence: Optional[int] = None
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
+
+    purpose_justification_prompt: Optional[str] = None
+    """A custom message that will appear on the purpose justification screen."""
+
+    purpose_justification_required: Optional[bool] = None
+    """Require users to enter a justification when they log in to the application."""
+
+    require: Optional[List[AccessRule]] = None
+    """Rules evaluated with an AND logical operator.
+
+    To match the policy, a user must meet all of the Require rules.
+    """
+
+    session_duration: Optional[str] = None
+    """The amount of time that tokens issued for the application will be valid.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
+    ms, s, m, h.
+    """
+
+    updated_at: Optional[datetime] = None
+
+
+class GatewayIdentityProxyEndpointApplication(BaseModel):
+    type: ApplicationType
+    """The application type."""
+
+    id: Optional[str] = None
+    """UUID."""
+
+    allowed_idps: Optional[List[AllowedIdPs]] = None
+    """The identity providers your users can select when connecting to this
+    application.
+
+    Defaults to all IdPs configured in your account.
+    """
+
+    aud: Optional[str] = None
+    """Audience tag."""
+
+    auto_redirect_to_identity: Optional[bool] = None
+    """When set to `true`, users skip the identity provider selection step during
+    login.
+
+    You must specify only one identity provider in allowed_idps.
+    """
+
+    custom_deny_url: Optional[str] = None
+    """
+    The custom URL a user is redirected to when they are denied access to the
+    application when failing identity-based rules.
+    """
+
+    custom_non_identity_deny_url: Optional[str] = None
+    """
+    The custom URL a user is redirected to when they are denied access to the
+    application when failing non-identity rules.
+    """
+
+    custom_pages: Optional[List[str]] = None
+    """The custom pages that will be displayed when applicable for this application"""
+
+    domain: Optional[str] = None
+    """
+    The proxy endpoint domain in the format: 10 alphanumeric characters followed by
+    .proxy.cloudflare-gateway.com
+    """
+
+    name: Optional[str] = None
+    """The name of the application."""
+
+    policies: Optional[List[GatewayIdentityProxyEndpointApplicationPolicy]] = None
 
     session_duration: Optional[str] = None
     """The amount of time that tokens issued for this application will be valid.
@@ -2374,6 +2508,7 @@ ApplicationGetResponse: TypeAlias = Union[
     AppLauncherApplication,
     DeviceEnrollmentPermissionsApplication,
     BrowserIsolationPermissionsApplication,
+    GatewayIdentityProxyEndpointApplication,
     BookmarkApplication,
     InfrastructureApplication,
     BrowserRdpApplication,

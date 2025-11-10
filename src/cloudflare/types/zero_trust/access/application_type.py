@@ -18,4 +18,5 @@ ApplicationType: TypeAlias = Literal[
     "rdp",
     "mcp",
     "mcp_portal",
+    "proxy_endpoint",
 ]
