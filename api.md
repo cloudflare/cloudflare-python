@@ -10126,11 +10126,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.ai import ToMarkdownTransformResponse
+from cloudflare.types.ai import ToMarkdownSupportedResponse, ToMarkdownTransformResponse
 ```
 
 Methods:
 
+- <code title="get /accounts/{account_id}/ai/tomarkdown/supported">client.ai.to_markdown.<a href="./src/cloudflare/resources/ai/to_markdown.py">supported</a>(\*, account_id) -> <a href="./src/cloudflare/types/ai/to_markdown_supported_response.py">SyncSinglePage[ToMarkdownSupportedResponse]</a></code>
 - <code title="post /accounts/{account_id}/ai/tomarkdown">client.ai.to_markdown.<a href="./src/cloudflare/resources/ai/to_markdown.py">transform</a>(file, \*, account_id, \*\*<a href="src/cloudflare/types/ai/to_markdown_transform_params.py">params</a>) -> <a href="./src/cloudflare/types/ai/to_markdown_transform_response.py">SyncSinglePage[ToMarkdownTransformResponse]</a></code>
 
 # SecurityCenter
