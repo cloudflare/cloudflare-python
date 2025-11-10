@@ -67,20 +67,11 @@ class CertificateLog(BaseModel):
     api: Literal["RFC6962", "STATIC"]
     """The API standard that the certificate log follows."""
 
-    avg_throughput: float = FieldInfo(alias="avgThroughput")
-    """
-    The average throughput of the CT log, measured in certificates per hour
-    (certs/hour).
-    """
-
     description: str
     """A brief description of the certificate log."""
 
     end_exclusive: datetime = FieldInfo(alias="endExclusive")
     """The end date and time for when the log will stop accepting certificates."""
-
-    last_update: datetime = FieldInfo(alias="lastUpdate")
-    """Timestamp of the most recent update to the CT log."""
 
     operator: str
     """The organization responsible for operating the certificate log."""
@@ -106,16 +97,6 @@ class CertificateLog(BaseModel):
 
     state_timestamp: datetime = FieldInfo(alias="stateTimestamp")
     """Timestamp of when the log state was last updated."""
-
-    submittable_cert_count: Optional[str] = FieldInfo(alias="submittableCertCount", default=None)
-    """
-    Number of certificates that are eligible for inclusion to this log but have not
-    been included yet. Based on certificates signed by trusted root CAs within the
-    log's accepted date range.
-    """
-
-    submitted_cert_count: Optional[str] = FieldInfo(alias="submittedCertCount", default=None)
-    """Number of certificates already included in this CT log."""
 
     url: str
     """The URL for the certificate log."""

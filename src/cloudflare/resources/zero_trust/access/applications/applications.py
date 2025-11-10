@@ -349,9 +349,6 @@ class ApplicationsResource(SyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
-            "mcp",
-            "mcp_portal",
-            "proxy_endpoint",
         ],
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
@@ -507,9 +504,6 @@ class ApplicationsResource(SyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
-            "mcp",
-            "mcp_portal",
-            "proxy_endpoint",
         ],
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
@@ -664,9 +658,6 @@ class ApplicationsResource(SyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
-            "mcp",
-            "mcp_portal",
-            "proxy_endpoint",
         ],
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
@@ -851,76 +842,6 @@ class ApplicationsResource(SyncAPIResource):
               application when failing non-identity rules.
 
           custom_pages: The custom pages that will be displayed when applicable for this application
-
-          policies: The policies that Access applies to the application, in ascending order of
-              precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
-
-          session_duration: The amount of time that tokens issued for this application will be valid. Must
-              be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def create(
-        self,
-        *,
-        type: ApplicationType,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
-        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
-        auto_redirect_to_identity: bool | Omit = omit,
-        custom_deny_url: str | Omit = omit,
-        custom_non_identity_deny_url: str | Omit = omit,
-        custom_pages: SequenceNotStr[str] | Omit = omit,
-        domain: str | Omit = omit,
-        name: str | Omit = omit,
-        policies: SequenceNotStr[application_create_params.GatewayIdentityProxyEndpointApplicationPolicy] | Omit = omit,
-        session_duration: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[ApplicationCreateResponse]:
-        """
-        Adds a new application to Access.
-
-        Args:
-          type: The application type.
-
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          allowed_idps: The identity providers your users can select when connecting to this
-              application. Defaults to all IdPs configured in your account.
-
-          auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
-              login. You must specify only one identity provider in allowed_idps.
-
-          custom_deny_url: The custom URL a user is redirected to when they are denied access to the
-              application when failing identity-based rules.
-
-          custom_non_identity_deny_url: The custom URL a user is redirected to when they are denied access to the
-              application when failing non-identity rules.
-
-          custom_pages: The custom pages that will be displayed when applicable for this application
-
-          domain: The proxy endpoint domain in the format: 10 alphanumeric characters followed by
-              .proxy.cloudflare-gateway.com
-
-          name: The name of the application.
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
@@ -1192,9 +1113,6 @@ class ApplicationsResource(SyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
-            "mcp",
-            "mcp_portal",
-            "proxy_endpoint",
         ]
         | Omit = omit,
         account_id: str | Omit = omit,
@@ -1227,7 +1145,6 @@ class ApplicationsResource(SyncAPIResource):
         | SequenceNotStr[application_create_params.AppLauncherApplicationPolicy]
         | SequenceNotStr[application_create_params.DeviceEnrollmentPermissionsApplicationPolicy]
         | SequenceNotStr[application_create_params.BrowserIsolationPermissionsApplicationPolicy]
-        | SequenceNotStr[application_create_params.GatewayIdentityProxyEndpointApplicationPolicy]
         | Iterable[application_create_params.InfrastructureApplicationPolicy]
         | SequenceNotStr[application_create_params.BrowserRdpApplicationPolicy]
         | Omit = omit,
@@ -1566,9 +1483,6 @@ class ApplicationsResource(SyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
-            "mcp",
-            "mcp_portal",
-            "proxy_endpoint",
         ],
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
@@ -1727,9 +1641,6 @@ class ApplicationsResource(SyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
-            "mcp",
-            "mcp_portal",
-            "proxy_endpoint",
         ],
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
@@ -1887,9 +1798,6 @@ class ApplicationsResource(SyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
-            "mcp",
-            "mcp_portal",
-            "proxy_endpoint",
         ],
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
@@ -2082,79 +1990,6 @@ class ApplicationsResource(SyncAPIResource):
               application when failing non-identity rules.
 
           custom_pages: The custom pages that will be displayed when applicable for this application
-
-          policies: The policies that Access applies to the application, in ascending order of
-              precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
-
-          session_duration: The amount of time that tokens issued for this application will be valid. Must
-              be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def update(
-        self,
-        app_id: AppID,
-        *,
-        type: ApplicationType,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
-        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
-        auto_redirect_to_identity: bool | Omit = omit,
-        custom_deny_url: str | Omit = omit,
-        custom_non_identity_deny_url: str | Omit = omit,
-        custom_pages: SequenceNotStr[str] | Omit = omit,
-        domain: str | Omit = omit,
-        name: str | Omit = omit,
-        policies: SequenceNotStr[application_update_params.GatewayIdentityProxyEndpointApplicationPolicy] | Omit = omit,
-        session_duration: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[ApplicationUpdateResponse]:
-        """
-        Updates an Access application.
-
-        Args:
-          app_id: Identifier.
-
-          type: The application type.
-
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          allowed_idps: The identity providers your users can select when connecting to this
-              application. Defaults to all IdPs configured in your account.
-
-          auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
-              login. You must specify only one identity provider in allowed_idps.
-
-          custom_deny_url: The custom URL a user is redirected to when they are denied access to the
-              application when failing identity-based rules.
-
-          custom_non_identity_deny_url: The custom URL a user is redirected to when they are denied access to the
-              application when failing non-identity rules.
-
-          custom_pages: The custom pages that will be displayed when applicable for this application
-
-          domain: The proxy endpoint domain in the format: 10 alphanumeric characters followed by
-              .proxy.cloudflare-gateway.com
-
-          name: The name of the application.
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
@@ -2436,9 +2271,6 @@ class ApplicationsResource(SyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
-            "mcp",
-            "mcp_portal",
-            "proxy_endpoint",
         ]
         | Omit = omit,
         account_id: str | Omit = omit,
@@ -2471,7 +2303,6 @@ class ApplicationsResource(SyncAPIResource):
         | SequenceNotStr[application_update_params.AppLauncherApplicationPolicy]
         | SequenceNotStr[application_update_params.DeviceEnrollmentPermissionsApplicationPolicy]
         | SequenceNotStr[application_update_params.BrowserIsolationPermissionsApplicationPolicy]
-        | SequenceNotStr[application_update_params.GatewayIdentityProxyEndpointApplicationPolicy]
         | Iterable[application_update_params.InfrastructureApplicationPolicy]
         | SequenceNotStr[application_update_params.BrowserRdpApplicationPolicy]
         | Omit = omit,
@@ -2589,7 +2420,6 @@ class ApplicationsResource(SyncAPIResource):
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         search: str | Omit = omit,
-        target_attributes: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2618,8 +2448,6 @@ class ApplicationsResource(SyncAPIResource):
           per_page: Number of results per page.
 
           search: Search for apps by other listed query parameters.
-
-          target_attributes: Target Criteria attributes in key=value format.
 
           extra_headers: Send extra headers
 
@@ -2658,7 +2486,6 @@ class ApplicationsResource(SyncAPIResource):
                         "page": page,
                         "per_page": per_page,
                         "search": search,
-                        "target_attributes": target_attributes,
                     },
                     application_list_params.ApplicationListParams,
                 ),
@@ -3111,9 +2938,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
-            "mcp",
-            "mcp_portal",
-            "proxy_endpoint",
         ],
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
@@ -3269,9 +3093,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
-            "mcp",
-            "mcp_portal",
-            "proxy_endpoint",
         ],
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
@@ -3426,9 +3247,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
-            "mcp",
-            "mcp_portal",
-            "proxy_endpoint",
         ],
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
@@ -3613,76 +3431,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
               application when failing non-identity rules.
 
           custom_pages: The custom pages that will be displayed when applicable for this application
-
-          policies: The policies that Access applies to the application, in ascending order of
-              precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
-
-          session_duration: The amount of time that tokens issued for this application will be valid. Must
-              be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def create(
-        self,
-        *,
-        type: ApplicationType,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
-        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
-        auto_redirect_to_identity: bool | Omit = omit,
-        custom_deny_url: str | Omit = omit,
-        custom_non_identity_deny_url: str | Omit = omit,
-        custom_pages: SequenceNotStr[str] | Omit = omit,
-        domain: str | Omit = omit,
-        name: str | Omit = omit,
-        policies: SequenceNotStr[application_create_params.GatewayIdentityProxyEndpointApplicationPolicy] | Omit = omit,
-        session_duration: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[ApplicationCreateResponse]:
-        """
-        Adds a new application to Access.
-
-        Args:
-          type: The application type.
-
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          allowed_idps: The identity providers your users can select when connecting to this
-              application. Defaults to all IdPs configured in your account.
-
-          auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
-              login. You must specify only one identity provider in allowed_idps.
-
-          custom_deny_url: The custom URL a user is redirected to when they are denied access to the
-              application when failing identity-based rules.
-
-          custom_non_identity_deny_url: The custom URL a user is redirected to when they are denied access to the
-              application when failing non-identity rules.
-
-          custom_pages: The custom pages that will be displayed when applicable for this application
-
-          domain: The proxy endpoint domain in the format: 10 alphanumeric characters followed by
-              .proxy.cloudflare-gateway.com
-
-          name: The name of the application.
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
@@ -3954,9 +3702,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
-            "mcp",
-            "mcp_portal",
-            "proxy_endpoint",
         ]
         | Omit = omit,
         account_id: str | Omit = omit,
@@ -3989,7 +3734,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
         | SequenceNotStr[application_create_params.AppLauncherApplicationPolicy]
         | SequenceNotStr[application_create_params.DeviceEnrollmentPermissionsApplicationPolicy]
         | SequenceNotStr[application_create_params.BrowserIsolationPermissionsApplicationPolicy]
-        | SequenceNotStr[application_create_params.GatewayIdentityProxyEndpointApplicationPolicy]
         | Iterable[application_create_params.InfrastructureApplicationPolicy]
         | SequenceNotStr[application_create_params.BrowserRdpApplicationPolicy]
         | Omit = omit,
@@ -4328,9 +4072,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
-            "mcp",
-            "mcp_portal",
-            "proxy_endpoint",
         ],
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
@@ -4489,9 +4230,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
-            "mcp",
-            "mcp_portal",
-            "proxy_endpoint",
         ],
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
@@ -4649,9 +4387,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
-            "mcp",
-            "mcp_portal",
-            "proxy_endpoint",
         ],
         account_id: str | Omit = omit,
         zone_id: str | Omit = omit,
@@ -4844,79 +4579,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
               application when failing non-identity rules.
 
           custom_pages: The custom pages that will be displayed when applicable for this application
-
-          policies: The policies that Access applies to the application, in ascending order of
-              precedence. Items can reference existing policies or create new policies
-              exclusive to the application.
-
-          session_duration: The amount of time that tokens issued for this application will be valid. Must
-              be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h. Note: unsupported for infrastructure type applications.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def update(
-        self,
-        app_id: AppID,
-        *,
-        type: ApplicationType,
-        account_id: str | Omit = omit,
-        zone_id: str | Omit = omit,
-        allowed_idps: SequenceNotStr[AllowedIdPs] | Omit = omit,
-        auto_redirect_to_identity: bool | Omit = omit,
-        custom_deny_url: str | Omit = omit,
-        custom_non_identity_deny_url: str | Omit = omit,
-        custom_pages: SequenceNotStr[str] | Omit = omit,
-        domain: str | Omit = omit,
-        name: str | Omit = omit,
-        policies: SequenceNotStr[application_update_params.GatewayIdentityProxyEndpointApplicationPolicy] | Omit = omit,
-        session_duration: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[ApplicationUpdateResponse]:
-        """
-        Updates an Access application.
-
-        Args:
-          app_id: Identifier.
-
-          type: The application type.
-
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          allowed_idps: The identity providers your users can select when connecting to this
-              application. Defaults to all IdPs configured in your account.
-
-          auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
-              login. You must specify only one identity provider in allowed_idps.
-
-          custom_deny_url: The custom URL a user is redirected to when they are denied access to the
-              application when failing identity-based rules.
-
-          custom_non_identity_deny_url: The custom URL a user is redirected to when they are denied access to the
-              application when failing non-identity rules.
-
-          custom_pages: The custom pages that will be displayed when applicable for this application
-
-          domain: The proxy endpoint domain in the format: 10 alphanumeric characters followed by
-              .proxy.cloudflare-gateway.com
-
-          name: The name of the application.
 
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
@@ -5198,9 +4860,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
             "dash_sso",
             "infrastructure",
             "rdp",
-            "mcp",
-            "mcp_portal",
-            "proxy_endpoint",
         ]
         | Omit = omit,
         account_id: str | Omit = omit,
@@ -5233,7 +4892,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
         | SequenceNotStr[application_update_params.AppLauncherApplicationPolicy]
         | SequenceNotStr[application_update_params.DeviceEnrollmentPermissionsApplicationPolicy]
         | SequenceNotStr[application_update_params.BrowserIsolationPermissionsApplicationPolicy]
-        | SequenceNotStr[application_update_params.GatewayIdentityProxyEndpointApplicationPolicy]
         | Iterable[application_update_params.InfrastructureApplicationPolicy]
         | SequenceNotStr[application_update_params.BrowserRdpApplicationPolicy]
         | Omit = omit,
@@ -5351,7 +5009,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
         page: int | Omit = omit,
         per_page: int | Omit = omit,
         search: str | Omit = omit,
-        target_attributes: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5380,8 +5037,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
           per_page: Number of results per page.
 
           search: Search for apps by other listed query parameters.
-
-          target_attributes: Target Criteria attributes in key=value format.
 
           extra_headers: Send extra headers
 
@@ -5420,7 +5075,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
                         "page": page,
                         "per_page": per_page,
                         "search": search,
-                        "target_attributes": target_attributes,
                     },
                     application_list_params.ApplicationListParams,
                 ),

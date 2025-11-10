@@ -4,8 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._types import Body, Query, Headers, NotGiven, not_given
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -15,7 +14,6 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.cloudforce_one.threat_events import attacker_list_params
 from ....types.cloudforce_one.threat_events.attacker_list_response import AttackerListResponse
 
 __all__ = ["AttackersResource", "AsyncAttackersResource"]
@@ -45,7 +43,6 @@ class AttackersResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        dataset_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -54,13 +51,10 @@ class AttackersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AttackerListResponse:
         """
-        Lists attackers across multiple datasets
+        Lists attackers
 
         Args:
           account_id: Account ID.
-
-          dataset_ids: Array of dataset IDs to query attackers from. If not provided, returns all
-              attackers from Event DO tables.
 
           extra_headers: Send extra headers
 
@@ -75,11 +69,7 @@ class AttackersResource(SyncAPIResource):
         return self._get(
             f"/accounts/{account_id}/cloudforce-one/events/attackers",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"dataset_ids": dataset_ids}, attacker_list_params.AttackerListParams),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=AttackerListResponse,
         )
@@ -109,7 +99,6 @@ class AsyncAttackersResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        dataset_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -118,13 +107,10 @@ class AsyncAttackersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AttackerListResponse:
         """
-        Lists attackers across multiple datasets
+        Lists attackers
 
         Args:
           account_id: Account ID.
-
-          dataset_ids: Array of dataset IDs to query attackers from. If not provided, returns all
-              attackers from Event DO tables.
 
           extra_headers: Send extra headers
 
@@ -139,13 +125,7 @@ class AsyncAttackersResource(AsyncAPIResource):
         return await self._get(
             f"/accounts/{account_id}/cloudforce-one/events/attackers",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {"dataset_ids": dataset_ids}, attacker_list_params.AttackerListParams
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=AttackerListResponse,
         )

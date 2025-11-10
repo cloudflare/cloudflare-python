@@ -42,14 +42,6 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
-from .subscriptions import (
-    SubscriptionsResource,
-    AsyncSubscriptionsResource,
-    SubscriptionsResourceWithRawResponse,
-    AsyncSubscriptionsResourceWithRawResponse,
-    SubscriptionsResourceWithStreamingResponse,
-    AsyncSubscriptionsResourceWithStreamingResponse,
-)
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.queues import queue_edit_params, queue_create_params, queue_update_params
 from ...types.queues.queue import Queue
@@ -70,10 +62,6 @@ class QueuesResource(SyncAPIResource):
     @cached_property
     def consumers(self) -> ConsumersResource:
         return ConsumersResource(self._client)
-
-    @cached_property
-    def subscriptions(self) -> SubscriptionsResource:
-        return SubscriptionsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> QueuesResourceWithRawResponse:
@@ -377,10 +365,6 @@ class AsyncQueuesResource(AsyncAPIResource):
     @cached_property
     def consumers(self) -> AsyncConsumersResource:
         return AsyncConsumersResource(self._client)
-
-    @cached_property
-    def subscriptions(self) -> AsyncSubscriptionsResource:
-        return AsyncSubscriptionsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncQueuesResourceWithRawResponse:
@@ -707,10 +691,6 @@ class QueuesResourceWithRawResponse:
     def consumers(self) -> ConsumersResourceWithRawResponse:
         return ConsumersResourceWithRawResponse(self._queues.consumers)
 
-    @cached_property
-    def subscriptions(self) -> SubscriptionsResourceWithRawResponse:
-        return SubscriptionsResourceWithRawResponse(self._queues.subscriptions)
-
 
 class AsyncQueuesResourceWithRawResponse:
     def __init__(self, queues: AsyncQueuesResource) -> None:
@@ -746,10 +726,6 @@ class AsyncQueuesResourceWithRawResponse:
     @cached_property
     def consumers(self) -> AsyncConsumersResourceWithRawResponse:
         return AsyncConsumersResourceWithRawResponse(self._queues.consumers)
-
-    @cached_property
-    def subscriptions(self) -> AsyncSubscriptionsResourceWithRawResponse:
-        return AsyncSubscriptionsResourceWithRawResponse(self._queues.subscriptions)
 
 
 class QueuesResourceWithStreamingResponse:
@@ -787,10 +763,6 @@ class QueuesResourceWithStreamingResponse:
     def consumers(self) -> ConsumersResourceWithStreamingResponse:
         return ConsumersResourceWithStreamingResponse(self._queues.consumers)
 
-    @cached_property
-    def subscriptions(self) -> SubscriptionsResourceWithStreamingResponse:
-        return SubscriptionsResourceWithStreamingResponse(self._queues.subscriptions)
-
 
 class AsyncQueuesResourceWithStreamingResponse:
     def __init__(self, queues: AsyncQueuesResource) -> None:
@@ -826,7 +798,3 @@ class AsyncQueuesResourceWithStreamingResponse:
     @cached_property
     def consumers(self) -> AsyncConsumersResourceWithStreamingResponse:
         return AsyncConsumersResourceWithStreamingResponse(self._queues.consumers)
-
-    @cached_property
-    def subscriptions(self) -> AsyncSubscriptionsResourceWithStreamingResponse:
-        return AsyncSubscriptionsResourceWithStreamingResponse(self._queues.subscriptions)

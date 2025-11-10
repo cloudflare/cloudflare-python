@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import Union
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
@@ -64,39 +64,37 @@ class SummaryQueryTypeParams(TypedDict, total=False):
     name: SequenceNotStr[str]
     """Array of names used to label the series in the response."""
 
-    nodata: Iterable[bool]
+    nodata: bool
     """Specifies whether the response includes empty DNS responses (NODATA)."""
 
-    protocol: List[Literal["UDP", "TCP", "HTTPS", "TLS"]]
+    protocol: Literal["UDP", "TCP", "HTTPS", "TLS"]
     """Filters results by DNS transport protocol."""
 
     response_code: Annotated[
-        List[
-            Literal[
-                "NOERROR",
-                "FORMERR",
-                "SERVFAIL",
-                "NXDOMAIN",
-                "NOTIMP",
-                "REFUSED",
-                "YXDOMAIN",
-                "YXRRSET",
-                "NXRRSET",
-                "NOTAUTH",
-                "NOTZONE",
-                "BADSIG",
-                "BADKEY",
-                "BADTIME",
-                "BADMODE",
-                "BADNAME",
-                "BADALG",
-                "BADTRUNC",
-                "BADCOOKIE",
-            ]
+        Literal[
+            "NOERROR",
+            "FORMERR",
+            "SERVFAIL",
+            "NXDOMAIN",
+            "NOTIMP",
+            "REFUSED",
+            "YXDOMAIN",
+            "YXRRSET",
+            "NXRRSET",
+            "NOTAUTH",
+            "NOTZONE",
+            "BADSIG",
+            "BADKEY",
+            "BADTIME",
+            "BADMODE",
+            "BADNAME",
+            "BADALG",
+            "BADTRUNC",
+            "BADCOOKIE",
         ],
         PropertyInfo(alias="responseCode"),
     ]
     """Filters results by DNS response code."""
 
     tld: SequenceNotStr[str]
-    """Filters results by top-level domain."""
+    """Filters results by country code top-level domain (ccTLD)."""

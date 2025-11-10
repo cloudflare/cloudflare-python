@@ -95,15 +95,6 @@ class TestCategories:
 
     @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
-    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
-        category = client.cloudforce_one.threat_events.categories.list(
-            account_id="account_id",
-            dataset_ids=["string"],
-        )
-        assert_matches_type(CategoryListResponse, category, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
-    @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.threat_events.categories.with_raw_response.list(
             account_id="account_id",
@@ -378,15 +369,6 @@ class TestAsyncCategories:
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         category = await async_client.cloudforce_one.threat_events.categories.list(
             account_id="account_id",
-        )
-        assert_matches_type(CategoryListResponse, category, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
-    @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        category = await async_client.cloudforce_one.threat_events.categories.list(
-            account_id="account_id",
-            dataset_ids=["string"],
         )
         assert_matches_type(CategoryListResponse, category, path=["response"])
 

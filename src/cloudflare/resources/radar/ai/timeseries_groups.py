@@ -393,9 +393,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
             ),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar AI Bots Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/ai/subresources/bots/methods/timeseries_groups/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     def user_agent(
         self,
         *,
@@ -847,9 +845,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             ),
         )
 
-    @typing_extensions.deprecated(
-        "Use [Radar AI Bots Timeseries Groups By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/ai/subresources/bots/methods/timeseries_groups/) instead."
-    )
+    @typing_extensions.deprecated("deprecated")
     async def user_agent(
         self,
         *,

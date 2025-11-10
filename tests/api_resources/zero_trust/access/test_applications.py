@@ -87,15 +87,11 @@ class TestApplications:
                 },
                 {
                     "cidr": "cidr",
-                    "hostname": "private-sni.example.com",
+                    "hostname": "hostname",
                     "l4_protocol": "tcp",
                     "port_range": "port_range",
                     "type": "private",
                     "vnet_id": "vnet_id",
-                },
-                {
-                    "mcp_server_id": "mcp-server-1",
-                    "type": "via_mcp_server_portal",
                 },
             ],
             enable_binding_cookie=True,
@@ -378,15 +374,11 @@ class TestApplications:
                 },
                 {
                     "cidr": "cidr",
-                    "hostname": "private-sni.example.com",
+                    "hostname": "hostname",
                     "l4_protocol": "tcp",
                     "port_range": "port_range",
                     "type": "private",
                     "vnet_id": "vnet_id",
-                },
-                {
-                    "mcp_server_id": "mcp-server-1",
-                    "type": "via_mcp_server_portal",
                 },
             ],
             enable_binding_cookie=True,
@@ -546,15 +538,11 @@ class TestApplications:
                 },
                 {
                     "cidr": "cidr",
-                    "hostname": "private-sni.example.com",
+                    "hostname": "hostname",
                     "l4_protocol": "tcp",
                     "port_range": "port_range",
                     "type": "private",
                     "vnet_id": "vnet_id",
-                },
-                {
-                    "mcp_server_id": "mcp-server-1",
-                    "type": "via_mcp_server_portal",
                 },
             ],
             enable_binding_cookie=True,
@@ -891,7 +879,6 @@ class TestApplications:
     @parametrize
     def test_method_create_overload_8(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.create(
-            type="self_hosted",
             account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
@@ -900,22 +887,13 @@ class TestApplications:
     @parametrize
     def test_method_create_with_all_params_overload_8(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.create(
-            type="self_hosted",
             account_id="account_id",
-            allowed_idps=["699d98642c564d2e855e9661899b7252"],
-            auto_redirect_to_identity=True,
-            custom_deny_url="custom_deny_url",
-            custom_non_identity_deny_url="custom_non_identity_deny_url",
-            custom_pages=["699d98642c564d2e855e9661899b7252"],
-            domain="abcd123456.proxy.cloudflare-gateway.com",
-            name="Gateway Proxy",
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
-            session_duration="24h",
+            app_launcher_visible=True,
+            domain="https://mybookmark.com",
+            logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            name="Admin Site",
+            tags=["engineers"],
+            type="bookmark",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -923,7 +901,6 @@ class TestApplications:
     @parametrize
     def test_raw_response_create_overload_8(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.create(
-            type="self_hosted",
             account_id="account_id",
         )
 
@@ -936,7 +913,6 @@ class TestApplications:
     @parametrize
     def test_streaming_response_create_overload_8(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.create(
-            type="self_hosted",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -952,80 +928,17 @@ class TestApplications:
     def test_path_params_create_overload_8(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.applications.with_raw_response.create(
-                type="self_hosted",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.applications.with_raw_response.create(
-                type="self_hosted",
                 account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_create_overload_9(self, client: Cloudflare) -> None:
-        application = client.zero_trust.access.applications.create(
-            account_id="account_id",
-        )
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    def test_method_create_with_all_params_overload_9(self, client: Cloudflare) -> None:
-        application = client.zero_trust.access.applications.create(
-            account_id="account_id",
-            app_launcher_visible=True,
-            domain="https://mybookmark.com",
-            logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
-            name="Admin Site",
-            tags=["engineers"],
-            type="bookmark",
-        )
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    def test_raw_response_create_overload_9(self, client: Cloudflare) -> None:
-        response = client.zero_trust.access.applications.with_raw_response.create(
-            account_id="account_id",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        application = response.parse()
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    def test_streaming_response_create_overload_9(self, client: Cloudflare) -> None:
-        with client.zero_trust.access.applications.with_streaming_response.create(
-            account_id="account_id",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            application = response.parse()
-            assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    def test_path_params_create_overload_9(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
-            client.zero_trust.access.applications.with_raw_response.create(
-                account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
-            client.zero_trust.access.applications.with_raw_response.create(
-                account_id="account_id",
-            )
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    def test_method_create_overload_10(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.create(
             target_criteria=[
                 {
@@ -1041,7 +954,7 @@ class TestApplications:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    def test_method_create_with_all_params_overload_10(self, client: Cloudflare) -> None:
+    def test_method_create_with_all_params_overload_9(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.create(
             target_criteria=[
                 {
@@ -1073,7 +986,7 @@ class TestApplications:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    def test_raw_response_create_overload_10(self, client: Cloudflare) -> None:
+    def test_raw_response_create_overload_9(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.create(
             target_criteria=[
                 {
@@ -1093,7 +1006,7 @@ class TestApplications:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    def test_streaming_response_create_overload_10(self, client: Cloudflare) -> None:
+    def test_streaming_response_create_overload_9(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.create(
             target_criteria=[
                 {
@@ -1115,7 +1028,7 @@ class TestApplications:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    def test_path_params_create_overload_10(self, client: Cloudflare) -> None:
+    def test_path_params_create_overload_9(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.applications.with_raw_response.create(
                 target_criteria=[
@@ -1144,7 +1057,7 @@ class TestApplications:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    def test_method_create_overload_11(self, client: Cloudflare) -> None:
+    def test_method_create_overload_10(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.create(
             domain="test.example.com/admin",
             target_criteria=[
@@ -1161,7 +1074,7 @@ class TestApplications:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    def test_method_create_with_all_params_overload_11(self, client: Cloudflare) -> None:
+    def test_method_create_with_all_params_overload_10(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.create(
             domain="test.example.com/admin",
             target_criteria=[
@@ -1219,15 +1132,11 @@ class TestApplications:
                 },
                 {
                     "cidr": "cidr",
-                    "hostname": "private-sni.example.com",
+                    "hostname": "hostname",
                     "l4_protocol": "tcp",
                     "port_range": "port_range",
                     "type": "private",
                     "vnet_id": "vnet_id",
-                },
-                {
-                    "mcp_server_id": "mcp-server-1",
-                    "type": "via_mcp_server_portal",
                 },
             ],
             enable_binding_cookie=True,
@@ -1279,7 +1188,7 @@ class TestApplications:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    def test_raw_response_create_overload_11(self, client: Cloudflare) -> None:
+    def test_raw_response_create_overload_10(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.create(
             domain="test.example.com/admin",
             target_criteria=[
@@ -1300,7 +1209,7 @@ class TestApplications:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    def test_streaming_response_create_overload_11(self, client: Cloudflare) -> None:
+    def test_streaming_response_create_overload_10(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.create(
             domain="test.example.com/admin",
             target_criteria=[
@@ -1323,7 +1232,7 @@ class TestApplications:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    def test_path_params_create_overload_11(self, client: Cloudflare) -> None:
+    def test_path_params_create_overload_10(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.applications.with_raw_response.create(
                 domain="test.example.com/admin",
@@ -1417,15 +1326,11 @@ class TestApplications:
                 },
                 {
                     "cidr": "cidr",
-                    "hostname": "private-sni.example.com",
+                    "hostname": "hostname",
                     "l4_protocol": "tcp",
                     "port_range": "port_range",
                     "type": "private",
                     "vnet_id": "vnet_id",
-                },
-                {
-                    "mcp_server_id": "mcp-server-1",
-                    "type": "via_mcp_server_portal",
                 },
             ],
             enable_binding_cookie=True,
@@ -1734,15 +1639,11 @@ class TestApplications:
                 },
                 {
                     "cidr": "cidr",
-                    "hostname": "private-sni.example.com",
+                    "hostname": "hostname",
                     "l4_protocol": "tcp",
                     "port_range": "port_range",
                     "type": "private",
                     "vnet_id": "vnet_id",
-                },
-                {
-                    "mcp_server_id": "mcp-server-1",
-                    "type": "via_mcp_server_portal",
                 },
             ],
             enable_binding_cookie=True,
@@ -1916,15 +1817,11 @@ class TestApplications:
                 },
                 {
                     "cidr": "cidr",
-                    "hostname": "private-sni.example.com",
+                    "hostname": "hostname",
                     "l4_protocol": "tcp",
                     "port_range": "port_range",
                     "type": "private",
                     "vnet_id": "vnet_id",
-                },
-                {
-                    "mcp_server_id": "mcp-server-1",
-                    "type": "via_mcp_server_portal",
                 },
             ],
             enable_binding_cookie=True,
@@ -2313,7 +2210,6 @@ class TestApplications:
     def test_method_update_overload_8(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            type="self_hosted",
             account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
@@ -2323,22 +2219,13 @@ class TestApplications:
     def test_method_update_with_all_params_overload_8(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            type="self_hosted",
             account_id="account_id",
-            allowed_idps=["699d98642c564d2e855e9661899b7252"],
-            auto_redirect_to_identity=True,
-            custom_deny_url="custom_deny_url",
-            custom_non_identity_deny_url="custom_non_identity_deny_url",
-            custom_pages=["699d98642c564d2e855e9661899b7252"],
-            domain="abcd123456.proxy.cloudflare-gateway.com",
-            name="Gateway Proxy",
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
-            session_duration="24h",
+            app_launcher_visible=True,
+            domain="https://mybookmark.com",
+            logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            name="Admin Site",
+            tags=["engineers"],
+            type="bookmark",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -2347,7 +2234,6 @@ class TestApplications:
     def test_raw_response_update_overload_8(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            type="self_hosted",
             account_id="account_id",
         )
 
@@ -2361,7 +2247,6 @@ class TestApplications:
     def test_streaming_response_update_overload_8(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            type="self_hosted",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -2378,100 +2263,24 @@ class TestApplications:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
                 app_id="",
-                type="self_hosted",
                 account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
-                type="self_hosted",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
-                type="self_hosted",
                 account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update_overload_9(self, client: Cloudflare) -> None:
-        application = client.zero_trust.access.applications.update(
-            app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="account_id",
-        )
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    def test_method_update_with_all_params_overload_9(self, client: Cloudflare) -> None:
-        application = client.zero_trust.access.applications.update(
-            app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="account_id",
-            app_launcher_visible=True,
-            domain="https://mybookmark.com",
-            logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
-            name="Admin Site",
-            tags=["engineers"],
-            type="bookmark",
-        )
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    def test_raw_response_update_overload_9(self, client: Cloudflare) -> None:
-        response = client.zero_trust.access.applications.with_raw_response.update(
-            app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="account_id",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        application = response.parse()
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    def test_streaming_response_update_overload_9(self, client: Cloudflare) -> None:
-        with client.zero_trust.access.applications.with_streaming_response.update(
-            app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="account_id",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            application = response.parse()
-            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    def test_path_params_update_overload_9(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
-            client.zero_trust.access.applications.with_raw_response.update(
-                app_id="",
-                account_id="account_id",
-            )
-
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
-            client.zero_trust.access.applications.with_raw_response.update(
-                app_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
-            client.zero_trust.access.applications.with_raw_response.update(
-                app_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="account_id",
-            )
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    def test_method_update_overload_10(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             target_criteria=[
@@ -2488,7 +2297,7 @@ class TestApplications:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    def test_method_update_with_all_params_overload_10(self, client: Cloudflare) -> None:
+    def test_method_update_with_all_params_overload_9(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             target_criteria=[
@@ -2521,7 +2330,7 @@ class TestApplications:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    def test_raw_response_update_overload_10(self, client: Cloudflare) -> None:
+    def test_raw_response_update_overload_9(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             target_criteria=[
@@ -2542,7 +2351,7 @@ class TestApplications:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    def test_streaming_response_update_overload_10(self, client: Cloudflare) -> None:
+    def test_streaming_response_update_overload_9(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             target_criteria=[
@@ -2565,7 +2374,7 @@ class TestApplications:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    def test_path_params_update_overload_10(self, client: Cloudflare) -> None:
+    def test_path_params_update_overload_9(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
                 app_id="",
@@ -2610,7 +2419,7 @@ class TestApplications:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    def test_method_update_overload_11(self, client: Cloudflare) -> None:
+    def test_method_update_overload_10(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
@@ -2628,7 +2437,7 @@ class TestApplications:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    def test_method_update_with_all_params_overload_11(self, client: Cloudflare) -> None:
+    def test_method_update_with_all_params_overload_10(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
@@ -2687,15 +2496,11 @@ class TestApplications:
                 },
                 {
                     "cidr": "cidr",
-                    "hostname": "private-sni.example.com",
+                    "hostname": "hostname",
                     "l4_protocol": "tcp",
                     "port_range": "port_range",
                     "type": "private",
                     "vnet_id": "vnet_id",
-                },
-                {
-                    "mcp_server_id": "mcp-server-1",
-                    "type": "via_mcp_server_portal",
                 },
             ],
             enable_binding_cookie=True,
@@ -2747,7 +2552,7 @@ class TestApplications:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    def test_raw_response_update_overload_11(self, client: Cloudflare) -> None:
+    def test_raw_response_update_overload_10(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
@@ -2769,7 +2574,7 @@ class TestApplications:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    def test_streaming_response_update_overload_11(self, client: Cloudflare) -> None:
+    def test_streaming_response_update_overload_10(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
@@ -2793,7 +2598,7 @@ class TestApplications:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    def test_path_params_update_overload_11(self, client: Cloudflare) -> None:
+    def test_path_params_update_overload_10(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
                 app_id="",
@@ -2859,7 +2664,6 @@ class TestApplications:
             page=0,
             per_page=0,
             search="search",
-            target_attributes="target_attributes",
         )
         assert_matches_type(SyncV4PagePaginationArray[ApplicationListResponse], application, path=["response"])
 
@@ -3172,15 +2976,11 @@ class TestAsyncApplications:
                 },
                 {
                     "cidr": "cidr",
-                    "hostname": "private-sni.example.com",
+                    "hostname": "hostname",
                     "l4_protocol": "tcp",
                     "port_range": "port_range",
                     "type": "private",
                     "vnet_id": "vnet_id",
-                },
-                {
-                    "mcp_server_id": "mcp-server-1",
-                    "type": "via_mcp_server_portal",
                 },
             ],
             enable_binding_cookie=True,
@@ -3463,15 +3263,11 @@ class TestAsyncApplications:
                 },
                 {
                     "cidr": "cidr",
-                    "hostname": "private-sni.example.com",
+                    "hostname": "hostname",
                     "l4_protocol": "tcp",
                     "port_range": "port_range",
                     "type": "private",
                     "vnet_id": "vnet_id",
-                },
-                {
-                    "mcp_server_id": "mcp-server-1",
-                    "type": "via_mcp_server_portal",
                 },
             ],
             enable_binding_cookie=True,
@@ -3631,15 +3427,11 @@ class TestAsyncApplications:
                 },
                 {
                     "cidr": "cidr",
-                    "hostname": "private-sni.example.com",
+                    "hostname": "hostname",
                     "l4_protocol": "tcp",
                     "port_range": "port_range",
                     "type": "private",
                     "vnet_id": "vnet_id",
-                },
-                {
-                    "mcp_server_id": "mcp-server-1",
-                    "type": "via_mcp_server_portal",
                 },
             ],
             enable_binding_cookie=True,
@@ -3976,7 +3768,6 @@ class TestAsyncApplications:
     @parametrize
     async def test_method_create_overload_8(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.create(
-            type="self_hosted",
             account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
@@ -3985,22 +3776,13 @@ class TestAsyncApplications:
     @parametrize
     async def test_method_create_with_all_params_overload_8(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.create(
-            type="self_hosted",
             account_id="account_id",
-            allowed_idps=["699d98642c564d2e855e9661899b7252"],
-            auto_redirect_to_identity=True,
-            custom_deny_url="custom_deny_url",
-            custom_non_identity_deny_url="custom_non_identity_deny_url",
-            custom_pages=["699d98642c564d2e855e9661899b7252"],
-            domain="abcd123456.proxy.cloudflare-gateway.com",
-            name="Gateway Proxy",
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
-            session_duration="24h",
+            app_launcher_visible=True,
+            domain="https://mybookmark.com",
+            logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            name="Admin Site",
+            tags=["engineers"],
+            type="bookmark",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -4008,7 +3790,6 @@ class TestAsyncApplications:
     @parametrize
     async def test_raw_response_create_overload_8(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.create(
-            type="self_hosted",
             account_id="account_id",
         )
 
@@ -4021,7 +3802,6 @@ class TestAsyncApplications:
     @parametrize
     async def test_streaming_response_create_overload_8(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.create(
-            type="self_hosted",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -4037,80 +3817,17 @@ class TestAsyncApplications:
     async def test_path_params_create_overload_8(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.applications.with_raw_response.create(
-                type="self_hosted",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.applications.with_raw_response.create(
-                type="self_hosted",
                 account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_create_overload_9(self, async_client: AsyncCloudflare) -> None:
-        application = await async_client.zero_trust.access.applications.create(
-            account_id="account_id",
-        )
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    async def test_method_create_with_all_params_overload_9(self, async_client: AsyncCloudflare) -> None:
-        application = await async_client.zero_trust.access.applications.create(
-            account_id="account_id",
-            app_launcher_visible=True,
-            domain="https://mybookmark.com",
-            logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
-            name="Admin Site",
-            tags=["engineers"],
-            type="bookmark",
-        )
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    async def test_raw_response_create_overload_9(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.zero_trust.access.applications.with_raw_response.create(
-            account_id="account_id",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        application = await response.parse()
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    async def test_streaming_response_create_overload_9(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.zero_trust.access.applications.with_streaming_response.create(
-            account_id="account_id",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            application = await response.parse()
-            assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    async def test_path_params_create_overload_9(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
-            await async_client.zero_trust.access.applications.with_raw_response.create(
-                account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
-            await async_client.zero_trust.access.applications.with_raw_response.create(
-                account_id="account_id",
-            )
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    async def test_method_create_overload_10(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.create(
             target_criteria=[
                 {
@@ -4126,7 +3843,7 @@ class TestAsyncApplications:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    async def test_method_create_with_all_params_overload_10(self, async_client: AsyncCloudflare) -> None:
+    async def test_method_create_with_all_params_overload_9(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.create(
             target_criteria=[
                 {
@@ -4158,7 +3875,7 @@ class TestAsyncApplications:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    async def test_raw_response_create_overload_10(self, async_client: AsyncCloudflare) -> None:
+    async def test_raw_response_create_overload_9(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.create(
             target_criteria=[
                 {
@@ -4178,7 +3895,7 @@ class TestAsyncApplications:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    async def test_streaming_response_create_overload_10(self, async_client: AsyncCloudflare) -> None:
+    async def test_streaming_response_create_overload_9(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.create(
             target_criteria=[
                 {
@@ -4200,7 +3917,7 @@ class TestAsyncApplications:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    async def test_path_params_create_overload_10(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_create_overload_9(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.applications.with_raw_response.create(
                 target_criteria=[
@@ -4229,7 +3946,7 @@ class TestAsyncApplications:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    async def test_method_create_overload_11(self, async_client: AsyncCloudflare) -> None:
+    async def test_method_create_overload_10(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.create(
             domain="test.example.com/admin",
             target_criteria=[
@@ -4246,7 +3963,7 @@ class TestAsyncApplications:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    async def test_method_create_with_all_params_overload_11(self, async_client: AsyncCloudflare) -> None:
+    async def test_method_create_with_all_params_overload_10(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.create(
             domain="test.example.com/admin",
             target_criteria=[
@@ -4304,15 +4021,11 @@ class TestAsyncApplications:
                 },
                 {
                     "cidr": "cidr",
-                    "hostname": "private-sni.example.com",
+                    "hostname": "hostname",
                     "l4_protocol": "tcp",
                     "port_range": "port_range",
                     "type": "private",
                     "vnet_id": "vnet_id",
-                },
-                {
-                    "mcp_server_id": "mcp-server-1",
-                    "type": "via_mcp_server_portal",
                 },
             ],
             enable_binding_cookie=True,
@@ -4364,7 +4077,7 @@ class TestAsyncApplications:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    async def test_raw_response_create_overload_11(self, async_client: AsyncCloudflare) -> None:
+    async def test_raw_response_create_overload_10(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.create(
             domain="test.example.com/admin",
             target_criteria=[
@@ -4385,7 +4098,7 @@ class TestAsyncApplications:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    async def test_streaming_response_create_overload_11(self, async_client: AsyncCloudflare) -> None:
+    async def test_streaming_response_create_overload_10(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.create(
             domain="test.example.com/admin",
             target_criteria=[
@@ -4408,7 +4121,7 @@ class TestAsyncApplications:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    async def test_path_params_create_overload_11(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_create_overload_10(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.applications.with_raw_response.create(
                 domain="test.example.com/admin",
@@ -4502,15 +4215,11 @@ class TestAsyncApplications:
                 },
                 {
                     "cidr": "cidr",
-                    "hostname": "private-sni.example.com",
+                    "hostname": "hostname",
                     "l4_protocol": "tcp",
                     "port_range": "port_range",
                     "type": "private",
                     "vnet_id": "vnet_id",
-                },
-                {
-                    "mcp_server_id": "mcp-server-1",
-                    "type": "via_mcp_server_portal",
                 },
             ],
             enable_binding_cookie=True,
@@ -4819,15 +4528,11 @@ class TestAsyncApplications:
                 },
                 {
                     "cidr": "cidr",
-                    "hostname": "private-sni.example.com",
+                    "hostname": "hostname",
                     "l4_protocol": "tcp",
                     "port_range": "port_range",
                     "type": "private",
                     "vnet_id": "vnet_id",
-                },
-                {
-                    "mcp_server_id": "mcp-server-1",
-                    "type": "via_mcp_server_portal",
                 },
             ],
             enable_binding_cookie=True,
@@ -5001,15 +4706,11 @@ class TestAsyncApplications:
                 },
                 {
                     "cidr": "cidr",
-                    "hostname": "private-sni.example.com",
+                    "hostname": "hostname",
                     "l4_protocol": "tcp",
                     "port_range": "port_range",
                     "type": "private",
                     "vnet_id": "vnet_id",
-                },
-                {
-                    "mcp_server_id": "mcp-server-1",
-                    "type": "via_mcp_server_portal",
                 },
             ],
             enable_binding_cookie=True,
@@ -5398,7 +5099,6 @@ class TestAsyncApplications:
     async def test_method_update_overload_8(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            type="self_hosted",
             account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
@@ -5408,22 +5108,13 @@ class TestAsyncApplications:
     async def test_method_update_with_all_params_overload_8(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            type="self_hosted",
             account_id="account_id",
-            allowed_idps=["699d98642c564d2e855e9661899b7252"],
-            auto_redirect_to_identity=True,
-            custom_deny_url="custom_deny_url",
-            custom_non_identity_deny_url="custom_non_identity_deny_url",
-            custom_pages=["699d98642c564d2e855e9661899b7252"],
-            domain="abcd123456.proxy.cloudflare-gateway.com",
-            name="Gateway Proxy",
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                }
-            ],
-            session_duration="24h",
+            app_launcher_visible=True,
+            domain="https://mybookmark.com",
+            logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+            name="Admin Site",
+            tags=["engineers"],
+            type="bookmark",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -5432,7 +5123,6 @@ class TestAsyncApplications:
     async def test_raw_response_update_overload_8(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            type="self_hosted",
             account_id="account_id",
         )
 
@@ -5446,7 +5136,6 @@ class TestAsyncApplications:
     async def test_streaming_response_update_overload_8(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            type="self_hosted",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -5463,100 +5152,24 @@ class TestAsyncApplications:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 app_id="",
-                type="self_hosted",
                 account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
-                type="self_hosted",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
-                type="self_hosted",
                 account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update_overload_9(self, async_client: AsyncCloudflare) -> None:
-        application = await async_client.zero_trust.access.applications.update(
-            app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="account_id",
-        )
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    async def test_method_update_with_all_params_overload_9(self, async_client: AsyncCloudflare) -> None:
-        application = await async_client.zero_trust.access.applications.update(
-            app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="account_id",
-            app_launcher_visible=True,
-            domain="https://mybookmark.com",
-            logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
-            name="Admin Site",
-            tags=["engineers"],
-            type="bookmark",
-        )
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    async def test_raw_response_update_overload_9(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.zero_trust.access.applications.with_raw_response.update(
-            app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="account_id",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        application = await response.parse()
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    async def test_streaming_response_update_overload_9(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.zero_trust.access.applications.with_streaming_response.update(
-            app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="account_id",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            application = await response.parse()
-            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    async def test_path_params_update_overload_9(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
-            await async_client.zero_trust.access.applications.with_raw_response.update(
-                app_id="",
-                account_id="account_id",
-            )
-
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
-            await async_client.zero_trust.access.applications.with_raw_response.update(
-                app_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
-            await async_client.zero_trust.access.applications.with_raw_response.update(
-                app_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="account_id",
-            )
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    async def test_method_update_overload_10(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             target_criteria=[
@@ -5573,7 +5186,7 @@ class TestAsyncApplications:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    async def test_method_update_with_all_params_overload_10(self, async_client: AsyncCloudflare) -> None:
+    async def test_method_update_with_all_params_overload_9(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             target_criteria=[
@@ -5606,7 +5219,7 @@ class TestAsyncApplications:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    async def test_raw_response_update_overload_10(self, async_client: AsyncCloudflare) -> None:
+    async def test_raw_response_update_overload_9(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             target_criteria=[
@@ -5627,7 +5240,7 @@ class TestAsyncApplications:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    async def test_streaming_response_update_overload_10(self, async_client: AsyncCloudflare) -> None:
+    async def test_streaming_response_update_overload_9(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             target_criteria=[
@@ -5650,7 +5263,7 @@ class TestAsyncApplications:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    async def test_path_params_update_overload_10(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_update_overload_9(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 app_id="",
@@ -5695,7 +5308,7 @@ class TestAsyncApplications:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    async def test_method_update_overload_11(self, async_client: AsyncCloudflare) -> None:
+    async def test_method_update_overload_10(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
@@ -5713,7 +5326,7 @@ class TestAsyncApplications:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    async def test_method_update_with_all_params_overload_11(self, async_client: AsyncCloudflare) -> None:
+    async def test_method_update_with_all_params_overload_10(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
@@ -5772,15 +5385,11 @@ class TestAsyncApplications:
                 },
                 {
                     "cidr": "cidr",
-                    "hostname": "private-sni.example.com",
+                    "hostname": "hostname",
                     "l4_protocol": "tcp",
                     "port_range": "port_range",
                     "type": "private",
                     "vnet_id": "vnet_id",
-                },
-                {
-                    "mcp_server_id": "mcp-server-1",
-                    "type": "via_mcp_server_portal",
                 },
             ],
             enable_binding_cookie=True,
@@ -5832,7 +5441,7 @@ class TestAsyncApplications:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    async def test_raw_response_update_overload_11(self, async_client: AsyncCloudflare) -> None:
+    async def test_raw_response_update_overload_10(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
@@ -5854,7 +5463,7 @@ class TestAsyncApplications:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    async def test_streaming_response_update_overload_11(self, async_client: AsyncCloudflare) -> None:
+    async def test_streaming_response_update_overload_10(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
@@ -5878,7 +5487,7 @@ class TestAsyncApplications:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    async def test_path_params_update_overload_11(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_update_overload_10(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 app_id="",
@@ -5944,7 +5553,6 @@ class TestAsyncApplications:
             page=0,
             per_page=0,
             search="search",
-            target_attributes="target_attributes",
         )
         assert_matches_type(AsyncV4PagePaginationArray[ApplicationListResponse], application, path=["response"])
 

@@ -62,7 +62,7 @@ class GatewayRule(BaseModel):
     filters: List[GatewayFilter]
     """
     Specify the protocol or layer to evaluate the traffic, identity, and device
-    posture expressions. Can only contain a single value.
+    posture expressions.
     """
 
     name: str
@@ -123,12 +123,14 @@ class GatewayRule(BaseModel):
     """Indicate that this rule is shared via the Orgs API and read only."""
 
     rule_settings: Optional[RuleSetting] = None
-    """Defines settings for this rule.
+    """Set settings related to this rule.
 
-    Settings apply only to specific rule types and must use compatible selectors. If
-    Terraform detects drift, confirm the setting supports your rule type and check
-    whether the API modifies the value. Use API-returned values in your
-    configuration to prevent drift.
+    Each setting is only valid for specific rule types and can only be used with the
+    appropriate selectors. If Terraform drift is observed in these setting values,
+    verify that the setting is supported for the given rule type and that the API
+    response reflects the requested value. If the API response returns sanitized or
+    modified values that differ from the request, use the API-provided values in
+    Terraform to ensure consistency.
     """
 
     schedule: Optional[Schedule] = None

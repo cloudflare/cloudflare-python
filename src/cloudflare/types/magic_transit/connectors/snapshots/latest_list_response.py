@@ -7,7 +7,6 @@ from ....._models import BaseModel
 __all__ = [
     "LatestListResponse",
     "Item",
-    "ItemBond",
     "ItemDHCPLease",
     "ItemDisk",
     "ItemInterface",
@@ -17,14 +16,6 @@ __all__ = [
     "ItemThermal",
     "ItemTunnel",
 ]
-
-
-class ItemBond(BaseModel):
-    name: str
-    """Name of the network interface"""
-
-    status: str
-    """Current status of the network interface"""
 
 
 class ItemDHCPLease(BaseModel):
@@ -263,9 +254,6 @@ class ItemTunnel(BaseModel):
     connector_id: Optional[str] = None
     """Connector identifier"""
 
-    probed_mtu: Optional[float] = None
-    """MTU as measured between the two ends of the tunnel"""
-
 
 class Item(BaseModel):
     count_reclaim_failures: float
@@ -285,8 +273,6 @@ class Item(BaseModel):
 
     v: str
     """Version"""
-
-    bonds: Optional[List[ItemBond]] = None
 
     cpu_count: Optional[float] = None
     """Count of processors/cores"""

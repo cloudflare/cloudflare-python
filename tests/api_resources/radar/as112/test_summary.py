@@ -45,9 +45,9 @@ class TestSummary:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                protocol=["UDP"],
-                query_type=["A"],
-                response_code=["NOERROR"],
+                protocol="UDP",
+                query_type="A",
+                response_code="NOERROR",
             )
 
         assert_matches_type(SummaryDNSSECResponse, summary, path=["response"])
@@ -92,9 +92,9 @@ class TestSummary:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                protocol=["UDP"],
-                query_type=["A"],
-                response_code=["NOERROR"],
+                protocol="UDP",
+                query_type="A",
+                response_code="NOERROR",
             )
 
         assert_matches_type(SummaryEdnsResponse, summary, path=["response"])
@@ -139,9 +139,9 @@ class TestSummary:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                protocol=["UDP"],
-                query_type=["A"],
-                response_code=["NOERROR"],
+                protocol="UDP",
+                query_type="A",
+                response_code="NOERROR",
             )
 
         assert_matches_type(SummaryIPVersionResponse, summary, path=["response"])
@@ -186,8 +186,8 @@ class TestSummary:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                query_type=["A"],
-                response_code=["NOERROR"],
+                query_type="A",
+                response_code="NOERROR",
             )
 
         assert_matches_type(SummaryProtocolResponse, summary, path=["response"])
@@ -233,8 +233,8 @@ class TestSummary:
                 limit_per_group=10,
                 location=["string"],
                 name=["main_series"],
-                protocol=["UDP"],
-                response_code=["NOERROR"],
+                protocol="UDP",
+                response_code="NOERROR",
             )
 
         assert_matches_type(SummaryQueryTypeResponse, summary, path=["response"])
@@ -280,8 +280,8 @@ class TestSummary:
                 limit_per_group=10,
                 location=["string"],
                 name=["main_series"],
-                protocol=["UDP"],
-                query_type=["A"],
+                protocol="UDP",
+                query_type="A",
             )
 
         assert_matches_type(SummaryResponseCodesResponse, summary, path=["response"])
@@ -332,9 +332,9 @@ class TestAsyncSummary:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                protocol=["UDP"],
-                query_type=["A"],
-                response_code=["NOERROR"],
+                protocol="UDP",
+                query_type="A",
+                response_code="NOERROR",
             )
 
         assert_matches_type(SummaryDNSSECResponse, summary, path=["response"])
@@ -379,9 +379,9 @@ class TestAsyncSummary:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                protocol=["UDP"],
-                query_type=["A"],
-                response_code=["NOERROR"],
+                protocol="UDP",
+                query_type="A",
+                response_code="NOERROR",
             )
 
         assert_matches_type(SummaryEdnsResponse, summary, path=["response"])
@@ -426,9 +426,9 @@ class TestAsyncSummary:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                protocol=["UDP"],
-                query_type=["A"],
-                response_code=["NOERROR"],
+                protocol="UDP",
+                query_type="A",
+                response_code="NOERROR",
             )
 
         assert_matches_type(SummaryIPVersionResponse, summary, path=["response"])
@@ -473,8 +473,8 @@ class TestAsyncSummary:
                 format="JSON",
                 location=["string"],
                 name=["main_series"],
-                query_type=["A"],
-                response_code=["NOERROR"],
+                query_type="A",
+                response_code="NOERROR",
             )
 
         assert_matches_type(SummaryProtocolResponse, summary, path=["response"])
@@ -520,8 +520,8 @@ class TestAsyncSummary:
                 limit_per_group=10,
                 location=["string"],
                 name=["main_series"],
-                protocol=["UDP"],
-                response_code=["NOERROR"],
+                protocol="UDP",
+                response_code="NOERROR",
             )
 
         assert_matches_type(SummaryQueryTypeResponse, summary, path=["response"])
@@ -567,8 +567,8 @@ class TestAsyncSummary:
                 limit_per_group=10,
                 location=["string"],
                 name=["main_series"],
-                protocol=["UDP"],
-                query_type=["A"],
+                protocol="UDP",
+                query_type="A",
             )
 
         assert_matches_type(SummaryResponseCodesResponse, summary, path=["response"])

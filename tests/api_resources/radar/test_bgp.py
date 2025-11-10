@@ -33,7 +33,7 @@ class TestBGP:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             name=["main_series"],
-            prefix=["string"],
+            prefix=["1.1.1.0/24"],
             update_type=["ANNOUNCEMENT"],
         )
         assert_matches_type(BGPTimeseriesResponse, bgp, path=["response"])
@@ -79,7 +79,7 @@ class TestAsyncBGP:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             name=["main_series"],
-            prefix=["string"],
+            prefix=["1.1.1.0/24"],
             update_type=["ANNOUNCEMENT"],
         )
         assert_matches_type(BGPTimeseriesResponse, bgp, path=["response"])

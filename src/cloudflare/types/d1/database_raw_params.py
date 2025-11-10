@@ -2,15 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable
-from typing_extensions import Required, TypeAlias, TypedDict
+from typing_extensions import Required, TypedDict
 
 from ..._types import SequenceNotStr
 
-__all__ = ["DatabaseRawParams", "D1SingleQuery", "MultipleQueries", "MultipleQueriesBatch"]
+__all__ = ["DatabaseRawParams"]
 
 
-class D1SingleQuery(TypedDict, total=False):
+class DatabaseRawParams(TypedDict, total=False):
     account_id: Required[str]
     """Account identifier tag."""
 
@@ -22,24 +21,3 @@ class D1SingleQuery(TypedDict, total=False):
     """
 
     params: SequenceNotStr[str]
-
-
-class MultipleQueries(TypedDict, total=False):
-    account_id: Required[str]
-    """Account identifier tag."""
-
-    batch: Iterable[MultipleQueriesBatch]
-
-
-class MultipleQueriesBatch(TypedDict, total=False):
-    sql: Required[str]
-    """Your SQL query.
-
-    Supports multiple statements, joined by semicolons, which will be executed as a
-    batch.
-    """
-
-    params: SequenceNotStr[str]
-
-
-DatabaseRawParams: TypeAlias = Union[D1SingleQuery, MultipleQueries]

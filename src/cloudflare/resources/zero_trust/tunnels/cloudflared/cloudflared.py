@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Union, cast
+from typing import Any, Union, cast
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -62,7 +62,11 @@ from .configurations import (
 )
 from ....._base_client import AsyncPaginator, make_request_options
 from .....types.zero_trust.tunnels import cloudflared_edit_params, cloudflared_list_params, cloudflared_create_params
-from .....types.shared.cloudflare_tunnel import CloudflareTunnel
+from .....types.zero_trust.tunnels.cloudflared_get_response import CloudflaredGetResponse
+from .....types.zero_trust.tunnels.cloudflared_edit_response import CloudflaredEditResponse
+from .....types.zero_trust.tunnels.cloudflared_list_response import CloudflaredListResponse
+from .....types.zero_trust.tunnels.cloudflared_create_response import CloudflaredCreateResponse
+from .....types.zero_trust.tunnels.cloudflared_delete_response import CloudflaredDeleteResponse
 
 __all__ = ["CloudflaredResource", "AsyncCloudflaredResource"]
 
@@ -120,7 +124,7 @@ class CloudflaredResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CloudflareTunnel:
+    ) -> CloudflaredCreateResponse:
         """
         Creates a new Cloudflare Tunnel in an account.
 
@@ -146,24 +150,29 @@ class CloudflaredResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._post(
-            f"/accounts/{account_id}/cfd_tunnel",
-            body=maybe_transform(
-                {
-                    "name": name,
-                    "config_src": config_src,
-                    "tunnel_secret": tunnel_secret,
-                },
-                cloudflared_create_params.CloudflaredCreateParams,
+        return cast(
+            CloudflaredCreateResponse,
+            self._post(
+                f"/accounts/{account_id}/cfd_tunnel",
+                body=maybe_transform(
+                    {
+                        "name": name,
+                        "config_src": config_src,
+                        "tunnel_secret": tunnel_secret,
+                    },
+                    cloudflared_create_params.CloudflaredCreateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[CloudflaredCreateResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[CloudflaredCreateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[CloudflareTunnel]._unwrapper,
-            ),
-            cast_to=cast(Type[CloudflareTunnel], ResultWrapper[CloudflareTunnel]),
         )
 
     def list(
@@ -187,7 +196,7 @@ class CloudflaredResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncV4PagePaginationArray[CloudflareTunnel]:
+    ) -> SyncV4PagePaginationArray[CloudflaredListResponse]:
         """
         Lists and filters Cloudflare Tunnels in an account.
 
@@ -225,7 +234,7 @@ class CloudflaredResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/cfd_tunnel",
-            page=SyncV4PagePaginationArray[CloudflareTunnel],
+            page=SyncV4PagePaginationArray[CloudflaredListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -248,7 +257,7 @@ class CloudflaredResource(SyncAPIResource):
                     cloudflared_list_params.CloudflaredListParams,
                 ),
             ),
-            model=CloudflareTunnel,
+            model=cast(Any, CloudflaredListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     def delete(
@@ -262,7 +271,7 @@ class CloudflaredResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CloudflareTunnel:
+    ) -> CloudflaredDeleteResponse:
         """
         Deletes a Cloudflare Tunnel from an account.
 
@@ -283,16 +292,21 @@ class CloudflaredResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return self._delete(
-            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[CloudflareTunnel]._unwrapper,
+        return cast(
+            CloudflaredDeleteResponse,
+            self._delete(
+                f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[CloudflaredDeleteResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[CloudflaredDeleteResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[CloudflareTunnel], ResultWrapper[CloudflareTunnel]),
         )
 
     def edit(
@@ -308,7 +322,7 @@ class CloudflaredResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CloudflareTunnel:
+    ) -> CloudflaredEditResponse:
         """
         Updates an existing Cloudflare Tunnel.
 
@@ -334,23 +348,28 @@ class CloudflaredResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return self._patch(
-            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
-            body=maybe_transform(
-                {
-                    "name": name,
-                    "tunnel_secret": tunnel_secret,
-                },
-                cloudflared_edit_params.CloudflaredEditParams,
+        return cast(
+            CloudflaredEditResponse,
+            self._patch(
+                f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
+                body=maybe_transform(
+                    {
+                        "name": name,
+                        "tunnel_secret": tunnel_secret,
+                    },
+                    cloudflared_edit_params.CloudflaredEditParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[CloudflaredEditResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[CloudflaredEditResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[CloudflareTunnel]._unwrapper,
-            ),
-            cast_to=cast(Type[CloudflareTunnel], ResultWrapper[CloudflareTunnel]),
         )
 
     def get(
@@ -364,7 +383,7 @@ class CloudflaredResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CloudflareTunnel:
+    ) -> CloudflaredGetResponse:
         """
         Fetches a single Cloudflare Tunnel.
 
@@ -385,16 +404,21 @@ class CloudflaredResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return self._get(
-            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[CloudflareTunnel]._unwrapper,
+        return cast(
+            CloudflaredGetResponse,
+            self._get(
+                f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[CloudflaredGetResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[CloudflaredGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[CloudflareTunnel], ResultWrapper[CloudflareTunnel]),
         )
 
 
@@ -451,7 +475,7 @@ class AsyncCloudflaredResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CloudflareTunnel:
+    ) -> CloudflaredCreateResponse:
         """
         Creates a new Cloudflare Tunnel in an account.
 
@@ -477,24 +501,29 @@ class AsyncCloudflaredResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._post(
-            f"/accounts/{account_id}/cfd_tunnel",
-            body=await async_maybe_transform(
-                {
-                    "name": name,
-                    "config_src": config_src,
-                    "tunnel_secret": tunnel_secret,
-                },
-                cloudflared_create_params.CloudflaredCreateParams,
+        return cast(
+            CloudflaredCreateResponse,
+            await self._post(
+                f"/accounts/{account_id}/cfd_tunnel",
+                body=await async_maybe_transform(
+                    {
+                        "name": name,
+                        "config_src": config_src,
+                        "tunnel_secret": tunnel_secret,
+                    },
+                    cloudflared_create_params.CloudflaredCreateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[CloudflaredCreateResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[CloudflaredCreateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[CloudflareTunnel]._unwrapper,
-            ),
-            cast_to=cast(Type[CloudflareTunnel], ResultWrapper[CloudflareTunnel]),
         )
 
     def list(
@@ -518,7 +547,7 @@ class AsyncCloudflaredResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[CloudflareTunnel, AsyncV4PagePaginationArray[CloudflareTunnel]]:
+    ) -> AsyncPaginator[CloudflaredListResponse, AsyncV4PagePaginationArray[CloudflaredListResponse]]:
         """
         Lists and filters Cloudflare Tunnels in an account.
 
@@ -556,7 +585,7 @@ class AsyncCloudflaredResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/cfd_tunnel",
-            page=AsyncV4PagePaginationArray[CloudflareTunnel],
+            page=AsyncV4PagePaginationArray[CloudflaredListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -579,7 +608,7 @@ class AsyncCloudflaredResource(AsyncAPIResource):
                     cloudflared_list_params.CloudflaredListParams,
                 ),
             ),
-            model=CloudflareTunnel,
+            model=cast(Any, CloudflaredListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     async def delete(
@@ -593,7 +622,7 @@ class AsyncCloudflaredResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CloudflareTunnel:
+    ) -> CloudflaredDeleteResponse:
         """
         Deletes a Cloudflare Tunnel from an account.
 
@@ -614,16 +643,21 @@ class AsyncCloudflaredResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return await self._delete(
-            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[CloudflareTunnel]._unwrapper,
+        return cast(
+            CloudflaredDeleteResponse,
+            await self._delete(
+                f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[CloudflaredDeleteResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[CloudflaredDeleteResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[CloudflareTunnel], ResultWrapper[CloudflareTunnel]),
         )
 
     async def edit(
@@ -639,7 +673,7 @@ class AsyncCloudflaredResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CloudflareTunnel:
+    ) -> CloudflaredEditResponse:
         """
         Updates an existing Cloudflare Tunnel.
 
@@ -665,23 +699,28 @@ class AsyncCloudflaredResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return await self._patch(
-            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
-            body=await async_maybe_transform(
-                {
-                    "name": name,
-                    "tunnel_secret": tunnel_secret,
-                },
-                cloudflared_edit_params.CloudflaredEditParams,
+        return cast(
+            CloudflaredEditResponse,
+            await self._patch(
+                f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
+                body=await async_maybe_transform(
+                    {
+                        "name": name,
+                        "tunnel_secret": tunnel_secret,
+                    },
+                    cloudflared_edit_params.CloudflaredEditParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[CloudflaredEditResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[CloudflaredEditResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[CloudflareTunnel]._unwrapper,
-            ),
-            cast_to=cast(Type[CloudflareTunnel], ResultWrapper[CloudflareTunnel]),
         )
 
     async def get(
@@ -695,7 +734,7 @@ class AsyncCloudflaredResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CloudflareTunnel:
+    ) -> CloudflaredGetResponse:
         """
         Fetches a single Cloudflare Tunnel.
 
@@ -716,16 +755,21 @@ class AsyncCloudflaredResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return await self._get(
-            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[CloudflareTunnel]._unwrapper,
+        return cast(
+            CloudflaredGetResponse,
+            await self._get(
+                f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[CloudflaredGetResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[CloudflaredGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[CloudflareTunnel], ResultWrapper[CloudflareTunnel]),
         )
 
 

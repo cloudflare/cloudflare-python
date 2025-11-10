@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Union, cast
+from typing import Any, Union, cast
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -97,17 +97,22 @@ class WARPConnectorResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._post(
-            f"/accounts/{account_id}/warp_connector",
-            body=maybe_transform({"name": name}, warp_connector_create_params.WARPConnectorCreateParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[WARPConnectorCreateResponse]._unwrapper,
+        return cast(
+            WARPConnectorCreateResponse,
+            self._post(
+                f"/accounts/{account_id}/warp_connector",
+                body=maybe_transform({"name": name}, warp_connector_create_params.WARPConnectorCreateParams),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[WARPConnectorCreateResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[WARPConnectorCreateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[WARPConnectorCreateResponse], ResultWrapper[WARPConnectorCreateResponse]),
         )
 
     def list(
@@ -192,7 +197,9 @@ class WARPConnectorResource(SyncAPIResource):
                     warp_connector_list_params.WARPConnectorListParams,
                 ),
             ),
-            model=WARPConnectorListResponse,
+            model=cast(
+                Any, WARPConnectorListResponse
+            ),  # Union types cannot be passed in as arguments in the type system
         )
 
     def delete(
@@ -227,16 +234,21 @@ class WARPConnectorResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return self._delete(
-            f"/accounts/{account_id}/warp_connector/{tunnel_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[WARPConnectorDeleteResponse]._unwrapper,
+        return cast(
+            WARPConnectorDeleteResponse,
+            self._delete(
+                f"/accounts/{account_id}/warp_connector/{tunnel_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[WARPConnectorDeleteResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[WARPConnectorDeleteResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[WARPConnectorDeleteResponse], ResultWrapper[WARPConnectorDeleteResponse]),
         )
 
     def edit(
@@ -278,23 +290,28 @@ class WARPConnectorResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return self._patch(
-            f"/accounts/{account_id}/warp_connector/{tunnel_id}",
-            body=maybe_transform(
-                {
-                    "name": name,
-                    "tunnel_secret": tunnel_secret,
-                },
-                warp_connector_edit_params.WARPConnectorEditParams,
+        return cast(
+            WARPConnectorEditResponse,
+            self._patch(
+                f"/accounts/{account_id}/warp_connector/{tunnel_id}",
+                body=maybe_transform(
+                    {
+                        "name": name,
+                        "tunnel_secret": tunnel_secret,
+                    },
+                    warp_connector_edit_params.WARPConnectorEditParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[WARPConnectorEditResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[WARPConnectorEditResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[WARPConnectorEditResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[WARPConnectorEditResponse], ResultWrapper[WARPConnectorEditResponse]),
         )
 
     def get(
@@ -329,16 +346,21 @@ class WARPConnectorResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return self._get(
-            f"/accounts/{account_id}/warp_connector/{tunnel_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[WARPConnectorGetResponse]._unwrapper,
+        return cast(
+            WARPConnectorGetResponse,
+            self._get(
+                f"/accounts/{account_id}/warp_connector/{tunnel_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[WARPConnectorGetResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[WARPConnectorGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[WARPConnectorGetResponse], ResultWrapper[WARPConnectorGetResponse]),
         )
 
 
@@ -396,17 +418,24 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._post(
-            f"/accounts/{account_id}/warp_connector",
-            body=await async_maybe_transform({"name": name}, warp_connector_create_params.WARPConnectorCreateParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[WARPConnectorCreateResponse]._unwrapper,
+        return cast(
+            WARPConnectorCreateResponse,
+            await self._post(
+                f"/accounts/{account_id}/warp_connector",
+                body=await async_maybe_transform(
+                    {"name": name}, warp_connector_create_params.WARPConnectorCreateParams
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[WARPConnectorCreateResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[WARPConnectorCreateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[WARPConnectorCreateResponse], ResultWrapper[WARPConnectorCreateResponse]),
         )
 
     def list(
@@ -491,7 +520,9 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
                     warp_connector_list_params.WARPConnectorListParams,
                 ),
             ),
-            model=WARPConnectorListResponse,
+            model=cast(
+                Any, WARPConnectorListResponse
+            ),  # Union types cannot be passed in as arguments in the type system
         )
 
     async def delete(
@@ -526,16 +557,21 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return await self._delete(
-            f"/accounts/{account_id}/warp_connector/{tunnel_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[WARPConnectorDeleteResponse]._unwrapper,
+        return cast(
+            WARPConnectorDeleteResponse,
+            await self._delete(
+                f"/accounts/{account_id}/warp_connector/{tunnel_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[WARPConnectorDeleteResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[WARPConnectorDeleteResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[WARPConnectorDeleteResponse], ResultWrapper[WARPConnectorDeleteResponse]),
         )
 
     async def edit(
@@ -577,23 +613,28 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return await self._patch(
-            f"/accounts/{account_id}/warp_connector/{tunnel_id}",
-            body=await async_maybe_transform(
-                {
-                    "name": name,
-                    "tunnel_secret": tunnel_secret,
-                },
-                warp_connector_edit_params.WARPConnectorEditParams,
+        return cast(
+            WARPConnectorEditResponse,
+            await self._patch(
+                f"/accounts/{account_id}/warp_connector/{tunnel_id}",
+                body=await async_maybe_transform(
+                    {
+                        "name": name,
+                        "tunnel_secret": tunnel_secret,
+                    },
+                    warp_connector_edit_params.WARPConnectorEditParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[WARPConnectorEditResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[WARPConnectorEditResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[WARPConnectorEditResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[WARPConnectorEditResponse], ResultWrapper[WARPConnectorEditResponse]),
         )
 
     async def get(
@@ -628,16 +669,21 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return await self._get(
-            f"/accounts/{account_id}/warp_connector/{tunnel_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[WARPConnectorGetResponse]._unwrapper,
+        return cast(
+            WARPConnectorGetResponse,
+            await self._get(
+                f"/accounts/{account_id}/warp_connector/{tunnel_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[WARPConnectorGetResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[WARPConnectorGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[WARPConnectorGetResponse], ResultWrapper[WARPConnectorGetResponse]),
         )
 
 

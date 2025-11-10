@@ -12,3 +12,4 @@ class RouteRealtimeParams(TypedDict, total=False):
     """Format in which results will be returned."""
 
     prefix: str
+    """Network prefix, IPv4 or IPv6."""

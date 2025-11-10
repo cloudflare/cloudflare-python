@@ -33,5 +33,3 @@ class ConnectorGetResponse(BaseModel):
     last_heartbeat: Optional[str] = None
 
     last_seen_version: Optional[str] = None
-
-    license_key: Optional[str] = None

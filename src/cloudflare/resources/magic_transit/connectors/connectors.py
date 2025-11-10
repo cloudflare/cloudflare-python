@@ -97,8 +97,6 @@ class ConnectorsResource(SyncAPIResource):
         Args:
           account_id: Account identifier
 
-          device: Exactly one of id, serial_number, or provision_license must be provided.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -141,7 +139,6 @@ class ConnectorsResource(SyncAPIResource):
         interrupt_window_duration_hours: float | Omit = omit,
         interrupt_window_hour_of_day: float | Omit = omit,
         notes: str | Omit = omit,
-        provision_license: bool | Omit = omit,
         timezone: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -151,12 +148,10 @@ class ConnectorsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectorUpdateResponse:
         """
-        Replace Connector or Re-provision License Key
+        Replace Connector
 
         Args:
           account_id: Account identifier
-
-          provision_license: When true, regenerate license key for the connector.
 
           extra_headers: Send extra headers
 
@@ -178,7 +173,6 @@ class ConnectorsResource(SyncAPIResource):
                     "interrupt_window_duration_hours": interrupt_window_duration_hours,
                     "interrupt_window_hour_of_day": interrupt_window_hour_of_day,
                     "notes": notes,
-                    "provision_license": provision_license,
                     "timezone": timezone,
                 },
                 connector_update_params.ConnectorUpdateParams,
@@ -280,7 +274,6 @@ class ConnectorsResource(SyncAPIResource):
         interrupt_window_duration_hours: float | Omit = omit,
         interrupt_window_hour_of_day: float | Omit = omit,
         notes: str | Omit = omit,
-        provision_license: bool | Omit = omit,
         timezone: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -290,12 +283,10 @@ class ConnectorsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectorEditResponse:
         """
-        Edit Connector to update specific properties or Re-provision License Key
+        Edit Connector to update specific properties
 
         Args:
           account_id: Account identifier
-
-          provision_license: When true, regenerate license key for the connector.
 
           extra_headers: Send extra headers
 
@@ -317,7 +308,6 @@ class ConnectorsResource(SyncAPIResource):
                     "interrupt_window_duration_hours": interrupt_window_duration_hours,
                     "interrupt_window_hour_of_day": interrupt_window_hour_of_day,
                     "notes": notes,
-                    "provision_license": provision_license,
                     "timezone": timezone,
                 },
                 connector_edit_params.ConnectorEditParams,
@@ -426,8 +416,6 @@ class AsyncConnectorsResource(AsyncAPIResource):
         Args:
           account_id: Account identifier
 
-          device: Exactly one of id, serial_number, or provision_license must be provided.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -470,7 +458,6 @@ class AsyncConnectorsResource(AsyncAPIResource):
         interrupt_window_duration_hours: float | Omit = omit,
         interrupt_window_hour_of_day: float | Omit = omit,
         notes: str | Omit = omit,
-        provision_license: bool | Omit = omit,
         timezone: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -480,12 +467,10 @@ class AsyncConnectorsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectorUpdateResponse:
         """
-        Replace Connector or Re-provision License Key
+        Replace Connector
 
         Args:
           account_id: Account identifier
-
-          provision_license: When true, regenerate license key for the connector.
 
           extra_headers: Send extra headers
 
@@ -507,7 +492,6 @@ class AsyncConnectorsResource(AsyncAPIResource):
                     "interrupt_window_duration_hours": interrupt_window_duration_hours,
                     "interrupt_window_hour_of_day": interrupt_window_hour_of_day,
                     "notes": notes,
-                    "provision_license": provision_license,
                     "timezone": timezone,
                 },
                 connector_update_params.ConnectorUpdateParams,
@@ -609,7 +593,6 @@ class AsyncConnectorsResource(AsyncAPIResource):
         interrupt_window_duration_hours: float | Omit = omit,
         interrupt_window_hour_of_day: float | Omit = omit,
         notes: str | Omit = omit,
-        provision_license: bool | Omit = omit,
         timezone: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -619,12 +602,10 @@ class AsyncConnectorsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConnectorEditResponse:
         """
-        Edit Connector to update specific properties or Re-provision License Key
+        Edit Connector to update specific properties
 
         Args:
           account_id: Account identifier
-
-          provision_license: When true, regenerate license key for the connector.
 
           extra_headers: Send extra headers
 
@@ -646,7 +627,6 @@ class AsyncConnectorsResource(AsyncAPIResource):
                     "interrupt_window_duration_hours": interrupt_window_duration_hours,
                     "interrupt_window_hour_of_day": interrupt_window_hour_of_day,
                     "notes": notes,
-                    "provision_license": provision_license,
                     "timezone": timezone,
                 },
                 connector_edit_params.ConnectorEditParams,

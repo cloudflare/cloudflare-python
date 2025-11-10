@@ -19,9 +19,6 @@ class ConfigurationUpdateParams(TypedDict, total=False):
 
     auth_id_characteristics: Required[Iterable[AuthIDCharacteristic]]
 
-    normalize: bool
-    """Ensures that the configuration is written or retrieved in normalized fashion"""
-
 
 class AuthIDCharacteristicAPIShieldAuthIDCharacteristic(TypedDict, total=False):
     name: Required[str]

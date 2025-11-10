@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing import List
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["ConfigurationGetParams"]
 
@@ -11,5 +12,5 @@ class ConfigurationGetParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier."""
 
-    normalize: bool
-    """Ensures that the configuration is written or retrieved in normalized fashion"""
+    properties: List[Literal["auth_id_characteristics"]]
+    """Requests information about certain properties."""

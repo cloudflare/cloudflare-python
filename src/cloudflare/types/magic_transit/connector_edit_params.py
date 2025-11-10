@@ -19,7 +19,4 @@ class ConnectorEditParams(TypedDict, total=False):
 
     notes: str
 
-    provision_license: bool
-    """When true, regenerate license key for the connector."""
-
     timezone: str

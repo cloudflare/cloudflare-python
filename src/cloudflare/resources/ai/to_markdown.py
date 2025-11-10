@@ -16,7 +16,6 @@ from ..._response import (
 )
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.ai.to_markdown_supported_response import ToMarkdownSupportedResponse
 from ...types.ai.to_markdown_transform_response import ToMarkdownTransformResponse
 
 __all__ = ["ToMarkdownResource", "AsyncToMarkdownResource"]
@@ -41,40 +40,6 @@ class ToMarkdownResource(SyncAPIResource):
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
         return ToMarkdownResourceWithStreamingResponse(self)
-
-    def supported(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncSinglePage[ToMarkdownSupportedResponse]:
-        """
-        Get all converted formats supported
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get_api_list(
-            f"/accounts/{account_id}/ai/tomarkdown/supported",
-            page=SyncSinglePage[ToMarkdownSupportedResponse],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            model=ToMarkdownSupportedResponse,
-        )
 
     def transform(
         self,
@@ -135,40 +100,6 @@ class AsyncToMarkdownResource(AsyncAPIResource):
         """
         return AsyncToMarkdownResourceWithStreamingResponse(self)
 
-    def supported(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[ToMarkdownSupportedResponse, AsyncSinglePage[ToMarkdownSupportedResponse]]:
-        """
-        Get all converted formats supported
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get_api_list(
-            f"/accounts/{account_id}/ai/tomarkdown/supported",
-            page=AsyncSinglePage[ToMarkdownSupportedResponse],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            model=ToMarkdownSupportedResponse,
-        )
-
     def transform(
         self,
         file: FileContent,
@@ -212,9 +143,6 @@ class ToMarkdownResourceWithRawResponse:
     def __init__(self, to_markdown: ToMarkdownResource) -> None:
         self._to_markdown = to_markdown
 
-        self.supported = to_raw_response_wrapper(
-            to_markdown.supported,
-        )
         self.transform = to_raw_response_wrapper(
             to_markdown.transform,
         )
@@ -224,9 +152,6 @@ class AsyncToMarkdownResourceWithRawResponse:
     def __init__(self, to_markdown: AsyncToMarkdownResource) -> None:
         self._to_markdown = to_markdown
 
-        self.supported = async_to_raw_response_wrapper(
-            to_markdown.supported,
-        )
         self.transform = async_to_raw_response_wrapper(
             to_markdown.transform,
         )
@@ -236,9 +161,6 @@ class ToMarkdownResourceWithStreamingResponse:
     def __init__(self, to_markdown: ToMarkdownResource) -> None:
         self._to_markdown = to_markdown
 
-        self.supported = to_streamed_response_wrapper(
-            to_markdown.supported,
-        )
         self.transform = to_streamed_response_wrapper(
             to_markdown.transform,
         )
@@ -248,9 +170,6 @@ class AsyncToMarkdownResourceWithStreamingResponse:
     def __init__(self, to_markdown: AsyncToMarkdownResource) -> None:
         self._to_markdown = to_markdown
 
-        self.supported = async_to_streamed_response_wrapper(
-            to_markdown.supported,
-        )
         self.transform = async_to_streamed_response_wrapper(
             to_markdown.transform,
         )

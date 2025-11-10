@@ -1,15 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import List, Union, Optional
 from datetime import datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from ...._models import BaseModel
+from ...shared.cloudflare_tunnel import CloudflareTunnel
 
-__all__ = ["WARPConnectorEditResponse", "Connection"]
+__all__ = ["WARPConnectorEditResponse", "TunnelWARPConnectorTunnel", "TunnelWARPConnectorTunnelConnection"]
 
 
-class Connection(BaseModel):
+class TunnelWARPConnectorTunnelConnection(BaseModel):
     id: Optional[str] = None
     """UUID of the Cloudflare Tunnel connection."""
 
@@ -40,14 +41,14 @@ class Connection(BaseModel):
     """UUID of the Cloudflare Tunnel connection."""
 
 
-class WARPConnectorEditResponse(BaseModel):
+class TunnelWARPConnectorTunnel(BaseModel):
     id: Optional[str] = None
     """UUID of the tunnel."""
 
     account_tag: Optional[str] = None
     """Cloudflare account ID"""
 
-    connections: Optional[List[Connection]] = None
+    connections: Optional[List[TunnelWARPConnectorTunnelConnection]] = None
     """The Cloudflare Tunnel connections between your origin and Cloudflare's edge."""
 
     conns_active_at: Optional[datetime] = None
@@ -88,3 +89,6 @@ class WARPConnectorEditResponse(BaseModel):
 
     tun_type: Optional[Literal["cfd_tunnel", "warp_connector", "warp", "magic", "ip_sec", "gre", "cni"]] = None
     """The type of tunnel."""
+
+
+WARPConnectorEditResponse: TypeAlias = Union[CloudflareTunnel, TunnelWARPConnectorTunnel]
