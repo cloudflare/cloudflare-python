@@ -31,6 +31,20 @@ class TestConfigurations:
         assert_matches_type(Configuration, configuration, path=["response"])
 
     @parametrize
+    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
+        configuration = client.api_gateway.configurations.update(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            auth_id_characteristics=[
+                {
+                    "name": "authorization",
+                    "type": "header",
+                }
+            ],
+            normalize=True,
+        )
+        assert_matches_type(Configuration, configuration, path=["response"])
+
+    @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.api_gateway.configurations.with_raw_response.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -87,6 +101,14 @@ class TestConfigurations:
         assert_matches_type(Configuration, configuration, path=["response"])
 
     @parametrize
+    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
+        configuration = client.api_gateway.configurations.get(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            normalize=True,
+        )
+        assert_matches_type(Configuration, configuration, path=["response"])
+
+    @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.api_gateway.configurations.with_raw_response.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -133,6 +155,20 @@ class TestAsyncConfigurations:
                     "type": "header",
                 }
             ],
+        )
+        assert_matches_type(Configuration, configuration, path=["response"])
+
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        configuration = await async_client.api_gateway.configurations.update(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            auth_id_characteristics=[
+                {
+                    "name": "authorization",
+                    "type": "header",
+                }
+            ],
+            normalize=True,
         )
         assert_matches_type(Configuration, configuration, path=["response"])
 
@@ -189,6 +225,14 @@ class TestAsyncConfigurations:
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         configuration = await async_client.api_gateway.configurations.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Configuration, configuration, path=["response"])
+
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        configuration = await async_client.api_gateway.configurations.get(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            normalize=True,
         )
         assert_matches_type(Configuration, configuration, path=["response"])
 

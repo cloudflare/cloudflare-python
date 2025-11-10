@@ -6,7 +6,7 @@ from typing import Type, Iterable, cast
 
 import httpx
 
-from ..._types import Body, Query, Headers, NotGiven, not_given
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -18,7 +18,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ..._base_client import make_request_options
-from ...types.api_gateway import configuration_update_params
+from ...types.api_gateway import configuration_get_params, configuration_update_params
 from ...types.api_gateway.configuration import Configuration
 
 __all__ = ["ConfigurationsResource", "AsyncConfigurationsResource"]
@@ -49,6 +49,7 @@ class ConfigurationsResource(SyncAPIResource):
         *,
         zone_id: str,
         auth_id_characteristics: Iterable[configuration_update_params.AuthIDCharacteristic],
+        normalize: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -61,6 +62,8 @@ class ConfigurationsResource(SyncAPIResource):
 
         Args:
           zone_id: Identifier.
+
+          normalize: Ensures that the configuration is written or retrieved in normalized fashion
 
           extra_headers: Send extra headers
 
@@ -83,6 +86,7 @@ class ConfigurationsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=maybe_transform({"normalize": normalize}, configuration_update_params.ConfigurationUpdateParams),
                 post_parser=ResultWrapper[Configuration]._unwrapper,
             ),
             cast_to=cast(Type[Configuration], ResultWrapper[Configuration]),
@@ -92,6 +96,7 @@ class ConfigurationsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        normalize: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -104,6 +109,8 @@ class ConfigurationsResource(SyncAPIResource):
 
         Args:
           zone_id: Identifier.
+
+          normalize: Ensures that the configuration is written or retrieved in normalized fashion
 
           extra_headers: Send extra headers
 
@@ -122,6 +129,7 @@ class ConfigurationsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=maybe_transform({"normalize": normalize}, configuration_get_params.ConfigurationGetParams),
                 post_parser=ResultWrapper[Configuration]._unwrapper,
             ),
             cast_to=cast(Type[Configuration], ResultWrapper[Configuration]),
@@ -153,6 +161,7 @@ class AsyncConfigurationsResource(AsyncAPIResource):
         *,
         zone_id: str,
         auth_id_characteristics: Iterable[configuration_update_params.AuthIDCharacteristic],
+        normalize: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -165,6 +174,8 @@ class AsyncConfigurationsResource(AsyncAPIResource):
 
         Args:
           zone_id: Identifier.
+
+          normalize: Ensures that the configuration is written or retrieved in normalized fashion
 
           extra_headers: Send extra headers
 
@@ -187,6 +198,9 @@ class AsyncConfigurationsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=await async_maybe_transform(
+                    {"normalize": normalize}, configuration_update_params.ConfigurationUpdateParams
+                ),
                 post_parser=ResultWrapper[Configuration]._unwrapper,
             ),
             cast_to=cast(Type[Configuration], ResultWrapper[Configuration]),
@@ -196,6 +210,7 @@ class AsyncConfigurationsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        normalize: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -208,6 +223,8 @@ class AsyncConfigurationsResource(AsyncAPIResource):
 
         Args:
           zone_id: Identifier.
+
+          normalize: Ensures that the configuration is written or retrieved in normalized fashion
 
           extra_headers: Send extra headers
 
@@ -226,6 +243,9 @@ class AsyncConfigurationsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=await async_maybe_transform(
+                    {"normalize": normalize}, configuration_get_params.ConfigurationGetParams
+                ),
                 post_parser=ResultWrapper[Configuration]._unwrapper,
             ),
             cast_to=cast(Type[Configuration], ResultWrapper[Configuration]),

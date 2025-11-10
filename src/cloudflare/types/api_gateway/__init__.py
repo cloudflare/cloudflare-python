@@ -17,6 +17,7 @@ from .operation_create_params import OperationCreateParams as OperationCreatePar
 from .operation_list_response import OperationListResponse as OperationListResponse
 from .user_schema_edit_params import UserSchemaEditParams as UserSchemaEditParams
 from .user_schema_list_params import UserSchemaListParams as UserSchemaListParams
+from .configuration_get_params import ConfigurationGetParams as ConfigurationGetParams
 from .operation_create_response import OperationCreateResponse as OperationCreateResponse
 from .operation_delete_response import OperationDeleteResponse as OperationDeleteResponse
 from .user_schema_create_params import UserSchemaCreateParams as UserSchemaCreateParams
