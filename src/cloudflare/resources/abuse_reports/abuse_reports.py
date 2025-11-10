@@ -7,28 +7,40 @@ from typing_extensions import Literal, overload
 
 import httpx
 
-from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import required_args, maybe_transform, async_maybe_transform
-from .._compat import cached_property
-from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import (
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ..._utils import required_args, maybe_transform, async_maybe_transform
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._wrappers import ResultWrapper
-from ..pagination import SyncV4PagePagination, AsyncV4PagePagination
-from .._base_client import AsyncPaginator, make_request_options
-from ..types.abuse_reports import abuse_report_list_params, abuse_report_create_params
-from ..types.abuse_reports.abuse_report_get_response import AbuseReportGetResponse
-from ..types.abuse_reports.abuse_report_list_response import AbuseReportListResponse
-from ..types.abuse_reports.abuse_report_create_response import AbuseReportCreateResponse
+from ..._wrappers import ResultWrapper
+from .mitigations import (
+    MitigationsResource,
+    AsyncMitigationsResource,
+    MitigationsResourceWithRawResponse,
+    AsyncMitigationsResourceWithRawResponse,
+    MitigationsResourceWithStreamingResponse,
+    AsyncMitigationsResourceWithStreamingResponse,
+)
+from ...pagination import SyncV4PagePagination, AsyncV4PagePagination
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.abuse_reports import abuse_report_list_params, abuse_report_create_params
+from ...types.abuse_reports.abuse_report_get_response import AbuseReportGetResponse
+from ...types.abuse_reports.abuse_report_list_response import AbuseReportListResponse
+from ...types.abuse_reports.abuse_report_create_response import AbuseReportCreateResponse
 
 __all__ = ["AbuseReportsResource", "AsyncAbuseReportsResource"]
 
 
 class AbuseReportsResource(SyncAPIResource):
+    @cached_property
+    def mitigations(self) -> MitigationsResource:
+        return MitigationsResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AbuseReportsResourceWithRawResponse:
         """
@@ -1051,6 +1063,10 @@ class AbuseReportsResource(SyncAPIResource):
 
 
 class AsyncAbuseReportsResource(AsyncAPIResource):
+    @cached_property
+    def mitigations(self) -> AsyncMitigationsResource:
+        return AsyncMitigationsResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncAbuseReportsResourceWithRawResponse:
         """
@@ -2086,6 +2102,10 @@ class AbuseReportsResourceWithRawResponse:
             abuse_reports.get,
         )
 
+    @cached_property
+    def mitigations(self) -> MitigationsResourceWithRawResponse:
+        return MitigationsResourceWithRawResponse(self._abuse_reports.mitigations)
+
 
 class AsyncAbuseReportsResourceWithRawResponse:
     def __init__(self, abuse_reports: AsyncAbuseReportsResource) -> None:
@@ -2100,6 +2120,10 @@ class AsyncAbuseReportsResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             abuse_reports.get,
         )
+
+    @cached_property
+    def mitigations(self) -> AsyncMitigationsResourceWithRawResponse:
+        return AsyncMitigationsResourceWithRawResponse(self._abuse_reports.mitigations)
 
 
 class AbuseReportsResourceWithStreamingResponse:
@@ -2116,6 +2140,10 @@ class AbuseReportsResourceWithStreamingResponse:
             abuse_reports.get,
         )
 
+    @cached_property
+    def mitigations(self) -> MitigationsResourceWithStreamingResponse:
+        return MitigationsResourceWithStreamingResponse(self._abuse_reports.mitigations)
+
 
 class AsyncAbuseReportsResourceWithStreamingResponse:
     def __init__(self, abuse_reports: AsyncAbuseReportsResource) -> None:
@@ -2130,3 +2158,7 @@ class AsyncAbuseReportsResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             abuse_reports.get,
         )
+
+    @cached_property
+    def mitigations(self) -> AsyncMitigationsResourceWithStreamingResponse:
+        return AsyncMitigationsResourceWithStreamingResponse(self._abuse_reports.mitigations)

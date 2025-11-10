@@ -163,7 +163,6 @@ if TYPE_CHECKING:
     from .resources.zones.zones import ZonesResource, AsyncZonesResource
     from .resources.custom_pages import CustomPagesResource, AsyncCustomPagesResource
     from .resources.security_txt import SecurityTXTResource, AsyncSecurityTXTResource
-    from .resources.abuse_reports import AbuseReportsResource, AsyncAbuseReportsResource
     from .resources.images.images import ImagesResource, AsyncImagesResource
     from .resources.queues.queues import QueuesResource, AsyncQueuesResource
     from .resources.stream.stream import StreamResource, AsyncStreamResource
@@ -201,6 +200,7 @@ if TYPE_CHECKING:
     from .resources.connectivity.connectivity import ConnectivityResource, AsyncConnectivityResource
     from .resources.dns_firewall.dns_firewall import DNSFirewallResource, AsyncDNSFirewallResource
     from .resources.healthchecks.healthchecks import HealthchecksResource, AsyncHealthchecksResource
+    from .resources.abuse_reports.abuse_reports import AbuseReportsResource, AsyncAbuseReportsResource
     from .resources.email_routing.email_routing import EmailRoutingResource, AsyncEmailRoutingResource
     from .resources.magic_transit.magic_transit import MagicTransitResource, AsyncMagicTransitResource
     from .resources.organizations.organizations import OrganizationsResource, AsyncOrganizationsResource
