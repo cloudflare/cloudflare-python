@@ -71,6 +71,9 @@ class ConfigIngressOriginRequest(BaseModel):
     keep_alive_timeout: Optional[int] = FieldInfo(alias="keepAliveTimeout", default=None)
     """Timeout after which an idle keepalive connection can be discarded."""
 
+    match_sn_ito_host: Optional[bool] = FieldInfo(alias="matchSNItoHost", default=None)
+    """Auto configure the Hostname on the origin server certificate."""
+
     no_happy_eyeballs: Optional[bool] = FieldInfo(alias="noHappyEyeballs", default=None)
     """
     Disable the “happy eyeballs” algorithm for IPv4/IPv6 fallback if your local
@@ -180,6 +183,9 @@ class ConfigOriginRequest(BaseModel):
 
     keep_alive_timeout: Optional[int] = FieldInfo(alias="keepAliveTimeout", default=None)
     """Timeout after which an idle keepalive connection can be discarded."""
+
+    match_sn_ito_host: Optional[bool] = FieldInfo(alias="matchSNItoHost", default=None)
+    """Auto configure the Hostname on the origin server certificate."""
 
     no_happy_eyeballs: Optional[bool] = FieldInfo(alias="noHappyEyeballs", default=None)
     """

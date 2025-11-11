@@ -60,8 +60,10 @@ class OrganizationProfileResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Modify organization profile
+        """Modify organization profile.
+
+        (Currently in Closed Beta - see
+        https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
           extra_headers: Send extra headers
@@ -104,8 +106,10 @@ class OrganizationProfileResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Result:
-        """
-        Get an organizations profile if it exists.
+        """Get an organizations profile if it exists.
+
+        (Currently in Closed Beta - see
+        https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
           extra_headers: Send extra headers
@@ -167,8 +171,10 @@ class AsyncOrganizationProfileResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Modify organization profile
+        """Modify organization profile.
+
+        (Currently in Closed Beta - see
+        https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
           extra_headers: Send extra headers
@@ -211,8 +217,10 @@ class AsyncOrganizationProfileResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Result:
-        """
-        Get an organizations profile if it exists.
+        """Get an organizations profile if it exists.
+
+        (Currently in Closed Beta - see
+        https://developers.cloudflare.com/fundamentals/organizations/)
 
         Args:
           extra_headers: Send extra headers

@@ -17,7 +17,6 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
-from ....types.kv.namespaces.metadata_get_response import MetadataGetResponse
 
 __all__ = ["MetadataResource", "AsyncMetadataResource"]
 
@@ -54,7 +53,7 @@ class MetadataResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[MetadataGetResponse]:
+    ) -> object:
         """Returns the metadata associated with the given key in the given namespace.
 
         Use
@@ -62,7 +61,7 @@ class MetadataResource(SyncAPIResource):
         name.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 
@@ -90,9 +89,9 @@ class MetadataResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[MetadataGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[MetadataGetResponse]], ResultWrapper[MetadataGetResponse]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 
@@ -128,7 +127,7 @@ class AsyncMetadataResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[MetadataGetResponse]:
+    ) -> object:
         """Returns the metadata associated with the given key in the given namespace.
 
         Use
@@ -136,7 +135,7 @@ class AsyncMetadataResource(AsyncAPIResource):
         name.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           namespace_id: Namespace identifier tag.
 
@@ -164,9 +163,9 @@ class AsyncMetadataResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[MetadataGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[MetadataGetResponse]], ResultWrapper[MetadataGetResponse]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 

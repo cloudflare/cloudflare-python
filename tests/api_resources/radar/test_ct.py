@@ -52,7 +52,7 @@ class TestCt:
             normalization="RAW_VALUES",
             public_key_algorithm=["DSA"],
             signature_algorithm=["DSA_SHA_1"],
-            tld=["string"],
+            tld=["com"],
             unique_entries=["true"],
             validation_level=["DOMAIN"],
         )
@@ -108,7 +108,7 @@ class TestCt:
             name=["main_series"],
             public_key_algorithm=["DSA"],
             signature_algorithm=["DSA_SHA_1"],
-            tld=["string"],
+            tld=["com"],
             unique_entries=["true"],
             validation_level=["DOMAIN"],
         )
@@ -165,7 +165,7 @@ class TestCt:
             normalization="RAW_VALUES",
             public_key_algorithm=["DSA"],
             signature_algorithm=["DSA_SHA_1"],
-            tld=["string"],
+            tld=["com"],
             unique_entries=["true"],
             validation_level=["DOMAIN"],
         )
@@ -231,7 +231,7 @@ class TestAsyncCt:
             normalization="RAW_VALUES",
             public_key_algorithm=["DSA"],
             signature_algorithm=["DSA_SHA_1"],
-            tld=["string"],
+            tld=["com"],
             unique_entries=["true"],
             validation_level=["DOMAIN"],
         )
@@ -287,7 +287,7 @@ class TestAsyncCt:
             name=["main_series"],
             public_key_algorithm=["DSA"],
             signature_algorithm=["DSA_SHA_1"],
-            tld=["string"],
+            tld=["com"],
             unique_entries=["true"],
             validation_level=["DOMAIN"],
         )
@@ -344,7 +344,7 @@ class TestAsyncCt:
             normalization="RAW_VALUES",
             public_key_algorithm=["DSA"],
             signature_algorithm=["DSA_SHA_1"],
-            tld=["string"],
+            tld=["com"],
             unique_entries=["true"],
             validation_level=["DOMAIN"],
         )

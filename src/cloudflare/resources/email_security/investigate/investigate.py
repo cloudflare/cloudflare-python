@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Union, cast
+from typing import Type, Union, Optional, cast
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -138,6 +138,7 @@ class InvestigateResource(SyncAPIResource):
         account_id: str,
         action_log: bool | Omit = omit,
         alert_id: str | Omit = omit,
+        cursor: str | Omit = omit,
         detections_only: bool | Omit = omit,
         domain: str | Omit = omit,
         end: Union[str, datetime] | Omit = omit,
@@ -145,7 +146,7 @@ class InvestigateResource(SyncAPIResource):
         message_action: Literal["PREVIEW", "QUARANTINE_RELEASED", "MOVED"] | Omit = omit,
         message_id: str | Omit = omit,
         metric: str | Omit = omit,
-        page: int | Omit = omit,
+        page: Optional[int] | Omit = omit,
         per_page: int | Omit = omit,
         query: str | Omit = omit,
         recipient: str | Omit = omit,
@@ -177,7 +178,7 @@ class InvestigateResource(SyncAPIResource):
 
           message_action: The message actions the search filters by.
 
-          page: The page number of paginated results.
+          page: Deprecated: Use cursor pagination instead.
 
           per_page: The number of results per page.
 
@@ -230,6 +231,7 @@ class InvestigateResource(SyncAPIResource):
                     {
                         "action_log": action_log,
                         "alert_id": alert_id,
+                        "cursor": cursor,
                         "detections_only": detections_only,
                         "domain": domain,
                         "end": end,
@@ -350,6 +352,7 @@ class AsyncInvestigateResource(AsyncAPIResource):
         account_id: str,
         action_log: bool | Omit = omit,
         alert_id: str | Omit = omit,
+        cursor: str | Omit = omit,
         detections_only: bool | Omit = omit,
         domain: str | Omit = omit,
         end: Union[str, datetime] | Omit = omit,
@@ -357,7 +360,7 @@ class AsyncInvestigateResource(AsyncAPIResource):
         message_action: Literal["PREVIEW", "QUARANTINE_RELEASED", "MOVED"] | Omit = omit,
         message_id: str | Omit = omit,
         metric: str | Omit = omit,
-        page: int | Omit = omit,
+        page: Optional[int] | Omit = omit,
         per_page: int | Omit = omit,
         query: str | Omit = omit,
         recipient: str | Omit = omit,
@@ -389,7 +392,7 @@ class AsyncInvestigateResource(AsyncAPIResource):
 
           message_action: The message actions the search filters by.
 
-          page: The page number of paginated results.
+          page: Deprecated: Use cursor pagination instead.
 
           per_page: The number of results per page.
 
@@ -442,6 +445,7 @@ class AsyncInvestigateResource(AsyncAPIResource):
                     {
                         "action_log": action_log,
                         "alert_id": alert_id,
+                        "cursor": cursor,
                         "detections_only": detections_only,
                         "domain": domain,
                         "end": end,

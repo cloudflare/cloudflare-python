@@ -34,3 +34,6 @@ class ApplicationListParams(TypedDict, total=False):
 
     search: str
     """Search for apps by other listed query parameters."""
+
+    target_attributes: str
+    """Target Criteria attributes in key=value format."""

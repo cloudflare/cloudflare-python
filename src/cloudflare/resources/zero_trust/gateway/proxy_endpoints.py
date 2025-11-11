@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Any, Type, Optional, cast
+from typing_extensions import Literal, overload
 
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import required_args, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -46,11 +47,44 @@ class ProxyEndpointsResource(SyncAPIResource):
         """
         return ProxyEndpointsResourceWithStreamingResponse(self)
 
+    @overload
     def create(
         self,
         *,
         account_id: str,
-        ips: SequenceNotStr[GatewayIPs],
+        name: str,
+        kind: Literal["ip"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[ProxyEndpoint]:
+        """
+        Create a new Zero Trust Gateway proxy endpoint.
+
+        Args:
+          name: Specify the name of the proxy endpoint.
+
+          kind: The proxy endpoint kind
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        account_id: str,
+        kind: Literal["identity"],
         name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -63,7 +97,7 @@ class ProxyEndpointsResource(SyncAPIResource):
         Create a new Zero Trust Gateway proxy endpoint.
 
         Args:
-          ips: Specify the list of CIDRs to restrict ingress connections.
+          kind: The proxy endpoint kind
 
           name: Specify the name of the proxy endpoint.
 
@@ -75,25 +109,46 @@ class ProxyEndpointsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @required_args(["account_id", "name"], ["account_id", "kind", "name"])
+    def create(
+        self,
+        *,
+        account_id: str,
+        name: str,
+        kind: Literal["ip"] | Literal["identity"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[ProxyEndpoint]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._post(
-            f"/accounts/{account_id}/gateway/proxy_endpoints",
-            body=maybe_transform(
-                {
-                    "ips": ips,
-                    "name": name,
-                },
-                proxy_endpoint_create_params.ProxyEndpointCreateParams,
+        return cast(
+            Optional[ProxyEndpoint],
+            self._post(
+                f"/accounts/{account_id}/gateway/proxy_endpoints",
+                body=maybe_transform(
+                    {
+                        "name": name,
+                        "kind": kind,
+                    },
+                    proxy_endpoint_create_params.ProxyEndpointCreateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[ProxyEndpoint]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ProxyEndpoint]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ProxyEndpoint]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[ProxyEndpoint]], ResultWrapper[ProxyEndpoint]),
         )
 
     def list(
@@ -106,7 +161,7 @@ class ProxyEndpointsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[ProxyEndpoint]:
+    ) -> SyncSinglePage[ProxyEndpoint]:
         """
         List all Zero Trust Gateway proxy endpoints for an account.
 
@@ -121,16 +176,13 @@ class ProxyEndpointsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/gateway/proxy_endpoints",
+            page=SyncSinglePage[ProxyEndpoint],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ProxyEndpoint]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ProxyEndpoint]], ResultWrapper[ProxyEndpoint]),
+            model=cast(Any, ProxyEndpoint),  # Union types cannot be passed in as arguments in the type system
         )
 
     def delete(
@@ -207,23 +259,28 @@ class ProxyEndpointsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not proxy_endpoint_id:
             raise ValueError(f"Expected a non-empty value for `proxy_endpoint_id` but received {proxy_endpoint_id!r}")
-        return self._patch(
-            f"/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
-            body=maybe_transform(
-                {
-                    "ips": ips,
-                    "name": name,
-                },
-                proxy_endpoint_edit_params.ProxyEndpointEditParams,
+        return cast(
+            Optional[ProxyEndpoint],
+            self._patch(
+                f"/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
+                body=maybe_transform(
+                    {
+                        "ips": ips,
+                        "name": name,
+                    },
+                    proxy_endpoint_edit_params.ProxyEndpointEditParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[ProxyEndpoint]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ProxyEndpoint]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ProxyEndpoint]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[ProxyEndpoint]], ResultWrapper[ProxyEndpoint]),
         )
 
     def get(
@@ -237,7 +294,7 @@ class ProxyEndpointsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncSinglePage[ProxyEndpoint]:
+    ) -> Optional[ProxyEndpoint]:
         """
         Get a single Zero Trust Gateway proxy endpoint.
 
@@ -254,13 +311,21 @@ class ProxyEndpointsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not proxy_endpoint_id:
             raise ValueError(f"Expected a non-empty value for `proxy_endpoint_id` but received {proxy_endpoint_id!r}")
-        return self._get_api_list(
-            f"/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
-            page=SyncSinglePage[ProxyEndpoint],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+        return cast(
+            Optional[ProxyEndpoint],
+            self._get(
+                f"/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[ProxyEndpoint]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ProxyEndpoint]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            model=ProxyEndpoint,
         )
 
 
@@ -284,11 +349,44 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
         """
         return AsyncProxyEndpointsResourceWithStreamingResponse(self)
 
+    @overload
     async def create(
         self,
         *,
         account_id: str,
-        ips: SequenceNotStr[GatewayIPs],
+        name: str,
+        kind: Literal["ip"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[ProxyEndpoint]:
+        """
+        Create a new Zero Trust Gateway proxy endpoint.
+
+        Args:
+          name: Specify the name of the proxy endpoint.
+
+          kind: The proxy endpoint kind
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        account_id: str,
+        kind: Literal["identity"],
         name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -301,7 +399,7 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
         Create a new Zero Trust Gateway proxy endpoint.
 
         Args:
-          ips: Specify the list of CIDRs to restrict ingress connections.
+          kind: The proxy endpoint kind
 
           name: Specify the name of the proxy endpoint.
 
@@ -313,28 +411,49 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @required_args(["account_id", "name"], ["account_id", "kind", "name"])
+    async def create(
+        self,
+        *,
+        account_id: str,
+        name: str,
+        kind: Literal["ip"] | Literal["identity"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Optional[ProxyEndpoint]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._post(
-            f"/accounts/{account_id}/gateway/proxy_endpoints",
-            body=await async_maybe_transform(
-                {
-                    "ips": ips,
-                    "name": name,
-                },
-                proxy_endpoint_create_params.ProxyEndpointCreateParams,
+        return cast(
+            Optional[ProxyEndpoint],
+            await self._post(
+                f"/accounts/{account_id}/gateway/proxy_endpoints",
+                body=await async_maybe_transform(
+                    {
+                        "name": name,
+                        "kind": kind,
+                    },
+                    proxy_endpoint_create_params.ProxyEndpointCreateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[ProxyEndpoint]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ProxyEndpoint]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ProxyEndpoint]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[ProxyEndpoint]], ResultWrapper[ProxyEndpoint]),
         )
 
-    async def list(
+    def list(
         self,
         *,
         account_id: str,
@@ -344,7 +463,7 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[ProxyEndpoint]:
+    ) -> AsyncPaginator[ProxyEndpoint, AsyncSinglePage[ProxyEndpoint]]:
         """
         List all Zero Trust Gateway proxy endpoints for an account.
 
@@ -359,16 +478,13 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/gateway/proxy_endpoints",
+            page=AsyncSinglePage[ProxyEndpoint],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ProxyEndpoint]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ProxyEndpoint]], ResultWrapper[ProxyEndpoint]),
+            model=cast(Any, ProxyEndpoint),  # Union types cannot be passed in as arguments in the type system
         )
 
     async def delete(
@@ -445,26 +561,31 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not proxy_endpoint_id:
             raise ValueError(f"Expected a non-empty value for `proxy_endpoint_id` but received {proxy_endpoint_id!r}")
-        return await self._patch(
-            f"/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
-            body=await async_maybe_transform(
-                {
-                    "ips": ips,
-                    "name": name,
-                },
-                proxy_endpoint_edit_params.ProxyEndpointEditParams,
+        return cast(
+            Optional[ProxyEndpoint],
+            await self._patch(
+                f"/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
+                body=await async_maybe_transform(
+                    {
+                        "ips": ips,
+                        "name": name,
+                    },
+                    proxy_endpoint_edit_params.ProxyEndpointEditParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[ProxyEndpoint]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ProxyEndpoint]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ProxyEndpoint]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[ProxyEndpoint]], ResultWrapper[ProxyEndpoint]),
         )
 
-    def get(
+    async def get(
         self,
         proxy_endpoint_id: str,
         *,
@@ -475,7 +596,7 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[ProxyEndpoint, AsyncSinglePage[ProxyEndpoint]]:
+    ) -> Optional[ProxyEndpoint]:
         """
         Get a single Zero Trust Gateway proxy endpoint.
 
@@ -492,13 +613,21 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not proxy_endpoint_id:
             raise ValueError(f"Expected a non-empty value for `proxy_endpoint_id` but received {proxy_endpoint_id!r}")
-        return self._get_api_list(
-            f"/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
-            page=AsyncSinglePage[ProxyEndpoint],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+        return cast(
+            Optional[ProxyEndpoint],
+            await self._get(
+                f"/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[ProxyEndpoint]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ProxyEndpoint]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            model=ProxyEndpoint,
         )
 
 

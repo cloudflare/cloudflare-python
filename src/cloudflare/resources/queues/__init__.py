@@ -32,6 +32,14 @@ from .consumers import (
     ConsumersResourceWithStreamingResponse,
     AsyncConsumersResourceWithStreamingResponse,
 )
+from .subscriptions import (
+    SubscriptionsResource,
+    AsyncSubscriptionsResource,
+    SubscriptionsResourceWithRawResponse,
+    AsyncSubscriptionsResourceWithRawResponse,
+    SubscriptionsResourceWithStreamingResponse,
+    AsyncSubscriptionsResourceWithStreamingResponse,
+)
 
 __all__ = [
     "MessagesResource",
@@ -52,6 +60,12 @@ __all__ = [
     "AsyncConsumersResourceWithRawResponse",
     "ConsumersResourceWithStreamingResponse",
     "AsyncConsumersResourceWithStreamingResponse",
+    "SubscriptionsResource",
+    "AsyncSubscriptionsResource",
+    "SubscriptionsResourceWithRawResponse",
+    "AsyncSubscriptionsResourceWithRawResponse",
+    "SubscriptionsResourceWithStreamingResponse",
+    "AsyncSubscriptionsResourceWithStreamingResponse",
     "QueuesResource",
     "AsyncQueuesResource",
     "QueuesResourceWithRawResponse",

@@ -69,7 +69,7 @@ class TestInternetServices:
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            limit=5,
+            limit=1,
             name=["main_series"],
             service_category=["string"],
         )
@@ -184,7 +184,7 @@ class TestAsyncInternetServices:
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            limit=5,
+            limit=1,
             name=["main_series"],
             service_category=["string"],
         )

@@ -84,6 +84,14 @@ from .service_tokens import (
     ServiceTokensResourceWithStreamingResponse,
     AsyncServiceTokensResourceWithStreamingResponse,
 )
+from .ai_controls.ai_controls import (
+    AIControlsResource,
+    AsyncAIControlsResource,
+    AIControlsResourceWithRawResponse,
+    AsyncAIControlsResourceWithRawResponse,
+    AIControlsResourceWithStreamingResponse,
+    AsyncAIControlsResourceWithStreamingResponse,
+)
 from .applications.applications import (
     ApplicationsResource,
     AsyncApplicationsResource,
@@ -113,6 +121,10 @@ __all__ = ["AccessResource", "AsyncAccessResource"]
 
 
 class AccessResource(SyncAPIResource):
+    @cached_property
+    def ai_controls(self) -> AIControlsResource:
+        return AIControlsResource(self._client)
+
     @cached_property
     def gateway_ca(self) -> GatewayCAResource:
         return GatewayCAResource(self._client)
@@ -186,6 +198,10 @@ class AccessResource(SyncAPIResource):
 
 
 class AsyncAccessResource(AsyncAPIResource):
+    @cached_property
+    def ai_controls(self) -> AsyncAIControlsResource:
+        return AsyncAIControlsResource(self._client)
+
     @cached_property
     def gateway_ca(self) -> AsyncGatewayCAResource:
         return AsyncGatewayCAResource(self._client)
@@ -263,6 +279,10 @@ class AccessResourceWithRawResponse:
         self._access = access
 
     @cached_property
+    def ai_controls(self) -> AIControlsResourceWithRawResponse:
+        return AIControlsResourceWithRawResponse(self._access.ai_controls)
+
+    @cached_property
     def gateway_ca(self) -> GatewayCAResourceWithRawResponse:
         return GatewayCAResourceWithRawResponse(self._access.gateway_ca)
 
@@ -318,6 +338,10 @@ class AccessResourceWithRawResponse:
 class AsyncAccessResourceWithRawResponse:
     def __init__(self, access: AsyncAccessResource) -> None:
         self._access = access
+
+    @cached_property
+    def ai_controls(self) -> AsyncAIControlsResourceWithRawResponse:
+        return AsyncAIControlsResourceWithRawResponse(self._access.ai_controls)
 
     @cached_property
     def gateway_ca(self) -> AsyncGatewayCAResourceWithRawResponse:
@@ -377,6 +401,10 @@ class AccessResourceWithStreamingResponse:
         self._access = access
 
     @cached_property
+    def ai_controls(self) -> AIControlsResourceWithStreamingResponse:
+        return AIControlsResourceWithStreamingResponse(self._access.ai_controls)
+
+    @cached_property
     def gateway_ca(self) -> GatewayCAResourceWithStreamingResponse:
         return GatewayCAResourceWithStreamingResponse(self._access.gateway_ca)
 
@@ -432,6 +460,10 @@ class AccessResourceWithStreamingResponse:
 class AsyncAccessResourceWithStreamingResponse:
     def __init__(self, access: AsyncAccessResource) -> None:
         self._access = access
+
+    @cached_property
+    def ai_controls(self) -> AsyncAIControlsResourceWithStreamingResponse:
+        return AsyncAIControlsResourceWithStreamingResponse(self._access.ai_controls)
 
     @cached_property
     def gateway_ca(self) -> AsyncGatewayCAResourceWithStreamingResponse:

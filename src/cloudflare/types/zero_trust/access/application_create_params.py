@@ -26,6 +26,7 @@ __all__ = [
     "SelfHostedApplicationDestination",
     "SelfHostedApplicationDestinationPublicDestination",
     "SelfHostedApplicationDestinationPrivateDestination",
+    "SelfHostedApplicationDestinationViaMcpServerPortalDestination",
     "SelfHostedApplicationPolicy",
     "SelfHostedApplicationPolicyAccessAppPolicyLink",
     "SelfHostedApplicationPolicyUnionMember2",
@@ -48,6 +49,7 @@ __all__ = [
     "BrowserSSHApplicationDestination",
     "BrowserSSHApplicationDestinationPublicDestination",
     "BrowserSSHApplicationDestinationPrivateDestination",
+    "BrowserSSHApplicationDestinationViaMcpServerPortalDestination",
     "BrowserSSHApplicationPolicy",
     "BrowserSSHApplicationPolicyAccessAppPolicyLink",
     "BrowserSSHApplicationPolicyUnionMember2",
@@ -60,6 +62,7 @@ __all__ = [
     "BrowserVNCApplicationDestination",
     "BrowserVNCApplicationDestinationPublicDestination",
     "BrowserVNCApplicationDestinationPrivateDestination",
+    "BrowserVNCApplicationDestinationViaMcpServerPortalDestination",
     "BrowserVNCApplicationPolicy",
     "BrowserVNCApplicationPolicyAccessAppPolicyLink",
     "BrowserVNCApplicationPolicyUnionMember2",
@@ -82,6 +85,10 @@ __all__ = [
     "BrowserIsolationPermissionsApplicationPolicy",
     "BrowserIsolationPermissionsApplicationPolicyAccessAppPolicyLink",
     "BrowserIsolationPermissionsApplicationPolicyUnionMember2",
+    "GatewayIdentityProxyEndpointApplication",
+    "GatewayIdentityProxyEndpointApplicationPolicy",
+    "GatewayIdentityProxyEndpointApplicationPolicyAccessAppPolicyLink",
+    "GatewayIdentityProxyEndpointApplicationPolicyUnionMember2",
     "AccessBookmarkProps",
     "InfrastructureApplication",
     "InfrastructureApplicationTargetCriterion",
@@ -93,6 +100,7 @@ __all__ = [
     "BrowserRdpApplicationDestination",
     "BrowserRdpApplicationDestinationPublicDestination",
     "BrowserRdpApplicationDestinationPrivateDestination",
+    "BrowserRdpApplicationDestinationViaMcpServerPortalDestination",
     "BrowserRdpApplicationPolicy",
     "BrowserRdpApplicationPolicyAccessAppPolicyLink",
     "BrowserRdpApplicationPolicyUnionMember2",
@@ -303,8 +311,17 @@ class SelfHostedApplicationDestinationPrivateDestination(TypedDict, total=False)
     """The VNET ID to match the destination. When omitted, all VNETs will match."""
 
 
+class SelfHostedApplicationDestinationViaMcpServerPortalDestination(TypedDict, total=False):
+    mcp_server_id: str
+    """The MCP server id configured in ai-controls."""
+
+    type: Literal["via_mcp_server_portal"]
+
+
 SelfHostedApplicationDestination: TypeAlias = Union[
-    SelfHostedApplicationDestinationPublicDestination, SelfHostedApplicationDestinationPrivateDestination
+    SelfHostedApplicationDestinationPublicDestination,
+    SelfHostedApplicationDestinationPrivateDestination,
+    SelfHostedApplicationDestinationViaMcpServerPortalDestination,
 ]
 
 
@@ -672,6 +689,9 @@ class BrowserSSHApplication(TypedDict, total=False):
             "dash_sso",
             "infrastructure",
             "rdp",
+            "mcp",
+            "mcp_portal",
+            "proxy_endpoint",
         ]
     ]
     """The application type."""
@@ -865,8 +885,17 @@ class BrowserSSHApplicationDestinationPrivateDestination(TypedDict, total=False)
     """The VNET ID to match the destination. When omitted, all VNETs will match."""
 
 
+class BrowserSSHApplicationDestinationViaMcpServerPortalDestination(TypedDict, total=False):
+    mcp_server_id: str
+    """The MCP server id configured in ai-controls."""
+
+    type: Literal["via_mcp_server_portal"]
+
+
 BrowserSSHApplicationDestination: TypeAlias = Union[
-    BrowserSSHApplicationDestinationPublicDestination, BrowserSSHApplicationDestinationPrivateDestination
+    BrowserSSHApplicationDestinationPublicDestination,
+    BrowserSSHApplicationDestinationPrivateDestination,
+    BrowserSSHApplicationDestinationViaMcpServerPortalDestination,
 ]
 
 
@@ -1033,6 +1062,9 @@ class BrowserVNCApplication(TypedDict, total=False):
             "dash_sso",
             "infrastructure",
             "rdp",
+            "mcp",
+            "mcp_portal",
+            "proxy_endpoint",
         ]
     ]
     """The application type."""
@@ -1226,8 +1258,17 @@ class BrowserVNCApplicationDestinationPrivateDestination(TypedDict, total=False)
     """The VNET ID to match the destination. When omitted, all VNETs will match."""
 
 
+class BrowserVNCApplicationDestinationViaMcpServerPortalDestination(TypedDict, total=False):
+    mcp_server_id: str
+    """The MCP server id configured in ai-controls."""
+
+    type: Literal["via_mcp_server_portal"]
+
+
 BrowserVNCApplicationDestination: TypeAlias = Union[
-    BrowserVNCApplicationDestinationPublicDestination, BrowserVNCApplicationDestinationPrivateDestination
+    BrowserVNCApplicationDestinationPublicDestination,
+    BrowserVNCApplicationDestinationPrivateDestination,
+    BrowserVNCApplicationDestinationViaMcpServerPortalDestination,
 ]
 
 
@@ -1388,6 +1429,9 @@ class AppLauncherApplication(TypedDict, total=False):
             "dash_sso",
             "infrastructure",
             "rdp",
+            "mcp",
+            "mcp_portal",
+            "proxy_endpoint",
         ]
     ]
     """The application type."""
@@ -1765,6 +1809,127 @@ BrowserIsolationPermissionsApplicationPolicy: TypeAlias = Union[
 ]
 
 
+class GatewayIdentityProxyEndpointApplication(TypedDict, total=False):
+    type: Required[ApplicationType]
+    """The application type."""
+
+    account_id: str
+    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
+
+    zone_id: str
+    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
+
+    allowed_idps: SequenceNotStr[AllowedIdPs]
+    """The identity providers your users can select when connecting to this
+    application.
+
+    Defaults to all IdPs configured in your account.
+    """
+
+    auto_redirect_to_identity: bool
+    """When set to `true`, users skip the identity provider selection step during
+    login.
+
+    You must specify only one identity provider in allowed_idps.
+    """
+
+    custom_deny_url: str
+    """
+    The custom URL a user is redirected to when they are denied access to the
+    application when failing identity-based rules.
+    """
+
+    custom_non_identity_deny_url: str
+    """
+    The custom URL a user is redirected to when they are denied access to the
+    application when failing non-identity rules.
+    """
+
+    custom_pages: SequenceNotStr[str]
+    """The custom pages that will be displayed when applicable for this application"""
+
+    domain: str
+    """
+    The proxy endpoint domain in the format: 10 alphanumeric characters followed by
+    .proxy.cloudflare-gateway.com
+    """
+
+    name: str
+    """The name of the application."""
+
+    policies: SequenceNotStr[GatewayIdentityProxyEndpointApplicationPolicy]
+    """
+    The policies that Access applies to the application, in ascending order of
+    precedence. Items can reference existing policies or create new policies
+    exclusive to the application.
+    """
+
+    session_duration: str
+    """The amount of time that tokens issued for this application will be valid.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
+    ms, s, m, h. Note: unsupported for infrastructure type applications.
+    """
+
+
+class GatewayIdentityProxyEndpointApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
+    id: str
+    """The UUID of the policy"""
+
+    precedence: int
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
+
+
+class GatewayIdentityProxyEndpointApplicationPolicyUnionMember2(TypedDict, total=False):
+    id: str
+    """The UUID of the policy"""
+
+    approval_groups: Iterable[ApprovalGroupParam]
+    """Administrators who can approve a temporary authentication request."""
+
+    approval_required: bool
+    """
+    Requires the user to request access from an administrator at the start of each
+    session.
+    """
+
+    isolation_required: bool
+    """
+    Require this application to be served in an isolated browser for users matching
+    this policy. 'Client Web Isolation' must be on for the account in order to use
+    this feature.
+    """
+
+    precedence: int
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
+
+    purpose_justification_prompt: str
+    """A custom message that will appear on the purpose justification screen."""
+
+    purpose_justification_required: bool
+    """Require users to enter a justification when they log in to the application."""
+
+    session_duration: str
+    """The amount of time that tokens issued for the application will be valid.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
+    ms, s, m, h.
+    """
+
+
+GatewayIdentityProxyEndpointApplicationPolicy: TypeAlias = Union[
+    GatewayIdentityProxyEndpointApplicationPolicyAccessAppPolicyLink,
+    str,
+    GatewayIdentityProxyEndpointApplicationPolicyUnionMember2,
+]
+
+
 class AccessBookmarkProps(TypedDict, total=False):
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
@@ -2093,8 +2258,17 @@ class BrowserRdpApplicationDestinationPrivateDestination(TypedDict, total=False)
     """The VNET ID to match the destination. When omitted, all VNETs will match."""
 
 
+class BrowserRdpApplicationDestinationViaMcpServerPortalDestination(TypedDict, total=False):
+    mcp_server_id: str
+    """The MCP server id configured in ai-controls."""
+
+    type: Literal["via_mcp_server_portal"]
+
+
 BrowserRdpApplicationDestination: TypeAlias = Union[
-    BrowserRdpApplicationDestinationPublicDestination, BrowserRdpApplicationDestinationPrivateDestination
+    BrowserRdpApplicationDestinationPublicDestination,
+    BrowserRdpApplicationDestinationPrivateDestination,
+    BrowserRdpApplicationDestinationViaMcpServerPortalDestination,
 ]
 
 
@@ -2249,6 +2423,7 @@ ApplicationCreateParams: TypeAlias = Union[
     AppLauncherApplication,
     DeviceEnrollmentPermissionsApplication,
     BrowserIsolationPermissionsApplication,
+    GatewayIdentityProxyEndpointApplication,
     AccessBookmarkProps,
     InfrastructureApplication,
     BrowserRdpApplication,

@@ -9,10 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.api_gateway import (
-    Configuration,
-    ConfigurationUpdateResponse,
-)
+from cloudflare.types.api_gateway import Configuration
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -31,7 +28,21 @@ class TestConfigurations:
                 }
             ],
         )
-        assert_matches_type(ConfigurationUpdateResponse, configuration, path=["response"])
+        assert_matches_type(Configuration, configuration, path=["response"])
+
+    @parametrize
+    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
+        configuration = client.api_gateway.configurations.update(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            auth_id_characteristics=[
+                {
+                    "name": "authorization",
+                    "type": "header",
+                }
+            ],
+            normalize=True,
+        )
+        assert_matches_type(Configuration, configuration, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
@@ -48,7 +59,7 @@ class TestConfigurations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         configuration = response.parse()
-        assert_matches_type(ConfigurationUpdateResponse, configuration, path=["response"])
+        assert_matches_type(Configuration, configuration, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
@@ -65,7 +76,7 @@ class TestConfigurations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             configuration = response.parse()
-            assert_matches_type(ConfigurationUpdateResponse, configuration, path=["response"])
+            assert_matches_type(Configuration, configuration, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -93,7 +104,7 @@ class TestConfigurations:
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         configuration = client.api_gateway.configurations.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            properties=["auth_id_characteristics"],
+            normalize=True,
         )
         assert_matches_type(Configuration, configuration, path=["response"])
 
@@ -145,7 +156,21 @@ class TestAsyncConfigurations:
                 }
             ],
         )
-        assert_matches_type(ConfigurationUpdateResponse, configuration, path=["response"])
+        assert_matches_type(Configuration, configuration, path=["response"])
+
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        configuration = await async_client.api_gateway.configurations.update(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            auth_id_characteristics=[
+                {
+                    "name": "authorization",
+                    "type": "header",
+                }
+            ],
+            normalize=True,
+        )
+        assert_matches_type(Configuration, configuration, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -162,7 +187,7 @@ class TestAsyncConfigurations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         configuration = await response.parse()
-        assert_matches_type(ConfigurationUpdateResponse, configuration, path=["response"])
+        assert_matches_type(Configuration, configuration, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -179,7 +204,7 @@ class TestAsyncConfigurations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             configuration = await response.parse()
-            assert_matches_type(ConfigurationUpdateResponse, configuration, path=["response"])
+            assert_matches_type(Configuration, configuration, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -207,7 +232,7 @@ class TestAsyncConfigurations:
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         configuration = await async_client.api_gateway.configurations.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            properties=["auth_id_characteristics"],
+            normalize=True,
         )
         assert_matches_type(Configuration, configuration, path=["response"])
 

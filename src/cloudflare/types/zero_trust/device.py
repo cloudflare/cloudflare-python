@@ -67,7 +67,11 @@ class Device(BaseModel):
     """The operating system version."""
 
     os_version_extra: Optional[str] = None
-    """The operating system version extra parameter."""
+    """Additional operating system version details.
+
+    For Windows, the UBR (Update Build Revision). For Mac or iOS, the Product
+    Version Extra. For Linux, the distribution name and version.
+    """
 
     revoked_at: Optional[datetime] = None
     """When the device was revoked."""
