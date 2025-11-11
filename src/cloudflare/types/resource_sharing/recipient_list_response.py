@@ -19,6 +19,9 @@ class Resource(BaseModel):
     resource_version: int
     """Resource Version."""
 
+    terminal: bool
+    """Whether the error is terminal or will be continually retried."""
+
 
 class RecipientListResponse(BaseModel):
     id: str
@@ -35,8 +38,5 @@ class RecipientListResponse(BaseModel):
 
     modified: datetime
     """When the share was modified."""
-
-    status_message: str
-    """Share Recipient status message."""
 
     resources: Optional[List[Resource]] = None
