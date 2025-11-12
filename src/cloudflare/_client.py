@@ -145,7 +145,6 @@ if TYPE_CHECKING:
     from .resources.ssl.ssl import SSLResource, AsyncSSLResource
     from .resources.argo.argo import ArgoResource, AsyncArgoResource
     from .resources.logs.logs import LogsResource, AsyncLogsResource
-    from .resources.pipelines import PipelinesResource, AsyncPipelinesResource
     from .resources.user.user import UserResource, AsyncUserResource
     from .resources.web3.web3 import Web3Resource, AsyncWeb3Resource
     from .resources.audit_logs import AuditLogsResource, AsyncAuditLogsResource
@@ -182,6 +181,7 @@ if TYPE_CHECKING:
     from .resources.managed_transforms import ManagedTransformsResource, AsyncManagedTransformsResource
     from .resources.client_certificates import ClientCertificatesResource, AsyncClientCertificatesResource
     from .resources.hostnames.hostnames import HostnamesResource, AsyncHostnamesResource
+    from .resources.pipelines.pipelines import PipelinesResource, AsyncPipelinesResource
     from .resources.registrar.registrar import RegistrarResource, AsyncRegistrarResource
     from .resources.turnstile.turnstile import TurnstileResource, AsyncTurnstileResource
     from .resources.vectorize.vectorize import VectorizeResource, AsyncVectorizeResource

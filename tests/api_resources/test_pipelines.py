@@ -9,11 +9,16 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.pipelines import (
     PipelineGetResponse,
     PipelineListResponse,
+    PipelineGetV1Response,
     PipelineCreateResponse,
+    PipelineListV1Response,
     PipelineUpdateResponse,
+    PipelineCreateV1Response,
+    PipelineValidateSqlResponse,
 )
 
 # pyright: reportDeprecated=false
@@ -415,6 +420,100 @@ class TestPipelines:
                 )
 
     @parametrize
+    def test_method_create_v1(self, client: Cloudflare) -> None:
+        pipeline = client.pipelines.create_v1(
+            account_id="0123105f4ecef8ad9ca31a8372d0c353",
+            name="my_pipeline",
+            sql="insert into sink select * from source;",
+        )
+        assert_matches_type(PipelineCreateV1Response, pipeline, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_v1(self, client: Cloudflare) -> None:
+        response = client.pipelines.with_raw_response.create_v1(
+            account_id="0123105f4ecef8ad9ca31a8372d0c353",
+            name="my_pipeline",
+            sql="insert into sink select * from source;",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        pipeline = response.parse()
+        assert_matches_type(PipelineCreateV1Response, pipeline, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_v1(self, client: Cloudflare) -> None:
+        with client.pipelines.with_streaming_response.create_v1(
+            account_id="0123105f4ecef8ad9ca31a8372d0c353",
+            name="my_pipeline",
+            sql="insert into sink select * from source;",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            pipeline = response.parse()
+            assert_matches_type(PipelineCreateV1Response, pipeline, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_create_v1(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.pipelines.with_raw_response.create_v1(
+                account_id="",
+                name="my_pipeline",
+                sql="insert into sink select * from source;",
+            )
+
+    @parametrize
+    def test_method_delete_v1(self, client: Cloudflare) -> None:
+        pipeline = client.pipelines.delete_v1(
+            pipeline_id="043e105f4ecef8ad9ca31a8372d0c353",
+            account_id="0123105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert pipeline is None
+
+    @parametrize
+    def test_raw_response_delete_v1(self, client: Cloudflare) -> None:
+        response = client.pipelines.with_raw_response.delete_v1(
+            pipeline_id="043e105f4ecef8ad9ca31a8372d0c353",
+            account_id="0123105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        pipeline = response.parse()
+        assert pipeline is None
+
+    @parametrize
+    def test_streaming_response_delete_v1(self, client: Cloudflare) -> None:
+        with client.pipelines.with_streaming_response.delete_v1(
+            pipeline_id="043e105f4ecef8ad9ca31a8372d0c353",
+            account_id="0123105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            pipeline = response.parse()
+            assert pipeline is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_delete_v1(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.pipelines.with_raw_response.delete_v1(
+                pipeline_id="043e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `pipeline_id` but received ''"):
+            client.pipelines.with_raw_response.delete_v1(
+                pipeline_id="",
+                account_id="0123105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             pipeline = client.pipelines.get(
@@ -466,6 +565,143 @@ class TestPipelines:
                     pipeline_name="",
                     account_id="0123105f4ecef8ad9ca31a8372d0c353",
                 )
+
+    @parametrize
+    def test_method_get_v1(self, client: Cloudflare) -> None:
+        pipeline = client.pipelines.get_v1(
+            pipeline_id="043e105f4ecef8ad9ca31a8372d0c353",
+            account_id="0123105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(PipelineGetV1Response, pipeline, path=["response"])
+
+    @parametrize
+    def test_raw_response_get_v1(self, client: Cloudflare) -> None:
+        response = client.pipelines.with_raw_response.get_v1(
+            pipeline_id="043e105f4ecef8ad9ca31a8372d0c353",
+            account_id="0123105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        pipeline = response.parse()
+        assert_matches_type(PipelineGetV1Response, pipeline, path=["response"])
+
+    @parametrize
+    def test_streaming_response_get_v1(self, client: Cloudflare) -> None:
+        with client.pipelines.with_streaming_response.get_v1(
+            pipeline_id="043e105f4ecef8ad9ca31a8372d0c353",
+            account_id="0123105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            pipeline = response.parse()
+            assert_matches_type(PipelineGetV1Response, pipeline, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_get_v1(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.pipelines.with_raw_response.get_v1(
+                pipeline_id="043e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `pipeline_id` but received ''"):
+            client.pipelines.with_raw_response.get_v1(
+                pipeline_id="",
+                account_id="0123105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @parametrize
+    def test_method_list_v1(self, client: Cloudflare) -> None:
+        pipeline = client.pipelines.list_v1(
+            account_id="0123105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(SyncV4PagePaginationArray[PipelineListV1Response], pipeline, path=["response"])
+
+    @parametrize
+    def test_method_list_v1_with_all_params(self, client: Cloudflare) -> None:
+        pipeline = client.pipelines.list_v1(
+            account_id="0123105f4ecef8ad9ca31a8372d0c353",
+            page=0,
+            per_page=0,
+        )
+        assert_matches_type(SyncV4PagePaginationArray[PipelineListV1Response], pipeline, path=["response"])
+
+    @parametrize
+    def test_raw_response_list_v1(self, client: Cloudflare) -> None:
+        response = client.pipelines.with_raw_response.list_v1(
+            account_id="0123105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        pipeline = response.parse()
+        assert_matches_type(SyncV4PagePaginationArray[PipelineListV1Response], pipeline, path=["response"])
+
+    @parametrize
+    def test_streaming_response_list_v1(self, client: Cloudflare) -> None:
+        with client.pipelines.with_streaming_response.list_v1(
+            account_id="0123105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            pipeline = response.parse()
+            assert_matches_type(SyncV4PagePaginationArray[PipelineListV1Response], pipeline, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_list_v1(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.pipelines.with_raw_response.list_v1(
+                account_id="",
+            )
+
+    @parametrize
+    def test_method_validate_sql(self, client: Cloudflare) -> None:
+        pipeline = client.pipelines.validate_sql(
+            account_id="0123105f4ecef8ad9ca31a8372d0c353",
+            sql="insert into sink select * from source;",
+        )
+        assert_matches_type(PipelineValidateSqlResponse, pipeline, path=["response"])
+
+    @parametrize
+    def test_raw_response_validate_sql(self, client: Cloudflare) -> None:
+        response = client.pipelines.with_raw_response.validate_sql(
+            account_id="0123105f4ecef8ad9ca31a8372d0c353",
+            sql="insert into sink select * from source;",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        pipeline = response.parse()
+        assert_matches_type(PipelineValidateSqlResponse, pipeline, path=["response"])
+
+    @parametrize
+    def test_streaming_response_validate_sql(self, client: Cloudflare) -> None:
+        with client.pipelines.with_streaming_response.validate_sql(
+            account_id="0123105f4ecef8ad9ca31a8372d0c353",
+            sql="insert into sink select * from source;",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            pipeline = response.parse()
+            assert_matches_type(PipelineValidateSqlResponse, pipeline, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_validate_sql(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.pipelines.with_raw_response.validate_sql(
+                account_id="",
+                sql="insert into sink select * from source;",
+            )
 
 
 class TestAsyncPipelines:
@@ -864,6 +1100,100 @@ class TestAsyncPipelines:
                 )
 
     @parametrize
+    async def test_method_create_v1(self, async_client: AsyncCloudflare) -> None:
+        pipeline = await async_client.pipelines.create_v1(
+            account_id="0123105f4ecef8ad9ca31a8372d0c353",
+            name="my_pipeline",
+            sql="insert into sink select * from source;",
+        )
+        assert_matches_type(PipelineCreateV1Response, pipeline, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_v1(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.pipelines.with_raw_response.create_v1(
+            account_id="0123105f4ecef8ad9ca31a8372d0c353",
+            name="my_pipeline",
+            sql="insert into sink select * from source;",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        pipeline = await response.parse()
+        assert_matches_type(PipelineCreateV1Response, pipeline, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_v1(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.pipelines.with_streaming_response.create_v1(
+            account_id="0123105f4ecef8ad9ca31a8372d0c353",
+            name="my_pipeline",
+            sql="insert into sink select * from source;",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            pipeline = await response.parse()
+            assert_matches_type(PipelineCreateV1Response, pipeline, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_create_v1(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.pipelines.with_raw_response.create_v1(
+                account_id="",
+                name="my_pipeline",
+                sql="insert into sink select * from source;",
+            )
+
+    @parametrize
+    async def test_method_delete_v1(self, async_client: AsyncCloudflare) -> None:
+        pipeline = await async_client.pipelines.delete_v1(
+            pipeline_id="043e105f4ecef8ad9ca31a8372d0c353",
+            account_id="0123105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert pipeline is None
+
+    @parametrize
+    async def test_raw_response_delete_v1(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.pipelines.with_raw_response.delete_v1(
+            pipeline_id="043e105f4ecef8ad9ca31a8372d0c353",
+            account_id="0123105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        pipeline = await response.parse()
+        assert pipeline is None
+
+    @parametrize
+    async def test_streaming_response_delete_v1(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.pipelines.with_streaming_response.delete_v1(
+            pipeline_id="043e105f4ecef8ad9ca31a8372d0c353",
+            account_id="0123105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            pipeline = await response.parse()
+            assert pipeline is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_delete_v1(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.pipelines.with_raw_response.delete_v1(
+                pipeline_id="043e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `pipeline_id` but received ''"):
+            await async_client.pipelines.with_raw_response.delete_v1(
+                pipeline_id="",
+                account_id="0123105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             pipeline = await async_client.pipelines.get(
@@ -915,3 +1245,140 @@ class TestAsyncPipelines:
                     pipeline_name="",
                     account_id="0123105f4ecef8ad9ca31a8372d0c353",
                 )
+
+    @parametrize
+    async def test_method_get_v1(self, async_client: AsyncCloudflare) -> None:
+        pipeline = await async_client.pipelines.get_v1(
+            pipeline_id="043e105f4ecef8ad9ca31a8372d0c353",
+            account_id="0123105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(PipelineGetV1Response, pipeline, path=["response"])
+
+    @parametrize
+    async def test_raw_response_get_v1(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.pipelines.with_raw_response.get_v1(
+            pipeline_id="043e105f4ecef8ad9ca31a8372d0c353",
+            account_id="0123105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        pipeline = await response.parse()
+        assert_matches_type(PipelineGetV1Response, pipeline, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_get_v1(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.pipelines.with_streaming_response.get_v1(
+            pipeline_id="043e105f4ecef8ad9ca31a8372d0c353",
+            account_id="0123105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            pipeline = await response.parse()
+            assert_matches_type(PipelineGetV1Response, pipeline, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_get_v1(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.pipelines.with_raw_response.get_v1(
+                pipeline_id="043e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `pipeline_id` but received ''"):
+            await async_client.pipelines.with_raw_response.get_v1(
+                pipeline_id="",
+                account_id="0123105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @parametrize
+    async def test_method_list_v1(self, async_client: AsyncCloudflare) -> None:
+        pipeline = await async_client.pipelines.list_v1(
+            account_id="0123105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(AsyncV4PagePaginationArray[PipelineListV1Response], pipeline, path=["response"])
+
+    @parametrize
+    async def test_method_list_v1_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        pipeline = await async_client.pipelines.list_v1(
+            account_id="0123105f4ecef8ad9ca31a8372d0c353",
+            page=0,
+            per_page=0,
+        )
+        assert_matches_type(AsyncV4PagePaginationArray[PipelineListV1Response], pipeline, path=["response"])
+
+    @parametrize
+    async def test_raw_response_list_v1(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.pipelines.with_raw_response.list_v1(
+            account_id="0123105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        pipeline = await response.parse()
+        assert_matches_type(AsyncV4PagePaginationArray[PipelineListV1Response], pipeline, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_list_v1(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.pipelines.with_streaming_response.list_v1(
+            account_id="0123105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            pipeline = await response.parse()
+            assert_matches_type(AsyncV4PagePaginationArray[PipelineListV1Response], pipeline, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_list_v1(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.pipelines.with_raw_response.list_v1(
+                account_id="",
+            )
+
+    @parametrize
+    async def test_method_validate_sql(self, async_client: AsyncCloudflare) -> None:
+        pipeline = await async_client.pipelines.validate_sql(
+            account_id="0123105f4ecef8ad9ca31a8372d0c353",
+            sql="insert into sink select * from source;",
+        )
+        assert_matches_type(PipelineValidateSqlResponse, pipeline, path=["response"])
+
+    @parametrize
+    async def test_raw_response_validate_sql(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.pipelines.with_raw_response.validate_sql(
+            account_id="0123105f4ecef8ad9ca31a8372d0c353",
+            sql="insert into sink select * from source;",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        pipeline = await response.parse()
+        assert_matches_type(PipelineValidateSqlResponse, pipeline, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_validate_sql(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.pipelines.with_streaming_response.validate_sql(
+            account_id="0123105f4ecef8ad9ca31a8372d0c353",
+            sql="insert into sink select * from source;",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            pipeline = await response.parse()
+            assert_matches_type(PipelineValidateSqlResponse, pipeline, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_validate_sql(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.pipelines.with_raw_response.validate_sql(
+                account_id="",
+                sql="insert into sink select * from source;",
+            )
