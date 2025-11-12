@@ -111,8 +111,8 @@ class CategoriesResource(SyncAPIResource):
         Args:
           account_id: Account ID.
 
-          dataset_ids: Array of dataset IDs to query categories from. If not provided, returns all
-              categories from D1 database.
+          dataset_ids: Array of dataset IDs to query categories from. If not provided, uses the default
+              dataset.
 
           extra_headers: Send extra headers
 
@@ -356,8 +356,8 @@ class AsyncCategoriesResource(AsyncAPIResource):
         Args:
           account_id: Account ID.
 
-          dataset_ids: Array of dataset IDs to query categories from. If not provided, returns all
-              categories from D1 database.
+          dataset_ids: Array of dataset IDs to query categories from. If not provided, uses the default
+              dataset.
 
           extra_headers: Send extra headers
 

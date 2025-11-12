@@ -17,5 +17,5 @@ class CategoryListParams(TypedDict, total=False):
     dataset_ids: Annotated[SequenceNotStr[str], PropertyInfo(alias="datasetIds")]
     """Array of dataset IDs to query categories from.
 
-    If not provided, returns all categories from D1 database.
+    If not provided, uses the default dataset.
     """

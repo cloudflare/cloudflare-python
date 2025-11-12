@@ -59,8 +59,8 @@ class TargetIndustriesResource(SyncAPIResource):
         Args:
           account_id: Account ID.
 
-          dataset_ids: Array of dataset IDs to query target industries from. If not provided, returns
-              all target industries from Event tables across all datasets.
+          dataset_ids: Array of dataset IDs to query target industries from. If not provided, uses the
+              default dataset.
 
           extra_headers: Send extra headers
 
@@ -125,8 +125,8 @@ class AsyncTargetIndustriesResource(AsyncAPIResource):
         Args:
           account_id: Account ID.
 
-          dataset_ids: Array of dataset IDs to query target industries from. If not provided, returns
-              all target industries from Event tables across all datasets.
+          dataset_ids: Array of dataset IDs to query target industries from. If not provided, uses the
+              default dataset.
 
           extra_headers: Send extra headers
 

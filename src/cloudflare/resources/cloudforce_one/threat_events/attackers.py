@@ -59,8 +59,8 @@ class AttackersResource(SyncAPIResource):
         Args:
           account_id: Account ID.
 
-          dataset_ids: Array of dataset IDs to query attackers from. If not provided, returns all
-              attackers from Event DO tables.
+          dataset_ids: Array of dataset IDs to query attackers from. If not provided, uses the default
+              dataset.
 
           extra_headers: Send extra headers
 
@@ -123,8 +123,8 @@ class AsyncAttackersResource(AsyncAPIResource):
         Args:
           account_id: Account ID.
 
-          dataset_ids: Array of dataset IDs to query attackers from. If not provided, returns all
-              attackers from Event DO tables.
+          dataset_ids: Array of dataset IDs to query attackers from. If not provided, uses the default
+              dataset.
 
           extra_headers: Send extra headers
 

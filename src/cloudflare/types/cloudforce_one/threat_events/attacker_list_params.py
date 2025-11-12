@@ -17,5 +17,5 @@ class AttackerListParams(TypedDict, total=False):
     dataset_ids: Annotated[SequenceNotStr[str], PropertyInfo(alias="datasetIds")]
     """Array of dataset IDs to query attackers from.
 
-    If not provided, returns all attackers from Event DO tables.
+    If not provided, uses the default dataset.
     """
