@@ -22,6 +22,7 @@ class Properties(BaseModel):
             "domain_similarity",
             "domain_recency",
             "managed_acceptable_sender",
+            "outbound_ndr",
         ]
     ] = None
 
@@ -38,6 +39,7 @@ class Properties(BaseModel):
             "domain_similarity",
             "domain_recency",
             "managed_acceptable_sender",
+            "outbound_ndr",
         ]
     ] = None
 
