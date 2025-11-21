@@ -4979,6 +4979,28 @@ Methods:
 - <code title="delete /accounts/{account_id}/alerting/v3/policies/{policy_id}">client.alerting.policies.<a href="./src/cloudflare/resources/alerting/policies.py">delete</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/policy_delete_response.py">PolicyDeleteResponse</a></code>
 - <code title="get /accounts/{account_id}/alerting/v3/policies/{policy_id}">client.alerting.policies.<a href="./src/cloudflare/resources/alerting/policies.py">get</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/policy.py">Optional[Policy]</a></code>
 
+## Silences
+
+Types:
+
+```python
+from cloudflare.types.alerting import (
+    SilenceCreateResponse,
+    SilenceUpdateResponse,
+    SilenceListResponse,
+    SilenceDeleteResponse,
+    SilenceGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/alerting/v3/silences">client.alerting.silences.<a href="./src/cloudflare/resources/alerting/silences.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/alerting/silence_create_params.py">params</a>) -> <a href="./src/cloudflare/types/alerting/silence_create_response.py">SilenceCreateResponse</a></code>
+- <code title="put /accounts/{account_id}/alerting/v3/silences">client.alerting.silences.<a href="./src/cloudflare/resources/alerting/silences.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/alerting/silence_update_params.py">params</a>) -> <a href="./src/cloudflare/types/alerting/silence_update_response.py">SyncSinglePage[SilenceUpdateResponse]</a></code>
+- <code title="get /accounts/{account_id}/alerting/v3/silences">client.alerting.silences.<a href="./src/cloudflare/resources/alerting/silences.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/alerting/silence_list_response.py">SyncSinglePage[SilenceListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/alerting/v3/silences/{silence_id}">client.alerting.silences.<a href="./src/cloudflare/resources/alerting/silences.py">delete</a>(silence_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/silence_delete_response.py">SilenceDeleteResponse</a></code>
+- <code title="get /accounts/{account_id}/alerting/v3/silences/{silence_id}">client.alerting.silences.<a href="./src/cloudflare/resources/alerting/silences.py">get</a>(silence_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/silence_get_response.py">Optional[SilenceGetResponse]</a></code>
+
 # D1
 
 Types:
