@@ -29,6 +29,10 @@ class TestSettings:
         setting = client.zero_trust.devices.settings.update(
             account_id="699d98642c564d2e855e9661899b7252",
             disable_for_time=0,
+            external_emergency_signal_enabled=True,
+            external_emergency_signal_fingerprint="abcd1234567890abcd1234567890abcd1234567890abcd1234567890abcd1234",
+            external_emergency_signal_interval="5m",
+            external_emergency_signal_url="https://192.0.2.1/signal",
             gateway_proxy_enabled=True,
             gateway_udp_proxy_enabled=True,
             root_certificate_installation_enabled=True,
@@ -117,6 +121,10 @@ class TestSettings:
         setting = client.zero_trust.devices.settings.edit(
             account_id="699d98642c564d2e855e9661899b7252",
             disable_for_time=0,
+            external_emergency_signal_enabled=True,
+            external_emergency_signal_fingerprint="abcd1234567890abcd1234567890abcd1234567890abcd1234567890abcd1234",
+            external_emergency_signal_interval="5m",
+            external_emergency_signal_url="https://192.0.2.1/signal",
             gateway_proxy_enabled=True,
             gateway_udp_proxy_enabled=True,
             root_certificate_installation_enabled=True,
@@ -211,6 +219,10 @@ class TestAsyncSettings:
         setting = await async_client.zero_trust.devices.settings.update(
             account_id="699d98642c564d2e855e9661899b7252",
             disable_for_time=0,
+            external_emergency_signal_enabled=True,
+            external_emergency_signal_fingerprint="abcd1234567890abcd1234567890abcd1234567890abcd1234567890abcd1234",
+            external_emergency_signal_interval="5m",
+            external_emergency_signal_url="https://192.0.2.1/signal",
             gateway_proxy_enabled=True,
             gateway_udp_proxy_enabled=True,
             root_certificate_installation_enabled=True,
@@ -299,6 +311,10 @@ class TestAsyncSettings:
         setting = await async_client.zero_trust.devices.settings.edit(
             account_id="699d98642c564d2e855e9661899b7252",
             disable_for_time=0,
+            external_emergency_signal_enabled=True,
+            external_emergency_signal_fingerprint="abcd1234567890abcd1234567890abcd1234567890abcd1234567890abcd1234",
+            external_emergency_signal_interval="5m",
+            external_emergency_signal_url="https://192.0.2.1/signal",
             gateway_proxy_enabled=True,
             gateway_udp_proxy_enabled=True,
             root_certificate_installation_enabled=True,

@@ -29,7 +29,7 @@ class TestSnapshot:
         snapshot = client.browser_rendering.snapshot.create(
             account_id="account_id",
             cache_ttl=86400,
-            action_timeout=300000,
+            action_timeout=120000,
             add_script_tag=[
                 {
                     "id": "id",
@@ -110,10 +110,10 @@ class TestSnapshot:
             wait_for_selector={
                 "selector": "selector",
                 "hidden": True,
-                "timeout": 60000,
+                "timeout": 120000,
                 "visible": True,
             },
-            wait_for_timeout=60000,
+            wait_for_timeout=120000,
         )
         assert_matches_type(Optional[SnapshotCreateResponse], snapshot, path=["response"])
 
@@ -166,7 +166,7 @@ class TestAsyncSnapshot:
         snapshot = await async_client.browser_rendering.snapshot.create(
             account_id="account_id",
             cache_ttl=86400,
-            action_timeout=300000,
+            action_timeout=120000,
             add_script_tag=[
                 {
                     "id": "id",
@@ -247,10 +247,10 @@ class TestAsyncSnapshot:
             wait_for_selector={
                 "selector": "selector",
                 "hidden": True,
-                "timeout": 60000,
+                "timeout": 120000,
                 "visible": True,
             },
-            wait_for_timeout=60000,
+            wait_for_timeout=120000,
         )
         assert_matches_type(Optional[SnapshotCreateResponse], snapshot, path=["response"])
 

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Union, cast
+from typing import List, Type, Union, cast
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -69,7 +69,9 @@ class TrafficAnomaliesResource(SyncAPIResource):
         limit: int | Omit = omit,
         location: str | Omit = omit,
         offset: int | Omit = omit,
+        origin: str | Omit = omit,
         status: Literal["VERIFIED", "UNVERIFIED"] | Omit = omit,
+        type: List[Literal["LOCATION", "AS", "ORIGIN"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -100,6 +102,10 @@ class TrafficAnomaliesResource(SyncAPIResource):
 
           offset: Skips the specified number of objects before fetching the results.
 
+          origin: Filters results by origin.
+
+          type: Filters results by entity type (LOCATION, AS, or ORIGIN).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -125,7 +131,9 @@ class TrafficAnomaliesResource(SyncAPIResource):
                         "limit": limit,
                         "location": location,
                         "offset": offset,
+                        "origin": origin,
                         "status": status,
+                        "type": type,
                     },
                     traffic_anomaly_get_params.TrafficAnomalyGetParams,
                 ),
@@ -170,7 +178,9 @@ class AsyncTrafficAnomaliesResource(AsyncAPIResource):
         limit: int | Omit = omit,
         location: str | Omit = omit,
         offset: int | Omit = omit,
+        origin: str | Omit = omit,
         status: Literal["VERIFIED", "UNVERIFIED"] | Omit = omit,
+        type: List[Literal["LOCATION", "AS", "ORIGIN"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -201,6 +211,10 @@ class AsyncTrafficAnomaliesResource(AsyncAPIResource):
 
           offset: Skips the specified number of objects before fetching the results.
 
+          origin: Filters results by origin.
+
+          type: Filters results by entity type (LOCATION, AS, or ORIGIN).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -226,7 +240,9 @@ class AsyncTrafficAnomaliesResource(AsyncAPIResource):
                         "limit": limit,
                         "location": location,
                         "offset": offset,
+                        "origin": origin,
                         "status": status,
+                        "type": type,
                     },
                     traffic_anomaly_get_params.TrafficAnomalyGetParams,
                 ),

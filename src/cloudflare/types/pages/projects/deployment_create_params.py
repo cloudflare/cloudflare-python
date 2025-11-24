@@ -12,7 +12,7 @@ __all__ = ["DeploymentCreateParams"]
 
 class DeploymentCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     _headers: FileTypes
     """Headers configuration file for the deployment."""

@@ -49,10 +49,10 @@ class DomainsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        environment: str,
         hostname: str,
         service: str,
         zone_id: str,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -66,13 +66,13 @@ class DomainsResource(SyncAPIResource):
         Args:
           account_id: Identifer of the account.
 
-          environment: Worker environment associated with the zone and hostname.
-
           hostname: Hostname of the Worker Domain.
 
           service: Worker service associated with the zone and hostname.
 
           zone_id: Identifier of the zone.
+
+          environment: Worker environment associated with the zone and hostname.
 
           extra_headers: Send extra headers
 
@@ -88,10 +88,10 @@ class DomainsResource(SyncAPIResource):
             f"/accounts/{account_id}/workers/domains",
             body=maybe_transform(
                 {
-                    "environment": environment,
                     "hostname": hostname,
                     "service": service,
                     "zone_id": zone_id,
+                    "environment": environment,
                 },
                 domain_update_params.DomainUpdateParams,
             ),
@@ -279,10 +279,10 @@ class AsyncDomainsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        environment: str,
         hostname: str,
         service: str,
         zone_id: str,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -296,13 +296,13 @@ class AsyncDomainsResource(AsyncAPIResource):
         Args:
           account_id: Identifer of the account.
 
-          environment: Worker environment associated with the zone and hostname.
-
           hostname: Hostname of the Worker Domain.
 
           service: Worker service associated with the zone and hostname.
 
           zone_id: Identifier of the zone.
+
+          environment: Worker environment associated with the zone and hostname.
 
           extra_headers: Send extra headers
 
@@ -318,10 +318,10 @@ class AsyncDomainsResource(AsyncAPIResource):
             f"/accounts/{account_id}/workers/domains",
             body=await async_maybe_transform(
                 {
-                    "environment": environment,
                     "hostname": hostname,
                     "service": service,
                     "zone_id": zone_id,
+                    "environment": environment,
                 },
                 domain_update_params.DomainUpdateParams,
             ),

@@ -31,7 +31,7 @@ class TestScrape:
             account_id="account_id",
             elements=[{"selector": "selector"}],
             cache_ttl=86400,
-            action_timeout=300000,
+            action_timeout=120000,
             add_script_tag=[
                 {
                     "id": "id",
@@ -96,10 +96,10 @@ class TestScrape:
             wait_for_selector={
                 "selector": "selector",
                 "hidden": True,
-                "timeout": 60000,
+                "timeout": 120000,
                 "visible": True,
             },
-            wait_for_timeout=60000,
+            wait_for_timeout=120000,
         )
         assert_matches_type(ScrapeCreateResponse, scrape, path=["response"])
 
@@ -157,7 +157,7 @@ class TestAsyncScrape:
             account_id="account_id",
             elements=[{"selector": "selector"}],
             cache_ttl=86400,
-            action_timeout=300000,
+            action_timeout=120000,
             add_script_tag=[
                 {
                     "id": "id",
@@ -222,10 +222,10 @@ class TestAsyncScrape:
             wait_for_selector={
                 "selector": "selector",
                 "hidden": True,
-                "timeout": 60000,
+                "timeout": 120000,
                 "visible": True,
             },
-            wait_for_timeout=60000,
+            wait_for_timeout=120000,
         )
         assert_matches_type(ScrapeCreateResponse, scrape, path=["response"])
 

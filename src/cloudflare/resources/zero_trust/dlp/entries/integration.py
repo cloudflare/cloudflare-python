@@ -64,11 +64,11 @@ class IntegrationResource(SyncAPIResource):
     ) -> Optional[IntegrationCreateResponse]:
         """
         Integration entries can't be created, this will update an existing integration
-        entry This is needed for our generated terraform API
+        entry. This is needed for our generated terraform API.
 
         Args:
-          profile_id: This field is not actually used as the owning profile for a predefined entry is
-              already set to a predefined profile
+          profile_id: This field is not used as the owning profile. For predefined entries it is
+              already set to a predefined profile.
 
           extra_headers: Send extra headers
 
@@ -190,7 +190,7 @@ class IntegrationResource(SyncAPIResource):
     ) -> object:
         """
         This is a no-op as integration entires can't be deleted but is needed for our
-        generated terraform API
+        generated terraform API.
 
         Args:
           extra_headers: Send extra headers
@@ -299,11 +299,11 @@ class AsyncIntegrationResource(AsyncAPIResource):
     ) -> Optional[IntegrationCreateResponse]:
         """
         Integration entries can't be created, this will update an existing integration
-        entry This is needed for our generated terraform API
+        entry. This is needed for our generated terraform API.
 
         Args:
-          profile_id: This field is not actually used as the owning profile for a predefined entry is
-              already set to a predefined profile
+          profile_id: This field is not used as the owning profile. For predefined entries it is
+              already set to a predefined profile.
 
           extra_headers: Send extra headers
 
@@ -425,7 +425,7 @@ class AsyncIntegrationResource(AsyncAPIResource):
     ) -> object:
         """
         This is a no-op as integration entires can't be deleted but is needed for our
-        generated terraform API
+        generated terraform API.
 
         Args:
           extra_headers: Send extra headers

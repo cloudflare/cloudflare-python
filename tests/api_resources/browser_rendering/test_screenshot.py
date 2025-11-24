@@ -29,7 +29,7 @@ class TestScreenshot:
         screenshot = client.browser_rendering.screenshot.create(
             account_id="account_id",
             cache_ttl=86400,
-            action_timeout=300000,
+            action_timeout=120000,
             add_script_tag=[
                 {
                     "id": "id",
@@ -113,10 +113,10 @@ class TestScreenshot:
             wait_for_selector={
                 "selector": "selector",
                 "hidden": True,
-                "timeout": 60000,
+                "timeout": 120000,
                 "visible": True,
             },
-            wait_for_timeout=60000,
+            wait_for_timeout=120000,
         )
         assert_matches_type(ScreenshotCreateResponse, screenshot, path=["response"])
 
@@ -169,7 +169,7 @@ class TestAsyncScreenshot:
         screenshot = await async_client.browser_rendering.screenshot.create(
             account_id="account_id",
             cache_ttl=86400,
-            action_timeout=300000,
+            action_timeout=120000,
             add_script_tag=[
                 {
                     "id": "id",
@@ -253,10 +253,10 @@ class TestAsyncScreenshot:
             wait_for_selector={
                 "selector": "selector",
                 "hidden": True,
-                "timeout": 60000,
+                "timeout": 120000,
                 "visible": True,
             },
-            wait_for_timeout=60000,
+            wait_for_timeout=120000,
         )
         assert_matches_type(ScreenshotCreateResponse, screenshot, path=["response"])
 

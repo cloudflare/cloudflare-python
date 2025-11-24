@@ -38,3 +38,6 @@ class OutageGetParams(TypedDict, total=False):
 
     offset: int
     """Skips the specified number of objects before fetching the results."""
+
+    origin: str
+    """Filters results by origin."""

@@ -46,7 +46,7 @@ class TestPDF:
         pdf = client.browser_rendering.pdf.create(
             account_id="account_id",
             cache_ttl=86400,
-            action_timeout=300000,
+            action_timeout=120000,
             add_script_tag=[
                 {
                     "id": "id",
@@ -134,10 +134,10 @@ class TestPDF:
             wait_for_selector={
                 "selector": "selector",
                 "hidden": True,
-                "timeout": 60000,
+                "timeout": 120000,
                 "visible": True,
             },
-            wait_for_timeout=60000,
+            wait_for_timeout=120000,
         )
         assert pdf.is_closed
         assert pdf.json() == {"foo": "bar"}
@@ -215,7 +215,7 @@ class TestAsyncPDF:
         pdf = await async_client.browser_rendering.pdf.create(
             account_id="account_id",
             cache_ttl=86400,
-            action_timeout=300000,
+            action_timeout=120000,
             add_script_tag=[
                 {
                     "id": "id",
@@ -303,10 +303,10 @@ class TestAsyncPDF:
             wait_for_selector={
                 "selector": "selector",
                 "hidden": True,
-                "timeout": 60000,
+                "timeout": 120000,
                 "visible": True,
             },
-            wait_for_timeout=60000,
+            wait_for_timeout=120000,
         )
         assert pdf.is_closed
         assert await pdf.json() == {"foo": "bar"}

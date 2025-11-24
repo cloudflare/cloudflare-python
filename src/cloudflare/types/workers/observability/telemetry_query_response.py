@@ -58,6 +58,7 @@ __all__ = [
     "PatternSeries",
     "PatternSeriesData",
     "PatternSeriesDataGroup",
+    "Trace",
 ]
 
 
@@ -237,10 +238,10 @@ class RunQuery(BaseModel):
 
 class RunTimeframe(BaseModel):
     from_: float = FieldInfo(alias="from")
-    """Set the start time for your query using UNIX time in milliseconds."""
+    """Start timestamp for the query timeframe (Unix timestamp in milliseconds)"""
 
     to: float
-    """Set the end time for your query using UNIX time in milliseconds."""
+    """End timestamp for the query timeframe (Unix timestamp in milliseconds)"""
 
 
 class RunStatistics(BaseModel):
@@ -252,6 +253,12 @@ class RunStatistics(BaseModel):
 
     rows_read: float
     """Number of rows scanned from the table."""
+
+    abr_level: Optional[float] = None
+    """The level of Adaptive Bit Rate (ABR) sampling used for the query.
+
+    If empty the ABR level is 1
+    """
 
 
 class Run(BaseModel):
@@ -270,6 +277,7 @@ class Run(BaseModel):
     status: Literal["STARTED", "COMPLETED"]
 
     timeframe: RunTimeframe
+    """Time range for the query execution"""
 
     user_id: str = FieldInfo(alias="userId")
 
@@ -291,6 +299,12 @@ class Statistics(BaseModel):
 
     rows_read: float
     """Number of rows scanned from the table."""
+
+    abr_level: Optional[float] = None
+    """The level of Adaptive Bit Rate (ABR) sampling used for the query.
+
+    If empty the ABR level is 1
+    """
 
 
 class CalculationAggregateGroup(BaseModel):
@@ -460,6 +474,8 @@ class EventsEventMetadata(BaseModel):
 
     trace_id: Optional[str] = FieldInfo(alias="traceId", default=None)
 
+    transaction_name: Optional[str] = FieldInfo(alias="transactionName", default=None)
+
     trigger: Optional[str] = None
 
     type: Optional[str] = None
@@ -480,11 +496,11 @@ class EventsEventWorkersUnionMember0(BaseModel):
         "fetch", "scheduled", "alarm", "cron", "queue", "email", "tail", "rpc", "websocket", "unknown"
     ] = FieldInfo(alias="eventType")
 
-    outcome: str
-
     request_id: str = FieldInfo(alias="requestId")
 
     script_name: str = FieldInfo(alias="scriptName")
+
+    durable_object_id: Optional[str] = FieldInfo(alias="durableObjectId", default=None)
 
     entrypoint: Optional[str] = None
 
@@ -501,6 +517,8 @@ class EventsEventWorkersUnionMember0(BaseModel):
     ] = None
 
     execution_model: Optional[Literal["durableObject", "stateless"]] = FieldInfo(alias="executionModel", default=None)
+
+    outcome: Optional[str] = None
 
     script_version: Optional[EventsEventWorkersUnionMember0ScriptVersion] = FieldInfo(
         alias="scriptVersion", default=None
@@ -546,6 +564,8 @@ class EventsEventWorkersUnionMember1(BaseModel):
 
     dispatch_namespace: Optional[str] = FieldInfo(alias="dispatchNamespace", default=None)
 
+    durable_object_id: Optional[str] = FieldInfo(alias="durableObjectId", default=None)
+
     entrypoint: Optional[str] = None
 
     event: Optional[Dict[str, Union[str, float, bool]]] = None
@@ -570,6 +590,12 @@ class EventsEvent(BaseModel):
     source: Union[str, object]
 
     timestamp: int
+
+    containers: Optional[object] = FieldInfo(alias="$containers", default=None)
+    """
+    Cloudflare Containers event information enriches your logs so you can easily
+    identify and debug issues.
+    """
 
     workers: Optional[EventsEventWorkers] = FieldInfo(alias="$workers", default=None)
     """
@@ -682,6 +708,8 @@ class InvocationMetadata(BaseModel):
 
     trace_id: Optional[str] = FieldInfo(alias="traceId", default=None)
 
+    transaction_name: Optional[str] = FieldInfo(alias="transactionName", default=None)
+
     trigger: Optional[str] = None
 
     type: Optional[str] = None
@@ -702,11 +730,11 @@ class InvocationWorkersUnionMember0(BaseModel):
         "fetch", "scheduled", "alarm", "cron", "queue", "email", "tail", "rpc", "websocket", "unknown"
     ] = FieldInfo(alias="eventType")
 
-    outcome: str
-
     request_id: str = FieldInfo(alias="requestId")
 
     script_name: str = FieldInfo(alias="scriptName")
+
+    durable_object_id: Optional[str] = FieldInfo(alias="durableObjectId", default=None)
 
     entrypoint: Optional[str] = None
 
@@ -723,6 +751,8 @@ class InvocationWorkersUnionMember0(BaseModel):
     ] = None
 
     execution_model: Optional[Literal["durableObject", "stateless"]] = FieldInfo(alias="executionModel", default=None)
+
+    outcome: Optional[str] = None
 
     script_version: Optional[InvocationWorkersUnionMember0ScriptVersion] = FieldInfo(
         alias="scriptVersion", default=None
@@ -768,6 +798,8 @@ class InvocationWorkersUnionMember1(BaseModel):
 
     dispatch_namespace: Optional[str] = FieldInfo(alias="dispatchNamespace", default=None)
 
+    durable_object_id: Optional[str] = FieldInfo(alias="durableObjectId", default=None)
+
     entrypoint: Optional[str] = None
 
     event: Optional[Dict[str, Union[str, float, bool]]] = None
@@ -792,6 +824,12 @@ class Invocation(BaseModel):
     source: Union[str, object]
 
     timestamp: int
+
+    containers: Optional[object] = FieldInfo(alias="$containers", default=None)
+    """
+    Cloudflare Containers event information enriches your logs so you can easily
+    identify and debug issues.
+    """
 
     workers: Optional[InvocationWorkers] = FieldInfo(alias="$workers", default=None)
     """
@@ -834,6 +872,26 @@ class Pattern(BaseModel):
     service: str
 
 
+class Trace(BaseModel):
+    root_span_name: str = FieldInfo(alias="rootSpanName")
+
+    root_transaction_name: str = FieldInfo(alias="rootTransactionName")
+
+    service: List[str]
+
+    spans: float
+
+    trace_duration_ms: float = FieldInfo(alias="traceDurationMs")
+
+    trace_end_ms: float = FieldInfo(alias="traceEndMs")
+
+    trace_id: str = FieldInfo(alias="traceId")
+
+    trace_start_ms: float = FieldInfo(alias="traceStartMs")
+
+    errors: Optional[List[str]] = None
+
+
 class TelemetryQueryResponse(BaseModel):
     run: Run
     """A Workers Observability Query Object"""
@@ -853,3 +911,5 @@ class TelemetryQueryResponse(BaseModel):
     invocations: Optional[Dict[str, List[Invocation]]] = None
 
     patterns: Optional[List[Pattern]] = None
+
+    traces: Optional[List[Trace]] = None

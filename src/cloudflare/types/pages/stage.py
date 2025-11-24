@@ -13,11 +13,11 @@ class Stage(BaseModel):
     ended_on: Optional[datetime] = None
     """When the stage ended."""
 
-    name: Optional[Literal["queued", "initialize", "clone_repo", "build", "deploy"]] = None
+    name: Literal["queued", "initialize", "clone_repo", "build", "deploy"]
     """The current build stage."""
 
     started_on: Optional[datetime] = None
     """When the stage started."""
 
-    status: Optional[Literal["success", "idle", "active", "failure", "canceled"]] = None
+    status: Literal["success", "idle", "active", "failure", "canceled"]
     """State of the current stage."""

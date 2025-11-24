@@ -202,7 +202,7 @@ class TestItems:
         item = client.rules.lists.items.delete(
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            items=[{}],
+            items=[{"id": "34b12448945f11eaa1b71c4d701ab86e"}],
         )
         assert_matches_type(ItemDeleteResponse, item, path=["response"])
 
@@ -490,7 +490,7 @@ class TestAsyncItems:
         item = await async_client.rules.lists.items.delete(
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            items=[{}],
+            items=[{"id": "34b12448945f11eaa1b71c4d701ab86e"}],
         )
         assert_matches_type(ItemDeleteResponse, item, path=["response"])
 

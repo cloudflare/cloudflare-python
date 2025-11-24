@@ -1,13 +1,62 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 from .host import Host
 from .status import Status
 from ..._models import BaseModel
 
-__all__ = ["CertificatePackEditResponse", "ValidationError", "ValidationRecord"]
+__all__ = [
+    "CertificatePackEditResponse",
+    "Certificate",
+    "CertificateGeoRestrictions",
+    "ValidationError",
+    "ValidationRecord",
+]
+
+
+class CertificateGeoRestrictions(BaseModel):
+    label: Optional[Literal["us", "eu", "highest_security"]] = None
+
+
+class Certificate(BaseModel):
+    id: str
+    """Certificate identifier."""
+
+    hosts: List[str]
+    """Hostnames covered by this certificate."""
+
+    status: str
+    """Certificate status."""
+
+    bundle_method: Optional[str] = None
+    """Certificate bundle method."""
+
+    expires_on: Optional[datetime] = None
+    """When the certificate from the authority expires."""
+
+    geo_restrictions: Optional[CertificateGeoRestrictions] = None
+    """Specify the region where your private key can be held locally."""
+
+    issuer: Optional[str] = None
+    """The certificate authority that issued the certificate."""
+
+    modified_on: Optional[datetime] = None
+    """When the certificate was last modified."""
+
+    priority: Optional[float] = None
+    """The order/priority in which the certificate will be used."""
+
+    signature: Optional[str] = None
+    """The type of hash used for the certificate."""
+
+    uploaded_on: Optional[datetime] = None
+    """When the certificate was uploaded to Cloudflare."""
+
+    zone_id: Optional[str] = None
+    """Identifier."""
 
 
 class ValidationError(BaseModel):
@@ -45,8 +94,26 @@ class ValidationRecord(BaseModel):
 
 
 class CertificatePackEditResponse(BaseModel):
-    id: Optional[str] = None
+    id: str
     """Identifier."""
+
+    certificates: List[Certificate]
+    """Array of certificates in this pack."""
+
+    hosts: List[Host]
+    """Comma separated list of valid host names for the certificate packs.
+
+    Must contain the zone apex, may not contain more than 50 hosts, and may not be
+    empty.
+    """
+
+    status: Status
+    """Status of certificate pack."""
+
+    type: Literal[
+        "mh_custom", "managed_hostname", "sni_custom", "universal", "advanced", "total_tls", "keyless", "legacy_custom"
+    ]
+    """Type of certificate pack."""
 
     certificate_authority: Optional[Literal["google", "lets_encrypt", "ssl_com"]] = None
     """Certificate Authority selected for the order.
@@ -62,29 +129,8 @@ class CertificatePackEditResponse(BaseModel):
     true.
     """
 
-    hosts: Optional[List[Host]] = None
-    """Comma separated list of valid host names for the certificate packs.
-
-    Must contain the zone apex, may not contain more than 50 hosts, and may not be
-    empty.
-    """
-
-    status: Optional[Status] = None
-    """Status of certificate pack."""
-
-    type: Optional[
-        Literal[
-            "mh_custom",
-            "managed_hostname",
-            "sni_custom",
-            "universal",
-            "advanced",
-            "total_tls",
-            "keyless",
-            "legacy_custom",
-        ]
-    ] = None
-    """Type of certificate pack."""
+    primary_certificate: Optional[str] = None
+    """Identifier of the primary certificate in a pack."""
 
     validation_errors: Optional[List[ValidationError]] = None
     """
@@ -96,10 +142,7 @@ class CertificatePackEditResponse(BaseModel):
     """Validation Method selected for the order."""
 
     validation_records: Optional[List[ValidationRecord]] = None
-    """Certificates' validation records.
-
-    Only present when certificate pack is in "pending_validation" status
-    """
+    """Certificates' validation records."""
 
     validity_days: Optional[Literal[14, 30, 90, 365]] = None
     """Validity Days selected for the order."""

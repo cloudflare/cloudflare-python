@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
@@ -14,6 +16,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ..._wrappers import ResultWrapper
 from ...types.iam import permission_group_list_params
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
@@ -118,7 +121,7 @@ class PermissionGroupsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PermissionGroupGetResponse:
+    ) -> Optional[PermissionGroupGetResponse]:
         """
         Get information about a specific permission group in an account.
 
@@ -144,9 +147,13 @@ class PermissionGroupsResource(SyncAPIResource):
         return self._get(
             f"/accounts/{account_id}/iam/permission_groups/{permission_group_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[PermissionGroupGetResponse]]._unwrapper,
             ),
-            cast_to=PermissionGroupGetResponse,
+            cast_to=cast(Type[Optional[PermissionGroupGetResponse]], ResultWrapper[PermissionGroupGetResponse]),
         )
 
 
@@ -245,7 +252,7 @@ class AsyncPermissionGroupsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PermissionGroupGetResponse:
+    ) -> Optional[PermissionGroupGetResponse]:
         """
         Get information about a specific permission group in an account.
 
@@ -271,9 +278,13 @@ class AsyncPermissionGroupsResource(AsyncAPIResource):
         return await self._get(
             f"/accounts/{account_id}/iam/permission_groups/{permission_group_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[PermissionGroupGetResponse]]._unwrapper,
             ),
-            cast_to=PermissionGroupGetResponse,
+            cast_to=cast(Type[Optional[PermissionGroupGetResponse]], ResultWrapper[PermissionGroupGetResponse]),
         )
 
 

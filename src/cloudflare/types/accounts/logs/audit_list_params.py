@@ -11,6 +11,7 @@ from ...._utils import PropertyInfo
 
 __all__ = [
     "AuditListParams",
+    "ID",
     "AccountName",
     "ActionResult",
     "ActionType",
@@ -21,7 +22,6 @@ __all__ = [
     "ActorTokenID",
     "ActorTokenName",
     "ActorType",
-    "AuditLogID",
     "RawCfRayID",
     "RawMethod",
     "RawStatusCode",
@@ -53,6 +53,8 @@ class AuditListParams(TypedDict, total=False):
     timestamp that conforms to RFC3339.
     """
 
+    id: ID
+
     account_name: AccountName
 
     action_result: ActionResult
@@ -72,8 +74,6 @@ class AuditListParams(TypedDict, total=False):
     actor_token_name: ActorTokenName
 
     actor_type: ActorType
-
-    audit_log_id: AuditLogID
 
     cursor: str
     """The cursor is an opaque token used to paginate through large sets of records.
@@ -112,6 +112,19 @@ class AuditListParams(TypedDict, total=False):
     zone_id: ZoneID
 
     zone_name: ZoneName
+
+
+_IDReservedKeywords = TypedDict(
+    "_IDReservedKeywords",
+    {
+        "not": SequenceNotStr[str],
+    },
+    total=False,
+)
+
+
+class ID(_IDReservedKeywords, total=False):
+    pass
 
 
 _AccountNameReservedKeywords = TypedDict(
@@ -241,19 +254,6 @@ _ActorTypeReservedKeywords = TypedDict(
 
 
 class ActorType(_ActorTypeReservedKeywords, total=False):
-    pass
-
-
-_AuditLogIDReservedKeywords = TypedDict(
-    "_AuditLogIDReservedKeywords",
-    {
-        "not": SequenceNotStr[str],
-    },
-    total=False,
-)
-
-
-class AuditLogID(_AuditLogIDReservedKeywords, total=False):
     pass
 
 

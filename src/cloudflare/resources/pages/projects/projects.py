@@ -28,7 +28,6 @@ from ...._wrappers import ResultWrapper
 from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ....types.pages import project_edit_params, project_list_params, project_create_params
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.pages.project import Project
 from .deployments.deployments import (
     DeploymentsResource,
     AsyncDeploymentsResource,
@@ -37,7 +36,10 @@ from .deployments.deployments import (
     DeploymentsResourceWithStreamingResponse,
     AsyncDeploymentsResourceWithStreamingResponse,
 )
-from ....types.pages.deployment import Deployment
+from ....types.pages.project_get_response import ProjectGetResponse
+from ....types.pages.project_edit_response import ProjectEditResponse
+from ....types.pages.project_list_response import ProjectListResponse
+from ....types.pages.project_create_response import ProjectCreateResponse
 
 __all__ = ["ProjectsResource", "AsyncProjectsResource"]
 
@@ -76,8 +78,8 @@ class ProjectsResource(SyncAPIResource):
         account_id: str,
         name: str,
         production_branch: str,
-        build_config: Optional[project_create_params.BuildConfig] | Omit = omit,
-        deployment_configs: Optional[project_create_params.DeploymentConfigs] | Omit = omit,
+        build_config: project_create_params.BuildConfig | Omit = omit,
+        deployment_configs: project_create_params.DeploymentConfigs | Omit = omit,
         source: project_create_params.Source | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -85,12 +87,12 @@ class ProjectsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Project:
+    ) -> ProjectCreateResponse:
         """
         Create a new project.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           name: Name of the project.
 
@@ -99,6 +101,8 @@ class ProjectsResource(SyncAPIResource):
           build_config: Configs for the project build process.
 
           deployment_configs: Configs for deployments in a project.
+
+          source: Configs for the project source control.
 
           extra_headers: Send extra headers
 
@@ -127,9 +131,9 @@ class ProjectsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Project]._unwrapper,
+                post_parser=ResultWrapper[ProjectCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Project], ResultWrapper[Project]),
+            cast_to=cast(Type[ProjectCreateResponse], ResultWrapper[ProjectCreateResponse]),
         )
 
     def list(
@@ -144,16 +148,16 @@ class ProjectsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncV4PagePaginationArray[Deployment]:
+    ) -> SyncV4PagePaginationArray[ProjectListResponse]:
         """
         Fetch a list of all user projects.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           page: Which page of projects to fetch.
 
-          per_page: How many project to return per page.
+          per_page: How many projects to return per page.
 
           extra_headers: Send extra headers
 
@@ -167,7 +171,7 @@ class ProjectsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/pages/projects",
-            page=SyncV4PagePaginationArray[Deployment],
+            page=SyncV4PagePaginationArray[ProjectListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -181,7 +185,7 @@ class ProjectsResource(SyncAPIResource):
                     project_list_params.ProjectListParams,
                 ),
             ),
-            model=Deployment,
+            model=ProjectListResponse,
         )
 
     def delete(
@@ -200,7 +204,7 @@ class ProjectsResource(SyncAPIResource):
         Delete a project by name.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
 
@@ -233,10 +237,10 @@ class ProjectsResource(SyncAPIResource):
         project_name: str,
         *,
         account_id: str,
-        name: str,
-        production_branch: str,
-        build_config: Optional[project_edit_params.BuildConfig] | Omit = omit,
-        deployment_configs: Optional[project_edit_params.DeploymentConfigs] | Omit = omit,
+        build_config: project_edit_params.BuildConfig | Omit = omit,
+        deployment_configs: project_edit_params.DeploymentConfigs | Omit = omit,
+        name: str | Omit = omit,
+        production_branch: str | Omit = omit,
         source: project_edit_params.Source | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -244,24 +248,26 @@ class ProjectsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Project:
+    ) -> ProjectEditResponse:
         """Set new attributes for an existing project.
 
         Modify environment variables. To
         delete an environment variable, set the key to null.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
+
+          build_config: Configs for the project build process.
+
+          deployment_configs: Configs for deployments in a project.
 
           name: Name of the project.
 
           production_branch: Production branch of the project. Used to identify production deployments.
 
-          build_config: Configs for the project build process.
-
-          deployment_configs: Configs for deployments in a project.
+          source: Configs for the project source control.
 
           extra_headers: Send extra headers
 
@@ -279,10 +285,10 @@ class ProjectsResource(SyncAPIResource):
             f"/accounts/{account_id}/pages/projects/{project_name}",
             body=maybe_transform(
                 {
-                    "name": name,
-                    "production_branch": production_branch,
                     "build_config": build_config,
                     "deployment_configs": deployment_configs,
+                    "name": name,
+                    "production_branch": production_branch,
                     "source": source,
                 },
                 project_edit_params.ProjectEditParams,
@@ -292,9 +298,9 @@ class ProjectsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Project]._unwrapper,
+                post_parser=ResultWrapper[ProjectEditResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Project], ResultWrapper[Project]),
+            cast_to=cast(Type[ProjectEditResponse], ResultWrapper[ProjectEditResponse]),
         )
 
     def get(
@@ -308,12 +314,12 @@ class ProjectsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Project:
+    ) -> ProjectGetResponse:
         """
         Fetch a project by name.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
 
@@ -336,9 +342,9 @@ class ProjectsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Project]._unwrapper,
+                post_parser=ResultWrapper[ProjectGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Project], ResultWrapper[Project]),
+            cast_to=cast(Type[ProjectGetResponse], ResultWrapper[ProjectGetResponse]),
         )
 
     def purge_build_cache(
@@ -357,7 +363,7 @@ class ProjectsResource(SyncAPIResource):
         Purge all cached build artifacts for a Pages project
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
 
@@ -420,8 +426,8 @@ class AsyncProjectsResource(AsyncAPIResource):
         account_id: str,
         name: str,
         production_branch: str,
-        build_config: Optional[project_create_params.BuildConfig] | Omit = omit,
-        deployment_configs: Optional[project_create_params.DeploymentConfigs] | Omit = omit,
+        build_config: project_create_params.BuildConfig | Omit = omit,
+        deployment_configs: project_create_params.DeploymentConfigs | Omit = omit,
         source: project_create_params.Source | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -429,12 +435,12 @@ class AsyncProjectsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Project:
+    ) -> ProjectCreateResponse:
         """
         Create a new project.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           name: Name of the project.
 
@@ -443,6 +449,8 @@ class AsyncProjectsResource(AsyncAPIResource):
           build_config: Configs for the project build process.
 
           deployment_configs: Configs for deployments in a project.
+
+          source: Configs for the project source control.
 
           extra_headers: Send extra headers
 
@@ -471,9 +479,9 @@ class AsyncProjectsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Project]._unwrapper,
+                post_parser=ResultWrapper[ProjectCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Project], ResultWrapper[Project]),
+            cast_to=cast(Type[ProjectCreateResponse], ResultWrapper[ProjectCreateResponse]),
         )
 
     def list(
@@ -488,16 +496,16 @@ class AsyncProjectsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[Deployment, AsyncV4PagePaginationArray[Deployment]]:
+    ) -> AsyncPaginator[ProjectListResponse, AsyncV4PagePaginationArray[ProjectListResponse]]:
         """
         Fetch a list of all user projects.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           page: Which page of projects to fetch.
 
-          per_page: How many project to return per page.
+          per_page: How many projects to return per page.
 
           extra_headers: Send extra headers
 
@@ -511,7 +519,7 @@ class AsyncProjectsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/pages/projects",
-            page=AsyncV4PagePaginationArray[Deployment],
+            page=AsyncV4PagePaginationArray[ProjectListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -525,7 +533,7 @@ class AsyncProjectsResource(AsyncAPIResource):
                     project_list_params.ProjectListParams,
                 ),
             ),
-            model=Deployment,
+            model=ProjectListResponse,
         )
 
     async def delete(
@@ -544,7 +552,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         Delete a project by name.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
 
@@ -577,10 +585,10 @@ class AsyncProjectsResource(AsyncAPIResource):
         project_name: str,
         *,
         account_id: str,
-        name: str,
-        production_branch: str,
-        build_config: Optional[project_edit_params.BuildConfig] | Omit = omit,
-        deployment_configs: Optional[project_edit_params.DeploymentConfigs] | Omit = omit,
+        build_config: project_edit_params.BuildConfig | Omit = omit,
+        deployment_configs: project_edit_params.DeploymentConfigs | Omit = omit,
+        name: str | Omit = omit,
+        production_branch: str | Omit = omit,
         source: project_edit_params.Source | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -588,24 +596,26 @@ class AsyncProjectsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Project:
+    ) -> ProjectEditResponse:
         """Set new attributes for an existing project.
 
         Modify environment variables. To
         delete an environment variable, set the key to null.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
+
+          build_config: Configs for the project build process.
+
+          deployment_configs: Configs for deployments in a project.
 
           name: Name of the project.
 
           production_branch: Production branch of the project. Used to identify production deployments.
 
-          build_config: Configs for the project build process.
-
-          deployment_configs: Configs for deployments in a project.
+          source: Configs for the project source control.
 
           extra_headers: Send extra headers
 
@@ -623,10 +633,10 @@ class AsyncProjectsResource(AsyncAPIResource):
             f"/accounts/{account_id}/pages/projects/{project_name}",
             body=await async_maybe_transform(
                 {
-                    "name": name,
-                    "production_branch": production_branch,
                     "build_config": build_config,
                     "deployment_configs": deployment_configs,
+                    "name": name,
+                    "production_branch": production_branch,
                     "source": source,
                 },
                 project_edit_params.ProjectEditParams,
@@ -636,9 +646,9 @@ class AsyncProjectsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Project]._unwrapper,
+                post_parser=ResultWrapper[ProjectEditResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Project], ResultWrapper[Project]),
+            cast_to=cast(Type[ProjectEditResponse], ResultWrapper[ProjectEditResponse]),
         )
 
     async def get(
@@ -652,12 +662,12 @@ class AsyncProjectsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Project:
+    ) -> ProjectGetResponse:
         """
         Fetch a project by name.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
 
@@ -680,9 +690,9 @@ class AsyncProjectsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Project]._unwrapper,
+                post_parser=ResultWrapper[ProjectGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Project], ResultWrapper[Project]),
+            cast_to=cast(Type[ProjectGetResponse], ResultWrapper[ProjectGetResponse]),
         )
 
     async def purge_build_cache(
@@ -701,7 +711,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         Purge all cached build artifacts for a Pages project
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
 

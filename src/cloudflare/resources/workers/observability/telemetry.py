@@ -54,10 +54,11 @@ class TelemetryResource(SyncAPIResource):
         account_id: str,
         datasets: SequenceNotStr[str] | Omit = omit,
         filters: Iterable[telemetry_keys_params.Filter] | Omit = omit,
+        from_: float | Omit = omit,
         key_needle: telemetry_keys_params.KeyNeedle | Omit = omit,
         limit: float | Omit = omit,
         needle: telemetry_keys_params.Needle | Omit = omit,
-        timeframe: telemetry_keys_params.Timeframe | Omit = omit,
+        to: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -71,7 +72,7 @@ class TelemetryResource(SyncAPIResource):
         Args:
           key_needle: Search for a specific substring in the keys.
 
-          needle: Search for a specific substring in the event.
+          needle: Search for a specific substring in any of the events
 
           extra_headers: Send extra headers
 
@@ -90,10 +91,11 @@ class TelemetryResource(SyncAPIResource):
                 {
                     "datasets": datasets,
                     "filters": filters,
+                    "from_": from_,
                     "key_needle": key_needle,
                     "limit": limit,
                     "needle": needle,
-                    "timeframe": timeframe,
+                    "to": to,
                 },
                 telemetry_keys_params.TelemetryKeysParams,
             ),
@@ -133,6 +135,37 @@ class TelemetryResource(SyncAPIResource):
         Runs a temporary or saved query
 
         Args:
+          query_id: Unique identifier for the query to execute
+
+          timeframe: Time range for the query execution
+
+          chart: Whether to include timeseties data in the response
+
+          compare: Whether to include comparison data with previous time periods
+
+          dry: Whether to perform a dry run without saving the results of the query. Useful for
+              validation
+
+          granularity: Time granularity for aggregating results (in milliseconds). Controls the
+              bucketing of time-series data
+
+          ignore_series: Whether to ignore time-series data in the results and return only aggregated
+              values
+
+          limit: Maximum number of events to return.
+
+          offset: Cursor for pagination to retrieve the next set of results
+
+          offset_by: Number of events to skip for pagination. Used in conjunction with offset
+
+          offset_direction: Direction for offset-based pagination (e.g., 'next', 'prev')
+
+          parameters: Optional parameters to pass to the query execution
+
+          pattern_type: Type of pattern to search for when using pattern-based views
+
+          view: View type for presenting the query results.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -257,10 +290,11 @@ class AsyncTelemetryResource(AsyncAPIResource):
         account_id: str,
         datasets: SequenceNotStr[str] | Omit = omit,
         filters: Iterable[telemetry_keys_params.Filter] | Omit = omit,
+        from_: float | Omit = omit,
         key_needle: telemetry_keys_params.KeyNeedle | Omit = omit,
         limit: float | Omit = omit,
         needle: telemetry_keys_params.Needle | Omit = omit,
-        timeframe: telemetry_keys_params.Timeframe | Omit = omit,
+        to: float | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -274,7 +308,7 @@ class AsyncTelemetryResource(AsyncAPIResource):
         Args:
           key_needle: Search for a specific substring in the keys.
 
-          needle: Search for a specific substring in the event.
+          needle: Search for a specific substring in any of the events
 
           extra_headers: Send extra headers
 
@@ -293,10 +327,11 @@ class AsyncTelemetryResource(AsyncAPIResource):
                 {
                     "datasets": datasets,
                     "filters": filters,
+                    "from_": from_,
                     "key_needle": key_needle,
                     "limit": limit,
                     "needle": needle,
-                    "timeframe": timeframe,
+                    "to": to,
                 },
                 telemetry_keys_params.TelemetryKeysParams,
             ),
@@ -336,6 +371,37 @@ class AsyncTelemetryResource(AsyncAPIResource):
         Runs a temporary or saved query
 
         Args:
+          query_id: Unique identifier for the query to execute
+
+          timeframe: Time range for the query execution
+
+          chart: Whether to include timeseties data in the response
+
+          compare: Whether to include comparison data with previous time periods
+
+          dry: Whether to perform a dry run without saving the results of the query. Useful for
+              validation
+
+          granularity: Time granularity for aggregating results (in milliseconds). Controls the
+              bucketing of time-series data
+
+          ignore_series: Whether to ignore time-series data in the results and return only aggregated
+              values
+
+          limit: Maximum number of events to return.
+
+          offset: Cursor for pagination to retrieve the next set of results
+
+          offset_by: Number of events to skip for pagination. Used in conjunction with offset
+
+          offset_direction: Direction for offset-based pagination (e.g., 'next', 'prev')
+
+          parameters: Optional parameters to pass to the query execution
+
+          pattern_type: Type of pattern to search for when using pattern-based views
+
+          view: View type for presenting the query results.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

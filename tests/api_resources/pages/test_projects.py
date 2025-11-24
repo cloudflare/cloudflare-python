@@ -10,7 +10,12 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.pages import Project, Deployment
+from cloudflare.types.pages import (
+    ProjectGetResponse,
+    ProjectEditResponse,
+    ProjectListResponse,
+    ProjectCreateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -25,7 +30,7 @@ class TestProjects:
             name="my-pages-app",
             production_branch="main",
         )
-        assert_matches_type(Project, project, path=["response"])
+        assert_matches_type(ProjectCreateResponse, project, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
@@ -67,15 +72,15 @@ class TestProjects:
                     "queue_producers": {"QUEUE_PRODUCER_BINDING": {"name": "some-queue"}},
                     "r2_buckets": {
                         "R2_BINDING": {
-                            "jurisdiction": "eu",
                             "name": "some-bucket",
+                            "jurisdiction": "eu",
                         }
                     },
                     "services": {
                         "SERVICE_BINDING": {
+                            "service": "example-worker",
                             "entrypoint": "MyHandler",
                             "environment": "production",
-                            "service": "example-worker",
                         }
                     },
                     "usage_model": "standard",
@@ -107,15 +112,15 @@ class TestProjects:
                     "queue_producers": {"QUEUE_PRODUCER_BINDING": {"name": "some-queue"}},
                     "r2_buckets": {
                         "R2_BINDING": {
-                            "jurisdiction": "eu",
                             "name": "some-bucket",
+                            "jurisdiction": "eu",
                         }
                     },
                     "services": {
                         "SERVICE_BINDING": {
+                            "service": "example-worker",
                             "entrypoint": "MyHandler",
                             "environment": "production",
-                            "service": "example-worker",
                         }
                     },
                     "usage_model": "standard",
@@ -127,6 +132,7 @@ class TestProjects:
                 "config": {
                     "deployments_enabled": True,
                     "owner": "my-org",
+                    "owner_id": "12345678",
                     "path_excludes": ["string"],
                     "path_includes": ["string"],
                     "pr_comments_enabled": True,
@@ -135,12 +141,13 @@ class TestProjects:
                     "preview_deployment_setting": "all",
                     "production_branch": "main",
                     "production_deployments_enabled": True,
+                    "repo_id": "12345678",
                     "repo_name": "my-repo",
                 },
                 "type": "github",
             },
         )
-        assert_matches_type(Project, project, path=["response"])
+        assert_matches_type(ProjectCreateResponse, project, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -153,7 +160,7 @@ class TestProjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = response.parse()
-        assert_matches_type(Project, project, path=["response"])
+        assert_matches_type(ProjectCreateResponse, project, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -166,7 +173,7 @@ class TestProjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = response.parse()
-            assert_matches_type(Project, project, path=["response"])
+            assert_matches_type(ProjectCreateResponse, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -184,7 +191,7 @@ class TestProjects:
         project = client.pages.projects.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncV4PagePaginationArray[Deployment], project, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[ProjectListResponse], project, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
@@ -193,7 +200,7 @@ class TestProjects:
             page=1,
             per_page=10,
         )
-        assert_matches_type(SyncV4PagePaginationArray[Deployment], project, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[ProjectListResponse], project, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -204,7 +211,7 @@ class TestProjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[Deployment], project, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[ProjectListResponse], project, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -215,7 +222,7 @@ class TestProjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[Deployment], project, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[ProjectListResponse], project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -279,18 +286,14 @@ class TestProjects:
         project = client.pages.projects.edit(
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="my-pages-app",
-            production_branch="main",
         )
-        assert_matches_type(Project, project, path=["response"])
+        assert_matches_type(ProjectEditResponse, project, path=["response"])
 
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         project = client.pages.projects.edit(
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="my-pages-app",
-            production_branch="main",
             build_config={
                 "build_caching": True,
                 "build_command": "npm run build",
@@ -325,15 +328,15 @@ class TestProjects:
                     "queue_producers": {"QUEUE_PRODUCER_BINDING": {"name": "some-queue"}},
                     "r2_buckets": {
                         "R2_BINDING": {
-                            "jurisdiction": "eu",
                             "name": "some-bucket",
+                            "jurisdiction": "eu",
                         }
                     },
                     "services": {
                         "SERVICE_BINDING": {
+                            "service": "example-worker",
                             "entrypoint": "MyHandler",
                             "environment": "production",
-                            "service": "example-worker",
                         }
                     },
                     "usage_model": "standard",
@@ -365,15 +368,15 @@ class TestProjects:
                     "queue_producers": {"QUEUE_PRODUCER_BINDING": {"name": "some-queue"}},
                     "r2_buckets": {
                         "R2_BINDING": {
-                            "jurisdiction": "eu",
                             "name": "some-bucket",
+                            "jurisdiction": "eu",
                         }
                     },
                     "services": {
                         "SERVICE_BINDING": {
+                            "service": "example-worker",
                             "entrypoint": "MyHandler",
                             "environment": "production",
-                            "service": "example-worker",
                         }
                     },
                     "usage_model": "standard",
@@ -381,10 +384,13 @@ class TestProjects:
                     "wrangler_config_hash": "abc123def456",
                 },
             },
+            name="my-pages-app",
+            production_branch="main",
             source={
                 "config": {
                     "deployments_enabled": True,
                     "owner": "my-org",
+                    "owner_id": "12345678",
                     "path_excludes": ["string"],
                     "path_includes": ["string"],
                     "pr_comments_enabled": True,
@@ -393,40 +399,37 @@ class TestProjects:
                     "preview_deployment_setting": "all",
                     "production_branch": "main",
                     "production_deployments_enabled": True,
+                    "repo_id": "12345678",
                     "repo_name": "my-repo",
                 },
                 "type": "github",
             },
         )
-        assert_matches_type(Project, project, path=["response"])
+        assert_matches_type(ProjectEditResponse, project, path=["response"])
 
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.pages.projects.with_raw_response.edit(
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="my-pages-app",
-            production_branch="main",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = response.parse()
-        assert_matches_type(Project, project, path=["response"])
+        assert_matches_type(ProjectEditResponse, project, path=["response"])
 
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.pages.projects.with_streaming_response.edit(
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="my-pages-app",
-            production_branch="main",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = response.parse()
-            assert_matches_type(Project, project, path=["response"])
+            assert_matches_type(ProjectEditResponse, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -436,16 +439,12 @@ class TestProjects:
             client.pages.projects.with_raw_response.edit(
                 project_name="this-is-my-project-01",
                 account_id="",
-                name="my-pages-app",
-                production_branch="main",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             client.pages.projects.with_raw_response.edit(
                 project_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                name="my-pages-app",
-                production_branch="main",
             )
 
     @parametrize
@@ -454,7 +453,7 @@ class TestProjects:
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Project, project, path=["response"])
+        assert_matches_type(ProjectGetResponse, project, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -466,7 +465,7 @@ class TestProjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = response.parse()
-        assert_matches_type(Project, project, path=["response"])
+        assert_matches_type(ProjectGetResponse, project, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -478,7 +477,7 @@ class TestProjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = response.parse()
-            assert_matches_type(Project, project, path=["response"])
+            assert_matches_type(ProjectGetResponse, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -557,7 +556,7 @@ class TestAsyncProjects:
             name="my-pages-app",
             production_branch="main",
         )
-        assert_matches_type(Project, project, path=["response"])
+        assert_matches_type(ProjectCreateResponse, project, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -599,15 +598,15 @@ class TestAsyncProjects:
                     "queue_producers": {"QUEUE_PRODUCER_BINDING": {"name": "some-queue"}},
                     "r2_buckets": {
                         "R2_BINDING": {
-                            "jurisdiction": "eu",
                             "name": "some-bucket",
+                            "jurisdiction": "eu",
                         }
                     },
                     "services": {
                         "SERVICE_BINDING": {
+                            "service": "example-worker",
                             "entrypoint": "MyHandler",
                             "environment": "production",
-                            "service": "example-worker",
                         }
                     },
                     "usage_model": "standard",
@@ -639,15 +638,15 @@ class TestAsyncProjects:
                     "queue_producers": {"QUEUE_PRODUCER_BINDING": {"name": "some-queue"}},
                     "r2_buckets": {
                         "R2_BINDING": {
-                            "jurisdiction": "eu",
                             "name": "some-bucket",
+                            "jurisdiction": "eu",
                         }
                     },
                     "services": {
                         "SERVICE_BINDING": {
+                            "service": "example-worker",
                             "entrypoint": "MyHandler",
                             "environment": "production",
-                            "service": "example-worker",
                         }
                     },
                     "usage_model": "standard",
@@ -659,6 +658,7 @@ class TestAsyncProjects:
                 "config": {
                     "deployments_enabled": True,
                     "owner": "my-org",
+                    "owner_id": "12345678",
                     "path_excludes": ["string"],
                     "path_includes": ["string"],
                     "pr_comments_enabled": True,
@@ -667,12 +667,13 @@ class TestAsyncProjects:
                     "preview_deployment_setting": "all",
                     "production_branch": "main",
                     "production_deployments_enabled": True,
+                    "repo_id": "12345678",
                     "repo_name": "my-repo",
                 },
                 "type": "github",
             },
         )
-        assert_matches_type(Project, project, path=["response"])
+        assert_matches_type(ProjectCreateResponse, project, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -685,7 +686,7 @@ class TestAsyncProjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = await response.parse()
-        assert_matches_type(Project, project, path=["response"])
+        assert_matches_type(ProjectCreateResponse, project, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -698,7 +699,7 @@ class TestAsyncProjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = await response.parse()
-            assert_matches_type(Project, project, path=["response"])
+            assert_matches_type(ProjectCreateResponse, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -716,7 +717,7 @@ class TestAsyncProjects:
         project = await async_client.pages.projects.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[Deployment], project, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[ProjectListResponse], project, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -725,7 +726,7 @@ class TestAsyncProjects:
             page=1,
             per_page=10,
         )
-        assert_matches_type(AsyncV4PagePaginationArray[Deployment], project, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[ProjectListResponse], project, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -736,7 +737,7 @@ class TestAsyncProjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[Deployment], project, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[ProjectListResponse], project, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -747,7 +748,7 @@ class TestAsyncProjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = await response.parse()
-            assert_matches_type(AsyncV4PagePaginationArray[Deployment], project, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[ProjectListResponse], project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -811,18 +812,14 @@ class TestAsyncProjects:
         project = await async_client.pages.projects.edit(
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="my-pages-app",
-            production_branch="main",
         )
-        assert_matches_type(Project, project, path=["response"])
+        assert_matches_type(ProjectEditResponse, project, path=["response"])
 
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         project = await async_client.pages.projects.edit(
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="my-pages-app",
-            production_branch="main",
             build_config={
                 "build_caching": True,
                 "build_command": "npm run build",
@@ -857,15 +854,15 @@ class TestAsyncProjects:
                     "queue_producers": {"QUEUE_PRODUCER_BINDING": {"name": "some-queue"}},
                     "r2_buckets": {
                         "R2_BINDING": {
-                            "jurisdiction": "eu",
                             "name": "some-bucket",
+                            "jurisdiction": "eu",
                         }
                     },
                     "services": {
                         "SERVICE_BINDING": {
+                            "service": "example-worker",
                             "entrypoint": "MyHandler",
                             "environment": "production",
-                            "service": "example-worker",
                         }
                     },
                     "usage_model": "standard",
@@ -897,15 +894,15 @@ class TestAsyncProjects:
                     "queue_producers": {"QUEUE_PRODUCER_BINDING": {"name": "some-queue"}},
                     "r2_buckets": {
                         "R2_BINDING": {
-                            "jurisdiction": "eu",
                             "name": "some-bucket",
+                            "jurisdiction": "eu",
                         }
                     },
                     "services": {
                         "SERVICE_BINDING": {
+                            "service": "example-worker",
                             "entrypoint": "MyHandler",
                             "environment": "production",
-                            "service": "example-worker",
                         }
                     },
                     "usage_model": "standard",
@@ -913,10 +910,13 @@ class TestAsyncProjects:
                     "wrangler_config_hash": "abc123def456",
                 },
             },
+            name="my-pages-app",
+            production_branch="main",
             source={
                 "config": {
                     "deployments_enabled": True,
                     "owner": "my-org",
+                    "owner_id": "12345678",
                     "path_excludes": ["string"],
                     "path_includes": ["string"],
                     "pr_comments_enabled": True,
@@ -925,40 +925,37 @@ class TestAsyncProjects:
                     "preview_deployment_setting": "all",
                     "production_branch": "main",
                     "production_deployments_enabled": True,
+                    "repo_id": "12345678",
                     "repo_name": "my-repo",
                 },
                 "type": "github",
             },
         )
-        assert_matches_type(Project, project, path=["response"])
+        assert_matches_type(ProjectEditResponse, project, path=["response"])
 
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pages.projects.with_raw_response.edit(
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="my-pages-app",
-            production_branch="main",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = await response.parse()
-        assert_matches_type(Project, project, path=["response"])
+        assert_matches_type(ProjectEditResponse, project, path=["response"])
 
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pages.projects.with_streaming_response.edit(
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="my-pages-app",
-            production_branch="main",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = await response.parse()
-            assert_matches_type(Project, project, path=["response"])
+            assert_matches_type(ProjectEditResponse, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -968,16 +965,12 @@ class TestAsyncProjects:
             await async_client.pages.projects.with_raw_response.edit(
                 project_name="this-is-my-project-01",
                 account_id="",
-                name="my-pages-app",
-                production_branch="main",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             await async_client.pages.projects.with_raw_response.edit(
                 project_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                name="my-pages-app",
-                production_branch="main",
             )
 
     @parametrize
@@ -986,7 +979,7 @@ class TestAsyncProjects:
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Project, project, path=["response"])
+        assert_matches_type(ProjectGetResponse, project, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -998,7 +991,7 @@ class TestAsyncProjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = await response.parse()
-        assert_matches_type(Project, project, path=["response"])
+        assert_matches_type(ProjectGetResponse, project, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -1010,7 +1003,7 @@ class TestAsyncProjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = await response.parse()
-            assert_matches_type(Project, project, path=["response"])
+            assert_matches_type(ProjectGetResponse, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

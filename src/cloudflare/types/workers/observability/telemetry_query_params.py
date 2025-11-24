@@ -25,32 +25,55 @@ class TelemetryQueryParams(TypedDict, total=False):
     account_id: Required[str]
 
     query_id: Required[Annotated[str, PropertyInfo(alias="queryId")]]
+    """Unique identifier for the query to execute"""
 
     timeframe: Required[Timeframe]
+    """Time range for the query execution"""
 
     chart: bool
+    """Whether to include timeseties data in the response"""
 
     compare: bool
+    """Whether to include comparison data with previous time periods"""
 
     dry: bool
+    """Whether to perform a dry run without saving the results of the query.
+
+    Useful for validation
+    """
 
     granularity: float
+    """Time granularity for aggregating results (in milliseconds).
+
+    Controls the bucketing of time-series data
+    """
 
     ignore_series: Annotated[bool, PropertyInfo(alias="ignoreSeries")]
+    """
+    Whether to ignore time-series data in the results and return only aggregated
+    values
+    """
 
     limit: float
+    """Maximum number of events to return."""
 
     offset: str
+    """Cursor for pagination to retrieve the next set of results"""
 
     offset_by: Annotated[float, PropertyInfo(alias="offsetBy")]
+    """Number of events to skip for pagination. Used in conjunction with offset"""
 
     offset_direction: Annotated[str, PropertyInfo(alias="offsetDirection")]
+    """Direction for offset-based pagination (e.g., 'next', 'prev')"""
 
     parameters: Parameters
+    """Optional parameters to pass to the query execution"""
 
     pattern_type: Annotated[Literal["message", "error"], PropertyInfo(alias="patternType")]
+    """Type of pattern to search for when using pattern-based views"""
 
     view: Literal["traces", "events", "calculations", "invocations", "requests", "patterns"]
+    """View type for presenting the query results."""
 
 
 _TimeframeReservedKeywords = TypedDict(
@@ -64,6 +87,7 @@ _TimeframeReservedKeywords = TypedDict(
 
 class Timeframe(_TimeframeReservedKeywords, total=False):
     to: Required[float]
+    """End timestamp for the query timeframe (Unix timestamp in milliseconds)"""
 
 
 class ParametersCalculation(TypedDict, total=False):

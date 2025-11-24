@@ -70,7 +70,7 @@ class RulesResource(SyncAPIResource):
         Create email scanner rule
 
         Args:
-          conditions: Rule is triggered if all conditions match.
+          conditions: Triggered if all conditions match.
 
           extra_headers: Send extra headers
 
@@ -125,7 +125,7 @@ class RulesResource(SyncAPIResource):
         Update email scanner rule
 
         Args:
-          conditions: Rule is triggered if all conditions match.
+          conditions: Triggered if all conditions match.
 
           extra_headers: Send extra headers
 
@@ -355,7 +355,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Create email scanner rule
 
         Args:
-          conditions: Rule is triggered if all conditions match.
+          conditions: Triggered if all conditions match.
 
           extra_headers: Send extra headers
 
@@ -410,7 +410,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Update email scanner rule
 
         Args:
-          conditions: Rule is triggered if all conditions match.
+          conditions: Triggered if all conditions match.
 
           extra_headers: Send extra headers
 

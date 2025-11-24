@@ -10,7 +10,13 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.pages import Deployment
+from cloudflare.types.pages.projects import (
+    DeploymentGetResponse,
+    DeploymentListResponse,
+    DeploymentRetryResponse,
+    DeploymentCreateResponse,
+    DeploymentRollbackResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -25,7 +31,7 @@ class TestDeployments:
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Deployment, deployment, path=["response"])
+        assert_matches_type(DeploymentCreateResponse, deployment, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -47,7 +53,7 @@ class TestDeployments:
             pages_build_output_dir="dist",
             wrangler_config_hash="wrangler_config_hash",
         )
-        assert_matches_type(Deployment, deployment, path=["response"])
+        assert_matches_type(DeploymentCreateResponse, deployment, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -60,7 +66,7 @@ class TestDeployments:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         deployment = response.parse()
-        assert_matches_type(Deployment, deployment, path=["response"])
+        assert_matches_type(DeploymentCreateResponse, deployment, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -73,7 +79,7 @@ class TestDeployments:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             deployment = response.parse()
-            assert_matches_type(Deployment, deployment, path=["response"])
+            assert_matches_type(DeploymentCreateResponse, deployment, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -98,7 +104,7 @@ class TestDeployments:
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncV4PagePaginationArray[Deployment], deployment, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[DeploymentListResponse], deployment, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
@@ -109,7 +115,7 @@ class TestDeployments:
             page=1,
             per_page=10,
         )
-        assert_matches_type(SyncV4PagePaginationArray[Deployment], deployment, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[DeploymentListResponse], deployment, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -121,7 +127,7 @@ class TestDeployments:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         deployment = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[Deployment], deployment, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[DeploymentListResponse], deployment, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -133,7 +139,7 @@ class TestDeployments:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             deployment = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[Deployment], deployment, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[DeploymentListResponse], deployment, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -218,7 +224,7 @@ class TestDeployments:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         )
-        assert_matches_type(Deployment, deployment, path=["response"])
+        assert_matches_type(DeploymentGetResponse, deployment, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -231,7 +237,7 @@ class TestDeployments:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         deployment = response.parse()
-        assert_matches_type(Deployment, deployment, path=["response"])
+        assert_matches_type(DeploymentGetResponse, deployment, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -244,7 +250,7 @@ class TestDeployments:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             deployment = response.parse()
-            assert_matches_type(Deployment, deployment, path=["response"])
+            assert_matches_type(DeploymentGetResponse, deployment, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -277,9 +283,8 @@ class TestDeployments:
             deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
-            body={},
         )
-        assert_matches_type(Deployment, deployment, path=["response"])
+        assert_matches_type(DeploymentRetryResponse, deployment, path=["response"])
 
     @parametrize
     def test_raw_response_retry(self, client: Cloudflare) -> None:
@@ -287,13 +292,12 @@ class TestDeployments:
             deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
-            body={},
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         deployment = response.parse()
-        assert_matches_type(Deployment, deployment, path=["response"])
+        assert_matches_type(DeploymentRetryResponse, deployment, path=["response"])
 
     @parametrize
     def test_streaming_response_retry(self, client: Cloudflare) -> None:
@@ -301,13 +305,12 @@ class TestDeployments:
             deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             deployment = response.parse()
-            assert_matches_type(Deployment, deployment, path=["response"])
+            assert_matches_type(DeploymentRetryResponse, deployment, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -318,7 +321,6 @@ class TestDeployments:
                 deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 project_name="this-is-my-project-01",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
@@ -326,7 +328,6 @@ class TestDeployments:
                 deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `deployment_id` but received ''"):
@@ -334,7 +335,6 @@ class TestDeployments:
                 deployment_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="this-is-my-project-01",
-                body={},
             )
 
     @parametrize
@@ -343,9 +343,8 @@ class TestDeployments:
             deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
-            body={},
         )
-        assert_matches_type(Deployment, deployment, path=["response"])
+        assert_matches_type(DeploymentRollbackResponse, deployment, path=["response"])
 
     @parametrize
     def test_raw_response_rollback(self, client: Cloudflare) -> None:
@@ -353,13 +352,12 @@ class TestDeployments:
             deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
-            body={},
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         deployment = response.parse()
-        assert_matches_type(Deployment, deployment, path=["response"])
+        assert_matches_type(DeploymentRollbackResponse, deployment, path=["response"])
 
     @parametrize
     def test_streaming_response_rollback(self, client: Cloudflare) -> None:
@@ -367,13 +365,12 @@ class TestDeployments:
             deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             deployment = response.parse()
-            assert_matches_type(Deployment, deployment, path=["response"])
+            assert_matches_type(DeploymentRollbackResponse, deployment, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -384,7 +381,6 @@ class TestDeployments:
                 deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 project_name="this-is-my-project-01",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
@@ -392,7 +388,6 @@ class TestDeployments:
                 deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `deployment_id` but received ''"):
@@ -400,7 +395,6 @@ class TestDeployments:
                 deployment_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="this-is-my-project-01",
-                body={},
             )
 
 
@@ -416,7 +410,7 @@ class TestAsyncDeployments:
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Deployment, deployment, path=["response"])
+        assert_matches_type(DeploymentCreateResponse, deployment, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -438,7 +432,7 @@ class TestAsyncDeployments:
             pages_build_output_dir="dist",
             wrangler_config_hash="wrangler_config_hash",
         )
-        assert_matches_type(Deployment, deployment, path=["response"])
+        assert_matches_type(DeploymentCreateResponse, deployment, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -451,7 +445,7 @@ class TestAsyncDeployments:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         deployment = await response.parse()
-        assert_matches_type(Deployment, deployment, path=["response"])
+        assert_matches_type(DeploymentCreateResponse, deployment, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -464,7 +458,7 @@ class TestAsyncDeployments:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             deployment = await response.parse()
-            assert_matches_type(Deployment, deployment, path=["response"])
+            assert_matches_type(DeploymentCreateResponse, deployment, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -489,7 +483,7 @@ class TestAsyncDeployments:
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[Deployment], deployment, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[DeploymentListResponse], deployment, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -500,7 +494,7 @@ class TestAsyncDeployments:
             page=1,
             per_page=10,
         )
-        assert_matches_type(AsyncV4PagePaginationArray[Deployment], deployment, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[DeploymentListResponse], deployment, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -512,7 +506,7 @@ class TestAsyncDeployments:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         deployment = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[Deployment], deployment, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[DeploymentListResponse], deployment, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -524,7 +518,7 @@ class TestAsyncDeployments:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             deployment = await response.parse()
-            assert_matches_type(AsyncV4PagePaginationArray[Deployment], deployment, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[DeploymentListResponse], deployment, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -609,7 +603,7 @@ class TestAsyncDeployments:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         )
-        assert_matches_type(Deployment, deployment, path=["response"])
+        assert_matches_type(DeploymentGetResponse, deployment, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -622,7 +616,7 @@ class TestAsyncDeployments:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         deployment = await response.parse()
-        assert_matches_type(Deployment, deployment, path=["response"])
+        assert_matches_type(DeploymentGetResponse, deployment, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -635,7 +629,7 @@ class TestAsyncDeployments:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             deployment = await response.parse()
-            assert_matches_type(Deployment, deployment, path=["response"])
+            assert_matches_type(DeploymentGetResponse, deployment, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -668,9 +662,8 @@ class TestAsyncDeployments:
             deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
-            body={},
         )
-        assert_matches_type(Deployment, deployment, path=["response"])
+        assert_matches_type(DeploymentRetryResponse, deployment, path=["response"])
 
     @parametrize
     async def test_raw_response_retry(self, async_client: AsyncCloudflare) -> None:
@@ -678,13 +671,12 @@ class TestAsyncDeployments:
             deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
-            body={},
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         deployment = await response.parse()
-        assert_matches_type(Deployment, deployment, path=["response"])
+        assert_matches_type(DeploymentRetryResponse, deployment, path=["response"])
 
     @parametrize
     async def test_streaming_response_retry(self, async_client: AsyncCloudflare) -> None:
@@ -692,13 +684,12 @@ class TestAsyncDeployments:
             deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             deployment = await response.parse()
-            assert_matches_type(Deployment, deployment, path=["response"])
+            assert_matches_type(DeploymentRetryResponse, deployment, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -709,7 +700,6 @@ class TestAsyncDeployments:
                 deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 project_name="this-is-my-project-01",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
@@ -717,7 +707,6 @@ class TestAsyncDeployments:
                 deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `deployment_id` but received ''"):
@@ -725,7 +714,6 @@ class TestAsyncDeployments:
                 deployment_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="this-is-my-project-01",
-                body={},
             )
 
     @parametrize
@@ -734,9 +722,8 @@ class TestAsyncDeployments:
             deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
-            body={},
         )
-        assert_matches_type(Deployment, deployment, path=["response"])
+        assert_matches_type(DeploymentRollbackResponse, deployment, path=["response"])
 
     @parametrize
     async def test_raw_response_rollback(self, async_client: AsyncCloudflare) -> None:
@@ -744,13 +731,12 @@ class TestAsyncDeployments:
             deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
-            body={},
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         deployment = await response.parse()
-        assert_matches_type(Deployment, deployment, path=["response"])
+        assert_matches_type(DeploymentRollbackResponse, deployment, path=["response"])
 
     @parametrize
     async def test_streaming_response_rollback(self, async_client: AsyncCloudflare) -> None:
@@ -758,13 +744,12 @@ class TestAsyncDeployments:
             deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             deployment = await response.parse()
-            assert_matches_type(Deployment, deployment, path=["response"])
+            assert_matches_type(DeploymentRollbackResponse, deployment, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -775,7 +760,6 @@ class TestAsyncDeployments:
                 deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 project_name="this-is-my-project-01",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
@@ -783,7 +767,6 @@ class TestAsyncDeployments:
                 deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `deployment_id` but received ''"):
@@ -791,5 +774,4 @@ class TestAsyncDeployments:
                 deployment_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="this-is-my-project-01",
-                body={},
             )

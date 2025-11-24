@@ -30,7 +30,9 @@ from ....types.ssl import certificate_pack_edit_params, certificate_pack_list_pa
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.ssl.host import Host
+from ....types.ssl.certificate_pack_get_response import CertificatePackGetResponse
 from ....types.ssl.certificate_pack_edit_response import CertificatePackEditResponse
+from ....types.ssl.certificate_pack_list_response import CertificatePackListResponse
 from ....types.ssl.certificate_pack_create_response import CertificatePackCreateResponse
 from ....types.ssl.certificate_pack_delete_response import CertificatePackDeleteResponse
 
@@ -144,7 +146,7 @@ class CertificatePacksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncSinglePage[object]:
+    ) -> SyncSinglePage[CertificatePackListResponse]:
         """
         For a given zone, list all active certificate packs.
 
@@ -165,7 +167,7 @@ class CertificatePacksResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/ssl/certificate_packs",
-            page=SyncSinglePage[object],
+            page=SyncSinglePage[CertificatePackListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -173,7 +175,7 @@ class CertificatePacksResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"status": status}, certificate_pack_list_params.CertificatePackListParams),
             ),
-            model=object,
+            model=CertificatePackListResponse,
         )
 
     def delete(
@@ -288,7 +290,7 @@ class CertificatePacksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> Optional[CertificatePackGetResponse]:
         """
         For a given zone, get a certificate pack.
 
@@ -318,9 +320,9 @@ class CertificatePacksResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[CertificatePackGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[CertificatePackGetResponse]], ResultWrapper[CertificatePackGetResponse]),
         )
 
 
@@ -431,7 +433,7 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[object, AsyncSinglePage[object]]:
+    ) -> AsyncPaginator[CertificatePackListResponse, AsyncSinglePage[CertificatePackListResponse]]:
         """
         For a given zone, list all active certificate packs.
 
@@ -452,7 +454,7 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/ssl/certificate_packs",
-            page=AsyncSinglePage[object],
+            page=AsyncSinglePage[CertificatePackListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -460,7 +462,7 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"status": status}, certificate_pack_list_params.CertificatePackListParams),
             ),
-            model=object,
+            model=CertificatePackListResponse,
         )
 
     async def delete(
@@ -575,7 +577,7 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> Optional[CertificatePackGetResponse]:
         """
         For a given zone, get a certificate pack.
 
@@ -605,9 +607,9 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[CertificatePackGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[CertificatePackGetResponse]], ResultWrapper[CertificatePackGetResponse]),
         )
 
 

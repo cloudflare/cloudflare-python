@@ -16,4 +16,5 @@ class ItemDeleteParams(TypedDict, total=False):
 
 
 class Item(TypedDict, total=False):
-    pass
+    id: Required[str]
+    """Defines the unique ID of the item in the List."""

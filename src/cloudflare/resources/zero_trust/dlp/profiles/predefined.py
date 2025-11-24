@@ -19,7 +19,8 @@ from ....._response import (
 from ....._wrappers import ResultWrapper
 from ....._base_client import make_request_options
 from .....types.zero_trust.dlp.profiles import predefined_update_params
-from .....types.zero_trust.dlp.profiles.predefined_profile import PredefinedProfile
+from .....types.zero_trust.dlp.profiles.predefined_get_response import PredefinedGetResponse
+from .....types.zero_trust.dlp.profiles.predefined_update_response import PredefinedUpdateResponse
 
 __all__ = ["PredefinedResource", "AsyncPredefinedResource"]
 
@@ -61,7 +62,7 @@ class PredefinedResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[PredefinedProfile]:
+    ) -> Optional[PredefinedUpdateResponse]:
         """This is similar to `update_predefined` but only returns entries that are
         enabled.
 
@@ -99,9 +100,9 @@ class PredefinedResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[PredefinedProfile]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PredefinedUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PredefinedProfile]], ResultWrapper[PredefinedProfile]),
+            cast_to=cast(Type[Optional[PredefinedUpdateResponse]], ResultWrapper[PredefinedUpdateResponse]),
         )
 
     def delete(
@@ -118,7 +119,7 @@ class PredefinedResource(SyncAPIResource):
     ) -> object:
         """
         This is a no-op as predefined profiles can't be deleted but is needed for our
-        generated terraform API
+        generated terraform API.
 
         Args:
           extra_headers: Send extra headers
@@ -156,7 +157,7 @@ class PredefinedResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[PredefinedProfile]:
+    ) -> Optional[PredefinedGetResponse]:
         """
         This is similar to `get_predefined` but only returns entries that are enabled.
         This is needed for our terraform API Fetches a predefined DLP profile by id.
@@ -181,9 +182,9 @@ class PredefinedResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[PredefinedProfile]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PredefinedGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PredefinedProfile]], ResultWrapper[PredefinedProfile]),
+            cast_to=cast(Type[Optional[PredefinedGetResponse]], ResultWrapper[PredefinedGetResponse]),
         )
 
 
@@ -224,7 +225,7 @@ class AsyncPredefinedResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[PredefinedProfile]:
+    ) -> Optional[PredefinedUpdateResponse]:
         """This is similar to `update_predefined` but only returns entries that are
         enabled.
 
@@ -262,9 +263,9 @@ class AsyncPredefinedResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[PredefinedProfile]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PredefinedUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PredefinedProfile]], ResultWrapper[PredefinedProfile]),
+            cast_to=cast(Type[Optional[PredefinedUpdateResponse]], ResultWrapper[PredefinedUpdateResponse]),
         )
 
     async def delete(
@@ -281,7 +282,7 @@ class AsyncPredefinedResource(AsyncAPIResource):
     ) -> object:
         """
         This is a no-op as predefined profiles can't be deleted but is needed for our
-        generated terraform API
+        generated terraform API.
 
         Args:
           extra_headers: Send extra headers
@@ -319,7 +320,7 @@ class AsyncPredefinedResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[PredefinedProfile]:
+    ) -> Optional[PredefinedGetResponse]:
         """
         This is similar to `get_predefined` but only returns entries that are enabled.
         This is needed for our terraform API Fetches a predefined DLP profile by id.
@@ -344,9 +345,9 @@ class AsyncPredefinedResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[PredefinedProfile]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PredefinedGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PredefinedProfile]], ResultWrapper[PredefinedProfile]),
+            cast_to=cast(Type[Optional[PredefinedGetResponse]], ResultWrapper[PredefinedGetResponse]),
         )
 
 

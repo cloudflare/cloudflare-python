@@ -34,7 +34,9 @@ class TestTrafficAnomalies:
             limit=1,
             location="US",
             offset=0,
+            origin="amazon-us-east-1",
             status="VERIFIED",
+            type=["LOCATION"],
         )
         assert_matches_type(TrafficAnomalyGetResponse, traffic_anomaly, path=["response"])
 
@@ -80,7 +82,9 @@ class TestAsyncTrafficAnomalies:
             limit=1,
             location="US",
             offset=0,
+            origin="amazon-us-east-1",
             status="VERIFIED",
+            type=["LOCATION"],
         )
         assert_matches_type(TrafficAnomalyGetResponse, traffic_anomaly, path=["response"])
 

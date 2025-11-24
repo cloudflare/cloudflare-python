@@ -28,7 +28,7 @@ class TestContent:
         content = client.browser_rendering.content.create(
             account_id="account_id",
             cache_ttl=86400,
-            action_timeout=300000,
+            action_timeout=120000,
             add_script_tag=[
                 {
                     "id": "id",
@@ -93,10 +93,10 @@ class TestContent:
             wait_for_selector={
                 "selector": "selector",
                 "hidden": True,
-                "timeout": 60000,
+                "timeout": 120000,
                 "visible": True,
             },
-            wait_for_timeout=60000,
+            wait_for_timeout=120000,
         )
         assert_matches_type(str, content, path=["response"])
 
@@ -149,7 +149,7 @@ class TestAsyncContent:
         content = await async_client.browser_rendering.content.create(
             account_id="account_id",
             cache_ttl=86400,
-            action_timeout=300000,
+            action_timeout=120000,
             add_script_tag=[
                 {
                     "id": "id",
@@ -214,10 +214,10 @@ class TestAsyncContent:
             wait_for_selector={
                 "selector": "selector",
                 "hidden": True,
-                "timeout": 60000,
+                "timeout": 120000,
                 "visible": True,
             },
-            wait_for_timeout=60000,
+            wait_for_timeout=120000,
         )
         assert_matches_type(str, content, path=["response"])
 

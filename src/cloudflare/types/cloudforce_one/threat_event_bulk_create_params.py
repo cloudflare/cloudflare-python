@@ -9,7 +9,7 @@ from typing_extensions import Required, Annotated, TypedDict
 from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
-__all__ = ["ThreatEventBulkCreateParams", "Data", "DataRaw"]
+__all__ = ["ThreatEventBulkCreateParams", "Data", "DataRaw", "DataIndicator"]
 
 
 class ThreatEventBulkCreateParams(TypedDict, total=False):
@@ -29,14 +29,20 @@ class DataRaw(TypedDict, total=False):
     tlp: str
 
 
+class DataIndicator(TypedDict, total=False):
+    indicator_type: Required[Annotated[str, PropertyInfo(alias="indicatorType")]]
+    """The type of indicator (e.g., DOMAIN, IP, JA3, HASH)"""
+
+    value: Required[str]
+    """The indicator value (e.g., domain name, IP address, hash)"""
+
+
 class Data(TypedDict, total=False):
     category: Required[str]
 
     date: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
 
     event: Required[str]
-
-    indicator_type: Required[Annotated[str, PropertyInfo(alias="indicatorType")]]
 
     raw: Required[DataRaw]
 
@@ -51,6 +57,14 @@ class Data(TypedDict, total=False):
     dataset_id: Annotated[str, PropertyInfo(alias="datasetId")]
 
     indicator: str
+
+    indicators: Iterable[DataIndicator]
+    """Array of indicators for this event.
+
+    Supports multiple indicators per event for complex scenarios.
+    """
+
+    indicator_type: Annotated[str, PropertyInfo(alias="indicatorType")]
 
     insight: str
 

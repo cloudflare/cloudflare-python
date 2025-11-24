@@ -183,7 +183,6 @@ class ThreatEventsResource(SyncAPIResource):
         category: str,
         date: Union[str, datetime],
         event: str,
-        indicator_type: str,
         raw: threat_event_create_params.Raw,
         tlp: str,
         body_account_id: float | Omit = omit,
@@ -191,6 +190,8 @@ class ThreatEventsResource(SyncAPIResource):
         attacker_country: str | Omit = omit,
         dataset_id: str | Omit = omit,
         indicator: str | Omit = omit,
+        indicators: Iterable[threat_event_create_params.Indicator] | Omit = omit,
+        indicator_type: str | Omit = omit,
         insight: str | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
         target_country: str | Omit = omit,
@@ -211,6 +212,9 @@ class ThreatEventsResource(SyncAPIResource):
         Args:
           path_account_id: Account ID.
 
+          indicators: Array of indicators for this event. Supports multiple indicators per event for
+              complex scenarios.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -228,7 +232,6 @@ class ThreatEventsResource(SyncAPIResource):
                     "category": category,
                     "date": date,
                     "event": event,
-                    "indicator_type": indicator_type,
                     "raw": raw,
                     "tlp": tlp,
                     "body_account_id": body_account_id,
@@ -236,6 +239,8 @@ class ThreatEventsResource(SyncAPIResource):
                     "attacker_country": attacker_country,
                     "dataset_id": dataset_id,
                     "indicator": indicator,
+                    "indicators": indicators,
+                    "indicator_type": indicator_type,
                     "insight": insight,
                     "tags": tags,
                     "target_country": target_country,
@@ -582,7 +587,6 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         category: str,
         date: Union[str, datetime],
         event: str,
-        indicator_type: str,
         raw: threat_event_create_params.Raw,
         tlp: str,
         body_account_id: float | Omit = omit,
@@ -590,6 +594,8 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         attacker_country: str | Omit = omit,
         dataset_id: str | Omit = omit,
         indicator: str | Omit = omit,
+        indicators: Iterable[threat_event_create_params.Indicator] | Omit = omit,
+        indicator_type: str | Omit = omit,
         insight: str | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
         target_country: str | Omit = omit,
@@ -610,6 +616,9 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         Args:
           path_account_id: Account ID.
 
+          indicators: Array of indicators for this event. Supports multiple indicators per event for
+              complex scenarios.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -627,7 +636,6 @@ class AsyncThreatEventsResource(AsyncAPIResource):
                     "category": category,
                     "date": date,
                     "event": event,
-                    "indicator_type": indicator_type,
                     "raw": raw,
                     "tlp": tlp,
                     "body_account_id": body_account_id,
@@ -635,6 +643,8 @@ class AsyncThreatEventsResource(AsyncAPIResource):
                     "attacker_country": attacker_country,
                     "dataset_id": dataset_id,
                     "indicator": indicator,
+                    "indicators": indicators,
+                    "indicator_type": indicator_type,
                     "insight": insight,
                     "tags": tags,
                     "target_country": target_country,

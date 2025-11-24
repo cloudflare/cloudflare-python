@@ -28,6 +28,7 @@ __all__ = [
     "TeamsDevicesApplicationInputRequest",
     "TeamsDevicesClientCertificateV2InputRequest",
     "TeamsDevicesClientCertificateV2InputRequestLocations",
+    "TeamsDevicesAntivirusInputRequest",
     "TeamsDevicesCustomS2sInputRequest",
 ]
 
@@ -106,6 +107,11 @@ class TeamsDevicesClientCertificateV2InputRequest(TypedDict, total=False):
     """List of certificate Subject Alternative Names."""
 
 
+class TeamsDevicesAntivirusInputRequest(TypedDict, total=False):
+    update_window_days: float
+    """Number of days that the antivirus should be updated within."""
+
+
 class TeamsDevicesCustomS2sInputRequest(TypedDict, total=False):
     connection_id: Required[str]
     """Posture Integration ID."""
@@ -132,6 +138,7 @@ DeviceInputParam: TypeAlias = Union[
     TeamsDevicesApplicationInputRequest,
     ClientCertificateInputParam,
     TeamsDevicesClientCertificateV2InputRequest,
+    TeamsDevicesAntivirusInputRequest,
     WorkspaceOneInputParam,
     CrowdstrikeInputParam,
     IntuneInputParam,

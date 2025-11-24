@@ -1,10 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import List, Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["AbuseReportGetResponse", "MitigationSummary"]
+__all__ = ["AbuseReportGetResponse", "MitigationSummary", "Submitter"]
 
 
 class MitigationSummary(BaseModel):
@@ -22,6 +23,16 @@ class MitigationSummary(BaseModel):
 
     pending_count: int
     """How many mitigations are pending their effective date."""
+
+
+class Submitter(BaseModel):
+    company: Optional[str] = None
+
+    email: Optional[str] = None
+
+    name: Optional[str] = None
+
+    telephone: Optional[str] = None
 
 
 class AbuseReportGetResponse(BaseModel):
@@ -45,3 +56,14 @@ class AbuseReportGetResponse(BaseModel):
 
     type: Literal["PHISH", "GEN", "THREAT", "DMCA", "EMER", "TM", "REG_WHO", "NCSEI", "NETWORK"]
     """The abuse report type"""
+
+    justification: Optional[str] = None
+    """Justification for the report."""
+
+    original_work: Optional[str] = None
+    """Original work / Targeted brand in the alleged abuse."""
+
+    submitter: Optional[Submitter] = None
+    """Information about the submitter of the report."""
+
+    urls: Optional[List[str]] = None

@@ -21,6 +21,8 @@ class ThreatEventListResponseItem(BaseModel):
 
     event: str
 
+    has_children: bool = FieldInfo(alias="hasChildren")
+
     indicator: str
 
     indicator_type: str = FieldInfo(alias="indicatorType")

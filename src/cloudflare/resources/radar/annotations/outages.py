@@ -58,6 +58,7 @@ class OutagesResource(SyncAPIResource):
         limit: int | Omit = omit,
         location: str | Omit = omit,
         offset: int | Omit = omit,
+        origin: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -86,6 +87,8 @@ class OutagesResource(SyncAPIResource):
 
           offset: Skips the specified number of objects before fetching the results.
 
+          origin: Filters results by origin.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -111,6 +114,7 @@ class OutagesResource(SyncAPIResource):
                         "limit": limit,
                         "location": location,
                         "offset": offset,
+                        "origin": origin,
                     },
                     outage_get_params.OutageGetParams,
                 ),
@@ -210,6 +214,7 @@ class AsyncOutagesResource(AsyncAPIResource):
         limit: int | Omit = omit,
         location: str | Omit = omit,
         offset: int | Omit = omit,
+        origin: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -238,6 +243,8 @@ class AsyncOutagesResource(AsyncAPIResource):
 
           offset: Skips the specified number of objects before fetching the results.
 
+          origin: Filters results by origin.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -263,6 +270,7 @@ class AsyncOutagesResource(AsyncAPIResource):
                         "limit": limit,
                         "location": location,
                         "offset": offset,
+                        "origin": origin,
                     },
                     outage_get_params.OutageGetParams,
                 ),

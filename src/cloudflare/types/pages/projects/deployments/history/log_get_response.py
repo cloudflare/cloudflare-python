@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import List
 
 from ......_models import BaseModel
 
@@ -8,14 +8,14 @@ __all__ = ["LogGetResponse", "Data"]
 
 
 class Data(BaseModel):
-    line: Optional[str] = None
+    line: str
 
-    ts: Optional[str] = None
+    ts: str
 
 
 class LogGetResponse(BaseModel):
-    data: Optional[List[Data]] = None
+    data: List[Data]
 
-    includes_container_logs: Optional[bool] = None
+    includes_container_logs: bool
 
-    total: Optional[int] = None
+    total: int

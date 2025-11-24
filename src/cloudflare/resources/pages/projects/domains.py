@@ -6,7 +6,7 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ...._types import Body, Query, Headers, NotGiven, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -19,7 +19,7 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.pages.projects import domain_edit_params, domain_create_params
+from ....types.pages.projects import domain_create_params
 from ....types.pages.projects.domain_get_response import DomainGetResponse
 from ....types.pages.projects.domain_edit_response import DomainEditResponse
 from ....types.pages.projects.domain_list_response import DomainListResponse
@@ -53,21 +53,23 @@ class DomainsResource(SyncAPIResource):
         project_name: str,
         *,
         account_id: str,
-        name: str | Omit = omit,
+        name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[DomainCreateResponse]:
+    ) -> DomainCreateResponse:
         """
         Add a new domain for the Pages project.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
+
+          name: The domain name.
 
           extra_headers: Send extra headers
 
@@ -89,9 +91,9 @@ class DomainsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[DomainCreateResponse]]._unwrapper,
+                post_parser=ResultWrapper[DomainCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DomainCreateResponse]], ResultWrapper[DomainCreateResponse]),
+            cast_to=cast(Type[DomainCreateResponse], ResultWrapper[DomainCreateResponse]),
         )
 
     def list(
@@ -110,7 +112,7 @@ class DomainsResource(SyncAPIResource):
         Fetch a list of all domains associated with a Pages project.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
 
@@ -152,11 +154,11 @@ class DomainsResource(SyncAPIResource):
         Delete a Pages project's domain.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
 
-          domain_name: Name of the domain.
+          domain_name: The domain name.
 
           extra_headers: Send extra headers
 
@@ -190,23 +192,22 @@ class DomainsResource(SyncAPIResource):
         *,
         account_id: str,
         project_name: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[DomainEditResponse]:
+    ) -> DomainEditResponse:
         """
         Retry the validation status of a single domain.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
 
-          domain_name: Name of the domain.
+          domain_name: The domain name.
 
           extra_headers: Send extra headers
 
@@ -224,15 +225,14 @@ class DomainsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
         return self._patch(
             f"/accounts/{account_id}/pages/projects/{project_name}/domains/{domain_name}",
-            body=maybe_transform(body, domain_edit_params.DomainEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[DomainEditResponse]]._unwrapper,
+                post_parser=ResultWrapper[DomainEditResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DomainEditResponse]], ResultWrapper[DomainEditResponse]),
+            cast_to=cast(Type[DomainEditResponse], ResultWrapper[DomainEditResponse]),
         )
 
     def get(
@@ -247,16 +247,16 @@ class DomainsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[DomainGetResponse]:
+    ) -> DomainGetResponse:
         """
         Fetch a single domain.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
 
-          domain_name: Name of the domain.
+          domain_name: The domain name.
 
           extra_headers: Send extra headers
 
@@ -279,9 +279,9 @@ class DomainsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[DomainGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[DomainGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DomainGetResponse]], ResultWrapper[DomainGetResponse]),
+            cast_to=cast(Type[DomainGetResponse], ResultWrapper[DomainGetResponse]),
         )
 
 
@@ -310,21 +310,23 @@ class AsyncDomainsResource(AsyncAPIResource):
         project_name: str,
         *,
         account_id: str,
-        name: str | Omit = omit,
+        name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[DomainCreateResponse]:
+    ) -> DomainCreateResponse:
         """
         Add a new domain for the Pages project.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
+
+          name: The domain name.
 
           extra_headers: Send extra headers
 
@@ -346,9 +348,9 @@ class AsyncDomainsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[DomainCreateResponse]]._unwrapper,
+                post_parser=ResultWrapper[DomainCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DomainCreateResponse]], ResultWrapper[DomainCreateResponse]),
+            cast_to=cast(Type[DomainCreateResponse], ResultWrapper[DomainCreateResponse]),
         )
 
     def list(
@@ -367,7 +369,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         Fetch a list of all domains associated with a Pages project.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
 
@@ -409,11 +411,11 @@ class AsyncDomainsResource(AsyncAPIResource):
         Delete a Pages project's domain.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
 
-          domain_name: Name of the domain.
+          domain_name: The domain name.
 
           extra_headers: Send extra headers
 
@@ -447,23 +449,22 @@ class AsyncDomainsResource(AsyncAPIResource):
         *,
         account_id: str,
         project_name: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[DomainEditResponse]:
+    ) -> DomainEditResponse:
         """
         Retry the validation status of a single domain.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
 
-          domain_name: Name of the domain.
+          domain_name: The domain name.
 
           extra_headers: Send extra headers
 
@@ -481,15 +482,14 @@ class AsyncDomainsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
         return await self._patch(
             f"/accounts/{account_id}/pages/projects/{project_name}/domains/{domain_name}",
-            body=await async_maybe_transform(body, domain_edit_params.DomainEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[DomainEditResponse]]._unwrapper,
+                post_parser=ResultWrapper[DomainEditResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DomainEditResponse]], ResultWrapper[DomainEditResponse]),
+            cast_to=cast(Type[DomainEditResponse], ResultWrapper[DomainEditResponse]),
         )
 
     async def get(
@@ -504,16 +504,16 @@ class AsyncDomainsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[DomainGetResponse]:
+    ) -> DomainGetResponse:
         """
         Fetch a single domain.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
 
-          domain_name: Name of the domain.
+          domain_name: The domain name.
 
           extra_headers: Send extra headers
 
@@ -536,9 +536,9 @@ class AsyncDomainsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[DomainGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[DomainGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DomainGetResponse]], ResultWrapper[DomainGetResponse]),
+            cast_to=cast(Type[DomainGetResponse], ResultWrapper[DomainGetResponse]),
         )
 
 

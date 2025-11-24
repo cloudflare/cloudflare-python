@@ -28,13 +28,12 @@ from .history.history import (
     AsyncHistoryResourceWithStreamingResponse,
 )
 from ....._base_client import AsyncPaginator, make_request_options
-from .....types.pages.projects import (
-    deployment_list_params,
-    deployment_retry_params,
-    deployment_create_params,
-    deployment_rollback_params,
-)
-from .....types.pages.deployment import Deployment
+from .....types.pages.projects import deployment_list_params, deployment_create_params
+from .....types.pages.projects.deployment_get_response import DeploymentGetResponse
+from .....types.pages.projects.deployment_list_response import DeploymentListResponse
+from .....types.pages.projects.deployment_retry_response import DeploymentRetryResponse
+from .....types.pages.projects.deployment_create_response import DeploymentCreateResponse
+from .....types.pages.projects.deployment_rollback_response import DeploymentRollbackResponse
 
 __all__ = ["DeploymentsResource", "AsyncDeploymentsResource"]
 
@@ -87,14 +86,14 @@ class DeploymentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Deployment:
+    ) -> DeploymentCreateResponse:
         """Start a new deployment from production.
 
         The repository and account must have
         already been authorized on the Cloudflare Pages dashboard.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
 
@@ -182,9 +181,9 @@ class DeploymentsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Deployment]._unwrapper,
+                post_parser=ResultWrapper[DeploymentCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
+            cast_to=cast(Type[DeploymentCreateResponse], ResultWrapper[DeploymentCreateResponse]),
         )
 
     def list(
@@ -201,12 +200,12 @@ class DeploymentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncV4PagePaginationArray[Deployment]:
+    ) -> SyncV4PagePaginationArray[DeploymentListResponse]:
         """
         Fetch a list of project deployments.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
 
@@ -230,7 +229,7 @@ class DeploymentsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments",
-            page=SyncV4PagePaginationArray[Deployment],
+            page=SyncV4PagePaginationArray[DeploymentListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -245,7 +244,7 @@ class DeploymentsResource(SyncAPIResource):
                     deployment_list_params.DeploymentListParams,
                 ),
             ),
-            model=Deployment,
+            model=DeploymentListResponse,
         )
 
     def delete(
@@ -265,11 +264,11 @@ class DeploymentsResource(SyncAPIResource):
         Delete a deployment.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
 
-          deployment_id: Identifier
+          deployment_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -309,16 +308,16 @@ class DeploymentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Deployment:
+    ) -> DeploymentGetResponse:
         """
         Fetch information about a deployment.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
 
-          deployment_id: Identifier
+          deployment_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -341,9 +340,9 @@ class DeploymentsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Deployment]._unwrapper,
+                post_parser=ResultWrapper[DeploymentGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
+            cast_to=cast(Type[DeploymentGetResponse], ResultWrapper[DeploymentGetResponse]),
         )
 
     def retry(
@@ -352,23 +351,22 @@ class DeploymentsResource(SyncAPIResource):
         *,
         account_id: str,
         project_name: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Deployment:
+    ) -> DeploymentRetryResponse:
         """
         Retry a previous deployment.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
 
-          deployment_id: Identifier
+          deployment_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -386,15 +384,14 @@ class DeploymentsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
         return self._post(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/retry",
-            body=maybe_transform(body, deployment_retry_params.DeploymentRetryParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Deployment]._unwrapper,
+                post_parser=ResultWrapper[DeploymentRetryResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
+            cast_to=cast(Type[DeploymentRetryResponse], ResultWrapper[DeploymentRetryResponse]),
         )
 
     def rollback(
@@ -403,25 +400,24 @@ class DeploymentsResource(SyncAPIResource):
         *,
         account_id: str,
         project_name: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Deployment:
+    ) -> DeploymentRollbackResponse:
         """Rollback the production deployment to a previous deployment.
 
         You can only
         rollback to succesful builds on production.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
 
-          deployment_id: Identifier
+          deployment_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -439,15 +435,14 @@ class DeploymentsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
         return self._post(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/rollback",
-            body=maybe_transform(body, deployment_rollback_params.DeploymentRollbackParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Deployment]._unwrapper,
+                post_parser=ResultWrapper[DeploymentRollbackResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
+            cast_to=cast(Type[DeploymentRollbackResponse], ResultWrapper[DeploymentRollbackResponse]),
         )
 
 
@@ -499,14 +494,14 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Deployment:
+    ) -> DeploymentCreateResponse:
         """Start a new deployment from production.
 
         The repository and account must have
         already been authorized on the Cloudflare Pages dashboard.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
 
@@ -594,9 +589,9 @@ class AsyncDeploymentsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Deployment]._unwrapper,
+                post_parser=ResultWrapper[DeploymentCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
+            cast_to=cast(Type[DeploymentCreateResponse], ResultWrapper[DeploymentCreateResponse]),
         )
 
     def list(
@@ -613,12 +608,12 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[Deployment, AsyncV4PagePaginationArray[Deployment]]:
+    ) -> AsyncPaginator[DeploymentListResponse, AsyncV4PagePaginationArray[DeploymentListResponse]]:
         """
         Fetch a list of project deployments.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
 
@@ -642,7 +637,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments",
-            page=AsyncV4PagePaginationArray[Deployment],
+            page=AsyncV4PagePaginationArray[DeploymentListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -657,7 +652,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
                     deployment_list_params.DeploymentListParams,
                 ),
             ),
-            model=Deployment,
+            model=DeploymentListResponse,
         )
 
     async def delete(
@@ -677,11 +672,11 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         Delete a deployment.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
 
-          deployment_id: Identifier
+          deployment_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -721,16 +716,16 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Deployment:
+    ) -> DeploymentGetResponse:
         """
         Fetch information about a deployment.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
 
-          deployment_id: Identifier
+          deployment_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -753,9 +748,9 @@ class AsyncDeploymentsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Deployment]._unwrapper,
+                post_parser=ResultWrapper[DeploymentGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
+            cast_to=cast(Type[DeploymentGetResponse], ResultWrapper[DeploymentGetResponse]),
         )
 
     async def retry(
@@ -764,23 +759,22 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         *,
         account_id: str,
         project_name: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Deployment:
+    ) -> DeploymentRetryResponse:
         """
         Retry a previous deployment.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
 
-          deployment_id: Identifier
+          deployment_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -798,15 +792,14 @@ class AsyncDeploymentsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
         return await self._post(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/retry",
-            body=await async_maybe_transform(body, deployment_retry_params.DeploymentRetryParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Deployment]._unwrapper,
+                post_parser=ResultWrapper[DeploymentRetryResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
+            cast_to=cast(Type[DeploymentRetryResponse], ResultWrapper[DeploymentRetryResponse]),
         )
 
     async def rollback(
@@ -815,25 +808,24 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         *,
         account_id: str,
         project_name: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Deployment:
+    ) -> DeploymentRollbackResponse:
         """Rollback the production deployment to a previous deployment.
 
         You can only
         rollback to succesful builds on production.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
 
-          deployment_id: Identifier
+          deployment_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -851,15 +843,14 @@ class AsyncDeploymentsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
         return await self._post(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/rollback",
-            body=await async_maybe_transform(body, deployment_rollback_params.DeploymentRollbackParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Deployment]._unwrapper,
+                post_parser=ResultWrapper[DeploymentRollbackResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
+            cast_to=cast(Type[DeploymentRollbackResponse], ResultWrapper[DeploymentRollbackResponse]),
         )
 
 

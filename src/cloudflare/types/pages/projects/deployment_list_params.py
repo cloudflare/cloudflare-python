@@ -9,7 +9,7 @@ __all__ = ["DeploymentListParams"]
 
 class DeploymentListParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     env: Literal["production", "preview"]
     """What type of deployments to fetch."""

@@ -62,13 +62,44 @@ class AnnotationsResource(SyncAPIResource):
         self,
         *,
         asn: int | Omit = omit,
+        data_source: Literal[
+            "ALL",
+            "AI_BOTS",
+            "AI_GATEWAY",
+            "BGP",
+            "BOTS",
+            "CONNECTION_ANOMALY",
+            "CT",
+            "DNS",
+            "DNS_MAGNITUDE",
+            "DNS_AS112",
+            "DOS",
+            "EMAIL_ROUTING",
+            "EMAIL_SECURITY",
+            "FW",
+            "FW_PG",
+            "HTTP",
+            "HTTP_CONTROL",
+            "HTTP_CRAWLER_REFERER",
+            "HTTP_ORIGINS",
+            "IQI",
+            "LEAKED_CREDENTIALS",
+            "NET",
+            "ROBOTS_TXT",
+            "SPEED",
+            "WORKERS_AI",
+        ]
+        | Omit = omit,
         date_end: Union[str, datetime] | Omit = omit,
         date_range: str | Omit = omit,
         date_start: Union[str, datetime] | Omit = omit,
+        event_type: Literal["EVENT", "GENERAL", "OUTAGE", "PARTIAL_PROJECTION", "PIPELINE", "TRAFFIC_ANOMALY"]
+        | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
         limit: int | Omit = omit,
         location: str | Omit = omit,
         offset: int | Omit = omit,
+        origin: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -83,11 +114,15 @@ class AnnotationsResource(SyncAPIResource):
           asn: Filters results by Autonomous System. Specify a single Autonomous System Number
               (ASN) as integer.
 
+          data_source: Filters results by data source.
+
           date_end: End of the date range (inclusive).
 
           date_range: Filters results by date range.
 
           date_start: Start of the date range (inclusive).
+
+          event_type: Filters results by event type.
 
           format: Format in which results will be returned.
 
@@ -96,6 +131,8 @@ class AnnotationsResource(SyncAPIResource):
           location: Filters results by location. Specify an alpha-2 location code.
 
           offset: Skips the specified number of objects before fetching the results.
+
+          origin: Filters results by origin.
 
           extra_headers: Send extra headers
 
@@ -115,13 +152,16 @@ class AnnotationsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "asn": asn,
+                        "data_source": data_source,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
+                        "event_type": event_type,
                         "format": format,
                         "limit": limit,
                         "location": location,
                         "offset": offset,
+                        "origin": origin,
                     },
                     annotation_list_params.AnnotationListParams,
                 ),
@@ -159,13 +199,44 @@ class AsyncAnnotationsResource(AsyncAPIResource):
         self,
         *,
         asn: int | Omit = omit,
+        data_source: Literal[
+            "ALL",
+            "AI_BOTS",
+            "AI_GATEWAY",
+            "BGP",
+            "BOTS",
+            "CONNECTION_ANOMALY",
+            "CT",
+            "DNS",
+            "DNS_MAGNITUDE",
+            "DNS_AS112",
+            "DOS",
+            "EMAIL_ROUTING",
+            "EMAIL_SECURITY",
+            "FW",
+            "FW_PG",
+            "HTTP",
+            "HTTP_CONTROL",
+            "HTTP_CRAWLER_REFERER",
+            "HTTP_ORIGINS",
+            "IQI",
+            "LEAKED_CREDENTIALS",
+            "NET",
+            "ROBOTS_TXT",
+            "SPEED",
+            "WORKERS_AI",
+        ]
+        | Omit = omit,
         date_end: Union[str, datetime] | Omit = omit,
         date_range: str | Omit = omit,
         date_start: Union[str, datetime] | Omit = omit,
+        event_type: Literal["EVENT", "GENERAL", "OUTAGE", "PARTIAL_PROJECTION", "PIPELINE", "TRAFFIC_ANOMALY"]
+        | Omit = omit,
         format: Literal["JSON", "CSV"] | Omit = omit,
         limit: int | Omit = omit,
         location: str | Omit = omit,
         offset: int | Omit = omit,
+        origin: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -180,11 +251,15 @@ class AsyncAnnotationsResource(AsyncAPIResource):
           asn: Filters results by Autonomous System. Specify a single Autonomous System Number
               (ASN) as integer.
 
+          data_source: Filters results by data source.
+
           date_end: End of the date range (inclusive).
 
           date_range: Filters results by date range.
 
           date_start: Start of the date range (inclusive).
+
+          event_type: Filters results by event type.
 
           format: Format in which results will be returned.
 
@@ -193,6 +268,8 @@ class AsyncAnnotationsResource(AsyncAPIResource):
           location: Filters results by location. Specify an alpha-2 location code.
 
           offset: Skips the specified number of objects before fetching the results.
+
+          origin: Filters results by origin.
 
           extra_headers: Send extra headers
 
@@ -212,13 +289,16 @@ class AsyncAnnotationsResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "asn": asn,
+                        "data_source": data_source,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
+                        "event_type": event_type,
                         "format": format,
                         "limit": limit,
                         "location": location,
                         "offset": offset,
+                        "origin": origin,
                     },
                     annotation_list_params.AnnotationListParams,
                 ),

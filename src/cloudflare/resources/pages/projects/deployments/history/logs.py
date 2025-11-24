@@ -59,11 +59,11 @@ class LogsResource(SyncAPIResource):
         Fetch deployment logs for a project.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
 
-          deployment_id: Identifier
+          deployment_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -129,11 +129,11 @@ class AsyncLogsResource(AsyncAPIResource):
         Fetch deployment logs for a project.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           project_name: Name of the project.
 
-          deployment_id: Identifier
+          deployment_id: Identifier.
 
           extra_headers: Send extra headers
 

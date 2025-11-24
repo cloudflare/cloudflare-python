@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import List, Union
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
@@ -39,4 +39,10 @@ class TrafficAnomalyGetParams(TypedDict, total=False):
     offset: int
     """Skips the specified number of objects before fetching the results."""
 
+    origin: str
+    """Filters results by origin."""
+
     status: Literal["VERIFIED", "UNVERIFIED"]
+
+    type: List[Literal["LOCATION", "AS", "ORIGIN"]]
+    """Filters results by entity type (LOCATION, AS, or ORIGIN)."""

@@ -28,13 +28,43 @@ __all__ = [
 
 
 class MetaConfidenceInfoAnnotation(BaseModel):
-    data_source: str = FieldInfo(alias="dataSource")
+    data_source: Literal[
+        "ALL",
+        "AI_BOTS",
+        "AI_GATEWAY",
+        "BGP",
+        "BOTS",
+        "CONNECTION_ANOMALY",
+        "CT",
+        "DNS",
+        "DNS_MAGNITUDE",
+        "DNS_AS112",
+        "DOS",
+        "EMAIL_ROUTING",
+        "EMAIL_SECURITY",
+        "FW",
+        "FW_PG",
+        "HTTP",
+        "HTTP_CONTROL",
+        "HTTP_CRAWLER_REFERER",
+        "HTTP_ORIGINS",
+        "IQI",
+        "LEAKED_CREDENTIALS",
+        "NET",
+        "ROBOTS_TXT",
+        "SPEED",
+        "WORKERS_AI",
+    ] = FieldInfo(alias="dataSource")
+    """Data source for annotations."""
 
     description: str
 
     end_date: datetime = FieldInfo(alias="endDate")
 
-    event_type: str = FieldInfo(alias="eventType")
+    event_type: Literal["EVENT", "GENERAL", "OUTAGE", "PARTIAL_PROJECTION", "PIPELINE", "TRAFFIC_ANOMALY"] = FieldInfo(
+        alias="eventType"
+    )
+    """Event type for annotations."""
 
     is_instantaneous: bool = FieldInfo(alias="isInstantaneous")
     """Whether event is a single point in time or a time range."""

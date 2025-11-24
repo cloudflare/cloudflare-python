@@ -37,6 +37,7 @@ class TestOutages:
             limit=1,
             location="US",
             offset=0,
+            origin="amazon-us-east-1",
         )
         assert_matches_type(OutageGetResponse, outage, path=["response"])
 
@@ -118,6 +119,7 @@ class TestAsyncOutages:
             limit=1,
             location="US",
             offset=0,
+            origin="amazon-us-east-1",
         )
         assert_matches_type(OutageGetResponse, outage, path=["response"])
 

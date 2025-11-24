@@ -477,34 +477,56 @@ ResourcesBinding: TypeAlias = Annotated[
 
 class ResourcesScriptNamedHandler(BaseModel):
     handlers: Optional[List[str]] = None
+    """The names of handlers exported as part of the named export."""
 
     name: Optional[str] = None
+    """The name of the exported class or entrypoint."""
 
 
 class ResourcesScript(BaseModel):
     etag: Optional[str] = None
+    """Hashed script content"""
 
     handlers: Optional[List[str]] = None
+    """The names of handlers exported as part of the default export."""
 
     last_deployed_from: Optional[str] = None
+    """The client most recently used to deploy this Worker."""
 
     named_handlers: Optional[List[ResourcesScriptNamedHandler]] = None
+    """
+    Named exports, such as Durable Object class implementations and named
+    entrypoints.
+    """
 
 
 class ResourcesScriptRuntimeLimits(BaseModel):
     cpu_ms: Optional[int] = None
+    """The amount of CPU time this Worker can use in milliseconds."""
 
 
 class ResourcesScriptRuntime(BaseModel):
     compatibility_date: Optional[str] = None
+    """Date indicating targeted support in the Workers runtime.
+
+    Backwards incompatible fixes to the runtime following this date will not affect
+    this Worker.
+    """
 
     compatibility_flags: Optional[List[str]] = None
+    """Flags that enable or disable certain features in the Workers runtime."""
 
     limits: Optional[ResourcesScriptRuntimeLimits] = None
+    """Resource limits for the Worker."""
 
     migration_tag: Optional[str] = None
+    """
+    The tag of the Durable Object migration that was most recently applied for this
+    Worker.
+    """
 
     usage_model: Optional[Literal["bundled", "unbound", "standard"]] = None
+    """Usage model for the Worker invocations."""
 
 
 class Resources(BaseModel):
@@ -518,18 +540,24 @@ class Resources(BaseModel):
     script: Optional[ResourcesScript] = None
 
     script_runtime: Optional[ResourcesScriptRuntime] = None
+    """Runtime configuration for the Worker."""
 
 
 class Metadata(BaseModel):
     author_email: Optional[str] = None
+    """Email of the user who created the version."""
 
     author_id: Optional[str] = None
+    """Identifier of the user who created the version."""
 
     created_on: Optional[str] = None
+    """When the version was created."""
 
     has_preview: Optional[bool] = FieldInfo(alias="hasPreview", default=None)
+    """Whether the version can be previewed."""
 
     modified_on: Optional[str] = None
+    """When the version was last modified."""
 
     source: Optional[
         Literal[
@@ -545,15 +573,22 @@ class Metadata(BaseModel):
             "workersci",
         ]
     ] = None
+    """The source of the version upload."""
 
 
 class VersionCreateResponse(BaseModel):
     resources: Resources
 
     id: Optional[str] = None
+    """Unique identifier for the version."""
 
     metadata: Optional[Metadata] = None
 
     number: Optional[float] = None
+    """Sequential version number."""
 
     startup_time_ms: Optional[int] = None
+    """
+    Time in milliseconds spent on
+    [Worker startup](https://developers.cloudflare.com/workers/platform/limits/#worker-startup-time).
+    """
