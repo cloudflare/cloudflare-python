@@ -15,16 +15,16 @@ dependencies = [
     "distro>=1.7.0, <2",
     "sniffio",
 ]
-requires-python = ">= 3.8"
+requires-python = ">= 3.9"
 classifiers = [
   "Typing :: Typed",
   "Intended Audience :: Developers",
-  "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
   "Operating System :: OS Independent",
   "Operating System :: POSIX",
   "Operating System :: MacOS",
@@ -39,14 +39,14 @@ Homepage = "https://github.com/cloudflare/cloudflare-python"
 Repository = "https://github.com/cloudflare/cloudflare-python"
 
 [project.optional-dependencies]
-aiohttp = ["aiohttp", "httpx_aiohttp>=0.1.8"]
+aiohttp = ["aiohttp", "httpx_aiohttp>=0.1.9"]
 
 [tool.rye]
 managed = true
 # version pins are in requirements-dev.lock
 dev-dependencies = [
     "pyright==1.1.399",
-    "mypy",
+    "mypy==1.17",
     "respx",
     "pytest",
     "pytest-asyncio",
@@ -142,7 +142,7 @@ filterwarnings = [
 # there are a couple of flags that are still disabled by
 # default in strict mode as they are experimental and niche.
 typeCheckingMode = "strict"
-pythonVersion = "3.8"
+pythonVersion = "3.9"
 
 exclude = [
     "_dev",
@@ -225,6 +225,8 @@ select = [
   "B",
   # remove unused imports
   "F401",
+  # check for missing future annotations
+  "FA102",
   # bare except statements
   "E722",
   # unused arguments
@@ -246,6 +248,8 @@ unfixable = [
   "T201",
   "T203",
 ]
+
+extend-safe-fixes = ["FA102"]
 
 [tool.ruff.lint.flake8-tidy-imports.banned-api]
 "functools.lru_cache".msg = "This function does not retain type information for the wrapped function's arguments; The `lru_cache` function from `_utils` should be used instead"

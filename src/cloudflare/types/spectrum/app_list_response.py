@@ -10,10 +10,10 @@ from ..._models import BaseModel
 from .origin_dns import OriginDNS
 from .origin_port import OriginPort
 
-__all__ = ["AppListResponse", "UnionMember0", "UnionMember1"]
+__all__ = ["AppListResponse", "SpectrumConfigAppConfig", "SpectrumConfigPaygoAppConfig"]
 
 
-class UnionMember0(BaseModel):
+class SpectrumConfigAppConfig(BaseModel):
     id: str
     """App identifier."""
 
@@ -89,7 +89,7 @@ class UnionMember0(BaseModel):
     """The type of TLS termination associated with the application."""
 
 
-class UnionMember1(BaseModel):
+class SpectrumConfigPaygoAppConfig(BaseModel):
     id: str
     """App identifier."""
 
@@ -116,4 +116,4 @@ class UnionMember1(BaseModel):
     """
 
 
-AppListResponse: TypeAlias = Union[List[UnionMember0], List[UnionMember1]]
+AppListResponse: TypeAlias = Union[SpectrumConfigAppConfig, SpectrumConfigPaygoAppConfig]

@@ -427,7 +427,7 @@ class AppsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncV4PagePaginationArray[Optional[AppListResponse]]:
+    ) -> SyncV4PagePaginationArray[AppListResponse]:
         """
         Retrieves a list of currently existing Spectrum applications inside a zone.
 
@@ -456,7 +456,7 @@ class AppsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/spectrum/apps",
-            page=SyncV4PagePaginationArray[Optional[AppListResponse]],
+            page=SyncV4PagePaginationArray[AppListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -962,7 +962,7 @@ class AsyncAppsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[Optional[AppListResponse], AsyncV4PagePaginationArray[Optional[AppListResponse]]]:
+    ) -> AsyncPaginator[AppListResponse, AsyncV4PagePaginationArray[AppListResponse]]:
         """
         Retrieves a list of currently existing Spectrum applications inside a zone.
 
@@ -991,7 +991,7 @@ class AsyncAppsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/spectrum/apps",
-            page=AsyncV4PagePaginationArray[Optional[AppListResponse]],
+            page=AsyncV4PagePaginationArray[AppListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
