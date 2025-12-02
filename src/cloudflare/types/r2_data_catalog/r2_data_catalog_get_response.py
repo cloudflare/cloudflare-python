@@ -1,0 +1,41 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from typing import Optional
+from typing_extensions import Literal
+
+from ..._models import BaseModel
+
+__all__ = ["R2DataCatalogGetResponse", "MaintenanceConfig", "MaintenanceConfigCompaction"]
+
+
+class MaintenanceConfigCompaction(BaseModel):
+    state: Literal["enabled", "disabled"]
+    """Specifies the state of maintenance operations."""
+
+    target_size_mb: Literal["64", "128", "256", "512"]
+    """Sets the target file size for compaction in megabytes."""
+
+
+class MaintenanceConfig(BaseModel):
+    compaction: Optional[MaintenanceConfigCompaction] = None
+    """Configures compaction for catalog maintenance."""
+
+
+class R2DataCatalogGetResponse(BaseModel):
+    id: str
+    """Use this to uniquely identify the catalog."""
+
+    bucket: str
+    """Specifies the associated R2 bucket name."""
+
+    name: str
+    """Specifies the catalog name (generated from account and bucket name)."""
+
+    status: Literal["active", "inactive"]
+    """Indicates the status of the catalog."""
+
+    credential_status: Optional[Literal["present", "absent"]] = None
+    """Shows the credential configuration status."""
+
+    maintenance_config: Optional[MaintenanceConfig] = None
+    """Configures maintenance for the catalog."""
