@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Required, TypedDict
 
 from ..._types import SequenceNotStr
 from ..ssl.request_validity import RequestValidity
@@ -12,16 +12,16 @@ __all__ = ["OriginCACertificateCreateParams"]
 
 
 class OriginCACertificateCreateParams(TypedDict, total=False):
-    csr: str
+    csr: Required[str]
     """The Certificate Signing Request (CSR). Must be newline-encoded."""
 
-    hostnames: SequenceNotStr[str]
+    hostnames: Required[SequenceNotStr[str]]
     """
     Array of hostnames or wildcard names (e.g., \\**.example.com) bound to the
     certificate.
     """
 
-    request_type: CertificateRequestType
+    request_type: Required[CertificateRequestType]
     """
     Signature type desired on certificate ("origin-rsa" (rsa), "origin-ecc" (ecdsa),
     or "keyless-certificate" (for Keyless SSL servers).

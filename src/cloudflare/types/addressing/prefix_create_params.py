@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from typing_extensions import Required, TypedDict
 
 __all__ = ["PrefixCreateParams"]
@@ -25,3 +26,6 @@ class PrefixCreateParams(TypedDict, total=False):
 
     description: str
     """Description of the prefix."""
+
+    loa_document_id: Optional[str]
+    """Identifier for the uploaded LOA document."""

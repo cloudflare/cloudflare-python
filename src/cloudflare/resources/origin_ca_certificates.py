@@ -52,9 +52,9 @@ class OriginCACertificatesResource(SyncAPIResource):
     def create(
         self,
         *,
-        csr: str | Omit = omit,
-        hostnames: SequenceNotStr[str] | Omit = omit,
-        request_type: CertificateRequestType | Omit = omit,
+        csr: str,
+        hostnames: SequenceNotStr[str],
+        request_type: CertificateRequestType,
         requested_validity: RequestValidity | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -280,9 +280,9 @@ class AsyncOriginCACertificatesResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        csr: str | Omit = omit,
-        hostnames: SequenceNotStr[str] | Omit = omit,
-        request_type: CertificateRequestType | Omit = omit,
+        csr: str,
+        hostnames: SequenceNotStr[str],
+        request_type: CertificateRequestType,
         requested_validity: RequestValidity | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

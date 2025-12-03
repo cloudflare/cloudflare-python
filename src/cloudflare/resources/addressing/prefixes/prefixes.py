@@ -102,6 +102,7 @@ class PrefixesResource(SyncAPIResource):
         cidr: str,
         delegate_loa_creation: bool | Omit = omit,
         description: str | Omit = omit,
+        loa_document_id: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -124,6 +125,8 @@ class PrefixesResource(SyncAPIResource):
 
           description: Description of the prefix.
 
+          loa_document_id: Identifier for the uploaded LOA document.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -142,6 +145,7 @@ class PrefixesResource(SyncAPIResource):
                     "cidr": cidr,
                     "delegate_loa_creation": delegate_loa_creation,
                     "description": description,
+                    "loa_document_id": loa_document_id,
                 },
                 prefix_create_params.PrefixCreateParams,
             ),
@@ -368,6 +372,7 @@ class AsyncPrefixesResource(AsyncAPIResource):
         cidr: str,
         delegate_loa_creation: bool | Omit = omit,
         description: str | Omit = omit,
+        loa_document_id: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -390,6 +395,8 @@ class AsyncPrefixesResource(AsyncAPIResource):
 
           description: Description of the prefix.
 
+          loa_document_id: Identifier for the uploaded LOA document.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -408,6 +415,7 @@ class AsyncPrefixesResource(AsyncAPIResource):
                     "cidr": cidr,
                     "delegate_loa_creation": delegate_loa_creation,
                     "description": description,
+                    "loa_document_id": loa_document_id,
                 },
                 prefix_create_params.PrefixCreateParams,
             ),

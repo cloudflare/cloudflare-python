@@ -61,7 +61,7 @@ class ResourceGroupsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ResourceGroupCreateResponse:
+    ) -> Optional[ResourceGroupCreateResponse]:
         """
         Create a new Resource Group under the specified account.
 
@@ -92,9 +92,13 @@ class ResourceGroupsResource(SyncAPIResource):
                 resource_group_create_params.ResourceGroupCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ResourceGroupCreateResponse]]._unwrapper,
             ),
-            cast_to=ResourceGroupCreateResponse,
+            cast_to=cast(Type[Optional[ResourceGroupCreateResponse]], ResultWrapper[ResourceGroupCreateResponse]),
         )
 
     def update(
@@ -110,7 +114,7 @@ class ResourceGroupsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ResourceGroupUpdateResponse:
+    ) -> Optional[ResourceGroupUpdateResponse]:
         """
         Modify an existing resource group.
 
@@ -145,9 +149,13 @@ class ResourceGroupsResource(SyncAPIResource):
                 resource_group_update_params.ResourceGroupUpdateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ResourceGroupUpdateResponse]]._unwrapper,
             ),
-            cast_to=ResourceGroupUpdateResponse,
+            cast_to=cast(Type[Optional[ResourceGroupUpdateResponse]], ResultWrapper[ResourceGroupUpdateResponse]),
         )
 
     def list(
@@ -257,7 +265,7 @@ class ResourceGroupsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ResourceGroupGetResponse:
+    ) -> Optional[ResourceGroupGetResponse]:
         """
         Get information about a specific resource group in an account.
 
@@ -281,9 +289,13 @@ class ResourceGroupsResource(SyncAPIResource):
         return self._get(
             f"/accounts/{account_id}/iam/resource_groups/{resource_group_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ResourceGroupGetResponse]]._unwrapper,
             ),
-            cast_to=ResourceGroupGetResponse,
+            cast_to=cast(Type[Optional[ResourceGroupGetResponse]], ResultWrapper[ResourceGroupGetResponse]),
         )
 
 
@@ -319,7 +331,7 @@ class AsyncResourceGroupsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ResourceGroupCreateResponse:
+    ) -> Optional[ResourceGroupCreateResponse]:
         """
         Create a new Resource Group under the specified account.
 
@@ -350,9 +362,13 @@ class AsyncResourceGroupsResource(AsyncAPIResource):
                 resource_group_create_params.ResourceGroupCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ResourceGroupCreateResponse]]._unwrapper,
             ),
-            cast_to=ResourceGroupCreateResponse,
+            cast_to=cast(Type[Optional[ResourceGroupCreateResponse]], ResultWrapper[ResourceGroupCreateResponse]),
         )
 
     async def update(
@@ -368,7 +384,7 @@ class AsyncResourceGroupsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ResourceGroupUpdateResponse:
+    ) -> Optional[ResourceGroupUpdateResponse]:
         """
         Modify an existing resource group.
 
@@ -403,9 +419,13 @@ class AsyncResourceGroupsResource(AsyncAPIResource):
                 resource_group_update_params.ResourceGroupUpdateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ResourceGroupUpdateResponse]]._unwrapper,
             ),
-            cast_to=ResourceGroupUpdateResponse,
+            cast_to=cast(Type[Optional[ResourceGroupUpdateResponse]], ResultWrapper[ResourceGroupUpdateResponse]),
         )
 
     def list(
@@ -515,7 +535,7 @@ class AsyncResourceGroupsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ResourceGroupGetResponse:
+    ) -> Optional[ResourceGroupGetResponse]:
         """
         Get information about a specific resource group in an account.
 
@@ -539,9 +559,13 @@ class AsyncResourceGroupsResource(AsyncAPIResource):
         return await self._get(
             f"/accounts/{account_id}/iam/resource_groups/{resource_group_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ResourceGroupGetResponse]]._unwrapper,
             ),
-            cast_to=ResourceGroupGetResponse,
+            cast_to=cast(Type[Optional[ResourceGroupGetResponse]], ResultWrapper[ResourceGroupGetResponse]),
         )
 
 

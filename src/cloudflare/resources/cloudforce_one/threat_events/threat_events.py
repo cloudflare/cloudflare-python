@@ -404,7 +404,7 @@ class ThreatEventsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=float,
+            cast_to=ThreatEventBulkCreateResponse,
         )
 
     def edit(
@@ -808,7 +808,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=float,
+            cast_to=ThreatEventBulkCreateResponse,
         )
 
     async def edit(
