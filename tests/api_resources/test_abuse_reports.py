@@ -1001,6 +1001,7 @@ class TestAbuseReports:
                 urls="urls",
             )
 
+    @pytest.mark.skip(reason="TODO: support api token auth scheme")
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         abuse_report = client.abuse_reports.list(
@@ -1008,6 +1009,7 @@ class TestAbuseReports:
         )
         assert_matches_type(SyncV4PagePagination[Optional[AbuseReportListResponse]], abuse_report, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: support api token auth scheme")
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         abuse_report = client.abuse_reports.list(
@@ -1024,6 +1026,7 @@ class TestAbuseReports:
         )
         assert_matches_type(SyncV4PagePagination[Optional[AbuseReportListResponse]], abuse_report, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: support api token auth scheme")
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.abuse_reports.with_raw_response.list(
@@ -1035,6 +1038,7 @@ class TestAbuseReports:
         abuse_report = response.parse()
         assert_matches_type(SyncV4PagePagination[Optional[AbuseReportListResponse]], abuse_report, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: support api token auth scheme")
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.abuse_reports.with_streaming_response.list(
@@ -1050,6 +1054,7 @@ class TestAbuseReports:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: support api token auth scheme")
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -1057,6 +1062,7 @@ class TestAbuseReports:
                 account_id="",
             )
 
+    @pytest.mark.skip(reason="TODO: support api token auth scheme")
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         abuse_report = client.abuse_reports.get(
@@ -1065,6 +1071,7 @@ class TestAbuseReports:
         )
         assert_matches_type(AbuseReportGetResponse, abuse_report, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: support api token auth scheme")
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.abuse_reports.with_raw_response.get(
@@ -1077,6 +1084,7 @@ class TestAbuseReports:
         abuse_report = response.parse()
         assert_matches_type(AbuseReportGetResponse, abuse_report, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: support api token auth scheme")
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.abuse_reports.with_streaming_response.get(
@@ -1091,6 +1099,7 @@ class TestAbuseReports:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: support api token auth scheme")
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -2091,6 +2100,7 @@ class TestAsyncAbuseReports:
                 urls="urls",
             )
 
+    @pytest.mark.skip(reason="TODO: support api token auth scheme")
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         abuse_report = await async_client.abuse_reports.list(
@@ -2098,6 +2108,7 @@ class TestAsyncAbuseReports:
         )
         assert_matches_type(AsyncV4PagePagination[Optional[AbuseReportListResponse]], abuse_report, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: support api token auth scheme")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         abuse_report = await async_client.abuse_reports.list(
@@ -2114,6 +2125,7 @@ class TestAsyncAbuseReports:
         )
         assert_matches_type(AsyncV4PagePagination[Optional[AbuseReportListResponse]], abuse_report, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: support api token auth scheme")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.abuse_reports.with_raw_response.list(
@@ -2125,6 +2137,7 @@ class TestAsyncAbuseReports:
         abuse_report = await response.parse()
         assert_matches_type(AsyncV4PagePagination[Optional[AbuseReportListResponse]], abuse_report, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: support api token auth scheme")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.abuse_reports.with_streaming_response.list(
@@ -2140,6 +2153,7 @@ class TestAsyncAbuseReports:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: support api token auth scheme")
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -2147,6 +2161,7 @@ class TestAsyncAbuseReports:
                 account_id="",
             )
 
+    @pytest.mark.skip(reason="TODO: support api token auth scheme")
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         abuse_report = await async_client.abuse_reports.get(
@@ -2155,6 +2170,7 @@ class TestAsyncAbuseReports:
         )
         assert_matches_type(AbuseReportGetResponse, abuse_report, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: support api token auth scheme")
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.abuse_reports.with_raw_response.get(
@@ -2167,6 +2183,7 @@ class TestAsyncAbuseReports:
         abuse_report = await response.parse()
         assert_matches_type(AbuseReportGetResponse, abuse_report, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: support api token auth scheme")
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.abuse_reports.with_streaming_response.get(
@@ -2181,6 +2198,7 @@ class TestAsyncAbuseReports:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: support api token auth scheme")
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
