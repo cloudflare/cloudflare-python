@@ -5,10 +5,10 @@ from typing_extensions import Literal, TypeAlias
 
 from ...._models import BaseModel
 
-__all__ = ["SchemaValidationEditResponse", "SchemaValidationEditResponseItem"]
+__all__ = ["SettingsMultipleRequest", "SettingsMultipleRequestItem"]
 
 
-class SchemaValidationEditResponseItem(BaseModel):
+class SettingsMultipleRequestItem(BaseModel):
     mitigation_action: Optional[Literal["log", "block", "none"]] = None
     """When set, this applies a mitigation action to this operation
 
@@ -21,4 +21,4 @@ class SchemaValidationEditResponseItem(BaseModel):
     """
 
 
-SchemaValidationEditResponse: TypeAlias = Dict[str, SchemaValidationEditResponseItem]
+SettingsMultipleRequest: TypeAlias = Dict[str, SettingsMultipleRequestItem]

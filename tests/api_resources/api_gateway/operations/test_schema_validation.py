@@ -10,8 +10,8 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.api_gateway.operations import (
+    SettingsMultipleRequest,
     SchemaValidationGetResponse,
-    SchemaValidationEditResponse,
     SchemaValidationUpdateResponse,
 )
 
@@ -92,20 +92,20 @@ class TestSchemaValidation:
         with pytest.warns(DeprecationWarning):
             schema_validation = client.api_gateway.operations.schema_validation.edit(
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={
+                settings_multiple_request={
                     "3818d821-5901-4147-a474-f5f5aec1d54e": {},
                     "b17c8043-99a0-4202-b7d9-8f7cdbee02cd": {},
                 },
             )
 
-        assert_matches_type(SchemaValidationEditResponse, schema_validation, path=["response"])
+        assert_matches_type(SettingsMultipleRequest, schema_validation, path=["response"])
 
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.api_gateway.operations.schema_validation.with_raw_response.edit(
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={
+                settings_multiple_request={
                     "3818d821-5901-4147-a474-f5f5aec1d54e": {},
                     "b17c8043-99a0-4202-b7d9-8f7cdbee02cd": {},
                 },
@@ -114,14 +114,14 @@ class TestSchemaValidation:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         schema_validation = response.parse()
-        assert_matches_type(SchemaValidationEditResponse, schema_validation, path=["response"])
+        assert_matches_type(SettingsMultipleRequest, schema_validation, path=["response"])
 
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             with client.api_gateway.operations.schema_validation.with_streaming_response.edit(
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={
+                settings_multiple_request={
                     "3818d821-5901-4147-a474-f5f5aec1d54e": {},
                     "b17c8043-99a0-4202-b7d9-8f7cdbee02cd": {},
                 },
@@ -130,7 +130,7 @@ class TestSchemaValidation:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 schema_validation = response.parse()
-                assert_matches_type(SchemaValidationEditResponse, schema_validation, path=["response"])
+                assert_matches_type(SettingsMultipleRequest, schema_validation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -140,7 +140,7 @@ class TestSchemaValidation:
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 client.api_gateway.operations.schema_validation.with_raw_response.edit(
                     zone_id="",
-                    body={
+                    settings_multiple_request={
                         "3818d821-5901-4147-a474-f5f5aec1d54e": {},
                         "b17c8043-99a0-4202-b7d9-8f7cdbee02cd": {},
                     },
@@ -274,20 +274,20 @@ class TestAsyncSchemaValidation:
         with pytest.warns(DeprecationWarning):
             schema_validation = await async_client.api_gateway.operations.schema_validation.edit(
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={
+                settings_multiple_request={
                     "3818d821-5901-4147-a474-f5f5aec1d54e": {},
                     "b17c8043-99a0-4202-b7d9-8f7cdbee02cd": {},
                 },
             )
 
-        assert_matches_type(SchemaValidationEditResponse, schema_validation, path=["response"])
+        assert_matches_type(SettingsMultipleRequest, schema_validation, path=["response"])
 
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = await async_client.api_gateway.operations.schema_validation.with_raw_response.edit(
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={
+                settings_multiple_request={
                     "3818d821-5901-4147-a474-f5f5aec1d54e": {},
                     "b17c8043-99a0-4202-b7d9-8f7cdbee02cd": {},
                 },
@@ -296,14 +296,14 @@ class TestAsyncSchemaValidation:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         schema_validation = await response.parse()
-        assert_matches_type(SchemaValidationEditResponse, schema_validation, path=["response"])
+        assert_matches_type(SettingsMultipleRequest, schema_validation, path=["response"])
 
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             async with async_client.api_gateway.operations.schema_validation.with_streaming_response.edit(
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={
+                settings_multiple_request={
                     "3818d821-5901-4147-a474-f5f5aec1d54e": {},
                     "b17c8043-99a0-4202-b7d9-8f7cdbee02cd": {},
                 },
@@ -312,7 +312,7 @@ class TestAsyncSchemaValidation:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 schema_validation = await response.parse()
-                assert_matches_type(SchemaValidationEditResponse, schema_validation, path=["response"])
+                assert_matches_type(SettingsMultipleRequest, schema_validation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -322,7 +322,7 @@ class TestAsyncSchemaValidation:
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 await async_client.api_gateway.operations.schema_validation.with_raw_response.edit(
                     zone_id="",
-                    body={
+                    settings_multiple_request={
                         "3818d821-5901-4147-a474-f5f5aec1d54e": {},
                         "b17c8043-99a0-4202-b7d9-8f7cdbee02cd": {},
                     },

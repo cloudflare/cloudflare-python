@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from .message import Message as Message
+from .settings import Settings as Settings
 from .configuration import Configuration as Configuration
 from .old_public_schema import OldPublicSchema as OldPublicSchema
 from .schema_list_params import SchemaListParams as SchemaListParams
