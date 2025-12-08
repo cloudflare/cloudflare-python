@@ -9,6 +9,8 @@ __all__ = ["AppListResponse", "MagicAccountApp", "MagicManagedApp"]
 
 
 class MagicAccountApp(BaseModel):
+    """Custom app defined for an account."""
+
     account_app_id: str
     """Magic account app ID."""
 
@@ -29,6 +31,8 @@ class MagicAccountApp(BaseModel):
 
 
 class MagicManagedApp(BaseModel):
+    """Managed app defined by Cloudflare."""
+
     managed_app_id: str
     """Managed app ID."""
 

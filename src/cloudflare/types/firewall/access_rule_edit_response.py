@@ -19,6 +19,8 @@ Configuration: TypeAlias = Union[
 
 
 class Scope(BaseModel):
+    """All zones owned by the user will have the rule applied."""
+
     id: Optional[str] = None
     """Defines an identifier."""
 

@@ -8,6 +8,8 @@ __all__ = ["WAFRuleGroup"]
 
 
 class WAFRuleGroup(BaseModel):
+    """Defines the rule group to which the current WAF rule belongs."""
+
     id: Optional[str] = None
     """Defines the unique identifier of the rule group."""
 

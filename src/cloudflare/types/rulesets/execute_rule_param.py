@@ -21,11 +21,15 @@ __all__ = [
 
 
 class ActionParametersMatchedData(TypedDict, total=False):
+    """The configuration to use for matched data logging."""
+
     public_key: Required[str]
     """The public key to encrypt matched data logs with."""
 
 
 class ActionParametersOverridesCategory(TypedDict, total=False):
+    """A category-level override."""
+
     category: Required[str]
     """The name of the category to override."""
 
@@ -43,6 +47,8 @@ class ActionParametersOverridesCategory(TypedDict, total=False):
 
 
 class ActionParametersOverridesRule(TypedDict, total=False):
+    """A rule-level override."""
+
     id: Required[str]
     """The ID of the rule to override."""
 
@@ -63,6 +69,8 @@ class ActionParametersOverridesRule(TypedDict, total=False):
 
 
 class ActionParametersOverrides(TypedDict, total=False):
+    """A set of overrides to apply to the target ruleset."""
+
     action: str
     """An action to override all rules with.
 
@@ -93,6 +101,8 @@ class ActionParametersOverrides(TypedDict, total=False):
 
 
 class ActionParameters(TypedDict, total=False):
+    """The parameters configuring the rule's action."""
+
     id: Required[str]
     """The ID of the ruleset to execute."""
 
@@ -104,6 +114,8 @@ class ActionParameters(TypedDict, total=False):
 
 
 class ExposedCredentialCheck(TypedDict, total=False):
+    """Configuration for exposed credential checking."""
+
     password_expression: Required[str]
     """An expression that selects the password used in the credentials check."""
 
@@ -112,6 +124,8 @@ class ExposedCredentialCheck(TypedDict, total=False):
 
 
 class Ratelimit(TypedDict, total=False):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be

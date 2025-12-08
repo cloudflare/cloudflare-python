@@ -12,6 +12,11 @@ __all__ = ["OutputOptionsParam"]
 
 
 class OutputOptionsParam(TypedDict, total=False):
+    """The structured replacement for `logpull_options`.
+
+    When including this field, the `logpull_option` field will be ignored.
+    """
+
     batch_prefix: Optional[str]
     """String to be prepended before each batch."""
 

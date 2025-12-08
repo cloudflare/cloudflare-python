@@ -9,6 +9,8 @@ __all__ = ["Bucket"]
 
 
 class Bucket(BaseModel):
+    """A single R2 bucket."""
+
     creation_date: Optional[str] = None
     """Creation timestamp."""
 

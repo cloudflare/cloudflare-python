@@ -242,6 +242,8 @@ class BlockRule(TypedDict, total=False):
 
 
 class BlockRuleActionParametersResponse(TypedDict, total=False):
+    """The response to show when the block is applied."""
+
     content: Required[str]
     """The content to return."""
 
@@ -253,11 +255,15 @@ class BlockRuleActionParametersResponse(TypedDict, total=False):
 
 
 class BlockRuleActionParameters(TypedDict, total=False):
+    """The parameters configuring the rule's action."""
+
     response: BlockRuleActionParametersResponse
     """The response to show when the block is applied."""
 
 
 class BlockRuleExposedCredentialCheck(TypedDict, total=False):
+    """Configuration for exposed credential checking."""
+
     password_expression: Required[str]
     """An expression that selects the password used in the credentials check."""
 
@@ -266,6 +272,8 @@ class BlockRuleExposedCredentialCheck(TypedDict, total=False):
 
 
 class BlockRulePositionBeforePosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     before: str
     """The ID of another rule to place the rule before.
 
@@ -274,6 +282,8 @@ class BlockRulePositionBeforePosition(TypedDict, total=False):
 
 
 class BlockRulePositionAfterPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     after: str
     """The ID of another rule to place the rule after.
 
@@ -282,6 +292,8 @@ class BlockRulePositionAfterPosition(TypedDict, total=False):
 
 
 class BlockRulePositionIndexPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     index: int
     """An index at which to place the rule, where index 1 is the first rule."""
 
@@ -292,6 +304,8 @@ BlockRulePosition: TypeAlias = Union[
 
 
 class BlockRuleRatelimit(TypedDict, total=False):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
@@ -380,6 +394,8 @@ class ChallengeRule(TypedDict, total=False):
 
 
 class ChallengeRuleExposedCredentialCheck(TypedDict, total=False):
+    """Configuration for exposed credential checking."""
+
     password_expression: Required[str]
     """An expression that selects the password used in the credentials check."""
 
@@ -388,6 +404,8 @@ class ChallengeRuleExposedCredentialCheck(TypedDict, total=False):
 
 
 class ChallengeRulePositionBeforePosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     before: str
     """The ID of another rule to place the rule before.
 
@@ -396,6 +414,8 @@ class ChallengeRulePositionBeforePosition(TypedDict, total=False):
 
 
 class ChallengeRulePositionAfterPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     after: str
     """The ID of another rule to place the rule after.
 
@@ -404,6 +424,8 @@ class ChallengeRulePositionAfterPosition(TypedDict, total=False):
 
 
 class ChallengeRulePositionIndexPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     index: int
     """An index at which to place the rule, where index 1 is the first rule."""
 
@@ -414,6 +436,8 @@ ChallengeRulePosition: TypeAlias = Union[
 
 
 class ChallengeRuleRatelimit(TypedDict, total=False):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
@@ -502,16 +526,22 @@ class ResponseCompressionRule(TypedDict, total=False):
 
 
 class ResponseCompressionRuleActionParametersAlgorithm(TypedDict, total=False):
+    """Compression algorithm to enable."""
+
     name: Literal["none", "auto", "default", "gzip", "brotli", "zstd"]
     """Name of the compression algorithm to enable."""
 
 
 class ResponseCompressionRuleActionParameters(TypedDict, total=False):
+    """The parameters configuring the rule's action."""
+
     algorithms: Required[Iterable[ResponseCompressionRuleActionParametersAlgorithm]]
     """Custom order for compression algorithms."""
 
 
 class ResponseCompressionRuleExposedCredentialCheck(TypedDict, total=False):
+    """Configuration for exposed credential checking."""
+
     password_expression: Required[str]
     """An expression that selects the password used in the credentials check."""
 
@@ -520,6 +550,8 @@ class ResponseCompressionRuleExposedCredentialCheck(TypedDict, total=False):
 
 
 class ResponseCompressionRulePositionBeforePosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     before: str
     """The ID of another rule to place the rule before.
 
@@ -528,6 +560,8 @@ class ResponseCompressionRulePositionBeforePosition(TypedDict, total=False):
 
 
 class ResponseCompressionRulePositionAfterPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     after: str
     """The ID of another rule to place the rule after.
 
@@ -536,6 +570,8 @@ class ResponseCompressionRulePositionAfterPosition(TypedDict, total=False):
 
 
 class ResponseCompressionRulePositionIndexPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     index: int
     """An index at which to place the rule, where index 1 is the first rule."""
 
@@ -548,6 +584,8 @@ ResponseCompressionRulePosition: TypeAlias = Union[
 
 
 class ResponseCompressionRuleRatelimit(TypedDict, total=False):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
@@ -636,6 +674,8 @@ class DDoSDynamicRule(TypedDict, total=False):
 
 
 class DDoSDynamicRuleExposedCredentialCheck(TypedDict, total=False):
+    """Configuration for exposed credential checking."""
+
     password_expression: Required[str]
     """An expression that selects the password used in the credentials check."""
 
@@ -644,6 +684,8 @@ class DDoSDynamicRuleExposedCredentialCheck(TypedDict, total=False):
 
 
 class DDoSDynamicRulePositionBeforePosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     before: str
     """The ID of another rule to place the rule before.
 
@@ -652,6 +694,8 @@ class DDoSDynamicRulePositionBeforePosition(TypedDict, total=False):
 
 
 class DDoSDynamicRulePositionAfterPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     after: str
     """The ID of another rule to place the rule after.
 
@@ -660,6 +704,8 @@ class DDoSDynamicRulePositionAfterPosition(TypedDict, total=False):
 
 
 class DDoSDynamicRulePositionIndexPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     index: int
     """An index at which to place the rule, where index 1 is the first rule."""
 
@@ -670,6 +716,8 @@ DDoSDynamicRulePosition: TypeAlias = Union[
 
 
 class DDoSDynamicRuleRatelimit(TypedDict, total=False):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
@@ -758,11 +806,15 @@ class ExecuteRule(TypedDict, total=False):
 
 
 class ExecuteRuleActionParametersMatchedData(TypedDict, total=False):
+    """The configuration to use for matched data logging."""
+
     public_key: Required[str]
     """The public key to encrypt matched data logs with."""
 
 
 class ExecuteRuleActionParametersOverridesCategory(TypedDict, total=False):
+    """A category-level override."""
+
     category: Required[str]
     """The name of the category to override."""
 
@@ -780,6 +832,8 @@ class ExecuteRuleActionParametersOverridesCategory(TypedDict, total=False):
 
 
 class ExecuteRuleActionParametersOverridesRule(TypedDict, total=False):
+    """A rule-level override."""
+
     id: Required[str]
     """The ID of the rule to override."""
 
@@ -800,6 +854,8 @@ class ExecuteRuleActionParametersOverridesRule(TypedDict, total=False):
 
 
 class ExecuteRuleActionParametersOverrides(TypedDict, total=False):
+    """A set of overrides to apply to the target ruleset."""
+
     action: str
     """An action to override all rules with.
 
@@ -830,6 +886,8 @@ class ExecuteRuleActionParametersOverrides(TypedDict, total=False):
 
 
 class ExecuteRuleActionParameters(TypedDict, total=False):
+    """The parameters configuring the rule's action."""
+
     id: Required[str]
     """The ID of the ruleset to execute."""
 
@@ -841,6 +899,8 @@ class ExecuteRuleActionParameters(TypedDict, total=False):
 
 
 class ExecuteRuleExposedCredentialCheck(TypedDict, total=False):
+    """Configuration for exposed credential checking."""
+
     password_expression: Required[str]
     """An expression that selects the password used in the credentials check."""
 
@@ -849,6 +909,8 @@ class ExecuteRuleExposedCredentialCheck(TypedDict, total=False):
 
 
 class ExecuteRulePositionBeforePosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     before: str
     """The ID of another rule to place the rule before.
 
@@ -857,6 +919,8 @@ class ExecuteRulePositionBeforePosition(TypedDict, total=False):
 
 
 class ExecuteRulePositionAfterPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     after: str
     """The ID of another rule to place the rule after.
 
@@ -865,6 +929,8 @@ class ExecuteRulePositionAfterPosition(TypedDict, total=False):
 
 
 class ExecuteRulePositionIndexPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     index: int
     """An index at which to place the rule, where index 1 is the first rule."""
 
@@ -875,6 +941,8 @@ ExecuteRulePosition: TypeAlias = Union[
 
 
 class ExecuteRuleRatelimit(TypedDict, total=False):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
@@ -963,6 +1031,8 @@ class ForceConnectionCloseRule(TypedDict, total=False):
 
 
 class ForceConnectionCloseRuleExposedCredentialCheck(TypedDict, total=False):
+    """Configuration for exposed credential checking."""
+
     password_expression: Required[str]
     """An expression that selects the password used in the credentials check."""
 
@@ -971,6 +1041,8 @@ class ForceConnectionCloseRuleExposedCredentialCheck(TypedDict, total=False):
 
 
 class ForceConnectionCloseRulePositionBeforePosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     before: str
     """The ID of another rule to place the rule before.
 
@@ -979,6 +1051,8 @@ class ForceConnectionCloseRulePositionBeforePosition(TypedDict, total=False):
 
 
 class ForceConnectionCloseRulePositionAfterPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     after: str
     """The ID of another rule to place the rule after.
 
@@ -987,6 +1061,8 @@ class ForceConnectionCloseRulePositionAfterPosition(TypedDict, total=False):
 
 
 class ForceConnectionCloseRulePositionIndexPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     index: int
     """An index at which to place the rule, where index 1 is the first rule."""
 
@@ -999,6 +1075,8 @@ ForceConnectionCloseRulePosition: TypeAlias = Union[
 
 
 class ForceConnectionCloseRuleRatelimit(TypedDict, total=False):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
@@ -1087,6 +1165,8 @@ class JavaScriptChallengeRule(TypedDict, total=False):
 
 
 class JavaScriptChallengeRuleExposedCredentialCheck(TypedDict, total=False):
+    """Configuration for exposed credential checking."""
+
     password_expression: Required[str]
     """An expression that selects the password used in the credentials check."""
 
@@ -1095,6 +1175,8 @@ class JavaScriptChallengeRuleExposedCredentialCheck(TypedDict, total=False):
 
 
 class JavaScriptChallengeRulePositionBeforePosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     before: str
     """The ID of another rule to place the rule before.
 
@@ -1103,6 +1185,8 @@ class JavaScriptChallengeRulePositionBeforePosition(TypedDict, total=False):
 
 
 class JavaScriptChallengeRulePositionAfterPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     after: str
     """The ID of another rule to place the rule after.
 
@@ -1111,6 +1195,8 @@ class JavaScriptChallengeRulePositionAfterPosition(TypedDict, total=False):
 
 
 class JavaScriptChallengeRulePositionIndexPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     index: int
     """An index at which to place the rule, where index 1 is the first rule."""
 
@@ -1123,6 +1209,8 @@ JavaScriptChallengeRulePosition: TypeAlias = Union[
 
 
 class JavaScriptChallengeRuleRatelimit(TypedDict, total=False):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
@@ -1211,6 +1299,8 @@ class LogRule(TypedDict, total=False):
 
 
 class LogRuleExposedCredentialCheck(TypedDict, total=False):
+    """Configuration for exposed credential checking."""
+
     password_expression: Required[str]
     """An expression that selects the password used in the credentials check."""
 
@@ -1219,6 +1309,8 @@ class LogRuleExposedCredentialCheck(TypedDict, total=False):
 
 
 class LogRulePositionBeforePosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     before: str
     """The ID of another rule to place the rule before.
 
@@ -1227,6 +1319,8 @@ class LogRulePositionBeforePosition(TypedDict, total=False):
 
 
 class LogRulePositionAfterPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     after: str
     """The ID of another rule to place the rule after.
 
@@ -1235,6 +1329,8 @@ class LogRulePositionAfterPosition(TypedDict, total=False):
 
 
 class LogRulePositionIndexPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     index: int
     """An index at which to place the rule, where index 1 is the first rule."""
 
@@ -1245,6 +1341,8 @@ LogRulePosition: TypeAlias = Union[
 
 
 class LogRuleRatelimit(TypedDict, total=False):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
@@ -1333,11 +1431,15 @@ class LogCustomFieldRule(TypedDict, total=False):
 
 
 class LogCustomFieldRuleActionParametersCookieField(TypedDict, total=False):
+    """The cookie field to log."""
+
     name: Required[str]
     """The name of the cookie."""
 
 
 class LogCustomFieldRuleActionParametersRawResponseField(TypedDict, total=False):
+    """The raw response field to log."""
+
     name: Required[str]
     """The name of the response header."""
 
@@ -1346,11 +1448,15 @@ class LogCustomFieldRuleActionParametersRawResponseField(TypedDict, total=False)
 
 
 class LogCustomFieldRuleActionParametersRequestField(TypedDict, total=False):
+    """The raw request field to log."""
+
     name: Required[str]
     """The name of the header."""
 
 
 class LogCustomFieldRuleActionParametersResponseField(TypedDict, total=False):
+    """The transformed response field to log."""
+
     name: Required[str]
     """The name of the response header."""
 
@@ -1359,11 +1465,15 @@ class LogCustomFieldRuleActionParametersResponseField(TypedDict, total=False):
 
 
 class LogCustomFieldRuleActionParametersTransformedRequestField(TypedDict, total=False):
+    """The transformed request field to log."""
+
     name: Required[str]
     """The name of the header."""
 
 
 class LogCustomFieldRuleActionParameters(TypedDict, total=False):
+    """The parameters configuring the rule's action."""
+
     cookie_fields: Iterable[LogCustomFieldRuleActionParametersCookieField]
     """The cookie fields to log."""
 
@@ -1381,6 +1491,8 @@ class LogCustomFieldRuleActionParameters(TypedDict, total=False):
 
 
 class LogCustomFieldRuleExposedCredentialCheck(TypedDict, total=False):
+    """Configuration for exposed credential checking."""
+
     password_expression: Required[str]
     """An expression that selects the password used in the credentials check."""
 
@@ -1389,6 +1501,8 @@ class LogCustomFieldRuleExposedCredentialCheck(TypedDict, total=False):
 
 
 class LogCustomFieldRulePositionBeforePosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     before: str
     """The ID of another rule to place the rule before.
 
@@ -1397,6 +1511,8 @@ class LogCustomFieldRulePositionBeforePosition(TypedDict, total=False):
 
 
 class LogCustomFieldRulePositionAfterPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     after: str
     """The ID of another rule to place the rule after.
 
@@ -1405,6 +1521,8 @@ class LogCustomFieldRulePositionAfterPosition(TypedDict, total=False):
 
 
 class LogCustomFieldRulePositionIndexPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     index: int
     """An index at which to place the rule, where index 1 is the first rule."""
 
@@ -1417,6 +1535,8 @@ LogCustomFieldRulePosition: TypeAlias = Union[
 
 
 class LogCustomFieldRuleRatelimit(TypedDict, total=False):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
@@ -1505,6 +1625,8 @@ class ManagedChallengeRule(TypedDict, total=False):
 
 
 class ManagedChallengeRuleExposedCredentialCheck(TypedDict, total=False):
+    """Configuration for exposed credential checking."""
+
     password_expression: Required[str]
     """An expression that selects the password used in the credentials check."""
 
@@ -1513,6 +1635,8 @@ class ManagedChallengeRuleExposedCredentialCheck(TypedDict, total=False):
 
 
 class ManagedChallengeRulePositionBeforePosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     before: str
     """The ID of another rule to place the rule before.
 
@@ -1521,6 +1645,8 @@ class ManagedChallengeRulePositionBeforePosition(TypedDict, total=False):
 
 
 class ManagedChallengeRulePositionAfterPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     after: str
     """The ID of another rule to place the rule after.
 
@@ -1529,6 +1655,8 @@ class ManagedChallengeRulePositionAfterPosition(TypedDict, total=False):
 
 
 class ManagedChallengeRulePositionIndexPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     index: int
     """An index at which to place the rule, where index 1 is the first rule."""
 
@@ -1541,6 +1669,8 @@ ManagedChallengeRulePosition: TypeAlias = Union[
 
 
 class ManagedChallengeRuleRatelimit(TypedDict, total=False):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
@@ -1629,6 +1759,8 @@ class RedirectRule(TypedDict, total=False):
 
 
 class RedirectRuleActionParametersFromList(TypedDict, total=False):
+    """A redirect based on a bulk list lookup."""
+
     key: Required[str]
     """An expression that evaluates to the list lookup key."""
 
@@ -1637,6 +1769,8 @@ class RedirectRuleActionParametersFromList(TypedDict, total=False):
 
 
 class RedirectRuleActionParametersFromValueTargetURL(TypedDict, total=False):
+    """A URL to redirect the request to."""
+
     expression: str
     """An expression that evaluates to a URL to redirect the request to."""
 
@@ -1645,6 +1779,8 @@ class RedirectRuleActionParametersFromValueTargetURL(TypedDict, total=False):
 
 
 class RedirectRuleActionParametersFromValue(TypedDict, total=False):
+    """A redirect based on the request properties."""
+
     target_url: Required[RedirectRuleActionParametersFromValueTargetURL]
     """A URL to redirect the request to."""
 
@@ -1656,6 +1792,8 @@ class RedirectRuleActionParametersFromValue(TypedDict, total=False):
 
 
 class RedirectRuleActionParameters(TypedDict, total=False):
+    """The parameters configuring the rule's action."""
+
     from_list: RedirectRuleActionParametersFromList
     """A redirect based on a bulk list lookup."""
 
@@ -1664,6 +1802,8 @@ class RedirectRuleActionParameters(TypedDict, total=False):
 
 
 class RedirectRuleExposedCredentialCheck(TypedDict, total=False):
+    """Configuration for exposed credential checking."""
+
     password_expression: Required[str]
     """An expression that selects the password used in the credentials check."""
 
@@ -1672,6 +1812,8 @@ class RedirectRuleExposedCredentialCheck(TypedDict, total=False):
 
 
 class RedirectRulePositionBeforePosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     before: str
     """The ID of another rule to place the rule before.
 
@@ -1680,6 +1822,8 @@ class RedirectRulePositionBeforePosition(TypedDict, total=False):
 
 
 class RedirectRulePositionAfterPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     after: str
     """The ID of another rule to place the rule after.
 
@@ -1688,6 +1832,8 @@ class RedirectRulePositionAfterPosition(TypedDict, total=False):
 
 
 class RedirectRulePositionIndexPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     index: int
     """An index at which to place the rule, where index 1 is the first rule."""
 
@@ -1698,6 +1844,8 @@ RedirectRulePosition: TypeAlias = Union[
 
 
 class RedirectRuleRatelimit(TypedDict, total=False):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
@@ -1786,6 +1934,8 @@ class RewriteRule(TypedDict, total=False):
 
 
 class RewriteRuleActionParametersHeadersAddStaticHeader(TypedDict, total=False):
+    """A header with a static value to add."""
+
     operation: Required[Literal["add"]]
     """The operation to perform on the header."""
 
@@ -1794,6 +1944,8 @@ class RewriteRuleActionParametersHeadersAddStaticHeader(TypedDict, total=False):
 
 
 class RewriteRuleActionParametersHeadersAddDynamicHeader(TypedDict, total=False):
+    """A header with a dynamic value to add."""
+
     expression: Required[str]
     """An expression that evaluates to a value for the header."""
 
@@ -1802,6 +1954,8 @@ class RewriteRuleActionParametersHeadersAddDynamicHeader(TypedDict, total=False)
 
 
 class RewriteRuleActionParametersHeadersSetStaticHeader(TypedDict, total=False):
+    """A header with a static value to set."""
+
     operation: Required[Literal["set"]]
     """The operation to perform on the header."""
 
@@ -1810,6 +1964,8 @@ class RewriteRuleActionParametersHeadersSetStaticHeader(TypedDict, total=False):
 
 
 class RewriteRuleActionParametersHeadersSetDynamicHeader(TypedDict, total=False):
+    """A header with a dynamic value to set."""
+
     expression: Required[str]
     """An expression that evaluates to a value for the header."""
 
@@ -1818,6 +1974,8 @@ class RewriteRuleActionParametersHeadersSetDynamicHeader(TypedDict, total=False)
 
 
 class RewriteRuleActionParametersHeadersRemoveHeader(TypedDict, total=False):
+    """A header to remove."""
+
     operation: Required[Literal["remove"]]
     """The operation to perform on the header."""
 
@@ -1832,6 +1990,8 @@ RewriteRuleActionParametersHeaders: TypeAlias = Union[
 
 
 class RewriteRuleActionParametersURIURIPathPath(TypedDict, total=False):
+    """A URI path rewrite."""
+
     expression: str
     """An expression that evaluates to a value to rewrite the URI path to."""
 
@@ -1840,11 +2000,15 @@ class RewriteRuleActionParametersURIURIPathPath(TypedDict, total=False):
 
 
 class RewriteRuleActionParametersURIURIPath(TypedDict, total=False):
+    """A URI path rewrite."""
+
     path: Required[RewriteRuleActionParametersURIURIPathPath]
     """A URI path rewrite."""
 
 
 class RewriteRuleActionParametersURIURIQueryQuery(TypedDict, total=False):
+    """A URI query rewrite."""
+
     expression: str
     """An expression that evaluates to a value to rewrite the URI query to."""
 
@@ -1853,6 +2017,8 @@ class RewriteRuleActionParametersURIURIQueryQuery(TypedDict, total=False):
 
 
 class RewriteRuleActionParametersURIURIQuery(TypedDict, total=False):
+    """A URI query rewrite."""
+
     query: Required[RewriteRuleActionParametersURIURIQueryQuery]
     """A URI query rewrite."""
 
@@ -1863,6 +2029,8 @@ RewriteRuleActionParametersURI: TypeAlias = Union[
 
 
 class RewriteRuleActionParameters(TypedDict, total=False):
+    """The parameters configuring the rule's action."""
+
     headers: Dict[str, RewriteRuleActionParametersHeaders]
     """A map of headers to rewrite."""
 
@@ -1871,6 +2039,8 @@ class RewriteRuleActionParameters(TypedDict, total=False):
 
 
 class RewriteRuleExposedCredentialCheck(TypedDict, total=False):
+    """Configuration for exposed credential checking."""
+
     password_expression: Required[str]
     """An expression that selects the password used in the credentials check."""
 
@@ -1879,6 +2049,8 @@ class RewriteRuleExposedCredentialCheck(TypedDict, total=False):
 
 
 class RewriteRulePositionBeforePosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     before: str
     """The ID of another rule to place the rule before.
 
@@ -1887,6 +2059,8 @@ class RewriteRulePositionBeforePosition(TypedDict, total=False):
 
 
 class RewriteRulePositionAfterPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     after: str
     """The ID of another rule to place the rule after.
 
@@ -1895,6 +2069,8 @@ class RewriteRulePositionAfterPosition(TypedDict, total=False):
 
 
 class RewriteRulePositionIndexPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     index: int
     """An index at which to place the rule, where index 1 is the first rule."""
 
@@ -1905,6 +2081,8 @@ RewriteRulePosition: TypeAlias = Union[
 
 
 class RewriteRuleRatelimit(TypedDict, total=False):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
@@ -1993,6 +2171,8 @@ class RouteRule(TypedDict, total=False):
 
 
 class RouteRuleActionParametersOrigin(TypedDict, total=False):
+    """An origin to route to."""
+
     host: str
     """A resolved host to route to."""
 
@@ -2001,11 +2181,15 @@ class RouteRuleActionParametersOrigin(TypedDict, total=False):
 
 
 class RouteRuleActionParametersSNI(TypedDict, total=False):
+    """A Server Name Indication (SNI) override."""
+
     value: Required[str]
     """A value to override the SNI to."""
 
 
 class RouteRuleActionParameters(TypedDict, total=False):
+    """The parameters configuring the rule's action."""
+
     host_header: str
     """A value to rewrite the HTTP host header to."""
 
@@ -2017,6 +2201,8 @@ class RouteRuleActionParameters(TypedDict, total=False):
 
 
 class RouteRuleExposedCredentialCheck(TypedDict, total=False):
+    """Configuration for exposed credential checking."""
+
     password_expression: Required[str]
     """An expression that selects the password used in the credentials check."""
 
@@ -2025,6 +2211,8 @@ class RouteRuleExposedCredentialCheck(TypedDict, total=False):
 
 
 class RouteRulePositionBeforePosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     before: str
     """The ID of another rule to place the rule before.
 
@@ -2033,6 +2221,8 @@ class RouteRulePositionBeforePosition(TypedDict, total=False):
 
 
 class RouteRulePositionAfterPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     after: str
     """The ID of another rule to place the rule after.
 
@@ -2041,6 +2231,8 @@ class RouteRulePositionAfterPosition(TypedDict, total=False):
 
 
 class RouteRulePositionIndexPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     index: int
     """An index at which to place the rule, where index 1 is the first rule."""
 
@@ -2051,6 +2243,8 @@ RouteRulePosition: TypeAlias = Union[
 
 
 class RouteRuleRatelimit(TypedDict, total=False):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
@@ -2139,11 +2333,15 @@ class ScoreRule(TypedDict, total=False):
 
 
 class ScoreRuleActionParameters(TypedDict, total=False):
+    """The parameters configuring the rule's action."""
+
     increment: Required[int]
     """A delta to change the score by, which can be either positive or negative."""
 
 
 class ScoreRuleExposedCredentialCheck(TypedDict, total=False):
+    """Configuration for exposed credential checking."""
+
     password_expression: Required[str]
     """An expression that selects the password used in the credentials check."""
 
@@ -2152,6 +2350,8 @@ class ScoreRuleExposedCredentialCheck(TypedDict, total=False):
 
 
 class ScoreRulePositionBeforePosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     before: str
     """The ID of another rule to place the rule before.
 
@@ -2160,6 +2360,8 @@ class ScoreRulePositionBeforePosition(TypedDict, total=False):
 
 
 class ScoreRulePositionAfterPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     after: str
     """The ID of another rule to place the rule after.
 
@@ -2168,6 +2370,8 @@ class ScoreRulePositionAfterPosition(TypedDict, total=False):
 
 
 class ScoreRulePositionIndexPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     index: int
     """An index at which to place the rule, where index 1 is the first rule."""
 
@@ -2178,6 +2382,8 @@ ScoreRulePosition: TypeAlias = Union[
 
 
 class ScoreRuleRatelimit(TypedDict, total=False):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
@@ -2293,6 +2499,8 @@ ServeErrorRuleActionParameters: TypeAlias = Union[
 
 
 class ServeErrorRuleExposedCredentialCheck(TypedDict, total=False):
+    """Configuration for exposed credential checking."""
+
     password_expression: Required[str]
     """An expression that selects the password used in the credentials check."""
 
@@ -2301,6 +2509,8 @@ class ServeErrorRuleExposedCredentialCheck(TypedDict, total=False):
 
 
 class ServeErrorRulePositionBeforePosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     before: str
     """The ID of another rule to place the rule before.
 
@@ -2309,6 +2519,8 @@ class ServeErrorRulePositionBeforePosition(TypedDict, total=False):
 
 
 class ServeErrorRulePositionAfterPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     after: str
     """The ID of another rule to place the rule after.
 
@@ -2317,6 +2529,8 @@ class ServeErrorRulePositionAfterPosition(TypedDict, total=False):
 
 
 class ServeErrorRulePositionIndexPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     index: int
     """An index at which to place the rule, where index 1 is the first rule."""
 
@@ -2327,6 +2541,8 @@ ServeErrorRulePosition: TypeAlias = Union[
 
 
 class ServeErrorRuleRatelimit(TypedDict, total=False):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
@@ -2415,6 +2631,11 @@ class SetCacheSettingsRule(TypedDict, total=False):
 
 
 class SetCacheSettingsRuleActionParametersBrowserTTL(TypedDict, total=False):
+    """How long client browsers should cache the response.
+
+    Cloudflare cache purge will not purge content cached on client browsers, so high browser TTLs may lead to stale content.
+    """
+
     mode: Required[Literal["respect_origin", "bypass_by_default", "override_origin", "bypass"]]
     """The browser TTL mode."""
 
@@ -2423,6 +2644,8 @@ class SetCacheSettingsRuleActionParametersBrowserTTL(TypedDict, total=False):
 
 
 class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyCookie(TypedDict, total=False):
+    """Which cookies to include in the cache key."""
+
     check_presence: SequenceNotStr[str]
     """A list of cookies to check for the presence of.
 
@@ -2434,6 +2657,8 @@ class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyCookie(TypedDict, tot
 
 
 class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyHeader(TypedDict, total=False):
+    """Which headers to include in the cache key."""
+
     check_presence: SequenceNotStr[str]
     """A list of headers to check for the presence of.
 
@@ -2455,11 +2680,15 @@ class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyHeader(TypedDict, tot
 
 
 class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyHost(TypedDict, total=False):
+    """How to use the host in the cache key."""
+
     resolved: bool
     """Whether to use the resolved host in the cache key."""
 
 
 class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringExclude(TypedDict, total=False):
+    """Which query string parameters to exclude from the cache key."""
+
     all: Literal[True]
     """Whether to exclude all query string parameters from the cache key."""
 
@@ -2468,6 +2697,8 @@ class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringExclude(Ty
 
 
 class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringInclude(TypedDict, total=False):
+    """Which query string parameters to include in the cache key."""
+
     all: Literal[True]
     """Whether to include all query string parameters in the cache key."""
 
@@ -2476,6 +2707,8 @@ class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringInclude(Ty
 
 
 class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryString(TypedDict, total=False):
+    """Which query string parameters to include in or exclude from the cache key."""
+
     exclude: SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringExclude
     """Which query string parameters to exclude from the cache key."""
 
@@ -2484,6 +2717,8 @@ class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryString(TypedDict
 
 
 class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyUser(TypedDict, total=False):
+    """How to use characteristics of the request user agent in the cache key."""
+
     device_type: bool
     """Whether to use the user agent's device type in the cache key."""
 
@@ -2495,6 +2730,8 @@ class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyUser(TypedDict, total
 
 
 class SetCacheSettingsRuleActionParametersCacheKeyCustomKey(TypedDict, total=False):
+    """Which components of the request are included or excluded from the cache key."""
+
     cookie: SetCacheSettingsRuleActionParametersCacheKeyCustomKeyCookie
     """Which cookies to include in the cache key."""
 
@@ -2512,6 +2749,10 @@ class SetCacheSettingsRuleActionParametersCacheKeyCustomKey(TypedDict, total=Fal
 
 
 class SetCacheSettingsRuleActionParametersCacheKey(TypedDict, total=False):
+    """
+    Which components of the request are included in or excluded from the cache key Cloudflare uses to store the response in cache.
+    """
+
     cache_by_device_type: bool
     """Whether to separate cached content based on the visitor's device type."""
 
@@ -2532,6 +2773,10 @@ class SetCacheSettingsRuleActionParametersCacheKey(TypedDict, total=False):
 
 
 class SetCacheSettingsRuleActionParametersCacheReserve(TypedDict, total=False):
+    """
+    Settings to determine whether the request's response from origin is eligible for Cache Reserve (requires a Cache Reserve add-on plan).
+    """
+
     eligible: Required[bool]
     """Whether Cache Reserve is enabled.
 
@@ -2555,6 +2800,8 @@ _SetCacheSettingsRuleActionParametersEdgeTTLStatusCodeTTLStatusCodeRangeReserved
 class SetCacheSettingsRuleActionParametersEdgeTTLStatusCodeTTLStatusCodeRange(
     _SetCacheSettingsRuleActionParametersEdgeTTLStatusCodeTTLStatusCodeRangeReservedKeywords, total=False
 ):
+    """A range of status codes to apply the TTL to."""
+
     to: int
     """The upper bound of the range."""
 
@@ -2576,6 +2823,8 @@ class SetCacheSettingsRuleActionParametersEdgeTTLStatusCodeTTL(TypedDict, total=
 
 
 class SetCacheSettingsRuleActionParametersEdgeTTL(TypedDict, total=False):
+    """How long the Cloudflare edge network should cache the response."""
+
     mode: Required[Literal["respect_origin", "bypass_by_default", "override_origin"]]
     """The edge TTL mode."""
 
@@ -2587,6 +2836,8 @@ class SetCacheSettingsRuleActionParametersEdgeTTL(TypedDict, total=False):
 
 
 class SetCacheSettingsRuleActionParametersServeStale(TypedDict, total=False):
+    """When to serve stale content from cache."""
+
     disable_stale_while_updating: bool
     """
     Whether Cloudflare should disable serving stale content while getting the latest
@@ -2595,6 +2846,8 @@ class SetCacheSettingsRuleActionParametersServeStale(TypedDict, total=False):
 
 
 class SetCacheSettingsRuleActionParameters(TypedDict, total=False):
+    """The parameters configuring the rule's action."""
+
     additional_cacheable_ports: Iterable[int]
     """A list of additional ports that caching should be enabled on."""
 
@@ -2653,6 +2906,8 @@ class SetCacheSettingsRuleActionParameters(TypedDict, total=False):
 
 
 class SetCacheSettingsRuleExposedCredentialCheck(TypedDict, total=False):
+    """Configuration for exposed credential checking."""
+
     password_expression: Required[str]
     """An expression that selects the password used in the credentials check."""
 
@@ -2661,6 +2916,8 @@ class SetCacheSettingsRuleExposedCredentialCheck(TypedDict, total=False):
 
 
 class SetCacheSettingsRulePositionBeforePosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     before: str
     """The ID of another rule to place the rule before.
 
@@ -2669,6 +2926,8 @@ class SetCacheSettingsRulePositionBeforePosition(TypedDict, total=False):
 
 
 class SetCacheSettingsRulePositionAfterPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     after: str
     """The ID of another rule to place the rule after.
 
@@ -2677,6 +2936,8 @@ class SetCacheSettingsRulePositionAfterPosition(TypedDict, total=False):
 
 
 class SetCacheSettingsRulePositionIndexPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     index: int
     """An index at which to place the rule, where index 1 is the first rule."""
 
@@ -2689,6 +2950,8 @@ SetCacheSettingsRulePosition: TypeAlias = Union[
 
 
 class SetCacheSettingsRuleRatelimit(TypedDict, total=False):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
@@ -2777,6 +3040,8 @@ class SetConfigurationRule(TypedDict, total=False):
 
 
 class SetConfigurationRuleActionParametersAutominify(TypedDict, total=False):
+    """Which file extensions to minify automatically."""
+
     css: bool
     """Whether to minify CSS files."""
 
@@ -2788,6 +3053,8 @@ class SetConfigurationRuleActionParametersAutominify(TypedDict, total=False):
 
 
 class SetConfigurationRuleActionParameters(TypedDict, total=False):
+    """The parameters configuring the rule's action."""
+
     automatic_https_rewrites: bool
     """Whether to enable Automatic HTTPS Rewrites."""
 
@@ -2844,6 +3111,8 @@ class SetConfigurationRuleActionParameters(TypedDict, total=False):
 
 
 class SetConfigurationRuleExposedCredentialCheck(TypedDict, total=False):
+    """Configuration for exposed credential checking."""
+
     password_expression: Required[str]
     """An expression that selects the password used in the credentials check."""
 
@@ -2852,6 +3121,8 @@ class SetConfigurationRuleExposedCredentialCheck(TypedDict, total=False):
 
 
 class SetConfigurationRulePositionBeforePosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     before: str
     """The ID of another rule to place the rule before.
 
@@ -2860,6 +3131,8 @@ class SetConfigurationRulePositionBeforePosition(TypedDict, total=False):
 
 
 class SetConfigurationRulePositionAfterPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     after: str
     """The ID of another rule to place the rule after.
 
@@ -2868,6 +3141,8 @@ class SetConfigurationRulePositionAfterPosition(TypedDict, total=False):
 
 
 class SetConfigurationRulePositionIndexPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     index: int
     """An index at which to place the rule, where index 1 is the first rule."""
 
@@ -2880,6 +3155,8 @@ SetConfigurationRulePosition: TypeAlias = Union[
 
 
 class SetConfigurationRuleRatelimit(TypedDict, total=False):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
@@ -2968,6 +3245,8 @@ class SkipRule(TypedDict, total=False):
 
 
 class SkipRuleActionParameters(TypedDict, total=False):
+    """The parameters configuring the rule's action."""
+
     phase: Literal["current"]
     """A phase to skip the execution of.
 
@@ -3003,6 +3282,8 @@ class SkipRuleActionParameters(TypedDict, total=False):
 
 
 class SkipRuleExposedCredentialCheck(TypedDict, total=False):
+    """Configuration for exposed credential checking."""
+
     password_expression: Required[str]
     """An expression that selects the password used in the credentials check."""
 
@@ -3011,6 +3292,8 @@ class SkipRuleExposedCredentialCheck(TypedDict, total=False):
 
 
 class SkipRulePositionBeforePosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     before: str
     """The ID of another rule to place the rule before.
 
@@ -3019,6 +3302,8 @@ class SkipRulePositionBeforePosition(TypedDict, total=False):
 
 
 class SkipRulePositionAfterPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     after: str
     """The ID of another rule to place the rule after.
 
@@ -3027,6 +3312,8 @@ class SkipRulePositionAfterPosition(TypedDict, total=False):
 
 
 class SkipRulePositionIndexPosition(TypedDict, total=False):
+    """An object configuring where the rule will be placed."""
+
     index: int
     """An index at which to place the rule, where index 1 is the first rule."""
 
@@ -3037,6 +3324,8 @@ SkipRulePosition: TypeAlias = Union[
 
 
 class SkipRuleRatelimit(TypedDict, total=False):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be

@@ -17,16 +17,22 @@ __all__ = [
 
 
 class ActionParametersAlgorithm(BaseModel):
+    """Compression algorithm to enable."""
+
     name: Optional[Literal["none", "auto", "default", "gzip", "brotli", "zstd"]] = None
     """Name of the compression algorithm to enable."""
 
 
 class ActionParameters(BaseModel):
+    """The parameters configuring the rule's action."""
+
     algorithms: List[ActionParametersAlgorithm]
     """Custom order for compression algorithms."""
 
 
 class ExposedCredentialCheck(BaseModel):
+    """Configuration for exposed credential checking."""
+
     password_expression: str
     """An expression that selects the password used in the credentials check."""
 
@@ -35,6 +41,8 @@ class ExposedCredentialCheck(BaseModel):
 
 
 class Ratelimit(BaseModel):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: List[str]
     """
     Characteristics of the request on which the rate limit counter will be

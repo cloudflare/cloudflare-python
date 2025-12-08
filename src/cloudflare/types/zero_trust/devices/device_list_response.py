@@ -8,6 +8,8 @@ __all__ = ["DeviceListResponse", "LastSeenRegistration", "LastSeenRegistrationPo
 
 
 class LastSeenRegistrationPolicy(BaseModel):
+    """A summary of the device profile evaluated for the registration."""
+
     id: str
     """The ID of the device settings profile."""
 
@@ -28,11 +30,15 @@ class LastSeenRegistrationPolicy(BaseModel):
 
 
 class LastSeenRegistration(BaseModel):
+    """The last seen registration for the device."""
+
     policy: Optional[LastSeenRegistrationPolicy] = None
     """A summary of the device profile evaluated for the registration."""
 
 
 class LastSeenUser(BaseModel):
+    """The last user to use the WARP device."""
+
     id: Optional[str] = None
     """UUID."""
 
@@ -44,6 +50,8 @@ class LastSeenUser(BaseModel):
 
 
 class DeviceListResponse(BaseModel):
+    """A WARP Device."""
+
     id: str
     """The unique ID of the device."""
 

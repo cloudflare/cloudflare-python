@@ -22,11 +22,15 @@ __all__ = [
 
 
 class ActionParametersCookieField(TypedDict, total=False):
+    """The cookie field to log."""
+
     name: Required[str]
     """The name of the cookie."""
 
 
 class ActionParametersRawResponseField(TypedDict, total=False):
+    """The raw response field to log."""
+
     name: Required[str]
     """The name of the response header."""
 
@@ -35,11 +39,15 @@ class ActionParametersRawResponseField(TypedDict, total=False):
 
 
 class ActionParametersRequestField(TypedDict, total=False):
+    """The raw request field to log."""
+
     name: Required[str]
     """The name of the header."""
 
 
 class ActionParametersResponseField(TypedDict, total=False):
+    """The transformed response field to log."""
+
     name: Required[str]
     """The name of the response header."""
 
@@ -48,11 +56,15 @@ class ActionParametersResponseField(TypedDict, total=False):
 
 
 class ActionParametersTransformedRequestField(TypedDict, total=False):
+    """The transformed request field to log."""
+
     name: Required[str]
     """The name of the header."""
 
 
 class ActionParameters(TypedDict, total=False):
+    """The parameters configuring the rule's action."""
+
     cookie_fields: Iterable[ActionParametersCookieField]
     """The cookie fields to log."""
 
@@ -70,6 +82,8 @@ class ActionParameters(TypedDict, total=False):
 
 
 class ExposedCredentialCheck(TypedDict, total=False):
+    """Configuration for exposed credential checking."""
+
     password_expression: Required[str]
     """An expression that selects the password used in the credentials check."""
 
@@ -78,6 +92,8 @@ class ExposedCredentialCheck(TypedDict, total=False):
 
 
 class Ratelimit(TypedDict, total=False):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be

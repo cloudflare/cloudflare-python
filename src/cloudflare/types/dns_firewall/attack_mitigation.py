@@ -8,6 +8,8 @@ __all__ = ["AttackMitigation"]
 
 
 class AttackMitigation(BaseModel):
+    """Attack mitigation settings"""
+
     enabled: Optional[bool] = None
     """
     When enabled, automatically mitigate random-prefix attacks to protect upstream

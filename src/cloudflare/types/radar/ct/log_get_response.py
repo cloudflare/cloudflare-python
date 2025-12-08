@@ -35,6 +35,8 @@ class CertificateLogPerformanceEndpoint(BaseModel):
 
 
 class CertificateLogPerformance(BaseModel):
+    """Log performance metrics, including averages and per-endpoint details."""
+
     endpoints: List[CertificateLogPerformanceEndpoint]
 
     response_time: float = FieldInfo(alias="responseTime")

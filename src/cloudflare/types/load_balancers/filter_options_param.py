@@ -9,6 +9,11 @@ __all__ = ["FilterOptionsParam"]
 
 
 class FilterOptionsParam(TypedDict, total=False):
+    """Filter options for a particular resource type (pool or origin).
+
+    Use null to reset.
+    """
+
     disable: bool
     """If set true, disable notifications for this type of resource (pool or origin)."""
 

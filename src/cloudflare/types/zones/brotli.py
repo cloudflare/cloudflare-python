@@ -10,6 +10,10 @@ __all__ = ["Brotli"]
 
 
 class Brotli(BaseModel):
+    """
+    When the client requesting an asset supports the Brotli compression algorithm, Cloudflare will serve a Brotli compressed version of the asset.
+    """
+
     id: Literal["brotli"]
     """ID of the zone setting."""
 

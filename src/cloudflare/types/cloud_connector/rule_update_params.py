@@ -16,6 +16,8 @@ class RuleUpdateParams(TypedDict, total=False):
 
 
 class RuleParameters(TypedDict, total=False):
+    """Parameters of Cloud Connector Rule"""
+
     host: str
     """Host to perform Cloud Connection to"""
 

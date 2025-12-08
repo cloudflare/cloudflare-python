@@ -11,6 +11,8 @@ __all__ = ["Organization", "Meta", "MetaFlags", "Parent", "Profile"]
 
 
 class MetaFlags(BaseModel):
+    """Enable features for Organizations."""
+
     account_creation: str
 
     account_deletion: str
@@ -60,6 +62,8 @@ class Profile(BaseModel):
 
 
 class Organization(BaseModel):
+    """References an Organization in the Cloudflare data model."""
+
     id: str
 
     create_time: datetime

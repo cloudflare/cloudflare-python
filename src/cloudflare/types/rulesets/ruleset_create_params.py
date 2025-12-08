@@ -62,6 +62,8 @@ class RulesetCreateParams(TypedDict, total=False):
 
 
 class RuleRulesetsChallengeRuleExposedCredentialCheck(TypedDict, total=False):
+    """Configuration for exposed credential checking."""
+
     password_expression: Required[str]
     """An expression that selects the password used in the credentials check."""
 
@@ -70,6 +72,8 @@ class RuleRulesetsChallengeRuleExposedCredentialCheck(TypedDict, total=False):
 
 
 class RuleRulesetsChallengeRuleRatelimit(TypedDict, total=False):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be
@@ -146,6 +150,8 @@ class RuleRulesetsChallengeRule(TypedDict, total=False):
 
 
 class RuleRulesetsJSChallengeRuleExposedCredentialCheck(TypedDict, total=False):
+    """Configuration for exposed credential checking."""
+
     password_expression: Required[str]
     """An expression that selects the password used in the credentials check."""
 
@@ -154,6 +160,8 @@ class RuleRulesetsJSChallengeRuleExposedCredentialCheck(TypedDict, total=False):
 
 
 class RuleRulesetsJSChallengeRuleRatelimit(TypedDict, total=False):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be

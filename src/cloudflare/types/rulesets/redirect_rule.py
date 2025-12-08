@@ -19,6 +19,8 @@ __all__ = [
 
 
 class ActionParametersFromList(BaseModel):
+    """A redirect based on a bulk list lookup."""
+
     key: str
     """An expression that evaluates to the list lookup key."""
 
@@ -27,6 +29,8 @@ class ActionParametersFromList(BaseModel):
 
 
 class ActionParametersFromValueTargetURL(BaseModel):
+    """A URL to redirect the request to."""
+
     expression: Optional[str] = None
     """An expression that evaluates to a URL to redirect the request to."""
 
@@ -35,6 +39,8 @@ class ActionParametersFromValueTargetURL(BaseModel):
 
 
 class ActionParametersFromValue(BaseModel):
+    """A redirect based on the request properties."""
+
     target_url: ActionParametersFromValueTargetURL
     """A URL to redirect the request to."""
 
@@ -46,6 +52,8 @@ class ActionParametersFromValue(BaseModel):
 
 
 class ActionParameters(BaseModel):
+    """The parameters configuring the rule's action."""
+
     from_list: Optional[ActionParametersFromList] = None
     """A redirect based on a bulk list lookup."""
 
@@ -54,6 +62,8 @@ class ActionParameters(BaseModel):
 
 
 class ExposedCredentialCheck(BaseModel):
+    """Configuration for exposed credential checking."""
+
     password_expression: str
     """An expression that selects the password used in the credentials check."""
 
@@ -62,6 +72,8 @@ class ExposedCredentialCheck(BaseModel):
 
 
 class Ratelimit(BaseModel):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: List[str]
     """
     Characteristics of the request on which the rate limit counter will be

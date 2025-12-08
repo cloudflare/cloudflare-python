@@ -11,4 +11,6 @@ class IP(BaseModel):
 
 
 class IPRule(BaseModel):
+    """Matches an IP address block."""
+
     ip: IP

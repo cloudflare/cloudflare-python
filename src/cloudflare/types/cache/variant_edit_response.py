@@ -10,6 +10,8 @@ __all__ = ["VariantEditResponse", "Value"]
 
 
 class Value(BaseModel):
+    """Value of the zone setting."""
+
     avif: Optional[List[str]] = None
     """
     List of strings with the MIME types of all the variants that should be served

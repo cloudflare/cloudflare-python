@@ -15,6 +15,10 @@ __all__ = ["Rules", "FixedResponse", "Overrides"]
 
 
 class FixedResponse(BaseModel):
+    """
+    A collection of fields used to directly respond to the eyeball instead of routing to a pool. If a fixed_response is supplied the rule will be marked as terminates.
+    """
+
     content_type: Optional[str] = None
     """The http 'Content-Type' header to include in the response."""
 
@@ -29,6 +33,10 @@ class FixedResponse(BaseModel):
 
 
 class Overrides(BaseModel):
+    """
+    A collection of overrides to apply to the load balancer when this rule's condition is true. All fields are optional.
+    """
+
     adaptive_routing: Optional[AdaptiveRouting] = None
     """
     Controls features that modify the routing of requests to pools and origins in
@@ -162,6 +170,10 @@ class Overrides(BaseModel):
 
 
 class Rules(BaseModel):
+    """
+    A rule object containing conditions and overrides for this load balancer to evaluate.
+    """
+
     condition: Optional[str] = None
     """The condition expressions to evaluate.
 

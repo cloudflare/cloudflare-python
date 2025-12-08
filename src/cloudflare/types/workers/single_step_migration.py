@@ -14,4 +14,6 @@ class TransferredClass(BaseModel):
 
 
 class SingleStepMigration(BaseModel):
+    """A single set of migrations to apply."""
+
     pass

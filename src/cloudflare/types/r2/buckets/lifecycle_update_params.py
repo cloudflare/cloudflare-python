@@ -36,6 +36,8 @@ class LifecycleUpdateParams(TypedDict, total=False):
 
 
 class RuleConditions(TypedDict, total=False):
+    """Conditions that apply to all transitions of this rule."""
+
     prefix: Required[str]
     """
     Transitions will only apply to objects/uploads in the bucket that start with the
@@ -45,12 +47,18 @@ class RuleConditions(TypedDict, total=False):
 
 
 class RuleAbortMultipartUploadsTransitionCondition(TypedDict, total=False):
+    """
+    Condition for lifecycle transitions to apply after an object reaches an age in seconds.
+    """
+
     max_age: Required[Annotated[int, PropertyInfo(alias="maxAge")]]
 
     type: Required[Literal["Age"]]
 
 
 class RuleAbortMultipartUploadsTransition(TypedDict, total=False):
+    """Transition to abort ongoing multipart uploads."""
+
     condition: RuleAbortMultipartUploadsTransitionCondition
     """
     Condition for lifecycle transitions to apply after an object reaches an age in
@@ -59,12 +67,18 @@ class RuleAbortMultipartUploadsTransition(TypedDict, total=False):
 
 
 class RuleDeleteObjectsTransitionConditionR2LifecycleAgeCondition(TypedDict, total=False):
+    """
+    Condition for lifecycle transitions to apply after an object reaches an age in seconds.
+    """
+
     max_age: Required[Annotated[int, PropertyInfo(alias="maxAge")]]
 
     type: Required[Literal["Age"]]
 
 
 class RuleDeleteObjectsTransitionConditionR2LifecycleDateCondition(TypedDict, total=False):
+    """Condition for lifecycle transitions to apply on a specific date."""
+
     date: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
 
     type: Required[Literal["Date"]]
@@ -77,6 +91,8 @@ RuleDeleteObjectsTransitionCondition: TypeAlias = Union[
 
 
 class RuleDeleteObjectsTransition(TypedDict, total=False):
+    """Transition to delete objects."""
+
     condition: RuleDeleteObjectsTransitionCondition
     """
     Condition for lifecycle transitions to apply after an object reaches an age in
@@ -85,12 +101,18 @@ class RuleDeleteObjectsTransition(TypedDict, total=False):
 
 
 class RuleStorageClassTransitionConditionR2LifecycleAgeCondition(TypedDict, total=False):
+    """
+    Condition for lifecycle transitions to apply after an object reaches an age in seconds.
+    """
+
     max_age: Required[Annotated[int, PropertyInfo(alias="maxAge")]]
 
     type: Required[Literal["Age"]]
 
 
 class RuleStorageClassTransitionConditionR2LifecycleDateCondition(TypedDict, total=False):
+    """Condition for lifecycle transitions to apply on a specific date."""
+
     date: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
 
     type: Required[Literal["Date"]]

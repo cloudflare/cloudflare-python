@@ -11,6 +11,8 @@ __all__ = ["URIRecord", "Data", "Settings"]
 
 
 class Data(BaseModel):
+    """Components of a URI record."""
+
     target: Optional[str] = None
     """The record content."""
 
@@ -19,6 +21,8 @@ class Data(BaseModel):
 
 
 class Settings(BaseModel):
+    """Settings for the DNS record."""
+
     ipv4_only: Optional[bool] = None
     """
     When enabled, only A records will be generated, and AAAA records will not be

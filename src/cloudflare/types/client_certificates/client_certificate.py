@@ -9,6 +9,8 @@ __all__ = ["ClientCertificate", "CertificateAuthority"]
 
 
 class CertificateAuthority(BaseModel):
+    """Certificate Authority used to issue the Client Certificate"""
+
     id: Optional[str] = None
 
     name: Optional[str] = None

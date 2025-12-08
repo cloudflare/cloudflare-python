@@ -13,6 +13,8 @@ __all__ = [
 
 
 class PreviewGetResponseItemOriginPreviewGetResponseItemOriginItem(BaseModel):
+    """The origin ipv4/ipv6 address or domain name mapped to its health data."""
+
     failure_reason: Optional[str] = None
 
     healthy: Optional[bool] = None

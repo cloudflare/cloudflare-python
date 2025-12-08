@@ -33,11 +33,15 @@ class BodyPositionAPIShieldIndex(TypedDict, total=False):
 
 
 class BodyPositionAPIShieldBefore(TypedDict, total=False):
+    """Move rule to after rule with ID."""
+
     before: str
     """Move rule to before rule with this ID."""
 
 
 class BodyPositionAPIShieldAfter(TypedDict, total=False):
+    """Move rule to before rule with ID."""
+
     after: str
     """Move rule to after rule with this ID."""
 
@@ -56,6 +60,11 @@ class BodySelectorInclude(TypedDict, total=False):
 
 
 class BodySelector(TypedDict, total=False):
+    """Select operations covered by this rule.
+
+    For details on selectors, see the [Cloudflare Docs](https://developers.cloudflare.com/api-shield/security/jwt-validation/).
+    """
+
     exclude: Optional[Iterable[BodySelectorExclude]]
     """Ignore operations that were otherwise included by `include`."""
 

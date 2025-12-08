@@ -21,11 +21,15 @@ __all__ = [
 
 
 class ActionParametersCookieField(BaseModel):
+    """The cookie field to log."""
+
     name: str
     """The name of the cookie."""
 
 
 class ActionParametersRawResponseField(BaseModel):
+    """The raw response field to log."""
+
     name: str
     """The name of the response header."""
 
@@ -34,11 +38,15 @@ class ActionParametersRawResponseField(BaseModel):
 
 
 class ActionParametersRequestField(BaseModel):
+    """The raw request field to log."""
+
     name: str
     """The name of the header."""
 
 
 class ActionParametersResponseField(BaseModel):
+    """The transformed response field to log."""
+
     name: str
     """The name of the response header."""
 
@@ -47,11 +55,15 @@ class ActionParametersResponseField(BaseModel):
 
 
 class ActionParametersTransformedRequestField(BaseModel):
+    """The transformed request field to log."""
+
     name: str
     """The name of the header."""
 
 
 class ActionParameters(BaseModel):
+    """The parameters configuring the rule's action."""
+
     cookie_fields: Optional[List[ActionParametersCookieField]] = None
     """The cookie fields to log."""
 
@@ -69,6 +81,8 @@ class ActionParameters(BaseModel):
 
 
 class ExposedCredentialCheck(BaseModel):
+    """Configuration for exposed credential checking."""
+
     password_expression: str
     """An expression that selects the password used in the credentials check."""
 
@@ -77,6 +91,8 @@ class ExposedCredentialCheck(BaseModel):
 
 
 class Ratelimit(BaseModel):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: List[str]
     """
     Characteristics of the request on which the rate limit counter will be

@@ -113,6 +113,8 @@ class BindingWorkersBindingKindDataBlob(BaseModel):
 
 
 class BindingWorkersBindingKindDispatchNamespaceOutboundWorker(BaseModel):
+    """Outbound worker."""
+
     environment: Optional[str] = None
     """Environment of the outbound worker."""
 
@@ -121,6 +123,8 @@ class BindingWorkersBindingKindDispatchNamespaceOutboundWorker(BaseModel):
 
 
 class BindingWorkersBindingKindDispatchNamespaceOutbound(BaseModel):
+    """Outbound worker."""
+
     params: Optional[List[str]] = None
     """
     Pass information from the Dispatch Worker to the Outbound Worker through the
@@ -478,6 +482,8 @@ Binding: TypeAlias = Annotated[
 
 
 class Limits(BaseModel):
+    """Limits to apply for this Worker."""
+
     cpu_ms: Optional[int] = None
     """The amount of CPU time this Worker can use in milliseconds."""
 
@@ -490,6 +496,8 @@ Migrations: TypeAlias = Union[SingleStepMigration, MigrationsWorkersMultipleStep
 
 
 class ObservabilityLogs(BaseModel):
+    """Log settings for the Worker."""
+
     enabled: bool
     """Whether logs are enabled for the Worker."""
 
@@ -511,6 +519,8 @@ class ObservabilityLogs(BaseModel):
 
 
 class Observability(BaseModel):
+    """Observability settings for the Worker."""
+
     enabled: bool
     """Whether observability is enabled for the Worker."""
 
@@ -525,6 +535,10 @@ class Observability(BaseModel):
 
 
 class Placement(BaseModel):
+    """
+    Configuration for [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    """
+
     mode: Optional[Literal["smart"]] = None
     """
     Enables

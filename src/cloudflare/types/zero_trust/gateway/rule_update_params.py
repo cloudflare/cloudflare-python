@@ -114,6 +114,11 @@ class RuleUpdateParams(TypedDict, total=False):
 
 
 class Expiration(TypedDict, total=False):
+    """Defines the expiration time stamp and default duration of a DNS policy.
+
+    Takes precedence over the policy's `schedule` configuration, if any. This  does not apply to HTTP or network policies. Settable only for `dns` rules.
+    """
+
     expires_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
     """Show the timestamp when the policy expires and stops applying.
 

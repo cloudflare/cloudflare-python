@@ -49,6 +49,8 @@ _ConditionRequestIPReservedKeywords = TypedDict(
 
 
 class ConditionRequestIP(_ConditionRequestIPReservedKeywords, total=False):
+    """Client IP restrictions."""
+
     not_in: SequenceNotStr[TokenConditionCIDRList]
     """List of IPv4/IPv6 CIDR addresses."""
 

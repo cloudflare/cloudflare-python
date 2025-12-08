@@ -27,6 +27,8 @@ __all__ = [
 
 
 class CustomEntryProfile(BaseModel):
+    """Computed entry field for a profile that an entry is shared into."""
+
     id: str
 
     name: str
@@ -64,6 +66,8 @@ class PredefinedEntryConfidence(BaseModel):
 
 
 class PredefinedEntryProfile(BaseModel):
+    """Computed entry field for a profile that an entry is shared into."""
+
     id: str
 
     name: str
@@ -96,6 +100,8 @@ class PredefinedEntry(BaseModel):
 
 
 class IntegrationEntryProfile(BaseModel):
+    """Computed entry field for a profile that an entry is shared into."""
+
     id: str
 
     name: str
@@ -120,6 +126,8 @@ class IntegrationEntry(BaseModel):
 
 
 class ExactDataEntryProfile(BaseModel):
+    """Computed entry field for a profile that an entry is shared into."""
+
     id: str
 
     name: str
@@ -150,6 +158,8 @@ class ExactDataEntry(BaseModel):
 
 
 class DocumentFingerprintEntryProfile(BaseModel):
+    """Computed entry field for a profile that an entry is shared into."""
+
     id: str
 
     name: str
@@ -172,6 +182,8 @@ class DocumentFingerprintEntry(BaseModel):
 
 
 class WordListEntryProfile(BaseModel):
+    """Computed entry field for a profile that an entry is shared into."""
+
     id: str
 
     name: str

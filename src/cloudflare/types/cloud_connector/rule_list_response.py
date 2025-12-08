@@ -9,6 +9,8 @@ __all__ = ["RuleListResponse", "Parameters"]
 
 
 class Parameters(BaseModel):
+    """Parameters of Cloud Connector Rule"""
+
     host: Optional[str] = None
     """Host to perform Cloud Connection to"""
 

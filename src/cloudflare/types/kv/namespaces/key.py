@@ -8,6 +8,11 @@ __all__ = ["Key"]
 
 
 class Key(BaseModel):
+    """A name for a value.
+
+    A value stored under a given key may be retrieved via the same key.
+    """
+
     name: str
     """A key's name.
 

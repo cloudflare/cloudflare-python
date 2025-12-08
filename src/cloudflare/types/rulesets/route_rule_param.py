@@ -18,6 +18,8 @@ __all__ = [
 
 
 class ActionParametersOrigin(TypedDict, total=False):
+    """An origin to route to."""
+
     host: str
     """A resolved host to route to."""
 
@@ -26,11 +28,15 @@ class ActionParametersOrigin(TypedDict, total=False):
 
 
 class ActionParametersSNI(TypedDict, total=False):
+    """A Server Name Indication (SNI) override."""
+
     value: Required[str]
     """A value to override the SNI to."""
 
 
 class ActionParameters(TypedDict, total=False):
+    """The parameters configuring the rule's action."""
+
     host_header: str
     """A value to rewrite the HTTP host header to."""
 
@@ -42,6 +48,8 @@ class ActionParameters(TypedDict, total=False):
 
 
 class ExposedCredentialCheck(TypedDict, total=False):
+    """Configuration for exposed credential checking."""
+
     password_expression: Required[str]
     """An expression that selects the password used in the credentials check."""
 
@@ -50,6 +58,8 @@ class ExposedCredentialCheck(TypedDict, total=False):
 
 
 class Ratelimit(TypedDict, total=False):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be

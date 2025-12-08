@@ -8,5 +8,7 @@ __all__ = ["CatchAllMatcher"]
 
 
 class CatchAllMatcher(BaseModel):
+    """Matcher for catch-all routing rule."""
+
     type: Literal["all"]
     """Type of matcher. Default is 'all'."""

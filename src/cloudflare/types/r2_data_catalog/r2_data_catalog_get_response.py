@@ -9,6 +9,8 @@ __all__ = ["R2DataCatalogGetResponse", "MaintenanceConfig", "MaintenanceConfigCo
 
 
 class MaintenanceConfigCompaction(BaseModel):
+    """Configures compaction for catalog maintenance."""
+
     state: Literal["enabled", "disabled"]
     """Specifies the state of maintenance operations."""
 
@@ -17,11 +19,15 @@ class MaintenanceConfigCompaction(BaseModel):
 
 
 class MaintenanceConfig(BaseModel):
+    """Configures maintenance for the catalog."""
+
     compaction: Optional[MaintenanceConfigCompaction] = None
     """Configures compaction for catalog maintenance."""
 
 
 class R2DataCatalogGetResponse(BaseModel):
+    """Contains R2 Data Catalog information."""
+
     id: str
     """Use this to uniquely identify the catalog."""
 

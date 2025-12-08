@@ -13,4 +13,6 @@ class DevicePosture(TypedDict, total=False):
 
 
 class AccessDevicePostureRuleParam(TypedDict, total=False):
+    """Enforces a device posture rule has run successfully"""
+
     device_posture: Required[DevicePosture]

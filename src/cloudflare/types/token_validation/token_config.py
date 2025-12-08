@@ -17,6 +17,8 @@ __all__ = [
 
 
 class CredentialsKeyAPIShieldCredentialsJWTKeyRSA(BaseModel):
+    """JSON representation of an RSA key."""
+
     alg: Literal["RS256", "RS384", "RS512", "PS256", "PS384", "PS512"]
     """Algorithm"""
 
@@ -34,6 +36,8 @@ class CredentialsKeyAPIShieldCredentialsJWTKeyRSA(BaseModel):
 
 
 class CredentialsKeyAPIShieldCredentialsJWTKeyEcEs256(BaseModel):
+    """JSON representation of an ES256 key"""
+
     alg: Literal["ES256"]
     """Algorithm"""
 
@@ -54,6 +58,8 @@ class CredentialsKeyAPIShieldCredentialsJWTKeyEcEs256(BaseModel):
 
 
 class CredentialsKeyAPIShieldCredentialsJWTKeyEcEs384(BaseModel):
+    """JSON representation of an ES384 key"""
+
     alg: Literal["ES384"]
     """Algorithm"""
 

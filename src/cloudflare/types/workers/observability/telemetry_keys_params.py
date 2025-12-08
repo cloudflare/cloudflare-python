@@ -73,6 +73,8 @@ class Filter(TypedDict, total=False):
 
 
 class KeyNeedle(TypedDict, total=False):
+    """Search for a specific substring in the keys."""
+
     value: Required[Union[str, float, bool]]
 
     is_regex: Annotated[bool, PropertyInfo(alias="isRegex")]
@@ -81,6 +83,8 @@ class KeyNeedle(TypedDict, total=False):
 
 
 class Needle(TypedDict, total=False):
+    """Search for a specific substring in any of the events"""
+
     value: Required[Union[str, float, bool]]
 
     is_regex: Annotated[bool, PropertyInfo(alias="isRegex")]

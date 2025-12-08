@@ -30,6 +30,11 @@ class Slot(BaseModel):
 
 
 class Sampling(BaseModel):
+    """Specifies the sampling applied, if any, to the slots response.
+
+    When sampled, results shown represent the first test run to the start of each sampling interval.
+    """
+
     unit: Literal["hours"]
 
     value: int

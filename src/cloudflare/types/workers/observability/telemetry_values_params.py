@@ -85,6 +85,8 @@ class Filter(TypedDict, total=False):
 
 
 class Needle(TypedDict, total=False):
+    """Search for a specific substring in the event."""
+
     value: Required[Union[str, float, bool]]
 
     is_regex: Annotated[bool, PropertyInfo(alias="isRegex")]

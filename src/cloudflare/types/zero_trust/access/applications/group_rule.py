@@ -11,4 +11,6 @@ class Group(BaseModel):
 
 
 class GroupRule(BaseModel):
+    """Matches an Access group."""
+
     group: Group

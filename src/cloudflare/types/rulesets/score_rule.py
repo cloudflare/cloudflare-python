@@ -11,11 +11,15 @@ __all__ = ["ScoreRule", "ActionParameters", "ExposedCredentialCheck", "Ratelimit
 
 
 class ActionParameters(BaseModel):
+    """The parameters configuring the rule's action."""
+
     increment: int
     """A delta to change the score by, which can be either positive or negative."""
 
 
 class ExposedCredentialCheck(BaseModel):
+    """Configuration for exposed credential checking."""
+
     password_expression: str
     """An expression that selects the password used in the credentials check."""
 
@@ -24,6 +28,8 @@ class ExposedCredentialCheck(BaseModel):
 
 
 class Ratelimit(BaseModel):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: List[str]
     """
     Characteristics of the request on which the rate limit counter will be

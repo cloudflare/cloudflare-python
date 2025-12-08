@@ -28,6 +28,8 @@ class LoggingUpdateParams(TypedDict, total=False):
 
 
 class SettingsByRuleTypeDNS(TypedDict, total=False):
+    """Configure logging settings for DNS firewall."""
+
     log_all: bool
     """Specify whether to log all requests to this service."""
 
@@ -36,6 +38,8 @@ class SettingsByRuleTypeDNS(TypedDict, total=False):
 
 
 class SettingsByRuleTypeHTTP(TypedDict, total=False):
+    """Configure logging settings for HTTP/HTTPS firewall."""
+
     log_all: bool
     """Specify whether to log all requests to this service."""
 
@@ -44,6 +48,8 @@ class SettingsByRuleTypeHTTP(TypedDict, total=False):
 
 
 class SettingsByRuleTypeL4(TypedDict, total=False):
+    """Configure logging settings for Network firewall."""
+
     log_all: bool
     """Specify whether to log all requests to this service."""
 
@@ -52,6 +58,8 @@ class SettingsByRuleTypeL4(TypedDict, total=False):
 
 
 class SettingsByRuleType(TypedDict, total=False):
+    """Configure logging settings for each rule type."""
+
     dns: SettingsByRuleTypeDNS
     """Configure logging settings for DNS firewall."""
 

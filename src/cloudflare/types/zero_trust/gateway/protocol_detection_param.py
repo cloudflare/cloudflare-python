@@ -9,5 +9,7 @@ __all__ = ["ProtocolDetectionParam"]
 
 
 class ProtocolDetectionParam(TypedDict, total=False):
+    """Specify whether to detect protocols from the initial bytes of client traffic."""
+
     enabled: Optional[bool]
     """Specify whether to detect protocols from the initial bytes of client traffic."""

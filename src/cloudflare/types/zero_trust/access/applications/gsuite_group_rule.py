@@ -14,4 +14,9 @@ class GSuite(BaseModel):
 
 
 class GSuiteGroupRule(BaseModel):
+    """
+    Matches a group in Google Workspace.
+    Requires a Google Workspace identity provider.
+    """
+
     gsuite: GSuite

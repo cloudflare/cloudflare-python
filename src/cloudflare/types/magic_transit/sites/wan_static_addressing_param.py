@@ -8,6 +8,11 @@ __all__ = ["WANStaticAddressingParam"]
 
 
 class WANStaticAddressingParam(TypedDict, total=False):
+    """(optional) if omitted, use DHCP.
+
+    Submit secondary_address when site is in high availability mode.
+    """
+
     address: Required[str]
     """A valid CIDR notation representing an IP range."""
 

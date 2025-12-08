@@ -8,6 +8,8 @@ __all__ = ["PCAPFilter"]
 
 
 class PCAPFilter(BaseModel):
+    """The packet capture filter. When this field is empty, all packets are captured."""
+
     destination_address: Optional[str] = None
     """The destination IP address of the packet."""
 

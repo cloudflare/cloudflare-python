@@ -9,6 +9,8 @@ __all__ = ["SnippetUpdateResponse"]
 
 
 class SnippetUpdateResponse(BaseModel):
+    """A result."""
+
     created_on: datetime
     """The timestamp of when the snippet was created."""
 

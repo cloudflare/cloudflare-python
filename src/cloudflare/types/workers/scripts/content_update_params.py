@@ -34,6 +34,8 @@ class ContentUpdateParams(TypedDict, total=False):
 
 
 class Metadata(TypedDict, total=False):
+    """JSON-encoded metadata about the uploaded parts and Worker configuration."""
+
     body_part: str
     """Name of the uploaded file that contains the Worker script (e.g.
 

@@ -8,9 +8,13 @@ __all__ = ["AnyValidServiceTokenRuleParam", "AnyValidServiceToken"]
 
 
 class AnyValidServiceToken(TypedDict, total=False):
+    """An empty object which matches on all service tokens."""
+
     pass
 
 
 class AnyValidServiceTokenRuleParam(TypedDict, total=False):
+    """Matches any valid Access Service Token"""
+
     any_valid_service_token: Required[AnyValidServiceToken]
     """An empty object which matches on all service tokens."""

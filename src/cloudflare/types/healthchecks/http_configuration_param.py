@@ -11,6 +11,8 @@ __all__ = ["HTTPConfigurationParam"]
 
 
 class HTTPConfigurationParam(TypedDict, total=False):
+    """Parameters specific to an HTTP or HTTPS health check."""
+
     allow_insecure: bool
     """Do not validate the certificate when the health check uses HTTPS."""
 

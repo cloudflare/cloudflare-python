@@ -9,6 +9,8 @@ __all__ = ["DatabaseImportResponse", "Result", "ResultMeta", "ResultMetaTimings"
 
 
 class ResultMetaTimings(BaseModel):
+    """Various durations for the query."""
+
     sql_duration_ms: Optional[float] = None
     """The duration of the SQL query execution inside the database.
 
@@ -61,6 +63,8 @@ class ResultMeta(BaseModel):
 
 
 class Result(BaseModel):
+    """Only present when status = 'complete'"""
+
     final_bookmark: Optional[str] = None
     """
     The time-travel bookmark if you need restore your D1 to directly after the

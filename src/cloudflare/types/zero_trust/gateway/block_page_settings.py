@@ -9,6 +9,8 @@ __all__ = ["BlockPageSettings"]
 
 
 class BlockPageSettings(BaseModel):
+    """Specify block page layout settings."""
+
     background_color: Optional[str] = None
     """
     Specify the block page background color in `#rrggbb` format when the mode is

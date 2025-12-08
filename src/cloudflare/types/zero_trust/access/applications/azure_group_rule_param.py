@@ -18,4 +18,9 @@ class AzureAD(TypedDict, total=False):
 
 
 class AzureGroupRuleParam(TypedDict, total=False):
+    """
+    Matches an Azure group.
+    Requires an Azure identity provider.
+    """
+
     azure_ad: Required[Annotated[AzureAD, PropertyInfo(alias="azureAD")]]

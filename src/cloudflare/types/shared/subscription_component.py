@@ -8,6 +8,8 @@ __all__ = ["SubscriptionComponent"]
 
 
 class SubscriptionComponent(BaseModel):
+    """A component value for a subscription."""
+
     default: Optional[float] = None
     """The default amount assigned."""
 

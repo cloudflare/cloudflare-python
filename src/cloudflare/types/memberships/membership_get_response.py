@@ -21,6 +21,8 @@ __all__ = [
 
 
 class Permissions(BaseModel):
+    """All access permissions for the user at the account."""
+
     analytics: Optional[PermissionGrant] = None
 
     billing: Optional[PermissionGrant] = None
@@ -47,12 +49,18 @@ class Permissions(BaseModel):
 
 
 class PolicyPermissionGroupMeta(BaseModel):
+    """Attributes associated to the permission group."""
+
     key: Optional[str] = None
 
     value: Optional[str] = None
 
 
 class PolicyPermissionGroup(BaseModel):
+    """
+    A named group of permissions that map to a group of operations against resources.
+    """
+
     id: str
     """Identifier of the permission group."""
 
@@ -64,6 +72,10 @@ class PolicyPermissionGroup(BaseModel):
 
 
 class PolicyResourceGroupScopeObject(BaseModel):
+    """
+    A scope object represents any resource that can have actions applied against invite.
+    """
+
     key: str
     """
     This is a combination of pre-defined resource name and identifier (like Zone ID
@@ -72,6 +84,8 @@ class PolicyResourceGroupScopeObject(BaseModel):
 
 
 class PolicyResourceGroupScope(BaseModel):
+    """A scope is a combination of scope objects which provides additional context."""
+
     key: str
     """
     This is a combination of pre-defined resource name and identifier (like Account
@@ -83,12 +97,16 @@ class PolicyResourceGroupScope(BaseModel):
 
 
 class PolicyResourceGroupMeta(BaseModel):
+    """Attributes associated to the resource group."""
+
     key: Optional[str] = None
 
     value: Optional[str] = None
 
 
 class PolicyResourceGroup(BaseModel):
+    """A group of scoped resources."""
+
     id: str
     """Identifier of the resource group."""
 

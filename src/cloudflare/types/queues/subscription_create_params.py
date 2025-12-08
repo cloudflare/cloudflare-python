@@ -43,6 +43,8 @@ class SubscriptionCreateParams(TypedDict, total=False):
 
 
 class Destination(TypedDict, total=False):
+    """Destination configuration for the subscription"""
+
     queue_id: Required[str]
     """ID of the target queue"""
 

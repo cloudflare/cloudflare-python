@@ -8,6 +8,8 @@ __all__ = ["SubscriptionZone"]
 
 
 class SubscriptionZone(BaseModel):
+    """A simple zone object. May have null properties if not a zone subscription."""
+
     id: Optional[str] = None
     """Identifier"""
 

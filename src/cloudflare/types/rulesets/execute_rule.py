@@ -20,11 +20,15 @@ __all__ = [
 
 
 class ActionParametersMatchedData(BaseModel):
+    """The configuration to use for matched data logging."""
+
     public_key: str
     """The public key to encrypt matched data logs with."""
 
 
 class ActionParametersOverridesCategory(BaseModel):
+    """A category-level override."""
+
     category: str
     """The name of the category to override."""
 
@@ -42,6 +46,8 @@ class ActionParametersOverridesCategory(BaseModel):
 
 
 class ActionParametersOverridesRule(BaseModel):
+    """A rule-level override."""
+
     id: str
     """The ID of the rule to override."""
 
@@ -62,6 +68,8 @@ class ActionParametersOverridesRule(BaseModel):
 
 
 class ActionParametersOverrides(BaseModel):
+    """A set of overrides to apply to the target ruleset."""
+
     action: Optional[str] = None
     """An action to override all rules with.
 
@@ -92,6 +100,8 @@ class ActionParametersOverrides(BaseModel):
 
 
 class ActionParameters(BaseModel):
+    """The parameters configuring the rule's action."""
+
     id: str
     """The ID of the ruleset to execute."""
 
@@ -103,6 +113,8 @@ class ActionParameters(BaseModel):
 
 
 class ExposedCredentialCheck(BaseModel):
+    """Configuration for exposed credential checking."""
+
     password_expression: str
     """An expression that selects the password used in the credentials check."""
 
@@ -111,6 +123,8 @@ class ExposedCredentialCheck(BaseModel):
 
 
 class Ratelimit(BaseModel):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: List[str]
     """
     Characteristics of the request on which the rate limit counter will be

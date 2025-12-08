@@ -180,6 +180,8 @@ class AddStyleTag(TypedDict, total=False):
 
 
 class Authenticate(TypedDict, total=False):
+    """Provide credentials for HTTP authentication."""
+
     password: Required[str]
 
     username: Required[str]
@@ -216,6 +218,8 @@ class Cookie(TypedDict, total=False):
 
 
 class GotoOptions(TypedDict, total=False):
+    """Check [options](https://pptr.dev/api/puppeteer.gotooptions)."""
+
     referer: str
 
     referrer_policy: Annotated[str, PropertyInfo(alias="referrerPolicy")]
@@ -244,6 +248,8 @@ class ScreenshotOptionsClip(TypedDict, total=False):
 
 
 class ScreenshotOptions(TypedDict, total=False):
+    """Check [options](https://pptr.dev/api/puppeteer.screenshotoptions)."""
+
     capture_beyond_viewport: Annotated[bool, PropertyInfo(alias="captureBeyondViewport")]
 
     clip: ScreenshotOptionsClip
@@ -264,6 +270,8 @@ class ScreenshotOptions(TypedDict, total=False):
 
 
 class Viewport(TypedDict, total=False):
+    """Check [options](https://pptr.dev/api/puppeteer.page.setviewport)."""
+
     height: Required[float]
 
     width: Required[float]
@@ -278,6 +286,11 @@ class Viewport(TypedDict, total=False):
 
 
 class WaitForSelector(TypedDict, total=False):
+    """Wait for the selector to appear in page.
+
+    Check [options](https://pptr.dev/api/puppeteer.page.waitforselector).
+    """
+
     selector: Required[str]
 
     hidden: Literal[True]

@@ -24,6 +24,8 @@ class ConfigurationUpdateParams(TypedDict, total=False):
 
 
 class AuthIDCharacteristicAPIShieldAuthIDCharacteristic(TypedDict, total=False):
+    """Auth ID Characteristic"""
+
     name: Required[str]
     """The name of the characteristic field, i.e., the header or cookie name."""
 
@@ -32,6 +34,8 @@ class AuthIDCharacteristicAPIShieldAuthIDCharacteristic(TypedDict, total=False):
 
 
 class AuthIDCharacteristicAPIShieldAuthIDCharacteristicJWTClaim(TypedDict, total=False):
+    """Auth ID Characteristic extracted from JWT Token Claims"""
+
     name: Required[str]
     """
     Claim location expressed as `$(token_config_id):$(json_path)`, where

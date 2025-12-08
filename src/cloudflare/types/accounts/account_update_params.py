@@ -27,10 +27,14 @@ class AccountUpdateParams(TypedDict, total=False):
 
 
 class ManagedBy(TypedDict, total=False):
+    """Parent container details"""
+
     pass
 
 
 class Settings(TypedDict, total=False):
+    """Account settings"""
+
     abuse_contact_email: str
     """Sets an abuse contact email to notify for abuse reports."""
 

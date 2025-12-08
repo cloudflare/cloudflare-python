@@ -8,6 +8,8 @@ __all__ = ["SiteLocationParam"]
 
 
 class SiteLocationParam(TypedDict, total=False):
+    """Location of site in latitude and longitude."""
+
     lat: str
     """Latitude"""
 

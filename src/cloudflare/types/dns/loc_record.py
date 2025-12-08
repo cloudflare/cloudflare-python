@@ -11,6 +11,8 @@ __all__ = ["LOCRecord", "Data", "Settings"]
 
 
 class Data(BaseModel):
+    """Components of a LOC record."""
+
     altitude: Optional[float] = None
     """Altitude of location in meters."""
 
@@ -49,6 +51,8 @@ class Data(BaseModel):
 
 
 class Settings(BaseModel):
+    """Settings for the DNS record."""
+
     ipv4_only: Optional[bool] = None
     """
     When enabled, only A records will be generated, and AAAA records will not be

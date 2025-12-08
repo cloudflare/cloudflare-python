@@ -8,6 +8,8 @@ __all__ = ["ConsumerScript"]
 
 
 class ConsumerScript(BaseModel):
+    """A reference to a script that will consume logs from the attached Worker."""
+
     service: str
     """Name of Worker that is to be the consumer."""
 

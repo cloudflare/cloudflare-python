@@ -12,6 +12,8 @@ __all__ = ["LOCRecordParam", "Data", "Settings"]
 
 
 class Data(TypedDict, total=False):
+    """Components of a LOC record."""
+
     altitude: float
     """Altitude of location in meters."""
 
@@ -50,6 +52,8 @@ class Data(TypedDict, total=False):
 
 
 class Settings(TypedDict, total=False):
+    """Settings for the DNS record."""
+
     ipv4_only: bool
     """
     When enabled, only A records will be generated, and AAAA records will not be

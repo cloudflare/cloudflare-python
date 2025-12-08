@@ -165,6 +165,8 @@ class RunQueryParametersHaving(BaseModel):
 
 
 class RunQueryParametersNeedle(BaseModel):
+    """Define an expression to search using full-text search."""
+
     value: Union[str, float, bool]
 
     is_regex: Optional[bool] = FieldInfo(alias="isRegex", default=None)
@@ -173,6 +175,8 @@ class RunQueryParametersNeedle(BaseModel):
 
 
 class RunQueryParametersOrderBy(BaseModel):
+    """Configure the order of the results returned by the query."""
+
     value: str
     """Configure which Calculation to order the results by."""
 
@@ -237,6 +241,8 @@ class RunQuery(BaseModel):
 
 
 class RunTimeframe(BaseModel):
+    """Time range for the query execution"""
+
     from_: float = FieldInfo(alias="from")
     """Start timestamp for the query timeframe (Unix timestamp in milliseconds)"""
 
@@ -262,6 +268,8 @@ class RunStatistics(BaseModel):
 
 
 class Run(BaseModel):
+    """A Workers Observability Query Object"""
+
     id: str
 
     account_id: str = FieldInfo(alias="accountId")
@@ -291,6 +299,10 @@ class Run(BaseModel):
 
 
 class Statistics(BaseModel):
+    """
+    The statistics object contains information about query performance from the database, it does not include any network latency
+    """
+
     bytes_read: float
     """Number of uncompressed bytes read from the table."""
 
@@ -583,6 +595,8 @@ EventsEventWorkers: TypeAlias = Union[EventsEventWorkersUnionMember0, EventsEven
 
 
 class EventsEvent(BaseModel):
+    """The data structure of a telemetry event"""
+
     metadata: EventsEventMetadata = FieldInfo(alias="$metadata")
 
     dataset: str
@@ -817,6 +831,8 @@ InvocationWorkers: TypeAlias = Union[InvocationWorkersUnionMember0, InvocationWo
 
 
 class Invocation(BaseModel):
+    """The data structure of a telemetry event"""
+
     metadata: InvocationMetadata = FieldInfo(alias="$metadata")
 
     dataset: str

@@ -9,6 +9,8 @@ __all__ = ["MaintenanceConfigUpdateResponse", "Compaction"]
 
 
 class Compaction(BaseModel):
+    """Configures compaction for catalog maintenance."""
+
     state: Literal["enabled", "disabled"]
     """Specifies the state of maintenance operations."""
 
@@ -17,5 +19,7 @@ class Compaction(BaseModel):
 
 
 class MaintenanceConfigUpdateResponse(BaseModel):
+    """Configures maintenance for the catalog."""
+
     compaction: Optional[Compaction] = None
     """Configures compaction for catalog maintenance."""

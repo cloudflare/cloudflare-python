@@ -18,6 +18,10 @@ __all__ = ["RulesParam", "FixedResponse", "Overrides"]
 
 
 class FixedResponse(TypedDict, total=False):
+    """
+    A collection of fields used to directly respond to the eyeball instead of routing to a pool. If a fixed_response is supplied the rule will be marked as terminates.
+    """
+
     content_type: str
     """The http 'Content-Type' header to include in the response."""
 
@@ -32,6 +36,10 @@ class FixedResponse(TypedDict, total=False):
 
 
 class Overrides(TypedDict, total=False):
+    """
+    A collection of overrides to apply to the load balancer when this rule's condition is true. All fields are optional.
+    """
+
     adaptive_routing: AdaptiveRoutingParam
     """
     Controls features that modify the routing of requests to pools and origins in
@@ -165,6 +173,10 @@ class Overrides(TypedDict, total=False):
 
 
 class RulesParam(TypedDict, total=False):
+    """
+    A rule object containing conditions and overrides for this load balancer to evaluate.
+    """
+
     condition: str
     """The condition expressions to evaluate.
 

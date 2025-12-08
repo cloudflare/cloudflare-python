@@ -20,6 +20,8 @@ class ContentListUpdateParams(TypedDict, total=False):
 
 
 class Entry(TypedDict, total=False):
+    """Specify a content list entry to block."""
+
     content: str
     """Specify the CID or content path of content to block."""
 

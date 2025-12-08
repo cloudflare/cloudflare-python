@@ -21,6 +21,8 @@ class ResourceSharingCreateParams(TypedDict, total=False):
 
 
 class Recipient(TypedDict, total=False):
+    """Account or organization ID must be provided."""
+
     account_id: str
     """Account identifier."""
 

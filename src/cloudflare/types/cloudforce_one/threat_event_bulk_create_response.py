@@ -18,6 +18,8 @@ class Error(BaseModel):
 
 
 class ThreatEventBulkCreateResponse(BaseModel):
+    """Detailed result of bulk event creation with auto-tag management"""
+
     created_events_count: float = FieldInfo(alias="createdEventsCount")
     """Number of events created"""
 

@@ -10,6 +10,10 @@ __all__ = ["ImageResizing"]
 
 
 class ImageResizing(BaseModel):
+    """
+    Image Transformations provides on-demand resizing, conversion and optimization for images served through Cloudflare's network. Refer to the [Image Transformations documentation](https://developers.cloudflare.com/images/) for more information.
+    """
+
     id: Literal["image_resizing"]
     """ID of the zone setting."""
 

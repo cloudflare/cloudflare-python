@@ -28,6 +28,8 @@ __all__ = [
 
 
 class ActionParametersHeadersAddStaticHeader(TypedDict, total=False):
+    """A header with a static value to add."""
+
     operation: Required[Literal["add"]]
     """The operation to perform on the header."""
 
@@ -36,6 +38,8 @@ class ActionParametersHeadersAddStaticHeader(TypedDict, total=False):
 
 
 class ActionParametersHeadersAddDynamicHeader(TypedDict, total=False):
+    """A header with a dynamic value to add."""
+
     expression: Required[str]
     """An expression that evaluates to a value for the header."""
 
@@ -44,6 +48,8 @@ class ActionParametersHeadersAddDynamicHeader(TypedDict, total=False):
 
 
 class ActionParametersHeadersSetStaticHeader(TypedDict, total=False):
+    """A header with a static value to set."""
+
     operation: Required[Literal["set"]]
     """The operation to perform on the header."""
 
@@ -52,6 +58,8 @@ class ActionParametersHeadersSetStaticHeader(TypedDict, total=False):
 
 
 class ActionParametersHeadersSetDynamicHeader(TypedDict, total=False):
+    """A header with a dynamic value to set."""
+
     expression: Required[str]
     """An expression that evaluates to a value for the header."""
 
@@ -60,6 +68,8 @@ class ActionParametersHeadersSetDynamicHeader(TypedDict, total=False):
 
 
 class ActionParametersHeadersRemoveHeader(TypedDict, total=False):
+    """A header to remove."""
+
     operation: Required[Literal["remove"]]
     """The operation to perform on the header."""
 
@@ -74,6 +84,8 @@ ActionParametersHeaders: TypeAlias = Union[
 
 
 class ActionParametersURIURIPathPath(TypedDict, total=False):
+    """A URI path rewrite."""
+
     expression: str
     """An expression that evaluates to a value to rewrite the URI path to."""
 
@@ -82,11 +94,15 @@ class ActionParametersURIURIPathPath(TypedDict, total=False):
 
 
 class ActionParametersURIURIPath(TypedDict, total=False):
+    """A URI path rewrite."""
+
     path: Required[ActionParametersURIURIPathPath]
     """A URI path rewrite."""
 
 
 class ActionParametersURIURIQueryQuery(TypedDict, total=False):
+    """A URI query rewrite."""
+
     expression: str
     """An expression that evaluates to a value to rewrite the URI query to."""
 
@@ -95,6 +111,8 @@ class ActionParametersURIURIQueryQuery(TypedDict, total=False):
 
 
 class ActionParametersURIURIQuery(TypedDict, total=False):
+    """A URI query rewrite."""
+
     query: Required[ActionParametersURIURIQueryQuery]
     """A URI query rewrite."""
 
@@ -103,6 +121,8 @@ ActionParametersURI: TypeAlias = Union[ActionParametersURIURIPath, ActionParamet
 
 
 class ActionParameters(TypedDict, total=False):
+    """The parameters configuring the rule's action."""
+
     headers: Dict[str, ActionParametersHeaders]
     """A map of headers to rewrite."""
 
@@ -111,6 +131,8 @@ class ActionParameters(TypedDict, total=False):
 
 
 class ExposedCredentialCheck(TypedDict, total=False):
+    """Configuration for exposed credential checking."""
+
     password_expression: Required[str]
     """An expression that selects the password used in the credentials check."""
 
@@ -119,6 +141,8 @@ class ExposedCredentialCheck(TypedDict, total=False):
 
 
 class Ratelimit(TypedDict, total=False):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be

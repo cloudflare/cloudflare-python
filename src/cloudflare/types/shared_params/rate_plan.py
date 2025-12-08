@@ -10,6 +10,8 @@ __all__ = ["RatePlan"]
 
 
 class RatePlan(TypedDict, total=False):
+    """The rate plan applied to the subscription."""
+
     id: Literal[
         "free",
         "lite",

@@ -18,6 +18,8 @@ class VariantEditParams(TypedDict, total=False):
 
 
 class Value(TypedDict, total=False):
+    """Value of the zone setting."""
+
     avif: SequenceNotStr[str]
     """
     List of strings with the MIME types of all the variants that should be served

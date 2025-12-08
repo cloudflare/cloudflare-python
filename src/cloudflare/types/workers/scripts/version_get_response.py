@@ -111,6 +111,8 @@ class ResourcesBindingWorkersBindingKindDataBlob(BaseModel):
 
 
 class ResourcesBindingWorkersBindingKindDispatchNamespaceOutboundWorker(BaseModel):
+    """Outbound worker."""
+
     environment: Optional[str] = None
     """Environment of the outbound worker."""
 
@@ -119,6 +121,8 @@ class ResourcesBindingWorkersBindingKindDispatchNamespaceOutboundWorker(BaseMode
 
 
 class ResourcesBindingWorkersBindingKindDispatchNamespaceOutbound(BaseModel):
+    """Outbound worker."""
+
     params: Optional[List[str]] = None
     """
     Pass information from the Dispatch Worker to the Outbound Worker through the
@@ -501,11 +505,15 @@ class ResourcesScript(BaseModel):
 
 
 class ResourcesScriptRuntimeLimits(BaseModel):
+    """Resource limits for the Worker."""
+
     cpu_ms: Optional[int] = None
     """The amount of CPU time this Worker can use in milliseconds."""
 
 
 class ResourcesScriptRuntime(BaseModel):
+    """Runtime configuration for the Worker."""
+
     compatibility_date: Optional[str] = None
     """Date indicating targeted support in the Workers runtime.
 

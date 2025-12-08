@@ -19,6 +19,8 @@ __all__ = [
 
 
 class QuotaQuotasPerPlanValue(BaseModel):
+    """Counts per account plan."""
+
     business: Optional[int] = None
 
     enterprise: Optional[int] = None
@@ -29,11 +31,15 @@ class QuotaQuotasPerPlanValue(BaseModel):
 
 
 class QuotaQuotasPerPlan(BaseModel):
+    """The number of tests available per plan."""
+
     value: Optional[QuotaQuotasPerPlanValue] = None
     """Counts per account plan."""
 
 
 class QuotaScheduleQuotasPerPlanValue(BaseModel):
+    """Counts per account plan."""
+
     business: Optional[int] = None
 
     enterprise: Optional[int] = None
@@ -44,6 +50,8 @@ class QuotaScheduleQuotasPerPlanValue(BaseModel):
 
 
 class QuotaScheduleQuotasPerPlan(BaseModel):
+    """The number of schedules available per plan."""
+
     value: Optional[QuotaScheduleQuotasPerPlanValue] = None
     """Counts per account plan."""
 
@@ -68,6 +76,8 @@ class Quota(BaseModel):
 
 
 class RegionsPerPlan(BaseModel):
+    """Available regions."""
+
     business: Optional[List[LabeledRegion]] = None
 
     enterprise: Optional[List[LabeledRegion]] = None

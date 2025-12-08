@@ -8,6 +8,8 @@ __all__ = ["ContentScanningUpdateResponse"]
 
 
 class ContentScanningUpdateResponse(BaseModel):
+    """Defines the status for Content Scanning."""
+
     modified: Optional[str] = None
     """Defines the last modification date (ISO 8601) of the Content Scanning status."""
 

@@ -19,6 +19,8 @@ __all__ = [
 
 
 class MetaConfidenceInfoAnnotation(BaseModel):
+    """Annotation associated with the result (e.g. outage or other type of event)."""
+
     data_source: Literal[
         "ALL",
         "AI_BOTS",

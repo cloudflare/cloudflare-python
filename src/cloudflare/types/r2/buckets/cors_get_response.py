@@ -11,6 +11,8 @@ __all__ = ["CORSGetResponse", "Rule", "RuleAllowed"]
 
 
 class RuleAllowed(BaseModel):
+    """Object specifying allowed origins, methods and headers for this CORS rule."""
+
     methods: List[Literal["GET", "PUT", "POST", "DELETE", "HEAD"]]
     """
     Specifies the value for the Access-Control-Allow-Methods header R2 sets when

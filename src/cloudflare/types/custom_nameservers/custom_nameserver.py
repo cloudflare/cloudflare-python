@@ -17,6 +17,8 @@ class DNSRecord(BaseModel):
 
 
 class CustomNameserver(BaseModel):
+    """A single account custom nameserver."""
+
     dns_records: List[DNSRecord]
     """A and AAAA records associated with the nameserver."""
 

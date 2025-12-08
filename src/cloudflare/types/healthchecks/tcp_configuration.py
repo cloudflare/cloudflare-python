@@ -9,6 +9,8 @@ __all__ = ["TCPConfiguration"]
 
 
 class TCPConfiguration(BaseModel):
+    """Parameters specific to TCP health check."""
+
     method: Optional[Literal["connection_established"]] = None
     """The TCP connection method to use for the health check."""
 

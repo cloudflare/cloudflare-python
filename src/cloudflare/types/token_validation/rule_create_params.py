@@ -57,6 +57,11 @@ class SelectorInclude(TypedDict, total=False):
 
 
 class Selector(TypedDict, total=False):
+    """Select operations covered by this rule.
+
+    For details on selectors, see the [Cloudflare Docs](https://developers.cloudflare.com/api-shield/security/jwt-validation/).
+    """
+
     exclude: Optional[Iterable[SelectorExclude]]
     """Ignore operations that were otherwise included by `include`."""
 

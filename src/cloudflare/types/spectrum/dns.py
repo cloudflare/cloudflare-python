@@ -9,6 +9,8 @@ __all__ = ["DNS"]
 
 
 class DNS(BaseModel):
+    """The name and type of DNS record for the Spectrum application."""
+
     name: Optional[str] = None
     """The name of the DNS record associated with the application."""
 

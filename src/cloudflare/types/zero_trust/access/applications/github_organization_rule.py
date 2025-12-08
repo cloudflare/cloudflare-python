@@ -21,4 +21,9 @@ class GitHubOrganization(BaseModel):
 
 
 class GitHubOrganizationRule(BaseModel):
+    """
+    Matches a Github organization.
+    Requires a Github identity provider.
+    """
+
     github_organization: GitHubOrganization = FieldInfo(alias="github-organization")

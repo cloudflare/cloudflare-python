@@ -32,6 +32,8 @@ class MultipleQueries(TypedDict, total=False):
 
 
 class MultipleQueriesBatch(TypedDict, total=False):
+    """A single query with or without parameters"""
+
     sql: Required[str]
     """Your SQL query.
 

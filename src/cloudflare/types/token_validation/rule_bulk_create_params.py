@@ -28,6 +28,11 @@ class BodySelectorInclude(TypedDict, total=False):
 
 
 class BodySelector(TypedDict, total=False):
+    """Select operations covered by this rule.
+
+    For details on selectors, see the [Cloudflare Docs](https://developers.cloudflare.com/api-shield/security/jwt-validation/).
+    """
+
     exclude: Optional[Iterable[BodySelectorExclude]]
     """Ignore operations that were otherwise included by `include`."""
 
@@ -36,6 +41,8 @@ class BodySelector(TypedDict, total=False):
 
 
 class Body(TypedDict, total=False):
+    """A Token Validation rule that can enforce security policies using JWT Tokens."""
+
     action: Required[Literal["log", "block"]]
     """
     Action to take on requests that match operations included in `selector` and fail

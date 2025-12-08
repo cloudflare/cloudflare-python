@@ -12,6 +12,11 @@ __all__ = ["HeaderParam"]
 
 
 class HeaderParam(TypedDict, total=False):
+    """The request header is used to pass additional information with an HTTP request.
+
+    Currently supported header is 'Host'.
+    """
+
     host: Annotated[SequenceNotStr[Host], PropertyInfo(alias="Host")]
     """The 'Host' header allows to override the hostname set in the HTTP request.
 

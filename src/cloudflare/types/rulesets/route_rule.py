@@ -18,6 +18,8 @@ __all__ = [
 
 
 class ActionParametersOrigin(BaseModel):
+    """An origin to route to."""
+
     host: Optional[str] = None
     """A resolved host to route to."""
 
@@ -26,11 +28,15 @@ class ActionParametersOrigin(BaseModel):
 
 
 class ActionParametersSNI(BaseModel):
+    """A Server Name Indication (SNI) override."""
+
     value: str
     """A value to override the SNI to."""
 
 
 class ActionParameters(BaseModel):
+    """The parameters configuring the rule's action."""
+
     host_header: Optional[str] = None
     """A value to rewrite the HTTP host header to."""
 
@@ -42,6 +48,8 @@ class ActionParameters(BaseModel):
 
 
 class ExposedCredentialCheck(BaseModel):
+    """Configuration for exposed credential checking."""
+
     password_expression: str
     """An expression that selects the password used in the credentials check."""
 
@@ -50,6 +58,8 @@ class ExposedCredentialCheck(BaseModel):
 
 
 class Ratelimit(BaseModel):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: List[str]
     """
     Characteristics of the request on which the rate limit counter will be

@@ -10,6 +10,8 @@ __all__ = ["SecurityHeaders", "Value", "ValueStrictTransportSecurity"]
 
 
 class ValueStrictTransportSecurity(BaseModel):
+    """Strict Transport Security."""
+
     enabled: Optional[bool] = None
     """Whether or not strict transport security is enabled."""
 
@@ -27,11 +29,15 @@ class ValueStrictTransportSecurity(BaseModel):
 
 
 class Value(BaseModel):
+    """Current value of the zone setting."""
+
     strict_transport_security: Optional[ValueStrictTransportSecurity] = None
     """Strict Transport Security."""
 
 
 class SecurityHeaders(BaseModel):
+    """Cloudflare security header for a zone."""
+
     id: Literal["security_header"]
     """ID of the zone's security header."""
 

@@ -60,12 +60,16 @@ __all__ = [
 
 
 class SettingsContextEnricher(BaseModel):
+    """Details of the worker that receives and edits Zaraz Context object."""
+
     escaped_worker_name: str = FieldInfo(alias="escapedWorkerName")
 
     worker_tag: str = FieldInfo(alias="workerTag")
 
 
 class Settings(BaseModel):
+    """General Zaraz settings."""
+
     auto_inject_script: bool = FieldInfo(alias="autoInjectScript")
     """Automatic injection of Zaraz scripts enabled."""
 
@@ -160,6 +164,8 @@ class ToolsZarazManagedComponent(BaseModel):
 
 
 class ToolsWorkerWorker(BaseModel):
+    """Cloudflare worker that acts as a managed component"""
+
     escaped_worker_name: str = FieldInfo(alias="escapedWorkerName")
 
     worker_tag: str = FieldInfo(alias="workerTag")
@@ -502,6 +508,8 @@ Variables: TypeAlias = Annotated[
 
 
 class Analytics(BaseModel):
+    """Cloudflare Monitoring settings."""
+
     default_purpose: Optional[str] = FieldInfo(alias="defaultPurpose", default=None)
     """Consent purpose assigned to Monitoring."""
 
@@ -529,6 +537,8 @@ class ConsentPurposesWithTranslations(BaseModel):
 
 
 class Consent(BaseModel):
+    """Consent management configuration."""
+
     enabled: bool
 
     button_text_translations: Optional[ButtonTextTranslation] = FieldInfo(alias="buttonTextTranslations", default=None)
@@ -568,6 +578,8 @@ class Consent(BaseModel):
 
 
 class Configuration(BaseModel):
+    """Zaraz configuration"""
+
     data_layer: bool = FieldInfo(alias="dataLayer")
     """Data layer compatibility mode enabled."""
 

@@ -28,6 +28,10 @@ class ConfigurationUpdateParams(TypedDict, total=False):
 
 
 class ConfigIngressOriginRequestAccess(TypedDict, total=False):
+    """
+    For all L7 requests to this hostname, cloudflared will validate each request's Cf-Access-Jwt-Assertion request header.
+    """
+
     aud_tag: Required[Annotated[SequenceNotStr[str], PropertyInfo(alias="audTag")]]
     """Access applications that are allowed to reach this hostname for this Tunnel.
 
@@ -42,6 +46,10 @@ class ConfigIngressOriginRequestAccess(TypedDict, total=False):
 
 
 class ConfigIngressOriginRequest(TypedDict, total=False):
+    """
+    Configuration parameters for the public hostname specific connection settings between cloudflared and origin server.
+    """
+
     access: ConfigIngressOriginRequestAccess
     """
     For all L7 requests to this hostname, cloudflared will validate each request's
@@ -119,6 +127,8 @@ class ConfigIngressOriginRequest(TypedDict, total=False):
 
 
 class ConfigIngress(TypedDict, total=False):
+    """Public hostname"""
+
     hostname: Required[str]
     """Public hostname for this service."""
 
@@ -141,6 +151,10 @@ class ConfigIngress(TypedDict, total=False):
 
 
 class ConfigOriginRequestAccess(TypedDict, total=False):
+    """
+    For all L7 requests to this hostname, cloudflared will validate each request's Cf-Access-Jwt-Assertion request header.
+    """
+
     aud_tag: Required[Annotated[SequenceNotStr[str], PropertyInfo(alias="audTag")]]
     """Access applications that are allowed to reach this hostname for this Tunnel.
 
@@ -155,6 +169,10 @@ class ConfigOriginRequestAccess(TypedDict, total=False):
 
 
 class ConfigOriginRequest(TypedDict, total=False):
+    """
+    Configuration parameters for the public hostname specific connection settings between cloudflared and origin server.
+    """
+
     access: ConfigOriginRequestAccess
     """
     For all L7 requests to this hostname, cloudflared will validate each request's
@@ -232,6 +250,8 @@ class ConfigOriginRequest(TypedDict, total=False):
 
 
 class Config(TypedDict, total=False):
+    """The tunnel configuration and ingress rules."""
+
     ingress: Iterable[ConfigIngress]
     """List of public hostname definitions.
 

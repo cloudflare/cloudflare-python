@@ -10,6 +10,10 @@ __all__ = ["AlwaysOnline"]
 
 
 class AlwaysOnline(BaseModel):
+    """
+    When enabled, Cloudflare serves limited copies of web pages available from the [Internet Archive's Wayback Machine](https://archive.org/web/) if your server is offline. Refer to [Always Online](https://developers.cloudflare.com/cache/about/always-online) for more information.
+    """
+
     id: Literal["always_online"]
     """ID of the zone setting."""
 

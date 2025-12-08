@@ -9,6 +9,8 @@ __all__ = ["ServiceBinding", "Provisioning"]
 
 
 class Provisioning(BaseModel):
+    """Status of a Service Binding's deployment to the Cloudflare network"""
+
     state: Optional[Literal["provisioning", "active"]] = None
     """
     When a binding has been deployed to a majority of Cloudflare datacenters, the

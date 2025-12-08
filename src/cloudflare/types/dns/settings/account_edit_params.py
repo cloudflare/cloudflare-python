@@ -16,16 +16,24 @@ class AccountEditParams(TypedDict, total=False):
 
 
 class ZoneDefaultsInternalDNS(TypedDict, total=False):
+    """Settings for this internal zone."""
+
     reference_zone_id: str
     """The ID of the zone to fallback to."""
 
 
 class ZoneDefaultsNameservers(TypedDict, total=False):
+    """
+    Settings determining the nameservers through which the zone should be available.
+    """
+
     type: Literal["cloudflare.standard", "cloudflare.standard.random", "custom.account", "custom.tenant"]
     """Nameserver type"""
 
 
 class ZoneDefaultsSOA(TypedDict, total=False):
+    """Components of the zone's SOA record."""
+
     expire: float
     """
     Time in seconds of being unable to query the primary server after which

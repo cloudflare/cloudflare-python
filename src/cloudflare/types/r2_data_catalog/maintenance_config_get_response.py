@@ -9,6 +9,8 @@ __all__ = ["MaintenanceConfigGetResponse", "MaintenanceConfig", "MaintenanceConf
 
 
 class MaintenanceConfigCompaction(BaseModel):
+    """Configures compaction for catalog maintenance."""
+
     state: Literal["enabled", "disabled"]
     """Specifies the state of maintenance operations."""
 
@@ -17,11 +19,15 @@ class MaintenanceConfigCompaction(BaseModel):
 
 
 class MaintenanceConfig(BaseModel):
+    """Configures maintenance for the catalog."""
+
     compaction: Optional[MaintenanceConfigCompaction] = None
     """Configures compaction for catalog maintenance."""
 
 
 class MaintenanceConfigGetResponse(BaseModel):
+    """Contains maintenance configuration and credential status."""
+
     credential_status: Literal["present", "absent"]
     """Shows the credential configuration status."""
 

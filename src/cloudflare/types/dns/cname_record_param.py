@@ -12,6 +12,8 @@ __all__ = ["CNAMERecordParam", "Settings"]
 
 
 class Settings(TypedDict, total=False):
+    """Settings for the DNS record."""
+
     flatten_cname: bool
     """
     If enabled, causes the CNAME record to be resolved externally and the resulting

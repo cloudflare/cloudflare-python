@@ -9,6 +9,8 @@ __all__ = ["CatchAllAction"]
 
 
 class CatchAllAction(BaseModel):
+    """Action for the catch-all routing rule."""
+
     type: Literal["drop", "forward", "worker"]
     """Type of action for catch-all rule."""
 

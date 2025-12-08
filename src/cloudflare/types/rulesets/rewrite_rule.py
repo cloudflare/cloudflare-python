@@ -27,6 +27,8 @@ __all__ = [
 
 
 class ActionParametersHeadersAddStaticHeader(BaseModel):
+    """A header with a static value to add."""
+
     operation: Literal["add"]
     """The operation to perform on the header."""
 
@@ -35,6 +37,8 @@ class ActionParametersHeadersAddStaticHeader(BaseModel):
 
 
 class ActionParametersHeadersAddDynamicHeader(BaseModel):
+    """A header with a dynamic value to add."""
+
     expression: str
     """An expression that evaluates to a value for the header."""
 
@@ -43,6 +47,8 @@ class ActionParametersHeadersAddDynamicHeader(BaseModel):
 
 
 class ActionParametersHeadersSetStaticHeader(BaseModel):
+    """A header with a static value to set."""
+
     operation: Literal["set"]
     """The operation to perform on the header."""
 
@@ -51,6 +57,8 @@ class ActionParametersHeadersSetStaticHeader(BaseModel):
 
 
 class ActionParametersHeadersSetDynamicHeader(BaseModel):
+    """A header with a dynamic value to set."""
+
     expression: str
     """An expression that evaluates to a value for the header."""
 
@@ -59,6 +67,8 @@ class ActionParametersHeadersSetDynamicHeader(BaseModel):
 
 
 class ActionParametersHeadersRemoveHeader(BaseModel):
+    """A header to remove."""
+
     operation: Literal["remove"]
     """The operation to perform on the header."""
 
@@ -73,6 +83,8 @@ ActionParametersHeaders: TypeAlias = Union[
 
 
 class ActionParametersURIURIPathPath(BaseModel):
+    """A URI path rewrite."""
+
     expression: Optional[str] = None
     """An expression that evaluates to a value to rewrite the URI path to."""
 
@@ -81,6 +93,8 @@ class ActionParametersURIURIPathPath(BaseModel):
 
 
 class ActionParametersURIURIPath(BaseModel):
+    """A URI path rewrite."""
+
     path: ActionParametersURIURIPathPath
     """A URI path rewrite."""
 
@@ -89,6 +103,8 @@ class ActionParametersURIURIPath(BaseModel):
 
 
 class ActionParametersURIURIQueryQuery(BaseModel):
+    """A URI query rewrite."""
+
     expression: Optional[str] = None
     """An expression that evaluates to a value to rewrite the URI query to."""
 
@@ -97,6 +113,8 @@ class ActionParametersURIURIQueryQuery(BaseModel):
 
 
 class ActionParametersURIURIQuery(BaseModel):
+    """A URI query rewrite."""
+
     query: ActionParametersURIURIQueryQuery
     """A URI query rewrite."""
 
@@ -108,6 +126,8 @@ ActionParametersURI: TypeAlias = Union[ActionParametersURIURIPath, ActionParamet
 
 
 class ActionParameters(BaseModel):
+    """The parameters configuring the rule's action."""
+
     headers: Optional[Dict[str, ActionParametersHeaders]] = None
     """A map of headers to rewrite."""
 
@@ -116,6 +136,8 @@ class ActionParameters(BaseModel):
 
 
 class ExposedCredentialCheck(BaseModel):
+    """Configuration for exposed credential checking."""
+
     password_expression: str
     """An expression that selects the password used in the credentials check."""
 
@@ -124,6 +146,8 @@ class ExposedCredentialCheck(BaseModel):
 
 
 class Ratelimit(BaseModel):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: List[str]
     """
     Characteristics of the request on which the rate limit counter will be

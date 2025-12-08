@@ -51,6 +51,11 @@ class AccessAuthContextRuleAuthContext(BaseModel):
 
 
 class AccessAuthContextRule(BaseModel):
+    """
+    Matches an Azure Authentication Context.
+    Requires an Azure identity provider.
+    """
+
     auth_context: AccessAuthContextRuleAuthContext
 
 
@@ -60,6 +65,8 @@ class AccessCommonNameRuleCommonName(BaseModel):
 
 
 class AccessCommonNameRule(BaseModel):
+    """Matches a specific common name."""
+
     common_name: AccessCommonNameRuleCommonName
 
 
@@ -69,6 +76,8 @@ class AccessLoginMethodRuleLoginMethod(BaseModel):
 
 
 class AccessLoginMethodRule(BaseModel):
+    """Matches a specific identity provider id."""
+
     login_method: AccessLoginMethodRuleLoginMethod
 
 
@@ -84,6 +93,11 @@ class AccessOIDCClaimRuleOIDC(BaseModel):
 
 
 class AccessOIDCClaimRule(BaseModel):
+    """
+    Matches an OIDC claim.
+    Requires an OIDC identity provider.
+    """
+
     oidc: AccessOIDCClaimRuleOIDC
 
 
@@ -93,6 +107,10 @@ class AccessLinkedAppTokenRuleLinkedAppToken(BaseModel):
 
 
 class AccessLinkedAppTokenRule(BaseModel):
+    """
+    Matches OAuth 2.0 access tokens issued by the specified Access OIDC SaaS application. Only compatible with non_identity and bypass decisions.
+    """
+
     linked_app_token: AccessLinkedAppTokenRuleLinkedAppToken
 
 

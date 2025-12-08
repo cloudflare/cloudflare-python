@@ -37,6 +37,8 @@ class R2EnableSippyAws(TypedDict, total=False):
 
 
 class R2EnableSippyAwsDestination(TypedDict, total=False):
+    """R2 bucket to copy objects to."""
+
     access_key_id: Annotated[str, PropertyInfo(alias="accessKeyId")]
     """
     ID of a Cloudflare API token. This is the value labelled "Access Key ID" when
@@ -61,6 +63,8 @@ class R2EnableSippyAwsDestination(TypedDict, total=False):
 
 
 class R2EnableSippyAwsSource(TypedDict, total=False):
+    """AWS S3 bucket to copy objects from."""
+
     access_key_id: Annotated[str, PropertyInfo(alias="accessKeyId")]
     """Access Key ID of an IAM credential (ideally scoped to a single S3 bucket)."""
 
@@ -91,6 +95,8 @@ class R2EnableSippyGcs(TypedDict, total=False):
 
 
 class R2EnableSippyGcsDestination(TypedDict, total=False):
+    """R2 bucket to copy objects to."""
+
     access_key_id: Annotated[str, PropertyInfo(alias="accessKeyId")]
     """
     ID of a Cloudflare API token. This is the value labelled "Access Key ID" when
@@ -115,6 +121,8 @@ class R2EnableSippyGcsDestination(TypedDict, total=False):
 
 
 class R2EnableSippyGcsSource(TypedDict, total=False):
+    """GCS bucket to copy objects from."""
+
     bucket: str
     """Name of the GCS bucket."""
 
@@ -142,6 +150,8 @@ class R2EnableSippyS3(TypedDict, total=False):
 
 
 class R2EnableSippyS3Destination(TypedDict, total=False):
+    """R2 bucket to copy objects to."""
+
     access_key_id: Annotated[str, PropertyInfo(alias="accessKeyId")]
     """
     ID of a Cloudflare API token. This is the value labelled "Access Key ID" when
@@ -166,6 +176,8 @@ class R2EnableSippyS3Destination(TypedDict, total=False):
 
 
 class R2EnableSippyS3Source(TypedDict, total=False):
+    """General S3-compatible provider to copy objects from."""
+
     access_key_id: Annotated[str, PropertyInfo(alias="accessKeyId")]
     """Access Key ID of an IAM credential (ideally scoped to a single S3 bucket)."""
 

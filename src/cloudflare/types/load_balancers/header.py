@@ -11,6 +11,11 @@ __all__ = ["Header"]
 
 
 class Header(BaseModel):
+    """The request header is used to pass additional information with an HTTP request.
+
+    Currently supported header is 'Host'.
+    """
+
     host: Optional[List[Host]] = FieldInfo(alias="Host", default=None)
     """The 'Host' header allows to override the hostname set in the HTTP request.
 

@@ -39,6 +39,8 @@ __all__ = [
 
 
 class RuleRulesetsChallengeRuleExposedCredentialCheck(BaseModel):
+    """Configuration for exposed credential checking."""
+
     password_expression: str
     """An expression that selects the password used in the credentials check."""
 
@@ -47,6 +49,8 @@ class RuleRulesetsChallengeRuleExposedCredentialCheck(BaseModel):
 
 
 class RuleRulesetsChallengeRuleRatelimit(BaseModel):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: List[str]
     """
     Characteristics of the request on which the rate limit counter will be
@@ -132,6 +136,8 @@ class RuleRulesetsChallengeRule(BaseModel):
 
 
 class RuleRulesetsJSChallengeRuleExposedCredentialCheck(BaseModel):
+    """Configuration for exposed credential checking."""
+
     password_expression: str
     """An expression that selects the password used in the credentials check."""
 
@@ -140,6 +146,8 @@ class RuleRulesetsJSChallengeRuleExposedCredentialCheck(BaseModel):
 
 
 class RuleRulesetsJSChallengeRuleRatelimit(BaseModel):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: List[str]
     """
     Characteristics of the request on which the rate limit counter will be
@@ -250,6 +258,8 @@ Rule: TypeAlias = Annotated[
 
 
 class PhaseUpdateResponse(BaseModel):
+    """A ruleset object."""
+
     id: str
     """The unique ID of the ruleset."""
 

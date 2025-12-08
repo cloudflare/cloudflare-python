@@ -24,6 +24,11 @@ class Webhook(TypedDict, total=False):
 
 
 class MechanismParam(TypedDict, total=False):
+    """List of IDs that will be used when dispatching a notification.
+
+    IDs for email type will be the email address.
+    """
+
     email: Iterable[Email]
 
     pagerduty: Iterable[Pagerduty]

@@ -10,6 +10,8 @@ __all__ = ["TraceCreateResponse"]
 
 
 class TraceCreateResponse(BaseModel):
+    """Trace result with an origin status code"""
+
     status_code: Optional[int] = None
     """HTTP Status code of zone response"""
 

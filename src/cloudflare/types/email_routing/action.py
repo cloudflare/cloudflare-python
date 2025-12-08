@@ -9,6 +9,8 @@ __all__ = ["Action"]
 
 
 class Action(BaseModel):
+    """Actions pattern."""
+
     type: Literal["drop", "forward", "worker"]
     """Type of supported action."""
 

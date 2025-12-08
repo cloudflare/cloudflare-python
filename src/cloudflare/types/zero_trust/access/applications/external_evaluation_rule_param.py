@@ -19,4 +19,8 @@ class ExternalEvaluation(TypedDict, total=False):
 
 
 class ExternalEvaluationRuleParam(TypedDict, total=False):
+    """
+    Create Allow or Block policies which evaluate the user based on custom criteria.
+    """
+
     external_evaluation: Required[ExternalEvaluation]

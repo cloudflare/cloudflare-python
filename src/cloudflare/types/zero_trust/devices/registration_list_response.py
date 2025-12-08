@@ -8,6 +8,8 @@ __all__ = ["RegistrationListResponse", "Device", "Policy", "User"]
 
 
 class Device(BaseModel):
+    """Device details embedded inside of a registration."""
+
     id: str
     """The ID of the device."""
 
@@ -19,6 +21,8 @@ class Device(BaseModel):
 
 
 class Policy(BaseModel):
+    """The device settings profile assigned to this registration."""
+
     id: str
     """The ID of the device settings profile."""
 
@@ -50,6 +54,11 @@ class User(BaseModel):
 
 
 class RegistrationListResponse(BaseModel):
+    """A WARP configuration tied to a single user.
+
+    Multiple registrations can be created from a single WARP device.
+    """
+
     id: str
     """The ID of the registration."""
 

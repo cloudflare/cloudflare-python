@@ -11,6 +11,8 @@ __all__ = ["VersionListResponse"]
 
 
 class VersionListResponse(BaseModel):
+    """A ruleset object."""
+
     id: str
     """The unique ID of the ruleset."""
 

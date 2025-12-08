@@ -18,6 +18,8 @@ __all__ = [
 
 
 class InfrequentAccessPublished(BaseModel):
+    """Metrics on number of objects/amount of storage used."""
+
     metadata_size: Optional[float] = FieldInfo(alias="metadataSize", default=None)
     """Amount of."""
 
@@ -29,6 +31,8 @@ class InfrequentAccessPublished(BaseModel):
 
 
 class InfrequentAccessUploaded(BaseModel):
+    """Metrics on number of objects/amount of storage used."""
+
     metadata_size: Optional[float] = FieldInfo(alias="metadataSize", default=None)
     """Amount of."""
 
@@ -40,6 +44,8 @@ class InfrequentAccessUploaded(BaseModel):
 
 
 class InfrequentAccess(BaseModel):
+    """Metrics based on what state they are in(uploaded or published)."""
+
     published: Optional[InfrequentAccessPublished] = None
     """Metrics on number of objects/amount of storage used."""
 
@@ -48,6 +54,8 @@ class InfrequentAccess(BaseModel):
 
 
 class StandardPublished(BaseModel):
+    """Metrics on number of objects/amount of storage used."""
+
     metadata_size: Optional[float] = FieldInfo(alias="metadataSize", default=None)
     """Amount of."""
 
@@ -59,6 +67,8 @@ class StandardPublished(BaseModel):
 
 
 class StandardUploaded(BaseModel):
+    """Metrics on number of objects/amount of storage used."""
+
     metadata_size: Optional[float] = FieldInfo(alias="metadataSize", default=None)
     """Amount of."""
 
@@ -70,6 +80,8 @@ class StandardUploaded(BaseModel):
 
 
 class Standard(BaseModel):
+    """Metrics based on what state they are in(uploaded or published)."""
+
     published: Optional[StandardPublished] = None
     """Metrics on number of objects/amount of storage used."""
 
@@ -78,6 +90,8 @@ class Standard(BaseModel):
 
 
 class MetricListResponse(BaseModel):
+    """Metrics based on the class they belong to."""
+
     infrequent_access: Optional[InfrequentAccess] = FieldInfo(alias="infrequentAccess", default=None)
     """Metrics based on what state they are in(uploaded or published)."""
 

@@ -86,6 +86,8 @@ _TimeframeReservedKeywords = TypedDict(
 
 
 class Timeframe(_TimeframeReservedKeywords, total=False):
+    """Time range for the query execution"""
+
     to: Required[float]
     """End timestamp for the query timeframe (Unix timestamp in milliseconds)"""
 
@@ -197,6 +199,8 @@ class ParametersHaving(TypedDict, total=False):
 
 
 class ParametersNeedle(TypedDict, total=False):
+    """Define an expression to search using full-text search."""
+
     value: Required[Union[str, float, bool]]
 
     is_regex: Annotated[bool, PropertyInfo(alias="isRegex")]
@@ -205,6 +209,8 @@ class ParametersNeedle(TypedDict, total=False):
 
 
 class ParametersOrderBy(TypedDict, total=False):
+    """Configure the order of the results returned by the query."""
+
     value: Required[str]
     """Configure which Calculation to order the results by."""
 
@@ -213,6 +219,8 @@ class ParametersOrderBy(TypedDict, total=False):
 
 
 class Parameters(TypedDict, total=False):
+    """Optional parameters to pass to the query execution"""
+
     calculations: Iterable[ParametersCalculation]
     """Create Calculations to compute as part of the query."""
 

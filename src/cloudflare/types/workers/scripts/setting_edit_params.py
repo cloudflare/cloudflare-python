@@ -29,6 +29,8 @@ class SettingEditParams(TypedDict, total=False):
 
 
 class ObservabilityLogs(TypedDict, total=False):
+    """Log settings for the Worker."""
+
     enabled: Required[bool]
     """Whether logs are enabled for the Worker."""
 
@@ -50,6 +52,8 @@ class ObservabilityLogs(TypedDict, total=False):
 
 
 class Observability(TypedDict, total=False):
+    """Observability settings for the Worker."""
+
     enabled: Required[bool]
     """Whether observability is enabled for the Worker."""
 

@@ -10,6 +10,8 @@ __all__ = ["CatchAllActionParam"]
 
 
 class CatchAllActionParam(TypedDict, total=False):
+    """Action for the catch-all routing rule."""
+
     type: Required[Literal["drop", "forward", "worker"]]
     """Type of action for catch-all rule."""
 

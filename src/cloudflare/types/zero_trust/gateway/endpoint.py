@@ -10,6 +10,8 @@ __all__ = ["Endpoint"]
 
 
 class Endpoint(BaseModel):
+    """Configure the destination endpoints for this location."""
+
     doh: DOHEndpoint
 
     dot: DOTEndpoint

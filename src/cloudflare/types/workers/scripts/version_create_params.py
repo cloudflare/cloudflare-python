@@ -137,6 +137,8 @@ class MetadataBindingWorkersBindingKindDataBlob(TypedDict, total=False):
 
 
 class MetadataBindingWorkersBindingKindDispatchNamespaceOutboundWorker(TypedDict, total=False):
+    """Outbound worker."""
+
     environment: str
     """Environment of the outbound worker."""
 
@@ -145,6 +147,8 @@ class MetadataBindingWorkersBindingKindDispatchNamespaceOutboundWorker(TypedDict
 
 
 class MetadataBindingWorkersBindingKindDispatchNamespaceOutbound(TypedDict, total=False):
+    """Outbound worker."""
+
     params: SequenceNotStr[str]
     """
     Pass information from the Dispatch Worker to the Outbound Worker through the
@@ -514,6 +518,8 @@ MetadataBinding: TypeAlias = Union[
 
 
 class Metadata(TypedDict, total=False):
+    """JSON-encoded metadata about the uploaded parts and Worker configuration."""
+
     main_module: Required[str]
     """Name of the uploaded file that contains the main module (e.g.
 

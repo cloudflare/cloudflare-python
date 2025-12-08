@@ -9,6 +9,10 @@ __all__ = ["BotFightModeConfiguration", "StaleZoneConfiguration"]
 
 
 class StaleZoneConfiguration(BaseModel):
+    """
+    A read-only field that shows which unauthorized settings are currently active on the zone. These settings typically result from upgrades or downgrades.
+    """
+
     optimize_wordpress: Optional[bool] = None
     """Indicates that the zone's wordpress optimization for SBFM is turned on."""
 

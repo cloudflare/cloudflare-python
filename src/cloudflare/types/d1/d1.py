@@ -10,6 +10,8 @@ __all__ = ["D1", "ReadReplication"]
 
 
 class ReadReplication(BaseModel):
+    """Configuration for D1 read replication."""
+
     mode: Literal["auto", "disabled"]
     """The read replication mode for the database.
 
@@ -20,6 +22,8 @@ class ReadReplication(BaseModel):
 
 
 class D1(BaseModel):
+    """The details of the D1 database."""
+
     created_at: Optional[datetime] = None
     """Specifies the timestamp the resource was created as an ISO8601 string."""
 

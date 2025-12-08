@@ -48,6 +48,8 @@ class Body(TypedDict, total=False):
 
 
 class ContextGeoloc(TypedDict, total=False):
+    """Geodata for tracing request"""
+
     city: str
 
     continent: str
@@ -70,6 +72,8 @@ class ContextGeoloc(TypedDict, total=False):
 
 
 class Context(TypedDict, total=False):
+    """Additional request parameters"""
+
     bot_score: int
     """Bot score used for evaluating tracing request processing"""
 

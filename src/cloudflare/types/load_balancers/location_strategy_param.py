@@ -8,6 +8,11 @@ __all__ = ["LocationStrategyParam"]
 
 
 class LocationStrategyParam(TypedDict, total=False):
+    """Controls location-based steering for non-proxied requests.
+
+    See `steering_policy` to learn how steering is affected.
+    """
+
     mode: Literal["pop", "resolver_ip"]
     """
     Determines the authoritative location when ECS is not preferred, does not exist

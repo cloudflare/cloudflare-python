@@ -8,5 +8,7 @@ __all__ = ["LoggingParam"]
 
 
 class LoggingParam(TypedDict, total=False):
+    """An object configuring the rule's logging behavior."""
+
     enabled: Required[bool]
     """Whether to generate a log when the rule matches."""

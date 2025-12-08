@@ -8,6 +8,10 @@ __all__ = ["IdentityProviderSCIMConfigParam"]
 
 
 class IdentityProviderSCIMConfigParam(TypedDict, total=False):
+    """
+    The configuration settings for enabling a System for Cross-Domain Identity Management (SCIM) with the identity provider.
+    """
+
     enabled: bool
     """A flag to enable or disable SCIM for the identity provider."""
 

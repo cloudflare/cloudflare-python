@@ -19,6 +19,11 @@ __all__ = ["GatewayConfigurationSettings", "Certificate", "HostSelector", "Inspe
 
 
 class Certificate(BaseModel):
+    """Specify certificate settings for Gateway TLS interception.
+
+    If unset, the Cloudflare Root CA handles interception.
+    """
+
     id: str
     """Specify the UUID of the certificate used for interception.
 
@@ -28,11 +33,15 @@ class Certificate(BaseModel):
 
 
 class HostSelector(BaseModel):
+    """Enable host selection in egress policies."""
+
     enabled: Optional[bool] = None
     """Specify whether to enable filtering via hosts for egress policies."""
 
 
 class Inspection(BaseModel):
+    """Define the proxy inspection mode."""
+
     mode: Optional[Literal["static", "dynamic"]] = None
     """Define the proxy inspection mode.
 
@@ -44,6 +53,8 @@ class Inspection(BaseModel):
 
 
 class Sandbox(BaseModel):
+    """Specify whether to enable the sandbox."""
+
     enabled: Optional[bool] = None
     """Specify whether to enable the sandbox."""
 
@@ -52,6 +63,8 @@ class Sandbox(BaseModel):
 
 
 class GatewayConfigurationSettings(BaseModel):
+    """Specify account settings."""
+
     activity_log: Optional[ActivityLogSettings] = None
     """Specify activity log settings."""
 

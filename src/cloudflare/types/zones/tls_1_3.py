@@ -10,6 +10,8 @@ __all__ = ["TLS1_3"]
 
 
 class TLS1_3(BaseModel):
+    """Enables Crypto TLS 1.3 feature for a zone."""
+
     id: Literal["tls_1_3"]
     """ID of the zone setting."""
 

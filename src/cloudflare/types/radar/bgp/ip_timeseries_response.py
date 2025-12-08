@@ -25,6 +25,8 @@ __all__ = [
 
 
 class MetaConfidenceInfoAnnotation(BaseModel):
+    """Annotation associated with the result (e.g. outage or other type of event)."""
+
     data_source: Literal[
         "ALL",
         "AI_BOTS",
@@ -137,6 +139,8 @@ class MetaDelay(BaseModel):
 
 
 class Meta(BaseModel):
+    """Metadata for the results."""
+
     agg_interval: Literal["FIFTEEN_MINUTES", "ONE_HOUR", "ONE_DAY", "ONE_WEEK", "ONE_MONTH"] = FieldInfo(
         alias="aggInterval"
     )

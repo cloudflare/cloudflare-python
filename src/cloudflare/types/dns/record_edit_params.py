@@ -109,6 +109,8 @@ class ARecord(TypedDict, total=False):
 
 
 class ARecordSettings(TypedDict, total=False):
+    """Settings for the DNS record."""
+
     ipv4_only: bool
     """
     When enabled, only A records will be generated, and AAAA records will not be
@@ -166,6 +168,8 @@ class AAAARecord(TypedDict, total=False):
 
 
 class AAAARecordSettings(TypedDict, total=False):
+    """Settings for the DNS record."""
+
     ipv4_only: bool
     """
     When enabled, only A records will be generated, and AAAA records will not be
@@ -223,6 +227,8 @@ class CNAMERecord(TypedDict, total=False):
 
 
 class CNAMERecordSettings(TypedDict, total=False):
+    """Settings for the DNS record."""
+
     flatten_cname: bool
     """
     If enabled, causes the CNAME record to be resolved externally and the resulting
@@ -294,6 +300,8 @@ class MXRecord(TypedDict, total=False):
 
 
 class MXRecordSettings(TypedDict, total=False):
+    """Settings for the DNS record."""
+
     ipv4_only: bool
     """
     When enabled, only A records will be generated, and AAAA records will not be
@@ -351,6 +359,8 @@ class NSRecord(TypedDict, total=False):
 
 
 class NSRecordSettings(TypedDict, total=False):
+    """Settings for the DNS record."""
+
     ipv4_only: bool
     """
     When enabled, only A records will be generated, and AAAA records will not be
@@ -408,6 +418,8 @@ class DNSRecordsOpenpgpkeyRecord(TypedDict, total=False):
 
 
 class DNSRecordsOpenpgpkeyRecordSettings(TypedDict, total=False):
+    """Settings for the DNS record."""
+
     ipv4_only: bool
     """
     When enabled, only A records will be generated, and AAAA records will not be
@@ -465,6 +477,8 @@ class PTRRecord(TypedDict, total=False):
 
 
 class PTRRecordSettings(TypedDict, total=False):
+    """Settings for the DNS record."""
+
     ipv4_only: bool
     """
     When enabled, only A records will be generated, and AAAA records will not be
@@ -530,6 +544,8 @@ class TXTRecord(TypedDict, total=False):
 
 
 class TXTRecordSettings(TypedDict, total=False):
+    """Settings for the DNS record."""
+
     ipv4_only: bool
     """
     When enabled, only A records will be generated, and AAAA records will not be
@@ -587,6 +603,8 @@ class CAARecord(TypedDict, total=False):
 
 
 class CAARecordData(TypedDict, total=False):
+    """Components of a CAA record."""
+
     flags: float
     """Flags for the CAA record."""
 
@@ -598,6 +616,8 @@ class CAARecordData(TypedDict, total=False):
 
 
 class CAARecordSettings(TypedDict, total=False):
+    """Settings for the DNS record."""
+
     ipv4_only: bool
     """
     When enabled, only A records will be generated, and AAAA records will not be
@@ -655,6 +675,8 @@ class CERTRecord(TypedDict, total=False):
 
 
 class CERTRecordData(TypedDict, total=False):
+    """Components of a CERT record."""
+
     algorithm: float
     """Algorithm."""
 
@@ -669,6 +691,8 @@ class CERTRecordData(TypedDict, total=False):
 
 
 class CERTRecordSettings(TypedDict, total=False):
+    """Settings for the DNS record."""
+
     ipv4_only: bool
     """
     When enabled, only A records will be generated, and AAAA records will not be
@@ -726,6 +750,8 @@ class DNSKEYRecord(TypedDict, total=False):
 
 
 class DNSKEYRecordData(TypedDict, total=False):
+    """Components of a DNSKEY record."""
+
     algorithm: float
     """Algorithm."""
 
@@ -740,6 +766,8 @@ class DNSKEYRecordData(TypedDict, total=False):
 
 
 class DNSKEYRecordSettings(TypedDict, total=False):
+    """Settings for the DNS record."""
+
     ipv4_only: bool
     """
     When enabled, only A records will be generated, and AAAA records will not be
@@ -797,6 +825,8 @@ class DSRecord(TypedDict, total=False):
 
 
 class DSRecordData(TypedDict, total=False):
+    """Components of a DS record."""
+
     algorithm: float
     """Algorithm."""
 
@@ -811,6 +841,8 @@ class DSRecordData(TypedDict, total=False):
 
 
 class DSRecordSettings(TypedDict, total=False):
+    """Settings for the DNS record."""
+
     ipv4_only: bool
     """
     When enabled, only A records will be generated, and AAAA records will not be
@@ -868,6 +900,8 @@ class HTTPSRecord(TypedDict, total=False):
 
 
 class HTTPSRecordData(TypedDict, total=False):
+    """Components of a HTTPS record."""
+
     priority: float
     """Priority."""
 
@@ -879,6 +913,8 @@ class HTTPSRecordData(TypedDict, total=False):
 
 
 class HTTPSRecordSettings(TypedDict, total=False):
+    """Settings for the DNS record."""
+
     ipv4_only: bool
     """
     When enabled, only A records will be generated, and AAAA records will not be
@@ -936,6 +972,8 @@ class LOCRecord(TypedDict, total=False):
 
 
 class LOCRecordData(TypedDict, total=False):
+    """Components of a LOC record."""
+
     altitude: float
     """Altitude of location in meters."""
 
@@ -974,6 +1012,8 @@ class LOCRecordData(TypedDict, total=False):
 
 
 class LOCRecordSettings(TypedDict, total=False):
+    """Settings for the DNS record."""
+
     ipv4_only: bool
     """
     When enabled, only A records will be generated, and AAAA records will not be
@@ -1031,6 +1071,8 @@ class NAPTRRecord(TypedDict, total=False):
 
 
 class NAPTRRecordData(TypedDict, total=False):
+    """Components of a NAPTR record."""
+
     flags: str
     """Flags."""
 
@@ -1051,6 +1093,8 @@ class NAPTRRecordData(TypedDict, total=False):
 
 
 class NAPTRRecordSettings(TypedDict, total=False):
+    """Settings for the DNS record."""
+
     ipv4_only: bool
     """
     When enabled, only A records will be generated, and AAAA records will not be
@@ -1108,6 +1152,8 @@ class SMIMEARecord(TypedDict, total=False):
 
 
 class SMIMEARecordData(TypedDict, total=False):
+    """Components of a SMIMEA record."""
+
     certificate: str
     """Certificate."""
 
@@ -1122,6 +1168,8 @@ class SMIMEARecordData(TypedDict, total=False):
 
 
 class SMIMEARecordSettings(TypedDict, total=False):
+    """Settings for the DNS record."""
+
     ipv4_only: bool
     """
     When enabled, only A records will be generated, and AAAA records will not be
@@ -1179,6 +1227,8 @@ class SRVRecord(TypedDict, total=False):
 
 
 class SRVRecordData(TypedDict, total=False):
+    """Components of a SRV record."""
+
     port: float
     """The port of the service."""
 
@@ -1196,6 +1246,8 @@ class SRVRecordData(TypedDict, total=False):
 
 
 class SRVRecordSettings(TypedDict, total=False):
+    """Settings for the DNS record."""
+
     ipv4_only: bool
     """
     When enabled, only A records will be generated, and AAAA records will not be
@@ -1253,6 +1305,8 @@ class SSHFPRecord(TypedDict, total=False):
 
 
 class SSHFPRecordData(TypedDict, total=False):
+    """Components of a SSHFP record."""
+
     algorithm: float
     """Algorithm."""
 
@@ -1264,6 +1318,8 @@ class SSHFPRecordData(TypedDict, total=False):
 
 
 class SSHFPRecordSettings(TypedDict, total=False):
+    """Settings for the DNS record."""
+
     ipv4_only: bool
     """
     When enabled, only A records will be generated, and AAAA records will not be
@@ -1321,6 +1377,8 @@ class SVCBRecord(TypedDict, total=False):
 
 
 class SVCBRecordData(TypedDict, total=False):
+    """Components of a SVCB record."""
+
     priority: float
     """Priority."""
 
@@ -1332,6 +1390,8 @@ class SVCBRecordData(TypedDict, total=False):
 
 
 class SVCBRecordSettings(TypedDict, total=False):
+    """Settings for the DNS record."""
+
     ipv4_only: bool
     """
     When enabled, only A records will be generated, and AAAA records will not be
@@ -1389,6 +1449,8 @@ class TLSARecord(TypedDict, total=False):
 
 
 class TLSARecordData(TypedDict, total=False):
+    """Components of a TLSA record."""
+
     certificate: str
     """Certificate."""
 
@@ -1403,6 +1465,8 @@ class TLSARecordData(TypedDict, total=False):
 
 
 class TLSARecordSettings(TypedDict, total=False):
+    """Settings for the DNS record."""
+
     ipv4_only: bool
     """
     When enabled, only A records will be generated, and AAAA records will not be
@@ -1466,6 +1530,8 @@ class URIRecord(TypedDict, total=False):
 
 
 class URIRecordData(TypedDict, total=False):
+    """Components of a URI record."""
+
     target: str
     """The record content."""
 
@@ -1474,6 +1540,8 @@ class URIRecordData(TypedDict, total=False):
 
 
 class URIRecordSettings(TypedDict, total=False):
+    """Settings for the DNS record."""
+
     ipv4_only: bool
     """
     When enabled, only A records will be generated, and AAAA records will not be

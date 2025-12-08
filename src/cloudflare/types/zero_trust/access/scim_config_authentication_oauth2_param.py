@@ -10,6 +10,10 @@ __all__ = ["SCIMConfigAuthenticationOauth2Param"]
 
 
 class SCIMConfigAuthenticationOauth2Param(TypedDict, total=False):
+    """
+    Attributes for configuring OAuth 2 authentication scheme for SCIM provisioning to an application.
+    """
+
     authorization_url: Required[str]
     """URL used to generate the auth code used during token generation."""
 

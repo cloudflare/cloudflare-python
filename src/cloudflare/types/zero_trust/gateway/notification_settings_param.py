@@ -8,6 +8,8 @@ __all__ = ["NotificationSettingsParam"]
 
 
 class NotificationSettingsParam(TypedDict, total=False):
+    """Configure the message the user's device shows during an antivirus scan."""
+
     enabled: bool
     """Specify whether to enable notifications."""
 

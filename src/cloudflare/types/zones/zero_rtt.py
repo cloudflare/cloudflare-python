@@ -10,6 +10,8 @@ __all__ = ["ZeroRTT"]
 
 
 class ZeroRTT(BaseModel):
+    """0-RTT session resumption enabled for this zone."""
+
     id: Literal["0rtt"]
     """ID of the zone setting."""
 

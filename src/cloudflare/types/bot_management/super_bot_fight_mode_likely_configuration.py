@@ -9,6 +9,10 @@ __all__ = ["SuperBotFightModeLikelyConfiguration", "StaleZoneConfiguration"]
 
 
 class StaleZoneConfiguration(BaseModel):
+    """
+    A read-only field that shows which unauthorized settings are currently active on the zone. These settings typically result from upgrades or downgrades.
+    """
+
     fight_mode: Optional[bool] = None
     """Indicates that the zone's Bot Fight Mode is turned on."""
 

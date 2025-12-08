@@ -16,4 +16,9 @@ class Okta(TypedDict, total=False):
 
 
 class OktaGroupRuleParam(TypedDict, total=False):
+    """
+    Matches an Okta group.
+    Requires an Okta identity provider.
+    """
+
     okta: Required[Okta]

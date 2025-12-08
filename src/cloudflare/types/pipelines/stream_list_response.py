@@ -37,6 +37,8 @@ __all__ = [
 
 
 class HTTPCORS(BaseModel):
+    """Specifies the CORS options for the HTTP endpoint."""
+
     origins: Optional[List[str]] = None
 
 

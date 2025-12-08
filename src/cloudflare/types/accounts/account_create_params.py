@@ -22,5 +22,9 @@ class AccountCreateParams(TypedDict, total=False):
 
 
 class Unit(TypedDict, total=False):
+    """
+    information related to the tenant unit, and optionally, an id of the unit to create the account on. see https://developers.cloudflare.com/tenant/how-to/manage-accounts/
+    """
+
     id: str
     """Tenant unit ID"""

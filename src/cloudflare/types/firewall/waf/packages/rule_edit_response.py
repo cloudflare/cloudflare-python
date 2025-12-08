@@ -16,6 +16,10 @@ __all__ = [
 
 
 class WAFManagedRulesAnomalyRule(BaseModel):
+    """
+    When triggered, anomaly detection WAF rules contribute to an overall threat score that will determine if a request is considered malicious. You can configure the total scoring threshold through the 'sensitivity' property of the WAF package.
+    """
+
     id: str
     """Defines the unique identifier of the WAF rule."""
 
@@ -49,6 +53,10 @@ class WAFManagedRulesAnomalyRule(BaseModel):
 
 
 class WAFManagedRulesTraditionalDenyRule(BaseModel):
+    """
+    When triggered, traditional WAF rules cause the firewall to immediately act upon the request based on the configuration of the rule. A 'deny' rule will immediately respond to the request based on the configured rule action/mode (for example, 'block') and no other rules will be processed.
+    """
+
     id: str
     """Defines the unique identifier of the WAF rule."""
 
@@ -81,6 +89,10 @@ class WAFManagedRulesTraditionalDenyRule(BaseModel):
 
 
 class WAFManagedRulesTraditionalAllowRule(BaseModel):
+    """
+    When triggered, traditional WAF rules cause the firewall to immediately act on the request based on the rule configuration. An 'allow' rule will immediately allow the request and no other rules will be processed.
+    """
+
     id: str
     """Defines the unique identifier of the WAF rule."""
 

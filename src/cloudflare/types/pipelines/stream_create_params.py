@@ -72,6 +72,8 @@ Format: TypeAlias = Union[FormatJson, FormatParquet]
 
 
 class HTTPCORS(TypedDict, total=False):
+    """Specifies the CORS options for the HTTP endpoint."""
+
     origins: SequenceNotStr[str]
 
 

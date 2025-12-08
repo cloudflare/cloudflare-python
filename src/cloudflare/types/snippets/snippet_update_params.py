@@ -16,5 +16,7 @@ class SnippetUpdateParams(TypedDict, total=False):
 
 
 class Metadata(TypedDict, total=False):
+    """Metadata about the snippet."""
+
     main_module: Required[str]
     """Name of the file that contains the main module of the snippet."""

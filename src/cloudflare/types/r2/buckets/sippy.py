@@ -12,6 +12,8 @@ __all__ = ["Sippy", "Destination", "Source"]
 
 
 class Destination(BaseModel):
+    """Details about the configured destination bucket."""
+
     access_key_id: Optional[str] = FieldInfo(alias="accessKeyId", default=None)
     """ID of the Cloudflare API token used when writing objects to this bucket."""
 
@@ -24,6 +26,8 @@ class Destination(BaseModel):
 
 
 class Source(BaseModel):
+    """Details about the configured source bucket."""
+
     bucket: Optional[str] = None
     """Name of the bucket on the provider (AWS, GCS only)."""
 

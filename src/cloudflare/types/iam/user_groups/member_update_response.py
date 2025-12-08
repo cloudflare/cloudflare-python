@@ -9,6 +9,8 @@ __all__ = ["MemberUpdateResponse"]
 
 
 class MemberUpdateResponse(BaseModel):
+    """Member attached to a User Group."""
+
     id: str
     """Account member identifier."""
 

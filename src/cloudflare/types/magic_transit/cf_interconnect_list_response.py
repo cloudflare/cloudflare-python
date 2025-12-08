@@ -10,6 +10,8 @@ __all__ = ["CfInterconnectListResponse", "Interconnect", "InterconnectGRE"]
 
 
 class InterconnectGRE(BaseModel):
+    """The configuration specific to GRE interconnects."""
+
     cloudflare_endpoint: Optional[str] = None
     """
     The IP address assigned to the Cloudflare side of the GRE tunnel created as part

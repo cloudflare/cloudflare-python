@@ -54,11 +54,17 @@ class ZoneEditParams(TypedDict, total=False):
 
 
 class InternalDNS(TypedDict, total=False):
+    """Settings for this internal zone."""
+
     reference_zone_id: str
     """The ID of the zone to fallback to."""
 
 
 class Nameservers(TypedDict, total=False):
+    """
+    Settings determining the nameservers through which the zone should be available.
+    """
+
     ns_set: int
     """Configured nameserver set to be used for this zone"""
 
@@ -67,6 +73,8 @@ class Nameservers(TypedDict, total=False):
 
 
 class SOA(TypedDict, total=False):
+    """Components of the zone's SOA record."""
+
     expire: float
     """
     Time in seconds of being unable to query the primary server after which

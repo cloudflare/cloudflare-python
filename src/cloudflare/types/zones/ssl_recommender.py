@@ -9,6 +9,10 @@ __all__ = ["SSLRecommender"]
 
 
 class SSLRecommender(BaseModel):
+    """
+    Enrollment in the SSL/TLS Recommender service which tries to detect and recommend (by sending periodic emails) the most secure SSL/TLS setting your origin servers support.
+    """
+
     id: Optional[Literal["ssl_recommender"]] = None
     """Enrollment value for SSL/TLS Recommender."""
 

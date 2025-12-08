@@ -9,6 +9,8 @@ __all__ = ["TableListResponse", "Identifier", "Detail", "DetailIdentifier"]
 
 
 class Identifier(BaseModel):
+    """Specifies a unique table identifier within a catalog."""
+
     name: str
     """Specifies the table name."""
 
@@ -20,6 +22,8 @@ class Identifier(BaseModel):
 
 
 class DetailIdentifier(BaseModel):
+    """Specifies a unique table identifier within a catalog."""
+
     name: str
     """Specifies the table name."""
 
@@ -31,6 +35,8 @@ class DetailIdentifier(BaseModel):
 
 
 class Detail(BaseModel):
+    """Contains table with metadata."""
+
     identifier: DetailIdentifier
     """Specifies a unique table identifier within a catalog."""
 
@@ -51,6 +57,8 @@ class Detail(BaseModel):
 
 
 class TableListResponse(BaseModel):
+    """Contains the list of tables with optional pagination."""
+
     identifiers: List[Identifier]
     """Lists tables in the namespace."""
 

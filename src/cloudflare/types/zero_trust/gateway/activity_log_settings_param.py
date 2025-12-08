@@ -9,5 +9,7 @@ __all__ = ["ActivityLogSettingsParam"]
 
 
 class ActivityLogSettingsParam(TypedDict, total=False):
+    """Specify activity log settings."""
+
     enabled: Optional[bool]
     """Specify whether to log activity."""

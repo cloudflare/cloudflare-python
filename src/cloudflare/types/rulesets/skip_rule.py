@@ -12,6 +12,8 @@ __all__ = ["SkipRule", "ActionParameters", "ExposedCredentialCheck", "Ratelimit"
 
 
 class ActionParameters(BaseModel):
+    """The parameters configuring the rule's action."""
+
     phase: Optional[Literal["current"]] = None
     """A phase to skip the execution of.
 
@@ -49,6 +51,8 @@ class ActionParameters(BaseModel):
 
 
 class ExposedCredentialCheck(BaseModel):
+    """Configuration for exposed credential checking."""
+
     password_expression: str
     """An expression that selects the password used in the credentials check."""
 
@@ -57,6 +61,8 @@ class ExposedCredentialCheck(BaseModel):
 
 
 class Ratelimit(BaseModel):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: List[str]
     """
     Characteristics of the request on which the rate limit counter will be

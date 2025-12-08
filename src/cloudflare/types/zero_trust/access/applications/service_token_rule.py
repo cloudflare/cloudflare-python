@@ -11,4 +11,6 @@ class ServiceToken(BaseModel):
 
 
 class ServiceTokenRule(BaseModel):
+    """Matches a specific Access Service Token"""
+
     service_token: ServiceToken

@@ -13,6 +13,8 @@ __all__ = ["EndpointParam"]
 
 
 class EndpointParam(TypedDict, total=False):
+    """Configure the destination endpoints for this location."""
+
     doh: Required[DOHEndpointParam]
 
     dot: Required[DOTEndpointParam]

@@ -10,6 +10,10 @@ __all__ = ["OrangeToOrange"]
 
 
 class OrangeToOrange(BaseModel):
+    """
+    Orange to Orange (O2O) allows zones on Cloudflare to CNAME to other zones also on Cloudflare.
+    """
+
     id: Literal["orange_to_orange"]
     """ID of the zone setting."""
 

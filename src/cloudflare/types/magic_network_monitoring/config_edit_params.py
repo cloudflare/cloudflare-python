@@ -28,6 +28,8 @@ class ConfigEditParams(TypedDict, total=False):
 
 
 class WARPDevice(TypedDict, total=False):
+    """Object representing a warp device with an ID and name."""
+
     id: Required[str]
     """Unique identifier for the warp device."""
 

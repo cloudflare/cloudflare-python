@@ -9,6 +9,8 @@ __all__ = ["RuleDeleteResponse"]
 
 
 class RuleDeleteResponse(BaseModel):
+    """A snippet rule."""
+
     id: str
     """The unique ID of the rule."""
 

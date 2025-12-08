@@ -105,12 +105,16 @@ class ConfigUpdateParams(TypedDict, total=False):
 
 
 class SettingsContextEnricher(TypedDict, total=False):
+    """Details of the worker that receives and edits Zaraz Context object."""
+
     escaped_worker_name: Required[Annotated[str, PropertyInfo(alias="escapedWorkerName")]]
 
     worker_tag: Required[Annotated[str, PropertyInfo(alias="workerTag")]]
 
 
 class Settings(TypedDict, total=False):
+    """General Zaraz settings."""
+
     auto_inject_script: Required[Annotated[bool, PropertyInfo(alias="autoInjectScript")]]
     """Automatic injection of Zaraz scripts enabled."""
 
@@ -205,6 +209,8 @@ class ToolsZarazManagedComponent(TypedDict, total=False):
 
 
 class ToolsWorkerWorker(TypedDict, total=False):
+    """Cloudflare worker that acts as a managed component"""
+
     escaped_worker_name: Required[Annotated[str, PropertyInfo(alias="escapedWorkerName")]]
 
     worker_tag: Required[Annotated[str, PropertyInfo(alias="workerTag")]]
@@ -548,6 +554,8 @@ Variables: TypeAlias = Union[VariablesZarazStringVariable, VariablesZarazSecretV
 
 
 class Analytics(TypedDict, total=False):
+    """Cloudflare Monitoring settings."""
+
     default_purpose: Annotated[str, PropertyInfo(alias="defaultPurpose")]
     """Consent purpose assigned to Monitoring."""
 
@@ -575,6 +583,8 @@ class ConsentPurposesWithTranslations(TypedDict, total=False):
 
 
 class Consent(TypedDict, total=False):
+    """Consent management configuration."""
+
     enabled: Required[bool]
 
     button_text_translations: Annotated[ButtonTextTranslationParam, PropertyInfo(alias="buttonTextTranslations")]

@@ -8,6 +8,8 @@ __all__ = ["ConsumerScriptParam"]
 
 
 class ConsumerScriptParam(TypedDict, total=False):
+    """A reference to a script that will consume logs from the attached Worker."""
+
     service: Required[str]
     """Name of Worker that is to be the consumer."""
 

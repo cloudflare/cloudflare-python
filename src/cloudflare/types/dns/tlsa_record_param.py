@@ -12,6 +12,8 @@ __all__ = ["TLSARecordParam", "Data", "Settings"]
 
 
 class Data(TypedDict, total=False):
+    """Components of a TLSA record."""
+
     certificate: str
     """Certificate."""
 
@@ -26,6 +28,8 @@ class Data(TypedDict, total=False):
 
 
 class Settings(TypedDict, total=False):
+    """Settings for the DNS record."""
+
     ipv4_only: bool
     """
     When enabled, only A records will be generated, and AAAA records will not be

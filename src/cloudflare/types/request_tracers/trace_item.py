@@ -10,6 +10,8 @@ __all__ = ["TraceItem"]
 
 
 class TraceItem(BaseModel):
+    """List of steps acting on request/response"""
+
     action: Optional[str] = None
     """If step type is rule, then action performed by this rule"""
 

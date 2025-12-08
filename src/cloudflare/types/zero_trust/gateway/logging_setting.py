@@ -14,6 +14,8 @@ __all__ = [
 
 
 class SettingsByRuleTypeDNS(BaseModel):
+    """Configure logging settings for DNS firewall."""
+
     log_all: Optional[bool] = None
     """Specify whether to log all requests to this service."""
 
@@ -22,6 +24,8 @@ class SettingsByRuleTypeDNS(BaseModel):
 
 
 class SettingsByRuleTypeHTTP(BaseModel):
+    """Configure logging settings for HTTP/HTTPS firewall."""
+
     log_all: Optional[bool] = None
     """Specify whether to log all requests to this service."""
 
@@ -30,6 +34,8 @@ class SettingsByRuleTypeHTTP(BaseModel):
 
 
 class SettingsByRuleTypeL4(BaseModel):
+    """Configure logging settings for Network firewall."""
+
     log_all: Optional[bool] = None
     """Specify whether to log all requests to this service."""
 
@@ -38,6 +44,8 @@ class SettingsByRuleTypeL4(BaseModel):
 
 
 class SettingsByRuleType(BaseModel):
+    """Configure logging settings for each rule type."""
+
     dns: Optional[SettingsByRuleTypeDNS] = None
     """Configure logging settings for DNS firewall."""
 

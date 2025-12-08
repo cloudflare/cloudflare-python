@@ -41,6 +41,8 @@ class Connection(BaseModel):
 
 
 class CloudflareTunnel(BaseModel):
+    """A Cloudflare Tunnel that connects your origin to Cloudflare's edge."""
+
     id: Optional[str] = None
     """UUID of the tunnel."""
 

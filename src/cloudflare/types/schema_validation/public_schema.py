@@ -10,6 +10,8 @@ __all__ = ["PublicSchema"]
 
 
 class PublicSchema(BaseModel):
+    """A schema used in schema validation"""
+
     created_at: datetime
 
     kind: Literal["openapi_v3"]

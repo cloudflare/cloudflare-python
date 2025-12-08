@@ -10,6 +10,8 @@ __all__ = ["ApprovalGroupParam"]
 
 
 class ApprovalGroupParam(TypedDict, total=False):
+    """A group of email addresses that can approve a temporary authentication request."""
+
     approvals_needed: Required[float]
     """The number of approvals needed to obtain access."""
 

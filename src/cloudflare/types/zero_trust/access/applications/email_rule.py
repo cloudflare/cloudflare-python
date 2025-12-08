@@ -11,4 +11,6 @@ class Email(BaseModel):
 
 
 class EmailRule(BaseModel):
+    """Matches a specific email."""
+
     email: Email

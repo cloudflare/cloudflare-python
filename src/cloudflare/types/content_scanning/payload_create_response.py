@@ -8,6 +8,8 @@ __all__ = ["PayloadCreateResponse"]
 
 
 class PayloadCreateResponse(BaseModel):
+    """Defines a custom scan expression to match Content Scanning on."""
+
     id: Optional[str] = None
     """defines the unique ID for this custom scan expression."""
 

@@ -135,6 +135,8 @@ E: TypeAlias = Annotated[
 
 
 class EventGetResponse(BaseModel):
+    """Recorded Event"""
+
     e: E
 
     n: float

@@ -9,12 +9,18 @@ __all__ = ["TokenPolicy", "PermissionGroup", "PermissionGroupMeta"]
 
 
 class PermissionGroupMeta(BaseModel):
+    """Attributes associated to the permission group."""
+
     key: Optional[str] = None
 
     value: Optional[str] = None
 
 
 class PermissionGroup(BaseModel):
+    """
+    A named group of permissions that map to a group of operations against resources.
+    """
+
     id: str
     """Identifier of the permission group."""
 

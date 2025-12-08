@@ -8,6 +8,8 @@ __all__ = ["Configuration", "WARPDevice"]
 
 
 class WARPDevice(BaseModel):
+    """Object representing a warp device with an ID and name."""
+
     id: str
     """Unique identifier for the warp device."""
 

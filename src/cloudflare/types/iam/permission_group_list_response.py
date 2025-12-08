@@ -8,12 +8,18 @@ __all__ = ["PermissionGroupListResponse", "Meta"]
 
 
 class Meta(BaseModel):
+    """Attributes associated to the permission group."""
+
     key: Optional[str] = None
 
     value: Optional[str] = None
 
 
 class PermissionGroupListResponse(BaseModel):
+    """
+    A named group of permissions that map to a group of operations against resources.
+    """
+
     id: str
     """Identifier of the permission group."""
 

@@ -9,6 +9,8 @@ __all__ = ["SettingsMultipleRequestParam", "SettingsMultipleRequestParamItem"]
 
 
 class SettingsMultipleRequestParamItem(TypedDict, total=False):
+    """Operation ID to mitigation action mappings"""
+
     mitigation_action: Optional[Literal["log", "block", "none"]]
     """When set, this applies a mitigation action to this operation
 

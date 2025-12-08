@@ -118,6 +118,8 @@ class ActionCacheDeceptionArmor(TypedDict, total=False):
 
 
 class ActionCacheKeyFieldsValueCookie(TypedDict, total=False):
+    """Controls which cookies appear in the Cache Key."""
+
     check_presence: SequenceNotStr[str]
     """
     A list of cookies to check for the presence of, without including their actual
@@ -129,6 +131,12 @@ class ActionCacheKeyFieldsValueCookie(TypedDict, total=False):
 
 
 class ActionCacheKeyFieldsValueHeader(TypedDict, total=False):
+    """Controls which headers go into the Cache Key.
+
+    Exactly one of
+    `include` or `exclude` is expected.
+    """
+
     check_presence: SequenceNotStr[str]
     """
     A list of headers to check for the presence of, without including their actual
@@ -143,11 +151,19 @@ class ActionCacheKeyFieldsValueHeader(TypedDict, total=False):
 
 
 class ActionCacheKeyFieldsValueHost(TypedDict, total=False):
+    """Determines which host header to include in the Cache Key."""
+
     resolved: bool
     """Whether to include the Host header in the HTTP request sent to the origin."""
 
 
 class ActionCacheKeyFieldsValueQueryString(TypedDict, total=False):
+    """Controls which URL query string parameters go into the Cache
+    Key.
+
+    Exactly one of `include` or `exclude` is expected.
+    """
+
     exclude: Union[Literal["*"], SequenceNotStr[str]]
     """Ignore all query string parameters."""
 
@@ -156,6 +172,11 @@ class ActionCacheKeyFieldsValueQueryString(TypedDict, total=False):
 
 
 class ActionCacheKeyFieldsValueUser(TypedDict, total=False):
+    """
+    Feature fields to add features about the end-user (client) into
+    the Cache Key.
+    """
+
     device_type: bool
     """
     Classifies a request as `mobile`, `desktop`, or `tablet` based on the User

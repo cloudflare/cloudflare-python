@@ -8,6 +8,8 @@ __all__ = ["URLNormalizationGetResponse"]
 
 
 class URLNormalizationGetResponse(BaseModel):
+    """A result."""
+
     scope: Literal["incoming", "both", "none"]
     """The scope of the URL normalization."""
 

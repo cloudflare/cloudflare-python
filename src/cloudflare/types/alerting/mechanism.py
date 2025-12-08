@@ -23,6 +23,11 @@ class Webhook(BaseModel):
 
 
 class Mechanism(BaseModel):
+    """List of IDs that will be used when dispatching a notification.
+
+    IDs for email type will be the email address.
+    """
+
     email: Optional[List[Email]] = None
 
     pagerduty: Optional[List[Pagerduty]] = None

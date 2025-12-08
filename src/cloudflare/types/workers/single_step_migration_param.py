@@ -38,6 +38,8 @@ class TransferredClass(_TransferredClassReservedKeywords, total=False):
 
 
 class SingleStepMigrationParam(TypedDict, total=False):
+    """A single set of migrations to apply."""
+
     deleted_classes: SequenceNotStr[str]
     """A list of classes to delete Durable Object namespaces from."""
 

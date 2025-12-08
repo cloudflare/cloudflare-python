@@ -33,6 +33,8 @@ class ConfigurationCreateParams(TypedDict, total=False):
 
 
 class CredentialsKeyAPIShieldCredentialsJWTKeyRSA(TypedDict, total=False):
+    """JSON representation of an RSA key."""
+
     alg: Required[Literal["RS256", "RS384", "RS512", "PS256", "PS384", "PS512"]]
     """Algorithm"""
 
@@ -50,6 +52,8 @@ class CredentialsKeyAPIShieldCredentialsJWTKeyRSA(TypedDict, total=False):
 
 
 class CredentialsKeyAPIShieldCredentialsJWTKeyEcEs256(TypedDict, total=False):
+    """JSON representation of an ES256 key"""
+
     alg: Required[Literal["ES256"]]
     """Algorithm"""
 
@@ -70,6 +74,8 @@ class CredentialsKeyAPIShieldCredentialsJWTKeyEcEs256(TypedDict, total=False):
 
 
 class CredentialsKeyAPIShieldCredentialsJWTKeyEcEs384(TypedDict, total=False):
+    """JSON representation of an ES384 key"""
+
     alg: Required[Literal["ES384"]]
     """Algorithm"""
 

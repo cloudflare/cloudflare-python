@@ -9,6 +9,8 @@ __all__ = ["RatePlan"]
 
 
 class RatePlan(BaseModel):
+    """The rate plan applied to the subscription."""
+
     id: Optional[
         Literal[
             "free",

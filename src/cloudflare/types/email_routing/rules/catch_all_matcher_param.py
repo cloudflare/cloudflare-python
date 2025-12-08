@@ -8,5 +8,7 @@ __all__ = ["CatchAllMatcherParam"]
 
 
 class CatchAllMatcherParam(TypedDict, total=False):
+    """Matcher for catch-all routing rule."""
+
     type: Required[Literal["all"]]
     """Type of matcher. Default is 'all'."""

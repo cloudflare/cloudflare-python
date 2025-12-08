@@ -276,6 +276,11 @@ class SelfHostedApplication(TypedDict, total=False):
 
 
 class SelfHostedApplicationDestinationPublicDestination(TypedDict, total=False):
+    """A public hostname that Access will secure.
+
+    Public destinations support sub-domain and path. Wildcard '*' can be used in the definition.
+    """
+
     type: Literal["public"]
 
     uri: str
@@ -312,6 +317,11 @@ class SelfHostedApplicationDestinationPrivateDestination(TypedDict, total=False)
 
 
 class SelfHostedApplicationDestinationViaMcpServerPortalDestination(TypedDict, total=False):
+    """A MCP server id configured in ai-controls.
+
+    Access will secure the MCP server if accessed through a MCP portal.
+    """
+
     mcp_server_id: str
     """The MCP server id configured in ai-controls."""
 
@@ -326,6 +336,8 @@ SelfHostedApplicationDestination: TypeAlias = Union[
 
 
 class SelfHostedApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
+    """A JSON that links a reusable policy to an application."""
+
     id: str
     """The UUID of the policy"""
 
@@ -384,6 +396,10 @@ SelfHostedApplicationPolicy: TypeAlias = Union[
 class SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
     TypedDict, total=False
 ):
+    """
+    Attributes for configuring Access Service Token authentication scheme for SCIM provisioning to an application.
+    """
+
     client_id: Required[str]
     """
     Client ID of the Access service token used to authenticate with the remote
@@ -403,6 +419,10 @@ class SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticatio
 class SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
     TypedDict, total=False
 ):
+    """
+    Attributes for configuring Access Service Token authentication scheme for SCIM provisioning to an application.
+    """
+
     client_id: Required[str]
     """
     Client ID of the Access service token used to authenticate with the remote
@@ -436,6 +456,11 @@ SelfHostedApplicationSCIMConfigAuthentication: TypeAlias = Union[
 
 
 class SelfHostedApplicationSCIMConfig(TypedDict, total=False):
+    """Configuration for provisioning to this application via SCIM.
+
+    This is currently in closed beta.
+    """
+
     idp_uid: Required[str]
     """
     The UID of the IdP to use as the source for SCIM resources to provision to this
@@ -527,6 +552,8 @@ class SaaSApplication(TypedDict, total=False):
 
 
 class SaaSApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
+    """A JSON that links a reusable policy to an application."""
+
     id: str
     """The UUID of the policy"""
 
@@ -585,6 +612,10 @@ SaaSApplicationSaaSApp: TypeAlias = Union[SAMLSaaSAppParam, OIDCSaaSAppParam]
 
 
 class SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(TypedDict, total=False):
+    """
+    Attributes for configuring Access Service Token authentication scheme for SCIM provisioning to an application.
+    """
+
     client_id: Required[str]
     """
     Client ID of the Access service token used to authenticate with the remote
@@ -604,6 +635,10 @@ class SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAcces
 class SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
     TypedDict, total=False
 ):
+    """
+    Attributes for configuring Access Service Token authentication scheme for SCIM provisioning to an application.
+    """
+
     client_id: Required[str]
     """
     Client ID of the Access service token used to authenticate with the remote
@@ -637,6 +672,11 @@ SaaSApplicationSCIMConfigAuthentication: TypeAlias = Union[
 
 
 class SaaSApplicationSCIMConfig(TypedDict, total=False):
+    """Configuration for provisioning to this application via SCIM.
+
+    This is currently in closed beta.
+    """
+
     idp_uid: Required[str]
     """
     The UID of the IdP to use as the source for SCIM resources to provision to this
@@ -850,6 +890,11 @@ class BrowserSSHApplication(TypedDict, total=False):
 
 
 class BrowserSSHApplicationDestinationPublicDestination(TypedDict, total=False):
+    """A public hostname that Access will secure.
+
+    Public destinations support sub-domain and path. Wildcard '*' can be used in the definition.
+    """
+
     type: Literal["public"]
 
     uri: str
@@ -886,6 +931,11 @@ class BrowserSSHApplicationDestinationPrivateDestination(TypedDict, total=False)
 
 
 class BrowserSSHApplicationDestinationViaMcpServerPortalDestination(TypedDict, total=False):
+    """A MCP server id configured in ai-controls.
+
+    Access will secure the MCP server if accessed through a MCP portal.
+    """
+
     mcp_server_id: str
     """The MCP server id configured in ai-controls."""
 
@@ -900,6 +950,8 @@ BrowserSSHApplicationDestination: TypeAlias = Union[
 
 
 class BrowserSSHApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
+    """A JSON that links a reusable policy to an application."""
+
     id: str
     """The UUID of the policy"""
 
@@ -958,6 +1010,10 @@ BrowserSSHApplicationPolicy: TypeAlias = Union[
 class BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
     TypedDict, total=False
 ):
+    """
+    Attributes for configuring Access Service Token authentication scheme for SCIM provisioning to an application.
+    """
+
     client_id: Required[str]
     """
     Client ID of the Access service token used to authenticate with the remote
@@ -977,6 +1033,10 @@ class BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticatio
 class BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
     TypedDict, total=False
 ):
+    """
+    Attributes for configuring Access Service Token authentication scheme for SCIM provisioning to an application.
+    """
+
     client_id: Required[str]
     """
     Client ID of the Access service token used to authenticate with the remote
@@ -1010,6 +1070,11 @@ BrowserSSHApplicationSCIMConfigAuthentication: TypeAlias = Union[
 
 
 class BrowserSSHApplicationSCIMConfig(TypedDict, total=False):
+    """Configuration for provisioning to this application via SCIM.
+
+    This is currently in closed beta.
+    """
+
     idp_uid: Required[str]
     """
     The UID of the IdP to use as the source for SCIM resources to provision to this
@@ -1223,6 +1288,11 @@ class BrowserVNCApplication(TypedDict, total=False):
 
 
 class BrowserVNCApplicationDestinationPublicDestination(TypedDict, total=False):
+    """A public hostname that Access will secure.
+
+    Public destinations support sub-domain and path. Wildcard '*' can be used in the definition.
+    """
+
     type: Literal["public"]
 
     uri: str
@@ -1259,6 +1329,11 @@ class BrowserVNCApplicationDestinationPrivateDestination(TypedDict, total=False)
 
 
 class BrowserVNCApplicationDestinationViaMcpServerPortalDestination(TypedDict, total=False):
+    """A MCP server id configured in ai-controls.
+
+    Access will secure the MCP server if accessed through a MCP portal.
+    """
+
     mcp_server_id: str
     """The MCP server id configured in ai-controls."""
 
@@ -1273,6 +1348,8 @@ BrowserVNCApplicationDestination: TypeAlias = Union[
 
 
 class BrowserVNCApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
+    """A JSON that links a reusable policy to an application."""
+
     id: str
     """The UUID of the policy"""
 
@@ -1331,6 +1408,10 @@ BrowserVNCApplicationPolicy: TypeAlias = Union[
 class BrowserVNCApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
     TypedDict, total=False
 ):
+    """
+    Attributes for configuring Access Service Token authentication scheme for SCIM provisioning to an application.
+    """
+
     client_id: Required[str]
     """
     Client ID of the Access service token used to authenticate with the remote
@@ -1350,6 +1431,10 @@ class BrowserVNCApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticatio
 class BrowserVNCApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
     TypedDict, total=False
 ):
+    """
+    Attributes for configuring Access Service Token authentication scheme for SCIM provisioning to an application.
+    """
+
     client_id: Required[str]
     """
     Client ID of the Access service token used to authenticate with the remote
@@ -1383,6 +1468,11 @@ BrowserVNCApplicationSCIMConfigAuthentication: TypeAlias = Union[
 
 
 class BrowserVNCApplicationSCIMConfig(TypedDict, total=False):
+    """Configuration for provisioning to this application via SCIM.
+
+    This is currently in closed beta.
+    """
+
     idp_uid: Required[str]
     """
     The UID of the IdP to use as the source for SCIM resources to provision to this
@@ -1513,6 +1603,8 @@ class AppLauncherApplicationFooterLink(TypedDict, total=False):
 
 
 class AppLauncherApplicationLandingPageDesign(TypedDict, total=False):
+    """The design of the App Launcher landing page shown to users when they log in."""
+
     button_color: str
     """The background color of the log in button on the landing page."""
 
@@ -1530,6 +1622,8 @@ class AppLauncherApplicationLandingPageDesign(TypedDict, total=False):
 
 
 class AppLauncherApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
+    """A JSON that links a reusable policy to an application."""
+
     id: str
     """The UUID of the policy"""
 
@@ -1640,6 +1734,8 @@ class DeviceEnrollmentPermissionsApplication(TypedDict, total=False):
 
 
 class DeviceEnrollmentPermissionsApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
+    """A JSON that links a reusable policy to an application."""
+
     id: str
     """The UUID of the policy"""
 
@@ -1752,6 +1848,8 @@ class BrowserIsolationPermissionsApplication(TypedDict, total=False):
 
 
 class BrowserIsolationPermissionsApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
+    """A JSON that links a reusable policy to an application."""
+
     id: str
     """The UUID of the policy"""
 
@@ -1873,6 +1971,8 @@ class GatewayIdentityProxyEndpointApplication(TypedDict, total=False):
 
 
 class GatewayIdentityProxyEndpointApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
+    """A JSON that links a reusable policy to an application."""
+
     id: str
     """The UUID of the policy"""
 
@@ -1993,6 +2093,10 @@ class InfrastructureApplicationTargetCriterion(TypedDict, total=False):
 
 
 class InfrastructureApplicationPolicyConnectionRulesSSH(TypedDict, total=False):
+    """
+    The SSH-specific rules that define how users may connect to the targets secured by your application.
+    """
+
     usernames: Required[SequenceNotStr[str]]
     """Contains the Unix usernames that may be used when connecting over SSH."""
 
@@ -2001,6 +2105,10 @@ class InfrastructureApplicationPolicyConnectionRulesSSH(TypedDict, total=False):
 
 
 class InfrastructureApplicationPolicyConnectionRules(TypedDict, total=False):
+    """
+    The rules that define how users may connect to the targets secured by your application.
+    """
+
     ssh: InfrastructureApplicationPolicyConnectionRulesSSH
     """
     The SSH-specific rules that define how users may connect to the targets secured
@@ -2223,6 +2331,11 @@ class BrowserRdpApplicationTargetCriterion(TypedDict, total=False):
 
 
 class BrowserRdpApplicationDestinationPublicDestination(TypedDict, total=False):
+    """A public hostname that Access will secure.
+
+    Public destinations support sub-domain and path. Wildcard '*' can be used in the definition.
+    """
+
     type: Literal["public"]
 
     uri: str
@@ -2259,6 +2372,11 @@ class BrowserRdpApplicationDestinationPrivateDestination(TypedDict, total=False)
 
 
 class BrowserRdpApplicationDestinationViaMcpServerPortalDestination(TypedDict, total=False):
+    """A MCP server id configured in ai-controls.
+
+    Access will secure the MCP server if accessed through a MCP portal.
+    """
+
     mcp_server_id: str
     """The MCP server id configured in ai-controls."""
 
@@ -2273,6 +2391,8 @@ BrowserRdpApplicationDestination: TypeAlias = Union[
 
 
 class BrowserRdpApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
+    """A JSON that links a reusable policy to an application."""
+
     id: str
     """The UUID of the policy"""
 
@@ -2331,6 +2451,10 @@ BrowserRdpApplicationPolicy: TypeAlias = Union[
 class BrowserRdpApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
     TypedDict, total=False
 ):
+    """
+    Attributes for configuring Access Service Token authentication scheme for SCIM provisioning to an application.
+    """
+
     client_id: Required[str]
     """
     Client ID of the Access service token used to authenticate with the remote
@@ -2350,6 +2474,10 @@ class BrowserRdpApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticatio
 class BrowserRdpApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
     TypedDict, total=False
 ):
+    """
+    Attributes for configuring Access Service Token authentication scheme for SCIM provisioning to an application.
+    """
+
     client_id: Required[str]
     """
     Client ID of the Access service token used to authenticate with the remote
@@ -2383,6 +2511,11 @@ BrowserRdpApplicationSCIMConfigAuthentication: TypeAlias = Union[
 
 
 class BrowserRdpApplicationSCIMConfig(TypedDict, total=False):
+    """Configuration for provisioning to this application via SCIM.
+
+    This is currently in closed beta.
+    """
+
     idp_uid: Required[str]
     """
     The UID of the IdP to use as the source for SCIM resources to provision to this

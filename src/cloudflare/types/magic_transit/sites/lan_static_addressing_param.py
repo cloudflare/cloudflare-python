@@ -11,6 +11,10 @@ __all__ = ["LANStaticAddressingParam"]
 
 
 class LANStaticAddressingParam(TypedDict, total=False):
+    """
+    If the site is not configured in high availability mode, this configuration is optional (if omitted, use DHCP). However, if in high availability mode, static_address is required along with secondary and virtual address.
+    """
+
     address: Required[str]
     """A valid CIDR notation representing an IP range."""
 

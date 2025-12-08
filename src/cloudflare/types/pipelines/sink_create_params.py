@@ -64,6 +64,8 @@ class ConfigCloudflarePipelinesR2TableCredentials(TypedDict, total=False):
 
 
 class ConfigCloudflarePipelinesR2TableFileNaming(TypedDict, total=False):
+    """Controls filename prefix/suffix and strategy."""
+
     prefix: str
     """The prefix to use in file name. i.e prefix-<uuid>.parquet"""
 
@@ -75,11 +77,15 @@ class ConfigCloudflarePipelinesR2TableFileNaming(TypedDict, total=False):
 
 
 class ConfigCloudflarePipelinesR2TablePartitioning(TypedDict, total=False):
+    """Data-layout partitioning for sinks."""
+
     time_pattern: str
     """The pattern of the date string"""
 
 
 class ConfigCloudflarePipelinesR2TableRollingPolicy(TypedDict, total=False):
+    """Rolling policy for file sinks (when & why to close a file and open a new one)."""
+
     file_size_bytes: int
     """Files will be rolled after reaching this number of bytes"""
 
@@ -116,6 +122,8 @@ class ConfigCloudflarePipelinesR2Table(TypedDict, total=False):
 
 
 class ConfigCloudflarePipelinesR2DataCatalogTableRollingPolicy(TypedDict, total=False):
+    """Rolling policy for file sinks (when & why to close a file and open a new one)."""
+
     file_size_bytes: int
     """Files will be rolled after reaching this number of bytes"""
 
@@ -127,6 +135,8 @@ class ConfigCloudflarePipelinesR2DataCatalogTableRollingPolicy(TypedDict, total=
 
 
 class ConfigCloudflarePipelinesR2DataCatalogTable(TypedDict, total=False):
+    """R2 Data Catalog Sink"""
+
     token: Required[str]
     """Authentication token"""
 

@@ -19,6 +19,8 @@ __all__ = [
 
 
 class ActionParametersFromList(TypedDict, total=False):
+    """A redirect based on a bulk list lookup."""
+
     key: Required[str]
     """An expression that evaluates to the list lookup key."""
 
@@ -27,6 +29,8 @@ class ActionParametersFromList(TypedDict, total=False):
 
 
 class ActionParametersFromValueTargetURL(TypedDict, total=False):
+    """A URL to redirect the request to."""
+
     expression: str
     """An expression that evaluates to a URL to redirect the request to."""
 
@@ -35,6 +39,8 @@ class ActionParametersFromValueTargetURL(TypedDict, total=False):
 
 
 class ActionParametersFromValue(TypedDict, total=False):
+    """A redirect based on the request properties."""
+
     target_url: Required[ActionParametersFromValueTargetURL]
     """A URL to redirect the request to."""
 
@@ -46,6 +52,8 @@ class ActionParametersFromValue(TypedDict, total=False):
 
 
 class ActionParameters(TypedDict, total=False):
+    """The parameters configuring the rule's action."""
+
     from_list: ActionParametersFromList
     """A redirect based on a bulk list lookup."""
 
@@ -54,6 +62,8 @@ class ActionParameters(TypedDict, total=False):
 
 
 class ExposedCredentialCheck(TypedDict, total=False):
+    """Configuration for exposed credential checking."""
+
     password_expression: Required[str]
     """An expression that selects the password used in the credentials check."""
 
@@ -62,6 +72,8 @@ class ExposedCredentialCheck(TypedDict, total=False):
 
 
 class Ratelimit(TypedDict, total=False):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be

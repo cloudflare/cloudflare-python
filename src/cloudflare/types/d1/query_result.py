@@ -9,6 +9,8 @@ __all__ = ["QueryResult", "Meta", "MetaTimings"]
 
 
 class MetaTimings(BaseModel):
+    """Various durations for the query."""
+
     sql_duration_ms: Optional[float] = None
     """The duration of the SQL query execution inside the database.
 

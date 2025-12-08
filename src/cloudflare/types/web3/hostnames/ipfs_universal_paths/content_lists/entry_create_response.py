@@ -10,6 +10,8 @@ __all__ = ["EntryCreateResponse"]
 
 
 class EntryCreateResponse(BaseModel):
+    """Specify a content list entry to block."""
+
     id: Optional[str] = None
     """Specify the identifier of the hostname."""
 

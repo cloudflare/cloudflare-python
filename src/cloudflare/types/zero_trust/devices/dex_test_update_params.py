@@ -36,6 +36,10 @@ class DEXTestUpdateParams(TypedDict, total=False):
 
 
 class Data(TypedDict, total=False):
+    """
+    The configuration object which contains the details for the WARP client to conduct the test.
+    """
+
     host: str
     """The desired endpoint to test."""
 

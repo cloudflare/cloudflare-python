@@ -26,6 +26,8 @@ class ConnectorCreateParams(TypedDict, total=False):
 
 
 class Device(TypedDict, total=False):
+    """Exactly one of id, serial_number, or provision_license must be provided."""
+
     id: str
 
     provision_license: bool

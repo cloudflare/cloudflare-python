@@ -9,6 +9,8 @@ __all__ = ["AbuseReportGetResponse", "MitigationSummary", "Submitter"]
 
 
 class MitigationSummary(BaseModel):
+    """A summary of the mitigations related to this report."""
+
     accepted_url_count: int
     """How many of the reported URLs were confirmed as abusive."""
 
@@ -26,6 +28,8 @@ class MitigationSummary(BaseModel):
 
 
 class Submitter(BaseModel):
+    """Information about the submitter of the report."""
+
     company: Optional[str] = None
 
     email: Optional[str] = None

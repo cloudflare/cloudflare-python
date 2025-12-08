@@ -11,6 +11,11 @@ __all__ = ["OutputOptions"]
 
 
 class OutputOptions(BaseModel):
+    """The structured replacement for `logpull_options`.
+
+    When including this field, the `logpull_option` field will be ignored.
+    """
+
     batch_prefix: Optional[str] = None
     """String to be prepended before each batch."""
 

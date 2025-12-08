@@ -13,4 +13,6 @@ class Email(TypedDict, total=False):
 
 
 class EmailRuleParam(TypedDict, total=False):
+    """Matches a specific email."""
+
     email: Required[Email]

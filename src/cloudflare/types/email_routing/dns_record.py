@@ -9,6 +9,8 @@ __all__ = ["DNSRecord"]
 
 
 class DNSRecord(BaseModel):
+    """List of records needed to enable an Email Routing zone."""
+
     content: Optional[str] = None
     """DNS record content."""
 

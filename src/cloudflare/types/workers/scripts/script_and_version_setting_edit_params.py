@@ -121,6 +121,8 @@ class SettingsBindingWorkersBindingKindDataBlob(TypedDict, total=False):
 
 
 class SettingsBindingWorkersBindingKindDispatchNamespaceOutboundWorker(TypedDict, total=False):
+    """Outbound worker."""
+
     environment: str
     """Environment of the outbound worker."""
 
@@ -129,6 +131,8 @@ class SettingsBindingWorkersBindingKindDispatchNamespaceOutboundWorker(TypedDict
 
 
 class SettingsBindingWorkersBindingKindDispatchNamespaceOutbound(TypedDict, total=False):
+    """Outbound worker."""
+
     params: SequenceNotStr[str]
     """
     Pass information from the Dispatch Worker to the Outbound Worker through the
@@ -498,6 +502,8 @@ SettingsBinding: TypeAlias = Union[
 
 
 class SettingsLimits(TypedDict, total=False):
+    """Limits to apply for this Worker."""
+
     cpu_ms: int
     """The amount of CPU time this Worker can use in milliseconds."""
 
@@ -520,6 +526,8 @@ SettingsMigrations: TypeAlias = Union[SingleStepMigrationParam, SettingsMigratio
 
 
 class SettingsObservabilityLogs(TypedDict, total=False):
+    """Log settings for the Worker."""
+
     enabled: Required[bool]
     """Whether logs are enabled for the Worker."""
 
@@ -541,6 +549,8 @@ class SettingsObservabilityLogs(TypedDict, total=False):
 
 
 class SettingsObservability(TypedDict, total=False):
+    """Observability settings for the Worker."""
+
     enabled: Required[bool]
     """Whether observability is enabled for the Worker."""
 
@@ -555,6 +565,10 @@ class SettingsObservability(TypedDict, total=False):
 
 
 class SettingsPlacement(TypedDict, total=False):
+    """
+    Configuration for [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    """
+
     mode: Literal["smart"]
     """
     Enables

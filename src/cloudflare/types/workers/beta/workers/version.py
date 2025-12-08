@@ -55,6 +55,8 @@ __all__ = [
 
 
 class Annotations(BaseModel):
+    """Metadata about the version."""
+
     workers_message: Optional[str] = FieldInfo(alias="workers/message", default=None)
     """Human-readable message about the version."""
 
@@ -66,6 +68,8 @@ class Annotations(BaseModel):
 
 
 class AssetsConfig(BaseModel):
+    """Configuration for assets within a Worker."""
+
     html_handling: Optional[Literal["auto-trailing-slash", "force-trailing-slash", "drop-trailing-slash", "none"]] = (
         None
     )
@@ -87,6 +91,13 @@ class AssetsConfig(BaseModel):
 
 
 class Assets(BaseModel):
+    """Configuration for assets within a Worker.
+
+    [`_headers`](https://developers.cloudflare.com/workers/static-assets/headers/#custom-headers) and
+    [`_redirects`](https://developers.cloudflare.com/workers/static-assets/redirects/) files should be
+    included as modules named `_headers` and `_redirects` with content type `text/plain`.
+    """
+
     config: Optional[AssetsConfig] = None
     """Configuration for assets within a Worker."""
 
@@ -155,6 +166,8 @@ class BindingWorkersBindingKindDataBlob(BaseModel):
 
 
 class BindingWorkersBindingKindDispatchNamespaceOutboundWorker(BaseModel):
+    """Outbound worker."""
+
     environment: Optional[str] = None
     """Environment of the outbound worker."""
 
@@ -163,6 +176,8 @@ class BindingWorkersBindingKindDispatchNamespaceOutboundWorker(BaseModel):
 
 
 class BindingWorkersBindingKindDispatchNamespaceOutbound(BaseModel):
+    """Outbound worker."""
+
     params: Optional[List[str]] = None
     """
     Pass information from the Dispatch Worker to the Outbound Worker through the
@@ -520,6 +535,8 @@ Binding: TypeAlias = Annotated[
 
 
 class Limits(BaseModel):
+    """Resource limits enforced at runtime."""
+
     cpu_ms: int
     """CPU time limit in milliseconds."""
 
@@ -543,6 +560,8 @@ class Module(BaseModel):
 
 
 class Placement(BaseModel):
+    """Placement settings for the version."""
+
     mode: Optional[Literal["smart"]] = None
     """Placement mode for the version."""
 

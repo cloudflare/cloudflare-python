@@ -72,6 +72,8 @@ __all__ = [
 
 
 class CanonicalDeploymentBuildConfig(BaseModel):
+    """Configs for the project build process."""
+
     web_analytics_tag: Optional[str] = None
     """The classifying tag for analytics."""
 
@@ -92,6 +94,8 @@ class CanonicalDeploymentBuildConfig(BaseModel):
 
 
 class CanonicalDeploymentDeploymentTriggerMetadata(BaseModel):
+    """Additional info about the trigger."""
+
     branch: str
     """Where the trigger happened."""
 
@@ -106,6 +110,8 @@ class CanonicalDeploymentDeploymentTriggerMetadata(BaseModel):
 
 
 class CanonicalDeploymentDeploymentTrigger(BaseModel):
+    """Info about what caused the deployment."""
+
     metadata: CanonicalDeploymentDeploymentTriggerMetadata
     """Additional info about the trigger."""
 
@@ -114,6 +120,8 @@ class CanonicalDeploymentDeploymentTrigger(BaseModel):
 
 
 class CanonicalDeploymentEnvVarsPagesPlainTextEnvVar(BaseModel):
+    """A plaintext environment variable."""
+
     type: Literal["plain_text"]
 
     value: str
@@ -121,6 +129,8 @@ class CanonicalDeploymentEnvVarsPagesPlainTextEnvVar(BaseModel):
 
 
 class CanonicalDeploymentEnvVarsPagesSecretTextEnvVar(BaseModel):
+    """An encrypted environment variable."""
+
     type: Literal["secret_text"]
 
     value: str
@@ -197,6 +207,8 @@ class CanonicalDeploymentSourceConfig(BaseModel):
 
 
 class CanonicalDeploymentSource(BaseModel):
+    """Configs for the project source control."""
+
     config: CanonicalDeploymentSourceConfig
 
     type: Literal["github", "gitlab"]
@@ -204,6 +216,8 @@ class CanonicalDeploymentSource(BaseModel):
 
 
 class CanonicalDeployment(BaseModel):
+    """Most recent production deployment of the project."""
+
     id: str
     """Id of the deployment."""
 
@@ -257,6 +271,8 @@ class CanonicalDeployment(BaseModel):
 
 
 class DeploymentConfigsPreviewEnvVarsPagesPlainTextEnvVar(BaseModel):
+    """A plaintext environment variable."""
+
     type: Literal["plain_text"]
 
     value: str
@@ -264,6 +280,8 @@ class DeploymentConfigsPreviewEnvVarsPagesPlainTextEnvVar(BaseModel):
 
 
 class DeploymentConfigsPreviewEnvVarsPagesSecretTextEnvVar(BaseModel):
+    """An encrypted environment variable."""
+
     type: Literal["secret_text"]
 
     value: str
@@ -281,57 +299,81 @@ DeploymentConfigsPreviewEnvVars: TypeAlias = Annotated[
 
 
 class DeploymentConfigsPreviewAIBindings(BaseModel):
+    """AI binding."""
+
     project_id: str
 
 
 class DeploymentConfigsPreviewAnalyticsEngineDatasets(BaseModel):
+    """Analytics Engine binding."""
+
     dataset: str
     """Name of the dataset."""
 
 
 class DeploymentConfigsPreviewBrowsers(BaseModel):
+    """Browser binding."""
+
     pass
 
 
 class DeploymentConfigsPreviewD1Databases(BaseModel):
+    """D1 binding."""
+
     id: str
     """UUID of the D1 database."""
 
 
 class DeploymentConfigsPreviewDurableObjectNamespaces(BaseModel):
+    """Durable Object binding."""
+
     namespace_id: str
     """ID of the Durable Object namespace."""
 
 
 class DeploymentConfigsPreviewHyperdriveBindings(BaseModel):
+    """Hyperdrive binding."""
+
     id: str
 
 
 class DeploymentConfigsPreviewKVNamespaces(BaseModel):
+    """KV namespace binding."""
+
     namespace_id: str
     """ID of the KV namespace."""
 
 
 class DeploymentConfigsPreviewLimits(BaseModel):
+    """Limits for Pages Functions."""
+
     cpu_ms: int
     """CPU time limit in milliseconds."""
 
 
 class DeploymentConfigsPreviewMTLSCertificates(BaseModel):
+    """mTLS binding."""
+
     certificate_id: str
 
 
 class DeploymentConfigsPreviewPlacement(BaseModel):
+    """Placement setting used for Pages Functions."""
+
     mode: str
     """Placement mode."""
 
 
 class DeploymentConfigsPreviewQueueProducers(BaseModel):
+    """Queue Producer binding."""
+
     name: str
     """Name of the Queue."""
 
 
 class DeploymentConfigsPreviewR2Buckets(BaseModel):
+    """R2 binding."""
+
     name: str
     """Name of the R2 bucket."""
 
@@ -340,6 +382,8 @@ class DeploymentConfigsPreviewR2Buckets(BaseModel):
 
 
 class DeploymentConfigsPreviewServices(BaseModel):
+    """Service binding."""
+
     environment: str
     """The Service environment."""
 
@@ -351,10 +395,14 @@ class DeploymentConfigsPreviewServices(BaseModel):
 
 
 class DeploymentConfigsPreviewVectorizeBindings(BaseModel):
+    """Vectorize binding."""
+
     index_name: str
 
 
 class DeploymentConfigsPreview(BaseModel):
+    """Configs for preview deploys."""
+
     always_use_latest_compatibility_date: bool
     """Whether to always use the latest compatibility date for Pages Functions."""
 
@@ -423,6 +471,8 @@ class DeploymentConfigsPreview(BaseModel):
 
 
 class DeploymentConfigsProductionEnvVarsPagesPlainTextEnvVar(BaseModel):
+    """A plaintext environment variable."""
+
     type: Literal["plain_text"]
 
     value: str
@@ -430,6 +480,8 @@ class DeploymentConfigsProductionEnvVarsPagesPlainTextEnvVar(BaseModel):
 
 
 class DeploymentConfigsProductionEnvVarsPagesSecretTextEnvVar(BaseModel):
+    """An encrypted environment variable."""
+
     type: Literal["secret_text"]
 
     value: str
@@ -447,57 +499,81 @@ DeploymentConfigsProductionEnvVars: TypeAlias = Annotated[
 
 
 class DeploymentConfigsProductionAIBindings(BaseModel):
+    """AI binding."""
+
     project_id: str
 
 
 class DeploymentConfigsProductionAnalyticsEngineDatasets(BaseModel):
+    """Analytics Engine binding."""
+
     dataset: str
     """Name of the dataset."""
 
 
 class DeploymentConfigsProductionBrowsers(BaseModel):
+    """Browser binding."""
+
     pass
 
 
 class DeploymentConfigsProductionD1Databases(BaseModel):
+    """D1 binding."""
+
     id: str
     """UUID of the D1 database."""
 
 
 class DeploymentConfigsProductionDurableObjectNamespaces(BaseModel):
+    """Durable Object binding."""
+
     namespace_id: str
     """ID of the Durable Object namespace."""
 
 
 class DeploymentConfigsProductionHyperdriveBindings(BaseModel):
+    """Hyperdrive binding."""
+
     id: str
 
 
 class DeploymentConfigsProductionKVNamespaces(BaseModel):
+    """KV namespace binding."""
+
     namespace_id: str
     """ID of the KV namespace."""
 
 
 class DeploymentConfigsProductionLimits(BaseModel):
+    """Limits for Pages Functions."""
+
     cpu_ms: int
     """CPU time limit in milliseconds."""
 
 
 class DeploymentConfigsProductionMTLSCertificates(BaseModel):
+    """mTLS binding."""
+
     certificate_id: str
 
 
 class DeploymentConfigsProductionPlacement(BaseModel):
+    """Placement setting used for Pages Functions."""
+
     mode: str
     """Placement mode."""
 
 
 class DeploymentConfigsProductionQueueProducers(BaseModel):
+    """Queue Producer binding."""
+
     name: str
     """Name of the Queue."""
 
 
 class DeploymentConfigsProductionR2Buckets(BaseModel):
+    """R2 binding."""
+
     name: str
     """Name of the R2 bucket."""
 
@@ -506,6 +582,8 @@ class DeploymentConfigsProductionR2Buckets(BaseModel):
 
 
 class DeploymentConfigsProductionServices(BaseModel):
+    """Service binding."""
+
     environment: str
     """The Service environment."""
 
@@ -517,10 +595,14 @@ class DeploymentConfigsProductionServices(BaseModel):
 
 
 class DeploymentConfigsProductionVectorizeBindings(BaseModel):
+    """Vectorize binding."""
+
     index_name: str
 
 
 class DeploymentConfigsProduction(BaseModel):
+    """Configs for production deploys."""
+
     always_use_latest_compatibility_date: bool
     """Whether to always use the latest compatibility date for Pages Functions."""
 
@@ -589,6 +671,8 @@ class DeploymentConfigsProduction(BaseModel):
 
 
 class DeploymentConfigs(BaseModel):
+    """Configs for deployments in a project."""
+
     preview: DeploymentConfigsPreview
     """Configs for preview deploys."""
 
@@ -597,6 +681,8 @@ class DeploymentConfigs(BaseModel):
 
 
 class LatestDeploymentBuildConfig(BaseModel):
+    """Configs for the project build process."""
+
     web_analytics_tag: Optional[str] = None
     """The classifying tag for analytics."""
 
@@ -617,6 +703,8 @@ class LatestDeploymentBuildConfig(BaseModel):
 
 
 class LatestDeploymentDeploymentTriggerMetadata(BaseModel):
+    """Additional info about the trigger."""
+
     branch: str
     """Where the trigger happened."""
 
@@ -631,6 +719,8 @@ class LatestDeploymentDeploymentTriggerMetadata(BaseModel):
 
 
 class LatestDeploymentDeploymentTrigger(BaseModel):
+    """Info about what caused the deployment."""
+
     metadata: LatestDeploymentDeploymentTriggerMetadata
     """Additional info about the trigger."""
 
@@ -639,6 +729,8 @@ class LatestDeploymentDeploymentTrigger(BaseModel):
 
 
 class LatestDeploymentEnvVarsPagesPlainTextEnvVar(BaseModel):
+    """A plaintext environment variable."""
+
     type: Literal["plain_text"]
 
     value: str
@@ -646,6 +738,8 @@ class LatestDeploymentEnvVarsPagesPlainTextEnvVar(BaseModel):
 
 
 class LatestDeploymentEnvVarsPagesSecretTextEnvVar(BaseModel):
+    """An encrypted environment variable."""
+
     type: Literal["secret_text"]
 
     value: str
@@ -722,6 +816,8 @@ class LatestDeploymentSourceConfig(BaseModel):
 
 
 class LatestDeploymentSource(BaseModel):
+    """Configs for the project source control."""
+
     config: LatestDeploymentSourceConfig
 
     type: Literal["github", "gitlab"]
@@ -729,6 +825,8 @@ class LatestDeploymentSource(BaseModel):
 
 
 class LatestDeployment(BaseModel):
+    """Most recent deployment of the project."""
+
     id: str
     """Id of the deployment."""
 
@@ -782,6 +880,8 @@ class LatestDeployment(BaseModel):
 
 
 class BuildConfig(BaseModel):
+    """Configs for the project build process."""
+
     web_analytics_tag: Optional[str] = None
     """The classifying tag for analytics."""
 
@@ -861,6 +961,8 @@ class SourceConfig(BaseModel):
 
 
 class Source(BaseModel):
+    """Configs for the project source control."""
+
     config: SourceConfig
 
     type: Literal["github", "gitlab"]

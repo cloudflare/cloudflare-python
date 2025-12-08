@@ -42,6 +42,11 @@ class LiveInputCreateParams(TypedDict, total=False):
 
 
 class Recording(TypedDict, total=False):
+    """Records the input to a Cloudflare Stream video.
+
+    Behavior depends on the mode. In most cases, the video will initially be viewable as a live video and transition to on-demand after a condition is satisfied.
+    """
+
     allowed_origins: Annotated[SequenceNotStr[str], PropertyInfo(alias="allowedOrigins")]
     """Lists the origins allowed to display videos created with this input.
 

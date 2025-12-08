@@ -10,6 +10,10 @@ __all__ = ["ContextAwarenessParam"]
 
 
 class ContextAwarenessParam(TypedDict, total=False):
+    """
+    Scan the context of predefined entries to only return matches surrounded by keywords.
+    """
+
     enabled: Required[bool]
     """
     If true, scan the context of predefined entries to only return matches

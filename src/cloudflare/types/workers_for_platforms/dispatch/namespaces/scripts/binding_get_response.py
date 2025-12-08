@@ -104,6 +104,8 @@ class WorkersBindingKindDataBlob(BaseModel):
 
 
 class WorkersBindingKindDispatchNamespaceOutboundWorker(BaseModel):
+    """Outbound worker."""
+
     environment: Optional[str] = None
     """Environment of the outbound worker."""
 
@@ -112,6 +114,8 @@ class WorkersBindingKindDispatchNamespaceOutboundWorker(BaseModel):
 
 
 class WorkersBindingKindDispatchNamespaceOutbound(BaseModel):
+    """Outbound worker."""
+
     params: Optional[List[str]] = None
     """
     Pass information from the Dispatch Worker to the Outbound Worker through the

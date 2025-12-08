@@ -12,4 +12,6 @@ class Certificate(TypedDict, total=False):
 
 
 class CertificateRuleParam(TypedDict, total=False):
+    """Matches any valid client certificate."""
+
     certificate: Required[Certificate]

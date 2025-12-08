@@ -22,6 +22,8 @@ class CredentialUpdateParams(TypedDict, total=False):
 
 
 class KeyAPIShieldCredentialsJWTKeyRSA(TypedDict, total=False):
+    """JSON representation of an RSA key."""
+
     alg: Required[Literal["RS256", "RS384", "RS512", "PS256", "PS384", "PS512"]]
     """Algorithm"""
 
@@ -39,6 +41,8 @@ class KeyAPIShieldCredentialsJWTKeyRSA(TypedDict, total=False):
 
 
 class KeyAPIShieldCredentialsJWTKeyEcEs256(TypedDict, total=False):
+    """JSON representation of an ES256 key"""
+
     alg: Required[Literal["ES256"]]
     """Algorithm"""
 
@@ -59,6 +63,8 @@ class KeyAPIShieldCredentialsJWTKeyEcEs256(TypedDict, total=False):
 
 
 class KeyAPIShieldCredentialsJWTKeyEcEs384(TypedDict, total=False):
+    """JSON representation of an ES384 key"""
+
     alg: Required[Literal["ES384"]]
     """Algorithm"""
 

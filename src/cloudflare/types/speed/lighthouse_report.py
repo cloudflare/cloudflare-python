@@ -22,6 +22,8 @@ class Error(BaseModel):
 
 
 class LighthouseReport(BaseModel):
+    """The Lighthouse report."""
+
     cls: Optional[float] = None
     """Cumulative Layout Shift."""
 

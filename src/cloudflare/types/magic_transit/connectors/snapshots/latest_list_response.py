@@ -20,6 +20,8 @@ __all__ = [
 
 
 class ItemBond(BaseModel):
+    """Snapshot Bond"""
+
     name: str
     """Name of the network interface"""
 
@@ -28,6 +30,8 @@ class ItemBond(BaseModel):
 
 
 class ItemDHCPLease(BaseModel):
+    """Snapshot DHCP lease"""
+
     client_id: str
     """Client ID of the device the IP Address was leased to"""
 
@@ -51,6 +55,8 @@ class ItemDHCPLease(BaseModel):
 
 
 class ItemDisk(BaseModel):
+    """Snapshot Disk"""
+
     in_progress: float
     """I/Os currently in progress"""
 
@@ -116,6 +122,8 @@ class ItemDisk(BaseModel):
 
 
 class ItemInterfaceIPAddress(BaseModel):
+    """Snapshot Interface Address"""
+
     interface_name: str
     """Name of the network interface"""
 
@@ -127,6 +135,8 @@ class ItemInterfaceIPAddress(BaseModel):
 
 
 class ItemInterface(BaseModel):
+    """Snapshot Interface"""
+
     name: str
     """Name of the network interface"""
 
@@ -143,6 +153,8 @@ class ItemInterface(BaseModel):
 
 
 class ItemMount(BaseModel):
+    """Snapshot Mount"""
+
     file_system: str
     """File system on disk (EXT4, NTFS, etc.)"""
 
@@ -172,6 +184,8 @@ class ItemMount(BaseModel):
 
 
 class ItemNetdev(BaseModel):
+    """Snapshot Netdev"""
+
     name: str
     """Name of the network device"""
 
@@ -228,6 +242,8 @@ class ItemNetdev(BaseModel):
 
 
 class ItemThermal(BaseModel):
+    """Snapshot Thermal"""
+
     label: str
     """Sensor identifier for the component"""
 
@@ -245,6 +261,8 @@ class ItemThermal(BaseModel):
 
 
 class ItemTunnel(BaseModel):
+    """Snapshot Tunnels"""
+
     health_state: str
     """Name of tunnel health state (unknown, healthy, degraded, down)"""
 
@@ -268,6 +286,8 @@ class ItemTunnel(BaseModel):
 
 
 class Item(BaseModel):
+    """Snapshot"""
+
     count_reclaim_failures: float
     """Count of failures to reclaim space"""
 

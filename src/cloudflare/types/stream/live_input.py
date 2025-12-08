@@ -12,6 +12,11 @@ __all__ = ["LiveInput", "Recording", "Rtmps", "RtmpsPlayback", "Srt", "SrtPlayba
 
 
 class Recording(BaseModel):
+    """Records the input to a Cloudflare Stream video.
+
+    Behavior depends on the mode. In most cases, the video will initially be viewable as a live video and transition to on-demand after a condition is satisfied.
+    """
+
     allowed_origins: Optional[List[str]] = FieldInfo(alias="allowedOrigins", default=None)
     """Lists the origins allowed to display videos created with this input.
 
@@ -49,6 +54,8 @@ class Recording(BaseModel):
 
 
 class Rtmps(BaseModel):
+    """Details for streaming to an live input using RTMPS."""
+
     stream_key: Optional[str] = FieldInfo(alias="streamKey", default=None)
     """The secret key to use when streaming via RTMPS to a live input."""
 
@@ -57,6 +64,8 @@ class Rtmps(BaseModel):
 
 
 class RtmpsPlayback(BaseModel):
+    """Details for playback from an live input using RTMPS."""
+
     stream_key: Optional[str] = FieldInfo(alias="streamKey", default=None)
     """The secret key to use for playback via RTMPS."""
 
@@ -65,6 +74,8 @@ class RtmpsPlayback(BaseModel):
 
 
 class Srt(BaseModel):
+    """Details for streaming to a live input using SRT."""
+
     passphrase: Optional[str] = None
     """The secret key to use when streaming via SRT to a live input."""
 
@@ -76,6 +87,8 @@ class Srt(BaseModel):
 
 
 class SrtPlayback(BaseModel):
+    """Details for playback from an live input using SRT."""
+
     passphrase: Optional[str] = None
     """The secret key to use for playback via SRT."""
 
@@ -87,16 +100,22 @@ class SrtPlayback(BaseModel):
 
 
 class WebRtc(BaseModel):
+    """Details for streaming to a live input using WebRTC."""
+
     url: Optional[str] = None
     """The WebRTC URL you provide to the broadcaster, which they stream live video to."""
 
 
 class WebRtcPlayback(BaseModel):
+    """Details for playback from a live input using WebRTC."""
+
     url: Optional[str] = None
     """The URL used to play live video over WebRTC."""
 
 
 class LiveInput(BaseModel):
+    """Details about a live input."""
+
     created: Optional[datetime] = None
     """The date and time the live input was created."""
 

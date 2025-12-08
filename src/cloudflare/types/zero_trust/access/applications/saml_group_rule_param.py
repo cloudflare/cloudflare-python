@@ -19,4 +19,9 @@ class SAML(TypedDict, total=False):
 
 
 class SAMLGroupRuleParam(TypedDict, total=False):
+    """
+    Matches a SAML group.
+    Requires a SAML identity provider.
+    """
+
     saml: Required[SAML]

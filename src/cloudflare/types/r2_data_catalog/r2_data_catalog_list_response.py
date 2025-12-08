@@ -14,6 +14,8 @@ __all__ = [
 
 
 class WarehouseMaintenanceConfigCompaction(BaseModel):
+    """Configures compaction for catalog maintenance."""
+
     state: Literal["enabled", "disabled"]
     """Specifies the state of maintenance operations."""
 
@@ -22,11 +24,15 @@ class WarehouseMaintenanceConfigCompaction(BaseModel):
 
 
 class WarehouseMaintenanceConfig(BaseModel):
+    """Configures maintenance for the catalog."""
+
     compaction: Optional[WarehouseMaintenanceConfigCompaction] = None
     """Configures compaction for catalog maintenance."""
 
 
 class Warehouse(BaseModel):
+    """Contains R2 Data Catalog information."""
+
     id: str
     """Use this to uniquely identify the catalog."""
 
@@ -47,5 +53,7 @@ class Warehouse(BaseModel):
 
 
 class R2DataCatalogListResponse(BaseModel):
+    """Contains the list of catalogs."""
+
     warehouses: List[Warehouse]
     """Lists catalogs in the account."""

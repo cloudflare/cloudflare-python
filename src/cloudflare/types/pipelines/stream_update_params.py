@@ -19,6 +19,8 @@ class StreamUpdateParams(TypedDict, total=False):
 
 
 class HTTPCORS(TypedDict, total=False):
+    """Specifies the CORS options for the HTTP endpoint."""
+
     origins: SequenceNotStr[str]
 
 

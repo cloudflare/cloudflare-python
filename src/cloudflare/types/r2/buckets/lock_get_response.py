@@ -19,18 +19,24 @@ __all__ = [
 
 
 class RuleConditionR2LockRuleAgeCondition(BaseModel):
+    """Condition to apply a lock rule to an object for how long in seconds."""
+
     max_age_seconds: int = FieldInfo(alias="maxAgeSeconds")
 
     type: Literal["Age"]
 
 
 class RuleConditionR2LockRuleDateCondition(BaseModel):
+    """Condition to apply a lock rule to an object until a specific date."""
+
     date: datetime
 
     type: Literal["Date"]
 
 
 class RuleConditionR2LockRuleIndefiniteCondition(BaseModel):
+    """Condition to apply a lock rule indefinitely."""
+
     type: Literal["Indefinite"]
 
 

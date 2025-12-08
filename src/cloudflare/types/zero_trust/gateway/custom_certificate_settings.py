@@ -9,6 +9,11 @@ __all__ = ["CustomCertificateSettings"]
 
 
 class CustomCertificateSettings(BaseModel):
+    """Specify custom certificate settings for BYO-PKI.
+
+    This field is deprecated; use `certificate` instead.
+    """
+
     enabled: Optional[bool] = None
     """
     Specify whether to enable a custom certificate authority for signing Gateway

@@ -11,6 +11,8 @@ __all__ = ["HTTPSRecord", "Data", "Settings"]
 
 
 class Data(BaseModel):
+    """Components of a HTTPS record."""
+
     priority: Optional[float] = None
     """Priority."""
 
@@ -22,6 +24,8 @@ class Data(BaseModel):
 
 
 class Settings(BaseModel):
+    """Settings for the DNS record."""
+
     ipv4_only: Optional[bool] = None
     """
     When enabled, only A records will be generated, and AAAA records will not be

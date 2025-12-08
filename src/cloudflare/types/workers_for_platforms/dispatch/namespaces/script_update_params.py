@@ -78,6 +78,8 @@ class ScriptUpdateParams(TypedDict, total=False):
 
 
 class MetadataAssetsConfig(TypedDict, total=False):
+    """Configuration for assets within a Worker."""
+
     _headers: str
     """
     The contents of a \\__headers file (used to attach custom headers on asset
@@ -116,6 +118,8 @@ class MetadataAssetsConfig(TypedDict, total=False):
 
 
 class MetadataAssets(TypedDict, total=False):
+    """Configuration for assets within a Worker."""
+
     config: MetadataAssetsConfig
     """Configuration for assets within a Worker."""
 
@@ -184,6 +188,8 @@ class MetadataBindingWorkersBindingKindDataBlob(TypedDict, total=False):
 
 
 class MetadataBindingWorkersBindingKindDispatchNamespaceOutboundWorker(TypedDict, total=False):
+    """Outbound worker."""
+
     environment: str
     """Environment of the outbound worker."""
 
@@ -192,6 +198,8 @@ class MetadataBindingWorkersBindingKindDispatchNamespaceOutboundWorker(TypedDict
 
 
 class MetadataBindingWorkersBindingKindDispatchNamespaceOutbound(TypedDict, total=False):
+    """Outbound worker."""
+
     params: SequenceNotStr[str]
     """
     Pass information from the Dispatch Worker to the Outbound Worker through the
@@ -561,6 +569,8 @@ MetadataBinding: TypeAlias = Union[
 
 
 class MetadataLimits(TypedDict, total=False):
+    """Limits to apply for this Worker."""
+
     cpu_ms: int
     """The amount of CPU time this Worker can use in milliseconds."""
 
@@ -583,6 +593,8 @@ MetadataMigrations: TypeAlias = Union[SingleStepMigrationParam, MetadataMigratio
 
 
 class MetadataObservabilityLogs(TypedDict, total=False):
+    """Log settings for the Worker."""
+
     enabled: Required[bool]
     """Whether logs are enabled for the Worker."""
 
@@ -604,6 +616,8 @@ class MetadataObservabilityLogs(TypedDict, total=False):
 
 
 class MetadataObservability(TypedDict, total=False):
+    """Observability settings for the Worker."""
+
     enabled: Required[bool]
     """Whether observability is enabled for the Worker."""
 
@@ -618,6 +632,10 @@ class MetadataObservability(TypedDict, total=False):
 
 
 class MetadataPlacement(TypedDict, total=False):
+    """
+    Configuration for [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    """
+
     mode: Literal["smart"]
     """
     Enables
@@ -626,6 +644,8 @@ class MetadataPlacement(TypedDict, total=False):
 
 
 class Metadata(TypedDict, total=False):
+    """JSON-encoded metadata about the uploaded parts and Worker configuration."""
+
     assets: MetadataAssets
     """Configuration for assets within a Worker."""
 

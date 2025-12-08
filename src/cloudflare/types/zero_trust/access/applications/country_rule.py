@@ -11,4 +11,6 @@ class Geo(BaseModel):
 
 
 class CountryRule(BaseModel):
+    """Matches a specific country"""
+
     geo: Geo

@@ -17,6 +17,8 @@ class RuleUpdateParams(TypedDict, total=False):
 
 
 class Rule(TypedDict, total=False):
+    """A snippet rule."""
+
     expression: Required[str]
     """The expression defining which traffic will match the rule."""
 

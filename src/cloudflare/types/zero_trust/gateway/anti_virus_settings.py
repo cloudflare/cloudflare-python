@@ -9,6 +9,8 @@ __all__ = ["AntiVirusSettings"]
 
 
 class AntiVirusSettings(BaseModel):
+    """Specify anti-virus settings."""
+
     enabled_download_phase: Optional[bool] = None
     """Specify whether to enable anti-virus scanning on downloads."""
 

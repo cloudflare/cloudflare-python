@@ -10,6 +10,8 @@ __all__ = ["ScopeParam"]
 
 
 class ScopeParam(TypedDict, total=False):
+    """Used only for ECMP routes."""
+
     colo_names: SequenceNotStr[str]
     """List of colo names for the ECMP scope."""
 

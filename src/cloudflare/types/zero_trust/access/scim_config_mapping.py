@@ -11,6 +11,8 @@ __all__ = ["SCIMConfigMapping", "Operations"]
 
 
 class Operations(BaseModel):
+    """Whether or not this mapping applies to creates, updates, or deletes."""
+
     create: Optional[bool] = None
     """Whether or not this mapping applies to create (POST) operations."""
 
@@ -22,6 +24,10 @@ class Operations(BaseModel):
 
 
 class SCIMConfigMapping(BaseModel):
+    """
+    Transformations and filters applied to resources before they are provisioned in the remote SCIM service.
+    """
+
     schema_: str = FieldInfo(alias="schema")
     """Which SCIM resource type this mapping applies to."""
 

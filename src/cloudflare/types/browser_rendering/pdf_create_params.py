@@ -176,6 +176,8 @@ class AddStyleTag(TypedDict, total=False):
 
 
 class Authenticate(TypedDict, total=False):
+    """Provide credentials for HTTP authentication."""
+
     password: Required[str]
 
     username: Required[str]
@@ -212,6 +214,8 @@ class Cookie(TypedDict, total=False):
 
 
 class GotoOptions(TypedDict, total=False):
+    """Check [options](https://pptr.dev/api/puppeteer.gotooptions)."""
+
     referer: str
 
     referrer_policy: Annotated[str, PropertyInfo(alias="referrerPolicy")]
@@ -228,6 +232,8 @@ class GotoOptions(TypedDict, total=False):
 
 
 class PDFOptionsMargin(TypedDict, total=False):
+    """Set the PDF margins. Useful when setting header and footer."""
+
     bottom: Union[str, float]
 
     left: Union[str, float]
@@ -238,6 +244,8 @@ class PDFOptionsMargin(TypedDict, total=False):
 
 
 class PDFOptions(TypedDict, total=False):
+    """Check [options](https://pptr.dev/api/puppeteer.pdfoptions)."""
+
     display_header_footer: Annotated[bool, PropertyInfo(alias="displayHeaderFooter")]
     """Whether to show the header and footer."""
 
@@ -288,6 +296,8 @@ class PDFOptions(TypedDict, total=False):
 
 
 class Viewport(TypedDict, total=False):
+    """Check [options](https://pptr.dev/api/puppeteer.page.setviewport)."""
+
     height: Required[float]
 
     width: Required[float]
@@ -302,6 +312,11 @@ class Viewport(TypedDict, total=False):
 
 
 class WaitForSelector(TypedDict, total=False):
+    """Wait for the selector to appear in page.
+
+    Check [options](https://pptr.dev/api/puppeteer.page.waitforselector).
+    """
+
     selector: Required[str]
 
     hidden: Literal[True]

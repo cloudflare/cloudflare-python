@@ -26,6 +26,8 @@ __all__ = [
 
 
 class RuleConditions(BaseModel):
+    """Conditions that apply to all transitions of this rule."""
+
     prefix: str
     """
     Transitions will only apply to objects/uploads in the bucket that start with the
@@ -35,12 +37,18 @@ class RuleConditions(BaseModel):
 
 
 class RuleAbortMultipartUploadsTransitionCondition(BaseModel):
+    """
+    Condition for lifecycle transitions to apply after an object reaches an age in seconds.
+    """
+
     max_age: int = FieldInfo(alias="maxAge")
 
     type: Literal["Age"]
 
 
 class RuleAbortMultipartUploadsTransition(BaseModel):
+    """Transition to abort ongoing multipart uploads."""
+
     condition: Optional[RuleAbortMultipartUploadsTransitionCondition] = None
     """
     Condition for lifecycle transitions to apply after an object reaches an age in
@@ -49,12 +57,18 @@ class RuleAbortMultipartUploadsTransition(BaseModel):
 
 
 class RuleDeleteObjectsTransitionConditionR2LifecycleAgeCondition(BaseModel):
+    """
+    Condition for lifecycle transitions to apply after an object reaches an age in seconds.
+    """
+
     max_age: int = FieldInfo(alias="maxAge")
 
     type: Literal["Age"]
 
 
 class RuleDeleteObjectsTransitionConditionR2LifecycleDateCondition(BaseModel):
+    """Condition for lifecycle transitions to apply on a specific date."""
+
     date: datetime
 
     type: Literal["Date"]
@@ -67,6 +81,8 @@ RuleDeleteObjectsTransitionCondition: TypeAlias = Union[
 
 
 class RuleDeleteObjectsTransition(BaseModel):
+    """Transition to delete objects."""
+
     condition: Optional[RuleDeleteObjectsTransitionCondition] = None
     """
     Condition for lifecycle transitions to apply after an object reaches an age in
@@ -75,12 +91,18 @@ class RuleDeleteObjectsTransition(BaseModel):
 
 
 class RuleStorageClassTransitionConditionR2LifecycleAgeCondition(BaseModel):
+    """
+    Condition for lifecycle transitions to apply after an object reaches an age in seconds.
+    """
+
     max_age: int = FieldInfo(alias="maxAge")
 
     type: Literal["Age"]
 
 
 class RuleStorageClassTransitionConditionR2LifecycleDateCondition(BaseModel):
+    """Condition for lifecycle transitions to apply on a specific date."""
+
     date: datetime
 
     type: Literal["Date"]

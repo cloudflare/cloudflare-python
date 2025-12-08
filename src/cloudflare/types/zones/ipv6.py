@@ -10,6 +10,11 @@ __all__ = ["IPV6"]
 
 
 class IPV6(BaseModel):
+    """Enable IPv6 on all subdomains that are Cloudflare enabled.
+
+    (https://support.cloudflare.com/hc/en-us/articles/200168586).
+    """
+
     id: Literal["ipv6"]
     """ID of the zone setting."""
 

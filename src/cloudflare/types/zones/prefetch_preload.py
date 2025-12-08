@@ -10,6 +10,11 @@ __all__ = ["PrefetchPreload"]
 
 
 class PrefetchPreload(BaseModel):
+    """Cloudflare will prefetch any URLs that are included in the response headers.
+
+    This is limited to Enterprise Zones.
+    """
+
     id: Literal["prefetch_preload"]
     """ID of the zone setting."""
 

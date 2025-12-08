@@ -10,6 +10,8 @@ __all__ = ["ConfigurationUpdateResponse"]
 
 
 class ConfigurationUpdateResponse(BaseModel):
+    """Specify account settings."""
+
     created_at: Optional[datetime] = None
 
     settings: Optional[GatewayConfigurationSettings] = None

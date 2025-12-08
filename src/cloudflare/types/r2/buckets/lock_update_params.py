@@ -29,18 +29,24 @@ class LockUpdateParams(TypedDict, total=False):
 
 
 class RuleConditionR2LockRuleAgeCondition(TypedDict, total=False):
+    """Condition to apply a lock rule to an object for how long in seconds."""
+
     max_age_seconds: Required[Annotated[int, PropertyInfo(alias="maxAgeSeconds")]]
 
     type: Required[Literal["Age"]]
 
 
 class RuleConditionR2LockRuleDateCondition(TypedDict, total=False):
+    """Condition to apply a lock rule to an object until a specific date."""
+
     date: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
 
     type: Required[Literal["Date"]]
 
 
 class RuleConditionR2LockRuleIndefiniteCondition(TypedDict, total=False):
+    """Condition to apply a lock rule indefinitely."""
+
     type: Required[Literal["Indefinite"]]
 
 

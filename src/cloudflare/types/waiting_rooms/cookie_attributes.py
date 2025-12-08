@@ -9,6 +9,11 @@ __all__ = ["CookieAttributes"]
 
 
 class CookieAttributes(BaseModel):
+    """Configures cookie attributes for the waiting room cookie.
+
+    This encrypted cookie stores a user's status in the waiting room, such as queue position.
+    """
+
     samesite: Optional[Literal["auto", "lax", "none", "strict"]] = None
     """Configures the SameSite attribute on the waiting room cookie.
 

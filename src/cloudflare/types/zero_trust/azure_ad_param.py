@@ -12,6 +12,11 @@ __all__ = ["AzureADParam", "Config"]
 
 
 class Config(TypedDict, total=False):
+    """The configuration parameters for the identity provider.
+
+    To view the required parameters for a specific provider, refer to our [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
     claims: SequenceNotStr[str]
     """Custom claims"""
 

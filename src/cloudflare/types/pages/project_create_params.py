@@ -73,6 +73,8 @@ class ProjectCreateParams(TypedDict, total=False):
 
 
 class BuildConfig(TypedDict, total=False):
+    """Configs for the project build process."""
+
     build_caching: bool
     """Enable build caching for the project."""
 
@@ -93,29 +95,41 @@ class BuildConfig(TypedDict, total=False):
 
 
 class DeploymentConfigsPreviewAIBindings(TypedDict, total=False):
+    """AI binding."""
+
     project_id: Required[str]
 
 
 class DeploymentConfigsPreviewAnalyticsEngineDatasets(TypedDict, total=False):
+    """Analytics Engine binding."""
+
     dataset: Required[str]
     """Name of the dataset."""
 
 
 class DeploymentConfigsPreviewBrowsers(TypedDict, total=False):
+    """Browser binding."""
+
     pass
 
 
 class DeploymentConfigsPreviewD1Databases(TypedDict, total=False):
+    """D1 binding."""
+
     id: Required[str]
     """UUID of the D1 database."""
 
 
 class DeploymentConfigsPreviewDurableObjectNamespaces(TypedDict, total=False):
+    """Durable Object binding."""
+
     namespace_id: Required[str]
     """ID of the Durable Object namespace."""
 
 
 class DeploymentConfigsPreviewEnvVarsPagesPlainTextEnvVar(TypedDict, total=False):
+    """A plaintext environment variable."""
+
     type: Required[Literal["plain_text"]]
 
     value: Required[str]
@@ -123,6 +137,8 @@ class DeploymentConfigsPreviewEnvVarsPagesPlainTextEnvVar(TypedDict, total=False
 
 
 class DeploymentConfigsPreviewEnvVarsPagesSecretTextEnvVar(TypedDict, total=False):
+    """An encrypted environment variable."""
+
     type: Required[Literal["secret_text"]]
 
     value: Required[str]
@@ -136,34 +152,48 @@ DeploymentConfigsPreviewEnvVars: TypeAlias = Union[
 
 
 class DeploymentConfigsPreviewHyperdriveBindings(TypedDict, total=False):
+    """Hyperdrive binding."""
+
     id: Required[str]
 
 
 class DeploymentConfigsPreviewKVNamespaces(TypedDict, total=False):
+    """KV namespace binding."""
+
     namespace_id: Required[str]
     """ID of the KV namespace."""
 
 
 class DeploymentConfigsPreviewLimits(TypedDict, total=False):
+    """Limits for Pages Functions."""
+
     cpu_ms: Required[int]
     """CPU time limit in milliseconds."""
 
 
 class DeploymentConfigsPreviewMTLSCertificates(TypedDict, total=False):
+    """mTLS binding."""
+
     certificate_id: Required[str]
 
 
 class DeploymentConfigsPreviewPlacement(TypedDict, total=False):
+    """Placement setting used for Pages Functions."""
+
     mode: Required[str]
     """Placement mode."""
 
 
 class DeploymentConfigsPreviewQueueProducers(TypedDict, total=False):
+    """Queue Producer binding."""
+
     name: Required[str]
     """Name of the Queue."""
 
 
 class DeploymentConfigsPreviewR2Buckets(TypedDict, total=False):
+    """R2 binding."""
+
     name: Required[str]
     """Name of the R2 bucket."""
 
@@ -172,6 +202,8 @@ class DeploymentConfigsPreviewR2Buckets(TypedDict, total=False):
 
 
 class DeploymentConfigsPreviewServices(TypedDict, total=False):
+    """Service binding."""
+
     service: Required[str]
     """The Service name."""
 
@@ -183,10 +215,14 @@ class DeploymentConfigsPreviewServices(TypedDict, total=False):
 
 
 class DeploymentConfigsPreviewVectorizeBindings(TypedDict, total=False):
+    """Vectorize binding."""
+
     index_name: Required[str]
 
 
 class DeploymentConfigsPreview(TypedDict, total=False):
+    """Configs for preview deploys."""
+
     ai_bindings: Dict[str, Optional[DeploymentConfigsPreviewAIBindings]]
     """Constellation bindings used for Pages Functions."""
 
@@ -255,29 +291,41 @@ class DeploymentConfigsPreview(TypedDict, total=False):
 
 
 class DeploymentConfigsProductionAIBindings(TypedDict, total=False):
+    """AI binding."""
+
     project_id: Required[str]
 
 
 class DeploymentConfigsProductionAnalyticsEngineDatasets(TypedDict, total=False):
+    """Analytics Engine binding."""
+
     dataset: Required[str]
     """Name of the dataset."""
 
 
 class DeploymentConfigsProductionBrowsers(TypedDict, total=False):
+    """Browser binding."""
+
     pass
 
 
 class DeploymentConfigsProductionD1Databases(TypedDict, total=False):
+    """D1 binding."""
+
     id: Required[str]
     """UUID of the D1 database."""
 
 
 class DeploymentConfigsProductionDurableObjectNamespaces(TypedDict, total=False):
+    """Durable Object binding."""
+
     namespace_id: Required[str]
     """ID of the Durable Object namespace."""
 
 
 class DeploymentConfigsProductionEnvVarsPagesPlainTextEnvVar(TypedDict, total=False):
+    """A plaintext environment variable."""
+
     type: Required[Literal["plain_text"]]
 
     value: Required[str]
@@ -285,6 +333,8 @@ class DeploymentConfigsProductionEnvVarsPagesPlainTextEnvVar(TypedDict, total=Fa
 
 
 class DeploymentConfigsProductionEnvVarsPagesSecretTextEnvVar(TypedDict, total=False):
+    """An encrypted environment variable."""
+
     type: Required[Literal["secret_text"]]
 
     value: Required[str]
@@ -298,34 +348,48 @@ DeploymentConfigsProductionEnvVars: TypeAlias = Union[
 
 
 class DeploymentConfigsProductionHyperdriveBindings(TypedDict, total=False):
+    """Hyperdrive binding."""
+
     id: Required[str]
 
 
 class DeploymentConfigsProductionKVNamespaces(TypedDict, total=False):
+    """KV namespace binding."""
+
     namespace_id: Required[str]
     """ID of the KV namespace."""
 
 
 class DeploymentConfigsProductionLimits(TypedDict, total=False):
+    """Limits for Pages Functions."""
+
     cpu_ms: Required[int]
     """CPU time limit in milliseconds."""
 
 
 class DeploymentConfigsProductionMTLSCertificates(TypedDict, total=False):
+    """mTLS binding."""
+
     certificate_id: Required[str]
 
 
 class DeploymentConfigsProductionPlacement(TypedDict, total=False):
+    """Placement setting used for Pages Functions."""
+
     mode: Required[str]
     """Placement mode."""
 
 
 class DeploymentConfigsProductionQueueProducers(TypedDict, total=False):
+    """Queue Producer binding."""
+
     name: Required[str]
     """Name of the Queue."""
 
 
 class DeploymentConfigsProductionR2Buckets(TypedDict, total=False):
+    """R2 binding."""
+
     name: Required[str]
     """Name of the R2 bucket."""
 
@@ -334,6 +398,8 @@ class DeploymentConfigsProductionR2Buckets(TypedDict, total=False):
 
 
 class DeploymentConfigsProductionServices(TypedDict, total=False):
+    """Service binding."""
+
     service: Required[str]
     """The Service name."""
 
@@ -345,10 +411,14 @@ class DeploymentConfigsProductionServices(TypedDict, total=False):
 
 
 class DeploymentConfigsProductionVectorizeBindings(TypedDict, total=False):
+    """Vectorize binding."""
+
     index_name: Required[str]
 
 
 class DeploymentConfigsProduction(TypedDict, total=False):
+    """Configs for production deploys."""
+
     ai_bindings: Dict[str, Optional[DeploymentConfigsProductionAIBindings]]
     """Constellation bindings used for Pages Functions."""
 
@@ -417,6 +487,8 @@ class DeploymentConfigsProduction(TypedDict, total=False):
 
 
 class DeploymentConfigs(TypedDict, total=False):
+    """Configs for deployments in a project."""
+
     preview: DeploymentConfigsPreview
     """Configs for preview deploys."""
 
@@ -484,6 +556,8 @@ class SourceConfig(TypedDict, total=False):
 
 
 class Source(TypedDict, total=False):
+    """Configs for the project source control."""
+
     config: Required[SourceConfig]
 
     type: Required[Literal["github", "gitlab"]]

@@ -10,6 +10,8 @@ __all__ = ["ActionParam"]
 
 
 class ActionParam(TypedDict, total=False):
+    """Actions pattern."""
+
     type: Required[Literal["drop", "forward", "worker"]]
     """Type of supported action."""
 

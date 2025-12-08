@@ -82,6 +82,8 @@ class ImageClassification(BaseModel):
 
 
 class ObjectDetectionBox(BaseModel):
+    """Coordinates defining the bounding box around the detected object"""
+
     xmax: Optional[float] = None
     """The x-coordinate of the bottom-right corner of the bounding box"""
 
@@ -115,6 +117,8 @@ class UnionMember7ToolCall(BaseModel):
 
 
 class UnionMember7Usage(BaseModel):
+    """Usage statistics for the inference request"""
+
     completion_tokens: Optional[float] = None
     """Total number of tokens in output"""
 

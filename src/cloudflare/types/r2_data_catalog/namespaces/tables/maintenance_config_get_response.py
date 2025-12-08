@@ -9,6 +9,8 @@ __all__ = ["MaintenanceConfigGetResponse", "MaintenanceConfig", "MaintenanceConf
 
 
 class MaintenanceConfigCompaction(BaseModel):
+    """Configures compaction settings for table optimization."""
+
     state: Literal["enabled", "disabled"]
     """Specifies the state of maintenance operations."""
 
@@ -17,10 +19,14 @@ class MaintenanceConfigCompaction(BaseModel):
 
 
 class MaintenanceConfig(BaseModel):
+    """Configures maintenance for the table."""
+
     compaction: Optional[MaintenanceConfigCompaction] = None
     """Configures compaction settings for table optimization."""
 
 
 class MaintenanceConfigGetResponse(BaseModel):
+    """Contains table maintenance configuration."""
+
     maintenance_config: MaintenanceConfig
     """Configures maintenance for the table."""

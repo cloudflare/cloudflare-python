@@ -8,6 +8,10 @@ __all__ = ["RewriteActionParam"]
 
 
 class RewriteActionParam(TypedDict, total=False):
+    """
+    Specifies that, when a WAF rule matches, its configured action will be replaced by the action configured in this object.
+    """
+
     block: Literal["challenge", "block", "simulate", "disable", "default"]
     """The WAF rule action to apply."""
 

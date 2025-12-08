@@ -9,6 +9,10 @@ __all__ = ["SCIMConfigAuthenticationOauth2"]
 
 
 class SCIMConfigAuthenticationOauth2(BaseModel):
+    """
+    Attributes for configuring OAuth 2 authentication scheme for SCIM provisioning to an application.
+    """
+
     authorization_url: str
     """URL used to generate the auth code used during token generation."""
 

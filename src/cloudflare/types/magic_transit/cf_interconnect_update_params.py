@@ -53,6 +53,8 @@ class CfInterconnectUpdateParams(TypedDict, total=False):
 
 
 class GRE(TypedDict, total=False):
+    """The configuration specific to GRE interconnects."""
+
     cloudflare_endpoint: str
     """
     The IP address assigned to the Cloudflare side of the GRE tunnel created as part

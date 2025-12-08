@@ -6,5 +6,7 @@ __all__ = ["Logging"]
 
 
 class Logging(BaseModel):
+    """An object configuring the rule's logging behavior."""
+
     enabled: bool
     """Whether to generate a log when the rule matches."""

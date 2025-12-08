@@ -8,6 +8,8 @@ __all__ = ["BrowserIsolationSettingsParam"]
 
 
 class BrowserIsolationSettingsParam(TypedDict, total=False):
+    """Specify Clientless Browser Isolation settings."""
+
     non_identity_enabled: bool
     """Specify whether to enable non-identity onramp support for Browser Isolation."""
 

@@ -9,6 +9,8 @@ __all__ = ["ScriptSetting", "Observability", "ObservabilityLogs"]
 
 
 class ObservabilityLogs(BaseModel):
+    """Log settings for the Worker."""
+
     enabled: bool
     """Whether logs are enabled for the Worker."""
 
@@ -30,6 +32,8 @@ class ObservabilityLogs(BaseModel):
 
 
 class Observability(BaseModel):
+    """Observability settings for the Worker."""
+
     enabled: bool
     """Whether observability is enabled for the Worker."""
 

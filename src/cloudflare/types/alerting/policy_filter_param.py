@@ -11,6 +11,10 @@ __all__ = ["PolicyFilterParam"]
 
 
 class PolicyFilterParam(TypedDict, total=False):
+    """
+    Optional filters that allow you to be alerted only on a subset of events for that alert type based on some criteria. This is only available for select alert types. See alert type documentation for more details.
+    """
+
     actions: SequenceNotStr[str]
     """Usage depends on specific alert type"""
 

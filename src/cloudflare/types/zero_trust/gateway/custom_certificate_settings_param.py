@@ -9,6 +9,11 @@ __all__ = ["CustomCertificateSettingsParam"]
 
 
 class CustomCertificateSettingsParam(TypedDict, total=False):
+    """Specify custom certificate settings for BYO-PKI.
+
+    This field is deprecated; use `certificate` instead.
+    """
+
     enabled: Required[Optional[bool]]
     """
     Specify whether to enable a custom certificate authority for signing Gateway

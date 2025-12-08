@@ -20,6 +20,11 @@ class SelectorInclude(BaseModel):
 
 
 class Selector(BaseModel):
+    """Select operations covered by this rule.
+
+    For details on selectors, see the [Cloudflare Docs](https://developers.cloudflare.com/api-shield/security/jwt-validation/).
+    """
+
     exclude: Optional[List[SelectorExclude]] = None
     """Ignore operations that were otherwise included by `include`."""
 
@@ -28,6 +33,8 @@ class Selector(BaseModel):
 
 
 class TokenValidationRule(BaseModel):
+    """A Token Validation rule that can enforce security policies using JWT Tokens."""
+
     action: Literal["log", "block"]
     """
     Action to take on requests that match operations included in `selector` and fail

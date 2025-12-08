@@ -52,6 +52,8 @@ class SSLCustomCERTBundle(TypedDict, total=False):
 
 
 class SSLSettings(TypedDict, total=False):
+    """SSL specific settings."""
+
     ciphers: SequenceNotStr[str]
     """An allowlist of ciphers for TLS termination.
 
@@ -72,6 +74,8 @@ class SSLSettings(TypedDict, total=False):
 
 
 class SSL(TypedDict, total=False):
+    """SSL properties used when creating the custom hostname."""
+
     bundle_method: BundleMethod
     """
     A ubiquitous bundle has the highest probability of being verified everywhere,

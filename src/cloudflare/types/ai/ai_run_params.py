@@ -313,6 +313,8 @@ class MessagesToolUnionMember0ParametersProperties(TypedDict, total=False):
 
 
 class MessagesToolUnionMember0Parameters(TypedDict, total=False):
+    """Schema defining the parameters accepted by the tool."""
+
     properties: Required[Dict[str, MessagesToolUnionMember0ParametersProperties]]
     """Definitions of each parameter."""
 
@@ -343,6 +345,8 @@ class MessagesToolFunctionFunctionParametersProperties(TypedDict, total=False):
 
 
 class MessagesToolFunctionFunctionParameters(TypedDict, total=False):
+    """Schema defining the parameters accepted by the function."""
+
     properties: Required[Dict[str, MessagesToolFunctionFunctionParametersProperties]]
     """Definitions of each parameter."""
 
@@ -354,6 +358,8 @@ class MessagesToolFunctionFunctionParameters(TypedDict, total=False):
 
 
 class MessagesToolFunctionFunction(TypedDict, total=False):
+    """Details of the function tool."""
+
     description: Required[str]
     """A brief description of what the function does."""
 

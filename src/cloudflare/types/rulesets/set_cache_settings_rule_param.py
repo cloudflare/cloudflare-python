@@ -32,6 +32,11 @@ __all__ = [
 
 
 class ActionParametersBrowserTTL(TypedDict, total=False):
+    """How long client browsers should cache the response.
+
+    Cloudflare cache purge will not purge content cached on client browsers, so high browser TTLs may lead to stale content.
+    """
+
     mode: Required[Literal["respect_origin", "bypass_by_default", "override_origin", "bypass"]]
     """The browser TTL mode."""
 
@@ -40,6 +45,8 @@ class ActionParametersBrowserTTL(TypedDict, total=False):
 
 
 class ActionParametersCacheKeyCustomKeyCookie(TypedDict, total=False):
+    """Which cookies to include in the cache key."""
+
     check_presence: SequenceNotStr[str]
     """A list of cookies to check for the presence of.
 
@@ -51,6 +58,8 @@ class ActionParametersCacheKeyCustomKeyCookie(TypedDict, total=False):
 
 
 class ActionParametersCacheKeyCustomKeyHeader(TypedDict, total=False):
+    """Which headers to include in the cache key."""
+
     check_presence: SequenceNotStr[str]
     """A list of headers to check for the presence of.
 
@@ -72,11 +81,15 @@ class ActionParametersCacheKeyCustomKeyHeader(TypedDict, total=False):
 
 
 class ActionParametersCacheKeyCustomKeyHost(TypedDict, total=False):
+    """How to use the host in the cache key."""
+
     resolved: bool
     """Whether to use the resolved host in the cache key."""
 
 
 class ActionParametersCacheKeyCustomKeyQueryStringExclude(TypedDict, total=False):
+    """Which query string parameters to exclude from the cache key."""
+
     all: Literal[True]
     """Whether to exclude all query string parameters from the cache key."""
 
@@ -85,6 +98,8 @@ class ActionParametersCacheKeyCustomKeyQueryStringExclude(TypedDict, total=False
 
 
 class ActionParametersCacheKeyCustomKeyQueryStringInclude(TypedDict, total=False):
+    """Which query string parameters to include in the cache key."""
+
     all: Literal[True]
     """Whether to include all query string parameters in the cache key."""
 
@@ -93,6 +108,8 @@ class ActionParametersCacheKeyCustomKeyQueryStringInclude(TypedDict, total=False
 
 
 class ActionParametersCacheKeyCustomKeyQueryString(TypedDict, total=False):
+    """Which query string parameters to include in or exclude from the cache key."""
+
     exclude: ActionParametersCacheKeyCustomKeyQueryStringExclude
     """Which query string parameters to exclude from the cache key."""
 
@@ -101,6 +118,8 @@ class ActionParametersCacheKeyCustomKeyQueryString(TypedDict, total=False):
 
 
 class ActionParametersCacheKeyCustomKeyUser(TypedDict, total=False):
+    """How to use characteristics of the request user agent in the cache key."""
+
     device_type: bool
     """Whether to use the user agent's device type in the cache key."""
 
@@ -112,6 +131,8 @@ class ActionParametersCacheKeyCustomKeyUser(TypedDict, total=False):
 
 
 class ActionParametersCacheKeyCustomKey(TypedDict, total=False):
+    """Which components of the request are included or excluded from the cache key."""
+
     cookie: ActionParametersCacheKeyCustomKeyCookie
     """Which cookies to include in the cache key."""
 
@@ -129,6 +150,10 @@ class ActionParametersCacheKeyCustomKey(TypedDict, total=False):
 
 
 class ActionParametersCacheKey(TypedDict, total=False):
+    """
+    Which components of the request are included in or excluded from the cache key Cloudflare uses to store the response in cache.
+    """
+
     cache_by_device_type: bool
     """Whether to separate cached content based on the visitor's device type."""
 
@@ -149,6 +174,10 @@ class ActionParametersCacheKey(TypedDict, total=False):
 
 
 class ActionParametersCacheReserve(TypedDict, total=False):
+    """
+    Settings to determine whether the request's response from origin is eligible for Cache Reserve (requires a Cache Reserve add-on plan).
+    """
+
     eligible: Required[bool]
     """Whether Cache Reserve is enabled.
 
@@ -172,6 +201,8 @@ _ActionParametersEdgeTTLStatusCodeTTLStatusCodeRangeReservedKeywords = TypedDict
 class ActionParametersEdgeTTLStatusCodeTTLStatusCodeRange(
     _ActionParametersEdgeTTLStatusCodeTTLStatusCodeRangeReservedKeywords, total=False
 ):
+    """A range of status codes to apply the TTL to."""
+
     to: int
     """The upper bound of the range."""
 
@@ -193,6 +224,8 @@ class ActionParametersEdgeTTLStatusCodeTTL(TypedDict, total=False):
 
 
 class ActionParametersEdgeTTL(TypedDict, total=False):
+    """How long the Cloudflare edge network should cache the response."""
+
     mode: Required[Literal["respect_origin", "bypass_by_default", "override_origin"]]
     """The edge TTL mode."""
 
@@ -204,6 +237,8 @@ class ActionParametersEdgeTTL(TypedDict, total=False):
 
 
 class ActionParametersServeStale(TypedDict, total=False):
+    """When to serve stale content from cache."""
+
     disable_stale_while_updating: bool
     """
     Whether Cloudflare should disable serving stale content while getting the latest
@@ -212,6 +247,8 @@ class ActionParametersServeStale(TypedDict, total=False):
 
 
 class ActionParameters(TypedDict, total=False):
+    """The parameters configuring the rule's action."""
+
     additional_cacheable_ports: Iterable[int]
     """A list of additional ports that caching should be enabled on."""
 
@@ -270,6 +307,8 @@ class ActionParameters(TypedDict, total=False):
 
 
 class ExposedCredentialCheck(TypedDict, total=False):
+    """Configuration for exposed credential checking."""
+
     password_expression: Required[str]
     """An expression that selects the password used in the credentials check."""
 
@@ -278,6 +317,8 @@ class ExposedCredentialCheck(TypedDict, total=False):
 
 
 class Ratelimit(TypedDict, total=False):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: Required[SequenceNotStr[str]]
     """
     Characteristics of the request on which the rate limit counter will be

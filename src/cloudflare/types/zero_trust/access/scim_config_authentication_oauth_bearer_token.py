@@ -8,6 +8,10 @@ __all__ = ["SCIMConfigAuthenticationOAuthBearerToken"]
 
 
 class SCIMConfigAuthenticationOAuthBearerToken(BaseModel):
+    """
+    Attributes for configuring OAuth Bearer Token authentication scheme for SCIM provisioning to an application.
+    """
+
     token: str
     """Token used to authenticate with the remote SCIM service."""
 

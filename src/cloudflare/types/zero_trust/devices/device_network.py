@@ -9,6 +9,10 @@ __all__ = ["DeviceNetwork", "Config"]
 
 
 class Config(BaseModel):
+    """
+    The configuration object containing information for the WARP client to detect the managed network.
+    """
+
     tls_sockaddr: str
     """
     A network address of the form "host:port" that the WARP client will use to

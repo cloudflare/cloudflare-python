@@ -11,4 +11,6 @@ class IPList(BaseModel):
 
 
 class IPListRule(BaseModel):
+    """Matches an IP address from a list."""
+
     ip_list: IPList

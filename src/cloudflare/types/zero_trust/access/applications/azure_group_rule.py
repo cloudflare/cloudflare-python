@@ -16,4 +16,9 @@ class AzureAD(BaseModel):
 
 
 class AzureGroupRule(BaseModel):
+    """
+    Matches an Azure group.
+    Requires an Azure identity provider.
+    """
+
     azure_ad: AzureAD = FieldInfo(alias="azureAD")

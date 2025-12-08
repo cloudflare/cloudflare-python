@@ -6,5 +6,7 @@ __all__ = ["Tag"]
 
 
 class Tag(BaseModel):
+    """A tag"""
+
     name: str
     """The name of the tag"""

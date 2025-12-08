@@ -82,6 +82,8 @@ class NSRecord(NSRecordParam, total=False):
 
 
 class OpenpgpkeyRecordSettings(TypedDict, total=False):
+    """Settings for the DNS record."""
+
     ipv4_only: bool
     """
     When enabled, only A records will be generated, and AAAA records will not be

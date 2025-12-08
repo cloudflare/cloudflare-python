@@ -8,6 +8,11 @@ __all__ = ["OriginSteeringParam"]
 
 
 class OriginSteeringParam(TypedDict, total=False):
+    """Configures origin steering for the pool.
+
+    Controls how origins are selected for new sessions and traffic without session affinity.
+    """
+
     policy: Literal["random", "hash", "least_outstanding_requests", "least_connections"]
     """The type of origin steering policy to use.
 

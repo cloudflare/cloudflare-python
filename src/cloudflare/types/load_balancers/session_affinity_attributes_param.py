@@ -10,6 +10,8 @@ __all__ = ["SessionAffinityAttributesParam"]
 
 
 class SessionAffinityAttributesParam(TypedDict, total=False):
+    """Configures attributes for session affinity."""
+
     drain_duration: float
     """Configures the drain duration in seconds.
 

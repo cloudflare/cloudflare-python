@@ -8,6 +8,13 @@ __all__ = ["RandomSteering"]
 
 
 class RandomSteering(BaseModel):
+    """
+    Configures pool weights.
+    - `steering_policy="random"`: A random pool is selected with probability proportional to pool weights.
+    - `steering_policy="least_outstanding_requests"`: Use pool weights to scale each pool's outstanding requests.
+    - `steering_policy="least_connections"`: Use pool weights to scale each pool's open connections.
+    """
+
     default_weight: Optional[float] = None
     """
     The default weight for pools in the load balancer that are not specified in the

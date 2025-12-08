@@ -11,6 +11,8 @@ __all__ = ["CNAMERecord", "Settings"]
 
 
 class Settings(BaseModel):
+    """Settings for the DNS record."""
+
     flatten_cname: Optional[bool] = None
     """
     If enabled, causes the CNAME record to be resolved externally and the resulting

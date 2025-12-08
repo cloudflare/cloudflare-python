@@ -8,6 +8,10 @@ __all__ = ["AdaptiveRoutingParam"]
 
 
 class AdaptiveRoutingParam(TypedDict, total=False):
+    """
+    Controls features that modify the routing of requests to pools and origins in response to dynamic conditions, such as during the interval between active health monitoring requests. For example, zero-downtime failover occurs immediately when an origin becomes unavailable due to HTTP 521, 522, or 523 response codes. If there is another healthy origin in the same pool, the request is retried once against this alternate origin.
+    """
+
     failover_across_pools: bool
     """
     Extends zero-downtime failover of requests to healthy origins from alternate

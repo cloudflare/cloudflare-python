@@ -8,6 +8,11 @@ __all__ = ["Schedule"]
 
 
 class Schedule(BaseModel):
+    """Defines the schedule for activating DNS policies.
+
+    Settable only for `dns` and `dns_resolver` rules.
+    """
+
     fri: Optional[str] = None
     """
     Specify the time intervals when the rule is active on Fridays, in the increasing

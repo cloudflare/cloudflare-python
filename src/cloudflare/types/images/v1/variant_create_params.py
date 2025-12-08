@@ -26,6 +26,8 @@ class VariantCreateParams(TypedDict, total=False):
 
 
 class Options(TypedDict, total=False):
+    """Allows you to define image resizing sizes for different use cases."""
+
     fit: Required[Literal["scale-down", "contain", "cover", "crop", "pad"]]
     """
     The fit property describes how the width and height dimensions should be

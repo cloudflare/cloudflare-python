@@ -18,10 +18,14 @@ __all__ = [
 
 
 class CertificateGeoRestrictions(BaseModel):
+    """Specify the region where your private key can be held locally."""
+
     label: Optional[Literal["us", "eu", "highest_security"]] = None
 
 
 class Certificate(BaseModel):
+    """An individual certificate within a certificate pack."""
+
     id: str
     """Certificate identifier."""
 
@@ -65,6 +69,8 @@ class ValidationError(BaseModel):
 
 
 class ValidationRecord(BaseModel):
+    """Certificate's required validation record."""
+
     emails: Optional[List[str]] = None
     """
     The set of email addresses that the certificate authority (CA) will use to
@@ -94,6 +100,8 @@ class ValidationRecord(BaseModel):
 
 
 class CertificatePackGetResponse(BaseModel):
+    """A certificate pack with all its properties."""
+
     id: str
     """Identifier."""
 

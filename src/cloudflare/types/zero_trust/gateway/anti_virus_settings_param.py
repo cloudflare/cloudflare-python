@@ -11,6 +11,8 @@ __all__ = ["AntiVirusSettingsParam"]
 
 
 class AntiVirusSettingsParam(TypedDict, total=False):
+    """Specify anti-virus settings."""
+
     enabled_download_phase: Optional[bool]
     """Specify whether to enable anti-virus scanning on downloads."""
 

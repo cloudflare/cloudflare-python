@@ -10,6 +10,8 @@ __all__ = ["Stage"]
 
 
 class Stage(BaseModel):
+    """The status of the deployment."""
+
     ended_on: Optional[datetime] = None
     """When the stage ended."""
 

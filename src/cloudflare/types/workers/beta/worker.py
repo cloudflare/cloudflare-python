@@ -21,6 +21,8 @@ __all__ = [
 
 
 class ObservabilityLogs(BaseModel):
+    """Log settings for the Worker."""
+
     enabled: Optional[bool] = None
     """Whether logs are enabled for the Worker."""
 
@@ -36,6 +38,8 @@ class ObservabilityLogs(BaseModel):
 
 
 class Observability(BaseModel):
+    """Observability settings for the Worker."""
+
     enabled: Optional[bool] = None
     """Whether observability is enabled for the Worker."""
 
@@ -111,6 +115,8 @@ class ReferencesWorker(BaseModel):
 
 
 class References(BaseModel):
+    """Other resources that reference the Worker and depend on it existing."""
+
     dispatch_namespace_outbounds: List[ReferencesDispatchNamespaceOutbound]
     """
     Other Workers that reference the Worker as an outbound for a dispatch namespace.
@@ -133,6 +139,8 @@ class References(BaseModel):
 
 
 class Subdomain(BaseModel):
+    """Subdomain settings for the Worker."""
+
     enabled: Optional[bool] = None
     """Whether the \\**.workers.dev subdomain is enabled for the Worker."""
 

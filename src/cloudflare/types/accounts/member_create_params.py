@@ -44,11 +44,15 @@ class IAMCreateMemberWithPolicies(TypedDict, total=False):
 
 
 class IAMCreateMemberWithPoliciesPolicyPermissionGroup(TypedDict, total=False):
+    """A group of permissions."""
+
     id: Required[str]
     """Identifier of the group."""
 
 
 class IAMCreateMemberWithPoliciesPolicyResourceGroup(TypedDict, total=False):
+    """A group of scoped resources."""
+
     id: Required[str]
     """Identifier of the group."""
 

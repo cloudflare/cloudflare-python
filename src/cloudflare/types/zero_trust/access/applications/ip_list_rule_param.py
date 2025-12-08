@@ -13,4 +13,6 @@ class IPList(TypedDict, total=False):
 
 
 class IPListRuleParam(TypedDict, total=False):
+    """Matches an IP address from a list."""
+
     ip_list: Required[IPList]

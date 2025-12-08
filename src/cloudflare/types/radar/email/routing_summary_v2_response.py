@@ -19,6 +19,8 @@ __all__ = [
 
 
 class MetaConfidenceInfoAnnotation(BaseModel):
+    """Annotation associated with the result (e.g. outage or other type of event)."""
+
     data_source: Literal[
         "ALL",
         "AI_BOTS",
@@ -87,6 +89,8 @@ class MetaUnit(BaseModel):
 
 
 class Meta(BaseModel):
+    """Metadata for the results."""
+
     confidence_info: MetaConfidenceInfo = FieldInfo(alias="confidenceInfo")
 
     date_range: List[MetaDateRange] = FieldInfo(alias="dateRange")

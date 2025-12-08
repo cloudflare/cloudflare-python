@@ -8,6 +8,10 @@ __all__ = ["SCIMConfigAuthenticationOAuthBearerTokenParam"]
 
 
 class SCIMConfigAuthenticationOAuthBearerTokenParam(TypedDict, total=False):
+    """
+    Attributes for configuring OAuth Bearer Token authentication scheme for SCIM provisioning to an application.
+    """
+
     token: Required[str]
     """Token used to authenticate with the remote SCIM service."""
 

@@ -9,6 +9,8 @@ __all__ = ["NamespaceListResponse", "Detail"]
 
 
 class Detail(BaseModel):
+    """Contains namespace with metadata details."""
+
     namespace: List[str]
     """
     Specifies the hierarchical namespace parts as an array of strings. For example,
@@ -26,6 +28,8 @@ class Detail(BaseModel):
 
 
 class NamespaceListResponse(BaseModel):
+    """Contains the list of namespaces with optional pagination."""
+
     namespaces: List[List[str]]
     """Lists namespaces in the catalog."""
 

@@ -9,6 +9,8 @@ __all__ = ["BlockPageSettingsParam"]
 
 
 class BlockPageSettingsParam(TypedDict, total=False):
+    """Specify block page layout settings."""
+
     background_color: str
     """
     Specify the block page background color in `#rrggbb` format when the mode is

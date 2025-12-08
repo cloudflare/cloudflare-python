@@ -40,6 +40,10 @@ class Conn(BaseModel):
 
 
 class Client(BaseModel):
+    """
+    A client (typically cloudflared) that maintains connections to a Cloudflare data center.
+    """
+
     id: Optional[str] = None
     """UUID of the Cloudflare Tunnel connection."""
 

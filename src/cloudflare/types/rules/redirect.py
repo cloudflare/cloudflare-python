@@ -9,6 +9,8 @@ __all__ = ["Redirect"]
 
 
 class Redirect(BaseModel):
+    """The definition of the redirect."""
+
     source_url: str
 
     target_url: str

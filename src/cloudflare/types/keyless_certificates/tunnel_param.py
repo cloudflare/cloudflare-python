@@ -8,6 +8,8 @@ __all__ = ["TunnelParam"]
 
 
 class TunnelParam(TypedDict, total=False):
+    """Configuration for using Keyless SSL through a Cloudflare Tunnel"""
+
     private_ip: Required[str]
     """Private IP of the Key Server Host"""
 

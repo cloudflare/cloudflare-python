@@ -135,6 +135,8 @@ class VersionCreateParams(TypedDict, total=False):
 
 
 class Annotations(TypedDict, total=False):
+    """Metadata about the version."""
+
     workers_message: Annotated[str, PropertyInfo(alias="workers/message")]
     """Human-readable message about the version."""
 
@@ -143,6 +145,8 @@ class Annotations(TypedDict, total=False):
 
 
 class AssetsConfig(TypedDict, total=False):
+    """Configuration for assets within a Worker."""
+
     html_handling: Literal["auto-trailing-slash", "force-trailing-slash", "drop-trailing-slash", "none"]
     """Determines the redirects and rewrites of requests for HTML content."""
 
@@ -162,6 +166,13 @@ class AssetsConfig(TypedDict, total=False):
 
 
 class Assets(TypedDict, total=False):
+    """Configuration for assets within a Worker.
+
+    [`_headers`](https://developers.cloudflare.com/workers/static-assets/headers/#custom-headers) and
+    [`_redirects`](https://developers.cloudflare.com/workers/static-assets/redirects/) files should be
+    included as modules named `_headers` and `_redirects` with content type `text/plain`.
+    """
+
     config: AssetsConfig
     """Configuration for assets within a Worker."""
 
@@ -230,6 +241,8 @@ class BindingWorkersBindingKindDataBlob(TypedDict, total=False):
 
 
 class BindingWorkersBindingKindDispatchNamespaceOutboundWorker(TypedDict, total=False):
+    """Outbound worker."""
+
     environment: str
     """Environment of the outbound worker."""
 
@@ -238,6 +251,8 @@ class BindingWorkersBindingKindDispatchNamespaceOutboundWorker(TypedDict, total=
 
 
 class BindingWorkersBindingKindDispatchNamespaceOutbound(TypedDict, total=False):
+    """Outbound worker."""
+
     params: SequenceNotStr[str]
     """
     Pass information from the Dispatch Worker to the Outbound Worker through the
@@ -607,6 +622,8 @@ Binding: TypeAlias = Union[
 
 
 class Limits(TypedDict, total=False):
+    """Resource limits enforced at runtime."""
+
     cpu_ms: Required[int]
     """CPU time limit in milliseconds."""
 
@@ -643,5 +660,7 @@ set_pydantic_config(Module, {"arbitrary_types_allowed": True})
 
 
 class Placement(TypedDict, total=False):
+    """Placement settings for the version."""
+
     mode: Literal["smart"]
     """Placement mode for the version."""

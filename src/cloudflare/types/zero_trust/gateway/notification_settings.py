@@ -8,6 +8,8 @@ __all__ = ["NotificationSettings"]
 
 
 class NotificationSettings(BaseModel):
+    """Configure the message the user's device shows during an antivirus scan."""
+
     enabled: Optional[bool] = None
     """Specify whether to enable notifications."""
 

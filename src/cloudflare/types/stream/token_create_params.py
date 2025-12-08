@@ -56,6 +56,11 @@ class TokenCreateParams(TypedDict, total=False):
 
 
 class AccessRule(TypedDict, total=False):
+    """Defines rules for fine-grained control over content than signed URL tokens alone.
+
+    Access rules primarily make tokens conditionally valid based on user information. Access Rules are specified on token payloads as the `accessRules` property containing an array of Rule objects.
+    """
+
     action: Literal["allow", "block"]
     """The action to take when a request matches a rule.
 

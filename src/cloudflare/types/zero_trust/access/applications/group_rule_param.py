@@ -13,4 +13,6 @@ class Group(TypedDict, total=False):
 
 
 class GroupRuleParam(TypedDict, total=False):
+    """Matches an Access group."""
+
     group: Required[Group]

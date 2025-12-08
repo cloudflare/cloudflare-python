@@ -28,11 +28,21 @@ __all__ = [
 
 
 class AuditSSH(BaseModel):
+    """Define the settings for the Audit SSH action.
+
+    Settable only for `l4` rules with `audit_ssh` action.
+    """
+
     command_logging: Optional[bool] = None
     """Enable SSH command logging."""
 
 
 class BISOAdminControls(BaseModel):
+    """Configure browser isolation behavior.
+
+    Settable only for `http` rules with the action set to `isolate`.
+    """
+
     copy_: Optional[Literal["enabled", "disabled", "remote_only"]] = FieldInfo(alias="copy", default=None)
     """Configure copy behavior.
 
@@ -96,6 +106,11 @@ class BISOAdminControls(BaseModel):
 
 
 class BlockPage(BaseModel):
+    """Configure custom block page settings.
+
+    If missing or null, use the account settings. Settable only for `http` rules with the action set to `block`.
+    """
+
     target_uri: str
     """Specify the URI to which the user is redirected."""
 
@@ -104,6 +119,11 @@ class BlockPage(BaseModel):
 
 
 class CheckSession(BaseModel):
+    """Configure session check behavior.
+
+    Settable only for `l4` and `http` rules with the action set to `allow`.
+    """
+
     duration: Optional[str] = None
     """Sets the required session freshness threshold.
 
@@ -115,12 +135,22 @@ class CheckSession(BaseModel):
 
 
 class DNSResolvers(BaseModel):
+    """Configure custom resolvers to route queries that match the resolver policy.
+
+    Unused with 'resolve_dns_through_cloudflare' or 'resolve_dns_internally' settings. DNS queries get routed to the address closest to their origin. Only valid when a rule's action set to 'resolve'. Settable only for `dns_resolver` rules.
+    """
+
     ipv4: Optional[List[DNSResolverSettingsV4]] = None
 
     ipv6: Optional[List[DNSResolverSettingsV6]] = None
 
 
 class Egress(BaseModel):
+    """Configure how Gateway Proxy traffic egresses.
+
+    You can enable this setting for rules with Egress actions and filters, or omit it to indicate local egress via WARP IPs. Settable only for `egress` rules.
+    """
+
     ipv4: Optional[str] = None
     """Specify the IPv4 address to use for egress."""
 
@@ -135,6 +165,11 @@ class Egress(BaseModel):
 
 
 class L4override(BaseModel):
+    """Send matching traffic to the supplied destination IP address and port.
+
+    Settable only for `l4` rules with the action set to `l4_override`.
+    """
+
     ip: Optional[str] = None
     """Defines the IPv4 or IPv6 address."""
 
@@ -143,6 +178,11 @@ class L4override(BaseModel):
 
 
 class NotificationSettings(BaseModel):
+    """Configure a notification to display on the user's device when this rule matched.
+
+    Settable for all types of rules with the action set to `block`.
+    """
+
     enabled: Optional[bool] = None
     """Enable notification."""
 
@@ -160,11 +200,18 @@ class NotificationSettings(BaseModel):
 
 
 class PayloadLog(BaseModel):
+    """Configure DLP payload logging. Settable only for `http` rules."""
+
     enabled: Optional[bool] = None
     """Enable DLP payload logging for this rule."""
 
 
 class Quarantine(BaseModel):
+    """Configure settings that apply to quarantine rules.
+
+    Settable only for `http` rules.
+    """
+
     file_types: Optional[
         List[Literal["exe", "pdf", "doc", "docm", "docx", "rtf", "ppt", "pptx", "xls", "xlsm", "xlsx", "zip", "rar"]]
     ] = None
@@ -172,6 +219,11 @@ class Quarantine(BaseModel):
 
 
 class Redirect(BaseModel):
+    """Apply settings to redirect rules.
+
+    Settable only for `http` rules with the action set to `redirect`.
+    """
+
     target_uri: str
     """Specify the URI to which the user is redirected."""
 
@@ -186,6 +238,10 @@ class Redirect(BaseModel):
 
 
 class ResolveDNSInternally(BaseModel):
+    """
+    Configure to forward the query to the internal DNS service, passing the specified 'view_id' as input. Not used when 'dns_resolvers' is specified or 'resolve_dns_through_cloudflare' is set. Only valid when a rule's action set to 'resolve'. Settable only for `dns_resolver` rules.
+    """
+
     fallback: Optional[Literal["none", "public_dns"]] = None
     """
     Specify the fallback behavior to apply when the internal DNS response code
@@ -198,6 +254,10 @@ class ResolveDNSInternally(BaseModel):
 
 
 class UntrustedCERT(BaseModel):
+    """
+    Configure behavior when an upstream certificate is invalid or an SSL error occurs. Settable only for `http` rules with the action set to `allow`.
+    """
+
     action: Optional[Literal["pass_through", "block", "error"]] = None
     """Defines the action performed when an untrusted certificate seen.
 
@@ -206,6 +266,11 @@ class UntrustedCERT(BaseModel):
 
 
 class RuleSetting(BaseModel):
+    """Defines settings for this rule.
+
+    Settings apply only to specific rule types and must use compatible selectors. If Terraform detects drift, confirm the setting supports your rule type and check whether the API modifies the value. Use API-returned values in your configuration to prevent drift.
+    """
+
     add_headers: Optional[Dict[str, List[str]]] = None
     """Add custom headers to allowed requests as key-value pairs.
 

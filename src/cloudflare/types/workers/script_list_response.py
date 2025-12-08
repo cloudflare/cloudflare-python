@@ -19,6 +19,8 @@ class NamedHandler(BaseModel):
 
 
 class ObservabilityLogs(BaseModel):
+    """Log settings for the Worker."""
+
     enabled: bool
     """Whether logs are enabled for the Worker."""
 
@@ -40,6 +42,8 @@ class ObservabilityLogs(BaseModel):
 
 
 class Observability(BaseModel):
+    """Observability settings for the Worker."""
+
     enabled: bool
     """Whether observability is enabled for the Worker."""
 
@@ -54,6 +58,10 @@ class Observability(BaseModel):
 
 
 class Placement(BaseModel):
+    """
+    Configuration for [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    """
+
     last_analyzed_at: Optional[datetime] = None
     """
     The last time the script was analyzed for

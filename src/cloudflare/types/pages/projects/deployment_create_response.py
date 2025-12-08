@@ -22,6 +22,8 @@ __all__ = [
 
 
 class BuildConfig(BaseModel):
+    """Configs for the project build process."""
+
     web_analytics_tag: Optional[str] = None
     """The classifying tag for analytics."""
 
@@ -42,6 +44,8 @@ class BuildConfig(BaseModel):
 
 
 class DeploymentTriggerMetadata(BaseModel):
+    """Additional info about the trigger."""
+
     branch: str
     """Where the trigger happened."""
 
@@ -56,6 +60,8 @@ class DeploymentTriggerMetadata(BaseModel):
 
 
 class DeploymentTrigger(BaseModel):
+    """Info about what caused the deployment."""
+
     metadata: DeploymentTriggerMetadata
     """Additional info about the trigger."""
 
@@ -64,6 +70,8 @@ class DeploymentTrigger(BaseModel):
 
 
 class EnvVarsPagesPlainTextEnvVar(BaseModel):
+    """A plaintext environment variable."""
+
     type: Literal["plain_text"]
 
     value: str
@@ -71,6 +79,8 @@ class EnvVarsPagesPlainTextEnvVar(BaseModel):
 
 
 class EnvVarsPagesSecretTextEnvVar(BaseModel):
+    """An encrypted environment variable."""
+
     type: Literal["secret_text"]
 
     value: str
@@ -143,6 +153,8 @@ class SourceConfig(BaseModel):
 
 
 class Source(BaseModel):
+    """Configs for the project source control."""
+
     config: SourceConfig
 
     type: Literal["github", "gitlab"]

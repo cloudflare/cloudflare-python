@@ -24,6 +24,8 @@ __all__ = [
 
 
 class Destination(BaseModel):
+    """Destination configuration for the subscription"""
+
     queue_id: str
     """ID of the target queue"""
 

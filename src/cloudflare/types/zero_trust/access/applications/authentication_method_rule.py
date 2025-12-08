@@ -14,4 +14,6 @@ class AuthMethod(BaseModel):
 
 
 class AuthenticationMethodRule(BaseModel):
+    """Enforce different MFA options"""
+
     auth_method: AuthMethod

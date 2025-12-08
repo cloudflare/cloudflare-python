@@ -17,4 +17,8 @@ class ExternalEvaluation(BaseModel):
 
 
 class ExternalEvaluationRule(BaseModel):
+    """
+    Create Allow or Block policies which evaluate the user based on custom criteria.
+    """
+
     external_evaluation: ExternalEvaluation

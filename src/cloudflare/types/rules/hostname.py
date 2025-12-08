@@ -8,6 +8,10 @@ __all__ = ["Hostname"]
 
 
 class Hostname(BaseModel):
+    """
+    Valid characters for hostnames are ASCII(7) letters from a to z, the digits from 0 to 9, wildcards (*), and the hyphen (-).
+    """
+
     url_hostname: str
 
     exclude_exact_hostname: Optional[bool] = None

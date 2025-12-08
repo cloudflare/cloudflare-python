@@ -9,6 +9,8 @@ __all__ = ["SettingsMultipleRequest", "SettingsMultipleRequestItem"]
 
 
 class SettingsMultipleRequestItem(BaseModel):
+    """Operation ID to mitigation action mappings"""
+
     mitigation_action: Optional[Literal["log", "block", "none"]] = None
     """When set, this applies a mitigation action to this operation
 

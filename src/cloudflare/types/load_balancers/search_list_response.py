@@ -9,6 +9,8 @@ __all__ = ["SearchListResponse", "Resource"]
 
 
 class Resource(BaseModel):
+    """A reference to a load balancer resource."""
+
     reference_type: Optional[Literal["referral", "referrer"]] = None
     """When listed as a reference, the type (direction) of the reference."""
 

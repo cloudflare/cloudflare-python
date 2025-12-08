@@ -9,11 +9,17 @@ __all__ = ["ZoneGetResponse", "InternalDNS", "Nameservers", "SOA"]
 
 
 class InternalDNS(BaseModel):
+    """Settings for this internal zone."""
+
     reference_zone_id: Optional[str] = None
     """The ID of the zone to fallback to."""
 
 
 class Nameservers(BaseModel):
+    """
+    Settings determining the nameservers through which the zone should be available.
+    """
+
     type: Literal["cloudflare.standard", "custom.account", "custom.tenant", "custom.zone"]
     """Nameserver type"""
 
@@ -22,6 +28,8 @@ class Nameservers(BaseModel):
 
 
 class SOA(BaseModel):
+    """Components of the zone's SOA record."""
+
     expire: Optional[float] = None
     """
     Time in seconds of being unable to query the primary server after which

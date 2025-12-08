@@ -9,6 +9,10 @@ __all__ = ["PolicyFilter"]
 
 
 class PolicyFilter(BaseModel):
+    """
+    Optional filters that allow you to be alerted only on a subset of events for that alert type based on some criteria. This is only available for select alert types. See alert type documentation for more details.
+    """
+
     actions: Optional[List[str]] = None
     """Usage depends on specific alert type"""
 

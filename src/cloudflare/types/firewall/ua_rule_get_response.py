@@ -9,6 +9,8 @@ __all__ = ["UARuleGetResponse", "Configuration"]
 
 
 class Configuration(BaseModel):
+    """The configuration object for the current rule."""
+
     target: Optional[str] = None
     """The configuration target for this rule.
 

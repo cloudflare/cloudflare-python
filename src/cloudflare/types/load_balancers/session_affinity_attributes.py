@@ -9,6 +9,8 @@ __all__ = ["SessionAffinityAttributes"]
 
 
 class SessionAffinityAttributes(BaseModel):
+    """Configures attributes for session affinity."""
+
     drain_duration: Optional[float] = None
     """Configures the drain duration in seconds.
 

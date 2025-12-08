@@ -94,6 +94,11 @@ __all__ = [
 
 
 class SelfHostedApplicationDestinationPublicDestination(BaseModel):
+    """A public hostname that Access will secure.
+
+    Public destinations support sub-domain and path. Wildcard '*' can be used in the definition.
+    """
+
     type: Optional[Literal["public"]] = None
 
     uri: Optional[str] = None
@@ -130,6 +135,11 @@ class SelfHostedApplicationDestinationPrivateDestination(BaseModel):
 
 
 class SelfHostedApplicationDestinationViaMcpServerPortalDestination(BaseModel):
+    """A MCP server id configured in ai-controls.
+
+    Access will secure the MCP server if accessed through a MCP portal.
+    """
+
     mcp_server_id: Optional[str] = None
     """The MCP server id configured in ai-controls."""
 
@@ -215,6 +225,10 @@ class SelfHostedApplicationPolicy(BaseModel):
 
 
 class SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(BaseModel):
+    """
+    Attributes for configuring Access Service Token authentication scheme for SCIM provisioning to an application.
+    """
+
     client_id: str
     """
     Client ID of the Access service token used to authenticate with the remote
@@ -234,6 +248,10 @@ class SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticatio
 class SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
     BaseModel
 ):
+    """
+    Attributes for configuring Access Service Token authentication scheme for SCIM provisioning to an application.
+    """
+
     client_id: str
     """
     Client ID of the Access service token used to authenticate with the remote
@@ -267,6 +285,11 @@ SelfHostedApplicationSCIMConfigAuthentication: TypeAlias = Union[
 
 
 class SelfHostedApplicationSCIMConfig(BaseModel):
+    """Configuration for provisioning to this application via SCIM.
+
+    This is currently in closed beta.
+    """
+
     idp_uid: str
     """
     The UID of the IdP to use as the source for SCIM resources to provision to this
@@ -532,6 +555,10 @@ SaaSApplicationSaaSApp: TypeAlias = Union[SAMLSaaSApp, OIDCSaaSApp]
 
 
 class SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(BaseModel):
+    """
+    Attributes for configuring Access Service Token authentication scheme for SCIM provisioning to an application.
+    """
+
     client_id: str
     """
     Client ID of the Access service token used to authenticate with the remote
@@ -551,6 +578,10 @@ class SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAcces
 class SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
     BaseModel
 ):
+    """
+    Attributes for configuring Access Service Token authentication scheme for SCIM provisioning to an application.
+    """
+
     client_id: str
     """
     Client ID of the Access service token used to authenticate with the remote
@@ -584,6 +615,11 @@ SaaSApplicationSCIMConfigAuthentication: TypeAlias = Union[
 
 
 class SaaSApplicationSCIMConfig(BaseModel):
+    """Configuration for provisioning to this application via SCIM.
+
+    This is currently in closed beta.
+    """
+
     idp_uid: str
     """
     The UID of the IdP to use as the source for SCIM resources to provision to this
@@ -670,6 +706,11 @@ class SaaSApplication(BaseModel):
 
 
 class BrowserSSHApplicationDestinationPublicDestination(BaseModel):
+    """A public hostname that Access will secure.
+
+    Public destinations support sub-domain and path. Wildcard '*' can be used in the definition.
+    """
+
     type: Optional[Literal["public"]] = None
 
     uri: Optional[str] = None
@@ -706,6 +747,11 @@ class BrowserSSHApplicationDestinationPrivateDestination(BaseModel):
 
 
 class BrowserSSHApplicationDestinationViaMcpServerPortalDestination(BaseModel):
+    """A MCP server id configured in ai-controls.
+
+    Access will secure the MCP server if accessed through a MCP portal.
+    """
+
     mcp_server_id: Optional[str] = None
     """The MCP server id configured in ai-controls."""
 
@@ -791,6 +837,10 @@ class BrowserSSHApplicationPolicy(BaseModel):
 
 
 class BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(BaseModel):
+    """
+    Attributes for configuring Access Service Token authentication scheme for SCIM provisioning to an application.
+    """
+
     client_id: str
     """
     Client ID of the Access service token used to authenticate with the remote
@@ -810,6 +860,10 @@ class BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticatio
 class BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
     BaseModel
 ):
+    """
+    Attributes for configuring Access Service Token authentication scheme for SCIM provisioning to an application.
+    """
+
     client_id: str
     """
     Client ID of the Access service token used to authenticate with the remote
@@ -843,6 +897,11 @@ BrowserSSHApplicationSCIMConfigAuthentication: TypeAlias = Union[
 
 
 class BrowserSSHApplicationSCIMConfig(BaseModel):
+    """Configuration for provisioning to this application via SCIM.
+
+    This is currently in closed beta.
+    """
+
     idp_uid: str
     """
     The UID of the IdP to use as the source for SCIM resources to provision to this
@@ -1049,6 +1108,11 @@ class BrowserSSHApplication(BaseModel):
 
 
 class BrowserVNCApplicationDestinationPublicDestination(BaseModel):
+    """A public hostname that Access will secure.
+
+    Public destinations support sub-domain and path. Wildcard '*' can be used in the definition.
+    """
+
     type: Optional[Literal["public"]] = None
 
     uri: Optional[str] = None
@@ -1085,6 +1149,11 @@ class BrowserVNCApplicationDestinationPrivateDestination(BaseModel):
 
 
 class BrowserVNCApplicationDestinationViaMcpServerPortalDestination(BaseModel):
+    """A MCP server id configured in ai-controls.
+
+    Access will secure the MCP server if accessed through a MCP portal.
+    """
+
     mcp_server_id: Optional[str] = None
     """The MCP server id configured in ai-controls."""
 
@@ -1170,6 +1239,10 @@ class BrowserVNCApplicationPolicy(BaseModel):
 
 
 class BrowserVNCApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(BaseModel):
+    """
+    Attributes for configuring Access Service Token authentication scheme for SCIM provisioning to an application.
+    """
+
     client_id: str
     """
     Client ID of the Access service token used to authenticate with the remote
@@ -1189,6 +1262,10 @@ class BrowserVNCApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticatio
 class BrowserVNCApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
     BaseModel
 ):
+    """
+    Attributes for configuring Access Service Token authentication scheme for SCIM provisioning to an application.
+    """
+
     client_id: str
     """
     Client ID of the Access service token used to authenticate with the remote
@@ -1222,6 +1299,11 @@ BrowserVNCApplicationSCIMConfigAuthentication: TypeAlias = Union[
 
 
 class BrowserVNCApplicationSCIMConfig(BaseModel):
+    """Configuration for provisioning to this application via SCIM.
+
+    This is currently in closed beta.
+    """
+
     idp_uid: str
     """
     The UID of the IdP to use as the source for SCIM resources to provision to this
@@ -1436,6 +1518,8 @@ class AppLauncherApplicationFooterLink(BaseModel):
 
 
 class AppLauncherApplicationLandingPageDesign(BaseModel):
+    """The design of the App Launcher landing page shown to users when they log in."""
+
     button_color: Optional[str] = None
     """The background color of the log in button on the landing page."""
 
@@ -2045,6 +2129,10 @@ class InfrastructureApplicationTargetCriterion(BaseModel):
 
 
 class InfrastructureApplicationPolicyConnectionRulesSSH(BaseModel):
+    """
+    The SSH-specific rules that define how users may connect to the targets secured by your application.
+    """
+
     usernames: List[str]
     """Contains the Unix usernames that may be used when connecting over SSH."""
 
@@ -2053,6 +2141,10 @@ class InfrastructureApplicationPolicyConnectionRulesSSH(BaseModel):
 
 
 class InfrastructureApplicationPolicyConnectionRules(BaseModel):
+    """
+    The rules that define how users may connect to the targets secured by your application.
+    """
+
     ssh: Optional[InfrastructureApplicationPolicyConnectionRulesSSH] = None
     """
     The SSH-specific rules that define how users may connect to the targets secured
@@ -2135,6 +2227,11 @@ class BrowserRdpApplicationTargetCriterion(BaseModel):
 
 
 class BrowserRdpApplicationDestinationPublicDestination(BaseModel):
+    """A public hostname that Access will secure.
+
+    Public destinations support sub-domain and path. Wildcard '*' can be used in the definition.
+    """
+
     type: Optional[Literal["public"]] = None
 
     uri: Optional[str] = None
@@ -2171,6 +2268,11 @@ class BrowserRdpApplicationDestinationPrivateDestination(BaseModel):
 
 
 class BrowserRdpApplicationDestinationViaMcpServerPortalDestination(BaseModel):
+    """A MCP server id configured in ai-controls.
+
+    Access will secure the MCP server if accessed through a MCP portal.
+    """
+
     mcp_server_id: Optional[str] = None
     """The MCP server id configured in ai-controls."""
 
@@ -2256,6 +2358,10 @@ class BrowserRdpApplicationPolicy(BaseModel):
 
 
 class BrowserRdpApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(BaseModel):
+    """
+    Attributes for configuring Access Service Token authentication scheme for SCIM provisioning to an application.
+    """
+
     client_id: str
     """
     Client ID of the Access service token used to authenticate with the remote
@@ -2275,6 +2381,10 @@ class BrowserRdpApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticatio
 class BrowserRdpApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
     BaseModel
 ):
+    """
+    Attributes for configuring Access Service Token authentication scheme for SCIM provisioning to an application.
+    """
+
     client_id: str
     """
     Client ID of the Access service token used to authenticate with the remote
@@ -2308,6 +2418,11 @@ BrowserRdpApplicationSCIMConfigAuthentication: TypeAlias = Union[
 
 
 class BrowserRdpApplicationSCIMConfig(BaseModel):
+    """Configuration for provisioning to this application via SCIM.
+
+    This is currently in closed beta.
+    """
+
     idp_uid: str
     """
     The UID of the IdP to use as the source for SCIM resources to provision to this

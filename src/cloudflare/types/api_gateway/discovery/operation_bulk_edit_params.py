@@ -16,6 +16,8 @@ class OperationBulkEditParams(TypedDict, total=False):
 
 
 class Body(TypedDict, total=False):
+    """Mappings of discovered operations (keys) to objects describing their state"""
+
     state: Literal["review", "ignored"]
     """Mark state of operation in API Discovery
 

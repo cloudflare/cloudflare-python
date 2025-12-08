@@ -9,12 +9,18 @@ __all__ = ["TokenPolicy", "PermissionGroup", "PermissionGroupMeta"]
 
 
 class PermissionGroupMeta(TypedDict, total=False):
+    """Attributes associated to the permission group."""
+
     key: str
 
     value: str
 
 
 class PermissionGroup(TypedDict, total=False):
+    """
+    A named group of permissions that map to a group of operations against resources.
+    """
+
     id: Required[str]
     """Identifier of the permission group."""
 

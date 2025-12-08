@@ -84,6 +84,8 @@ class ResultSourceCloudflarePipelinesWorkersPipelinesHTTPSourceCORS(BaseModel):
 
 
 class ResultSourceCloudflarePipelinesWorkersPipelinesHTTPSource(BaseModel):
+    """[DEPRECATED] HTTP source configuration. Use the new streams API instead."""
+
     format: Literal["json"]
     """Specifies the format of source data."""
 
@@ -96,6 +98,11 @@ class ResultSourceCloudflarePipelinesWorkersPipelinesHTTPSource(BaseModel):
 
 
 class ResultSourceCloudflarePipelinesWorkersPipelinesBindingSource(BaseModel):
+    """[DEPRECATED] Worker binding source configuration.
+
+    Use the new streams API instead.
+    """
+
     format: Literal["json"]
     """Specifies the format of source data."""
 
@@ -109,6 +116,11 @@ ResultSource: TypeAlias = Union[
 
 
 class Result(BaseModel):
+    """[DEPRECATED] Describes the configuration of a pipeline.
+
+    Use the new streams/sinks/pipelines API instead.
+    """
+
     id: str
     """Specifies the pipeline identifier."""
 

@@ -20,6 +20,10 @@ __all__ = [
 
 
 class ConfigIngressOriginRequestAccess(BaseModel):
+    """
+    For all L7 requests to this hostname, cloudflared will validate each request's Cf-Access-Jwt-Assertion request header.
+    """
+
     aud_tag: List[str] = FieldInfo(alias="audTag")
     """Access applications that are allowed to reach this hostname for this Tunnel.
 
@@ -34,6 +38,10 @@ class ConfigIngressOriginRequestAccess(BaseModel):
 
 
 class ConfigIngressOriginRequest(BaseModel):
+    """
+    Configuration parameters for the public hostname specific connection settings between cloudflared and origin server.
+    """
+
     access: Optional[ConfigIngressOriginRequestAccess] = None
     """
     For all L7 requests to this hostname, cloudflared will validate each request's
@@ -111,6 +119,8 @@ class ConfigIngressOriginRequest(BaseModel):
 
 
 class ConfigIngress(BaseModel):
+    """Public hostname"""
+
     hostname: str
     """Public hostname for this service."""
 
@@ -133,6 +143,10 @@ class ConfigIngress(BaseModel):
 
 
 class ConfigOriginRequestAccess(BaseModel):
+    """
+    For all L7 requests to this hostname, cloudflared will validate each request's Cf-Access-Jwt-Assertion request header.
+    """
+
     aud_tag: List[str] = FieldInfo(alias="audTag")
     """Access applications that are allowed to reach this hostname for this Tunnel.
 
@@ -147,6 +161,10 @@ class ConfigOriginRequestAccess(BaseModel):
 
 
 class ConfigOriginRequest(BaseModel):
+    """
+    Configuration parameters for the public hostname specific connection settings between cloudflared and origin server.
+    """
+
     access: Optional[ConfigOriginRequestAccess] = None
     """
     For all L7 requests to this hostname, cloudflared will validate each request's
@@ -224,6 +242,8 @@ class ConfigOriginRequest(BaseModel):
 
 
 class Config(BaseModel):
+    """The tunnel configuration and ingress rules."""
+
     ingress: Optional[List[ConfigIngress]] = None
     """List of public hostname definitions.
 
@@ -238,6 +258,8 @@ class Config(BaseModel):
 
 
 class ConfigurationUpdateResponse(BaseModel):
+    """Cloudflare Tunnel configuration"""
+
     account_id: Optional[str] = None
     """Identifier."""
 

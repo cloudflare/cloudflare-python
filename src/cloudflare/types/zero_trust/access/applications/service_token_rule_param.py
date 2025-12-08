@@ -13,4 +13,6 @@ class ServiceToken(TypedDict, total=False):
 
 
 class ServiceTokenRuleParam(TypedDict, total=False):
+    """Matches a specific Access Service Token"""
+
     service_token: Required[ServiceToken]

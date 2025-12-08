@@ -11,6 +11,8 @@ __all__ = ["BlockRule", "ActionParameters", "ActionParametersResponse", "Exposed
 
 
 class ActionParametersResponse(BaseModel):
+    """The response to show when the block is applied."""
+
     content: str
     """The content to return."""
 
@@ -22,11 +24,15 @@ class ActionParametersResponse(BaseModel):
 
 
 class ActionParameters(BaseModel):
+    """The parameters configuring the rule's action."""
+
     response: Optional[ActionParametersResponse] = None
     """The response to show when the block is applied."""
 
 
 class ExposedCredentialCheck(BaseModel):
+    """Configuration for exposed credential checking."""
+
     password_expression: str
     """An expression that selects the password used in the credentials check."""
 
@@ -35,6 +41,8 @@ class ExposedCredentialCheck(BaseModel):
 
 
 class Ratelimit(BaseModel):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: List[str]
     """
     Characteristics of the request on which the rate limit counter will be

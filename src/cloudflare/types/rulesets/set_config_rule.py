@@ -11,6 +11,8 @@ __all__ = ["SetConfigRule", "ActionParameters", "ActionParametersAutominify", "E
 
 
 class ActionParametersAutominify(BaseModel):
+    """Which file extensions to minify automatically."""
+
     css: Optional[bool] = None
     """Whether to minify CSS files."""
 
@@ -22,6 +24,8 @@ class ActionParametersAutominify(BaseModel):
 
 
 class ActionParameters(BaseModel):
+    """The parameters configuring the rule's action."""
+
     automatic_https_rewrites: Optional[bool] = None
     """Whether to enable Automatic HTTPS Rewrites."""
 
@@ -78,6 +82,8 @@ class ActionParameters(BaseModel):
 
 
 class ExposedCredentialCheck(BaseModel):
+    """Configuration for exposed credential checking."""
+
     password_expression: str
     """An expression that selects the password used in the credentials check."""
 
@@ -86,6 +92,8 @@ class ExposedCredentialCheck(BaseModel):
 
 
 class Ratelimit(BaseModel):
+    """An object configuring the rule's rate limit behavior."""
+
     characteristics: List[str]
     """
     Characteristics of the request on which the rate limit counter will be

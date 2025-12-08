@@ -9,6 +9,8 @@ __all__ = ["Integration", "Config"]
 
 
 class Config(BaseModel):
+    """The configuration object containing third-party integration information."""
+
     api_url: str
     """The Workspace One API URL provided in the Workspace One Admin Dashboard."""
 

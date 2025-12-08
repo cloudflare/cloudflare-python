@@ -37,6 +37,8 @@ class Variant1(TypedDict, total=False):
 
 
 class Variant1ValueZonesCacheRulesAegisValue(TypedDict, total=False):
+    """Value of the zone setting."""
+
     enabled: bool
     """Whether the feature is enabled or not."""
 
@@ -48,10 +50,14 @@ class Variant1ValueZonesCacheRulesAegisValue(TypedDict, total=False):
 
 
 class Variant1ValueZonesNELValue(TypedDict, total=False):
+    """Value of the zone setting."""
+
     enabled: bool
 
 
 class Variant1ValueZonesSecurityHeaderValueStrictTransportSecurity(TypedDict, total=False):
+    """Strict Transport Security."""
+
     enabled: bool
     """Whether or not strict transport security is enabled."""
 

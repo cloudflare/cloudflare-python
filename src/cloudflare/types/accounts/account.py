@@ -10,6 +10,8 @@ __all__ = ["Account", "ManagedBy", "Settings"]
 
 
 class ManagedBy(BaseModel):
+    """Parent container details"""
+
     parent_org_id: Optional[str] = None
     """ID of the parent Organization, if one exists"""
 
@@ -18,6 +20,8 @@ class ManagedBy(BaseModel):
 
 
 class Settings(BaseModel):
+    """Account settings"""
+
     abuse_contact_email: Optional[str] = None
     """Sets an abuse contact email to notify for abuse reports."""
 

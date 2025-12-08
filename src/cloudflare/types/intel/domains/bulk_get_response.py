@@ -18,17 +18,23 @@ __all__ = [
 
 
 class BulkGetResponseItemAdditionalInformation(BaseModel):
+    """Additional information related to the host name."""
+
     suspected_malware_family: Optional[str] = None
     """Suspected DGA malware family."""
 
 
 class BulkGetResponseItemApplication(BaseModel):
+    """Application that the hostname belongs to."""
+
     id: Optional[int] = None
 
     name: Optional[str] = None
 
 
 class BulkGetResponseItemContentCategory(BaseModel):
+    """Current content categories."""
+
     id: Optional[int] = None
 
     name: Optional[str] = None

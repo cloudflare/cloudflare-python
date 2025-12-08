@@ -96,6 +96,8 @@ class SourceCloudflarePipelinesWorkersPipelinesHTTPSourceCORS(TypedDict, total=F
 
 
 class SourceCloudflarePipelinesWorkersPipelinesHTTPSource(TypedDict, total=False):
+    """[DEPRECATED] HTTP source configuration. Use the new streams API instead."""
+
     format: Required[Literal["json"]]
     """Specifies the format of source data."""
 
@@ -108,6 +110,11 @@ class SourceCloudflarePipelinesWorkersPipelinesHTTPSource(TypedDict, total=False
 
 
 class SourceCloudflarePipelinesWorkersPipelinesBindingSource(TypedDict, total=False):
+    """[DEPRECATED] Worker binding source configuration.
+
+    Use the new streams API instead.
+    """
+
     format: Required[Literal["json"]]
     """Specifies the format of source data."""
 

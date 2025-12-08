@@ -9,6 +9,11 @@ __all__ = ["LocationStrategy"]
 
 
 class LocationStrategy(BaseModel):
+    """Controls location-based steering for non-proxied requests.
+
+    See `steering_policy` to learn how steering is affected.
+    """
+
     mode: Optional[Literal["pop", "resolver_ip"]] = None
     """
     Determines the authoritative location when ECS is not preferred, does not exist

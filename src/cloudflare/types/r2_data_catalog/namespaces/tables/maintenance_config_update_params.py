@@ -21,6 +21,8 @@ class MaintenanceConfigUpdateParams(TypedDict, total=False):
 
 
 class Compaction(TypedDict, total=False):
+    """Updates compaction configuration (all fields optional)."""
+
     state: Literal["enabled", "disabled"]
     """Updates the state optionally."""
 

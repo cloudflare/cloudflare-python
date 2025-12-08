@@ -10,6 +10,8 @@ __all__ = ["Verification", "VerificationInfo"]
 
 
 class VerificationInfo(BaseModel):
+    """Certificate's required verification information."""
+
     record_name: Optional[Literal["record_name", "http_url", "cname", "txt_name"]] = None
     """Name of CNAME record."""
 

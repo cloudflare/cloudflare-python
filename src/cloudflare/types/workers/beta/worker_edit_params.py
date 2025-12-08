@@ -34,6 +34,8 @@ class WorkerEditParams(TypedDict, total=False):
 
 
 class ObservabilityLogs(TypedDict, total=False):
+    """Log settings for the Worker."""
+
     enabled: bool
     """Whether logs are enabled for the Worker."""
 
@@ -49,6 +51,8 @@ class ObservabilityLogs(TypedDict, total=False):
 
 
 class Observability(TypedDict, total=False):
+    """Observability settings for the Worker."""
+
     enabled: bool
     """Whether observability is enabled for the Worker."""
 
@@ -60,6 +64,8 @@ class Observability(TypedDict, total=False):
 
 
 class Subdomain(TypedDict, total=False):
+    """Subdomain settings for the Worker."""
+
     enabled: bool
     """Whether the \\**.workers.dev subdomain is enabled for the Worker."""
 

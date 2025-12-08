@@ -11,6 +11,8 @@ __all__ = ["CAARecord", "Data", "Settings"]
 
 
 class Data(BaseModel):
+    """Components of a CAA record."""
+
     flags: Optional[float] = None
     """Flags for the CAA record."""
 
@@ -22,6 +24,8 @@ class Data(BaseModel):
 
 
 class Settings(BaseModel):
+    """Settings for the DNS record."""
+
     ipv4_only: Optional[bool] = None
     """
     When enabled, only A records will be generated, and AAAA records will not be
