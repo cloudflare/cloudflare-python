@@ -13,6 +13,7 @@ from .health_check_type import HealthCheckType
 __all__ = [
     "IPSECTunnelCreateParams",
     "BGP",
+    "CustomRemoteIdentities",
     "HealthCheck",
     "HealthCheckTarget",
     "HealthCheckTargetMagicHealthCheckTarget",
@@ -43,6 +44,8 @@ class IPSECTunnelCreateParams(TypedDict, total=False):
     """
 
     bgp: BGP
+
+    custom_remote_identities: CustomRemoteIdentities
 
     customer_endpoint: str
     """The IP address assigned to the customer side of the IPsec tunnel.
@@ -104,6 +107,20 @@ class BGP(TypedDict, total=False):
     (0x0D), tab (0x09), form feed (0x0C), and the question mark (`?`). Requests
     specifying an MD5 key with one or more of these disallowed characters will be
     rejected.
+    """
+
+
+class CustomRemoteIdentities(TypedDict, total=False):
+    fqdn_id: str
+    """A custom IKE ID of type FQDN that may be used to identity the IPsec tunnel.
+
+    The generated IKE IDs can still be used even if this custom value is specified.
+
+    Must be of the form `<custom label>.<account ID>.custom.ipsec.cloudflare.com`.
+
+    This custom ID does not need to be unique. Two IPsec tunnels may have the same
+    custom fqdn_id. However, if another IPsec tunnel has the same value then the two
+    tunnels cannot have the same cloudflare_endpoint.
     """
 
 

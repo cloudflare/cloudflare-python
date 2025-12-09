@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Union, Optional
+from typing import List, Union, Optional
 from typing_extensions import Literal, TypeAlias
 
 from pydantic import Field as FieldInfo
@@ -23,6 +23,8 @@ class SourceS3SourceResponseSchema(BaseModel):
 
     endpoint: Optional[str] = None
 
+    keys: Optional[List[str]] = None
+
     path_prefix: Optional[str] = FieldInfo(alias="pathPrefix", default=None)
 
     vendor: Optional[Literal["s3"]] = None
@@ -30,6 +32,8 @@ class SourceS3SourceResponseSchema(BaseModel):
 
 class SourceGcsSourceResponseSchema(BaseModel):
     bucket: Optional[str] = None
+
+    keys: Optional[List[str]] = None
 
     path_prefix: Optional[str] = FieldInfo(alias="pathPrefix", default=None)
 
@@ -40,6 +44,8 @@ class SourceR2SourceResponseSchema(BaseModel):
     bucket: Optional[str] = None
 
     jurisdiction: Optional[Literal["default", "eu", "fedramp"]] = None
+
+    keys: Optional[List[str]] = None
 
     path_prefix: Optional[str] = FieldInfo(alias="pathPrefix", default=None)
 

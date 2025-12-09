@@ -52,6 +52,8 @@ class AIGatewayUpdateParams(TypedDict, total=False):
 
     stripe: Optional[Stripe]
 
+    zdr: bool
+
 
 class DLPUnionMember0(TypedDict, total=False):
     action: Required[Literal["BLOCK", "FLAG"]]

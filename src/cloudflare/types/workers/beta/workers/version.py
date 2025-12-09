@@ -644,5 +644,11 @@ class Version(BaseModel):
     source: Optional[str] = None
     """The client used to create the version."""
 
+    startup_time_ms: Optional[int] = None
+    """
+    Time in milliseconds spent on
+    [Worker startup](https://developers.cloudflare.com/workers/platform/limits/#worker-startup-time).
+    """
+
     usage_model: Optional[Literal["standard", "bundled", "unbound"]] = None
     """Usage model for the version."""

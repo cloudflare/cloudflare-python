@@ -126,6 +126,7 @@ class AIGatewayResource(SyncAPIResource):
         log_management_strategy: Optional[Literal["STOP_INSERTING", "DELETE_OLDEST"]] | Omit = omit,
         logpush: bool | Omit = omit,
         logpush_public_key: Optional[str] | Omit = omit,
+        zdr: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -165,6 +166,7 @@ class AIGatewayResource(SyncAPIResource):
                     "log_management_strategy": log_management_strategy,
                     "logpush": logpush,
                     "logpush_public_key": logpush_public_key,
+                    "zdr": zdr,
                 },
                 ai_gateway_create_params.AIGatewayCreateParams,
             ),
@@ -198,6 +200,7 @@ class AIGatewayResource(SyncAPIResource):
         otel: Optional[Iterable[ai_gateway_update_params.Otel]] | Omit = omit,
         store_id: Optional[str] | Omit = omit,
         stripe: Optional[ai_gateway_update_params.Stripe] | Omit = omit,
+        zdr: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -242,6 +245,7 @@ class AIGatewayResource(SyncAPIResource):
                     "otel": otel,
                     "store_id": store_id,
                     "stripe": stripe,
+                    "zdr": zdr,
                 },
                 ai_gateway_update_params.AIGatewayUpdateParams,
             ),
@@ -446,6 +450,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         log_management_strategy: Optional[Literal["STOP_INSERTING", "DELETE_OLDEST"]] | Omit = omit,
         logpush: bool | Omit = omit,
         logpush_public_key: Optional[str] | Omit = omit,
+        zdr: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -485,6 +490,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
                     "log_management_strategy": log_management_strategy,
                     "logpush": logpush,
                     "logpush_public_key": logpush_public_key,
+                    "zdr": zdr,
                 },
                 ai_gateway_create_params.AIGatewayCreateParams,
             ),
@@ -518,6 +524,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         otel: Optional[Iterable[ai_gateway_update_params.Otel]] | Omit = omit,
         store_id: Optional[str] | Omit = omit,
         stripe: Optional[ai_gateway_update_params.Stripe] | Omit = omit,
+        zdr: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -562,6 +569,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
                     "otel": otel,
                     "store_id": store_id,
                     "stripe": stripe,
+                    "zdr": zdr,
                 },
                 ai_gateway_update_params.AIGatewayUpdateParams,
             ),

@@ -22,6 +22,7 @@ __all__ = [
     "ActorTokenID",
     "ActorTokenName",
     "ActorType",
+    "AuditLogID",
     "RawCfRayID",
     "RawMethod",
     "RawStatusCode",
@@ -74,6 +75,8 @@ class AuditListParams(TypedDict, total=False):
     actor_token_name: ActorTokenName
 
     actor_type: ActorType
+
+    audit_log_id: AuditLogID
 
     cursor: str
     """The cursor is an opaque token used to paginate through large sets of records.
@@ -254,6 +257,19 @@ _ActorTypeReservedKeywords = TypedDict(
 
 
 class ActorType(_ActorTypeReservedKeywords, total=False):
+    pass
+
+
+_AuditLogIDReservedKeywords = TypedDict(
+    "_AuditLogIDReservedKeywords",
+    {
+        "not": SequenceNotStr[str],
+    },
+    total=False,
+)
+
+
+class AuditLogID(_AuditLogIDReservedKeywords, total=False):
     pass
 
 

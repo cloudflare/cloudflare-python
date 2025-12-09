@@ -54,6 +54,7 @@ class TestAIGateway:
             log_management_strategy="STOP_INSERTING",
             logpush=True,
             logpush_public_key="xxxxxxxxxxxxxxxx",
+            zdr=True,
         )
         assert_matches_type(AIGatewayCreateResponse, ai_gateway, path=["response"])
 
@@ -156,6 +157,7 @@ class TestAIGateway:
                 "authorization": "authorization",
                 "usage_events": [{"payload": "payload"}],
             },
+            zdr=True,
         )
         assert_matches_type(AIGatewayUpdateResponse, ai_gateway, path=["response"])
 
@@ -403,6 +405,7 @@ class TestAsyncAIGateway:
             log_management_strategy="STOP_INSERTING",
             logpush=True,
             logpush_public_key="xxxxxxxxxxxxxxxx",
+            zdr=True,
         )
         assert_matches_type(AIGatewayCreateResponse, ai_gateway, path=["response"])
 
@@ -505,6 +508,7 @@ class TestAsyncAIGateway:
                 "authorization": "authorization",
                 "usage_events": [{"payload": "payload"}],
             },
+            zdr=True,
         )
         assert_matches_type(AIGatewayUpdateResponse, ai_gateway, path=["response"])
 

@@ -35,3 +35,5 @@ class AIGatewayCreateParams(TypedDict, total=False):
     logpush: bool
 
     logpush_public_key: Optional[str]
+
+    zdr: bool

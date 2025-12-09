@@ -108,3 +108,5 @@ class AIGatewayCreateResponse(BaseModel):
     store_id: Optional[str] = None
 
     stripe: Optional[Stripe] = None
+
+    zdr: Optional[bool] = None
