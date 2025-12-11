@@ -2,26 +2,25 @@
 
 from typing import Union, Optional
 from datetime import datetime
-from typing_extensions import Literal, Annotated, TypeAlias
+from typing_extensions import Literal, TypeAlias
 
-from ....._utils import PropertyInfo
 from ....._models import BaseModel
 from ..profiles.pattern import Pattern
 
 __all__ = [
     "IntegrationListResponse",
-    "Custom",
-    "Predefined",
-    "PredefinedConfidence",
-    "PredefinedVariant",
-    "Integration",
-    "ExactData",
-    "DocumentFingerprint",
-    "WordList",
+    "CustomEntry",
+    "PredefinedEntry",
+    "PredefinedEntryConfidence",
+    "PredefinedEntryVariant",
+    "IntegrationEntry",
+    "ExactDataEntry",
+    "DocumentFingerprintEntry",
+    "WordListEntry",
 ]
 
 
-class Custom(BaseModel):
+class CustomEntry(BaseModel):
     id: str
 
     created_at: datetime
@@ -38,8 +37,10 @@ class Custom(BaseModel):
 
     profile_id: Optional[str] = None
 
+    upload_status: Optional[Literal["empty", "uploading", "pending", "processing", "failed", "complete"]] = None
 
-class PredefinedConfidence(BaseModel):
+
+class PredefinedEntryConfidence(BaseModel):
     ai_context_available: bool
     """Indicates whether this entry has AI remote service validation."""
 
@@ -50,7 +51,7 @@ class PredefinedConfidence(BaseModel):
     """
 
 
-class PredefinedVariant(BaseModel):
+class PredefinedEntryVariant(BaseModel):
     topic_type: Literal["Intent", "Content"]
 
     type: Literal["PromptTopic"]
@@ -58,10 +59,10 @@ class PredefinedVariant(BaseModel):
     description: Optional[str] = None
 
 
-class Predefined(BaseModel):
+class PredefinedEntry(BaseModel):
     id: str
 
-    confidence: PredefinedConfidence
+    confidence: PredefinedEntryConfidence
 
     enabled: bool
 
@@ -71,10 +72,12 @@ class Predefined(BaseModel):
 
     profile_id: Optional[str] = None
 
-    variant: Optional[PredefinedVariant] = None
+    upload_status: Optional[Literal["empty", "uploading", "pending", "processing", "failed", "complete"]] = None
+
+    variant: Optional[PredefinedEntryVariant] = None
 
 
-class Integration(BaseModel):
+class IntegrationEntry(BaseModel):
     id: str
 
     created_at: datetime
@@ -89,8 +92,10 @@ class Integration(BaseModel):
 
     profile_id: Optional[str] = None
 
+    upload_status: Optional[Literal["empty", "uploading", "pending", "processing", "failed", "complete"]] = None
 
-class ExactData(BaseModel):
+
+class ExactDataEntry(BaseModel):
     id: str
 
     case_sensitive: bool
@@ -111,8 +116,10 @@ class ExactData(BaseModel):
 
     updated_at: datetime
 
+    upload_status: Optional[Literal["empty", "uploading", "pending", "processing", "failed", "complete"]] = None
 
-class DocumentFingerprint(BaseModel):
+
+class DocumentFingerprintEntry(BaseModel):
     id: str
 
     created_at: datetime
@@ -125,8 +132,10 @@ class DocumentFingerprint(BaseModel):
 
     updated_at: datetime
 
+    upload_status: Optional[Literal["empty", "uploading", "pending", "processing", "failed", "complete"]] = None
 
-class WordList(BaseModel):
+
+class WordListEntry(BaseModel):
     id: str
 
     created_at: datetime
@@ -143,7 +152,9 @@ class WordList(BaseModel):
 
     profile_id: Optional[str] = None
 
+    upload_status: Optional[Literal["empty", "uploading", "pending", "processing", "failed", "complete"]] = None
 
-IntegrationListResponse: TypeAlias = Annotated[
-    Union[Custom, Predefined, Integration, ExactData, DocumentFingerprint, WordList], PropertyInfo(discriminator="type")
+
+IntegrationListResponse: TypeAlias = Union[
+    CustomEntry, PredefinedEntry, IntegrationEntry, ExactDataEntry, DocumentFingerprintEntry, WordListEntry
 ]
