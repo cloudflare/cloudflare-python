@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .detection_get_response import DetectionGetResponse as DetectionGetResponse
 from .detection_create_params import DetectionCreateParams as DetectionCreateParams
 from .detection_list_response import DetectionListResponse as DetectionListResponse
 from .detection_update_params import DetectionUpdateParams as DetectionUpdateParams

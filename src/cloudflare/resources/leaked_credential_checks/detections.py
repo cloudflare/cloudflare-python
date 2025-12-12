@@ -20,6 +20,7 @@ from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.leaked_credential_checks import detection_create_params, detection_update_params
+from ...types.leaked_credential_checks.detection_get_response import DetectionGetResponse
 from ...types.leaked_credential_checks.detection_list_response import DetectionListResponse
 from ...types.leaked_credential_checks.detection_create_response import DetectionCreateResponse
 from ...types.leaked_credential_checks.detection_update_response import DetectionUpdateResponse
@@ -236,6 +237,50 @@ class DetectionsResource(SyncAPIResource):
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
+    def get(
+        self,
+        detection_id: str,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DetectionGetResponse:
+        """
+        Get user-defined detection pattern for Leaked Credential Checks.
+
+        Args:
+          zone_id: Defines an identifier.
+
+          detection_id: Defines the unique ID for this custom detection.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not detection_id:
+            raise ValueError(f"Expected a non-empty value for `detection_id` but received {detection_id!r}")
+        return self._get(
+            f"/zones/{zone_id}/leaked-credential-checks/detections/{detection_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[DetectionGetResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[DetectionGetResponse], ResultWrapper[DetectionGetResponse]),
+        )
+
 
 class AsyncDetectionsResource(AsyncAPIResource):
     @cached_property
@@ -446,6 +491,50 @@ class AsyncDetectionsResource(AsyncAPIResource):
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
+    async def get(
+        self,
+        detection_id: str,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DetectionGetResponse:
+        """
+        Get user-defined detection pattern for Leaked Credential Checks.
+
+        Args:
+          zone_id: Defines an identifier.
+
+          detection_id: Defines the unique ID for this custom detection.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not detection_id:
+            raise ValueError(f"Expected a non-empty value for `detection_id` but received {detection_id!r}")
+        return await self._get(
+            f"/zones/{zone_id}/leaked-credential-checks/detections/{detection_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[DetectionGetResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[DetectionGetResponse], ResultWrapper[DetectionGetResponse]),
+        )
+
 
 class DetectionsResourceWithRawResponse:
     def __init__(self, detections: DetectionsResource) -> None:
@@ -462,6 +551,9 @@ class DetectionsResourceWithRawResponse:
         )
         self.delete = to_raw_response_wrapper(
             detections.delete,
+        )
+        self.get = to_raw_response_wrapper(
+            detections.get,
         )
 
 
@@ -481,6 +573,9 @@ class AsyncDetectionsResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             detections.delete,
         )
+        self.get = async_to_raw_response_wrapper(
+            detections.get,
+        )
 
 
 class DetectionsResourceWithStreamingResponse:
@@ -499,6 +594,9 @@ class DetectionsResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             detections.delete,
         )
+        self.get = to_streamed_response_wrapper(
+            detections.get,
+        )
 
 
 class AsyncDetectionsResourceWithStreamingResponse:
@@ -516,4 +614,7 @@ class AsyncDetectionsResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             detections.delete,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            detections.get,
         )
