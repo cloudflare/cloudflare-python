@@ -64,6 +64,7 @@ if TYPE_CHECKING:
         logpush,
         workers,
         accounts,
+        aisearch,
         alerting,
         firewall,
         rulesets,
@@ -172,6 +173,7 @@ if TYPE_CHECKING:
     from .resources.logpush.logpush import LogpushResource, AsyncLogpushResource
     from .resources.workers.workers import WorkersResource, AsyncWorkersResource
     from .resources.accounts.accounts import AccountsResource, AsyncAccountsResource
+    from .resources.aisearch.aisearch import AISearchResource, AsyncAISearchResource
     from .resources.alerting.alerting import AlertingResource, AsyncAlertingResource
     from .resources.firewall.firewall import FirewallResource, AsyncFirewallResource
     from .resources.rulesets.rulesets import RulesetsResource, AsyncRulesetsResource
@@ -896,6 +898,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.ai import AIResource
 
         return AIResource(self)
+
+    @cached_property
+    def aisearch(self) -> AISearchResource:
+        from .resources.aisearch import AISearchResource
+
+        return AISearchResource(self)
 
     @cached_property
     def security_center(self) -> SecurityCenterResource:
@@ -1739,6 +1747,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncAIResource(self)
 
     @cached_property
+    def aisearch(self) -> AsyncAISearchResource:
+        from .resources.aisearch import AsyncAISearchResource
+
+        return AsyncAISearchResource(self)
+
+    @cached_property
     def security_center(self) -> AsyncSecurityCenterResource:
         from .resources.security_center import AsyncSecurityCenterResource
 
@@ -2515,6 +2529,12 @@ class CloudflareWithRawResponse:
         return AIResourceWithRawResponse(self._client.ai)
 
     @cached_property
+    def aisearch(self) -> aisearch.AISearchResourceWithRawResponse:
+        from .resources.aisearch import AISearchResourceWithRawResponse
+
+        return AISearchResourceWithRawResponse(self._client.aisearch)
+
+    @cached_property
     def security_center(self) -> security_center.SecurityCenterResourceWithRawResponse:
         from .resources.security_center import SecurityCenterResourceWithRawResponse
 
@@ -3118,6 +3138,12 @@ class AsyncCloudflareWithRawResponse:
         return AsyncAIResourceWithRawResponse(self._client.ai)
 
     @cached_property
+    def aisearch(self) -> aisearch.AsyncAISearchResourceWithRawResponse:
+        from .resources.aisearch import AsyncAISearchResourceWithRawResponse
+
+        return AsyncAISearchResourceWithRawResponse(self._client.aisearch)
+
+    @cached_property
     def security_center(self) -> security_center.AsyncSecurityCenterResourceWithRawResponse:
         from .resources.security_center import AsyncSecurityCenterResourceWithRawResponse
 
@@ -3719,6 +3745,12 @@ class CloudflareWithStreamedResponse:
         from .resources.ai import AIResourceWithStreamingResponse
 
         return AIResourceWithStreamingResponse(self._client.ai)
+
+    @cached_property
+    def aisearch(self) -> aisearch.AISearchResourceWithStreamingResponse:
+        from .resources.aisearch import AISearchResourceWithStreamingResponse
+
+        return AISearchResourceWithStreamingResponse(self._client.aisearch)
 
     @cached_property
     def security_center(self) -> security_center.SecurityCenterResourceWithStreamingResponse:
@@ -4332,6 +4364,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.ai import AsyncAIResourceWithStreamingResponse
 
         return AsyncAIResourceWithStreamingResponse(self._client.ai)
+
+    @cached_property
+    def aisearch(self) -> aisearch.AsyncAISearchResourceWithStreamingResponse:
+        from .resources.aisearch import AsyncAISearchResourceWithStreamingResponse
+
+        return AsyncAISearchResourceWithStreamingResponse(self._client.aisearch)
 
     @cached_property
     def security_center(self) -> security_center.AsyncSecurityCenterResourceWithStreamingResponse:

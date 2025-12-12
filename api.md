@@ -10302,6 +10302,87 @@ Methods:
 - <code title="get /accounts/{account_id}/ai/tomarkdown/supported">client.ai.to_markdown.<a href="./src/cloudflare/resources/ai/to_markdown.py">supported</a>(\*, account_id) -> <a href="./src/cloudflare/types/ai/to_markdown_supported_response.py">SyncSinglePage[ToMarkdownSupportedResponse]</a></code>
 - <code title="post /accounts/{account_id}/ai/tomarkdown">client.ai.to_markdown.<a href="./src/cloudflare/resources/ai/to_markdown.py">transform</a>(file, \*, account_id, \*\*<a href="src/cloudflare/types/ai/to_markdown_transform_params.py">params</a>) -> <a href="./src/cloudflare/types/ai/to_markdown_transform_response.py">SyncSinglePage[ToMarkdownTransformResponse]</a></code>
 
+# AISearch
+
+## Instances
+
+Types:
+
+```python
+from cloudflare.types.aisearch import (
+    InstanceCreateResponse,
+    InstanceUpdateResponse,
+    InstanceListResponse,
+    InstanceDeleteResponse,
+    InstanceReadResponse,
+    InstanceStatsResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/ai-search/instances">client.aisearch.instances.<a href="./src/cloudflare/resources/aisearch/instances/instances.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/aisearch/instance_create_params.py">params</a>) -> <a href="./src/cloudflare/types/aisearch/instance_create_response.py">InstanceCreateResponse</a></code>
+- <code title="put /accounts/{account_id}/ai-search/instances/{id}">client.aisearch.instances.<a href="./src/cloudflare/resources/aisearch/instances/instances.py">update</a>(id, \*, account_id, \*\*<a href="src/cloudflare/types/aisearch/instance_update_params.py">params</a>) -> <a href="./src/cloudflare/types/aisearch/instance_update_response.py">InstanceUpdateResponse</a></code>
+- <code title="get /accounts/{account_id}/ai-search/instances">client.aisearch.instances.<a href="./src/cloudflare/resources/aisearch/instances/instances.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/aisearch/instance_list_params.py">params</a>) -> <a href="./src/cloudflare/types/aisearch/instance_list_response.py">SyncV4PagePaginationArray[InstanceListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/ai-search/instances/{id}">client.aisearch.instances.<a href="./src/cloudflare/resources/aisearch/instances/instances.py">delete</a>(id, \*, account_id) -> <a href="./src/cloudflare/types/aisearch/instance_delete_response.py">InstanceDeleteResponse</a></code>
+- <code title="get /accounts/{account_id}/ai-search/instances/{id}">client.aisearch.instances.<a href="./src/cloudflare/resources/aisearch/instances/instances.py">read</a>(id, \*, account_id) -> <a href="./src/cloudflare/types/aisearch/instance_read_response.py">InstanceReadResponse</a></code>
+- <code title="get /accounts/{account_id}/ai-search/instances/{id}/stats">client.aisearch.instances.<a href="./src/cloudflare/resources/aisearch/instances/instances.py">stats</a>(id, \*, account_id) -> <a href="./src/cloudflare/types/aisearch/instance_stats_response.py">InstanceStatsResponse</a></code>
+
+### Items
+
+Types:
+
+```python
+from cloudflare.types.aisearch.instances import ItemListResponse, ItemGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/ai-search/instances/{id}/items">client.aisearch.instances.items.<a href="./src/cloudflare/resources/aisearch/instances/items.py">list</a>(id, \*, account_id, \*\*<a href="src/cloudflare/types/aisearch/instances/item_list_params.py">params</a>) -> <a href="./src/cloudflare/types/aisearch/instances/item_list_response.py">SyncV4PagePaginationArray[ItemListResponse]</a></code>
+- <code title="get /accounts/{account_id}/ai-search/instances/{id}/items/{item_id}">client.aisearch.instances.items.<a href="./src/cloudflare/resources/aisearch/instances/items.py">get</a>(item_id, \*, account_id, id) -> <a href="./src/cloudflare/types/aisearch/instances/item_get_response.py">ItemGetResponse</a></code>
+
+### Jobs
+
+Types:
+
+```python
+from cloudflare.types.aisearch.instances import (
+    JobCreateResponse,
+    JobListResponse,
+    JobGetResponse,
+    JobLogsResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/ai-search/instances/{id}/jobs">client.aisearch.instances.jobs.<a href="./src/cloudflare/resources/aisearch/instances/jobs.py">create</a>(id, \*, account_id) -> <a href="./src/cloudflare/types/aisearch/instances/job_create_response.py">JobCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/ai-search/instances/{id}/jobs">client.aisearch.instances.jobs.<a href="./src/cloudflare/resources/aisearch/instances/jobs.py">list</a>(id, \*, account_id, \*\*<a href="src/cloudflare/types/aisearch/instances/job_list_params.py">params</a>) -> <a href="./src/cloudflare/types/aisearch/instances/job_list_response.py">SyncV4PagePaginationArray[JobListResponse]</a></code>
+- <code title="get /accounts/{account_id}/ai-search/instances/{id}/jobs/{job_id}">client.aisearch.instances.jobs.<a href="./src/cloudflare/resources/aisearch/instances/jobs.py">get</a>(job_id, \*, account_id, id) -> <a href="./src/cloudflare/types/aisearch/instances/job_get_response.py">JobGetResponse</a></code>
+- <code title="get /accounts/{account_id}/ai-search/instances/{id}/jobs/{job_id}/logs">client.aisearch.instances.jobs.<a href="./src/cloudflare/resources/aisearch/instances/jobs.py">logs</a>(job_id, \*, account_id, id, \*\*<a href="src/cloudflare/types/aisearch/instances/job_logs_params.py">params</a>) -> <a href="./src/cloudflare/types/aisearch/instances/job_logs_response.py">JobLogsResponse</a></code>
+
+## Tokens
+
+Types:
+
+```python
+from cloudflare.types.aisearch import (
+    TokenCreateResponse,
+    TokenUpdateResponse,
+    TokenListResponse,
+    TokenDeleteResponse,
+    TokenReadResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/ai-search/tokens">client.aisearch.tokens.<a href="./src/cloudflare/resources/aisearch/tokens.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/aisearch/token_create_params.py">params</a>) -> <a href="./src/cloudflare/types/aisearch/token_create_response.py">TokenCreateResponse</a></code>
+- <code title="delete /accounts/{account_id}/ai-search/tokens/{id}">client.aisearch.tokens.<a href="./src/cloudflare/resources/aisearch/tokens.py">update</a>(id, \*, account_id) -> <a href="./src/cloudflare/types/aisearch/token_update_response.py">TokenUpdateResponse</a></code>
+- <code title="get /accounts/{account_id}/ai-search/tokens">client.aisearch.tokens.<a href="./src/cloudflare/resources/aisearch/tokens.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/aisearch/token_list_params.py">params</a>) -> <a href="./src/cloudflare/types/aisearch/token_list_response.py">SyncV4PagePaginationArray[TokenListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/ai-search/tokens/{id}">client.aisearch.tokens.<a href="./src/cloudflare/resources/aisearch/tokens.py">delete</a>(id, \*, account_id) -> <a href="./src/cloudflare/types/aisearch/token_delete_response.py">TokenDeleteResponse</a></code>
+- <code title="delete /accounts/{account_id}/ai-search/tokens/{id}">client.aisearch.tokens.<a href="./src/cloudflare/resources/aisearch/tokens.py">read</a>(id, \*, account_id) -> <a href="./src/cloudflare/types/aisearch/token_read_response.py">TokenReadResponse</a></code>
+
 # SecurityCenter
 
 ## Insights
