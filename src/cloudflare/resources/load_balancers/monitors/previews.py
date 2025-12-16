@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Type, cast
+from typing import Dict, Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -61,7 +61,7 @@ class PreviewsResource(SyncAPIResource):
         interval: int | Omit = omit,
         method: str | Omit = omit,
         path: str | Omit = omit,
-        port: int | Omit = omit,
+        port: Optional[int] | Omit = omit,
         probe_zone: str | Omit = omit,
         retries: int | Omit = omit,
         load_balancer_monitor_timeout: int | Omit = omit,
@@ -212,7 +212,7 @@ class AsyncPreviewsResource(AsyncAPIResource):
         interval: int | Omit = omit,
         method: str | Omit = omit,
         path: str | Omit = omit,
-        port: int | Omit = omit,
+        port: Optional[int] | Omit = omit,
         probe_zone: str | Omit = omit,
         retries: int | Omit = omit,
         load_balancer_monitor_timeout: int | Omit = omit,

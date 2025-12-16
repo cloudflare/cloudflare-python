@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict
+from typing import Dict, Optional
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ...._types import SequenceNotStr
@@ -82,7 +82,7 @@ class HealthCreateParams(TypedDict, total=False):
     This parameter is only valid for HTTP and HTTPS monitors.
     """
 
-    port: int
+    port: Optional[int]
     """The port number to connect to for the health check.
 
     Required for TCP, UDP, and SMTP checks. HTTP and HTTPS checks should only define

@@ -41,7 +41,7 @@ class PoolEditParams(TypedDict, total=False):
     decimal degrees. If this is set, longitude must also be set.
     """
 
-    load_shedding: LoadSheddingParam
+    load_shedding: Optional[LoadSheddingParam]
     """Configures load shedding policies and percentages for the pool."""
 
     longitude: float
@@ -90,7 +90,7 @@ class PoolEditParams(TypedDict, total=False):
     Use null to reset.
     """
 
-    origin_steering: OriginSteeringParam
+    origin_steering: Optional[OriginSteeringParam]
     """Configures origin steering for the pool.
 
     Controls how origins are selected for new sessions and traffic without session

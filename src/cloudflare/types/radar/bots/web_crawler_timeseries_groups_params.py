@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import List, Union
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
@@ -22,6 +22,11 @@ class WebCrawlerTimeseriesGroupsParams(TypedDict, total=False):
 
     bot_operator: Annotated[SequenceNotStr[str], PropertyInfo(alias="botOperator")]
     """Filters results by bot operator."""
+
+    client_type: Annotated[
+        List[Literal["HUMAN", "NON_AI_BOT", "AI_BOT", "MIXED_PURPOSE"]], PropertyInfo(alias="clientType")
+    ]
+    """Filters results by agent type."""
 
     date_end: Annotated[SequenceNotStr[Union[str, datetime]], PropertyInfo(alias="dateEnd", format="iso8601")]
     """End of the date range (inclusive)."""

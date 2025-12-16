@@ -24,15 +24,16 @@ class TestWebCrawlers:
     @parametrize
     def test_method_summary(self, client: Cloudflare) -> None:
         web_crawler = client.radar.bots.web_crawlers.summary(
-            dimension="USER_AGENT",
+            dimension="CLIENT_TYPE",
         )
         assert_matches_type(WebCrawlerSummaryResponse, web_crawler, path=["response"])
 
     @parametrize
     def test_method_summary_with_all_params(self, client: Cloudflare) -> None:
         web_crawler = client.radar.bots.web_crawlers.summary(
-            dimension="USER_AGENT",
+            dimension="CLIENT_TYPE",
             bot_operator=["string"],
+            client_type=["HUMAN"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
@@ -47,7 +48,7 @@ class TestWebCrawlers:
     @parametrize
     def test_raw_response_summary(self, client: Cloudflare) -> None:
         response = client.radar.bots.web_crawlers.with_raw_response.summary(
-            dimension="USER_AGENT",
+            dimension="CLIENT_TYPE",
         )
 
         assert response.is_closed is True
@@ -58,7 +59,7 @@ class TestWebCrawlers:
     @parametrize
     def test_streaming_response_summary(self, client: Cloudflare) -> None:
         with client.radar.bots.web_crawlers.with_streaming_response.summary(
-            dimension="USER_AGENT",
+            dimension="CLIENT_TYPE",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -71,16 +72,17 @@ class TestWebCrawlers:
     @parametrize
     def test_method_timeseries_groups(self, client: Cloudflare) -> None:
         web_crawler = client.radar.bots.web_crawlers.timeseries_groups(
-            dimension="USER_AGENT",
+            dimension="CLIENT_TYPE",
         )
         assert_matches_type(WebCrawlerTimeseriesGroupsResponse, web_crawler, path=["response"])
 
     @parametrize
     def test_method_timeseries_groups_with_all_params(self, client: Cloudflare) -> None:
         web_crawler = client.radar.bots.web_crawlers.timeseries_groups(
-            dimension="USER_AGENT",
+            dimension="CLIENT_TYPE",
             agg_interval="1h",
             bot_operator=["string"],
+            client_type=["HUMAN"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
@@ -95,7 +97,7 @@ class TestWebCrawlers:
     @parametrize
     def test_raw_response_timeseries_groups(self, client: Cloudflare) -> None:
         response = client.radar.bots.web_crawlers.with_raw_response.timeseries_groups(
-            dimension="USER_AGENT",
+            dimension="CLIENT_TYPE",
         )
 
         assert response.is_closed is True
@@ -106,7 +108,7 @@ class TestWebCrawlers:
     @parametrize
     def test_streaming_response_timeseries_groups(self, client: Cloudflare) -> None:
         with client.radar.bots.web_crawlers.with_streaming_response.timeseries_groups(
-            dimension="USER_AGENT",
+            dimension="CLIENT_TYPE",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -125,15 +127,16 @@ class TestAsyncWebCrawlers:
     @parametrize
     async def test_method_summary(self, async_client: AsyncCloudflare) -> None:
         web_crawler = await async_client.radar.bots.web_crawlers.summary(
-            dimension="USER_AGENT",
+            dimension="CLIENT_TYPE",
         )
         assert_matches_type(WebCrawlerSummaryResponse, web_crawler, path=["response"])
 
     @parametrize
     async def test_method_summary_with_all_params(self, async_client: AsyncCloudflare) -> None:
         web_crawler = await async_client.radar.bots.web_crawlers.summary(
-            dimension="USER_AGENT",
+            dimension="CLIENT_TYPE",
             bot_operator=["string"],
+            client_type=["HUMAN"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
@@ -148,7 +151,7 @@ class TestAsyncWebCrawlers:
     @parametrize
     async def test_raw_response_summary(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.bots.web_crawlers.with_raw_response.summary(
-            dimension="USER_AGENT",
+            dimension="CLIENT_TYPE",
         )
 
         assert response.is_closed is True
@@ -159,7 +162,7 @@ class TestAsyncWebCrawlers:
     @parametrize
     async def test_streaming_response_summary(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.bots.web_crawlers.with_streaming_response.summary(
-            dimension="USER_AGENT",
+            dimension="CLIENT_TYPE",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -172,16 +175,17 @@ class TestAsyncWebCrawlers:
     @parametrize
     async def test_method_timeseries_groups(self, async_client: AsyncCloudflare) -> None:
         web_crawler = await async_client.radar.bots.web_crawlers.timeseries_groups(
-            dimension="USER_AGENT",
+            dimension="CLIENT_TYPE",
         )
         assert_matches_type(WebCrawlerTimeseriesGroupsResponse, web_crawler, path=["response"])
 
     @parametrize
     async def test_method_timeseries_groups_with_all_params(self, async_client: AsyncCloudflare) -> None:
         web_crawler = await async_client.radar.bots.web_crawlers.timeseries_groups(
-            dimension="USER_AGENT",
+            dimension="CLIENT_TYPE",
             agg_interval="1h",
             bot_operator=["string"],
+            client_type=["HUMAN"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
@@ -196,7 +200,7 @@ class TestAsyncWebCrawlers:
     @parametrize
     async def test_raw_response_timeseries_groups(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.bots.web_crawlers.with_raw_response.timeseries_groups(
-            dimension="USER_AGENT",
+            dimension="CLIENT_TYPE",
         )
 
         assert response.is_closed is True
@@ -207,7 +211,7 @@ class TestAsyncWebCrawlers:
     @parametrize
     async def test_streaming_response_timeseries_groups(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.bots.web_crawlers.with_streaming_response.timeseries_groups(
-            dimension="USER_AGENT",
+            dimension="CLIENT_TYPE",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

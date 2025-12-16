@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Union, cast
+from typing import List, Type, Union, cast
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -49,9 +49,10 @@ class WebCrawlersResource(SyncAPIResource):
 
     def summary(
         self,
-        dimension: Literal["USER_AGENT", "REFERER", "CRAWL_REFER_RATIO", "VERTICAL", "INDUSTRY"],
+        dimension: Literal["CLIENT_TYPE", "USER_AGENT", "REFERER", "CRAWL_REFER_RATIO", "VERTICAL", "INDUSTRY"],
         *,
         bot_operator: SequenceNotStr[str] | Omit = omit,
+        client_type: List[Literal["HUMAN", "NON_AI_BOT", "AI_BOT", "MIXED_PURPOSE"]] | Omit = omit,
         date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         date_range: SequenceNotStr[str] | Omit = omit,
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
@@ -75,6 +76,8 @@ class WebCrawlersResource(SyncAPIResource):
           dimension: Specifies the attribute by which to group the results.
 
           bot_operator: Filters results by bot operator.
+
+          client_type: Filters results by agent type.
 
           date_end: End of the date range (inclusive).
 
@@ -116,6 +119,7 @@ class WebCrawlersResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "bot_operator": bot_operator,
+                        "client_type": client_type,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -134,10 +138,11 @@ class WebCrawlersResource(SyncAPIResource):
 
     def timeseries_groups(
         self,
-        dimension: Literal["USER_AGENT", "REFERER", "CRAWL_REFER_RATIO", "VERTICAL", "INDUSTRY"],
+        dimension: Literal["CLIENT_TYPE", "USER_AGENT", "REFERER", "CRAWL_REFER_RATIO", "VERTICAL", "INDUSTRY"],
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
         bot_operator: SequenceNotStr[str] | Omit = omit,
+        client_type: List[Literal["HUMAN", "NON_AI_BOT", "AI_BOT", "MIXED_PURPOSE"]] | Omit = omit,
         date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         date_range: SequenceNotStr[str] | Omit = omit,
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
@@ -165,6 +170,8 @@ class WebCrawlersResource(SyncAPIResource):
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
           bot_operator: Filters results by bot operator.
+
+          client_type: Filters results by agent type.
 
           date_end: End of the date range (inclusive).
 
@@ -207,6 +214,7 @@ class WebCrawlersResource(SyncAPIResource):
                     {
                         "agg_interval": agg_interval,
                         "bot_operator": bot_operator,
+                        "client_type": client_type,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -246,9 +254,10 @@ class AsyncWebCrawlersResource(AsyncAPIResource):
 
     async def summary(
         self,
-        dimension: Literal["USER_AGENT", "REFERER", "CRAWL_REFER_RATIO", "VERTICAL", "INDUSTRY"],
+        dimension: Literal["CLIENT_TYPE", "USER_AGENT", "REFERER", "CRAWL_REFER_RATIO", "VERTICAL", "INDUSTRY"],
         *,
         bot_operator: SequenceNotStr[str] | Omit = omit,
+        client_type: List[Literal["HUMAN", "NON_AI_BOT", "AI_BOT", "MIXED_PURPOSE"]] | Omit = omit,
         date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         date_range: SequenceNotStr[str] | Omit = omit,
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
@@ -272,6 +281,8 @@ class AsyncWebCrawlersResource(AsyncAPIResource):
           dimension: Specifies the attribute by which to group the results.
 
           bot_operator: Filters results by bot operator.
+
+          client_type: Filters results by agent type.
 
           date_end: End of the date range (inclusive).
 
@@ -313,6 +324,7 @@ class AsyncWebCrawlersResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "bot_operator": bot_operator,
+                        "client_type": client_type,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
@@ -331,10 +343,11 @@ class AsyncWebCrawlersResource(AsyncAPIResource):
 
     async def timeseries_groups(
         self,
-        dimension: Literal["USER_AGENT", "REFERER", "CRAWL_REFER_RATIO", "VERTICAL", "INDUSTRY"],
+        dimension: Literal["CLIENT_TYPE", "USER_AGENT", "REFERER", "CRAWL_REFER_RATIO", "VERTICAL", "INDUSTRY"],
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | Omit = omit,
         bot_operator: SequenceNotStr[str] | Omit = omit,
+        client_type: List[Literal["HUMAN", "NON_AI_BOT", "AI_BOT", "MIXED_PURPOSE"]] | Omit = omit,
         date_end: SequenceNotStr[Union[str, datetime]] | Omit = omit,
         date_range: SequenceNotStr[str] | Omit = omit,
         date_start: SequenceNotStr[Union[str, datetime]] | Omit = omit,
@@ -362,6 +375,8 @@ class AsyncWebCrawlersResource(AsyncAPIResource):
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
           bot_operator: Filters results by bot operator.
+
+          client_type: Filters results by agent type.
 
           date_end: End of the date range (inclusive).
 
@@ -404,6 +419,7 @@ class AsyncWebCrawlersResource(AsyncAPIResource):
                     {
                         "agg_interval": agg_interval,
                         "bot_operator": bot_operator,
+                        "client_type": client_type,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,

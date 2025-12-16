@@ -17,6 +17,7 @@ __all__ = [
     "CheckSession",
     "DNSResolvers",
     "Egress",
+    "ForensicCopy",
     "L4override",
     "NotificationSettings",
     "PayloadLog",
@@ -162,6 +163,15 @@ class Egress(BaseModel):
 
     ipv6: Optional[str] = None
     """Specify the IPv6 range to use for egress."""
+
+
+class ForensicCopy(BaseModel):
+    """
+    Configure whether a copy of the HTTP request will be sent to storage when the rule matches.
+    """
+
+    enabled: Optional[bool] = None
+    """Enable sending the copy to storage."""
 
 
 class L4override(BaseModel):
@@ -343,6 +353,12 @@ class RuleSetting(BaseModel):
 
     You can enable this setting for rules with Egress actions and filters, or omit
     it to indicate local egress via WARP IPs. Settable only for `egress` rules.
+    """
+
+    forensic_copy: Optional[ForensicCopy] = None
+    """
+    Configure whether a copy of the HTTP request will be sent to storage when the
+    rule matches.
     """
 
     ignore_cname_category_matches: Optional[bool] = None

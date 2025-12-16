@@ -14,7 +14,7 @@ class ListCreateParams(TypedDict, total=False):
     name: Required[str]
     """Specify the list name."""
 
-    type: Required[Literal["SERIAL", "URL", "DOMAIN", "EMAIL", "IP"]]
+    type: Required[Literal["SERIAL", "URL", "DOMAIN", "EMAIL", "IP", "CATEGORY", "LOCATION", "DEVICE"]]
     """Specify the list type."""
 
     description: str

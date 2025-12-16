@@ -91,14 +91,14 @@ class PoolsResource(SyncAPIResource):
         description: str | Omit = omit,
         enabled: bool | Omit = omit,
         latitude: float | Omit = omit,
-        load_shedding: LoadSheddingParam | Omit = omit,
+        load_shedding: Optional[LoadSheddingParam] | Omit = omit,
         longitude: float | Omit = omit,
         minimum_origins: int | Omit = omit,
         monitor: str | Omit = omit,
         monitor_group: str | Omit = omit,
         notification_email: str | Omit = omit,
         notification_filter: Optional[NotificationFilterParam] | Omit = omit,
-        origin_steering: OriginSteeringParam | Omit = omit,
+        origin_steering: Optional[OriginSteeringParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -205,14 +205,14 @@ class PoolsResource(SyncAPIResource):
         description: str | Omit = omit,
         enabled: bool | Omit = omit,
         latitude: float | Omit = omit,
-        load_shedding: LoadSheddingParam | Omit = omit,
+        load_shedding: Optional[LoadSheddingParam] | Omit = omit,
         longitude: float | Omit = omit,
         minimum_origins: int | Omit = omit,
         monitor: str | Omit = omit,
         monitor_group: str | Omit = omit,
         notification_email: str | Omit = omit,
         notification_filter: Optional[NotificationFilterParam] | Omit = omit,
-        origin_steering: OriginSteeringParam | Omit = omit,
+        origin_steering: Optional[OriginSteeringParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -456,7 +456,7 @@ class PoolsResource(SyncAPIResource):
         description: str | Omit = omit,
         enabled: bool | Omit = omit,
         latitude: float | Omit = omit,
-        load_shedding: LoadSheddingParam | Omit = omit,
+        load_shedding: Optional[LoadSheddingParam] | Omit = omit,
         longitude: float | Omit = omit,
         minimum_origins: int | Omit = omit,
         monitor: str | Omit = omit,
@@ -464,7 +464,7 @@ class PoolsResource(SyncAPIResource):
         name: str | Omit = omit,
         notification_email: str | Omit = omit,
         notification_filter: Optional[NotificationFilterParam] | Omit = omit,
-        origin_steering: OriginSteeringParam | Omit = omit,
+        origin_steering: Optional[OriginSteeringParam] | Omit = omit,
         origins: Iterable[OriginParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -647,14 +647,14 @@ class AsyncPoolsResource(AsyncAPIResource):
         description: str | Omit = omit,
         enabled: bool | Omit = omit,
         latitude: float | Omit = omit,
-        load_shedding: LoadSheddingParam | Omit = omit,
+        load_shedding: Optional[LoadSheddingParam] | Omit = omit,
         longitude: float | Omit = omit,
         minimum_origins: int | Omit = omit,
         monitor: str | Omit = omit,
         monitor_group: str | Omit = omit,
         notification_email: str | Omit = omit,
         notification_filter: Optional[NotificationFilterParam] | Omit = omit,
-        origin_steering: OriginSteeringParam | Omit = omit,
+        origin_steering: Optional[OriginSteeringParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -761,14 +761,14 @@ class AsyncPoolsResource(AsyncAPIResource):
         description: str | Omit = omit,
         enabled: bool | Omit = omit,
         latitude: float | Omit = omit,
-        load_shedding: LoadSheddingParam | Omit = omit,
+        load_shedding: Optional[LoadSheddingParam] | Omit = omit,
         longitude: float | Omit = omit,
         minimum_origins: int | Omit = omit,
         monitor: str | Omit = omit,
         monitor_group: str | Omit = omit,
         notification_email: str | Omit = omit,
         notification_filter: Optional[NotificationFilterParam] | Omit = omit,
-        origin_steering: OriginSteeringParam | Omit = omit,
+        origin_steering: Optional[OriginSteeringParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1012,7 +1012,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         description: str | Omit = omit,
         enabled: bool | Omit = omit,
         latitude: float | Omit = omit,
-        load_shedding: LoadSheddingParam | Omit = omit,
+        load_shedding: Optional[LoadSheddingParam] | Omit = omit,
         longitude: float | Omit = omit,
         minimum_origins: int | Omit = omit,
         monitor: str | Omit = omit,
@@ -1020,7 +1020,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         name: str | Omit = omit,
         notification_email: str | Omit = omit,
         notification_filter: Optional[NotificationFilterParam] | Omit = omit,
-        origin_steering: OriginSteeringParam | Omit = omit,
+        origin_steering: Optional[OriginSteeringParam] | Omit = omit,
         origins: Iterable[OriginParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

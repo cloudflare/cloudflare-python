@@ -28,7 +28,7 @@ class GatewayList(BaseModel):
     name: Optional[str] = None
     """Specify the list name."""
 
-    type: Optional[Literal["SERIAL", "URL", "DOMAIN", "EMAIL", "IP"]] = None
+    type: Optional[Literal["SERIAL", "URL", "DOMAIN", "EMAIL", "IP", "CATEGORY", "LOCATION", "DEVICE"]] = None
     """Specify the list type."""
 
     updated_at: Optional[datetime] = None
