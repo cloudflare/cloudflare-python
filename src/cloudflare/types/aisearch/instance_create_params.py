@@ -12,6 +12,8 @@ from ..r2.buckets.provider import Provider
 __all__ = [
     "InstanceCreateParams",
     "Metadata",
+    "PublicEndpointParams",
+    "PublicEndpointParamsRateLimit",
     "SourceParams",
     "SourceParamsWebCrawler",
     "SourceParamsWebCrawlerParseOptions",
@@ -86,6 +88,8 @@ class InstanceCreateParams(TypedDict, total=False):
 
     metadata: Metadata
 
+    public_endpoint_params: PublicEndpointParams
+
     reranking: bool
 
     reranking_model: Literal["@cf/baai/bge-reranker-base", ""]
@@ -130,6 +134,22 @@ class Metadata(TypedDict, total=False):
     created_from_aisearch_wizard: bool
 
     worker_domain: str
+
+
+class PublicEndpointParamsRateLimit(TypedDict, total=False):
+    period_ms: int
+
+    requests: int
+
+    technique: Literal["fixed", "sliding"]
+
+
+class PublicEndpointParams(TypedDict, total=False):
+    authorized_hosts: SequenceNotStr[str]
+
+    enabled: bool
+
+    rate_limit: PublicEndpointParamsRateLimit
 
 
 class SourceParamsWebCrawlerParseOptions(TypedDict, total=False):

@@ -20,8 +20,10 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...types.zones import subscription_create_params, subscription_update_params
 from ..._base_client import make_request_options
-from ...types.shared.subscription import Subscription
 from ...types.shared_params.rate_plan import RatePlan
+from ...types.zones.subscription_get_response import SubscriptionGetResponse
+from ...types.zones.subscription_create_response import SubscriptionCreateResponse
+from ...types.zones.subscription_update_response import SubscriptionUpdateResponse
 
 __all__ = ["SubscriptionsResource", "AsyncSubscriptionsResource"]
 
@@ -58,12 +60,12 @@ class SubscriptionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Subscription:
+    ) -> SubscriptionCreateResponse:
         """
         Create a zone subscription, either plan or add-ons.
 
         Args:
-          zone_id: Subscription identifier tag.
+          zone_id: Identifier
 
           frequency: How often the subscription is renewed automatically.
 
@@ -93,9 +95,9 @@ class SubscriptionsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Subscription]._unwrapper,
+                post_parser=ResultWrapper[SubscriptionCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Subscription], ResultWrapper[Subscription]),
+            cast_to=cast(Type[SubscriptionCreateResponse], ResultWrapper[SubscriptionCreateResponse]),
         )
 
     def update(
@@ -110,12 +112,12 @@ class SubscriptionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Subscription:
+    ) -> SubscriptionUpdateResponse:
         """
         Updates zone subscriptions, either plan or add-ons.
 
         Args:
-          zone_id: Subscription identifier tag.
+          zone_id: Identifier
 
           frequency: How often the subscription is renewed automatically.
 
@@ -145,9 +147,9 @@ class SubscriptionsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Subscription]._unwrapper,
+                post_parser=ResultWrapper[SubscriptionUpdateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Subscription], ResultWrapper[Subscription]),
+            cast_to=cast(Type[SubscriptionUpdateResponse], ResultWrapper[SubscriptionUpdateResponse]),
         )
 
     def get(
@@ -160,12 +162,12 @@ class SubscriptionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Subscription:
+    ) -> SubscriptionGetResponse:
         """
         Lists zone subscription details.
 
         Args:
-          zone_id: Subscription identifier tag.
+          zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -184,9 +186,9 @@ class SubscriptionsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Subscription]._unwrapper,
+                post_parser=ResultWrapper[SubscriptionGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Subscription], ResultWrapper[Subscription]),
+            cast_to=cast(Type[SubscriptionGetResponse], ResultWrapper[SubscriptionGetResponse]),
         )
 
 
@@ -222,12 +224,12 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Subscription:
+    ) -> SubscriptionCreateResponse:
         """
         Create a zone subscription, either plan or add-ons.
 
         Args:
-          zone_id: Subscription identifier tag.
+          zone_id: Identifier
 
           frequency: How often the subscription is renewed automatically.
 
@@ -257,9 +259,9 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Subscription]._unwrapper,
+                post_parser=ResultWrapper[SubscriptionCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Subscription], ResultWrapper[Subscription]),
+            cast_to=cast(Type[SubscriptionCreateResponse], ResultWrapper[SubscriptionCreateResponse]),
         )
 
     async def update(
@@ -274,12 +276,12 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Subscription:
+    ) -> SubscriptionUpdateResponse:
         """
         Updates zone subscriptions, either plan or add-ons.
 
         Args:
-          zone_id: Subscription identifier tag.
+          zone_id: Identifier
 
           frequency: How often the subscription is renewed automatically.
 
@@ -309,9 +311,9 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Subscription]._unwrapper,
+                post_parser=ResultWrapper[SubscriptionUpdateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Subscription], ResultWrapper[Subscription]),
+            cast_to=cast(Type[SubscriptionUpdateResponse], ResultWrapper[SubscriptionUpdateResponse]),
         )
 
     async def get(
@@ -324,12 +326,12 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Subscription:
+    ) -> SubscriptionGetResponse:
         """
         Lists zone subscription details.
 
         Args:
-          zone_id: Subscription identifier tag.
+          zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -348,9 +350,9 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Subscription]._unwrapper,
+                post_parser=ResultWrapper[SubscriptionGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Subscription], ResultWrapper[Subscription]),
+            cast_to=cast(Type[SubscriptionGetResponse], ResultWrapper[SubscriptionGetResponse]),
         )
 
 

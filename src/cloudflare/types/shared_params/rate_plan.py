@@ -42,4 +42,4 @@ class RatePlan(TypedDict, total=False):
     """The scope that this rate plan applies to."""
 
     sets: SequenceNotStr[str]
-    """The list of sets this rate plan applies to."""
+    """The list of sets this rate plan applies to. Returns array of strings."""

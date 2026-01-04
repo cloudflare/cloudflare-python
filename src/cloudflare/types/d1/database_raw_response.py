@@ -49,6 +49,9 @@ class Meta(BaseModel):
     rows_written: Optional[float] = None
     """Number of rows written during the SQL query execution, including indices."""
 
+    served_by_colo: Optional[str] = None
+    """The three letters airport code of the colo that handled the query."""
+
     served_by_primary: Optional[bool] = None
     """Denotes if the query has been handled by the database primary instance."""
 

@@ -30,6 +30,8 @@ class TagCreateResponse(BaseModel):
 
     category_name: Optional[str] = FieldInfo(alias="categoryName", default=None)
 
+    category_uuid: Optional[str] = FieldInfo(alias="categoryUuid", default=None)
+
     external_reference_links: Optional[List[str]] = FieldInfo(alias="externalReferenceLinks", default=None)
 
     internal_description: Optional[str] = FieldInfo(alias="internalDescription", default=None)

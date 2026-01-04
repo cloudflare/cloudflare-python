@@ -458,11 +458,21 @@ Methods:
 
 ## Subscriptions
 
+Types:
+
+```python
+from cloudflare.types.zones import (
+    SubscriptionCreateResponse,
+    SubscriptionUpdateResponse,
+    SubscriptionGetResponse,
+)
+```
+
 Methods:
 
-- <code title="post /zones/{zone_id}/subscription">client.zones.subscriptions.<a href="./src/cloudflare/resources/zones/subscriptions.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/subscription_create_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/subscription.py">Subscription</a></code>
-- <code title="put /zones/{zone_id}/subscription">client.zones.subscriptions.<a href="./src/cloudflare/resources/zones/subscriptions.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/subscription_update_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/subscription.py">Subscription</a></code>
-- <code title="get /zones/{zone_id}/subscription">client.zones.subscriptions.<a href="./src/cloudflare/resources/zones/subscriptions.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/shared/subscription.py">Subscription</a></code>
+- <code title="post /zones/{zone_id}/subscription">client.zones.subscriptions.<a href="./src/cloudflare/resources/zones/subscriptions.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/subscription_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/subscription_create_response.py">SubscriptionCreateResponse</a></code>
+- <code title="put /zones/{zone_id}/subscription">client.zones.subscriptions.<a href="./src/cloudflare/resources/zones/subscriptions.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/subscription_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/subscription_update_response.py">SubscriptionUpdateResponse</a></code>
+- <code title="get /zones/{zone_id}/subscription">client.zones.subscriptions.<a href="./src/cloudflare/resources/zones/subscriptions.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/subscription_get_response.py">SubscriptionGetResponse</a></code>
 
 ## Plans
 

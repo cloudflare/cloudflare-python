@@ -23,14 +23,17 @@ class ThreatEventBulkCreateResponse(BaseModel):
     created_events_count: float = FieldInfo(alias="createdEventsCount")
     """Number of events created"""
 
-    created_indicators_count: float = FieldInfo(alias="createdIndicatorsCount")
-    """Number of indicators created"""
-
     created_tags_count: float = FieldInfo(alias="createdTagsCount")
-    """Number of tags created in SoT"""
+    """Number of new tags created in SoT"""
 
     error_count: float = FieldInfo(alias="errorCount")
     """Number of errors encountered"""
+
+    queued_indicators_count: float = FieldInfo(alias="queuedIndicatorsCount")
+    """Number of indicators queued for async processing"""
+
+    create_bulk_events_request_id: Optional[str] = FieldInfo(alias="createBulkEventsRequestId", default=None)
+    """Correlation ID for async indicator processing"""
 
     errors: Optional[List[Error]] = None
     """Array of error details"""

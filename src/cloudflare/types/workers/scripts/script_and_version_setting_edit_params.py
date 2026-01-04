@@ -50,6 +50,10 @@ __all__ = [
     "SettingsObservability",
     "SettingsObservabilityLogs",
     "SettingsPlacement",
+    "SettingsPlacementMode",
+    "SettingsPlacementRegion",
+    "SettingsPlacementHostname",
+    "SettingsPlacementHost",
 ]
 
 
@@ -564,16 +568,32 @@ class SettingsObservability(TypedDict, total=False):
     """Log settings for the Worker."""
 
 
-class SettingsPlacement(TypedDict, total=False):
-    """
-    Configuration for [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
-    """
-
-    mode: Literal["smart"]
+class SettingsPlacementMode(TypedDict, total=False):
+    mode: Required[Literal["smart"]]
     """
     Enables
     [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
     """
+
+
+class SettingsPlacementRegion(TypedDict, total=False):
+    region: Required[str]
+    """Cloud region for targeted placement in format 'provider:region'."""
+
+
+class SettingsPlacementHostname(TypedDict, total=False):
+    hostname: Required[str]
+    """HTTP hostname for targeted placement."""
+
+
+class SettingsPlacementHost(TypedDict, total=False):
+    host: Required[str]
+    """TCP host and port for targeted placement."""
+
+
+SettingsPlacement: TypeAlias = Union[
+    SettingsPlacementMode, SettingsPlacementRegion, SettingsPlacementHostname, SettingsPlacementHost
+]
 
 
 class Settings(TypedDict, total=False):
@@ -614,6 +634,8 @@ class Settings(TypedDict, total=False):
     """
     Configuration for
     [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    Specify either mode for Smart Placement, or one of region/hostname/host for
+    targeted placement.
     """
 
     tags: Optional[SequenceNotStr[str]]

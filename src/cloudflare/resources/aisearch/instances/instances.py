@@ -129,6 +129,7 @@ class InstancesResource(SyncAPIResource):
         | Omit = omit,
         max_num_results: int | Omit = omit,
         metadata: instance_create_params.Metadata | Omit = omit,
+        public_endpoint_params: instance_create_params.PublicEndpointParams | Omit = omit,
         reranking: bool | Omit = omit,
         reranking_model: Literal["@cf/baai/bge-reranker-base", ""] | Omit = omit,
         rewrite_model: Literal[
@@ -202,6 +203,7 @@ class InstancesResource(SyncAPIResource):
                     "embedding_model": embedding_model,
                     "max_num_results": max_num_results,
                     "metadata": metadata,
+                    "public_endpoint_params": public_endpoint_params,
                     "reranking": reranking,
                     "reranking_model": reranking_model,
                     "rewrite_model": rewrite_model,
@@ -276,6 +278,7 @@ class InstancesResource(SyncAPIResource):
         max_num_results: int | Omit = omit,
         metadata: instance_update_params.Metadata | Omit = omit,
         paused: bool | Omit = omit,
+        public_endpoint_params: instance_update_params.PublicEndpointParams | Omit = omit,
         reranking: bool | Omit = omit,
         reranking_model: Literal["@cf/baai/bge-reranker-base", ""] | Omit = omit,
         rewrite_model: Literal[
@@ -384,6 +387,7 @@ class InstancesResource(SyncAPIResource):
                     "max_num_results": max_num_results,
                     "metadata": metadata,
                     "paused": paused,
+                    "public_endpoint_params": public_endpoint_params,
                     "reranking": reranking,
                     "reranking_model": reranking_model,
                     "rewrite_model": rewrite_model,
@@ -668,6 +672,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         | Omit = omit,
         max_num_results: int | Omit = omit,
         metadata: instance_create_params.Metadata | Omit = omit,
+        public_endpoint_params: instance_create_params.PublicEndpointParams | Omit = omit,
         reranking: bool | Omit = omit,
         reranking_model: Literal["@cf/baai/bge-reranker-base", ""] | Omit = omit,
         rewrite_model: Literal[
@@ -741,6 +746,7 @@ class AsyncInstancesResource(AsyncAPIResource):
                     "embedding_model": embedding_model,
                     "max_num_results": max_num_results,
                     "metadata": metadata,
+                    "public_endpoint_params": public_endpoint_params,
                     "reranking": reranking,
                     "reranking_model": reranking_model,
                     "rewrite_model": rewrite_model,
@@ -815,6 +821,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         max_num_results: int | Omit = omit,
         metadata: instance_update_params.Metadata | Omit = omit,
         paused: bool | Omit = omit,
+        public_endpoint_params: instance_update_params.PublicEndpointParams | Omit = omit,
         reranking: bool | Omit = omit,
         reranking_model: Literal["@cf/baai/bge-reranker-base", ""] | Omit = omit,
         rewrite_model: Literal[
@@ -923,6 +930,7 @@ class AsyncInstancesResource(AsyncAPIResource):
                     "max_num_results": max_num_results,
                     "metadata": metadata,
                     "paused": paused,
+                    "public_endpoint_params": public_endpoint_params,
                     "reranking": reranking,
                     "reranking_model": reranking_model,
                     "rewrite_model": rewrite_model,

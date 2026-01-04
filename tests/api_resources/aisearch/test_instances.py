@@ -55,6 +55,15 @@ class TestInstances:
                 "created_from_aisearch_wizard": True,
                 "worker_domain": "worker_domain",
             },
+            public_endpoint_params={
+                "authorized_hosts": ["string"],
+                "enabled": True,
+                "rate_limit": {
+                    "period_ms": 60000,
+                    "requests": 1,
+                    "technique": "fixed",
+                },
+            },
             reranking=True,
             reranking_model="@cf/baai/bge-reranker-base",
             rewrite_model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
@@ -152,6 +161,15 @@ class TestInstances:
                 "worker_domain": "worker_domain",
             },
             paused=True,
+            public_endpoint_params={
+                "authorized_hosts": ["string"],
+                "enabled": True,
+                "rate_limit": {
+                    "period_ms": 60000,
+                    "requests": 1,
+                    "technique": "fixed",
+                },
+            },
             reranking=True,
             reranking_model="@cf/baai/bge-reranker-base",
             rewrite_model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
@@ -453,6 +471,15 @@ class TestAsyncInstances:
                 "created_from_aisearch_wizard": True,
                 "worker_domain": "worker_domain",
             },
+            public_endpoint_params={
+                "authorized_hosts": ["string"],
+                "enabled": True,
+                "rate_limit": {
+                    "period_ms": 60000,
+                    "requests": 1,
+                    "technique": "fixed",
+                },
+            },
             reranking=True,
             reranking_model="@cf/baai/bge-reranker-base",
             rewrite_model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
@@ -550,6 +577,15 @@ class TestAsyncInstances:
                 "worker_domain": "worker_domain",
             },
             paused=True,
+            public_endpoint_params={
+                "authorized_hosts": ["string"],
+                "enabled": True,
+                "rate_limit": {
+                    "period_ms": 60000,
+                    "requests": 1,
+                    "technique": "fixed",
+                },
+            },
             reranking=True,
             reranking_model="@cf/baai/bge-reranker-base",
             rewrite_model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",

@@ -21,6 +21,10 @@ class ThreatEventEditParams(TypedDict, total=False):
 
     category: str
 
+    created_at: Annotated[Union[str, datetime], PropertyInfo(alias="createdAt", format="iso8601")]
+
+    dataset_id: Annotated[str, PropertyInfo(alias="datasetId")]
+
     date: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
 
     event: str

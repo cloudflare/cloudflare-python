@@ -1,13 +1,24 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import List, Union, Optional
 from datetime import datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
 from .scripts.consumer_script import ConsumerScript
 
-__all__ = ["ScriptListResponse", "NamedHandler", "Observability", "ObservabilityLogs", "Placement", "Route"]
+__all__ = [
+    "ScriptListResponse",
+    "NamedHandler",
+    "Observability",
+    "ObservabilityLogs",
+    "Placement",
+    "PlacementUnionMember0",
+    "PlacementUnionMember1",
+    "PlacementUnionMember2",
+    "PlacementUnionMember3",
+    "Route",
+]
 
 
 class NamedHandler(BaseModel):
@@ -57,9 +68,11 @@ class Observability(BaseModel):
     """Log settings for the Worker."""
 
 
-class Placement(BaseModel):
+class PlacementUnionMember0(BaseModel):
+    mode: Literal["smart"]
     """
-    Configuration for [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    Enables
+    [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
     """
 
     last_analyzed_at: Optional[datetime] = None
@@ -68,9 +81,20 @@ class Placement(BaseModel):
     [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
     """
 
-    mode: Optional[Literal["smart"]] = None
+    status: Optional[Literal["SUCCESS", "UNSUPPORTED_APPLICATION", "INSUFFICIENT_INVOCATIONS"]] = None
     """
-    Enables
+    Status of
+    [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    """
+
+
+class PlacementUnionMember1(BaseModel):
+    region: str
+    """Cloud region for targeted placement in format 'provider:region'."""
+
+    last_analyzed_at: Optional[datetime] = None
+    """
+    The last time the script was analyzed for
     [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
     """
 
@@ -79,6 +103,43 @@ class Placement(BaseModel):
     Status of
     [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
     """
+
+
+class PlacementUnionMember2(BaseModel):
+    hostname: str
+    """HTTP hostname for targeted placement."""
+
+    last_analyzed_at: Optional[datetime] = None
+    """
+    The last time the script was analyzed for
+    [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    """
+
+    status: Optional[Literal["SUCCESS", "UNSUPPORTED_APPLICATION", "INSUFFICIENT_INVOCATIONS"]] = None
+    """
+    Status of
+    [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    """
+
+
+class PlacementUnionMember3(BaseModel):
+    host: str
+    """TCP host and port for targeted placement."""
+
+    last_analyzed_at: Optional[datetime] = None
+    """
+    The last time the script was analyzed for
+    [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    """
+
+    status: Optional[Literal["SUCCESS", "UNSUPPORTED_APPLICATION", "INSUFFICIENT_INVOCATIONS"]] = None
+    """
+    Status of
+    [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    """
+
+
+Placement: TypeAlias = Union[PlacementUnionMember0, PlacementUnionMember1, PlacementUnionMember2, PlacementUnionMember3]
 
 
 class Route(BaseModel):
@@ -156,6 +217,8 @@ class ScriptListResponse(BaseModel):
     """
     Configuration for
     [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    Specify either mode for Smart Placement, or one of region/hostname/host for
+    targeted placement.
     """
 
     placement_mode: Optional[Literal["smart"]] = None

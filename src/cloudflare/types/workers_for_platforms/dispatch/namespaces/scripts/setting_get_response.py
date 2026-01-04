@@ -49,6 +49,10 @@ __all__ = [
     "Observability",
     "ObservabilityLogs",
     "Placement",
+    "PlacementMode",
+    "PlacementRegion",
+    "PlacementHostname",
+    "PlacementHost",
 ]
 
 
@@ -534,16 +538,30 @@ class Observability(BaseModel):
     """Log settings for the Worker."""
 
 
-class Placement(BaseModel):
-    """
-    Configuration for [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
-    """
-
-    mode: Optional[Literal["smart"]] = None
+class PlacementMode(BaseModel):
+    mode: Literal["smart"]
     """
     Enables
     [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
     """
+
+
+class PlacementRegion(BaseModel):
+    region: str
+    """Cloud region for targeted placement in format 'provider:region'."""
+
+
+class PlacementHostname(BaseModel):
+    hostname: str
+    """HTTP hostname for targeted placement."""
+
+
+class PlacementHost(BaseModel):
+    host: str
+    """TCP host and port for targeted placement."""
+
+
+Placement: TypeAlias = Union[PlacementMode, PlacementRegion, PlacementHostname, PlacementHost]
 
 
 class SettingGetResponse(BaseModel):
@@ -581,6 +599,8 @@ class SettingGetResponse(BaseModel):
     """
     Configuration for
     [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    Specify either mode for Smart Placement, or one of region/hostname/host for
+    targeted placement.
     """
 
     tags: Optional[List[str]] = None

@@ -94,62 +94,62 @@ EnvVars: TypeAlias = Annotated[
 
 
 class SourceConfig(BaseModel):
-    owner: str
-    """The owner of the repository."""
-
-    pr_comments_enabled: bool
-    """Whether to enable PR comments."""
-
-    production_branch: str
-    """The production branch of the repository."""
-
-    repo_name: str
-    """The name of the repository."""
-
-    deployments_enabled: Optional[bool] = None
+    deployments_enabled: bool
     """
     Whether to enable automatic deployments when pushing to the source repository.
     When disabled, no deployments (production or preview) will be triggered
     automatically.
     """
 
-    owner_id: Optional[str] = None
+    owner: str
+    """The owner of the repository."""
+
+    owner_id: str
     """The owner ID of the repository."""
 
-    path_excludes: Optional[List[str]] = None
+    path_excludes: List[str]
     """A list of paths that should be excluded from triggering a preview deployment.
 
     Wildcard syntax (`*`) is supported.
     """
 
-    path_includes: Optional[List[str]] = None
+    path_includes: List[str]
     """A list of paths that should be watched to trigger a preview deployment.
 
     Wildcard syntax (`*`) is supported.
     """
 
-    preview_branch_excludes: Optional[List[str]] = None
+    pr_comments_enabled: bool
+    """Whether to enable PR comments."""
+
+    preview_branch_excludes: List[str]
     """A list of branches that should not trigger a preview deployment.
 
     Wildcard syntax (`*`) is supported. Must be used with
     `preview_deployment_setting` set to `custom`.
     """
 
-    preview_branch_includes: Optional[List[str]] = None
+    preview_branch_includes: List[str]
     """A list of branches that should trigger a preview deployment.
 
     Wildcard syntax (`*`) is supported. Must be used with
     `preview_deployment_setting` set to `custom`.
     """
 
-    preview_deployment_setting: Optional[Literal["all", "none", "custom"]] = None
+    preview_deployment_setting: Literal["all", "none", "custom"]
     """Controls whether commits to preview branches trigger a preview deployment."""
 
-    production_deployments_enabled: Optional[bool] = None
+    production_branch: str
+    """The production branch of the repository."""
+
+    production_deployments_enabled: bool
     """Whether to trigger a production deployment on commits to the production branch."""
 
-    repo_id: Optional[str] = None
+    repo_id: str
     """The ID of the repository."""
+
+    repo_name: str
+    """The name of the repository."""
 
 
 class Source(BaseModel):

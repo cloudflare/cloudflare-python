@@ -43,4 +43,4 @@ class RatePlan(BaseModel):
     """The scope that this rate plan applies to."""
 
     sets: Optional[List[str]] = None
-    """The list of sets this rate plan applies to."""
+    """The list of sets this rate plan applies to. Returns array of strings."""

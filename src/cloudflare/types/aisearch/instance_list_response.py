@@ -12,6 +12,8 @@ from ..r2.buckets.provider import Provider
 __all__ = [
     "InstanceListResponse",
     "Metadata",
+    "PublicEndpointParams",
+    "PublicEndpointParamsRateLimit",
     "SourceParams",
     "SourceParamsWebCrawler",
     "SourceParamsWebCrawlerParseOptions",
@@ -23,6 +25,22 @@ class Metadata(BaseModel):
     created_from_aisearch_wizard: Optional[bool] = None
 
     worker_domain: Optional[str] = None
+
+
+class PublicEndpointParamsRateLimit(BaseModel):
+    period_ms: Optional[int] = None
+
+    requests: Optional[int] = None
+
+    technique: Optional[Literal["fixed", "sliding"]] = None
+
+
+class PublicEndpointParams(BaseModel):
+    authorized_hosts: Optional[List[str]] = None
+
+    enabled: Optional[bool] = None
+
+    rate_limit: Optional[PublicEndpointParamsRateLimit] = None
 
 
 class SourceParamsWebCrawlerParseOptions(BaseModel):
@@ -162,6 +180,10 @@ class InstanceListResponse(BaseModel):
     modified_by: Optional[str] = None
 
     paused: Optional[bool] = None
+
+    public_endpoint_id: Optional[str] = None
+
+    public_endpoint_params: Optional[PublicEndpointParams] = None
 
     reranking: Optional[bool] = None
 

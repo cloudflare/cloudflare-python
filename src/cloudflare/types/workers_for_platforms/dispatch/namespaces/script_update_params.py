@@ -52,6 +52,10 @@ __all__ = [
     "MetadataObservability",
     "MetadataObservabilityLogs",
     "MetadataPlacement",
+    "MetadataPlacementUnionMember0",
+    "MetadataPlacementUnionMember1",
+    "MetadataPlacementUnionMember2",
+    "MetadataPlacementUnionMember3",
 ]
 
 
@@ -631,16 +635,35 @@ class MetadataObservability(TypedDict, total=False):
     """Log settings for the Worker."""
 
 
-class MetadataPlacement(TypedDict, total=False):
-    """
-    Configuration for [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
-    """
-
-    mode: Literal["smart"]
+class MetadataPlacementUnionMember0(TypedDict, total=False):
+    mode: Required[Literal["smart"]]
     """
     Enables
     [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
     """
+
+
+class MetadataPlacementUnionMember1(TypedDict, total=False):
+    region: Required[str]
+    """Cloud region for targeted placement in format 'provider:region'."""
+
+
+class MetadataPlacementUnionMember2(TypedDict, total=False):
+    hostname: Required[str]
+    """HTTP hostname for targeted placement."""
+
+
+class MetadataPlacementUnionMember3(TypedDict, total=False):
+    host: Required[str]
+    """TCP host and port for targeted placement."""
+
+
+MetadataPlacement: TypeAlias = Union[
+    MetadataPlacementUnionMember0,
+    MetadataPlacementUnionMember1,
+    MetadataPlacementUnionMember2,
+    MetadataPlacementUnionMember3,
+]
 
 
 class Metadata(TypedDict, total=False):
@@ -708,6 +731,8 @@ class Metadata(TypedDict, total=False):
     """
     Configuration for
     [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    Specify either mode for Smart Placement, or one of region/hostname/host for
+    targeted placement.
     """
 
     tags: SequenceNotStr[str]

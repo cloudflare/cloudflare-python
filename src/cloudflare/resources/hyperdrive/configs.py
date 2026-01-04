@@ -67,6 +67,9 @@ class ConfigsResource(SyncAPIResource):
         Args:
           account_id: Define configurations using a unique string identifier.
 
+          name: The name of the Hyperdrive configuration. Used to identify the configuration in
+              the Cloudflare dashboard and API.
+
           origin_connection_limit: The (soft) maximum number of connections the Hyperdrive is allowed to make to
               the origin database.
 
@@ -126,6 +129,9 @@ class ConfigsResource(SyncAPIResource):
           account_id: Define configurations using a unique string identifier.
 
           hyperdrive_id: Define configurations using a unique string identifier.
+
+          name: The name of the Hyperdrive configuration. Used to identify the configuration in
+              the Cloudflare dashboard and API.
 
           origin_connection_limit: The (soft) maximum number of connections the Hyperdrive is allowed to make to
               the origin database.
@@ -271,6 +277,9 @@ class ConfigsResource(SyncAPIResource):
 
           hyperdrive_id: Define configurations using a unique string identifier.
 
+          name: The name of the Hyperdrive configuration. Used to identify the configuration in
+              the Cloudflare dashboard and API.
+
           origin_connection_limit: The (soft) maximum number of connections the Hyperdrive is allowed to make to
               the origin database.
 
@@ -395,6 +404,9 @@ class AsyncConfigsResource(AsyncAPIResource):
         Args:
           account_id: Define configurations using a unique string identifier.
 
+          name: The name of the Hyperdrive configuration. Used to identify the configuration in
+              the Cloudflare dashboard and API.
+
           origin_connection_limit: The (soft) maximum number of connections the Hyperdrive is allowed to make to
               the origin database.
 
@@ -454,6 +466,9 @@ class AsyncConfigsResource(AsyncAPIResource):
           account_id: Define configurations using a unique string identifier.
 
           hyperdrive_id: Define configurations using a unique string identifier.
+
+          name: The name of the Hyperdrive configuration. Used to identify the configuration in
+              the Cloudflare dashboard and API.
 
           origin_connection_limit: The (soft) maximum number of connections the Hyperdrive is allowed to make to
               the origin database.
@@ -598,6 +613,9 @@ class AsyncConfigsResource(AsyncAPIResource):
           account_id: Define configurations using a unique string identifier.
 
           hyperdrive_id: Define configurations using a unique string identifier.
+
+          name: The name of the Hyperdrive configuration. Used to identify the configuration in
+              the Cloudflare dashboard and API.
 
           origin_connection_limit: The (soft) maximum number of connections the Hyperdrive is allowed to make to
               the origin database.
