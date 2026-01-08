@@ -20,6 +20,13 @@ class ThreatEventBulkCreateParams(TypedDict, total=False):
 
     dataset_id: Required[Annotated[str, PropertyInfo(alias="datasetId")]]
 
+    preserve_uuid: Annotated[bool, PropertyInfo(alias="preserveUuid")]
+    """When true, use provided UUIDs from event data instead of generating new ones.
+
+    Used for migration scenarios where original UUIDs must be preserved. Duplicate
+    UUIDs will be skipped.
+    """
+
 
 class DataRaw(TypedDict, total=False):
     data: Required[Optional[Dict[str, object]]]
@@ -73,3 +80,9 @@ class Data(TypedDict, total=False):
     target_country: Annotated[str, PropertyInfo(alias="targetCountry")]
 
     target_industry: Annotated[str, PropertyInfo(alias="targetIndustry")]
+
+    uuid: str
+    """Optional UUID for the event.
+
+    Only used when preserveUuid=true in bulk create. Must be a valid UUID format.
+    """

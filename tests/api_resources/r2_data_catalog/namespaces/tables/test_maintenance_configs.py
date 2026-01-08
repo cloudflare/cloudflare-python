@@ -41,6 +41,11 @@ class TestMaintenanceConfigs:
                 "state": "enabled",
                 "target_size_mb": "256",
             },
+            snapshot_expiration={
+                "max_snapshot_age": "14d",
+                "min_snapshots_to_keep": 5,
+                "state": "enabled",
+            },
         )
         assert_matches_type(Optional[MaintenanceConfigUpdateResponse], maintenance_config, path=["response"])
 
@@ -208,6 +213,11 @@ class TestAsyncMaintenanceConfigs:
             compaction={
                 "state": "enabled",
                 "target_size_mb": "256",
+            },
+            snapshot_expiration={
+                "max_snapshot_age": "14d",
+                "min_snapshots_to_keep": 5,
+                "state": "enabled",
             },
         )
         assert_matches_type(Optional[MaintenanceConfigUpdateResponse], maintenance_config, path=["response"])

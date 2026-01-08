@@ -13,6 +13,8 @@ class MoveCreateResponse(BaseModel):
 
     item_count: int
 
+    success: bool
+
     destination: Optional[str] = None
 
     message_id: Optional[str] = None

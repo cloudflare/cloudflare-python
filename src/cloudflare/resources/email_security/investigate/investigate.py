@@ -160,8 +160,11 @@ class InvestigateResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePaginationArray[InvestigateListResponse]:
-        """
-        Returns information for each email that matches the search parameter(s).
+        """Returns information for each email that matches the search parameter(s).
+
+        If the
+        search takes too long, the endpoint returns 202 with a Location header pointing
+        to a polling endpoint where results can be retrieved once ready.
 
         Args:
           account_id: Account Identifier
@@ -374,8 +377,11 @@ class AsyncInvestigateResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[InvestigateListResponse, AsyncV4PagePaginationArray[InvestigateListResponse]]:
-        """
-        Returns information for each email that matches the search parameter(s).
+        """Returns information for each email that matches the search parameter(s).
+
+        If the
+        search takes too long, the endpoint returns 202 with a Location header pointing
+        to a polling endpoint where results can be retrieved once ready.
 
         Args:
           account_id: Account Identifier

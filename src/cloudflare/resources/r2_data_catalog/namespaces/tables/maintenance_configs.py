@@ -55,6 +55,7 @@ class MaintenanceConfigsResource(SyncAPIResource):
         bucket_name: str,
         namespace: str,
         compaction: maintenance_config_update_params.Compaction | Omit = omit,
+        snapshot_expiration: maintenance_config_update_params.SnapshotExpiration | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -73,6 +74,8 @@ class MaintenanceConfigsResource(SyncAPIResource):
           bucket_name: Specifies the R2 bucket name.
 
           compaction: Updates compaction configuration (all fields optional).
+
+          snapshot_expiration: Updates snapshot expiration configuration (all fields optional).
 
           extra_headers: Send extra headers
 
@@ -93,7 +96,11 @@ class MaintenanceConfigsResource(SyncAPIResource):
         return self._post(
             f"/accounts/{account_id}/r2-catalog/{bucket_name}/namespaces/{namespace}/tables/{table_name}/maintenance-configs",
             body=maybe_transform(
-                {"compaction": compaction}, maintenance_config_update_params.MaintenanceConfigUpdateParams
+                {
+                    "compaction": compaction,
+                    "snapshot_expiration": snapshot_expiration,
+                },
+                maintenance_config_update_params.MaintenanceConfigUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -187,6 +194,7 @@ class AsyncMaintenanceConfigsResource(AsyncAPIResource):
         bucket_name: str,
         namespace: str,
         compaction: maintenance_config_update_params.Compaction | Omit = omit,
+        snapshot_expiration: maintenance_config_update_params.SnapshotExpiration | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -205,6 +213,8 @@ class AsyncMaintenanceConfigsResource(AsyncAPIResource):
           bucket_name: Specifies the R2 bucket name.
 
           compaction: Updates compaction configuration (all fields optional).
+
+          snapshot_expiration: Updates snapshot expiration configuration (all fields optional).
 
           extra_headers: Send extra headers
 
@@ -225,7 +235,11 @@ class AsyncMaintenanceConfigsResource(AsyncAPIResource):
         return await self._post(
             f"/accounts/{account_id}/r2-catalog/{bucket_name}/namespaces/{namespace}/tables/{table_name}/maintenance-configs",
             body=await async_maybe_transform(
-                {"compaction": compaction}, maintenance_config_update_params.MaintenanceConfigUpdateParams
+                {
+                    "compaction": compaction,
+                    "snapshot_expiration": snapshot_expiration,
+                },
+                maintenance_config_update_params.MaintenanceConfigUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,

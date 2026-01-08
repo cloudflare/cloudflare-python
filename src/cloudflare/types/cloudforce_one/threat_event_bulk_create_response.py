@@ -32,6 +32,9 @@ class ThreatEventBulkCreateResponse(BaseModel):
     queued_indicators_count: float = FieldInfo(alias="queuedIndicatorsCount")
     """Number of indicators queued for async processing"""
 
+    skipped_events_count: float = FieldInfo(alias="skippedEventsCount")
+    """Number of events skipped due to duplicate UUID (only when preserveUuid=true)"""
+
     create_bulk_events_request_id: Optional[str] = FieldInfo(alias="createBulkEventsRequestId", default=None)
     """Correlation ID for async indicator processing"""
 

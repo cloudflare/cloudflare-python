@@ -5,7 +5,12 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["MaintenanceConfigGetResponse", "MaintenanceConfig", "MaintenanceConfigCompaction"]
+__all__ = [
+    "MaintenanceConfigGetResponse",
+    "MaintenanceConfig",
+    "MaintenanceConfigCompaction",
+    "MaintenanceConfigSnapshotExpiration",
+]
 
 
 class MaintenanceConfigCompaction(BaseModel):
@@ -18,11 +23,32 @@ class MaintenanceConfigCompaction(BaseModel):
     """Sets the target file size for compaction in megabytes."""
 
 
+class MaintenanceConfigSnapshotExpiration(BaseModel):
+    """Configures snapshot expiration settings."""
+
+    max_snapshot_age: str
+    """Specifies the maximum age for snapshots.
+
+    The system deletes snapshots older than this age. Format: <number><unit> where
+    unit is d (days), h (hours), m (minutes), or s (seconds). Examples: "7d" (7
+    days), "48h" (48 hours), "2880m" (2,880 minutes).
+    """
+
+    min_snapshots_to_keep: int
+    """Specifies the minimum number of snapshots to retain."""
+
+    state: Literal["enabled", "disabled"]
+    """Specifies the state of maintenance operations."""
+
+
 class MaintenanceConfig(BaseModel):
     """Configures maintenance for the catalog."""
 
     compaction: Optional[MaintenanceConfigCompaction] = None
     """Configures compaction for catalog maintenance."""
+
+    snapshot_expiration: Optional[MaintenanceConfigSnapshotExpiration] = None
+    """Configures snapshot expiration settings."""
 
 
 class MaintenanceConfigGetResponse(BaseModel):

@@ -196,6 +196,7 @@ class ThreatEventsResource(SyncAPIResource):
         tags: SequenceNotStr[str] | Omit = omit,
         target_country: str | Omit = omit,
         target_industry: str | Omit = omit,
+        uuid: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -214,6 +215,9 @@ class ThreatEventsResource(SyncAPIResource):
 
           indicators: Array of indicators for this event. Supports multiple indicators per event for
               complex scenarios.
+
+          uuid: Optional UUID for the event. Only used when preserveUuid=true in bulk create.
+              Must be a valid UUID format.
 
           extra_headers: Send extra headers
 
@@ -245,6 +249,7 @@ class ThreatEventsResource(SyncAPIResource):
                     "tags": tags,
                     "target_country": target_country,
                     "target_industry": target_industry,
+                    "uuid": uuid,
                 },
                 threat_event_create_params.ThreatEventCreateParams,
             ),
@@ -260,6 +265,7 @@ class ThreatEventsResource(SyncAPIResource):
         account_id: str,
         dataset_id: SequenceNotStr[str] | Omit = omit,
         force_refresh: bool | Omit = omit,
+        format: Literal["json", "stix2"] | Omit = omit,
         order: Literal["asc", "desc"] | Omit = omit,
         order_by: str | Omit = omit,
         page: float | Omit = omit,
@@ -303,6 +309,7 @@ class ThreatEventsResource(SyncAPIResource):
                     {
                         "dataset_id": dataset_id,
                         "force_refresh": force_refresh,
+                        "format": format,
                         "order": order,
                         "order_by": order_by,
                         "page": page,
@@ -365,6 +372,7 @@ class ThreatEventsResource(SyncAPIResource):
         account_id: str,
         data: Iterable[threat_event_bulk_create_params.Data],
         dataset_id: str,
+        preserve_uuid: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -382,6 +390,10 @@ class ThreatEventsResource(SyncAPIResource):
         Args:
           account_id: Account ID.
 
+          preserve_uuid: When true, use provided UUIDs from event data instead of generating new ones.
+              Used for migration scenarios where original UUIDs must be preserved. Duplicate
+              UUIDs will be skipped.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -398,6 +410,7 @@ class ThreatEventsResource(SyncAPIResource):
                 {
                     "data": data,
                     "dataset_id": dataset_id,
+                    "preserve_uuid": preserve_uuid,
                 },
                 threat_event_bulk_create_params.ThreatEventBulkCreateParams,
             ),
@@ -604,6 +617,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         tags: SequenceNotStr[str] | Omit = omit,
         target_country: str | Omit = omit,
         target_industry: str | Omit = omit,
+        uuid: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -622,6 +636,9 @@ class AsyncThreatEventsResource(AsyncAPIResource):
 
           indicators: Array of indicators for this event. Supports multiple indicators per event for
               complex scenarios.
+
+          uuid: Optional UUID for the event. Only used when preserveUuid=true in bulk create.
+              Must be a valid UUID format.
 
           extra_headers: Send extra headers
 
@@ -653,6 +670,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
                     "tags": tags,
                     "target_country": target_country,
                     "target_industry": target_industry,
+                    "uuid": uuid,
                 },
                 threat_event_create_params.ThreatEventCreateParams,
             ),
@@ -668,6 +686,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         account_id: str,
         dataset_id: SequenceNotStr[str] | Omit = omit,
         force_refresh: bool | Omit = omit,
+        format: Literal["json", "stix2"] | Omit = omit,
         order: Literal["asc", "desc"] | Omit = omit,
         order_by: str | Omit = omit,
         page: float | Omit = omit,
@@ -711,6 +730,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
                     {
                         "dataset_id": dataset_id,
                         "force_refresh": force_refresh,
+                        "format": format,
                         "order": order,
                         "order_by": order_by,
                         "page": page,
@@ -773,6 +793,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         account_id: str,
         data: Iterable[threat_event_bulk_create_params.Data],
         dataset_id: str,
+        preserve_uuid: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -790,6 +811,10 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         Args:
           account_id: Account ID.
 
+          preserve_uuid: When true, use provided UUIDs from event data instead of generating new ones.
+              Used for migration scenarios where original UUIDs must be preserved. Duplicate
+              UUIDs will be skipped.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -806,6 +831,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
                 {
                     "data": data,
                     "dataset_id": dataset_id,
+                    "preserve_uuid": preserve_uuid,
                 },
                 threat_event_bulk_create_params.ThreatEventBulkCreateParams,
             ),

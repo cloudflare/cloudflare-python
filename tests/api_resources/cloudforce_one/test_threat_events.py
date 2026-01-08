@@ -70,6 +70,7 @@ class TestThreatEvents:
             tags=["malware"],
             target_country="US",
             target_industry="Agriculture",
+            uuid="12345678-1234-1234-1234-1234567890ab",
         )
         assert_matches_type(ThreatEventCreateResponse, threat_event, path=["response"])
 
@@ -137,6 +138,7 @@ class TestThreatEvents:
             account_id="account_id",
             dataset_id=["string"],
             force_refresh=True,
+            format="json",
             order="asc",
             order_by="orderBy",
             page=0,
@@ -252,6 +254,46 @@ class TestThreatEvents:
                 }
             ],
             dataset_id="durableObjectName",
+        )
+        assert_matches_type(ThreatEventBulkCreateResponse, threat_event, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
+    @parametrize
+    def test_method_bulk_create_with_all_params(self, client: Cloudflare) -> None:
+        threat_event = client.cloudforce_one.threat_events.bulk_create(
+            account_id="account_id",
+            data=[
+                {
+                    "category": "Domain Resolution",
+                    "date": parse_datetime("2022-04-01T00:00:00Z"),
+                    "event": "An attacker registered the domain domain.com",
+                    "raw": {
+                        "data": {"foo": "bar"},
+                        "source": "example.com",
+                        "tlp": "amber",
+                    },
+                    "tlp": "amber",
+                    "account_id": 123456,
+                    "attacker": "Flying Yeti",
+                    "attacker_country": "CN",
+                    "dataset_id": "durableObjectName",
+                    "indicator": "domain.com",
+                    "indicators": [
+                        {
+                            "indicator_type": "domain",
+                            "value": "malicious.com",
+                        }
+                    ],
+                    "indicator_type": "domain",
+                    "insight": "This domain was likely registered for phishing purposes",
+                    "tags": ["malware"],
+                    "target_country": "US",
+                    "target_industry": "Agriculture",
+                    "uuid": "12345678-1234-1234-1234-1234567890ab",
+                }
+            ],
+            dataset_id="durableObjectName",
+            preserve_uuid=True,
         )
         assert_matches_type(ThreatEventBulkCreateResponse, threat_event, path=["response"])
 
@@ -504,6 +546,7 @@ class TestAsyncThreatEvents:
             tags=["malware"],
             target_country="US",
             target_industry="Agriculture",
+            uuid="12345678-1234-1234-1234-1234567890ab",
         )
         assert_matches_type(ThreatEventCreateResponse, threat_event, path=["response"])
 
@@ -571,6 +614,7 @@ class TestAsyncThreatEvents:
             account_id="account_id",
             dataset_id=["string"],
             force_refresh=True,
+            format="json",
             order="asc",
             order_by="orderBy",
             page=0,
@@ -686,6 +730,46 @@ class TestAsyncThreatEvents:
                 }
             ],
             dataset_id="durableObjectName",
+        )
+        assert_matches_type(ThreatEventBulkCreateResponse, threat_event, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
+    @parametrize
+    async def test_method_bulk_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        threat_event = await async_client.cloudforce_one.threat_events.bulk_create(
+            account_id="account_id",
+            data=[
+                {
+                    "category": "Domain Resolution",
+                    "date": parse_datetime("2022-04-01T00:00:00Z"),
+                    "event": "An attacker registered the domain domain.com",
+                    "raw": {
+                        "data": {"foo": "bar"},
+                        "source": "example.com",
+                        "tlp": "amber",
+                    },
+                    "tlp": "amber",
+                    "account_id": 123456,
+                    "attacker": "Flying Yeti",
+                    "attacker_country": "CN",
+                    "dataset_id": "durableObjectName",
+                    "indicator": "domain.com",
+                    "indicators": [
+                        {
+                            "indicator_type": "domain",
+                            "value": "malicious.com",
+                        }
+                    ],
+                    "indicator_type": "domain",
+                    "insight": "This domain was likely registered for phishing purposes",
+                    "tags": ["malware"],
+                    "target_country": "US",
+                    "target_industry": "Agriculture",
+                    "uuid": "12345678-1234-1234-1234-1234567890ab",
+                }
+            ],
+            dataset_id="durableObjectName",
+            preserve_uuid=True,
         )
         assert_matches_type(ThreatEventBulkCreateResponse, threat_event, path=["response"])
 

@@ -52,6 +52,12 @@ class ThreatEventCreateParams(TypedDict, total=False):
 
     target_industry: Annotated[str, PropertyInfo(alias="targetIndustry")]
 
+    uuid: str
+    """Optional UUID for the event.
+
+    Only used when preserveUuid=true in bulk create. Must be a valid UUID format.
+    """
+
 
 class Raw(TypedDict, total=False):
     data: Required[Optional[Dict[str, object]]]
