@@ -30,6 +30,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestMeetings:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         meeting = client.realtime_kit.meetings.create(
@@ -38,6 +39,7 @@ class TestMeetings:
         )
         assert_matches_type(MeetingCreateResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         meeting = client.realtime_kit.meetings.create(
@@ -103,6 +105,7 @@ class TestMeetings:
         )
         assert_matches_type(MeetingCreateResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.realtime_kit.meetings.with_raw_response.create(
@@ -115,6 +118,7 @@ class TestMeetings:
         meeting = response.parse()
         assert_matches_type(MeetingCreateResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.realtime_kit.meetings.with_streaming_response.create(
@@ -129,6 +133,7 @@ class TestMeetings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -143,6 +148,7 @@ class TestMeetings:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_add_participant(self, client: Cloudflare) -> None:
         meeting = client.realtime_kit.meetings.add_participant(
@@ -154,6 +160,7 @@ class TestMeetings:
         )
         assert_matches_type(MeetingAddParticipantResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_add_participant_with_all_params(self, client: Cloudflare) -> None:
         meeting = client.realtime_kit.meetings.add_participant(
@@ -167,6 +174,7 @@ class TestMeetings:
         )
         assert_matches_type(MeetingAddParticipantResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_raw_response_add_participant(self, client: Cloudflare) -> None:
         response = client.realtime_kit.meetings.with_raw_response.add_participant(
@@ -182,6 +190,7 @@ class TestMeetings:
         meeting = response.parse()
         assert_matches_type(MeetingAddParticipantResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_streaming_response_add_participant(self, client: Cloudflare) -> None:
         with client.realtime_kit.meetings.with_streaming_response.add_participant(
@@ -199,6 +208,7 @@ class TestMeetings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_path_params_add_participant(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -228,6 +238,7 @@ class TestMeetings:
                 preset_name="preset_name",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_delete_meeting_participant(self, client: Cloudflare) -> None:
         meeting = client.realtime_kit.meetings.delete_meeting_participant(
@@ -238,6 +249,7 @@ class TestMeetings:
         )
         assert_matches_type(MeetingDeleteMeetingParticipantResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_raw_response_delete_meeting_participant(self, client: Cloudflare) -> None:
         response = client.realtime_kit.meetings.with_raw_response.delete_meeting_participant(
@@ -252,6 +264,7 @@ class TestMeetings:
         meeting = response.parse()
         assert_matches_type(MeetingDeleteMeetingParticipantResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_streaming_response_delete_meeting_participant(self, client: Cloudflare) -> None:
         with client.realtime_kit.meetings.with_streaming_response.delete_meeting_participant(
@@ -268,6 +281,7 @@ class TestMeetings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_path_params_delete_meeting_participant(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -302,6 +316,7 @@ class TestMeetings:
                 meeting_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_edit_participant(self, client: Cloudflare) -> None:
         meeting = client.realtime_kit.meetings.edit_participant(
@@ -312,6 +327,7 @@ class TestMeetings:
         )
         assert_matches_type(MeetingEditParticipantResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_edit_participant_with_all_params(self, client: Cloudflare) -> None:
         meeting = client.realtime_kit.meetings.edit_participant(
@@ -325,6 +341,7 @@ class TestMeetings:
         )
         assert_matches_type(MeetingEditParticipantResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_raw_response_edit_participant(self, client: Cloudflare) -> None:
         response = client.realtime_kit.meetings.with_raw_response.edit_participant(
@@ -339,6 +356,7 @@ class TestMeetings:
         meeting = response.parse()
         assert_matches_type(MeetingEditParticipantResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_streaming_response_edit_participant(self, client: Cloudflare) -> None:
         with client.realtime_kit.meetings.with_streaming_response.edit_participant(
@@ -355,6 +373,7 @@ class TestMeetings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_path_params_edit_participant(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -389,6 +408,7 @@ class TestMeetings:
                 meeting_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         meeting = client.realtime_kit.meetings.get(
@@ -397,6 +417,7 @@ class TestMeetings:
         )
         assert_matches_type(MeetingGetResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         meeting = client.realtime_kit.meetings.get(
@@ -410,6 +431,7 @@ class TestMeetings:
         )
         assert_matches_type(MeetingGetResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.realtime_kit.meetings.with_raw_response.get(
@@ -422,6 +444,7 @@ class TestMeetings:
         meeting = response.parse()
         assert_matches_type(MeetingGetResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.realtime_kit.meetings.with_streaming_response.get(
@@ -436,6 +459,7 @@ class TestMeetings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -450,6 +474,7 @@ class TestMeetings:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_get_meeting_by_id(self, client: Cloudflare) -> None:
         meeting = client.realtime_kit.meetings.get_meeting_by_id(
@@ -459,6 +484,7 @@ class TestMeetings:
         )
         assert_matches_type(MeetingGetMeetingByIDResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_get_meeting_by_id_with_all_params(self, client: Cloudflare) -> None:
         meeting = client.realtime_kit.meetings.get_meeting_by_id(
@@ -469,6 +495,7 @@ class TestMeetings:
         )
         assert_matches_type(MeetingGetMeetingByIDResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_raw_response_get_meeting_by_id(self, client: Cloudflare) -> None:
         response = client.realtime_kit.meetings.with_raw_response.get_meeting_by_id(
@@ -482,6 +509,7 @@ class TestMeetings:
         meeting = response.parse()
         assert_matches_type(MeetingGetMeetingByIDResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_streaming_response_get_meeting_by_id(self, client: Cloudflare) -> None:
         with client.realtime_kit.meetings.with_streaming_response.get_meeting_by_id(
@@ -497,6 +525,7 @@ class TestMeetings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_path_params_get_meeting_by_id(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -520,6 +549,7 @@ class TestMeetings:
                 app_id="app_id",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_get_meeting_participant(self, client: Cloudflare) -> None:
         meeting = client.realtime_kit.meetings.get_meeting_participant(
@@ -530,6 +560,7 @@ class TestMeetings:
         )
         assert_matches_type(MeetingGetMeetingParticipantResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_raw_response_get_meeting_participant(self, client: Cloudflare) -> None:
         response = client.realtime_kit.meetings.with_raw_response.get_meeting_participant(
@@ -544,6 +575,7 @@ class TestMeetings:
         meeting = response.parse()
         assert_matches_type(MeetingGetMeetingParticipantResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_streaming_response_get_meeting_participant(self, client: Cloudflare) -> None:
         with client.realtime_kit.meetings.with_streaming_response.get_meeting_participant(
@@ -560,6 +592,7 @@ class TestMeetings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_path_params_get_meeting_participant(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -594,6 +627,7 @@ class TestMeetings:
                 meeting_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_get_meeting_participants(self, client: Cloudflare) -> None:
         meeting = client.realtime_kit.meetings.get_meeting_participants(
@@ -603,6 +637,7 @@ class TestMeetings:
         )
         assert_matches_type(MeetingGetMeetingParticipantsResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_get_meeting_participants_with_all_params(self, client: Cloudflare) -> None:
         meeting = client.realtime_kit.meetings.get_meeting_participants(
@@ -614,6 +649,7 @@ class TestMeetings:
         )
         assert_matches_type(MeetingGetMeetingParticipantsResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_raw_response_get_meeting_participants(self, client: Cloudflare) -> None:
         response = client.realtime_kit.meetings.with_raw_response.get_meeting_participants(
@@ -627,6 +663,7 @@ class TestMeetings:
         meeting = response.parse()
         assert_matches_type(MeetingGetMeetingParticipantsResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_streaming_response_get_meeting_participants(self, client: Cloudflare) -> None:
         with client.realtime_kit.meetings.with_streaming_response.get_meeting_participants(
@@ -642,6 +679,7 @@ class TestMeetings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_path_params_get_meeting_participants(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -665,6 +703,7 @@ class TestMeetings:
                 app_id="app_id",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_refresh_participant_token(self, client: Cloudflare) -> None:
         meeting = client.realtime_kit.meetings.refresh_participant_token(
@@ -675,6 +714,7 @@ class TestMeetings:
         )
         assert_matches_type(MeetingRefreshParticipantTokenResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_raw_response_refresh_participant_token(self, client: Cloudflare) -> None:
         response = client.realtime_kit.meetings.with_raw_response.refresh_participant_token(
@@ -689,6 +729,7 @@ class TestMeetings:
         meeting = response.parse()
         assert_matches_type(MeetingRefreshParticipantTokenResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_streaming_response_refresh_participant_token(self, client: Cloudflare) -> None:
         with client.realtime_kit.meetings.with_streaming_response.refresh_participant_token(
@@ -705,6 +746,7 @@ class TestMeetings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_path_params_refresh_participant_token(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -739,6 +781,7 @@ class TestMeetings:
                 meeting_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_replace_meeting_by_id(self, client: Cloudflare) -> None:
         meeting = client.realtime_kit.meetings.replace_meeting_by_id(
@@ -748,6 +791,7 @@ class TestMeetings:
         )
         assert_matches_type(MeetingReplaceMeetingByIDResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_replace_meeting_by_id_with_all_params(self, client: Cloudflare) -> None:
         meeting = client.realtime_kit.meetings.replace_meeting_by_id(
@@ -814,6 +858,7 @@ class TestMeetings:
         )
         assert_matches_type(MeetingReplaceMeetingByIDResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_raw_response_replace_meeting_by_id(self, client: Cloudflare) -> None:
         response = client.realtime_kit.meetings.with_raw_response.replace_meeting_by_id(
@@ -827,6 +872,7 @@ class TestMeetings:
         meeting = response.parse()
         assert_matches_type(MeetingReplaceMeetingByIDResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_streaming_response_replace_meeting_by_id(self, client: Cloudflare) -> None:
         with client.realtime_kit.meetings.with_streaming_response.replace_meeting_by_id(
@@ -842,6 +888,7 @@ class TestMeetings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_path_params_replace_meeting_by_id(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -865,6 +912,7 @@ class TestMeetings:
                 app_id="app_id",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_update_meeting_by_id(self, client: Cloudflare) -> None:
         meeting = client.realtime_kit.meetings.update_meeting_by_id(
@@ -874,6 +922,7 @@ class TestMeetings:
         )
         assert_matches_type(MeetingUpdateMeetingByIDResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_update_meeting_by_id_with_all_params(self, client: Cloudflare) -> None:
         meeting = client.realtime_kit.meetings.update_meeting_by_id(
@@ -902,6 +951,7 @@ class TestMeetings:
         )
         assert_matches_type(MeetingUpdateMeetingByIDResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_raw_response_update_meeting_by_id(self, client: Cloudflare) -> None:
         response = client.realtime_kit.meetings.with_raw_response.update_meeting_by_id(
@@ -915,6 +965,7 @@ class TestMeetings:
         meeting = response.parse()
         assert_matches_type(MeetingUpdateMeetingByIDResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_streaming_response_update_meeting_by_id(self, client: Cloudflare) -> None:
         with client.realtime_kit.meetings.with_streaming_response.update_meeting_by_id(
@@ -930,6 +981,7 @@ class TestMeetings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_path_params_update_meeting_by_id(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -959,6 +1011,7 @@ class TestAsyncMeetings:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         meeting = await async_client.realtime_kit.meetings.create(
@@ -967,6 +1020,7 @@ class TestAsyncMeetings:
         )
         assert_matches_type(MeetingCreateResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         meeting = await async_client.realtime_kit.meetings.create(
@@ -1032,6 +1086,7 @@ class TestAsyncMeetings:
         )
         assert_matches_type(MeetingCreateResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.realtime_kit.meetings.with_raw_response.create(
@@ -1044,6 +1099,7 @@ class TestAsyncMeetings:
         meeting = await response.parse()
         assert_matches_type(MeetingCreateResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.realtime_kit.meetings.with_streaming_response.create(
@@ -1058,6 +1114,7 @@ class TestAsyncMeetings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -1072,6 +1129,7 @@ class TestAsyncMeetings:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_add_participant(self, async_client: AsyncCloudflare) -> None:
         meeting = await async_client.realtime_kit.meetings.add_participant(
@@ -1083,6 +1141,7 @@ class TestAsyncMeetings:
         )
         assert_matches_type(MeetingAddParticipantResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_add_participant_with_all_params(self, async_client: AsyncCloudflare) -> None:
         meeting = await async_client.realtime_kit.meetings.add_participant(
@@ -1096,6 +1155,7 @@ class TestAsyncMeetings:
         )
         assert_matches_type(MeetingAddParticipantResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_raw_response_add_participant(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.realtime_kit.meetings.with_raw_response.add_participant(
@@ -1111,6 +1171,7 @@ class TestAsyncMeetings:
         meeting = await response.parse()
         assert_matches_type(MeetingAddParticipantResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_streaming_response_add_participant(self, async_client: AsyncCloudflare) -> None:
         async with async_client.realtime_kit.meetings.with_streaming_response.add_participant(
@@ -1128,6 +1189,7 @@ class TestAsyncMeetings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_path_params_add_participant(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -1157,6 +1219,7 @@ class TestAsyncMeetings:
                 preset_name="preset_name",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_delete_meeting_participant(self, async_client: AsyncCloudflare) -> None:
         meeting = await async_client.realtime_kit.meetings.delete_meeting_participant(
@@ -1167,6 +1230,7 @@ class TestAsyncMeetings:
         )
         assert_matches_type(MeetingDeleteMeetingParticipantResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_raw_response_delete_meeting_participant(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.realtime_kit.meetings.with_raw_response.delete_meeting_participant(
@@ -1181,6 +1245,7 @@ class TestAsyncMeetings:
         meeting = await response.parse()
         assert_matches_type(MeetingDeleteMeetingParticipantResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_streaming_response_delete_meeting_participant(self, async_client: AsyncCloudflare) -> None:
         async with async_client.realtime_kit.meetings.with_streaming_response.delete_meeting_participant(
@@ -1197,6 +1262,7 @@ class TestAsyncMeetings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_path_params_delete_meeting_participant(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -1231,6 +1297,7 @@ class TestAsyncMeetings:
                 meeting_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_edit_participant(self, async_client: AsyncCloudflare) -> None:
         meeting = await async_client.realtime_kit.meetings.edit_participant(
@@ -1241,6 +1308,7 @@ class TestAsyncMeetings:
         )
         assert_matches_type(MeetingEditParticipantResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_edit_participant_with_all_params(self, async_client: AsyncCloudflare) -> None:
         meeting = await async_client.realtime_kit.meetings.edit_participant(
@@ -1254,6 +1322,7 @@ class TestAsyncMeetings:
         )
         assert_matches_type(MeetingEditParticipantResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_raw_response_edit_participant(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.realtime_kit.meetings.with_raw_response.edit_participant(
@@ -1268,6 +1337,7 @@ class TestAsyncMeetings:
         meeting = await response.parse()
         assert_matches_type(MeetingEditParticipantResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_streaming_response_edit_participant(self, async_client: AsyncCloudflare) -> None:
         async with async_client.realtime_kit.meetings.with_streaming_response.edit_participant(
@@ -1284,6 +1354,7 @@ class TestAsyncMeetings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_path_params_edit_participant(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -1318,6 +1389,7 @@ class TestAsyncMeetings:
                 meeting_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         meeting = await async_client.realtime_kit.meetings.get(
@@ -1326,6 +1398,7 @@ class TestAsyncMeetings:
         )
         assert_matches_type(MeetingGetResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         meeting = await async_client.realtime_kit.meetings.get(
@@ -1339,6 +1412,7 @@ class TestAsyncMeetings:
         )
         assert_matches_type(MeetingGetResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.realtime_kit.meetings.with_raw_response.get(
@@ -1351,6 +1425,7 @@ class TestAsyncMeetings:
         meeting = await response.parse()
         assert_matches_type(MeetingGetResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.realtime_kit.meetings.with_streaming_response.get(
@@ -1365,6 +1440,7 @@ class TestAsyncMeetings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -1379,6 +1455,7 @@ class TestAsyncMeetings:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_get_meeting_by_id(self, async_client: AsyncCloudflare) -> None:
         meeting = await async_client.realtime_kit.meetings.get_meeting_by_id(
@@ -1388,6 +1465,7 @@ class TestAsyncMeetings:
         )
         assert_matches_type(MeetingGetMeetingByIDResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_get_meeting_by_id_with_all_params(self, async_client: AsyncCloudflare) -> None:
         meeting = await async_client.realtime_kit.meetings.get_meeting_by_id(
@@ -1398,6 +1476,7 @@ class TestAsyncMeetings:
         )
         assert_matches_type(MeetingGetMeetingByIDResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_raw_response_get_meeting_by_id(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.realtime_kit.meetings.with_raw_response.get_meeting_by_id(
@@ -1411,6 +1490,7 @@ class TestAsyncMeetings:
         meeting = await response.parse()
         assert_matches_type(MeetingGetMeetingByIDResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_streaming_response_get_meeting_by_id(self, async_client: AsyncCloudflare) -> None:
         async with async_client.realtime_kit.meetings.with_streaming_response.get_meeting_by_id(
@@ -1426,6 +1506,7 @@ class TestAsyncMeetings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_path_params_get_meeting_by_id(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -1449,6 +1530,7 @@ class TestAsyncMeetings:
                 app_id="app_id",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_get_meeting_participant(self, async_client: AsyncCloudflare) -> None:
         meeting = await async_client.realtime_kit.meetings.get_meeting_participant(
@@ -1459,6 +1541,7 @@ class TestAsyncMeetings:
         )
         assert_matches_type(MeetingGetMeetingParticipantResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_raw_response_get_meeting_participant(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.realtime_kit.meetings.with_raw_response.get_meeting_participant(
@@ -1473,6 +1556,7 @@ class TestAsyncMeetings:
         meeting = await response.parse()
         assert_matches_type(MeetingGetMeetingParticipantResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_streaming_response_get_meeting_participant(self, async_client: AsyncCloudflare) -> None:
         async with async_client.realtime_kit.meetings.with_streaming_response.get_meeting_participant(
@@ -1489,6 +1573,7 @@ class TestAsyncMeetings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_path_params_get_meeting_participant(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -1523,6 +1608,7 @@ class TestAsyncMeetings:
                 meeting_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_get_meeting_participants(self, async_client: AsyncCloudflare) -> None:
         meeting = await async_client.realtime_kit.meetings.get_meeting_participants(
@@ -1532,6 +1618,7 @@ class TestAsyncMeetings:
         )
         assert_matches_type(MeetingGetMeetingParticipantsResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_get_meeting_participants_with_all_params(self, async_client: AsyncCloudflare) -> None:
         meeting = await async_client.realtime_kit.meetings.get_meeting_participants(
@@ -1543,6 +1630,7 @@ class TestAsyncMeetings:
         )
         assert_matches_type(MeetingGetMeetingParticipantsResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_raw_response_get_meeting_participants(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.realtime_kit.meetings.with_raw_response.get_meeting_participants(
@@ -1556,6 +1644,7 @@ class TestAsyncMeetings:
         meeting = await response.parse()
         assert_matches_type(MeetingGetMeetingParticipantsResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_streaming_response_get_meeting_participants(self, async_client: AsyncCloudflare) -> None:
         async with async_client.realtime_kit.meetings.with_streaming_response.get_meeting_participants(
@@ -1571,6 +1660,7 @@ class TestAsyncMeetings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_path_params_get_meeting_participants(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -1594,6 +1684,7 @@ class TestAsyncMeetings:
                 app_id="app_id",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_refresh_participant_token(self, async_client: AsyncCloudflare) -> None:
         meeting = await async_client.realtime_kit.meetings.refresh_participant_token(
@@ -1604,6 +1695,7 @@ class TestAsyncMeetings:
         )
         assert_matches_type(MeetingRefreshParticipantTokenResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_raw_response_refresh_participant_token(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.realtime_kit.meetings.with_raw_response.refresh_participant_token(
@@ -1618,6 +1710,7 @@ class TestAsyncMeetings:
         meeting = await response.parse()
         assert_matches_type(MeetingRefreshParticipantTokenResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_streaming_response_refresh_participant_token(self, async_client: AsyncCloudflare) -> None:
         async with async_client.realtime_kit.meetings.with_streaming_response.refresh_participant_token(
@@ -1634,6 +1727,7 @@ class TestAsyncMeetings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_path_params_refresh_participant_token(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -1668,6 +1762,7 @@ class TestAsyncMeetings:
                 meeting_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_replace_meeting_by_id(self, async_client: AsyncCloudflare) -> None:
         meeting = await async_client.realtime_kit.meetings.replace_meeting_by_id(
@@ -1677,6 +1772,7 @@ class TestAsyncMeetings:
         )
         assert_matches_type(MeetingReplaceMeetingByIDResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_replace_meeting_by_id_with_all_params(self, async_client: AsyncCloudflare) -> None:
         meeting = await async_client.realtime_kit.meetings.replace_meeting_by_id(
@@ -1743,6 +1839,7 @@ class TestAsyncMeetings:
         )
         assert_matches_type(MeetingReplaceMeetingByIDResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_raw_response_replace_meeting_by_id(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.realtime_kit.meetings.with_raw_response.replace_meeting_by_id(
@@ -1756,6 +1853,7 @@ class TestAsyncMeetings:
         meeting = await response.parse()
         assert_matches_type(MeetingReplaceMeetingByIDResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_streaming_response_replace_meeting_by_id(self, async_client: AsyncCloudflare) -> None:
         async with async_client.realtime_kit.meetings.with_streaming_response.replace_meeting_by_id(
@@ -1771,6 +1869,7 @@ class TestAsyncMeetings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_path_params_replace_meeting_by_id(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -1794,6 +1893,7 @@ class TestAsyncMeetings:
                 app_id="app_id",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_update_meeting_by_id(self, async_client: AsyncCloudflare) -> None:
         meeting = await async_client.realtime_kit.meetings.update_meeting_by_id(
@@ -1803,6 +1903,7 @@ class TestAsyncMeetings:
         )
         assert_matches_type(MeetingUpdateMeetingByIDResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_update_meeting_by_id_with_all_params(self, async_client: AsyncCloudflare) -> None:
         meeting = await async_client.realtime_kit.meetings.update_meeting_by_id(
@@ -1831,6 +1932,7 @@ class TestAsyncMeetings:
         )
         assert_matches_type(MeetingUpdateMeetingByIDResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_raw_response_update_meeting_by_id(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.realtime_kit.meetings.with_raw_response.update_meeting_by_id(
@@ -1844,6 +1946,7 @@ class TestAsyncMeetings:
         meeting = await response.parse()
         assert_matches_type(MeetingUpdateMeetingByIDResponse, meeting, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_streaming_response_update_meeting_by_id(self, async_client: AsyncCloudflare) -> None:
         async with async_client.realtime_kit.meetings.with_streaming_response.update_meeting_by_id(
@@ -1859,6 +1962,7 @@ class TestAsyncMeetings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_path_params_update_meeting_by_id(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

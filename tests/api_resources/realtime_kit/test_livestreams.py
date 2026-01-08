@@ -29,6 +29,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestLivestreams:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_create_independent_livestream(self, client: Cloudflare) -> None:
         livestream = client.realtime_kit.livestreams.create_independent_livestream(
@@ -37,6 +38,7 @@ class TestLivestreams:
         )
         assert_matches_type(LivestreamCreateIndependentLivestreamResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_create_independent_livestream_with_all_params(self, client: Cloudflare) -> None:
         livestream = client.realtime_kit.livestreams.create_independent_livestream(
@@ -46,6 +48,7 @@ class TestLivestreams:
         )
         assert_matches_type(LivestreamCreateIndependentLivestreamResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_raw_response_create_independent_livestream(self, client: Cloudflare) -> None:
         response = client.realtime_kit.livestreams.with_raw_response.create_independent_livestream(
@@ -58,6 +61,7 @@ class TestLivestreams:
         livestream = response.parse()
         assert_matches_type(LivestreamCreateIndependentLivestreamResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_streaming_response_create_independent_livestream(self, client: Cloudflare) -> None:
         with client.realtime_kit.livestreams.with_streaming_response.create_independent_livestream(
@@ -72,6 +76,7 @@ class TestLivestreams:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_path_params_create_independent_livestream(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -86,6 +91,7 @@ class TestLivestreams:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_get_active_livestreams_for_livestream_id(self, client: Cloudflare) -> None:
         livestream = client.realtime_kit.livestreams.get_active_livestreams_for_livestream_id(
@@ -95,6 +101,7 @@ class TestLivestreams:
         )
         assert_matches_type(LivestreamGetActiveLivestreamsForLivestreamIDResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_raw_response_get_active_livestreams_for_livestream_id(self, client: Cloudflare) -> None:
         response = client.realtime_kit.livestreams.with_raw_response.get_active_livestreams_for_livestream_id(
@@ -108,6 +115,7 @@ class TestLivestreams:
         livestream = response.parse()
         assert_matches_type(LivestreamGetActiveLivestreamsForLivestreamIDResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_streaming_response_get_active_livestreams_for_livestream_id(self, client: Cloudflare) -> None:
         with client.realtime_kit.livestreams.with_streaming_response.get_active_livestreams_for_livestream_id(
@@ -123,6 +131,7 @@ class TestLivestreams:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_path_params_get_active_livestreams_for_livestream_id(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -146,6 +155,7 @@ class TestLivestreams:
                 app_id="app_id",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_get_all_livestreams(self, client: Cloudflare) -> None:
         livestream = client.realtime_kit.livestreams.get_all_livestreams(
@@ -154,6 +164,7 @@ class TestLivestreams:
         )
         assert_matches_type(LivestreamGetAllLivestreamsResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_get_all_livestreams_with_all_params(self, client: Cloudflare) -> None:
         livestream = client.realtime_kit.livestreams.get_all_livestreams(
@@ -169,6 +180,7 @@ class TestLivestreams:
         )
         assert_matches_type(LivestreamGetAllLivestreamsResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_raw_response_get_all_livestreams(self, client: Cloudflare) -> None:
         response = client.realtime_kit.livestreams.with_raw_response.get_all_livestreams(
@@ -181,6 +193,7 @@ class TestLivestreams:
         livestream = response.parse()
         assert_matches_type(LivestreamGetAllLivestreamsResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_streaming_response_get_all_livestreams(self, client: Cloudflare) -> None:
         with client.realtime_kit.livestreams.with_streaming_response.get_all_livestreams(
@@ -195,6 +208,7 @@ class TestLivestreams:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_path_params_get_all_livestreams(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -209,6 +223,7 @@ class TestLivestreams:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_get_livestream_analytics_complete(self, client: Cloudflare) -> None:
         livestream = client.realtime_kit.livestreams.get_livestream_analytics_complete(
@@ -217,6 +232,7 @@ class TestLivestreams:
         )
         assert_matches_type(LivestreamGetLivestreamAnalyticsCompleteResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_get_livestream_analytics_complete_with_all_params(self, client: Cloudflare) -> None:
         livestream = client.realtime_kit.livestreams.get_livestream_analytics_complete(
@@ -227,6 +243,7 @@ class TestLivestreams:
         )
         assert_matches_type(LivestreamGetLivestreamAnalyticsCompleteResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_raw_response_get_livestream_analytics_complete(self, client: Cloudflare) -> None:
         response = client.realtime_kit.livestreams.with_raw_response.get_livestream_analytics_complete(
@@ -239,6 +256,7 @@ class TestLivestreams:
         livestream = response.parse()
         assert_matches_type(LivestreamGetLivestreamAnalyticsCompleteResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_streaming_response_get_livestream_analytics_complete(self, client: Cloudflare) -> None:
         with client.realtime_kit.livestreams.with_streaming_response.get_livestream_analytics_complete(
@@ -253,6 +271,7 @@ class TestLivestreams:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_path_params_get_livestream_analytics_complete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -267,6 +286,7 @@ class TestLivestreams:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_get_livestream_session_details_for_session_id(self, client: Cloudflare) -> None:
         livestream = client.realtime_kit.livestreams.get_livestream_session_details_for_session_id(
@@ -276,6 +296,7 @@ class TestLivestreams:
         )
         assert_matches_type(LivestreamGetLivestreamSessionDetailsForSessionIDResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_raw_response_get_livestream_session_details_for_session_id(self, client: Cloudflare) -> None:
         response = client.realtime_kit.livestreams.with_raw_response.get_livestream_session_details_for_session_id(
@@ -289,6 +310,7 @@ class TestLivestreams:
         livestream = response.parse()
         assert_matches_type(LivestreamGetLivestreamSessionDetailsForSessionIDResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_streaming_response_get_livestream_session_details_for_session_id(self, client: Cloudflare) -> None:
         with client.realtime_kit.livestreams.with_streaming_response.get_livestream_session_details_for_session_id(
@@ -306,6 +328,7 @@ class TestLivestreams:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_path_params_get_livestream_session_details_for_session_id(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -329,6 +352,7 @@ class TestLivestreams:
                 app_id="app_id",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_get_livestream_session_for_livestream_id(self, client: Cloudflare) -> None:
         livestream = client.realtime_kit.livestreams.get_livestream_session_for_livestream_id(
@@ -338,6 +362,7 @@ class TestLivestreams:
         )
         assert_matches_type(LivestreamGetLivestreamSessionForLivestreamIDResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_get_livestream_session_for_livestream_id_with_all_params(self, client: Cloudflare) -> None:
         livestream = client.realtime_kit.livestreams.get_livestream_session_for_livestream_id(
@@ -349,6 +374,7 @@ class TestLivestreams:
         )
         assert_matches_type(LivestreamGetLivestreamSessionForLivestreamIDResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_raw_response_get_livestream_session_for_livestream_id(self, client: Cloudflare) -> None:
         response = client.realtime_kit.livestreams.with_raw_response.get_livestream_session_for_livestream_id(
@@ -362,6 +388,7 @@ class TestLivestreams:
         livestream = response.parse()
         assert_matches_type(LivestreamGetLivestreamSessionForLivestreamIDResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_streaming_response_get_livestream_session_for_livestream_id(self, client: Cloudflare) -> None:
         with client.realtime_kit.livestreams.with_streaming_response.get_livestream_session_for_livestream_id(
@@ -377,6 +404,7 @@ class TestLivestreams:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_path_params_get_livestream_session_for_livestream_id(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -400,6 +428,7 @@ class TestLivestreams:
                 app_id="app_id",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_get_meeting_active_livestreams(self, client: Cloudflare) -> None:
         livestream = client.realtime_kit.livestreams.get_meeting_active_livestreams(
@@ -409,6 +438,7 @@ class TestLivestreams:
         )
         assert_matches_type(LivestreamGetMeetingActiveLivestreamsResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_raw_response_get_meeting_active_livestreams(self, client: Cloudflare) -> None:
         response = client.realtime_kit.livestreams.with_raw_response.get_meeting_active_livestreams(
@@ -422,6 +452,7 @@ class TestLivestreams:
         livestream = response.parse()
         assert_matches_type(LivestreamGetMeetingActiveLivestreamsResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_streaming_response_get_meeting_active_livestreams(self, client: Cloudflare) -> None:
         with client.realtime_kit.livestreams.with_streaming_response.get_meeting_active_livestreams(
@@ -437,6 +468,7 @@ class TestLivestreams:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_path_params_get_meeting_active_livestreams(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -460,6 +492,7 @@ class TestLivestreams:
                 app_id="app_id",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_get_org_analytics(self, client: Cloudflare) -> None:
         livestream = client.realtime_kit.livestreams.get_org_analytics(
@@ -468,6 +501,7 @@ class TestLivestreams:
         )
         assert_matches_type(LivestreamGetOrgAnalyticsResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_get_org_analytics_with_all_params(self, client: Cloudflare) -> None:
         livestream = client.realtime_kit.livestreams.get_org_analytics(
@@ -478,6 +512,7 @@ class TestLivestreams:
         )
         assert_matches_type(LivestreamGetOrgAnalyticsResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_raw_response_get_org_analytics(self, client: Cloudflare) -> None:
         response = client.realtime_kit.livestreams.with_raw_response.get_org_analytics(
@@ -490,6 +525,7 @@ class TestLivestreams:
         livestream = response.parse()
         assert_matches_type(LivestreamGetOrgAnalyticsResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_streaming_response_get_org_analytics(self, client: Cloudflare) -> None:
         with client.realtime_kit.livestreams.with_streaming_response.get_org_analytics(
@@ -504,6 +540,7 @@ class TestLivestreams:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_path_params_get_org_analytics(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -518,6 +555,7 @@ class TestLivestreams:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_start_livestreaming_a_meeting(self, client: Cloudflare) -> None:
         livestream = client.realtime_kit.livestreams.start_livestreaming_a_meeting(
@@ -527,6 +565,7 @@ class TestLivestreams:
         )
         assert_matches_type(LivestreamStartLivestreamingAMeetingResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_start_livestreaming_a_meeting_with_all_params(self, client: Cloudflare) -> None:
         livestream = client.realtime_kit.livestreams.start_livestreaming_a_meeting(
@@ -541,6 +580,7 @@ class TestLivestreams:
         )
         assert_matches_type(LivestreamStartLivestreamingAMeetingResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_raw_response_start_livestreaming_a_meeting(self, client: Cloudflare) -> None:
         response = client.realtime_kit.livestreams.with_raw_response.start_livestreaming_a_meeting(
@@ -554,6 +594,7 @@ class TestLivestreams:
         livestream = response.parse()
         assert_matches_type(LivestreamStartLivestreamingAMeetingResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_streaming_response_start_livestreaming_a_meeting(self, client: Cloudflare) -> None:
         with client.realtime_kit.livestreams.with_streaming_response.start_livestreaming_a_meeting(
@@ -569,6 +610,7 @@ class TestLivestreams:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_path_params_start_livestreaming_a_meeting(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -592,6 +634,7 @@ class TestLivestreams:
                 app_id="app_id",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_stop_livestreaming_a_meeting(self, client: Cloudflare) -> None:
         livestream = client.realtime_kit.livestreams.stop_livestreaming_a_meeting(
@@ -601,6 +644,7 @@ class TestLivestreams:
         )
         assert_matches_type(LivestreamStopLivestreamingAMeetingResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_raw_response_stop_livestreaming_a_meeting(self, client: Cloudflare) -> None:
         response = client.realtime_kit.livestreams.with_raw_response.stop_livestreaming_a_meeting(
@@ -614,6 +658,7 @@ class TestLivestreams:
         livestream = response.parse()
         assert_matches_type(LivestreamStopLivestreamingAMeetingResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_streaming_response_stop_livestreaming_a_meeting(self, client: Cloudflare) -> None:
         with client.realtime_kit.livestreams.with_streaming_response.stop_livestreaming_a_meeting(
@@ -629,6 +674,7 @@ class TestLivestreams:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_path_params_stop_livestreaming_a_meeting(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -658,6 +704,7 @@ class TestAsyncLivestreams:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_create_independent_livestream(self, async_client: AsyncCloudflare) -> None:
         livestream = await async_client.realtime_kit.livestreams.create_independent_livestream(
@@ -666,6 +713,7 @@ class TestAsyncLivestreams:
         )
         assert_matches_type(LivestreamCreateIndependentLivestreamResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_create_independent_livestream_with_all_params(self, async_client: AsyncCloudflare) -> None:
         livestream = await async_client.realtime_kit.livestreams.create_independent_livestream(
@@ -675,6 +723,7 @@ class TestAsyncLivestreams:
         )
         assert_matches_type(LivestreamCreateIndependentLivestreamResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_raw_response_create_independent_livestream(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.realtime_kit.livestreams.with_raw_response.create_independent_livestream(
@@ -687,6 +736,7 @@ class TestAsyncLivestreams:
         livestream = await response.parse()
         assert_matches_type(LivestreamCreateIndependentLivestreamResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_streaming_response_create_independent_livestream(self, async_client: AsyncCloudflare) -> None:
         async with async_client.realtime_kit.livestreams.with_streaming_response.create_independent_livestream(
@@ -701,6 +751,7 @@ class TestAsyncLivestreams:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_path_params_create_independent_livestream(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -715,6 +766,7 @@ class TestAsyncLivestreams:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_get_active_livestreams_for_livestream_id(self, async_client: AsyncCloudflare) -> None:
         livestream = await async_client.realtime_kit.livestreams.get_active_livestreams_for_livestream_id(
@@ -724,6 +776,7 @@ class TestAsyncLivestreams:
         )
         assert_matches_type(LivestreamGetActiveLivestreamsForLivestreamIDResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_raw_response_get_active_livestreams_for_livestream_id(self, async_client: AsyncCloudflare) -> None:
         response = (
@@ -739,6 +792,7 @@ class TestAsyncLivestreams:
         livestream = await response.parse()
         assert_matches_type(LivestreamGetActiveLivestreamsForLivestreamIDResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_streaming_response_get_active_livestreams_for_livestream_id(
         self, async_client: AsyncCloudflare
@@ -758,6 +812,7 @@ class TestAsyncLivestreams:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_path_params_get_active_livestreams_for_livestream_id(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -781,6 +836,7 @@ class TestAsyncLivestreams:
                 app_id="app_id",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_get_all_livestreams(self, async_client: AsyncCloudflare) -> None:
         livestream = await async_client.realtime_kit.livestreams.get_all_livestreams(
@@ -789,6 +845,7 @@ class TestAsyncLivestreams:
         )
         assert_matches_type(LivestreamGetAllLivestreamsResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_get_all_livestreams_with_all_params(self, async_client: AsyncCloudflare) -> None:
         livestream = await async_client.realtime_kit.livestreams.get_all_livestreams(
@@ -804,6 +861,7 @@ class TestAsyncLivestreams:
         )
         assert_matches_type(LivestreamGetAllLivestreamsResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_raw_response_get_all_livestreams(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.realtime_kit.livestreams.with_raw_response.get_all_livestreams(
@@ -816,6 +874,7 @@ class TestAsyncLivestreams:
         livestream = await response.parse()
         assert_matches_type(LivestreamGetAllLivestreamsResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_streaming_response_get_all_livestreams(self, async_client: AsyncCloudflare) -> None:
         async with async_client.realtime_kit.livestreams.with_streaming_response.get_all_livestreams(
@@ -830,6 +889,7 @@ class TestAsyncLivestreams:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_path_params_get_all_livestreams(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -844,6 +904,7 @@ class TestAsyncLivestreams:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_get_livestream_analytics_complete(self, async_client: AsyncCloudflare) -> None:
         livestream = await async_client.realtime_kit.livestreams.get_livestream_analytics_complete(
@@ -852,6 +913,7 @@ class TestAsyncLivestreams:
         )
         assert_matches_type(LivestreamGetLivestreamAnalyticsCompleteResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_get_livestream_analytics_complete_with_all_params(
         self, async_client: AsyncCloudflare
@@ -864,6 +926,7 @@ class TestAsyncLivestreams:
         )
         assert_matches_type(LivestreamGetLivestreamAnalyticsCompleteResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_raw_response_get_livestream_analytics_complete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.realtime_kit.livestreams.with_raw_response.get_livestream_analytics_complete(
@@ -876,6 +939,7 @@ class TestAsyncLivestreams:
         livestream = await response.parse()
         assert_matches_type(LivestreamGetLivestreamAnalyticsCompleteResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_streaming_response_get_livestream_analytics_complete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.realtime_kit.livestreams.with_streaming_response.get_livestream_analytics_complete(
@@ -890,6 +954,7 @@ class TestAsyncLivestreams:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_path_params_get_livestream_analytics_complete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -904,6 +969,7 @@ class TestAsyncLivestreams:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_get_livestream_session_details_for_session_id(self, async_client: AsyncCloudflare) -> None:
         livestream = await async_client.realtime_kit.livestreams.get_livestream_session_details_for_session_id(
@@ -913,6 +979,7 @@ class TestAsyncLivestreams:
         )
         assert_matches_type(LivestreamGetLivestreamSessionDetailsForSessionIDResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_raw_response_get_livestream_session_details_for_session_id(
         self, async_client: AsyncCloudflare
@@ -930,6 +997,7 @@ class TestAsyncLivestreams:
         livestream = await response.parse()
         assert_matches_type(LivestreamGetLivestreamSessionDetailsForSessionIDResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_streaming_response_get_livestream_session_details_for_session_id(
         self, async_client: AsyncCloudflare
@@ -951,6 +1019,7 @@ class TestAsyncLivestreams:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_path_params_get_livestream_session_details_for_session_id(
         self, async_client: AsyncCloudflare
@@ -976,6 +1045,7 @@ class TestAsyncLivestreams:
                 app_id="app_id",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_get_livestream_session_for_livestream_id(self, async_client: AsyncCloudflare) -> None:
         livestream = await async_client.realtime_kit.livestreams.get_livestream_session_for_livestream_id(
@@ -985,6 +1055,7 @@ class TestAsyncLivestreams:
         )
         assert_matches_type(LivestreamGetLivestreamSessionForLivestreamIDResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_get_livestream_session_for_livestream_id_with_all_params(
         self, async_client: AsyncCloudflare
@@ -998,6 +1069,7 @@ class TestAsyncLivestreams:
         )
         assert_matches_type(LivestreamGetLivestreamSessionForLivestreamIDResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_raw_response_get_livestream_session_for_livestream_id(self, async_client: AsyncCloudflare) -> None:
         response = (
@@ -1013,6 +1085,7 @@ class TestAsyncLivestreams:
         livestream = await response.parse()
         assert_matches_type(LivestreamGetLivestreamSessionForLivestreamIDResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_streaming_response_get_livestream_session_for_livestream_id(
         self, async_client: AsyncCloudflare
@@ -1032,6 +1105,7 @@ class TestAsyncLivestreams:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_path_params_get_livestream_session_for_livestream_id(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -1055,6 +1129,7 @@ class TestAsyncLivestreams:
                 app_id="app_id",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_get_meeting_active_livestreams(self, async_client: AsyncCloudflare) -> None:
         livestream = await async_client.realtime_kit.livestreams.get_meeting_active_livestreams(
@@ -1064,6 +1139,7 @@ class TestAsyncLivestreams:
         )
         assert_matches_type(LivestreamGetMeetingActiveLivestreamsResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_raw_response_get_meeting_active_livestreams(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.realtime_kit.livestreams.with_raw_response.get_meeting_active_livestreams(
@@ -1077,6 +1153,7 @@ class TestAsyncLivestreams:
         livestream = await response.parse()
         assert_matches_type(LivestreamGetMeetingActiveLivestreamsResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_streaming_response_get_meeting_active_livestreams(self, async_client: AsyncCloudflare) -> None:
         async with async_client.realtime_kit.livestreams.with_streaming_response.get_meeting_active_livestreams(
@@ -1092,6 +1169,7 @@ class TestAsyncLivestreams:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_path_params_get_meeting_active_livestreams(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -1115,6 +1193,7 @@ class TestAsyncLivestreams:
                 app_id="app_id",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_get_org_analytics(self, async_client: AsyncCloudflare) -> None:
         livestream = await async_client.realtime_kit.livestreams.get_org_analytics(
@@ -1123,6 +1202,7 @@ class TestAsyncLivestreams:
         )
         assert_matches_type(LivestreamGetOrgAnalyticsResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_get_org_analytics_with_all_params(self, async_client: AsyncCloudflare) -> None:
         livestream = await async_client.realtime_kit.livestreams.get_org_analytics(
@@ -1133,6 +1213,7 @@ class TestAsyncLivestreams:
         )
         assert_matches_type(LivestreamGetOrgAnalyticsResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_raw_response_get_org_analytics(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.realtime_kit.livestreams.with_raw_response.get_org_analytics(
@@ -1145,6 +1226,7 @@ class TestAsyncLivestreams:
         livestream = await response.parse()
         assert_matches_type(LivestreamGetOrgAnalyticsResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_streaming_response_get_org_analytics(self, async_client: AsyncCloudflare) -> None:
         async with async_client.realtime_kit.livestreams.with_streaming_response.get_org_analytics(
@@ -1159,6 +1241,7 @@ class TestAsyncLivestreams:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_path_params_get_org_analytics(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -1173,6 +1256,7 @@ class TestAsyncLivestreams:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_start_livestreaming_a_meeting(self, async_client: AsyncCloudflare) -> None:
         livestream = await async_client.realtime_kit.livestreams.start_livestreaming_a_meeting(
@@ -1182,6 +1266,7 @@ class TestAsyncLivestreams:
         )
         assert_matches_type(LivestreamStartLivestreamingAMeetingResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_start_livestreaming_a_meeting_with_all_params(self, async_client: AsyncCloudflare) -> None:
         livestream = await async_client.realtime_kit.livestreams.start_livestreaming_a_meeting(
@@ -1196,6 +1281,7 @@ class TestAsyncLivestreams:
         )
         assert_matches_type(LivestreamStartLivestreamingAMeetingResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_raw_response_start_livestreaming_a_meeting(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.realtime_kit.livestreams.with_raw_response.start_livestreaming_a_meeting(
@@ -1209,6 +1295,7 @@ class TestAsyncLivestreams:
         livestream = await response.parse()
         assert_matches_type(LivestreamStartLivestreamingAMeetingResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_streaming_response_start_livestreaming_a_meeting(self, async_client: AsyncCloudflare) -> None:
         async with async_client.realtime_kit.livestreams.with_streaming_response.start_livestreaming_a_meeting(
@@ -1224,6 +1311,7 @@ class TestAsyncLivestreams:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_path_params_start_livestreaming_a_meeting(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -1247,6 +1335,7 @@ class TestAsyncLivestreams:
                 app_id="app_id",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_stop_livestreaming_a_meeting(self, async_client: AsyncCloudflare) -> None:
         livestream = await async_client.realtime_kit.livestreams.stop_livestreaming_a_meeting(
@@ -1256,6 +1345,7 @@ class TestAsyncLivestreams:
         )
         assert_matches_type(LivestreamStopLivestreamingAMeetingResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_raw_response_stop_livestreaming_a_meeting(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.realtime_kit.livestreams.with_raw_response.stop_livestreaming_a_meeting(
@@ -1269,6 +1359,7 @@ class TestAsyncLivestreams:
         livestream = await response.parse()
         assert_matches_type(LivestreamStopLivestreamingAMeetingResponse, livestream, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_streaming_response_stop_livestreaming_a_meeting(self, async_client: AsyncCloudflare) -> None:
         async with async_client.realtime_kit.livestreams.with_streaming_response.stop_livestreaming_a_meeting(
@@ -1284,6 +1375,7 @@ class TestAsyncLivestreams:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_path_params_stop_livestreaming_a_meeting(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

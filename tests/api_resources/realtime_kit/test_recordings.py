@@ -24,6 +24,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestRecordings:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_get_active_recordings(self, client: Cloudflare) -> None:
         recording = client.realtime_kit.recordings.get_active_recordings(
@@ -33,6 +34,7 @@ class TestRecordings:
         )
         assert_matches_type(RecordingGetActiveRecordingsResponse, recording, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_raw_response_get_active_recordings(self, client: Cloudflare) -> None:
         response = client.realtime_kit.recordings.with_raw_response.get_active_recordings(
@@ -46,6 +48,7 @@ class TestRecordings:
         recording = response.parse()
         assert_matches_type(RecordingGetActiveRecordingsResponse, recording, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_streaming_response_get_active_recordings(self, client: Cloudflare) -> None:
         with client.realtime_kit.recordings.with_streaming_response.get_active_recordings(
@@ -61,6 +64,7 @@ class TestRecordings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_path_params_get_active_recordings(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -84,6 +88,7 @@ class TestRecordings:
                 app_id="app_id",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_get_one_recording(self, client: Cloudflare) -> None:
         recording = client.realtime_kit.recordings.get_one_recording(
@@ -93,6 +98,7 @@ class TestRecordings:
         )
         assert_matches_type(RecordingGetOneRecordingResponse, recording, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_raw_response_get_one_recording(self, client: Cloudflare) -> None:
         response = client.realtime_kit.recordings.with_raw_response.get_one_recording(
@@ -106,6 +112,7 @@ class TestRecordings:
         recording = response.parse()
         assert_matches_type(RecordingGetOneRecordingResponse, recording, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_streaming_response_get_one_recording(self, client: Cloudflare) -> None:
         with client.realtime_kit.recordings.with_streaming_response.get_one_recording(
@@ -121,6 +128,7 @@ class TestRecordings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_path_params_get_one_recording(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -144,6 +152,7 @@ class TestRecordings:
                 app_id="app_id",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_get_recordings(self, client: Cloudflare) -> None:
         recording = client.realtime_kit.recordings.get_recordings(
@@ -152,6 +161,7 @@ class TestRecordings:
         )
         assert_matches_type(RecordingGetRecordingsResponse, recording, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_get_recordings_with_all_params(self, client: Cloudflare) -> None:
         recording = client.realtime_kit.recordings.get_recordings(
@@ -170,6 +180,7 @@ class TestRecordings:
         )
         assert_matches_type(RecordingGetRecordingsResponse, recording, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_raw_response_get_recordings(self, client: Cloudflare) -> None:
         response = client.realtime_kit.recordings.with_raw_response.get_recordings(
@@ -182,6 +193,7 @@ class TestRecordings:
         recording = response.parse()
         assert_matches_type(RecordingGetRecordingsResponse, recording, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_streaming_response_get_recordings(self, client: Cloudflare) -> None:
         with client.realtime_kit.recordings.with_streaming_response.get_recordings(
@@ -196,6 +208,7 @@ class TestRecordings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_path_params_get_recordings(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -210,6 +223,7 @@ class TestRecordings:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_pause_resume_stop_recording(self, client: Cloudflare) -> None:
         recording = client.realtime_kit.recordings.pause_resume_stop_recording(
@@ -220,6 +234,7 @@ class TestRecordings:
         )
         assert_matches_type(RecordingPauseResumeStopRecordingResponse, recording, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_raw_response_pause_resume_stop_recording(self, client: Cloudflare) -> None:
         response = client.realtime_kit.recordings.with_raw_response.pause_resume_stop_recording(
@@ -234,6 +249,7 @@ class TestRecordings:
         recording = response.parse()
         assert_matches_type(RecordingPauseResumeStopRecordingResponse, recording, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_streaming_response_pause_resume_stop_recording(self, client: Cloudflare) -> None:
         with client.realtime_kit.recordings.with_streaming_response.pause_resume_stop_recording(
@@ -250,6 +266,7 @@ class TestRecordings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_path_params_pause_resume_stop_recording(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -276,6 +293,7 @@ class TestRecordings:
                 action="stop",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_start_recordings(self, client: Cloudflare) -> None:
         recording = client.realtime_kit.recordings.start_recordings(
@@ -284,6 +302,7 @@ class TestRecordings:
         )
         assert_matches_type(RecordingStartRecordingsResponse, recording, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_start_recordings_with_all_params(self, client: Cloudflare) -> None:
         recording = client.realtime_kit.recordings.start_recordings(
@@ -333,6 +352,7 @@ class TestRecordings:
         )
         assert_matches_type(RecordingStartRecordingsResponse, recording, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_raw_response_start_recordings(self, client: Cloudflare) -> None:
         response = client.realtime_kit.recordings.with_raw_response.start_recordings(
@@ -345,6 +365,7 @@ class TestRecordings:
         recording = response.parse()
         assert_matches_type(RecordingStartRecordingsResponse, recording, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_streaming_response_start_recordings(self, client: Cloudflare) -> None:
         with client.realtime_kit.recordings.with_streaming_response.start_recordings(
@@ -359,6 +380,7 @@ class TestRecordings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_path_params_start_recordings(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -373,6 +395,7 @@ class TestRecordings:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_start_track_recording(self, client: Cloudflare) -> None:
         recording = client.realtime_kit.recordings.start_track_recording(
@@ -386,6 +409,7 @@ class TestRecordings:
         )
         assert recording is None
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_method_start_track_recording_with_all_params(self, client: Cloudflare) -> None:
         recording = client.realtime_kit.recordings.start_track_recording(
@@ -442,6 +466,7 @@ class TestRecordings:
         )
         assert recording is None
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_raw_response_start_track_recording(self, client: Cloudflare) -> None:
         response = client.realtime_kit.recordings.with_raw_response.start_track_recording(
@@ -459,6 +484,7 @@ class TestRecordings:
         recording = response.parse()
         assert recording is None
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_streaming_response_start_track_recording(self, client: Cloudflare) -> None:
         with client.realtime_kit.recordings.with_streaming_response.start_track_recording(
@@ -478,6 +504,7 @@ class TestRecordings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     def test_path_params_start_track_recording(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -508,6 +535,7 @@ class TestAsyncRecordings:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_get_active_recordings(self, async_client: AsyncCloudflare) -> None:
         recording = await async_client.realtime_kit.recordings.get_active_recordings(
@@ -517,6 +545,7 @@ class TestAsyncRecordings:
         )
         assert_matches_type(RecordingGetActiveRecordingsResponse, recording, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_raw_response_get_active_recordings(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.realtime_kit.recordings.with_raw_response.get_active_recordings(
@@ -530,6 +559,7 @@ class TestAsyncRecordings:
         recording = await response.parse()
         assert_matches_type(RecordingGetActiveRecordingsResponse, recording, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_streaming_response_get_active_recordings(self, async_client: AsyncCloudflare) -> None:
         async with async_client.realtime_kit.recordings.with_streaming_response.get_active_recordings(
@@ -545,6 +575,7 @@ class TestAsyncRecordings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_path_params_get_active_recordings(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -568,6 +599,7 @@ class TestAsyncRecordings:
                 app_id="app_id",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_get_one_recording(self, async_client: AsyncCloudflare) -> None:
         recording = await async_client.realtime_kit.recordings.get_one_recording(
@@ -577,6 +609,7 @@ class TestAsyncRecordings:
         )
         assert_matches_type(RecordingGetOneRecordingResponse, recording, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_raw_response_get_one_recording(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.realtime_kit.recordings.with_raw_response.get_one_recording(
@@ -590,6 +623,7 @@ class TestAsyncRecordings:
         recording = await response.parse()
         assert_matches_type(RecordingGetOneRecordingResponse, recording, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_streaming_response_get_one_recording(self, async_client: AsyncCloudflare) -> None:
         async with async_client.realtime_kit.recordings.with_streaming_response.get_one_recording(
@@ -605,6 +639,7 @@ class TestAsyncRecordings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_path_params_get_one_recording(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -628,6 +663,7 @@ class TestAsyncRecordings:
                 app_id="app_id",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_get_recordings(self, async_client: AsyncCloudflare) -> None:
         recording = await async_client.realtime_kit.recordings.get_recordings(
@@ -636,6 +672,7 @@ class TestAsyncRecordings:
         )
         assert_matches_type(RecordingGetRecordingsResponse, recording, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_get_recordings_with_all_params(self, async_client: AsyncCloudflare) -> None:
         recording = await async_client.realtime_kit.recordings.get_recordings(
@@ -654,6 +691,7 @@ class TestAsyncRecordings:
         )
         assert_matches_type(RecordingGetRecordingsResponse, recording, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_raw_response_get_recordings(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.realtime_kit.recordings.with_raw_response.get_recordings(
@@ -666,6 +704,7 @@ class TestAsyncRecordings:
         recording = await response.parse()
         assert_matches_type(RecordingGetRecordingsResponse, recording, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_streaming_response_get_recordings(self, async_client: AsyncCloudflare) -> None:
         async with async_client.realtime_kit.recordings.with_streaming_response.get_recordings(
@@ -680,6 +719,7 @@ class TestAsyncRecordings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_path_params_get_recordings(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -694,6 +734,7 @@ class TestAsyncRecordings:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_pause_resume_stop_recording(self, async_client: AsyncCloudflare) -> None:
         recording = await async_client.realtime_kit.recordings.pause_resume_stop_recording(
@@ -704,6 +745,7 @@ class TestAsyncRecordings:
         )
         assert_matches_type(RecordingPauseResumeStopRecordingResponse, recording, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_raw_response_pause_resume_stop_recording(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.realtime_kit.recordings.with_raw_response.pause_resume_stop_recording(
@@ -718,6 +760,7 @@ class TestAsyncRecordings:
         recording = await response.parse()
         assert_matches_type(RecordingPauseResumeStopRecordingResponse, recording, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_streaming_response_pause_resume_stop_recording(self, async_client: AsyncCloudflare) -> None:
         async with async_client.realtime_kit.recordings.with_streaming_response.pause_resume_stop_recording(
@@ -734,6 +777,7 @@ class TestAsyncRecordings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_path_params_pause_resume_stop_recording(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -760,6 +804,7 @@ class TestAsyncRecordings:
                 action="stop",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_start_recordings(self, async_client: AsyncCloudflare) -> None:
         recording = await async_client.realtime_kit.recordings.start_recordings(
@@ -768,6 +813,7 @@ class TestAsyncRecordings:
         )
         assert_matches_type(RecordingStartRecordingsResponse, recording, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_start_recordings_with_all_params(self, async_client: AsyncCloudflare) -> None:
         recording = await async_client.realtime_kit.recordings.start_recordings(
@@ -817,6 +863,7 @@ class TestAsyncRecordings:
         )
         assert_matches_type(RecordingStartRecordingsResponse, recording, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_raw_response_start_recordings(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.realtime_kit.recordings.with_raw_response.start_recordings(
@@ -829,6 +876,7 @@ class TestAsyncRecordings:
         recording = await response.parse()
         assert_matches_type(RecordingStartRecordingsResponse, recording, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_streaming_response_start_recordings(self, async_client: AsyncCloudflare) -> None:
         async with async_client.realtime_kit.recordings.with_streaming_response.start_recordings(
@@ -843,6 +891,7 @@ class TestAsyncRecordings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_path_params_start_recordings(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -857,6 +906,7 @@ class TestAsyncRecordings:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_start_track_recording(self, async_client: AsyncCloudflare) -> None:
         recording = await async_client.realtime_kit.recordings.start_track_recording(
@@ -870,6 +920,7 @@ class TestAsyncRecordings:
         )
         assert recording is None
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_method_start_track_recording_with_all_params(self, async_client: AsyncCloudflare) -> None:
         recording = await async_client.realtime_kit.recordings.start_track_recording(
@@ -926,6 +977,7 @@ class TestAsyncRecordings:
         )
         assert recording is None
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_raw_response_start_track_recording(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.realtime_kit.recordings.with_raw_response.start_track_recording(
@@ -943,6 +995,7 @@ class TestAsyncRecordings:
         recording = await response.parse()
         assert recording is None
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_streaming_response_start_track_recording(self, async_client: AsyncCloudflare) -> None:
         async with async_client.realtime_kit.recordings.with_streaming_response.start_track_recording(
@@ -962,6 +1015,7 @@ class TestAsyncRecordings:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism, support api tokens")
     @parametrize
     async def test_path_params_start_track_recording(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
