@@ -31,7 +31,7 @@ class TestPDF:
         )
         pdf = client.browser_rendering.pdf.create(
             account_id="account_id",
-            html="x",
+            html="<h1>Hello World!</h1>",
         )
         assert pdf.is_closed
         assert pdf.json() == {"foo": "bar"}
@@ -46,7 +46,7 @@ class TestPDF:
         )
         pdf = client.browser_rendering.pdf.create(
             account_id="account_id",
-            html="x",
+            html="<h1>Hello World!</h1>",
             cache_ttl=86400,
             action_timeout=120000,
             add_script_tag=[
@@ -153,7 +153,7 @@ class TestPDF:
 
         pdf = client.browser_rendering.pdf.with_raw_response.create(
             account_id="account_id",
-            html="x",
+            html="<h1>Hello World!</h1>",
         )
 
         assert pdf.is_closed is True
@@ -169,7 +169,7 @@ class TestPDF:
         )
         with client.browser_rendering.pdf.with_streaming_response.create(
             account_id="account_id",
-            html="x",
+            html="<h1>Hello World!</h1>",
         ) as pdf:
             assert not pdf.is_closed
             assert pdf.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -186,7 +186,7 @@ class TestPDF:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.browser_rendering.pdf.with_raw_response.create(
                 account_id="",
-                html="x",
+                html="<h1>Hello World!</h1>",
             )
 
     @parametrize
@@ -197,7 +197,7 @@ class TestPDF:
         )
         pdf = client.browser_rendering.pdf.create(
             account_id="account_id",
-            url="https://example.com",
+            url="https://example.com/",
         )
         assert pdf.is_closed
         assert pdf.json() == {"foo": "bar"}
@@ -212,7 +212,7 @@ class TestPDF:
         )
         pdf = client.browser_rendering.pdf.create(
             account_id="account_id",
-            url="https://example.com",
+            url="https://example.com/",
             cache_ttl=86400,
             action_timeout=120000,
             add_script_tag=[
@@ -319,7 +319,7 @@ class TestPDF:
 
         pdf = client.browser_rendering.pdf.with_raw_response.create(
             account_id="account_id",
-            url="https://example.com",
+            url="https://example.com/",
         )
 
         assert pdf.is_closed is True
@@ -335,7 +335,7 @@ class TestPDF:
         )
         with client.browser_rendering.pdf.with_streaming_response.create(
             account_id="account_id",
-            url="https://example.com",
+            url="https://example.com/",
         ) as pdf:
             assert not pdf.is_closed
             assert pdf.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -352,7 +352,7 @@ class TestPDF:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.browser_rendering.pdf.with_raw_response.create(
                 account_id="",
-                url="https://example.com",
+                url="https://example.com/",
             )
 
 
@@ -369,7 +369,7 @@ class TestAsyncPDF:
         )
         pdf = await async_client.browser_rendering.pdf.create(
             account_id="account_id",
-            html="x",
+            html="<h1>Hello World!</h1>",
         )
         assert pdf.is_closed
         assert await pdf.json() == {"foo": "bar"}
@@ -386,7 +386,7 @@ class TestAsyncPDF:
         )
         pdf = await async_client.browser_rendering.pdf.create(
             account_id="account_id",
-            html="x",
+            html="<h1>Hello World!</h1>",
             cache_ttl=86400,
             action_timeout=120000,
             add_script_tag=[
@@ -493,7 +493,7 @@ class TestAsyncPDF:
 
         pdf = await async_client.browser_rendering.pdf.with_raw_response.create(
             account_id="account_id",
-            html="x",
+            html="<h1>Hello World!</h1>",
         )
 
         assert pdf.is_closed is True
@@ -511,7 +511,7 @@ class TestAsyncPDF:
         )
         async with async_client.browser_rendering.pdf.with_streaming_response.create(
             account_id="account_id",
-            html="x",
+            html="<h1>Hello World!</h1>",
         ) as pdf:
             assert not pdf.is_closed
             assert pdf.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -528,7 +528,7 @@ class TestAsyncPDF:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.browser_rendering.pdf.with_raw_response.create(
                 account_id="",
-                html="x",
+                html="<h1>Hello World!</h1>",
             )
 
     @parametrize
@@ -539,7 +539,7 @@ class TestAsyncPDF:
         )
         pdf = await async_client.browser_rendering.pdf.create(
             account_id="account_id",
-            url="https://example.com",
+            url="https://example.com/",
         )
         assert pdf.is_closed
         assert await pdf.json() == {"foo": "bar"}
@@ -556,7 +556,7 @@ class TestAsyncPDF:
         )
         pdf = await async_client.browser_rendering.pdf.create(
             account_id="account_id",
-            url="https://example.com",
+            url="https://example.com/",
             cache_ttl=86400,
             action_timeout=120000,
             add_script_tag=[
@@ -663,7 +663,7 @@ class TestAsyncPDF:
 
         pdf = await async_client.browser_rendering.pdf.with_raw_response.create(
             account_id="account_id",
-            url="https://example.com",
+            url="https://example.com/",
         )
 
         assert pdf.is_closed is True
@@ -681,7 +681,7 @@ class TestAsyncPDF:
         )
         async with async_client.browser_rendering.pdf.with_streaming_response.create(
             account_id="account_id",
-            url="https://example.com",
+            url="https://example.com/",
         ) as pdf:
             assert not pdf.is_closed
             assert pdf.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -698,5 +698,5 @@ class TestAsyncPDF:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.browser_rendering.pdf.with_raw_response.create(
                 account_id="",
-                url="https://example.com",
+                url="https://example.com/",
             )

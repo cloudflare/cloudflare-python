@@ -22,7 +22,7 @@ class TestScrape:
         scrape = client.browser_rendering.scrape.create(
             account_id="account_id",
             elements=[{"selector": "selector"}],
-            html="x",
+            html="<h1>Hello World!</h1>",
         )
         assert_matches_type(ScrapeCreateResponse, scrape, path=["response"])
 
@@ -31,7 +31,7 @@ class TestScrape:
         scrape = client.browser_rendering.scrape.create(
             account_id="account_id",
             elements=[{"selector": "selector"}],
-            html="x",
+            html="<h1>Hello World!</h1>",
             cache_ttl=86400,
             action_timeout=120000,
             add_script_tag=[
@@ -108,7 +108,7 @@ class TestScrape:
         response = client.browser_rendering.scrape.with_raw_response.create(
             account_id="account_id",
             elements=[{"selector": "selector"}],
-            html="x",
+            html="<h1>Hello World!</h1>",
         )
 
         assert response.is_closed is True
@@ -121,7 +121,7 @@ class TestScrape:
         with client.browser_rendering.scrape.with_streaming_response.create(
             account_id="account_id",
             elements=[{"selector": "selector"}],
-            html="x",
+            html="<h1>Hello World!</h1>",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -137,7 +137,7 @@ class TestScrape:
             client.browser_rendering.scrape.with_raw_response.create(
                 account_id="",
                 elements=[{"selector": "selector"}],
-                html="x",
+                html="<h1>Hello World!</h1>",
             )
 
     @parametrize
@@ -145,7 +145,7 @@ class TestScrape:
         scrape = client.browser_rendering.scrape.create(
             account_id="account_id",
             elements=[{"selector": "selector"}],
-            url="https://example.com",
+            url="https://example.com/",
         )
         assert_matches_type(ScrapeCreateResponse, scrape, path=["response"])
 
@@ -154,7 +154,7 @@ class TestScrape:
         scrape = client.browser_rendering.scrape.create(
             account_id="account_id",
             elements=[{"selector": "selector"}],
-            url="https://example.com",
+            url="https://example.com/",
             cache_ttl=86400,
             action_timeout=120000,
             add_script_tag=[
@@ -231,7 +231,7 @@ class TestScrape:
         response = client.browser_rendering.scrape.with_raw_response.create(
             account_id="account_id",
             elements=[{"selector": "selector"}],
-            url="https://example.com",
+            url="https://example.com/",
         )
 
         assert response.is_closed is True
@@ -244,7 +244,7 @@ class TestScrape:
         with client.browser_rendering.scrape.with_streaming_response.create(
             account_id="account_id",
             elements=[{"selector": "selector"}],
-            url="https://example.com",
+            url="https://example.com/",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -260,7 +260,7 @@ class TestScrape:
             client.browser_rendering.scrape.with_raw_response.create(
                 account_id="",
                 elements=[{"selector": "selector"}],
-                url="https://example.com",
+                url="https://example.com/",
             )
 
 
@@ -274,7 +274,7 @@ class TestAsyncScrape:
         scrape = await async_client.browser_rendering.scrape.create(
             account_id="account_id",
             elements=[{"selector": "selector"}],
-            html="x",
+            html="<h1>Hello World!</h1>",
         )
         assert_matches_type(ScrapeCreateResponse, scrape, path=["response"])
 
@@ -283,7 +283,7 @@ class TestAsyncScrape:
         scrape = await async_client.browser_rendering.scrape.create(
             account_id="account_id",
             elements=[{"selector": "selector"}],
-            html="x",
+            html="<h1>Hello World!</h1>",
             cache_ttl=86400,
             action_timeout=120000,
             add_script_tag=[
@@ -360,7 +360,7 @@ class TestAsyncScrape:
         response = await async_client.browser_rendering.scrape.with_raw_response.create(
             account_id="account_id",
             elements=[{"selector": "selector"}],
-            html="x",
+            html="<h1>Hello World!</h1>",
         )
 
         assert response.is_closed is True
@@ -373,7 +373,7 @@ class TestAsyncScrape:
         async with async_client.browser_rendering.scrape.with_streaming_response.create(
             account_id="account_id",
             elements=[{"selector": "selector"}],
-            html="x",
+            html="<h1>Hello World!</h1>",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -389,7 +389,7 @@ class TestAsyncScrape:
             await async_client.browser_rendering.scrape.with_raw_response.create(
                 account_id="",
                 elements=[{"selector": "selector"}],
-                html="x",
+                html="<h1>Hello World!</h1>",
             )
 
     @parametrize
@@ -397,7 +397,7 @@ class TestAsyncScrape:
         scrape = await async_client.browser_rendering.scrape.create(
             account_id="account_id",
             elements=[{"selector": "selector"}],
-            url="https://example.com",
+            url="https://example.com/",
         )
         assert_matches_type(ScrapeCreateResponse, scrape, path=["response"])
 
@@ -406,7 +406,7 @@ class TestAsyncScrape:
         scrape = await async_client.browser_rendering.scrape.create(
             account_id="account_id",
             elements=[{"selector": "selector"}],
-            url="https://example.com",
+            url="https://example.com/",
             cache_ttl=86400,
             action_timeout=120000,
             add_script_tag=[
@@ -483,7 +483,7 @@ class TestAsyncScrape:
         response = await async_client.browser_rendering.scrape.with_raw_response.create(
             account_id="account_id",
             elements=[{"selector": "selector"}],
-            url="https://example.com",
+            url="https://example.com/",
         )
 
         assert response.is_closed is True
@@ -496,7 +496,7 @@ class TestAsyncScrape:
         async with async_client.browser_rendering.scrape.with_streaming_response.create(
             account_id="account_id",
             elements=[{"selector": "selector"}],
-            url="https://example.com",
+            url="https://example.com/",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -512,5 +512,5 @@ class TestAsyncScrape:
             await async_client.browser_rendering.scrape.with_raw_response.create(
                 account_id="",
                 elements=[{"selector": "selector"}],
-                url="https://example.com",
+                url="https://example.com/",
             )

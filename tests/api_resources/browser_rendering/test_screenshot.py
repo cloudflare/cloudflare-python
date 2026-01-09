@@ -21,7 +21,7 @@ class TestScreenshot:
     def test_method_create_overload_1(self, client: Cloudflare) -> None:
         screenshot = client.browser_rendering.screenshot.create(
             account_id="account_id",
-            html="x",
+            html="<h1>Hello World!</h1>",
         )
         assert_matches_type(ScreenshotCreateResponse, screenshot, path=["response"])
 
@@ -29,7 +29,7 @@ class TestScreenshot:
     def test_method_create_with_all_params_overload_1(self, client: Cloudflare) -> None:
         screenshot = client.browser_rendering.screenshot.create(
             account_id="account_id",
-            html="x",
+            html="<h1>Hello World!</h1>",
             cache_ttl=86400,
             action_timeout=120000,
             add_script_tag=[
@@ -124,7 +124,7 @@ class TestScreenshot:
     def test_raw_response_create_overload_1(self, client: Cloudflare) -> None:
         response = client.browser_rendering.screenshot.with_raw_response.create(
             account_id="account_id",
-            html="x",
+            html="<h1>Hello World!</h1>",
         )
 
         assert response.is_closed is True
@@ -136,7 +136,7 @@ class TestScreenshot:
     def test_streaming_response_create_overload_1(self, client: Cloudflare) -> None:
         with client.browser_rendering.screenshot.with_streaming_response.create(
             account_id="account_id",
-            html="x",
+            html="<h1>Hello World!</h1>",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -151,14 +151,14 @@ class TestScreenshot:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.browser_rendering.screenshot.with_raw_response.create(
                 account_id="",
-                html="x",
+                html="<h1>Hello World!</h1>",
             )
 
     @parametrize
     def test_method_create_overload_2(self, client: Cloudflare) -> None:
         screenshot = client.browser_rendering.screenshot.create(
             account_id="account_id",
-            url="https://example.com",
+            url="https://example.com/",
         )
         assert_matches_type(ScreenshotCreateResponse, screenshot, path=["response"])
 
@@ -166,7 +166,7 @@ class TestScreenshot:
     def test_method_create_with_all_params_overload_2(self, client: Cloudflare) -> None:
         screenshot = client.browser_rendering.screenshot.create(
             account_id="account_id",
-            url="https://example.com",
+            url="https://example.com/",
             cache_ttl=86400,
             action_timeout=120000,
             add_script_tag=[
@@ -261,7 +261,7 @@ class TestScreenshot:
     def test_raw_response_create_overload_2(self, client: Cloudflare) -> None:
         response = client.browser_rendering.screenshot.with_raw_response.create(
             account_id="account_id",
-            url="https://example.com",
+            url="https://example.com/",
         )
 
         assert response.is_closed is True
@@ -273,7 +273,7 @@ class TestScreenshot:
     def test_streaming_response_create_overload_2(self, client: Cloudflare) -> None:
         with client.browser_rendering.screenshot.with_streaming_response.create(
             account_id="account_id",
-            url="https://example.com",
+            url="https://example.com/",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -288,7 +288,7 @@ class TestScreenshot:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.browser_rendering.screenshot.with_raw_response.create(
                 account_id="",
-                url="https://example.com",
+                url="https://example.com/",
             )
 
 
@@ -301,7 +301,7 @@ class TestAsyncScreenshot:
     async def test_method_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         screenshot = await async_client.browser_rendering.screenshot.create(
             account_id="account_id",
-            html="x",
+            html="<h1>Hello World!</h1>",
         )
         assert_matches_type(ScreenshotCreateResponse, screenshot, path=["response"])
 
@@ -309,7 +309,7 @@ class TestAsyncScreenshot:
     async def test_method_create_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
         screenshot = await async_client.browser_rendering.screenshot.create(
             account_id="account_id",
-            html="x",
+            html="<h1>Hello World!</h1>",
             cache_ttl=86400,
             action_timeout=120000,
             add_script_tag=[
@@ -404,7 +404,7 @@ class TestAsyncScreenshot:
     async def test_raw_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.browser_rendering.screenshot.with_raw_response.create(
             account_id="account_id",
-            html="x",
+            html="<h1>Hello World!</h1>",
         )
 
         assert response.is_closed is True
@@ -416,7 +416,7 @@ class TestAsyncScreenshot:
     async def test_streaming_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         async with async_client.browser_rendering.screenshot.with_streaming_response.create(
             account_id="account_id",
-            html="x",
+            html="<h1>Hello World!</h1>",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -431,14 +431,14 @@ class TestAsyncScreenshot:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.browser_rendering.screenshot.with_raw_response.create(
                 account_id="",
-                html="x",
+                html="<h1>Hello World!</h1>",
             )
 
     @parametrize
     async def test_method_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         screenshot = await async_client.browser_rendering.screenshot.create(
             account_id="account_id",
-            url="https://example.com",
+            url="https://example.com/",
         )
         assert_matches_type(ScreenshotCreateResponse, screenshot, path=["response"])
 
@@ -446,7 +446,7 @@ class TestAsyncScreenshot:
     async def test_method_create_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
         screenshot = await async_client.browser_rendering.screenshot.create(
             account_id="account_id",
-            url="https://example.com",
+            url="https://example.com/",
             cache_ttl=86400,
             action_timeout=120000,
             add_script_tag=[
@@ -541,7 +541,7 @@ class TestAsyncScreenshot:
     async def test_raw_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.browser_rendering.screenshot.with_raw_response.create(
             account_id="account_id",
-            url="https://example.com",
+            url="https://example.com/",
         )
 
         assert response.is_closed is True
@@ -553,7 +553,7 @@ class TestAsyncScreenshot:
     async def test_streaming_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         async with async_client.browser_rendering.screenshot.with_streaming_response.create(
             account_id="account_id",
-            url="https://example.com",
+            url="https://example.com/",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -568,5 +568,5 @@ class TestAsyncScreenshot:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.browser_rendering.screenshot.with_raw_response.create(
                 account_id="",
-                url="https://example.com",
+                url="https://example.com/",
             )

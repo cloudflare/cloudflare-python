@@ -20,7 +20,7 @@ class TestContent:
     def test_method_create_overload_1(self, client: Cloudflare) -> None:
         content = client.browser_rendering.content.create(
             account_id="account_id",
-            url="https://example.com",
+            url="https://example.com/",
         )
         assert_matches_type(str, content, path=["response"])
 
@@ -28,7 +28,7 @@ class TestContent:
     def test_method_create_with_all_params_overload_1(self, client: Cloudflare) -> None:
         content = client.browser_rendering.content.create(
             account_id="account_id",
-            url="https://example.com",
+            url="https://example.com/",
             cache_ttl=86400,
             action_timeout=120000,
             add_script_tag=[
@@ -104,7 +104,7 @@ class TestContent:
     def test_raw_response_create_overload_1(self, client: Cloudflare) -> None:
         response = client.browser_rendering.content.with_raw_response.create(
             account_id="account_id",
-            url="https://example.com",
+            url="https://example.com/",
         )
 
         assert response.is_closed is True
@@ -116,7 +116,7 @@ class TestContent:
     def test_streaming_response_create_overload_1(self, client: Cloudflare) -> None:
         with client.browser_rendering.content.with_streaming_response.create(
             account_id="account_id",
-            url="https://example.com",
+            url="https://example.com/",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -131,14 +131,14 @@ class TestContent:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.browser_rendering.content.with_raw_response.create(
                 account_id="",
-                url="https://example.com",
+                url="https://example.com/",
             )
 
     @parametrize
     def test_method_create_overload_2(self, client: Cloudflare) -> None:
         content = client.browser_rendering.content.create(
             account_id="account_id",
-            html="x",
+            html="<h1>Hello World!</h1>",
         )
         assert_matches_type(str, content, path=["response"])
 
@@ -146,7 +146,7 @@ class TestContent:
     def test_method_create_with_all_params_overload_2(self, client: Cloudflare) -> None:
         content = client.browser_rendering.content.create(
             account_id="account_id",
-            html="x",
+            html="<h1>Hello World!</h1>",
             cache_ttl=86400,
             action_timeout=120000,
             add_script_tag=[
@@ -222,7 +222,7 @@ class TestContent:
     def test_raw_response_create_overload_2(self, client: Cloudflare) -> None:
         response = client.browser_rendering.content.with_raw_response.create(
             account_id="account_id",
-            html="x",
+            html="<h1>Hello World!</h1>",
         )
 
         assert response.is_closed is True
@@ -234,7 +234,7 @@ class TestContent:
     def test_streaming_response_create_overload_2(self, client: Cloudflare) -> None:
         with client.browser_rendering.content.with_streaming_response.create(
             account_id="account_id",
-            html="x",
+            html="<h1>Hello World!</h1>",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -249,7 +249,7 @@ class TestContent:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.browser_rendering.content.with_raw_response.create(
                 account_id="",
-                html="x",
+                html="<h1>Hello World!</h1>",
             )
 
 
@@ -262,7 +262,7 @@ class TestAsyncContent:
     async def test_method_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         content = await async_client.browser_rendering.content.create(
             account_id="account_id",
-            url="https://example.com",
+            url="https://example.com/",
         )
         assert_matches_type(str, content, path=["response"])
 
@@ -270,7 +270,7 @@ class TestAsyncContent:
     async def test_method_create_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
         content = await async_client.browser_rendering.content.create(
             account_id="account_id",
-            url="https://example.com",
+            url="https://example.com/",
             cache_ttl=86400,
             action_timeout=120000,
             add_script_tag=[
@@ -346,7 +346,7 @@ class TestAsyncContent:
     async def test_raw_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.browser_rendering.content.with_raw_response.create(
             account_id="account_id",
-            url="https://example.com",
+            url="https://example.com/",
         )
 
         assert response.is_closed is True
@@ -358,7 +358,7 @@ class TestAsyncContent:
     async def test_streaming_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         async with async_client.browser_rendering.content.with_streaming_response.create(
             account_id="account_id",
-            url="https://example.com",
+            url="https://example.com/",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -373,14 +373,14 @@ class TestAsyncContent:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.browser_rendering.content.with_raw_response.create(
                 account_id="",
-                url="https://example.com",
+                url="https://example.com/",
             )
 
     @parametrize
     async def test_method_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         content = await async_client.browser_rendering.content.create(
             account_id="account_id",
-            html="x",
+            html="<h1>Hello World!</h1>",
         )
         assert_matches_type(str, content, path=["response"])
 
@@ -388,7 +388,7 @@ class TestAsyncContent:
     async def test_method_create_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
         content = await async_client.browser_rendering.content.create(
             account_id="account_id",
-            html="x",
+            html="<h1>Hello World!</h1>",
             cache_ttl=86400,
             action_timeout=120000,
             add_script_tag=[
@@ -464,7 +464,7 @@ class TestAsyncContent:
     async def test_raw_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.browser_rendering.content.with_raw_response.create(
             account_id="account_id",
-            html="x",
+            html="<h1>Hello World!</h1>",
         )
 
         assert response.is_closed is True
@@ -476,7 +476,7 @@ class TestAsyncContent:
     async def test_streaming_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         async with async_client.browser_rendering.content.with_streaming_response.create(
             account_id="account_id",
-            html="x",
+            html="<h1>Hello World!</h1>",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -491,5 +491,5 @@ class TestAsyncContent:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.browser_rendering.content.with_raw_response.create(
                 account_id="",
-                html="x",
+                html="<h1>Hello World!</h1>",
             )
