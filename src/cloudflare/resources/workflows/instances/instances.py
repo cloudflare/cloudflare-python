@@ -80,7 +80,7 @@ class InstancesResource(SyncAPIResource):
         *,
         account_id: str,
         instance_id: str | Omit = omit,
-        instance_retention: object | Omit = omit,
+        instance_retention: instance_create_params.InstanceRetention | Omit = omit,
         params: object | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -316,7 +316,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         *,
         account_id: str,
         instance_id: str | Omit = omit,
-        instance_retention: object | Omit = omit,
+        instance_retention: instance_create_params.InstanceRetention | Omit = omit,
         params: object | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
