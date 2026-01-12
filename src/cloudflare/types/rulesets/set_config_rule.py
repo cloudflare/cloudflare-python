@@ -65,6 +65,12 @@ class ActionParameters(BaseModel):
     polish: Optional[Literal["off", "lossless", "lossy", "webp"]] = None
     """The Polish level to configure."""
 
+    request_body_buffering: Optional[Literal["none", "standard", "full"]] = None
+    """The request body buffering mode."""
+
+    response_body_buffering: Optional[Literal["none", "standard"]] = None
+    """The response body buffering mode."""
+
     rocket_loader: Optional[bool] = None
     """Whether to enable Rocket Loader."""
 

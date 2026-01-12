@@ -3094,6 +3094,12 @@ class SetConfigurationRuleActionParameters(TypedDict, total=False):
     polish: Literal["off", "lossless", "lossy", "webp"]
     """The Polish level to configure."""
 
+    request_body_buffering: Literal["none", "standard", "full"]
+    """The request body buffering mode."""
+
+    response_body_buffering: Literal["none", "standard"]
+    """The response body buffering mode."""
+
     rocket_loader: bool
     """Whether to enable Rocket Loader."""
 
