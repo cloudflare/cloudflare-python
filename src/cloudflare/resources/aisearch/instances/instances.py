@@ -127,6 +127,7 @@ class InstancesResource(SyncAPIResource):
             "",
         ]
         | Omit = omit,
+        hybrid_search_enabled: bool | Omit = omit,
         max_num_results: int | Omit = omit,
         metadata: instance_create_params.Metadata | Omit = omit,
         public_endpoint_params: instance_create_params.PublicEndpointParams | Omit = omit,
@@ -201,6 +202,7 @@ class InstancesResource(SyncAPIResource):
                     "chunk_overlap": chunk_overlap,
                     "chunk_size": chunk_size,
                     "embedding_model": embedding_model,
+                    "hybrid_search_enabled": hybrid_search_enabled,
                     "max_num_results": max_num_results,
                     "metadata": metadata,
                     "public_endpoint_params": public_endpoint_params,
@@ -275,6 +277,7 @@ class InstancesResource(SyncAPIResource):
             "",
         ]
         | Omit = omit,
+        hybrid_search_enabled: bool | Omit = omit,
         max_num_results: int | Omit = omit,
         metadata: instance_update_params.Metadata | Omit = omit,
         paused: bool | Omit = omit,
@@ -384,6 +387,7 @@ class InstancesResource(SyncAPIResource):
                     "chunk_overlap": chunk_overlap,
                     "chunk_size": chunk_size,
                     "embedding_model": embedding_model,
+                    "hybrid_search_enabled": hybrid_search_enabled,
                     "max_num_results": max_num_results,
                     "metadata": metadata,
                     "paused": paused,
@@ -670,6 +674,7 @@ class AsyncInstancesResource(AsyncAPIResource):
             "",
         ]
         | Omit = omit,
+        hybrid_search_enabled: bool | Omit = omit,
         max_num_results: int | Omit = omit,
         metadata: instance_create_params.Metadata | Omit = omit,
         public_endpoint_params: instance_create_params.PublicEndpointParams | Omit = omit,
@@ -744,6 +749,7 @@ class AsyncInstancesResource(AsyncAPIResource):
                     "chunk_overlap": chunk_overlap,
                     "chunk_size": chunk_size,
                     "embedding_model": embedding_model,
+                    "hybrid_search_enabled": hybrid_search_enabled,
                     "max_num_results": max_num_results,
                     "metadata": metadata,
                     "public_endpoint_params": public_endpoint_params,
@@ -818,6 +824,7 @@ class AsyncInstancesResource(AsyncAPIResource):
             "",
         ]
         | Omit = omit,
+        hybrid_search_enabled: bool | Omit = omit,
         max_num_results: int | Omit = omit,
         metadata: instance_update_params.Metadata | Omit = omit,
         paused: bool | Omit = omit,
@@ -927,6 +934,7 @@ class AsyncInstancesResource(AsyncAPIResource):
                     "chunk_overlap": chunk_overlap,
                     "chunk_size": chunk_size,
                     "embedding_model": embedding_model,
+                    "hybrid_search_enabled": hybrid_search_enabled,
                     "max_num_results": max_num_results,
                     "metadata": metadata,
                     "paused": paused,

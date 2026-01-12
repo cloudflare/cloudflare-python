@@ -84,6 +84,8 @@ class InstanceCreateParams(TypedDict, total=False):
         "",
     ]
 
+    hybrid_search_enabled: bool
+
     max_num_results: int
 
     metadata: Metadata

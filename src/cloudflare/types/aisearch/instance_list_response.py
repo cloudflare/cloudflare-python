@@ -171,6 +171,8 @@ class InstanceListResponse(BaseModel):
 
     engine_version: Optional[float] = None
 
+    hybrid_search_enabled: Optional[bool] = None
+
     last_activity: Optional[datetime] = None
 
     max_num_results: Optional[int] = None
