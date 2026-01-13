@@ -3,22 +3,12 @@
 from __future__ import annotations
 
 from typing import Union, Iterable, Optional
-from typing_extensions import Literal, Required, TypeAlias, TypedDict
+from typing_extensions import Required, TypeAlias, TypedDict
 
 from .pattern_param import PatternParam
 from ..context_awareness_param import ContextAwarenessParam
 
-__all__ = [
-    "CustomUpdateParams",
-    "Entry",
-    "EntryDLPNewCustomEntryWithID",
-    "EntryDLPNewCustomEntry",
-    "SharedEntry",
-    "SharedEntryPredefined",
-    "SharedEntryIntegration",
-    "SharedEntryExactData",
-    "SharedEntryUnionMember3",
-]
+__all__ = ["CustomUpdateParams", "Entry", "EntryDLPNewCustomEntryWithID", "EntryDLPNewCustomEntry", "SharedEntry"]
 
 
 class CustomUpdateParams(TypedDict, total=False):
@@ -74,38 +64,7 @@ class EntryDLPNewCustomEntry(TypedDict, total=False):
 Entry: TypeAlias = Union[EntryDLPNewCustomEntryWithID, EntryDLPNewCustomEntry]
 
 
-class SharedEntryPredefined(TypedDict, total=False):
+class SharedEntry(TypedDict, total=False):
     enabled: Required[bool]
 
     entry_id: Required[str]
-
-    entry_type: Required[Literal["predefined"]]
-
-
-class SharedEntryIntegration(TypedDict, total=False):
-    enabled: Required[bool]
-
-    entry_id: Required[str]
-
-    entry_type: Required[Literal["integration"]]
-
-
-class SharedEntryExactData(TypedDict, total=False):
-    enabled: Required[bool]
-
-    entry_id: Required[str]
-
-    entry_type: Required[Literal["exact_data"]]
-
-
-class SharedEntryUnionMember3(TypedDict, total=False):
-    enabled: Required[bool]
-
-    entry_id: Required[str]
-
-    entry_type: Required[Literal["document_fingerprint"]]
-
-
-SharedEntry: TypeAlias = Union[
-    SharedEntryPredefined, SharedEntryIntegration, SharedEntryExactData, SharedEntryUnionMember3
-]

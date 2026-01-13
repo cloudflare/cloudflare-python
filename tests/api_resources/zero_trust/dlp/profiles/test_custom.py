@@ -57,7 +57,6 @@ class TestCustom:
                 {
                     "enabled": True,
                     "entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "entry_type": "custom",
                 }
             ],
         )
@@ -136,7 +135,6 @@ class TestCustom:
                 {
                     "enabled": True,
                     "entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "entry_type": "predefined",
                 }
             ],
         )
@@ -324,7 +322,6 @@ class TestAsyncCustom:
                 {
                     "enabled": True,
                     "entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "entry_type": "custom",
                 }
             ],
         )
@@ -403,7 +400,6 @@ class TestAsyncCustom:
                 {
                     "enabled": True,
                     "entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "entry_type": "predefined",
                 }
             ],
         )
