@@ -85,6 +85,7 @@ class OnRampsResource(SyncAPIResource):
         *,
         account_id: str,
         cloud_type: Literal["AWS", "AZURE", "GOOGLE"],
+        dynamic_routing: bool,
         install_routes_in_cloud: bool,
         install_routes_in_magic_wan: bool,
         name: str,
@@ -92,6 +93,7 @@ class OnRampsResource(SyncAPIResource):
         adopted_hub_id: str | Omit = omit,
         attached_hubs: SequenceNotStr[str] | Omit = omit,
         attached_vpcs: SequenceNotStr[str] | Omit = omit,
+        cloud_asn: int | Omit = omit,
         description: str | Omit = omit,
         hub_provider_id: str | Omit = omit,
         manage_hub_to_hub_attachments: bool | Omit = omit,
@@ -110,6 +112,12 @@ class OnRampsResource(SyncAPIResource):
         Create a new On-ramp (Closed Beta).
 
         Args:
+          dynamic_routing: if set to true, install_routes_in_cloud and install_routes_in_magic_wan should
+              be set to false
+
+          cloud_asn: the ASN to use on the cloud side. If unset or zero, the cloud's default will be
+              used.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -126,6 +134,7 @@ class OnRampsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "cloud_type": cloud_type,
+                    "dynamic_routing": dynamic_routing,
                     "install_routes_in_cloud": install_routes_in_cloud,
                     "install_routes_in_magic_wan": install_routes_in_magic_wan,
                     "name": name,
@@ -133,6 +142,7 @@ class OnRampsResource(SyncAPIResource):
                     "adopted_hub_id": adopted_hub_id,
                     "attached_hubs": attached_hubs,
                     "attached_vpcs": attached_vpcs,
+                    "cloud_asn": cloud_asn,
                     "description": description,
                     "hub_provider_id": hub_provider_id,
                     "manage_hub_to_hub_attachments": manage_hub_to_hub_attachments,
@@ -571,6 +581,7 @@ class AsyncOnRampsResource(AsyncAPIResource):
         *,
         account_id: str,
         cloud_type: Literal["AWS", "AZURE", "GOOGLE"],
+        dynamic_routing: bool,
         install_routes_in_cloud: bool,
         install_routes_in_magic_wan: bool,
         name: str,
@@ -578,6 +589,7 @@ class AsyncOnRampsResource(AsyncAPIResource):
         adopted_hub_id: str | Omit = omit,
         attached_hubs: SequenceNotStr[str] | Omit = omit,
         attached_vpcs: SequenceNotStr[str] | Omit = omit,
+        cloud_asn: int | Omit = omit,
         description: str | Omit = omit,
         hub_provider_id: str | Omit = omit,
         manage_hub_to_hub_attachments: bool | Omit = omit,
@@ -596,6 +608,12 @@ class AsyncOnRampsResource(AsyncAPIResource):
         Create a new On-ramp (Closed Beta).
 
         Args:
+          dynamic_routing: if set to true, install_routes_in_cloud and install_routes_in_magic_wan should
+              be set to false
+
+          cloud_asn: the ASN to use on the cloud side. If unset or zero, the cloud's default will be
+              used.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -612,6 +630,7 @@ class AsyncOnRampsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "cloud_type": cloud_type,
+                    "dynamic_routing": dynamic_routing,
                     "install_routes_in_cloud": install_routes_in_cloud,
                     "install_routes_in_magic_wan": install_routes_in_magic_wan,
                     "name": name,
@@ -619,6 +638,7 @@ class AsyncOnRampsResource(AsyncAPIResource):
                     "adopted_hub_id": adopted_hub_id,
                     "attached_hubs": attached_hubs,
                     "attached_vpcs": attached_vpcs,
+                    "cloud_asn": cloud_asn,
                     "description": description,
                     "hub_provider_id": hub_provider_id,
                     "manage_hub_to_hub_attachments": manage_hub_to_hub_attachments,

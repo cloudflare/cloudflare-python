@@ -14,6 +14,12 @@ class OnRampCreateParams(TypedDict, total=False):
 
     cloud_type: Required[Literal["AWS", "AZURE", "GOOGLE"]]
 
+    dynamic_routing: Required[bool]
+    """
+    if set to true, install_routes_in_cloud and install_routes_in_magic_wan should
+    be set to false
+    """
+
     install_routes_in_cloud: Required[bool]
 
     install_routes_in_magic_wan: Required[bool]
@@ -27,6 +33,12 @@ class OnRampCreateParams(TypedDict, total=False):
     attached_hubs: SequenceNotStr[str]
 
     attached_vpcs: SequenceNotStr[str]
+
+    cloud_asn: int
+    """the ASN to use on the cloud side.
+
+    If unset or zero, the cloud's default will be used.
+    """
 
     description: str
 
