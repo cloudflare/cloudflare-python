@@ -29,7 +29,6 @@ class TestCustomHostnames:
         custom_hostname = client.custom_hostnames.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             hostname="app.example.com",
-            ssl={},
         )
         assert_matches_type(Optional[CustomHostnameCreateResponse], custom_hostname, path=["response"])
 
@@ -38,6 +37,7 @@ class TestCustomHostnames:
         custom_hostname = client.custom_hostnames.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             hostname="app.example.com",
+            custom_metadata={"foo": "string"},
             ssl={
                 "bundle_method": "ubiquitous",
                 "certificate_authority": "google",
@@ -61,7 +61,6 @@ class TestCustomHostnames:
                 "type": "dv",
                 "wildcard": False,
             },
-            custom_metadata={"foo": "string"},
         )
         assert_matches_type(Optional[CustomHostnameCreateResponse], custom_hostname, path=["response"])
 
@@ -70,7 +69,6 @@ class TestCustomHostnames:
         response = client.custom_hostnames.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             hostname="app.example.com",
-            ssl={},
         )
 
         assert response.is_closed is True
@@ -83,7 +81,6 @@ class TestCustomHostnames:
         with client.custom_hostnames.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             hostname="app.example.com",
-            ssl={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -99,7 +96,6 @@ class TestCustomHostnames:
             client.custom_hostnames.with_raw_response.create(
                 zone_id="",
                 hostname="app.example.com",
-                ssl={},
             )
 
     @parametrize
@@ -345,7 +341,6 @@ class TestAsyncCustomHostnames:
         custom_hostname = await async_client.custom_hostnames.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             hostname="app.example.com",
-            ssl={},
         )
         assert_matches_type(Optional[CustomHostnameCreateResponse], custom_hostname, path=["response"])
 
@@ -354,6 +349,7 @@ class TestAsyncCustomHostnames:
         custom_hostname = await async_client.custom_hostnames.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             hostname="app.example.com",
+            custom_metadata={"foo": "string"},
             ssl={
                 "bundle_method": "ubiquitous",
                 "certificate_authority": "google",
@@ -377,7 +373,6 @@ class TestAsyncCustomHostnames:
                 "type": "dv",
                 "wildcard": False,
             },
-            custom_metadata={"foo": "string"},
         )
         assert_matches_type(Optional[CustomHostnameCreateResponse], custom_hostname, path=["response"])
 
@@ -386,7 +381,6 @@ class TestAsyncCustomHostnames:
         response = await async_client.custom_hostnames.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             hostname="app.example.com",
-            ssl={},
         )
 
         assert response.is_closed is True
@@ -399,7 +393,6 @@ class TestAsyncCustomHostnames:
         async with async_client.custom_hostnames.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             hostname="app.example.com",
-            ssl={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -415,7 +408,6 @@ class TestAsyncCustomHostnames:
             await async_client.custom_hostnames.with_raw_response.create(
                 zone_id="",
                 hostname="app.example.com",
-                ssl={},
             )
 
     @parametrize

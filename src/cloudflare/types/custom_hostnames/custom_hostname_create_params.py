@@ -21,14 +21,14 @@ class CustomHostnameCreateParams(TypedDict, total=False):
     hostname: Required[str]
     """The custom hostname that will point to your hostname via CNAME."""
 
-    ssl: Required[SSL]
-    """SSL properties used when creating the custom hostname."""
-
     custom_metadata: Dict[str, str]
     """Unique key/value metadata for this hostname.
 
     These are per-hostname (customer) settings.
     """
+
+    ssl: SSL
+    """SSL properties used when creating the custom hostname."""
 
 
 class SSLCustomCERTBundle(TypedDict, total=False):

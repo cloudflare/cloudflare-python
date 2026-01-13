@@ -83,8 +83,8 @@ class CustomHostnamesResource(SyncAPIResource):
         *,
         zone_id: str,
         hostname: str,
-        ssl: custom_hostname_create_params.SSL,
         custom_metadata: Dict[str, str] | Omit = omit,
+        ssl: custom_hostname_create_params.SSL | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -109,10 +109,10 @@ class CustomHostnamesResource(SyncAPIResource):
 
           hostname: The custom hostname that will point to your hostname via CNAME.
 
-          ssl: SSL properties used when creating the custom hostname.
-
           custom_metadata: Unique key/value metadata for this hostname. These are per-hostname (customer)
               settings.
+
+          ssl: SSL properties used when creating the custom hostname.
 
           extra_headers: Send extra headers
 
@@ -129,8 +129,8 @@ class CustomHostnamesResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "hostname": hostname,
-                    "ssl": ssl,
                     "custom_metadata": custom_metadata,
+                    "ssl": ssl,
                 },
                 custom_hostname_create_params.CustomHostnameCreateParams,
             ),
@@ -415,8 +415,8 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
         *,
         zone_id: str,
         hostname: str,
-        ssl: custom_hostname_create_params.SSL,
         custom_metadata: Dict[str, str] | Omit = omit,
+        ssl: custom_hostname_create_params.SSL | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -441,10 +441,10 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
 
           hostname: The custom hostname that will point to your hostname via CNAME.
 
-          ssl: SSL properties used when creating the custom hostname.
-
           custom_metadata: Unique key/value metadata for this hostname. These are per-hostname (customer)
               settings.
+
+          ssl: SSL properties used when creating the custom hostname.
 
           extra_headers: Send extra headers
 
@@ -461,8 +461,8 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "hostname": hostname,
-                    "ssl": ssl,
                     "custom_metadata": custom_metadata,
+                    "ssl": ssl,
                 },
                 custom_hostname_create_params.CustomHostnameCreateParams,
             ),
