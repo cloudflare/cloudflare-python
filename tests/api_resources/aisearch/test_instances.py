@@ -58,12 +58,15 @@ class TestInstances:
             },
             public_endpoint_params={
                 "authorized_hosts": ["string"],
+                "chat_completions_endpoint": {"disabled": True},
                 "enabled": True,
+                "mcp": {"disabled": True},
                 "rate_limit": {
                     "period_ms": 60000,
                     "requests": 1,
                     "technique": "fixed",
                 },
+                "search_endpoint": {"disabled": True},
             },
             reranking=True,
             reranking_model="@cf/baai/bge-reranker-base",
@@ -165,12 +168,15 @@ class TestInstances:
             paused=True,
             public_endpoint_params={
                 "authorized_hosts": ["string"],
+                "chat_completions_endpoint": {"disabled": True},
                 "enabled": True,
+                "mcp": {"disabled": True},
                 "rate_limit": {
                     "period_ms": 60000,
                     "requests": 1,
                     "technique": "fixed",
                 },
+                "search_endpoint": {"disabled": True},
             },
             reranking=True,
             reranking_model="@cf/baai/bge-reranker-base",
@@ -476,12 +482,15 @@ class TestAsyncInstances:
             },
             public_endpoint_params={
                 "authorized_hosts": ["string"],
+                "chat_completions_endpoint": {"disabled": True},
                 "enabled": True,
+                "mcp": {"disabled": True},
                 "rate_limit": {
                     "period_ms": 60000,
                     "requests": 1,
                     "technique": "fixed",
                 },
+                "search_endpoint": {"disabled": True},
             },
             reranking=True,
             reranking_model="@cf/baai/bge-reranker-base",
@@ -583,12 +592,15 @@ class TestAsyncInstances:
             paused=True,
             public_endpoint_params={
                 "authorized_hosts": ["string"],
+                "chat_completions_endpoint": {"disabled": True},
                 "enabled": True,
+                "mcp": {"disabled": True},
                 "rate_limit": {
                     "period_ms": 60000,
                     "requests": 1,
                     "technique": "fixed",
                 },
+                "search_endpoint": {"disabled": True},
             },
             reranking=True,
             reranking_model="@cf/baai/bge-reranker-base",

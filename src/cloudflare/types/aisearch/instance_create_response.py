@@ -13,7 +13,10 @@ __all__ = [
     "InstanceCreateResponse",
     "Metadata",
     "PublicEndpointParams",
+    "PublicEndpointParamsChatCompletionsEndpoint",
+    "PublicEndpointParamsMcp",
     "PublicEndpointParamsRateLimit",
+    "PublicEndpointParamsSearchEndpoint",
     "SourceParams",
     "SourceParamsWebCrawler",
     "SourceParamsWebCrawlerParseOptions",
@@ -27,6 +30,16 @@ class Metadata(BaseModel):
     worker_domain: Optional[str] = None
 
 
+class PublicEndpointParamsChatCompletionsEndpoint(BaseModel):
+    disabled: Optional[bool] = None
+    """Disable chat completions endpoint for this public endpoint"""
+
+
+class PublicEndpointParamsMcp(BaseModel):
+    disabled: Optional[bool] = None
+    """Disable MCP endpoint for this public endpoint"""
+
+
 class PublicEndpointParamsRateLimit(BaseModel):
     period_ms: Optional[int] = None
 
@@ -35,12 +48,23 @@ class PublicEndpointParamsRateLimit(BaseModel):
     technique: Optional[Literal["fixed", "sliding"]] = None
 
 
+class PublicEndpointParamsSearchEndpoint(BaseModel):
+    disabled: Optional[bool] = None
+    """Disable search endpoint for this public endpoint"""
+
+
 class PublicEndpointParams(BaseModel):
     authorized_hosts: Optional[List[str]] = None
 
+    chat_completions_endpoint: Optional[PublicEndpointParamsChatCompletionsEndpoint] = None
+
     enabled: Optional[bool] = None
 
+    mcp: Optional[PublicEndpointParamsMcp] = None
+
     rate_limit: Optional[PublicEndpointParamsRateLimit] = None
+
+    search_endpoint: Optional[PublicEndpointParamsSearchEndpoint] = None
 
 
 class SourceParamsWebCrawlerParseOptions(BaseModel):

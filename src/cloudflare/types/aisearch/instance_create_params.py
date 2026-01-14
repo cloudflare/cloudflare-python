@@ -13,7 +13,10 @@ __all__ = [
     "InstanceCreateParams",
     "Metadata",
     "PublicEndpointParams",
+    "PublicEndpointParamsChatCompletionsEndpoint",
+    "PublicEndpointParamsMcp",
     "PublicEndpointParamsRateLimit",
+    "PublicEndpointParamsSearchEndpoint",
     "SourceParams",
     "SourceParamsWebCrawler",
     "SourceParamsWebCrawlerParseOptions",
@@ -138,6 +141,16 @@ class Metadata(TypedDict, total=False):
     worker_domain: str
 
 
+class PublicEndpointParamsChatCompletionsEndpoint(TypedDict, total=False):
+    disabled: bool
+    """Disable chat completions endpoint for this public endpoint"""
+
+
+class PublicEndpointParamsMcp(TypedDict, total=False):
+    disabled: bool
+    """Disable MCP endpoint for this public endpoint"""
+
+
 class PublicEndpointParamsRateLimit(TypedDict, total=False):
     period_ms: int
 
@@ -146,12 +159,23 @@ class PublicEndpointParamsRateLimit(TypedDict, total=False):
     technique: Literal["fixed", "sliding"]
 
 
+class PublicEndpointParamsSearchEndpoint(TypedDict, total=False):
+    disabled: bool
+    """Disable search endpoint for this public endpoint"""
+
+
 class PublicEndpointParams(TypedDict, total=False):
     authorized_hosts: SequenceNotStr[str]
 
+    chat_completions_endpoint: PublicEndpointParamsChatCompletionsEndpoint
+
     enabled: bool
 
+    mcp: PublicEndpointParamsMcp
+
     rate_limit: PublicEndpointParamsRateLimit
+
+    search_endpoint: PublicEndpointParamsSearchEndpoint
 
 
 class SourceParamsWebCrawlerParseOptions(TypedDict, total=False):
