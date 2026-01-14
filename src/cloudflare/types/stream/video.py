@@ -57,10 +57,7 @@ class Status(BaseModel):
     """
 
     pct_complete: Optional[str] = FieldInfo(alias="pctComplete", default=None)
-    """Indicates the size of the entire upload in bytes.
-
-    The value must be a non-negative integer.
-    """
+    """Indicates the progress as a percentage between 0 and 100."""
 
     state: Optional[
         Literal["pendingupload", "downloading", "queued", "inprogress", "ready", "error", "live-inprogress"]
