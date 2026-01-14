@@ -95,6 +95,8 @@ class AIGatewayCreateResponse(BaseModel):
 
     dlp: Optional[DLP] = None
 
+    is_default: Optional[bool] = None
+
     log_management: Optional[int] = None
 
     log_management_strategy: Optional[Literal["STOP_INSERTING", "DELETE_OLDEST"]] = None
