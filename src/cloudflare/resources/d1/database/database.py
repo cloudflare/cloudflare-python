@@ -7,10 +7,10 @@ from typing_extensions import Literal, overload
 
 import httpx
 
-from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import required_args, maybe_transform, async_maybe_transform
-from ..._compat import cached_property
-from ...types.d1 import (
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
+from ...._utils import required_args, maybe_transform, async_maybe_transform
+from ...._compat import cached_property
+from ....types.d1 import (
     database_raw_params,
     database_edit_params,
     database_list_params,
@@ -20,27 +20,39 @@ from ...types.d1 import (
     database_import_params,
     database_update_params,
 )
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from .time_travel import (
+    TimeTravelResource,
+    AsyncTimeTravelResource,
+    TimeTravelResourceWithRawResponse,
+    AsyncTimeTravelResourceWithRawResponse,
+    TimeTravelResourceWithStreamingResponse,
+    AsyncTimeTravelResourceWithStreamingResponse,
+)
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
-from ...pagination import SyncSinglePage, AsyncSinglePage, SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ...types.d1.d1 import D1
-from ..._base_client import AsyncPaginator, make_request_options
-from ...types.d1.query_result import QueryResult
-from ...types.d1.database_raw_response import DatabaseRawResponse
-from ...types.d1.database_list_response import DatabaseListResponse
-from ...types.d1.database_export_response import DatabaseExportResponse
-from ...types.d1.database_import_response import DatabaseImportResponse
+from ...._wrappers import ResultWrapper
+from ....pagination import SyncSinglePage, AsyncSinglePage, SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ....types.d1.d1 import D1
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.d1.query_result import QueryResult
+from ....types.d1.database_raw_response import DatabaseRawResponse
+from ....types.d1.database_list_response import DatabaseListResponse
+from ....types.d1.database_export_response import DatabaseExportResponse
+from ....types.d1.database_import_response import DatabaseImportResponse
 
 __all__ = ["DatabaseResource", "AsyncDatabaseResource"]
 
 
 class DatabaseResource(SyncAPIResource):
+    @cached_property
+    def time_travel(self) -> TimeTravelResource:
+        return TimeTravelResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> DatabaseResourceWithRawResponse:
         """
@@ -809,6 +821,10 @@ class DatabaseResource(SyncAPIResource):
 
 
 class AsyncDatabaseResource(AsyncAPIResource):
+    @cached_property
+    def time_travel(self) -> AsyncTimeTravelResource:
+        return AsyncTimeTravelResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncDatabaseResourceWithRawResponse:
         """
@@ -1615,6 +1631,10 @@ class DatabaseResourceWithRawResponse:
             database.raw,
         )
 
+    @cached_property
+    def time_travel(self) -> TimeTravelResourceWithRawResponse:
+        return TimeTravelResourceWithRawResponse(self._database.time_travel)
+
 
 class AsyncDatabaseResourceWithRawResponse:
     def __init__(self, database: AsyncDatabaseResource) -> None:
@@ -1650,6 +1670,10 @@ class AsyncDatabaseResourceWithRawResponse:
         self.raw = async_to_raw_response_wrapper(
             database.raw,
         )
+
+    @cached_property
+    def time_travel(self) -> AsyncTimeTravelResourceWithRawResponse:
+        return AsyncTimeTravelResourceWithRawResponse(self._database.time_travel)
 
 
 class DatabaseResourceWithStreamingResponse:
@@ -1687,6 +1711,10 @@ class DatabaseResourceWithStreamingResponse:
             database.raw,
         )
 
+    @cached_property
+    def time_travel(self) -> TimeTravelResourceWithStreamingResponse:
+        return TimeTravelResourceWithStreamingResponse(self._database.time_travel)
+
 
 class AsyncDatabaseResourceWithStreamingResponse:
     def __init__(self, database: AsyncDatabaseResource) -> None:
@@ -1722,3 +1750,7 @@ class AsyncDatabaseResourceWithStreamingResponse:
         self.raw = async_to_streamed_response_wrapper(
             database.raw,
         )
+
+    @cached_property
+    def time_travel(self) -> AsyncTimeTravelResourceWithStreamingResponse:
+        return AsyncTimeTravelResourceWithStreamingResponse(self._database.time_travel)
