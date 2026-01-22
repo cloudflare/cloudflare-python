@@ -2,7 +2,10 @@
 
 from __future__ import annotations
 
+from typing import Union
 from typing_extensions import Required, TypedDict
+
+from ...._types import FileTypes
 
 __all__ = ["ValueUpdateParams"]
 
@@ -14,7 +17,7 @@ class ValueUpdateParams(TypedDict, total=False):
     namespace_id: Required[str]
     """Namespace identifier tag."""
 
-    value: Required[str]
+    value: Required[Union[str, FileTypes]]
     """A byte sequence to be stored, up to 25 MiB in length."""
 
     expiration: float

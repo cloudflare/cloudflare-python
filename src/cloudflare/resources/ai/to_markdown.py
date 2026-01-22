@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
+import os
+
 import httpx
 
 from ..._files import read_file_content
-from ..._types import Body, Query, Headers, NotGiven, FileContent, not_given
+from ..._types import Body, Query, Headers, NotGiven, BinaryTypes, FileContent, not_given
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -78,7 +80,7 @@ class ToMarkdownResource(SyncAPIResource):
 
     def transform(
         self,
-        file: FileContent,
+        file: FileContent | BinaryTypes,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -106,7 +108,7 @@ class ToMarkdownResource(SyncAPIResource):
         return self._get_api_list(
             f"/accounts/{account_id}/ai/tomarkdown",
             page=SyncSinglePage[ToMarkdownTransformResponse],
-            body=read_file_content(file),
+            content=read_file_content(file) if isinstance(file, os.PathLike) else file,
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -171,7 +173,7 @@ class AsyncToMarkdownResource(AsyncAPIResource):
 
     def transform(
         self,
-        file: FileContent,
+        file: FileContent | BinaryTypes,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -199,7 +201,7 @@ class AsyncToMarkdownResource(AsyncAPIResource):
         return self._get_api_list(
             f"/accounts/{account_id}/ai/tomarkdown",
             page=AsyncSinglePage[ToMarkdownTransformResponse],
-            body=read_file_content(file),
+            content=read_file_content(file) if isinstance(file, os.PathLike) else file,
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

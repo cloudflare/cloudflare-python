@@ -15,9 +15,9 @@ __all__ = [
     "ImageClassification",
     "ObjectDetection",
     "ObjectDetectionBox",
-    "UnionMember7",
-    "UnionMember7ToolCall",
-    "UnionMember7Usage",
+    "UnionMember8",
+    "UnionMember8ToolCall",
+    "UnionMember8Usage",
     "Translation",
     "Summarization",
     "ImageToText",
@@ -108,7 +108,7 @@ class ObjectDetection(BaseModel):
     """Confidence score indicating the likelihood that the detection is correct"""
 
 
-class UnionMember7ToolCall(BaseModel):
+class UnionMember8ToolCall(BaseModel):
     arguments: Optional[object] = None
     """The arguments passed to be passed to the tool call request"""
 
@@ -116,7 +116,7 @@ class UnionMember7ToolCall(BaseModel):
     """The name of the tool to be called"""
 
 
-class UnionMember7Usage(BaseModel):
+class UnionMember8Usage(BaseModel):
     """Usage statistics for the inference request"""
 
     completion_tokens: Optional[float] = None
@@ -129,14 +129,14 @@ class UnionMember7Usage(BaseModel):
     """Total number of input and output tokens"""
 
 
-class UnionMember7(BaseModel):
+class UnionMember8(BaseModel):
     response: str
     """The generated text response from the model"""
 
-    tool_calls: Optional[List[UnionMember7ToolCall]] = None
+    tool_calls: Optional[List[UnionMember8ToolCall]] = None
     """An array of tool calls requests made during the response generation"""
 
-    usage: Optional[UnionMember7Usage] = None
+    usage: Optional[UnionMember8Usage] = None
     """Usage statistics for the inference request"""
 
 
@@ -168,11 +168,13 @@ AIRunResponse: TypeAlias = Union[
     List[TextClassification],
     object,
     Audio,
+    object,
     TextEmbeddings,
     AutomaticSpeechRecognition,
     List[ImageClassification],
     List[ObjectDetection],
-    UnionMember7,
+    UnionMember8,
+    object,
     Translation,
     Summarization,
     ImageToText,

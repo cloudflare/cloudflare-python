@@ -2,12 +2,22 @@
 
 from __future__ import annotations
 
+import os
 from typing import Type, Optional, cast
 
 import httpx
 
 from ....._files import read_file_content, async_read_file_content
-from ....._types import Body, Query, Headers, NotGiven, FileContent, not_given
+from ....._types import (
+    Body,
+    Query,
+    Headers,
+    NotGiven,
+    BinaryTypes,
+    FileContent,
+    AsyncBinaryTypes,
+    not_given,
+)
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -87,7 +97,7 @@ class UploadResource(SyncAPIResource):
     def edit(
         self,
         version: int,
-        dataset: FileContent,
+        dataset: FileContent | BinaryTypes,
         *,
         account_id: str,
         dataset_id: str,
@@ -121,7 +131,7 @@ class UploadResource(SyncAPIResource):
         extra_headers = {"Content-Type": "application/octet-stream", **(extra_headers or {})}
         return self._post(
             f"/accounts/{account_id}/dlp/datasets/{dataset_id}/upload/{version}",
-            body=read_file_content(dataset),
+            content=read_file_content(dataset) if isinstance(dataset, os.PathLike) else dataset,
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -196,7 +206,7 @@ class AsyncUploadResource(AsyncAPIResource):
     async def edit(
         self,
         version: int,
-        dataset: FileContent,
+        dataset: FileContent | AsyncBinaryTypes,
         *,
         account_id: str,
         dataset_id: str,
@@ -230,7 +240,7 @@ class AsyncUploadResource(AsyncAPIResource):
         extra_headers = {"Content-Type": "application/octet-stream", **(extra_headers or {})}
         return await self._post(
             f"/accounts/{account_id}/dlp/datasets/{dataset_id}/upload/{version}",
-            body=await async_read_file_content(dataset),
+            content=await async_read_file_content(dataset) if isinstance(dataset, os.PathLike) else dataset,
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

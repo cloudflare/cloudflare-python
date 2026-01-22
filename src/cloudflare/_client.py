@@ -1014,24 +1014,16 @@ class Cloudflare(SyncAPIClient):
 
     @override
     def _validate_headers(self, headers: Headers, custom_headers: Headers) -> None:
-        if self.api_email and headers.get("X-Auth-Email"):
-            return
-        if isinstance(custom_headers.get("X-Auth-Email"), Omit):
+        if headers.get("X-Auth-Email") or isinstance(custom_headers.get("X-Auth-Email"), Omit):
             return
 
-        if self.api_key and headers.get("X-Auth-Key"):
-            return
-        if isinstance(custom_headers.get("X-Auth-Key"), Omit):
+        if headers.get("X-Auth-Key") or isinstance(custom_headers.get("X-Auth-Key"), Omit):
             return
 
-        if self.api_token and headers.get("Authorization"):
-            return
-        if isinstance(custom_headers.get("Authorization"), Omit):
+        if headers.get("Authorization") or isinstance(custom_headers.get("Authorization"), Omit):
             return
 
-        if self.user_service_key and headers.get("X-Auth-User-Service-Key"):
-            return
-        if isinstance(custom_headers.get("X-Auth-User-Service-Key"), Omit):
+        if headers.get("X-Auth-User-Service-Key") or isinstance(custom_headers.get("X-Auth-User-Service-Key"), Omit):
             return
 
         raise TypeError(
@@ -1867,24 +1859,16 @@ class AsyncCloudflare(AsyncAPIClient):
 
     @override
     def _validate_headers(self, headers: Headers, custom_headers: Headers) -> None:
-        if self.api_email and headers.get("X-Auth-Email"):
-            return
-        if isinstance(custom_headers.get("X-Auth-Email"), Omit):
+        if headers.get("X-Auth-Email") or isinstance(custom_headers.get("X-Auth-Email"), Omit):
             return
 
-        if self.api_key and headers.get("X-Auth-Key"):
-            return
-        if isinstance(custom_headers.get("X-Auth-Key"), Omit):
+        if headers.get("X-Auth-Key") or isinstance(custom_headers.get("X-Auth-Key"), Omit):
             return
 
-        if self.api_token and headers.get("Authorization"):
-            return
-        if isinstance(custom_headers.get("Authorization"), Omit):
+        if headers.get("Authorization") or isinstance(custom_headers.get("Authorization"), Omit):
             return
 
-        if self.user_service_key and headers.get("X-Auth-User-Service-Key"):
-            return
-        if isinstance(custom_headers.get("X-Auth-User-Service-Key"), Omit):
+        if headers.get("X-Auth-User-Service-Key") or isinstance(custom_headers.get("X-Auth-User-Service-Key"), Omit):
             return
 
         raise TypeError(
