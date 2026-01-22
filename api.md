@@ -2038,7 +2038,6 @@ Types:
 
 ```python
 from cloudflare.types.origin_tls_client_auth import (
-    ZoneAuthenticatedOriginPull,
     OriginTLSClientAuthCreateResponse,
     OriginTLSClientAuthListResponse,
     OriginTLSClientAuthDeleteResponse,
@@ -2053,6 +2052,27 @@ Methods:
 - <code title="delete /zones/{zone_id}/origin_tls_client_auth/{certificate_id}">client.origin_tls_client_auth.<a href="./src/cloudflare/resources/origin_tls_client_auth/origin_tls_client_auth.py">delete</a>(certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/origin_tls_client_auth_delete_response.py">Optional[OriginTLSClientAuthDeleteResponse]</a></code>
 - <code title="get /zones/{zone_id}/origin_tls_client_auth/{certificate_id}">client.origin_tls_client_auth.<a href="./src/cloudflare/resources/origin_tls_client_auth/origin_tls_client_auth.py">get</a>(certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/origin_tls_client_auth_get_response.py">Optional[OriginTLSClientAuthGetResponse]</a></code>
 
+## ZoneCertificates
+
+Types:
+
+```python
+from cloudflare.types.origin_tls_client_auth import (
+    ZoneAuthenticatedOriginPull,
+    ZoneCertificateCreateResponse,
+    ZoneCertificateListResponse,
+    ZoneCertificateDeleteResponse,
+    ZoneCertificateGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /zones/{zone_id}/origin_tls_client_auth">client.origin_tls_client_auth.zone_certificates.<a href="./src/cloudflare/resources/origin_tls_client_auth/zone_certificates.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/origin_tls_client_auth/zone_certificate_create_params.py">params</a>) -> <a href="./src/cloudflare/types/origin_tls_client_auth/zone_certificate_create_response.py">Optional[ZoneCertificateCreateResponse]</a></code>
+- <code title="get /zones/{zone_id}/origin_tls_client_auth">client.origin_tls_client_auth.zone_certificates.<a href="./src/cloudflare/resources/origin_tls_client_auth/zone_certificates.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/zone_certificate_list_response.py">SyncSinglePage[ZoneCertificateListResponse]</a></code>
+- <code title="delete /zones/{zone_id}/origin_tls_client_auth/{certificate_id}">client.origin_tls_client_auth.zone_certificates.<a href="./src/cloudflare/resources/origin_tls_client_auth/zone_certificates.py">delete</a>(certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/zone_certificate_delete_response.py">Optional[ZoneCertificateDeleteResponse]</a></code>
+- <code title="get /zones/{zone_id}/origin_tls_client_auth/{certificate_id}">client.origin_tls_client_auth.zone_certificates.<a href="./src/cloudflare/resources/origin_tls_client_auth/zone_certificates.py">get</a>(certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/zone_certificate_get_response.py">Optional[ZoneCertificateGetResponse]</a></code>
+
 ## Hostnames
 
 Types:
@@ -2063,29 +2083,29 @@ from cloudflare.types.origin_tls_client_auth import AuthenticatedOriginPull, Hos
 
 Methods:
 
-- <code title="put /zones/{zone_id}/origin_tls_client_auth/hostnames">client.origin_tls_client_auth.hostnames.<a href="./src/cloudflare/resources/origin_tls_client_auth/hostnames/hostnames.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/origin_tls_client_auth/hostname_update_params.py">params</a>) -> <a href="./src/cloudflare/types/origin_tls_client_auth/hostname_update_response.py">SyncSinglePage[HostnameUpdateResponse]</a></code>
-- <code title="get /zones/{zone_id}/origin_tls_client_auth/hostnames/{hostname}">client.origin_tls_client_auth.hostnames.<a href="./src/cloudflare/resources/origin_tls_client_auth/hostnames/hostnames.py">get</a>(hostname, \*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/authenticated_origin_pull.py">Optional[AuthenticatedOriginPull]</a></code>
+- <code title="put /zones/{zone_id}/origin_tls_client_auth/hostnames">client.origin_tls_client_auth.hostnames.<a href="./src/cloudflare/resources/origin_tls_client_auth/hostnames.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/origin_tls_client_auth/hostname_update_params.py">params</a>) -> <a href="./src/cloudflare/types/origin_tls_client_auth/hostname_update_response.py">SyncSinglePage[HostnameUpdateResponse]</a></code>
+- <code title="get /zones/{zone_id}/origin_tls_client_auth/hostnames/{hostname}">client.origin_tls_client_auth.hostnames.<a href="./src/cloudflare/resources/origin_tls_client_auth/hostnames.py">get</a>(hostname, \*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/authenticated_origin_pull.py">Optional[AuthenticatedOriginPull]</a></code>
 
-### Certificates
+## HostnameCertificates
 
 Types:
 
 ```python
-from cloudflare.types.origin_tls_client_auth.hostnames import (
+from cloudflare.types.origin_tls_client_auth import (
     Certificate,
-    CertificateCreateResponse,
-    CertificateListResponse,
-    CertificateDeleteResponse,
-    CertificateGetResponse,
+    HostnameCertificateCreateResponse,
+    HostnameCertificateListResponse,
+    HostnameCertificateDeleteResponse,
+    HostnameCertificateGetResponse,
 )
 ```
 
 Methods:
 
-- <code title="post /zones/{zone_id}/origin_tls_client_auth/hostnames/certificates">client.origin_tls_client_auth.hostnames.certificates.<a href="./src/cloudflare/resources/origin_tls_client_auth/hostnames/certificates.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/origin_tls_client_auth/hostnames/certificate_create_params.py">params</a>) -> <a href="./src/cloudflare/types/origin_tls_client_auth/hostnames/certificate_create_response.py">Optional[CertificateCreateResponse]</a></code>
-- <code title="get /zones/{zone_id}/origin_tls_client_auth/hostnames/certificates">client.origin_tls_client_auth.hostnames.certificates.<a href="./src/cloudflare/resources/origin_tls_client_auth/hostnames/certificates.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/hostnames/certificate_list_response.py">SyncSinglePage[CertificateListResponse]</a></code>
-- <code title="delete /zones/{zone_id}/origin_tls_client_auth/hostnames/certificates/{certificate_id}">client.origin_tls_client_auth.hostnames.certificates.<a href="./src/cloudflare/resources/origin_tls_client_auth/hostnames/certificates.py">delete</a>(certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/hostnames/certificate_delete_response.py">Optional[CertificateDeleteResponse]</a></code>
-- <code title="get /zones/{zone_id}/origin_tls_client_auth/hostnames/certificates/{certificate_id}">client.origin_tls_client_auth.hostnames.certificates.<a href="./src/cloudflare/resources/origin_tls_client_auth/hostnames/certificates.py">get</a>(certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/hostnames/certificate_get_response.py">Optional[CertificateGetResponse]</a></code>
+- <code title="post /zones/{zone_id}/origin_tls_client_auth/hostnames/certificates">client.origin_tls_client_auth.hostname_certificates.<a href="./src/cloudflare/resources/origin_tls_client_auth/hostname_certificates.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/origin_tls_client_auth/hostname_certificate_create_params.py">params</a>) -> <a href="./src/cloudflare/types/origin_tls_client_auth/hostname_certificate_create_response.py">Optional[HostnameCertificateCreateResponse]</a></code>
+- <code title="get /zones/{zone_id}/origin_tls_client_auth/hostnames/certificates">client.origin_tls_client_auth.hostname_certificates.<a href="./src/cloudflare/resources/origin_tls_client_auth/hostname_certificates.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/hostname_certificate_list_response.py">SyncSinglePage[HostnameCertificateListResponse]</a></code>
+- <code title="delete /zones/{zone_id}/origin_tls_client_auth/hostnames/certificates/{certificate_id}">client.origin_tls_client_auth.hostname_certificates.<a href="./src/cloudflare/resources/origin_tls_client_auth/hostname_certificates.py">delete</a>(certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/hostname_certificate_delete_response.py">Optional[HostnameCertificateDeleteResponse]</a></code>
+- <code title="get /zones/{zone_id}/origin_tls_client_auth/hostnames/certificates/{certificate_id}">client.origin_tls_client_auth.hostname_certificates.<a href="./src/cloudflare/resources/origin_tls_client_auth/hostname_certificates.py">get</a>(certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/hostname_certificate_get_response.py">Optional[HostnameCertificateGetResponse]</a></code>
 
 ## Settings
 

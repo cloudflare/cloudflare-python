@@ -2,12 +2,12 @@
 
 from typing import Optional
 
-from ..authenticated_origin_pull import AuthenticatedOriginPull
+from .authenticated_origin_pull import AuthenticatedOriginPull
 
-__all__ = ["CertificateListResponse"]
+__all__ = ["HostnameCertificateListResponse"]
 
 
-class CertificateListResponse(AuthenticatedOriginPull):
+class HostnameCertificateListResponse(AuthenticatedOriginPull):
     id: Optional[str] = None
     """Identifier."""
 

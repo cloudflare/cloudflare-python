@@ -4,12 +4,12 @@ from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from ...._models import BaseModel
+from ..._models import BaseModel
 
-__all__ = ["CertificateCreateResponse"]
+__all__ = ["HostnameCertificateCreateResponse"]
 
 
-class CertificateCreateResponse(BaseModel):
+class HostnameCertificateCreateResponse(BaseModel):
     id: Optional[str] = None
     """Identifier."""
 

@@ -6,39 +6,27 @@ from typing import Type, Iterable, Optional, cast
 
 import httpx
 
-from ...._types import Body, Query, Headers, NotGiven, not_given
-from ...._utils import maybe_transform
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
+from ..._types import Body, Query, Headers, NotGiven, not_given
+from ..._utils import maybe_transform
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
-from .certificates import (
-    CertificatesResource,
-    AsyncCertificatesResource,
-    CertificatesResourceWithRawResponse,
-    AsyncCertificatesResourceWithRawResponse,
-    CertificatesResourceWithStreamingResponse,
-    AsyncCertificatesResourceWithStreamingResponse,
-)
-from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.origin_tls_client_auth import hostname_update_params
-from ....types.origin_tls_client_auth.hostname_update_response import HostnameUpdateResponse
-from ....types.origin_tls_client_auth.authenticated_origin_pull import AuthenticatedOriginPull
+from ..._wrappers import ResultWrapper
+from ...pagination import SyncSinglePage, AsyncSinglePage
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.origin_tls_client_auth import hostname_update_params
+from ...types.origin_tls_client_auth.hostname_update_response import HostnameUpdateResponse
+from ...types.origin_tls_client_auth.authenticated_origin_pull import AuthenticatedOriginPull
 
 __all__ = ["HostnamesResource", "AsyncHostnamesResource"]
 
 
 class HostnamesResource(SyncAPIResource):
-    @cached_property
-    def certificates(self) -> CertificatesResource:
-        return CertificatesResource(self._client)
-
     @cached_property
     def with_raw_response(self) -> HostnamesResourceWithRawResponse:
         """
@@ -148,10 +136,6 @@ class HostnamesResource(SyncAPIResource):
 
 
 class AsyncHostnamesResource(AsyncAPIResource):
-    @cached_property
-    def certificates(self) -> AsyncCertificatesResource:
-        return AsyncCertificatesResource(self._client)
-
     @cached_property
     def with_raw_response(self) -> AsyncHostnamesResourceWithRawResponse:
         """
@@ -271,10 +255,6 @@ class HostnamesResourceWithRawResponse:
             hostnames.get,
         )
 
-    @cached_property
-    def certificates(self) -> CertificatesResourceWithRawResponse:
-        return CertificatesResourceWithRawResponse(self._hostnames.certificates)
-
 
 class AsyncHostnamesResourceWithRawResponse:
     def __init__(self, hostnames: AsyncHostnamesResource) -> None:
@@ -286,10 +266,6 @@ class AsyncHostnamesResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             hostnames.get,
         )
-
-    @cached_property
-    def certificates(self) -> AsyncCertificatesResourceWithRawResponse:
-        return AsyncCertificatesResourceWithRawResponse(self._hostnames.certificates)
 
 
 class HostnamesResourceWithStreamingResponse:
@@ -303,10 +279,6 @@ class HostnamesResourceWithStreamingResponse:
             hostnames.get,
         )
 
-    @cached_property
-    def certificates(self) -> CertificatesResourceWithStreamingResponse:
-        return CertificatesResourceWithStreamingResponse(self._hostnames.certificates)
-
 
 class AsyncHostnamesResourceWithStreamingResponse:
     def __init__(self, hostnames: AsyncHostnamesResource) -> None:
@@ -318,7 +290,3 @@ class AsyncHostnamesResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             hostnames.get,
         )
-
-    @cached_property
-    def certificates(self) -> AsyncCertificatesResourceWithStreamingResponse:
-        return AsyncCertificatesResourceWithStreamingResponse(self._hostnames.certificates)

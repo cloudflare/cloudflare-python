@@ -4,15 +4,15 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["CertificateCreateParams"]
+__all__ = ["ZoneCertificateCreateParams"]
 
 
-class CertificateCreateParams(TypedDict, total=False):
+class ZoneCertificateCreateParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier."""
 
     certificate: Required[str]
-    """The hostname certificate."""
+    """The zone's leaf certificate."""
 
     private_key: Required[str]
-    """The hostname certificate's private key."""
+    """The zone's private key."""

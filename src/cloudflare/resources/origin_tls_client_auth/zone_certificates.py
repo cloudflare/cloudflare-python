@@ -6,47 +6,47 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ...._types import Body, Query, Headers, NotGiven, not_given
-from ...._utils import maybe_transform, async_maybe_transform
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
+from ..._types import Body, Query, Headers, NotGiven, not_given
+from ..._utils import maybe_transform, async_maybe_transform
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
-from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.origin_tls_client_auth.hostnames import certificate_create_params
-from ....types.origin_tls_client_auth.hostnames.certificate_get_response import CertificateGetResponse
-from ....types.origin_tls_client_auth.hostnames.certificate_list_response import CertificateListResponse
-from ....types.origin_tls_client_auth.hostnames.certificate_create_response import CertificateCreateResponse
-from ....types.origin_tls_client_auth.hostnames.certificate_delete_response import CertificateDeleteResponse
+from ..._wrappers import ResultWrapper
+from ...pagination import SyncSinglePage, AsyncSinglePage
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.origin_tls_client_auth import zone_certificate_create_params
+from ...types.origin_tls_client_auth.zone_certificate_get_response import ZoneCertificateGetResponse
+from ...types.origin_tls_client_auth.zone_certificate_list_response import ZoneCertificateListResponse
+from ...types.origin_tls_client_auth.zone_certificate_create_response import ZoneCertificateCreateResponse
+from ...types.origin_tls_client_auth.zone_certificate_delete_response import ZoneCertificateDeleteResponse
 
-__all__ = ["CertificatesResource", "AsyncCertificatesResource"]
+__all__ = ["ZoneCertificatesResource", "AsyncZoneCertificatesResource"]
 
 
-class CertificatesResource(SyncAPIResource):
+class ZoneCertificatesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> CertificatesResourceWithRawResponse:
+    def with_raw_response(self) -> ZoneCertificatesResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return CertificatesResourceWithRawResponse(self)
+        return ZoneCertificatesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> CertificatesResourceWithStreamingResponse:
+    def with_streaming_response(self) -> ZoneCertificatesResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return CertificatesResourceWithStreamingResponse(self)
+        return ZoneCertificatesResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -60,18 +60,20 @@ class CertificatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[CertificateCreateResponse]:
-        """Upload a certificate to be used for client authentication on a hostname.
-
-        10
-        hostname certificates per zone are allowed.
+    ) -> Optional[ZoneCertificateCreateResponse]:
+        """
+        Upload your own certificate you want Cloudflare to use for edge-to-origin
+        communication to override the shared certificate. Please note that it is
+        important to keep only one certificate active. Also, make sure to enable
+        zone-level authenticated origin pulls by making a PUT call to settings endpoint
+        to see the uploaded certificate in use.
 
         Args:
           zone_id: Identifier.
 
-          certificate: The hostname certificate.
+          certificate: The zone's leaf certificate.
 
-          private_key: The hostname certificate's private key.
+          private_key: The zone's private key.
 
           extra_headers: Send extra headers
 
@@ -84,22 +86,22 @@ class CertificatesResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
-            f"/zones/{zone_id}/origin_tls_client_auth/hostnames/certificates",
+            f"/zones/{zone_id}/origin_tls_client_auth",
             body=maybe_transform(
                 {
                     "certificate": certificate,
                     "private_key": private_key,
                 },
-                certificate_create_params.CertificateCreateParams,
+                zone_certificate_create_params.ZoneCertificateCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[CertificateCreateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[ZoneCertificateCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[CertificateCreateResponse]], ResultWrapper[CertificateCreateResponse]),
+            cast_to=cast(Type[Optional[ZoneCertificateCreateResponse]], ResultWrapper[ZoneCertificateCreateResponse]),
         )
 
     def list(
@@ -112,7 +114,7 @@ class CertificatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncSinglePage[CertificateListResponse]:
+    ) -> SyncSinglePage[ZoneCertificateListResponse]:
         """
         List Certificates
 
@@ -130,12 +132,12 @@ class CertificatesResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/origin_tls_client_auth/hostnames/certificates",
-            page=SyncSinglePage[CertificateListResponse],
+            f"/zones/{zone_id}/origin_tls_client_auth",
+            page=SyncSinglePage[ZoneCertificateListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=CertificateListResponse,
+            model=ZoneCertificateListResponse,
         )
 
     def delete(
@@ -149,9 +151,9 @@ class CertificatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[CertificateDeleteResponse]:
+    ) -> Optional[ZoneCertificateDeleteResponse]:
         """
-        Delete Hostname Client Certificate
+        Delete Certificate
 
         Args:
           zone_id: Identifier.
@@ -171,15 +173,15 @@ class CertificatesResource(SyncAPIResource):
         if not certificate_id:
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return self._delete(
-            f"/zones/{zone_id}/origin_tls_client_auth/hostnames/certificates/{certificate_id}",
+            f"/zones/{zone_id}/origin_tls_client_auth/{certificate_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[CertificateDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[ZoneCertificateDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[CertificateDeleteResponse]], ResultWrapper[CertificateDeleteResponse]),
+            cast_to=cast(Type[Optional[ZoneCertificateDeleteResponse]], ResultWrapper[ZoneCertificateDeleteResponse]),
         )
 
     def get(
@@ -193,9 +195,9 @@ class CertificatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[CertificateGetResponse]:
+    ) -> Optional[ZoneCertificateGetResponse]:
         """
-        Get the certificate by ID to be used for client authentication on a hostname.
+        Get Certificate Details
 
         Args:
           zone_id: Identifier.
@@ -215,37 +217,37 @@ class CertificatesResource(SyncAPIResource):
         if not certificate_id:
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return self._get(
-            f"/zones/{zone_id}/origin_tls_client_auth/hostnames/certificates/{certificate_id}",
+            f"/zones/{zone_id}/origin_tls_client_auth/{certificate_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[CertificateGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[ZoneCertificateGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[CertificateGetResponse]], ResultWrapper[CertificateGetResponse]),
+            cast_to=cast(Type[Optional[ZoneCertificateGetResponse]], ResultWrapper[ZoneCertificateGetResponse]),
         )
 
 
-class AsyncCertificatesResource(AsyncAPIResource):
+class AsyncZoneCertificatesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncCertificatesResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncZoneCertificatesResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncCertificatesResourceWithRawResponse(self)
+        return AsyncZoneCertificatesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncCertificatesResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncZoneCertificatesResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return AsyncCertificatesResourceWithStreamingResponse(self)
+        return AsyncZoneCertificatesResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -259,18 +261,20 @@ class AsyncCertificatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[CertificateCreateResponse]:
-        """Upload a certificate to be used for client authentication on a hostname.
-
-        10
-        hostname certificates per zone are allowed.
+    ) -> Optional[ZoneCertificateCreateResponse]:
+        """
+        Upload your own certificate you want Cloudflare to use for edge-to-origin
+        communication to override the shared certificate. Please note that it is
+        important to keep only one certificate active. Also, make sure to enable
+        zone-level authenticated origin pulls by making a PUT call to settings endpoint
+        to see the uploaded certificate in use.
 
         Args:
           zone_id: Identifier.
 
-          certificate: The hostname certificate.
+          certificate: The zone's leaf certificate.
 
-          private_key: The hostname certificate's private key.
+          private_key: The zone's private key.
 
           extra_headers: Send extra headers
 
@@ -283,22 +287,22 @@ class AsyncCertificatesResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
-            f"/zones/{zone_id}/origin_tls_client_auth/hostnames/certificates",
+            f"/zones/{zone_id}/origin_tls_client_auth",
             body=await async_maybe_transform(
                 {
                     "certificate": certificate,
                     "private_key": private_key,
                 },
-                certificate_create_params.CertificateCreateParams,
+                zone_certificate_create_params.ZoneCertificateCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[CertificateCreateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[ZoneCertificateCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[CertificateCreateResponse]], ResultWrapper[CertificateCreateResponse]),
+            cast_to=cast(Type[Optional[ZoneCertificateCreateResponse]], ResultWrapper[ZoneCertificateCreateResponse]),
         )
 
     def list(
@@ -311,7 +315,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[CertificateListResponse, AsyncSinglePage[CertificateListResponse]]:
+    ) -> AsyncPaginator[ZoneCertificateListResponse, AsyncSinglePage[ZoneCertificateListResponse]]:
         """
         List Certificates
 
@@ -329,12 +333,12 @@ class AsyncCertificatesResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_id}/origin_tls_client_auth/hostnames/certificates",
-            page=AsyncSinglePage[CertificateListResponse],
+            f"/zones/{zone_id}/origin_tls_client_auth",
+            page=AsyncSinglePage[ZoneCertificateListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=CertificateListResponse,
+            model=ZoneCertificateListResponse,
         )
 
     async def delete(
@@ -348,9 +352,9 @@ class AsyncCertificatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[CertificateDeleteResponse]:
+    ) -> Optional[ZoneCertificateDeleteResponse]:
         """
-        Delete Hostname Client Certificate
+        Delete Certificate
 
         Args:
           zone_id: Identifier.
@@ -370,15 +374,15 @@ class AsyncCertificatesResource(AsyncAPIResource):
         if not certificate_id:
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return await self._delete(
-            f"/zones/{zone_id}/origin_tls_client_auth/hostnames/certificates/{certificate_id}",
+            f"/zones/{zone_id}/origin_tls_client_auth/{certificate_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[CertificateDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[ZoneCertificateDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[CertificateDeleteResponse]], ResultWrapper[CertificateDeleteResponse]),
+            cast_to=cast(Type[Optional[ZoneCertificateDeleteResponse]], ResultWrapper[ZoneCertificateDeleteResponse]),
         )
 
     async def get(
@@ -392,9 +396,9 @@ class AsyncCertificatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Optional[CertificateGetResponse]:
+    ) -> Optional[ZoneCertificateGetResponse]:
         """
-        Get the certificate by ID to be used for client authentication on a hostname.
+        Get Certificate Details
 
         Args:
           zone_id: Identifier.
@@ -414,85 +418,85 @@ class AsyncCertificatesResource(AsyncAPIResource):
         if not certificate_id:
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return await self._get(
-            f"/zones/{zone_id}/origin_tls_client_auth/hostnames/certificates/{certificate_id}",
+            f"/zones/{zone_id}/origin_tls_client_auth/{certificate_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[CertificateGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[ZoneCertificateGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[CertificateGetResponse]], ResultWrapper[CertificateGetResponse]),
+            cast_to=cast(Type[Optional[ZoneCertificateGetResponse]], ResultWrapper[ZoneCertificateGetResponse]),
         )
 
 
-class CertificatesResourceWithRawResponse:
-    def __init__(self, certificates: CertificatesResource) -> None:
-        self._certificates = certificates
+class ZoneCertificatesResourceWithRawResponse:
+    def __init__(self, zone_certificates: ZoneCertificatesResource) -> None:
+        self._zone_certificates = zone_certificates
 
         self.create = to_raw_response_wrapper(
-            certificates.create,
+            zone_certificates.create,
         )
         self.list = to_raw_response_wrapper(
-            certificates.list,
+            zone_certificates.list,
         )
         self.delete = to_raw_response_wrapper(
-            certificates.delete,
+            zone_certificates.delete,
         )
         self.get = to_raw_response_wrapper(
-            certificates.get,
+            zone_certificates.get,
         )
 
 
-class AsyncCertificatesResourceWithRawResponse:
-    def __init__(self, certificates: AsyncCertificatesResource) -> None:
-        self._certificates = certificates
+class AsyncZoneCertificatesResourceWithRawResponse:
+    def __init__(self, zone_certificates: AsyncZoneCertificatesResource) -> None:
+        self._zone_certificates = zone_certificates
 
         self.create = async_to_raw_response_wrapper(
-            certificates.create,
+            zone_certificates.create,
         )
         self.list = async_to_raw_response_wrapper(
-            certificates.list,
+            zone_certificates.list,
         )
         self.delete = async_to_raw_response_wrapper(
-            certificates.delete,
+            zone_certificates.delete,
         )
         self.get = async_to_raw_response_wrapper(
-            certificates.get,
+            zone_certificates.get,
         )
 
 
-class CertificatesResourceWithStreamingResponse:
-    def __init__(self, certificates: CertificatesResource) -> None:
-        self._certificates = certificates
+class ZoneCertificatesResourceWithStreamingResponse:
+    def __init__(self, zone_certificates: ZoneCertificatesResource) -> None:
+        self._zone_certificates = zone_certificates
 
         self.create = to_streamed_response_wrapper(
-            certificates.create,
+            zone_certificates.create,
         )
         self.list = to_streamed_response_wrapper(
-            certificates.list,
+            zone_certificates.list,
         )
         self.delete = to_streamed_response_wrapper(
-            certificates.delete,
+            zone_certificates.delete,
         )
         self.get = to_streamed_response_wrapper(
-            certificates.get,
+            zone_certificates.get,
         )
 
 
-class AsyncCertificatesResourceWithStreamingResponse:
-    def __init__(self, certificates: AsyncCertificatesResource) -> None:
-        self._certificates = certificates
+class AsyncZoneCertificatesResourceWithStreamingResponse:
+    def __init__(self, zone_certificates: AsyncZoneCertificatesResource) -> None:
+        self._zone_certificates = zone_certificates
 
         self.create = async_to_streamed_response_wrapper(
-            certificates.create,
+            zone_certificates.create,
         )
         self.list = async_to_streamed_response_wrapper(
-            certificates.list,
+            zone_certificates.list,
         )
         self.delete = async_to_streamed_response_wrapper(
-            certificates.delete,
+            zone_certificates.delete,
         )
         self.get = async_to_streamed_response_wrapper(
-            certificates.get,
+            zone_certificates.get,
         )
