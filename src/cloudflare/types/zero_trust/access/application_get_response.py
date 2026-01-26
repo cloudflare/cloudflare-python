@@ -73,6 +73,7 @@ __all__ = [
     "GatewayIdentityProxyEndpointApplication",
     "GatewayIdentityProxyEndpointApplicationPolicy",
     "BookmarkApplication",
+    "BookmarkApplicationPolicy",
     "InfrastructureApplication",
     "InfrastructureApplicationTargetCriterion",
     "InfrastructureApplicationPolicy",
@@ -477,6 +478,14 @@ class SelfHostedApplication(BaseModel):
     """The tags you want assigned to an application.
 
     Tags are used to filter applications in the App Launcher dashboard.
+    """
+
+    use_clientless_isolation_app_launcher_url: Optional[bool] = None
+    """
+    Determines if users can access this application via a clientless browser
+    isolation URL. This allows users to access private domains without connecting to
+    Gateway. The option requires Clientless Browser Isolation to be set up with
+    policies that allow users of this application.
     """
 
 
@@ -1106,6 +1115,14 @@ class BrowserSSHApplication(BaseModel):
     Tags are used to filter applications in the App Launcher dashboard.
     """
 
+    use_clientless_isolation_app_launcher_url: Optional[bool] = None
+    """
+    Determines if users can access this application via a clientless browser
+    isolation URL. This allows users to access private domains without connecting to
+    Gateway. The option requires Clientless Browser Isolation to be set up with
+    policies that allow users of this application.
+    """
+
 
 class BrowserVNCApplicationDestinationPublicDestination(BaseModel):
     """A public hostname that Access will secure.
@@ -1506,6 +1523,14 @@ class BrowserVNCApplication(BaseModel):
     """The tags you want assigned to an application.
 
     Tags are used to filter applications in the App Launcher dashboard.
+    """
+
+    use_clientless_isolation_app_launcher_url: Optional[bool] = None
+    """
+    Determines if users can access this application via a clientless browser
+    isolation URL. This allows users to access private domains without connecting to
+    Gateway. The option requires Clientless Browser Isolation to be set up with
+    policies that allow users of this application.
     """
 
 
@@ -2085,6 +2110,77 @@ class GatewayIdentityProxyEndpointApplication(BaseModel):
     """
 
 
+class BookmarkApplicationPolicy(BaseModel):
+    id: Optional[str] = None
+    """The UUID of the policy"""
+
+    approval_groups: Optional[List[ApprovalGroup]] = None
+    """Administrators who can approve a temporary authentication request."""
+
+    approval_required: Optional[bool] = None
+    """
+    Requires the user to request access from an administrator at the start of each
+    session.
+    """
+
+    created_at: Optional[datetime] = None
+
+    decision: Optional[Decision] = None
+    """The action Access will take if a user matches this policy.
+
+    Infrastructure application policies can only use the Allow action.
+    """
+
+    exclude: Optional[List[AccessRule]] = None
+    """Rules evaluated with a NOT logical operator.
+
+    To match the policy, a user cannot meet any of the Exclude rules.
+    """
+
+    include: Optional[List[AccessRule]] = None
+    """Rules evaluated with an OR logical operator.
+
+    A user needs to meet only one of the Include rules.
+    """
+
+    isolation_required: Optional[bool] = None
+    """
+    Require this application to be served in an isolated browser for users matching
+    this policy. 'Client Web Isolation' must be on for the account in order to use
+    this feature.
+    """
+
+    name: Optional[str] = None
+    """The name of the Access policy."""
+
+    precedence: Optional[int] = None
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
+
+    purpose_justification_prompt: Optional[str] = None
+    """A custom message that will appear on the purpose justification screen."""
+
+    purpose_justification_required: Optional[bool] = None
+    """Require users to enter a justification when they log in to the application."""
+
+    require: Optional[List[AccessRule]] = None
+    """Rules evaluated with an AND logical operator.
+
+    To match the policy, a user must meet all of the Require rules.
+    """
+
+    session_duration: Optional[str] = None
+    """The amount of time that tokens issued for the application will be valid.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
+    ms, s, m, h.
+    """
+
+    updated_at: Optional[datetime] = None
+
+
 class BookmarkApplication(BaseModel):
     id: Optional[str] = None
     """UUID."""
@@ -2103,6 +2199,8 @@ class BookmarkApplication(BaseModel):
 
     name: Optional[str] = None
     """The name of the application."""
+
+    policies: Optional[List[BookmarkApplicationPolicy]] = None
 
     tags: Optional[List[str]] = None
     """The tags you want assigned to an application.
@@ -2612,6 +2710,14 @@ class BrowserRdpApplication(BaseModel):
     """The tags you want assigned to an application.
 
     Tags are used to filter applications in the App Launcher dashboard.
+    """
+
+    use_clientless_isolation_app_launcher_url: Optional[bool] = None
+    """
+    Determines if users can access this application via a clientless browser
+    isolation URL. This allows users to access private domains without connecting to
+    Gateway. The option requires Clientless Browser Isolation to be set up with
+    policies that allow users of this application.
     """
 
 

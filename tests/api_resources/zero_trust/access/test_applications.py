@@ -142,6 +142,7 @@ class TestApplications:
             session_duration="24h",
             skip_interstitial=True,
             tags=["engineers"],
+            use_clientless_isolation_app_launcher_url=False,
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -433,6 +434,7 @@ class TestApplications:
             session_duration="24h",
             skip_interstitial=True,
             tags=["engineers"],
+            use_clientless_isolation_app_launcher_url=False,
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -601,6 +603,7 @@ class TestApplications:
             session_duration="24h",
             skip_interstitial=True,
             tags=["engineers"],
+            use_clientless_isolation_app_launcher_url=False,
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -979,6 +982,12 @@ class TestApplications:
             domain="https://mybookmark.com",
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                }
+            ],
             tags=["engineers"],
             type="bookmark",
         )
@@ -1274,6 +1283,7 @@ class TestApplications:
             session_duration="24h",
             skip_interstitial=True,
             tags=["engineers"],
+            use_clientless_isolation_app_launcher_url=False,
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -1472,6 +1482,7 @@ class TestApplications:
             session_duration="24h",
             skip_interstitial=True,
             tags=["engineers"],
+            use_clientless_isolation_app_launcher_url=False,
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -1789,6 +1800,7 @@ class TestApplications:
             session_duration="24h",
             skip_interstitial=True,
             tags=["engineers"],
+            use_clientless_isolation_app_launcher_url=False,
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -1971,6 +1983,7 @@ class TestApplications:
             session_duration="24h",
             skip_interstitial=True,
             tags=["engineers"],
+            use_clientless_isolation_app_launcher_url=False,
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -2415,6 +2428,12 @@ class TestApplications:
             domain="https://mybookmark.com",
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                }
+            ],
             tags=["engineers"],
             type="bookmark",
         )
@@ -2742,6 +2761,7 @@ class TestApplications:
             session_duration="24h",
             skip_interstitial=True,
             tags=["engineers"],
+            use_clientless_isolation_app_launcher_url=False,
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -3227,6 +3247,7 @@ class TestAsyncApplications:
             session_duration="24h",
             skip_interstitial=True,
             tags=["engineers"],
+            use_clientless_isolation_app_launcher_url=False,
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -3518,6 +3539,7 @@ class TestAsyncApplications:
             session_duration="24h",
             skip_interstitial=True,
             tags=["engineers"],
+            use_clientless_isolation_app_launcher_url=False,
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -3686,6 +3708,7 @@ class TestAsyncApplications:
             session_duration="24h",
             skip_interstitial=True,
             tags=["engineers"],
+            use_clientless_isolation_app_launcher_url=False,
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -4064,6 +4087,12 @@ class TestAsyncApplications:
             domain="https://mybookmark.com",
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                }
+            ],
             tags=["engineers"],
             type="bookmark",
         )
@@ -4359,6 +4388,7 @@ class TestAsyncApplications:
             session_duration="24h",
             skip_interstitial=True,
             tags=["engineers"],
+            use_clientless_isolation_app_launcher_url=False,
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -4557,6 +4587,7 @@ class TestAsyncApplications:
             session_duration="24h",
             skip_interstitial=True,
             tags=["engineers"],
+            use_clientless_isolation_app_launcher_url=False,
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -4874,6 +4905,7 @@ class TestAsyncApplications:
             session_duration="24h",
             skip_interstitial=True,
             tags=["engineers"],
+            use_clientless_isolation_app_launcher_url=False,
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -5056,6 +5088,7 @@ class TestAsyncApplications:
             session_duration="24h",
             skip_interstitial=True,
             tags=["engineers"],
+            use_clientless_isolation_app_launcher_url=False,
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -5500,6 +5533,12 @@ class TestAsyncApplications:
             domain="https://mybookmark.com",
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                }
+            ],
             tags=["engineers"],
             type="bookmark",
         )
@@ -5827,6 +5866,7 @@ class TestAsyncApplications:
             session_duration="24h",
             skip_interstitial=True,
             tags=["engineers"],
+            use_clientless_isolation_app_launcher_url=False,
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 

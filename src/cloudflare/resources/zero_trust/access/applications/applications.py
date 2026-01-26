@@ -155,6 +155,7 @@ class ApplicationsResource(SyncAPIResource):
         session_duration: str | Omit = omit,
         skip_interstitial: bool | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
+        use_clientless_isolation_app_launcher_url: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -253,6 +254,11 @@ class ApplicationsResource(SyncAPIResource):
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
+
+          use_clientless_isolation_app_launcher_url: Determines if users can access this application via a clientless browser
+              isolation URL. This allows users to access private domains without connecting to
+              Gateway. The option requires Clientless Browser Isolation to be set up with
+              policies that allow users of this application.
 
           extra_headers: Send extra headers
 
@@ -381,6 +387,7 @@ class ApplicationsResource(SyncAPIResource):
         session_duration: str | Omit = omit,
         skip_interstitial: bool | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
+        use_clientless_isolation_app_launcher_url: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -479,6 +486,11 @@ class ApplicationsResource(SyncAPIResource):
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
+
+          use_clientless_isolation_app_launcher_url: Determines if users can access this application via a clientless browser
+              isolation URL. This allows users to access private domains without connecting to
+              Gateway. The option requires Clientless Browser Isolation to be set up with
+              policies that allow users of this application.
 
           extra_headers: Send extra headers
 
@@ -539,6 +551,7 @@ class ApplicationsResource(SyncAPIResource):
         session_duration: str | Omit = omit,
         skip_interstitial: bool | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
+        use_clientless_isolation_app_launcher_url: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -637,6 +650,11 @@ class ApplicationsResource(SyncAPIResource):
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
+
+          use_clientless_isolation_app_launcher_url: Determines if users can access this application via a clientless browser
+              isolation URL. This allows users to access private domains without connecting to
+              Gateway. The option requires Clientless Browser Isolation to be set up with
+              policies that allow users of this application.
 
           extra_headers: Send extra headers
 
@@ -950,6 +968,7 @@ class ApplicationsResource(SyncAPIResource):
         domain: str | Omit = omit,
         logo_url: str | Omit = omit,
         name: str | Omit = omit,
+        policies: SequenceNotStr[application_create_params.BookmarkApplicationPolicy] | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
         type: ApplicationType | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -974,6 +993,10 @@ class ApplicationsResource(SyncAPIResource):
           logo_url: The image URL for the logo shown in the App Launcher dashboard.
 
           name: The name of the application.
+
+          policies: The policies that Access applies to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
@@ -1066,6 +1089,7 @@ class ApplicationsResource(SyncAPIResource):
         session_duration: str | Omit = omit,
         skip_interstitial: bool | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
+        use_clientless_isolation_app_launcher_url: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1165,6 +1189,11 @@ class ApplicationsResource(SyncAPIResource):
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
 
+          use_clientless_isolation_app_launcher_url: Determines if users can access this application via a clientless browser
+              isolation URL. This allows users to access private domains without connecting to
+              Gateway. The option requires Clientless Browser Isolation to be set up with
+              policies that allow users of this application.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1228,6 +1257,7 @@ class ApplicationsResource(SyncAPIResource):
         | SequenceNotStr[application_create_params.DeviceEnrollmentPermissionsApplicationPolicy]
         | SequenceNotStr[application_create_params.BrowserIsolationPermissionsApplicationPolicy]
         | SequenceNotStr[application_create_params.GatewayIdentityProxyEndpointApplicationPolicy]
+        | SequenceNotStr[application_create_params.BookmarkApplicationPolicy]
         | Iterable[application_create_params.InfrastructureApplicationPolicy]
         | SequenceNotStr[application_create_params.BrowserRdpApplicationPolicy]
         | Omit = omit,
@@ -1244,6 +1274,7 @@ class ApplicationsResource(SyncAPIResource):
         session_duration: str | Omit = omit,
         skip_interstitial: bool | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
+        use_clientless_isolation_app_launcher_url: bool | Omit = omit,
         saas_app: application_create_params.SaaSApplicationSaaSApp | Omit = omit,
         app_launcher_logo_url: str | Omit = omit,
         bg_color: str | Omit = omit,
@@ -1307,6 +1338,7 @@ class ApplicationsResource(SyncAPIResource):
                         "session_duration": session_duration,
                         "skip_interstitial": skip_interstitial,
                         "tags": tags,
+                        "use_clientless_isolation_app_launcher_url": use_clientless_isolation_app_launcher_url,
                         "saas_app": saas_app,
                         "app_launcher_logo_url": app_launcher_logo_url,
                         "bg_color": bg_color,
@@ -1366,6 +1398,7 @@ class ApplicationsResource(SyncAPIResource):
         session_duration: str | Omit = omit,
         skip_interstitial: bool | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
+        use_clientless_isolation_app_launcher_url: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1466,6 +1499,11 @@ class ApplicationsResource(SyncAPIResource):
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
+
+          use_clientless_isolation_app_launcher_url: Determines if users can access this application via a clientless browser
+              isolation URL. This allows users to access private domains without connecting to
+              Gateway. The option requires Clientless Browser Isolation to be set up with
+              policies that allow users of this application.
 
           extra_headers: Send extra headers
 
@@ -1598,6 +1636,7 @@ class ApplicationsResource(SyncAPIResource):
         session_duration: str | Omit = omit,
         skip_interstitial: bool | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
+        use_clientless_isolation_app_launcher_url: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1698,6 +1737,11 @@ class ApplicationsResource(SyncAPIResource):
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
+
+          use_clientless_isolation_app_launcher_url: Determines if users can access this application via a clientless browser
+              isolation URL. This allows users to access private domains without connecting to
+              Gateway. The option requires Clientless Browser Isolation to be set up with
+              policies that allow users of this application.
 
           extra_headers: Send extra headers
 
@@ -1759,6 +1803,7 @@ class ApplicationsResource(SyncAPIResource):
         session_duration: str | Omit = omit,
         skip_interstitial: bool | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
+        use_clientless_isolation_app_launcher_url: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1859,6 +1904,11 @@ class ApplicationsResource(SyncAPIResource):
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
+
+          use_clientless_isolation_app_launcher_url: Determines if users can access this application via a clientless browser
+              isolation URL. This allows users to access private domains without connecting to
+              Gateway. The option requires Clientless Browser Isolation to be set up with
+              policies that allow users of this application.
 
           extra_headers: Send extra headers
 
@@ -2185,6 +2235,7 @@ class ApplicationsResource(SyncAPIResource):
         domain: str | Omit = omit,
         logo_url: str | Omit = omit,
         name: str | Omit = omit,
+        policies: SequenceNotStr[application_update_params.BookmarkApplicationPolicy] | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
         type: ApplicationType | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -2211,6 +2262,10 @@ class ApplicationsResource(SyncAPIResource):
           logo_url: The image URL for the logo shown in the App Launcher dashboard.
 
           name: The name of the application.
+
+          policies: The policies that Access applies to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
@@ -2307,6 +2362,7 @@ class ApplicationsResource(SyncAPIResource):
         session_duration: str | Omit = omit,
         skip_interstitial: bool | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
+        use_clientless_isolation_app_launcher_url: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2408,6 +2464,11 @@ class ApplicationsResource(SyncAPIResource):
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
 
+          use_clientless_isolation_app_launcher_url: Determines if users can access this application via a clientless browser
+              isolation URL. This allows users to access private domains without connecting to
+              Gateway. The option requires Clientless Browser Isolation to be set up with
+              policies that allow users of this application.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2472,6 +2533,7 @@ class ApplicationsResource(SyncAPIResource):
         | SequenceNotStr[application_update_params.DeviceEnrollmentPermissionsApplicationPolicy]
         | SequenceNotStr[application_update_params.BrowserIsolationPermissionsApplicationPolicy]
         | SequenceNotStr[application_update_params.GatewayIdentityProxyEndpointApplicationPolicy]
+        | SequenceNotStr[application_update_params.BookmarkApplicationPolicy]
         | Iterable[application_update_params.InfrastructureApplicationPolicy]
         | SequenceNotStr[application_update_params.BrowserRdpApplicationPolicy]
         | Omit = omit,
@@ -2488,6 +2550,7 @@ class ApplicationsResource(SyncAPIResource):
         session_duration: str | Omit = omit,
         skip_interstitial: bool | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
+        use_clientless_isolation_app_launcher_url: bool | Omit = omit,
         saas_app: application_update_params.SaaSApplicationSaaSApp | Omit = omit,
         app_launcher_logo_url: str | Omit = omit,
         bg_color: str | Omit = omit,
@@ -2553,6 +2616,7 @@ class ApplicationsResource(SyncAPIResource):
                         "session_duration": session_duration,
                         "skip_interstitial": skip_interstitial,
                         "tags": tags,
+                        "use_clientless_isolation_app_launcher_url": use_clientless_isolation_app_launcher_url,
                         "saas_app": saas_app,
                         "app_launcher_logo_url": app_launcher_logo_url,
                         "bg_color": bg_color,
@@ -2917,6 +2981,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         session_duration: str | Omit = omit,
         skip_interstitial: bool | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
+        use_clientless_isolation_app_launcher_url: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3015,6 +3080,11 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
+
+          use_clientless_isolation_app_launcher_url: Determines if users can access this application via a clientless browser
+              isolation URL. This allows users to access private domains without connecting to
+              Gateway. The option requires Clientless Browser Isolation to be set up with
+              policies that allow users of this application.
 
           extra_headers: Send extra headers
 
@@ -3143,6 +3213,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         session_duration: str | Omit = omit,
         skip_interstitial: bool | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
+        use_clientless_isolation_app_launcher_url: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3241,6 +3312,11 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
+
+          use_clientless_isolation_app_launcher_url: Determines if users can access this application via a clientless browser
+              isolation URL. This allows users to access private domains without connecting to
+              Gateway. The option requires Clientless Browser Isolation to be set up with
+              policies that allow users of this application.
 
           extra_headers: Send extra headers
 
@@ -3301,6 +3377,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         session_duration: str | Omit = omit,
         skip_interstitial: bool | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
+        use_clientless_isolation_app_launcher_url: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3399,6 +3476,11 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
+
+          use_clientless_isolation_app_launcher_url: Determines if users can access this application via a clientless browser
+              isolation URL. This allows users to access private domains without connecting to
+              Gateway. The option requires Clientless Browser Isolation to be set up with
+              policies that allow users of this application.
 
           extra_headers: Send extra headers
 
@@ -3712,6 +3794,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         domain: str | Omit = omit,
         logo_url: str | Omit = omit,
         name: str | Omit = omit,
+        policies: SequenceNotStr[application_create_params.BookmarkApplicationPolicy] | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
         type: ApplicationType | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -3736,6 +3819,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
           logo_url: The image URL for the logo shown in the App Launcher dashboard.
 
           name: The name of the application.
+
+          policies: The policies that Access applies to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
@@ -3828,6 +3915,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         session_duration: str | Omit = omit,
         skip_interstitial: bool | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
+        use_clientless_isolation_app_launcher_url: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3927,6 +4015,11 @@ class AsyncApplicationsResource(AsyncAPIResource):
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
 
+          use_clientless_isolation_app_launcher_url: Determines if users can access this application via a clientless browser
+              isolation URL. This allows users to access private domains without connecting to
+              Gateway. The option requires Clientless Browser Isolation to be set up with
+              policies that allow users of this application.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -3990,6 +4083,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         | SequenceNotStr[application_create_params.DeviceEnrollmentPermissionsApplicationPolicy]
         | SequenceNotStr[application_create_params.BrowserIsolationPermissionsApplicationPolicy]
         | SequenceNotStr[application_create_params.GatewayIdentityProxyEndpointApplicationPolicy]
+        | SequenceNotStr[application_create_params.BookmarkApplicationPolicy]
         | Iterable[application_create_params.InfrastructureApplicationPolicy]
         | SequenceNotStr[application_create_params.BrowserRdpApplicationPolicy]
         | Omit = omit,
@@ -4006,6 +4100,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         session_duration: str | Omit = omit,
         skip_interstitial: bool | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
+        use_clientless_isolation_app_launcher_url: bool | Omit = omit,
         saas_app: application_create_params.SaaSApplicationSaaSApp | Omit = omit,
         app_launcher_logo_url: str | Omit = omit,
         bg_color: str | Omit = omit,
@@ -4069,6 +4164,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
                         "session_duration": session_duration,
                         "skip_interstitial": skip_interstitial,
                         "tags": tags,
+                        "use_clientless_isolation_app_launcher_url": use_clientless_isolation_app_launcher_url,
                         "saas_app": saas_app,
                         "app_launcher_logo_url": app_launcher_logo_url,
                         "bg_color": bg_color,
@@ -4128,6 +4224,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         session_duration: str | Omit = omit,
         skip_interstitial: bool | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
+        use_clientless_isolation_app_launcher_url: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4228,6 +4325,11 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
+
+          use_clientless_isolation_app_launcher_url: Determines if users can access this application via a clientless browser
+              isolation URL. This allows users to access private domains without connecting to
+              Gateway. The option requires Clientless Browser Isolation to be set up with
+              policies that allow users of this application.
 
           extra_headers: Send extra headers
 
@@ -4360,6 +4462,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         session_duration: str | Omit = omit,
         skip_interstitial: bool | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
+        use_clientless_isolation_app_launcher_url: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4460,6 +4563,11 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
+
+          use_clientless_isolation_app_launcher_url: Determines if users can access this application via a clientless browser
+              isolation URL. This allows users to access private domains without connecting to
+              Gateway. The option requires Clientless Browser Isolation to be set up with
+              policies that allow users of this application.
 
           extra_headers: Send extra headers
 
@@ -4521,6 +4629,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         session_duration: str | Omit = omit,
         skip_interstitial: bool | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
+        use_clientless_isolation_app_launcher_url: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4621,6 +4730,11 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
+
+          use_clientless_isolation_app_launcher_url: Determines if users can access this application via a clientless browser
+              isolation URL. This allows users to access private domains without connecting to
+              Gateway. The option requires Clientless Browser Isolation to be set up with
+              policies that allow users of this application.
 
           extra_headers: Send extra headers
 
@@ -4947,6 +5061,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         domain: str | Omit = omit,
         logo_url: str | Omit = omit,
         name: str | Omit = omit,
+        policies: SequenceNotStr[application_update_params.BookmarkApplicationPolicy] | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
         type: ApplicationType | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -4973,6 +5088,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
           logo_url: The image URL for the logo shown in the App Launcher dashboard.
 
           name: The name of the application.
+
+          policies: The policies that Access applies to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
@@ -5069,6 +5188,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         session_duration: str | Omit = omit,
         skip_interstitial: bool | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
+        use_clientless_isolation_app_launcher_url: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5170,6 +5290,11 @@ class AsyncApplicationsResource(AsyncAPIResource):
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
 
+          use_clientless_isolation_app_launcher_url: Determines if users can access this application via a clientless browser
+              isolation URL. This allows users to access private domains without connecting to
+              Gateway. The option requires Clientless Browser Isolation to be set up with
+              policies that allow users of this application.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -5234,6 +5359,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         | SequenceNotStr[application_update_params.DeviceEnrollmentPermissionsApplicationPolicy]
         | SequenceNotStr[application_update_params.BrowserIsolationPermissionsApplicationPolicy]
         | SequenceNotStr[application_update_params.GatewayIdentityProxyEndpointApplicationPolicy]
+        | SequenceNotStr[application_update_params.BookmarkApplicationPolicy]
         | Iterable[application_update_params.InfrastructureApplicationPolicy]
         | SequenceNotStr[application_update_params.BrowserRdpApplicationPolicy]
         | Omit = omit,
@@ -5250,6 +5376,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         session_duration: str | Omit = omit,
         skip_interstitial: bool | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
+        use_clientless_isolation_app_launcher_url: bool | Omit = omit,
         saas_app: application_update_params.SaaSApplicationSaaSApp | Omit = omit,
         app_launcher_logo_url: str | Omit = omit,
         bg_color: str | Omit = omit,
@@ -5315,6 +5442,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
                         "session_duration": session_duration,
                         "skip_interstitial": skip_interstitial,
                         "tags": tags,
+                        "use_clientless_isolation_app_launcher_url": use_clientless_isolation_app_launcher_url,
                         "saas_app": saas_app,
                         "app_launcher_logo_url": app_launcher_logo_url,
                         "bg_color": bg_color,

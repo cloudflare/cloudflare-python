@@ -89,7 +89,10 @@ __all__ = [
     "GatewayIdentityProxyEndpointApplicationPolicy",
     "GatewayIdentityProxyEndpointApplicationPolicyAccessAppPolicyLink",
     "GatewayIdentityProxyEndpointApplicationPolicyUnionMember2",
-    "AccessBookmarkProps",
+    "BookmarkApplication",
+    "BookmarkApplicationPolicy",
+    "BookmarkApplicationPolicyAccessAppPolicyLink",
+    "BookmarkApplicationPolicyUnionMember2",
     "InfrastructureApplication",
     "InfrastructureApplicationTargetCriterion",
     "InfrastructureApplicationPolicy",
@@ -272,6 +275,14 @@ class SelfHostedApplication(TypedDict, total=False):
     """The tags you want assigned to an application.
 
     Tags are used to filter applications in the App Launcher dashboard.
+    """
+
+    use_clientless_isolation_app_launcher_url: bool
+    """
+    Determines if users can access this application via a clientless browser
+    isolation URL. This allows users to access private domains without connecting to
+    Gateway. The option requires Clientless Browser Isolation to be set up with
+    policies that allow users of this application.
     """
 
 
@@ -888,6 +899,14 @@ class BrowserSSHApplication(TypedDict, total=False):
     Tags are used to filter applications in the App Launcher dashboard.
     """
 
+    use_clientless_isolation_app_launcher_url: bool
+    """
+    Determines if users can access this application via a clientless browser
+    isolation URL. This allows users to access private domains without connecting to
+    Gateway. The option requires Clientless Browser Isolation to be set up with
+    policies that allow users of this application.
+    """
+
 
 class BrowserSSHApplicationDestinationPublicDestination(TypedDict, total=False):
     """A public hostname that Access will secure.
@@ -1284,6 +1303,14 @@ class BrowserVNCApplication(TypedDict, total=False):
     """The tags you want assigned to an application.
 
     Tags are used to filter applications in the App Launcher dashboard.
+    """
+
+    use_clientless_isolation_app_launcher_url: bool
+    """
+    Determines if users can access this application via a clientless browser
+    isolation URL. This allows users to access private domains without connecting to
+    Gateway. The option requires Clientless Browser Isolation to be set up with
+    policies that allow users of this application.
     """
 
 
@@ -2030,7 +2057,7 @@ GatewayIdentityProxyEndpointApplicationPolicy: TypeAlias = Union[
 ]
 
 
-class AccessBookmarkProps(TypedDict, total=False):
+class BookmarkApplication(TypedDict, total=False):
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
 
@@ -2049,6 +2076,13 @@ class AccessBookmarkProps(TypedDict, total=False):
     name: str
     """The name of the application."""
 
+    policies: SequenceNotStr[BookmarkApplicationPolicy]
+    """
+    The policies that Access applies to the application, in ascending order of
+    precedence. Items can reference existing policies or create new policies
+    exclusive to the application.
+    """
+
     tags: SequenceNotStr[str]
     """The tags you want assigned to an application.
 
@@ -2057,6 +2091,64 @@ class AccessBookmarkProps(TypedDict, total=False):
 
     type: ApplicationType
     """The application type."""
+
+
+class BookmarkApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
+    """A JSON that links a reusable policy to an application."""
+
+    id: str
+    """The UUID of the policy"""
+
+    precedence: int
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
+
+
+class BookmarkApplicationPolicyUnionMember2(TypedDict, total=False):
+    id: str
+    """The UUID of the policy"""
+
+    approval_groups: Iterable[ApprovalGroupParam]
+    """Administrators who can approve a temporary authentication request."""
+
+    approval_required: bool
+    """
+    Requires the user to request access from an administrator at the start of each
+    session.
+    """
+
+    isolation_required: bool
+    """
+    Require this application to be served in an isolated browser for users matching
+    this policy. 'Client Web Isolation' must be on for the account in order to use
+    this feature.
+    """
+
+    precedence: int
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
+
+    purpose_justification_prompt: str
+    """A custom message that will appear on the purpose justification screen."""
+
+    purpose_justification_required: bool
+    """Require users to enter a justification when they log in to the application."""
+
+    session_duration: str
+    """The amount of time that tokens issued for the application will be valid.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
+    ms, s, m, h.
+    """
+
+
+BookmarkApplicationPolicy: TypeAlias = Union[
+    BookmarkApplicationPolicyAccessAppPolicyLink, str, BookmarkApplicationPolicyUnionMember2
+]
 
 
 class InfrastructureApplication(TypedDict, total=False):
@@ -2315,6 +2407,14 @@ class BrowserRdpApplication(TypedDict, total=False):
     Tags are used to filter applications in the App Launcher dashboard.
     """
 
+    use_clientless_isolation_app_launcher_url: bool
+    """
+    Determines if users can access this application via a clientless browser
+    isolation URL. This allows users to access private domains without connecting to
+    Gateway. The option requires Clientless Browser Isolation to be set up with
+    policies that allow users of this application.
+    """
+
 
 class BrowserRdpApplicationTargetCriterion(TypedDict, total=False):
     port: Required[int]
@@ -2557,7 +2657,7 @@ ApplicationUpdateParams: TypeAlias = Union[
     DeviceEnrollmentPermissionsApplication,
     BrowserIsolationPermissionsApplication,
     GatewayIdentityProxyEndpointApplication,
-    AccessBookmarkProps,
+    BookmarkApplication,
     InfrastructureApplication,
     BrowserRdpApplication,
 ]
