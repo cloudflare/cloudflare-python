@@ -8,6 +8,8 @@ __all__ = ["ReleaseBulkResponse"]
 
 
 class ReleaseBulkResponse(BaseModel):
+    id: str
+
     postfix_id: str
     """The identifier of the message."""
 

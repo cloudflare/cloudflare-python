@@ -57,6 +57,7 @@ class PortalsResource(SyncAPIResource):
         hostname: str,
         name: str,
         description: str | Omit = omit,
+        secure_web_gateway: bool | Omit = omit,
         servers: Iterable[portal_create_params.Server] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -70,6 +71,8 @@ class PortalsResource(SyncAPIResource):
 
         Args:
           id: portal id
+
+          secure_web_gateway: Route outbound MCP traffic through Zero Trust Secure Web Gateway
 
           extra_headers: Send extra headers
 
@@ -89,6 +92,7 @@ class PortalsResource(SyncAPIResource):
                     "hostname": hostname,
                     "name": name,
                     "description": description,
+                    "secure_web_gateway": secure_web_gateway,
                     "servers": servers,
                 },
                 portal_create_params.PortalCreateParams,
@@ -111,6 +115,7 @@ class PortalsResource(SyncAPIResource):
         description: str | Omit = omit,
         hostname: str | Omit = omit,
         name: str | Omit = omit,
+        secure_web_gateway: bool | Omit = omit,
         servers: Iterable[portal_update_params.Server] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -124,6 +129,8 @@ class PortalsResource(SyncAPIResource):
 
         Args:
           id: portal id
+
+          secure_web_gateway: Route outbound MCP traffic through Zero Trust Secure Web Gateway
 
           extra_headers: Send extra headers
 
@@ -144,6 +151,7 @@ class PortalsResource(SyncAPIResource):
                     "description": description,
                     "hostname": hostname,
                     "name": name,
+                    "secure_web_gateway": secure_web_gateway,
                     "servers": servers,
                 },
                 portal_update_params.PortalUpdateParams,
@@ -321,6 +329,7 @@ class AsyncPortalsResource(AsyncAPIResource):
         hostname: str,
         name: str,
         description: str | Omit = omit,
+        secure_web_gateway: bool | Omit = omit,
         servers: Iterable[portal_create_params.Server] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -334,6 +343,8 @@ class AsyncPortalsResource(AsyncAPIResource):
 
         Args:
           id: portal id
+
+          secure_web_gateway: Route outbound MCP traffic through Zero Trust Secure Web Gateway
 
           extra_headers: Send extra headers
 
@@ -353,6 +364,7 @@ class AsyncPortalsResource(AsyncAPIResource):
                     "hostname": hostname,
                     "name": name,
                     "description": description,
+                    "secure_web_gateway": secure_web_gateway,
                     "servers": servers,
                 },
                 portal_create_params.PortalCreateParams,
@@ -375,6 +387,7 @@ class AsyncPortalsResource(AsyncAPIResource):
         description: str | Omit = omit,
         hostname: str | Omit = omit,
         name: str | Omit = omit,
+        secure_web_gateway: bool | Omit = omit,
         servers: Iterable[portal_update_params.Server] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -388,6 +401,8 @@ class AsyncPortalsResource(AsyncAPIResource):
 
         Args:
           id: portal id
+
+          secure_web_gateway: Route outbound MCP traffic through Zero Trust Secure Web Gateway
 
           extra_headers: Send extra headers
 
@@ -408,6 +423,7 @@ class AsyncPortalsResource(AsyncAPIResource):
                     "description": description,
                     "hostname": hostname,
                     "name": name,
+                    "secure_web_gateway": secure_web_gateway,
                     "servers": servers,
                 },
                 portal_update_params.PortalUpdateParams,

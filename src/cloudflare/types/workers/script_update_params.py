@@ -56,6 +56,14 @@ __all__ = [
     "MetadataPlacementUnionMember1",
     "MetadataPlacementUnionMember2",
     "MetadataPlacementUnionMember3",
+    "MetadataPlacementUnionMember4",
+    "MetadataPlacementUnionMember5",
+    "MetadataPlacementUnionMember6",
+    "MetadataPlacementUnionMember7",
+    "MetadataPlacementUnionMember7Target",
+    "MetadataPlacementUnionMember7TargetRegion",
+    "MetadataPlacementUnionMember7TargetHostname",
+    "MetadataPlacementUnionMember7TargetHost",
 ]
 
 
@@ -655,11 +663,69 @@ class MetadataPlacementUnionMember3(TypedDict, total=False):
     """TCP host and port for targeted placement."""
 
 
+class MetadataPlacementUnionMember4(TypedDict, total=False):
+    mode: Required[Literal["targeted"]]
+    """Targeted placement mode."""
+
+    region: Required[str]
+    """Cloud region for targeted placement in format 'provider:region'."""
+
+
+class MetadataPlacementUnionMember5(TypedDict, total=False):
+    hostname: Required[str]
+    """HTTP hostname for targeted placement."""
+
+    mode: Required[Literal["targeted"]]
+    """Targeted placement mode."""
+
+
+class MetadataPlacementUnionMember6(TypedDict, total=False):
+    host: Required[str]
+    """TCP host and port for targeted placement."""
+
+    mode: Required[Literal["targeted"]]
+    """Targeted placement mode."""
+
+
+class MetadataPlacementUnionMember7TargetRegion(TypedDict, total=False):
+    region: Required[str]
+    """Cloud region in format 'provider:region'."""
+
+
+class MetadataPlacementUnionMember7TargetHostname(TypedDict, total=False):
+    hostname: Required[str]
+    """HTTP hostname for targeted placement."""
+
+
+class MetadataPlacementUnionMember7TargetHost(TypedDict, total=False):
+    host: Required[str]
+    """TCP host:port for targeted placement."""
+
+
+MetadataPlacementUnionMember7Target: TypeAlias = Union[
+    MetadataPlacementUnionMember7TargetRegion,
+    MetadataPlacementUnionMember7TargetHostname,
+    MetadataPlacementUnionMember7TargetHost,
+]
+
+
+class MetadataPlacementUnionMember7(TypedDict, total=False):
+    mode: Required[Literal["targeted"]]
+    """Targeted placement mode."""
+
+    target: Required[Iterable[MetadataPlacementUnionMember7Target]]
+    """Array of placement targets (currently limited to single target)."""
+
+
 MetadataPlacement: TypeAlias = Union[
     MetadataPlacementUnionMember0,
     MetadataPlacementUnionMember1,
     MetadataPlacementUnionMember2,
     MetadataPlacementUnionMember3,
+    MetadataPlacementUnionMember4,
+    MetadataPlacementUnionMember5,
+    MetadataPlacementUnionMember6,
+    MetadataPlacementUnionMember7,
 ]
 
 
@@ -728,8 +794,7 @@ class Metadata(TypedDict, total=False):
     """
     Configuration for
     [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
-    Specify either mode for Smart Placement, or one of region/hostname/host for
-    targeted placement.
+    Specify mode='smart' for Smart Placement, or one of region/hostname/host.
     """
 
     tags: SequenceNotStr[str]

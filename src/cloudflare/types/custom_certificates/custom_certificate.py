@@ -16,7 +16,10 @@ class CustomCertificate(BaseModel):
     id: str
     """Identifier."""
 
-    bundle_method: BundleMethod
+    zone_id: str
+    """Identifier."""
+
+    bundle_method: Optional[BundleMethod] = None
     """
     A ubiquitous bundle has the highest probability of being verified everywhere,
     even by clients using outdated or unusual trust stores. An optimal bundle uses
@@ -24,36 +27,8 @@ class CustomCertificate(BaseModel):
     chain, but does not otherwise modify it.
     """
 
-    expires_on: datetime
+    expires_on: Optional[datetime] = None
     """When the certificate from the authority expires."""
-
-    hosts: List[str]
-
-    issuer: str
-    """The certificate authority that issued the certificate."""
-
-    modified_on: datetime
-    """When the certificate was last modified."""
-
-    priority: float
-    """The order/priority in which the certificate will be used in a request.
-
-    The higher priority will break ties across overlapping 'legacy_custom'
-    certificates, but 'legacy_custom' certificates will always supercede
-    'sni_custom' certificates.
-    """
-
-    signature: str
-    """The type of hash used for the certificate."""
-
-    status: Literal["active", "expired", "deleted", "pending", "initializing"]
-    """Status of the zone's custom SSL."""
-
-    uploaded_on: datetime
-    """When the certificate was uploaded to Cloudflare."""
-
-    zone_id: str
-    """Identifier."""
 
     geo_restrictions: Optional[GeoRestrictions] = None
     """
@@ -66,7 +41,15 @@ class CustomCertificate(BaseModel):
     for optimal performance.
     """
 
+    hosts: Optional[List[str]] = None
+
+    issuer: Optional[str] = None
+    """The certificate authority that issued the certificate."""
+
     keyless_server: Optional[KeylessCertificate] = None
+
+    modified_on: Optional[datetime] = None
+    """When the certificate was last modified."""
 
     policy: Optional[str] = None
     """
@@ -80,3 +63,20 @@ class CustomCertificate(BaseModel):
     the EU region. If there are too few data centers satisfying the policy, it will
     be rejected.
     """
+
+    priority: Optional[float] = None
+    """The order/priority in which the certificate will be used in a request.
+
+    The higher priority will break ties across overlapping 'legacy_custom'
+    certificates, but 'legacy_custom' certificates will always supercede
+    'sni_custom' certificates.
+    """
+
+    signature: Optional[str] = None
+    """The type of hash used for the certificate."""
+
+    status: Optional[Literal["active", "expired", "deleted", "pending", "initializing"]] = None
+    """Status of the zone's custom SSL."""
+
+    uploaded_on: Optional[datetime] = None
+    """When the certificate was uploaded to Cloudflare."""

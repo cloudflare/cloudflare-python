@@ -14,7 +14,7 @@ from .doh import (
     DOHResourceWithStreamingResponse,
     AsyncDOHResourceWithStreamingResponse,
 )
-from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -71,6 +71,8 @@ class OrganizationsResource(SyncAPIResource):
         zone_id: str | Omit = omit,
         allow_authenticate_via_warp: bool | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
+        deny_unmatched_requests: bool | Omit = omit,
+        deny_unmatched_requests_exempted_zone_names: SequenceNotStr[str] | Omit = omit,
         is_ui_read_only: bool | Omit = omit,
         login_design: LoginDesignParam | Omit = omit,
         session_duration: str | Omit = omit,
@@ -101,6 +103,17 @@ class OrganizationsResource(SyncAPIResource):
 
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login.
+
+          deny_unmatched_requests: Determines whether to deny all requests to Cloudflare-protected resources that
+              lack an associated Access application. If enabled, you must explicitly configure
+              an Access application and policy to allow traffic to your Cloudflare-protected
+              resources. For domains you want to be public across all subdomains, add the
+              domain to the `deny_unmatched_requests_exempted_zone_names` array.
+
+          deny_unmatched_requests_exempted_zone_names: Contains zone names to exempt from the `deny_unmatched_requests` feature.
+              Requests to a subdomain in an exempted zone will block unauthenticated traffic
+              by default if there is a configured Access application and policy that matches
+              the request.
 
           is_ui_read_only: Lock all settings as Read-Only in the Dashboard, regardless of user permission.
               Updates may only be made via the API or Terraform for this account when enabled.
@@ -148,6 +161,8 @@ class OrganizationsResource(SyncAPIResource):
                     "name": name,
                     "allow_authenticate_via_warp": allow_authenticate_via_warp,
                     "auto_redirect_to_identity": auto_redirect_to_identity,
+                    "deny_unmatched_requests": deny_unmatched_requests,
+                    "deny_unmatched_requests_exempted_zone_names": deny_unmatched_requests_exempted_zone_names,
                     "is_ui_read_only": is_ui_read_only,
                     "login_design": login_design,
                     "session_duration": session_duration,
@@ -176,6 +191,8 @@ class OrganizationsResource(SyncAPIResource):
         auth_domain: str | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
         custom_pages: organization_update_params.CustomPages | Omit = omit,
+        deny_unmatched_requests: bool | Omit = omit,
+        deny_unmatched_requests_exempted_zone_names: SequenceNotStr[str] | Omit = omit,
         is_ui_read_only: bool | Omit = omit,
         login_design: LoginDesignParam | Omit = omit,
         name: str | Omit = omit,
@@ -205,6 +222,17 @@ class OrganizationsResource(SyncAPIResource):
 
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login.
+
+          deny_unmatched_requests: Determines whether to deny all requests to Cloudflare-protected resources that
+              lack an associated Access application. If enabled, you must explicitly configure
+              an Access application and policy to allow traffic to your Cloudflare-protected
+              resources. For domains you want to be public across all subdomains, add the
+              domain to the `deny_unmatched_requests_exempted_zone_names` array.
+
+          deny_unmatched_requests_exempted_zone_names: Contains zone names to exempt from the `deny_unmatched_requests` feature.
+              Requests to a subdomain in an exempted zone will block unauthenticated traffic
+              by default if there is a configured Access application and policy that matches
+              the request.
 
           is_ui_read_only: Lock all settings as Read-Only in the Dashboard, regardless of user permission.
               Updates may only be made via the API or Terraform for this account when enabled.
@@ -254,6 +282,8 @@ class OrganizationsResource(SyncAPIResource):
                     "auth_domain": auth_domain,
                     "auto_redirect_to_identity": auto_redirect_to_identity,
                     "custom_pages": custom_pages,
+                    "deny_unmatched_requests": deny_unmatched_requests,
+                    "deny_unmatched_requests_exempted_zone_names": deny_unmatched_requests_exempted_zone_names,
                     "is_ui_read_only": is_ui_read_only,
                     "login_design": login_design,
                     "name": name,
@@ -443,6 +473,8 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         zone_id: str | Omit = omit,
         allow_authenticate_via_warp: bool | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
+        deny_unmatched_requests: bool | Omit = omit,
+        deny_unmatched_requests_exempted_zone_names: SequenceNotStr[str] | Omit = omit,
         is_ui_read_only: bool | Omit = omit,
         login_design: LoginDesignParam | Omit = omit,
         session_duration: str | Omit = omit,
@@ -473,6 +505,17 @@ class AsyncOrganizationsResource(AsyncAPIResource):
 
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login.
+
+          deny_unmatched_requests: Determines whether to deny all requests to Cloudflare-protected resources that
+              lack an associated Access application. If enabled, you must explicitly configure
+              an Access application and policy to allow traffic to your Cloudflare-protected
+              resources. For domains you want to be public across all subdomains, add the
+              domain to the `deny_unmatched_requests_exempted_zone_names` array.
+
+          deny_unmatched_requests_exempted_zone_names: Contains zone names to exempt from the `deny_unmatched_requests` feature.
+              Requests to a subdomain in an exempted zone will block unauthenticated traffic
+              by default if there is a configured Access application and policy that matches
+              the request.
 
           is_ui_read_only: Lock all settings as Read-Only in the Dashboard, regardless of user permission.
               Updates may only be made via the API or Terraform for this account when enabled.
@@ -520,6 +563,8 @@ class AsyncOrganizationsResource(AsyncAPIResource):
                     "name": name,
                     "allow_authenticate_via_warp": allow_authenticate_via_warp,
                     "auto_redirect_to_identity": auto_redirect_to_identity,
+                    "deny_unmatched_requests": deny_unmatched_requests,
+                    "deny_unmatched_requests_exempted_zone_names": deny_unmatched_requests_exempted_zone_names,
                     "is_ui_read_only": is_ui_read_only,
                     "login_design": login_design,
                     "session_duration": session_duration,
@@ -548,6 +593,8 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         auth_domain: str | Omit = omit,
         auto_redirect_to_identity: bool | Omit = omit,
         custom_pages: organization_update_params.CustomPages | Omit = omit,
+        deny_unmatched_requests: bool | Omit = omit,
+        deny_unmatched_requests_exempted_zone_names: SequenceNotStr[str] | Omit = omit,
         is_ui_read_only: bool | Omit = omit,
         login_design: LoginDesignParam | Omit = omit,
         name: str | Omit = omit,
@@ -577,6 +624,17 @@ class AsyncOrganizationsResource(AsyncAPIResource):
 
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login.
+
+          deny_unmatched_requests: Determines whether to deny all requests to Cloudflare-protected resources that
+              lack an associated Access application. If enabled, you must explicitly configure
+              an Access application and policy to allow traffic to your Cloudflare-protected
+              resources. For domains you want to be public across all subdomains, add the
+              domain to the `deny_unmatched_requests_exempted_zone_names` array.
+
+          deny_unmatched_requests_exempted_zone_names: Contains zone names to exempt from the `deny_unmatched_requests` feature.
+              Requests to a subdomain in an exempted zone will block unauthenticated traffic
+              by default if there is a configured Access application and policy that matches
+              the request.
 
           is_ui_read_only: Lock all settings as Read-Only in the Dashboard, regardless of user permission.
               Updates may only be made via the API or Terraform for this account when enabled.
@@ -626,6 +684,8 @@ class AsyncOrganizationsResource(AsyncAPIResource):
                     "auth_domain": auth_domain,
                     "auto_redirect_to_identity": auto_redirect_to_identity,
                     "custom_pages": custom_pages,
+                    "deny_unmatched_requests": deny_unmatched_requests,
+                    "deny_unmatched_requests_exempted_zone_names": deny_unmatched_requests_exempted_zone_names,
                     "is_ui_read_only": is_ui_read_only,
                     "login_design": login_design,
                     "name": name,

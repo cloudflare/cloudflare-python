@@ -19,6 +19,8 @@ class LANEditParams(TypedDict, total=False):
     site_id: Required[str]
     """Identifier"""
 
+    bond_id: int
+
     name: str
 
     nat: NatParam

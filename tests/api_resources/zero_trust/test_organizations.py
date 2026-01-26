@@ -39,6 +39,8 @@ class TestOrganizations:
             account_id="account_id",
             allow_authenticate_via_warp=True,
             auto_redirect_to_identity=True,
+            deny_unmatched_requests=True,
+            deny_unmatched_requests_exempted_zone_names=["example.com"],
             is_ui_read_only=True,
             login_design={
                 "background_color": "#c5ed1b",
@@ -121,6 +123,8 @@ class TestOrganizations:
                 "forbidden": "699d98642c564d2e855e9661899b7252",
                 "identity_denied": "699d98642c564d2e855e9661899b7252",
             },
+            deny_unmatched_requests=True,
+            deny_unmatched_requests_exempted_zone_names=["example.com"],
             is_ui_read_only=True,
             login_design={
                 "background_color": "#c5ed1b",
@@ -321,6 +325,8 @@ class TestAsyncOrganizations:
             account_id="account_id",
             allow_authenticate_via_warp=True,
             auto_redirect_to_identity=True,
+            deny_unmatched_requests=True,
+            deny_unmatched_requests_exempted_zone_names=["example.com"],
             is_ui_read_only=True,
             login_design={
                 "background_color": "#c5ed1b",
@@ -403,6 +409,8 @@ class TestAsyncOrganizations:
                 "forbidden": "699d98642c564d2e855e9661899b7252",
                 "identity_denied": "699d98642c564d2e855e9661899b7252",
             },
+            deny_unmatched_requests=True,
+            deny_unmatched_requests_exempted_zone_names=["example.com"],
             is_ui_read_only=True,
             login_design={
                 "background_color": "#c5ed1b",

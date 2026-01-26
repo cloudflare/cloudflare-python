@@ -163,8 +163,13 @@ class PredefinedGetResponse(BaseModel):
     confidence_threshold: Optional[str] = None
 
     enabled_entries: List[str]
+    """Entries to enable for this predefined profile.
+
+    Any entries not provided will be disabled.
+    """
 
     entries: List[Entry]
+    """This field has been deprecated for `enabled_entries`."""
 
     name: str
     """The name of the predefined profile."""

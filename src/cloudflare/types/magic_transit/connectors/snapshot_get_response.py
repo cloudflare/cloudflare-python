@@ -283,6 +283,12 @@ class Tunnel(BaseModel):
     probed_mtu: Optional[float] = None
     """MTU as measured between the two ends of the tunnel"""
 
+    recent_healthy_pings: Optional[float] = None
+    """Number of recent healthy pings for this tunnel"""
+
+    recent_unhealthy_pings: Optional[float] = None
+    """Number of recent unhealthy pings for this tunnel"""
+
 
 class SnapshotGetResponse(BaseModel):
     """Snapshot"""

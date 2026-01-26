@@ -63,6 +63,7 @@ class V2Resource(SyncAPIResource):
         account_id: str,
         continuation_token: Optional[str] | Omit = omit,
         creator: Optional[str] | Omit = omit,
+        meta: v2_list_params.Meta | Omit = omit,
         per_page: float | Omit = omit,
         sort_order: Literal["asc", "desc"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -72,23 +73,60 @@ class V2Resource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> V2ListResponse:
-        """List up to 10000 images with one request.
+        """List up to 10000 images with up to 1000 results per page.
 
-        Use the optional parameters below to
-        get a specific range of images. Endpoint returns continuation_token if more
-        images are present.
+        Use the optional
+        parameters below to get a specific range of images. Pagination is supported via
+        continuation_token.
+
+        **Metadata Filtering (Optional):**
+
+        You can optionally filter images by custom metadata fields using the
+        `meta.<field>[<operator>]=<value>` syntax.
+
+        **Supported Operators:**
+
+        - `eq` / `eq:string` / `eq:number` / `eq:boolean` - Exact match
+        - `in` / `in:string` / `in:number` - Match any value in list (pipe-separated)
+
+        **Metadata Filter Constraints:**
+
+        - Maximum 5 metadata filters per request
+        - Maximum 5 levels of nesting (e.g., `meta.first.second.third.fourth.fifth`)
+        - Maximum 10 elements for list operators (`in`)
+        - Supports string, number, and boolean value types
+
+        **Examples:**
+
+        ```
+        # List all images
+        /v2/images
+
+        # Filter by metadata
+        /v2/images?meta.status[eq]=active
+
+        # Filter by nested metadata
+        /v2/images?meta.region.name[eq]=eu-west
+
+        # Combine metadata filters with creator
+        /v2/images?meta.status[eq]=active&creator=user123
+
+        # Multiple metadata filters (AND logic)
+        /v2/images?meta.status[eq]=active&meta.priority[eq:number]=5
+        ```
 
         Args:
           account_id: Account identifier tag.
 
-          continuation_token: Continuation token for a next page. List images V2 returns continuation_token
+          continuation_token: Continuation token to fetch next page. Passed as a query param when requesting
+              List V2 api endpoint.
 
           creator: Internal user ID set within the creator field. Setting to empty string "" will
               return images where creator field is not set
 
-          per_page: Number of items per page.
+          per_page: Number of items per page
 
-          sort_order: Sorting order by upload time.
+          sort_order: Sorting order by upload time
 
           extra_headers: Send extra headers
 
@@ -111,6 +149,7 @@ class V2Resource(SyncAPIResource):
                     {
                         "continuation_token": continuation_token,
                         "creator": creator,
+                        "meta": meta,
                         "per_page": per_page,
                         "sort_order": sort_order,
                     },
@@ -152,6 +191,7 @@ class AsyncV2Resource(AsyncAPIResource):
         account_id: str,
         continuation_token: Optional[str] | Omit = omit,
         creator: Optional[str] | Omit = omit,
+        meta: v2_list_params.Meta | Omit = omit,
         per_page: float | Omit = omit,
         sort_order: Literal["asc", "desc"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -161,23 +201,60 @@ class AsyncV2Resource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> V2ListResponse:
-        """List up to 10000 images with one request.
+        """List up to 10000 images with up to 1000 results per page.
 
-        Use the optional parameters below to
-        get a specific range of images. Endpoint returns continuation_token if more
-        images are present.
+        Use the optional
+        parameters below to get a specific range of images. Pagination is supported via
+        continuation_token.
+
+        **Metadata Filtering (Optional):**
+
+        You can optionally filter images by custom metadata fields using the
+        `meta.<field>[<operator>]=<value>` syntax.
+
+        **Supported Operators:**
+
+        - `eq` / `eq:string` / `eq:number` / `eq:boolean` - Exact match
+        - `in` / `in:string` / `in:number` - Match any value in list (pipe-separated)
+
+        **Metadata Filter Constraints:**
+
+        - Maximum 5 metadata filters per request
+        - Maximum 5 levels of nesting (e.g., `meta.first.second.third.fourth.fifth`)
+        - Maximum 10 elements for list operators (`in`)
+        - Supports string, number, and boolean value types
+
+        **Examples:**
+
+        ```
+        # List all images
+        /v2/images
+
+        # Filter by metadata
+        /v2/images?meta.status[eq]=active
+
+        # Filter by nested metadata
+        /v2/images?meta.region.name[eq]=eu-west
+
+        # Combine metadata filters with creator
+        /v2/images?meta.status[eq]=active&creator=user123
+
+        # Multiple metadata filters (AND logic)
+        /v2/images?meta.status[eq]=active&meta.priority[eq:number]=5
+        ```
 
         Args:
           account_id: Account identifier tag.
 
-          continuation_token: Continuation token for a next page. List images V2 returns continuation_token
+          continuation_token: Continuation token to fetch next page. Passed as a query param when requesting
+              List V2 api endpoint.
 
           creator: Internal user ID set within the creator field. Setting to empty string "" will
               return images where creator field is not set
 
-          per_page: Number of items per page.
+          per_page: Number of items per page
 
-          sort_order: Sorting order by upload time.
+          sort_order: Sorting order by upload time
 
           extra_headers: Send extra headers
 
@@ -200,6 +277,7 @@ class AsyncV2Resource(AsyncAPIResource):
                     {
                         "continuation_token": continuation_token,
                         "creator": creator,
+                        "meta": meta,
                         "per_page": per_page,
                         "sort_order": sort_order,
                     },

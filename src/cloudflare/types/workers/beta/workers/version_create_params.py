@@ -52,6 +52,18 @@ __all__ = [
     "MigrationsWorkersMultipleStepMigrations",
     "Module",
     "Placement",
+    "PlacementMode",
+    "PlacementRegion",
+    "PlacementHostname",
+    "PlacementHost",
+    "PlacementUnionMember4",
+    "PlacementUnionMember5",
+    "PlacementUnionMember6",
+    "PlacementUnionMember7",
+    "PlacementUnionMember7Target",
+    "PlacementUnionMember7TargetRegion",
+    "PlacementUnionMember7TargetHostname",
+    "PlacementUnionMember7TargetHost",
 ]
 
 
@@ -128,7 +140,11 @@ class VersionCreateParams(TypedDict, total=False):
     """
 
     placement: Placement
-    """Placement settings for the version."""
+    """
+    Configuration for
+    [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    Specify mode='smart' for Smart Placement, or one of region/hostname/host.
+    """
 
     usage_model: Literal["standard", "bundled", "unbound"]
     """Usage model for the version."""
@@ -659,8 +675,88 @@ class Module(TypedDict, total=False):
 set_pydantic_config(Module, {"arbitrary_types_allowed": True})
 
 
-class Placement(TypedDict, total=False):
-    """Placement settings for the version."""
+class PlacementMode(TypedDict, total=False):
+    mode: Required[Literal["smart"]]
+    """
+    Enables
+    [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    """
 
-    mode: Literal["smart"]
-    """Placement mode for the version."""
+
+class PlacementRegion(TypedDict, total=False):
+    region: Required[str]
+    """Cloud region for targeted placement in format 'provider:region'."""
+
+
+class PlacementHostname(TypedDict, total=False):
+    hostname: Required[str]
+    """HTTP hostname for targeted placement."""
+
+
+class PlacementHost(TypedDict, total=False):
+    host: Required[str]
+    """TCP host and port for targeted placement."""
+
+
+class PlacementUnionMember4(TypedDict, total=False):
+    mode: Required[Literal["targeted"]]
+    """Targeted placement mode."""
+
+    region: Required[str]
+    """Cloud region for targeted placement in format 'provider:region'."""
+
+
+class PlacementUnionMember5(TypedDict, total=False):
+    hostname: Required[str]
+    """HTTP hostname for targeted placement."""
+
+    mode: Required[Literal["targeted"]]
+    """Targeted placement mode."""
+
+
+class PlacementUnionMember6(TypedDict, total=False):
+    host: Required[str]
+    """TCP host and port for targeted placement."""
+
+    mode: Required[Literal["targeted"]]
+    """Targeted placement mode."""
+
+
+class PlacementUnionMember7TargetRegion(TypedDict, total=False):
+    region: Required[str]
+    """Cloud region in format 'provider:region'."""
+
+
+class PlacementUnionMember7TargetHostname(TypedDict, total=False):
+    hostname: Required[str]
+    """HTTP hostname for targeted placement."""
+
+
+class PlacementUnionMember7TargetHost(TypedDict, total=False):
+    host: Required[str]
+    """TCP host:port for targeted placement."""
+
+
+PlacementUnionMember7Target: TypeAlias = Union[
+    PlacementUnionMember7TargetRegion, PlacementUnionMember7TargetHostname, PlacementUnionMember7TargetHost
+]
+
+
+class PlacementUnionMember7(TypedDict, total=False):
+    mode: Required[Literal["targeted"]]
+    """Targeted placement mode."""
+
+    target: Required[Iterable[PlacementUnionMember7Target]]
+    """Array of placement targets (currently limited to single target)."""
+
+
+Placement: TypeAlias = Union[
+    PlacementMode,
+    PlacementRegion,
+    PlacementHostname,
+    PlacementHost,
+    PlacementUnionMember4,
+    PlacementUnionMember5,
+    PlacementUnionMember6,
+    PlacementUnionMember7,
+]

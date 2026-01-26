@@ -25,3 +25,6 @@ class PortalCreateResponse(BaseModel):
     modified_at: Optional[datetime] = None
 
     modified_by: Optional[str] = None
+
+    secure_web_gateway: Optional[bool] = None
+    """Route outbound MCP traffic through Zero Trust Secure Web Gateway"""

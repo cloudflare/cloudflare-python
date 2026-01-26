@@ -109,16 +109,16 @@ class InsightsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncV4PagePagination[Optional[InsightListResponse]]:
         """
-        Get Security Center Insights
+        Retrieves Security Center Insights
 
         Args:
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
-          page: Current page within paginated list of results
+          page: Specifies the current page within paginated list of results.
 
-          per_page: Number of results per page of results
+          per_page: Sets the number of results per page of results.
 
           extra_headers: Send extra headers
 
@@ -185,7 +185,7 @@ class InsightsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightDismissResponse:
         """
-        Archive Security Center Insight
+        Archives Security Center Insight
 
         Args:
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
@@ -282,16 +282,16 @@ class AsyncInsightsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Optional[InsightListResponse], AsyncV4PagePagination[Optional[InsightListResponse]]]:
         """
-        Get Security Center Insights
+        Retrieves Security Center Insights
 
         Args:
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
-          page: Current page within paginated list of results
+          page: Specifies the current page within paginated list of results.
 
-          per_page: Number of results per page of results
+          per_page: Sets the number of results per page of results.
 
           extra_headers: Send extra headers
 
@@ -358,7 +358,7 @@ class AsyncInsightsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InsightDismissResponse:
         """
-        Archive Security Center Insight
+        Archives Security Center Insight
 
         Args:
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.

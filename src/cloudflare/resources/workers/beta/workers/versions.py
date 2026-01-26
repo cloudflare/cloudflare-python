@@ -122,7 +122,9 @@ class VersionsResource(SyncAPIResource):
               `_headers` and `_redirects` files should be included as modules named `_headers`
               and `_redirects` with content type `text/plain`.
 
-          placement: Placement settings for the version.
+          placement: Configuration for
+              [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+              Specify mode='smart' for Smart Placement, or one of region/hostname/host.
 
           usage_model: Usage model for the version.
 
@@ -422,7 +424,9 @@ class AsyncVersionsResource(AsyncAPIResource):
               `_headers` and `_redirects` files should be included as modules named `_headers`
               and `_redirects` with content type `text/plain`.
 
-          placement: Placement settings for the version.
+          placement: Configuration for
+              [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+              Specify mode='smart' for Smart Placement, or one of region/hostname/host.
 
           usage_model: Usage model for the version.
 

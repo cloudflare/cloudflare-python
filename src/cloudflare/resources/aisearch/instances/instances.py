@@ -81,7 +81,6 @@ class InstancesResource(SyncAPIResource):
         account_id: str,
         id: str,
         source: str,
-        token_id: str,
         type: Literal["r2", "web-crawler"],
         ai_gateway_id: str | Omit = omit,
         aisearch_model: Literal[
@@ -117,10 +116,10 @@ class InstancesResource(SyncAPIResource):
         chunk_overlap: int | Omit = omit,
         chunk_size: int | Omit = omit,
         embedding_model: Literal[
+            "@cf/qwen/qwen3-embedding-0.6b",
             "@cf/baai/bge-m3",
             "@cf/baai/bge-large-en-v1.5",
             "@cf/google/embeddinggemma-300m",
-            "@cf/qwen/qwen3-embedding-0.6b",
             "google-ai-studio/gemini-embedding-001",
             "openai/text-embedding-3-small",
             "openai/text-embedding-3-large",
@@ -165,6 +164,7 @@ class InstancesResource(SyncAPIResource):
         rewrite_query: bool | Omit = omit,
         score_threshold: float | Omit = omit,
         source_params: instance_create_params.SourceParams | Omit = omit,
+        token_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -194,7 +194,6 @@ class InstancesResource(SyncAPIResource):
                 {
                     "id": id,
                     "source": source,
-                    "token_id": token_id,
                     "type": type,
                     "ai_gateway_id": ai_gateway_id,
                     "aisearch_model": aisearch_model,
@@ -212,6 +211,7 @@ class InstancesResource(SyncAPIResource):
                     "rewrite_query": rewrite_query,
                     "score_threshold": score_threshold,
                     "source_params": source_params,
+                    "token_id": token_id,
                 },
                 instance_create_params.InstanceCreateParams,
             ),
@@ -267,10 +267,10 @@ class InstancesResource(SyncAPIResource):
         chunk_overlap: int | Omit = omit,
         chunk_size: int | Omit = omit,
         embedding_model: Literal[
+            "@cf/qwen/qwen3-embedding-0.6b",
             "@cf/baai/bge-m3",
             "@cf/baai/bge-large-en-v1.5",
             "@cf/google/embeddinggemma-300m",
-            "@cf/qwen/qwen3-embedding-0.6b",
             "google-ai-studio/gemini-embedding-001",
             "openai/text-embedding-3-small",
             "openai/text-embedding-3-large",
@@ -628,7 +628,6 @@ class AsyncInstancesResource(AsyncAPIResource):
         account_id: str,
         id: str,
         source: str,
-        token_id: str,
         type: Literal["r2", "web-crawler"],
         ai_gateway_id: str | Omit = omit,
         aisearch_model: Literal[
@@ -664,10 +663,10 @@ class AsyncInstancesResource(AsyncAPIResource):
         chunk_overlap: int | Omit = omit,
         chunk_size: int | Omit = omit,
         embedding_model: Literal[
+            "@cf/qwen/qwen3-embedding-0.6b",
             "@cf/baai/bge-m3",
             "@cf/baai/bge-large-en-v1.5",
             "@cf/google/embeddinggemma-300m",
-            "@cf/qwen/qwen3-embedding-0.6b",
             "google-ai-studio/gemini-embedding-001",
             "openai/text-embedding-3-small",
             "openai/text-embedding-3-large",
@@ -712,6 +711,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         rewrite_query: bool | Omit = omit,
         score_threshold: float | Omit = omit,
         source_params: instance_create_params.SourceParams | Omit = omit,
+        token_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -741,7 +741,6 @@ class AsyncInstancesResource(AsyncAPIResource):
                 {
                     "id": id,
                     "source": source,
-                    "token_id": token_id,
                     "type": type,
                     "ai_gateway_id": ai_gateway_id,
                     "aisearch_model": aisearch_model,
@@ -759,6 +758,7 @@ class AsyncInstancesResource(AsyncAPIResource):
                     "rewrite_query": rewrite_query,
                     "score_threshold": score_threshold,
                     "source_params": source_params,
+                    "token_id": token_id,
                 },
                 instance_create_params.InstanceCreateParams,
             ),
@@ -814,10 +814,10 @@ class AsyncInstancesResource(AsyncAPIResource):
         chunk_overlap: int | Omit = omit,
         chunk_size: int | Omit = omit,
         embedding_model: Literal[
+            "@cf/qwen/qwen3-embedding-0.6b",
             "@cf/baai/bge-m3",
             "@cf/baai/bge-large-en-v1.5",
             "@cf/google/embeddinggemma-300m",
-            "@cf/qwen/qwen3-embedding-0.6b",
             "google-ai-studio/gemini-embedding-001",
             "openai/text-embedding-3-small",
             "openai/text-embedding-3-large",

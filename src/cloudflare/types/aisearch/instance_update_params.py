@@ -72,10 +72,10 @@ class InstanceUpdateParams(TypedDict, total=False):
     chunk_size: int
 
     embedding_model: Literal[
+        "@cf/qwen/qwen3-embedding-0.6b",
         "@cf/baai/bge-m3",
         "@cf/baai/bge-large-en-v1.5",
         "@cf/google/embeddinggemma-300m",
-        "@cf/qwen/qwen3-embedding-0.6b",
         "google-ai-studio/gemini-embedding-001",
         "openai/text-embedding-3-small",
         "openai/text-embedding-3-large",
@@ -219,6 +219,12 @@ class SourceParamsWebCrawlerParseOptions(TypedDict, total=False):
 
     include_images: bool
 
+    specific_sitemaps: SequenceNotStr[str]
+    """List of specific sitemap URLs to use for crawling.
+
+    Only valid when parse_type is 'sitemap'.
+    """
+
     use_browser_rendering: bool
 
 
@@ -242,13 +248,16 @@ class SourceParams(TypedDict, total=False):
     exclude_items: SequenceNotStr[str]
     """List of path patterns to exclude.
 
-    Supports wildcards (e.g., _/admin/_, /private/\\**_, _\\pprivate\\**)
+    Uses micromatch glob syntax: \\** matches within a path segment, ** matches across
+    path segments (e.g., /admin/** matches /admin/users and
+    /admin/settings/advanced)
     """
 
     include_items: SequenceNotStr[str]
     """List of path patterns to include.
 
-    Supports wildcards (e.g., _/blog/_.html, /docs/\\**_, _\blog\\**.html)
+    Uses micromatch glob syntax: \\** matches within a path segment, ** matches across
+    path segments (e.g., /blog/** matches /blog/post and /blog/2024/post)
     """
 
     prefix: str

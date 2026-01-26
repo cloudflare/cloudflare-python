@@ -16,7 +16,7 @@ class LANCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
-    physport: Required[int]
+    bond_id: int
 
     ha_link: bool
     """mark true to use this LAN for HA probing.
@@ -27,6 +27,8 @@ class LANCreateParams(TypedDict, total=False):
     name: str
 
     nat: NatParam
+
+    physport: int
 
     routed_subnets: Iterable[RoutedSubnetParam]
 

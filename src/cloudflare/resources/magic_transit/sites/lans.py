@@ -57,10 +57,11 @@ class LANsResource(SyncAPIResource):
         site_id: str,
         *,
         account_id: str,
-        physport: int,
+        bond_id: int | Omit = omit,
         ha_link: bool | Omit = omit,
         name: str | Omit = omit,
         nat: NatParam | Omit = omit,
+        physport: int | Omit = omit,
         routed_subnets: Iterable[RoutedSubnetParam] | Omit = omit,
         static_addressing: LANStaticAddressingParam | Omit = omit,
         vlan_tag: int | Omit = omit,
@@ -107,10 +108,11 @@ class LANsResource(SyncAPIResource):
             page=SyncSinglePage[LAN],
             body=maybe_transform(
                 {
-                    "physport": physport,
+                    "bond_id": bond_id,
                     "ha_link": ha_link,
                     "name": name,
                     "nat": nat,
+                    "physport": physport,
                     "routed_subnets": routed_subnets,
                     "static_addressing": static_addressing,
                     "vlan_tag": vlan_tag,
@@ -130,6 +132,7 @@ class LANsResource(SyncAPIResource):
         *,
         account_id: str,
         site_id: str,
+        bond_id: int | Omit = omit,
         name: str | Omit = omit,
         nat: NatParam | Omit = omit,
         physport: int | Omit = omit,
@@ -177,6 +180,7 @@ class LANsResource(SyncAPIResource):
             f"/accounts/{account_id}/magic/sites/{site_id}/lans/{lan_id}",
             body=maybe_transform(
                 {
+                    "bond_id": bond_id,
                     "name": name,
                     "nat": nat,
                     "physport": physport,
@@ -292,6 +296,7 @@ class LANsResource(SyncAPIResource):
         *,
         account_id: str,
         site_id: str,
+        bond_id: int | Omit = omit,
         name: str | Omit = omit,
         nat: NatParam | Omit = omit,
         physport: int | Omit = omit,
@@ -339,6 +344,7 @@ class LANsResource(SyncAPIResource):
             f"/accounts/{account_id}/magic/sites/{site_id}/lans/{lan_id}",
             body=maybe_transform(
                 {
+                    "bond_id": bond_id,
                     "name": name,
                     "nat": nat,
                     "physport": physport,
@@ -433,10 +439,11 @@ class AsyncLANsResource(AsyncAPIResource):
         site_id: str,
         *,
         account_id: str,
-        physport: int,
+        bond_id: int | Omit = omit,
         ha_link: bool | Omit = omit,
         name: str | Omit = omit,
         nat: NatParam | Omit = omit,
+        physport: int | Omit = omit,
         routed_subnets: Iterable[RoutedSubnetParam] | Omit = omit,
         static_addressing: LANStaticAddressingParam | Omit = omit,
         vlan_tag: int | Omit = omit,
@@ -483,10 +490,11 @@ class AsyncLANsResource(AsyncAPIResource):
             page=AsyncSinglePage[LAN],
             body=maybe_transform(
                 {
-                    "physport": physport,
+                    "bond_id": bond_id,
                     "ha_link": ha_link,
                     "name": name,
                     "nat": nat,
+                    "physport": physport,
                     "routed_subnets": routed_subnets,
                     "static_addressing": static_addressing,
                     "vlan_tag": vlan_tag,
@@ -506,6 +514,7 @@ class AsyncLANsResource(AsyncAPIResource):
         *,
         account_id: str,
         site_id: str,
+        bond_id: int | Omit = omit,
         name: str | Omit = omit,
         nat: NatParam | Omit = omit,
         physport: int | Omit = omit,
@@ -553,6 +562,7 @@ class AsyncLANsResource(AsyncAPIResource):
             f"/accounts/{account_id}/magic/sites/{site_id}/lans/{lan_id}",
             body=await async_maybe_transform(
                 {
+                    "bond_id": bond_id,
                     "name": name,
                     "nat": nat,
                     "physport": physport,
@@ -668,6 +678,7 @@ class AsyncLANsResource(AsyncAPIResource):
         *,
         account_id: str,
         site_id: str,
+        bond_id: int | Omit = omit,
         name: str | Omit = omit,
         nat: NatParam | Omit = omit,
         physport: int | Omit = omit,
@@ -715,6 +726,7 @@ class AsyncLANsResource(AsyncAPIResource):
             f"/accounts/{account_id}/magic/sites/{site_id}/lans/{lan_id}",
             body=await async_maybe_transform(
                 {
+                    "bond_id": bond_id,
                     "name": name,
                     "nat": nat,
                     "physport": physport,

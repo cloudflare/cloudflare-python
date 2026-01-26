@@ -17,6 +17,14 @@ __all__ = [
     "PlacementUnionMember1",
     "PlacementUnionMember2",
     "PlacementUnionMember3",
+    "PlacementUnionMember4",
+    "PlacementUnionMember5",
+    "PlacementUnionMember6",
+    "PlacementUnionMember7",
+    "PlacementUnionMember7Target",
+    "PlacementUnionMember7TargetRegion",
+    "PlacementUnionMember7TargetHostname",
+    "PlacementUnionMember7TargetHost",
     "Route",
 ]
 
@@ -139,7 +147,116 @@ class PlacementUnionMember3(BaseModel):
     """
 
 
-Placement: TypeAlias = Union[PlacementUnionMember0, PlacementUnionMember1, PlacementUnionMember2, PlacementUnionMember3]
+class PlacementUnionMember4(BaseModel):
+    mode: Literal["targeted"]
+    """Targeted placement mode."""
+
+    region: str
+    """Cloud region for targeted placement in format 'provider:region'."""
+
+    last_analyzed_at: Optional[datetime] = None
+    """
+    The last time the script was analyzed for
+    [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    """
+
+    status: Optional[Literal["SUCCESS", "UNSUPPORTED_APPLICATION", "INSUFFICIENT_INVOCATIONS"]] = None
+    """
+    Status of
+    [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    """
+
+
+class PlacementUnionMember5(BaseModel):
+    hostname: str
+    """HTTP hostname for targeted placement."""
+
+    mode: Literal["targeted"]
+    """Targeted placement mode."""
+
+    last_analyzed_at: Optional[datetime] = None
+    """
+    The last time the script was analyzed for
+    [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    """
+
+    status: Optional[Literal["SUCCESS", "UNSUPPORTED_APPLICATION", "INSUFFICIENT_INVOCATIONS"]] = None
+    """
+    Status of
+    [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    """
+
+
+class PlacementUnionMember6(BaseModel):
+    host: str
+    """TCP host and port for targeted placement."""
+
+    mode: Literal["targeted"]
+    """Targeted placement mode."""
+
+    last_analyzed_at: Optional[datetime] = None
+    """
+    The last time the script was analyzed for
+    [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    """
+
+    status: Optional[Literal["SUCCESS", "UNSUPPORTED_APPLICATION", "INSUFFICIENT_INVOCATIONS"]] = None
+    """
+    Status of
+    [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    """
+
+
+class PlacementUnionMember7TargetRegion(BaseModel):
+    region: str
+    """Cloud region in format 'provider:region'."""
+
+
+class PlacementUnionMember7TargetHostname(BaseModel):
+    hostname: str
+    """HTTP hostname for targeted placement."""
+
+
+class PlacementUnionMember7TargetHost(BaseModel):
+    host: str
+    """TCP host:port for targeted placement."""
+
+
+PlacementUnionMember7Target: TypeAlias = Union[
+    PlacementUnionMember7TargetRegion, PlacementUnionMember7TargetHostname, PlacementUnionMember7TargetHost
+]
+
+
+class PlacementUnionMember7(BaseModel):
+    mode: Literal["targeted"]
+    """Targeted placement mode."""
+
+    target: List[PlacementUnionMember7Target]
+    """Array of placement targets (currently limited to single target)."""
+
+    last_analyzed_at: Optional[datetime] = None
+    """
+    The last time the script was analyzed for
+    [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    """
+
+    status: Optional[Literal["SUCCESS", "UNSUPPORTED_APPLICATION", "INSUFFICIENT_INVOCATIONS"]] = None
+    """
+    Status of
+    [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    """
+
+
+Placement: TypeAlias = Union[
+    PlacementUnionMember0,
+    PlacementUnionMember1,
+    PlacementUnionMember2,
+    PlacementUnionMember3,
+    PlacementUnionMember4,
+    PlacementUnionMember5,
+    PlacementUnionMember6,
+    PlacementUnionMember7,
+]
 
 
 class Route(BaseModel):
@@ -217,11 +334,10 @@ class ScriptListResponse(BaseModel):
     """
     Configuration for
     [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
-    Specify either mode for Smart Placement, or one of region/hostname/host for
-    targeted placement.
+    Specify mode='smart' for Smart Placement, or one of region/hostname/host.
     """
 
-    placement_mode: Optional[Literal["smart"]] = None
+    placement_mode: Optional[Literal["smart", "targeted"]] = None
 
     placement_status: Optional[Literal["SUCCESS", "UNSUPPORTED_APPLICATION", "INSUFFICIENT_INVOCATIONS"]] = None
 

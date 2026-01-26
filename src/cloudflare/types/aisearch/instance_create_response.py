@@ -72,6 +72,12 @@ class SourceParamsWebCrawlerParseOptions(BaseModel):
 
     include_images: Optional[bool] = None
 
+    specific_sitemaps: Optional[List[str]] = None
+    """List of specific sitemap URLs to use for crawling.
+
+    Only valid when parse_type is 'sitemap'.
+    """
+
     use_browser_rendering: Optional[bool] = None
 
 
@@ -95,13 +101,16 @@ class SourceParams(BaseModel):
     exclude_items: Optional[List[str]] = None
     """List of path patterns to exclude.
 
-    Supports wildcards (e.g., _/admin/_, /private/\\**_, _\\pprivate\\**)
+    Uses micromatch glob syntax: \\** matches within a path segment, ** matches across
+    path segments (e.g., /admin/** matches /admin/users and
+    /admin/settings/advanced)
     """
 
     include_items: Optional[List[str]] = None
     """List of path patterns to include.
 
-    Supports wildcards (e.g., _/blog/_.html, /docs/\\**_, _\blog\\**.html)
+    Uses micromatch glob syntax: \\** matches within a path segment, ** matches across
+    path segments (e.g., /blog/** matches /blog/post and /blog/2024/post)
     """
 
     prefix: Optional[str] = None
@@ -126,8 +135,6 @@ class InstanceCreateResponse(BaseModel):
     modified_at: datetime
 
     source: str
-
-    token_id: str
 
     type: Literal["r2", "web-crawler"]
 
@@ -180,10 +187,10 @@ class InstanceCreateResponse(BaseModel):
 
     embedding_model: Optional[
         Literal[
+            "@cf/qwen/qwen3-embedding-0.6b",
             "@cf/baai/bge-m3",
             "@cf/baai/bge-large-en-v1.5",
             "@cf/google/embeddinggemma-300m",
-            "@cf/qwen/qwen3-embedding-0.6b",
             "google-ai-studio/gemini-embedding-001",
             "openai/text-embedding-3-small",
             "openai/text-embedding-3-large",
@@ -292,5 +299,7 @@ class InstanceCreateResponse(BaseModel):
     system_prompt_index_summarization: Optional[str] = None
 
     system_prompt_rewrite_query: Optional[str] = None
+
+    token_id: Optional[str] = None
 
     vectorize_active_namespace: Optional[str] = None

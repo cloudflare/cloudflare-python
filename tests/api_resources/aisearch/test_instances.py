@@ -31,7 +31,6 @@ class TestInstances:
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             id="my-ai-search",
             source="source",
-            token_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             type="r2",
         )
         assert_matches_type(InstanceCreateResponse, instance, path=["response"])
@@ -42,14 +41,13 @@ class TestInstances:
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             id="my-ai-search",
             source="source",
-            token_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             type="r2",
             ai_gateway_id="ai_gateway_id",
             aisearch_model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
             chunk=True,
             chunk_overlap=0,
             chunk_size=64,
-            embedding_model="@cf/baai/bge-m3",
+            embedding_model="@cf/qwen/qwen3-embedding-0.6b",
             hybrid_search_enabled=True,
             max_num_results=1,
             metadata={
@@ -74,14 +72,18 @@ class TestInstances:
             rewrite_query=True,
             score_threshold=0,
             source_params={
-                "exclude_items": ["/admin/*", "/private/**", "*\\temp\\*"],
-                "include_items": ["/blog/*", "/docs/**/*.html", "*\\blog\\*.html"],
+                "exclude_items": ["/admin/**", "/private/**", "**\\temp\\**"],
+                "include_items": ["/blog/**", "/docs/**/*.html", "**\\blog\\**.html"],
                 "prefix": "prefix",
                 "r2_jurisdiction": "r2_jurisdiction",
                 "web_crawler": {
                     "parse_options": {
                         "include_headers": {"foo": "string"},
                         "include_images": True,
+                        "specific_sitemaps": [
+                            "https://example.com/sitemap.xml",
+                            "https://example.com/blog-sitemap.xml",
+                        ],
                         "use_browser_rendering": True,
                     },
                     "parse_type": "sitemap",
@@ -92,6 +94,7 @@ class TestInstances:
                     },
                 },
             },
+            token_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(InstanceCreateResponse, instance, path=["response"])
 
@@ -101,7 +104,6 @@ class TestInstances:
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             id="my-ai-search",
             source="source",
-            token_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             type="r2",
         )
 
@@ -116,7 +118,6 @@ class TestInstances:
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             id="my-ai-search",
             source="source",
-            token_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             type="r2",
         ) as response:
             assert not response.is_closed
@@ -134,7 +135,6 @@ class TestInstances:
                 account_id="",
                 id="my-ai-search",
                 source="source",
-                token_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 type="r2",
             )
 
@@ -158,7 +158,7 @@ class TestInstances:
             chunk=True,
             chunk_overlap=0,
             chunk_size=64,
-            embedding_model="@cf/baai/bge-m3",
+            embedding_model="@cf/qwen/qwen3-embedding-0.6b",
             hybrid_search_enabled=True,
             max_num_results=1,
             metadata={
@@ -184,14 +184,18 @@ class TestInstances:
             rewrite_query=True,
             score_threshold=0,
             source_params={
-                "exclude_items": ["/admin/*", "/private/**", "*\\temp\\*"],
-                "include_items": ["/blog/*", "/docs/**/*.html", "*\\blog\\*.html"],
+                "exclude_items": ["/admin/**", "/private/**", "**\\temp\\**"],
+                "include_items": ["/blog/**", "/docs/**/*.html", "**\\blog\\**.html"],
                 "prefix": "prefix",
                 "r2_jurisdiction": "r2_jurisdiction",
                 "web_crawler": {
                     "parse_options": {
                         "include_headers": {"foo": "string"},
                         "include_images": True,
+                        "specific_sitemaps": [
+                            "https://example.com/sitemap.xml",
+                            "https://example.com/blog-sitemap.xml",
+                        ],
                         "use_browser_rendering": True,
                     },
                     "parse_type": "sitemap",
@@ -455,7 +459,6 @@ class TestAsyncInstances:
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             id="my-ai-search",
             source="source",
-            token_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             type="r2",
         )
         assert_matches_type(InstanceCreateResponse, instance, path=["response"])
@@ -466,14 +469,13 @@ class TestAsyncInstances:
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             id="my-ai-search",
             source="source",
-            token_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             type="r2",
             ai_gateway_id="ai_gateway_id",
             aisearch_model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
             chunk=True,
             chunk_overlap=0,
             chunk_size=64,
-            embedding_model="@cf/baai/bge-m3",
+            embedding_model="@cf/qwen/qwen3-embedding-0.6b",
             hybrid_search_enabled=True,
             max_num_results=1,
             metadata={
@@ -498,14 +500,18 @@ class TestAsyncInstances:
             rewrite_query=True,
             score_threshold=0,
             source_params={
-                "exclude_items": ["/admin/*", "/private/**", "*\\temp\\*"],
-                "include_items": ["/blog/*", "/docs/**/*.html", "*\\blog\\*.html"],
+                "exclude_items": ["/admin/**", "/private/**", "**\\temp\\**"],
+                "include_items": ["/blog/**", "/docs/**/*.html", "**\\blog\\**.html"],
                 "prefix": "prefix",
                 "r2_jurisdiction": "r2_jurisdiction",
                 "web_crawler": {
                     "parse_options": {
                         "include_headers": {"foo": "string"},
                         "include_images": True,
+                        "specific_sitemaps": [
+                            "https://example.com/sitemap.xml",
+                            "https://example.com/blog-sitemap.xml",
+                        ],
                         "use_browser_rendering": True,
                     },
                     "parse_type": "sitemap",
@@ -516,6 +522,7 @@ class TestAsyncInstances:
                     },
                 },
             },
+            token_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(InstanceCreateResponse, instance, path=["response"])
 
@@ -525,7 +532,6 @@ class TestAsyncInstances:
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             id="my-ai-search",
             source="source",
-            token_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             type="r2",
         )
 
@@ -540,7 +546,6 @@ class TestAsyncInstances:
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
             id="my-ai-search",
             source="source",
-            token_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             type="r2",
         ) as response:
             assert not response.is_closed
@@ -558,7 +563,6 @@ class TestAsyncInstances:
                 account_id="",
                 id="my-ai-search",
                 source="source",
-                token_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 type="r2",
             )
 
@@ -582,7 +586,7 @@ class TestAsyncInstances:
             chunk=True,
             chunk_overlap=0,
             chunk_size=64,
-            embedding_model="@cf/baai/bge-m3",
+            embedding_model="@cf/qwen/qwen3-embedding-0.6b",
             hybrid_search_enabled=True,
             max_num_results=1,
             metadata={
@@ -608,14 +612,18 @@ class TestAsyncInstances:
             rewrite_query=True,
             score_threshold=0,
             source_params={
-                "exclude_items": ["/admin/*", "/private/**", "*\\temp\\*"],
-                "include_items": ["/blog/*", "/docs/**/*.html", "*\\blog\\*.html"],
+                "exclude_items": ["/admin/**", "/private/**", "**\\temp\\**"],
+                "include_items": ["/blog/**", "/docs/**/*.html", "**\\blog\\**.html"],
                 "prefix": "prefix",
                 "r2_jurisdiction": "r2_jurisdiction",
                 "web_crawler": {
                     "parse_options": {
                         "include_headers": {"foo": "string"},
                         "include_images": True,
+                        "specific_sitemaps": [
+                            "https://example.com/sitemap.xml",
+                            "https://example.com/blog-sitemap.xml",
+                        ],
                         "use_browser_rendering": True,
                     },
                     "parse_type": "sitemap",

@@ -54,6 +54,14 @@ __all__ = [
     "SettingsPlacementRegion",
     "SettingsPlacementHostname",
     "SettingsPlacementHost",
+    "SettingsPlacementUnionMember4",
+    "SettingsPlacementUnionMember5",
+    "SettingsPlacementUnionMember6",
+    "SettingsPlacementUnionMember7",
+    "SettingsPlacementUnionMember7Target",
+    "SettingsPlacementUnionMember7TargetRegion",
+    "SettingsPlacementUnionMember7TargetHostname",
+    "SettingsPlacementUnionMember7TargetHost",
 ]
 
 
@@ -594,8 +602,69 @@ class SettingsPlacementHost(TypedDict, total=False):
     """TCP host and port for targeted placement."""
 
 
+class SettingsPlacementUnionMember4(TypedDict, total=False):
+    mode: Required[Literal["targeted"]]
+    """Targeted placement mode."""
+
+    region: Required[str]
+    """Cloud region for targeted placement in format 'provider:region'."""
+
+
+class SettingsPlacementUnionMember5(TypedDict, total=False):
+    hostname: Required[str]
+    """HTTP hostname for targeted placement."""
+
+    mode: Required[Literal["targeted"]]
+    """Targeted placement mode."""
+
+
+class SettingsPlacementUnionMember6(TypedDict, total=False):
+    host: Required[str]
+    """TCP host and port for targeted placement."""
+
+    mode: Required[Literal["targeted"]]
+    """Targeted placement mode."""
+
+
+class SettingsPlacementUnionMember7TargetRegion(TypedDict, total=False):
+    region: Required[str]
+    """Cloud region in format 'provider:region'."""
+
+
+class SettingsPlacementUnionMember7TargetHostname(TypedDict, total=False):
+    hostname: Required[str]
+    """HTTP hostname for targeted placement."""
+
+
+class SettingsPlacementUnionMember7TargetHost(TypedDict, total=False):
+    host: Required[str]
+    """TCP host:port for targeted placement."""
+
+
+SettingsPlacementUnionMember7Target: TypeAlias = Union[
+    SettingsPlacementUnionMember7TargetRegion,
+    SettingsPlacementUnionMember7TargetHostname,
+    SettingsPlacementUnionMember7TargetHost,
+]
+
+
+class SettingsPlacementUnionMember7(TypedDict, total=False):
+    mode: Required[Literal["targeted"]]
+    """Targeted placement mode."""
+
+    target: Required[Iterable[SettingsPlacementUnionMember7Target]]
+    """Array of placement targets (currently limited to single target)."""
+
+
 SettingsPlacement: TypeAlias = Union[
-    SettingsPlacementMode, SettingsPlacementRegion, SettingsPlacementHostname, SettingsPlacementHost
+    SettingsPlacementMode,
+    SettingsPlacementRegion,
+    SettingsPlacementHostname,
+    SettingsPlacementHost,
+    SettingsPlacementUnionMember4,
+    SettingsPlacementUnionMember5,
+    SettingsPlacementUnionMember6,
+    SettingsPlacementUnionMember7,
 ]
 
 
@@ -637,8 +706,7 @@ class Settings(TypedDict, total=False):
     """
     Configuration for
     [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
-    Specify either mode for Smart Placement, or one of region/hostname/host for
-    targeted placement.
+    Specify mode='smart' for Smart Placement, or one of region/hostname/host.
     """
 
     tags: Optional[SequenceNotStr[str]]

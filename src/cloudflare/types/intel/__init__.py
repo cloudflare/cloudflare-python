@@ -5,7 +5,6 @@ from __future__ import annotations
 from .ip import IP as IP
 from .dns import DNS as DNS
 from .domain import Domain as Domain
-from .ip_list import IPList as IPList
 from .sinkhole import Sinkhole as Sinkhole
 from .ip_get_params import IPGetParams as IPGetParams
 from .domain_history import DomainHistory as DomainHistory

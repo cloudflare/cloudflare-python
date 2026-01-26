@@ -16,10 +16,10 @@ class InstanceBulkParams(TypedDict, total=False):
 
 class BodyInstanceRetention(TypedDict, total=False):
     error_retention: Union[int, str]
-    """Duration in milliseconds or as a string like '5 minutes'"""
+    """Specifies the duration in milliseconds or as a string like '5 minutes'."""
 
     success_retention: Union[int, str]
-    """Duration in milliseconds or as a string like '5 minutes'"""
+    """Specifies the duration in milliseconds or as a string like '5 minutes'."""
 
 
 class Body(TypedDict, total=False):

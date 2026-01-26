@@ -70,7 +70,6 @@ class TestThreatEvents:
             tags=["malware"],
             target_country="US",
             target_industry="Agriculture",
-            uuid="12345678-1234-1234-1234-1234567890ab",
         )
         assert_matches_type(ThreatEventCreateResponse, threat_event, path=["response"])
 
@@ -136,6 +135,7 @@ class TestThreatEvents:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         threat_event = client.cloudforce_one.threat_events.list(
             account_id="account_id",
+            cursor="eyJ2ZXJzaW9uIjoxLCJwb3NpdGlvbiI6eyJkYXRlIjoiMjAyNC0wMS0xMlQxMDowMDowMFoiLCJ1dWlkIjoiYWJjMTIzIn19",
             dataset_id=["string"],
             force_refresh=True,
             format="json",
@@ -289,11 +289,10 @@ class TestThreatEvents:
                     "tags": ["malware"],
                     "target_country": "US",
                     "target_industry": "Agriculture",
-                    "uuid": "12345678-1234-1234-1234-1234567890ab",
                 }
             ],
             dataset_id="durableObjectName",
-            preserve_uuid=True,
+            include_created_events=True,
         )
         assert_matches_type(ThreatEventBulkCreateResponse, threat_event, path=["response"])
 
@@ -546,7 +545,6 @@ class TestAsyncThreatEvents:
             tags=["malware"],
             target_country="US",
             target_industry="Agriculture",
-            uuid="12345678-1234-1234-1234-1234567890ab",
         )
         assert_matches_type(ThreatEventCreateResponse, threat_event, path=["response"])
 
@@ -612,6 +610,7 @@ class TestAsyncThreatEvents:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         threat_event = await async_client.cloudforce_one.threat_events.list(
             account_id="account_id",
+            cursor="eyJ2ZXJzaW9uIjoxLCJwb3NpdGlvbiI6eyJkYXRlIjoiMjAyNC0wMS0xMlQxMDowMDowMFoiLCJ1dWlkIjoiYWJjMTIzIn19",
             dataset_id=["string"],
             force_refresh=True,
             format="json",
@@ -765,11 +764,10 @@ class TestAsyncThreatEvents:
                     "tags": ["malware"],
                     "target_country": "US",
                     "target_industry": "Agriculture",
-                    "uuid": "12345678-1234-1234-1234-1234567890ab",
                 }
             ],
             dataset_id="durableObjectName",
-            preserve_uuid=True,
+            include_created_events=True,
         )
         assert_matches_type(ThreatEventBulkCreateResponse, threat_event, path=["response"])
 

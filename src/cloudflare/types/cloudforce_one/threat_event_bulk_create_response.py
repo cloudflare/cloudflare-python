@@ -6,7 +6,18 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["ThreatEventBulkCreateResponse", "Error"]
+__all__ = ["ThreatEventBulkCreateResponse", "CreatedEvent", "Error"]
+
+
+class CreatedEvent(BaseModel):
+    event_index: float = FieldInfo(alias="eventIndex")
+    """Original index in the input data array"""
+
+    shard_id: str = FieldInfo(alias="shardId")
+    """Dataset ID of the shard where the event was created"""
+
+    uuid: str
+    """UUID of the created event"""
 
 
 class Error(BaseModel):
@@ -32,11 +43,14 @@ class ThreatEventBulkCreateResponse(BaseModel):
     queued_indicators_count: float = FieldInfo(alias="queuedIndicatorsCount")
     """Number of indicators queued for async processing"""
 
-    skipped_events_count: float = FieldInfo(alias="skippedEventsCount")
-    """Number of events skipped due to duplicate UUID (only when preserveUuid=true)"""
-
     create_bulk_events_request_id: Optional[str] = FieldInfo(alias="createBulkEventsRequestId", default=None)
     """Correlation ID for async indicator processing"""
+
+    created_events: Optional[List[CreatedEvent]] = FieldInfo(alias="createdEvents", default=None)
+    """Array of created events with UUIDs and shard locations.
+
+    Only present when includeCreatedEvents=true
+    """
 
     errors: Optional[List[Error]] = None
     """Array of error details"""

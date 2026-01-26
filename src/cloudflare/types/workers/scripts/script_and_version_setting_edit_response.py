@@ -53,6 +53,14 @@ __all__ = [
     "PlacementRegion",
     "PlacementHostname",
     "PlacementHost",
+    "PlacementUnionMember4",
+    "PlacementUnionMember5",
+    "PlacementUnionMember6",
+    "PlacementUnionMember7",
+    "PlacementUnionMember7Target",
+    "PlacementUnionMember7TargetRegion",
+    "PlacementUnionMember7TargetHostname",
+    "PlacementUnionMember7TargetHost",
 ]
 
 
@@ -561,7 +569,68 @@ class PlacementHost(BaseModel):
     """TCP host and port for targeted placement."""
 
 
-Placement: TypeAlias = Union[PlacementMode, PlacementRegion, PlacementHostname, PlacementHost]
+class PlacementUnionMember4(BaseModel):
+    mode: Literal["targeted"]
+    """Targeted placement mode."""
+
+    region: str
+    """Cloud region for targeted placement in format 'provider:region'."""
+
+
+class PlacementUnionMember5(BaseModel):
+    hostname: str
+    """HTTP hostname for targeted placement."""
+
+    mode: Literal["targeted"]
+    """Targeted placement mode."""
+
+
+class PlacementUnionMember6(BaseModel):
+    host: str
+    """TCP host and port for targeted placement."""
+
+    mode: Literal["targeted"]
+    """Targeted placement mode."""
+
+
+class PlacementUnionMember7TargetRegion(BaseModel):
+    region: str
+    """Cloud region in format 'provider:region'."""
+
+
+class PlacementUnionMember7TargetHostname(BaseModel):
+    hostname: str
+    """HTTP hostname for targeted placement."""
+
+
+class PlacementUnionMember7TargetHost(BaseModel):
+    host: str
+    """TCP host:port for targeted placement."""
+
+
+PlacementUnionMember7Target: TypeAlias = Union[
+    PlacementUnionMember7TargetRegion, PlacementUnionMember7TargetHostname, PlacementUnionMember7TargetHost
+]
+
+
+class PlacementUnionMember7(BaseModel):
+    mode: Literal["targeted"]
+    """Targeted placement mode."""
+
+    target: List[PlacementUnionMember7Target]
+    """Array of placement targets (currently limited to single target)."""
+
+
+Placement: TypeAlias = Union[
+    PlacementMode,
+    PlacementRegion,
+    PlacementHostname,
+    PlacementHost,
+    PlacementUnionMember4,
+    PlacementUnionMember5,
+    PlacementUnionMember6,
+    PlacementUnionMember7,
+]
 
 
 class ScriptAndVersionSettingEditResponse(BaseModel):
@@ -599,8 +668,7 @@ class ScriptAndVersionSettingEditResponse(BaseModel):
     """
     Configuration for
     [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
-    Specify either mode for Smart Placement, or one of region/hostname/host for
-    targeted placement.
+    Specify mode='smart' for Smart Placement, or one of region/hostname/host.
     """
 
     tags: Optional[List[str]] = None

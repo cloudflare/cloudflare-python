@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import Body, Query, Headers, NotGiven, SequenceNotStr, not_given
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -98,7 +98,8 @@ class MoveResource(SyncAPIResource):
         destination: Literal[
             "Inbox", "JunkEmail", "DeletedItems", "RecoverableItemsDeletions", "RecoverableItemsPurges"
         ],
-        postfix_ids: SequenceNotStr[str],
+        ids: SequenceNotStr[str] | Omit = omit,
+        postfix_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -111,6 +112,10 @@ class MoveResource(SyncAPIResource):
 
         Args:
           account_id: Account Identifier
+
+          ids: List of message IDs to move.
+
+          postfix_ids: Deprecated: Use `ids` instead. List of message IDs to move.
 
           extra_headers: Send extra headers
 
@@ -128,6 +133,7 @@ class MoveResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "destination": destination,
+                    "ids": ids,
                     "postfix_ids": postfix_ids,
                 },
                 move_bulk_params.MoveBulkParams,
@@ -213,7 +219,8 @@ class AsyncMoveResource(AsyncAPIResource):
         destination: Literal[
             "Inbox", "JunkEmail", "DeletedItems", "RecoverableItemsDeletions", "RecoverableItemsPurges"
         ],
-        postfix_ids: SequenceNotStr[str],
+        ids: SequenceNotStr[str] | Omit = omit,
+        postfix_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -226,6 +233,10 @@ class AsyncMoveResource(AsyncAPIResource):
 
         Args:
           account_id: Account Identifier
+
+          ids: List of message IDs to move.
+
+          postfix_ids: Deprecated: Use `ids` instead. List of message IDs to move.
 
           extra_headers: Send extra headers
 
@@ -243,6 +254,7 @@ class AsyncMoveResource(AsyncAPIResource):
             body=maybe_transform(
                 {
                     "destination": destination,
+                    "ids": ids,
                     "postfix_ids": postfix_ids,
                 },
                 move_bulk_params.MoveBulkParams,

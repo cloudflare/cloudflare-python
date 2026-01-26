@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
+from ..._types import SequenceNotStr
 from .login_design_param import LoginDesignParam
 
 __all__ = ["OrganizationUpdateParams", "CustomPages"]
@@ -32,6 +33,23 @@ class OrganizationUpdateParams(TypedDict, total=False):
     """
 
     custom_pages: CustomPages
+
+    deny_unmatched_requests: bool
+    """
+    Determines whether to deny all requests to Cloudflare-protected resources that
+    lack an associated Access application. If enabled, you must explicitly configure
+    an Access application and policy to allow traffic to your Cloudflare-protected
+    resources. For domains you want to be public across all subdomains, add the
+    domain to the `deny_unmatched_requests_exempted_zone_names` array.
+    """
+
+    deny_unmatched_requests_exempted_zone_names: SequenceNotStr[str]
+    """Contains zone names to exempt from the `deny_unmatched_requests` feature.
+
+    Requests to a subdomain in an exempted zone will block unauthenticated traffic
+    by default if there is a configured Access application and policy that matches
+    the request.
+    """
 
     is_ui_read_only: bool
     """Lock all settings as Read-Only in the Dashboard, regardless of user permission.
