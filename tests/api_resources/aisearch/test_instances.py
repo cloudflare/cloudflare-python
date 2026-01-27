@@ -16,7 +16,9 @@ from cloudflare.types.aisearch import (
     InstanceStatsResponse,
     InstanceCreateResponse,
     InstanceDeleteResponse,
+    InstanceSearchResponse,
     InstanceUpdateResponse,
+    InstanceChatCompletionsResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -352,6 +354,123 @@ class TestInstances:
             )
 
     @parametrize
+    def test_method_chat_completions(self, client: Cloudflare) -> None:
+        instance = client.aisearch.instances.chat_completions(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            messages=[
+                {
+                    "content": "content",
+                    "role": "system",
+                }
+            ],
+        )
+        assert_matches_type(InstanceChatCompletionsResponse, instance, path=["response"])
+
+    @parametrize
+    def test_method_chat_completions_with_all_params(self, client: Cloudflare) -> None:
+        instance = client.aisearch.instances.chat_completions(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            messages=[
+                {
+                    "content": "content",
+                    "role": "system",
+                }
+            ],
+            aisearch_options={
+                "query_rewrite": {
+                    "enabled": True,
+                    "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+                    "rewrite_prompt": "rewrite_prompt",
+                },
+                "reranking": {
+                    "enabled": True,
+                    "match_threshold": 0,
+                    "model": "@cf/baai/bge-reranker-base",
+                },
+                "retrieval": {
+                    "context_expansion": 0,
+                    "filters": {
+                        "key": "key",
+                        "type": "eq",
+                        "value": "string",
+                    },
+                    "match_threshold": 0,
+                    "max_num_results": 1,
+                    "retrieval_type": "vector",
+                },
+            },
+            model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            stream=True,
+        )
+        assert_matches_type(InstanceChatCompletionsResponse, instance, path=["response"])
+
+    @parametrize
+    def test_raw_response_chat_completions(self, client: Cloudflare) -> None:
+        response = client.aisearch.instances.with_raw_response.chat_completions(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            messages=[
+                {
+                    "content": "content",
+                    "role": "system",
+                }
+            ],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        instance = response.parse()
+        assert_matches_type(InstanceChatCompletionsResponse, instance, path=["response"])
+
+    @parametrize
+    def test_streaming_response_chat_completions(self, client: Cloudflare) -> None:
+        with client.aisearch.instances.with_streaming_response.chat_completions(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            messages=[
+                {
+                    "content": "content",
+                    "role": "system",
+                }
+            ],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            instance = response.parse()
+            assert_matches_type(InstanceChatCompletionsResponse, instance, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_chat_completions(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.aisearch.instances.with_raw_response.chat_completions(
+                id="my-ai-search",
+                account_id="",
+                messages=[
+                    {
+                        "content": "content",
+                        "role": "system",
+                    }
+                ],
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.aisearch.instances.with_raw_response.chat_completions(
+                id="",
+                account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+                messages=[
+                    {
+                        "content": "content",
+                        "role": "system",
+                    }
+                ],
+            )
+
+    @parametrize
     def test_method_read(self, client: Cloudflare) -> None:
         instance = client.aisearch.instances.read(
             id="my-ai-search",
@@ -397,6 +516,121 @@ class TestInstances:
             client.aisearch.instances.with_raw_response.read(
                 id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            )
+
+    @parametrize
+    def test_method_search(self, client: Cloudflare) -> None:
+        instance = client.aisearch.instances.search(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            messages=[
+                {
+                    "content": "content",
+                    "role": "system",
+                }
+            ],
+        )
+        assert_matches_type(InstanceSearchResponse, instance, path=["response"])
+
+    @parametrize
+    def test_method_search_with_all_params(self, client: Cloudflare) -> None:
+        instance = client.aisearch.instances.search(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            messages=[
+                {
+                    "content": "content",
+                    "role": "system",
+                }
+            ],
+            aisearch_options={
+                "query_rewrite": {
+                    "enabled": True,
+                    "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+                    "rewrite_prompt": "rewrite_prompt",
+                },
+                "reranking": {
+                    "enabled": True,
+                    "match_threshold": 0,
+                    "model": "@cf/baai/bge-reranker-base",
+                },
+                "retrieval": {
+                    "context_expansion": 0,
+                    "filters": {
+                        "key": "key",
+                        "type": "eq",
+                        "value": "string",
+                    },
+                    "match_threshold": 0,
+                    "max_num_results": 1,
+                    "retrieval_type": "vector",
+                },
+            },
+        )
+        assert_matches_type(InstanceSearchResponse, instance, path=["response"])
+
+    @parametrize
+    def test_raw_response_search(self, client: Cloudflare) -> None:
+        response = client.aisearch.instances.with_raw_response.search(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            messages=[
+                {
+                    "content": "content",
+                    "role": "system",
+                }
+            ],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        instance = response.parse()
+        assert_matches_type(InstanceSearchResponse, instance, path=["response"])
+
+    @parametrize
+    def test_streaming_response_search(self, client: Cloudflare) -> None:
+        with client.aisearch.instances.with_streaming_response.search(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            messages=[
+                {
+                    "content": "content",
+                    "role": "system",
+                }
+            ],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            instance = response.parse()
+            assert_matches_type(InstanceSearchResponse, instance, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_search(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.aisearch.instances.with_raw_response.search(
+                id="my-ai-search",
+                account_id="",
+                messages=[
+                    {
+                        "content": "content",
+                        "role": "system",
+                    }
+                ],
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.aisearch.instances.with_raw_response.search(
+                id="",
+                account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+                messages=[
+                    {
+                        "content": "content",
+                        "role": "system",
+                    }
+                ],
             )
 
     @parametrize
@@ -780,6 +1014,123 @@ class TestAsyncInstances:
             )
 
     @parametrize
+    async def test_method_chat_completions(self, async_client: AsyncCloudflare) -> None:
+        instance = await async_client.aisearch.instances.chat_completions(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            messages=[
+                {
+                    "content": "content",
+                    "role": "system",
+                }
+            ],
+        )
+        assert_matches_type(InstanceChatCompletionsResponse, instance, path=["response"])
+
+    @parametrize
+    async def test_method_chat_completions_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        instance = await async_client.aisearch.instances.chat_completions(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            messages=[
+                {
+                    "content": "content",
+                    "role": "system",
+                }
+            ],
+            aisearch_options={
+                "query_rewrite": {
+                    "enabled": True,
+                    "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+                    "rewrite_prompt": "rewrite_prompt",
+                },
+                "reranking": {
+                    "enabled": True,
+                    "match_threshold": 0,
+                    "model": "@cf/baai/bge-reranker-base",
+                },
+                "retrieval": {
+                    "context_expansion": 0,
+                    "filters": {
+                        "key": "key",
+                        "type": "eq",
+                        "value": "string",
+                    },
+                    "match_threshold": 0,
+                    "max_num_results": 1,
+                    "retrieval_type": "vector",
+                },
+            },
+            model="@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            stream=True,
+        )
+        assert_matches_type(InstanceChatCompletionsResponse, instance, path=["response"])
+
+    @parametrize
+    async def test_raw_response_chat_completions(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.aisearch.instances.with_raw_response.chat_completions(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            messages=[
+                {
+                    "content": "content",
+                    "role": "system",
+                }
+            ],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        instance = await response.parse()
+        assert_matches_type(InstanceChatCompletionsResponse, instance, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_chat_completions(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.aisearch.instances.with_streaming_response.chat_completions(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            messages=[
+                {
+                    "content": "content",
+                    "role": "system",
+                }
+            ],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            instance = await response.parse()
+            assert_matches_type(InstanceChatCompletionsResponse, instance, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_chat_completions(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.aisearch.instances.with_raw_response.chat_completions(
+                id="my-ai-search",
+                account_id="",
+                messages=[
+                    {
+                        "content": "content",
+                        "role": "system",
+                    }
+                ],
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.aisearch.instances.with_raw_response.chat_completions(
+                id="",
+                account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+                messages=[
+                    {
+                        "content": "content",
+                        "role": "system",
+                    }
+                ],
+            )
+
+    @parametrize
     async def test_method_read(self, async_client: AsyncCloudflare) -> None:
         instance = await async_client.aisearch.instances.read(
             id="my-ai-search",
@@ -825,6 +1176,121 @@ class TestAsyncInstances:
             await async_client.aisearch.instances.with_raw_response.read(
                 id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            )
+
+    @parametrize
+    async def test_method_search(self, async_client: AsyncCloudflare) -> None:
+        instance = await async_client.aisearch.instances.search(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            messages=[
+                {
+                    "content": "content",
+                    "role": "system",
+                }
+            ],
+        )
+        assert_matches_type(InstanceSearchResponse, instance, path=["response"])
+
+    @parametrize
+    async def test_method_search_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        instance = await async_client.aisearch.instances.search(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            messages=[
+                {
+                    "content": "content",
+                    "role": "system",
+                }
+            ],
+            aisearch_options={
+                "query_rewrite": {
+                    "enabled": True,
+                    "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+                    "rewrite_prompt": "rewrite_prompt",
+                },
+                "reranking": {
+                    "enabled": True,
+                    "match_threshold": 0,
+                    "model": "@cf/baai/bge-reranker-base",
+                },
+                "retrieval": {
+                    "context_expansion": 0,
+                    "filters": {
+                        "key": "key",
+                        "type": "eq",
+                        "value": "string",
+                    },
+                    "match_threshold": 0,
+                    "max_num_results": 1,
+                    "retrieval_type": "vector",
+                },
+            },
+        )
+        assert_matches_type(InstanceSearchResponse, instance, path=["response"])
+
+    @parametrize
+    async def test_raw_response_search(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.aisearch.instances.with_raw_response.search(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            messages=[
+                {
+                    "content": "content",
+                    "role": "system",
+                }
+            ],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        instance = await response.parse()
+        assert_matches_type(InstanceSearchResponse, instance, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_search(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.aisearch.instances.with_streaming_response.search(
+            id="my-ai-search",
+            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            messages=[
+                {
+                    "content": "content",
+                    "role": "system",
+                }
+            ],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            instance = await response.parse()
+            assert_matches_type(InstanceSearchResponse, instance, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_search(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.aisearch.instances.with_raw_response.search(
+                id="my-ai-search",
+                account_id="",
+                messages=[
+                    {
+                        "content": "content",
+                        "role": "system",
+                    }
+                ],
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.aisearch.instances.with_raw_response.search(
+                id="",
+                account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+                messages=[
+                    {
+                        "content": "content",
+                        "role": "system",
+                    }
+                ],
             )
 
     @parametrize

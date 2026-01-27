@@ -10626,7 +10626,9 @@ from cloudflare.types.aisearch import (
     InstanceUpdateResponse,
     InstanceListResponse,
     InstanceDeleteResponse,
+    InstanceChatCompletionsResponse,
     InstanceReadResponse,
+    InstanceSearchResponse,
     InstanceStatsResponse,
 )
 ```
@@ -10637,7 +10639,9 @@ Methods:
 - <code title="put /accounts/{account_id}/ai-search/instances/{id}">client.aisearch.instances.<a href="./src/cloudflare/resources/aisearch/instances/instances.py">update</a>(id, \*, account_id, \*\*<a href="src/cloudflare/types/aisearch/instance_update_params.py">params</a>) -> <a href="./src/cloudflare/types/aisearch/instance_update_response.py">InstanceUpdateResponse</a></code>
 - <code title="get /accounts/{account_id}/ai-search/instances">client.aisearch.instances.<a href="./src/cloudflare/resources/aisearch/instances/instances.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/aisearch/instance_list_params.py">params</a>) -> <a href="./src/cloudflare/types/aisearch/instance_list_response.py">SyncV4PagePaginationArray[InstanceListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/ai-search/instances/{id}">client.aisearch.instances.<a href="./src/cloudflare/resources/aisearch/instances/instances.py">delete</a>(id, \*, account_id) -> <a href="./src/cloudflare/types/aisearch/instance_delete_response.py">InstanceDeleteResponse</a></code>
+- <code title="post /accounts/{account_id}/ai-search/instances/{id}/chat/completions">client.aisearch.instances.<a href="./src/cloudflare/resources/aisearch/instances/instances.py">chat_completions</a>(id, \*, account_id, \*\*<a href="src/cloudflare/types/aisearch/instance_chat_completions_params.py">params</a>) -> <a href="./src/cloudflare/types/aisearch/instance_chat_completions_response.py">InstanceChatCompletionsResponse</a></code>
 - <code title="get /accounts/{account_id}/ai-search/instances/{id}">client.aisearch.instances.<a href="./src/cloudflare/resources/aisearch/instances/instances.py">read</a>(id, \*, account_id) -> <a href="./src/cloudflare/types/aisearch/instance_read_response.py">InstanceReadResponse</a></code>
+- <code title="post /accounts/{account_id}/ai-search/instances/{id}/search">client.aisearch.instances.<a href="./src/cloudflare/resources/aisearch/instances/instances.py">search</a>(id, \*, account_id, \*\*<a href="src/cloudflare/types/aisearch/instance_search_params.py">params</a>) -> <a href="./src/cloudflare/types/aisearch/instance_search_response.py">InstanceSearchResponse</a></code>
 - <code title="get /accounts/{account_id}/ai-search/instances/{id}/stats">client.aisearch.instances.<a href="./src/cloudflare/resources/aisearch/instances/instances.py">stats</a>(id, \*, account_id) -> <a href="./src/cloudflare/types/aisearch/instance_stats_response.py">InstanceStatsResponse</a></code>
 
 ### Items
