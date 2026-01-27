@@ -52,6 +52,14 @@ from .evaluations import (
 )
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
+from .dynamic_routing import (
+    DynamicRoutingResource,
+    AsyncDynamicRoutingResource,
+    DynamicRoutingResourceWithRawResponse,
+    AsyncDynamicRoutingResourceWithRawResponse,
+    DynamicRoutingResourceWithStreamingResponse,
+    AsyncDynamicRoutingResourceWithStreamingResponse,
+)
 from .evaluation_types import (
     EvaluationTypesResource,
     AsyncEvaluationTypesResource,
@@ -59,6 +67,14 @@ from .evaluation_types import (
     AsyncEvaluationTypesResourceWithRawResponse,
     EvaluationTypesResourceWithStreamingResponse,
     AsyncEvaluationTypesResourceWithStreamingResponse,
+)
+from .provider_configs import (
+    ProviderConfigsResource,
+    AsyncProviderConfigsResource,
+    ProviderConfigsResourceWithRawResponse,
+    AsyncProviderConfigsResourceWithRawResponse,
+    ProviderConfigsResourceWithStreamingResponse,
+    AsyncProviderConfigsResourceWithStreamingResponse,
 )
 from ...types.ai_gateway import ai_gateway_list_params, ai_gateway_create_params, ai_gateway_update_params
 from ...types.ai_gateway.ai_gateway_get_response import AIGatewayGetResponse
@@ -86,6 +102,14 @@ class AIGatewayResource(SyncAPIResource):
     @cached_property
     def evaluations(self) -> EvaluationsResource:
         return EvaluationsResource(self._client)
+
+    @cached_property
+    def dynamic_routing(self) -> DynamicRoutingResource:
+        return DynamicRoutingResource(self._client)
+
+    @cached_property
+    def provider_configs(self) -> ProviderConfigsResource:
+        return ProviderConfigsResource(self._client)
 
     @cached_property
     def urls(self) -> URLsResource:
@@ -414,6 +438,14 @@ class AsyncAIGatewayResource(AsyncAPIResource):
     @cached_property
     def evaluations(self) -> AsyncEvaluationsResource:
         return AsyncEvaluationsResource(self._client)
+
+    @cached_property
+    def dynamic_routing(self) -> AsyncDynamicRoutingResource:
+        return AsyncDynamicRoutingResource(self._client)
+
+    @cached_property
+    def provider_configs(self) -> AsyncProviderConfigsResource:
+        return AsyncProviderConfigsResource(self._client)
 
     @cached_property
     def urls(self) -> AsyncURLsResource:
@@ -763,6 +795,14 @@ class AIGatewayResourceWithRawResponse:
         return EvaluationsResourceWithRawResponse(self._ai_gateway.evaluations)
 
     @cached_property
+    def dynamic_routing(self) -> DynamicRoutingResourceWithRawResponse:
+        return DynamicRoutingResourceWithRawResponse(self._ai_gateway.dynamic_routing)
+
+    @cached_property
+    def provider_configs(self) -> ProviderConfigsResourceWithRawResponse:
+        return ProviderConfigsResourceWithRawResponse(self._ai_gateway.provider_configs)
+
+    @cached_property
     def urls(self) -> URLsResourceWithRawResponse:
         return URLsResourceWithRawResponse(self._ai_gateway.urls)
 
@@ -802,6 +842,14 @@ class AsyncAIGatewayResourceWithRawResponse:
     @cached_property
     def evaluations(self) -> AsyncEvaluationsResourceWithRawResponse:
         return AsyncEvaluationsResourceWithRawResponse(self._ai_gateway.evaluations)
+
+    @cached_property
+    def dynamic_routing(self) -> AsyncDynamicRoutingResourceWithRawResponse:
+        return AsyncDynamicRoutingResourceWithRawResponse(self._ai_gateway.dynamic_routing)
+
+    @cached_property
+    def provider_configs(self) -> AsyncProviderConfigsResourceWithRawResponse:
+        return AsyncProviderConfigsResourceWithRawResponse(self._ai_gateway.provider_configs)
 
     @cached_property
     def urls(self) -> AsyncURLsResourceWithRawResponse:
@@ -845,6 +893,14 @@ class AIGatewayResourceWithStreamingResponse:
         return EvaluationsResourceWithStreamingResponse(self._ai_gateway.evaluations)
 
     @cached_property
+    def dynamic_routing(self) -> DynamicRoutingResourceWithStreamingResponse:
+        return DynamicRoutingResourceWithStreamingResponse(self._ai_gateway.dynamic_routing)
+
+    @cached_property
+    def provider_configs(self) -> ProviderConfigsResourceWithStreamingResponse:
+        return ProviderConfigsResourceWithStreamingResponse(self._ai_gateway.provider_configs)
+
+    @cached_property
     def urls(self) -> URLsResourceWithStreamingResponse:
         return URLsResourceWithStreamingResponse(self._ai_gateway.urls)
 
@@ -884,6 +940,14 @@ class AsyncAIGatewayResourceWithStreamingResponse:
     @cached_property
     def evaluations(self) -> AsyncEvaluationsResourceWithStreamingResponse:
         return AsyncEvaluationsResourceWithStreamingResponse(self._ai_gateway.evaluations)
+
+    @cached_property
+    def dynamic_routing(self) -> AsyncDynamicRoutingResourceWithStreamingResponse:
+        return AsyncDynamicRoutingResourceWithStreamingResponse(self._ai_gateway.dynamic_routing)
+
+    @cached_property
+    def provider_configs(self) -> AsyncProviderConfigsResourceWithStreamingResponse:
+        return AsyncProviderConfigsResourceWithStreamingResponse(self._ai_gateway.provider_configs)
 
     @cached_property
     def urls(self) -> AsyncURLsResourceWithStreamingResponse:

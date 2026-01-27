@@ -10052,6 +10052,51 @@ Methods:
 - <code title="delete /accounts/{account_id}/ai-gateway/gateways/{gateway_id}/evaluations/{id}">client.ai_gateway.evaluations.<a href="./src/cloudflare/resources/ai_gateway/evaluations.py">delete</a>(id, \*, account_id, gateway_id) -> <a href="./src/cloudflare/types/ai_gateway/evaluation_delete_response.py">EvaluationDeleteResponse</a></code>
 - <code title="get /accounts/{account_id}/ai-gateway/gateways/{gateway_id}/evaluations/{id}">client.ai_gateway.evaluations.<a href="./src/cloudflare/resources/ai_gateway/evaluations.py">get</a>(id, \*, account_id, gateway_id) -> <a href="./src/cloudflare/types/ai_gateway/evaluation_get_response.py">EvaluationGetResponse</a></code>
 
+## DynamicRouting
+
+Types:
+
+```python
+from cloudflare.types.ai_gateway import (
+    DynamicRoutingCreateResponse,
+    DynamicRoutingUpdateResponse,
+    DynamicRoutingListResponse,
+    DynamicRoutingDeleteResponse,
+    DynamicRoutingCreateDeploymentResponse,
+    DynamicRoutingCreateVersionResponse,
+    DynamicRoutingGetResponse,
+    DynamicRoutingGetVersionResponse,
+    DynamicRoutingListDeploymentsResponse,
+    DynamicRoutingListVersionsResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes">client.ai_gateway.dynamic_routing.<a href="./src/cloudflare/resources/ai_gateway/dynamic_routing.py">create</a>(gateway_id, \*, account_id, \*\*<a href="src/cloudflare/types/ai_gateway/dynamic_routing_create_params.py">params</a>) -> <a href="./src/cloudflare/types/ai_gateway/dynamic_routing_create_response.py">DynamicRoutingCreateResponse</a></code>
+- <code title="patch /accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}">client.ai_gateway.dynamic_routing.<a href="./src/cloudflare/resources/ai_gateway/dynamic_routing.py">update</a>(id, \*, account_id, gateway_id, \*\*<a href="src/cloudflare/types/ai_gateway/dynamic_routing_update_params.py">params</a>) -> <a href="./src/cloudflare/types/ai_gateway/dynamic_routing_update_response.py">DynamicRoutingUpdateResponse</a></code>
+- <code title="get /accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes">client.ai_gateway.dynamic_routing.<a href="./src/cloudflare/resources/ai_gateway/dynamic_routing.py">list</a>(gateway_id, \*, account_id) -> <a href="./src/cloudflare/types/ai_gateway/dynamic_routing_list_response.py">DynamicRoutingListResponse</a></code>
+- <code title="delete /accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}">client.ai_gateway.dynamic_routing.<a href="./src/cloudflare/resources/ai_gateway/dynamic_routing.py">delete</a>(id, \*, account_id, gateway_id) -> <a href="./src/cloudflare/types/ai_gateway/dynamic_routing_delete_response.py">DynamicRoutingDeleteResponse</a></code>
+- <code title="post /accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}/deployments">client.ai_gateway.dynamic_routing.<a href="./src/cloudflare/resources/ai_gateway/dynamic_routing.py">create_deployment</a>(id, \*, account_id, gateway_id, \*\*<a href="src/cloudflare/types/ai_gateway/dynamic_routing_create_deployment_params.py">params</a>) -> <a href="./src/cloudflare/types/ai_gateway/dynamic_routing_create_deployment_response.py">DynamicRoutingCreateDeploymentResponse</a></code>
+- <code title="post /accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}/versions">client.ai_gateway.dynamic_routing.<a href="./src/cloudflare/resources/ai_gateway/dynamic_routing.py">create_version</a>(id, \*, account_id, gateway_id, \*\*<a href="src/cloudflare/types/ai_gateway/dynamic_routing_create_version_params.py">params</a>) -> <a href="./src/cloudflare/types/ai_gateway/dynamic_routing_create_version_response.py">DynamicRoutingCreateVersionResponse</a></code>
+- <code title="get /accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}">client.ai_gateway.dynamic_routing.<a href="./src/cloudflare/resources/ai_gateway/dynamic_routing.py">get</a>(id, \*, account_id, gateway_id) -> <a href="./src/cloudflare/types/ai_gateway/dynamic_routing_get_response.py">DynamicRoutingGetResponse</a></code>
+- <code title="get /accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}/versions/{version_id}">client.ai_gateway.dynamic_routing.<a href="./src/cloudflare/resources/ai_gateway/dynamic_routing.py">get_version</a>(version_id, \*, account_id, gateway_id, id) -> <a href="./src/cloudflare/types/ai_gateway/dynamic_routing_get_version_response.py">DynamicRoutingGetVersionResponse</a></code>
+- <code title="get /accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}/deployments">client.ai_gateway.dynamic_routing.<a href="./src/cloudflare/resources/ai_gateway/dynamic_routing.py">list_deployments</a>(id, \*, account_id, gateway_id) -> <a href="./src/cloudflare/types/ai_gateway/dynamic_routing_list_deployments_response.py">DynamicRoutingListDeploymentsResponse</a></code>
+- <code title="get /accounts/{account_id}/ai-gateway/gateways/{gateway_id}/routes/{id}/versions">client.ai_gateway.dynamic_routing.<a href="./src/cloudflare/resources/ai_gateway/dynamic_routing.py">list_versions</a>(id, \*, account_id, gateway_id) -> <a href="./src/cloudflare/types/ai_gateway/dynamic_routing_list_versions_response.py">DynamicRoutingListVersionsResponse</a></code>
+
+## ProviderConfigs
+
+Types:
+
+```python
+from cloudflare.types.ai_gateway import ProviderConfigCreateResponse, ProviderConfigListResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/ai-gateway/gateways/{gateway_id}/provider_configs">client.ai_gateway.provider_configs.<a href="./src/cloudflare/resources/ai_gateway/provider_configs.py">create</a>(gateway_id, \*, account_id, \*\*<a href="src/cloudflare/types/ai_gateway/provider_config_create_params.py">params</a>) -> <a href="./src/cloudflare/types/ai_gateway/provider_config_create_response.py">ProviderConfigCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/ai-gateway/gateways/{gateway_id}/provider_configs">client.ai_gateway.provider_configs.<a href="./src/cloudflare/resources/ai_gateway/provider_configs.py">list</a>(gateway_id, \*, account_id, \*\*<a href="src/cloudflare/types/ai_gateway/provider_config_list_params.py">params</a>) -> <a href="./src/cloudflare/types/ai_gateway/provider_config_list_response.py">SyncV4PagePaginationArray[ProviderConfigListResponse]</a></code>
+
 ## URLs
 
 Types:
