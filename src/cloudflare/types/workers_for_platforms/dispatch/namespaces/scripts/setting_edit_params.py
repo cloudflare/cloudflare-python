@@ -33,6 +33,8 @@ __all__ = [
     "SettingsBindingWorkersBindingKindPlainText",
     "SettingsBindingWorkersBindingKindPipelines",
     "SettingsBindingWorkersBindingKindQueue",
+    "SettingsBindingWorkersBindingKindRatelimit",
+    "SettingsBindingWorkersBindingKindRatelimitSimple",
     "SettingsBindingWorkersBindingKindR2Bucket",
     "SettingsBindingWorkersBindingKindSecretText",
     "SettingsBindingWorkersBindingKindSendEmail",
@@ -302,6 +304,30 @@ class SettingsBindingWorkersBindingKindQueue(TypedDict, total=False):
     """The kind of resource that the binding provides."""
 
 
+class SettingsBindingWorkersBindingKindRatelimitSimple(TypedDict, total=False):
+    """The rate limit configuration."""
+
+    limit: Required[float]
+    """The limit (requests per period)."""
+
+    period: Required[int]
+    """The period in seconds."""
+
+
+class SettingsBindingWorkersBindingKindRatelimit(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    namespace_id: Required[str]
+    """Identifier of the rate limit namespace to bind to."""
+
+    simple: Required[SettingsBindingWorkersBindingKindRatelimitSimple]
+    """The rate limit configuration."""
+
+    type: Required[Literal["ratelimit"]]
+    """The kind of resource that the binding provides."""
+
+
 class SettingsBindingWorkersBindingKindR2Bucket(TypedDict, total=False):
     bucket_name: Required[str]
     """R2 bucket to bind to."""
@@ -502,6 +528,7 @@ SettingsBinding: TypeAlias = Union[
     SettingsBindingWorkersBindingKindPlainText,
     SettingsBindingWorkersBindingKindPipelines,
     SettingsBindingWorkersBindingKindQueue,
+    SettingsBindingWorkersBindingKindRatelimit,
     SettingsBindingWorkersBindingKindR2Bucket,
     SettingsBindingWorkersBindingKindSecretText,
     SettingsBindingWorkersBindingKindSendEmail,

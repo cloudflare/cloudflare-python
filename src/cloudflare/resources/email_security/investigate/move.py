@@ -108,7 +108,7 @@ class MoveResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncSinglePage[MoveBulkResponse]:
         """
-        Move multiple messages
+        Maximum batch size: 100 messages per request
 
         Args:
           account_id: Account Identifier
@@ -229,7 +229,7 @@ class AsyncMoveResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[MoveBulkResponse, AsyncSinglePage[MoveBulkResponse]]:
         """
-        Move multiple messages
+        Maximum batch size: 100 messages per request
 
         Args:
           account_id: Account Identifier

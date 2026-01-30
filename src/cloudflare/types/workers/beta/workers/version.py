@@ -35,6 +35,8 @@ __all__ = [
     "BindingWorkersBindingKindPlainText",
     "BindingWorkersBindingKindPipelines",
     "BindingWorkersBindingKindQueue",
+    "BindingWorkersBindingKindRatelimit",
+    "BindingWorkersBindingKindRatelimitSimple",
     "BindingWorkersBindingKindR2Bucket",
     "BindingWorkersBindingKindSecretText",
     "BindingWorkersBindingKindSendEmail",
@@ -344,6 +346,30 @@ class BindingWorkersBindingKindQueue(BaseModel):
     """The kind of resource that the binding provides."""
 
 
+class BindingWorkersBindingKindRatelimitSimple(BaseModel):
+    """The rate limit configuration."""
+
+    limit: float
+    """The limit (requests per period)."""
+
+    period: int
+    """The period in seconds."""
+
+
+class BindingWorkersBindingKindRatelimit(BaseModel):
+    name: str
+    """A JavaScript variable name for the binding."""
+
+    namespace_id: str
+    """Identifier of the rate limit namespace to bind to."""
+
+    simple: BindingWorkersBindingKindRatelimitSimple
+    """The rate limit configuration."""
+
+    type: Literal["ratelimit"]
+    """The kind of resource that the binding provides."""
+
+
 class BindingWorkersBindingKindR2Bucket(BaseModel):
     bucket_name: str
     """R2 bucket to bind to."""
@@ -530,6 +556,7 @@ Binding: TypeAlias = Annotated[
         BindingWorkersBindingKindPlainText,
         BindingWorkersBindingKindPipelines,
         BindingWorkersBindingKindQueue,
+        BindingWorkersBindingKindRatelimit,
         BindingWorkersBindingKindR2Bucket,
         BindingWorkersBindingKindSecretText,
         BindingWorkersBindingKindSendEmail,

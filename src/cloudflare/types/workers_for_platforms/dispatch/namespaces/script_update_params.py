@@ -35,6 +35,8 @@ __all__ = [
     "MetadataBindingWorkersBindingKindPlainText",
     "MetadataBindingWorkersBindingKindPipelines",
     "MetadataBindingWorkersBindingKindQueue",
+    "MetadataBindingWorkersBindingKindRatelimit",
+    "MetadataBindingWorkersBindingKindRatelimitSimple",
     "MetadataBindingWorkersBindingKindR2Bucket",
     "MetadataBindingWorkersBindingKindSecretText",
     "MetadataBindingWorkersBindingKindSendEmail",
@@ -366,6 +368,30 @@ class MetadataBindingWorkersBindingKindQueue(TypedDict, total=False):
     """The kind of resource that the binding provides."""
 
 
+class MetadataBindingWorkersBindingKindRatelimitSimple(TypedDict, total=False):
+    """The rate limit configuration."""
+
+    limit: Required[float]
+    """The limit (requests per period)."""
+
+    period: Required[int]
+    """The period in seconds."""
+
+
+class MetadataBindingWorkersBindingKindRatelimit(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    namespace_id: Required[str]
+    """Identifier of the rate limit namespace to bind to."""
+
+    simple: Required[MetadataBindingWorkersBindingKindRatelimitSimple]
+    """The rate limit configuration."""
+
+    type: Required[Literal["ratelimit"]]
+    """The kind of resource that the binding provides."""
+
+
 class MetadataBindingWorkersBindingKindR2Bucket(TypedDict, total=False):
     bucket_name: Required[str]
     """R2 bucket to bind to."""
@@ -566,6 +592,7 @@ MetadataBinding: TypeAlias = Union[
     MetadataBindingWorkersBindingKindPlainText,
     MetadataBindingWorkersBindingKindPipelines,
     MetadataBindingWorkersBindingKindQueue,
+    MetadataBindingWorkersBindingKindRatelimit,
     MetadataBindingWorkersBindingKindR2Bucket,
     MetadataBindingWorkersBindingKindSecretText,
     MetadataBindingWorkersBindingKindSendEmail,
