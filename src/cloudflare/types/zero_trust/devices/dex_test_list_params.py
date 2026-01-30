@@ -4,26 +4,13 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
-from ...._types import SequenceNotStr
 from ...._utils import PropertyInfo
 
-__all__ = ["TestListParams"]
+__all__ = ["DEXTestListParams"]
 
 
-class TestListParams(TypedDict, total=False):
+class DEXTestListParams(TypedDict, total=False):
     account_id: Required[str]
-
-    colo: str
-    """Optionally filter result stats to a Cloudflare colo.
-
-    Cannot be used in combination with deviceId param.
-    """
-
-    device_id: Annotated[SequenceNotStr[str], PropertyInfo(alias="deviceId")]
-    """Optionally filter result stats to a specific device(s).
-
-    Cannot be used in combination with colo param.
-    """
 
     kind: Literal["http", "traceroute"]
     """Filter by test type"""
@@ -35,4 +22,4 @@ class TestListParams(TypedDict, total=False):
     """Number of items per page"""
 
     test_name: Annotated[str, PropertyInfo(alias="testName")]
-    """Optionally filter results by test name"""
+    """Filter by test name"""

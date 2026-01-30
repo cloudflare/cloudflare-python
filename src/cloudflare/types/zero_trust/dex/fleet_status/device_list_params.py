@@ -43,7 +43,7 @@ class DeviceListParams(TypedDict, total=False):
     """Source:
 
     - `hourly` - device details aggregated hourly, up to 7 days prior
-    - `last_seen` - device details, up to 24 hours prior
+    - `last_seen` - device details, up to 60 minutes prior
     - `raw` - device details, up to 7 days prior
     """
 
