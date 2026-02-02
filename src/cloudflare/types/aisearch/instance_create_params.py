@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict
+from typing import Dict, Iterable
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._types import SequenceNotStr
@@ -11,6 +11,7 @@ from ..r2.buckets.provider import Provider
 
 __all__ = [
     "InstanceCreateParams",
+    "CustomMetadata",
     "Metadata",
     "PublicEndpointParams",
     "PublicEndpointParamsChatCompletionsEndpoint",
@@ -74,6 +75,8 @@ class InstanceCreateParams(TypedDict, total=False):
 
     chunk_size: int
 
+    custom_metadata: Iterable[CustomMetadata]
+
     embedding_model: Literal[
         "@cf/qwen/qwen3-embedding-0.6b",
         "@cf/baai/bge-m3",
@@ -133,6 +136,12 @@ class InstanceCreateParams(TypedDict, total=False):
     source_params: SourceParams
 
     token_id: str
+
+
+class CustomMetadata(TypedDict, total=False):
+    data_type: Required[Literal["text", "number", "boolean"]]
+
+    field_name: Required[str]
 
 
 class Metadata(TypedDict, total=False):

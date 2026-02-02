@@ -123,6 +123,7 @@ class InstancesResource(SyncAPIResource):
         chunk: bool | Omit = omit,
         chunk_overlap: int | Omit = omit,
         chunk_size: int | Omit = omit,
+        custom_metadata: Iterable[instance_create_params.CustomMetadata] | Omit = omit,
         embedding_model: Literal[
             "@cf/qwen/qwen3-embedding-0.6b",
             "@cf/baai/bge-m3",
@@ -208,6 +209,7 @@ class InstancesResource(SyncAPIResource):
                     "chunk": chunk,
                     "chunk_overlap": chunk_overlap,
                     "chunk_size": chunk_size,
+                    "custom_metadata": custom_metadata,
                     "embedding_model": embedding_model,
                     "hybrid_search_enabled": hybrid_search_enabled,
                     "max_num_results": max_num_results,
@@ -274,6 +276,7 @@ class InstancesResource(SyncAPIResource):
         chunk: bool | Omit = omit,
         chunk_overlap: int | Omit = omit,
         chunk_size: int | Omit = omit,
+        custom_metadata: Iterable[instance_update_params.CustomMetadata] | Omit = omit,
         embedding_model: Literal[
             "@cf/qwen/qwen3-embedding-0.6b",
             "@cf/baai/bge-m3",
@@ -394,6 +397,7 @@ class InstancesResource(SyncAPIResource):
                     "chunk": chunk,
                     "chunk_overlap": chunk_overlap,
                     "chunk_size": chunk_size,
+                    "custom_metadata": custom_metadata,
                     "embedding_model": embedding_model,
                     "hybrid_search_enabled": hybrid_search_enabled,
                     "max_num_results": max_num_results,
@@ -800,6 +804,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         chunk: bool | Omit = omit,
         chunk_overlap: int | Omit = omit,
         chunk_size: int | Omit = omit,
+        custom_metadata: Iterable[instance_create_params.CustomMetadata] | Omit = omit,
         embedding_model: Literal[
             "@cf/qwen/qwen3-embedding-0.6b",
             "@cf/baai/bge-m3",
@@ -885,6 +890,7 @@ class AsyncInstancesResource(AsyncAPIResource):
                     "chunk": chunk,
                     "chunk_overlap": chunk_overlap,
                     "chunk_size": chunk_size,
+                    "custom_metadata": custom_metadata,
                     "embedding_model": embedding_model,
                     "hybrid_search_enabled": hybrid_search_enabled,
                     "max_num_results": max_num_results,
@@ -951,6 +957,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         chunk: bool | Omit = omit,
         chunk_overlap: int | Omit = omit,
         chunk_size: int | Omit = omit,
+        custom_metadata: Iterable[instance_update_params.CustomMetadata] | Omit = omit,
         embedding_model: Literal[
             "@cf/qwen/qwen3-embedding-0.6b",
             "@cf/baai/bge-m3",
@@ -1071,6 +1078,7 @@ class AsyncInstancesResource(AsyncAPIResource):
                     "chunk": chunk,
                     "chunk_overlap": chunk_overlap,
                     "chunk_size": chunk_size,
+                    "custom_metadata": custom_metadata,
                     "embedding_model": embedding_model,
                     "hybrid_search_enabled": hybrid_search_enabled,
                     "max_num_results": max_num_results,

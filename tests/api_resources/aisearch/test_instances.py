@@ -49,6 +49,12 @@ class TestInstances:
             chunk=True,
             chunk_overlap=0,
             chunk_size=64,
+            custom_metadata=[
+                {
+                    "data_type": "text",
+                    "field_name": "x",
+                }
+            ],
             embedding_model="@cf/qwen/qwen3-embedding-0.6b",
             hybrid_search_enabled=True,
             max_num_results=1,
@@ -160,6 +166,12 @@ class TestInstances:
             chunk=True,
             chunk_overlap=0,
             chunk_size=64,
+            custom_metadata=[
+                {
+                    "data_type": "text",
+                    "field_name": "x",
+                }
+            ],
             embedding_model="@cf/qwen/qwen3-embedding-0.6b",
             hybrid_search_enabled=True,
             max_num_results=1,
@@ -709,6 +721,12 @@ class TestAsyncInstances:
             chunk=True,
             chunk_overlap=0,
             chunk_size=64,
+            custom_metadata=[
+                {
+                    "data_type": "text",
+                    "field_name": "x",
+                }
+            ],
             embedding_model="@cf/qwen/qwen3-embedding-0.6b",
             hybrid_search_enabled=True,
             max_num_results=1,
@@ -820,6 +838,12 @@ class TestAsyncInstances:
             chunk=True,
             chunk_overlap=0,
             chunk_size=64,
+            custom_metadata=[
+                {
+                    "data_type": "text",
+                    "field_name": "x",
+                }
+            ],
             embedding_model="@cf/qwen/qwen3-embedding-0.6b",
             hybrid_search_enabled=True,
             max_num_results=1,

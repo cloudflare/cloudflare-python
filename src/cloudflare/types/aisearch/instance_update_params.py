@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict
+from typing import Dict, Iterable
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._types import SequenceNotStr
@@ -11,6 +11,7 @@ from ..r2.buckets.provider import Provider
 
 __all__ = [
     "InstanceUpdateParams",
+    "CustomMetadata",
     "Metadata",
     "PublicEndpointParams",
     "PublicEndpointParamsChatCompletionsEndpoint",
@@ -70,6 +71,8 @@ class InstanceUpdateParams(TypedDict, total=False):
     chunk_overlap: int
 
     chunk_size: int
+
+    custom_metadata: Iterable[CustomMetadata]
 
     embedding_model: Literal[
         "@cf/qwen/qwen3-embedding-0.6b",
@@ -169,6 +172,12 @@ class InstanceUpdateParams(TypedDict, total=False):
     system_prompt_rewrite_query: str
 
     token_id: str
+
+
+class CustomMetadata(TypedDict, total=False):
+    data_type: Required[Literal["text", "number", "boolean"]]
+
+    field_name: Required[str]
 
 
 class Metadata(TypedDict, total=False):

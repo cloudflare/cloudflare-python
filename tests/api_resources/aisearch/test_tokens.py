@@ -35,17 +35,6 @@ class TestTokens:
         assert_matches_type(TokenCreateResponse, token, path=["response"])
 
     @parametrize
-    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
-        token = client.aisearch.tokens.create(
-            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            cf_api_id="cf_api_id",
-            cf_api_key="cf_api_key",
-            name="name",
-            legacy=True,
-        )
-        assert_matches_type(TokenCreateResponse, token, path=["response"])
-
-    @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.aisearch.tokens.with_raw_response.create(
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
@@ -289,17 +278,6 @@ class TestAsyncTokens:
             cf_api_id="cf_api_id",
             cf_api_key="cf_api_key",
             name="name",
-        )
-        assert_matches_type(TokenCreateResponse, token, path=["response"])
-
-    @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        token = await async_client.aisearch.tokens.create(
-            account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
-            cf_api_id="cf_api_id",
-            cf_api_key="cf_api_key",
-            name="name",
-            legacy=True,
         )
         assert_matches_type(TokenCreateResponse, token, path=["response"])
 

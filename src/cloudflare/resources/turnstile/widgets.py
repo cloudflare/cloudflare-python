@@ -61,6 +61,7 @@ class WidgetsResource(SyncAPIResource):
         mode: Literal["non-interactive", "invisible", "managed"],
         name: str,
         direction: Literal["asc", "desc"] | Omit = omit,
+        filter: str | Omit = omit,
         order: Literal["id", "sitekey", "name", "created_on", "modified_on"] | Omit = omit,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
@@ -89,6 +90,18 @@ class WidgetsResource(SyncAPIResource):
               used.
 
           direction: Direction to order widgets.
+
+          filter:
+              Filter widgets by field using case-insensitive substring matching. Format:
+              `field:value`
+
+              Supported fields:
+
+              - `name` - Filter by widget name (e.g., `filter=name:login-form`)
+              - `sitekey` - Filter by sitekey (e.g., `filter=sitekey:0x4AAA`)
+
+              Returns 400 Bad Request if the field is unsupported or format is invalid. An
+              empty filter value returns all results.
 
           order: Field to order widgets by.
 
@@ -141,6 +154,7 @@ class WidgetsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "direction": direction,
+                        "filter": filter,
                         "order": order,
                         "page": page,
                         "per_page": per_page,
@@ -240,6 +254,7 @@ class WidgetsResource(SyncAPIResource):
         *,
         account_id: str,
         direction: Literal["asc", "desc"] | Omit = omit,
+        filter: str | Omit = omit,
         order: Literal["id", "sitekey", "name", "created_on", "modified_on"] | Omit = omit,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
@@ -257,6 +272,18 @@ class WidgetsResource(SyncAPIResource):
           account_id: Identifier
 
           direction: Direction to order widgets.
+
+          filter:
+              Filter widgets by field using case-insensitive substring matching. Format:
+              `field:value`
+
+              Supported fields:
+
+              - `name` - Filter by widget name (e.g., `filter=name:login-form`)
+              - `sitekey` - Filter by sitekey (e.g., `filter=sitekey:0x4AAA`)
+
+              Returns 400 Bad Request if the field is unsupported or format is invalid. An
+              empty filter value returns all results.
 
           order: Field to order widgets by.
 
@@ -285,6 +312,7 @@ class WidgetsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "direction": direction,
+                        "filter": filter,
                         "order": order,
                         "page": page,
                         "per_page": per_page,
@@ -468,6 +496,7 @@ class AsyncWidgetsResource(AsyncAPIResource):
         mode: Literal["non-interactive", "invisible", "managed"],
         name: str,
         direction: Literal["asc", "desc"] | Omit = omit,
+        filter: str | Omit = omit,
         order: Literal["id", "sitekey", "name", "created_on", "modified_on"] | Omit = omit,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
@@ -496,6 +525,18 @@ class AsyncWidgetsResource(AsyncAPIResource):
               used.
 
           direction: Direction to order widgets.
+
+          filter:
+              Filter widgets by field using case-insensitive substring matching. Format:
+              `field:value`
+
+              Supported fields:
+
+              - `name` - Filter by widget name (e.g., `filter=name:login-form`)
+              - `sitekey` - Filter by sitekey (e.g., `filter=sitekey:0x4AAA`)
+
+              Returns 400 Bad Request if the field is unsupported or format is invalid. An
+              empty filter value returns all results.
 
           order: Field to order widgets by.
 
@@ -548,6 +589,7 @@ class AsyncWidgetsResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "direction": direction,
+                        "filter": filter,
                         "order": order,
                         "page": page,
                         "per_page": per_page,
@@ -647,6 +689,7 @@ class AsyncWidgetsResource(AsyncAPIResource):
         *,
         account_id: str,
         direction: Literal["asc", "desc"] | Omit = omit,
+        filter: str | Omit = omit,
         order: Literal["id", "sitekey", "name", "created_on", "modified_on"] | Omit = omit,
         page: float | Omit = omit,
         per_page: float | Omit = omit,
@@ -664,6 +707,18 @@ class AsyncWidgetsResource(AsyncAPIResource):
           account_id: Identifier
 
           direction: Direction to order widgets.
+
+          filter:
+              Filter widgets by field using case-insensitive substring matching. Format:
+              `field:value`
+
+              Supported fields:
+
+              - `name` - Filter by widget name (e.g., `filter=name:login-form`)
+              - `sitekey` - Filter by sitekey (e.g., `filter=sitekey:0x4AAA`)
+
+              Returns 400 Bad Request if the field is unsupported or format is invalid. An
+              empty filter value returns all results.
 
           order: Field to order widgets by.
 
@@ -692,6 +747,7 @@ class AsyncWidgetsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "direction": direction,
+                        "filter": filter,
                         "order": order,
                         "page": page,
                         "per_page": per_page,

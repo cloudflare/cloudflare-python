@@ -11,6 +11,7 @@ from ..r2.buckets.provider import Provider
 
 __all__ = [
     "InstanceCreateResponse",
+    "CustomMetadata",
     "Metadata",
     "PublicEndpointParams",
     "PublicEndpointParamsChatCompletionsEndpoint",
@@ -22,6 +23,12 @@ __all__ = [
     "SourceParamsWebCrawlerParseOptions",
     "SourceParamsWebCrawlerStoreOptions",
 ]
+
+
+class CustomMetadata(BaseModel):
+    data_type: Literal["text", "number", "boolean"]
+
+    field_name: str
 
 
 class Metadata(BaseModel):
@@ -184,6 +191,8 @@ class InstanceCreateResponse(BaseModel):
     chunk_size: Optional[int] = None
 
     created_by: Optional[str] = None
+
+    custom_metadata: Optional[List[CustomMetadata]] = None
 
     embedding_model: Optional[
         Literal[
