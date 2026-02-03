@@ -59,16 +59,16 @@ class TestToMarkdown:
     @parametrize
     def test_method_transform(self, client: Cloudflare) -> None:
         to_markdown = client.ai.to_markdown.transform(
-            file=b"raw file contents",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            file={"files": [b"raw file contents"]},
         )
         assert_matches_type(SyncSinglePage[ToMarkdownTransformResponse], to_markdown, path=["response"])
 
     @parametrize
     def test_raw_response_transform(self, client: Cloudflare) -> None:
         response = client.ai.to_markdown.with_raw_response.transform(
-            file=b"raw file contents",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            file={"files": [b"raw file contents"]},
         )
 
         assert response.is_closed is True
@@ -79,8 +79,8 @@ class TestToMarkdown:
     @parametrize
     def test_streaming_response_transform(self, client: Cloudflare) -> None:
         with client.ai.to_markdown.with_streaming_response.transform(
-            file=b"raw file contents",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            file={"files": [b"raw file contents"]},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -94,8 +94,8 @@ class TestToMarkdown:
     def test_path_params_transform(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.ai.to_markdown.with_raw_response.transform(
-                file=b"raw file contents",
                 account_id="",
+                file={"files": [b"raw file contents"]},
             )
 
 
@@ -145,16 +145,16 @@ class TestAsyncToMarkdown:
     @parametrize
     async def test_method_transform(self, async_client: AsyncCloudflare) -> None:
         to_markdown = await async_client.ai.to_markdown.transform(
-            file=b"raw file contents",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            file={"files": [b"raw file contents"]},
         )
         assert_matches_type(AsyncSinglePage[ToMarkdownTransformResponse], to_markdown, path=["response"])
 
     @parametrize
     async def test_raw_response_transform(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ai.to_markdown.with_raw_response.transform(
-            file=b"raw file contents",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            file={"files": [b"raw file contents"]},
         )
 
         assert response.is_closed is True
@@ -165,8 +165,8 @@ class TestAsyncToMarkdown:
     @parametrize
     async def test_streaming_response_transform(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ai.to_markdown.with_streaming_response.transform(
-            file=b"raw file contents",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            file={"files": [b"raw file contents"]},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -180,6 +180,6 @@ class TestAsyncToMarkdown:
     async def test_path_params_transform(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.ai.to_markdown.with_raw_response.transform(
-                file=b"raw file contents",
                 account_id="",
+                file={"files": [b"raw file contents"]},
             )

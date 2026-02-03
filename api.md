@@ -7604,7 +7604,7 @@ from cloudflare.types.radar.ai import ToMarkdownCreateResponse
 
 Methods:
 
-- <code title="post /accounts/{account_id}/ai/tomarkdown">client.radar.ai.to_markdown.<a href="./src/cloudflare/resources/radar/ai/to_markdown.py">create</a>(body, \*, account_id, \*\*<a href="src/cloudflare/types/radar/ai/to_markdown_create_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ai/to_markdown_create_response.py">SyncSinglePage[ToMarkdownCreateResponse]</a></code>
+- <code title="post /accounts/{account_id}/ai/tomarkdown">client.radar.ai.to_markdown.<a href="./src/cloudflare/resources/radar/ai/to_markdown.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/radar/ai/to_markdown_create_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ai/to_markdown_create_response.py">SyncSinglePage[ToMarkdownCreateResponse]</a></code>
 
 ### Inference
 
@@ -10642,7 +10642,7 @@ from cloudflare.types.ai import ToMarkdownSupportedResponse, ToMarkdownTransform
 Methods:
 
 - <code title="get /accounts/{account_id}/ai/tomarkdown/supported">client.ai.to_markdown.<a href="./src/cloudflare/resources/ai/to_markdown.py">supported</a>(\*, account_id) -> <a href="./src/cloudflare/types/ai/to_markdown_supported_response.py">SyncSinglePage[ToMarkdownSupportedResponse]</a></code>
-- <code title="post /accounts/{account_id}/ai/tomarkdown">client.ai.to_markdown.<a href="./src/cloudflare/resources/ai/to_markdown.py">transform</a>(file, \*, account_id, \*\*<a href="src/cloudflare/types/ai/to_markdown_transform_params.py">params</a>) -> <a href="./src/cloudflare/types/ai/to_markdown_transform_response.py">SyncSinglePage[ToMarkdownTransformResponse]</a></code>
+- <code title="post /accounts/{account_id}/ai/tomarkdown">client.ai.to_markdown.<a href="./src/cloudflare/resources/ai/to_markdown.py">transform</a>(\*, account_id, \*\*<a href="src/cloudflare/types/ai/to_markdown_transform_params.py">params</a>) -> <a href="./src/cloudflare/types/ai/to_markdown_transform_response.py">SyncSinglePage[ToMarkdownTransformResponse]</a></code>
 
 # AISearch
 
