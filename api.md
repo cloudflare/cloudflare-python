@@ -7703,23 +7703,23 @@ Methods:
 - <code title="get /radar/ai/bots/timeseries_groups/{dimension}">client.radar.ai.timeseries_groups.<a href="./src/cloudflare/resources/radar/ai/timeseries_groups.py">timeseries_groups</a>(dimension, \*\*<a href="src/cloudflare/types/radar/ai/timeseries_group_timeseries_groups_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ai/timeseries_group_timeseries_groups_response.py">TimeseriesGroupTimeseriesGroupsResponse</a></code>
 - <code title="get /radar/ai/bots/timeseries_groups/user_agent">client.radar.ai.timeseries_groups.<a href="./src/cloudflare/resources/radar/ai/timeseries_groups.py">user_agent</a>(\*\*<a href="src/cloudflare/types/radar/ai/timeseries_group_user_agent_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ai/timeseries_group_user_agent_response.py">TimeseriesGroupUserAgentResponse</a></code>
 
-## Ct
+## CT
 
 Types:
 
 ```python
 from cloudflare.types.radar import (
-    CtSummaryResponse,
-    CtTimeseriesResponse,
-    CtTimeseriesGroupsResponse,
+    CTSummaryResponse,
+    CTTimeseriesResponse,
+    CTTimeseriesGroupsResponse,
 )
 ```
 
 Methods:
 
-- <code title="get /radar/ct/summary/{dimension}">client.radar.ct.<a href="./src/cloudflare/resources/radar/ct/ct.py">summary</a>(dimension, \*\*<a href="src/cloudflare/types/radar/ct_summary_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ct_summary_response.py">CtSummaryResponse</a></code>
-- <code title="get /radar/ct/timeseries">client.radar.ct.<a href="./src/cloudflare/resources/radar/ct/ct.py">timeseries</a>(\*\*<a href="src/cloudflare/types/radar/ct_timeseries_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ct_timeseries_response.py">CtTimeseriesResponse</a></code>
-- <code title="get /radar/ct/timeseries_groups/{dimension}">client.radar.ct.<a href="./src/cloudflare/resources/radar/ct/ct.py">timeseries_groups</a>(dimension, \*\*<a href="src/cloudflare/types/radar/ct_timeseries_groups_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ct_timeseries_groups_response.py">CtTimeseriesGroupsResponse</a></code>
+- <code title="get /radar/ct/summary/{dimension}">client.radar.ct.<a href="./src/cloudflare/resources/radar/ct/ct.py">summary</a>(dimension, \*\*<a href="src/cloudflare/types/radar/ct_summary_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ct_summary_response.py">CTSummaryResponse</a></code>
+- <code title="get /radar/ct/timeseries">client.radar.ct.<a href="./src/cloudflare/resources/radar/ct/ct.py">timeseries</a>(\*\*<a href="src/cloudflare/types/radar/ct_timeseries_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ct_timeseries_response.py">CTTimeseriesResponse</a></code>
+- <code title="get /radar/ct/timeseries_groups/{dimension}">client.radar.ct.<a href="./src/cloudflare/resources/radar/ct/ct.py">timeseries_groups</a>(dimension, \*\*<a href="src/cloudflare/types/radar/ct_timeseries_groups_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ct_timeseries_groups_response.py">CTTimeseriesGroupsResponse</a></code>
 
 ### Authorities
 
@@ -7871,6 +7871,26 @@ Methods:
 
 - <code title="get /radar/bgp/ips/timeseries">client.radar.bgp.ips.<a href="./src/cloudflare/resources/radar/bgp/ips.py">timeseries</a>(\*\*<a href="src/cloudflare/types/radar/bgp/ip_timeseries_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/ip_timeseries_response.py">IPTimeseriesResponse</a></code>
 
+### RPKI
+
+#### ASPA
+
+Types:
+
+```python
+from cloudflare.types.radar.bgp.rpki import (
+    ASPAChangesResponse,
+    ASPASnapshotResponse,
+    ASPATimeseriesResponse,
+)
+```
+
+Methods:
+
+- <code title="get /radar/bgp/rpki/aspa/changes">client.radar.bgp.rpki.aspa.<a href="./src/cloudflare/resources/radar/bgp/rpki/aspa.py">changes</a>(\*\*<a href="src/cloudflare/types/radar/bgp/rpki/aspa_changes_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/rpki/aspa_changes_response.py">ASPAChangesResponse</a></code>
+- <code title="get /radar/bgp/rpki/aspa/snapshot">client.radar.bgp.rpki.aspa.<a href="./src/cloudflare/resources/radar/bgp/rpki/aspa.py">snapshot</a>(\*\*<a href="src/cloudflare/types/radar/bgp/rpki/aspa_snapshot_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/rpki/aspa_snapshot_response.py">ASPASnapshotResponse</a></code>
+- <code title="get /radar/bgp/rpki/aspa/timeseries">client.radar.bgp.rpki.aspa.<a href="./src/cloudflare/resources/radar/bgp/rpki/aspa.py">timeseries</a>(\*\*<a href="src/cloudflare/types/radar/bgp/rpki/aspa_timeseries_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/rpki/aspa_timeseries_response.py">ASPATimeseriesResponse</a></code>
+
 ## Bots
 
 Types:
@@ -8018,25 +8038,25 @@ Methods:
 - <code title="get /radar/dns/timeseries_groups/response_code">client.radar.dns.timeseries_groups.<a href="./src/cloudflare/resources/radar/dns/timeseries_groups.py">response_code</a>(\*\*<a href="src/cloudflare/types/radar/dns/timeseries_group_response_code_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/timeseries_group_response_code_response.py">TimeseriesGroupResponseCodeResponse</a></code>
 - <code title="get /radar/dns/timeseries_groups/response_ttl">client.radar.dns.timeseries_groups.<a href="./src/cloudflare/resources/radar/dns/timeseries_groups.py">response_ttl</a>(\*\*<a href="src/cloudflare/types/radar/dns/timeseries_group_response_ttl_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/timeseries_group_response_ttl_response.py">TimeseriesGroupResponseTTLResponse</a></code>
 
-## Netflows
+## NetFlows
 
 Types:
 
 ```python
 from cloudflare.types.radar import (
-    NetflowSummaryResponse,
-    NetflowSummaryV2Response,
-    NetflowTimeseriesResponse,
-    NetflowTimeseriesGroupsResponse,
+    NetFlowsSummaryResponse,
+    NetFlowsSummaryV2Response,
+    NetFlowsTimeseriesResponse,
+    NetFlowsTimeseriesGroupsResponse,
 )
 ```
 
 Methods:
 
-- <code title="get /radar/netflows/summary">client.radar.netflows.<a href="./src/cloudflare/resources/radar/netflows/netflows.py">summary</a>(\*\*<a href="src/cloudflare/types/radar/netflow_summary_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/netflow_summary_response.py">NetflowSummaryResponse</a></code>
-- <code title="get /radar/netflows/summary/{dimension}">client.radar.netflows.<a href="./src/cloudflare/resources/radar/netflows/netflows.py">summary_v2</a>(dimension, \*\*<a href="src/cloudflare/types/radar/netflow_summary_v2_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/netflow_summary_v2_response.py">NetflowSummaryV2Response</a></code>
-- <code title="get /radar/netflows/timeseries">client.radar.netflows.<a href="./src/cloudflare/resources/radar/netflows/netflows.py">timeseries</a>(\*\*<a href="src/cloudflare/types/radar/netflow_timeseries_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/netflow_timeseries_response.py">NetflowTimeseriesResponse</a></code>
-- <code title="get /radar/netflows/timeseries_groups/{dimension}">client.radar.netflows.<a href="./src/cloudflare/resources/radar/netflows/netflows.py">timeseries_groups</a>(dimension, \*\*<a href="src/cloudflare/types/radar/netflow_timeseries_groups_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/netflow_timeseries_groups_response.py">NetflowTimeseriesGroupsResponse</a></code>
+- <code title="get /radar/netflows/summary">client.radar.netflows.<a href="./src/cloudflare/resources/radar/netflows/netflows.py">summary</a>(\*\*<a href="src/cloudflare/types/radar/netflows_summary_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/netflows_summary_response.py">NetFlowsSummaryResponse</a></code>
+- <code title="get /radar/netflows/summary/{dimension}">client.radar.netflows.<a href="./src/cloudflare/resources/radar/netflows/netflows.py">summary_v2</a>(dimension, \*\*<a href="src/cloudflare/types/radar/netflows_summary_v2_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/netflows_summary_v2_response.py">NetFlowsSummaryV2Response</a></code>
+- <code title="get /radar/netflows/timeseries">client.radar.netflows.<a href="./src/cloudflare/resources/radar/netflows/netflows.py">timeseries</a>(\*\*<a href="src/cloudflare/types/radar/netflows_timeseries_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/netflows_timeseries_response.py">NetFlowsTimeseriesResponse</a></code>
+- <code title="get /radar/netflows/timeseries_groups/{dimension}">client.radar.netflows.<a href="./src/cloudflare/resources/radar/netflows/netflows.py">timeseries_groups</a>(dimension, \*\*<a href="src/cloudflare/types/radar/netflows_timeseries_groups_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/netflows_timeseries_groups_response.py">NetFlowsTimeseriesGroupsResponse</a></code>
 
 ### Top
 
@@ -8251,17 +8271,17 @@ Methods:
 
 #### Top
 
-##### Tlds
+##### TLDs
 
 Types:
 
 ```python
-from cloudflare.types.radar.email.security.top import TldGetResponse
+from cloudflare.types.radar.email.security.top import TLDGetResponse
 ```
 
 Methods:
 
-- <code title="get /radar/email/security/top/tlds">client.radar.email.security.top.tlds.<a href="./src/cloudflare/resources/radar/email/security/top/tlds/tlds.py">get</a>(\*\*<a href="src/cloudflare/types/radar/email/security/top/tld_get_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/security/top/tld_get_response.py">TldGetResponse</a></code>
+- <code title="get /radar/email/security/top/tlds">client.radar.email.security.top.tlds.<a href="./src/cloudflare/resources/radar/email/security/top/tlds/tlds.py">get</a>(\*\*<a href="src/cloudflare/types/radar/email/security/top/tld_get_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/email/security/top/tld_get_response.py">TLDGetResponse</a></code>
 
 ###### Malicious
 

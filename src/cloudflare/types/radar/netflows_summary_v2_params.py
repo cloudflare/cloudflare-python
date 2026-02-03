@@ -9,10 +9,10 @@ from typing_extensions import Literal, Annotated, TypedDict
 from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
-__all__ = ["NetflowSummaryV2Params"]
+__all__ = ["NetFlowsSummaryV2Params"]
 
 
-class NetflowSummaryV2Params(TypedDict, total=False):
+class NetFlowsSummaryV2Params(TypedDict, total=False):
     asn: SequenceNotStr[str]
     """Filters results by Autonomous System.
 

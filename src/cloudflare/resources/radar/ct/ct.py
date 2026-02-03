@@ -37,14 +37,14 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....types.radar import ct_summary_params, ct_timeseries_params, ct_timeseries_groups_params
 from ...._base_client import make_request_options
-from ....types.radar.ct_summary_response import CtSummaryResponse
-from ....types.radar.ct_timeseries_response import CtTimeseriesResponse
-from ....types.radar.ct_timeseries_groups_response import CtTimeseriesGroupsResponse
+from ....types.radar.ct_summary_response import CTSummaryResponse
+from ....types.radar.ct_timeseries_response import CTTimeseriesResponse
+from ....types.radar.ct_timeseries_groups_response import CTTimeseriesGroupsResponse
 
-__all__ = ["CtResource", "AsyncCtResource"]
+__all__ = ["CTResource", "AsyncCTResource"]
 
 
-class CtResource(SyncAPIResource):
+class CTResource(SyncAPIResource):
     @cached_property
     def authorities(self) -> AuthoritiesResource:
         return AuthoritiesResource(self._client)
@@ -54,23 +54,23 @@ class CtResource(SyncAPIResource):
         return LogsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> CtResourceWithRawResponse:
+    def with_raw_response(self) -> CTResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return CtResourceWithRawResponse(self)
+        return CTResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> CtResourceWithStreamingResponse:
+    def with_streaming_response(self) -> CTResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return CtResourceWithStreamingResponse(self)
+        return CTResourceWithStreamingResponse(self)
 
     def summary(
         self,
@@ -149,7 +149,7 @@ class CtResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CtSummaryResponse:
+    ) -> CTSummaryResponse:
         """
         Retrieves an aggregated summary of certificates grouped by the specified
         dimension.
@@ -250,11 +250,11 @@ class CtResource(SyncAPIResource):
                         "unique_entries": unique_entries,
                         "validation_level": validation_level,
                     },
-                    ct_summary_params.CtSummaryParams,
+                    ct_summary_params.CTSummaryParams,
                 ),
-                post_parser=ResultWrapper[CtSummaryResponse]._unwrapper,
+                post_parser=ResultWrapper[CTSummaryResponse]._unwrapper,
             ),
-            cast_to=cast(Type[CtSummaryResponse], ResultWrapper[CtSummaryResponse]),
+            cast_to=cast(Type[CTSummaryResponse], ResultWrapper[CTSummaryResponse]),
         )
 
     def timeseries(
@@ -317,7 +317,7 @@ class CtResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CtTimeseriesResponse:
+    ) -> CTTimeseriesResponse:
         """
         Retrieves certificate volume over time.
 
@@ -409,11 +409,11 @@ class CtResource(SyncAPIResource):
                         "unique_entries": unique_entries,
                         "validation_level": validation_level,
                     },
-                    ct_timeseries_params.CtTimeseriesParams,
+                    ct_timeseries_params.CTTimeseriesParams,
                 ),
-                post_parser=ResultWrapper[CtTimeseriesResponse]._unwrapper,
+                post_parser=ResultWrapper[CTTimeseriesResponse]._unwrapper,
             ),
-            cast_to=cast(Type[CtTimeseriesResponse], ResultWrapper[CtTimeseriesResponse]),
+            cast_to=cast(Type[CTTimeseriesResponse], ResultWrapper[CTTimeseriesResponse]),
         )
 
     def timeseries_groups(
@@ -494,7 +494,7 @@ class CtResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CtTimeseriesGroupsResponse:
+    ) -> CTTimeseriesGroupsResponse:
         """
         Retrieves the distribution of certificates grouped by chosen the specified
         dimension over time.
@@ -600,15 +600,15 @@ class CtResource(SyncAPIResource):
                         "unique_entries": unique_entries,
                         "validation_level": validation_level,
                     },
-                    ct_timeseries_groups_params.CtTimeseriesGroupsParams,
+                    ct_timeseries_groups_params.CTTimeseriesGroupsParams,
                 ),
-                post_parser=ResultWrapper[CtTimeseriesGroupsResponse]._unwrapper,
+                post_parser=ResultWrapper[CTTimeseriesGroupsResponse]._unwrapper,
             ),
-            cast_to=cast(Type[CtTimeseriesGroupsResponse], ResultWrapper[CtTimeseriesGroupsResponse]),
+            cast_to=cast(Type[CTTimeseriesGroupsResponse], ResultWrapper[CTTimeseriesGroupsResponse]),
         )
 
 
-class AsyncCtResource(AsyncAPIResource):
+class AsyncCTResource(AsyncAPIResource):
     @cached_property
     def authorities(self) -> AsyncAuthoritiesResource:
         return AsyncAuthoritiesResource(self._client)
@@ -618,23 +618,23 @@ class AsyncCtResource(AsyncAPIResource):
         return AsyncLogsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncCtResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncCTResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncCtResourceWithRawResponse(self)
+        return AsyncCTResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncCtResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncCTResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return AsyncCtResourceWithStreamingResponse(self)
+        return AsyncCTResourceWithStreamingResponse(self)
 
     async def summary(
         self,
@@ -713,7 +713,7 @@ class AsyncCtResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CtSummaryResponse:
+    ) -> CTSummaryResponse:
         """
         Retrieves an aggregated summary of certificates grouped by the specified
         dimension.
@@ -814,11 +814,11 @@ class AsyncCtResource(AsyncAPIResource):
                         "unique_entries": unique_entries,
                         "validation_level": validation_level,
                     },
-                    ct_summary_params.CtSummaryParams,
+                    ct_summary_params.CTSummaryParams,
                 ),
-                post_parser=ResultWrapper[CtSummaryResponse]._unwrapper,
+                post_parser=ResultWrapper[CTSummaryResponse]._unwrapper,
             ),
-            cast_to=cast(Type[CtSummaryResponse], ResultWrapper[CtSummaryResponse]),
+            cast_to=cast(Type[CTSummaryResponse], ResultWrapper[CTSummaryResponse]),
         )
 
     async def timeseries(
@@ -881,7 +881,7 @@ class AsyncCtResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CtTimeseriesResponse:
+    ) -> CTTimeseriesResponse:
         """
         Retrieves certificate volume over time.
 
@@ -973,11 +973,11 @@ class AsyncCtResource(AsyncAPIResource):
                         "unique_entries": unique_entries,
                         "validation_level": validation_level,
                     },
-                    ct_timeseries_params.CtTimeseriesParams,
+                    ct_timeseries_params.CTTimeseriesParams,
                 ),
-                post_parser=ResultWrapper[CtTimeseriesResponse]._unwrapper,
+                post_parser=ResultWrapper[CTTimeseriesResponse]._unwrapper,
             ),
-            cast_to=cast(Type[CtTimeseriesResponse], ResultWrapper[CtTimeseriesResponse]),
+            cast_to=cast(Type[CTTimeseriesResponse], ResultWrapper[CTTimeseriesResponse]),
         )
 
     async def timeseries_groups(
@@ -1058,7 +1058,7 @@ class AsyncCtResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CtTimeseriesGroupsResponse:
+    ) -> CTTimeseriesGroupsResponse:
         """
         Retrieves the distribution of certificates grouped by chosen the specified
         dimension over time.
@@ -1164,16 +1164,16 @@ class AsyncCtResource(AsyncAPIResource):
                         "unique_entries": unique_entries,
                         "validation_level": validation_level,
                     },
-                    ct_timeseries_groups_params.CtTimeseriesGroupsParams,
+                    ct_timeseries_groups_params.CTTimeseriesGroupsParams,
                 ),
-                post_parser=ResultWrapper[CtTimeseriesGroupsResponse]._unwrapper,
+                post_parser=ResultWrapper[CTTimeseriesGroupsResponse]._unwrapper,
             ),
-            cast_to=cast(Type[CtTimeseriesGroupsResponse], ResultWrapper[CtTimeseriesGroupsResponse]),
+            cast_to=cast(Type[CTTimeseriesGroupsResponse], ResultWrapper[CTTimeseriesGroupsResponse]),
         )
 
 
-class CtResourceWithRawResponse:
-    def __init__(self, ct: CtResource) -> None:
+class CTResourceWithRawResponse:
+    def __init__(self, ct: CTResource) -> None:
         self._ct = ct
 
         self.summary = to_raw_response_wrapper(
@@ -1195,8 +1195,8 @@ class CtResourceWithRawResponse:
         return LogsResourceWithRawResponse(self._ct.logs)
 
 
-class AsyncCtResourceWithRawResponse:
-    def __init__(self, ct: AsyncCtResource) -> None:
+class AsyncCTResourceWithRawResponse:
+    def __init__(self, ct: AsyncCTResource) -> None:
         self._ct = ct
 
         self.summary = async_to_raw_response_wrapper(
@@ -1218,8 +1218,8 @@ class AsyncCtResourceWithRawResponse:
         return AsyncLogsResourceWithRawResponse(self._ct.logs)
 
 
-class CtResourceWithStreamingResponse:
-    def __init__(self, ct: CtResource) -> None:
+class CTResourceWithStreamingResponse:
+    def __init__(self, ct: CTResource) -> None:
         self._ct = ct
 
         self.summary = to_streamed_response_wrapper(
@@ -1241,8 +1241,8 @@ class CtResourceWithStreamingResponse:
         return LogsResourceWithStreamingResponse(self._ct.logs)
 
 
-class AsyncCtResourceWithStreamingResponse:
-    def __init__(self, ct: AsyncCtResource) -> None:
+class AsyncCTResourceWithStreamingResponse:
+    def __init__(self, ct: AsyncCTResource) -> None:
         self._ct = ct
 
         self.summary = async_to_streamed_response_wrapper(

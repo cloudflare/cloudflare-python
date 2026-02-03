@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import TYPE_CHECKING, Dict, List
+from typing import List
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -9,13 +9,13 @@ from pydantic import Field as FieldInfo
 from ..._models import BaseModel
 
 __all__ = [
-    "NetflowTimeseriesGroupsResponse",
+    "NetFlowsSummaryResponse",
     "Meta",
     "MetaConfidenceInfo",
     "MetaConfidenceInfoAnnotation",
     "MetaDateRange",
     "MetaUnit",
-    "Serie0",
+    "Summary0",
 ]
 
 
@@ -92,15 +92,6 @@ class MetaUnit(BaseModel):
 class Meta(BaseModel):
     """Metadata for the results."""
 
-    agg_interval: Literal["FIFTEEN_MINUTES", "ONE_HOUR", "ONE_DAY", "ONE_WEEK", "ONE_MONTH"] = FieldInfo(
-        alias="aggInterval"
-    )
-    """Aggregation interval of the results (e.g., in 15 minutes or 1 hour intervals).
-
-    Refer to
-    [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
-    """
-
     confidence_info: MetaConfidenceInfo = FieldInfo(alias="confidenceInfo")
 
     date_range: List[MetaDateRange] = FieldInfo(alias="dateRange")
@@ -128,24 +119,16 @@ class Meta(BaseModel):
     """Measurement units for the results."""
 
 
-class Serie0(BaseModel):
-    timestamps: List[datetime]
+class Summary0(BaseModel):
+    http: str = FieldInfo(alias="HTTP")
+    """A numeric string."""
 
-    if TYPE_CHECKING:
-        # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
-        # value to this field, so for compatibility we avoid doing it at runtime.
-        __pydantic_extra__: Dict[str, List[str]] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
-
-        # Stub to indicate that arbitrary properties are accepted.
-        # To access properties that are not valid identifiers you can use `getattr`, e.g.
-        # `getattr(obj, '$type')`
-        def __getattr__(self, attr: str) -> List[str]: ...
-    else:
-        __pydantic_extra__: Dict[str, List[str]]
+    other: str = FieldInfo(alias="OTHER")
+    """A numeric string."""
 
 
-class NetflowTimeseriesGroupsResponse(BaseModel):
+class NetFlowsSummaryResponse(BaseModel):
     meta: Meta
     """Metadata for the results."""
 
-    serie_0: Serie0
+    summary_0: Summary0

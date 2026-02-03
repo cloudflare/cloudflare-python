@@ -29,43 +29,43 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....types.radar import (
-    netflow_summary_params,
-    netflow_summary_v2_params,
-    netflow_timeseries_params,
-    netflow_timeseries_groups_params,
+    netflows_summary_params,
+    netflows_summary_v2_params,
+    netflows_timeseries_params,
+    netflows_timeseries_groups_params,
 )
 from ...._base_client import make_request_options
-from ....types.radar.netflow_summary_response import NetflowSummaryResponse
-from ....types.radar.netflow_summary_v2_response import NetflowSummaryV2Response
-from ....types.radar.netflow_timeseries_response import NetflowTimeseriesResponse
-from ....types.radar.netflow_timeseries_groups_response import NetflowTimeseriesGroupsResponse
+from ....types.radar.netflows_summary_response import NetFlowsSummaryResponse
+from ....types.radar.netflows_summary_v2_response import NetFlowsSummaryV2Response
+from ....types.radar.netflows_timeseries_response import NetFlowsTimeseriesResponse
+from ....types.radar.netflows_timeseries_groups_response import NetFlowsTimeseriesGroupsResponse
 
-__all__ = ["NetflowsResource", "AsyncNetflowsResource"]
+__all__ = ["NetFlowsResource", "AsyncNetFlowsResource"]
 
 
-class NetflowsResource(SyncAPIResource):
+class NetFlowsResource(SyncAPIResource):
     @cached_property
     def top(self) -> TopResource:
         return TopResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> NetflowsResourceWithRawResponse:
+    def with_raw_response(self) -> NetFlowsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return NetflowsResourceWithRawResponse(self)
+        return NetFlowsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> NetflowsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> NetFlowsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return NetflowsResourceWithStreamingResponse(self)
+        return NetFlowsResourceWithStreamingResponse(self)
 
     @typing_extensions.deprecated(
         "Use [Get Network Traffic Distribution By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/netflows/methods/summary_v2/) instead."
@@ -88,7 +88,7 @@ class NetflowsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NetflowSummaryResponse:
+    ) -> NetFlowsSummaryResponse:
         """
         Retrieves the distribution of network traffic (NetFlows) by HTTP vs other
         protocols.
@@ -151,11 +151,11 @@ class NetflowsResource(SyncAPIResource):
                         "location": location,
                         "name": name,
                     },
-                    netflow_summary_params.NetflowSummaryParams,
+                    netflows_summary_params.NetFlowsSummaryParams,
                 ),
-                post_parser=ResultWrapper[NetflowSummaryResponse]._unwrapper,
+                post_parser=ResultWrapper[NetFlowsSummaryResponse]._unwrapper,
             ),
-            cast_to=cast(Type[NetflowSummaryResponse], ResultWrapper[NetflowSummaryResponse]),
+            cast_to=cast(Type[NetFlowsSummaryResponse], ResultWrapper[NetFlowsSummaryResponse]),
         )
 
     def summary_v2(
@@ -179,7 +179,7 @@ class NetflowsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NetflowSummaryV2Response:
+    ) -> NetFlowsSummaryV2Response:
         """
         Retrieves the distribution of network traffic (NetFlows) by the specified
         dimension.
@@ -254,11 +254,11 @@ class NetflowsResource(SyncAPIResource):
                         "name": name,
                         "product": product,
                     },
-                    netflow_summary_v2_params.NetflowSummaryV2Params,
+                    netflows_summary_v2_params.NetFlowsSummaryV2Params,
                 ),
-                post_parser=ResultWrapper[NetflowSummaryV2Response]._unwrapper,
+                post_parser=ResultWrapper[NetFlowsSummaryV2Response]._unwrapper,
             ),
-            cast_to=cast(Type[NetflowSummaryV2Response], ResultWrapper[NetflowSummaryV2Response]),
+            cast_to=cast(Type[NetFlowsSummaryV2Response], ResultWrapper[NetFlowsSummaryV2Response]),
         )
 
     def timeseries(
@@ -282,7 +282,7 @@ class NetflowsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NetflowTimeseriesResponse:
+    ) -> NetFlowsTimeseriesResponse:
         """
         Retrieves network traffic (NetFlows) over time.
 
@@ -356,11 +356,11 @@ class NetflowsResource(SyncAPIResource):
                         "normalization": normalization,
                         "product": product,
                     },
-                    netflow_timeseries_params.NetflowTimeseriesParams,
+                    netflows_timeseries_params.NetFlowsTimeseriesParams,
                 ),
-                post_parser=ResultWrapper[NetflowTimeseriesResponse]._unwrapper,
+                post_parser=ResultWrapper[NetFlowsTimeseriesResponse]._unwrapper,
             ),
-            cast_to=cast(Type[NetflowTimeseriesResponse], ResultWrapper[NetflowTimeseriesResponse]),
+            cast_to=cast(Type[NetFlowsTimeseriesResponse], ResultWrapper[NetFlowsTimeseriesResponse]),
         )
 
     def timeseries_groups(
@@ -386,7 +386,7 @@ class NetflowsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NetflowTimeseriesGroupsResponse:
+    ) -> NetFlowsTimeseriesGroupsResponse:
         """
         Retrieves the distribution of NetFlows traffic, grouped by chosen the specified
         dimension over time.
@@ -470,37 +470,37 @@ class NetflowsResource(SyncAPIResource):
                         "normalization": normalization,
                         "product": product,
                     },
-                    netflow_timeseries_groups_params.NetflowTimeseriesGroupsParams,
+                    netflows_timeseries_groups_params.NetFlowsTimeseriesGroupsParams,
                 ),
-                post_parser=ResultWrapper[NetflowTimeseriesGroupsResponse]._unwrapper,
+                post_parser=ResultWrapper[NetFlowsTimeseriesGroupsResponse]._unwrapper,
             ),
-            cast_to=cast(Type[NetflowTimeseriesGroupsResponse], ResultWrapper[NetflowTimeseriesGroupsResponse]),
+            cast_to=cast(Type[NetFlowsTimeseriesGroupsResponse], ResultWrapper[NetFlowsTimeseriesGroupsResponse]),
         )
 
 
-class AsyncNetflowsResource(AsyncAPIResource):
+class AsyncNetFlowsResource(AsyncAPIResource):
     @cached_property
     def top(self) -> AsyncTopResource:
         return AsyncTopResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncNetflowsResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncNetFlowsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncNetflowsResourceWithRawResponse(self)
+        return AsyncNetFlowsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncNetflowsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncNetFlowsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return AsyncNetflowsResourceWithStreamingResponse(self)
+        return AsyncNetFlowsResourceWithStreamingResponse(self)
 
     @typing_extensions.deprecated(
         "Use [Get Network Traffic Distribution By Dimension](https://developers.cloudflare.com/api/resources/radar/subresources/netflows/methods/summary_v2/) instead."
@@ -523,7 +523,7 @@ class AsyncNetflowsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NetflowSummaryResponse:
+    ) -> NetFlowsSummaryResponse:
         """
         Retrieves the distribution of network traffic (NetFlows) by HTTP vs other
         protocols.
@@ -586,11 +586,11 @@ class AsyncNetflowsResource(AsyncAPIResource):
                         "location": location,
                         "name": name,
                     },
-                    netflow_summary_params.NetflowSummaryParams,
+                    netflows_summary_params.NetFlowsSummaryParams,
                 ),
-                post_parser=ResultWrapper[NetflowSummaryResponse]._unwrapper,
+                post_parser=ResultWrapper[NetFlowsSummaryResponse]._unwrapper,
             ),
-            cast_to=cast(Type[NetflowSummaryResponse], ResultWrapper[NetflowSummaryResponse]),
+            cast_to=cast(Type[NetFlowsSummaryResponse], ResultWrapper[NetFlowsSummaryResponse]),
         )
 
     async def summary_v2(
@@ -614,7 +614,7 @@ class AsyncNetflowsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NetflowSummaryV2Response:
+    ) -> NetFlowsSummaryV2Response:
         """
         Retrieves the distribution of network traffic (NetFlows) by the specified
         dimension.
@@ -689,11 +689,11 @@ class AsyncNetflowsResource(AsyncAPIResource):
                         "name": name,
                         "product": product,
                     },
-                    netflow_summary_v2_params.NetflowSummaryV2Params,
+                    netflows_summary_v2_params.NetFlowsSummaryV2Params,
                 ),
-                post_parser=ResultWrapper[NetflowSummaryV2Response]._unwrapper,
+                post_parser=ResultWrapper[NetFlowsSummaryV2Response]._unwrapper,
             ),
-            cast_to=cast(Type[NetflowSummaryV2Response], ResultWrapper[NetflowSummaryV2Response]),
+            cast_to=cast(Type[NetFlowsSummaryV2Response], ResultWrapper[NetFlowsSummaryV2Response]),
         )
 
     async def timeseries(
@@ -717,7 +717,7 @@ class AsyncNetflowsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NetflowTimeseriesResponse:
+    ) -> NetFlowsTimeseriesResponse:
         """
         Retrieves network traffic (NetFlows) over time.
 
@@ -791,11 +791,11 @@ class AsyncNetflowsResource(AsyncAPIResource):
                         "normalization": normalization,
                         "product": product,
                     },
-                    netflow_timeseries_params.NetflowTimeseriesParams,
+                    netflows_timeseries_params.NetFlowsTimeseriesParams,
                 ),
-                post_parser=ResultWrapper[NetflowTimeseriesResponse]._unwrapper,
+                post_parser=ResultWrapper[NetFlowsTimeseriesResponse]._unwrapper,
             ),
-            cast_to=cast(Type[NetflowTimeseriesResponse], ResultWrapper[NetflowTimeseriesResponse]),
+            cast_to=cast(Type[NetFlowsTimeseriesResponse], ResultWrapper[NetFlowsTimeseriesResponse]),
         )
 
     async def timeseries_groups(
@@ -821,7 +821,7 @@ class AsyncNetflowsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> NetflowTimeseriesGroupsResponse:
+    ) -> NetFlowsTimeseriesGroupsResponse:
         """
         Retrieves the distribution of NetFlows traffic, grouped by chosen the specified
         dimension over time.
@@ -905,16 +905,16 @@ class AsyncNetflowsResource(AsyncAPIResource):
                         "normalization": normalization,
                         "product": product,
                     },
-                    netflow_timeseries_groups_params.NetflowTimeseriesGroupsParams,
+                    netflows_timeseries_groups_params.NetFlowsTimeseriesGroupsParams,
                 ),
-                post_parser=ResultWrapper[NetflowTimeseriesGroupsResponse]._unwrapper,
+                post_parser=ResultWrapper[NetFlowsTimeseriesGroupsResponse]._unwrapper,
             ),
-            cast_to=cast(Type[NetflowTimeseriesGroupsResponse], ResultWrapper[NetflowTimeseriesGroupsResponse]),
+            cast_to=cast(Type[NetFlowsTimeseriesGroupsResponse], ResultWrapper[NetFlowsTimeseriesGroupsResponse]),
         )
 
 
-class NetflowsResourceWithRawResponse:
-    def __init__(self, netflows: NetflowsResource) -> None:
+class NetFlowsResourceWithRawResponse:
+    def __init__(self, netflows: NetFlowsResource) -> None:
         self._netflows = netflows
 
         self.summary = (  # pyright: ignore[reportDeprecated]
@@ -937,8 +937,8 @@ class NetflowsResourceWithRawResponse:
         return TopResourceWithRawResponse(self._netflows.top)
 
 
-class AsyncNetflowsResourceWithRawResponse:
-    def __init__(self, netflows: AsyncNetflowsResource) -> None:
+class AsyncNetFlowsResourceWithRawResponse:
+    def __init__(self, netflows: AsyncNetFlowsResource) -> None:
         self._netflows = netflows
 
         self.summary = (  # pyright: ignore[reportDeprecated]
@@ -961,8 +961,8 @@ class AsyncNetflowsResourceWithRawResponse:
         return AsyncTopResourceWithRawResponse(self._netflows.top)
 
 
-class NetflowsResourceWithStreamingResponse:
-    def __init__(self, netflows: NetflowsResource) -> None:
+class NetFlowsResourceWithStreamingResponse:
+    def __init__(self, netflows: NetFlowsResource) -> None:
         self._netflows = netflows
 
         self.summary = (  # pyright: ignore[reportDeprecated]
@@ -985,8 +985,8 @@ class NetflowsResourceWithStreamingResponse:
         return TopResourceWithStreamingResponse(self._netflows.top)
 
 
-class AsyncNetflowsResourceWithStreamingResponse:
-    def __init__(self, netflows: AsyncNetflowsResource) -> None:
+class AsyncNetFlowsResourceWithStreamingResponse:
+    def __init__(self, netflows: AsyncNetFlowsResource) -> None:
         self._netflows = netflows
 
         self.summary = (  # pyright: ignore[reportDeprecated]

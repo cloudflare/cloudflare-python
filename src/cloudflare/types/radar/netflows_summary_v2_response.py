@@ -9,7 +9,7 @@ from pydantic import Field as FieldInfo
 from ..._models import BaseModel
 
 __all__ = [
-    "NetflowSummaryV2Response",
+    "NetFlowsSummaryV2Response",
     "Meta",
     "MetaConfidenceInfo",
     "MetaConfidenceInfoAnnotation",
@@ -118,7 +118,7 @@ class Meta(BaseModel):
     """Measurement units for the results."""
 
 
-class NetflowSummaryV2Response(BaseModel):
+class NetFlowsSummaryV2Response(BaseModel):
     meta: Meta
     """Metadata for the results."""
 

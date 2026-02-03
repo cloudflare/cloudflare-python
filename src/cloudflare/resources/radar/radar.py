@@ -11,12 +11,12 @@ from .ai.ai import (
     AsyncAIResourceWithStreamingResponse,
 )
 from .ct.ct import (
-    CtResource,
-    AsyncCtResource,
-    CtResourceWithRawResponse,
-    AsyncCtResourceWithRawResponse,
-    CtResourceWithStreamingResponse,
-    AsyncCtResourceWithStreamingResponse,
+    CTResource,
+    AsyncCTResource,
+    CTResourceWithRawResponse,
+    AsyncCTResourceWithRawResponse,
+    CTResourceWithStreamingResponse,
+    AsyncCTResourceWithStreamingResponse,
 )
 from .search import (
     SearchResource,
@@ -125,12 +125,12 @@ from .entities.entities import (
     AsyncEntitiesResourceWithStreamingResponse,
 )
 from .netflows.netflows import (
-    NetflowsResource,
-    AsyncNetflowsResource,
-    NetflowsResourceWithRawResponse,
-    AsyncNetflowsResourceWithRawResponse,
-    NetflowsResourceWithStreamingResponse,
-    AsyncNetflowsResourceWithStreamingResponse,
+    NetFlowsResource,
+    AsyncNetFlowsResource,
+    NetFlowsResourceWithRawResponse,
+    AsyncNetFlowsResourceWithRawResponse,
+    NetFlowsResourceWithStreamingResponse,
+    AsyncNetFlowsResourceWithStreamingResponse,
 )
 from .tcp_resets_timeouts import (
     TCPResetsTimeoutsResource,
@@ -190,8 +190,8 @@ class RadarResource(SyncAPIResource):
         return AIResource(self._client)
 
     @cached_property
-    def ct(self) -> CtResource:
-        return CtResource(self._client)
+    def ct(self) -> CTResource:
+        return CTResource(self._client)
 
     @cached_property
     def annotations(self) -> AnnotationsResource:
@@ -214,8 +214,8 @@ class RadarResource(SyncAPIResource):
         return DNSResource(self._client)
 
     @cached_property
-    def netflows(self) -> NetflowsResource:
-        return NetflowsResource(self._client)
+    def netflows(self) -> NetFlowsResource:
+        return NetFlowsResource(self._client)
 
     @cached_property
     def search(self) -> SearchResource:
@@ -299,8 +299,8 @@ class AsyncRadarResource(AsyncAPIResource):
         return AsyncAIResource(self._client)
 
     @cached_property
-    def ct(self) -> AsyncCtResource:
-        return AsyncCtResource(self._client)
+    def ct(self) -> AsyncCTResource:
+        return AsyncCTResource(self._client)
 
     @cached_property
     def annotations(self) -> AsyncAnnotationsResource:
@@ -323,8 +323,8 @@ class AsyncRadarResource(AsyncAPIResource):
         return AsyncDNSResource(self._client)
 
     @cached_property
-    def netflows(self) -> AsyncNetflowsResource:
-        return AsyncNetflowsResource(self._client)
+    def netflows(self) -> AsyncNetFlowsResource:
+        return AsyncNetFlowsResource(self._client)
 
     @cached_property
     def search(self) -> AsyncSearchResource:
@@ -411,8 +411,8 @@ class RadarResourceWithRawResponse:
         return AIResourceWithRawResponse(self._radar.ai)
 
     @cached_property
-    def ct(self) -> CtResourceWithRawResponse:
-        return CtResourceWithRawResponse(self._radar.ct)
+    def ct(self) -> CTResourceWithRawResponse:
+        return CTResourceWithRawResponse(self._radar.ct)
 
     @cached_property
     def annotations(self) -> AnnotationsResourceWithRawResponse:
@@ -435,8 +435,8 @@ class RadarResourceWithRawResponse:
         return DNSResourceWithRawResponse(self._radar.dns)
 
     @cached_property
-    def netflows(self) -> NetflowsResourceWithRawResponse:
-        return NetflowsResourceWithRawResponse(self._radar.netflows)
+    def netflows(self) -> NetFlowsResourceWithRawResponse:
+        return NetFlowsResourceWithRawResponse(self._radar.netflows)
 
     @cached_property
     def search(self) -> SearchResourceWithRawResponse:
@@ -504,8 +504,8 @@ class AsyncRadarResourceWithRawResponse:
         return AsyncAIResourceWithRawResponse(self._radar.ai)
 
     @cached_property
-    def ct(self) -> AsyncCtResourceWithRawResponse:
-        return AsyncCtResourceWithRawResponse(self._radar.ct)
+    def ct(self) -> AsyncCTResourceWithRawResponse:
+        return AsyncCTResourceWithRawResponse(self._radar.ct)
 
     @cached_property
     def annotations(self) -> AsyncAnnotationsResourceWithRawResponse:
@@ -528,8 +528,8 @@ class AsyncRadarResourceWithRawResponse:
         return AsyncDNSResourceWithRawResponse(self._radar.dns)
 
     @cached_property
-    def netflows(self) -> AsyncNetflowsResourceWithRawResponse:
-        return AsyncNetflowsResourceWithRawResponse(self._radar.netflows)
+    def netflows(self) -> AsyncNetFlowsResourceWithRawResponse:
+        return AsyncNetFlowsResourceWithRawResponse(self._radar.netflows)
 
     @cached_property
     def search(self) -> AsyncSearchResourceWithRawResponse:
@@ -597,8 +597,8 @@ class RadarResourceWithStreamingResponse:
         return AIResourceWithStreamingResponse(self._radar.ai)
 
     @cached_property
-    def ct(self) -> CtResourceWithStreamingResponse:
-        return CtResourceWithStreamingResponse(self._radar.ct)
+    def ct(self) -> CTResourceWithStreamingResponse:
+        return CTResourceWithStreamingResponse(self._radar.ct)
 
     @cached_property
     def annotations(self) -> AnnotationsResourceWithStreamingResponse:
@@ -621,8 +621,8 @@ class RadarResourceWithStreamingResponse:
         return DNSResourceWithStreamingResponse(self._radar.dns)
 
     @cached_property
-    def netflows(self) -> NetflowsResourceWithStreamingResponse:
-        return NetflowsResourceWithStreamingResponse(self._radar.netflows)
+    def netflows(self) -> NetFlowsResourceWithStreamingResponse:
+        return NetFlowsResourceWithStreamingResponse(self._radar.netflows)
 
     @cached_property
     def search(self) -> SearchResourceWithStreamingResponse:
@@ -690,8 +690,8 @@ class AsyncRadarResourceWithStreamingResponse:
         return AsyncAIResourceWithStreamingResponse(self._radar.ai)
 
     @cached_property
-    def ct(self) -> AsyncCtResourceWithStreamingResponse:
-        return AsyncCtResourceWithStreamingResponse(self._radar.ct)
+    def ct(self) -> AsyncCTResourceWithStreamingResponse:
+        return AsyncCTResourceWithStreamingResponse(self._radar.ct)
 
     @cached_property
     def annotations(self) -> AsyncAnnotationsResourceWithStreamingResponse:
@@ -714,8 +714,8 @@ class AsyncRadarResourceWithStreamingResponse:
         return AsyncDNSResourceWithStreamingResponse(self._radar.dns)
 
     @cached_property
-    def netflows(self) -> AsyncNetflowsResourceWithStreamingResponse:
-        return AsyncNetflowsResourceWithStreamingResponse(self._radar.netflows)
+    def netflows(self) -> AsyncNetFlowsResourceWithStreamingResponse:
+        return AsyncNetFlowsResourceWithStreamingResponse(self._radar.netflows)
 
     @cached_property
     def search(self) -> AsyncSearchResourceWithStreamingResponse:

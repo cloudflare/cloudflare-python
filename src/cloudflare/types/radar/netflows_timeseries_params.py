@@ -9,10 +9,10 @@ from typing_extensions import Literal, Annotated, TypedDict
 from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
-__all__ = ["NetflowTimeseriesParams"]
+__all__ = ["NetFlowsTimeseriesParams"]
 
 
-class NetflowTimeseriesParams(TypedDict, total=False):
+class NetFlowsTimeseriesParams(TypedDict, total=False):
     agg_interval: Annotated[Literal["15m", "1h", "1d", "1w"], PropertyInfo(alias="aggInterval")]
     """Aggregation interval of the results (e.g., in 15 minutes or 1 hour intervals).
 

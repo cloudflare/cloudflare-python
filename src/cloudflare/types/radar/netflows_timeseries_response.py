@@ -9,13 +9,13 @@ from pydantic import Field as FieldInfo
 from ..._models import BaseModel
 
 __all__ = [
-    "NetflowSummaryResponse",
+    "NetFlowsTimeseriesResponse",
     "Meta",
     "MetaConfidenceInfo",
     "MetaConfidenceInfoAnnotation",
     "MetaDateRange",
     "MetaUnit",
-    "Summary0",
+    "Serie0",
 ]
 
 
@@ -92,6 +92,15 @@ class MetaUnit(BaseModel):
 class Meta(BaseModel):
     """Metadata for the results."""
 
+    agg_interval: Literal["FIFTEEN_MINUTES", "ONE_HOUR", "ONE_DAY", "ONE_WEEK", "ONE_MONTH"] = FieldInfo(
+        alias="aggInterval"
+    )
+    """Aggregation interval of the results (e.g., in 15 minutes or 1 hour intervals).
+
+    Refer to
+    [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
+    """
+
     confidence_info: MetaConfidenceInfo = FieldInfo(alias="confidenceInfo")
 
     date_range: List[MetaDateRange] = FieldInfo(alias="dateRange")
@@ -119,16 +128,14 @@ class Meta(BaseModel):
     """Measurement units for the results."""
 
 
-class Summary0(BaseModel):
-    http: str = FieldInfo(alias="HTTP")
-    """A numeric string."""
+class Serie0(BaseModel):
+    timestamps: List[datetime]
 
-    other: str = FieldInfo(alias="OTHER")
-    """A numeric string."""
+    values: List[str]
 
 
-class NetflowSummaryResponse(BaseModel):
+class NetFlowsTimeseriesResponse(BaseModel):
     meta: Meta
     """Metadata for the results."""
 
-    summary_0: Summary0
+    serie_0: Serie0

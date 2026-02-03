@@ -34,6 +34,14 @@ from .top.top import (
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
+from .rpki.rpki import (
+    RPKIResource,
+    AsyncRPKIResource,
+    RPKIResourceWithRawResponse,
+    AsyncRPKIResourceWithRawResponse,
+    RPKIResourceWithStreamingResponse,
+    AsyncRPKIResourceWithStreamingResponse,
+)
 from ...._compat import cached_property
 from .leaks.leaks import (
     LeaksResource,
@@ -86,6 +94,10 @@ class BGPResource(SyncAPIResource):
     @cached_property
     def ips(self) -> IPsResource:
         return IPsResource(self._client)
+
+    @cached_property
+    def rpki(self) -> RPKIResource:
+        return RPKIResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> BGPResourceWithRawResponse:
@@ -211,6 +223,10 @@ class AsyncBGPResource(AsyncAPIResource):
     @cached_property
     def ips(self) -> AsyncIPsResource:
         return AsyncIPsResource(self._client)
+
+    @cached_property
+    def rpki(self) -> AsyncRPKIResource:
+        return AsyncRPKIResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncBGPResourceWithRawResponse:
@@ -344,6 +360,10 @@ class BGPResourceWithRawResponse:
     def ips(self) -> IPsResourceWithRawResponse:
         return IPsResourceWithRawResponse(self._bgp.ips)
 
+    @cached_property
+    def rpki(self) -> RPKIResourceWithRawResponse:
+        return RPKIResourceWithRawResponse(self._bgp.rpki)
+
 
 class AsyncBGPResourceWithRawResponse:
     def __init__(self, bgp: AsyncBGPResource) -> None:
@@ -372,6 +392,10 @@ class AsyncBGPResourceWithRawResponse:
     @cached_property
     def ips(self) -> AsyncIPsResourceWithRawResponse:
         return AsyncIPsResourceWithRawResponse(self._bgp.ips)
+
+    @cached_property
+    def rpki(self) -> AsyncRPKIResourceWithRawResponse:
+        return AsyncRPKIResourceWithRawResponse(self._bgp.rpki)
 
 
 class BGPResourceWithStreamingResponse:
@@ -402,6 +426,10 @@ class BGPResourceWithStreamingResponse:
     def ips(self) -> IPsResourceWithStreamingResponse:
         return IPsResourceWithStreamingResponse(self._bgp.ips)
 
+    @cached_property
+    def rpki(self) -> RPKIResourceWithStreamingResponse:
+        return RPKIResourceWithStreamingResponse(self._bgp.rpki)
+
 
 class AsyncBGPResourceWithStreamingResponse:
     def __init__(self, bgp: AsyncBGPResource) -> None:
@@ -430,3 +458,7 @@ class AsyncBGPResourceWithStreamingResponse:
     @cached_property
     def ips(self) -> AsyncIPsResourceWithStreamingResponse:
         return AsyncIPsResourceWithStreamingResponse(self._bgp.ips)
+
+    @cached_property
+    def rpki(self) -> AsyncRPKIResourceWithStreamingResponse:
+        return AsyncRPKIResourceWithStreamingResponse(self._bgp.rpki)
