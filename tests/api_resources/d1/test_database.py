@@ -646,20 +646,7 @@ class TestDatabase:
         database = client.d1.database.query(
             database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(SyncSinglePage[QueryResult], database, path=["response"])
-
-    @parametrize
-    def test_method_query_with_all_params_overload_2(self, client: Cloudflare) -> None:
-        database = client.d1.database.query(
-            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            batch=[
-                {
-                    "sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;",
-                    "params": ["firstParam", "secondParam"],
-                }
-            ],
+            batch=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
         )
         assert_matches_type(SyncSinglePage[QueryResult], database, path=["response"])
 
@@ -668,6 +655,7 @@ class TestDatabase:
         response = client.d1.database.with_raw_response.query(
             database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            batch=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
         )
 
         assert response.is_closed is True
@@ -680,6 +668,7 @@ class TestDatabase:
         with client.d1.database.with_streaming_response.query(
             database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            batch=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -695,12 +684,14 @@ class TestDatabase:
             client.d1.database.with_raw_response.query(
                 database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                 account_id="",
+                batch=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_id` but received ''"):
             client.d1.database.with_raw_response.query(
                 database_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                batch=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
             )
 
     @parametrize
@@ -771,20 +762,7 @@ class TestDatabase:
         database = client.d1.database.raw(
             database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(SyncSinglePage[DatabaseRawResponse], database, path=["response"])
-
-    @parametrize
-    def test_method_raw_with_all_params_overload_2(self, client: Cloudflare) -> None:
-        database = client.d1.database.raw(
-            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            batch=[
-                {
-                    "sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;",
-                    "params": ["firstParam", "secondParam"],
-                }
-            ],
+            batch=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
         )
         assert_matches_type(SyncSinglePage[DatabaseRawResponse], database, path=["response"])
 
@@ -793,6 +771,7 @@ class TestDatabase:
         response = client.d1.database.with_raw_response.raw(
             database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            batch=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
         )
 
         assert response.is_closed is True
@@ -805,6 +784,7 @@ class TestDatabase:
         with client.d1.database.with_streaming_response.raw(
             database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            batch=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -820,12 +800,14 @@ class TestDatabase:
             client.d1.database.with_raw_response.raw(
                 database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                 account_id="",
+                batch=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_id` but received ''"):
             client.d1.database.with_raw_response.raw(
                 database_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                batch=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
             )
 
 
@@ -1455,20 +1437,7 @@ class TestAsyncDatabase:
         database = await async_client.d1.database.query(
             database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(AsyncSinglePage[QueryResult], database, path=["response"])
-
-    @parametrize
-    async def test_method_query_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
-        database = await async_client.d1.database.query(
-            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            batch=[
-                {
-                    "sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;",
-                    "params": ["firstParam", "secondParam"],
-                }
-            ],
+            batch=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
         )
         assert_matches_type(AsyncSinglePage[QueryResult], database, path=["response"])
 
@@ -1477,6 +1446,7 @@ class TestAsyncDatabase:
         response = await async_client.d1.database.with_raw_response.query(
             database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            batch=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
         )
 
         assert response.is_closed is True
@@ -1489,6 +1459,7 @@ class TestAsyncDatabase:
         async with async_client.d1.database.with_streaming_response.query(
             database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            batch=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1504,12 +1475,14 @@ class TestAsyncDatabase:
             await async_client.d1.database.with_raw_response.query(
                 database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                 account_id="",
+                batch=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_id` but received ''"):
             await async_client.d1.database.with_raw_response.query(
                 database_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                batch=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
             )
 
     @parametrize
@@ -1580,20 +1553,7 @@ class TestAsyncDatabase:
         database = await async_client.d1.database.raw(
             database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(AsyncSinglePage[DatabaseRawResponse], database, path=["response"])
-
-    @parametrize
-    async def test_method_raw_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
-        database = await async_client.d1.database.raw(
-            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            batch=[
-                {
-                    "sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;",
-                    "params": ["firstParam", "secondParam"],
-                }
-            ],
+            batch=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
         )
         assert_matches_type(AsyncSinglePage[DatabaseRawResponse], database, path=["response"])
 
@@ -1602,6 +1562,7 @@ class TestAsyncDatabase:
         response = await async_client.d1.database.with_raw_response.raw(
             database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            batch=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
         )
 
         assert response.is_closed is True
@@ -1614,6 +1575,7 @@ class TestAsyncDatabase:
         async with async_client.d1.database.with_streaming_response.raw(
             database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            batch=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1629,10 +1591,12 @@ class TestAsyncDatabase:
             await async_client.d1.database.with_raw_response.raw(
                 database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
                 account_id="",
+                batch=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_id` but received ''"):
             await async_client.d1.database.with_raw_response.raw(
                 database_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                batch=[{"sql": "SELECT * FROM myTable WHERE field = ? OR field = ?;"}],
             )

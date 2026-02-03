@@ -645,7 +645,7 @@ class DatabaseResource(SyncAPIResource):
         database_id: str,
         *,
         account_id: str,
-        batch: Iterable[database_query_params.MultipleQueriesBatch] | Omit = omit,
+        batch: Iterable[database_query_params.MultipleQueriesBatch],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -671,7 +671,7 @@ class DatabaseResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["account_id", "sql"], ["account_id"])
+    @required_args(["account_id", "sql"], ["account_id", "batch"])
     def query(
         self,
         database_id: str,
@@ -753,7 +753,7 @@ class DatabaseResource(SyncAPIResource):
         database_id: str,
         *,
         account_id: str,
-        batch: Iterable[database_raw_params.MultipleQueriesBatch] | Omit = omit,
+        batch: Iterable[database_raw_params.MultipleQueriesBatch],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -781,7 +781,7 @@ class DatabaseResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["account_id", "sql"], ["account_id"])
+    @required_args(["account_id", "sql"], ["account_id", "batch"])
     def raw(
         self,
         database_id: str,
@@ -1421,7 +1421,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
         database_id: str,
         *,
         account_id: str,
-        batch: Iterable[database_query_params.MultipleQueriesBatch] | Omit = omit,
+        batch: Iterable[database_query_params.MultipleQueriesBatch],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1447,7 +1447,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["account_id", "sql"], ["account_id"])
+    @required_args(["account_id", "sql"], ["account_id", "batch"])
     def query(
         self,
         database_id: str,
@@ -1529,7 +1529,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
         database_id: str,
         *,
         account_id: str,
-        batch: Iterable[database_raw_params.MultipleQueriesBatch] | Omit = omit,
+        batch: Iterable[database_raw_params.MultipleQueriesBatch],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1557,7 +1557,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["account_id", "sql"], ["account_id"])
+    @required_args(["account_id", "sql"], ["account_id", "batch"])
     def raw(
         self,
         database_id: str,
