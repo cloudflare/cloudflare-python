@@ -6,10 +6,10 @@ from typing_extensions import Required, TypedDict
 
 from .certificate_authority import CertificateAuthority
 
-__all__ = ["TotalTLSCreateParams"]
+__all__ = ["TotalTLSUpdateParams"]
 
 
-class TotalTLSCreateParams(TypedDict, total=False):
+class TotalTLSUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier."""
 

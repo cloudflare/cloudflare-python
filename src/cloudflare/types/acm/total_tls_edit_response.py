@@ -6,10 +6,10 @@ from typing_extensions import Literal
 from ..._models import BaseModel
 from .certificate_authority import CertificateAuthority
 
-__all__ = ["TotalTLSCreateResponse"]
+__all__ = ["TotalTLSEditResponse"]
 
 
-class TotalTLSCreateResponse(BaseModel):
+class TotalTLSEditResponse(BaseModel):
     certificate_authority: Optional[CertificateAuthority] = None
     """The Certificate Authority that Total TLS certificates will be issued through."""
 
