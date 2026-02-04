@@ -79,6 +79,9 @@ class TestTokens:
         token = client.aisearch.tokens.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            cf_api_id="cf_api_id",
+            cf_api_key="cf_api_key",
+            name="name",
         )
         assert_matches_type(TokenUpdateResponse, token, path=["response"])
 
@@ -87,6 +90,9 @@ class TestTokens:
         response = client.aisearch.tokens.with_raw_response.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            cf_api_id="cf_api_id",
+            cf_api_key="cf_api_key",
+            name="name",
         )
 
         assert response.is_closed is True
@@ -99,6 +105,9 @@ class TestTokens:
         with client.aisearch.tokens.with_streaming_response.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            cf_api_id="cf_api_id",
+            cf_api_key="cf_api_key",
+            name="name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -114,12 +123,18 @@ class TestTokens:
             client.aisearch.tokens.with_raw_response.update(
                 id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="",
+                cf_api_id="cf_api_id",
+                cf_api_key="cf_api_key",
+                name="name",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.aisearch.tokens.with_raw_response.update(
                 id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+                cf_api_id="cf_api_id",
+                cf_api_key="cf_api_key",
+                name="name",
             )
 
     @parametrize
@@ -326,6 +341,9 @@ class TestAsyncTokens:
         token = await async_client.aisearch.tokens.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            cf_api_id="cf_api_id",
+            cf_api_key="cf_api_key",
+            name="name",
         )
         assert_matches_type(TokenUpdateResponse, token, path=["response"])
 
@@ -334,6 +352,9 @@ class TestAsyncTokens:
         response = await async_client.aisearch.tokens.with_raw_response.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            cf_api_id="cf_api_id",
+            cf_api_key="cf_api_key",
+            name="name",
         )
 
         assert response.is_closed is True
@@ -346,6 +367,9 @@ class TestAsyncTokens:
         async with async_client.aisearch.tokens.with_streaming_response.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+            cf_api_id="cf_api_id",
+            cf_api_key="cf_api_key",
+            name="name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -361,12 +385,18 @@ class TestAsyncTokens:
             await async_client.aisearch.tokens.with_raw_response.update(
                 id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="",
+                cf_api_id="cf_api_id",
+                cf_api_key="cf_api_key",
+                name="name",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.aisearch.tokens.with_raw_response.update(
                 id="",
                 account_id="c3dc5f0b34a14ff8e1b3ec04895e1b22",
+                cf_api_id="cf_api_id",
+                cf_api_key="cf_api_key",
+                name="name",
             )
 
     @parametrize

@@ -6,6 +6,7 @@ from .token_list_params import TokenListParams as TokenListParams
 from .token_create_params import TokenCreateParams as TokenCreateParams
 from .token_list_response import TokenListResponse as TokenListResponse
 from .token_read_response import TokenReadResponse as TokenReadResponse
+from .token_update_params import TokenUpdateParams as TokenUpdateParams
 from .instance_list_params import InstanceListParams as InstanceListParams
 from .token_create_response import TokenCreateResponse as TokenCreateResponse
 from .token_delete_response import TokenDeleteResponse as TokenDeleteResponse

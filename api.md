@@ -10724,10 +10724,10 @@ from cloudflare.types.aisearch import (
 Methods:
 
 - <code title="post /accounts/{account_id}/ai-search/tokens">client.aisearch.tokens.<a href="./src/cloudflare/resources/aisearch/tokens.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/aisearch/token_create_params.py">params</a>) -> <a href="./src/cloudflare/types/aisearch/token_create_response.py">TokenCreateResponse</a></code>
-- <code title="delete /accounts/{account_id}/ai-search/tokens/{id}">client.aisearch.tokens.<a href="./src/cloudflare/resources/aisearch/tokens.py">update</a>(id, \*, account_id) -> <a href="./src/cloudflare/types/aisearch/token_update_response.py">TokenUpdateResponse</a></code>
+- <code title="put /accounts/{account_id}/ai-search/tokens/{id}">client.aisearch.tokens.<a href="./src/cloudflare/resources/aisearch/tokens.py">update</a>(id, \*, account_id, \*\*<a href="src/cloudflare/types/aisearch/token_update_params.py">params</a>) -> <a href="./src/cloudflare/types/aisearch/token_update_response.py">TokenUpdateResponse</a></code>
 - <code title="get /accounts/{account_id}/ai-search/tokens">client.aisearch.tokens.<a href="./src/cloudflare/resources/aisearch/tokens.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/aisearch/token_list_params.py">params</a>) -> <a href="./src/cloudflare/types/aisearch/token_list_response.py">SyncV4PagePaginationArray[TokenListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/ai-search/tokens/{id}">client.aisearch.tokens.<a href="./src/cloudflare/resources/aisearch/tokens.py">delete</a>(id, \*, account_id) -> <a href="./src/cloudflare/types/aisearch/token_delete_response.py">TokenDeleteResponse</a></code>
-- <code title="delete /accounts/{account_id}/ai-search/tokens/{id}">client.aisearch.tokens.<a href="./src/cloudflare/resources/aisearch/tokens.py">read</a>(id, \*, account_id) -> <a href="./src/cloudflare/types/aisearch/token_read_response.py">TokenReadResponse</a></code>
+- <code title="get /accounts/{account_id}/ai-search/tokens/{id}">client.aisearch.tokens.<a href="./src/cloudflare/resources/aisearch/tokens.py">read</a>(id, \*, account_id) -> <a href="./src/cloudflare/types/aisearch/token_read_response.py">TokenReadResponse</a></code>
 
 # SecurityCenter
 

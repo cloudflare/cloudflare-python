@@ -19,7 +19,7 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.aisearch import token_list_params, token_create_params
+from ...types.aisearch import token_list_params, token_create_params, token_update_params
 from ...types.aisearch.token_list_response import TokenListResponse
 from ...types.aisearch.token_read_response import TokenReadResponse
 from ...types.aisearch.token_create_response import TokenCreateResponse
@@ -102,6 +102,9 @@ class TokensResource(SyncAPIResource):
         id: str,
         *,
         account_id: str,
+        cf_api_id: str,
+        cf_api_key: str,
+        name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -110,7 +113,7 @@ class TokensResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TokenUpdateResponse:
         """
-        Delete tokens.
+        Update tokens.
 
         Args:
           extra_headers: Send extra headers
@@ -125,8 +128,16 @@ class TokensResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._delete(
+        return self._put(
             f"/accounts/{account_id}/ai-search/tokens/{id}",
+            body=maybe_transform(
+                {
+                    "cf_api_id": cf_api_id,
+                    "cf_api_key": cf_api_key,
+                    "name": name,
+                },
+                token_update_params.TokenUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -236,7 +247,7 @@ class TokensResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TokenReadResponse:
         """
-        Delete tokens.
+        Read tokens.
 
         Args:
           extra_headers: Send extra headers
@@ -251,7 +262,7 @@ class TokensResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._delete(
+        return self._get(
             f"/accounts/{account_id}/ai-search/tokens/{id}",
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -337,6 +348,9 @@ class AsyncTokensResource(AsyncAPIResource):
         id: str,
         *,
         account_id: str,
+        cf_api_id: str,
+        cf_api_key: str,
+        name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -345,7 +359,7 @@ class AsyncTokensResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TokenUpdateResponse:
         """
-        Delete tokens.
+        Update tokens.
 
         Args:
           extra_headers: Send extra headers
@@ -360,8 +374,16 @@ class AsyncTokensResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return await self._delete(
+        return await self._put(
             f"/accounts/{account_id}/ai-search/tokens/{id}",
+            body=await async_maybe_transform(
+                {
+                    "cf_api_id": cf_api_id,
+                    "cf_api_key": cf_api_key,
+                    "name": name,
+                },
+                token_update_params.TokenUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -471,7 +493,7 @@ class AsyncTokensResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TokenReadResponse:
         """
-        Delete tokens.
+        Read tokens.
 
         Args:
           extra_headers: Send extra headers
@@ -486,7 +508,7 @@ class AsyncTokensResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return await self._delete(
+        return await self._get(
             f"/accounts/{account_id}/ai-search/tokens/{id}",
             options=make_request_options(
                 extra_headers=extra_headers,
